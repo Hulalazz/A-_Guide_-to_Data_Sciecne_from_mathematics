@@ -8,8 +8,8 @@ If this material infringes your copyright, you could contact me via Github and I
 It includes the following content:
 [X] basic introduction to probability and statistics;
 [X] computational statistics;
-[]  generalized linear model;
-[]  probabilistic and graph models;
-[] basci machine learning;
+[ ]  generalized linear model;
+[ ]  probabilistic and graph models;
+[ ] basci machine learning;
 [X] some materials on deep learning;
-[] other data anslysis such as topological data analysis.
+[ ] other data anslysis such as topological data analysis.
