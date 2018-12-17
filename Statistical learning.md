@@ -51,6 +51,7 @@ Random variable is to represent the stochastic event, where stochastic event is 
 Probability is the mathematical measure to likelihood or chance.
 
 > *Definition* A function $P$ is called probability function with respect to the known sample space $\Omega$ and all the event $\forall \omega \in \Omega$ if
+>
 >| Properties | Conditions | Interpretation |
 >| ---------- | ----------- | ------------: |
 >| Nonnegative | $P(\omega) \geq 0 \forall \omega \in \Omega$ | Impossible = 0 |
