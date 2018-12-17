@@ -58,6 +58,7 @@ Probability is the mathematical measure to likelihood or chance.
 >| Additive | If $\omega_1, \omega_2, \cdots \in \Omega$ are disjoint, then $P(\bigcup_{i=1}^{\infty}\omega_i)=\sum_{i=1}^{\infty}P(\omega_i)$ | Do your own business |
 
 These properties are called **Kolmogorov axioms**[^1].
+
 | 1 | 2 | 3 |
 | :------: | :-------: | :------: |
 |![Kolmogorov 3]( http://www.math.nsc.ru/LBRT/g2/pics/ank.jpg)|![Kolmogorov](http://img.valorebooks.com/FULL/97/9780/978082/9780821808726.jpg)|![Kolmogorov 2](http://russia-ic.com/image/?cat=education_science&name=817.jpg)|
@@ -177,7 +178,9 @@ The cumulative probability function and probability density function are really 
 $$
 F_{(X,Y)}(x,y)=P(X\leq x, Y\leq y).
 $$
+
 Their joint mass function  $f:\mathbb{R}^{2}\rightarrow [0,1]$ is given by
+
 $$
 f_{(X,Y)}(x,y)=P(X=x, Y=y).
 $$
@@ -228,7 +231,7 @@ for continuous random variable.
 Sometimes, it is quite difficult if we directly generate a random vector $X\sim f_X(x)$, but the augmented vector $(X, Z)
 ^⊤\sim f_{(X,Z)}(x, z)$ is relatively easy to generate such as [Box-Muller algorithm](https://www.wikiwand.com/en/Box%E2%80%93Muller_transform).
 And we can represent $f_X(x)$ as the marginal probability distribution of $f_{(X,Y)}(x,y)$ in integral form
-$$\int_{\mathbb{R}}f_{(X,Z)}(x,z)\mathrm{d}z.$$
+$$\int_{\mathbb{R}}f_{(X,Z)}(x,z) \mathrm{d}z.$$
 
 
 It is **Khintchine’s (1938) theorem**  that shows how to mix the distributions.
@@ -333,7 +336,9 @@ There are some related links:
 ### Inverse Bayes' Formula
 
 The joint pdf of the random variables $X$ and $Y$ can be expressed as
-$$f_{(x,y)}(x,y)=f_{X|Y}(x|y)f_{Y}(y)=f_{Y|X}(y|x)f_{X}(x).$$
+$$
+f_{(x,y)}(x,y)=f_{X|Y}(x|y)f_{Y}(y)=f_{Y|X}(y|x)f_{X}(x).
+$$
 in **some proper conditions**.
 Thus we get by division
 $$f_{Y}(y)=\frac{f_{Y|X}(y|x)f_{X}(x)}{f_{X|Y}(x|y)} \tag 1.$$
@@ -419,7 +424,9 @@ The probability of an event can be expressed as the expectation, i.e.
 |:------------------------:|
 |$P(x\in A)= \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
 where
-$$\mathbb{I}_{A}=\begin{cases} 1, & \text{if $x\in A$}\\ 0, & \text{otherwise}\end{cases}.$$
+$$
+\mathbb{I}_{A}=\begin{cases} 1, & \text{if $x\in A$}\\ 0, & \text{otherwise}\end{cases}.
+$$
 It is called as the indictor function of $A$.
 
 ******************************************************
@@ -448,10 +455,11 @@ $$\mu_{n} =\int_{x\in\mathbb{R}}(x-c)^n f_X(x)\mathbb{d}x.$$
 And the constant $c$ always take the expectation $\mathbb{E}(X)$ or $0$.
 
 > *Definition*: Moment generating function of a random variable $X$ is the expectation of the random variable of $e^{tX}$, i.e.
->|[Moment generating function](https://www.wikiwand.com/en/Moment-generating_function#)|
->|:-----------------------------------------------------------------------------------:|
->| $M_X(t)=\int_{\mathbb{R}}e^{tx}f_X(x)\mathbb{d}x$ for continuous random variable|
->| $M_{X}(t)=\sum_{i=1}^{\infty}e^{tx_{i}}P(x=x_i)$ for discrete random variable|
+>
+|[Moment generating function](https://www.wikiwand.com/en/Moment-generating_function#)|
+|:-----------------------------------------------------------------------------------:|
+| $M_X(t)=\int_{\mathbb{R}}e^{tx}f_X(x)\mathbb{d}x$ for continuous random variable|
+| $M_{X}(t)=\sum_{i=1}^{\infty}e^{tx_{i}}P(x=x_i)$ for discrete random variable|
 
 It is [Laplace transformation](http://mathworld.wolfram.com/LaplaceTransform.html) applied to probability density function. And it is also related with [cumulants](http://scholarpedia.org/article/Cumulants).
 
@@ -459,7 +467,6 @@ It is [Laplace transformation](http://mathworld.wolfram.com/LaplaceTransform.htm
 |:------------------:|:----:|:-------:|
 |![](http://scienceworld.wolfram.com/biography/pics/Laplace.jpg)|![](https://www.larousse.fr/encyclopedie/data/images/1005054-Pierre_Simon_marquis_de_Laplace.jpg)|![](https://upload.wikimedia.org/wikipedia/commons/3/39/Laplace%2C_Pierre-Simon%2C_marquis_de.jpg)|
 |[More pictures](https://www.alamy.de/stockfoto-pierre-simon-marquis-de-laplace-1749-1827-franzosisch-mathematiker-astronom-22861590.html)|
-
 
 ## Sampling Methods
 
@@ -478,7 +485,7 @@ There are some related links in web:
 
 >(Inverse transform technique) Let $F$ be a probability cumulative function of a random variable taking non-negative integer values, and let $U$ be uniformly distributed on interval $[0, 1]$. The random variable given by $X=k$ if and only if $F(k-1)<U<F(k)$ has the distribution function $F$.
 
-##### Sampling from Categorical Distribution
+#### Sampling from Categorical Distribution
 
 >The **categorical distribution** (also called  a **generalized Bernoulli distribution**, **multinoulli distribution**) is a discrete probability distribution that describes the possible results of a random variable that can take on one of _K_ possible categories, with the probability of each category separately specified.
 
@@ -488,7 +495,7 @@ The category can be represented as [one-hot vector](https://www.wikiwand.com/en/
 1. Each category is identified by its position and equal to each other in norm;
 2. The one-hot vectors can not be compared as the real number  in value;
 3. The probability mass function of the _K_ categories distribution can be written in a compact form - $P(\mathrm{X})=[p_1,p_2, \cdots, p_K]\cdot \mathrm{X}^T$,
-where
+  where
    * The probability $p_i \geq 0, \forall i\in [1,\cdots, K]$ and $\sum_{i=1}^{K}p_i=1$;
    * The random variable $\mathrm{X}$ is one-hot vector and $\mathrm{X}^T$ is the transpose of $X$.
 
@@ -504,12 +511,14 @@ $\color{olive}{\text{The categorical variable cannot be ordered, how to compute 
 
 ### Sampling from Continuous Distribution
 
-##### Direct Methods
+#### Direct Methods
 
 >([Inverse transform technique](https://www.wikiwand.com/en/Inverse_transform_sampling)) Let $F$ be a probability cumulative function of a continuous random variable, and let $U$ be uniformly distributed on interval $[0, 1]$. The random variable $X=F^{-1}(U)$ has the distribution function $F$.
 
  *Khintchine’s (1938) theorem*: Suppose the random variable $X$ with density given by
-$$f_{X}(x)=\int_{x}^{\infty}z^{-1}f_Z(z)\mathrm{d}z\tag 0$$
+$$
+f_{X}(x)=\int_{x}^{\infty}z^{-1}f_Z(z)\mathrm{d}z\tag 0
+$$
 or This mixture can be represented equivalently by
 $$
 \begin{align}
@@ -550,7 +559,7 @@ The algorithm will take an average of $M$ iterations to obtain a sample.
 [Ziggural algorithm](https://www.wikiwand.com/en/Ziggurat_algorithm) is an application of rejection sampling to draw samples from Gaussian distribution.
 
 |[John von Neumann, 1903-1957](https://www.wikiwand.com/en/John_von_Neumann)|
-|:--:|
+|:-------------------------------------------------------------------------:|
 |![](https://www.azquotes.com/picture-quotes/quote-anyone-who-attempts-to-generate-random-numbers-by-deterministic-means-is-of-course-living-john-von-neumann-21-31-61.jpg)|
 
 
@@ -560,11 +569,12 @@ It is also called SIR method in short. As name shown, it consists of two steps: 
 The SIR method generates an approximate i.i.d. sample of size $m$ from the target density
  $f(x),x\in \mathbb{X}\subset\mathbb{R}^n.$.
 ***
-The SIR without replacement
+The SIR without replacement is as following:
+
  1. Draw $X^{(1)},X^{(2)},\cdots,X^{(J)}$ independently from the proposal density $g(\cdot)$.
  2. Select a subset $\{X^{(k_i)}\}_{i=1}^{m}$ from $\{X^{(i)}\}_{i=1}^{J}$ via resampling without replacement from the discrete distribution $\{\omega_i\}_{i=1}^{J}$
      * where $w_i=\frac{f(X^{(i)})}{g(X^{(i)})}$ and $\omega_i=\frac{w_i}{\sum_{i=1}^{n}w_i}$.
-***
+
 
 #### The Conditional Sampling Method
 
@@ -587,11 +597,17 @@ The law of large number provides theoretical guarantee to estimate the expectati
 > *(Strong law of large numbers)*: Let $X_1,X_2,\dots$ be a sequence of
 independently identically distributed (i.i.d.) random variables (r.v.s) with expectation $\mu$.
 Consider the sum
-$$\bar{X}_N = X_1 + X_2 + \cdots + X_N.$$
+$$
+\bar{X}_N = X_1 + X_2 + \cdots + X_N.
+$$
 Then as $N\to\infty$,
-$$P(\lim_{N\to\infty}\bar{X}_N=\mu)=1$$
+$$
+P(\lim_{N\to\infty}\bar{X}_N=\mu)=1
+$$
 i.e.
-$$\bar{X}_N\stackrel{a.s.}\to\mu.$$
+$$
+\bar{X}_N\stackrel{a.s.}\to\mu.
+$$
 [See more on Wikipedia.](https://www.wikiwand.com/en/Law_of_large_numbers)
 
 
@@ -633,8 +649,8 @@ $$\cal{X}\sim N(\mu,\Sigma).$$
 
 ## Stochastic Processes
 
-Stochastic processes focus on the independent random variables. For more information see
-the [Wikipedia ](https://www.wikiwand.com/en/Stochastic_process).
+Stochastic processes focus on the independent random variables.
+For more information see the [Wikipedia page](https://www.wikiwand.com/en/Stochastic_process).
 
 ![](https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg)
 
@@ -653,7 +669,9 @@ Poisson process is named after the statistician [**Siméon Denis Poisson**](http
 ##### Poisson distribution
 
 It is a discrete distribution with the pmf:
-$$P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}, k\in\{0,1,\cdots\},$$
+$$
+P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}, k\in\{0,1,\cdots\},
+$$
 where  $k!$ is the factorial of $k$, i.e. $k!=k\times{(k-1)}\times{(k-2)}\cdots\times{2}\times{1}$.
 See more in [Wikipedia page](https://www.wikiwand.com/en/Poisson_distribution).
 
@@ -667,10 +685,14 @@ Markov chain is a simple stochastic process in honor of **Andrey (Andrei) Andrey
 People introduced to Markov chains through a typical course on stochastic processes have
 usually only seen examples where the state space is finite or countable. If the state space
 is finite, written $\{x_1,\cdots,x_n\}$, then the initial distribution can be associated with a vector $\lambda =(\lambda_1,\cdots, \lambda_n)$ defined by
-$$P(X=x_i)=\lambda_i\quad i=1,\cdots, n,$$
+$$
+P(X=x_i)=\lambda_i\quad i=1,\cdots, n,
+$$
 and the transition probabilities can be associated with a matrix $P$ having elements $p_{i j}$
 defined by
-$$P(X_{n+1}=x_i|X_n=x_j)=p_{i j}\quad i=1,\cdots, n,\text{and}\, j=1,\cdots,n.$$
+$$
+P(X_{n+1}=x_i|X_n=x_j)=p_{i j}\quad i=1,\cdots, n,\text{and}\, j=1,\cdots,n.
+$$
 When the state space is countably infinite, we can think of an infinite vector and matrix.
 But most Markov chains of interest in **MCMC** have uncountable state space, and then we
 cannot think of the initial distribution as a vector or the transition probability distribution
@@ -697,6 +719,7 @@ the Markov chain $X_1, X_2, \cdots$ they specify, the distribution of pairs $(X_
 
 A Markov chain is reversible if its transition probability is reversible with respect to its initial distribution. Reversibility implies stationarity, but not vice versa. A reversible Markov chain has the same laws running forward or backward in time, that is, for any $i$ and $k$ the distributions of $(X_{i+1}, \cdots , X_{i+k})$ and $(X_{i+k}, \cdots , X_{i+1})$ are the same.
 ***
+
 |[Andrey (Andrei) Andreyevich Markov,1856-1922](https://www.wikiwand.com/en/Andrey_Markov)|
 |:---------------------------------------------------------------------------------------:|
 |![](https://upload.wikimedia.org/wikipedia/commons/a/a8/Andrei_Markov.jpg)|
@@ -722,7 +745,7 @@ A Markov chain is reversible if its transition probability is reversible with re
 * [Hamiltonian Monte Carlo 1](http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/)
 * [Roadmap of HMM](https://metacademy.org/graphs/concepts/hamiltonian_monte_carlo)
 * [PyMC2](https://colcarroll.github.io/hamiltonian_monte_carlo_talk/bayes_talk.html)
-https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling
+* https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling
 
 ### Importance sampling
 
@@ -737,9 +760,11 @@ $$\mu=\mathbb{E}(f(\vec{X}))=\int_{\mathbb{R}}f(\vec{X})p({X})\mathrm{d}X,$$
  The [algorithm of importance sampling](http://math.arizona.edu/~tgk/mc/book_chap6.pdf) is as following:
  1. Generate samples $\vec{X}_1,\vec{X}_2,\cdots,\vec{X}_n$ from the distribution $q(X)$;
  2. Compute the estimator $\hat{\mu}_{q} =\frac{1}{n}\sum_{i=1}^{n}\frac{f(\vec{X_i})p(\vec{X_i})}{q(\vec{X_i})}$
+
 ***
 
 See more in
+
 * [Wikipedia page](https://www.wikiwand.com/en/Importance_sampling).
 * [Stanford statweb](https://statweb.stanford.edu/~owen/mc/Ch-var-is.pdf)
 
@@ -762,6 +787,7 @@ By solving the above system of equations for $\hat{theta}$ in the term of $\hat{
 ***
 
 See more on [Wikipedia](https://www.wikiwand.com/en/Method_of_moments_(statistics)).
+
 |[Pafnuty Chebyshev,1821-1894](https://www.wikiwand.com/en/Pafnuty_Chebyshev)|
 |:--------------------------------------------------------------------------:|
 |![](http://www.aprender-mat.info/history/photos/Chebyshev_2.jpeg)|
@@ -852,9 +878,9 @@ $\color{aqua}{LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION}.$
 * Representation as the core of the note is the general (mathematical) **model** that computer can handle.
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
 * Optimization is to aimed to find the parameters taht optimizes the evaluation function, i.e.
-$$
-\arg\min_{\theta} f(\theta)=\{\theta^*|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
-$$
+    $$
+    \arg\min_{\theta} f(\theta)=\{\theta^*|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
+    $$
 
 ***********************************************
 
@@ -942,10 +968,14 @@ x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2}
 **Mirror descent** can be regarded as the non-Euclidean generalization via replacing the $\ell_2$ norm or Euclidean distance in projected gradient descent by [Bregman divergence](https://www.mdpi.com/1099-4300/16/12/6338/htm).
 
 Bregman divergence is induced by convex smooth function $f$:
-$$B(x,y)=f(x)-f(y)-\left<\nabla f(y),x-y\right>$$
+$$
+B(x,y)=f(x)-f(y)-\left<\nabla f(y),x-y\right>
+$$
 where $\left<\cdot,\cdot\right>$ is inner product.
 Especially, when $f$ is quadratic function, the Bregman divergence induced by $f$ is
-$$B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2$$
+$$
+B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
+$$
 i.e. the Euclidean distance.
 ***
 It is given by:
@@ -1017,7 +1047,9 @@ sometimes more efficient than Newton’s method.[^11]
 In optimization, quasi-Newton methods (a special case of **variable-metric methods**) are algorithms for finding local maxima and minima of functions. Quasi-Newton methods are based on Newton's method to find the stationary point of a function, where the gradient is 0.
 In quasi-Newton methods the Hessian matrix does not need to be computed. The Hessian is updated by analyzing successive gradient vectors instead. Quasi-Newton methods are a generalization of the secant method to find the root of the first derivative for multidimensional problems. In multiple dimensions the secant equation is under-determined, and quasi-Newton methods differ in how they constrain the solution, typically by adding a simple low-rank update to the current estimate of the Hessian.
 One of the chief advantages of quasi-Newton methods over Newton's method is that the Hessian matrix (or, in the case of quasi-Newton methods, its approximation) $B$ does not need to be inverted. The Hessian approximation $B$ is chosen to satisfy
-$$\nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),$$
+$$
+\nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),
+$$
 which is called the **secant equation** (the Taylor series of the gradient itself).
 In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method). The various quasi-Newton methods differ in their choice of the solution to the secant equation (in one dimension, all the variants are equivalent).
 
@@ -1065,13 +1097,16 @@ complete-data log-likelihood $\ell(\theta|Y_{obs}, Z)$ and the conditional predi
 Each iteration of the **EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
 Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
 is to compute the **Q** function defined by
-$$\begin{align}
+$$
+\begin{align}
 Q(\theta|\theta^{(t)}) &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
                        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
-\end{align}$$
+\end{align}
+$$
 and the M-step is to maximize **Q** with respect to $\theta$ to obtain
-$$\theta^{(t+1)}=\arg\max_{\theta}Q(\theta|\theta^{(t)}).$$
-
+$$
+\theta^{(t+1)}=\arg\max_{\theta}Q(\theta|\theta^{(t)}).
+$$
 
 * https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
 * http://cs229.stanford.edu/notes/cs229-notes8.pdf
@@ -1142,14 +1177,18 @@ The name **stochastic gradient methods**  may be more appropriate to call the me
 It can date back upto **stochastic approximation**.
 
 It is aimed to solve the problem with finite sum optimization problem, i.e.
-$$\arg\min_{\theta}\frac{1}{n}\sum_{i=1}^{n}f(\theta|x_i)$$
+$$
+\arg\min_{\theta}\frac{1}{n}\sum_{i=1}^{n}f(\theta|x_i)
+$$
 where $n<\infty$ and $\{f(\theta|x_i)\}_{i=1}^{n}$ are in the same function family and $\{x_i\}_{i=1}^{n}\subset \mathbb{R}^{d}$ are constants  while $\theta\in\mathbb{R}^{p}$ is the variable vector.
 
 The difficulty is $p$, that the dimension of $\theta$, is tremendous. In other words, the model is **overparameterized**. And the number $n$ is far larger than $p$ generally, i.e. $n \gg  p\gg d$.
 What is worse, the functions  $\{f(\theta|x_i)\}_{i=1}^{n}$ are not convex in most case.
 ***
 The stochastic gradient method is defined as
-$$\theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})$$
+$$
+\theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})
+$$
 where $x_{j}^{\prime}$ is stochastically draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$.
 
 It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent.
@@ -1177,7 +1216,10 @@ where $\rho$ is close to 1 such as $\rho=1.1$  in order to avoid frequent “acc
 objective function computation is wasted in these cases, $\eta$ is chosen to provide a rapid reduction
 ($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
 ***
-The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$. Thus it is not clever to determine the learning rate $\alpha_k$ by line search. And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization. The variants of gradient descent such as momentum methods or mirror gradient methods have their stochastic counterparts.
+The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function 
+$f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$. 
+Thus it is not clever to determine the learning rate $\alpha_k$ by line search. And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization. 
+The variants of gradient descent such as momentum methods or mirror gradient methods have their stochastic counterparts.
 
 * It is simplest to set the step length a constant, such as ${\alpha}_k=3\times 10^{-3}\, \forall k$.
 * There are decay schemes, i.e. the step length ${\alpha}_k$ diminishes such as ${\alpha}_k=\frac{\alpha}{k}$, where $\alpha$ is constant.
@@ -1314,13 +1356,11 @@ where it is trackable if $\lambda$ is large enough.
 
 LASSO  is the abbreviation of **Least Absolute Shrinkage and Selection Operator**.
 1. It is to minimize the following objective function：
-
 $$
 PRSS_{\ell_1}=\sum_{i=1}^{n}(y_i-w^Tx_i)^2+\lambda{\|w\|}_{1} =\|Y-Xw\|^2+\lambda{\|w\|}_1\,\tag {LASSO}.
 $$
 
 2. the optimization form:
-
 $$
 \begin{align}
  \arg\min_{w}\sum_{i=1}^{n}(y_i-w^Tx_i)^2 &\qquad\text{Objective function} \\
@@ -1404,8 +1444,9 @@ $$
 where $\mathbb{E}(Y)$ is the expected value of $\mathrm{Y}$; $X\beta$ is the linear predictor, a linear combination of unknown parameters $\beta$; $g$ is the link function and $g^{-1}$ is the inverse function of $g$.
 
 The GLM consists of three elements:
+
 |Model components|
-|:---------------|
+|:--------------:|
 |1. A probability distribution from the exponential family.|
 |2. A linear predictor $\eta = X\beta$.|
 |3. A link function $g$ such that $\mathbb{E}(Y) = \mu = g^{−1}(\eta)$.|
@@ -1426,10 +1467,12 @@ The logistic distribution:
 $$
 y\stackrel{\triangle}=P(Y=1|X=x)=\frac{1}{1+e^{-w^{T}x}}=\frac{e^{w^{T}x}}{1+e^{w^{T}x}}
 $$
+
 where $w$ is the parameter vector. Thus, we can obtain:
 $$
 \log\frac{P(Y=1|X=x)}{P(Y \not= 1|X=x)}=w^{T}x,
 $$
+
 i.e.
 $$
 \log\frac{y}{1-y}=w^{T}x
@@ -1514,7 +1557,7 @@ this case one can derive prototypes (or centroids) for each cluster, for example
 In other cases only an **external representation** of dissimilarities is available and the resulting model is an
 **undirected and weighted graph** of entities connected by edges. From <https://www.intelligent-optimization.org/LIONbook/>.[^13]
 ***
-The external representaion of dissimilarity will be discussed in **Graph Algorithm**.
+The external representation of dissimilarity will be discussed in **Graph Algorithm**.
 
 #### K-means
 
@@ -1739,11 +1782,16 @@ Spectral method is the kernel tricks applied to [locality preserving projections
 In multivariate statistics and the clustering of data, spectral clustering techniques make use of the spectrum (eigenvalues) of the `similarity matrix` of the data to perform dimensionality reduction before clustering in fewer dimensions. The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the data set.
 
 **Similarity matrix** is to measure the similarity between the input features $\{\mathbf{x}_i\}_{i=1}^{n}\subset\mathbb{R}^{p}$.
-For example, we can use Gaussian kernel function $f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$ to measure the *similarity* of inputs.
+For example, we can use Gaussian kernel function 
+$$
+f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})
+$$
+to measure the *similarity* of inputs.
 The element of *similarity matrix* $S$ is $S_{i,j}=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
 Thus $S$ is symmetrical, i.e. $S_{i,j}=S_{j,i}$ for $i,j\in\{1,2,\dots,n\}$.
 If the sample size $n\gg p$, the storage of **similarity matrix** is much larger than the original input $\{\mathbf{x}_i\}_{i=1}^{n}$, when we would only preserve the entries above some values.
-The **Laplacian matrix** is defined by $L=D-S$ where $D=Diag\{D_1,D_2,\dots,D_n\}$ and $D_{i}=\sum_{j=1}^{n}S_{i,j}=\sum_{j=1}^{n}exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$ .
+The **Laplacian matrix** is defined by $L=D-S$ where $D=Diag\{D_1,D_2,\dots,D_n\}$ and 
+$D_{i}=\sum_{j=1}^{n}S_{i,j}=\sum_{j=1}^{n}exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
 
 Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ to reduce the data dimension. After that we can perform $K-means$ or other clustering.
 
@@ -1897,20 +1945,25 @@ There are some activation functions in history.
     $$
 
 * Sigmoid function
-
-    $$\sigma(x)=\frac{1}{1+e^{-x}}.$$
+    $$
+    \sigma(x)=\frac{1}{1+e^{-x}}.
+    $$
 
 * Radical base function
-
-    $$\rho(x)=e^{-\beta(x-x_0)^2}.$$
+    $$
+    \rho(x)=e^{-\beta(x-x_0)^2}.
+    $$
 
 * TanH function
-
-   $$tanh(x)=2\sigma(2x)-1=\frac{2}{1+e^{-2x}}-1.$$
+   $$
+   tanh(x)=2\sigma(2x)-1=\frac{2}{1+e^{-2x}}-1.
+   $$
 
 * ReLU function
-
-   $$ReLU(x)={(x)}_{+}=\max\{0,x\}=\begin{cases}x,&\text{if $x\geq 0$}\\0,&\text{otherwise}\end{cases}.$$
+   $$
+   ReLU(x)={(x)}_{+}=\max\{0,x\}=\begin{cases}x,&\text{if $x\geq 0$}\\
+                                 0,&\text{otherwise}\end{cases}.
+   $$
 ***
 
 * [神经网络激励函数的作用是什么？有没有形象的解释?](https://www.zhihu.com/question/22334626/answer/465380541)
@@ -1926,7 +1979,9 @@ There are some activation functions in history.
 We draw it from the [Wikipedia page](https://en.wikipedia.org/w/index.php?title=Perceptron&action=edit&section=3).
 Learning is to find optimal parameters of the model. Before that, we must feed data into the model.
 The training data of $n$ sample size is
-$$D=\{(\mathbf{x}_i,d_i)\}_{i=1}^{n}$$
+$$
+D=\{(\mathbf{x}_i,d_i)\}_{i=1}^{n}
+$$
 where
 
 * $\mathbf{x}_i$ is the $n$-dimensional input vector;
@@ -1937,10 +1992,12 @@ where
 1. Initialize the weights and the threshold. Weights may be initialized to 0 or to a small random value. In the example below, we use 0.
 2. For each example $j$ in our training set $D$, perform the following steps over the input $\mathbf{x}_{j}$ and desired output $d_{j}$:  
    * Calculate the actual output：
-      $$\begin{align}
+      $$
+      \begin{align}
          y_{j}(t) & =f[\mathbf{w}(t)\cdot\mathbf{x}_{j}]\\
        ​           & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb +w_{n}(t)x_{j,n}]
-      \end{align}$$
+      \end{align}
+      $$
 
    * Update the weights:
        $w_{i}(t+1)=w_{i}(t)+r\cdot (d_{j}-y_{j}(t))x_{(j,i)},$
@@ -1988,6 +2045,7 @@ X\stackrel{\sigma}\to H_1 \stackrel{\sigma}\to H_2 \stackrel{\sigma} \to \cdots\
 \mathbb{R}^p\to \mathbb{R}^{l_1}\to \mathbb{R}^{l_2}\to \cdots\to \mathbb{R}  \qquad&  \text{Dimension}
 \end{align}
 $$
+
 where the circle notation $\circ$ means forward composite or as the input of afterward operation.
 In hierarchy form, we omit the affine map.
 It is can be written in the *recursive form*:
@@ -2167,7 +2225,7 @@ $$
 where $f^{j}(x_0)$, $W^{j}$, $b^j$ and $\sigma^{\prime}(z)$is the $j$th element of $f(x_0)$, the $j$-th row of matrix $W$, the $j$th element of vector $b$ and $\frac{\mathrm{d}\sigma(z)}{\mathrm{d} z}$, respectively.
 
 |The Architecture of Feedforward Neural Networks|
-|:-----------------------------------------:|
+|:---------------------------------------------:|
 |![](https://www.hindawi.com/journals/jcse/2012/389690.fig.0011.jpg)|
 |Each connection ,the black line, is attached with a weight parameter.|
 ***
@@ -2312,6 +2370,7 @@ In this section, we will talk other optimization tricks such as **Normalization*
 * [Batch normalization 和 Instance normalization 的对比？ - Naiyan Wang的回答 - 知乎](https://www.zhihu.com/question/68730628/answer/277339783)
 * [Weight Normalization 相比 batch Normalization 有什么优点呢？](https://www.zhihu.com/question/55132852/answer/171250929)
 * [深度学习中的Normalization模型](https://www.jiqizhixin.com/articles/2018-08-29-7)
+* [Group Normalization](https://arxiv.org/abs/1803.08494)
 * https://blog.paperspace.com/busting-the-myths-about-batch-normalization/
 * The original paper *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift* at <https://arxiv.org/pdf/1502.03167.pdf>.
 
@@ -2337,13 +2396,19 @@ See the following links for more information on optimization and generalization.
 The $\ell_2$ norm penalty  is to add the squares of $\ell_2$ norm of parameters to the objective function $J(\theta)$ to reduce the parameters(or weights) as shown in ridge regression with regular term coefficient $\lambda$, i.e.
 $J(\theta)+\lambda {\|\theta\|}_{2}^{2}.$
 Suppose  $E(\theta)=J(\theta)+\lambda {\|\theta\|}_{2}^{2}$, the gradient descent take approximate (maybe inappropriate)  form
-$$\theta=\theta-\eta\frac{\partial E(\theta)}{\partial \theta}=\theta -\eta\frac{\partial J(\theta)}{\partial \theta}-2\eta\lambda \theta$$
+$$
+\theta=\theta-\eta\frac{\partial E(\theta)}{\partial \theta}=\theta -\eta\frac{\partial J(\theta)}{\partial \theta}-2\eta\lambda \theta
+$$
 thus
-$$\frac{\partial J(\theta)}{\partial \theta}=-2\lambda\theta\implies J(\theta)=e^{-2\lambda \theta}.$$
+$$
+\frac{\partial J(\theta)}{\partial \theta}=-2\lambda\theta\implies J(\theta)=e^{-2\lambda \theta}.
+$$
 
 If we want to find the minima of $E(\theta)$, $\theta$ will decay to $0$.
 It extends to the following iterative formula:
-$$\theta^{t+1} = (1-\lambda)\theta^{t}-\alpha_{t}\frac{\partial J(\theta^{t})}{\partial \theta},$$
+$$
+\theta^{t+1} = (1-\lambda)\theta^{t}-\alpha_{t}\frac{\partial J(\theta^{t})}{\partial \theta},
+$$
 where $\lambda$  determines how you trade off the original cost $J(\theta)$ with the large weights penalization.
 The new term $\lambda$ coming from the regularization causes the weight to decay in proportion to its size.
 
@@ -2536,10 +2601,12 @@ https://zhuanlan.zhihu.com/p/28749411
 
 Recurrent neural networks are aimed to handle sequence data such as time series.
 Recall the recursive form of feedforward neural networks:
-$$\begin{align}
+$$
+\begin{align}
 \mathbf{z}_i &= W_i H_{i-1}+b_i,     \\
     H_{i}    &= \sigma\circ(\mathbf{z}_i),
-\end{align}$$
+\end{align}
+$$
 where $W_i\in\mathbb{R}^{l_{i}\times l_{i-1}}$, $H_i (\text{as well as}\, b_i)\in \mathbb{R}^{l_i}\forall i\in\{1, 2, \dots, D\}$ and $\sigma$ is activation function.
 In convention, $H_0$ is defined as input $X\in\mathbb{R}^{p}$.
 In short, the formula in the $i$th layer of feedforward neural network is given by
@@ -2556,10 +2623,12 @@ where $X_{t}\in\mathbb{R}^{p}$ is the output $\forall t\in\{1,2\dots,\tau\}$.
 |![](http://imgtec.eetrend.com/sites/imgtec.eetrend.com/files/201810/blog/18051-37153-6.gif)|
 
 For each step from $t=1$ to $t=\tau$, the complete update equations of RNN:
-$$\begin{align}
+$$
+\begin{align}
 H_{t} &=\sigma\circ(W H_{t-1} + U X_{t} + b) \\
 O_{t} &= \mathrm{softmax}(V H_{t} + c)
-\end{align}$$
+\end{align}
+$$
 where the parameters are the bias vectors $b$ and $c$ along with the weight matrices
 $U$, $V$ and $W$, respectively for input-to-hidden, hidden-to-output and hidden-to-hidden connections.
 
@@ -2630,10 +2699,12 @@ $h_{t}=O_{t}\times tanh(c_{t})$
 
 Deep RNN is composed of *RNN cell* as MLP is composed of perceptrons.
 For each step from $t=1$ to $t=\tau$, the complete update equations of deep $d$-RNN  at the $i$th layer:
-$$\begin{align}
+$$
+\begin{align}
 H_{t}^{i} &=\sigma\circ(W_{i} H_{t-1} + U_{i} X_{t} + b) \\
 O_{t} &= \mathrm{softmax}(V H_{d} + c)
-\end{align}$$
+\end{align}
+$$
 where the parameters are the bias vectors $b$ and $c$ along with the weight matrices
 $U_i$, $V$ and $W_i$, respectively for input-to-hidden, hidden-to-output and hidden-to-hidden connections for $i\in \{1,2,\cdots,d\}$.
 
@@ -2671,12 +2742,15 @@ Other RNN cells also can compose deep RNN via this stacking way such as deep Bi-
 
 An attention model is a method that takes $n$ arguments $y_1, \dots, y_n$  and a context $c$. It return a vector $z$ which is supposed to be the  **summary** of the ${y}_i\in \mathbb{R}^{d}$, focusing on information linked to the context $c$. More formally, it returns a weighted arithmetic mean of the $y_i$, and the weights are chosen according the relevance of each $y_i$ given the context $c$.
 In mathematics, it can be expressed as:
+
 $$
 {\alpha}_i = softmax(s(y_i,c)) \\
 z = \sum_{i=1}^{n} {\alpha}_i y_i
 $$
+
 where $s(\cdot, \cdot)$ is the attention scoring function.
 The attention scoring function $s({y}_i, c)$ is diverse, such as:
+
 * the additive model $s({y}_i, c) = v^{T} tanh\circ (W {y}_i + U c)$, where $v \in \mathbb{R}^{d}$, $W \in \mathbb{R}^{d\times d}$, $U \in \mathbb{R}^{d}$ are parameters to learn;
 * the inner product model $s({y}_i, c) = \left< {y}_i, c \right>$, i.e. the inner product of ${y}_i, c$;
 * the scaled inner product model $s({y}_i, c) = \frac{\left< {y}_i, c \right>}{d}$,where $d$ is the dimension of input ${y}_i$;
