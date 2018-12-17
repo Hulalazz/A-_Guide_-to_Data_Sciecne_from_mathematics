@@ -425,7 +425,7 @@ The probability of an event can be expressed as the expectation, i.e.
 
 |Probability as Integration|
 |:------------------------:|
-|$P(x\in A)= \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
+|$P(x\in A) = \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
 where
 $$
 \mathbb{I}_{A}=\begin{cases} 1, & \text{if $x\in A$}\\ 0, & \text{otherwise}\end{cases}.
@@ -601,12 +601,12 @@ The law of large number provides theoretical guarantee to estimate the expectati
 > independently identically distributed (i.i.d.) random variables (r.v.s) with expectation $\mu$.
 > Consider the sum
   $$
-  \bar{X}_N = {X}_1 + {X}_2 + \cdots + {X}_{N}.
+    \bar{X}_N = {X}_1 + {X}_2 + \cdots + {X}_{N}.
   $$
 
 Then as $N\to\infty$,
 $$
-P(\lim_{N\to\infty}\bar{X}_N=\mu)=1
+  P(\lim_{N\to\infty}\bar{X}_N=\mu)=1
 $$
 i.e.
   $$
@@ -620,8 +620,9 @@ i.e.
 
 > *Lindeberg–Lévy CLT*. Suppose ${X_1, X_2,\cdots}$ is a sequence of i.i.d. random variables with $E[X_i] = \mu$ and $Var[X_i] = \sigma^2 < \infty$. Then as $n$ approaches infinity, the random variables $\sqrt{n}(\bar{X}_n − \mu)$ converge in distribution to a normal $N(0,\sigma^2)$:
   $$
-  \sqrt{n}(\bar{X}_n − \mu)\stackrel{d}\to N(0,\sigma^2).
+    \sqrt{n}(\bar{X}_n − \mu)\stackrel{d}\to N(0,\sigma^2).
   $$
+
 [The Wikipedia page has more information](https://www.wikiwand.com/en/Central_limit_theorem#).
 https://www.datasciencecentral.com/profiles/blogs/new-perspective-on-central-limit-theorem-and-related-stats-topics
 
