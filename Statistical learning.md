@@ -347,13 +347,17 @@ $$f_{Y}(y)=\frac{f_{Y|X}(y|x)f_{X}(x)}{f_{X|Y}(x|y)} \tag 1.$$
 
 Integrating this identity with respect to $y$ on support of $f_{Y}(y)$, we immediately
 have the **point-wise formula** as shown below
-$$f_{X}(x)=\{\int_{f_{X|Y}(x|y)\neq {0}}\frac{f_{Y|X}(y|x)}{f_{X|Y}(x|y)}\mathbb{d}y\}^{-1} \tag 2.$$
+$$
+f_{X}(x)=\{\int_{f_{X|Y}(x|y)\neq {0}}\frac{f_{Y|X}(y|x)}{f_{X|Y}(x|y)}\mathbb{d}y\}^{-1} \tag 2.
+$$
 Now substitute (2) into (1), we obtain the dual form of IBF for $f_Y(y)$ and hence by symmetry we obtain the **function-wise formula** of $f_Y(y)$ at $y_0$ as shown in (3), or the
 sampling formula in (4) when the normalizing constant is omitted.
-$$\begin{align}
+$$
+\begin{align}
 f_{X}(x) &=\{\int_{f_{Y|X}(y|X)\neq {0}}\frac{f_{X|Y}(x|y_0)}{f_{Y|X}(y_0|x)}\mathbb{d}x\}^{-1}\frac{f_{X|Y}(x|y_0)}{f_{Y|X}(y_0|x)} \tag 3 \\
 &\propto \frac{f_{X|Y}(x|y_0)}{f_{Y|X}(y_0|x)} \tag 4
-\end{align}$$
+\end{align}
+$$
 
 **********************************************
 |The Inventor of IBF|
@@ -426,6 +430,7 @@ The probability of an event can be expressed as the expectation, i.e.
 |Probability as Integration|
 |:------------------------:|
 |$P(x\in A) = \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
+
 where
 $$
 \mathbb{I}_{A}=\begin{cases} 1, & \text{if $x\in A$}\\ 0, & \text{otherwise}\end{cases}.
