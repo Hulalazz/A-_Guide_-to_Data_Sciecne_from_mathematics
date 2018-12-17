@@ -458,10 +458,10 @@ And the constant $c$ always take the expectation $\mathbb{E}(X)$ or $0$.
 
 > *Definition*: Moment generating function of a random variable $X$ is the expectation of the random variable of $e^{tX}$, i.e.
 >
-|[Moment generating function](https://www.wikiwand.com/en/Moment-generating_function#)|
-|:-----------------------------------------------------------------------------------:|
-| $M_X(t)=\int_{\mathbb{R}}e^{tx}f_X(x)\mathbb{d}x$ for continuous random variable|
-| $M_{X}(t)=\sum_{i=1}^{\infty}e^{tx_{i}}P(x=x_i)$ for discrete random variable|
+  |[Moment generating function](https://www.wikiwand.com/en/Moment-generating_function#)|
+  |:-----------------------------------------------------------------------------------:|
+  | $M_X(t)=\int_{\mathbb{R}}e^{tx}f_X(x)\mathbb{d}x$ for continuous random variable|
+  | $M_{X}(t)=\sum_{i=1}^{\infty}e^{tx_{i}}P(x=x_i)$ for discrete random variable|
 
 It is [Laplace transformation](http://mathworld.wolfram.com/LaplaceTransform.html) applied to probability density function. And it is also related with [cumulants](http://scholarpedia.org/article/Cumulants).
 
@@ -782,9 +782,13 @@ $\color{red}{Note}$:  A point estimator is a random variable or statistic.
 The moments method is to estimate the moments of probability distribution function via sample moments.
 ***
 The $n$th sample moment is defined as
-$$\hat{\mu}_{n}=\frac{1}{L}\sum_{i=1}^{L}X_{i}^{n}$$
+$$
+\hat{\mu}_{n}=\frac{1}{L}\sum_{i=1}^{L}X_{i}^{n}.
+$$
 The method of moments estimator $\hat{\theta}_L$ is defined to be the value of $\theta$ such that
-$$\mu_{j}(\hat{\theta}_L)=\hat{\mu}_{j},\forall j\in\{1,2,\cdots,k\}.$$
+$$
+\mu_{j}(\hat{\theta}_L)=\hat{\mu}_{j},\forall j\in\{1,2,\cdots,k\}.
+$$
 By solving the above system of equations for $\hat{theta}$ in the term of $\hat{\mu}_{j}$, we will obtain the method of moments estimator.
 ***
 
@@ -800,11 +804,15 @@ See more on [Wikipedia](https://www.wikiwand.com/en/Method_of_moments_(statistic
 Maximum likelihood estimation is a method to estimate the parameters of statistical independent identical distributed samples. It is based on the belief that **what we observed  is what is most likely to happen. Let us start with an example.**
 
 Supposing $X_1,X_2,\cdots, X_n\stackrel{i.i.d.}{\sim}\mathrm{N}(\mu,\sigma^2)$, we can get the joint distribution of their samples $\{x_1,x_2,\cdots, x_n\}$:
-$$L(\theta|x_1,\cdots, x_n)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}.$$
+$$
+L(\theta|x_1,\cdots, x_n)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}.
+$$
 The independency of the random variables can directly infer their joint probability is the product of each probability.
 
 We want to find the optimal parameters $\hat{\mu},\hat{\sigma}^2$ of the probability density function:
-$$\arg\max_{\theta}L(\theta|x_1,\cdots, x_n)=\arg\max_{\theta}\ell(\theta|x_1,\cdots,x_n)$$
+$$
+\arg\max_{\theta}L(\theta|x_1,\cdots, x_n)=\arg\max_{\theta}\ell(\theta|x_1,\cdots,x_n)
+$$
 where the log-likelihood function $\ell(\theta|x_1,\cdots,x_n)$ is defined as the logarithm of likelihood function, i.e.
 $$
 \arg\max_{\mu,\sigma^2} \ell(\mu,\sigma^2|x_1,x_2,\cdots,x_n)=\arg\max_{\mu,\sigma^2}\sum_{i=1}^{n}{-\frac{(x_i-\mu)^2}{2\sigma^2}}-n\log{\sqrt{2\pi\sigma^2}}.
@@ -829,7 +837,9 @@ Bayesian inference  is usually carried out in the following way[^7].
 
 ***
 For example, the Bayesian version of maximum likelihood estimation will find the parameters $\theta$ that maximizes the posterior $f(\theta|X)f(\theta)$ where $f(\theta|X)$ is the likelihood function of samples, i.e. $f(\theta|X)=L(\theta|X_1,\dots,X_n)$. The Bayesian estimator is
-$$\hat{\theta}=\arg{\max}_{\theta} f(\theta|X)f(\theta).$$
+$$
+\hat{\theta}=\arg{\max}_{\theta} f(\theta|X)f(\theta).
+$$
 
 More related links on *Bayesian methods*:
 
@@ -921,7 +931,9 @@ where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< 
 ****
 Some variants of gradient descent methods are not line search method.
 For example, the **heavy ball method**:
-$$x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1})$$
+$$
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1})
+$$
 where the momentum coefficient $\rho_k\in[0,1]$ generally and the step length $\alpha_k$ cannot be determined by line search.
 
 **Nesterov accelerated gradient method**:
@@ -957,13 +969,17 @@ It can be regarded as non-Euclidean generalization of **projected gradient desce
 ### Projected Gradient Descent
 
 **Projected gradient descent** is aimed to solve convex optimization problem with explicit constraints, i.e.
-$$\arg\min_{x\in\mathbb{S}}f(x)$$
+$$
+\arg\min_{x\in\mathbb{S}}f(x)
+$$
 where $\mathbb{S}\subset\mathbb{R}^n$.
 It has two steps:
-$$\begin{align}
+$$
+\begin{align}
 z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
 x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} &\qquad\text{Projection}
-\end{align}$$
+\end{align}
+$$
 
 ### Mirror descent
 
@@ -981,10 +997,12 @@ $$
 i.e. the Euclidean distance.
 ***
 It is given by:
-$$\begin{align}
+$$
+\begin{align}
 z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
 x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) &\qquad\text{Bregman projection}
-\end{align}.$$
+\end{align}.
+$$
 One special method is called **entropic mirror descent** when $f=e^x$ and $\mathbb{S}$ is simplex.
 
 See more on the following link list.
