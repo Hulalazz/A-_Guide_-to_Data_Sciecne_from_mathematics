@@ -422,6 +422,7 @@ It is a [**parameter-dependent integral**](https://www.encyclopediaofmath.org/in
 > *[Tower rule](https://www.wikiwand.com/en/Law_of_total_expectation)* Let $X$ be random variable on a sample space $\Omega$, let the events $A_1, A_2, \cdots$ are disjoint in the sample space $\Omega$ and $\bigcup_{i=1}^{\infty}A_i = \Omega$, $B$ is any subset of $\Omega$, $\mathbb{E}(X)=\sum_{i=1}^{\infty}\mathbb{E}(X|A_i)P(A_i)$. In general, the conditional expectation $\Psi(X)=\mathbb{E}(Y|X)$ satisfies $\mathbb{E}(\Psi(X))=\mathbb{E}(Y).$
 
 The probability of an event can be expressed as the expectation, i.e.
+
 |Probability as Integration|
 |:------------------------:|
 |$P(x\in A)= \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
@@ -574,7 +575,7 @@ The SIR method generates an approximate i.i.d. sample of size $m$ from the targe
 The SIR without replacement is as following:
 
  1. Draw $X^{(1)},X^{(2)},\cdots,X^{(J)}$ independently from the proposal density $g(\cdot)$.
- 2. Select a subset $\{X^{(k_i)}\}_{i=1}^{m}$ from $\{X^{(i)}\}_{i=1}^{J}$ via resampling without replacement from the discrete distribution $\{\omega_i\}_{i=1}^{J}$
+ 2. Select a subset $\{ X^{(k_i)} \}_{i=1}^{m}$ from $\{ X^{(i)} \}_{i=1}^{J}$ via resampling without replacement from the discrete distribution $\{\omega_i\}_{i=1}^{J}$
      * where $w_i=\frac{f(X^{(i)})}{g(X^{(i)})}$ and $\omega_i=\frac{w_i}{\sum_{i=1}^{n}w_i}$.
 
 
@@ -596,20 +597,21 @@ $f_k(x_k|x_{k+1}, x_{k+2}, \cdots, x_d)$.
 ## Law of Large Number
 
 The law of large number provides theoretical guarantee to estimate the expectation of distributions from the samples.
-> *(Strong law of large numbers)*: Let $X_1,X_2,\dots$ be a sequence of
-independently identically distributed (i.i.d.) random variables (r.v.s) with expectation $\mu$.
-Consider the sum
-$$
-\bar{X}_N = X_1 + X_2 + \cdots + X_N.
-$$
+> *(Strong law of large numbers)*: Let $X_1, X_2, \dots$ be a sequence of
+> independently identically distributed (i.i.d.) random variables (r.v.s) with expectation $\mu$.
+> Consider the sum
+  $$
+  \bar{X}_N = {X}_1 + {X}_2 + \cdots + {X}_{N}.
+  $$
+
 Then as $N\to\infty$,
 $$
 P(\lim_{N\to\infty}\bar{X}_N=\mu)=1
 $$
 i.e.
-$$
-\bar{X}_N\stackrel{a.s.}\to\mu.
-$$
+  $$
+  \bar{X}_{N}\stackrel{a.s.}\to\mu.
+  $$
 [See more on Wikipedia.](https://www.wikiwand.com/en/Law_of_large_numbers)
 
 
@@ -617,9 +619,9 @@ $$
 ## Central Limit Theorem
 
 > *Lindeberg–Lévy CLT*. Suppose ${X_1, X_2,\cdots}$ is a sequence of i.i.d. random variables with $E[X_i] = \mu$ and $Var[X_i] = \sigma^2 < \infty$. Then as $n$ approaches infinity, the random variables $\sqrt{n}(\bar{X}_n − \mu)$ converge in distribution to a normal $N(0,\sigma^2)$:
-$$
-\sqrt{n}(\bar{X}_n − \mu)\stackrel{d}\to N(0,\sigma^2).
-$$
+  $$
+  \sqrt{n}(\bar{X}_n − \mu)\stackrel{d}\to N(0,\sigma^2).
+  $$
 [The Wikipedia page has more information](https://www.wikiwand.com/en/Central_limit_theorem#).
 https://www.datasciencecentral.com/profiles/blogs/new-perspective-on-central-limit-theorem-and-related-stats-topics
 
@@ -630,9 +632,13 @@ https://www.datasciencecentral.com/profiles/blogs/new-perspective-on-central-lim
 >where $\vec{a}=(a_1,a_2,\cdots,a_n)^{T}$ and $\mu < \infty$, $0< \sigma^2<\infty$.
 
 If $\cal{X}$ is multivariate normal, it also has a *mean* vector $\mu$ such that
-$$\mu=(\mathbb{E}(X_1),\mathbb{E}(X_2),\cdots, \mathbb{E}(X_n))$$
+$$
+\mu=(\mathbb{E}(X_1),\mathbb{E}(X_2),\cdots, \mathbb{E}(X_n))
+$$
 where $\mathbb{E}(X)$ is the expectation(or mean) of the random variable. The random vector $\cal{X}$ also has a *covariance matrix* $\Sigma$ satisfying
-$$\Sigma_{ij}=Cov(X_i,X_j)$$
+$$
+\Sigma_{ij}=Cov(X_i,X_j)
+$$
 where $Cov(X_i,X_j)=\mathbb{E}[(X_i-\mathbb{E}(X_i))(X_j-\mathbb{E}(X_j))]$ is the [covariance of the random variables $X_i$ and $X_j$](https://brilliant.org/wiki/covariance/).
 
 The probability density function of a multivariate normal random vector $\cal{X}$ is given by
@@ -1036,7 +1042,9 @@ a natural candidate for finding the MLE is the **Newton–Raphson algorithm** wi
 ### The Fisher Scoring Algorithm
 
 In maximum likelihood estimation, the objective function is the log-likelihood function, i.e.
-$$\ell(\theta)=\sum_{i=1}^{n}\log{P(x_i|\theta)}$$
+$$
+\ell(\theta)=\sum_{i=1}^{n}\log{P(x_i|\theta)}
+$$
 where $P(x_i|\theta)$ is the probability of realization $X_i=x_i$ with the unknown parameter $\theta$.
 However, when the sample random variable $\{X_i\}_{i=1}^{n}$ are not observed or realized, it is best to
 replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$) of the likelihood function with the  
