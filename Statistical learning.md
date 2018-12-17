@@ -162,8 +162,9 @@ This  is the [link between discrete and continuous distributions](https://en.wik
 
 It is possible to represent certain discrete random variables as well as random variables involving both a continuous and a discrete part with a generalized probability density function, by using the [Dirac delta function](https://www.wikiwand.com/en/Dirac_delta_function "Dirac delta function"). For example, let us consider a binary discrete [random variable](https://www.wikiwand.com/en/Random_variable "Random variable") having the [Rademacher distribution](https://www.wikiwand.com/en/Rademacher_distribution) — that is, taking −1 or 1 for values, with probability ½ each. The density of probability associated with this variable is:
 $$
-f(t)=\frac{1}{2} (\delta (t+1)+\delta (t-1)).
+f(t)=\frac{1}{2} (\delta (t+1)+\delta(t-1)).
 $$
+
 More generally, if a discrete variable can take _n_ different values among real numbers, then the associated probability density function is:
 $$
 f(t)=\sum _{i=1}^{n}p_{i}\,\delta (t-x_{i})
