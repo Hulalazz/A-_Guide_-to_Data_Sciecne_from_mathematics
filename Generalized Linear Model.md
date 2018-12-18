@@ -64,7 +64,7 @@ p(x|\eta)
 \end{align}
 $$
 so that $\eta=\log(\frac{\pi}{1-\pi})$.
-
+***
 The Poisson  distribution can be written in
 $$
 \begin{align}
@@ -79,7 +79,7 @@ for $x=\{0,1,2,\dots\}$, such that
 * $t(X)=X$;
 * $h(x)=\frac{1}{x!}$;
 * $a(\eta)=\lambda=\exp(\eta)$.
-
+***
 The multinomial distribution can be written in
 $$
 \begin{align}
@@ -107,7 +107,7 @@ Note that $\eta_K = 0$ then $\pi_K = \frac{e^{\eta_K}}{\sum_{k=1}^{K}e^{\eta_k}}
 #### Logistic Regression
 
 |Logistic Regression|
-|:---|
+|:------------------|
 |1. A Bernoulli random variable $Y$ is from the exponential family.|
 |2. A linear predictor $\eta = \log(\frac{\pi}{1-\pi}) = X^{T}\beta$.|
 |3. A link function $g$ such that $\mathbb{E}(Y) = \pi = g^{−1}(\eta)$, where $g^{-1}=\frac{1}{1+e^{-\eta}}$.|
@@ -196,6 +196,24 @@ The negative log-likelihood function $-\ell(\beta|X, Y)$ is convex so that we ca
 * http://www.cnblogs.com/kemaswill/p/3440780.html
 * https://www.wikiwand.com/en/Poisson_regression
 
+#### Softmax Logistic Regression
+
+|Softmax Regression|
+|:-----------------|
+|1. A multinomial random variable $Y=(Y_1, Y_2, \dots, Y_{K})^{T}$ is  from the exponential family.|
+|2. A linear predictor ${\eta}_k = \log(\frac{{\pi}_k}{{\pi}_K}) = X^{T}{\beta}_k$.|
+|3. A link function $g$ such that $\mathbb{E}(Y_k) = {\pi}_k = \frac{e^{\eta_k}}{\sum_{j=1}^{K}e^{\eta_j}}$.|
+
+The log-likelihood in terms of $\beta = (\beta_1,\dots,\beta_K)^{T}$ is
+$$
+\ell(\beta|X, Y)
+ = {\sum}_{i=1}^{n} {\sum}_{k=1}^{K} y_k^{(i)}\log(\pi_k)\\
+ = {\sum}_{i=1}^{n} [{\sum}_{k=1}^{K-1} y_k^{(i)}\log(\pi_k) + y_K\log(\pi_K)] \\
+ = {\sum}_{i=1}^{n} [{\sum}_{k=1}^{K-1} y_k^{(i)}\log(\pi_k) + (1-{\sum}_{k=1}^{K-1} y_k))\log(\pi_K)].
+$$
+* http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92
+* https://www.wikiwand.com/en/Multinomial_logistic_regression
+* https://www.wikiwand.com/en/Softmax_function
 
 ### Projection pursuit regression
 
@@ -215,6 +233,7 @@ https://www.wikiwand.com/en/Projection_pursuit_regression
 * [http://www.stat.cmu.edu/~larry/=sml](http://www.stat.cmu.edu/~larry/=sml/nonpar.pdf)
 * [http://www.stat.cmu.edu/~larry/](http://mlg.postech.ac.kr/~seungjin/courses/easyml/handouts/handout07.pdf)
 * https://zhuanlan.zhihu.com/p/26830453
+* http://wwwf.imperial.ac.uk/~bm508/teaching/AppStats/Lecture7.pdf
 
 ***
-![https://blogs.ams.org/visualinsight](https://blogs.ams.org/visualinsight/files/2013/10/atomic_singular_inner_function.png)
+[https://blogs.ams.org/visualinsight](https://blogs.ams.org/visualinsight/files/2013/10/atomic_singular_inner_function.png)
