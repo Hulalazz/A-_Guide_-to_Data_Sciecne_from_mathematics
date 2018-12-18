@@ -31,7 +31,7 @@ where the positive scalar $\alpha^{k}$ is called the step length. The success of
 depends on effective choices of both the direction $p^{k}$ and the step length $\alpha_{k}$.
 
 $\color{lime}{Note}$: we use the notation $x^{k}$ and $\alpha_k$ to represent the $k$th iteration of the vector variables $x$ and $k$th step length, respectively.
-Most line search algorithms require pk to be a descent direction—one for which
+Most line search algorithms require pk to be a descent direction — one for which
 $\left< {p^k},\nabla f_k \right> < 0$ — because this property guarantees that the function $f$ can be reduced along this direction, where $\nabla f_k$ is the gradient of objective function $f$ at the $k$th iteration point $x_k$ i.e. $\nabla f_k=\nabla f(x^{k})$.
 ***
 Gradient descent and its variants are to find the local solution of  the unconstrained optimization problem:
@@ -259,6 +259,7 @@ $$
 
 * https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
 * http://cs229.stanford.edu/notes/cs229-notes8.pdf
+* https://www2.stat.duke.edu/courses/Spring06/sta376/Support/EM/EM.Mixtures.Figueiredo.2004.pdf
 
 |Diagram of EM algorithm|
 |:---------------------:|
@@ -275,9 +276,9 @@ Q(\theta|\theta^{(t)}) &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)
                        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
 \end{align}
 $$
-and the another step is to find  $\theta$ that satisfies
+and the another step is to find  $\theta$ that satisfies $Q(\theta^{t+1}|\theta^{t})>Q(\theta^{t}|\theta^{t})$, i.e.
 $$
-\theta^{(t+1)}\in \{\theta|Q(\theta|\theta^{(t+1)} \geq Q(\theta|\theta^{(t)}) \}.
+\theta^{(t+1)}\in \{\hat{\theta}|Q(\hat{\theta}|\theta^{(t)} \geq Q(\theta|\theta^{(t)}) \}.
 $$
 
 It is not to maximize the conditional expectation.
@@ -402,3 +403,16 @@ See the following links for more information on *stochastic gradient descent*.
 |The Differences of Stochastic Gradient Descent and its Variants|  
 |:-------------------------------------------------------------:|
 |![](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
+
+- [ ] http://www.optimization-online.org/
+- [ ] More [Optimization Online Links](http://www.optimization-online.org/links.html)
+- [ ] **TUTORIALS AND BOOKS** at <http://plato.asu.edu/sub/tutorials.html>.
+- [ ] http://sunju.org/research/nonconvex/
+- [ ] https://arxiv.org/pdf/1712.07897.pdf
+- [ ] https://arxiv.org/pdf/1707.02444.pdf
+- [ ] http://www.vision.jhu.edu/assets/HaeffeleCVPR17.pdf
+- [ ] https://core.ac.uk/display/73408878
+- [ ] https://www.springer.com/us/book/9783319314822
+- [ ] https://core.ac.uk/display/83849901
+- [ ] https://zhuanlan.zhihu.com/p/51514687
+- [ ] http://math.cmu.edu/~hschaeff/research.html
