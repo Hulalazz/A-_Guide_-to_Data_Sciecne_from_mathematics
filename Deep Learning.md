@@ -118,7 +118,7 @@ where
       $$
       \begin{align}
          y_{j}(t) & =f[\mathbf{w}(t)\cdot\mathbf{x}_{j}]\\
-       ​           & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb +w_{n}(t)x_{j,n}]
+                  & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb +w_{n}(t)x_{j,n}]
       \end{align}
       $$
 
@@ -642,6 +642,7 @@ For more information on CNN, click the following links.
 ### Padding
 
 The standard convolution  operation omit the information of the boundaries. Padding is to add some $0$s outside the boundaries of the images.
+
 |Zero padding|
 |:----------:|
 |![](https://blog.xrds.acm.org/wp-content/uploads/2016/06/Figure_3.png)|
@@ -815,9 +816,11 @@ $f_{t}=\sigma(W_{f}[h_{t-1},x_t]+b_f)$
 $i_{t}=\sigma(W_i[h_{t-1},x_t]+b_i)$,
 $\tilde{C}_{t}=tanh(W_C[h_{t-1},x_t]+b_C)$
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/dac15a9da4164b3da346ac891d10ff9e.gif)
+
 * memory cell
 $c_{t}=f_t\times c_{t-1}+i_{t}\times{\tilde{C}_{t}}$
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/ad6435e481064d57833a4733e716fa8f.gif)
+
 * output gate
 $O_{t}=\sigma(W_{O}[h_{t-1},x_t]+b_{O})$ and
 $h_{t}=O_{t}\times tanh(c_{t})$
