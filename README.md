@@ -1,4 +1,5 @@
-# A-_Guide_-to_Data_Sciecne_from_mathematics
+# A Guide to Data Sciecne: from Mathematics to Algorithms
+
 It is a blueprint to data science from the mathematics to algorithms. It is not completed.
 It is of my own interest. 
 It is web-source based. And some material draw from the original owners' blogs.
@@ -8,9 +9,9 @@ If this material infringes your copyright, you could contact me via Github and I
 It includes the following content:
 - [X] basic introduction to probability and statistics;
 - [ ] computational statistics;
-- [ ] MCMC;
-- [ ] generalized linear model;
-- [ ] probabilistic and graph models;
+- [ ] MCMC and stochastic methods;
+- [ ] generalized linear model and regression analysis;
+- [ ] probabilistic programming and graph models;
 - [ ] basci machine learning;
 - [X] some materials on deep learning;
 - [ ] other data anslysis such as topological data analysis.
