@@ -13,9 +13,21 @@ It use 'divide-and-conquer' strategy recursively. It is easy to scale up to mass
 * [Neural Random Forests](https://arxiv.org/abs/1604.07143)
 * [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
 
+#### Random Forest
+
+https://github.com/kjw0612/awesome-random-forest
+https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
+https://dimensionless.in/author/raghav/
+http://www.rhaensch.de/vrf.html
+
+https://sktbrain.github.io/awesome-recruit-en.v2/
+
 ### Ensemble methods
 
-[Zhou Zhihua's publication on ensemble methods](http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Ensemble%20Learning)
+* [Zhou Zhihua's publication on ensemble methods](http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Ensemble%20Learning)
+* https://mlwave.com/kaggle-ensembling-guide/
+* https://www.springer.com/us/book/9781441993250
+* https://web.stanford.edu/~hastie/THESES/gareth_james.pdf
 
 #### Bagging
 
@@ -27,6 +39,14 @@ base learners, since the error can be reduced dramatically by combining independ
 Bagging adopts the most popular strategies for aggregating the outputs of
 the base learners, that is, voting for classification and averaging for regression.
 
+* Draw Bootstrap samples $B_1, B_2, \dots, B_n$ independently from the original training data set for base learners;
+* Train the $i$th base learner $F_i$ at the ${B}_{i}$;
+* Voting for classification and average for regression.
+
+![](https://www.statisticshowto.datasciencecentral.com/wp-content/uploads/2016/10/bootstrap-sample.png)
+
+***
+
 * http://www.machine-learning.martinsewell.com/ensembles/bagging/
 * https://www.cnblogs.com/earendil/p/8872001.html
 * https://www.wikiwand.com/en/Bootstrap_aggregating
@@ -35,6 +55,14 @@ the base learners, that is, voting for classification and averaging for regressi
 #### Boosting
 
 The term boosting refers to a family of algorithms that are able to convert weak learners to strong learners.
+It is kind of similar to the "trial and error" scheme: if we know that the learners perform worse at some given data set $S$, 
+the learner may pay more attention to the data drawn from $S$. 
+For the regression problem, of which the output results are continuous, it  progressively reduce the error by trial.
+
+
+https://betterexplained.com/articles/adept-method/
+https://web.stanford.edu/~hastie/Papers/buehlmann.pdf
+https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/
 
 * http://www.machine-learning.martinsewell.com/ensembles/boosting/
 * [Boosting at Wikipedia](https://www.wikiwand.com/en/Boosting_(machine_learning))
