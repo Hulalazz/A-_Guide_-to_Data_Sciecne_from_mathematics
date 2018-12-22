@@ -5,7 +5,7 @@ $\color{aqua}{LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION}.$
 
 * Representation as the core of the note is the general (mathematical) **model** that computer can handle.
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
-* Optimization is to aimed to find the parameters taht optimizes the evaluation function, i.e.
+* Optimization is to aimed to find the parameters that optimizes the evaluation function, i.e.
     $$
     \arg\min_{\theta} f(\theta)=\{\theta^*|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
     $$
@@ -371,7 +371,7 @@ objective function computation is wasted in these cases, $\eta$ is chosen to pro
 ($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
 ***
 The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$.
-Thus it is not clever to determine the learning rate $\alpha_k$ by line search. 
+Thus it is not clever to determine the learning rate $\alpha_k$ by line search.
 And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization.
 The variants of gradient descent such as momentum methods or mirror gradient methods have their stochastic counterparts.
 
