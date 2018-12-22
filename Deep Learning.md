@@ -1,7 +1,7 @@
 # Deep Learning
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
-In mathematics, it is nonlinear nonconvex and composite of many functions. Its name -deep learning- is to distinguish from the classical machine learning "shallow" methods.
+In mathematics, it is nonlinear non-convex and composite of many functions. Its name -deep learning- is to distinguish from the classical machine learning "shallow" methods.
 However, its complexity makes it yet engineering even art far from science. There is no first principle in deep learning but trial and error.
 In theory, we do not clearly understand how to design more robust and efficient network architecture; in practice, we can apply it to diverse fields. It is considered as one approach to artificial intelligence
 
@@ -24,6 +24,7 @@ The application of deep learning are partial listed in **[Awesome deep learning]
 |![Deep Learning Roadmap](http://www.deeplearningpatterns.com/lib/exe/fetch.php?media=deeplearning_overview_9_.jpg)|
 |![nn_timeline](http://beamandrew.github.io//images/deep_learning_101/nn_timeline.jpg)|
 ![Neural_Net_Arch_Genealogy](https://raw.githubusercontent.com/hunkim/deep_architecture_genealogy/master/Neural_Net_Arch_Genealogy.png)
+https://mitpress.mit.edu/books/deep-learning-revolution
 
 ***
 The **architecture** and **optimization** are the core content of deep learning models. We will focus on the first one.
@@ -43,12 +44,16 @@ Artificial neural networks are most easily visualized in terms of a **directed g
 
 [Perceptron](https://www.wikiwand.com/en/Perceptron) can be seen as  a generalized linear model.
 In mathematics, it is a map
-$$f:\mathbb{R}^n\rightarrow\mathbb{R}.$$
+$$
+f:\mathbb{R}^n\rightarrow\mathbb{R}.
+$$
 
 It can be decomposed into $2$ steps:
 
 1. Aggregate all the information: $z=\sum_{i=1}^{n}w_ix_i+b_0=(x_1,x_2,\cdots,x_n,1)\cdot (w_1,w_2,\cdots,w_n,b_0)^{T}.$
 2. Transform the information to activate something: $y=\sigma(z)$, where $\sigma$ is nonlinear such as step function.
+
+It can solve the linearly separate problem.   
 ![](http://i2.wp.com/abhay.harpale.net/blog/wp-content/uploads/perceptron-picture.png)
 
 #### Activation function
@@ -118,7 +123,7 @@ where
       $$
       \begin{align}
          y_{j}(t) & =f[\mathbf{w}(t)\cdot\mathbf{x}_{j}]\\
-                  & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb +w_{n}(t)x_{j,n}]
+       ​           & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb +w_{n}(t)x_{j,n}]
       \end{align}
       $$
 
@@ -146,14 +151,14 @@ It is the first time to model cognition.
 * Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
 * https://stats385.github.io/blogs
 
-### Feedforward Neural Network
+### Feed-forward Neural Network
 
 #### Representation of Feedforward Neural Network
 
 Given that the function of a single neuron is rather simple, it subdivides the input space into two regions by a hyperplane, the complexity must come from having more layers of neurons involved in a complex action (like recognizing your grandmother in all possible situations).The "squashing" functions introduce critical nonlinearities in the system, without their presence multiple layers would still create linear functions.
 Organized layers are very visible in the human cerebral cortex, the part of our brain which plays a key role in memory, attention, perceptual awareness, thought, language, and consciousness.[^13]
 
-The **feedforward neural network** is also called multilayer perceptron. [The best way to create complex functions from simple functions is by **composition**.](http://math.mit.edu/~gs/learningfromdata/SIAM03.pdf)
+The **feed-forward neural network** is also called multilayer perceptron. [The best way to create complex functions from simple functions is by **composition**.](http://math.mit.edu/~gs/learningfromdata/SIAM03.pdf)
 In mathematics, it  can be considered as multi-layered non-linear composite function:
 
 $$
@@ -321,24 +326,23 @@ Once these gradients have been computed, it is straightforward to compute the gr
 Suppose that $f(x)={\sigma}\circ(WH + b)$,where $H=\sigma\circ(W_4H_3 + b_4)$, $H_3=\sigma\circ(W_3H_2 + b_3)$,$H_2=\sigma\circ(W_2H_1 + b_2),$ $H_1=\sigma\circ(W_1x + b_1)$,
 we want to compute the gradient $L(x_0,d_0)=\|f(x_0)-d_0\|^{2}_2$ with respect to all weights $W_1,W_2,W_3,W$:
 
-*
 $$
 \frac{\partial L(x_0,d_0)}{\partial W_n^i}=\frac{\partial L(x_0,d_0)}{\partial f(x_0)}\frac{\partial f(x_0)}{\partial W_n^i}\forall i\in\{1,2,\dots,l_n\}, \forall\,n\in\{1,2,3,4\}
 $$
 
 and it is fundamental to compute the gradient with respect to the last layer as below.
 
-* the gradient of loss function with respect to the prediction function:
+- [ ] the gradient of loss function with respect to the prediction function:
 $$\frac{\partial L(x_0,d_0)}{\partial f(x_0)}=2[f(x_0)-d_0],$$
 
-* the gradient of each unit in prediction function with respect to the weight in the last layer:
+- [ ] the gradient of each unit in prediction function with respect to the weight in the last layer:
 $$
 \frac{\partial f^{j}(x_0)}{\partial W^j}=
 \frac{\partial \sigma(W^jH+b^j)}{\partial W^j}=
 {\sigma}^{\prime}(W^jH+b^j) H \,\,\forall j\in\{1,2,\dots,l\},
 $$
 
-* the gradient of prediction function with respect to the last hidden state:
+- [ ] the gradient of prediction function with respect to the last hidden state:
 $$
 \frac{\partial f^{j}(x_0)}{\partial H}  =
 \frac{\partial \sigma(W^jH+b^j)}{\partial H}  =
@@ -505,7 +509,8 @@ See more on nonconvex optimization at <http://sunju.org/research/nonconvex/>.
 
 #### Regularization
 
-In mathematics, statistics, and computer science, particularly in the fields of machine learning and inverse problems, regularization is a process of introducing additional information in order to solve an ill-posed problem or to prevent overfitting. In general, regularization is a technique that applies to objective functions in ill-posed optimization problems.
+In mathematics, statistics, and computer science, particularly in the fields of machine learning and inverse problems, regularization is a process of introducing additional information in order to solve an ill-posed problem or to prevent over-fitting.
+In general, regularization is a technique that applies to objective functions in ill-posed optimization problems.
 It changes the objective function or more generally the optimization procedure. However, it is not crystal clear that what is the relationship between the optimization techniques and generalization ability.
 See the following links for more information on optimization and generalization.
 
@@ -517,6 +522,10 @@ See the following links for more information on optimization and generalization.
 * http://www.offconvex.org/2018/02/17/generalization2/
 * http://www.offconvex.org/2017/03/30/GANs2/
 * https://machinelearningmastery.com/blog/
+* http://lcsl.mit.edu/courses/regml/regml2016/
+* https://chunml.github.io/ChunML.github.io/tutorial/Regularization/
+* http://www.mit.edu/~9.520/fall16/
+* https://arxiv.org/pdf/1506.02142.pdf
 
 ##### Parameter norm penalty
 
@@ -639,7 +648,7 @@ For more information on CNN, click the following links.
 * [conv arithmetic](https://github.com/vdumoulin/conv_arithmetic)
 * [Convolution deep learning](http://timdettmers.com/2015/03/26/convolution-deep-learning/)
 
-### Padding
+#### Padding
 
 The standard convolution  operation omit the information of the boundaries. Padding is to add some $0$s outside the boundaries of the images.
 
@@ -653,10 +662,22 @@ https://zhuanlan.zhihu.com/p/36278093
 
 As in feedforward neural networks, an additional non-linear  operation called **ReLU** has been used after every Convolution operation.
 
-### Pooling as Subsampling
+#### Pooling as Subsampling
 
-Pooling as a special convolution is to make the model/network more robust.
+Pooling as subsampling is to make the model/network more robust or transformation invariant.
+Spatial Pooling (also called subsampling or downsampling) is to use some summary statistic that extract from spatial neighbors,
+which reduces the dimensionality of each feature map but retains the most important information.
+The function of Pooling is 
 
+- [ ] to progressively reduce the spatial size of the input representation and induce the size of receptive field.
+- [ ] makes the network invariant to small transformations, distortions and translations in the input image.
+- [ ] helps us arrive at an almost scale invariant representation of our image (the exact term is "equivariant").
+
+See more in the following links:
+
+* https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/
+* http://deeplearning.stanford.edu/tutorial/supervised/Pooling/
+* https://machinelearning.wtf/terms/pooling-layer/
 
 #### Max Pooling
 
@@ -665,6 +686,7 @@ It is to use the maximum to represent the local information.
 ![](https://upload.wikimedia.org/wikipedia/commons/e/e9/Max_pooling.png)
 
 See <https://www.superdatascience.com/convolutional-neural-networks-cnn-step-2-max-pooling/>.
+* https://computersciencewiki.org/index.php/Max-pooling_/_Pooling
 
 #### Sum Pooling
 
@@ -708,7 +730,6 @@ where $\otimes,\oplus,\cdot$ represent convolution operation, padding and poolin
 * [ConvNetJS](https://cs.stanford.edu/people/karpathy/convnetjs/)
 * https://www.vicarious.com/2017/10/20/toward-learning-a-compositional-visual-representation/
 
-
 ***
 
 https://zhuanlan.zhihu.com/p/28749411
@@ -720,10 +741,12 @@ https://zhuanlan.zhihu.com/p/28749411
 * [Interpretable Representation Learning for Visual Intelligence](http://bzhou.ie.cuhk.edu.hk/publication/thesis.pdf)
 * https://www.zybuluo.com/lutingting/note/459569
 * https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf
+* [卷积网络的可视化与可解释性（资料整理） - 陈博的文章 - 知乎](https://zhuanlan.zhihu.com/p/36474488)
 * https://zhuanlan.zhihu.com/p/24833574
 * https://zhuanlan.zhihu.com/p/30403766
 * https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
 * http://people.csail.mit.edu/bzhou/ppt/presentation_ICML_workshop.pdf
+* https://www.robots.ox.ac.uk/~vedaldi//research/visualization/visualization.html
 * https://www.graphcore.ai/posts/what-does-machine-learning-look-like
 
 ****
@@ -797,7 +820,6 @@ where $H_{t} = [\stackrel{\rightarrow} H_{t};\stackrel{\leftarrow} H_{t}]$.
 
 [deepai.org](https://deepai.org/machine-learning-glossary-and-terms/bidirectional-recurrent-neural-networks)
 
-
 ### LSTM
 
 There are several architectures of LSTM units. A common architecture is composed of a *memory cell, an input gate, an output gate and a forget gate*.
@@ -816,11 +838,9 @@ $f_{t}=\sigma(W_{f}[h_{t-1},x_t]+b_f)$
 $i_{t}=\sigma(W_i[h_{t-1},x_t]+b_i)$,
 $\tilde{C}_{t}=tanh(W_C[h_{t-1},x_t]+b_C)$
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/dac15a9da4164b3da346ac891d10ff9e.gif)
-
 * memory cell
 $c_{t}=f_t\times c_{t-1}+i_{t}\times{\tilde{C}_{t}}$
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/ad6435e481064d57833a4733e716fa8f.gif)
-
 * output gate
 $O_{t}=\sigma(W_{O}[h_{t-1},x_t]+b_{O})$ and
 $h_{t}=O_{t}\times tanh(c_{t})$
@@ -880,6 +900,7 @@ Other RNN cells also can compose deep RNN via this stacking way such as deep Bi-
 * http://www.sohu.com/a/259957763_610300
 * https://skymind.ai/wiki/lstm
 * [循环神经网络(RNN, Recurrent Neural Networks)介绍](https://blog.csdn.net/heyongluoyao8/article/details/48636251)
+* https://arxiv.org/pdf/1506.02078.pdf
 
 ## Attention Mechanism
 
@@ -940,9 +961,7 @@ How can deep learning apply to them?
 > and produces a node-level output $Z$ (an $N\times F$ feature matrix, where $F$ is the number of output features per node). Graph-level outputs can be modeled by introducing some form of pooling operation (see, e.g. [Duvenaud et al., NIPS 2015](http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints)).
 
 Every neural network layer can then be written as a non-linear function
-$$
-{H}_{i+1} = \sigma \circ ({H}_{i}, A)
-$$
+$${H}_{i+1} = \sigma \circ ({H}_{i}, A)$$
 with ${H}_0 = {X}_{in}$ and ${H}_{d} = Z$ (or $Z$ for graph-level outputs), $d$ being the number of layers. The specific models then differ only in how $\sigma$ is chosen and parameterized.
 
 For example, we can consider a simple form of a layer-wise propagation rule
@@ -1013,10 +1032,10 @@ It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pd
 * [SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)
 * https://arxiv.org/abs/1804.03294
 
-
-
 ## Bayesian Deep Learning
 
+* https://github.com/junlulocky/bayesian-deep-learning-notes
+* https://github.com/robi56/awesome-bayesian-deep-learning#theory
 * https://alexgkendall.com/computer_vision/phd_thesis/
 * http://bayesiandeeplearning.org/
 * http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
@@ -1032,6 +1051,7 @@ It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pd
 * [CoMS E6998 003: Advanced Topics in Deep Learning](https://www.advancedtopicsindeeplearning.com/)
 * [Deep Learning Theory: Approximation, Optimization, Generalization](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html)
 * [Theory of Deep Learning, ICML'2018](https://sites.google.com/site/deeplearningtheory/)
+* [Deep Neural Networks: Approximation Theory and Compositionality](http://www.mit.edu/~9.520/fall16/Classes/deep_approx.html)
 * [Neural Networks, Manifolds, and Topology](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/)
 * [Theory of Deep Learning, project in researchgate](https://www.researchgate.net/project/Theory-of-Deep-Learning)
 * [THE THEORY OF DEEP LEARNING - PART I](https://physicsml.github.io/blog/DL-theory.html)
@@ -1042,12 +1062,24 @@ It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pd
 * [A Convergence Theory for Deep Learning via Over-Parameterization](https://arxiv.org/pdf/1811.03962.pdf)
 * [MATHEMATICS OF DEEP LEARNING, NYU, Spring 2018](https://github.com/joanbruna/MathsDL-spring18)
 * [Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
+* [DALI 2018, Data Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
+* [Deep unrolling](https://zhuanlan.zhihu.com/p/44003318)
+* http://blog.qure.ai/notes/visualizing_deep_learning
+* http://blog.qure.ai/notes/deep-learning-visualization-gradient-based-methods
+* http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/
+* https://beenkim.github.io/
+* https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html
+* http://networkinterpretability.org/
+* https://interpretablevision.github.io/
 * https://zhuanlan.zhihu.com/p/45695998
 * https://www.zhihu.com/question/265917569
 * https://www.ias.edu/ideas/2017/manning-deep-learning
 * https://www.jiqizhixin.com/articles/2018-08-03-10
 * https://cloud.tencent.com/developer/article/1345239
 * http://www.deeplearningpatterns.com/doku.php?id=theory
+* http://cbmm.mit.edu/publications
+* https://stanford.edu/~shervine/l/zh/teaching/cs-229/cheatsheet-deep-learning
+* https://stanford.edu/~shervine/teaching/cs-230.html
 
 ***
 |Deep Dream|
