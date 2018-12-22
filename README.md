@@ -8,10 +8,10 @@ And the copyright of pictures are not permmited by the original oweners.
 If this material infringes your copyright, you could contact me via Github and I will delete the pictures.
 It includes the following content:
 - [X] basic introduction to probability and statistics;
-- [ ] computational statistics;
+- [X] sampling algorithm based on uniformly distributed data;
 - [ ] MCMC and stochastic methods;
 - [ ] generalized linear model and regression analysis;
 - [ ] probabilistic programming and graph models;
-- [ ] basci machine learning;
-- [X] some materials on deep learning;
+- [ ] basic machine learning;
+- [X] some materials on artifical neural network and deep learning;
 - [ ] other data anslysis such as topological data analysis.
