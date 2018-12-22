@@ -1,4 +1,4 @@
-### Generalized Linear Model
+### Generalized Linear Models
 
 In **ordinary least squares**, we assume that the errors $\{{\epsilon}_{i}\}_{i=1}^{n}$ are i.i.d. Gaussian, i.e. $\{\epsilon_{i}\} \stackrel{i.i.d}{\sim} N(0,1)$ for $i\in\{1,2, \cdots, n\}$. It is not necessary to assume that they are in Gaussian distribution.
 In statistics, the generalized linear model (GLM) is a flexible generalization of ordinary linear regression that allows for response variables that have error distribution models other than a normal distribution. The GLM generalizes linear regression by allowing the linear model to be related to the response variable via a link function and by allowing the magnitude of the variance of each measurement to be a function of its predicted value.
@@ -206,20 +206,24 @@ The negative log-likelihood function $-\ell(\beta|X, Y)$ is convex so that we ca
 
 The log-likelihood in terms of $\beta = (\beta_1,\dots,\beta_K)^{T}$ is
 $$
+\begin{align}
 \ell(\beta|X, Y)
- = {\sum}_{i=1}^{n} {\sum}_{k=1}^{K} y_k^{(i)}\log(\pi_k)\\
- = {\sum}_{i=1}^{n} [{\sum}_{k=1}^{K-1} y_k^{(i)}\log(\pi_k) + y_K\log(\pi_K)] \\
- = {\sum}_{i=1}^{n} [{\sum}_{k=1}^{K-1} y_k^{(i)}\log(\pi_k) + (1-{\sum}_{k=1}^{K-1} y_k))\log(\pi_K)].
+ & = {\sum}_{i=1}^{n} {\sum}_{k=1}^{K} y_k^{(i)}\log(\pi_k) \\
+ & = {\sum}_{i=1}^{n} [{\sum}_{k=1}^{K-1} y_k^{(i)}\log(\pi_k) + y_K\log(\pi_K)] \\
+ & = {\sum}_{i=1}^{n} [{\sum}_{k=1}^{K-1} y_k^{(i)}\log(\pi_k) + (1-{\sum}_{k=1}^{K-1} y_k))\log(\pi_K)].
+\end{align}
 $$
+
 * http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92
 * https://www.wikiwand.com/en/Multinomial_logistic_regression
 * https://www.wikiwand.com/en/Softmax_function
+* https://metacademy.org/graphs/concepts/multinomial_logistic_regression
 
-### Projection pursuit regression
-
-https://www.wikiwand.com/en/Projection_pursuit_regression
 
 ### Nonparametric Regression
+
+In generalized linear model, the response $Y$ is specified its distribution family.
+$\odot$
 
 * https://www.wikiwand.com/en/Additive_model
 * https://www.wikiwand.com/en/Generalized_additive_model
@@ -234,6 +238,10 @@ https://www.wikiwand.com/en/Projection_pursuit_regression
 * [http://www.stat.cmu.edu/~larry/](http://mlg.postech.ac.kr/~seungjin/courses/easyml/handouts/handout07.pdf)
 * https://zhuanlan.zhihu.com/p/26830453
 * http://wwwf.imperial.ac.uk/~bm508/teaching/AppStats/Lecture7.pdf
+
+### Projection pursuit regression
+
+https://www.wikiwand.com/en/Projection_pursuit_regression
 
 ***
 [https://blogs.ams.org/visualinsight](https://blogs.ams.org/visualinsight/files/2013/10/atomic_singular_inner_function.png)
