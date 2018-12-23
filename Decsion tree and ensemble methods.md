@@ -2,6 +2,7 @@
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set.
+It can be used as classifier and regressor.
 
 * https://www.wikiwand.com/en/Decision_tree_learning
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
