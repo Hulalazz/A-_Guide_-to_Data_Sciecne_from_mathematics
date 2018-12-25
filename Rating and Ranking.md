@@ -21,7 +21,7 @@ where the parameter $\theta$ is related with the threshold.
 
 For example, the expected performance of player A is $E_{A} = \frac{1}{1 + 10^{-\frac{R_A - R_B}{400}}}$ and $E_{B} = \frac{1}{1 + 10^{-\frac{R_B - R_A}{400}}}=1-E_{A}$.
 Supposing Player A was expected to score $E_{A}$ points but actually scored $S_{A}$ points. And the update rule is 
-$${R}_{A}^{New} = R_{A} + K(S_A - E_A)$$
+$$ {R}_{A}^{New} = R_{A} + K(S_A - E_A) $$
 where $K$ is a constant.
 
 * https://www.wikiwand.com/en/Elo_rating_system
