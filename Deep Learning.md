@@ -908,7 +908,7 @@ An attention model is a method that takes $n$ arguments $y_1, \dots, y_n$  and a
 In mathematics, it can be expressed as:
 
 $$
-{\alpha}_i = softmax(s(y_i,c))               \\
+{\alpha}_i = softmax[s(y_i,c)]               \\
          z = \sum_{i=1}^{n} {\alpha}_i y_i
 $$
 
@@ -948,10 +948,11 @@ It is always as one component of some complex network as normalization.
 ## Graph Convolution Network
 
 Graph can be represented as `adjacency matrix` as shown in *Graph Algorithm*. However, the adjacency matrix only describe the connections between the nodes. The feature of the nodes does not appear. The node itself really matters.
+For example, the chemical bonds can be representd as `adjacency matrix` while the atoms in molecule really determine the properties of the molecule.
+
 A naive approach is to concatenate the `feature matrix` $X\in \mathbb{R}^{N\times E}$ and `adjacency matrix` $A\in \mathbb{R}^{N\times N}$, i.e. $X_{in}=[X, A]\in \mathbb{R}^{N\times (N+E)}$. And what is the output?
 
 How can deep learning apply to them?
-
 
 > For these models, the goal is then to learn a function of signals/features on a graph $G=(V,E)$ which takes as input:
 
