@@ -19,7 +19,6 @@ Especially, when $M_{n\times n}$ is symmetrical i.e. $M^T=M$, what are the prope
 
 See more at <http://mathworld.wolfram.com/MatrixDiagonalization.html>.
 
-
 When the matrix is rectangle i.e. the number of columns and the number of rows are not equal, what is the counterpart of eigenvalues and eigenvectors?
 Another question is  if  every matrix $M_{m\times n}\in\mathbb{R}^{m\times n}$ can be written as the sum of rank-1 matrix and how?
 $$M_{m\times n}=\sum_{i}^{r}p_i q_i=P_{m\times r}Q_{r\times n}$$
@@ -30,7 +29,7 @@ They are from the square matrices $M_{m\times n}^TM_{m\times n}=A_{n\times n}$ a
 >
    >**Proof**: We know that $A=M_{m\times n}^TM_{m\times n}$ and $B=M_{m\times n}M_{m\times n}^T$.
    >Let $Av=\lambda v$ i.e. $M_{m\times n}^TM_{m\times n} v=\lambda v$, which can be rewritten as $M_{m\times n}^T(M_{m\times n} v)=\lambda v\,(1)$, where $v\in\mathbb{R}^n$.
-   >We multiply the matrix $M_{m\times n}$ in the left of both sides of equation (1), then we obtain $M_{m\times n}M_{m\times n}^T(M_{m\times n} v)=M_{m\times n}(\lambda v)=\lambda(M_{m\times n} v)$.
+   >We multiply the matrix $M_{m\times n}$ in the left of both sides of equation (1), then we obtain $M_{m\times n}M_{m\times n}^T(M_{m\times n} v)=M_{m\times n}(\lambda v)=\lambda(M_{m\times n} v)$ such that $B(M_{m\times n}v)=\lambda M_{m\times n}v$.
 
 Another observation of $A$ and $B$ is that the trace of $A$ is equal to the trace of $B$, i.e. $tr(A)=tr(M_{m\times n}^TM_{m\times n})=tr(B)=tr(M_{m\times n}M_{m\times n}^T)=\sum_{i,j}m_{ij}^2$ where $m_{ij}$ is the element of matrix $M_{m\times n}$.  
 > **Theorem**: The matrix $A$ and $B$ are non-negative definite, i.e. $\left<v,Av\right>\geq 0, \forall v\in\mathbb{R}^n$ and $\left<u,Bu\right>\geq 0, \forall u\in\mathbb{R}^m$.
@@ -39,7 +38,13 @@ Another observation of $A$ and $B$ is that the trace of $A$ is equal to the trac
 
 We can infer that the eigenvalues of matrix $A$ and $B$ are nonnegative. We ca prove it by counterproof. Suppose that $\lambda < 0$ and $Av = \lambda v$, we can conclude that $\left<v,Av\right>=\left<v,\lambda v\right>=(Mv)^T(Mv)=\|Mv\|_2^2 = \lambda {\|v\|}_2^2\geq 0$ while $v =\not \vec{0}$ and $\lambda < 0$. The contradiction occurs.
 
-The eigenvalues of $A$ or $B$ really matters.
+The eigenvalues of $A$ or $B$ really matters. And it is possible to compute the eigenvalues and eigenvectors of $A_{n\times n}$ or $B_{m\times m}$.
+For example, we assume that $A_{n\times n}=V_{n\times n}\Lambda V_{n\times n}$, where the diagonal matrix $\Lambda = Diag(\lambda_1,\dots, \lambda_n)$ consists of eigenvalues, the orthogonal matrix $V_{n\times n}=(v_1,\dots, v_n)$ consists of eigenvectors $\{v_1,\dots, v_n\}\subset \mathbb{R}^{n}$ so that $A_{n\times n}v_i = \lambda_i v_i$ for $i=1,2,\dots, n$. 
+In anther word, $M_{m\times n}^TM_{m\times n} v_i = \lambda_i v_i$ or ${v_i}^{T} M_{m\times n}^TM_{m\times n}= \lambda_i {v_i}^{T}\Rightarrow(M_{m\times n}v_i)^{T}M_{m\times n}=\lambda_i {v_i}^{T}$. What is more, we have that $(M_{m\times n}\Lambda)^{T}M_{m\times n}=\Lambda V_{n\times n}$.
+
+It is known that $\sum_{i=1}^{n}\lambda_i=tr(A)$.
+Note that $M_{m\times n}v_i$ is the eigenvector of $B = M_{m\times n}M_{m\times n}^{T}$. 
+
 > **Theorem**: $M_{m\times n}=U_{m\times m}\Sigma_{m\times n} V_{n\times n}^T$, where
 > * $U_{m\times m}$ is an $m \times m$ orthogonal matrix;
 > * $\Sigma_{m\times n}$ is a diagonal $m \times n$ matrix with non-negative real numbers on the diagonal,
