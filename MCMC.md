@@ -21,6 +21,15 @@ And in theory, probability distribution and expected values are the reflection o
 * [PyMC2](https://colcarroll.github.io/hamiltonian_monte_carlo_talk/bayes_talk.html)
 * https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling
 
+### Metropolis
+
+### Gibbs Sampling 
+
+Gibbs sampling is a conditional sampling  technique. It is known that $P(X_1, \dots, X_n) = P(X_1)\prod_{i=2}^{n}P(X_i|X_1,\dots, X_{i-1})$.
+
+* https://metacademy.org/graphs/concepts/gibbs_sampling
+* https://metacademy.org/graphs/concepts/gibbs_as_mh
+
 ### Importance sampling
 
 Let $\vec{X}$ be a random vector, and we wan to compute the integration or the expectation
@@ -70,22 +79,36 @@ The Metropolis–Hastings algorithm thus consists in the following:
 * https://www.wikiwand.com/en/Metropolis%E2%80%93Hastings_algorithm
 * https://metacademy.org/graphs/concepts/metropolis_hastings
 
-
-### Metropolis
-
-### Gibbs Sampling 
-
-Gibbs sampling is a conditional sampling  technique. It is known that $P(X_1, \dots, X_n) = P(X_1)\prod_{i=1}^{n}P(X_i|X_1,\dots, X_{i-1})$.
-
-* https://metacademy.org/graphs/concepts/gibbs_sampling
-
 ### Slice Sampling
+
+Slice sampling, in its simplest form, samples uniformly from underneath the curve $f(x)$ without the need to reject any points, as follows:
+
+* Choose a starting value $x_0$ for which $f(x_0)>0$.
+* Sample a y value uniformly between $0$ and $f(x_0)$.
+* Draw a horizontal line across the curve at this $y$ position.
+* Sample a point $(x,y)$ from the line segments within the curve.
+* Repeat from step 2 using the new $x$ value.
+
+The motivation here is that one way to sample a point uniformly from within an arbitrary curve is first to draw thin uniform-height horizontal slices across the whole curve. Then, we can sample a point within the curve by randomly selecting a slice that falls at or below the curve at the x-position from the previous iteration, then randomly picking an x-position somewhere along the slice. By using the x-position from the previous iteration of the algorithm, in the long run we select slices with probabilities proportional to the lengths of their segments within the curve.
+
+***
 
 * https://projecteuclid.org/euclid.aos/1056562461
 * https://www.wikiwand.com/en/Slice_sampling
 
 ### The Hybrid Monte Carlo Algorithm
 
+*MCMC Using Hamiltonian Dynamics*, Radford M. Neal said 
+> In 1987, a landmark paper by Duane, Kennedy, Pendleton, and Roweth united the MCMC and molecular dynamics approaches. They called their method “hybrid Monte Carlo,” which abbreviates to “HMC,” but the phrase “Hamiltonian Monte Carlo,” retaining the abbreviation, is more specific and descriptive, and I will use it here.
+
+* The first step is to define a Hamiltonian function in terms of the probability distribution we wish to sample from.
+* In addition to the variables we are interested in (the “position” variables), we must introduce auxiliary “momentum” variables, which typically have independent Gaussian distributions.
+* The HMC method alternates simple updates for these momentum variables with Metropolis updates in which a new state is proposed by computing a trajectory according to Hamiltonian dynamics, implemented with the leapfrog method.
+
+***
+
 * [Hamiltonian Monte Carlo 1](http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/)
 * [Roadmap of HMM](https://metacademy.org/graphs/concepts/hamiltonian_monte_carlo)
 * https://chi-feng.github.io/mcmc-demo/app.html#HamiltonianMC,banana
+* http://slac.stanford.edu/pubs/slacpubs/4500/slac-pub-4587.pdf
+* http://www.mcmchandbook.net/HandbookChapter5.pdf
