@@ -1,7 +1,9 @@
 ## Markov Chain Monte Carlo
 
-The practice of MCMC is simple. Set up a Markov chain having the required invariant distribution, and run it on a computer.
-And in theory, probability distribution and expected values are the reflection of measure and integration theory. ANd it is a great begin to probabilistic programming.
+The practice of MCMC is simple. Set up a *Markov chain* having the required invariant distribution, and run it on a computer.
+And in theory, probability distribution and expected values are the reflection of measure and integration theory. And it is a  begin to the tour of probabilistic programming.
+It also may provide some mathematical understanding of the machine learning model.
+It is more useful in some simulation problem.
 
 1. http://www.mcmchandbook.net/
 2. http://www.cs.princeton.edu/courses/archive/spr06/cos598C/papers/AndrieuFreitasDoucetJordan2003.pdf
@@ -21,11 +23,19 @@ And in theory, probability distribution and expected values are the reflection o
 * [PyMC2](https://colcarroll.github.io/hamiltonian_monte_carlo_talk/bayes_talk.html)
 * https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling
 
-### Metropolis
-
-### Gibbs Sampling 
+### Gibbs Sampling
 
 Gibbs sampling is a conditional sampling  technique. It is known that $P(X_1, \dots, X_n) = P(X_1)\prod_{i=2}^{n}P(X_i|X_1,\dots, X_{i-1})$.
+
+> **Algorithm**: Gibbs Sampling
+   * Initialize $\{{z}_i^{(0)}\}_{i=1}^{n}$;
+   * For $t=1,\dots,T$:
+       + Draw $z_{1}^{(t+1)}$ from $P(z_{1}|z_{2}^{\color{green}{t}},z_{3}^{t},\dots, z_{n}^{t})$;
+       + Draw $z_{2}^{(t+1)}$ from $P(z_{2}|z_{1}^{\color{red}{t+1}},z_{3}^{t},\dots, z_{n}^{t})$;
+       +  $\vdots$;
+       + Draw $z_{j}^{(t+1)}$ from $P(z_{j}|z_{1}^{\color{red}{t+1}},\dots, z_{j-1}^{\color{red}{t+1}}, z_{j+1}^{t}, z_{n}^{t})$;
+       + $\vdots$;
+       + Draw $z_{n}^{(t+1)}$ from $P(z_{n}|z_{1}^{\color{red}{t+1}},\dots, z_{j-1}^{\color{red}{t+1}}, z_{n-1}^{\color{red}{t+1}}$.
 
 * https://metacademy.org/graphs/concepts/gibbs_sampling
 * https://metacademy.org/graphs/concepts/gibbs_as_mh
@@ -34,13 +44,13 @@ Gibbs sampling is a conditional sampling  technique. It is known that $P(X_1, \d
 
 Let $\vec{X}$ be a random vector, and we wan to compute the integration or the expectation
 $$\mu=\mathbb{E}(f(\vec{X}))=\int_{\mathbb{R}}f(\vec{X})p({X})\mathrm{d}X,$$
- where $p({X})$ is the probability density function of $\vec{X}$.
- We can rewrite the expectation
- $$\mu=\int_{\mathbb{R}}\frac{f(\vec{X})p(X)}{q(X)}q(X)\mathbb{d}X=\mathbb{E}_{q}(\frac{f(\vec{X})p(X)}{q(X)}),$$
- where $q(X)$ is another probability density function and $q(X)=0$ implies $f(\vec{X})p(X)=0$.
+where $p({X})$ is the probability density function of $\vec{X}$.
+We can rewrite the expectation
+$$\mu=\int_{\mathbb{R}}\frac{f(\vec{X})p(X)}{q(X)}q(X)\mathbb{d}X=\mathbb{E}_{q}(\frac{f(\vec{X})p(X)}{q(X)}),$$
+where $q(X)$ is another probability density function and $q(X)=0$ implies $f(\vec{X})p(X)=0$.
 
 ***
- The [algorithm of importance sampling](http://math.arizona.edu/~tgk/mc/book_chap6.pdf) is as following:
+The [algorithm of importance sampling](http://math.arizona.edu/~tgk/mc/book_chap6.pdf) is as following:
  1. Generate samples $\vec{X}_1,\vec{X}_2,\cdots,\vec{X}_n$ from the distribution $q(X)$;
  2. Compute the estimator $\hat{\mu}_{q} =\frac{1}{n}\sum_{i=1}^{n}\frac{f(\vec{X_i})p(\vec{X_i})}{q(\vec{X_i})}$
 ***
@@ -64,7 +74,7 @@ i.e., we always accept when the acceptance is bigger than 1, and we reject accor
 
 The Metropolis–Hastings algorithm thus consists in the following:
 ***
-1. Initialise 
+1. Initialise
     + Pick an initial state $x_{0}$;
     + Set $t=0$;
 2. Iterate
@@ -98,11 +108,11 @@ The motivation here is that one way to sample a point uniformly from within an a
 
 ### The Hybrid Monte Carlo Algorithm
 
-*MCMC Using Hamiltonian Dynamics*, Radford M. Neal said 
+*MCMC Using Hamiltonian Dynamics*, Radford M. Neal said
 > In 1987, a landmark paper by Duane, Kennedy, Pendleton, and Roweth united the MCMC and molecular dynamics approaches. They called their method “hybrid Monte Carlo,” which abbreviates to “HMC,” but the phrase “Hamiltonian Monte Carlo,” retaining the abbreviation, is more specific and descriptive, and I will use it here.
 
 * The first step is to define a Hamiltonian function in terms of the probability distribution we wish to sample from.
-* In addition to the variables we are interested in (the “position” variables), we must introduce auxiliary “momentum” variables, which typically have independent Gaussian distributions.
+* In addition to the variables we are interested in (the "position" variables), we must introduce auxiliary "momentum" variables, which typically have independent Gaussian distributions.
 * The HMC method alternates simple updates for these momentum variables with Metropolis updates in which a new state is proposed by computing a trajectory according to Hamiltonian dynamics, implemented with the leapfrog method.
 
 ***
