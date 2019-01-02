@@ -95,12 +95,33 @@ rating uncertainty.
 - [ ] https://arxiv.org/pdf/1701.08055v1.pdf
 - [X] https://www.remi-coulom.fr/WHR/WHR.pdf
 
-## Randking
+## Ranking
 
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every search engine, is responsible for the matching between processed queries and indexed documents.
 In general, we call all those methods that use machine learning technologies to solve the problem of ranking **"learning-to-rank"** methods.
 We are designed to compare some indexed document with the query.
+The algorithms above are based on feedback to tune the rank or scores of players. The drawback of these methods is that they do not take the features of the players into consideration.
+We may use machine learn to predict the scores of players and test it in real data set such as **RankNet, LambdaRank, and LambdaMART**.
+
+Soppose that two players $u_i$ and $u_j$ with feature vectors $x_i$ and $x_j$ is presented to the model, which computes the scores $s_i = f(x_i)$ and $s_j = f(x_j)$. 
+Another output of the model is the probability that $U_i$ should be ranked
+higher than $U_j$ via a sigmoid function, thus 
+$$P(U_i\triangleleft U_j)=\frac{1}{1+\exp(-\sigma(s_i-s_j))}=\frac{1}{1+\exp[-\sigma(f(x_i)-f(x_j))]}$$
+where the choice of the parameter $\sigma$ determines the shape of the sigmoid.
+We then apply the cross entropy cost function,
+which penalizes the deviation of the model output probabilities from the desired
+probabilities:
+$$C=-\overline{P_{ij}}\log(P(U_i\triangleleft U_j))-(1-\overline{P_{ij}})\log(1-P(U_i\triangleleft U_j))$$
+where 
+$$\overline{P_{ij}}=
+\begin{cases} 
+1, \text{if $U_i$ is labeled higher than $U_j$;}\\
+\frac{1}{2}, \text{if $U_i$ is labeled equal than $U_j$;}\\
+0, \text{if $U_i$ is labeled lower than $U_j$.}
+\end{cases}
+$$ 
+The model $f:\mathbb{R}^P\to\mathbb{R}$ can be deep neural network (a.k.a deep learning), which can learned via stochastic gradient descent methods.
 
 
 * https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
@@ -110,3 +131,5 @@ We are designed to compare some indexed document with the query.
 * https://www.wikiwand.com/en/Learning_to_rank
 * https://github.com/tensorflow/ranking
 * https://github.com/Isminoula/DL-to-Rank
+* https://opensource.googleblog.com/2018/12/tf-ranking-scalable-tensorflow-library.html
+* https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/
