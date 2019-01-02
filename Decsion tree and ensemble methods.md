@@ -19,8 +19,18 @@ It use 'divide-and-conquer' strategy recursively. It is easy to scale up to mass
 
 #### Random Forest
 
+Random forests (Breiman, 2001) is a substantial modification of bagging
+that builds a large collection of de-correlated trees, and then averages them.
+On many problems the performance of random forests is very similar to
+boosting, and they are simpler to train and tune. 
 
-
+* For $t=1, 2, \dots, T$:
+    + Draw a bootstrap sample $Z^{\star}$ of size $N$ from the training data.
+    + Grow a random-forest tree $T_t$ to the bootstrapped data, by recursively repeating the following steps for each terminal node of the tree, until the minimum node size $n_{min}$ is reached.
+      - Select $m$ variables at random from the $p$ variables.
+      - Pick the best variable/split-point among the $m$.
+      - Split the node into two daughter nodes.
+* Vote for classification and average for regression.
 
 https://github.com/kjw0612/awesome-random-forest
 https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
@@ -72,7 +82,6 @@ For the regression problem, of which the output results are continuous, it  prog
 In another word, we will reduce the error at each iteration.
 
 
-
 https://betterexplained.com/articles/adept-method/
 https://web.stanford.edu/~hastie/Papers/buehlmann.pdf
 https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/
@@ -105,7 +114,7 @@ $$\mathbb{I}(x\not=y)=
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
 * [CSDN blog](https://blog.csdn.net/v_july_v/article/details/40718799)
 
-#### Gradient Boosting
+#### Gradient Boosting Decsion Tree
 
 ***
 * Initialize $f_0(x)=\arg\min_{\gamma} L(\mathrm{d}_i,\gamma)$;
@@ -128,6 +137,13 @@ $$\mathbb{I}(x\not=y)=
 
 #### xGBoost
 
+In Gradient Boost, we compute and fit a regression a tree to $r_{i,t}=-{[\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
+Why not the error $L(\mathrm{d}_i, f(x_i))$ itself?
+Recall the Taylor expansion $f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the nonconvex error function can be expressed as a ploynomial in terms of $h$, which is easier to fit than a general nonconvex function.
+So that we can implement additive training to boost the supervised algorithm.
+
+
+* https://xgboost.readthedocs.io/en/latest/tutorials/model.html
 * https://xgboost.ai/
 * http://blog.kaggle.com/2017/01/23/a-kaggle-master-explains-gradient-boosting/
 * https://datascienceplus.com/extreme-gradient-boosting-with-r/
