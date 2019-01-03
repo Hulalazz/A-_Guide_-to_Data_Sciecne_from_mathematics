@@ -1,10 +1,13 @@
 ### Decision Tree
 
-https://mi2datalab.github.io/randomForestExplainer/index.html
-
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set.
-![Visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+[Visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) show an visual introduction to decision tree.
+
+If the training set D is divided into subsets $D_1,\dots,D_k$, the entropy may be
+reduced, and the amount of the reduction is the information gain,
+$$G(D;D_1,\dots,D_k)=Ent(D)-\sum_{i=1}^{k}\frac{|D_k|}{|D|}Ent(D_k)$$
+where $Ent(D)$ is the entropy of $D$ is defined as $Ent(D)=\sum_{y\in Y}P(y|D)\log(\frac{1}{P(y|D)})$.
 
 * https://www.wikiwand.com/en/Decision_tree_learning
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
@@ -16,6 +19,7 @@ It use 'divide-and-conquer' strategy recursively. It is easy to scale up to mass
 * [Neural Random Forests](https://arxiv.org/abs/1604.07143)
 * [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
 * https://dimensionless.in/author/raghav/
+* https://mi2datalab.github.io/randomForestExplainer/index.html
 
 #### Random Forest
 
@@ -32,12 +36,13 @@ boosting, and they are simpler to train and tune.
       - Split the node into two daughter nodes.
 * Vote for classification and average for regression.
 
-https://github.com/kjw0612/awesome-random-forest
-https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
-https://dimensionless.in/author/raghav/
-http://www.rhaensch.de/vrf.html
-https://www.wikiwand.com/en/Random_forest
-https://sktbrain.github.io/awesome-recruit-en.v2/
+* https://github.com/kjw0612/awesome-random-forest
+* https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
+* https://dimensionless.in/author/raghav/
+* http://www.rhaensch.de/vrf.html
+* https://www.wikiwand.com/en/Random_forest
+* https://sktbrain.github.io/awesome-recruit-en.v2/
+* https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
 
 ## Ensemble methods
 
@@ -45,6 +50,7 @@ https://sktbrain.github.io/awesome-recruit-en.v2/
 * https://mlwave.com/kaggle-ensembling-guide/
 * https://www.springer.com/us/book/9781441993250
 * https://web.stanford.edu/~hastie/THESES/gareth_james.pdf
+* https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
 
 ### Bagging
 
@@ -132,6 +138,7 @@ $$\mathbb{I}(x\not=y)=
 * https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/
 * https://explained.ai/gradient-boosting/index.html
 * [GBDT算法原理 - 飞奔的猫熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/50176849)
+* https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 * https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/
 * https://data-flair.training/blogs/gradient-boosting-algorithm/
 
