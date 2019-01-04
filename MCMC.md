@@ -30,12 +30,12 @@ Gibbs sampling is a conditional sampling  technique. It is known that $P(X_1, \d
 > **Algorithm**: Gibbs Sampling
    * Initialize $\{{z}_i^{(0)}\}_{i=1}^{n}$;
    * For $t=1,\dots,T$:
-       + Draw $z_{1}^{(t+1)}$ from $P(z_{1}|z_{2}^{\color{green}{t}},z_{3}^{t},\dots, z_{n}^{t})$;
-       + Draw $z_{2}^{(t+1)}$ from $P(z_{2}|z_{1}^{\color{red}{t+1}},z_{3}^{t},\dots, z_{n}^{t})$;
+       + Draw $z_{1}^{(t+1)}$ from $P(z_{1}|z_{2}^{\color{green}{(t)}},z_{3}^{(t)},\dots, z_{n}^{(t)})$;
+       + Draw $z_{2}^{(t+1)}$ from $P(z_{2}|z_{1}^{\color{red}{(t+1)}},z_{3}^{(t)},\dots, z_{n}^{(t)})$;
        +  $\vdots$;
-       + Draw $z_{j}^{(t+1)}$ from $P(z_{j}|z_{1}^{\color{red}{t+1}},\dots, z_{j-1}^{\color{red}{t+1}}, z_{j+1}^{t}, z_{n}^{t})$;
+       + Draw $z_{j}^{(t+1)}$ from $P(z_{j}|z_{1}^{\color{red}{(t+1)}},\dots, z_{j-1}^{\color{red}{(t+1)}}, z_{j+1}^{(t)}, z_{n}^{(t)})$;
        + $\vdots$;
-       + Draw $z_{n}^{(t+1)}$ from $P(z_{n}|z_{1}^{\color{red}{t+1}},\dots, z_{j-1}^{\color{red}{t+1}}, z_{n-1}^{\color{red}{t+1}}$.
+       + Draw $z_{n}^{(t+1)}$ from $P(z_{n}|z_{1}^{\color{red}{(t+1)}},\dots, z_{j-1}^{\color{red}{(t+1)}}, z_{n-1}^{\color{red}{(t+1)}}$.
 
 * https://metacademy.org/graphs/concepts/gibbs_sampling
 * https://metacademy.org/graphs/concepts/gibbs_as_mh
@@ -105,6 +105,15 @@ The motivation here is that one way to sample a point uniformly from within an a
 
 * https://projecteuclid.org/euclid.aos/1056562461
 * https://www.wikiwand.com/en/Slice_sampling
+
+### Simulated Annealing
+
+**Simulated annealing** is a global optimization method inspired by physical annealing model.
+If $f^{\star}=\min_{x}f(x)$, the probability $p(x)\propto \exp(-f(x))$ attains its highest probability at the point $f^{\star}$. In short, the optimization really connect with sampling.
+
+
+* https://en.wikipedia.org/wiki/Simulated_annealing
+* http://mathworld.wolfram.com/SimulatedAnnealing.html
 
 ### The Hybrid Monte Carlo Algorithm
 
