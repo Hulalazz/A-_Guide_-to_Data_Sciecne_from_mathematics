@@ -88,7 +88,7 @@ The left subindex $\mathrm{X}$ is to point out that the probability is  with res
 
 If random variables may take on a continuous range of values, it is hard or valueless to compute the probability of a given value. It is usually to find the cumulative distribution function.
 
-#### Cumulative Distribution function
+#### Cumulative Distribution Function
 
 ***
 > *Definition*:  A function $F(x)$ is called cumulative distribution function (CDF in short) if  
@@ -160,20 +160,22 @@ See more content in [wikipedia](https://www.wikiwand.com/en/Probability_density_
 
 This  is the [link between discrete and continuous distributions](https://en.wikipedia.org/w/index.php?title=Probability_density_function&action=edit&section=6) in Wikipedia.
 
-It is possible to represent certain discrete random variables as well as random variables involving both a continuous and a discrete part with a generalized probability density function, by using the [Dirac delta function](https://www.wikiwand.com/en/Dirac_delta_function "Dirac delta function"). For example, let us consider a binary discrete [random variable](https://www.wikiwand.com/en/Random_variable "Random variable") having the [Rademacher distribution](https://www.wikiwand.com/en/Rademacher_distribution) — that is, taking −1 or 1 for values, with probability ½ each. The density of probability associated with this variable is:
-$$
-f(t)=\frac{1}{2} (\delta (t+1)+\delta(t-1)).
-$$
+It is possible to represent certain discrete random variables as well as random variables involving both a continuous and a discrete part with a generalized probability density function, by using the [Dirac delta function](https://www.wikiwand.com/en/Dirac_delta_function "Dirac delta function"). For example, let us consider a binary discrete [random variable](https://www.wikiwand.com/en/Random_variable "Random variable") having the [Rademacher distribution](https://www.wikiwand.com/en/Rademacher_distribution) — that is, taking −1 or 1 for values, with probability ½ each. The density of probability associated with this variable is
+  $$
+  f(t)=\frac{1}{2} (\delta (t+1) + \delta(t-1)).
+  $$
 
 More generally, if a discrete variable can take _n_ different values among real numbers, then the associated probability density function is:
-$$
-f(t)=\sum _{i=1}^{n}p_{i}\,\delta (t-x_{i})
-$$
+
+  $$
+  f(t)=\sum _{i=1}^{n}p_{i}\,\delta(t-{x}_{i})
+  $$
+
 where $x_1, \cdots, x_n$ are the discrete values accessible to the variable and $p_1,\cdots, p_n$ are the probabilities associated with these values.
 
 This substantially unifies the treatment of discrete and continuous probability distributions. For instance, the above expression allows for determining statistical characteristics of such a discrete variable (such as its [mean](https://www.wikiwand.com/en/Mean), its [variance](https://www.wikiwand.com/en/Variance "Variance") and its [kurtosis](https://www.wikiwand.com/en/Kurtosis "Kurtosis")), starting from the formulas given for a continuous distribution of the probability.
 
-###  Bivariate Distribution
+### Bivariate Distribution
 
 The cumulative probability function and probability density function are really functions with some required properties. We wonder the bivariate functions in probability theory.
  > *Definition*: The joint distribution function $F:\mathbb{R}^{2}\rightarrow [0,1]$, where $X$ and $Y$ are discrete variables, is given by
@@ -182,12 +184,12 @@ F_{(X,Y)}(x,y)=P(X\leq x, Y\leq y).
 $$
 
 Their joint mass function  $f:\mathbb{R}^{2}\rightarrow [0,1]$ is given by
-
 $$
 f_{(X,Y)}(x,y)=P(X=x, Y=y).
 $$
 
-> *Definition*: The joint distribution function $F_{(X,Y)}:\mathbb{R}^{2}\rightarrow [0,1]$, where $X$ and > $Y$ are continuous variables, is given by $F_{(X,Y)}(x,y)=P(X\leq x, Y\leq y)$. And their joint density > function if  $f_{X,Y}(x, y)$ satisfies that
+> *Definition*: The joint distribution function $F_{(X,Y)}:\mathbb{R}^{2}\rightarrow [0,1]$, where $X$ and
+> $Y$ are continuous variables, is given by $F_{(X,Y)}(x,y)=P(X\leq x, Y\leq y)$. And their joint density > function if  $f_{X,Y}(x, y)$ satisfies that
 > $$F_{(X,Y)}(x,y)=\int_{v=-\infty}^{y}\int_{u=-\infty}^{x}f_{(X,Y)}(u,v)\mathrm{d}u\mathrm{d}v$$
 > for each $x,y \in \mathbb{R}$.
 
@@ -273,18 +275,16 @@ From the definition of conditional probability, it is obvious that:
 Thus
 * $P(A|B)P(B)=P(B|A)P(A)$,
 * $P(A|B)=\frac{P(B|A)P(A)}{P(B)}=P(B|A) \frac{P(A)}{P(B)}$,
-* $P(B)=\frac{P(B|A)P(A)}{P(A|B}=\frac{P(B|A)}{P(A|B)}P(A)$
+* $P(B)=\frac{P(B|A)P(A)}{P(A|B}=\frac{P(B|A)}{P(A|B)}P(A)$.
 
 
 > *Definition*: The conditional distribution function of $Y$ given $X=x$ is the function $F_{Y|X}(y|x)$ given by
-  $$
-    F_{Y|X}(y|x)=\int_{-\infty}^{x}\frac{f_{(X,Y)}(x,v)}{f_X(x)}\mathrm{d}v=\frac{\int_{-\infty}^{x}f_{(X,Y)}(x,v)\mathrm{d}v}{f_{X}(x)}
-  $$
-  for the support of $f_X(x)$ and the conditional probability density function of $F_{Y|X}$, written $f_{Y|X}(y|x)$, is given by
-  $$
-   f_{Y|X}(y|x)=\frac{f_{(X,Y)}(x,y)}{f_X(x)}
-  $$
-  for any $x$ such that $f_X(x)>0$.
+> $$
+> F_{Y|X}(y|x)=\int_{-\infty}^{x}\frac{f_{(X,Y)}(x,v)}{f_X(x)}\mathrm{d}v=\frac{\int_{-\infty}^{x}f_{(X,Y)}(x,v)\mathrm{d}v}{f_{X}(x)}
+> $$
+> for the support of $f_X(x)$ and the conditional probability density function of $F_{Y|X}$, written $f_{Y|X}(y|x)$, is given by
+> $$f_{Y|X}(y|x)=\frac{f_{(X,Y)}(x,y)}{f_X(x)}$$
+> for any $x$ such that $f_X(x)>0$.
 
 
 > *Definition*: If $X$ and $Y$ are non-generate and jointly continuous random variables with density $f_{X,Y}(x, y)$ then,  if $B$ has positive measure,
@@ -328,7 +328,7 @@ $$P(A_i|B)=\frac{P(B|A_i)P(A_i)}{\sum_{i=1}^{\infty}P(B|A_i)P(A_i)}=\frac{P(B|A_
 
 There are some related links:
 
-* [Bayesian probability inWikipedia](https://www.wikiwand.com/en/Bayesian_probability#).
+* [Bayesian probability in Wikipedia](https://www.wikiwand.com/en/Bayesian_probability#).
 * .pdf file on [a history of Bayes' theorem](http://www.oulu.fi/biology/PopGenSchool/part1.pdf).
 * [a visual explanation](https://oscarbonilla.com/2009/05/visualizing-bayes-theorem/).
 * [an intuitive explanation](https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem/).
@@ -347,17 +347,13 @@ $$f_{Y}(y)=\frac{f_{Y|X}(y|x)f_{X}(x)}{f_{X|Y}(x|y)} \tag 1.$$
 
 Integrating this identity with respect to $y$ on support of $f_{Y}(y)$, we immediately
 have the **point-wise formula** as shown below
-$$
-f_{X}(x)=\{\int_{f_{X|Y}(x|y)\neq {0}}\frac{f_{Y|X}(y|x)}{f_{X|Y}(x|y)}\mathbb{d}y\}^{-1} \tag 2.
-$$
+$$f_{X}(x)=\{\int_{f_{X|Y}(x|y)\neq {0}}\frac{f_{Y|X}(y|x)}{f_{X|Y}(x|y)}\mathbb{d}y\}^{-1} \tag 2.$$
 Now substitute (2) into (1), we obtain the dual form of IBF for $f_Y(y)$ and hence by symmetry we obtain the **function-wise formula** of $f_Y(y)$ at $y_0$ as shown in (3), or the
 sampling formula in (4) when the normalizing constant is omitted.
-$$
-\begin{align}
+$$\begin{align}
 f_{X}(x) &=\{\int_{f_{Y|X}(y|X)\neq {0}}\frac{f_{X|Y}(x|y_0)}{f_{Y|X}(y_0|x)}\mathbb{d}x\}^{-1}\frac{f_{X|Y}(x|y_0)}{f_{Y|X}(y_0|x)} \tag 3 \\
 &\propto \frac{f_{X|Y}(x|y_0)}{f_{Y|X}(y_0|x)} \tag 4
-\end{align}
-$$
+\end{align}$$
 
 **********************************************
 |The Inventor of IBF|
@@ -367,7 +363,7 @@ $$
 * http://web.hku.hk/~kaing/Background.pdf
 * http://101.96.10.64/web.hku.hk/~kaing/Section1_3.pdf
 * http://web.hku.hk/~kaing/HKSSinterview.pdf
-* http://web.hku.hk/~kaing/HKSStalk.pdf|
+* http://web.hku.hk/~kaing/HKSStalk.pdf
 
 $\color{teal}{\text{Professor Tian taught me this part.}}$[^6]
 * http://reliawiki.org/index.php/Life_Data_Analysis_Reference_Book
@@ -429,11 +425,11 @@ The probability of an event can be expressed as the expectation, i.e.
 
 |Probability as Integration|
 |:------------------------:|
-|$P(x\in A) = \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
+|$P(x\in A)= \int_{\mathbb{R}}\mathbb{I}_{A}f_X(x)\mathbb{d}x$|
 
 where
 $$
-\mathbb{I}_{A}=\begin{cases} 1, & \text{if $x\in A$}\\ 0, & \text{otherwise}\end{cases}.
+\mathbb{I}_{A}=\begin{cases} 1, & \text{if $x\in A$}\\ 0, & \text{otherwise}\end{cases}.  
 $$
 It is called as the indictor function of $A$.
 
@@ -464,10 +460,10 @@ And the constant $c$ always take the expectation $\mathbb{E}(X)$ or $0$.
 
 > *Definition*: Moment generating function of a random variable $X$ is the expectation of the random variable of $e^{tX}$, i.e.
 >
-  |[Moment generating function](https://www.wikiwand.com/en/Moment-generating_function#)|
-  |:-----------------------------------------------------------------------------------:|
-  | $M_X(t)=\int_{\mathbb{R}}e^{tx}f_X(x)\mathbb{d}x$ for continuous random variable|
-  | $M_{X}(t)=\sum_{i=1}^{\infty}e^{tx_{i}}P(x=x_i)$ for discrete random variable|
+|[Moment generating function](https://www.wikiwand.com/en/Moment-generating_function#)|
+|:-----------------------------------------------------------------------------------:|
+| $M_X(t)=\int_{\mathbb{R}}e^{tx}f_X(x)\mathbb{d}x$ for continuous random variable|
+| $M_{X}(t)=\sum_{i=1}^{\infty}e^{tx_{i}}P(x=x_i)$ for discrete random variable|
 
 It is [Laplace transformation](http://mathworld.wolfram.com/LaplaceTransform.html) applied to probability density function. And it is also related with [cumulants](http://scholarpedia.org/article/Cumulants).
 
@@ -580,7 +576,7 @@ The SIR method generates an approximate i.i.d. sample of size $m$ from the targe
 The SIR without replacement is as following:
 
  1. Draw $X^{(1)},X^{(2)},\cdots,X^{(J)}$ independently from the proposal density $g(\cdot)$.
- 2. Select a subset $\{ X^{(k_i)} \}_{i=1}^{m}$ from $\{ X^{(i)} \}_{i=1}^{J}$ via resampling without replacement from the discrete distribution $\{\omega_i\}_{i=1}^{J}$
+ 2. Select a subset $\{X^{(k_i)}\}_{i=1}^{m}$ from $\{X^{(i)}\}_{i=1}^{J}$ via resampling without replacement from the discrete distribution $\{\omega_i\}_{i=1}^{J}$
      * where $w_i=\frac{f(X^{(i)})}{g(X^{(i)})}$ and $\omega_i=\frac{w_i}{\sum_{i=1}^{n}w_i}$.
 
 
@@ -602,20 +598,20 @@ $f_k(x_k|x_{k+1}, x_{k+2}, \cdots, x_d)$.
 ## Law of Large Number
 
 The law of large number provides theoretical guarantee to estimate the expectation of distributions from the samples.
-> *(Strong law of large numbers)*: Let $X_1, X_2, \dots$ be a sequence of
-> independently identically distributed (i.i.d.) random variables (r.v.s) with expectation $\mu$.
-> Consider the sum
+> *(Strong law of large numbers)*: Let $X_1,X_2,\dots$ be a sequence of
+independently identically distributed (i.i.d.) random variables (r.v.s) with expectation $\mu$.
+Consider the sum:
   $$
-    \bar{X}_N = {X}_1 + {X}_2 + \cdots + {X}_{N}.
+  \bar{X}_N = X_1 + X_2 + \cdots + X_N.
   $$
 
 Then as $N\to\infty$,
 $$
-  P(\lim_{N\to\infty}\bar{X}_N=\mu)=1
+P(\lim_{N\to\infty}\bar{X}_N=\mu)=1
 $$
 i.e.
   $$
-  \bar{X}_{N}\stackrel{a.s.}\to\mu.
+  \bar{X}_N\stackrel{a.s.}\to\mu.
   $$
 [See more on Wikipedia.](https://www.wikiwand.com/en/Law_of_large_numbers)
 
@@ -624,10 +620,9 @@ i.e.
 ## Central Limit Theorem
 
 > *Lindeberg–Lévy CLT*. Suppose ${X_1, X_2,\cdots}$ is a sequence of i.i.d. random variables with $E[X_i] = \mu$ and $Var[X_i] = \sigma^2 < \infty$. Then as $n$ approaches infinity, the random variables $\sqrt{n}(\bar{X}_n − \mu)$ converge in distribution to a normal $N(0,\sigma^2)$:
-  $$
-    \sqrt{n}(\bar{X}_n − \mu)\stackrel{d}\to N(0,\sigma^2).
-  $$
-
+$$
+\sqrt{n}(\bar{X}_n − \mu)\stackrel{d}\to N(0,\sigma^2).
+$$
 [The Wikipedia page has more information](https://www.wikiwand.com/en/Central_limit_theorem#).
 https://www.datasciencecentral.com/profiles/blogs/new-perspective-on-central-limit-theorem-and-related-stats-topics
 
@@ -638,13 +633,9 @@ https://www.datasciencecentral.com/profiles/blogs/new-perspective-on-central-lim
 >where $\vec{a}=(a_1,a_2,\cdots,a_n)^{T}$ and $\mu < \infty$, $0< \sigma^2<\infty$.
 
 If $\cal{X}$ is multivariate normal, it also has a *mean* vector $\mu$ such that
-$$
-\mu=(\mathbb{E}(X_1),\mathbb{E}(X_2),\cdots, \mathbb{E}(X_n))
-$$
+$$\mu=(\mathbb{E}(X_1),\mathbb{E}(X_2),\cdots, \mathbb{E}(X_n))$$
 where $\mathbb{E}(X)$ is the expectation(or mean) of the random variable. The random vector $\cal{X}$ also has a *covariance matrix* $\Sigma$ satisfying
-$$
-\Sigma_{ij}=Cov(X_i,X_j)
-$$
+$$\Sigma_{ij}=Cov(X_i,X_j)$$
 where $Cov(X_i,X_j)=\mathbb{E}[(X_i-\mathbb{E}(X_i))(X_j-\mathbb{E}(X_j))]$ is the [covariance of the random variables $X_i$ and $X_j$](https://brilliant.org/wiki/covariance/).
 
 The probability density function of a multivariate normal random vector $\cal{X}$ is given by
@@ -833,9 +824,15 @@ Setting $\frac{\partial\ell}{\partial{\mu}}=0$ and $\frac{\partial\ell}{\partial
 
 > *Definition*: For each sample point $X$, let $\hat{\theta}(X)$ be a parameter value at which $L(\theta|X)$ attains its maximum as a function of $X$ , with $X$ held fixed. A maximum likelihood estimator (MLE) of the parameter $\theta$ based on a sample $X$ is $\hat{\theta}(X)$.
 
+One limitation of maximum likelihood estimation  is that it does not work for the mixture distribution.
+For example, it is impossible to estimate this mixture density function
+$$p(x,\alpha,\sigma)=\frac{1}{2\sigma\sqrt{2\pi}}\exp(-\frac{(x-\alpha)^2}{2\sigma^2})+\frac{1}{2\sqrt{2\pi}}\exp(-\frac{x^2}{2})$$
+where the parameter $\alpha,\sigma$ is unknown.
+
 We can see more in [the Wikipedia page](https://www.wikiwand.com/en/Maximum_likelihood_estimation).
 
-http://www.notenoughthoughts.net/posts/normal-log-likelihood-gradient.html
+* http://www.notenoughthoughts.net/posts/normal-log-likelihood-gradient.html
+* https://newonlinecourses.science.psu.edu/stat414/node/191/
 
 ## Bayesian Estimation of Parameters
 
@@ -868,8 +865,10 @@ More related links on *Bayesian methods*:
 
 [The pivot quantity is the core.](https://www.wikiwand.com/en/Pivotal_quantity)
 > *Definition*: A $1-\alpha$ confidence interval for a parameter $\theta$  an interval
-$C_n = (a, b)$ where $a = a(X_1,\cdots,X_n)$ and $b = b(X_1,\cdots,X_n)$ are functions of the data $\{X_1,\cdots,X_n\}$ such that
-$$P_{\theta}(\theta\in C_n)\geq 1- \theta.$$
+> $C_n = (a, b)$ where $a = a(X_1,\cdots,X_n)$ and $b = b(X_1,\cdots,X_n)$ are functions of the data $\{X_1,\cdots,X_n\}$ such that
+>  $$
+>  P_{\theta}(\theta\in C_n)\geq 1- \theta.
+>  $$
 
 Note: $C_n$ is random and $\theta$ isfixed! If $\theta$ is a vector then we use a confidence set (such a sphere or an ellipse) instead of an interval.
  An interpretation is this[^7].
@@ -932,7 +931,9 @@ Most line search algorithms require pk to be a descent direction—one for which
 $\left< {p^k},\nabla f_k \right> < 0$ — because this property guarantees that the function $f$ can be reduced along this direction, where $\nabla f_k$ is the gradient of objective function $f$ at the $k$th iteration point $x_k$ i.e. $\nabla f_k=\nabla f(x^{k})$.
 ***
 Gradient descent and its variants are to find the local solution of  the unconstrained optimization problem:
-$$\min f(x)$$
+$$
+\min f(x)
+$$
 where $x\in \mathbb{R}^{n}$.
 
 Its iterative procedure is:
@@ -1007,6 +1008,7 @@ $$
 B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
 $$
 i.e. the Euclidean distance.
+A wonderful introduction to **Bregman divergence** is **Meet the Bregman Divergences** by [Mark Reid](http://mark.reid.name/) at <http://mark.reid.name/blog/meet-the-bregman-divergences.html>.
 ***
 It is given by:
 $$
@@ -1055,11 +1057,15 @@ where $P(x_i|\theta)$ is the probability of realization $X_i=x_i$ with the unkno
 However, when the sample random variable $\{X_i\}_{i=1}^{n}$ are not observed or realized, it is best to
 replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$) of the likelihood function with the  
 **observed information matrix**:
-$$J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n$$
+$$
+J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
+$$
 where $f(x_1, \cdots, x_n|\theta)$ is the joint probability density function of  $X_1, \cdots, X_n$ with unknown parameter $\theta$.
 
 And the **Fisher scoring algorithm** is given by
-$$\theta^{k+1}=\theta^{k}+\alpha_{k}J^{-1}(\theta^{k})\nabla_{\theta} \ell(\theta^{k})$$
+$$
+\theta^{k+1}=\theta^{k}+\alpha_{k}J^{-1}(\theta^{k})\nabla_{\theta} \ell(\theta^{k})
+$$
 where $J^{-1}(\theta^{k})$ is the inverse of observed information matrix at the point $\theta^{k}$.
 
 See <http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/scoring.pdf> or <https://wiseodd.github.io/techblog/2018/03/11/fisher-information/>.
@@ -1085,8 +1091,10 @@ $$
 \nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),
 $$
 which is called the **secant equation** (the Taylor series of the gradient itself).
-In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method). The various quasi-Newton methods differ in their choice of the solution to the secant equation (in one dimension, all the variants are equivalent).
+In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method).
+The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
 
+![BFGS](http://aria42.com/images/bfgs.png)
 ***
 
 * [Wikipedia page](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
@@ -1095,11 +1103,14 @@ In more than one dimension B is underdetermined. In one dimension, solving for B
 * [Newton's method](https://www.wikiwand.com/en/Newton%27s_method)
 * [Quasi-Newton method](https://www.wikiwand.com/en/Quasi-Newton_method)
 * [Using Gradient Descent for Optimization and Learning](http://www.gatsby.ucl.ac.uk/teaching/courses/ml2-2008/graddescent.pdf)
+* http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
 
 ### Natural Gradient Descent
 
 Natural gradient descent is to solve the optimization problem $\min_{\theta} L(\theta)$ by
-$$\theta^{(t+1)}=\theta^{(t+1)}-\alpha_{(t)}F^{-1}(\theta^{(t)})\nabla_{\theta}L(\theta^{(t)})$$
+$$
+\theta^{(t+1)}=\theta^{(t+1)}-\alpha_{(t)}F^{-1}(\theta^{(t)})\nabla_{\theta}L(\theta^{(t)})
+$$
 where $F^{-1}(\theta^{(t)})$ is the inverse of Remiann metric at the point $\theta^{(t)}$.
 And **Fisher scoring** algorithm is a typical application of **Natural Gradient Descent** to statistics.  
 **Natural gradient descent** for manifolds corresponding to
@@ -1139,7 +1150,7 @@ Q(\theta|\theta^{(t)}) &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)
 $$
 and the M-step is to maximize **Q** with respect to $\theta$ to obtain
 $$
-\theta^{(t+1)}=\arg\max_{\theta}Q(\theta|\theta^{(t)}).
+\theta^{(t+1)}=\arg\max_{\theta} Q(\theta|\theta^{(t)}).
 $$
 
 * https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
@@ -1148,7 +1159,6 @@ $$
 |Diagram of EM algorithm|
 |:---------------------:|
 |![](https://i.stack.imgur.com/v5bqe.png)|
-
 
 ### Generalized EM Algorithm
 
@@ -1162,12 +1172,16 @@ Q(\theta|\theta^{(t)}) &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)
 \end{align}
 $$
 and the another step is to find  $\theta$ that satisfies
-$$\theta^{(t+1)}\in \{\theta|Q(\theta|\theta^{(t+1)} \geq Q(\theta|\theta^{(t)}) \}.$$
+$$
+\theta^{(t+1)}\in \{\theta|Q(\theta|\theta^{(t+1)} \geq Q(\theta|\theta^{(t)}) \}.
+$$
 
 It is not to maximize the conditional expectation.
 
 See more on the book [The EM Algorithm and Extensions, 2nd Edition
 by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
+
+* https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 
 ## Alternating Direction Method of Multipliers
 
@@ -1201,6 +1215,7 @@ $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me this.}}$[^9]
 * http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * https://blog.csdn.net/shanglianlm/article/details/45919679
+* http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
 
 
 ## Stochastic Gradient Descent
@@ -1250,9 +1265,9 @@ where $\rho$ is close to 1 such as $\rho=1.1$  in order to avoid frequent “acc
 objective function computation is wasted in these cases, $\eta$ is chosen to provide a rapid reduction
 ($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
 ***
-The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function 
-$f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$. 
-Thus it is not clever to determine the learning rate $\alpha_k$ by line search. And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization. 
+The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$.
+Thus it is not clever to determine the learning rate $\alpha_k$ by line search.
+And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization.
 The variants of gradient descent such as momentum methods or mirror gradient methods have their stochastic counterparts.
 
 * It is simplest to set the step length a constant, such as ${\alpha}_k=3\times 10^{-3}\, \forall k$.
@@ -1272,6 +1287,7 @@ See the following links for more information on *stochastic gradient descent*.
 * https://zhuanlan.zhihu.com/p/22252270
 * https://henripal.github.io/blog/stochasticdynamics
 * https://henripal.github.io/blog/langevin
+* http://fa.bianp.net/teaching/2018/eecs227at/stochastic_gradient.html
 
 |The Differences of Gradient Descent and Stochastic Gradient Descent|  
 |:-----------------------------------------------------------------:|
@@ -1330,6 +1346,7 @@ The likelihood of the errors are
 $$
 L(\epsilon_1,\epsilon_2,\cdots,\epsilon_n)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi}}e^{-\epsilon_i^2}.
 $$
+
 In MLE, we have shown that it is equivalent to
 $$
   \arg\max \prod_{i=1}^{n}\frac{1}{\sqrt{2\pi}}e^{-\epsilon_i^2}=\arg\min\sum_{i=1}^{n}\epsilon_i^2=\arg\min\sum_{i=1}^{n}(y_i-f(x_i))^2.
@@ -1398,14 +1415,14 @@ $$
 $$
 \begin{align}
  \arg\min_{w}\sum_{i=1}^{n}(y_i-w^Tx_i)^2 &\qquad\text{Objective function} \\
- \text{subject to}\,{\|w\|}_1 \leq t        &\qquad\text{constraint}.
+ \text{subject to}\,{\|w\|}_1 \leq t      &\qquad\text{constraint}.
 \end{align}
 $$
 
 3. the selection form:
 $$
 \begin{align}
- \arg\min_{w}{\|w\|}_1                                 \qquad &\text{Objective function} \\
+ \arg\min_{w}{\|w\|}_1                                  \qquad &\text{Objective function} \\
  \text{subject to}\,\sum_{i=1}^{n}(y_i-w^Tx_i)^2 \leq t \qquad &\text{constraint}.
 \end{align}
 $$
@@ -1569,6 +1586,10 @@ From [ALPAYDIN, Ethem, 2004. Introduction to Machine Learning. Cambridge, MA: Th
 * https://developers.google.com/machine-learning/guides/rules-of-ml/
 
 ![Road To Data Scientist](http://nirvacana.com/thoughts/wp-content/uploads/2013/07/RoadToDataScientist1.png)
+
+### Dimension Reduction
+
+https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction
 
 ### Density Estimation
 
@@ -1816,7 +1837,7 @@ Spectral method is the kernel tricks applied to [locality preserving projections
 In multivariate statistics and the clustering of data, spectral clustering techniques make use of the spectrum (eigenvalues) of the `similarity matrix` of the data to perform dimensionality reduction before clustering in fewer dimensions. The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the data set.
 
 **Similarity matrix** is to measure the similarity between the input features $\{\mathbf{x}_i\}_{i=1}^{n}\subset\mathbb{R}^{p}$.
-For example, we can use Gaussian kernel function 
+For example, we can use Gaussian kernel function
 $$
 f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})
 $$
@@ -1824,7 +1845,7 @@ to measure the *similarity* of inputs.
 The element of *similarity matrix* $S$ is $S_{i,j}=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
 Thus $S$ is symmetrical, i.e. $S_{i,j}=S_{j,i}$ for $i,j\in\{1,2,\dots,n\}$.
 If the sample size $n\gg p$, the storage of **similarity matrix** is much larger than the original input $\{\mathbf{x}_i\}_{i=1}^{n}$, when we would only preserve the entries above some values.
-The **Laplacian matrix** is defined by $L=D-S$ where $D=Diag\{D_1,D_2,\dots,D_n\}$ and 
+The **Laplacian matrix** is defined by $L=D-S$ where $D=Diag\{D_1,D_2,\dots,D_n\}$ and
 $D_{i}=\sum_{j=1}^{n}S_{i,j}=\sum_{j=1}^{n}exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
 
 Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ to reduce the data dimension. After that we can perform $K-means$ or other clustering.
@@ -1843,11 +1864,6 @@ Bootstrapping methods are based on the bootstrap samples to compute new statisti
 
 * [Bootstrapping_(statistics)](https://www.wikiwand.com/en/Bootstrapping_(statistics))
 * [Bootstrap Methods: Another Look at the Jackknife by B. Efron](https://projecteuclid.org/euclid.aos/1176344552)
-
-
-### Dimension Reduction
-
-https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction
 
 ### Decision Tree
 
@@ -2286,7 +2302,9 @@ X\rightarrow W_1 X \rightarrow W_2H_1 \rightarrow W_3H_2 \rightarrow W_4H_3 \rig
 \mathbb{R}^{p}\to \mathbb{R}^{l_1}\to \mathbb{R}^{l_2}\to \mathbb{R}^{l_3}\to \mathbb{R}^{l}\to \mathbb{R}^{o}
 $$
 while the backpropagation to compute the gradient is in the reverse order:
-$$\frac{\partial y}{\partial W}\to \frac{\partial y}{\partial H}\to \frac{\partial H}{\partial W_4}\to \frac{\partial H}{\partial H_3}\to \frac{\partial H_3}{\partial W_3}\to \frac{\partial H_3}{\partial H_2}\to \frac{\partial H_2}{\partial W_2}\to \frac{\partial H_2}{\partial W_1}\to \frac{\partial H_1}{\partial W_1}.$$
+$$
+\frac{\partial y}{\partial W}\to \frac{\partial y}{\partial H}\to \frac{\partial H}{\partial W_4}\to \frac{\partial H}{\partial H_3}\to \frac{\partial H_3}{\partial W_3}\to \frac{\partial H_3}{\partial H_2}\to \frac{\partial H_2}{\partial W_2}\to \frac{\partial H_2}{\partial W_1}\to \frac{\partial H_1}{\partial W_1}.
+$$
 
 In general, the gradient of any weight can be computed by *backpropagation* algorithm.
 The first step is to compute the gradient of loss function with respect to the output $f(x_0)=y\in\mathbb{R}^{o}$, i.e.
@@ -2389,15 +2407,17 @@ In this section, we will talk other optimization tricks such as **Normalization*
 |*Memorization* and *Generalization*|Memorizing, given facts, is an obvious task in learning. This can be done by storing the input samples explicitly, or by identifying the concept behind the input data, and memorizing their general rules. The ability to identify the rules, to generalize, allows the system to make predictions on unknown data. Despite the strictly logical invalidity of this approach, the process of reasoning from specific samples to the general case can be observed in human learning. From <https://www.teco.edu/~albrecht/neuro/html/node9.html>.|
 |*Normalization* and *Standardization*| *Normalization* is to scale the data into the interval [0,1] while *Standardization* is to rescale the datum with zero mean $0$ and unit variance $1$. See [Standardization vs. normalization](http://www.dataminingblog.com/standardization-vs-normalization/).|
 
+##### Initialization and More
 
-##### Initialization
-
-* [Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieva](http://www.princeton.edu/~congm/Publication/RandomInit/main.pdf)
+* https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html
+* https://github.com/kmkolasinski/deep-learning-notes/tree/master/seminars/2018-12-Improving-DL-with-tricks
+* [An Empirical Model of Large-Batch Training Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieva](http://www.princeton.edu/~congm/Publication/RandomInit/main.pdf)
 * [Gradient descent and variants](http://www.cnblogs.com/yymn/articles/4995755.html)
-* [off convex path](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
+* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
 * [graphcore.ai](https://www.graphcore.ai/posts/revisiting-small-batch-training-for-deep-neural-networks)
 * [可视化超参数作用机制：二、权重初始化](https://zhuanlan.zhihu.com/p/38315135)
-* [第 6 章 网络优化与正则化](https://nndl.github.io/chap-%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96.pdf)
+* [第6章 网络优化与正则化](https://nndl.github.io/chap-%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96.pdf)
+* [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/pdf/1812.01187.pdf)
 
 ##### Normalization
 
@@ -2405,7 +2425,7 @@ In this section, we will talk other optimization tricks such as **Normalization*
 * [Weight Normalization 相比 batch Normalization 有什么优点呢？](https://www.zhihu.com/question/55132852/answer/171250929)
 * [深度学习中的Normalization模型](https://www.jiqizhixin.com/articles/2018-08-29-7)
 * [Group Normalization](https://arxiv.org/abs/1803.08494)
-* https://blog.paperspace.com/busting-the-myths-about-batch-normalization/
+* [Busting the myth about batch normalization at paperspace.com](https://blog.paperspace.com/busting-the-myths-about-batch-normalization/)
 * The original paper *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift* at <https://arxiv.org/pdf/1502.03167.pdf>.
 
 See **Improve the way neural networks learn** at <http://neuralnetworksanddeeplearning.com/chap3.html>.
@@ -2424,6 +2444,7 @@ See the following links for more information on optimization and generalization.
 * http://www.offconvex.org/2017/12/08/generalization1/
 * http://www.offconvex.org/2018/02/17/generalization2/
 * http://www.offconvex.org/2017/03/30/GANs2/
+* https://machinelearningmastery.com/blog/
 
 ##### Parameter norm penalty
 
@@ -2448,6 +2469,9 @@ The new term $\lambda$ coming from the regularization causes the weight to decay
 
 * https://stats.stackexchange.com/questions/70101/neural-networks-weight-change-momentum-and-weight-decay
 * https://metacademy.org/graphs/concepts/weight_decay_neural_networks
+* https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-neural-networks-with-weight-constraints-in-keras/
+* https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-learning-with-weight-regularization/
+*
 
 The $\ell_1$ norm penalty is also used in deep learning as in **LASSO**. It is to solve the following optimization problem:
   $$\min_{\theta}J(\theta)+\lambda{\|\theta\|}_1,$$
@@ -2460,6 +2484,8 @@ Early stopping is to stop the procedure before finding the minima of cost in tra
 
 * https://www.wikiwand.com/en/Early_stopping
 * https://www.wikiwand.com/en/Cross-validation_(statistics)
+* https://machinelearningmastery.com/how-to-stop-training-deep-neural-networks-at-the-right-time-using-early-stopping/
+* https://machinelearningmastery.com/early-stopping-to-avoid-overtraining-neural-network-models/
 
 ##### Dropout
 
@@ -2474,6 +2500,7 @@ It is to cripple the connections stochastically, which  is often used in visual 
 * [CNN tricks](http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html)
 * https://www.jeremyjordan.me/deep-neural-networks-preventing-overfitting/
 * https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html#An%20engineering%20approach
+* https://machinelearningmastery.com/dropout-for-regularizing-deep-neural-networks/
 
 ##### Data Augmentation
 
@@ -2644,7 +2671,9 @@ $$
 where $W_i\in\mathbb{R}^{l_{i}\times l_{i-1}}$, $H_i (\text{as well as}\, b_i)\in \mathbb{R}^{l_i}\forall i\in\{1, 2, \dots, D\}$ and $\sigma$ is activation function.
 In convention, $H_0$ is defined as input $X\in\mathbb{R}^{p}$.
 In short, the formula in the $i$th layer of feedforward neural network is given by
-$$H_i=\sigma\circ(W_i H_{i-1}+b_i).$$
+$$
+H_i=\sigma\circ(W_i H_{i-1}+b_i).
+$$
 
 It may suit the **identically independently distributed** data set.
 However, the sequence data is not **identically independently distributed** in most cases. For example, the outcome of current decision determines the next decision.
@@ -2676,11 +2705,13 @@ $U$, $V$ and $W$, respectively for input-to-hidden, hidden-to-output and hidden-
 ### Bi-directional RNN
 
 For each step from $t=1$ to $t = \tau$, the complete update equations of RNN:
-$$\begin{align}
+$$
+\begin{align}
 \stackrel{\rightarrow}H_{t} &=\sigma\circ(W_1\stackrel{\rightarrow}H_{t-1}+U_1X_{t}+b_1) \\
 \stackrel{\leftarrow}H_{t}  &=\sigma\circ(W_2\stackrel{\leftarrow}H_{t+1}+U_2X_{t}+b_2) \\
 O_{t} &= \mathrm{softmax}(VH_{t}+c)
-\end{align}$$
+\end{align}
+$$
 where $H_{t} = [\stackrel{\rightarrow} H_{t};\stackrel{\leftarrow} H_{t}]$.
 
 |Bi-directional RNN|
@@ -2778,8 +2809,8 @@ An attention model is a method that takes $n$ arguments $y_1, \dots, y_n$  and a
 In mathematics, it can be expressed as:
 
 $$
-{\alpha}_i = softmax(s(y_i,c)) \\
-z = \sum_{i=1}^{n} {\alpha}_i y_i
+{\alpha}_i = softmax(s(y_i,c))               \\
+         z = \sum_{i=1}^{n} {\alpha}_i y_i
 $$
 
 where $s(\cdot, \cdot)$ is the attention scoring function.
@@ -2791,7 +2822,6 @@ The attention scoring function $s({y}_i, c)$ is diverse, such as:
 * the bilinear model $s({y}_i, c) = {y}_i^{T} W c$, where $W\in \mathbb{R}^{d\times d}$ is parameter matrix to learn.
 
 It is always as one component of some complex network as normalization.
-
 
 ***
 
@@ -2806,8 +2836,11 @@ It is always as one component of some complex network as normalization.
 
 ## Recursive Neural Network
 
+* http://www.iro.umontreal.ca/~bengioy/talks/gss2012-YB6-NLP-recursive.pdf
 * https://www.wikiwand.com/en/Recursive_neural_network
 * https://cs224d.stanford.edu/lectures/CS224d-Lecture10.pdf
+* https://devblogs.nvidia.com/recursive-neural-networks-pytorch/
+* http://sei.pku.edu.cn/~luyy11/slides/slides_141029_RNN.pdf
 
 |Diagram of Recursive Neural Network|
 |-----------------------------------|
@@ -2829,9 +2862,9 @@ How can deep learning apply to them?
 > and produces a node-level output $Z$ (an $N\times F$ feature matrix, where $F$ is the number of output features per node). Graph-level outputs can be modeled by introducing some form of pooling operation (see, e.g. [Duvenaud et al., NIPS 2015](http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints)).
 
 Every neural network layer can then be written as a non-linear function
-
-$${H}_{i+1} = \sigma \circ ({H}_{i}, A)$$
-
+$$
+{H}_{i+1} = \sigma \circ ({H}_{i}, A)
+$$
 with ${H}_0 = {X}_{in}$ and ${H}_{d} = Z$ (or $Z$ for graph-level outputs), $d$ being the number of layers. The specific models then differ only in how $\sigma$ is chosen and parameterized.
 
 For example, we can consider a simple form of a layer-wise propagation rule
@@ -3014,6 +3047,7 @@ http://www.cnblogs.com/jesse123/p/7802258.html
 * [Why TDA works?](https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/)
 * http://outlace.com/TDApart1.html
 * https://www.springer.com/cn/book/9783642150135
+* https://jsseely.github.io/notes/TDA/
 
 # AutoML
 
