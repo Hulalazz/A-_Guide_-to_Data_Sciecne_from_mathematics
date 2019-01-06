@@ -14,6 +14,8 @@ The intuitive to high dimensional space is weak for us, the people live in the t
 As a preprocessing data method, it helps us to select features and learn proper representation.
 A more theoretical and useful topic is data compression, a branch of information theory.
 The dimension reduction is related with geometry of data set., which includes manifold learning and topological data analysis.
+$\color{aqua}{PS:}$ the dimension reduction is classified into unsupervised learning while it convert to optimization models.
+
 It is a wonderful review of dimension reduction at \url{https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf}.
 
 * https://www.wikiwand.com/en/Data_compression
@@ -27,6 +29,18 @@ The data in table form can be regarded as matrix in mathematics. And we can appl
 It is classified as linear techniques.
 And it can extend to kernel PCA and {generalized PCA}[https://www.asc.ohio-state.edu/lee.2272/mss/tr892.pdf].
 
+### Auto-Encoder
+
+Auto-Encoder is a neural network model that compresses the original data and then encodes the compressed information such as 
+$$\mathbb{R}^{p}\stackrel{\sigma}{\to}\mathbb{R}^{n}\stackrel{\sigma}{\to}\mathbb{R}^{d}$$
+where $n\le d=p$ and $\sigma$ is nonlinear activation function.
+We can express it in mathematical formula $y=\sigma(x),z=\sigma(y)$.
+It is trying to learn an approximation to the identity function, so as to output $z$ that is similar to $x$.
+
+* https://en.wikipedia.org/wiki/Autoencoder
+* https://www.cs.toronto.edu/~hinton/science.pdf
+* https://web.stanford.edu/class/cs294a/sparseAutoencoder.pdf
+  
 ### t-SNE
 
 The basic idea of t-SNE is that the similarity should preserve after dimension reduction.
@@ -34,9 +48,9 @@ It maps the data $x$ in high dimensional space $X\subset\mathbb{R}^{p}$ to a low
 
 **Stochastic Neighbor Embedding (SNE)** starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities that represent similarities.The similarity of data point $x_j$ to data point $x_i$ is the conditional probability, $p_{j|i}$, that $x_i$ would pick $x_j$ as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at $x_i$.
 Mathematically, the conditional probability $p_{j|i}$ is given by
-$$p_{j|i}=\frac{exp(-\|x_i-x_j\|^2/2\sigma_i^2)}{\sum_{k=\not 1}exp(-\|x_k-x_i\|^2/2\sigma_i^2)}.$$
+$$p_{j|i}=\frac{exp(-\|x_i-x_j\|^2/2\sigma_i^2)}{\sum_{k\not= 1}exp(-\|x_k-x_i\|^2/2\sigma_i^2)}.$$
 Because we are only interested in modeling pairwise similarities, we set the value of $p_{i|i}$ to zero. For the low-dimensional counterparts $y_i$ and $y_j$ of the high-dimensional data points $x_i$ and $x_j$, it is possible to compute a similar conditional probability, which we denote by $q_{j|i}$. we model the similarity of map point $y_j$ to map point $y_i$ by
-$$q_{j|i}=\frac{exp(-\|y_i-y_j\|^2)}{\sum_{k=\not 1}exp(-\|y_k-y_i\|^2)}.$$ 
+$$q_{j|i}=\frac{exp(-\|y_i-y_j\|^2)}{\sum_{k\not= i}exp(-\|y_k-y_i\|^2)}.$$ 
 
 SNE minimizes the sum of cross entropy over all data points using a gradient descent
 method. The cost function $C$ is given by
@@ -53,9 +67,8 @@ $$q_{i|j}=\frac{(1+\|y_i-y_j\|^2)^{-1}}{\sum_{j\not= i} (1+\|y_i-y_j\|^2)^{-1}}.
 * https://distill.pub/2016/misread-tsne
 * https://www.wikiwand.com/en/T-distributed_stochastic_neighbor_embedding
 
-### Auto-Encoder
+***
 
 * https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction
 * https://scikit-learn.org/stable/modules/decomposition.html#decompositions
-* https://www.cs.toronto.edu/~hinton/science.pdf
 * http://www.idm.pku.edu.cn/staff/wangyizhou/papers/GAE-CVPRwDeepVision2014.pdf
