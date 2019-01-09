@@ -126,8 +126,29 @@ If $f^{\star}=\min_{x}f(x)$, the probability $p(x)\propto \exp(-f(x))$ attains i
 
 ***
 
-* [Hamiltonian Monte Carlo 1](http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/)
+
+* [Hamiltonian Monte Carlo](http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/)
 * [Roadmap of HMM](https://metacademy.org/graphs/concepts/hamiltonian_monte_carlo)
 * https://chi-feng.github.io/mcmc-demo/app.html#HamiltonianMC,banana
 * http://slac.stanford.edu/pubs/slacpubs/4500/slac-pub-4587.pdf
 * http://www.mcmchandbook.net/HandbookChapter5.pdf
+
+#### Hamiltonian Dynamics
+
+Hamiltonian dynamics are used to describe how objects move throughout a system. Hamiltonian dynamics is defined in terms of object location $x$ and its momentum $p$ (equivalent to object’s mass $m$ times velocity $\nu$, i.e., $p=m\nu$) at some time $t$. For each location of object there is an associated potential energy $U(x)$ and with momentum there is associated kinetic energy $K(p)$.The total energy of system is **constant** and is called as Hamiltonian $H(x,p)$, defined as the sum of potential energy and kinetic energy:
+$$
+H(x,p)=U(x)+K(p)
+$$
+The partial derivatives of the Hamiltonian determines how position $x$ and momentum $p$ change over time $t$, according to Hamiltonian’s equations:
+$$
+\frac{\mathrm{d}x_i}{\mathrm{d} t}=\frac{\partial H}{\partial p_i}=\frac{\partial K(p)}{\partial p_i}  \\
+\frac{\mathrm{d} p_i}{\mathrm{d} t}= -\frac{\partial H}{\partial x_i}= -\frac{\partial U(x)}{\partial x_i}
+$$
+The above equations operates on a d-dimensional position vector $x$ and a d-dimensional momentum vector $p$, for $i=1,2,\cdots,d$.
+
+#### Hamiltonian and Probability: Canonical Distributions
+
++ http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/
++ http://khalibartan.github.io/MCMC-Metropolis-Hastings-Algorithm/
++ http://khalibartan.github.io/Introduction-to-Markov-Chains/
++ http://khalibartan.github.io/Monte-Carlo-Methods/
