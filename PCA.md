@@ -23,6 +23,7 @@ When the matrix is rectangle i.e. the number of columns and the number of rows a
 Another question is  if  every matrix $M_{m\times n}\in\mathbb{R}^{m\times n}$ can be written as the sum of rank-1 matrix and how?
 $$M_{m\times n}=\sum_{i}^{r}p_i q_i=P_{m\times r}Q_{r\times n}$$
 where $p_i\in\mathbb{R}^m$,$q_i\in\mathbb{R}^n$ and $r$ is integer.
+
 They are from the square matrices $M_{m\times n}^TM_{m\times n}=A_{n\times n}$ and $M_{m\times n}M_{m\times n}^T=B_{m\times m}$. It is obvious that the matrix $A$ and $B$ are symmetrical.
 
 > **Theorem**: The matrix $A$ and $B$ has the same eigenvalues except zeroes.
@@ -39,11 +40,12 @@ Another observation of $A$ and $B$ is that the trace of $A$ is equal to the trac
 We can infer that the eigenvalues of matrix $A$ and $B$ are nonnegative. We ca prove it by counterproof. Suppose that $\lambda < 0$ and $Av = \lambda v$, we can conclude that $\left<v,Av\right>=\left<v,\lambda v\right>=(Mv)^T(Mv)=\|Mv\|_2^2 = \lambda {\|v\|}_2^2\geq 0$ while $v =\not \vec{0}$ and $\lambda < 0$. The contradiction occurs.
 
 The eigenvalues of $A$ or $B$ really matters. And it is possible to compute the eigenvalues and eigenvectors of $A_{n\times n}$ or $B_{m\times m}$.
-For example, we assume that $A_{n\times n}=V_{n\times n}\Lambda V_{n\times n}$, where the diagonal matrix $\Lambda = Diag(\lambda_1,\dots, \lambda_n)$ consists of eigenvalues, the orthogonal matrix $V_{n\times n}=(v_1,\dots, v_n)$ consists of eigenvectors $\{v_1,\dots, v_n\}\subset \mathbb{R}^{n}$ so that $A_{n\times n}v_i = \lambda_i v_i$ for $i=1,2,\dots, n$. 
-In anther word, $M_{m\times n}^TM_{m\times n} v_i = \lambda_i v_i$ or ${v_i}^{T} M_{m\times n}^TM_{m\times n}= \lambda_i {v_i}^{T}\Rightarrow(M_{m\times n}v_i)^{T}M_{m\times n}=\lambda_i {v_i}^{T}$. What is more, we have that $(M_{m\times n}\Lambda)^{T}M_{m\times n}=\Lambda V_{n\times n}$.
+For example, we assume that $A_{n\times n}=V_{n\times n}\Lambda V_{n\times n}^{T}$, where the diagonal matrix $\Lambda = Diag(\lambda_1,\dots, \lambda_n)$ consists of eigenvalues, the orthogonal matrix $V_{n\times n}=(v_1,\dots, v_n)$ consists of eigenvectors $\{v_1,\dots, v_n\}\subset \mathbb{R}^{n}$ so that $A_{n\times n}v_i = \lambda_i v_i$ for $i=1,2,\dots, n$. 
+In anther word, $M_{m\times n}^TM_{m\times n} v_i = \lambda_i v_i$ or ${v_i}^{T} M_{m\times n}^TM_{m\times n}= \lambda_i {v_i}^{T}\Rightarrow(M_{m\times n}v_i)^{T}M_{m\times n}=\lambda_i {v_i}^{T}$. The vector $M_{m\times n}v_i\in\mathbb{R}^{m}$ for $i=1, 2, \dots, n$ can make up a matrix and $\left<M_{m\times n}v_i, M_{m\times n}v_j\right>=(M_{m\times n}v_i)^{T}M_{m\times n}v_j=0$ if $i =\not j$ because of the fact that $M_{m\times n}v_i$ is the eigenvector of $B = M_{m\times n}M_{m\times n}^{T}$.
+What is more, we have that $(M_{m\times n}\Lambda)^{T}M_{m\times n}=\Lambda V_{n\times n}^{T}$.
 
 It is known that $\sum_{i=1}^{n}\lambda_i=tr(A)$.
-Note that $M_{m\times n}v_i$ is the eigenvector of $B = M_{m\times n}M_{m\times n}^{T}$. 
+Note thta the columns of $M_{m\times n}\Lambda$ are perpendicular to each other.
 
 > **Theorem**: $M_{m\times n}=U_{m\times m}\Sigma_{m\times n} V_{n\times n}^T$, where
 > * $U_{m\times m}$ is an $m \times m$ orthogonal matrix;
@@ -75,8 +77,8 @@ We want to find the linear combination of $X_1, X_2, \dots, X_n$, i.e. $Y=w^{T}X
 $$Y=\arg\max_{Y} \, var(Y)=w^{T}\Sigma w, \text{s.t.} w^T w={\|w\|}_2^2=1 .$$
 It is a constrained optimization problem.
 $$L(w,\lambda) = w^{T}\Sigma w + \lambda ({\|w\|}_2^2-1)$$
-thus that $\frac{\partial L(w,\lambda)}{\partial w} = \Sigma w-2\lambda w=0$
-which implies that $\lambda$ must be a eigenvalue of $\Sigma$. i.e. $\Sigma w=2\lambda w$.
+thus that $\frac{\partial L(w,\lambda)}{\partial w} = \Sigma w-\lambda w=0$
+which implies that $\lambda$ must be a eigenvalue of $\Sigma$. i.e. $\Sigma w=\lambda w$.
 
 |Gaussian Scatter PCA|
 |:------------------:|
@@ -92,9 +94,32 @@ which implies that $\lambda$ must be a eigenvalue of $\Sigma$. i.e. $\Sigma w=2\
 
 In linear regression, we assume that
 $$f(x|w,b)=w^{T}x + b$$
-and we assume that the error $\{y_i - f(x_i|w,b)\}_{i=1}^{n}$ are distributed in standard Gaussian distribution. And it is to find the parameters $w,b$ by maximum likelihood function, i.e. $\arg\max_{w,b}\sum_{i}(y_i-f(x_i|w,b))^2$.
-In optimization, we can find the parameters by $\arg\max_{w,b}\sum_{i}d(y_i,f(x_i|w,b))$ where $d(y,l)$ is the distance from the point $y$ to the line $l$.
+and we assume that the error ${\{y_i - f(x_i|w,b)\}}_{i=1}^{n}$ are distributed in standard Gaussian distribution. And it is to find the parameters $w,b$ by maximum likelihood function, i.e. $\arg\max_{w,b}\sum_{i}(y_i-f(x_i|w,b))^2$.
+In optimization, we can find the parameters by $\arg\max_{w,b}\sum_{i}d(y_i,f(x_i|w,b))$ where $d(y,l)$ is the distance from the point $y$ to the line $l$, i.e
+$$
+\arg\min_{w,b}\sum_{i=1}^{n}d(x_i, y_i, l)
+$$
+where $d(x_i, y_i)=\frac{|w^{T}x_i+b-y_i|}{\sqrt{w^2+b^2}}$.
+The problem is that the absolute value function $|\cdot|$ is not differential at original point, so that we may take one subgradient.
+Another way is to transform the raw data into principal components as a filter.
+It is the idea of principal component regression.
+It is more robust than ordinary least square method.
 
 * https://www.jianshu.com/p/d090721cf501
 * https://www.wikiwand.com/en/Principal_component_regression
 * http://faculty.bscb.cornell.edu/~hooker/FDA2008/Lecture13_handout.pdf
+* https://learnche.org/pid/latent-variable-modelling/principal-components-regression
+
+#### Generalized PCA and SVD
+
+PCA can extend to [generalized principal component analysis(GPCA)](https://www.springer.com/us/book/9780387878102), kernel PCA, functional PCA.
+The [generalized SVD](https://arxiv.org/pdf/1510.08532.pdf) also proposed by Professor [Zhang Zhi-Hua](http://www.math.pku.edu.cn/teachers/zhzhang/).
+SVD as an matrix composition method is natural to process the tabular data. And the singular values or eigenvalues can be regarded as the importance measure of features or factors. And it used to dimension reduction.
+
++ http://people.eecs.berkeley.edu/~yima/
++ http://www.cis.jhu.edu/~rvidal/publications/cvpr03-gpca-final.pdf
++ http://www.vision.jhu.edu/gpca.htm
++ http://www.psych.mcgill.ca/misc/fda/files/CRM-FPCA.pdf
++ https://www.wikiwand.com/en/Kernel_principal_component_analysis
++ https://arxiv.org/pdf/1510.08532.pdf
++ http://www.math.pku.edu.cn/teachers/zhzhang/
