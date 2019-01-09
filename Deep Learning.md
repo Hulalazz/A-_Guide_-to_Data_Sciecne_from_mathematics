@@ -1046,6 +1046,13 @@ It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pd
 
 ## Network Compression
 
+The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive.   
+
+https://srdas.github.io/DLBook/intro.html#effective
+https://cognitiveclass.ai/courses/accelerating-deep-learning-gpu/
+https://vast.cs.ucla.edu/projects/acceleration-deep-learning-cloud-and-edge-computing
+https://blog.csdn.net/song_pipi/article/details/79154539
+
 * [Distiller](https://nervanasystems.github.io/distiller/index.html)
 * [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
 * [Network Speed and Compression](https://github.com/mrgloom/Network-Speed-and-Compression)
