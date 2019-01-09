@@ -15,6 +15,7 @@ The application of deep learning are partial listed in **[Awesome deep learning]
 |[A history of deep learning](https://www.import.io/post/history-of-deep-learning/)|
 |[Three Giants' Survey in *(Nature 521 p 436)*](http://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf)|
 |[Critique of Paper by "Deep Learning Conspiracy" (Nature 521 p 436)](http://people.idsia.ch/~juergen/deep-learning-conspiracy.html) |
+|http://principlesofdeeplearning.com/|
 |[**Deep Learning in Neural Networks: An Overview**](http://people.idsia.ch/~juergen/deep-learning-overview.html)|
 |[AI winter](https://www.wikiwand.com/en/AI_winter)|
 |[Deep learning in wiki](https://www.wikiwand.com/en/Deep_learning) and [Deep Learning in Scholarpedia](http://www.scholarpedia.org/article/Deep_Learning)|
@@ -552,7 +553,7 @@ The new term $\lambda$ coming from the regularization causes the weight to decay
 * https://metacademy.org/graphs/concepts/weight_decay_neural_networks
 * https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-neural-networks-with-weight-constraints-in-keras/
 * https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-learning-with-weight-regularization/
-* 
+*
 
 The $\ell_1$ norm penalty is also used in deep learning as in **LASSO**. It is to solve the following optimization problem:
   $$\min_{\theta}J(\theta)+\lambda{\|\theta\|}_1,$$
@@ -667,7 +668,7 @@ As in feedforward neural networks, an additional non-linear  operation called **
 Pooling as subsampling is to make the model/network more robust or transformation invariant.
 Spatial Pooling (also called subsampling or downsampling) is to use some summary statistic that extract from spatial neighbors,
 which reduces the dimensionality of each feature map but retains the most important information.
-The function of Pooling is 
+The function of Pooling is
 
 - [ ] to progressively reduce the spatial size of the input representation and induce the size of receptive field.
 - [ ] makes the network invariant to small transformations, distortions and translations in the input image.
@@ -980,10 +981,18 @@ $$
 {H}_{i+1} = \sigma \circ ({H}_{i}, A)=\sigma \circ(\hat{D}^{-\frac{1}{2}} \hat{A} \hat{D}^{-\frac{1}{2}} {H}_{i} {W}_{i}),
 $$
 with $\hat{A}=A+I$, where $I$ is the identity matrix and $\hat{D}$ is the diagonal node degree matrix of $\hat{A}$.
+See more details at [Multi-layer Graph Convolutional Network (GCN) with first-order filters](http://tkipf.github.io/graph-convolutional-networks/).
+
+Like other neural network, GCN is also composite of linear and nonlinear mapping. In details,
+1. $\hat{D}^{-\frac{1}{2}} \hat{A} \hat{D}^{-\frac{1}{2}}$ is to normalize the graph structure;
+2. the next step is to multiply node properties and weights;
+3. Add nonlinearities by activation function $\sigma$.
+
+[See more at experoinc.com](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network).
 
 ![GCN](http://tkipf.github.io/graph-convolutional-networks/images/gcn_web.png)
 
-See more details at [Multi-layer Graph Convolutional Network (GCN) with first-order filters](http://tkipf.github.io/graph-convolutional-networks/).
+
 
 ![CNN VS. GCNN](https://research.preferred.jp/wp-content/uploads/2017/12/cnn-gcnn.png)
 
@@ -1001,9 +1010,22 @@ See more details at [Multi-layer Graph Convolutional Network (GCN) with first-or
 * https://rusty1s.github.io/pytorch_geometric/build/html/notes/introduction.html
 * [.mp4 illustration](http://tkipf.github.io/graph-convolutional-networks/images/video.mp4)
 * [Deep Graph Library (DGL)](https://www.dgl.ai/)
+* https://www.experoinc.com/post/node-classification-by-graph-convolutional-network
+* https://www.groundai.com/project/graph-convolutional-networks-for-text-classification/
+* https://datawarrior.wordpress.com/2018/08/08/graph-convolutional-neural-network-part-i/
+* https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
+* http://blog.lcyown.cn/2018/04/30/graphencoding/
 
 
 $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
+
+GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
+
+### ChebNet, CayleyNet, MotifNet
+
+In the previous post, the convolution of the graph Laplacian is defined in its **graph Fourier space** as outlined in the paper of Bruna et. al. (arXiv:1312.6203). However, the **eigenmodes** of the graph Laplacian are not ideal because it makes the bases to be graph-dependent. A lot of works were done in order to solve this problem, with the help of various special functions to express the filter functions. Examples include Chebyshev polynomials and Cayley transform.
+
+https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
 
 ## Generative Adversarial Network
 
