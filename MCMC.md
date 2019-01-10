@@ -22,6 +22,8 @@ It is more useful in some simulation problem.
 * https://twiecki.github.io/blog/2015/11/10/mcmc-sampling/
 * [PyMC2](https://colcarroll.github.io/hamiltonian_monte_carlo_talk/bayes_talk.html)
 * https://cosx.org/2013/01/lda-math-mcmc-and-gibbs-sampling
+* https://chi-feng.github.io/mcmc-demo/
+
 
 ### Gibbs Sampling
 
@@ -126,12 +128,15 @@ If $f^{\star}=\min_{x}f(x)$, the probability $p(x)\propto \exp(-f(x))$ attains i
 
 ***
 
-
+* https://arxiv.org/pdf/1206.1901.pdf
 * [Hamiltonian Monte Carlo](http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/)
 * [Roadmap of HMM](https://metacademy.org/graphs/concepts/hamiltonian_monte_carlo)
 * https://chi-feng.github.io/mcmc-demo/app.html#HamiltonianMC,banana
 * http://slac.stanford.edu/pubs/slacpubs/4500/slac-pub-4587.pdf
 * http://www.mcmchandbook.net/HandbookChapter5.pdf
+* https://physhik.github.io/HMC/
+* http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html
+* https://theclevermachine.wordpress.com/2012/11/18/mcmc-hamiltonian-monte-carlo-a-k-a-hybrid-monte-carlo/
 
 #### Hamiltonian Dynamics
 
@@ -148,7 +153,45 @@ The above equations operates on a d-dimensional position vector $x$ and a d-dime
 
 #### Hamiltonian and Probability: Canonical Distributions
 
+To relate $H(x,p)$ to target distribution $P(x)$ we use a concept from statistical mechanics known as the canonical distribution. For any energy function $E(q)$, defined over a set of variables $q$, we can find corresponding $P(q)$:
+$$
+P(q)=\frac{1}{z}e^{-\frac{E(q)}{T}}
+$$
+where $Z$ is normalizing constant called **Partition function** (so that $\int_{\mathbb{R}}P(q)\mathrm{d}q =1$) and $T$ is temperature of system.
+Since, the Hamiltonian is an energy function for the joint state of “position”, $x$ and “momentum”, $p$, so we can define a joint distribution for them as follows:
+$$
+P(x,p)=\frac{exp(-H(x,p))}{z}=\frac{exp[-U(x)-K(p)]}{z}.
+$$
+Furthermore we can associate probability distribution with each of the potential and kinetic energy ($P(x)$ with potential energy and $P(p)$, with kinetic energy). Thus, we can write above equation as:
+$$
+P(x,p)=\frac{P(x)P(p)}{Z^{\prime}}
+$$
+where $Z^{\prime}$ is new normalizing constant. 
+
+Since joint distribution factorizes over $x$ and $p$, we can conclude that $P(x)$ and $P(p)$ are independent. Because of this independence we can choose any distribution from which we want to sample the momentum variable. A common choice is to use a zero mean and unit variance Normal distribution $N(0,I)$. The target distribution of interest $P(x)$ from which we actually want to sample from is associated with potential energy, i.e.,
+$$
+U(x) = −\log(P(x)).
+$$
+
+#### Hamiltonian Monte Carlo
+
+Given initial state $x_0$, stepsize $\epsilon$, number of steps $L$, log density function $U$, number of samples to be drawn $M$
+1. set m=0
+2. repeat until m=M
+    + set $m\leftarrow m+1$
+    + Sample new initial momentum $p_0 \sim N(0,I)$
+    + Set $x_m\leftarrow x_{m−1}, x^{\prime}\leftarrow x_{m−1}, p^{\prime}\leftarrow p_0$
+    + repeat for $L$ steps
+
+        + Set $x^{\prime}, p^{\prime}\leftarrow Leapfrog(x^{\prime},p^{\prime},\epsilon)$
+    + Calculate acceptance probability $α=\min(1,\frac{exp(U(x^{\prime})−(p′.p′)/2)}{exp(U(x_m−1)−(p_0.p_0)/2)})$
+    + Draw a random number $u \sim Uniform(0, 1)$
+    + if $u\leq \alpha$ then $x_m\leftarrow x^{\prime},p_m\leftarrow p^{\prime}$.
+
+Leapfrog is a function that runs a single iteration of Leapfrog method.
+
 + http://khalibartan.github.io/MCMC-Hamiltonian-Monte-Carlo-and-No-U-Turn-Sampler/
 + http://khalibartan.github.io/MCMC-Metropolis-Hastings-Algorithm/
 + http://khalibartan.github.io/Introduction-to-Markov-Chains/
 + http://khalibartan.github.io/Monte-Carlo-Methods/
++ https://blog.csdn.net/qy20115549/article/details/54561643
