@@ -69,7 +69,7 @@ The Poisson  distribution can be written in
 $$
 \begin{align}
 p(x|\lambda)
-& =\frac{{\lambda}^{x}e^{-\lambda}}{x!} \\
+& =\frac{ {\lambda}^{x} e^{-\lambda} }{x!} \\
 & = \frac{1}{x!}exp\{x\log(\lambda)-\lambda\}
 \end{align}
 $$
