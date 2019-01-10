@@ -51,6 +51,12 @@ Topological data analysis(TDA) is potential to find better representation of the
 + https://www.h-its.org/event/workshop-grg-2018/
 + https://cs.nyu.edu/~yap/classes/
 + http://www.sci.utah.edu/~beiwang/
++ https://sites.google.com/view/dragon-applied-topology
++ https://icerm.brown.edu/tripods/tri17-1-gtd/
++ https://www.cs.montana.edu/tda/
++ https://drona.csa.iisc.ac.in/~vijayn/courses/
++ https://www.csun.edu/~ctoth/Handbook/
++ http://www.computational-geometry.org/
 
 
 ### Topology
@@ -59,41 +65,49 @@ Topology focuses on the invariants under continuous mapping.
 It pays more attention to the geometrical or discrete properties of the objects such as the number of circles or holes.
 It is not absolutely distance-based.
 
+![klein bottle](https://www.ics.uci.edu/~eppstein/junkyard/nested-klein-bottles.jpg)
+
 + https://www.wikiwand.com/en/Topology
++ http://www.topologywithouttears.net/
++ https://www.ics.uci.edu/~eppstein/junkyard/topo.html
 
 ### Computational Topology
 
-Computational topology is the theroretic foundation of topological data analysis.
+Computational topology is the mathematical theoretic foundation of topological data analysis. It is different from the deep neural network that origins from the engineering or the simulation to biological neural network.
+Topological data analysis is principle-driven and application-inspired in some sense.
 
-![](http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png)
+![bugs-topology](http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png)
 
 + https://datawarrior.wordpress.com/
 + https://github.com/prokopevaleksey/TDAforCNN
 + https://github.com/ognis1205/spark-tda
 + https://github.com/stephenhky/PyTDA
 + https://people.clas.ufl.edu/peterbubenik/intro-to-tda/
-+ https://www.math.upenn.edu/~ghrist/research.html
-+ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
-+ https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
-+ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
-+ https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis
-+ https://web.stanford.edu/group/bdl/blog/tda-cme-paper/
 + http://www.enseignement.polytechnique.fr/informatique/INF556/
 + https://topology-tool-kit.github.io/
 + https://www.kth.se/student/kurser/kurs/SF2956?l=en
 + https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
-+ http://jeffe.cs.illinois.edu/teaching/comptop/
 + https://perfectial.com/blog/topological-data-analysis-overview/
-+ https://www2.cs.duke.edu/courses/fall06/cps296.1/
-+ https://cs.nyu.edu/~yap/classes/modeling/06f/
-+ https://courses.maths.ox.ac.uk/node/161
-+ http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html
-+ http://graphics.stanford.edu/courses/cs468-09-fall/
+
+
 + http://brickisland.net/cs177fa12/
++ https://courses.maths.ox.ac.uk/node/161
++ https://cs.nyu.edu/~yap/classes/modeling/06f/
 + https://www.math.upenn.edu/~ghrist/research.html
++ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
++ https://web.stanford.edu/group/bdl/blog/tda-cme-paper/
++ https://www2.cs.duke.edu/courses/fall06/cps296.1/
++ http://graphics.stanford.edu/courses/cs468-09-fall/
++ https://jeremykun.com/tag/computational-topology/
++ https://www.math.upenn.edu/~ghrist/research.html
++ http://jeffe.cs.illinois.edu/teaching/comptop/
 + http://www.stat.cmu.edu/topstat/presentations.html
 + http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf
++ http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html
++ http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017/
 + http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
 + https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html
-+ https://jeremykun.com/tag/computational-topology/
 + http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html
++ https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
++ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
++ https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis

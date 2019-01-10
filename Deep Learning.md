@@ -946,6 +946,34 @@ It is always as one component of some complex network as normalization.
 |-----------------------------------|
 |![](http://www.cs.cornell.edu/~oirsoy/files/drsv/deep-recursive.png)|
 
+## Generative Adversarial Network
+
+It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>.
+It is a generative model via an adversarial process.
+It trains a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates
+the probability that a sample came from the training data rather than $G$. The training procedure for $G$ is to maximize the probability of $D$ making a mistake. 
+This framework corresponds to a minimax two-player game. In the space of arbitrary
+functions $G$ and $D$, a unique solution exists, with $G$ recovering the training data
+distribution and $D$ equal to $\frac{1}{2}$ everywhere.
+
+It is not to minimize the cost function or errors as that in supervised machine learning. In mathematcis, it is saddle point optimization.
+Thus some optimiztaion or regualrization techniques are not suitable for this framework.
+It requires some methods to find the proper generator $G$ and discriminator $D$.
+
+|Generative Adversarial Network|
+|:----------------------------:|
+|![](https://image.slidesharecdn.com/generativeadversarialnetworks-161121164827/95/generative-adversarial-networks-11-638.jpg?cb=1480242452)|
+
+* https://skymind.ai/wiki/generative-adversarial-network-gan
+* [千奇百怪的GAN变体，都在这里了（持续更新嘤） - 量子学园的文章 - 知乎](https://zhuanlan.zhihu.com/p/26491601)
+* [生成模型中的左右互搏术：生成对抗网络GAN——深度学习第二十章（四） - 川陀学者的文章 - 知乎](https://)https://zhuanlan.zhihu.com/p/37846221)
+* [Really awesome GANs](https://github.com/nightrome/really-awesome-gan)
+* [GAN zoo](https://github.com/hindupuravinash/the-gan-zoo)
+* https://gandissect.csail.mit.edu/
+* https://poloclub.github.io/ganlab/
+* https://github.com/nndl/Generative-Adversarial-Network-Tutorial
+
+
 ## Graph Convolution Network
 
 Graph can be represented as `adjacency matrix` as shown in *Graph Algorithm*. However, the adjacency matrix only describe the connections between the nodes. The feature of the nodes does not appear. The node itself really matters.
@@ -1025,24 +1053,10 @@ GCN can be regarded as the counterpart of CNN for graphs so that the optimizatio
 
 In the previous post, the convolution of the graph Laplacian is defined in its **graph Fourier space** as outlined in the paper of Bruna et. al. (arXiv:1312.6203). However, the **eigenmodes** of the graph Laplacian are not ideal because it makes the bases to be graph-dependent. A lot of works were done in order to solve this problem, with the help of various special functions to express the filter functions. Examples include Chebyshev polynomials and Cayley transform.
 
-https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
+* https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
+* https://github.com/Hulalazz/GNNPapers
 
-## Generative Adversarial Network
 
-It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>.
-
-* https://skymind.ai/wiki/generative-adversarial-network-gan
-* [千奇百怪的GAN变体，都在这里了（持续更新嘤） - 量子学园的文章 - 知乎](https://zhuanlan.zhihu.com/p/26491601)
-* [生成模型中的左右互搏术：生成对抗网络GAN——深度学习第二十章（四） - 川陀学者的文章 - 知乎](https://)https://zhuanlan.zhihu.com/p/37846221)
-* [Really awesome GANs](https://github.com/nightrome/really-awesome-gan)
-* [GAN zoo](https://github.com/hindupuravinash/the-gan-zoo)
-* https://gandissect.csail.mit.edu/
-* https://poloclub.github.io/ganlab/
-* https://github.com/nndl/Generative-Adversarial-Network-Tutorial
-
-|Generative Adversarial Network|
-|:----------------------------:|
-|![](https://image.slidesharecdn.com/generativeadversarialnetworks-161121164827/95/generative-adversarial-networks-11-638.jpg?cb=1480242452)|
 
 ## Network Compression
 
