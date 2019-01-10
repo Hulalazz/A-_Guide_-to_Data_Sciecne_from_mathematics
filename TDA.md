@@ -70,6 +70,7 @@ It is not absolutely distance-based.
 + https://www.wikiwand.com/en/Topology
 + http://www.topologywithouttears.net/
 + https://www.ics.uci.edu/~eppstein/junkyard/topo.html
++ http://brickisland.net/DDGSpring2016/2016/01/20/reading-2-topology/
 
 ### Computational Topology
 
@@ -89,8 +90,16 @@ Topological data analysis is principle-driven and application-inspired in some s
 + https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
 + https://perfectial.com/blog/topological-data-analysis-overview/
 
+### TDA
+
+Topological data analysis as one data processing method is selected topic for some students on computer science and applied mathematics.
+It is not popular for the statisticians, where there is no estimation and test. It is not based on the distribution of the samples.
+
+![tda](http://brickisland.net/DDGSpring2016/wp-content/uploads/2016/01/tda-300x208.png)
 
 + http://brickisland.net/cs177fa12/
++ https://www.math.colostate.edu//~adams/research/
++ http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/
 + https://courses.maths.ox.ac.uk/node/161
 + https://cs.nyu.edu/~yap/classes/modeling/06f/
 + https://www.math.upenn.edu/~ghrist/research.html
