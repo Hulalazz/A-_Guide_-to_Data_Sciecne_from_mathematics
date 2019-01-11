@@ -34,8 +34,34 @@ And it can extend to kernel PCA and {generalized PCA}[https://www.asc.ohio-state
 Auto-Encoder is a neural network model that compresses the original data and then encodes the compressed information such as 
 $$\mathbb{R}^{p}\stackrel{\sigma}{\to}\mathbb{R}^{n}\stackrel{\sigma}{\to}\mathbb{R}^{d}$$
 where $n\le d=p$ and $\sigma$ is nonlinear activation function.
-We can express it in mathematical formula $y=\sigma(x),z=\sigma(y)$.
+We can express it in mathematical formula 
+$$
+y=\sigma(x)\in\mathbb{R}^{n},z=\sigma(y)\in\mathbb{R}^{d},
+$$
+where $x$, $y$, $z$ is the input, the hidden unit and output, respectively.
 It is trying to learn an approximation to the identity function, so as to output $z$ that is similar to $x$.
+
+Now suppose we have only unlabeled training examples set ${x^{(1)}, x^{(2)}, x^{(3)}, \dots}$, where $x^{(i)}\in\mathbb{R}^{p}$. 
+
+An autoencoder neural network is an unsupervised learning algorithm
+that applies backpropagation, setting the target values to be equal to the inputs. I.e., it uses $z^{(i)} = x^{(i)}$. It
+is trying to learn an approximation to the identity function, so as to output
+$\hat{x}$ that is similar to $x$. The identity function seems a particularly trivial
+function to be trying to learn; but by placing constraints on the network,
+such as by limiting the number of hidden units, we can discover interesting structure about the data.
+
+Recall that $y^{(j)}$ denotes the activation of hidden unit $j$ in the autoencoder and write $y^{(j)}(x)$ to denote the activation of this hidden unit when the network is given a specific input $x$, i.e., $y^{(j)}(x)=\sigma\circ(x)^{(j)}$.
+Let 
+$$
+\hat{\rho}_j=\frac{1}{m}\sum_{i=1}^{m}y^{j}(x^{i})
+$$
+be the average activation of hidden unit $j$ (averaged over the training set).
+We will add an extra penalty term to our optimization
+objective that penalizes $\rho^j$ deviating significantly from $\rho$.
+We will choose the following:
+$$
+\sum_{j=1}^{n}\rho\log(\frac{\rho}{\hat{\rho}^j})+(1-\rho)\log(\frac{1-\rho}{1-\hat{\rho}^j}).
+$$
 
 * https://en.wikipedia.org/wiki/Autoencoder
 * https://www.cs.toronto.edu/~hinton/science.pdf
