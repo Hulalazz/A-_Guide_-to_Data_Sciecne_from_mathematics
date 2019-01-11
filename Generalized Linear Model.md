@@ -1,6 +1,6 @@
 ### Generalized Linear Models
 
-In **ordinary least squares**, we assume that the errors $\{ {\epsilon}_i\}_{i=1}^{n}$ are i.i.d. Gaussian, i.e. $\{ {\epsilon}_i\} \stackrel{i.i.d}{\sim} N(0,1)$ for $i\in\{1,2,\cdots, n\}$. It is not necessary to assume that they are in Gaussian distribution.
+In **ordinary least squares**, we assume that the errors $\{ {\epsilon}_i}_{i=1}^{n} \}$ are independ distributed Gaussian, i.e. $\{ {\epsilon}_i\} \stackrel{i.i.d}{\sim} N(0,1)$ for $i\in\{1,2,\cdots, n\}$. It is not necessary to assume that they are in Gaussian distribution.
 In statistics, the generalized linear model (GLM) is a flexible generalization of ordinary linear regression that allows for response variables that have error distribution models other than a normal distribution. The GLM generalizes linear regression by allowing the linear model to be related to the response variable via a link function and by allowing the magnitude of the variance of each measurement to be a function of its predicted value.
 
 #### Intuition
