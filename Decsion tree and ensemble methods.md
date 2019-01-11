@@ -20,6 +20,7 @@ where $Ent(D)$ is the entropy of $D$ is defined as $Ent(D)=\sum_{y\in Y}P(y|D)\l
 * [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
 * https://dimensionless.in/author/raghav/
 * https://mi2datalab.github.io/randomForestExplainer/index.html
+* https://explained.ai/decision-tree-viz/index.html
 
 #### Random Forest
 
@@ -146,9 +147,44 @@ $$\mathbb{I}(x\not=y)=
 
 In Gradient Boost, we compute and fit a regression a tree to $r_{i,t}=-{[\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
 Why not the error $L(\mathrm{d}_i, f(x_i))$ itself?
-Recall the Taylor expansion $f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the nonconvex error function can be expressed as a ploynomial in terms of $h$, which is easier to fit than a general nonconvex function.
+Recall the Taylor expansion $f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$, which is easier to fit than a general non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
+We may consider the generalized additive model, i.e.,
+$$
+\hat{y}_i = \sum_{k=1}^{K} f_k(x_i)
+$$
+where $\{f_k\}_{k=1}^{K}$ is regression decision tree rather than polynomial.
+
+The objective function is given by
+$$
+obj = \sum_{i=1}^{n} L(y_i,\hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)
+$$
+where $\sum_{k=1}^{K} \Omega(f_k)$ is the regular term.
+
+The additive training is to train the regression tree sequentially.
+The objective function of the $t$th regression tree is defined as
+$$
+obj^{(t)} = \sum_{i=1}^{n} L(y_i,\hat{y}^{(t)}_i) + \sum_{k=1}^{t} \Omega(f_k) \\
+=  \sum_{i=1}^{n} L(y_i,\hat{y}^{(t-1)}_i + f_t(x_i)) + \Omega(f_t) + C
+$$
+where C is constant and $C=\sum_{k=1}^{t-1} \Omega(f_k)$.
+Particularly, we take $L(x,y)=(x-y)^2$, and the objective function is given by 
+$$
+obj^{(t)} 
+=  \sum_{i=1}^{n} [y_i - (\hat{y}^{(t-1)}_i + f_t(x_i))]^2 + \Omega(f_t) + C \\
+= \sum_{i=1}^{n} [(y_i - \hat{y}^{(t-1)}_i) f_t(x_i)) +  f_t(x_i)^2 ] + \Omega(f_t) + C^{\prime}
+$$
+where $C^{\prime}=\sum_{i=1}^{n} (y_i - \hat{y}^{(t-1)}_i)^2 + \sum_{k=1}^{t-1} \Omega(f_k)$.
+In general, we can expand the objective function at $2$ed order
+$$
+obj^{(t)} 
+=  \sum_{i=1}^{n} L(y_i,\hat{y}^{(t-1)}_i + f_t(x_i)) + \Omega(f_t) + C \\
+\simeq \sum_{i=1}^{n} [L(y_i,\hat{y}^{(t-1)}_i) + g_i f_t(x_i) + \frac{h_i f_t(x_i)^2}{2}] + \Omega(f_t) + C^{\prime}
+$$
+where $g_i=\partial_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$, $h_i=\partial^2_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$.
+
+***
 
 * https://xgboost.readthedocs.io/en/latest/tutorials/model.html
 * https://xgboost.ai/
