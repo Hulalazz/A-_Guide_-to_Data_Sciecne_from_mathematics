@@ -80,15 +80,28 @@ where $\beta^2$ is the average of all players' variances, $\nu(t) =\frac{N(t)}{\
 Incremental Rating Systems or dynamical rating systems such as TrueSkill  do not make optimal use of data.
 The principle of Bayesian Inference consists in computing a probability distribution over player ratings ($r$) from the observation of game results ($G$) by inverting the model thanks to Bayes formula:
 $$P(r|G)=\frac{P(G|r)P(r)}{P(G)}$$
-where $P(r)$ is a prior distribution over $r$, and $P(G)$ is a normalizing constant. $P(r|G)$ is called the posterior distribution of γ
+where $P(r)$ is a prior distribution over $r$, and $P(G)$ is a normalizing constant. $P(r|G)$ is called the posterior distribution of $r$
 $P(G|r)$ is the Bradley-Terry model, i.e.
 $$P(\text{player $i$ beats player $j$ at time $t$})= \frac{1}{1+10^{-\frac{R_i(t)-R_j(t)}{400}}}$$
 as shown in Elo rating system.
 
-The WHR algorithm consists in computing, for each player, the γ(t) function
+The WHR algorithm consists in computing, for each player, the $r(t)$ function
 that maximizes $P(r|G)$. Once this maximum a posteriori has been computed,
-the variance around this maximum is also estimated, which is a way to estimate
-rating uncertainty.
+the variance around this maximum is also estimated, which is a way to estimate rating uncertainty.
+
+In the dynamic Bradley-Terry model, the prior has two roles. First, a prior
+probability distribution over the range of ratings is applied. This way, the rating
+of a player with $100\%$ wins does not go to infinity. Also, a prior controls the
+variation of the ratings in time, to avoid huge jumps in ratings.
+In the dynamic Bradley-Terry model, the prior that controls the variation of
+ratings in time is a Wiener process:
+$$
+r_i(t_1) - r_i(t_1)\sim N(0, |t_2-t_1|w^2) ,
+$$
+
+$w$ is a parameter of the model, that indicates the variability of ratings in time.
+The extreme case of $w = 0$ would mean static ratings.
+
 
 - [ ] https://www.wikiwand.com/en/Bradley%E2%80%93Terry_model
 - [ ] https://www.wikiwand.com/en/Ranking
@@ -107,45 +120,60 @@ We may use machine learn to predict the scores of players and test it in real da
 Suppose that two players $u_i$ and $u_j$ with feature vectors $x_i$ and $x_j$ is presented to the model, which computes the scores $s_i = f(x_i)$ and $s_j = f(x_j)$. 
 Another output of the model is the probability that $U_i$ should be ranked
 higher than $U_j$ via a sigmoid function, thus 
-$$P(U_i\triangleleft U_j)=\frac{1}{1+\exp(-\sigma(s_i-s_j))}=\frac{1}{1+\exp[-\sigma(f(x_i)-f(x_j))]}$$
+$$
+P(U_i\triangleleft U_j)=\frac{1}{1+\exp(-\sigma(s_i-s_j))}=\frac{1}{1+\exp[-\sigma(f(x_i)-f(x_j))]}
+$$
 where the choice of the parameter $\sigma$ determines the shape of the sigmoid.
 We then apply the cross entropy cost function,
 which penalizes the deviation of the model output probabilities from the desired
 probabilities:
 $$C=-\overline{P_{ij}}\log(P(U_i\triangleleft U_j))-(1-\overline{P_{ij}})\log(1-P(U_i\triangleleft U_j))$$
 where the labeled constant $\overline{P_{ij}}$ is defined as
-$$\overline{P_{ij}}=
+$$
+\overline{P_{ij}}=
 \begin{cases} 
 1, \text{if $U_i$ is labeled higher than $U_j$;}\\
 \frac{1}{2}, \text{if $U_i$ is labeled equal than $U_j$;}\\
 0, \text{if $U_i$ is labeled lower than $U_j$.}
 \end{cases}
-$$ 
+$$
+ 
 The model $f:\mathbb{R}^P\to\mathbb{R}$ can be deep neural network (a.k.a deep learning), which can learned via stochastic gradient descent methods.
 THe cost function (cross entropy) can be rewritten as 
-$$C=-\overline{P_{ij}}[\log(P(U_i\triangleleft U_j))-\log(1-P(U_i\triangleleft U_j))]-\log(1-P(U_i\triangleleft U_j))\\
+$$
+C=-\overline{P_{ij}}[\log(P(U_i\triangleleft U_j))-\log(1-P(U_i\triangleleft U_j))]-\log(1-P(U_i\triangleleft U_j))\\
 =-\overline{P_{ij}}[\log(\frac{P(U_i\triangleleft U_j)}{1-P(U_i\triangleleft U_j)}]-\log(1-P(U_i\triangleleft U_j))\\
 =-\overline{P_{ij}}[\log(\frac{1}{\exp(-\sigma(s_i-s_j))})]-\log(\frac{\exp(-\sigma(s_i-s_j))}{1+\exp(-\sigma(s_i-s_j))})\\
 =\overline{P_{ij}}[-\sigma(s_i-s_j)]+\sigma(s_i-s_j)+\log[1+\exp(-\sigma(s_i-s_j))]\\
-=(1-\overline{P_{ij}})\sigma(s_i-s_j)+\log[1+\exp(-\sigma(s_i-s_j))].$$
+=(1-\overline{P_{ij}})\sigma(s_i-s_j)+\log[1+\exp(-\sigma(s_i-s_j))].
+$$
+
 So that we can compute the gradient of cost function with respect of $s_i$ and $s_j$.
 
 **LambdaRank**  introduced the $\lambda_i$ when update of parameters $w$ of the model $f:\mathbb{R}^P\to\mathbb{R}$.The key observation of LambdaRank is thus that in order to train a model, we do not need the costs themselves: we only need the gradients (of the costs with respect to
 the model scores).
 
-
+**LambdaMART** is the boosted tree version of LambdaRank, which is based on RankNet.
 
 ***
 ![LambdaMART](https://liam.page/uploads/images/LTR/LambdaMART.png)
+***
+
+
+
+- [x] https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
+- [ ] https://www.wikiwand.com/en/Learning_to_rank 
+- [ ] http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf
+- [ ] https://ai.google/research/pubs/pub47258
+- [ ] https://arxiv.org/abs/1811.04415
+- [ ] https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/
+- [ ] https://github.com/Isminoula/DL-to-Rank
+- [ ] https://github.com/tensorflow/ranking
+
 ***
 
 * https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
 * https://plato.stanford.edu/entries/arrows-theorem/
 * https://www.math.ucla.edu/~tao/arrow.pdf
 * https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem
-* https://www.wikiwand.com/en/Learning_to_rank
-* https://github.com/tensorflow/ranking
 * https://arxiv.org/abs/1812.00073 
-* https://github.com/Isminoula/DL-to-Rank
-* https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/
-- [x] https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
