@@ -25,9 +25,29 @@ It is a wonderful review of dimension reduction at \url{https://lvdmaaten.github
 
 ### PCA and More
 
-The data in table form can be regarded as matrix in mathematics. And we can apply singular value decomposition  to low rank approximation or nonnegative matrix factorization, which we will talk in *PCA and SVD*.
+The data in table form can be regarded as matrix in mathematics. And we can apply singular value decomposition  to low rank approximation or non-negative matrix factorization, which we will talk in *PCA and SVD*.
 It is classified as linear techniques.
 And it can extend to kernel PCA and {generalized PCA}[https://www.asc.ohio-state.edu/lee.2272/mss/tr892.pdf].
+
+### ICA
+
+Independent component analysis is to find the latent independent factors that make up the observation, i.e, 
+$$
+X=Bs
+$$
+where $X$, $s$, $B$ is the observation, latent variable and unknown mixing matrix.
+
+
++ https://www.wikiwand.com/en/Independent_component_analysis
++ http://www.gipsa-lab.grenoble-inp.fr/~pierre.comon/FichiersPdf/polyD16-2006.pdf
++ https://www.cs.helsinki.fi/u/ahyvarin/papers/NN00new.pdf
++ http://arnauddelorme.com/ica_for_dummies/
++ https://sccn.ucsd.edu/wiki/Chapter_09:_Decomposing_Data_Using_ICA
++ http://cs229.stanford.edu/notes/cs229-notes11.pdf
++ https://blog.paperspace.com/dimension-reduction-with-independent-components-analysis/
++ http://deeplearning.stanford.edu/wiki/index.php/Independent_Component_Analysis
++ https://www.zhihu.com/question/28845451/answer/42292804
++ http://www.gipsa-lab.grenoble-inp.fr/~pierre.comon/publications_en.html#book
 
 ### Auto-Encoder
 
@@ -74,7 +94,9 @@ It maps the data $x$ in high dimensional space $X\subset\mathbb{R}^{p}$ to a low
 
 **Stochastic Neighbor Embedding (SNE)** starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities that represent similarities.The similarity of data point $x_j$ to data point $x_i$ is the conditional probability, $p_{j|i}$, that $x_i$ would pick $x_j$ as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at $x_i$.
 Mathematically, the conditional probability $p_{j|i}$ is given by
-$$p_{j|i}=\frac{exp(-\|x_i-x_j\|^2/2\sigma_i^2)}{\sum_{k\not= 1}exp(-\|x_k-x_i\|^2/2\sigma_i^2)}.$$
+$$
+p_{j|i} = \frac{exp(-\|x_i-x_j\|^2/2\sigma_i^2)}{\sum_{k\not= 1} exp(-\|x_k-x_i\|^2/2\sigma_i^2)}.
+$$
 Because we are only interested in modeling pairwise similarities, we set the value of $p_{i|i}$ to zero. For the low-dimensional counterparts $y_i$ and $y_j$ of the high-dimensional data points $x_i$ and $x_j$, it is possible to compute a similar conditional probability, which we denote by $q_{j|i}$. we model the similarity of map point $y_j$ to map point $y_i$ by
 $$q_{j|i}=\frac{exp(-\|y_i-y_j\|^2)}{\sum_{k\not= i}exp(-\|y_k-y_i\|^2)}.$$ 
 
