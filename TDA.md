@@ -63,7 +63,17 @@ Topological data analysis(TDA) is potential to find better representation of the
 
 Topology focuses on the invariants under continuous mapping.
 It pays more attention to the geometrical or discrete properties of the objects such as the number of circles or holes.
-It is not absolutely distance-based.
+It is not distance-based.
+
+> **Definition**: Let $X$ be a non-empty set. A set $\tau$ of subsets of $X$ is said to be a **topology** if
+> * $X$ and the empty set $\emptyset$  belong to $\tau$;
+> * the union of any number of sets in $\tau$ belongs to $\tau$;
+> * the intersection of any two sets inn $\tau$ belongs to $\tau$.
+> The pair $(X,\tau)$ is called a **topological space**.
+
+> **Definition**: Let $(X,\tau)$ be a topological space. Then the members of $\tau$ (the subsets of $X$) is said to be **open set**. If $X-S$ is open set, we call $S$ as **closed set**.
+
+
 
 ![klein bottle](https://www.ics.uci.edu/~eppstein/junkyard/nested-klein-bottles.jpg)
 
@@ -71,52 +81,66 @@ It is not absolutely distance-based.
 + http://www.topologywithouttears.net/
 + https://www.ics.uci.edu/~eppstein/junkyard/topo.html
 + http://brickisland.net/DDGSpring2016/2016/01/20/reading-2-topology/
++ https://www.ayasdi.com/blog/artificial-intelligence/relationships-geometry-artificial-intelligence/
+
+### TDA
+
+Topological data analysis as one data processing method is selected topic for some students on computer science and applied mathematics.
+It is not popular for the statisticians, where there is no estimation and test.
+
+Topological data analysis (TDA) refers to statistical methods that find structure in data. As the
+name suggests, these methods make use of topological ideas. Often, the term TDA is used narrowly
+to describe a particular method called **persistent homology**.
+
+There is another field that deals with the topological and geometric structure of data: computational geometry. The main difference is that in TDA we treat the data as random points, whereas
+in computational geometry the data are usually seen as fixed.
+
+![tda](http://brickisland.net/DDGSpring2016/wp-content/uploads/2016/01/tda-300x208.png)
+
++ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
++ http://brickisland.net/cs177fa12/
++ https://github.com/prokopevaleksey/TDAforCNN
++ https://github.com/ognis1205/spark-tda
++ https://github.com/stephenhky/PyTDA
++ https://people.clas.ufl.edu/peterbubenik/intro-to-tda/
++ https://www.math.colostate.edu//~adams/research/
++ http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/
++ https://www.math.upenn.edu/~ghrist/research.html
++ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
++ https://web.stanford.edu/group/bdl/blog/tda-cme-paper/
++ https://www.math.upenn.edu/~ghrist/research.html
++ http://www.stat.cmu.edu/topstat/presentations.html
++ http://www.stat.cmu.edu/research/statistical-theory-methodology/252
++ https://perfectial.com/blog/topological-data-analysis-overview/
++ http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017/
++ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
++ http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html
++ https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
++ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
++ https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis
 
 ### Computational Topology
 
 Computational topology is the mathematical theoretic foundation of topological data analysis. It is different from the deep neural network that origins from the engineering or the simulation to biological neural network.
 Topological data analysis is principle-driven and application-inspired in some sense.
 
+[CS 598: Computational Topology
+Spring 2013
+](http://jeffe.cs.illinois.edu/teaching/comptop/) put that
+> Potential mathematical topics include the topology of cell complexes, topological graph theory, homotopy, covering spaces, simplicial homology, persistent homology, discrete Morse theory, discrete differential geometry, and normal surface theory. Potential computing topics include algorithms for computing topological invariants, graphics and geometry processing, mesh generation, curve and surface reconstruction, VLSI routing, motion planning, manifold learning, clustering, image processing, and combinatorial optimization.
+
 ![bugs-topology](http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png)
 
 + https://datawarrior.wordpress.com/
-+ https://github.com/prokopevaleksey/TDAforCNN
-+ https://github.com/ognis1205/spark-tda
-+ https://github.com/stephenhky/PyTDA
-+ https://people.clas.ufl.edu/peterbubenik/intro-to-tda/
++ http://graphics.stanford.edu/courses/cs468-09-fall/
++ https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html
++ http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf
++ https://jeremykun.com/tag/computational-topology/
++ http://jeffe.cs.illinois.edu/teaching/comptop/
 + http://www.enseignement.polytechnique.fr/informatique/INF556/
 + https://topology-tool-kit.github.io/
 + https://www.kth.se/student/kurser/kurs/SF2956?l=en
-+ https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
-+ https://perfectial.com/blog/topological-data-analysis-overview/
-
-### TDA
-
-Topological data analysis as one data processing method is selected topic for some students on computer science and applied mathematics.
-It is not popular for the statisticians, where there is no estimation and test. It is not based on the distribution of the samples.
-
-![tda](http://brickisland.net/DDGSpring2016/wp-content/uploads/2016/01/tda-300x208.png)
-
-+ http://brickisland.net/cs177fa12/
-+ https://www.math.colostate.edu//~adams/research/
-+ http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/
-+ https://courses.maths.ox.ac.uk/node/161
 + https://cs.nyu.edu/~yap/classes/modeling/06f/
-+ https://www.math.upenn.edu/~ghrist/research.html
-+ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
-+ https://web.stanford.edu/group/bdl/blog/tda-cme-paper/
++ https://courses.maths.ox.ac.uk/node/161
 + https://www2.cs.duke.edu/courses/fall06/cps296.1/
-+ http://graphics.stanford.edu/courses/cs468-09-fall/
-+ https://jeremykun.com/tag/computational-topology/
-+ https://www.math.upenn.edu/~ghrist/research.html
-+ http://jeffe.cs.illinois.edu/teaching/comptop/
-+ http://www.stat.cmu.edu/topstat/presentations.html
-+ http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf
 + http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html
-+ http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017/
-+ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
-+ https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html
-+ http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html
-+ https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
-+ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
-+ https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis
