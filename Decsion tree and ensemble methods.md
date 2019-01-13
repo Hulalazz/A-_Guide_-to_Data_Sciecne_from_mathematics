@@ -2,12 +2,34 @@
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set.
-[Visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) show an visual introduction to decision tree.
+[Visual introduction to machine learning](https://explained.ai/decision-tree-viz/index.html) show an visual introduction to decision tree.
 
-If the training set D is divided into subsets $D_1,\dots,D_k$, the entropy may be
+***
+**Algorithm**  Pseudocode for tree construction by exhaustive search
+
+1. Start at root node.
+2. For each node X, find the set $S$ that **minimizes** the sum of the node impurities in the two child nodes and choose the split $\{X^{\star}\in S^{\star}\}$ that gives the minimum overall $X$ and $S$.
+3. If a stopping criterion is reached, exit. Otherwise, apply step 2 to each child node in turn.
+
+***
+
+
+Creating a binary decision tree is actually a process of dividing up the input space.
+
+This learning process is to minimize the impurities.
+If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
 reduced, and the amount of the reduction is the information gain,
 $$G(D;D_1,\dots,D_k)=Ent(D)-\sum_{i=1}^{k}\frac{|D_k|}{|D|}Ent(D_k)$$
-where $Ent(D)$ is the entropy of $D$ is defined as $Ent(D)=\sum_{y\in Y}P(y|D)\log(\frac{1}{P(y|D)})$.
+where $Ent(D)$, the entropy of $D$, is defined as
+$$
+Ent(D)=\sum_{y\in Y}P(y|D)\log(\frac{1}{P(y|D)}).
+$$
+The information gain ratio of features $A$ with respect of data set $D$  is defined as
+$$g_{R}(D,A)=\frac{G(D,A)}{Ent(D)}.$$
+And another option of impurity is Gini index of probability $p$:
+$$Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.$$
+
+***
 
 * https://www.wikiwand.com/en/Decision_tree_learning
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
@@ -16,18 +38,19 @@ where $Ent(D)$ is the entropy of $D$ is defined as $Ent(D)=\sum_{y\in Y}P(y|D)\l
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
 * https://www.ncbi.nlm.nih.gov/pubmed/16149128
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
-* [Neural Random Forests](https://arxiv.org/abs/1604.07143)
-* [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
-* https://dimensionless.in/author/raghav/
-* https://mi2datalab.github.io/randomForestExplainer/index.html
+* http://www.stat.wisc.edu/~loh/guide.html
 * https://explained.ai/decision-tree-viz/index.html
+* https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/
+* (http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 
 #### Random Forest
 
 Random forests (Breiman, 2001) is a substantial modification of bagging
 that builds a large collection of de-correlated trees, and then averages them.
 On many problems the performance of random forests is very similar to
-boosting, and they are simpler to train and tune. 
+boosting, and they are simpler to train and tune.
+
+***
 
 * For $t=1, 2, \dots, T$:
     + Draw a bootstrap sample $Z^{\star}$ of size $N$ from the training data.
@@ -36,6 +59,8 @@ boosting, and they are simpler to train and tune.
       - Pick the best variable/split-point among the $m$.
       - Split the node into two daughter nodes.
 * Vote for classification and average for regression.
+
+***
 
 * https://github.com/kjw0612/awesome-random-forest
 * https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
@@ -52,6 +77,9 @@ boosting, and they are simpler to train and tune.
 * https://www.springer.com/us/book/9781441993250
 * https://web.stanford.edu/~hastie/THESES/gareth_james.pdf
 * https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
+* [Neural Random Forests](https://arxiv.org/abs/1604.07143)
+* [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
+* https://mi2datalab.github.io/randomForestExplainer/index.html
 
 ### Bagging
 
@@ -121,7 +149,9 @@ $$\mathbb{I}(x\not=y)=
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
 * [CSDN blog](https://blog.csdn.net/v_july_v/article/details/40718799)
 
-#### Gradient Boosting Decsion Tree
+#### Gradient Boosting Decision Tree
+
+![golf](https://explained.ai/gradient-boosting/images/golf-dir-vector.png)
 
 ***
 * Initialize $f_0(x)=\arg\min_{\gamma} L(\mathrm{d}_i,\gamma)$;
@@ -138,6 +168,7 @@ $$\mathbb{I}(x\not=y)=
 * [Gradient Boosting at Wikipedia](https://www.wikiwand.com/en/Gradient_boosting)
 * https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/
 * https://explained.ai/gradient-boosting/index.html
+* https://explained.ai/gradient-boosting/L2-loss.html
 * [GBDT算法原理 - 飞奔的猫熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/50176849)
 * https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 * https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/
@@ -145,43 +176,57 @@ $$\mathbb{I}(x\not=y)=
 
 #### xGBoost
 
-In Gradient Boost, we compute and fit a regression a tree to $r_{i,t}=-{[\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
+In Gradient Boost, we compute and fit a regression a tree to
+$$
+r_{i,t}=-{ [\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}] }_{f=f_{t-1}}.
+$$
 Why not the error $L(\mathrm{d}_i, f(x_i))$ itself?
-Recall the Taylor expansion $f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$, which is easier to fit than a general non-convex function.
+Recall the Taylor expansion
+$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$, which is easier to fit than a general non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
 We may consider the generalized additive model, i.e.,
+
 $$
 \hat{y}_i = \sum_{k=1}^{K} f_k(x_i)
 $$
+
 where $\{f_k\}_{k=1}^{K}$ is regression decision tree rather than polynomial.
 
 The objective function is given by
+
 $$
 obj = \sum_{i=1}^{n} L(y_i,\hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)
 $$
+
 where $\sum_{k=1}^{K} \Omega(f_k)$ is the regular term.
 
 The additive training is to train the regression tree sequentially.
 The objective function of the $t$th regression tree is defined as
+
 $$
 obj^{(t)} = \sum_{i=1}^{n} L(y_i,\hat{y}^{(t)}_i) + \sum_{k=1}^{t} \Omega(f_k) \\
 =  \sum_{i=1}^{n} L(y_i,\hat{y}^{(t-1)}_i + f_t(x_i)) + \Omega(f_t) + C
 $$
+
 where C is constant and $C=\sum_{k=1}^{t-1} \Omega(f_k)$.
-Particularly, we take $L(x,y)=(x-y)^2$, and the objective function is given by 
+Particularly, we take $L(x,y)=(x-y)^2$, and the objective function is given by
+
 $$
-obj^{(t)} 
+obj^{(t)}
 =  \sum_{i=1}^{n} [y_i - (\hat{y}^{(t-1)}_i + f_t(x_i))]^2 + \Omega(f_t) + C \\
 = \sum_{i=1}^{n} [(y_i - \hat{y}^{(t-1)}_i) f_t(x_i)) +  f_t(x_i)^2 ] + \Omega(f_t) + C^{\prime}
 $$
+
 where $C^{\prime}=\sum_{i=1}^{n} (y_i - \hat{y}^{(t-1)}_i)^2 + \sum_{k=1}^{t-1} \Omega(f_k)$.
 In general, we can expand the objective function at $2$ed order
+
 $$
-obj^{(t)} 
+obj^{(t)}
 =  \sum_{i=1}^{n} L(y_i,\hat{y}^{(t-1)}_i + f_t(x_i)) + \Omega(f_t) + C \\
 \simeq \sum_{i=1}^{n} [L(y_i,\hat{y}^{(t-1)}_i) + g_i f_t(x_i) + \frac{h_i f_t(x_i)^2}{2}] + \Omega(f_t) + C^{\prime}
 $$
+
 where $g_i=\partial_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$, $h_i=\partial^2_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$.
 
 ***
@@ -193,6 +238,7 @@ where $g_i=\partial_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$, $h_i=\partial^2_{y_{
 * [XGBoost: A Scalable Tree Boosting System](https://arxiv.org/abs/1603.02754)
 * [xgboost的原理没你想像的那么难](https://www.jianshu.com/p/7467e616f227)
 * https://www.cnblogs.com/wxquare/p/5541414.html
+* https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/
 
 
 ### Stacking
