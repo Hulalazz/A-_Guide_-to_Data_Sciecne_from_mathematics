@@ -85,10 +85,6 @@ $P(G|r)$ is the Bradley-Terry model, i.e.
 $$P(\text{player $i$ beats player $j$ at time $t$})= \frac{1}{1+10^{-\frac{R_i(t)-R_j(t)}{400}}}$$
 as shown in Elo rating system.
 
-The WHR algorithm consists in computing, for each player, the $r(t)$ function
-that maximizes $P(r|G)$. Once this maximum a posteriori has been computed,
-the variance around this maximum is also estimated, which is a way to estimate rating uncertainty.
-
 In the dynamic Bradley-Terry model, the prior has two roles. First, a prior
 probability distribution over the range of ratings is applied. This way, the rating
 of a player with $100\%$ wins does not go to infinity. Also, a prior controls the
@@ -102,6 +98,14 @@ $$
 $w$ is a parameter of the model, that indicates the variability of ratings in time.
 The extreme case of $w = 0$ would mean static ratings.
 
+The WHR algorithm consists in computing, for each player, the $r(t)$ function
+that maximizes $P(r|G)$. Once this maximum a posteriori (**MAP**) has been computed,
+the variance around this maximum is also estimated, which is a way to estimate rating uncertainty.
+
+Formally, Newton’s method consists in updating the rating vector r of one player (the vector of ratings at times when that player played a game) according to this formula
+$$
+r\leftarrow r - (\frac{\partial^2 \log(p)}{\partial r^2})^{-1} \frac{\partial \log(p)}{\partial r} .
+$$
 
 - [ ] https://www.wikiwand.com/en/Bradley%E2%80%93Terry_model
 - [ ] https://www.wikiwand.com/en/Ranking
@@ -112,10 +116,15 @@ The extreme case of $w = 0$ would mean static ratings.
 
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every search engine, is responsible for the matching between processed queries and indexed documents.
-In general, we call all those methods that use machine learning technologies to solve the problem of ranking **"learning-to-rank"** methods.
+In general, we call all those methods that use machine learning technologies to solve the problem of ranking **"learning-to-rank"** methods or **LTR**.
 We are designed to compare some indexed document with the query.
 The algorithms above are based on feedback to tune the rank or scores of players. The drawback of these methods is that they do not take the features of the players into consideration.
 We may use machine learn to predict the scores of players and test it in real data set such as **RankNet, LambdaRank, and LambdaMART**.
+
+* http://fastml.com/evaluating-recommender-systems/
+* https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
+
+### RankNet
 
 Suppose that two players $u_i$ and $u_j$ with feature vectors $x_i$ and $x_j$ is presented to the model, which computes the scores $s_i = f(x_i)$ and $s_j = f(x_j)$. 
 Another output of the model is the probability that $U_i$ should be ranked
@@ -169,6 +178,7 @@ the model scores).
 - [ ] https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/
 - [ ] https://github.com/Isminoula/DL-to-Rank
 - [ ] https://github.com/tensorflow/ranking
+- [ ] https://maciejkula.github.io/spotlight/index.html#
 
 ***
 
@@ -177,3 +187,4 @@ the model scores).
 * https://www.math.ucla.edu/~tao/arrow.pdf
 * https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem
 * https://arxiv.org/abs/1812.00073 
+* https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
