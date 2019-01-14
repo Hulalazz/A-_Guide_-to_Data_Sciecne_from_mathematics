@@ -1,12 +1,20 @@
 # Deep Learning
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
-In mathematics, it is nonlinear non-convex and composite of many functions. Its name -deep learning- is to distinguish from the classical machine learning "shallow" methods.
-However, its complexity makes it yet engineering even art far from science. There is no first principle in deep learning but trial and error.
-In theory, we do not clearly understand how to design more robust and efficient network architecture; in practice, we can apply it to diverse fields. It is considered as one approach to artificial intelligence
+In mathematics, it is nonlinear non-convex and composite of many functions. 
+Its name -deep learning- is to distinguish from the classical machine learning "shallow" methods.
+However, its complexity makes it yet engineering even art far from science. 
+There is no first principle in deep learning but trial and error.
+In theory, we do not clearly understand how to design more robust and efficient network architecture; 
+in practice, we can apply it to diverse fields. It is considered as one approach to artificial intelligence
 
 Deep learning is a typical hierarchy model.
-The application of deep learning are partial listed in **[Awesome deep learning](https://github.com/ChristosChristofidis/awesome-deep-learning)**,[MIT Deep Learning Book](https://github.com/janishar/mit-deep-learning-book-pdf) and [Deep interests](https://github.com/Honlan/DeepInterests).
+The application of deep learning are partial listed in 
+
+* [Awesome deep learning](https://github.com/ChristosChristofidis/awesome-deep-learning);
+* [Opportunities and obstacles for deep learning in biology and medicine: 2019 update](https://greenelab.github.io/deep-review/);
+* [Deep interests](https://github.com/Honlan/DeepInterests);
+* [Awesome DeepBio](https://github.com/gokceneraslan/awesome-deepbio).
 
 ***
 |[Father of Deep Learning](https://www.wikiwand.com/en/Alexey_Ivakhnenko)|
@@ -18,28 +26,47 @@ The application of deep learning are partial listed in **[Awesome deep learning]
 |http://principlesofdeeplearning.com/|
 |[**Deep Learning in Neural Networks: An Overview**](http://people.idsia.ch/~juergen/deep-learning-overview.html)|
 |[AI winter](https://www.wikiwand.com/en/AI_winter)|
-|[Deep learning in wiki](https://www.wikiwand.com/en/Deep_learning) and [Deep Learning in Scholarpedia](http://www.scholarpedia.org/article/Deep_Learning)|
+|[Deep learning in wiki](https://www.wikiwand.com/en/Deep_learning), [Deep Learning in Scholarpedia](http://www.scholarpedia.org/article/Deep_Learning).|
+
+***
+
+| More |
+|:---:|
 |[A Brief History of Deep Learning (Part One)](https://www.bulletproof.net.au/a-brief-history-deep-learning-part-one/)|
 |[On the Origin of Deep Learning](https://arxiv.org/abs/1702.07800)|
 |![history of nn](https://www.import.io/wp-content/uploads/2017/06/Import.io_quote-image5-170525.jpg)|
-|![Deep Learning Roadmap](http://www.deeplearningpatterns.com/lib/exe/fetch.php?media=deeplearning_overview_9_.jpg)|
 |![nn_timeline](http://beamandrew.github.io//images/deep_learning_101/nn_timeline.jpg)|
+|https://mitpress.mit.edu/books/deep-learning-revolution|
+|https://blog.keras.io/the-limitations-of-deep-learning.html|
+|[MIT Deep Learning Book](https://github.com/janishar/mit-deep-learning-book-pdf)|
+
+![Deep Learning Roadmap](http://www.deeplearningpatterns.com/lib/exe/fetch.php?media=deeplearning_overview_9_.jpg)
 ![Neural_Net_Arch_Genealogy](https://raw.githubusercontent.com/hunkim/deep_architecture_genealogy/master/Neural_Net_Arch_Genealogy.png)
-https://mitpress.mit.edu/books/deep-learning-revolution
 
 ***
 The **architecture** and **optimization** are the core content of deep learning models. We will focus on the first one.
+The optimization methods are almost the content of **stochastic/incremental gradient descent**.
 
 ## Artificial Neural Network
 
-Artificial neural networks are most easily visualized in terms of a **directed graph**. In the case of sigmoidal units, node $s$ represents sigmoidal unit  and directed edge $e=(u,v)$ indicates that one of sigmoidal unit $v$'s inputs is the output of sigmoidal unit $u$.
+Artificial neural networks are most easily visualized in terms of a **directed graph**.
+In the case of sigmoidal units, node ${s}$ represents sigmoidal unit  and directed edge $e=(u,v)$ indicates that one of sigmoidal unit ${v}$'s inputs is the output of sigmoidal unit ${u}$.
+And there are connection between the node and itself in some kinds of neural networks. 
+The way or topology that nodes connected is an important part of deep neural network architecture. The other part is choice of **activation function**.
+And any deep neural network can be expressed in the form of **computational graph**.
+We will talk all the details while we give a glimpse to neural network zoo.
 
 ![The Neural Network Zoo](http://www.asimovinstitute.org/wp-content/uploads/2016/09/neuralnetworks.png)
+![neural network cell](http://www.asimovinstitute.org/wp-content/uploads/2016/12/neuralnetworkcells.png)
+
 ***
+
 * [The Wikipedia page on ANN](https://www.wikiwand.com/en/Artificial_neural_network)
 * [History of deep learning](http://beamandrew.github.io/deeplearning/2017/02/23/deep_learning_101_part1.html)
 * https://brilliant.org/wiki/artificial-neural-network/
 * https://www.asimovinstitute.org/neural-network-zoo/
+* https://www.asimovinstitute.org/neural-network-zoo-prequel-cells-layers/
+* [Computational graph](https://blog.csdn.net/zxl55/article/details/83537144)
 
 ### Perceptron
 
@@ -151,12 +178,14 @@ It is the first time to model cognition.
 * [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
 * Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
 * https://stats385.github.io/blogs
+* https://explained.ai/matrix-calculus/index.html
 
 ### Feed-forward Neural Network
 
 #### Representation of Feedforward Neural Network
 
-Given that the function of a single neuron is rather simple, it subdivides the input space into two regions by a hyperplane, the complexity must come from having more layers of neurons involved in a complex action (like recognizing your grandmother in all possible situations).The "squashing" functions introduce critical nonlinearities in the system, without their presence multiple layers would still create linear functions.
+Given that the function of a single neuron is rather simple, it subdivides the input space into two regions by a hyperplane, the complexity must come from having more layers of neurons involved in a complex action (like recognizing your grandmother in all possible situations).
+The "squashing" functions introduce critical non-linearities in the system, without their presence multiple layers would still create linear functions.
 Organized layers are very visible in the human cerebral cortex, the part of our brain which plays a key role in memory, attention, perceptual awareness, thought, language, and consciousness.[^13]
 
 The **feed-forward neural network** is also called multilayer perceptron. [The best way to create complex functions from simple functions is by **composition**.](http://math.mit.edu/~gs/learningfromdata/SIAM03.pdf)
@@ -248,12 +277,17 @@ in probability models, the loss function always is joint probability or logarith
 
 In classification, the last layer is to predict the degree of belief of the labels via [softmax function](http://freemind.pluskid.org/machine-learning/softmax-vs-softmax-loss-numerical-stability/),
 i.e.
+
 $$
 softmax(z)=(\frac{\exp(z_1)}{\sum_{i=1}^{n}\exp(z_i)},\frac{\exp(z_2)}{\sum_{i=1}^{n} \exp(z_i)}, \cdots, \frac{\exp(z_n)}{\sum_{i=1}^{n}\exp(z_i)})
 $$
+
 where $n$ is the number of total classes. The labels are encoded as the one hot vector such as $\mathrm{d}=(1,0,0,\cdots,0)$. The [cross entropy](https://www.cnblogs.com/smartwhite/p/8601477.html) is defined as:
+
 $$
-\mathbf{H}(d,p)=-\sum_{i=1}^{n}d_i\log(p_i)=\sum_{i=1}^{n}d_i\log(\frac{1}{p_i}),$$
+\mathbf{H}(d,p)=-\sum_{i=1}^{n}d_i\log(p_i)=\sum_{i=1}^{n}d_i\log(\frac{1}{p_i}),
+$$
+
 where $d_i$ is the $i$th element of the one-hot vector $d$ and $p_i=\frac{\exp(z_i)}{\sum_{j=1}^{n}\exp(z_j)}$ for all $i=1,2\dots, n.$
 
 Suppose $\mathrm{d}=(1,0,0,\cdots,0)$, the cross entropy is $\mathbf{H}(d,p)=-\log(p_1)=\log \sum_{i=1}^{n}\exp(z_i)-z_1$. The cost function is $\frac{1}{n}\sum_{i=1}^{n}\mathbf{H}(d^{i},p^{i})$ in the training data set $\{(\mathbf{x}_i,d^i)\}_{i=1}^{n}$ where $\mathbf{x}_i$ is the features of $i$th sample and $d^i$ is the desired true target label encoded in **one-hot** vector meanwhile $p^{i}$ is the predicted label of $\mathbf{x}_i$.
@@ -269,14 +303,18 @@ See the following links for more information on cross entropy and softmax.
 * <https://www.zhihu.com/question/65288314>.
 
 In regression, the loss function may simply be the squared $\ell_2$ norm, i.e. $\mathbb{L}(d,p)=(d-p)^{2}$ where $d$ is the desired target and $p$ is the predicted result. And the cost function is *mean squared error*:
-$$ J(\theta)=\frac{1}{n}\sum_{i=1}^{n}[f(\mathbf{x}_i|\theta)-\mathrm{d}_i]^2.$$
+
+$$ 
+J(\theta)=\frac{1}{n}\sum_{i=1}^{n}[f(\mathbf{x}_i|\theta)-\mathrm{d}_i]^2.
+$$
+
 In **robust statistics**, there are more loss functions such as *Huber loss*, *hinge loss*, *Tukey loss*.
 ***
 
 * [Huber loss function](https://www.wikiwand.com/en/Huber_loss)
    $$
       Huber_{\delta}(x)=\begin{cases}
-                      \frac{|x|}{2},&\text{if $|x|\leq\delta$}\\
+                      \frac{|x|^2}{2},&\text{if $|x|\leq\delta$}\\
                       \delta(|x|-\frac{1}{2}\delta),&\text{otherwise}
                       \end{cases}
    $$
@@ -289,11 +327,13 @@ In **robust statistics**, there are more loss functions such as *Huber loss*, *h
 
 * Tukey loss function
    $$
-    Tukey_{\delta}(x)=\begin{cases}
+    Tukey_{\delta}(x)=
+    \begin{cases}
          (1-[1-x^2/\delta^2]^3)\frac{\delta^2}{6},&\text{if $|x|\leq\delta$}\\
          \frac{\delta^2}{6},                      &\text{otherwise}
-                      \end{cases}
+      \end{cases}
    $$
+   where its derivative is called ****Tukey's Biweight**.
 ***
 
 It is important to choose or design loss function or more generally objective function,
@@ -468,6 +508,7 @@ See more information on backpropagation in the following list
 * [如何直观地解释 backpropagation 算法？ - 景略集智的回答 - 知乎](https://www.zhihu.com/question/27239198/answer/537357910)
 * The chapter 2 *How the backpropagation algorithm works* at the online book <http://neuralnetworksanddeeplearning.com/chap2.html>
 * For more information on automatic differentiation see the book *Evaluating Derivatives: Principles and Techniques of Algorithmic Differentiation, Second Edition* by Andreas Griewank and Andrea Walther_ at <https://epubs.siam.org/doi/book/10.1137/1.9780898717761>.
+* https://maciejkula.github.io/2018/07/18/building-an-autodifferentiation-library/
 
 ![](http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg)
 
@@ -584,7 +625,7 @@ It is to cripple the connections stochastically, which  is often used in visual 
 * https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html#An%20engineering%20approach
 * https://machinelearningmastery.com/dropout-for-regularizing-deep-neural-networks/
 
-##### Data Augmentation
+##### Data augmentation
 
 Data augmentation is to augment the training datum specially in visual recognition.
 **Overfitting** in supervised learning is data-dependent. In other words, the model may generalize better if the data set is more diverse.
@@ -604,7 +645,7 @@ It is to collect more datum in the statistical perspective.
 Convolutional neural network is originally aimed to solve visual tasks. In so-called [Three Giants' Survey](http://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf), the history of ConvNet and deep learning is curated.
 [Deep, Deep Trouble--Deep Learning’s Impact on Image Processing, Mathematics, and Humanity](https://sinews.siam.org/Details-Page/deep-deep-trouble-4) tells us the  mathematicians' impression on ConvNet in image processing.
 
-### Convolutional layer
+### Convolutional Layer
 
 Convolutional layer consists of padding, convolution, pooling.
 
@@ -951,13 +992,15 @@ It is always as one component of some complex network as normalization.
 It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>.
 It is a generative model via an adversarial process.
 It trains a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates
-the probability that a sample came from the training data rather than $G$. The training procedure for $G$ is to maximize the probability of $D$ making a mistake. 
+the probability that a sample came from the training data rather than $G$.
+The training procedure for $G$ is to maximize the probability of $D$ making a mistake.
 This framework corresponds to a minimax two-player game. In the space of arbitrary
 functions $G$ and $D$, a unique solution exists, with $G$ recovering the training data
 distribution and $D$ equal to $\frac{1}{2}$ everywhere.
 
-It is not to minimize the cost function or errors as that in supervised machine learning. In mathematcis, it is saddle point optimization.
-Thus some optimiztaion or regualrization techniques are not suitable for this framework.
+It is not to minimize the cost function or errors as that in supervised machine learning.
+In mathematics, it is saddle point optimization.
+Thus some optimization or regularization techniques are not suitable for this framework.
 It requires some methods to find the proper generator $G$ and discriminator $D$.
 
 |Generative Adversarial Network|
@@ -977,7 +1020,7 @@ It requires some methods to find the proper generator $G$ and discriminator $D$.
 ## Graph Convolution Network
 
 Graph can be represented as `adjacency matrix` as shown in *Graph Algorithm*. However, the adjacency matrix only describe the connections between the nodes. The feature of the nodes does not appear. The node itself really matters.
-For example, the chemical bonds can be representd as `adjacency matrix` while the atoms in molecule really determine the properties of the molecule.
+For example, the chemical bonds can be represented as `adjacency matrix` while the atoms in molecule really determine the properties of the molecule.
 
 A naive approach is to concatenate the `feature matrix` $X\in \mathbb{R}^{N\times E}$ and `adjacency matrix` $A\in \mathbb{R}^{N\times N}$, i.e. $X_{in}=[X, A]\in \mathbb{R}^{N\times (N+E)}$. And what is the output?
 
@@ -1021,7 +1064,6 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 ![GCN](http://tkipf.github.io/graph-convolutional-networks/images/gcn_web.png)
 
 
-
 ![CNN VS. GCNN](https://research.preferred.jp/wp-content/uploads/2017/12/cnn-gcnn.png)
 
 * http://deeploria.gforge.inria.fr/thomasTalk.pdf
@@ -1044,7 +1086,6 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
 * http://blog.lcyown.cn/2018/04/30/graphencoding/
 
-
 $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
 
 GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
@@ -1056,16 +1097,22 @@ In the previous post, the convolution of the graph Laplacian is defined in its *
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
 * https://github.com/Hulalazz/GNNPapers
 
+## Network Compression and Acceleration
 
+The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
+The optimization methods are used to train the deep neural network. After training, the parameters of the deep neural network are fixed and in inference, we would do much matrix multiplication via the saved fixed parameters of deep neural network.  
+<https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/>   
 
-## Network Compression
+* https://srdas.github.io/DLBook/intro.html#effective
+* https://cognitiveclass.ai/courses/accelerating-deep-learning-gpu/
+* https://vast.cs.ucla.edu/projects/acceleration-deep-learning-cloud-and-edge-computing
+* https://blog.csdn.net/song_pipi/article/details/79154539
+* https://github.com/songhan/Deep-Compression-AlexNet
+* https://gab41.lab41.org/lab41-reading-group-deep-compression-9c36064fb209
+* http://slazebni.cs.illinois.edu/spring17/
+* https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/
 
-The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive.   
-
-https://srdas.github.io/DLBook/intro.html#effective
-https://cognitiveclass.ai/courses/accelerating-deep-learning-gpu/
-https://vast.cs.ucla.edu/projects/acceleration-deep-learning-cloud-and-edge-computing
-https://blog.csdn.net/song_pipi/article/details/79154539
+***
 
 * [Distiller](https://nervanasystems.github.io/distiller/index.html)
 * [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
@@ -1078,6 +1125,35 @@ https://blog.csdn.net/song_pipi/article/details/79154539
 
 ## Bayesian Deep Learning
 
+[The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/)put that:
+
+> While deep learning has been revolutionary for machine learning, most modern deep learning models cannot represent their uncertainty nor take advantage of the well studied tools of probability theory. This has started to change following recent developments of tools and techniques combining Bayesian approaches with deep learning. The intersection of the two fields has received great interest from the community over the past few years, with the introduction of new deep learning models that take advantage of Bayesian techniques, as well as Bayesian models that incorporate deep learning elements [1-11]. In fact, the use of Bayesian techniques in deep learning can be traced back to the 1990s’, in seminal works by Radford Neal [12], David MacKay [13], and Dayan et al. [14]. These gave us tools to reason about deep models’ confidence, and achieved state-of-the-art performance on many tasks. However earlier tools did not adapt when new needs arose (such as scalability to big data), and were consequently forgotten. Such ideas are now being revisited in light of new advances in the field, yielding many exciting new results.
+
+> Extending on last year’s workshop’s success, this workshop will again study the advantages and disadvantages of such ideas, and will be a platform to host the recent flourish of ideas using Bayesian approaches in deep learning and using deep learning tools in Bayesian modelling. The program includes a mix of invited talks, contributed talks, and contributed posters. It will be composed of five themes: deep generative models, variational inference using neural network recognition models, practical approximate inference techniques in Bayesian neural networks, applications of Bayesian neural networks, and information theory in deep learning. Future directions for the field will be debated in a panel discussion.
+
+> This year’s main theme will focus on applications of Bayesian deep learning within machine learning and outside of it.
+
+1. Kingma, DP and Welling, M, ‘’Auto-encoding variational bayes’’, 2013.
+2. Rezende, D, Mohamed, S, and Wierstra, D, ‘’Stochastic backpropagation and approximate inference in deep generative models’’, 2014.
+3. Blundell, C, Cornebise, J, Kavukcuoglu, K, and Wierstra, D, ‘’Weight uncertainty in neural network’’, 2015.
+4. Hernandez-Lobato, JM and Adams, R, ’’Probabilistic backpropagation for scalable learning of Bayesian neural networks’’, 2015.
+5. Gal, Y and Ghahramani, Z, ‘’Dropout as a Bayesian approximation: Representing model uncertainty in deep learning’’, 2015.
+6. Gal, Y and Ghahramani, G, ‘’Bayesian convolutional neural networks with Bernoulli approximate variational inference’’, 2015.
+7. Kingma, D, Salimans, T, and Welling, M. ‘’Variational dropout and the local reparameterization trick’’, 2015.
+8. Balan, AK, Rathod, V, Murphy, KP, and Welling, M, ‘’Bayesian dark knowledge’’, 2015.
+9. Louizos, C and Welling, M, “Structured and Efficient Variational Deep Learning with Matrix Gaussian Posteriors”, 2016.
+10. Lawrence, ND and Quinonero-Candela, J, “Local distance preservation in the GP-LVM through back constraints”, 2006.
+11. Tran, D, Ranganath, R, and Blei, DM, “Variational Gaussian Process”, 2015.
+12. Neal, R, "Bayesian Learning for Neural Networks", 1996.
+13. MacKay, D, ‘’A practical Bayesian framework for backpropagation networks‘’, 1992.
+14. Dayan, P, Hinton, G, Neal, R, and Zemel, S, "The Helmholtz machine", 1995.
+15. Wilson, AG, Hu, Z, Salakhutdinov, R, and Xing, EP, “Deep Kernel Learning”, 2016.
+16. Saatchi, Y and Wilson, AG, “Bayesian GAN”, 2017.
+17. MacKay, D.J.C. “Bayesian Methods for Adaptive Models”, PhD thesis, 1992.
+
+
+***
+
 * https://github.com/junlulocky/bayesian-deep-learning-notes
 * https://github.com/robi56/awesome-bayesian-deep-learning#theory
 * https://alexgkendall.com/computer_vision/phd_thesis/
@@ -1085,6 +1161,23 @@ https://blog.csdn.net/song_pipi/article/details/79154539
 * http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
 
 ## Theories of Deep Learning
+
+[ICML 2017](https://www.padl.ws/) organized a workshop on **Principled Approaches to Deep Learning**:
+> The recent advancements in deep learning have revolutionized the field of machine learning, enabling unparalleled performance and many new real-world applications. Yet, the developments that led to this success have often been driven by empirical studies, and little is known about the theory behind some of the most successful approaches. While theoretically well-founded deep learning architectures had been proposed in the past, they came at a price of increased complexity and reduced tractability. Recently, we have witnessed considerable interest in principled deep learning. This led to a better theoretical understanding of existing architectures as well as development of more mature deep models with solid theoretical foundations. In this workshop, we intend to review the state of those developments and provide a platform for the exchange of ideas between the theoreticians and the practitioners of the growing deep learning community. Through a series of invited talks by the experts in the field, contributed presentations, and an interactive panel discussion, the workshop will cover recent theoretical developments, provide an overview of promising and mature architectures, highlight their challenges and unique benefits, and present the most exciting recent results.
+
+Topics of interest include, but are not limited to:
+
+* Deep architectures with solid theoretical foundations
+* Theoretical understanding of deep networks
+* Theoretical approaches to representation learning
+* Algorithmic and optimization challenges, alternatives to backpropagation
+* Probabilistic, generative deep models
+* Symmetry, transformations, and equivariance
+* Practical implementations of principled deep learning approaches
+* Domain-specific challenges of principled deep learning approaches
+* Applications to real-world problems
+
+***
 
 * [Short Course of Deep Learning 2016 Autumn, PKU](http://www.xn--vjq503akpco3w.top/)
 * [深度学习名校课程大全 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/31988246)
@@ -1108,6 +1201,7 @@ https://blog.csdn.net/song_pipi/article/details/79154539
 * [Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
 * [DALI 2018, Data Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
 * [Deep unrolling](https://zhuanlan.zhihu.com/p/44003318)
+* [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
 * http://blog.qure.ai/notes/visualizing_deep_learning
 * http://blog.qure.ai/notes/deep-learning-visualization-gradient-based-methods
 * http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/
@@ -1124,6 +1218,7 @@ https://blog.csdn.net/song_pipi/article/details/79154539
 * http://cbmm.mit.edu/publications
 * https://stanford.edu/~shervine/l/zh/teaching/cs-229/cheatsheet-deep-learning
 * https://stanford.edu/~shervine/teaching/cs-230.html
+* https://cordis.europa.eu/project/rcn/214602/factsheet/en
 
 ***
 |Deep Dream|
