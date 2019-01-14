@@ -78,11 +78,20 @@ where $\beta^2$ is the average of all players' variances, $\nu(t) =\frac{N(t)}{\
 ## Whole-History Rating
 
 Incremental Rating Systems or dynamical rating systems such as TrueSkill  do not make optimal use of data.
-The principle of Bayesian Inference consists in computing a probability distribution over player ratings ($r$) from the observation of game results ($G$) by inverting the model thanks to Bayes formula:
-$$P(r|G)=\frac{P(G|r)P(r)}{P(G)}$$
+The principle of Bayesian Inference consists in computing a probability distribution 
+over player ratings ($r$) from the observation of game results ($G$) by inverting the model thanks to Bayes formula:
+
+$$
+P(r|G)=\frac{P(G|r)P(r)}{P(G)}
+$$
+
 where $P(r)$ is a prior distribution over $r$, and $P(G)$ is a normalizing constant. $P(r|G)$ is called the posterior distribution of $r$
 $P(G|r)$ is the Bradley-Terry model, i.e.
-$$P(\text{player $i$ beats player $j$ at time $t$})= \frac{1}{1+10^{-\frac{R_i(t)-R_j(t)}{400}}}$$
+
+$$
+P(\text{player $i$ beats player $j$ at time $t$})= \frac{1}{1+10^{-\frac{R_i(t)-R_j(t)}{400}}}
+$$
+
 as shown in Elo rating system.
 
 In the dynamic Bradley-Terry model, the prior has two roles. First, a prior
@@ -91,11 +100,12 @@ of a player with $100\%$ wins does not go to infinity. Also, a prior controls th
 variation of the ratings in time, to avoid huge jumps in ratings.
 In the dynamic Bradley-Terry model, the prior that controls the variation of
 ratings in time is a Wiener process:
+
 $$
 r_i(t_1) - r_i(t_1)\sim N(0, |t_2-t_1|w^2) ,
 $$
 
-$w$ is a parameter of the model, that indicates the variability of ratings in time.
+where $w$ is a parameter of the model, that indicates the variability of ratings in time.
 The extreme case of $w = 0$ would mean static ratings.
 
 The WHR algorithm consists in computing, for each player, the $r(t)$ function
@@ -103,6 +113,7 @@ that maximizes $P(r|G)$. Once this maximum a posteriori (**MAP**) has been compu
 the variance around this maximum is also estimated, which is a way to estimate rating uncertainty.
 
 Formally, Newton’s method consists in updating the rating vector r of one player (the vector of ratings at times when that player played a game) according to this formula
+
 $$
 r\leftarrow r - (\frac{\partial^2 \log(p)}{\partial r^2})^{-1} \frac{\partial \log(p)}{\partial r} .
 $$
@@ -123,8 +134,13 @@ We may use machine learn to predict the scores of players and test it in real da
 
 * http://fastml.com/evaluating-recommender-systems/
 * https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
+* https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/
 
 ### RankNet
+
+> RankNet is a feedforward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
+
+RankNet takes the ranking  as **regression** task.
 
 Suppose that two players $u_i$ and $u_j$ with feature vectors $x_i$ and $x_j$ is presented to the model, which computes the scores $s_i = f(x_i)$ and $s_j = f(x_j)$. 
 Another output of the model is the probability that $U_i$ should be ranked
@@ -133,6 +149,9 @@ $$
 P(U_i\triangleleft U_j)=\frac{1}{1+\exp(-\sigma(s_i-s_j))}=\frac{1}{1+\exp[-\sigma(f(x_i)-f(x_j))]}
 $$
 where the choice of the parameter $\sigma$ determines the shape of the sigmoid.
+
+**Obviously, the idea also occurs in Elo rating.**
+
 We then apply the cross entropy cost function,
 which penalizes the deviation of the model output probabilities from the desired
 probabilities:
@@ -157,21 +176,33 @@ C=-\overline{P_{ij}}[\log(P(U_i\triangleleft U_j))-\log(1-P(U_i\triangleleft U_j
 =(1-\overline{P_{ij}})\sigma(s_i-s_j)+\log[1+\exp(-\sigma(s_i-s_j))].
 $$
 
-So that we can compute the gradient of cost function with respect of $s_i$ and $s_j$.
+So that we can compute the gradient of cost function with respect of $s_i$ and $s_j$, which are outputs of deep neural network.
+
+See more deep learning algorithms at [https://github.com/Isminoula/DL-to-Rank].
+
+### LambdaRank
 
 **LambdaRank**  introduced the $\lambda_i$ when update of parameters $w$ of the model $f:\mathbb{R}^P\to\mathbb{R}$.The key observation of LambdaRank is thus that in order to train a model, we do not need the costs themselves: we only need the gradients (of the costs with respect to
 the model scores).
 
+You can think of these gradients as little arrows attached to each document in the ranked list, indicating which direction we’d like those documents to move. LambdaRank simply took the RankNet gradients, which we knew worked well, and scaled them by the change in NDCG found by swapping each pair of documents. We found that this training generated models with significantly improved relevance (as measured by NDCG) and had an added bonus of uncovering a further trick that improved overall training speed (for both RankNet and LambdaRank). Furthermore, surprisingly, we found empirical evidence (see also this paper) that the training procedure does actually optimize NDCG, even though the method, although intuitive and sensible, has no such guarantee.
+
+* http://blog.camlcity.org/blog/lambdarank.html
+* http://wnzhang.net/papers/lambdafm.pdf
+
+### LambdaMART
+
 **LambdaMART** is the boosted tree version of LambdaRank, which is based on RankNet.
+
+MART stands for [Multiple Additive Regression Tree](http://statweb.stanford.edu/~jhf/MART.html). On short but incomplete word, it is **GBRT + LR** - **gradient boosting regression tree and logistic regression**.
+GBRT is introduced at the *Boosting* section.
+
 
 ***
 ![LambdaMART](https://liam.page/uploads/images/LTR/LambdaMART.png)
 ***
 
-
-
 - [x] https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
-- [ ] https://www.wikiwand.com/en/Learning_to_rank 
 - [ ] http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf
 - [ ] https://ai.google/research/pubs/pub47258
 - [ ] https://arxiv.org/abs/1811.04415
@@ -179,9 +210,13 @@ the model scores).
 - [ ] https://github.com/Isminoula/DL-to-Rank
 - [ ] https://github.com/tensorflow/ranking
 - [ ] https://maciejkula.github.io/spotlight/index.html#
+- [ ] https://staff.fnwi.uva.nl/e.kanoulas/wp-content/uploads/Lecture-8-1-LambdaMart-Demystified.pdf
+- [ ] https://blog.csdn.net/huagong_adu/article/details/40710305
+- [ ] https://liam.page/uploads/slides/lambdamart.pdf
 
 ***
 
+* https://www.wikiwand.com/en/Learning_to_rank 
 * https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
 * https://plato.stanford.edu/entries/arrows-theorem/
 * https://www.math.ucla.edu/~tao/arrow.pdf
