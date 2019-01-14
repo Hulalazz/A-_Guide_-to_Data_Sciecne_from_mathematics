@@ -6,6 +6,21 @@ It is web-source based. And some material draw from the original owners' blogs.
 Last but not least, thanks to the teachers who guide me to mathematics.
 And the copyright of pictures are not permmited by the original oweners. 
 If this material infringes your copyright, you could contact me via Github and I will delete the pictures.
+
+I hope that it is on the [ADEPT way](https://betterexplained.com/articles/adept-method/) like [Kalid Azad](https://betterexplained.com/)
+
+|ADEPT Method for Learning| |
+| --- | --- |
+| Analogy | Tell me what it is like|
+| Diagram | Help me visualize it|
+| Example | Allow me to experience it|
+|Plain English | DEscribe it with everyday word|
+| Technical Definition | Discuss the formal details|
+
+It is expected a part of **A Guide to Data Science**.
+
+It includes the architure, optimization method and regularization, acceleration and compression.
+
 It includes the following content:
 - [X] basic introduction to probability and statistics;
 - [X] sampling algorithm based on uniformly distributed data;
