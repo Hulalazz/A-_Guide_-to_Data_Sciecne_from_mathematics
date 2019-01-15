@@ -13,21 +13,41 @@ It use 'divide-and-conquer' strategy recursively. It is easy to scale up to mass
 
 ***
 
-
 Creating a binary decision tree is actually a process of dividing up the input space.
 
 This learning process is to minimize the impurities.
 If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
 reduced, and the amount of the reduction is the information gain,
-$$G(D;D_1,\dots,D_k)=Ent(D)-\sum_{i=1}^{k}\frac{|D_k|}{|D|}Ent(D_k)$$
+
+$$
+G(D;D_1,\dots,D_k)=Ent(D)-\sum_{i=1}^{k}\frac{|D_k|}{|D|}Ent(D_k)
+$$
+
 where $Ent(D)$, the entropy of $D$, is defined as
+
 $$
 Ent(D)=\sum_{y\in Y}P(y|D)\log(\frac{1}{P(y|D)}).
 $$
+
+
 The information gain ratio of features $A$ with respect of data set $D$  is defined as
-$$g_{R}(D,A)=\frac{G(D,A)}{Ent(D)}.$$
+
+$$
+g_{R}(D,A)=\frac{G(D,A)}{Ent(D)}.
+$$
 And another option of impurity is Gini index of probability $p$:
-$$Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.$$
+
+$$
+Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
+$$
+
+***
+
+Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max deepth?
+The regularization techniques in regression may not suit the tree algorithms such as LASSO.
+
+[Fifty Years of Classification and
+Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
 
 ***
 
@@ -40,6 +60,7 @@ $$Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.$$
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
 * http://www.stat.wisc.edu/~loh/guide.html
 * https://explained.ai/decision-tree-viz/index.html
+* http://www.cnblogs.com/en-heng/p/5035945.html
 * https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/
 * (http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 
@@ -116,19 +137,20 @@ the learner may pay more attention to the data drawn from $S$.
 For the regression problem, of which the output results are continuous, it  progressively reduce the error by trial.
 In another word, we will reduce the error at each iteration.
 
-
-https://betterexplained.com/articles/adept-method/
-https://web.stanford.edu/~hastie/Papers/buehlmann.pdf
-https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/
-
+* https://betterexplained.com/articles/adept-method/
+* https://web.stanford.edu/~hastie/Papers/buehlmann.pdf
+* https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/
 * http://www.machine-learning.martinsewell.com/ensembles/boosting/
 * [Boosting at Wikipedia](https://www.wikiwand.com/en/Boosting_(machine_learning))
 
 #### AdaBoost
 
-AdaBoost is a boosting methods for supervised classification algorithms, so that the labelled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$.
+AdaBoost is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$. 
+AdaBoost is to change the distribution of training data and learn from the shuffled data.
+It is an iterative trial-and-error in some sense.
 
 ***
+
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$;
 * For $t = 1, 2, \dots, T$:
    +  Fit a classifier $G_m(x)$ to the training data using weights $w_i$;
@@ -138,10 +160,10 @@ AdaBoost is a boosting methods for supervised classification algorithms, so that
    +  Set $w_i\leftarrow w_i\exp[\alpha_t\mathbb{I}(\mathrm{d}_i\not=G_t(x_i))], i=1,2,\dots, N$.
 * Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_t(x)]$.
 
-The indictor function $\mathbb{I}(x\not=y)$ is defined as
-$$\mathbb{I}(x\not=y)=
+The indicator function $\mathbb{I}(x\neq y)$ is defined as
+$$\mathbb{I}(x\neq y)=
 \begin{cases}
-1, \text{if $x\not= y$} \\
+1, \text{if $x\neq y$} \\
 0, \text{otherwise}.
 \end{cases}$$
 ***
@@ -151,9 +173,15 @@ $$\mathbb{I}(x\not=y)=
 
 #### Gradient Boosting Decision Tree
 
+One of the frequently asked questions is `What's the basic idea behind gradient boosting?` and the answer from [https://explained.ai/gradient-boosting/faq.html] is the best one I know:
+> Instead of creating a single powerful model, boosting combines multiple simple models into a single **composite model**. The idea is that, as we introduce more and more simple models, the overall model becomes stronger and stronger. In boosting terminology, the simple models are called weak models or weak learners.
+> To improve its predictions, gradient boosting looks at the difference between its current approximation,$\hat{y}$ , and the known correct target vector, $y$, which is called the residual, $y-\hat{y}$. It then trains a weak model that maps feature vector $x$  to that residual vector. Adding a residual predicted by a weak model to an existing model's approximation nudges the model towards the correct target. Adding lots of these nudges, improves the overall models approximation.
 ![golf](https://explained.ai/gradient-boosting/images/golf-dir-vector.png)
 
+It is the first solution to the question that if weak learner is equivalent to strong learner.
+
 ***
+
 * Initialize $f_0(x)=\arg\min_{\gamma} L(\mathrm{d}_i,\gamma)$;
 * For $t = 1, 2, \dots, T$:
    +  Compute
@@ -169,10 +197,17 @@ $$\mathbb{I}(x\not=y)=
 * https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/
 * https://explained.ai/gradient-boosting/index.html
 * https://explained.ai/gradient-boosting/L2-loss.html
+* https://explained.ai/gradient-boosting/L1-loss.html
+* https://explained.ai/gradient-boosting/descent.html
+* https://explained.ai/gradient-boosting/faq.html
 * [GBDT算法原理 - 飞奔的猫熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/50176849)
 * https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 * https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/
 * https://data-flair.training/blogs/gradient-boosting-algorithm/
+* https://arxiv.org/abs/1803.02042
+* https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
+* https://machinelearningmastery.com/start-with-gradient-boosting/
+* https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
 
 #### xGBoost
 
@@ -182,7 +217,8 @@ r_{i,t}=-{ [\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}] }_{f=f_{t-
 $$
 Why not the error $L(\mathrm{d}_i, f(x_i))$ itself?
 Recall the Taylor expansion
-$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$, which is easier to fit than a general non-convex function.
+$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$, 
+which is easier to fit than a general common non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
 We may consider the generalized additive model, i.e.,
