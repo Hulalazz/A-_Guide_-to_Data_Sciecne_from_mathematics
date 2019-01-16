@@ -1,15 +1,15 @@
 # Deep Learning
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
-In mathematics, it is nonlinear non-convex and composite of many functions. 
+In mathematics, it is nonlinear non-convex and composite of many functions.
 Its name -deep learning- is to distinguish from the classical machine learning "shallow" methods.
-However, its complexity makes it yet engineering even art far from science. 
+However, its complexity makes it yet engineering even art far from science.
 There is no first principle in deep learning but trial and error.
-In theory, we do not clearly understand how to design more robust and efficient network architecture; 
+In theory, we do not clearly understand how to design more robust and efficient network architecture;
 in practice, we can apply it to diverse fields. It is considered as one approach to artificial intelligence
 
 Deep learning is a typical hierarchy model.
-The application of deep learning are partial listed in 
+The application of deep learning are partial listed in
 
 * [Awesome deep learning](https://github.com/ChristosChristofidis/awesome-deep-learning);
 * [Opportunities and obstacles for deep learning in biology and medicine: 2019 update](https://greenelab.github.io/deep-review/);
@@ -51,7 +51,7 @@ The optimization methods are almost the content of **stochastic/incremental grad
 
 Artificial neural networks are most easily visualized in terms of a **directed graph**.
 In the case of sigmoidal units, node ${s}$ represents sigmoidal unit  and directed edge $e=(u,v)$ indicates that one of sigmoidal unit ${v}$'s inputs is the output of sigmoidal unit ${u}$.
-And there are connection between the node and itself in some kinds of neural networks. 
+And there are connection between the node and itself in some kinds of neural networks.
 The way or topology that nodes connected is an important part of deep neural network architecture. The other part is choice of **activation function**.
 And any deep neural network can be expressed in the form of **computational graph**.
 We will talk all the details while we give a glimpse to neural network zoo.
@@ -242,7 +242,7 @@ The general form of the evaluation is given by:
 $$
 J(\theta)=\frac{1}{n}\sum_{i=1}^{n}\mathbb{L}[f(\mathbf{x}_i|\theta),\mathbf{d}_i]
 $$
-where $\mathbf{d}_i$ is the desired value of the input $\mathbf{x}_i$ and $\theta$ is the parameters of multilayer perceptron. The notation $f(\mathbf{x}_i|\theta)$ is the output given paramaters $\theta$. The function $\mathbb{L}$ is **loss function** to measure the discrpency between the predicted value $f(\mathbf{x}_i|\theta)$ and the desired value $\mathbf{d}_i$.
+where $\mathbf{d}_i$ is the desired value of the input $\mathbf{x}_i$ and $\theta$ is the parameters of multilayer perceptron. The notation $f(\mathbf{x}_i|\theta)$ is the output given parameters $\theta$. The function $\mathbb{L}$ is **loss function** to measure the discrepancy between the predicted value $f(\mathbf{x}_i|\theta)$ and the desired value $\mathbf{d}_i$.
 
 In general, the number of parameters $\theta$ is less than the sample size $n$. And the objective function $J(\theta)$ is not convex.  
 
@@ -304,7 +304,7 @@ See the following links for more information on cross entropy and softmax.
 
 In regression, the loss function may simply be the squared $\ell_2$ norm, i.e. $\mathbb{L}(d,p)=(d-p)^{2}$ where $d$ is the desired target and $p$ is the predicted result. And the cost function is *mean squared error*:
 
-$$ 
+$$
 J(\theta)=\frac{1}{n}\sum_{i=1}^{n}[f(\mathbf{x}_i|\theta)-\mathrm{d}_i]^2.
 $$
 
@@ -386,8 +386,8 @@ $$
 - [ ] the gradient of prediction function with respect to the last hidden state:
 $$
 \frac{\partial f^{j}(x_0)}{\partial H}  =
-\frac{\partial \sigma(W^jH+b^j)}{\partial H}  =
-{\sigma}^{\prime}(W^jH+b^j) W^j \,\,\forall j\in\{1,2,\dots,l\},
+\frac{\partial \sigma(W^jH + b^j)}{\partial H}  =
+{\sigma}^{\prime}(W^jH + b^j) W^j \,\,\forall j\in\{1,2,\dots,l\},
 $$
 where $f^{j}(x_0)$, $W^{j}$, $b^j$ and $\sigma^{\prime}(z)$is the $j$th element of $f(x_0)$, the $j$-th row of matrix $W$, the $j$th element of vector $b$ and $\frac{\mathrm{d}\sigma(z)}{\mathrm{d} z}$, respectively.
 
@@ -1054,7 +1054,8 @@ $$
 with $\hat{A}=A+I$, where $I$ is the identity matrix and $\hat{D}$ is the diagonal node degree matrix of $\hat{A}$.
 See more details at [Multi-layer Graph Convolutional Network (GCN) with first-order filters](http://tkipf.github.io/graph-convolutional-networks/).
 
-Like other neural network, GCN is also composite of linear and nonlinear mapping. In details,
+Like other neural network, GCN is also composite of linear and nonlinear mapping. In details,\
+
 1. $\hat{D}^{-\frac{1}{2}} \hat{A} \hat{D}^{-\frac{1}{2}}$ is to normalize the graph structure;
 2. the next step is to multiply node properties and weights;
 3. Add nonlinearities by activation function $\sigma$.
@@ -1101,56 +1102,81 @@ In the previous post, the convolution of the graph Laplacian is defined in its *
 
 The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
 The optimization methods are used to train the deep neural network. After training, the parameters of the deep neural network are fixed and in inference, we would do much matrix multiplication via the saved fixed parameters of deep neural network.  
-<https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/>   
+<https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/>
 
+When the computation resource is limited such as embedded or mobile system,
+can we deploy deep learning models? Definitely yes.
+
+![](https://littletomatodonkey.github.io/img/post/20181010-DC-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
+
+### Network Pruning
+
+Pruning is to prune the connections in deep neural network in order to reduce the number of weights.
+
+### Quantization
+
+Quantization is to quantize the weights in order to store the weights with less bits.
+
+### Huffman Encoding
+
+[Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
+
+### Knowledgement Distillation
+
+![](https://pocketflow.github.io/pics/framework_design.png)
+
+* https://arxiv.org/abs/1510.00149
+* https://arxiv.org/abs/1712.01887
+* https://arxiv.org/abs/1804.03294
 * https://srdas.github.io/DLBook/intro.html#effective
+* https://zhuanlan.zhihu.com/p/48420428
 * https://cognitiveclass.ai/courses/accelerating-deep-learning-gpu/
 * https://vast.cs.ucla.edu/projects/acceleration-deep-learning-cloud-and-edge-computing
 * https://blog.csdn.net/song_pipi/article/details/79154539
 * https://github.com/songhan/Deep-Compression-AlexNet
+* https://github.com/sun254/awesome-model-compression-and-acceleration
+* https://github.com/chester256/Model-Compression-Papers
 * https://gab41.lab41.org/lab41-reading-group-deep-compression-9c36064fb209
 * http://slazebni.cs.illinois.edu/spring17/
 * https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/
 
 ***
 
-* [Distiller](https://nervanasystems.github.io/distiller/index.html)
+* [Distiller in Github](https://nervanasystems.github.io/distiller/index.html)
 * [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
 * [Network Speed and Compression](https://github.com/mrgloom/Network-Speed-and-Compression)
-* https://arxiv.org/pdf/1712.01887.pdf
+* [PocketFlow in Github](https://github.com/Tencent/PocketFlow)
+* https://pocketflow.github.io/
 * https://hanlab.mit.edu/projects/tsm/
-* [Papers Reading List of *Embeded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
+* [Papers Reading List of *Embedded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
 * [SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)
-* https://arxiv.org/abs/1804.03294
+
 
 ## Bayesian Deep Learning
 
 [The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/)put that:
 
-> While deep learning has been revolutionary for machine learning, most modern deep learning models cannot represent their uncertainty nor take advantage of the well studied tools of probability theory. This has started to change following recent developments of tools and techniques combining Bayesian approaches with deep learning. The intersection of the two fields has received great interest from the community over the past few years, with the introduction of new deep learning models that take advantage of Bayesian techniques, as well as Bayesian models that incorporate deep learning elements [1-11]. In fact, the use of Bayesian techniques in deep learning can be traced back to the 1990s’, in seminal works by Radford Neal [12], David MacKay [13], and Dayan et al. [14]. These gave us tools to reason about deep models’ confidence, and achieved state-of-the-art performance on many tasks. However earlier tools did not adapt when new needs arose (such as scalability to big data), and were consequently forgotten. Such ideas are now being revisited in light of new advances in the field, yielding many exciting new results.
-
+> While deep learning has been revolutionary for machine learning, most modern deep learning models cannot represent their uncertainty nor take advantage of the well studied tools of probability theory. This has started to change following recent developments of tools and techniques combining Bayesian approaches with deep learning. The intersection of the two fields has received great interest from the community over the past few years, with the introduction of new deep learning models that take advantage of Bayesian techniques, as well as Bayesian models that incorporate deep learning elements [1-11]. In fact, the use of Bayesian techniques in deep learning can be traced back to the 1990s’, in seminal works by Radford Neal [12], David MacKay [13], and Dayan et al. [14]. These gave us tools to reason about deep models’ confidence, and achieved state-of-the-art performance on many tasks. However earlier tools did not adapt when new needs arose (such as scalability to big data), and were consequently forgotten. Such ideas are now being revisited in light of new advances in the field, yielding many exciting new results
 > Extending on last year’s workshop’s success, this workshop will again study the advantages and disadvantages of such ideas, and will be a platform to host the recent flourish of ideas using Bayesian approaches in deep learning and using deep learning tools in Bayesian modelling. The program includes a mix of invited talks, contributed talks, and contributed posters. It will be composed of five themes: deep generative models, variational inference using neural network recognition models, practical approximate inference techniques in Bayesian neural networks, applications of Bayesian neural networks, and information theory in deep learning. Future directions for the field will be debated in a panel discussion.
-
 > This year’s main theme will focus on applications of Bayesian deep learning within machine learning and outside of it.
 
-1. Kingma, DP and Welling, M, ‘’Auto-encoding variational bayes’’, 2013.
-2. Rezende, D, Mohamed, S, and Wierstra, D, ‘’Stochastic backpropagation and approximate inference in deep generative models’’, 2014.
-3. Blundell, C, Cornebise, J, Kavukcuoglu, K, and Wierstra, D, ‘’Weight uncertainty in neural network’’, 2015.
-4. Hernandez-Lobato, JM and Adams, R, ’’Probabilistic backpropagation for scalable learning of Bayesian neural networks’’, 2015.
-5. Gal, Y and Ghahramani, Z, ‘’Dropout as a Bayesian approximation: Representing model uncertainty in deep learning’’, 2015.
-6. Gal, Y and Ghahramani, G, ‘’Bayesian convolutional neural networks with Bernoulli approximate variational inference’’, 2015.
-7. Kingma, D, Salimans, T, and Welling, M. ‘’Variational dropout and the local reparameterization trick’’, 2015.
-8. Balan, AK, Rathod, V, Murphy, KP, and Welling, M, ‘’Bayesian dark knowledge’’, 2015.
+1. Kingma, DP and Welling, M, "Auto-encoding variational Bayes", 2013.
+2. Rezende, D, Mohamed, S, and Wierstra, D, "Stochastic backpropagation and approximate inference in deep generative models", 2014.
+3. Blundell, C, Cornebise, J, Kavukcuoglu, K, and Wierstra, D, "Weight uncertainty in neural network", 2015.
+4. Hernandez-Lobato, JM and Adams, R, "Probabilistic backpropagation for scalable learning of Bayesian neural networks", 2015.
+5. Gal, Y and Ghahramani, Z, "Dropout as a Bayesian approximation: Representing model uncertainty in deep learning", 2015.
+6. Gal, Y and Ghahramani, G, "Bayesian convolutional neural networks with Bernoulli approximate variational inference", 2015.
+7. Kingma, D, Salimans, T, and Welling, M. "Variational dropout and the local reparameterization trick", 2015.
+8. Balan, AK, Rathod, V, Murphy, KP, and Welling, M, "Bayesian dark knowledge", 2015.
 9. Louizos, C and Welling, M, “Structured and Efficient Variational Deep Learning with Matrix Gaussian Posteriors”, 2016.
 10. Lawrence, ND and Quinonero-Candela, J, “Local distance preservation in the GP-LVM through back constraints”, 2006.
 11. Tran, D, Ranganath, R, and Blei, DM, “Variational Gaussian Process”, 2015.
 12. Neal, R, "Bayesian Learning for Neural Networks", 1996.
-13. MacKay, D, ‘’A practical Bayesian framework for backpropagation networks‘’, 1992.
+13. MacKay, D, "A practical Bayesian framework for backpropagation networks", 1992.
 14. Dayan, P, Hinton, G, Neal, R, and Zemel, S, "The Helmholtz machine", 1995.
 15. Wilson, AG, Hu, Z, Salakhutdinov, R, and Xing, EP, “Deep Kernel Learning”, 2016.
 16. Saatchi, Y and Wilson, AG, “Bayesian GAN”, 2017.
 17. MacKay, D.J.C. “Bayesian Methods for Adaptive Models”, PhD thesis, 1992.
-
 
 ***
 
@@ -1158,6 +1184,7 @@ The optimization methods are used to train the deep neural network. After traini
 * https://github.com/robi56/awesome-bayesian-deep-learning#theory
 * https://alexgkendall.com/computer_vision/phd_thesis/
 * http://bayesiandeeplearning.org/
+* http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
 * http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
 
 ## Theories of Deep Learning
