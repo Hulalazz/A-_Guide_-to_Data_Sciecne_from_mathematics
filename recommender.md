@@ -29,18 +29,17 @@ $$
 $$
 
 And we can predict the score $R_{[u][i]}$ via 
-$$
-\hat{R}_{[u][i]}=\hat{r}_{u,i}=\left<P_u,Q_i\right>=\sum_f p_{u,f}q_{i,f}
-$$
+
+$$\hat{R}_{[u][i]}=\hat{r}_{u,i}=\left<P_u,Q_i\right>=\sum_f p_{u,f}q_{i,f}$$
+
 where $P_u, Q_i$ is the ${u}$th column of ${P}$ and the ${i}$th column of ${Q}$, respectively.
 And we can define the cost function
-$$
-C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\hat{r}_{u,i})^{2}=\sum_{(u,i):Observed}(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}.
-$$
-Additionally, we can add regular term into the cost function to void over-fitting 
-$$
-C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}+\lambda(\|P_u\|^2+\|Q_i\|^2).
-$$
+
+$$C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\hat{r}_{u,i})^{2}=\sum_{(u,i):Observed}(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}.$$
+
+Additionally, we can add regular term into the cost function to void over-fitting
+
+$$C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}+\lambda(\|P_u\|^2+\|Q_i\|^2).$$
 
 ***
 
