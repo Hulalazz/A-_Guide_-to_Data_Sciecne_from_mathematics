@@ -40,12 +40,17 @@ The application of deep learning are partial listed in
 |https://blog.keras.io/the-limitations-of-deep-learning.html|
 |[MIT Deep Learning Book](https://github.com/janishar/mit-deep-learning-book-pdf)|
 
-![Deep Learning Roadmap](http://www.deeplearningpatterns.com/lib/exe/fetch.php?media=deeplearning_overview_9_.jpg)
-![Neural_Net_Arch_Genealogy](https://raw.githubusercontent.com/hunkim/deep_architecture_genealogy/master/Neural_Net_Arch_Genealogy.png)
-
 ***
+
+Deep learning origins from neural networks and extends to many fields.
 The **architecture** and **optimization** are the core content of deep learning models. We will focus on the first one.
 The optimization methods are almost the content of **stochastic/incremental gradient descent**.
+
+![](http://www.deeplearningpatterns.com/lib/exe/fetch.php?media=deeplearning_overview_9_.jpg)
+
+
+
+![](https://raw.githubusercontent.com/hunkim/deep_architecture_genealogy/master/Neural_Net_Arch_Genealogy.png)
 
 ## Artificial Neural Network
 
@@ -56,8 +61,9 @@ The way or topology that nodes connected is an important part of deep neural net
 And any deep neural network can be expressed in the form of **computational graph**.
 We will talk all the details while we give a glimpse to neural network zoo.
 
-![The Neural Network Zoo](http://www.asimovinstitute.org/wp-content/uploads/2016/09/neuralnetworks.png)
-![neural network cell](http://www.asimovinstitute.org/wp-content/uploads/2016/12/neuralnetworkcells.png)
+![](http://www.asimovinstitute.org/wp-content/uploads/2016/09/neuralnetworks.png)
+
+![](http://www.asimovinstitute.org/wp-content/uploads/2016/12/neuralnetworkcells.png)
 
 ***
 
@@ -302,7 +308,7 @@ See the following links for more information on cross entropy and softmax.
 * <https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/>;
 * <https://www.zhihu.com/question/65288314>.
 
-In regression, the loss function may simply be the squared $\ell_2$ norm, i.e. $\mathbb{L}(d,p)=(d-p)^{2}$ where $d$ is the desired target and $p$ is the predicted result. And the cost function is *mean squared error*:
+In regression, the loss function may simply be the squared $\ell_2$ norm, i.e. $\mathbb{L}(d,p)=(d-p)^{2}$ where ${d}$ is the desired target and $p$ is the predicted result. And the cost function is *mean squared error*:
 
 $$
 J(\theta)=\frac{1}{n}\sum_{i=1}^{n}[f(\mathbf{x}_i|\theta)-\mathrm{d}_i]^2.
@@ -326,13 +332,15 @@ In **robust statistics**, there are more loss functions such as *Huber loss*, *h
   where $t=+1$ or $t=-1$.
 
 * Tukey loss function
+
    $$
     Tukey_{\delta}(x)=
     \begin{cases}
-         (1-[1-x^2/\delta^2]^3)\frac{\delta^2}{6},&\text{if $|x|\leq\delta$}\\
+         (1-[1-x^2/\delta^2]^3)\frac{\delta^2}{6}, &\text{if $|x|\leq\delta$}\\
          \frac{\delta^2}{6},                      &\text{otherwise}
       \end{cases}
    $$
+   
    where its derivative is called ****Tukey's Biweight**.
 ***
 
@@ -1086,6 +1094,8 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 * https://datawarrior.wordpress.com/2018/08/08/graph-convolutional-neural-network-part-i/
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
 * http://blog.lcyown.cn/2018/04/30/graphencoding/
+* http://www.cs.nuim.ie/~gunes/files/Baydin-MSR-Slides-20160201.pdf
+* http://colah.github.io/posts/2015-09-NN-Types-FP/
 
 $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
 
@@ -1107,23 +1117,58 @@ The optimization methods are used to train the deep neural network. After traini
 When the computation resource is limited such as embedded or mobile system,
 can we deploy deep learning models? Definitely yes.
 
+* [Distiller in Github](https://nervanasystems.github.io/distiller/index.html)
+* [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
+* [Network Speed and Compression](https://github.com/mrgloom/Network-Speed-and-Compression)
+* [PocketFlow in Github](https://github.com/Tencent/PocketFlow)
+* https://pocketflow.github.io/
+* https://hanlab.mit.edu/projects/tsm/
+* [Papers Reading List of *Embedded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
+* [SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)
+* https://developer.nvidia.com/tensorrt
+
+
 ![](https://littletomatodonkey.github.io/img/post/20181010-DC-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
 ### Network Pruning
 
 Pruning is to prune the connections in deep neural network in order to reduce the number of weights.
 
+* https://nervanasystems.github.io/distiller/pruning/index.html
+* https://github.com/yihui-he/channel-pruning
+* https://pocketflow.github.io/cp_learner/
+  
 ### Quantization
 
 Quantization is to quantize the weights in order to store the weights with less bits.
 
+* https://nervanasystems.github.io/distiller/quantization/index.html
+* https://pocketflow.github.io/uq_learner/
+  
 ### Huffman Encoding
 
 [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
 
 ### Knowledgement Distillation
 
+* https://nervanasystems.github.io/distiller/knowledge_distillation/index.html
+* https://github.com/dkozlov/awesome-knowledge-distillation
+* https://github.com/lhyfst/knowledge-distillation-papers
+* https://pocketflow.github.io/distillation/
+  
 ![](https://pocketflow.github.io/pics/framework_design.png)
+
+
+### Low-rank Approximation
+
+Note that the deep learning models are composite of linear and non-linear maps. And linear maps are based on matrices.
+
+The matrix $A_{m\times n}$ can be decompsed as the multiplication of two matrices such as $A_{m\times n}=Q_{m\times r}R_{r\times n}$, so that the storage is from $O(m\times n)$ to $O(m+n)\times O(r)$.
+
+
+
+***
+
 
 * https://arxiv.org/abs/1510.00149
 * https://arxiv.org/abs/1712.01887
@@ -1138,19 +1183,9 @@ Quantization is to quantize the weights in order to store the weights with less 
 * https://github.com/chester256/Model-Compression-Papers
 * https://gab41.lab41.org/lab41-reading-group-deep-compression-9c36064fb209
 * http://slazebni.cs.illinois.edu/spring17/
+* http://slazebni.cs.illinois.edu/spring17/lec06_compression.pdf
+* http://slazebni.cs.illinois.edu/spring17/reading_lists.html#lec06
 * https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/
-
-***
-
-* [Distiller in Github](https://nervanasystems.github.io/distiller/index.html)
-* [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
-* [Network Speed and Compression](https://github.com/mrgloom/Network-Speed-and-Compression)
-* [PocketFlow in Github](https://github.com/Tencent/PocketFlow)
-* https://pocketflow.github.io/
-* https://hanlab.mit.edu/projects/tsm/
-* [Papers Reading List of *Embedded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
-* [SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)
-
 
 ## Bayesian Deep Learning
 
@@ -1181,7 +1216,7 @@ Quantization is to quantize the weights in order to store the weights with less 
 ***
 
 * https://github.com/junlulocky/bayesian-deep-learning-notes
-* https://github.com/robi56/awesome-bayesian-deep-learning#theory
+* https://github.com/robi56/awesome-bayesian-deep-learning
 * https://alexgkendall.com/computer_vision/phd_thesis/
 * http://bayesiandeeplearning.org/
 * http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
@@ -1207,6 +1242,7 @@ Topics of interest include, but are not limited to:
 ***
 
 * [Short Course of Deep Learning 2016 Autumn, PKU](http://www.xn--vjq503akpco3w.top/)
+* [Foundation of deep learning](https://github.com/soumyadsanyal/foundations_for_deep_learning)
 * [深度学习名校课程大全 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/31988246)
 * [Theories of Deep Learning (STATS 385)](https://stats385.github.io/)
 * [Topics Course on Deep Learning for Spring 2016 by Joan Bruna, UC Berkeley, Statistics Department](https://github.com/joanbruna/stat212b)
@@ -1246,6 +1282,7 @@ Topics of interest include, but are not limited to:
 * https://stanford.edu/~shervine/l/zh/teaching/cs-229/cheatsheet-deep-learning
 * https://stanford.edu/~shervine/teaching/cs-230.html
 * https://cordis.europa.eu/project/rcn/214602/factsheet/en
+* http://clgiles.ist.psu.edu/IST597/index.html
 
 ***
 |Deep Dream|
@@ -1280,10 +1317,26 @@ Topics of interest include, but are not limited to:
 * [**11-485/785** Introduction to Deep Learning](http://deeplearning.cs.cmu.edu/)
 * [**Deep Learning: Do-It-Yourself!**](https://www.di.ens.fr/~lelarge/dldiy/)
 * [**Deep Learning course: lecture slides and lab notebooks**](https://m2dsupsdlclass.github.io/lectures-labs/)
-* [EE-559 – DEEP LEARNING (SPRING 2018)](https://documents.epfl.ch/users/f/fl/fleuret/www/dlc/)
+* [EE-559 – DEEP LEARNING (SPRING 2018)](https://fleuret.org/ee559/)
 * [The Functions of Deep Learning](https://sinews.siam.org/Details-Page/the-functions-of-deep-learning)
 * https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-deep-learning
 * https://www.deeplearningwizard.com/
 * https://www.stateoftheart.ai/
 * [神经网络与深度学习](https://nndl.github.io/)
 * https://mchromiak.github.io/articles/2017/Sep/01/Primer-NN/#.XBXb42h3hPY
+* https://www.european-big-data-value-forum.eu/program/explainable-artificial-intelligence/
+
+## The Future
+
+The ultimate goal is general artificial intelligence.
+
+* http://www.iro.umontreal.ca/~bengioy/papers/ftml_book.pdf
+* https://cbmm.mit.edu/publications
+* https://www.ctolib.com/pauli-space-foundations_for_deep_learning.html
+* https://blog.keras.io/the-future-of-deep-learning.html
+* https://github.com/sekwiatkowski/awesome-capsule-networks
+* http://www.thetalkingmachines.com/article/neural-programmer-interpreters
+* https://barghouthi.github.io/2018/05/01/differentiable-programming/
+* https://darioizzo.github.io/d-CGP/
+* https://aifuture2016.stanford.edu/
+* https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=505614
