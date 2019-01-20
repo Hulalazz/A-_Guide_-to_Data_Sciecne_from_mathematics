@@ -1,47 +1,128 @@
 ## Dimension Reduction
 
-https://www.ayasdi.com/blog/artificial-intelligence/prediction-needs-unsupervised-learning/
 
 Principal component analysis or singular value decomposition can applied to matrix approximation.
-The data collected in practice always save in the table form, which can considered as a matrix.
-Another techniques similar to PCA is  eigenvalue-eigenvector decomposition.
-Dimension reduction is really the topic of data science as data preprocessing .
+The data collected in practice always save in the table form, which can considered as a matrix. Another techniques similar to PCA is  eigenvalue-eigenvector decomposition. Dimension reduction is really the topic of data science as data preprocessing .
 
 The basic idea of dimension reduction is that not all information is necessary for a specific task.
-The motivation of dimension reduction is **Curse of dimensionality**, limit of storage and computation.
-The high dimensional space is not easy for us to visualize, imagine or understand.
-The intuitive to high dimensional space is weak for us, the people live in the three dimensional space.
-As a preprocessing data method, it helps us to select features and learn proper representation.
-A more theoretical and useful topic is data compression, a branch of information theory.
-The dimension reduction is related with geometry of data set., which includes manifold learning and topological data analysis.
+The motivation of dimension reduction is **Curse of dimensionality**, limit of storage and computation. The high dimensional space is not easy for us to visualize, imagine or understand. The intuition to high dimensional space is weak for us, the people who live in the three dimensional space.
+As a preprocessing data method, it helps us to select features and learn proper representation.  A more theoretical and useful topic is data compression, a branch of information theory. The dimension reduction is related with geometry of data set., which includes manifold learning and topological data analysis.
+
+ All manifold learning algorithms assume that data set lies on a smooth non linear manifold of low dimension and a mapping
+
+$$
+f:\mathbb{R}^D\to\mathbb{R}^d
+$$
+
+(where $D\gg d$)can be found by preserving one or more properties of the higher dimension space.
 
 $\color{aqua}{PS:}$ the dimension reduction is classified into unsupervised learning while it convert to optimization models.
 
 It is a wonderful review of dimension reduction at \url{https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf}.
 
+* https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf
+* https://jakevdp.github.io/PythonDataScienceHandbook/05.10-manifold-learning.html
+* http://www.lcayton.com/resexam.pdf
 * https://www.wikiwand.com/en/Data_compression
 * https://brilliant.org/wiki/compression/
 * https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf
 * https://www.wikiwand.com/en/Curse_of_dimensionality
+* http://www.cnblogs.com/xbinworld/archive/2012/07/09/LLE.html
+* https://www.ayasdi.com/blog/artificial-intelligence/prediction-needs-unsupervised-learning/
+* https://cs.nyu.edu/~roweis/lle/related.html
 
-### PCA and More
+### PCA and MDS
 
 The data in table form can be regarded as matrix in mathematics. And we can apply singular value decomposition  to low rank approximation or non-negative matrix factorization, which we will talk in *PCA and SVD*.
 It is classified as linear techniques.
 And it can extend to kernel PCA and {generalized PCA}[https://www.asc.ohio-state.edu/lee.2272/mss/tr892.pdf].
 
+**Multi-Dimension Scaling** is a distance-preserving manifold learning method. Distance preserving methods assume that a manifold can be defined by the pairwise distances of its points.
+In distance preserving methods, a low dimensional embedding is obtained from the higher dimension in such a way that pairwise distances between the points remain same. Some distance preserving methods preserve spatial distances (MDS) while some preserve graph distances.
+
+MDS is not a single method but a family of methods. MDS takes a dissimilarity or distance matrix ${D}$ where $D_{ij}$ represents the dissimilarity between points ${i}$ and ${j}$ and produces a mapping on a lower dimension, preserving the dissimilarities as closely as possible. The dissimilarity matrix could be observed or calculated from the given dataset. MDS has been widely popular and developed in the field of human sciences like sociology, anthropology and especially in psychometrics.
+[From blog.paperspace.com](https://blog.paperspace.com/dimension-reduction-with-multi-dimension-scaling/).
+
+It is a linear map
+$$
+{X}\in\mathbb{R}^D\to {Z}\in\mathbb{R}^d\\
+Z = W^T X
+$$
+
+Steps of a Classical MDS algorithm:
+
+Classical MDS uses the fact that the coordinate matrix can be derived by eigenvalue decomposition from ${\textstyle B= Z Z^T}$. And the matrix ${\textstyle B}$ can be computed from proximity matrix ${\textstyle D}$ by using double centering.
+
++ Set up the squared proximity matrix ${\textstyle D^{(2)}=[d_{ij}^{2}]}$
++ Apply double centering: $B=-{\frac{1}{2}J D^{(2)}J}$ using the centering matrix ${\textstyle J=I-{\frac {1}{n}11'}}$, where ${\textstyle n}$ is the number of objects.
++ Determine the ${\textstyle m}$ largest eigenvalues $\lambda_{1},\lambda_{2},...,\lambda_{m}$ and corresponding eigenvectors ${\textstyle e_{1},e_{2},...,e_{m}}$ of ${\textstyle B}$ (where ${\textstyle m}$ is the number of dimensions desired for the output).
++ Now, ${\textstyle Z=E_{m}\Lambda_{m}^{1/2}}$ , where ${\textstyle E_{m}}$ is the matrix of ${\textstyle m}$ eigenvectors and ${\textstyle \Lambda_{m}}$ is the diagonal matrix of ${\textstyle m}$ eigenvalues of ${\textstyle B}$.
+
+Classical MDS assumes Euclidean distances. So this is not applicable for direct dissimilarity ratings.
+
+* http://www.math.pku.edu.cn/teachers/yaoy/reference/book05.pdf
+* http://www.statsoft.com/textbook/multidimensional-scaling
+* https://www.springer.com/in/book/9780387251509
+* https://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec8_mds_combined.pdf
+* https://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec4_pca_slides.pdf
+* https://www.ibm.com/support/knowledgecenter/en/SSLVMB_22.0.0/com.ibm.spss.statistics.help/spss/base/idh_alsc.htm
+* https://www.wikiwand.com/en/Multidimensional_scaling
+
 ### ICA
 
 Independent component analysis is to find the latent independent factors that make up the observation, i.e,
 $$
-X=Bs
+x_j = b_{j1}s_1 + b_{j2}s_2 + \dots + b_{jn} s_n,\forall j\in\{1,2,\dots,n\} \\
+x=Bs
 $$
-where $X$, $s$, $B$ is the observation, latent variable and unknown mixing matrix.
-It is based on PCA.
+where $x$, $s$, $B$ is the observation, latent variable and unknown mixing matrix.
+The ICA model is a generative model, which means that it describes how the observed data are generated by a process of mixing the components $s_i$.
+The independent components are latent variables, meaning that they cannot be directly observed.
+Also the mixing matrix $B$ is assumed to be unknown. All we observe is the random vector ${x}$, and we must estimate
+both ${B}$ and ${s}$ using it. This must be done under as general assumptions as possible.
 
+In the ICA model, we assume that each mixture $x_j$ as well as each independent component $s_k$ is a random variable.
+Without loss of generality, we can assume that both the mixture variables and the independent components have **zero mean**.
+
+Different from the principal components in PCA, the independent  components are not required to be vertical to each other.
+
+The starting point for ICA is the very simple assumption that the components $s_i$ are statistically independent.
+The fundamental restriction in ICA is that the independent components must be *nongaussian* for ICA to be possible.
+And if the mixing matrix  ${B}$ is inversible so that $W=B^{-1}$ and $s=Wx$.
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S0957417406001308-gr2.jpg)
+
+In order to solve $x=Bs$, we assume that each independent component $s_i$ has unit variance: $\mathbb{E}(s_i^2)=1$.
+The independence of random variables is not obvious when we do not know their probability distribution. Since independence implies uncorrelatedness, many ICA methods constrain the estimation procedure
+so that it always gives uncorrelated estimates of the independent components. This reduces the number of free parameters, and simplifies the problem.
+
+Intuitively speaking, the key to estimating the ICA model is `nongaussianity`. Actually, without `nongaussianity` the
+estimation is not possible at all.
+
+The classical measure of `nongaussianity` is kurtosis or the fourth-order cumulant.
+The kurtosis of random variable ${y}$ is classically defined by
+$$kurt(y)=\mathbb{E}(y^4)-3\{\mathbb{E}(y^2)\}^2.$$
+A second very important measure of `nongaussianity` is given by negentropy ${J}$, which is defined as
+$$J=H(y_{gauss})-H(y)$$
+where $y_{gauss}$ is a Gaussian random variable of the same covariance matrix as ${y}$ and $H(\cdot)$ is the **entropy** function.
+Estimating negentropy using the definition would require an estimate (possibly nonparametric) of
+the pdf. Therefore, simpler approximations of negentropy are very useful such as
+$$J(y)\approx \frac{1}{12}\{\mathbb{E}(y^3)\}^2+\frac{1}{48}kurt(y)^2.$$
+Denoting ${B}^{-1}$ by the matrix $W=(w_1,w_2,\dots,w_n)^T$, the log-likelihood takes the form
+$$L=\sum_{t=1}^{T} \sum_{i=1}^{n}\log f_i(w_i^Tx(t))+T\log(|det(W)|)$$
+where the $f_i$ are the density functions of the $s_i$ (here assumed to be known),
+and the $x(t),t = 1,...,T$ are the realizations of $x$.
+
+ICA is very closely related to the method called blind source separation (BSS) or blind signal separation.
+
+
+***
+
++ https://www.cs.helsinki.fi/u/ahyvarin/papers/NN00new.pdf
++ https://research.ics.aalto.fi/ica/
++ http://compneurosci.com/wiki/images/4/42/Intro_to_PCA_and_ICA.pdf
 + https://www.wikiwand.com/en/Independent_component_analysis
 + http://www.gipsa-lab.grenoble-inp.fr/~pierre.comon/FichiersPdf/polyD16-2006.pdf
-+ https://www.cs.helsinki.fi/u/ahyvarin/papers/NN00new.pdf
 + http://arnauddelorme.com/ica_for_dummies/
 + https://sccn.ucsd.edu/wiki/Chapter_09:_Decomposing_Data_Using_ICA
 + http://cs229.stanford.edu/notes/cs229-notes11.pdf
@@ -49,6 +130,31 @@ It is based on PCA.
 + http://deeplearning.stanford.edu/wiki/index.php/Independent_Component_Analysis
 + https://www.zhihu.com/question/28845451/answer/42292804
 + http://www.gipsa-lab.grenoble-inp.fr/~pierre.comon/publications_en.html#book
++ https://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec6_FA_ICA.pdf
+
+### Locally Linear Embedding
+
+ **Locally Linear Embedding(LLE)** is a topology preserving manifold learning method.Topology preservation means the neighborhood structure is intact. Methods like SOM(self-organizing map) are also topology preserving but they assume a predefined lattice for the lower manifold. LLE creates the lattice based on the information contained in the dataset.
+
+![lle](https://s3-us-west-2.amazonaws.com/articles-dimred/lle/lle_main.pn)
+
+![](https://cs.nyu.edu/~roweis/lle/images/llef2med.gif)
+
+1. Compute the neighbors of each data point, $\vec{X}_i$.
+2. Compute the weights $W_{ij}$ that best reconstruct each data point $\vec{x_i}$ from
+its neighbors, minimizing the cost
+ $$\sum_{i}|\vec{X}_i - \sum_{j}W_{ij}\vec{X}_j|^2$$
+ by constrained linear fits.
+
+3. Compute the vectors $\vec{Y}_i$ best reconstructed by the weights $W_{ij}$, minimizing
+the quadratic form
+$$\sum_{i}|\vec{Y}_i - \sum_{j}W_{ij}\vec{Y}_j|^2$$
+by its bottom nonzero eigenvectors.
+***
+* https://cs.nyu.edu/~roweis/lle/
+* http://www.robots.ox.ac.uk/~az/lectures/ml/lle.pdf
+* http://ai.stanford.edu/~schuon/learning/inclle.pdf
+* https://blog.paperspace.com/dimension-reduction-with-lle/
 
 ### Auto-Encoder
 
@@ -92,8 +198,9 @@ via backpropagation, where $L(\cdot , \cdot)$ is a loss function and $z^{(i)}$ i
 If we want to compress the information of the data set, we only need output of hidden units $y^{(i)}=\sigma\circ(x^{(i)})$, which maps the data in higher dimensional space to a low dimensional space
 $$
 \mathbb{R}^{p}\to\mathbb{R}^{n}\\
-x\to \sigma\circ(Wx+b).
+x\to \sigma\circ(W_1 x+b_1).
 $$
+Given an compressed data $\{y^{(i)}\}$ via a autoencoder, we can decode it by the output layer $z^{(i)}=\sigma\circ(W_2 y^{(i)} + b_2)$.
 
 * https://en.wikipedia.org/wiki/Autoencoder
 * https://www.cs.toronto.edu/~hinton/science.pdf
