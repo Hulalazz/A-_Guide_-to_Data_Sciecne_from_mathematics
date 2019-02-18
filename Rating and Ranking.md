@@ -298,8 +298,8 @@ some queries, as long as the overall utility increases.
 **GBRT+LR** can also used to predict the CTR ratio. On short but incomplete word, it is **GBRT + LR** - **gradient boosting regression tree and logistic regression**.
 GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the same in RankNet.
 
-https://arxiv.org/pdf/1811.12776.pdf
-https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf
+- [ ] https://arxiv.org/pdf/1811.12776.pdf
+- [ ] https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf
 - [X] https://www.jianshu.com/p/96173f2c2fb4
 
 
@@ -416,13 +416,13 @@ And we can use stochastic gradient descent to find the parameters $\Theta$.
 DORS is designed and implemented in a three-level novel architecture, which includes (1) candidate retrieval; (2) learning-to-rank deep neural network (DNN) ranking; and (3) online
 re-ranking via multi-arm bandits (MAB).
 
-* [A Practical Deep Online Ranking System in
+- [ ] [A Practical Deep Online Ranking System in
 E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/09/723.pdf)
-* http://www.ecmlpkdd2018.org/
-
+- [ ] http://www.ecmlpkdd2018.org/
 - [ ] https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html
 - [ ] https://academic.microsoft.com/#/detail/2149166361
-
+- [ ] http://www.wsdm-conference.org/2019/acm-proceedings.php
+  
 ***
 * https://www.wikiwand.com/en/Learning_to_rank
 * https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
