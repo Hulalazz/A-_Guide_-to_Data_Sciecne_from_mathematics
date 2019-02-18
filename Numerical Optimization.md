@@ -50,7 +50,7 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}{\nabla}_{x}f(x^k)
 $$
 
-where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$.
+where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$ so that $f(x^{k+1})=\min_{\alpha} f(x^k - \alpha\nabla_x f(x^k))$.
 
 ***
 
@@ -109,6 +109,8 @@ $$
    x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} &\qquad\text{Projection}
 \end{align}
 $$
+* http://maths.nju.edu.cn/~hebma/slides/03C.pdf
+* http://maths.nju.edu.cn/~hebma/slides/00.pdf
 
 ### Mirror descent
 
@@ -136,6 +138,17 @@ $$
    x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) &\qquad\text{Bregman projection}
 \end{align}.
 $$
+
+The Bregman projection onto a convex set $C\subset \mathbb{R}^n$ given by
+$$
+y^{\prime}= \arg\min_{x\in C} B(x,y)
+$$
+is unique.
+
+A `generalised Pythagorean theorem` holds: for convex $C\subset \mathbb{R}^n$ and for all $x\in C$ and $y\in \mathbb{R}^n$ we have
+$$B(x,y)\geq B(x,y^{\prime}) + B(y^{\prime},y)$$
+where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds when the convex set C defining the projection $y^{\prime}$ is affine.
+
 One special method is called **entropic mirror descent** when $f=e^x$ and $\mathbb{S}$ is simplex.
 
 See more on the following link list.
@@ -215,13 +228,15 @@ which is called the **secant equation** (the Taylor series of the gradient itsel
 In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method).
 The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
 
-![BFGS](http://aria42.com/images/bfgs.png)
+For example,
 
 |Method|$\displaystyle B_{k+1}=$| $H_{k+1}=B_{k+1}^{-1}=$|
 |---|---|---|
 |DFP|$(I-\frac{y_k \Delta x_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) B_k (I-\frac{ \Delta x_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}} \Delta x_k$|$H_k +\frac{\Delta x_k \Delta x_k^T}{\Delta x_k^T y_k} -\frac{H_k y_ky_k^T H_k}{y_K^T H_K y_k}$|
 |BFGS|$B_k + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}\Delta x_k} - \frac{B_k\Delta x_k(B_k\Delta x_k)^T}{\Delta x_k B_k \Delta x_k}$|$(I-\frac{ \Delta x_k^{\mathrm{T}} y_k}{ y_k^{\mathrm{T}} \Delta x_k}) H_k (I-\frac{y_k \Delta x_k^{\mathrm{T}}}{ y_k^{\mathrm{T}} \Delta x_k}) + \frac{\Delta x_k \Delta x_k^T}{y_k^T \Delta x_k}$|
 |SR1|$B_{k} + \frac{(y_{k} - B_{k}\,\Delta x_{k} )(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T}} }{(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T} }\,\Delta x_{k}}$|	$H_{k} + \frac{(\Delta x_{k}-H_{k}y_{k}) (\Delta x_{k}  -H_{k} y_{k})^{\mathrm{T}} }{(\Delta x_{k}-H_{k}y_{k})^{\mathrm {T} }y_{k}}$|
+
+![BFGS](http://aria42.com/images/bfgs.png)
 ***
 
 * [Wikipedia page](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
@@ -231,6 +246,7 @@ The various quasi-Newton methods differ in their choice of the solution to the *
 * [Quasi-Newton method](https://www.wikiwand.com/en/Quasi-Newton_method)
 * [Using Gradient Descent for Optimization and Learning](http://www.gatsby.ucl.ac.uk/teaching/courses/ml2-2008/graddescent.pdf)
 * http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
+
 
 ### Natural Gradient Descent
 
@@ -312,7 +328,15 @@ by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM
 
 * https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 
-## Alternating Direction Method of Multipliers
+## Lagrange Duality
+
+- http://www.ece.ust.hk/~palomar/ELEC5470_lectures/07/slides_Lagrange_duality.pdf
+- https://cs.stanford.edu/people/davidknowles/lagrangian_duality.pdf
+- https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture7.pdf
+- https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/
+- https://www.cs.jhu.edu/~svitlana/papers/non_refereed/optimization_1.pdf
+
+### Alternating Direction Method of Multipliers
 
 Alternating direction method of multipliers is called **ADMM** shortly.
 It is aimed to solve the following convex optimization problem:
@@ -322,7 +346,7 @@ $$
           Ax+By &=b \tag{constraint}
 \end{align}
 $$
-where $f(x)$ and $g(y)$ is convex; $A￥ and $B$ are matrices.
+where $f(x)$ and $g(y)$ is convex; ${A}$ and ${B}$ are matrices.
 
 Define the augmented Lagrangian:
 $$
@@ -336,9 +360,21 @@ It is iterative procedure:
 > 3. $\lambda^{k+1} = \lambda^{k}+\mu (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 ***
+**Symmetric ADMM**
+> 1. $x^{k+1}=\arg\min_{x}L_{\mu}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
+> 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k}+\mu (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b).$
+> 3. $y^{k+1}=\arg\min_{y} L_{\mu}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}});$
+> 4. $\lambda^{k+1} = \lambda^{k+\frac{1}{2}}+\mu (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+
+***
 $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me this.}}$[^9]
 
+One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence.
+
 * https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
+* https://www.swmath.org/software/20288
+* http://scis.scichina.com/en/2018/122101.pdf
+* https://www.birs.ca/cmo-workshops/2017/17w5030/files/
 * http://maths.nju.edu.cn/~hebma/
 * http://stanford.edu/~boyd/admm.html
 * http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/

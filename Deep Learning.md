@@ -90,51 +90,6 @@ It can be decomposed into $2$ steps:
 It can solve the linearly separate problem.   
 ![](http://i2.wp.com/abhay.harpale.net/blog/wp-content/uploads/perceptron-picture.png)
 
-#### Activation function
-
-The nonlinear function $\sigma$ is conventionally called activation function.
-There are some activation functions in history.
-
-* Sign function
-   $$
-   f(x)=\begin{cases}1,&\text{if $x > 0$}\\
-                    -1,&\text{if $x < 0$}\end{cases}
-   $$
-* Step function
-    $$
-    f(x)=\begin{cases}1,&\text{if $x\geq0$}\\
-                      0,&\text{otherwise}\end{cases}
-    $$
-
-* Sigmoid function
-    $$
-    \sigma(x)=\frac{1}{1+e^{-x}}.
-    $$
-
-* Radical base function
-    $$
-    \rho(x)=e^{-\beta(x-x_0)^2}.
-    $$
-
-* TanH function
-   $$
-   tanh(x)=2\sigma(2x)-1=\frac{2}{1+e^{-2x}}-1.
-   $$
-
-* ReLU function
-   $$
-   ReLU(x)={(x)}_{+}=\max\{0,x\}=\begin{cases}x,&\text{if $x\geq 0$}\\
-                                 0,&\text{otherwise}\end{cases}.
-   $$
-***
-
-* [神经网络激励函数的作用是什么？有没有形象的解释?](https://www.zhihu.com/question/22334626/answer/465380541)
-* [Activation function in Wikipedia](https://www.wikiwand.com/en/Activation_function)
-* 激活函数<https://blog.csdn.net/cyh_24/article/details/50593400>
-* [可视化超参数作用机制：一、动画化激活函数](https://www.jqr.com/article/000161)
-* https://towardsdatascience.com/hyper-parameters-in-action-a524bf5bf1c
-* https://www.cnblogs.com/makefile/p/activation-function.html
-* http://www.cnblogs.com/neopenx/p/4453161.html
 
 #### Learning  algorithm
 
@@ -185,6 +140,58 @@ It is the first time to model cognition.
 * Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
 * https://stats385.github.io/blogs
 * https://explained.ai/matrix-calculus/index.html
+
+#### Activation functions
+
+The nonlinear function $\sigma$ is conventionally called activation function.
+There are some activation functions in history.
+
+* Sign function
+   $$
+   f(x)=
+      \begin{cases}
+        1,&\text{if $x > 0$}\\
+        -1,&\text{if $x < 0$}
+     \end{cases}
+   $$
+* Step function
+    $$
+    f(x)=\begin{cases}1,&\text{if $x\geq0$}\\
+                      0,&\text{otherwise}\end{cases}
+    $$
+
+* Sigmoid function
+    $$
+    \sigma(x)=\frac{1}{1+e^{-x}}.
+    $$
+
+* Radical base function
+    $$
+    \rho(x)=e^{-\beta(x-x_0)^2}.
+    $$
+
+* TanH function
+   $$
+   tanh(x)=2\sigma(2x)-1=\frac{2}{1+e^{-2x}}-1.
+   $$
+
+* ReLU function
+   $$
+   ReLU(x)={(x)}_{+}=\max\{0,x\}=\begin{cases}x,&\text{if $x\geq 0$}\\
+                                 0,&\text{otherwise}\end{cases}.
+   $$
+
+***
+
+* [神经网络激励函数的作用是什么？有没有形象的解释?](https://www.zhihu.com/question/22334626/answer/465380541)
+* [Activation function in Wikipedia](https://www.wikiwand.com/en/Activation_function)
+* 激活函数<https://blog.csdn.net/cyh_24/article/details/50593400>
+* [可视化超参数作用机制：一、动画化激活函数](https://www.jqr.com/article/000161)
+* https://towardsdatascience.com/hyper-parameters-in-action-a524bf5bf1c
+* https://www.cnblogs.com/makefile/p/activation-function.html
+* http://www.cnblogs.com/neopenx/p/4453161.html
+* https://blog.paperspace.com/vanishing-gradients-activation-function/
+* https://machinelearningmastery.com/exploding-gradients-in-neural-networks/
 
 ### Feed-forward Neural Network
 
@@ -299,13 +306,38 @@ where $d_i$ is the $i$th element of the one-hot vector $d$ and $p_i=\frac{\exp(z
 Suppose $\mathrm{d}=(1,0,0,\cdots,0)$, the cross entropy is $\mathbf{H}(d,p)=-\log(p_1)=\log \sum_{i=1}^{n}\exp(z_i)-z_1$. The cost function is $\frac{1}{n}\sum_{i=1}^{n}\mathbf{H}(d^{i},p^{i})$ in the training data set $\{(\mathbf{x}_i,d^i)\}_{i=1}^{n}$ where $\mathbf{x}_i$ is the features of $i$th sample and $d^i$ is the desired true target label encoded in **one-hot** vector meanwhile $p^{i}$ is the predicted label of $\mathbf{x}_i$.
 See the following links for more information on cross entropy and softmax.
 
+
 |VISUALIZING THE LOSS LANDSCAPE OF NEURAL NETS||
 |:-------------------------------------------:|---|
 |![VGG](https://raw.githubusercontent.com/tomgoldstein/loss-landscape/master/doc/images/resnet56_noshort_small.jpg)|![ResNet](https://raw.githubusercontent.com/tomgoldstein/loss-landscape/master/doc/images/resnet56_small.jpg)|
 
+Cross entropy is an example of [Bregman divergence](http://mark.reid.name/blog/meet-the-bregman-divergences.html).
+
+![](https://pic3.zhimg.com/80/v2-cbbe99689224cdd829003483938af50e_hd.png)
+
+* [Hinge loss function](https://www.wikiwand.com/en/Hinge_loss)
+
+  It is a loss function for binary classification, of which the   output is $\{1, -1\}$.
+
+  $$
+      Hinge(x)=max\{0, 1-tx\}
+  $$
+  where $t=+1$ or $t=-1$.
+
+* Negative logarithm likelihood function
+
+  It is always the loss function in  probabilistic models.
+
+  http://stat.wharton.upenn.edu/~buja/PAPERS/paper-proper-scoring.pdf
+
+***
+
 * <https://blog.csdn.net/u014380165/article/details/77284921>;
 * <https://blog.csdn.net/u014380165/article/details/79632950>;
+* <http://rohanvarma.me/Loss-Functions/>;
 * <https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/>;
+* <http://mark.reid.name/blog/meet-the-bregman-divergences.html>;
+* <https://ieeexplore.ieee.org/document/5693441>;
 * <https://www.zhihu.com/question/65288314>.
 
 In regression, the loss function may simply be the squared $\ell_2$ norm, i.e. $\mathbb{L}(d,p)=(d-p)^{2}$ where ${d}$ is the desired target and $p$ is the predicted result. And the cost function is *mean squared error*:
@@ -314,48 +346,88 @@ $$
 J(\theta)=\frac{1}{n}\sum_{i=1}^{n}[f(\mathbf{x}_i|\theta)-\mathrm{d}_i]^2.
 $$
 
-In **robust statistics**, there are more loss functions such as *Huber loss*, *hinge loss*, *Tukey loss*.
+In **robust statistics**, there are more loss functions such as *Huber loss* and *Tukey loss*.
 ***
 
 * [Huber loss function](https://www.wikiwand.com/en/Huber_loss)
-   $$
-      Huber_{\delta}(x)=\begin{cases}
-                      \frac{|x|^2}{2},&\text{if $|x|\leq\delta$}\\
-                      \delta(|x|-\frac{1}{2}\delta),&\text{otherwise}
-                      \end{cases}
-   $$
-
-* [Hinge loss function](https://www.wikiwand.com/en/Hinge_loss)
   $$
-      Hinge(x)=max\{0, 1-tx\}
+      Huber_{\delta}(x)=
+      \begin{cases}
+          \frac{|x|^2}{2},&\text{if $|x|\leq\delta$}\\
+          \delta(|x|-\frac{1}{2}\delta),&\text{otherwise}
+      \end{cases}
   $$
-  where $t=+1$ or $t=-1$.
-
 * Tukey loss function
 
-   $$
+  $$
     Tukey_{\delta}(x)=
     \begin{cases}
-         (1-[1-x^2/\delta^2]^3)\frac{\delta^2}{6}, &\text{if $|x|\leq\delta$}\\
+         (1-[1-\frac{x^2}{\delta^2}]^3)\frac{\delta^2}{6}, &\text{if $|x|\leq\delta$}\\
          \frac{\delta^2}{6},                      &\text{otherwise}
+   \end{cases}
+  $$
+
+   where its derivative is called [Tukey's Biweight](http://mathworld.wolfram.com/TukeysBiweight.html)：
+   $$
+   \phi(x)=
+       \begin{cases}
+         x(1-\frac{x^2}{\delta^2})^2 , &\text{if $|x|\leq\delta$}\\
+         0,              &\text{otherwise}
       \end{cases}
    $$
-   
-   where its derivative is called ****Tukey's Biweight**.
+   if we do not consider the points $x=\pm \delta$.
 ***
 
 It is important to choose or design loss function or more generally objective function,
 which can select variable as LASSO or confirm prior information as Bayesian estimation.
 Except the *representation* or model, it is the objective function that affects the usefulness of learning algorithms.
 
+The **smoothly clipped absolute deviation (SCAD) penalty** for `variable selection` in *high dimensional statistics* is defined by its derivative:
+$$
+p_{\lambda}^{\prime} (\theta) = \lambda \{\mathbb{I}(\theta \leq \lambda)+\frac{{(a\lambda-\theta)}_{+}}{(a-1)\lambda}\mathbb{I}(\theta > \lambda)\}
+$$
+
+or in another word
+
+$$
+p_{\lambda}^{\prime} (\theta) =
+ \begin{cases}
+   \lambda  & \,\quad\text{if $\theta \leq \lambda$;} \\
+   \frac{{(a\lambda-\theta)}_{+}}{(a-1)\lambda} &\,\quad\text{otherwise}
+ \end{cases}
+$$
+
+for some $a > 2$ and $\theta > 0$.
+
+The function defined by its derivative is convenient for us to minimize the cost function via gradient-based methods.
+
+
+***
+The two page paper [Eliminating All Bad Local Minima from Loss Landscapes
+Without Even Adding an Extra Unit](https://arxiv.org/pdf/1901.03909.pdf) modified the loss function $L(\theta)$ to eliminate all the bad local minima:
+
+$$
+\overline{L}(\theta, a,b) = L(\theta)(1+(a\exp(b)-1)^2)+\lambda a^2
+$$
+
+where $a,b\in\mathbb{R}$ are are auxiliary parameters, and and $\lambda\in\mathbb{R}^{+}$ is a regularization hyperparameter.
+
+Its gradient with respect to the auxiliary parameters ${a,b}$ is given by
+$$
+\frac{\partial \overline{L}(\theta, a,b)}{\partial a} = 2 L(\theta)(a\exp(b)-1)\exp(b) + 2\lambda a \\
+\frac{\partial \overline{L}(\theta, a,b)}{\partial b} = 2a L(\theta)(a\exp(b)-1)\exp(b)\\
+$$
+so that setting them to be 0s, we could get $a=0, L(\theta) = 0$ if $|b|<\infty$.
+
 For more on **loss function** see:
 
 * <https://blog.algorithmia.com/introduction-to-loss-functions/>;
-* <https://www.learnopencv.com/understanding-activation-functions-in-deep-learning/>;
-* <http://laid.delanover.com/activation-functions-in-deep-learning-sigmoid-relu-lrelu-prelu-rrelu-elu-softmax/>;
+* <https://arxiv.org/abs/1701.03077>;
 * https://www.wikiwand.com/en/Robust_statistics
 * https://www.wikiwand.com/en/Huber_loss
-* <https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions>;
+* https://www.e-sciencecentral.org/articles/SC000012498
+* <https://arxiv.org/abs/1811.03962>
+* https://arxiv.org/pdf/1901.03909.pdf
 * <https://www.cs.umd.edu/~tomg/projects/landscapes/>.
 
 ### Backpropagation, Training and Regularization
@@ -410,13 +482,19 @@ $$
 $$
 
 Similarly , we can compute following gradients:
-$$\frac{\partial H^j}{\partial W_4^j}  =\frac{\partial \sigma(W_4^j H_3+b_4^j)}{\partial W_4^j}  =\sigma^{\prime}(W_4^j H_3+b_4^j)H_3    \qquad\forall j\in\{1,2,\dots,l\};$$
-$$\frac{\partial H^j}{\partial H_3}    =\frac{\partial \sigma(W_4^j H_3+b_4^j)}{\partial H_3}  =\sigma^{\prime}(W_4^j H_3+b_4^j)W_4^j  \qquad\forall j\in\{1,2,\dots,l_4\};$$
-$$\frac{\partial H_3^j}{\partial W_3^j}=\frac{\partial \sigma(W_3^j H_2+b_3^j)}{\partial W_3^j}  =\sigma^{\prime}(W_3^j H_2+b_3^j)H_2    \qquad\forall j\in\{1,2,\dots,l_3\};$$
-$$\frac{\partial H_3^j}{\partial H_2}  =\frac{\partial \sigma(W_3^j H_2+b_3^j)}{\partial H_2}  =\sigma^{\prime}(W_3^j H_2+b_3^j)W_3^j  \qquad\forall j\in\{1,2,\dots,l_3\};$$
-$$\frac{\partial H_2^j}{\partial W_2^j}=\frac{\partial \sigma(W_2^j H_1+b_2^j)}{\partial W_2^j}  =\sigma^{\prime}(W_2^j H_1+b_2^j)H_1    \qquad\forall j\in\{1,2,\dots,l_2\};$$
-$$\frac{\partial H_2^j}{\partial H_1}  =\frac{\partial \sigma(W_2^j H_1+b_2^j)}{\partial H_1}    =\sigma^{\prime}(W_2^j H_1+b_2^j)W_2^j  \qquad\forall j\in\{1,2,\dots,l_2\};$$
-$$\frac{\partial H_1^j}{\partial W_1^j}=\frac{\partial \sigma(W_1^j x_0+b_1^j)}{\partial W_1^j}  =\sigma^{\prime}(W_1^j x_0+b_1^j)x_0    \qquad\forall j\in\{1,2,\dots,l_1\}.$$
+$$\frac{\partial H^j}{\partial W_4^j}  =\frac{\partial \sigma(W_4^j H_3+b_4^j)}{\partial W_4^j}  =[\sigma^{\prime}(W_4^j H_3+b_4^j)H_3]^T    \qquad\forall j\in\{1,2,\dots,l\};$$
+
+$$\frac{\partial H^j}{\partial H_3}    =\frac{\partial \sigma(W_4^j H_3+b_4^j)}{\partial H_3}  =[\sigma^{\prime}(W_4^j H_3+b_4^j)W_4^j]^T  \qquad\forall j\in\{1,2,\dots,l_4\};$$
+
+$$\frac{\partial H_3^j}{\partial W_3^j}=\frac{\partial \sigma(W_3^j H_2+b_3^j)}{\partial W_3^j}  =[\sigma^{\prime}(W_3^j H_2+b_3^j)H_2 ]^T   \qquad\forall j\in\{1,2,\dots,l_3\};$$
+
+$$\frac{\partial H_3^j}{\partial H_2}  =\frac{\partial \sigma(W_3^j H_2+b_3^j)}{\partial H_2}  =[\sigma^{\prime}(W_3^j H_2+b_3^j)W_3^j]^T  \qquad\forall j\in\{1,2,\dots,l_3\};$$
+
+$$\frac{\partial H_2^j}{\partial W_2^j}=\frac{\partial \sigma(W_2^j H_1+b_2^j)}{\partial W_2^j}  =[\sigma^{\prime}(W_2^j H_1+b_2^j)H_1 ]^T   \qquad\forall j\in\{1,2,\dots,l_2\};$$
+
+$$\frac{\partial H_2^j}{\partial H_1}  =\frac{\partial \sigma(W_2^j H_1+b_2^j)}{\partial H_1}    =[\sigma^{\prime}(W_2^j H_1+b_2^j)W_2^j]^T  \qquad\forall j\in\{1,2,\dots,l_2\};$$
+
+$$\frac{\partial H_1^j}{\partial W_1^j}=\frac{\partial \sigma(W_1^j x_0+b_1^j)}{\partial W_1^j}  =[\sigma^{\prime}(W_1^j x_0+b_1^j)x_0]^T    \qquad\forall j\in\{1,2,\dots,l_1\}.$$
 
 
 ***
@@ -426,7 +504,9 @@ X\stackrel{\sigma}{\to} H_1 \stackrel{\sigma}{\to} H_2\stackrel{\sigma} \to H_3 
 X\rightarrow W_1 X \rightarrow W_2H_1 \rightarrow W_3H_2 \rightarrow W_4H_3 \rightarrow WH \rightarrow y       \\
 \mathbb{R}^{p}\to \mathbb{R}^{l_1}\to \mathbb{R}^{l_2}\to \mathbb{R}^{l_3}\to \mathbb{R}^{l}\to \mathbb{R}^{o}
 $$
+
 while the backpropagation to compute the gradient is in the reverse order:
+
 $$
 \frac{\partial y}{\partial W}\to \frac{\partial y}{\partial H}\to \frac{\partial H}{\partial W_4}\to \frac{\partial H}{\partial H_3}\to \frac{\partial H_3}{\partial W_3}\to \frac{\partial H_3}{\partial H_2}\to \frac{\partial H_2}{\partial W_2}\to \frac{\partial H_2}{\partial W_1}\to \frac{\partial H_1}{\partial W_1}.
 $$
@@ -436,7 +516,7 @@ The first step is to compute the gradient of loss function with respect to the o
 $\frac{\partial L(x_0, d_0)}{\partial f(x_0)}=2(f(x_0)-d_0)=2(\sigma\circ(WH+b)-d_0)$
 , of which the $i$th element is $2(y^{i}-d_0^i)=2(\sigma(W^{i}H+b^{i})-d_0^{i})\,\forall i\{1,2,\dots,o\}$.
 Thus
-$$\frac{\partial L(x_0, d_0)}{\partial W^{i}}=\frac{\partial L(x_0, d_0)}{\partial y^{i}}\frac{\partial y^{i}}{\partial W^{i}}=2(y^{i}-d_0^i)\sigma^{\prime}(W^iH+b^i)H.$$
+$$\frac{\partial L(x_0, d_0)}{\partial W^{i}}=\frac{\partial L(x_0, d_0)}{\partial y^{i}}\frac{\partial y^{i}}{\partial W^{i}}=2(y^{i}-d_0^i)\sigma^{\prime}(W^iH+b^i)[H]^T.$$
 Thus we can compute all the gradients of $W$ columns. Note that $H$ has been computed through forwards propagation in that layer.
 
 And $H=\sigma\circ(W_4H_3+b_3)$, of which the $i$th element is $H^{i}=\sigma(W_4 H_3 +b_4)^{i}=\sigma(W_4^{i} H_3+b_4^{i})$.
@@ -455,7 +535,7 @@ $$
 \frac{\partial\, y^j}{\partial (W^jH+b^j)}
 \frac{\partial (W^jH+b^j)}{\partial H^{i}}
 \frac{\partial (H^{i})}{\partial W_4^i} } \\
-= \sum_{j=1}^{l}\frac{\partial L}{\partial y^j}\,\sigma^{\prime}(W^j H+b^j)\,W^{j,i}\,\sigma^{\prime}(W^i_4 H_3+b^i_4)H_3,
+   = \sum_{j=1}^{l}\frac{\partial L}{\partial y^j}\,\sigma^{\prime}(W^j H+b^j)\,W^{j,i}\,\sigma^{\prime}(W^i_4 H_3+b^i_4)[H_3]^T,
 $$
 where $W^{j,i}$ is the $i$th element of $j$th column in matrix $W$.
 
@@ -474,7 +554,6 @@ $$
 \frac{\partial H_3^i}{\partial W_3^i}
 $$
 where all the partial derivatives or gradients have been computed or accessible. It is nothing except to add or multiply these values in the order when we compute the weights of hidden layer.
-
 
 $$
 \frac{\partial L(x_0,y_0)}{\partial W_2^i}=\sum_{j=1}^{o}
@@ -503,6 +582,7 @@ $$
 \sum_{r}\frac{\partial H_2^n}{\partial H_1^r}]
 \frac{\partial H_1^i}{\partial W_1^i}.
 $$
+
 See more information on backpropagation in the following list
 
 * [Back-propagation, an introduction at offconvex.org](http://www.offconvex.org/2016/12/20/backprop/);
@@ -520,6 +600,239 @@ See more information on backpropagation in the following list
 
 ![](http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg)
 
+#### Fundamental Problem of Deep Learning and Activation Functions
+
+`Gradients vanishing` is the fundamental problem of deep neural networks according to [Juergen](http://people.idsia.ch/~juergen/).
+The the 1991 diploma thesis of [Sepp Hochreiter](http://www.bioinf.jku.at/people/hochreiter/) formally showed that deep neural networks are hard to train, because they suffer from the now famous problem of vanishing or exploding gradients: in typical deep or recurrent networks, back-propagated error signals either shrink rapidly, or grow out of bounds. In fact, they decay exponentially in the number of layers, or they explode.
+
+
+The sigmoid function as the first function to replace the step function is a cumulative density function (CDF), which satisfy the following conditions:
+
+- The function, $\sigma(x)=\frac{1}{1+exp(-x)}$,  is left  continuous;
+- $0\leq \sigma(x) \leq 1, \forall x\in\mathbb{R}$;
+- $\lim_{x\to -\infty}\sigma(x)=0, \lim_{x\to\infty}\sigma(x)=1$.
+
+It is called *logistic function* in statistics.
+
+And the derivative function of this function is simple to compute if we know the function itself:
+
+$$
+\sigma^{\prime}(x) = \sigma(x)(1 - \sigma(x)).
+$$
+
+It is clear that $\arg\max_{x}\sigma^{\prime}(x)=\frac{1}{4}< 1$, which can makes the `gradients vanish` during the back-propagation.
+
+![](https://blog.paperspace.com/content/images/2018/06/sigmoid700.png)
+
+$$
+\frac{\partial (\sigma(\omega^Tx + b))}{\partial \omega}
+=\frac{\partial (\sigma(\omega^Tx + b))}{\partial (\omega^Tx + b)}\cdot\frac{\partial (\omega^Tx + b)}{\partial \omega}
+\\= [\sigma(\omega^Tx + b)\cdot(1-\sigma(\omega^Tx + b))] x
+$$
+
+The problems of `Vanishing gradients` can be worsened by saturated neurons. Suppose, that pre-activation ${\omega}^T x + b$ that is fed to a neuron with a Sigmoid activation is either very high or very low. The gradient of sigmoid at very high or low values is almost 0. Any gradient update would hardly produce a change in the weights $\omega$ and the bias $b$, and it would take a lot of steps for the neuron to get modify weights so that the pre-activation falls in an area where the gradient has a substantial value.
+
+And if all the data points fed into layers are close to ${0}$, it may help to solve the vanishing gradients problems. And the sigmoid function $\sigma(x)$ is always non-negative and is not symmetric about ${0}$ so we may modify this function into
+$$
+tanh(x) = 2\sigma(2x) - 1
+= \frac{2}{1 + \exp(-2x)}-1
+\\= \frac{1- \exp(-2x)}{1 + \exp(-2x)}
+\\=\frac{\exp(x) - \exp(-x)}{\exp(x)+\exp(-x)}\in(-1, 1).
+$$
+Sometimes it is alos called `Bipolar Sigmoid`.
+
+And its gradient is
+$$
+tanh^{\prime}(x)= 4\sigma^{\prime}(x) = 4\sigma(x)(1-\sigma(x))\in (0,1].
+$$
+
+![](https://pic3.zhimg.com/80/v2-3528e66d0e12b35f778fe0ed21d2ced2_hd.jpg)
+
+Another profit of `Exponential function` of feature vector $\exp(x)$ is that complex interaction of the features although it is expensive at computation.
+
+And  an alternative function is so-called `hard tanh`: $f(x)=\max(-1, \min(1, x))$.
+
+![](https://i.stack.imgur.com/CJnMI.png)
+
+***
+The first attempt at curbing the problem of vanishing gradients in a general deep network setting (LSTMs were introduced to combat this as well, but they were restricted to recurrent models) was the introduction of the `ReLU` activation function:
+$$
+ReLU(x)= \max\{x, 0\}={(x)}_{+}
+\\=\begin{cases}
+x, & \text{if}\quad x\geq 0; \\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+![](https://blog.paperspace.com/content/images/2018/06/relu.png)
+
+If we do not consider ${0}$, the gradient of ReLU is computed as
+$$
+ReLU^{\prime}(x)=
+\begin{cases}
+1, & \text{if}\quad x > 0; \\
+0, & \text{if}\quad x < 0.
+\end{cases}
+$$
+
+And to be technological, ReLU is not continuous at 0.
+
+The product of gradients of ReLU function doesn't end up converging to 0 as the value is either 0 or 1. If the value is 1, the gradient is back propagated as it is. If it is 0, then no gradient is backpropagated from that point backwards.
+
+We had a two-sided saturation in the sigmoid functions. That is the activation function would saturate in both the positive and the negative direction. In contrast, ReLUs provide one-sided saturations.
+
+ReLUs come with their own set of shortcomings. While sparsity is a computational advantage, too much of it can actually hamper learning. Normally, the pre-activation also contains a bias term. If this bias term becomes too negative such that $\omega^T x + b < 0$, then the gradient of the ReLU activation during backward pass is 0. **Therefore, the weights and the bias causing the negative pre-activations cannot be updated.**
+
+If the weights and bias learned is such that the pre-activation is negative for the entire domain of inputs, the neuron never learns, causing a sigmoid-like saturation. This is known as the `dying ReLU problem`.
+
+In order to combat the problem of dying ReLUs, the `leaky ReLU` was proposed. A Leaky ReLU is same as normal ReLU, except that instead of being 0 for $x \leq 0$, it has a small negative slope for that region.
+
+$$
+f(x) =
+\begin{cases}
+x, & \text{if}\quad x > 0;\\
+\alpha x, & \text{otherwise}.
+\end{cases}
+$$
+
+`Randomized Leaky ReLU`
+
+$$
+f(x) =
+\begin{cases}
+x, & \text{if} \quad x > 0;\\
+\alpha x, & \text{otherwise}.
+\end{cases} \\
+\alpha\sim U[0,1]
+$$
+
+`Parametric ReLU`
+
+$$
+f(x) =
+\begin{cases}
+x, & \text{if} \quad x > 0;\\
+\alpha x, & \text{otherwise}.
+\end{cases}
+$$
+where this $\alpha$ can be learned since you can backpropagate into it.
+
+![](https://i.stack.imgur.com/1BX7l.png)
+
+`ELU(Exponential Linear Units)` is an alternative of ReLU:
+
+$$
+ELU(x)=
+\begin{cases}
+   x, &\text{if}\quad x > 0;\\
+   \alpha(\exp(x)-1), &\text{otherwise}.
+\end{cases}
+$$
+![](https://pic2.zhimg.com/80/v2-604be114fa0478f3a1059923fd1022d1_hd.png)
+
+***
+`SWISH`:
+
+$$
+\sigma(x) = x\cdot sigmoid(x) = \frac{x}{1+e^{-x}} \in (0,+\infty)
+$$
+
+The derivative function of SWISH is given by
+$$
+\sigma^{\prime}(x)= sigmoid(x) + x\cdot {sigmoid^{\prime}(x)}
+\\=\frac{1}{1+e^{-x}}[1+x(1-\frac{1}{1+e^{-x}})]
+\\=\frac{1+e^{-x} + xe^{-x}}{(1+e^{-x})^2}.
+$$
+And $\lim_{x\to +\infty}\frac{SWISH}{x}=\lim_{x\to +\infty}\frac{1}{1+e^{-x}}=1$.
+
+![](https://www.learnopencv.com/wp-content/uploads/2017/10/swish.png)
+
+`Soft Plus`:
+It is also known as  Smooth Rectified Linear Unit, Smooth Max or Smooth Rectifier.
+$$
+f(x)=\log(1+e^{x})\in(0,+\infty).
+$$
+And $\lim_{x\to\infty}\frac{f(x)}{x}=1$.
+
+Its derivative function is the sigmoid function:
+$$
+f^{\prime}(x)=\frac{e^x}{1 + e^x} = \frac{1}{1 + e^{-x}}\in (0,1)
+$$
+
+`Bent identity`:
+$$
+f(x)=\frac{\sqrt{x^2+1}-1}{2}+x \in(-\infty, +\infty) \\
+f^{\prime}(x) = \frac{x}{2\sqrt{x^2+1}} + 1\in(0.5, 1.5)
+$$
+
+A sort of compromise between Identity and ReLU activation, Bent Identity allows non-linear behaviours, while its non-zero derivative promotes efficient learning and overcomes the issues of dead neurons associated with ReLU. As its derivative can return values either side of 1, it can be susceptible to both exploding and vanishing gradients.
+
+`SoftSign`:
+
+$$
+f(x) =  \frac{x}{1+|x|} \in (-1, 1) \\
+f^{\prime}(x)=\frac{1}{(1+|x|)^2}
+$$
+
+The sign function  is defined as
+
+$$
+sgn(x)=
+ \begin{cases}
+   1, &\text{if $x > 0$}\\
+   0, &\text{if $x=0$}  \\
+  -1, &\text{if $x < 0$}
+ \end{cases}
+\\=\frac{x}{|x|}\quad\text{if $x\not= 0$}.
+$$
+
+![](https://www.gabormelli.com/RKB/images/3/35/softsign.png)
+
+The soft sign function is not continuous at ${0}$ as well as sign function while it is smoother than sign function and without any leap points.
+
+Softsign is another alternative to Tanh activation. Like Tanh, it's anti-symmetrical, zero centered, differentiable and returns a value between -1 and 1. Its flatter shape and more slowly declining derivative suggest that it may learn more efficiently. On the other hand, calculation of the derivative is more computationally cumbersome than Tanh.
+
+|Sigmoid Function|
+|:---:|
+|![](https://cloud.githubusercontent.com/assets/14886380/22743102/1ddd6a88-ee54-11e6-98ea-6b67011e091b.png)|
+
+|Sigmoidal function||
+|---|---|
+| Sigmoid | ReLU|
+| Tanh | ELU |
+| Hard Tanh | Leaky ReLU|
+| Sign | SWISH|
+| SoftSign | Soft Plus|
+
+The functions in the right column are  approximate to the identity function in $\mathbb{R}^{+}$, i.e., $\lim_{x\to +\infty}\frac{f(x)}{x} = 1$.
+
+- [ ] https://arxiv.org/abs/1511.07289
+- [ ] https://arxiv.org/abs/1502.01852
+- [ ] https://arxiv.org/abs/1710.05941v1
+- [ ] https://arxiv.org/abs/1803.08375
+- [ ] https://sefiks.com/2017/11/10/softsign-as-a-neural-networks-activation-function/
+- [ ] https://www.gabormelli.com/RKB/Softsign_Activation_Function
+- [ ] http://sharpneat.sourceforge.net/research/activation-fn-review/activation-fn-review.html
+- [ ] https://rpubs.com/shailesh/activation-functions
+- [ ] https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md
+
+****
+* http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
+* http://neuralnetworksanddeeplearning.com/chap5.html
+* https://blog.csdn.net/cppjava_/article/details/68941436
+* https://adventuresinmachinelearning.com/vanishing-gradient-problem-tensorflow/
+* https://www.jefkine.com/general/2018/05/21/2018-05-21-vanishing-and-exploding-gradient-problems/
+* https://golden.com/wiki/Vanishing_gradient_problem
+* https://blog.paperspace.com/vanishing-gradients-activation-function/
+* https://machinelearningmastery.com/exploding-gradients-in-neural-networks/
+* https://www.zhihu.com/question/49812013
+* https://nndl.github.io/chap-%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.pdf
+* https://www.learnopencv.com/understanding-activation-functions-in-deep-learning/
+* https://sefiks.com/2018/12/01/using-custom-activation-functions-in-keras/
+* https://isaacchanghau.github.io/post/activation_functions/
+* https://dashee87.github.io/deep%20learning/visualising-activation-functions-in-neural-networks/
+* <https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions>;
+* <http://laid.delanover.com/activation-functions-in-deep-learning-sigmoid-relu-lrelu-prelu-rrelu-elu-softmax/>;
 
 #### Training Methods
 
@@ -533,9 +846,23 @@ In this section, we will talk other optimization tricks such as **Normalization*
 |*Memorization* and *Generalization*|Memorizing, given facts, is an obvious task in learning. This can be done by storing the input samples explicitly, or by identifying the concept behind the input data, and memorizing their general rules. The ability to identify the rules, to generalize, allows the system to make predictions on unknown data. Despite the strictly logical invalidity of this approach, the process of reasoning from specific samples to the general case can be observed in human learning. From <https://www.teco.edu/~albrecht/neuro/html/node9.html>.|
 |*Normalization* and *Standardization*| *Normalization* is to scale the data into the interval [0,1] while *Standardization* is to rescale the datum with zero mean $0$ and unit variance $1$. See [Standardization vs. normalization](http://www.dataminingblog.com/standardization-vs-normalization/).|
 
+![](https://srdas.github.io/DLBook/DL_images/INI2.png)
+
+
+- https://srdas.github.io/DLBook/ImprovingModelGeneralization.html
+- https://srdas.github.io/DLBook/HyperParameterSelection.html
+- https://github.com/scutan90/DeepLearning-500-questions/tree/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95
+
+
 ##### Initialization and More
 
+![](https://image.jiqizhixin.com/uploads/editor/5aa8c27f-c832-4105-83de-954be7420763/1535523576187.png)
+
+**Initialization**
+
+
 * https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html
+* https://srdas.github.io/DLBook/GradientDescentTechniques.html#InitializingWeights
 * https://github.com/kmkolasinski/deep-learning-notes/tree/master/seminars/2018-12-Improving-DL-with-tricks
 * [An Empirical Model of Large-Batch Training Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieva](http://www.princeton.edu/~congm/Publication/RandomInit/main.pdf)
 * [Gradient descent and variants](http://www.cnblogs.com/yymn/articles/4995755.html)
@@ -544,15 +871,86 @@ In this section, we will talk other optimization tricks such as **Normalization*
 * [可视化超参数作用机制：二、权重初始化](https://zhuanlan.zhihu.com/p/38315135)
 * [第6章 网络优化与正则化](https://nndl.github.io/chap-%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96.pdf)
 * [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/pdf/1812.01187.pdf)
+* https://intoli.com/blog/neural-network-initialization/
+* https://adventuresinmachinelearning.com/weight-initialization-tutorial-tensorflow/
+
+
+**Batch Size**
+
+- https://supercomputersfordl2017.github.io/Presentations/DLSC_talk.pdf
+- https://openreview.net/pdf?id=B1Yy1BxCZ
+
 
 ##### Normalization
+
+**Batch Normalization**
+
+It is an effective way to accelerate deep  learning training.
+
+![](https://img-blog.csdn.net/20161128135254463)
+
+And `Batch Normalization` transformation is differentiable so that we can compute the gradient in backpropagation.
+For example, let $\ell$ be the cost function to be minimized, then we could compute the gradients
+$$
+\frac{\partial \ell}{\partial \hat{x}_i} = \frac{\partial \ell}{\partial y_i} \frac{\partial y_i}{\partial \hat{x}_i} =
+\frac{\partial \ell}{\partial y_i} \gamma
+$$
+****
+$$
+\frac{\partial \ell}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-\frac{1}{2}(x_i - \mu_B)}{(\sigma_B^2 + \epsilon)^{\frac{3}{2}}}
+$$
+****
+$$
+\frac{\partial \ell}{\partial \mu_B} = \frac{\partial \ell}{\partial \sigma_B^2} \frac{\partial \sigma_B^2}{\partial \mu_B} + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \mu_B}=
+\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}} $$
+***
+$$
+  \frac{\partial \ell}{\partial {x}_i} = \frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial {x}_i} +       \frac{\partial \ell}{\partial \mu_B} \frac{\partial \mu_B}{\partial {x}_i} + \frac{\partial \ell}{\partial \sigma^2_B}    \frac{\partial \sigma^2_B}{\partial {x}_i}
+$$
+$$
+  \frac{\partial \ell}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i \\
+  \frac{\partial \ell}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i
+ $$
+
+|Batch Normalization in Neural|
+|:---:|
+|![BN](https://srdas.github.io/DLBook/DL_images/BatchNormalization.png)|
+
+||
+|---|
+|![BN in NN](https://image.jiqizhixin.com/uploads/editor/4f055102-a306-4a76-9dec-d0c69ef60e6f/1535523577800.png)|
+
+**Layer Normalization**
+
+Different from the Batch Normalization, `Layer Normalization` compute the average $\mu$ or variance $\sigma$ for all the inputs of the given hidden layer, as
+$$
+\mu = \frac{1}{n}\sum_{i}^{n} x_i \\
+\sigma = \sqrt{\frac{1}{n}\sum_{i}^{n}(x_i - \mu)^2 + \epsilon}
+$$
+where ${n}$ is the number of units in the given hidden layer.
+
+|Layer Normalization|
+|:---:|
+|![LN](https://pic1.zhimg.com/80/v2-2f1ad5749e4432d11e777cf24b655da8_hd.jpg)|
+
+||
+|---|
+|![LN+FNN](https://image.jiqizhixin.com/uploads/editor/eaf495c1-9254-4418-b15d-53ba4b0b09c4/1535523579078.png)|
+
+**Weight Normalization**
+
+![WN](https://pic2.zhimg.com/80/v2-93d904e4fff751a0e5b940ab3c27b6d5_hd.jpg)
 
 * [Batch normalization 和 Instance normalization 的对比？ - Naiyan Wang的回答 - 知乎](https://www.zhihu.com/question/68730628/answer/277339783)
 * [Weight Normalization 相比 batch Normalization 有什么优点呢？](https://www.zhihu.com/question/55132852/answer/171250929)
 * [深度学习中的Normalization模型](https://www.jiqizhixin.com/articles/2018-08-29-7)
 * [Group Normalization](https://arxiv.org/abs/1803.08494)
 * [Busting the myth about batch normalization at paperspace.com](https://blog.paperspace.com/busting-the-myths-about-batch-normalization/)
+* https://zhuanlan.zhihu.com/p/33173246
 * The original paper *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift* at <https://arxiv.org/pdf/1502.03167.pdf>.
+* https://machinelearningmastery.com/batch-normalization-for-training-of-deep-neural-networks/
+* http://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/
+* https://srdas.github.io/DLBook/GradientDescentTechniques.html#BatchNormalization
 
 See **Improve the way neural networks learn** at <http://neuralnetworksanddeeplearning.com/chap3.html>.
 See more on nonconvex optimization at <http://sunju.org/research/nonconvex/>.
@@ -565,17 +963,19 @@ It changes the objective function or more generally the optimization procedure. 
 See the following links for more information on optimization and generalization.
 
 * https://www.inference.vc/sharp-vs-flat-minima-are-still-a-mystery-to-me/
+* https://arxiv.org/abs/1506.02142
 * https://arxiv.org/abs/1703.04933
 * https://arxiv.org/abs/1810.05369
-* https://blog.csdn.net/xzy_thu/article/details/80732220
 * http://www.offconvex.org/2017/12/08/generalization1/
 * http://www.offconvex.org/2018/02/17/generalization2/
 * http://www.offconvex.org/2017/03/30/GANs2/
 * https://machinelearningmastery.com/blog/
+* http://www.mit.edu/~9.520/fall16/
 * http://lcsl.mit.edu/courses/regml/regml2016/
 * https://chunml.github.io/ChunML.github.io/tutorial/Regularization/
-* http://www.mit.edu/~9.520/fall16/
-* https://arxiv.org/pdf/1506.02142.pdf
+* https://blog.csdn.net/xzy_thu/article/details/80732220
+* https://srdas.github.io/DLBook/ImprovingModelGeneralization.html#Regularization
+
 
 ##### Parameter norm penalty
 
@@ -613,6 +1013,8 @@ where $\lambda$ is a hyperparameter. Sparsity  brings to the model as shown as i
 Its essential is to make a balance in memorization and generalization.
 Early stopping is to stop the procedure before finding the minima of cost in training data. It is one direct application of **cross validation**.
 
+![](https://srdas.github.io/DLBook/DL_images/RL4.png)
+
 * https://www.wikiwand.com/en/Early_stopping
 * https://www.wikiwand.com/en/Cross-validation_(statistics)
 * https://machinelearningmastery.com/how-to-stop-training-deep-neural-networks-at-the-right-time-using-early-stopping/
@@ -621,6 +1023,7 @@ Early stopping is to stop the procedure before finding the minima of cost in tra
 ##### Dropout
 
 It is to cripple the connections stochastically, which  is often used in visual tasks. See the original paper [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf).
+![](https://srdas.github.io/DLBook/DL_images/dropoutRegularization.png)
 
 * https://www.zhihu.com/question/24529483
 * https://www.jiqizhixin.com/articles/2018-11-10-7
@@ -679,17 +1082,24 @@ where each entry $x_{ij}\in\{1,2\cdots,256\},i\in\{1,2,\cdots,m\},j\in\{1,2,\cdo
 * Transformation as matrix multiplication
    + The $M$ under the transformation $A$ is their product -$MA$- of which each column is the linear combination of columns of the matrix $M$. The spatial information or the relationship of the neighbors is lost.
 * Spatial information extraction
-   + [Kernel in image processing ](https://www.wikiwand.com/en/Kernel_(image_processing)) takes the relationship of the neighboring entries into consideration. It transforms the neighboring entries into one real value. In 2-dimenional space, convolution corresponds to $\color{aqua}{\text{doubly block circulant matrix}}$ if the matrix is flatten. It is local pattern that we can learn.
+   + [Kernel in image processing ](https://www.wikiwand.com/en/Kernel_(image_processing)) takes the relationship of the neighboring entries into consideration. It transforms the neighboring entries into one real value. It is the local pattern that we can learn.
+
+In mathematics, the matrix space $\mathbb{M}^{m\times n}$ in real domain , which consists of the matrix with $m\times n$ size, is `linear isomorphic` to the linear space $\mathbb{R}^{m\times n}$.
+And thus in 2-dimenional space, convolution corresponds to $\color{aqua}{\text{doubly block circulant matrix}}$ if the matrix is flatten.
 
 |The illustration of convolution operator|
 |:---:|
 |![](https://pic4.zhimg.com/v2-15fea61b768f7561648dbea164fcb75f_b.gif)|
+
+|The Effect of Filter|
+|:---:|
 |(http://cs231n.github.io/assets/conv-demo/index.html)|
 |![](https://ujwlkarn.files.wordpress.com/2016/08/giphy.gif?w=748)|
 
 ***
 As similar as the inner product of vector, the convolution operators  can compute the similarity between the submatrix of images and the kernels (also called filters).
 The convolution operators play the role as *parameter sharing* and *local connection*.
+
 For more information on CNN, click the following links.
 
 * [CNN(卷积神经网络)是什么？有入门简介或文章吗？ - 机器之心的回答 - 知乎](https://www.zhihu.com/question/52668301/answer/131573702)
@@ -697,6 +1107,8 @@ For more information on CNN, click the following links.
 * [One by one convolution](https://iamaaditya.github.io/2016/03/one-by-one-convolution/)
 * [conv arithmetic](https://github.com/vdumoulin/conv_arithmetic)
 * [Convolution deep learning](http://timdettmers.com/2015/03/26/convolution-deep-learning/)
+* https://zhuanlan.zhihu.com/p/28749411
+
 
 #### Padding
 
@@ -715,7 +1127,7 @@ As in feedforward neural networks, an additional non-linear  operation called **
 #### Pooling as Subsampling
 
 Pooling as subsampling is to make the model/network more robust or transformation invariant.
-Spatial Pooling (also called subsampling or downsampling) is to use some summary statistic that extract from spatial neighbors,
+Spatial Pooling (also called subsampling or down-sampling) is to use some summary statistic that extract from spatial neighbors,
 which reduces the dimensionality of each feature map but retains the most important information.
 The function of Pooling is
 
@@ -758,17 +1170,20 @@ $$
 M\stackrel{Conv 1}{\to}H_1 \stackrel{Conv 2}{\to} H_2 \dots \stackrel{Conv l}{\to}{H} \stackrel{\sigma}{\to} y.
 $$
 In the $i$th layer of convolutional neural network, it can be expressed as
+
 $$
-\tilde{H_i}=C_i\otimes(P\oplus H_{i-1})   \\
+\hat{H}_{i} = P\oplus H_{i-1}         \\
+\tilde{H_i}=C_i\otimes(\hat{H}_{t})   \\
 H_i = Pooling\cdot (\sigma\circ \tilde{H_i})
 $$
+
 where $\otimes,\oplus,\cdot$ represent convolution operation, padding and pooling, respectively.
 
 |Diagram of Convolutional neural network|
 |:-----------------------------------:|
 |![](http://www.linleygroup.com/mpr/h/2016/11561/U26_F3.png)|
 
-******
+The outputs of each layer are matrices or tensors rather than real vectors in CNN.
 
 * [CS231n Convolutional Neural Network for Visual Recognition](http://vision.stanford.edu/teaching/cs231n/index.html)
 * The *Wikipeida* page <https://www.wikiwand.com/en/Convolutional_neural_network>
@@ -779,13 +1194,20 @@ where $\otimes,\oplus,\cdot$ represent convolution operation, padding and poolin
 * [Convolutional Neural Network Visualizations](https://github.com/utkuozbulak/pytorch-cnn-visualizations)
 * [ConvNetJS](https://cs.stanford.edu/people/karpathy/convnetjs/)
 * https://www.vicarious.com/2017/10/20/toward-learning-a-compositional-visual-representation/
+* https://nndl.github.io/chap-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.pdf
 
 ***
 
-https://zhuanlan.zhihu.com/p/28749411
 ![](http://1reddrop.com/wp-content/uploads/2016/08/deeplearning.jpg)
 
+- https://grzegorzgwardys.wordpress.com/2016/04/22/8/
+- https://lanstonchu.wordpress.com/category/deep-learning/
+
 ### Visualization of CNN
+
+[It has shown](https://openreview.net/pdf?id=Bygh9j09KX) that
+> ImageNet trained CNNs are strongly biased towards recognising `textures` rather than `shapes`,
+which is in stark contrast to human behavioural evidence and reveals fundamentally different classification strategies.
 
 * [Deep Visualization](http://yosinski.com/deepvis)
 * [Interpretable Representation Learning for Visual Intelligence](http://bzhou.ie.cuhk.edu.hk/publication/thesis.pdf)
@@ -798,6 +1220,7 @@ https://zhuanlan.zhihu.com/p/28749411
 * http://people.csail.mit.edu/bzhou/ppt/presentation_ICML_workshop.pdf
 * https://www.robots.ox.ac.uk/~vedaldi//research/visualization/visualization.html
 * https://www.graphcore.ai/posts/what-does-machine-learning-look-like
+* https://openreview.net/pdf?id=Bygh9j09KX
 
 ****
 |graphcore.ai|
@@ -870,6 +1293,8 @@ where $H_{t} = [\stackrel{\rightarrow} H_{t};\stackrel{\leftarrow} H_{t}]$.
 
 [deepai.org](https://deepai.org/machine-learning-glossary-and-terms/bidirectional-recurrent-neural-networks)
 
+- [ ] http://building-babylon.net/2018/05/08/siegelmann-sontags-on-the-computational-power-of-neural-nets/
+
 ### LSTM
 
 There are several architectures of LSTM units. A common architecture is composed of a *memory cell, an input gate, an output gate and a forget gate*.
@@ -883,17 +1308,21 @@ It is the first time to solve the **gradient vanishing problem** and
 
 * forget gate
 $f_{t}=\sigma(W_{f}[h_{t-1},x_t]+b_f)$
+
 ![forget gate](http://5b0988e595225.cdn.sohucs.com/images/20181017/87957492ade3445ea90871dda02c92ca.gif)
 * input gate
 $i_{t}=\sigma(W_i[h_{t-1},x_t]+b_i)$,
 $\tilde{C}_{t}=tanh(W_C[h_{t-1},x_t]+b_C)$
+
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/dac15a9da4164b3da346ac891d10ff9e.gif)
 * memory cell
 $c_{t}=f_t\times c_{t-1}+i_{t}\times{\tilde{C}_{t}}$
+
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/ad6435e481064d57833a4733e716fa8f.gif)
 * output gate
 $O_{t}=\sigma(W_{O}[h_{t-1},x_t]+b_{O})$ and
 $h_{t}=O_{t}\times tanh(c_{t})$
+
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/bca51dcc89f14b1c9a2e9076f419540a.gif)
 
 
@@ -1021,7 +1450,7 @@ It requires some methods to find the proper generator $G$ and discriminator $D$.
 * [Really awesome GANs](https://github.com/nightrome/really-awesome-gan)
 * [GAN zoo](https://github.com/hindupuravinash/the-gan-zoo)
 * https://gandissect.csail.mit.edu/
-* https://poloclub.github.io/ganlab/
+* https://poloclub.github.io/ganlab
 * https://github.com/nndl/Generative-Adversarial-Network-Tutorial
 
 
@@ -1089,13 +1518,16 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 * https://rusty1s.github.io/pytorch_geometric/build/html/notes/introduction.html
 * [.mp4 illustration](http://tkipf.github.io/graph-convolutional-networks/images/video.mp4)
 * [Deep Graph Library (DGL)](https://www.dgl.ai/)
+* https://github.com/alibaba/euler
+* https://github.com/alibaba/euler/wiki/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8
 * https://www.experoinc.com/post/node-classification-by-graph-convolutional-network
 * https://www.groundai.com/project/graph-convolutional-networks-for-text-classification/
 * https://datawarrior.wordpress.com/2018/08/08/graph-convolutional-neural-network-part-i/
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
-* http://blog.lcyown.cn/2018/04/30/graphencoding/
 * http://www.cs.nuim.ie/~gunes/files/Baydin-MSR-Slides-20160201.pdf
 * http://colah.github.io/posts/2015-09-NN-Types-FP/
+* https://www.zhihu.com/question/305395488/answer/554847680
+* https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf
 
 $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
 
@@ -1105,8 +1537,43 @@ GCN can be regarded as the counterpart of CNN for graphs so that the optimizatio
 
 In the previous post, the convolution of the graph Laplacian is defined in its **graph Fourier space** as outlined in the paper of Bruna et. al. (arXiv:1312.6203). However, the **eigenmodes** of the graph Laplacian are not ideal because it makes the bases to be graph-dependent. A lot of works were done in order to solve this problem, with the help of various special functions to express the filter functions. Examples include Chebyshev polynomials and Cayley transform.
 
+Defining filters as polynomials applied over the eigenvalues of the `graph Laplacian`, it is possible
+indeed to avoid any eigen-decomposition and realize convolution by means of efficient sparse routines
+The main idea behind CayleyNet is to achieve some sort of spectral zoom property by means of Cayley transform.
+
+**CayleyNet**
+
+Defining filters as polynomials applied over the eigenvalues of the `graph Laplacian`, it is possible
+indeed to avoid any eigen-decomposition and realize convolution by means of efficient sparse routines
+The main idea behind `CayleyNet` is to achieve some sort of spectral zoom property by means of Cayley transform:
+$$
+C(\lambda) = \frac{\lambda - i}{\lambda + i}
+$$
+
+Instead of Chebyshev polynomials, it approximates the filter as:
+$$
+g(\lambda) = c_0 + \sum_{j=1}^{r}[c_jC^{j}(h\lambda) + c_j^{\star} C^{j^{\star}}(h\lambda)]
+$$
+where $c_0$ is real and other $c_j$’s are generally complex, and ${h}$ is a zoom parameter, and $\lambda$’s are the eigenvalues of the graph Laplacian.
+Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$'s are computed by training. This solves the problem of unfavorable clusters in ChebNet.
+
+**MotifNet**
+
+`MotifNet` is aimed to address the direted graph convolution.
+
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
-* https://github.com/Hulalazz/GNNPapers
+* https://github.com/thunlp/GNNPapers
+* http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
+* [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
+* https://arxiv.org/abs/1704.06803
+* https://github.com/alibaba/euler
+
+### Graph Embedding
+
+- https://zhuanlan.zhihu.com/p/47489505
+- http://blog.lcyown.cn/2018/04/30/graphencoding/
+- https://blog.csdn.net/NockinOnHeavensDoor/article/details/80661180
+- http://building-babylon.net/2018/04/10/graph-embeddings-in-hyperbolic-space/
 
 ## Network Compression and Acceleration
 
@@ -1137,14 +1604,14 @@ Pruning is to prune the connections in deep neural network in order to reduce th
 * https://nervanasystems.github.io/distiller/pruning/index.html
 * https://github.com/yihui-he/channel-pruning
 * https://pocketflow.github.io/cp_learner/
-  
+
 ### Quantization
 
 Quantization is to quantize the weights in order to store the weights with less bits.
 
 * https://nervanasystems.github.io/distiller/quantization/index.html
 * https://pocketflow.github.io/uq_learner/
-  
+
 ### Huffman Encoding
 
 [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
@@ -1155,7 +1622,7 @@ Quantization is to quantize the weights in order to store the weights with less 
 * https://github.com/dkozlov/awesome-knowledge-distillation
 * https://github.com/lhyfst/knowledge-distillation-papers
 * https://pocketflow.github.io/distillation/
-  
+
 ![](https://pocketflow.github.io/pics/framework_design.png)
 
 
@@ -1165,7 +1632,10 @@ Note that the deep learning models are composite of linear and non-linear maps. 
 
 The matrix $A_{m\times n}$ can be decompsed as the multiplication of two matrices such as $A_{m\times n}=Q_{m\times r}R_{r\times n}$, so that the storage is from $O(m\times n)$ to $O(m+n)\times O(r)$.
 
-
+* https://en.wikipedia.org/wiki/Low-rank_approximation
+* http://www.cs.yale.edu/homes/el327/papers/lowRankMatrixApproximation.pdf
+* http://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
+* https://www.cnblogs.com/zhonghuasong/p/7821170.html
 
 ***
 
@@ -1265,6 +1735,7 @@ Topics of interest include, but are not limited to:
 * [DALI 2018, Data Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
 * [Deep unrolling](https://zhuanlan.zhihu.com/p/44003318)
 * [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
+* [WHY DOES DEEP LEARNING WORK?](https://calculatedcontent.com/2015/03/25/why-does-deep-learning-work/)
 * http://blog.qure.ai/notes/visualizing_deep_learning
 * http://blog.qure.ai/notes/deep-learning-visualization-gradient-based-methods
 * http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/
@@ -1283,6 +1754,8 @@ Topics of interest include, but are not limited to:
 * https://stanford.edu/~shervine/teaching/cs-230.html
 * https://cordis.europa.eu/project/rcn/214602/factsheet/en
 * http://clgiles.ist.psu.edu/IST597/index.html
+* https://zhuanlan.zhihu.com/p/44003318
+* https://deepai.org/
 
 ***
 |Deep Dream|
@@ -1340,3 +1813,5 @@ The ultimate goal is general artificial intelligence.
 * https://darioizzo.github.io/d-CGP/
 * https://aifuture2016.stanford.edu/
 * https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=505614
+* https://wsdm2019-dapa.github.io/
+* https://leon.bottou.org/slides/mlss13/mlss-nn.pdf
