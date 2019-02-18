@@ -14,7 +14,7 @@ $\color{aqua}{LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION}.$
 
 The objective function to be minimized is also called cost function.
 
-Evaluation is always attached with optimization; the evavluation which cannot be optimized is not a good evaluation in machine learning.
+Evaluation is always attached with optimization; the evaluation which cannot be optimized is not a good evaluation in machine learning.
 
 * https://www.wikiwand.com/en/Mathematical_optimization
 * https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf
@@ -24,40 +24,51 @@ Evaluation is always attached with optimization; the evavluation which cannot be
 
 Each iteration of a line search method computes a search direction $p^{k}$ and then decides how
 far to move along that direction. The iteration is given by
+
 $$
 x^{k+1}=x^{k}+\alpha_{k}p^{k}\tag{Line search}
 $$
+
 where the positive scalar $\alpha^{k}$ is called the step length. The success of a line search method
 depends on effective choices of both the direction $p^{k}$ and the step length $\alpha_{k}$.
 
 $\color{lime}{Note}$: we use the notation $x^{k}$ and $\alpha_k$ to represent the $k$th iteration of the vector variables $x$ and $k$th step length, respectively.
-Most line search algorithms require pk to be a descent direction — one for which
+Most line search algorithms require $p^k$ to be a descent direction — one for which
 $\left< {p^k},\nabla f_k \right> < 0$ — because this property guarantees that the function $f$ can be reduced along this direction, where $\nabla f_k$ is the gradient of objective function $f$ at the $k$th iteration point $x_k$ i.e. $\nabla f_k=\nabla f(x^{k})$.
 ***
 Gradient descent and its variants are to find the local solution of  the unconstrained optimization problem:
+
 $$
 \min f(x)
 $$
+
 where $x\in \mathbb{R}^{n}$.
 
 Its iterative procedure is:
+
 $$
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)
+x^{k+1}=x^{k}-\alpha_{k}{\nabla}_{x}f(x^k)
 $$
+
 where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$.
-****
+
+***
+
 Some variants of gradient descent methods are not line search method.
 For example, the **heavy ball method**:
+
 $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1})
 $$
+
 where the momentum coefficient $\rho_k\in[0,1]$ generally and the step length $\alpha_k$ cannot be determined by line search.
 
-**Nesterov accelerated gradient method**:
+**Nesterov accelerated gradient method** at the $k$th step is given by:
+
 $$
 \begin{align}
-x^{k}=y^{k}-\alpha^{k+1}\nabla_{x}f(y^k) \qquad &\text{Descent} \\
-y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  &\text{Momentum}
+    x^{k}=y^{k}-\alpha^{k+1}\nabla_{x}f(y^k) \qquad &\text{Descent} \\
+    y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  &\text{Momentum}
 \end{align}
 $$
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
@@ -89,12 +100,13 @@ It can be regarded as non-Euclidean generalization of **projected gradient desce
 $$
 \arg\min_{x\in\mathbb{S}}f(x)
 $$
+
 where $\mathbb{S}\subset\mathbb{R}^n$.
 It has two steps:
 $$
 \begin{align}
-z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
-x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} &\qquad\text{Projection}
+   z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
+   x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} &\qquad\text{Projection}
 \end{align}
 $$
 
@@ -103,22 +115,25 @@ $$
 **Mirror descent** can be regarded as the non-Euclidean generalization via replacing the $\ell_2$ norm or Euclidean distance in projected gradient descent by [Bregman divergence](https://www.mdpi.com/1099-4300/16/12/6338/htm).
 
 Bregman divergence is induced by convex smooth function $f$:
+
 $$
-B(x,y)=f(x)-f(y)-\left<\nabla f(y),x-y\right>
+ B(x,y)=f(x)-f(y)-\left<\nabla f(y),x-y\right>
 $$
+
 where $\left<\cdot,\cdot\right>$ is inner product.
 Especially, when $f$ is quadratic function, the Bregman divergence induced by $f$ is
 $$
-B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
+ B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
 $$
 i.e. the Euclidean distance.
 A wonderful introduction to **Bregman divergence** is **Meet the Bregman Divergences** by [Mark Reid](http://mark.reid.name/) at <http://mark.reid.name/blog/meet-the-bregman-divergences.html>.
 ***
 It is given by:
+
 $$
 \begin{align}
-z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
-x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) &\qquad\text{Bregman projection}
+   z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
+   x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) &\qquad\text{Bregman projection}
 \end{align}.
 $$
 One special method is called **entropic mirror descent** when $f=e^x$ and $\mathbb{S}$ is simplex.
@@ -141,6 +156,8 @@ It is also to find the solution of unconstrained optimization problems, i.e.
 $$\min f(x)$$
 where $x\in \mathbb{R}^{n}$.
 ***
+If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
+
 **Newton's method** is given by
 $$
 x^{k+1}=x^{k}-\alpha^{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}
@@ -199,6 +216,12 @@ In more than one dimension B is underdetermined. In one dimension, solving for B
 The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
 
 ![BFGS](http://aria42.com/images/bfgs.png)
+
+|Method|$\displaystyle B_{k+1}=$| $H_{k+1}=B_{k+1}^{-1}=$|
+|---|---|---|
+|DFP|$(I-\frac{y_k \Delta x_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) B_k (I-\frac{ \Delta x_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}} \Delta x_k$|$H_k +\frac{\Delta x_k \Delta x_k^T}{\Delta x_k^T y_k} -\frac{H_k y_ky_k^T H_k}{y_K^T H_K y_k}$|
+|BFGS|$B_k + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}\Delta x_k} - \frac{B_k\Delta x_k(B_k\Delta x_k)^T}{\Delta x_k B_k \Delta x_k}$|$(I-\frac{ \Delta x_k^{\mathrm{T}} y_k}{ y_k^{\mathrm{T}} \Delta x_k}) H_k (I-\frac{y_k \Delta x_k^{\mathrm{T}}}{ y_k^{\mathrm{T}} \Delta x_k}) + \frac{\Delta x_k \Delta x_k^T}{y_k^T \Delta x_k}$|
+|SR1|$B_{k} + \frac{(y_{k} - B_{k}\,\Delta x_{k} )(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T}} }{(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T} }\,\Delta x_{k}}$|	$H_{k} + \frac{(\Delta x_{k}-H_{k}y_{k}) (\Delta x_{k}  -H_{k} y_{k})^{\mathrm{T}} }{(\Delta x_{k}-H_{k}y_{k})^{\mathrm {T} }y_{k}}$|
 ***
 
 * [Wikipedia page](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
@@ -215,7 +238,7 @@ Natural gradient descent is to solve the optimization problem $\min_{\theta} L(\
 $$
 \theta^{(t+1)}=\theta^{(t+1)}-\alpha_{(t)}F^{-1}(\theta^{(t)})\nabla_{\theta}L(\theta^{(t)})
 $$
-where $F^{-1}(\theta^{(t)})$ is the inverse of Remiann metric at the point $\theta^{(t)}$.
+where $F^{-1}(\theta^{(t)})$ is the inverse of `Remiann metric` at the point $\theta^{(t)}$.
 And **Fisher scoring** algorithm is a typical application of **Natural Gradient Descent** to statistics.  
 **Natural gradient descent** for manifolds corresponding to
 exponential families can be implemented as a first-order method through **mirror descent** (https://www.stat.wisc.edu/~raskutti/publication/MirrorDescent.pdf).
@@ -260,6 +283,7 @@ $$
 * https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
 * http://cs229.stanford.edu/notes/cs229-notes8.pdf
 * https://www2.stat.duke.edu/courses/Spring06/sta376/Support/EM/EM.Mixtures.Figueiredo.2004.pdf
+* [EM算法存在的意义是什么？ - 史博的回答 - 知乎](https://www.zhihu.com/question/40797593/answer/275171156)
 
 |Diagram of EM algorithm|
 |:---------------------:|
@@ -298,11 +322,11 @@ $$
           Ax+By &=b \tag{constraint}
 \end{align}
 $$
-where $f(x)$ and $g(y)$ is convex; $A and $B$ are matrices.
+where $f(x)$ and $g(y)$ is convex; $A￥ and $B$ are matrices.
 
 Define the augmented Lagrangian:
 $$
-L_{\mu}(x,y)=f(x)+g(y)+\lambda^{T}(Ax+By-b)+\frac{\mu}{2}\|Ax+By-b\|_{2}^{2}.
+L_{\mu}(x,y)=f(x)+g(y)+\lambda^{T}(Ax+By-b)+\frac{\mu}{2}{\|Ax+By-b\|}_{2}^{2}.
 $$
 ***
 It is iterative procedure:
@@ -338,7 +362,9 @@ where $n<\infty$ and $\{f(\theta|x_i)\}_{i=1}^{n}$ are in the same function fami
 
 The difficulty is $p$, that the dimension of $\theta$, is tremendous. In other words, the model is **overparameterized**. And the number $n$ is far larger than $p$ generally, i.e. $n \gg  p\gg d$.
 What is worse, the functions  $\{f(\theta|x_i)\}_{i=1}^{n}$ are not convex in most case.
+
 ***
+
 The stochastic gradient method is defined as
 $$
 \theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})
@@ -355,6 +381,7 @@ There is fluctuations in the total objective function as gradient steps with res
 |![](https://upload.wikimedia.org/wikipedia/commons/f/f3/Stogra.png)|
 
 ***
+
 An heuristic proposal for avoiding the choice and for modifying the learning rate while the learning task runs is the **bold driver (BD) method**[^14].
 The learning rate increases *exponentially* if successive steps reduce the objective function $f$, and decreases rapidly if an “accident” is encountered (if objective function $f$ increases), until a suitable value is found.
 After starting with a small learning rate, its modifications are described by the following equation:
@@ -369,7 +396,9 @@ $$
 where $\rho$ is close to 1 such as $\rho=1.1$  in order to avoid frequent “accidents” because the
 objective function computation is wasted in these cases, $\eta$ is chosen to provide a rapid reduction
 ($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
-***
+
+******
+
 The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$.
 Thus it is not clever to determine the learning rate $\alpha_k$ by line search.
 And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization.
@@ -387,6 +416,7 @@ See the following links for more information on *stochastic gradient descent*.
 * https://www.bonaccorso.eu/2017/10/03/a-brief-and-comprehensive-guide-to-stochastic-gradient-descent-algorithms/
 * https://leon.bottou.org/projects/sgd
 * https://leon.bottou.org/research/stochastic
+* https://leon.bottou.org/papers/bottou-bousquet-2008
 * http://ruder.io/optimizing-gradient-descent/
 * http://ruder.io/deep-learning-optimization-2017/
 * https://zhuanlan.zhihu.com/p/22252270
@@ -398,16 +428,33 @@ See the following links for more information on *stochastic gradient descent*.
 |:-----------------------------------------------------------------:|
 |![](https://wikidocs.net/images/page/3413/sgd.png)|
 
-***
+### Adam
+
 
 |The Differences of Stochastic Gradient Descent and its Variants|  
 |:-------------------------------------------------------------:|
 |![](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
 
+## Surrogate Loss Functions
+
+It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
+The surrogate function is also known as merit function.
+
+It is obvious that the choice of optimization methods relies on the objective function.
+
+* [Divergences, surrogate loss functions and experimental design](https://people.eecs.berkeley.edu/~jordan/papers/NguWaiJor_nips05.pdf)
+* http://fa.bianp.net/teaching/2018/eecs227at/
+* [Surrogate Regret Bounds for Proper Losses](http://mark.reid.name/bits/pubs/icml09.pdf)
+* [Bregman Divergences and Surrogates for Learning](https://www.computer.org/csdl/trans/tp/2009/11/ttp2009112048-abs.html)
+* [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
+* [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
+***
+
 - [ ] http://www.optimization-online.org/
+- [ ] http://convexoptimization.com/
 - [ ] More [Optimization Online Links](http://www.optimization-online.org/links.html)
 - [ ] **TUTORIALS AND BOOKS** at <http://plato.asu.edu/sub/tutorials.html>.
-- [ ] http://sunju.org/research/nonconvex/
+- [ ] [Provable Nonconvex Methods/Algorithms](http://sunju.org/research/nonconvex/)
 - [ ] https://arxiv.org/pdf/1712.07897.pdf
 - [ ] https://arxiv.org/pdf/1707.02444.pdf
 - [ ] http://www.vision.jhu.edu/assets/HaeffeleCVPR17.pdf
