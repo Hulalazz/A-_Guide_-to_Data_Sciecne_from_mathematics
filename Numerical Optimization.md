@@ -287,11 +287,14 @@ Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\thet
 is to compute the **Q** function defined by
 $$
 \begin{align}
-Q(\theta|\theta^{(t)}) &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
-                       &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
+Q(\theta|\theta^{(t)})
+        &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
+        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
 \end{align}
 $$
+
 and the M-step is to maximize **Q** with respect to $\theta$ to obtain
+
 $$
 \theta^{(t+1)}=\arg\max_{\theta} Q(\theta|\theta^{(t)}).
 $$
@@ -312,8 +315,9 @@ Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\thet
 is to compute the **Q** function defined by
 $$
 \begin{align}
-Q(\theta|\theta^{(t)}) &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
-                       &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
+Q(\theta|\theta^{(t)}) 
+        &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
+        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
 \end{align}
 $$
 and the another step is to find  $\theta$ that satisfies $Q(\theta^{t+1}|\theta^{t})>Q(\theta^{t}|\theta^{t})$, i.e.
@@ -350,32 +354,54 @@ where $f(x)$ and $g(y)$ is convex; ${A}$ and ${B}$ are matrices.
 
 Define the augmented Lagrangian:
 $$
-L_{\mu}(x,y)=f(x)+g(y)+\lambda^{T}(Ax+By-b)+\frac{\mu}{2}{\|Ax+By-b\|}_{2}^{2}.
+L_{\beta}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}{\|Ax+By-b\|}_{2}^{2}.
 $$
-***
-It is iterative procedure:
-
-> 1. $x^{k+1}=\arg\min_{x}L_{\mu}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
-> 2. $y^{k+1}=\arg\min_{y} L_{\mu}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
-> 3. $\lambda^{k+1} = \lambda^{k}+\mu (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 ***
-**Symmetric ADMM**
-> 1. $x^{k+1}=\arg\min_{x}L_{\mu}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
-> 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k}+\mu (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b).$
-> 3. $y^{k+1}=\arg\min_{y} L_{\mu}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}});$
-> 4. $\lambda^{k+1} = \lambda^{k+\frac{1}{2}}+\mu (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+Augmented Lagrange Method
+
+> 1. $(x^{k+1}, y^{k+1})=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y,\lambda^{\color{aqua}{k}});$
+> 2. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 ***
+ADMM is described as following:
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+
+***
+We take $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described as
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
+> 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k} - \mu\beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b).$
+> 3. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}});$
+> 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}} } - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b).$
+
+
 $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me this.}}$[^9]
+***
 
-One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence.
+One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence:
+$$
+L_{\beta}^{\phi}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}B_{\phi}(b- Ax, By).
+$$
 
+where $B_(\phi)$ is the Bregman divergence induced by the convex function $\phi$.
+
+**BADMM**
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}^{\phi}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}^{\phi}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+
+***
+* http://maths.nju.edu.cn/~hebma/
 * https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
 * https://www.swmath.org/software/20288
 * http://scis.scichina.com/en/2018/122101.pdf
+* https://arxiv.org/abs/1306.3203
 * https://www.birs.ca/cmo-workshops/2017/17w5030/files/
-* http://maths.nju.edu.cn/~hebma/
 * http://stanford.edu/~boyd/admm.html
 * http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
@@ -499,3 +525,4 @@ It is obvious that the choice of optimization methods relies on the objective fu
 - [ ] https://core.ac.uk/display/83849901
 - [ ] https://zhuanlan.zhihu.com/p/51514687
 - [ ] http://math.cmu.edu/~hschaeff/research.html
+- [ ] https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
