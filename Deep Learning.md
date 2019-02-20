@@ -328,7 +328,8 @@ Cross entropy is an example of [Bregman divergence](http://mark.reid.name/blog/m
 
   It is always the loss function in  probabilistic models.
 
-  http://stat.wharton.upenn.edu/~buja/PAPERS/paper-proper-scoring.pdf
+[Loss Functions for Binary Class Probability Estimation and Classification: Structure and Applications
+](http://stat.wharton.upenn.edu/~buja/PAPERS/paper-proper-scoring.pdf)
 
 ***
 
@@ -399,6 +400,11 @@ $$
 
 for some $a > 2$ and $\theta > 0$.
 
+The [minimax concave penalties(MCP)](https://projecteuclid.org/euclid.aos/1266586618) provides the convexity of the penalized loss in sparse regions to
+the greatest extent given certain thresholds for variable selection and unbiasedness.
+It is defined as
+$$\rho(t;\lambda) = \lambda \int_{0}^{t}{(1-\frac{x}{\gamma\lambda})}_{+} \mathrm{d}x.$$
+
 The function defined by its derivative is convenient for us to minimize the cost function via gradient-based methods.
 
 
@@ -415,8 +421,9 @@ where $a,b\in\mathbb{R}$ are are auxiliary parameters, and and $\lambda\in\mathb
 Its gradient with respect to the auxiliary parameters ${a,b}$ is given by
 $$
 \frac{\partial \overline{L}(\theta, a,b)}{\partial a} = 2 L(\theta)(a\exp(b)-1)\exp(b) + 2\lambda a \\
-\frac{\partial \overline{L}(\theta, a,b)}{\partial b} = 2a L(\theta)(a\exp(b)-1)\exp(b)\\
+\frac{\partial \overline{L}(\theta, a,b)}{\partial b} = 2a L(\theta)(a\exp(b)-1)\exp(b)
 $$
+
 so that setting them to be 0s, we could get $a=0, L(\theta) = 0$ if $|b|<\infty$.
 
 For more on **loss function** see:

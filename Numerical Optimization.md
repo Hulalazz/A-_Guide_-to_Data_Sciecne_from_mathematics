@@ -66,10 +66,9 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally and the step length $\
 **Nesterov accelerated gradient method** at the $k$th step is given by:
 
 $$
-\begin{align}
-    x^{k}=y^{k}-\alpha^{k+1}\nabla_{x}f(y^k) \qquad &\text{Descent} \\
-    y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  &\text{Momentum}
-\end{align}
+x^{k}=y^{k}-\alpha^{k+1}\nabla_{x}f(y^k) \qquad \text{Descent} \\
+y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  \text{Momentum}
+
 $$
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
 
@@ -104,13 +103,12 @@ $$
 where $\mathbb{S}\subset\mathbb{R}^n$.
 It has two steps:
 $$
-\begin{align}
-   z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
-   x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} &\qquad\text{Projection}
-\end{align}
+z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}\\
+x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} \qquad\text{Projection}
 $$
 * http://maths.nju.edu.cn/~hebma/slides/03C.pdf
 * http://maths.nju.edu.cn/~hebma/slides/00.pdf
+
 
 ### Mirror descent
 
@@ -123,21 +121,31 @@ $$
 $$
 
 where $\left<\cdot,\cdot\right>$ is inner product.
+
+It is convex in $x$ and  $\frac{\partial B(x, y)}{\partial x} = \nabla f(x) - \nabla f(y)$.
+
 Especially, when $f$ is quadratic function, the Bregman divergence induced by $f$ is
 $$
  B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
 $$
 i.e. the Euclidean distance.
-A wonderful introduction to **Bregman divergence** is **Meet the Bregman Divergences** by [Mark Reid](http://mark.reid.name/) at <http://mark.reid.name/blog/meet-the-bregman-divergences.html>.
+
+A wonderful introduction to **Bregman divergence** is **Meet the Bregman Divergences**
+by [Mark Reid](http://mark.reid.name/) at <http://mark.reid.name/blog/meet-the-bregman-divergences.html>.
+
 ***
 It is given by:
 
 $$
-\begin{align}
-   z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) &\qquad \text{Gradient descent}\\
-   x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) &\qquad\text{Bregman projection}
-\end{align}.
+z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}；\\
+x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) \qquad\text{Bregman projection}.
 $$
+
+In another compact form, mirror gradient can be described as
+$$
+x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k}B(x,x^k)\}
+$$
+with $g^k\in\partial f(x^k)$.
 
 The Bregman projection onto a convex set $C\subset \mathbb{R}^n$ given by
 $$
@@ -147,9 +155,12 @@ is unique.
 
 A `generalised Pythagorean theorem` holds: for convex $C\subset \mathbb{R}^n$ and for all $x\in C$ and $y\in \mathbb{R}^n$ we have
 $$B(x,y)\geq B(x,y^{\prime}) + B(y^{\prime},y)$$
-where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds when the convex set C defining the projection $y^{\prime}$ is affine.
+where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds
+when the convex set C defining the projection $y^{\prime}$ is affine.
 
-One special method is called **entropic mirror descent** when $f=e^x$ and $\mathbb{S}$ is simplex.
+![](https://upload.wikimedia.org/wikipedia/commons/2/2e/Bregman_divergence_Pythagorean.png)
+
+One special method is called **entropic mirror descent(multiplicative weight)** when $f=e^x$ and $\mathbb{S}$ is simplex.
 
 See more on the following link list.
 
@@ -158,6 +169,46 @@ See more on the following link list.
 * https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/
 * https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/
 * https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf
+* http://www.princeton.edu/~yc5/ele538_optimization/lectures/mirror_descent.pdf
+* http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf
+
+### Proximal Gradient Method
+
+The `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
+$$
+prox_h(x)=\arg\min_{x}\{h(u)+\frac{1}{2}{\|x-u\|}_2^2\}
+$$
+
+Unconstrained problem with cost function split in two components:
+$$minimize \qquad f(x) = g(x)+h(x)$$
+
+- ${g}$ is convex, differentiable;
+- ${h}$ is closed, convex, possibly non-differentiable while $prox_h(x)$ is inexpensive.
+
+**Proximal gradient algorithm**
+$$x^{k}=prox_{t_k h} \{x^{k-1}-t_k\nabla g(x^{k-1}\}$$
+
+$t_k > 0$  is step size, constant or determined by line search.
+
+$$x^+ = prox_{th}(x-t\nabla g(x))$$
+from the definition of proximal mapping:
+$$x^+ = \arg\min_{u}( h(u)+\frac{1}{2}{\|u-(x-t\nabla g(x))\|}_2^2 )
+\\= \arg\min_{u}( h(u) + g(x) + \nabla g(x)^T(u-x) +\frac{1}{2t}\|u-x\|_2^2 )$$
+
+$x^{+}$ minimizes $h(u)$ plus a simple quadratic local model of $g(u)$ around ${x}$.
+
+And projected gradient method is a special case of proximal gradient methods with
+$$
+h(x)=\delta_C(x)=
+ \begin{cases}
+   0, & \text{if} \quad x \in C;\\
+   \infty, & \text{otherwise}.
+ \end{cases}
+$$
+
+* http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf
+* https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf
+* https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
 
 ## Variable Metric Methods
 
@@ -189,10 +240,11 @@ $$
 $$
 where $P(x_i|\theta)$ is the probability of realization $X_i=x_i$ with the unknown parameter $\theta$.
 However, when the sample random variable $\{X_i\}_{i=1}^{n}$ are not observed or realized, it is best to
-replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$) of the likelihood function with the  
-**observed information matrix**:
+replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$)
+of the likelihood function with the  **observed information matrix**:
 $$
-J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
+J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})
+=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
 $$
 where $f(x_1, \cdots, x_n|\theta)$ is the joint probability density function of  $X_1, \cdots, X_n$ with unknown parameter $\theta$.
 
@@ -219,8 +271,9 @@ problems. Moreover, since second derivatives are not required, quasi-Newton meth
 sometimes more efficient than Newton’s method.[^11]
 
 In optimization, quasi-Newton methods (a special case of **variable-metric methods**) are algorithms for finding local maxima and minima of functions. Quasi-Newton methods are based on Newton's method to find the stationary point of a function, where the gradient is 0.
-In quasi-Newton methods the Hessian matrix does not need to be computed. The Hessian is updated by analyzing successive gradient vectors instead. Quasi-Newton methods are a generalization of the secant method to find the root of the first derivative for multidimensional problems. In multiple dimensions the secant equation is under-determined, and quasi-Newton methods differ in how they constrain the solution, typically by adding a simple low-rank update to the current estimate of the Hessian.
-One of the chief advantages of quasi-Newton methods over Newton's method is that the Hessian matrix (or, in the case of quasi-Newton methods, its approximation) $B$ does not need to be inverted. The Hessian approximation $B$ is chosen to satisfy
+In quasi-Newton methods the Hessian matrix does not need to be computed. The Hessian is updated by analyzing successive gradient vectors instead. Quasi-Newton methods are a generalization of the secant method to find the root of the first derivative for multidimensional problems.
+In multiple dimensions the secant equation is under-determined, and quasi-Newton methods differ in how they constrain the solution, typically by adding a simple low-rank update to the current estimate of the Hessian.
+One of the chief advantages of quasi-Newton methods over Newton's method is that the Hessian matrix (or, in the case of quasi-Newton methods, its approximation) $\mathbf{B}$ does not need to be inverted. The Hessian approximation $\mathbf{B}$ is chosen to satisfy
 $$
 \nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),
 $$
@@ -271,6 +324,9 @@ exponential families can be implemented as a first-order method through **mirror
 * http://www.luigimalago.it/tutorials/algebraicstatistics2015tutorial.pdf
 * http://www.yann-ollivier.org/rech/publs/tango.pdf
 * http://www.brain.riken.jp/asset/img/researchers/cv/s_amari.pdf
+* https://people.cs.umass.edu/~pthomas/papers/Thomas2016b_ICML.pdf
+* https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf
+* http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
 
 ## Expectation Maximization Algorithm
 
@@ -315,7 +371,7 @@ Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\thet
 is to compute the **Q** function defined by
 $$
 \begin{align}
-Q(\theta|\theta^{(t)}) 
+Q(\theta|\theta^{(t)})
         &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
         &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
 \end{align}
@@ -408,6 +464,39 @@ where $B_(\phi)$ is the Bregman divergence induced by the convex function $\phi$
 * https://blog.csdn.net/shanglianlm/article/details/45919679
 * http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
 
+****
+
+The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
+For example, we want to minimize the following cost function
+$$
+f(x,y) = g(x) + h(y)
+$$
+with or without constraints.
+Specially, if the cost function is additively separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f(x_i), i=1,2,\cdots, n$ rather than the cost function itself
+$$
+\min \sum_{i} f_i(x_i) \leq \sum_{i}\min{f_i(x_i)}.
+$$
+
+And ADMM or proximal gradient methods are to split the cost function to 2 blocks, of which one is differentiable and smooth while the other may not be differentiable. In another word, we can use them to solve some non-smooth optimization problem.
+
+**Coordinate descent** is aimed to minimize the following cost function
+$$
+f(x) = g(x) +\sum_{i}^{n} h_i(x_i)
+$$
+
+where $g(x)$ is convex, differentiable and each $h_i(x)$ is convex.
+We can use coordinate descent to find a minimizer: start with some initial guess $x^0$, and repeat for $k = 1, 2, 3, \dots$:
+
+> 1. $x_{1}^{k} \in\arg\min_{x_1}f(x_1, x_2^{k-1}, x_3^{k-1}, \dots, x_n^{k-1});$
+> 2. $x_{2}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2,x_3^{k-1},\dots, x_n^{k-1});$
+> 3. $x_{3}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3,\dots, x_n^{k-1});$
+> 4. $\vdots$
+> 5. $x_{n}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3^{\color{red}{k}},\dots, x_n).$
+
+- http://bicmr.pku.edu.cn/conference/opt-2014/index.html
+- https://calculus.subwiki.org/wiki/Additively_separable_function
+- https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
+- http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
 
 ## Stochastic Gradient Descent
 

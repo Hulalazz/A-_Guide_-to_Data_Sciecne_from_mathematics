@@ -16,10 +16,14 @@ If the differences of the scores is beyond some threshold such as ${200}$, it is
 And  it is natural if difference of scores is ${0}$, the winning rate is $1/2$.
 
 We assume that
-$$P(d) = \frac{1}{1+e^{-\frac{d}{\theta}}}$$
+
+$$
+P(d) = \frac{1}{1+e^{-\frac{d}{\theta}}}
+$$
+
 where the parameter $\theta$ is related with the threshold.
 
-For example, the expected performance of player A is $E_{A} = \frac{1}{1 + 10^{-\frac{R_A - R_B}{400}}}$ and $E_{B} = \frac{1}{1 + 10^{-\frac{R_B - R_A}{400}}}=1-E_{A}$.
+For example, the expected performance of player A is $E_{A} = \frac{1}{1 + 10^{-\frac{R_A - R_B}{400}}}$ and $E_{B} = \frac{1}{1 + 10^{-\frac{R_B - R_A}{400}}} = 1 - E_{A}$.
 Supposing Player A was expected to score $E_{A}$ points but actually scored $S_{A}$ points. And the update rule is
 $${R}_{A}^{New} = R_{A} + K(S_A - E_A)$$
 where $K$ is a constant.
@@ -164,10 +168,10 @@ We may use machine learn to predict the scores of players and test it in real da
 * http://learningtorank.isti.cnr.it/
 * https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/
 * http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf
- 
+
 ![](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
 
-### RankSVM 
+### RankSVM
 
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * https://www.cnblogs.com/bentuwuying/p/6683832.html
@@ -266,8 +270,8 @@ $$\lambda_i = \sum_{i\in(i,j)}\lambda_{(i,j)}-\sum_{j\in(j,i)}\lambda_{(i,j)}$$
 
 **LambdaMART** is the boosted tree version of LambdaRank, which is based on RankNet. It takes the ranking problem as classification problem.
 
-MART stands for [Multiple Additive Regression Tree](http://statweb.stanford.edu/~jhf/MART.html). 
-In LambdaRank, we compute the gradient. And we can use this gradient to make up the GBRT. 
+MART stands for [Multiple Additive Regression Tree](http://statweb.stanford.edu/~jhf/MART.html).
+In LambdaRank, we compute the gradient. And we can use this gradient to make up the GBRT.
 > LambdaMART had an added advantage: the training of tree ensemble models can be very significantly sped up over the neural net equivalent (this work, led by O. Dekel, is not yet published). This allows us to train with much larger data sets, which again gives improved ranking accuracy. From [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
 
 ***
@@ -409,7 +413,18 @@ And we can use stochastic gradient descent to find the parameters $\Theta$.
 - [ ] https://blog.csdn.net/cht5600/article/details/54381011
 - [ ] https://blog.csdn.net/qq_20599123/article/details/51315697
 - [ ] https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
+- [ ] https://arxiv.org/pdf/1510.01784.pdf
+- [ ] https://core.ac.uk/display/23873231
 
+***
+
+And the above algorithm are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1+\exp(-x)}$.
+
+[GBPR: Group Preference Based Bayesian Personalized Ranking for One-Class Collaborative Filtering](https://www.ijcai.org/Proceedings/13/Papers/396.pdf)  introduce richer interactions among users when the assumption does not hold.
+
+* https://www.ijcai.org/Proceedings/13/Papers/396.pdf
+
+http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html
 
 **Deep Online Ranking System**
 
@@ -422,7 +437,7 @@ E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/0
 - [ ] https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html
 - [ ] https://academic.microsoft.com/#/detail/2149166361
 - [ ] http://www.wsdm-conference.org/2019/acm-proceedings.php
-  
+
 ***
 * https://www.wikiwand.com/en/Learning_to_rank
 * https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
