@@ -72,6 +72,8 @@ y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  \text{Momentum}
 $$
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
 
+They are called as **inertial gradient methods** or **accelerated gradient methods**.
+
 |Inventor of Nesterov accelerated Gradient|
 |:---:|
 |![Yurii Nesterov](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Nesterov_yurii.jpg/440px-Nesterov_yurii.jpg)}|
@@ -83,25 +85,35 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally.
 * https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
 * https://jlmelville.github.io/mize/nesterov.html
+* http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
+* http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf
+* http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf
+* http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf
 * https://smartech.gatech.edu/handle/1853/60525
 * https://zhuanlan.zhihu.com/p/41263068
 * https://zhuanlan.zhihu.com/p/35692553
 * https://zhuanlan.zhihu.com/p/35323828
+* http://www.optimization-online.org/DB_FILE/2018/11/6938.pdf
+* https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
+* https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
+* https://www.cs.cmu.edu/~ggordon/10725-F12/slides/09-acceleration.pdf
+* https://arxiv.org/pdf/1805.09077.pdf
 
 ## Mirror Gradient Method
 
 It is often called **mirror descent**.
 It can be regarded as non-Euclidean generalization of **projected gradient descent** to solve some constrained optimization problems.
 
-### Projected Gradient Descent
-
-**Projected gradient descent** is aimed to solve convex optimization problem with explicit constraints, i.e.
+If not specified, all these methods are aimed to solve convex optimization problem with explicit constraints, i.e.
 $$
 \arg\min_{x\in\mathbb{S}}f(x)
 $$
 
 where $\mathbb{S}\subset\mathbb{R}^n$.
-It has two steps:
+
+### Projected Gradient Descent
+
+**Projected gradient descent** has two steps:
 $$
 z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}\\
 x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} \qquad\text{Projection}
@@ -117,35 +129,22 @@ $$
 Bregman divergence is induced by convex smooth function $f$:
 
 $$
- B(x,y)=f(x)-f(y)-\left<\nabla f(y),x-y\right>
+ B_h(x,y) = h(x) - h(y)-\left<\nabla h(y),x-y\right>
 $$
 
 where $\left<\cdot,\cdot\right>$ is inner product.
 
-It is convex in $x$ and  $\frac{\partial B(x, y)}{\partial x} = \nabla f(x) - \nabla f(y)$.
+It is convex in $x$ and  $\frac{\partial B_h(x, y)}{\partial x} = \nabla h(x) - \nabla h(y)$.
 
-Especially, when $f$ is quadratic function, the Bregman divergence induced by $f$ is
+
+Especially, when ${h}$ is quadratic function, the Bregman divergence induced by $h$ is
 $$
- B(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
+ B_h(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
 $$
 i.e. the Euclidean distance.
 
 A wonderful introduction to **Bregman divergence** is **Meet the Bregman Divergences**
 by [Mark Reid](http://mark.reid.name/) at <http://mark.reid.name/blog/meet-the-bregman-divergences.html>.
-
-***
-It is given by:
-
-$$
-z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}；\\
-x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) \qquad\text{Bregman projection}.
-$$
-
-In another compact form, mirror gradient can be described as
-$$
-x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k}B(x,x^k)\}
-$$
-with $g^k\in\partial f(x^k)$.
 
 The Bregman projection onto a convex set $C\subset \mathbb{R}^n$ given by
 $$
@@ -159,6 +158,26 @@ where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds
 when the convex set C defining the projection $y^{\prime}$ is affine.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/2/2e/Bregman_divergence_Pythagorean.png)
+
+***
+It is given in the projection form:
+
+$$
+z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}；\\
+x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) \qquad\text{Bregman projection}.
+$$
+
+In another compact form, mirror gradient can be described in the proximal form:
+$$
+x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k}B(x,x^k)\}
+$$
+with $g^k\in\partial f(x^k)$.
+
+The original "mirror" form of mirror gradient method is described as
+$$
+\nabla h(x^{k+1}) = \nabla h(x^k) - \nabla f(x^k)
+$$
+where the convex function ${h}$ induces the Bregman divergence.
 
 One special method is called **entropic mirror descent(multiplicative weight)** when $f=e^x$ and $\mathbb{S}$ is simplex.
 
@@ -176,7 +195,7 @@ See more on the following link list.
 
 The `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
 $$
-prox_h(x)=\arg\min_{x}\{h(u)+\frac{1}{2}{\|x-u\|}_2^2\}
+prox_h(x)=\arg\min_{x}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}
 $$
 
 Unconstrained problem with cost function split in two components:
@@ -192,8 +211,11 @@ $t_k > 0$  is step size, constant or determined by line search.
 
 $$x^+ = prox_{th}(x-t\nabla g(x))$$
 from the definition of proximal mapping:
-$$x^+ = \arg\min_{u}( h(u)+\frac{1}{2}{\|u-(x-t\nabla g(x))\|}_2^2 )
-\\= \arg\min_{u}( h(u) + g(x) + \nabla g(x)^T(u-x) +\frac{1}{2t}\|u-x\|_2^2 )$$
+$$
+x^+ = \arg\min_{u}( h(u)+\frac{1}{2}{\|u-(x-t\nabla g(x))\|}_2^2 )
+\\= \arg\min_{u}( h(u) + g(x) + \nabla g(x)^T(u-x) +\frac{1}{2t} {\|u-x\|}_2^2 )
+\\= \arg\min_{u}( h(u) + \nabla g(x)^T(u-x) +\frac{1}{2t} {\|u-x\|}_2^2 )
+$$
 
 $x^{+}$ minimizes $h(u)$ plus a simple quadratic local model of $g(u)$ around ${x}$.
 
@@ -206,9 +228,19 @@ h(x)=\delta_C(x)=
  \end{cases}
 $$
 
+And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
+$$
+\arg\min_{x}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}\to \arg\min_{x}\{h(u)+ B(x,u)\}.
+$$
+so that the primary proximal gradient methods are modified to the Bregman version,
+which is called as `Bregman proximal gradient` method.
+
 * http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf
 * https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf
 * https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
+* https://arxiv.org/abs/1808.03045
+* https://arxiv.org/abs/1812.10198
+
 
 ## Variable Metric Methods
 
@@ -299,6 +331,7 @@ For example,
 * [Quasi-Newton method](https://www.wikiwand.com/en/Quasi-Newton_method)
 * [Using Gradient Descent for Optimization and Learning](http://www.gatsby.ucl.ac.uk/teaching/courses/ml2-2008/graddescent.pdf)
 * http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
+* https://core.ac.uk/download/pdf/82136573.pdf
 
 
 ### Natural Gradient Descent
@@ -370,11 +403,9 @@ Each iteration of the **generalized EM** algorithm consists of an expectation st
 Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
 is to compute the **Q** function defined by
 $$
-\begin{align}
 Q(\theta|\theta^{(t)})
-        &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
-        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
-\end{align}
+        = \mathbb{E}[ \ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)} ] \\
+        = \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
 $$
 and the another step is to find  $\theta$ that satisfies $Q(\theta^{t+1}|\theta^{t})>Q(\theta^{t}|\theta^{t})$, i.e.
 $$
@@ -503,7 +534,7 @@ We can use coordinate descent to find a minimizer: start with some initial guess
 Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
 It is **stochastic gradient** but may not be **descent**.
 The name **stochastic gradient methods**  may be more appropriate to call the methods with stochastic gradient.
-It can date back upto **stochastic approximation**.
+It can date back to **stochastic approximation** in statistics.
 
 It is aimed to solve the problem with finite sum optimization problem, i.e.
 $$
@@ -569,7 +600,6 @@ See the following links for more information on *stochastic gradient descent*.
 * https://leon.bottou.org/research/stochastic
 * https://leon.bottou.org/papers/bottou-bousquet-2008
 * http://ruder.io/optimizing-gradient-descent/
-* http://ruder.io/deep-learning-optimization-2017/
 * https://zhuanlan.zhihu.com/p/22252270
 * https://henripal.github.io/blog/stochasticdynamics
 * https://henripal.github.io/blog/langevin
@@ -581,10 +611,17 @@ See the following links for more information on *stochastic gradient descent*.
 
 ### Adam
 
+- https://arxiv.org/abs/1412.6980
+- http://ruder.io/deep-learning-optimization-2017/
 
 |The Differences of Stochastic Gradient Descent and its Variants|  
 |:-------------------------------------------------------------:|
 |![](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
+
+
+$\color{green}{PS}$: Zeyuan Allen-Zhu and others published much work on acceleration of stochastic gradient descent.
+
+- https://arxiv.org/pdf/1811.03962.pdf
 
 ## Surrogate Loss Functions
 
