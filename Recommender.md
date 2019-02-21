@@ -7,19 +7,7 @@ RSs are primarily directed towards individuals who lack sufficient personal expe
 Xavier Amatriain discusses the traditional definition and its data mining core.
 
 Traditional definition: The **recommender system** is to estimate a utility  function that automatically predicts how a user will like an item.
-|Traditional Approaches|Beyond Traditional Methods|
-|---|---|
-|Collaborative Filtering|Tensor Factorization & Factorization Machines|
-|Content-Based Recommendation|Social Recommendations|
-|Item-based Recommendation|Learning to rank|
-|Hybrid Approaches|MAB Explore/Exploit|
 
-|Evolution of the Recommender Problem|
-|:---:|
-|Rating|
-|Ranking|
-|Page Optimization|
-|Context-aware Recommendations|
 
 User Interest is **implicitly** reflected in `Interaction history`, `Demographics` and `Contexts`, which can be regarded as a typical example of data mining. Recommender system should match a context to a collection of information objects. There are some methods called `Deep Matching Models for Recommendation`.
 
@@ -268,6 +256,8 @@ Sometimes, the information of user we could collect is impliict such as the clic
 * http://perception.csl.illinois.edu/matrix-rank/home.html
 * https://www.acemap.info/author/page?AuthorID=7E61F31B
 
+****
+
 ## Deep Learning and Recommender System
 
 Deep learning is powerful in processing visual and text information so that it helps to find the interests of users such as
@@ -501,8 +491,30 @@ The recommender system is essential to find the item which matches the user's de
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
 * https://www.comp.nus.edu.sg/~xiangnan/papers/www18-tutorial-deep-matching.pdf
+* http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf
 
 ***
+|Traditional Approaches|Beyond Traditional Methods|
+|---|---|
+|Collaborative Filtering|Tensor Factorization & Factorization Machines|
+|Content-Based Recommendation|Social Recommendations|
+|Item-based Recommendation|Learning to rank|
+|Hybrid Approaches|MAB Explore/Exploit|
+
+**Social Recommendation**
+
+We present a novel framework for studying recommendation algorithms in terms of the
+‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
+dataset and allows us to consider questions relating algorithmic parameters to properties
+of the datasets. 
+
+|Evolution of the Recommender Problem|
+|:---:|
+|Rating|
+|Ranking|
+|Page Optimization|
+|Context-aware Recommendations|
+
 
 - [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 - [ ] https://github.com/wzhe06/Reco-papers
