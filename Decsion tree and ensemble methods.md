@@ -1,7 +1,9 @@
 ### Decision Tree
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
-It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set.
+It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
+the data space and fitting a simple prediction model within each partition. As a
+result, the partitioning can be represented graphically as a decision tree.
 [Visual introduction to machine learning](https://explained.ai/decision-tree-viz/index.html) show an visual introduction to decision tree.
 
 ***
@@ -13,9 +15,14 @@ It use 'divide-and-conquer' strategy recursively. It is easy to scale up to mass
 
 ***
 
-Creating a binary decision tree is actually a process of dividing up the input space.
+Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**.
 
 This learning process is to minimize the impurities.
+C4.55 and CART6 are two later classification
+tree algorithms that follow this approach. C4.5 uses
+`entropy` for its impurity function, whereas CART
+uses a generalization of the binomial variance called the `Gini index`.
+
 If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
 reduced, and the amount of the reduction is the information gain,
 
@@ -43,8 +50,10 @@ $$
 
 ***
 
-Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max deepth?
+Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
 The regularization techniques in regression may not suit the tree algorithms such as LASSO.
+
+**Pruning** is a regularization technique for tree-based algorithm.
 
 [Fifty Years of Classification and
 Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
@@ -63,6 +72,8 @@ Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) an
 * http://www.cnblogs.com/en-heng/p/5035945.html
 * https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/
 * (http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+* https://christophm.github.io/interpretable-ml-book/tree.html
+* https://dinh-hung-tu.github.io/tree-based-models/
 
 #### Random Forest
 
@@ -83,6 +94,7 @@ boosting, and they are simpler to train and tune.
 
 ***
 
+* https://mi2datalab.github.io/randomForestExplainer/index.html
 * https://github.com/kjw0612/awesome-random-forest
 * https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
 * https://dimensionless.in/author/raghav/
@@ -100,7 +112,8 @@ boosting, and they are simpler to train and tune.
 * https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
 * [Neural Random Forests](https://arxiv.org/abs/1604.07143)
 * [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
-* https://mi2datalab.github.io/randomForestExplainer/index.html
+* [Additive Models, Boosting, and Inference for Generalized Divergences ](https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf)
+* [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
 
 ### Bagging
 
@@ -127,7 +140,7 @@ the base learners, that is, voting for classification and averaging for regressi
 
 ### Boosting
 
-[Gradient Boosting Visualized](https://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
+https://ieeexplore.ieee.org/abstract/document/7929984
 
 [Reweighting with Boosted Decision Trees](https://arogozhnikov.github.io/2015/10/09/gradient-boosted-reweighter.html)
 
@@ -145,7 +158,7 @@ In another word, we will reduce the error at each iteration.
 
 #### AdaBoost
 
-AdaBoost is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$. 
+AdaBoost is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$.
 AdaBoost is to change the distribution of training data and learn from the shuffled data.
 It is an iterative trial-and-error in some sense.
 
@@ -176,7 +189,10 @@ $$\mathbb{I}(x\neq y)=
 One of the frequently asked questions is `What's the basic idea behind gradient boosting?` and the answer from [https://explained.ai/gradient-boosting/faq.html] is the best one I know:
 > Instead of creating a single powerful model, boosting combines multiple simple models into a single **composite model**. The idea is that, as we introduce more and more simple models, the overall model becomes stronger and stronger. In boosting terminology, the simple models are called weak models or weak learners.
 > To improve its predictions, gradient boosting looks at the difference between its current approximation,$\hat{y}$ , and the known correct target vector, $y$, which is called the residual, $y-\hat{y}$. It then trains a weak model that maps feature vector $x$  to that residual vector. Adding a residual predicted by a weak model to an existing model's approximation nudges the model towards the correct target. Adding lots of these nudges, improves the overall models approximation.
-![golf](https://explained.ai/gradient-boosting/images/golf-dir-vector.png)
+
+|Gradient Boosting|
+|:---:|
+|![golf](https://explained.ai/gradient-boosting/images/golf-dir-vector.png)|
 
 It is the first solution to the question that if weak learner is equivalent to strong learner.
 
@@ -194,6 +210,7 @@ It is the first solution to the question that if weak learner is equivalent to s
 ***
 
 * [Gradient Boosting at Wikipedia](https://www.wikiwand.com/en/Gradient_boosting)
+* [Gradient Boosting Visualized](https://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
 * https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/
 * https://explained.ai/gradient-boosting/index.html
 * https://explained.ai/gradient-boosting/L2-loss.html
@@ -205,6 +222,7 @@ It is the first solution to the question that if weak learner is equivalent to s
 * https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/
 * https://data-flair.training/blogs/gradient-boosting-algorithm/
 * https://arxiv.org/abs/1803.02042
+* https://statweb.stanford.edu/~jhf/ftp/trebst.pdf
 * https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
 * https://machinelearningmastery.com/start-with-gradient-boosting/
 * https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
@@ -217,7 +235,7 @@ r_{i,t}=-{ [\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}] }_{f=f_{t-
 $$
 Why not the error $L(\mathrm{d}_i, f(x_i))$ itself?
 Recall the Taylor expansion
-$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$, 
+$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$,
 which is easier to fit than a general common non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
@@ -286,7 +304,7 @@ Stacked generalization (or stacking)  is a different way of combining multiple m
 3. Test the base learners on the second part.
 4. Using the predictions from 3) as the inputs, and the correct responses as the outputs, train a higher level learner.
 
-Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we combine the base learners, possibly nonlinearly. It is a little similar with **composition** of functions.
+Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we combine the base learners, possibly nonlinearly. It is a little similar with **composition** of functions in mathematics.
 
 * http://www.machine-learning.martinsewell.com/ensembles/stacking/
 * https://www.jianshu.com/p/46ccf40222d6

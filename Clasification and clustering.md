@@ -199,14 +199,36 @@ $$
 |---|
 |![](https://pic2.zhimg.com/v2-01546fedbab1df3221ecf1105bb0ebe6_1200x500.jpg)|
 
-It can convert to a constrained optimization problem.
+It can convert to a constrained optimization problem:
 
 $$
 \min_{w, b} \frac{1}{2}\|w\|_2^2 \\
 s.t.\qquad d_i(\left< w, x \right> + b) \geq 1
 $$
 
+****
+
 It is a convex quadratic programming(QP) problem. We can use [Lagrange multipliers method](https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/) or ADMM(one augmented Lagrangian multiplier method).
+
+The learning task reduces to minimization of the primal objective
+function
+$$
+L = \frac{1}{2}\|w\|^2  -\sum_{i=1}^{n}\alpha_i (d_i(\left<w, x_i\right>+b)-1)
+$$
+where $\alpha_i$ is Lagrange multiplier.
+Taking the derivatives with respect to ${b}$ and ${w}$ give:
+$$
+\sum_{i=1}^{n}\alpha_i d_i = 0 \\
+w = \sum_{i=1}^{n}\alpha_i d_i x_i 
+$$
+
+and resubstituting these expressions back in the primal gives the Wolfe dual:
+$$
+\sum_{i=1}^{n}\alpha_i -\frac{1}{2} \sum_{i, J=1}^{n}\alpha_i \alpha_j d_i d_j \left<x_i, x_j\right>
+$$
+
+which must be maximized with respect to the i subject to the constraints
+$$\sum_{i=1}^{n}\alpha_i d_i = 0, \alpha_i \geq 0\quad \forall i.$$
 
 It is data-dependent i.e., if we add a new data point the hyper-line may change.
 And it is not suitable to apply incremental or stochastic gradient method to learn the hyper-line.
@@ -215,7 +237,7 @@ The preliminary of SVM is that the training data is linearly separate.
 
 The goal of `soft-margin` SVM is to choose ${w}$ so as to minimize the objective function $F: \mathbb{R}^d\to \mathbb{R}$ defined by
 $$
-F(w)=\frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\max\{0, 1 - d_i\left<w,x_i\right>\}
+L(w)=\frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\max\{0, 1 - d_i\left<w,x_i\right>\}
 $$
 
 where the `hinge loss`, $\max\{0, 1 - d_i\left<w,x_i\right>\}$, occurs.
@@ -223,6 +245,7 @@ where the `hinge loss`, $\max\{0, 1 - d_i\left<w,x_i\right>\}$, occurs.
 * http://www.svms.org/history.html
 * [机器学习之支持向量机（SVM）算法 - 付千山的文章 - 知乎](https://zhuanlan.zhihu.com/p/45959826)
 * http://www.svms.org/
+* https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/svmintro.pdf
 * https://www.svm-tutorial.com/
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * http://web.stanford.edu/~hastie/TALKS/svm.pdf
@@ -264,7 +287,10 @@ Different from dimension reduction method, the kernel methods usually map the lo
 SVMs, and also a number of other linear classifiers, provide an easy and efficient way of doing this mapping to a higher dimensional space, which is referred to as "the kernel trick". 
 It's not really a trick: it just exploits the math that we have seen. The SVM linear classifier relies on a dot product between data point vectors.
 Let $K(x, y) = \left<x, y\right> = x^Ty$. Then the classifier we have seen so far is
-$$f(x)= K(w,x)+b.$$
+
+$$
+f(x) = {sign}(\sum_i \alpha_i d_i K(\vec{x}_i, \vec{x}) + b).
+$$
 
 Now suppose we decide to map every data point into a higher dimensional space via some transformation $\Phi\colon {x} \mapsto\phi({x})$. Then the dot product becomes $\Phi(x)^T\Phi(y)$.
 
@@ -277,7 +303,7 @@ A kernel function $K$ must be continuous, symmetric, and have a positive definit
 
 The most common form of radial basis function is a Gaussian distribution, calculated as: 
 $$
-K(\vec{x},\vec{z}) = e^{-(\vec{x}-\vec{z})^2/(2\sigma^2)}
+K(\vec{x},\vec{z}) = e^{-\frac{(\vec{x}-\vec{z})^2}{2\sigma^2}}
 $$
 
 A radial basis function (rbf) is equivalent to mapping the data into an infinite dimensional Hilbert space, and so we cannot illustrate the radial basis function concretely, as we did a quadratic kernel. Beyond these two families, there has been interesting work developing other kernels, some of which is promising for text applications.
