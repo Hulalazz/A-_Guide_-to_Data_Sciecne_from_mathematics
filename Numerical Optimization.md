@@ -190,6 +190,7 @@ See more on the following link list.
 * https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf
 * http://www.princeton.edu/~yc5/ele538_optimization/lectures/mirror_descent.pdf
 * http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf
+* https://tlienart.github.io/pub/csml/cvxopt/mda.html
 
 ### Proximal Gradient Method
 
@@ -494,6 +495,7 @@ where $B_(\phi)$ is the Bregman divergence induced by the convex function $\phi$
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * https://blog.csdn.net/shanglianlm/article/details/45919679
 * http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
+* https://tlienart.github.io/pub/csml/cvxopt/split.html
 
 ****
 
