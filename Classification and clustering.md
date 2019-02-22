@@ -18,6 +18,7 @@ The external representation of dissimilarity will be discussed in **Graph Algori
 * https://blog.csdn.net/xiaojimanman/article/details/44977889
 * https://github.com/hankcs/HanLP/wiki/%E6%96%87%E6%9C%AC%E8%81%9A%E7%B1%BB
 * http://www.charuaggarwal.net/text-cluster.pdf
+* https://www.tutorialspoint.com/data_mining/dm_cluster_analysis.htm
 
 #### K-means cluster
 
@@ -82,6 +83,10 @@ $$
 
 In **The Nature of Statistical Learning**, the author gives an example of Gaussian mixture that cannot be estimated via maximum likelihood estimation.
 
+Let $\gamma(z_{nk}) = \frac{\pi(n) N()x_n|\mu_n, \Sigma_n}{\sum_{n=1}^{N}\pi(n) N(x_i|\mu_k,\Sigma_k)}$.
+
+***
+
 * http://www.vlfeat.org/index.html
 * https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html
 * https://www.wikiwand.com/en/Mixture_distribution
@@ -91,7 +96,7 @@ In **The Nature of Statistical Learning**, the author gives an example of Gaussi
 
 #### Hierarchical clustering
 
-**Hierarchical clustering algorithms** are either top-down or bottom-up. Bottom-up algorithms treat each document as a singleton cluster at the outset and then successively merge (or agglomerate) pairs of clusters until all clusters have been merged into a single cluster that contains all documents.
+**Hierarchical clustering algorithms** are either top-down or bottom-up. Bottom-up algorithms (*Agglomerative Hierarchical Clustering*) treat each document as a singleton cluster at the outset and then successively merge (or agglomerate) pairs of clusters until all clusters have been merged into a single cluster that contains all documents.
 This method is based on the choice of distance measure or metric.
 The algorithm works as follows:
 
@@ -102,6 +107,20 @@ The algorithm works as follows:
 ***
 ![](https://raw.githubusercontent.com/Hulalazz/hierarchical-clustering/master/Results/Centroid.png)
 
+
+> The idea is to build a binary tree of the data that successively merges similar groups of points.
+
+And we identify the closest two clusters by the `group similarity` of these clusters.
+There are three most popular choices of group similarity induced by a distance measure between points $d_{i,j}$:
+
+* Single-linkage:  the similarity of the closest pair: $d_{SL}(G, H) = \min_{i\in G, j\in H} d_{i,j}$;
+* Complete linkage: the similarity of the furthest pair: $d_{SL}(G, H) = \max_{i\in G, j\in H} d_{i,j}$;
+* Group average: the average similarity between groups: $d_{SL}(G, H) = \frac{1}{|G||H|}\sum_{i\in G, j\in H} d_{i,j}$, where $|G|,|H|$ is the number of memeber in cluster ${G}$ and ${H}$, respectively.
+
+
+***
+
+*Divisive Hierarchical Clustering*
 
 + https://blog.csdn.net/qq_39388410/article/details/78240037
 + https://www.r-bloggers.com/hierarchical-clustering-in-r-2/
@@ -129,13 +148,23 @@ Density-based spatial clustering of applications with noise (DBSCAN) is a data c
 * http://www.cs.fsu.edu/~ackerman/CIS5930/notes/DBSCAN.pdf
 * https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html
 
-#### CGDSPT
+
+#### Grid-based Clustering
 
 `Clustering based on Grid-Density and Spatial Partition Tree(CGDSPT)`
+- http://cucis.ece.northwestern.edu/publications/pdf/LiaLiu04A.pdf
 
 #### Ensemble methods of Clusterings
 
 Combining Multiple Clusterings Using Evidence Accumulation
+
+#### Bi-clustering
+
+- http://www.cs.princeton.edu/courses/archive/spr05/cos598E/Biclustering.pdf
+- https://cw.fel.cvut.cz/old/_media/courses/a6m33bin/biclustering.pdf
+- http://www.kemaleren.com/post/an-introduction-to-biclustering/
+- https://www.cs.tau.ac.il/~roded/articles/bicrev.pdf
+
 
 ### Classification
 
