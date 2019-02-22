@@ -96,13 +96,15 @@ Let $\gamma(z_{nk}) = \frac{\pi(n) N()x_n|\mu_n, \Sigma_n}{\sum_{n=1}^{N}\pi(n) 
 
 #### Hierarchical clustering
 
-**Hierarchical clustering algorithms** are either top-down or bottom-up. Bottom-up algorithms (*Agglomerative Hierarchical Clustering*) treat each document as a singleton cluster at the outset and then successively merge (or agglomerate) pairs of clusters until all clusters have been merged into a single cluster that contains all documents.
-This method is based on the choice of distance measure or metric.
+**Hierarchical clustering algorithms** are either top-down or bottom-up. These methods are based on the choice of distance measure or metric.
+
+Bottom-up algorithms (*Agglomerative Hierarchical Clustering*) treat each document as a singleton cluster at the outset and then successively merge (or agglomerate) pairs of clusters until all clusters have been merged into a single cluster that contains all documents.
+
 The algorithm works as follows:
 
 * Put each data point in its own cluster.
 * Identify the closest two clusters and combine them into one cluster.
-* Repeat the above step till all the data points are in a single cluster.
+* Repeat the above step until all the data points are in a single cluster.
 
 ***
 ![](https://raw.githubusercontent.com/Hulalazz/hierarchical-clustering/master/Results/Centroid.png)
@@ -115,12 +117,14 @@ There are three most popular choices of group similarity induced by a distance m
 
 * Single-linkage:  the similarity of the closest pair: $d_{SL}(G, H) = \min_{i\in G, j\in H} d_{i,j}$;
 * Complete linkage: the similarity of the furthest pair: $d_{SL}(G, H) = \max_{i\in G, j\in H} d_{i,j}$;
-* Group average: the average similarity between groups: $d_{SL}(G, H) = \frac{1}{|G||H|}\sum_{i\in G, j\in H} d_{i,j}$, where $|G|,|H|$ is the number of memeber in cluster ${G}$ and ${H}$, respectively.
+* Group average: the average similarity between groups: $d_{SL}(G, H) = \frac{1}{|G||H|}\sum_{i\in G, j\in H} d_{i,j}$, where $|G|,|H|$ is the number of member in cluster ${G}$ and ${H}$, respectively.
 
+$\color{quad}{PS}$: the distance or similarity here is not metric in mathematics. The similarity are supposed to be non-negative and linear  so that 
 
-***
+1. $d(x,y)\geq 0$ and $d(x,y)=0$ if and only if $x=y$; 
+2. $d(\alpha x,\alpha y) = |\alpha| d(x, y)$.
 
-*Divisive Hierarchical Clustering*
+In fact, we can use Bregman divergence to cluster.
 
 + https://blog.csdn.net/qq_39388410/article/details/78240037
 + https://www.r-bloggers.com/hierarchical-clustering-in-r-2/
@@ -129,7 +133,26 @@ There are three most popular choices of group similarity induced by a distance m
 + https://www.wikiwand.com/en/Hierarchical_clustering
 + http://www.econ.upf.edu/~michael/stanford/maeb7.pdf
 + http://www.cs.princeton.edu/courses/archive/spr08/cos424/slides/clustering-2.pdf
++ https://blog.csdn.net/qq_39388410/article/details/78240037
++ https://www.r-bloggers.com/hierarchical-clustering-in-r-2/
++ http://iss.ices.utexas.edu/?p=projects/galois/benchmarks/agglomerative_clustering
++ https://nlp.stanford.edu/IR-book/html/htmledition/hierarchical-agglomerative-clustering-1.html
++ https://www.wikiwand.com/en/Hierarchical_clustering
++ http://www.econ.upf.edu/~michael/stanford/maeb7.pdf
++ http://www.cs.princeton.edu/courses/archive/spr08/cos424/slides/clustering-2.pdf
 
+
+***
+
+*Divisive Hierarchical Clustering* is described as :
+
+1. Put all objects in one cluster;
+2. Repeat until all cluster are singletons:
+   - a) choose a cluster to split;
+   - b) replace  the chosen cluster with the sub-clusters.
+
+* http://www.cs.princeton.edu/courses/archive/spr08/cos435/Class_notes/clustering4.pdf
+* http://www.ijcstjournal.org/volume-5/issue-5/IJCST-V5I5P2.pdf
 
 #### DBSCAN
 
@@ -312,7 +335,7 @@ The preliminary of SVM is that the training data is linearly separate. What if t
 
 ![](http://www.societyofrobots.com/images/mechanics_gearssizes.gif)
 
-To handle this case, we relax our constraints to require instead that $d_i(\left< w, x \right> + b) \geq 1 - \epsilon_i$.  Of course, we want to keep the $\epsilon_i$$ terms small,
+To handle this case, we relax our constraints to require instead that $d_i(\left< w, x \right> + b) \geq 1 - \epsilon_i$.  Of course, we want to keep the $\epsilon_i$ terms small,
 so we reformulate our optimization problem as follows:
 $$
 \min_{w, b} \frac{1}{2} {\|w\|}_2^2 + C\sum_{i=1}^n \epsilon_i\\
@@ -348,6 +371,8 @@ where the `hinge loss`, $\max\{0, 1 - d_i\left<w,x_i\right>\}$, occurs.
 * http://cs.brown.edu/people/pfelzens/engn2520/CS1420_Lecture_11.pdf
 * http://www.cs.cmu.edu/~aarti/Class/10701_Spring14/slides/SupportVectorMachines.pdf
 * http://people.csail.mit.edu/dsontag/courses/ml14/slides/lecture2.pdf
+
+We can extend SVM to classify more classes than 2.
 
 ***
 
@@ -397,7 +422,8 @@ $$
 K(\vec{x},\vec{z}) = e^{-\frac{(\vec{x}-\vec{z})^2}{2\sigma^2}}
 $$
 
-A radial basis function (rbf) is equivalent to mapping the data into an infinite dimensional Hilbert space, and so we cannot illustrate the radial basis function concretely, as we did a quadratic kernel. Beyond these two families, there has been interesting work developing other kernels, some of which is promising for text applications.
+A radial basis function (rbf) is equivalent to mapping the data into an infinite dimensional Hilbert space, and so we cannot illustrate the radial basis function concretely, as we did a quadratic kernel. 
+Beyond these two families, there has been interesting work developing other kernels, some of which is promising for text applications.
 
 The world of SVMs comes with its own language, which is rather different from the language otherwise used in machine learning.
 The terminology does have deep roots in mathematics, but it's important not to be too awed by that terminology.
@@ -420,3 +446,13 @@ All of these are straightforward notions which have also been used in many other
 
 ***
 ![](https://pic4.zhimg.com/v2-1dc2977c027b0cfebec991fdabfcb728_b.jpg)
+
+
+
+If we apply the  stacking ensemble methods to kernelized SVM, it is equivalent to  deep learning or radical basis function network?
+
+* http://www.ai.rug.nl/~mwiering/GROUP/ARTICLES/Multi-Layer-SVM.pdf
+* http://mccormickml.com/2013/08/15/radial-basis-function-network-rbfn-tutorial/
+* https://www.cc.gatech.edu/~isbell/tutorials/rbf-intro.pdf
+* http://fourier.eng.hmc.edu/e161/lectures/nn/node11.html
+* https://www.cs.cmu.edu/afs/cs/academic/class/15883-f15/slides/rbf.pdf

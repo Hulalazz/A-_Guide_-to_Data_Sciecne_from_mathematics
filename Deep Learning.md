@@ -766,19 +766,12 @@ $$
 f^{\prime}(x)=\frac{e^x}{1 + e^x} = \frac{1}{1 + e^{-x}}\in (0,1)
 $$
 
-`Bent identity`:
-$$
-f(x)=\frac{\sqrt{x^2+1}-1}{2}+x \in(-\infty, +\infty) \\
-f^{\prime}(x) = \frac{x}{2\sqrt{x^2+1}} + 1\in(0.5, 1.5)
-$$
-
-A sort of compromise between Identity and ReLU activation, Bent Identity allows non-linear behaviours, while its non-zero derivative promotes efficient learning and overcomes the issues of dead neurons associated with ReLU. As its derivative can return values either side of 1, it can be susceptible to both exploding and vanishing gradients.
 
 `SoftSign`:
 
 $$
 f(x) =  \frac{x}{1+|x|} \in (-1, 1) \\
-f^{\prime}(x)=\frac{1}{(1+|x|)^2}
+f^{\prime}(x)=\frac{1}{(1+|x|)^2}\in(0, 1)
 $$
 
 The sign function  is defined as
@@ -799,11 +792,20 @@ The soft sign function is not continuous at ${0}$ as well as sign function while
 
 Softsign is another alternative to Tanh activation. Like Tanh, it's anti-symmetrical, zero centered, differentiable and returns a value between -1 and 1. Its flatter shape and more slowly declining derivative suggest that it may learn more efficiently. On the other hand, calculation of the derivative is more computationally cumbersome than Tanh.
 
+
+`Bent identity`:
+$$
+f(x)=\frac{\sqrt{x^2+1}-1}{2}+x \in(-\infty, +\infty) \\
+f^{\prime}(x) = \frac{x}{2\sqrt{x^2+1}} + 1\in(0.5, 1.5)
+$$
+
+A sort of compromise between Identity and ReLU activation, Bent Identity allows non-linear behaviours, while its non-zero derivative promotes efficient learning and overcomes the issues of dead neurons associated with ReLU. As its derivative can return values either side of 1, it can be susceptible to both exploding and vanishing gradients.
+
 |Sigmoid Function|
 |:---:|
 |![](https://cloud.githubusercontent.com/assets/14886380/22743102/1ddd6a88-ee54-11e6-98ea-6b67011e091b.png)|
 
-|Sigmoidal function||
+|Sigmoidal function| Non-saturation function |
 |---|---|
 | Sigmoid | ReLU|
 | Tanh | ELU |
@@ -811,7 +813,8 @@ Softsign is another alternative to Tanh activation. Like Tanh, it's anti-symmetr
 | Sign | SWISH|
 | SoftSign | Soft Plus|
 
-The functions in the right column are  approximate to the identity function in $\mathbb{R}^{+}$, i.e., $\lim_{x\to +\infty}\frac{f(x)}{x} = 1$.
+The functions in the right column are  approximate to the identity function in $\mathbb{R}^{+}$, i.e., $\lim_{x\to +\infty}\frac{f(x)}{x} = 1$. And activation function ${f}$ is potential to result in gradient vanishing if its derivative is always less than 1: $f^{\prime}(x) < 0 \quad\forall x$. The non-saturation function can result in gradient exposition.
+[Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720) 
 
 - [ ] https://arxiv.org/abs/1511.07289
 - [ ] https://arxiv.org/abs/1502.01852
@@ -822,6 +825,7 @@ The functions in the right column are  approximate to the identity function in $
 - [ ] http://sharpneat.sourceforge.net/research/activation-fn-review/activation-fn-review.html
 - [ ] https://rpubs.com/shailesh/activation-functions
 - [ ] https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md
+- [ ] <https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions>;
 
 ****
 * http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
@@ -837,8 +841,7 @@ The functions in the right column are  approximate to the identity function in $
 * https://www.learnopencv.com/understanding-activation-functions-in-deep-learning/
 * https://sefiks.com/2018/12/01/using-custom-activation-functions-in-keras/
 * https://isaacchanghau.github.io/post/activation_functions/
-* https://dashee87.github.io/deep%20learning/visualising-activation-functions-in-neural-networks/
-* <https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions>;
+* https://dashee87.github.io/deep%20learning/visualising-activation-functions-in-neural-networks
 * <http://laid.delanover.com/activation-functions-in-deep-learning-sigmoid-relu-lrelu-prelu-rrelu-elu-softmax/>;
 
 #### Training Methods
@@ -854,6 +857,7 @@ In this section, we will talk other optimization tricks such as **Normalization*
 |*Normalization* and *Standardization*| *Normalization* is to scale the data into the interval [0,1] while *Standardization* is to rescale the datum with zero mean $0$ and unit variance $1$. See [Standardization vs. normalization](http://www.dataminingblog.com/standardization-vs-normalization/).|
 
 ![](https://srdas.github.io/DLBook/DL_images/INI2.png)
+[Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720) 
 
 
 - https://srdas.github.io/DLBook/ImprovingModelGeneralization.html
@@ -903,20 +907,26 @@ $$
 \frac{\partial \ell}{\partial y_i} \gamma
 $$
 ****
+
 $$
 \frac{\partial \ell}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-\frac{1}{2}(x_i - \mu_B)}{(\sigma_B^2 + \epsilon)^{\frac{3}{2}}}
 $$
-****
+
+***
+
 $$
 \frac{\partial \ell}{\partial \mu_B} = \frac{\partial \ell}{\partial \sigma_B^2} \frac{\partial \sigma_B^2}{\partial \mu_B} + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \mu_B}=
-\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}} $$
+\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}} 
+$$
+
 ***
 $$
-  \frac{\partial \ell}{\partial {x}_i} = \frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial {x}_i} +       \frac{\partial \ell}{\partial \mu_B} \frac{\partial \mu_B}{\partial {x}_i} + \frac{\partial \ell}{\partial \sigma^2_B}    \frac{\partial \sigma^2_B}{\partial {x}_i}
+\frac{\partial \ell}{\partial {x}_i} = \frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial {x}_i} +       \frac{\partial \ell}{\partial \mu_B} \frac{\partial \mu_B}{\partial {x}_i} + \frac{\partial \ell}{\partial \sigma^2_B}    \frac{\partial \sigma^2_B}{\partial {x}_i}
 $$
+
 $$
-  \frac{\partial \ell}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i \\
-  \frac{\partial \ell}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i
+\frac{\partial \ell}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i \\
+\frac{\partial \ell}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i
  $$
 
 |Batch Normalization in Neural|
@@ -1432,6 +1442,8 @@ It is always as one component of some complex network as normalization.
 |![](http://www.cs.cornell.edu/~oirsoy/files/drsv/deep-recursive.png)|
 
 ## Generative Adversarial Network
+
+http://unsupervised.cs.princeton.edu/deeplearningtutorial.html
 
 It origins from <http://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>.
 It is a generative model via an adversarial process.
