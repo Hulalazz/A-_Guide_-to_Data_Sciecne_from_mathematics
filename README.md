@@ -24,8 +24,8 @@ It includes the architure, optimization method and regularization, acceleration 
 It includes the following content:
 - [X] basic introduction to probability and statistics;
 - [X] sampling algorithm based on uniformly distributed data;
-- [ ] MCMC and stochastic methods;
-- [ ] generalized linear model and regression analysis;
+- [X] MCMC and stochastic methods;
+- [X] generalized linear model and regression analysis;
 - [ ] probabilistic programming and graph models;
 - [ ] basic machine learning;
 - [X] some materials on artifical neural network and deep learning;
