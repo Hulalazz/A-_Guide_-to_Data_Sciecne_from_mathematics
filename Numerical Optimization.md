@@ -592,7 +592,16 @@ The variants of gradient descent such as momentum methods or mirror gradient met
 * There are decay schemes, i.e. the step length ${\alpha}_k$ diminishes such as ${\alpha}_k=\frac{\alpha}{k}$, where $\alpha$ is constant.
 * And another strategy is to tune the step length adaptively such as *AdaGrad, ADAM*.
 
-$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning and stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
+$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionaly, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case. 
+
+We can see some examples to see the advantages of incremental method such as the estimation of mean.
+Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$. If now we observed more data $y_1, y_2, \dots, y_m$ from the population, the mean could be estimated by $\frac{n\bar{x}}{m+n} + \frac{\sum_{j=1}^{m} y_j }{m+n} =\frac{n\bar{x}+\sum_{j=1}^{m} y_j}{m+n}$. It is not necessary to summarize ${x_1, \dots, x_n}$.
+
+Another example, it is `Newton interpolation formula` in numerical analysis. The task is to fit the function via polynomials given some point in th function $(x_i , f(x_i)), i = 1,2, \dots, n$. 
+[The Newton form of the interpolating polynomial  is given by](https://nptel.ac.in/courses/122104019/numerical-analysis/Rathish-kumar/rathish-oct31/fratnode5.html) 
+$$
+P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots + a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
+$$
 
 See the following links for more information on *stochastic gradient descent*.
 
