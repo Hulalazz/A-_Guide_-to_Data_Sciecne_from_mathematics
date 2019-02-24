@@ -105,6 +105,11 @@ boosting, and they are simpler to train and tune.
 
 ## Ensemble methods
 
+There are many competing techniques for solving the problem, and each technique is characterized
+by choices and meta-parameters: when this flexibility is taken into account, one easily
+ends up with a very large number of possible models for a given task.
+
+
 * [Zhou Zhihua's publication on ensemble methods](http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Ensemble%20Learning)
 * https://mlwave.com/kaggle-ensembling-guide/
 * https://www.springer.com/us/book/9781441993250
@@ -127,9 +132,15 @@ the base learners, that is, voting for classification and averaging for regressi
 
 * Draw Bootstrap samples $B_1, B_2, \dots, B_n$ independently from the original training data set for base learners;
 * Train the $i$th base learner $F_i$ at the ${B}_{i}$;
-* Voting for classification and average for regression.
+* Vote for classification and average for regression.
 
 ![](https://www.statisticshowto.datasciencecentral.com/wp-content/uploads/2016/10/bootstrap-sample.png)
+
+It is a sample-based ensemble method.
+
+There is an alternative of bagging called combining ensemble method, which trains a linear combination of learner:
+$$\sum_{i=1}^{n} w_i F_i$$
+where $w_i$ are parameters to train.
 
 ***
 
@@ -140,7 +151,7 @@ the base learners, that is, voting for classification and averaging for regressi
 
 ### Boosting
 
-https://ieeexplore.ieee.org/abstract/document/7929984
+![](http://www.stat.ucla.edu/~sczhu/Vision_photo/Chinese_herb_clinic.jpg)
 
 [Reweighting with Boosted Decision Trees](https://arogozhnikov.github.io/2015/10/09/gradient-boosted-reweighter.html)
 
@@ -294,6 +305,14 @@ where $g_i=\partial_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$, $h_i=\partial^2_{y_{
 * https://www.cnblogs.com/wxquare/p/5541414.html
 * https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/
 
+![](https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg)
+
+- https://github.com/Microsoft/LightGBM/blob/master/docs/Features.rst
+- [Python3机器学习实践：集成学习之LightGBM - AnFany的文章 - 知乎](https://zhuanlan.zhihu.com/p/53583034)
+- https://ieeexplore.ieee.org/abstract/document/7929984
+- https://tech.yandex.com/catboost/
+- https://catboost.ai/
+
 
 ### Stacking
 
@@ -306,10 +325,13 @@ Stacked generalization (or stacking)  is a different way of combining multiple m
 
 Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we combine the base learners, possibly nonlinearly. It is a little similar with **composition** of functions in mathematics.
 
+[Stacking, Blending and and Stacked Generalization are all the same thing with different names. It is a kind of ensemble learning.](http://www.chioka.in/stacking-blending-and-stacked-generalization/)
+
 * http://www.machine-learning.martinsewell.com/ensembles/stacking/
 * https://www.jianshu.com/p/46ccf40222d6
 * [Deep forest](http://lamda.nju.edu.cn/code_gcForest.ashx?AspxAutoDetectCookieSupport=1)
 * https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/
+* http://www.chioka.in/stacking-blending-and-stacked-generalization/
 * https://blog.csdn.net/willduan1/article/details/73618677
 
 ***

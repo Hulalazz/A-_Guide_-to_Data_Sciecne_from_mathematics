@@ -1,4 +1,6 @@
 
+[Unsupervised learning is a form of descriptive analytics. Predictive analytics aims to estimate outcomes from current data. Supervised learning is a kind of predictive analytics. Finally, prescriptive analytics guides actions to take in order to guarantee outcomes.](http://www.argmin.net/2018/01/29/taxonomy/)
+
 ### Clustering
 
 There are two different contexts in clustering, depending on how the entities to be clustered are organized.
@@ -93,6 +95,28 @@ Let $\gamma(z_{nk}) = \frac{\pi(n) N()x_n|\mu_n, \Sigma_n}{\sum_{n=1}^{N}\pi(n) 
 * http://www.cnblogs.com/mingfengshan/p/6848989.html
 * https://brilliant.org/wiki/gaussian-mixture-model/
 * https://site.douban.com/182577/widget/notes/10567212/note/271336847/
+* http://120.52.51.19/www.cs.toronto.edu/~rsalakhu/STA4273_2015/notes/Lecture5_2015.pdf
+
+#### K-medoids Clustering
+
+`K-medoids Clustering` is the twin of the k-means clustering.  Rather than using conventional mean/centroid,
+it uses medoids to represent the clusters. The medoid is a statistic which represents that data
+member of a data set whose average dissimilarity to all the other members of the set is minimal.
+
+It
+also begins with randomly selecting k data items as initial medoids to represent the k clusters. All
+the other remaining items are included in a cluster which has its medoid closest to them.
+Thereafter a new medoid is determined which can represent the cluster better. All the remaining
+data items are yet again assigned to the clusters having closest medoid. In each iteration, the
+medoids alter their location. The method minimizes the sum of the dissimilarities between each
+data item and its corresponding medoid. This cycle is repeated till no medoid changes its
+placement. This marks the end of the process and we have the resultant final clusters with their
+medoids defined. ${K}$ clusters are formed which are centered around the medoids and all the data
+members are placed in the appropriate cluster based on nearest medoid.
+
+* http://www.math.le.ac.uk/people/ag153/homepage/KmeansKmedoids/Kmeans_Kmedoids.html
+* http://blog.pluskid.org/?p=40
+* https://wireilla.com/ns/maths/Papers/3314ijscmc01.pdf
 
 #### Hierarchical clustering
 
@@ -119,9 +143,9 @@ There are three most popular choices of group similarity induced by a distance m
 * Complete linkage: the similarity of the furthest pair: $d_{SL}(G, H) = \max_{i\in G, j\in H} d_{i,j}$;
 * Group average: the average similarity between groups: $d_{SL}(G, H) = \frac{1}{|G||H|}\sum_{i\in G, j\in H} d_{i,j}$, where $|G|,|H|$ is the number of member in cluster ${G}$ and ${H}$, respectively.
 
-$\color{quad}{PS}$: the distance or similarity here is not metric in mathematics. The similarity are supposed to be non-negative and linear  so that 
+$\color{quad}{PS}$: the distance or similarity here is not metric in mathematics. The measures of distance  are supposed to be non-negative and semi-linear  so that
 
-1. $d(x,y)\geq 0$ and $d(x,y)=0$ if and only if $x=y$; 
+1. $d(x,y)\geq 0$ and $d(x,y)=0$ if and only if $x=y$;
 2. $d(\alpha x,\alpha y) = |\alpha| d(x, y)$.
 
 In fact, we can use Bregman divergence to cluster.
@@ -144,7 +168,23 @@ In fact, we can use Bregman divergence to cluster.
 
 ***
 
-*Divisive Hierarchical Clustering* is described as :
+*Divisive Hierarchical Clustering*  begin with the entire data set as a single
+cluster, and recursively divide one of the existing clusters into two daughter clusters at each iteration in a top-down fashion.
+The split is chosen to produce two new
+groups with the largest `between-group dissimilarity`.
+
+It begins by placing all observations in a
+single cluster G. It then chooses that observation whose average dissimilarity from all the other observations is largest. This observation forms the
+first member of a second cluster H. At each successive step that observation
+in G whose average distance from those in H, minus that for the remaining
+observations in G is largest, is transferred to H. This continues until the
+corresponding difference in averages becomes negative.
+
+And it is recommended  the diameter DG of a group of observations  defined as the
+largest dissimilarity among its members
+$$D_G = \max_{i,j\in G}d_{i,j}$$
+
+Its template is described as :
 
 1. Put all objects in one cluster;
 2. Repeat until all cluster are singletons:
@@ -153,6 +193,7 @@ In fact, we can use Bregman divergence to cluster.
 
 * http://www.cs.princeton.edu/courses/archive/spr08/cos435/Class_notes/clustering4.pdf
 * http://www.ijcstjournal.org/volume-5/issue-5/IJCST-V5I5P2.pdf
+* https://nlp.stanford.edu/IR-book/html/htmledition/divisive-clustering-1.htmls
 
 #### DBSCAN
 
@@ -346,7 +387,7 @@ Fix ${w}$, we have $\epsilon_i = \max \{0, 1-d_i \left<w, x_i\right>\}$. This eq
 is the smallest possible value that satisfies the ${i}$-th constraint.
 And we choose the optimal parameters ${w}^{\star}$:
 $$
-w^{\star}=\arg\min_{w} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\max\{0, 1 - d_i\left<w,x_i\right>\}.
+w^{\star}=\arg\min_{w} \{ \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\max\{0, 1 - d_i\left<w,x_i\right>\} \}.
 $$
 
 We continue our discussion of linear soft margin support vector machines. But
@@ -422,7 +463,7 @@ $$
 K(\vec{x},\vec{z}) = e^{-\frac{(\vec{x}-\vec{z})^2}{2\sigma^2}}
 $$
 
-A radial basis function (rbf) is equivalent to mapping the data into an infinite dimensional Hilbert space, and so we cannot illustrate the radial basis function concretely, as we did a quadratic kernel. 
+A radial basis function (rbf) is equivalent to mapping the data into an infinite dimensional Hilbert space, and so we cannot illustrate the radial basis function concretely, as we did a quadratic kernel.
 Beyond these two families, there has been interesting work developing other kernels, some of which is promising for text applications.
 
 The world of SVMs comes with its own language, which is rather different from the language otherwise used in machine learning.

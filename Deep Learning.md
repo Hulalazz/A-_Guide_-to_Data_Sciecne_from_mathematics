@@ -140,6 +140,7 @@ It is the first time to model cognition.
 * Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
 * https://stats385.github.io/blogs
 * https://explained.ai/matrix-calculus/index.html
+* http://fourier.eng.hmc.edu/e161/lectures/nn/node3.html
 
 #### Activation functions
 
@@ -476,7 +477,7 @@ $$
 \frac{\partial \sigma(W^jH + b^j)}{\partial H}  =
 {\sigma}^{\prime}(W^jH + b^j) W^j \,\,\forall j\in\{1,2,\dots,l\},
 $$
-where $f^{j}(x_0)$, $W^{j}$, $b^j$ and $\sigma^{\prime}(z)$is the $j$th element of $f(x_0)$, the $j$-th row of matrix $W$, the $j$th element of vector $b$ and $\frac{\mathrm{d}\sigma(z)}{\mathrm{d} z}$, respectively.
+where $f^{j}(x_0)$, $W^{j}$, $b^j$ and $\sigma^{\prime}(z)$ is the j-th element of $f(x_0)$, the j-th row of matrix $W$, the  j-th element of vector ${b}$ and $\frac{\mathrm{d}\sigma(z)}{\mathrm{d} z}$, respectively.
 
 |The Architecture of Feedforward Neural Networks|
 |:---------------------------------------------:|
@@ -813,8 +814,8 @@ A sort of compromise between Identity and ReLU activation, Bent Identity allows 
 | Sign | SWISH|
 | SoftSign | Soft Plus|
 
-The functions in the right column are  approximate to the identity function in $\mathbb{R}^{+}$, i.e., $\lim_{x\to +\infty}\frac{f(x)}{x} = 1$. And activation function ${f}$ is potential to result in gradient vanishing if its derivative is always less than 1: $f^{\prime}(x) < 0 \quad\forall x$. The non-saturation function can result in gradient exposition.
-[Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720) 
+The functions in the right column are  approximate to the identity function in $\mathbb{R}^{+}$, i.e., $\lim_{x\to +\infty}\frac{f(x)}{x} = 1$. And activation function ${f}$ is potential to result in gradient vanishing if its derivative is always less than 1: $f^{\prime}(x) < 1 \quad\forall x$. The non-saturation function can result in gradient exposition.
+[Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720)
 
 - [ ] https://arxiv.org/abs/1511.07289
 - [ ] https://arxiv.org/abs/1502.01852
@@ -857,7 +858,7 @@ In this section, we will talk other optimization tricks such as **Normalization*
 |*Normalization* and *Standardization*| *Normalization* is to scale the data into the interval [0,1] while *Standardization* is to rescale the datum with zero mean $0$ and unit variance $1$. See [Standardization vs. normalization](http://www.dataminingblog.com/standardization-vs-normalization/).|
 
 ![](https://srdas.github.io/DLBook/DL_images/INI2.png)
-[Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720) 
+[Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720)
 
 
 - https://srdas.github.io/DLBook/ImprovingModelGeneralization.html
@@ -916,7 +917,7 @@ $$
 
 $$
 \frac{\partial \ell}{\partial \mu_B} = \frac{\partial \ell}{\partial \sigma_B^2} \frac{\partial \sigma_B^2}{\partial \mu_B} + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \mu_B}=
-\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}} 
+\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}}
 $$
 
 ***
@@ -1471,6 +1472,7 @@ It requires some methods to find the proper generator $G$ and discriminator $D$.
 * https://gandissect.csail.mit.edu/
 * https://poloclub.github.io/ganlab
 * https://github.com/nndl/Generative-Adversarial-Network-Tutorial
+* http://www.gatsby.ucl.ac.uk/~balaji/Understanding-GANs.pdf
 
 
 ## Graph Convolution Network
@@ -1675,6 +1677,7 @@ The matrix $A_{m\times n}$ can be decompsed as the multiplication of two matrice
 * http://slazebni.cs.illinois.edu/spring17/lec06_compression.pdf
 * http://slazebni.cs.illinois.edu/spring17/reading_lists.html#lec06
 * https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/
+* https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning
 
 ## Bayesian Deep Learning
 
