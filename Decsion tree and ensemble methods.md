@@ -50,17 +50,38 @@ Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
 $$
 
 ***
-                
+
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
 The regularization techniques in regression may not suit the tree algorithms such as LASSO.
 
-**Pruning** is a regularization technique for tree-based algorithm.
+**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees)
 
-[Fifty Years of Classification and
-Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
+![](https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg)
+
+In machine learning, we prune the decision tree to make a balance between overfitting and underfitting. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:		
+
+1. Use a distinct dataset from the training set (called validation set), to evaluate the effect of post-pruning nodes from the tree.
+2. Build the tree by using the training set, then apply a statistical test to estimate whether pruning or expanding a particular node is likely to produce an improvement beyond the training set.
+    * Error estimation
+    * Significance testing (e.g., Chi-square test)
+3. Minimum Description Length principle : Use an explicit measure of the complexity for encoding the training set and the decision tree, stopping growth of the tree when this encoding size (size(tree) + size(misclassifications(tree)) is minimized.
+
+- https://www.saedsayad.com/decision_tree_overfitting.htm
+- http://www.cs.bc.edu/~alvarez/ML/statPruning.html
 
 ***
 
+When the height of a decision tree is limited to 1, i.e., it takes only one
+test to make every prediction, the tree is called a decision stump. While decision trees are nonlinear classifiers in general, decision stumps are a kind
+of linear classifiers.
+[Fifty Years of Classification and
+Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
+Multivariate Adaptive Regression
+Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
+
+***
+
+* https://www.benkuhn.net/tree-imp
 * https://www.wikiwand.com/en/Decision_tree_learning
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
 * https://www.wikiwand.com/en/Decision_tree
@@ -133,7 +154,7 @@ base learners, since the error can be reduced dramatically by combining independ
 Bagging adopts the most popular strategies for aggregating the outputs of
 the base learners, that is, voting for classification and averaging for regression.
 
-* Draw Bootstrap samples $B_1, B_2, \dots, B_n$ independently from the original training data set for base learners;
+* Draw `bootstrap samples` $B_1, B_2, \dots, B_n$ independently from the original training data set for base learners;
 * Train the $i$th base learner $F_i$ at the ${B}_{i}$;
 * Vote for classification and average for regression.
 
@@ -141,9 +162,15 @@ the base learners, that is, voting for classification and averaging for regressi
 
 It is a sample-based ensemble method.
 
-There is an alternative of bagging called combining ensemble method, which trains a linear combination of learner:
-$$\sum_{i=1}^{n} w_i F_i$$
-where $w_i$ are parameters to train.
+There is an alternative of bagging called combining ensemble method. It trains a linear combination of learner:
+$$F = \sum_{i=1}^{n} w_i F_i$$
+where the weights $w_i\geq 0, \sum_{i=1}^{n} w_i =1$. The weights $w=\{w_i\}_{i=1}^{n}$ are solved by minimizing the ensemble error
+$$
+w = \arg\min_{w}\sum_{k}^{K}(F(x_k)-y_k)^{2}
+$$
+if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
+
+
 ![](https://blogs.sas.com/content/subconsciousmusings/files/2017/05/weighted-unweighted.png)
 
 ***
@@ -153,17 +180,18 @@ where $w_i$ are parameters to train.
 * https://www.wikiwand.com/en/Bootstrap_aggregating
 * [Bagging Regularizes](http://dspace.mit.edu/bitstream/handle/1721.1/7268/AIM-2002-003.pdf?sequence=2)
 
+
 ### Boosting
-
-![](http://www.stat.ucla.edu/~sczhu/Vision_photo/Chinese_herb_clinic.jpg)
-
-[Reweighting with Boosted Decision Trees](https://arogozhnikov.github.io/2015/10/09/gradient-boosted-reweighter.html)
 
 The term boosting refers to a family of algorithms that are able to convert weak learners to strong learners.
 It is kind of similar to the "trial and error" scheme: if we know that the learners perform worse at some given data set $S$,
 the learner may pay more attention to the data drawn from $S$.
 For the regression problem, of which the output results are continuous, it  progressively reduce the error by trial.
 In another word, we will reduce the error at each iteration.
+
+![](http://www.stat.ucla.edu/~sczhu/Vision_photo/Chinese_herb_clinic.jpg)
+
+[Reweighting with Boosted Decision Trees](https://arogozhnikov.github.io/2015/10/09/gradient-boosted-reweighter.html)
 
 * https://betterexplained.com/articles/adept-method/
 * https://web.stanford.edu/~hastie/Papers/buehlmann.pdf
@@ -245,6 +273,13 @@ It is the first solution to the question that if weak learner is equivalent to s
 * https://arxiv.org/abs/1803.02042
 * https://statweb.stanford.edu/~jhf/ftp/trebst.pdf
 * https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
+
+***
+
+A general gradient descent “boosting” paradigm is
+developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
+
+* http://uc-r.github.io/gbm_regression
 * https://machinelearningmastery.com/start-with-gradient-boosting/
 * https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
 
@@ -322,6 +357,7 @@ where $g_i=\partial_{y_{i}^{(t-1)}} L(y_i, y_{i}^{(t-1)})$, $h_i=\partial^2_{y_{
 - https://ieeexplore.ieee.org/abstract/document/7929984
 - https://tech.yandex.com/catboost/
 - https://catboost.ai/
+- https://lightgbm.readthedocs.io/en/latest/s
 
 
 ### Stacking
