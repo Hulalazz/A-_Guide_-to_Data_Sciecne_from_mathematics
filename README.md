@@ -14,7 +14,7 @@ I hope that it is on the [ADEPT way](https://betterexplained.com/articles/adept-
 | Analogy | Tell me what it is like|
 | Diagram | Help me visualize it|
 | Example | Allow me to experience it|
-|Plain English | DEscribe it with everyday word|
+|Plain English | Describe it with everyday word|
 | Technical Definition | Discuss the formal details|
 
 It is expected a part of **A Guide to Data Science**.
