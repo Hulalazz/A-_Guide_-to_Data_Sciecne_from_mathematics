@@ -51,6 +51,30 @@ $$
     \end{cases}
 $$
 
+In optimization form, it is to minimize the following objective function `distortion measure`:
+
+$$
+J = \sum_{n=1}^{N}\sum_{k=1}^{K} \mathbb{I}_{nk}\|x_n-\mu_k\|^2
+$$
+where $\mathbb{I}_{nk}$ is a binary Dirac function.
+
+
+After initializing the $K$ and $\mu_k$, we fix $\mu_k$ and optimize the objective function with respect to $\mathbb{I}_{nk}$:
+
+$$
+\mathbb{I}(n,k)=
+    \begin{cases}
+    1, \text{if $k=\arg\min_{j} \|x_n-\mu_j\|^2$} \\
+    0,  \text{otherwise}.
+    \end{cases}
+$$
+
+Then  we fix $\mathbb{I}_{nk}$  and optimize the objective function with respect to $\mu_k$: setting $\frac{\partial J}{\partial \mu_k} = 0$, we obtain
+$$
+\mu_k = \frac{\sum_n \mathbb{I}_{nk}x_n}{\sum_n \mathbb{I}_{nk}}.
+$$
+
+
 * https://www.wikiwand.com/en/K-means_clustering
 * [Visualizing K-Means Clustering](http://web.stanford.edu/class/ee103/visualizations/kmeans/kmeans.html)
 
@@ -64,32 +88,78 @@ In statistics, the mixture distribution can describe complicated probability dis
 
 Suppose that the population is distributed in the mixture of Gaussian distribution:
 $$
-P(x) = \sum_{n=1}^{N}p(n) p(x|n)
-     = \sum_{n=1}^{N}\pi(n) N(x|\mu_k,\Sigma_k)
+P(x) = \sum_{k=1}^{K}p(k) p(x|k)
+     = \sum_{k=1}^{K}\pi(k) N(x|\mu_k,\Sigma_k)
 $$
-where the discrete distribution of clustering $\sum_{n=1}^{N}\pi(n) = 1, \pi(n)>0\quad\forall n$ and  $N(x|\mu_k,\Sigma_k)$ is the multivariate normal(Gaussian) distribution.
+where the discrete distribution of clustering $\sum_{k=1}^{K}\pi(k) = 1, \pi(k)\geq 0\quad\forall k$ and  $N(x|\mu_k,\Sigma_k)$ is the multivariate normal(Gaussian) distribution.
 
-Like k-means clustering, the class number ${n}$ is set manually and the $\mu_k.\Sigma_k$ are to estimate.
+Like k-means clustering, the class number ${k}$ is set manually and the $\mu_k.\Sigma_k$ are to estimate.
 
 ![](https://scripts-cdn.softpedia.com/screenshots/Multivariate-Gaussian-Mixture-Model-Optimization-18533.png)
 
 The likelihood of the observed random variables is given by
 $$
-\prod_{i} P(x_i)= \prod_{i} \sum_{n=1}^{N}\pi(n) N(x_i|\mu_k,\Sigma_k)
+\prod_{i=1}^{N} P(x_i)= \prod_{i=1}^{N} \sum_{k=1}^{K}\pi(k) N(x_i |\mu_k,\Sigma_k)
 $$
 
 so that the log-likelihood function is given by
 $$
-\log\prod_{i} P(x_i)= \sum_{i} \log[\sum_{n=1}^{N}\pi(n) N(x_i|\mu_k,\Sigma_k)].
+\log\prod_{i}^{N} P(x_i)= \sum_{i}^{N} \log[\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)].
 $$
 
 In **The Nature of Statistical Learning**, the author gives an example of Gaussian mixture that cannot be estimated via maximum likelihood estimation.
 
-Let $\gamma(z_{nk}) = \frac{\pi(n) N()x_n|\mu_n, \Sigma_n}{\sum_{n=1}^{N}\pi(n) N(x_i|\mu_k,\Sigma_k)}$.
+Bishop introduces clustering in Bayesian perspective :
+> An elegant and powerful method for finding maximum likelihood solutions for
+models with latent variables is called the expectation-maximization algorithm, or EM
+algorithm.
+
+Let us begin by writing down the conditions that must be satisfied at a maximum
+of the likelihood function. Setting the derivatives of log-likelihood function with
+respect to the means $\mu_k$ of the Gaussian components to zero, we obtain
+$$
+0 = \sum_{i}^{N} \frac{\pi(k) N(x_i |\mu_k, \Sigma_k) }{\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)} \Sigma_k(x_i - \mu_k)
+$$
+
+And if we define $\gamma(z_{ik}) = \frac{\pi(k) N(x_i |\mu_k, \Sigma_k) }{\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)}$, it converts to
+$$
+0 = \sum_{i}^{N} \gamma(z_{ik}) \Sigma_k(x_i - \mu_k)
+$$
+Multiplying by inverse of matrix $\Sigma_k$ and rearranging we obtain
+
+$$
+\mu_k = \frac{1}{N_k}\sum_{i=1}^{N}\gamma(z_{ik}) \Sigma_k x_i
+$$
+
+where we define $N_k = \sum_{i}\gamma(z_{ik})$.
+
+And similarly, we can obtain that
+$$
+\Sigma_k = \frac{1}{N_k}\sum_{i=1}^{N} \gamma(z_{ik}) (x_i - \mu_k)(x_i - \mu_k)^T.
+$$
+
+The $\pi_k$ as the same role in k-means is estimated via Lagrange multiplier and
+maximizing the following quantity
+
+$$
+L(\mu, \Sigma, \lambda)= \sum_{i}^{N} \log[\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)] + \lambda (\sum_{k=1}^{K}\pi(k)-1).
+$$
+
+By setting the derivatives to zeros, we obtain
+
+$$
+0 = \sum_{i}^{N} [\frac{ N(x_i |\mu_k, \Sigma_k) }{\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)} + \lambda]
+$$
+
+Multiplying by inverse of matrix $\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)$ and rearranging, we gain that
+$$
+\pi(k)=\frac{N_k}{N}.
+$$
 
 ***
 
 * http://www.vlfeat.org/index.html
+* [理解EM算法 - SIGAI的文章](https://zhuanlan.zhihu.com/p/54899055)
 * https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html
 * https://www.wikiwand.com/en/Mixture_distribution
 * http://www.cnblogs.com/mingfengshan/p/6848989.html
@@ -100,11 +170,18 @@ Let $\gamma(z_{nk}) = \frac{\pi(n) N()x_n|\mu_n, \Sigma_n}{\sum_{n=1}^{N}\pi(n) 
 #### K-medoids Clustering
 
 `K-medoids Clustering` is the twin of the k-means clustering.  Rather than using conventional mean/centroid,
-it uses medoids to represent the clusters. The medoid is a statistic which represents that data
-member of a data set whose average dissimilarity to all the other members of the set is minimal.
+it uses medoids to represent the clusters. [The medoid is a statistic which represents that data
+member of a data set whose average dissimilarity to all the other members of the set is minimal.](https://www.wikiwand.com/en/Medoid)
 
-It
-also begins with randomly selecting k data items as initial medoids to represent the k clusters. All
+Let $x_{1},x_{2},\cdots ,x_{n}$ be a set of ${\textstyle n}$ points in a space with a distance function ${d}$. `Medoid` is defined as
+
+$$
+x_{\text{medoid}} = {\arg\min}_{y\in \{x_{1},x_{2},\cdots ,x_{n}\}} \sum _{i=1}^{n} d(y,x_{i}).
+$$
+
+The simplified version is to compute the median of each attribute to approximate medoid instead of the optimization in the definition.
+
+It also begins with randomly selecting k data items as initial medoids to represent the k clusters. All
 the other remaining items are included in a cluster which has its medoid closest to them.
 Thereafter a new medoid is determined which can represent the cluster better. All the remaining
 data items are yet again assigned to the clusters having closest medoid. In each iteration, the
@@ -173,16 +250,7 @@ cluster, and recursively divide one of the existing clusters into two daughter c
 The split is chosen to produce two new
 groups with the largest `between-group dissimilarity`.
 
-It begins by placing all observations in a
-single cluster G. It then chooses that observation whose average dissimilarity from all the other observations is largest. This observation forms the
-first member of a second cluster H. At each successive step that observation
-in G whose average distance from those in H, minus that for the remaining
-observations in G is largest, is transferred to H. This continues until the
-corresponding difference in averages becomes negative.
 
-And it is recommended  the diameter DG of a group of observations  defined as the
-largest dissimilarity among its members
-$$D_G = \max_{i,j\in G}d_{i,j}$$
 
 Its template is described as :
 
@@ -190,6 +258,17 @@ Its template is described as :
 2. Repeat until all cluster are singletons:
    - a) choose a cluster to split;
    - b) replace  the chosen cluster with the sub-clusters.
+
+It begins by placing all observations in a
+single cluster G. It then chooses that observation whose average dissimilarity from all the other observations is largest. This observation forms the
+first member of a second cluster H. At each successive step that observation
+in G whose average distance from those in H, minus that for the remaining
+observations in G is largest, is transferred to H. This continues until the
+corresponding difference in averages becomes negative.
+
+And it is recommended  the diameter $D_G$ of a group of observations  defined as the
+largest dissimilarity among its members
+$$D_G = \max_{i,j\in G}d_{i,j}$$
 
 * http://www.cs.princeton.edu/courses/archive/spr08/cos435/Class_notes/clustering4.pdf
 * http://www.ijcstjournal.org/volume-5/issue-5/IJCST-V5I5P2.pdf
@@ -211,16 +290,16 @@ Density-based spatial clustering of applications with noise (DBSCAN) is a data c
 * https://www.wikiwand.com/en/DBSCAN
 * http://www.cs.fsu.edu/~ackerman/CIS5930/notes/DBSCAN.pdf
 * https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html
+* https://blog.csdn.net/qq_40793975/article/details/82734297
 
 
 #### Grid-based Clustering
 
+A grid-based method quantizes ${D}$ into a finite number of cells forming a grid-structure, where the quantization process is usually performed in a multi-resolution style.
+
 `Clustering based on Grid-Density and Spatial Partition Tree(CGDSPT)`
 - http://cucis.ece.northwestern.edu/publications/pdf/LiaLiu04A.pdf
-
-#### Ensemble methods of Clusterings
-
-Combining Multiple Clusterings Using Evidence Accumulation
+- https://blog.csdn.net/qq_40793975/article/details/82838253
 
 #### Bi-clustering
 
@@ -229,6 +308,10 @@ Combining Multiple Clusterings Using Evidence Accumulation
 - http://www.kemaleren.com/post/an-introduction-to-biclustering/
 - https://www.cs.tau.ac.il/~roded/articles/bicrev.pdf
 
+
+#### Ensemble methods of Clusterings
+
+Combining Multiple Clusterings Using Evidence Accumulation
 
 ### Classification
 
@@ -242,7 +325,7 @@ It is one of the most fundamental and common tasks in machine learning.
 * https://en.wikipedia.org/wiki/Category:Classification_algorithms
 * https://people.eecs.berkeley.edu/~jordan/classification.html
 
-#### k-Nearest Neighbors
+#### K-Nearest Neighbors
 
 K-NN is simple to implement for high  dimensional data.
 It is based on the assumption that the nearest neighbors are similar.

@@ -1,5 +1,6 @@
 ### Decision Tree
 
+
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
 the data space and fitting a simple prediction model within each partition. As a
@@ -49,7 +50,7 @@ Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
 $$
 
 ***
-
+                
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
 The regularization techniques in regression may not suit the tree algorithms such as LASSO.
 
@@ -79,8 +80,7 @@ Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) an
 
 Random forests (Breiman, 2001) is a substantial modification of bagging
 that builds a large collection of de-correlated trees, and then averages them.
-On many problems the performance of random forests is very similar to
-boosting, and they are simpler to train and tune.
+On many problems the performance of random forests is very similar to boosting, and they are simpler to train and tune.
 
 ***
 
@@ -92,16 +92,19 @@ boosting, and they are simpler to train and tune.
       - Split the node into two daughter nodes.
 * Vote for classification and average for regression.
 
+![](https://dimensionless.in/wp-content/uploads/RandomForest_blog_files/figure-html/voting.png)
 ***
 
 * https://mi2datalab.github.io/randomForestExplainer/index.html
 * https://github.com/kjw0612/awesome-random-forest
+* https://blog.datadive.net/interpreting-random-forests/
 * https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
 * https://dimensionless.in/author/raghav/
 * http://www.rhaensch.de/vrf.html
 * https://www.wikiwand.com/en/Random_forest
 * https://sktbrain.github.io/awesome-recruit-en.v2/
 * https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
+* https://dimensionless.in/introduction-to-random-forest/https://www.elderresearch.com/blog/modeling-with-random-forests
 
 ## Ensemble methods
 
@@ -141,6 +144,7 @@ It is a sample-based ensemble method.
 There is an alternative of bagging called combining ensemble method, which trains a linear combination of learner:
 $$\sum_{i=1}^{n} w_i F_i$$
 where $w_i$ are parameters to train.
+![](https://blogs.sas.com/content/subconsciousmusings/files/2017/05/weighted-unweighted.png)
 
 ***
 
@@ -173,6 +177,7 @@ AdaBoost is a boosting methods for supervised classification algorithms, so that
 AdaBoost is to change the distribution of training data and learn from the shuffled data.
 It is an iterative trial-and-error in some sense.
 
+
 ***
 
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$;
@@ -185,11 +190,15 @@ It is an iterative trial-and-error in some sense.
 * Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_t(x)]$.
 
 The indicator function $\mathbb{I}(x\neq y)$ is defined as
-$$\mathbb{I}(x\neq y)=
-\begin{cases}
-1, \text{if $x\neq y$} \\
-0, \text{otherwise}.
-\end{cases}$$
+$$
+\mathbb{I}(x\neq y)=
+  \begin{cases}
+    1, \text{if $x\neq y$} \\
+    0, \text{otherwise}.
+  \end{cases}
+$$
+
+![](https://arogozhnikov.github.io/images/reweighter/1-reweighting.png)
 ***
 
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
@@ -221,7 +230,8 @@ It is the first solution to the question that if weak learner is equivalent to s
 ***
 
 * [Gradient Boosting at Wikipedia](https://www.wikiwand.com/en/Gradient_boosting)
-* [Gradient Boosting Visualized](https://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
+* [Gradient Boosting Explained](https://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html)
+* [Gradient Boosting Interactive Playground](https://arogozhnikov.github.io/2016/07/05/gradient_boosting_playground.html)
 * https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/
 * https://explained.ai/gradient-boosting/index.html
 * https://explained.ai/gradient-boosting/L2-loss.html
@@ -323,10 +333,13 @@ Stacked generalization (or stacking)  is a different way of combining multiple m
 3. Test the base learners on the second part.
 4. Using the predictions from 3) as the inputs, and the correct responses as the outputs, train a higher level learner.
 
-Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we combine the base learners, possibly nonlinearly. It is a little similar with **composition** of functions in mathematics.
+Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we combine the base learners, possibly non-linearly. It is a little similar with **composition** of functions in mathematics.
+
+![](https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier_files/stackingclassification_overview.png)
 
 [Stacking, Blending and and Stacked Generalization are all the same thing with different names. It is a kind of ensemble learning.](http://www.chioka.in/stacking-blending-and-stacked-generalization/)
 
+* https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier/
 * http://www.machine-learning.martinsewell.com/ensembles/stacking/
 * https://www.jianshu.com/p/46ccf40222d6
 * [Deep forest](http://lamda.nju.edu.cn/code_gcForest.ashx?AspxAutoDetectCookieSupport=1)
@@ -340,3 +353,4 @@ Note that steps 1) to 3) are the same as cross-validation, but instead of using 
 * https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
 * https://www.toptal.com/machine-learning/ensemble-methods-machine-learning
 * https://machinelearningmastery.com/products/
+* https://blog.csdn.net/willduan1/article/details/73618677#
