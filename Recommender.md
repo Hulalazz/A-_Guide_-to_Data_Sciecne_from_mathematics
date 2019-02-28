@@ -438,10 +438,27 @@ where $\sigma_j^2$ is the variance of the hidden unit j
 * https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf
 * http://www.cs.toronto.edu/~fritz/absps/cdmiguel.pdf
 * http://deeplearning.net/tutorial/rbm.html
+* https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb
 
 **AutoRec**
 
-[AutoRec](http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf) is a novel `autoencoder` framework for collaborative filtering (CF).
+[AutoRec](http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf) is a novel `autoencoder` framework for collaborative filtering (CF). Empirically, AutoRec’s
+compact and efficiently trainable model outperforms state-of-the-art CF techniques (biased matrix factorization, RBMCF and LLORMA) on the Movielens and Netflix datasets.
+
+Formally, the objective function for the Item-based AutoRec (I-AutoRec) model is, for regularisation strength $\lambda > 0$,
+
+$$
+\min_{\theta}\sum_{i=1}^{n} {\|r^{i}-h(r^{i}|\theta)\|}_{O}^2 +\frac{1}{2}({\|W\|}_F^{2}+ {\|V\|}_F^{2})
+$$
+
+where $\{r^{i}\in\mathbb{R}^{d}, i=1,2,\dots,n\}$ is partially observed vector and $\| \cdot \|_{o}^2$ means that we only consider the contribution of observed ratings.
+The function $h(r|\theta)$ is  the reconstruction of input $r\in\mathbb{R}^{d}$:
+
+$$
+h(r|\theta) = f(W\cdot g(Vr+\mu)+b)
+$$
+
+for for activation functions $f, g$ as described in  dimension reduction. Here $\theta = \{W,V,r,b\}$.
 
 * https://blog.csdn.net/studyless/article/details/70880829
 * http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf
@@ -481,6 +498,19 @@ the selected GCN.
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
 * [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 * https://arxiv.org/abs/1704.06803
+
+
+**Hyperbolic Recommender Systems**
+
+Many well-established recommender systems are based
+on representation learning in Euclidean space. In these
+models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
+user and item representations in Hyperbolic space.
+
+* https://arxiv.org/abs/1809.01703
+* https://arxiv.org/abs/1902.08648
+* https://amds123.github.io/2018/09/05/Hyperbolic-Recommender-Systems/
+
 
 **Deep Matching Models for Recommendation**
 
@@ -543,6 +573,7 @@ of the datasets.
 - [ ] https://github.com/alibaba/euler
 - [ ] https://github.com/alibaba/x-deeplearning/wiki/
 - [ ] https://github.com/lyst/lightfm
+- [ ] https://github.com/Microsoft/Recommenders 
 - [ ] http://www.mymedialite.net/index.html
 - [ ] http://www.mymediaproject.org/
 
