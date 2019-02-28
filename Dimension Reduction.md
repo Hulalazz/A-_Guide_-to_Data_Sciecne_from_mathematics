@@ -33,6 +33,7 @@ It is a wonderful review of dimension reduction at \url{https://lvdmaaten.github
 * https://www.ayasdi.com/blog/artificial-intelligence/prediction-needs-unsupervised-learning/
 * https://cs.nyu.edu/~roweis/lle/related.html
 * https://www2.cs.duke.edu/courses/spring18/compsci630/lecture10.pdf
+* http://faculty.ucmerced.edu/mcarreira-perpinan/papers/phd-ch04.pdf
 
 ### PCA and MDS
 
@@ -293,7 +294,10 @@ $$
 $$
 
 and $\hat{f}(z) = \frac{1}{n}\sum_{j=1}^{n} K (z -\left<\alpha, X_j\right>)$ with some kernel function ${K}$.
-If the high-dimensional distribution of $X$ is normal, then each projection $z=\alpha^{\top}X$ is standard normal since $\vert\vert\alpha\vert\vert=1$ and since  ${X}$ has been centered and sphered by, e.g., the Mahalanobis transformation.
+If the high-dimensional distribution of $X$ is normal, then each projection $z=\alpha^{\top}X$ is standard normal since $\vert\vert\alpha\vert\vert=1$ and since  ${X}$ has been centered and sphered by, e.g., the [Mahalanobis transformation](https://www.wikiwand.com/en/Whitening_transformation).
+
+The projection pursuit methods can extend to density estimation and regreesion.
+
 ****
 
 * https://projecteuclid.org/euclid.aos/1176349519
@@ -308,6 +312,11 @@ If the high-dimensional distribution of $X$ is normal, then each projection $z=\
 * https://github.com/pavelkomarov/projection-pursuit
 * http://cis.legacy.ics.tkk.fi/aapo/papers/IJCNN99_tutorialweb/node23.html
 * http://sun.cwru.edu/~jiayang/nsf/ipp.html
+* https://rd.springer.com/chapter/10.1007/978-1-4612-4214-7_9
+* https://www.sciencedirect.com/science/article/pii/S0925231214010091
+
+
+
 ***
 
 * https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction

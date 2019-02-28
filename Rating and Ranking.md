@@ -2,11 +2,17 @@
 
 The basic idea is the back-feed from the results.
 After each game, this data is updated for the participants in the game.
-The rating of the winner is increased, and the rating of the loser is decreased.
+
+The rating algorithms are to match the players in video games or compare the players in sports. It is a numerical score to describe the level  of the players' skill based on the results of many competition.
+
+The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items which may  answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reversible engineer of the ranking algorithms of search engine.
+
+They share some techniques although their purpose is different such as the logistic regression.
 
 * https://www.remi-coulom.fr/WHR/WHR.pdf
 * http://www.ams.org/notices/201301/rnoti-p81.pdf
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
+* http://math.bu.edu/people/mg/ratings/rs/
 
 ## Elo Rating
 
@@ -45,16 +51,17 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 1. Determine RD
 
    The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
-$$
+ $$
    RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}
-$$
+ $$
    where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
+
 2. Determine New Rating
 
    The new ratings, after a series of m games, are determined by the following equation:
-$$
+ $$
    r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
-$$
+ $$
    where $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1+10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$, $q=\frac{\ln(10)}{400}\approx 0.00575646273$, $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$, $r_i$ represents the ratings of the individual opponents. $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
 
 3. Determine New Ratings Deviation
@@ -144,6 +151,11 @@ $$
 - [ ] https://arxiv.org/pdf/1701.08055v1.pdf
 - [X] https://www.remi-coulom.fr/WHR/WHR.pdf
 
+
+**How to Build a Popularity Algorithm You can be Proud of**
+- [ ] http://www.ruanyifeng.com/blog/2012/02/ranking_algorithm_hacker_news.html
+- [ ] http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html
+
 ## Ranking
 
 Combining feedback from multiple users to rank a collection of items is an important task.
@@ -170,6 +182,7 @@ We may use machine learn to predict the scores of players and test it in real da
 * http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf
 
 ![](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
+
 
 ### RankSVM
 
@@ -199,13 +212,14 @@ probabilities:
 $$
 C=-\overline{P_{ij}}\log(P(U_i\triangleleft U_j))-(1-\overline{P_{ij}})\log(1-P(U_i\triangleleft U_j))
 $$
+
 where the labeled constant $\overline{P_{ij}}$ is defined as
 $$
 \overline{P_{ij}}=
 \begin{cases}
-1, \text{if $U_i$ is labeled higher than $U_j$;}\\
-\frac{1}{2}, \text{if $U_i$ is labeled equal than $U_j$;}\\
-0, \text{if $U_i$ is labeled lower than $U_j$.}
+  1, \text{if $U_i$ is labeled higher than $U_j$;}\\
+  \frac{1}{2}, \text{if $U_i$ is labeled equal than $U_j$;}\\
+  0, \text{if $U_i$ is labeled lower than $U_j$.}
 \end{cases}
 $$
 
@@ -357,6 +371,13 @@ And such a loss can be minimized by the well-known `Expectation-Maximization (EM
 - [ ] http://bendersky.github.io/pubs.html
 - [ ] http://marc.najork.org/
 
+**Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank**
+
+We show that the loss functions of these methods are upper bounds of the measure-based ranking errors. As a result, the minimization of these loss functions will lead to the maximization of the ranking measures. The key to obtaining this result is to model ranking as a sequence of classification tasks, and define a so-called essential loss for ranking as the weighted sum of the classification errors of individual tasks in the sequence. We have proved that the essential loss is both an upper bound of the measure-based ranking errors, and a lower bound of the loss functions in the aforementioned methods. Our proof technique also suggests a way to modify existing loss functions to make them tighter bounds of the measure-based ranking errors. Experimental results on benchmark datasets show that the modifications can lead to better ranking performances, demonstrating the correctness of our theoretical analysis.
+
+- [ ] https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/
+- [ ] https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/
+
 ### Bayesian Personalized Ranking
 
 **Bayesian Personalized Ranking(BPR)** uses implicit information to construct recommender system. The training dat set is $D=\{(u,i,j)\}$
@@ -381,11 +402,8 @@ the model parameter vector $\Theta$ which captures the special relationship betw
 The aim is to estimate the real function $f_U(i,j|\Theta)$ for every user ${U}$.
 And we make some assumption of the data set:
 
-* All users are presumed to act independently
-of each other.
-* The ordering of each
-pair of items $(i, j)$ for a specific user is presumed to be independent
-of the ordering of every other pair.
+* All users are presumed to act independently of each other.
+* The ordering of each pair of items $(i, j)$ for a specific user is presumed to be independent of the ordering of every other pair.
 
 We introduce a general prior density $P(\Theta)$ which is a normal distribution
 with zero mean and variance-covariance matrix $\Sigma_{\Theta}$:
@@ -398,16 +416,17 @@ Now we can formulate the **maximum posterior estimator** to derive our
 generic optimization criterion for personalized ranking:
 $$
 \ln(P(\Theta|\triangleleft_{U}))\\
-=\ln(P(\triangleleft_{U}|\Theta) P(\Theta))\\
-=\ln (\prod_{(u,i,j)} P(U_i\triangleleft U_j|\Theta) P(\Theta))\\
-=\sum_{(u,i,j)}\ln(P(U_i\triangleleft U_j|\Theta))+\ln(P(\Theta)) \\
-=\sum_{(u,i,j)}\ln(\sigma(f_U(i,j|\Theta)))-\lambda_{\Theta}\|\Theta\|^2
+  =\ln(P(\triangleleft_{U}|\Theta) P(\Theta))\\
+  =\ln (\prod_{(u,i,j)} P(U_i\triangleleft U_j|\Theta) P(\Theta))\\
+  =\sum_{(u,i,j)}\ln(P(U_i\triangleleft U_j|\Theta))+\ln(P(\Theta)) \\
+  =\sum_{(u,i,j)}\ln(\sigma(f_U(i,j|\Theta)))-\lambda_{\Theta} {\|\Theta\|}^2
 $$
 
 where $\lambda_{\Theta}$ are model specific regularization parameters.
 
 And we can use stochastic gradient descent to find the parameters $\Theta$.
 ***
+
 - [ ] http://lipixun.me/2018/01/22/bpr
 - [ ] https://liuzhiqiangruc.iteye.com/blog/2073526
 - [ ] https://blog.csdn.net/cht5600/article/details/54381011
@@ -418,25 +437,85 @@ And we can use stochastic gradient descent to find the parameters $\Theta$.
 
 ***
 
-And the above algorithm are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1+\exp(-x)}$.
+And the above algorithms are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1+\exp(-x)}$.
+
+However, the two fundamental assumptions made in the pairwise ranking methods,
+(1) individual pairwise preference over two items
+and (2) independence between two users, may not
+always hold.
 
 [GBPR: Group Preference Based Bayesian Personalized Ranking for One-Class Collaborative Filtering](https://www.ijcai.org/Proceedings/13/Papers/396.pdf)  introduce richer interactions among users when the assumption does not hold.
 
-* https://www.ijcai.org/Proceedings/13/Papers/396.pdf
+For a typical user ${U}$, in order to calculate the over all likelihood of pairwise preferences (LPP) among all
+items ${I}$, Bernoulli distribution over the binary random variable
+$\delta(U_i\triangleleft U_j)$ is used in 
+$$
+LLP(U) = \prod_{i, j \in I} P(U_i\triangleleft U_j)^{\delta(U_i\triangleleft U_j)} \times [1 - P(U_i\triangleleft U_j)]^{1- \delta(U_i\triangleleft U_j)}
+$$
+where $U_i\triangleleft U_j$ denotes that user ${U}$ prefer item ${i}$ to the item ${j}$.
 
-http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html
+The group preference of users from group ${G}$ on
+item ${i}$ can be estimated as the average individual preferences
+$$
+\hat{r}_{G,i}=\frac{1}{|G|}\sum_{w\in G}\hat{r}_{w,i}.
+$$
+
+We assume that the group preference on an
+item ${i}$ is more likely to be stronger than the individual preference of user ${u}$ on item ${j}$, if the user-item pair $(u, i)$ is observed and the user-item pair $(u, j)$ is not observed.
+
+To explicitly study the unified effect of group preference
+and individual preference,  we combine them linearly
+$\hat{r}_{G, u,i} = \rho \hat{r}_{G,i} + (1-\rho)\hat{r}_{u,i}$.
+
+A new criterion called group Bayesian personalized ranking (GBPR) for user ${u}$,
+$$GBPR(u) = \prod_{i\in I_{U}}\prod_{j\in (I-I_{U})} P(\hat{r}_{G, u,i} > \hat{r}_{u, j})[1 - P(\hat{r}_{G, u,i} > \hat{r}_{u, j})]$$
+
+where $I_{U}$ is the item set which user ${U}$ has expressed
+positive feedback, and item ${i}$ is observed by user
+${u}$  and item ${j}$ is not observed
+
+And the user correlations have been introduced via the user group ${G}$. Then we have the following overall
+likelihood for all users and all items,
+$$
+GBPR=\prod_{u\in U}GBPR(u) = \prod_{u\in U}  \prod_{i\in I_{U}}\prod_{j\in (I-I_{U})} P(\hat{r}_{G, u,i} > \hat{r}_{u, j}) [1 - P(\hat{r}_{G, u,i} > \hat{r}_{u, j})].
+$$
+
+Following *BPR*, we use $\sigma(\hat{r}_{G, u,i} - \hat{r}_{u, j}) = \frac{1}{1+\exp(-\hat{r}_{G, u,i} + \hat{r}_{u, j})}$ to approximate the probability $P(\hat{r}_{G, u,i} > \hat{r}_{u, j})$. The other probability is similar.
+
+Finally, we reach the objective function of our GBPR,
+
+$$\min_{\Theta} -\frac{1}{2}\ln(GBPR) + \frac{1}{2} \Omega(\Theta)$$
+
+where $\Omega(\Theta)$ is the regularization term used to avoid overfitting.
+
+See more transfer learning algorithm in [http://csse.szu.edu.cn/staff/panwk/publications/].
+
+* https://www.ijcai.org/Proceedings/13/Papers/396.pdf
+* http://csse.szu.edu.cn/staff/panwk/publications/Journal-TBD-19-CoFiToR-Slides.pdf
+* [The code and data of GBPR](http://csse.szu.edu.cn/staff/panwk/publications/index.html).
+
 
 **Deep Online Ranking System**
 
 DORS is designed and implemented in a three-level novel architecture, which includes (1) candidate retrieval; (2) learning-to-rank deep neural network (DNN) ranking; and (3) online
 re-ranking via multi-arm bandits (MAB).
-
+https://zhuanlan.zhihu.com/p/57056588
 - [ ] [A Practical Deep Online Ranking System in
 E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/09/723.pdf)
 - [ ] http://www.ecmlpkdd2018.org/
 - [ ] https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html
 - [ ] https://academic.microsoft.com/#/detail/2149166361
 - [ ] http://www.wsdm-conference.org/2019/acm-proceedings.php
+
+
+**RankGAN**
+
+
+![](https://x-algo.cn/wp-content/uploads/2018/04/WX20180409-223208@2x-768x267.png)
+
+- https://x-algo.cn/index.php/2018/04/09/rankgan/
+- https://arxiv.org/pdf/1705.10513.pdf
+- http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation
 
 ***
 * https://www.wikiwand.com/en/Learning_to_rank

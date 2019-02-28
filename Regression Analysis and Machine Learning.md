@@ -310,23 +310,44 @@ From [ALPAYDIN, Ethem, 2004. Introduction to Machine Learning. Cambridge, MA: Th
 * https://developers.google.com/machine-learning/guides/rules-of-ml/
 * https://lilianweng.github.io/lil-log/2017/08/01/how-to-explain-the-prediction-of-a-machine-learning-model.html
 
+
+
 ![Road To Data Scientist](http://nirvacana.com/thoughts/wp-content/uploads/2013/07/RoadToDataScientist1.png)
 
-### Dimension Reduction
+**The unsupervised and supervised learning**
 
-https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction
-
+[Unsupervised learning is a form of descriptive analytics. Predictive analytics aims to estimate outcomes from current data. Supervised learning is a kind of predictive analytics. Finally, prescriptive analytics guides actions to take in order to guarantee outcomes.](http://www.argmin.net/2018/01/29/taxonomy/)
 
 ### Density Estimation
 
 [Density estimation](https://www.wikiwand.com/en/Density_estimation)
-https://www.cs.toronto.edu/~hinton/science.pdf
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/KernelDensityGaussianAnimated.gif/700px-KernelDensityGaussianAnimated.gif)
 
-### Classification
 
-* https://en.wikipedia.org/wiki/Category:Classification_algorithms
+It seems simple and easy while in fact it is not completely solved because of the diverse distributions.
+For example, what is the probability density function of the pixels in the given size pictures?
+Not all distribution function of interest are clear to us in high dimensional space although Gaussian mixture is a universal approximator of distribution function in $\mathbb{R}$.
+
+* stable distributions such as generalized Laplacian distribution in finance;
+* semi-circle distribution of the random matrix eigenvalues in physics;
+* Gaussian-type distribution in high dimensional space.
+
+And it is one of the core problem in point estimation. It is more difficult if we can not observe the samples directly such as the semi-circle distribution.
+
+
+***
+
+* http://www.stat.cmu.edu/~larry/=sml/densityestimation.pdf
+* https://cs.dartmouth.edu/wjarosz/publications/dissertation/appendixC.pdf
+* http://assets.press.princeton.edu/chapters/s8355.pdf
+
+
+### Dimension Reduction
+
+https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction
+https://www.cs.toronto.edu/~hinton/science.pdf
+
 
 ### Clustering
 
@@ -359,7 +380,9 @@ K-means is also called  **Lloyd’s algorithm**.
 * https://www.wikiwand.com/en/Cluster_analysis
 * https://www.toptal.com/machine-learning/clustering-algorithms
 
+### Classification
 
+* https://en.wikipedia.org/wiki/Category:Classification_algorithms
 ### Support Vector Machine
 
 http://www.svms.org/history.html
