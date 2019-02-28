@@ -44,13 +44,22 @@ $$
 
 where $x\in \mathbb{R}^{n}$.
 
-Its iterative procedure is:
+It is obvious
+$$f(x) \approx f(x^k)+(x - x^k)^{T}\nabla f(x^{k}) + \frac{s}{2}{\|x-x^k\|}_2^2$$
+by Taylor expansion of $f$ near the point $x^{k}$ for some constant $s$.
+
+Let $x^{k+1}=\arg\min_{x} f(x^k)+(x - x^k)^{T}\nabla f(x^{k}) + \frac{s}{2}{\|x-x^k\|}_2^2$,  we will obtain $x^{k+1}=x^{k}-\frac{1}{s}{\nabla}_{x}f(x^k)$.
+
+And the general gradient descent methods are given by
 
 $$
 x^{k+1}=x^{k}-\alpha_{k}{\nabla}_{x}f(x^k)
 $$
 
 where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$ so that $f(x^{k+1})=\min_{\alpha} f(x^k - \alpha\nabla_x f(x^k))$.
+
+
+![](https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg)
 
 ***
 
@@ -98,6 +107,9 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.cs.cmu.edu/~ggordon/10725-F12/slides/09-acceleration.pdf
 * https://arxiv.org/pdf/1805.09077.pdf
+* https://saugatbhattarai.com.np/what-is-gradient-descent-in-machine-learning/
+* https://www.fromthegenesis.com/gradient-descent-part-2/
+* http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/
 
 ## Mirror Gradient Method
 
@@ -109,7 +121,7 @@ $$
 \arg\min_{x\in\mathbb{S}}f(x)
 $$
 
-where $\mathbb{S}\subset\mathbb{R}^n$.
+where $f,\mathbb{S}\subset\mathbb{R}^n$ are convex.
 
 ### Projected Gradient Descent
 
@@ -118,6 +130,22 @@ $$
 z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}\\
 x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} \qquad\text{Projection}
 $$
+
+or in the compact form
+$$
+x^{k+1} = \arg\min_{x\in \mathbb{S}}\|x-(x^{k}-\alpha_k\nabla_x f(x^{k}))\|^{2}
+\\= \arg\min_{x}\{\|x-(x^{k}-\alpha_k\nabla_x f(x^{k}))\|^{2} +\delta_{\mathbb{S}}(x) \}
+$$
+
+where $\delta_{\mathbb{S}}$ is the indictor function of the set $\mathbb{S}$
+$$
+h(x) =\delta_{\mathbb{S}}(x)=
+ \begin{cases}
+   0, & \text{if} \quad x \in \mathbb{S};\\
+   \infty, & \text{otherwise}.
+ \end{cases}
+$$
+
 * http://maths.nju.edu.cn/~hebma/slides/03C.pdf
 * http://maths.nju.edu.cn/~hebma/slides/00.pdf
 
@@ -206,7 +234,7 @@ $$minimize \qquad f(x) = g(x)+h(x)$$
 - ${h}$ is closed, convex, possibly non-differentiable while $prox_h(x)$ is inexpensive.
 
 **Proximal gradient algorithm**
-$$x^{k}=prox_{t_k h} \{x^{k-1}-t_k\nabla g(x^{k-1}\}$$
+$$x^{k}=prox_{t_k h} \{x^{k-1}-t_k\nabla g(x^{k-1})\}$$
 
 $t_k > 0$  is step size, constant or determined by line search.
 
@@ -254,6 +282,7 @@ $$\min f(x)$$
 where $x\in \mathbb{R}^{n}$.
 ***
 If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
+So if we can find all the solution of the equation system $\nabla f(x) = 0$, it helps us to find the solution to the optimization problem $\arg\min_{x\in\mathbb{R}^n} f(x)$.
 
 **Newton's method** is given by
 $$
@@ -420,13 +449,41 @@ by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM
 
 * https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 
-## Lagrange Duality
+## Lagrange Multipliers and Duality
+
+It is to solve the constrained optimization problem
+$$\arg\min_{x}f(x), \quad s.t.\quad g(x)=b.$$
+
+The barrier or penalty function methods are to add some terms to $f(x)+\Omega(g(x)-b)$ [converting
+constrained problems into unconstrained problems by introducing an artificial penalty for
+violating the constraint.](https://web.stanford.edu/group/sisl/k12/optimization/MO-unit5-pdfs/5.6penaltyfunctions.pdf)
+For example,
+$$P(x, \lambda)= f(x) + \lambda {\|g(x)-b\|}_2^2$$
+where the penalty function $\Omega(x) = {\|x\|}_2^2$, $\lambda\in\mathbb{R}^{+}$.
+We can regard it as a surrogate loss technique.
+Although the penalty function is convex and differentiable, it is more difficult than directly optimizing $f(x)$ when the constrain is complicated.
+
+What is the simplest additional term when the constraint is linear? In following context we will talk the optimization problem with linear constraints:
+$$
+\arg\min_{x} f(x) \\
+  s.t. Ax = b
+$$
+
+### Lagrange Multipliers and Generalized Lagrange Function
+
+The penalty function methods do not take the optimal conditions into consideration although it works.
+
+$$L(x, \lambda)= f(x) + \lambda^T(Ax-b)$$
+
+**KKT theorem**
 
 - http://www.ece.ust.hk/~palomar/ELEC5470_lectures/07/slides_Lagrange_duality.pdf
 - https://cs.stanford.edu/people/davidknowles/lagrangian_duality.pdf
 - https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture7.pdf
 - https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/
 - https://www.cs.jhu.edu/~svitlana/papers/non_refereed/optimization_1.pdf
+- http://web.mit.edu/dimitrib/www/lagr_mult.html
+- https://zhuanlan.zhihu.com/p/50823110
 
 ### Alternating Direction Method of Multipliers
 
@@ -459,7 +516,7 @@ ADMM is described as following:
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 ***
-We take $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described as
+Taking $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described as
 
 > 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
 > 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k} - \mu\beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b).$
@@ -467,7 +524,7 @@ We take $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described 
 > 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}} } - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b).$
 
 
-$\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me this.}}$[^9]
+$\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me those.}}$[^9]
 ***
 
 One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence:
@@ -592,13 +649,13 @@ The variants of gradient descent such as momentum methods or mirror gradient met
 * There are decay schemes, i.e. the step length ${\alpha}_k$ diminishes such as ${\alpha}_k=\frac{\alpha}{k}$, where $\alpha$ is constant.
 * And another strategy is to tune the step length adaptively such as *AdaGrad, ADAM*.
 
-$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionaly, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case. 
+$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionaly, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
 
 We can see some examples to see the advantages of incremental method such as the estimation of mean.
 Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$. If now we observed more data $y_1, y_2, \dots, y_m$ from the population, the mean could be estimated by $\frac{n\bar{x}}{m+n} + \frac{\sum_{j=1}^{m} y_j }{m+n} =\frac{n\bar{x}+\sum_{j=1}^{m} y_j}{m+n}$. It is not necessary to summarize ${x_1, \dots, x_n}$.
 
-Another example, it is `Newton interpolation formula` in numerical analysis. The task is to fit the function via polynomials given some point in th function $(x_i , f(x_i)), i = 1,2, \dots, n$. 
-[The Newton form of the interpolating polynomial  is given by](https://nptel.ac.in/courses/122104019/numerical-analysis/Rathish-kumar/rathish-oct31/fratnode5.html) 
+Another example, it is `Newton interpolation formula` in numerical analysis. The task is to fit the function via polynomials given some point in th function $(x_i , f(x_i)), i = 1,2, \dots, n$.
+[The Newton form of the interpolating polynomial  is given by](https://nptel.ac.in/courses/122104019/numerical-analysis/Rathish-kumar/rathish-oct31/fratnode5.html)
 $$
 P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots + a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
 $$

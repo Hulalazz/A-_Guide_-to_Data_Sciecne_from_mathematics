@@ -261,6 +261,9 @@ For example, $\rho$ can be absolute value function.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/c/c1/RhoFunctions.png)
 
+And it is really close to supervised machine learning.
+
+* https://stats.idre.ucla.edu/r/dae/robust-regression/
 * http://users.stat.umn.edu/~sandy/courses/8053/handouts/robust.pdf
 * https://newonlinecourses.science.psu.edu/stat501/node/351/
 * https://stats.idre.ucla.edu/r/dae/robust-regression/
@@ -381,7 +384,6 @@ And there is a PHD thesis [Design and choice of projection indices](https://peop
 * http://cis.legacy.ics.tkk.fi/aapo/papers/IJCNN99_tutorialweb/node23.html
 * https://www.pnas.org/content/115/37/9151
 * https://www.ncbi.nlm.nih.gov/pubmed/30150379
-
 
 
 ***

@@ -1,11 +1,11 @@
 ## Dimension Reduction
 
-Principal component analysis or singular value decomposition can applied to matrix approximation.
+Principal component analysis or singular value decomposition can be applied to matrix approximation.
 The data collected in practice always save in the table form, which can considered as a matrix. Another techniques similar to PCA is  eigenvalue-eigenvector decomposition. Dimension reduction is really the topic of data science as data preprocessing .
 
 The basic idea of dimension reduction is that not all information is necessary for a specific task.
-The motivation of dimension reduction is **Curse of dimensionality**, limit of storage and computation. The high dimensional space is not easy for us to visualize, imagine or understand. The intuition to high dimensional space is weak for us, the people who live in the three dimensional space.
-As a preprocessing data method, it helps us to select features and learn proper representation.  A more theoretical and useful topic is data compression, a branch of information theory. The dimension reduction is related with geometry of data set., which includes manifold learning and topological data analysis.
+The motivation of dimension reduction is **Curse of dimensionality**, limit of storage and computation and so on. The high dimensional space is not easy for us to visualize, imagine or understand. The intuition or insight to high dimensional space is weak for us, the people who live in the three dimensional space.
+As a preprocessing data method, it helps us to select features and learn proper representation.  A more theoretical and useful topic is data compression, a branch of information theory. The dimension reduction is related with geometry of data set, which includes manifold learning and topological data analysis.
 
 All manifold learning algorithms assume that data set lies on a smooth non-linear manifold of low dimension and a mapping
 
@@ -18,7 +18,8 @@ $$
 \|f(x)\|\approx \| x\|, \|f(x) -f(y)\|\approx \| x - y\|.
 $$
 
-$\color{aqua}{PS:}$ the dimension reduction is classified into unsupervised learning while it can convert to optimization models.
+$\color{aqua}{PS:}$ the dimension reduction is classified into unsupervised learning while it can be converted to optimization problems.
+Additionally, it will miss some properties of the data set so please do not delete the previous data sets.
 
 It is a wonderful review of dimension reduction at \url{https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf}.
 
@@ -109,8 +110,8 @@ It is trying to learn an approximation to the identity function, so as to output
 
 Now suppose we have only unlabeled training examples set ${x^{(1)}, x^{(2)}, x^{(3)}, \dots}$, where $x^{(i)}\in\mathbb{R}^{p}$.
 
-An autoencoder neural network is an unsupervised learning algorithm
-that applies backpropagation, setting the target values to be equal to the inputs. I.e., it uses $z^{(i)} = x^{(i)}$. It
+An auto-encoder neural network is an unsupervised learning algorithm
+that applies back-propagation, setting the target values to be equal to the inputs. I.e., it uses $z^{(i)} = x^{(i)}$. It
 is trying to learn an approximation to the identity function, so as to output
 $\hat{x}$ that is similar to $x$. The identity function seems a particularly trivial
 function to be trying to learn; but by placing constraints on the network,
@@ -314,8 +315,6 @@ The projection pursuit methods can extend to density estimation and regreesion.
 * http://sun.cwru.edu/~jiayang/nsf/ipp.html
 * https://rd.springer.com/chapter/10.1007/978-1-4612-4214-7_9
 * https://www.sciencedirect.com/science/article/pii/S0925231214010091
-
-
 
 ***
 
