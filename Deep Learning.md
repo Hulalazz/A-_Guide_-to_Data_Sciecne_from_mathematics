@@ -764,7 +764,7 @@ And $\lim_{x\to\infty}\frac{f(x)}{x}=1$.
 
 Its derivative function is the sigmoid function:
 $$
-f^{\prime}(x)=\frac{e^x}{1 + e^x} = \frac{1}{1 + e^{-x}}\in (0,1)
+f^{\prime}(x)=\frac{e^x}{1 + e^x} = \frac{1}{1 + e^{-x}}\in (0,1).
 $$
 
 
@@ -779,11 +779,11 @@ The sign function  is defined as
 
 $$
 sgn(x)=
- \begin{cases}
-   1, &\text{if $x > 0$}\\
-   0, &\text{if $x=0$}  \\
-  -1, &\text{if $x < 0$}
- \end{cases}
+   \begin{cases}
+     1, &\text{if $x > 0$}\\
+     0, &\text{if $x=0$}  \\
+     - 1, &\text{if $x < 0$}
+   \end{cases}
 \\=\frac{x}{|x|}\quad\text{if $x\not= 0$}.
 $$
 
@@ -1464,6 +1464,23 @@ It requires some methods to find the proper generator $G$ and discriminator $D$.
 |:----------------------------:|
 |![](https://image.slidesharecdn.com/generativeadversarialnetworks-161121164827/95/generative-adversarial-networks-11-638.jpg?cb=1480242452)|
 
+As a generative model, it is really important to evaluate the quantity of the model output.
+Suppose there is a model used to write Chinese traditional poem, how does the machine know it is a fantastic masterpiece? How does it write a novel poem in a given topic or form? The loss function or evaluation is implicit.    
+One solution is to train another program to evaluate the performance of generative model.
+
+The idea behind the GAN:
+
+* Idea 1: Deep nets are good at recognizing images, then let it judge of the outputs of a generative model;
+* Idea 2: If a good discriminator net has been trained, use it to provide “gradient feedback” that improves the generative model.
+* Idea 3: Turn the training of the generative model into a game of many moves or alternations.
+
+In mathematics, it is in the following form
+$$\min_{G}\max_{D}\mathbb{E}_{x\sim P} [f(D(x))] + \mathbb{E}_{h}[f(1 - D(G(h)))]$$
+
+where $G$ is the generator and $D$ is the discriminator.
+
+****
+
 * https://skymind.ai/wiki/generative-adversarial-network-gan
 * [千奇百怪的GAN变体，都在这里了（持续更新嘤） - 量子学园的文章 - 知乎](https://zhuanlan.zhihu.com/p/26491601)
 * [生成模型中的左右互搏术：生成对抗网络GAN——深度学习第二十章（四） - 川陀学者的文章 - 知乎](https://)https://zhuanlan.zhihu.com/p/37846221)
@@ -1472,7 +1489,12 @@ It requires some methods to find the proper generator $G$ and discriminator $D$.
 * https://gandissect.csail.mit.edu/
 * https://poloclub.github.io/ganlab
 * https://github.com/nndl/Generative-Adversarial-Network-Tutorial
+* https://danieltakeshi.github.io/2017/03/05/understanding-generative-adversarial-networks/
+* http://aiden.nibali.org/blog/2016-12-21-gan-objective/
 * http://www.gatsby.ucl.ac.uk/~balaji/Understanding-GANs.pdf
+* https://lilianweng.github.io/lil-log/2017/08/20/from-GAN-to-WGAN.html
+* https://www.cs.princeton.edu/courses/archive/spring17/cos598E/GANs.pdf
+* https://seas.ucla.edu/~kao/nndl/lectures/gans.pdf
 
 
 ## Graph Convolution Network
@@ -1501,7 +1523,7 @@ $$
 $$
 where ${W}_{i}$ is a weight matrix for the $i$-th neural network layer and $\sigma (\cdot)$ is is a non-linear activation function such as *ReLU*.
 
-* But first, let us address two limitations of this simple model: multiplication with $A$ means that, for every node, we sum up all the feature vectors of all neighboring nodes but not the node itself (unless there are self-loops in the graph). We can "fix" this by enforcing self-loops in the graph: we simply add the identity matrix $I$ to $A$.
+* But first, let us address two limitations of this simple model: multiplication with $A$ means that, for every node, we sum up all the feature vectors of all neighboring nodes but not the node itself (unless there are self-loops in the graph). We can "fix" this by enforcing self-loops in the graph: we simply add the identity matrix ${I}$ to ${A}$.
 
 * The second major limitation is that $A$ is typically not normalized and therefore the multiplication with $A$ will completely change the scale of the feature vectors (we can understand that by looking at the eigenvalues of $A$).Normalizing $A$ such that all rows sum to one, i.e. $D^{−1}A$, where $D$ is the diagonal node degree matrix, gets rid of this problem.
 
@@ -1730,6 +1752,18 @@ Topics of interest include, but are not limited to:
 * Practical implementations of principled deep learning approaches
 * Domain-specific challenges of principled deep learning approaches
 * Applications to real-world problems
+
+There are more mathematical perspectives to deep learning: dynamical system, thermodynamics, Bayesian statistics, random matrix, numerical optimization, algebra and differential equation.
+
+The information theory or code theory helps to accelerate the deep neural network inference as well as computer system design.
+
+The limitation and extension of deep learning methods is also discussed such as F-principle, capsule-net, biological plausible methods.
+The deep learing method is more engineer. The computational evolutaionary adaptive  cognitive intelligence does not occur untill now.
+
+
+* https://www.msra.cn/zh-cn/news/people-stories/wei-chen
+* https://www.microsoft.com/en-us/research/people/tyliu/
+* https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/85815724
 
 ***
 

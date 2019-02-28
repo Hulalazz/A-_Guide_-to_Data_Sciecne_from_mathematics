@@ -83,15 +83,20 @@ The update rule will update the mean and variance:
 $$
 \mu_{winner} \leftarrow \mu_{winner} + \frac{\sigma_{winner}^2}{c} \cdot \nu(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c})
 $$
+
 $$
 \mu_{loser} \leftarrow \mu_{loser} - \frac{\sigma_{loser}^2}{c} \cdot \nu(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c})
 $$
+
 $$
 \sigma_{winner} \leftarrow \sigma_{winner}^2 [1 - \frac{\sigma_{winner}^2}{c^2} \cdot w(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c}) ]
 $$
+
+
 $$
 \sigma_{loser} \leftarrow \sigma_{loser}^2 [1 - \frac{\sigma_{loser}^2}{c^2} \cdot w(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c}) ]
 $$
+
 $$
 c^2 = 2\beta^2+\sigma^2_{winner}+\sigma^{2}_{loser}
 $$
@@ -113,7 +118,7 @@ $$
 P(r|G)=\frac{P(G|r)P(r)}{P(G)}
 $$
 
-where $P(r)$ is a prior distribution over $r$, and $P(G)$ is a normalizing constant. $P(r|G)$ is called the posterior distribution of $r$
+where $P(r)$ is a prior distribution over $r$, and $P(G)$ is a normalizing constant. $P(r|G)$ is called the posterior distribution of $r$:
 $P(G|r)$ is the Bradley-Terry model, i.e.
 
 $$
@@ -257,13 +262,17 @@ $$
 Observe that
 $$\frac{\partial L_{i,j}}{\partial s_i} = -\frac{\partial L_{i,j}}{\partial s_j}$$
 and define
+
 $$
 {\lambda}_{i,j}=\frac{\partial L_{i,j}}{\partial s_i} = -\frac{\partial L_{i,j}}{\partial s_j} = -\frac{\sigma}{1+\exp(\sigma(s_i-s_j))}.
 $$
+
 What is more, we can extend it to
+
 $$
 {\lambda}_{i,j}=  -\frac{\sigma}{1+\exp(\sigma(s_i-s_j))}|\Delta Z|.
 $$
+
 where $\Delta Z$ is the size of the change in some **Information Retrieval Measures** ${Z}$.
 
 And $\lambda_{i}$ with respect to ${i}$-th item is defined as
@@ -518,6 +527,7 @@ E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/0
 - http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation
 
 ***
+
 * https://www.wikiwand.com/en/Learning_to_rank
 * https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
 * https://plato.stanford.edu/entries/arrows-theorem/
