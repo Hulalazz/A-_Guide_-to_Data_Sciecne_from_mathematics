@@ -143,6 +143,7 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * http://nicolas-hug.com/blog/matrix_facto_2
 * http://nicolas-hug.com/blog/matrix_facto_3
 * http://yifanhu.net/PUB/cf.pdf
+* https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/
 
 **Funk-SVD** considers the user's preferences or bias.
 It predicts the scores by
@@ -160,11 +161,11 @@ $$
 $$
 \hat{r}_{u,i} = \mu + b_u + b_i + (P_u + |N(u)|^{-0.5}\sum_{i\in N(u)} y_i) Q_i^{T}
 $$
-where $y_j$ is the implicit  feedback of item ${j}$ and $N(u)$ is user ${u}$'s item set. 
+where $y_j$ is the implicit  feedback of item ${j}$ and $N(u)$ is user ${u}$'s item set.
 And it can decompose into 3 parts:
 
-* $\mu + b_u + b_i$ is the base-line prediction; 
-* $\left<P_u, Q_i\right>$ is the SVD of rating matrix; 
+* $\mu + b_u + b_i$ is the base-line prediction;
+* $\left<P_u, Q_i\right>$ is the SVD of rating matrix;
 * $\left<|N(u)|^{-0.5}\sum_{i\in N(u)} y_i, Q_i\right>$ is the implicit feedback where $N(u)$ is user ${u}$'s item set, $y_j$ is the implicit feedback of item $j$.
 
 We learn the values of involved parameters by minimizing the regularized squared error function.
@@ -228,10 +229,28 @@ The boosting or stacking methods may help us to enhance these methods.
 
 ***
 
-**Implict Information**
+**Recommendation with Implict Information**
 
-Sometimes, the information of user we could collect is impliict such as the clicking at some item.
+Sometimes, the information of user we could collect is implicit such as the clicking at some item.
+`CLiMF` the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).
 
+Its objective function is 
+$$
+F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))]-\frac{\lambda}{2}({\|U\|}^2 + {\|V\|}^2)
+$$
+
+where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e.,$Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$. 
+The vector $U_i$ denotes a d-dimensional latent factor vector for
+user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
+
+|||||||
+|---|---|---|---|---|---|
+|$M$|the number of users|$U_i$|latent factor vector for user ${i}$|$Y_{ij}$|binary relevance score|
+|$N$|the number of items|$V_j$|latent factor vector for item ${i}$|$f$|logistic function|
+
+
+We use stochastic gradient ascent to maximize the objective function.
+* https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html
 * http://yifanhu.net/PUB/cf.pdf
 * https://github.com/benfred/implicit
 * https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
@@ -239,6 +258,7 @@ Sometimes, the information of user we could collect is impliict such as the clic
 * http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/
 * https://www.benfrederickson.com/fast-implicit-matrix-factorization/
 * https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/
+* https://github.com/gamboviol/climf
 
 
 ***
@@ -249,7 +269,6 @@ Sometimes, the information of user we could collect is impliict such as the clic
 * https://blog.csdn.net/turing365/article/details/80544594
 * https://en.wikipedia.org/wiki/Collaborative_filtering
 * \url{https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)}
-* https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/
 * https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html
 * http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018
 * http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html
@@ -310,7 +329,7 @@ where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
 
 **Wide & Deep Model**
 
-The output of this model is 
+The output of this model is
 $$
 P(Y=1|x) = \sigma(W_{wide}^T[x,\phi(x)] + W_{deep}^T \alpha^{(lf)}+b)
 $$
@@ -322,7 +341,7 @@ where the `wide` part deal with the categorical features such as user demographi
 ![](http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/fnn_pnn_wdl.png)
 
 * https://arxiv.org/pdf/1606.07792.pdf
-* https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html 
+* https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html
 * https://www.jianshu.com/p/dbaf2d9d8c94
 * https://www.sohu.com/a/190148302_115128
 
@@ -374,10 +393,20 @@ of features. The third term $f(x)$ is the core component of NFM
 for modelling feature interactions, which is a `multi-layered feedforward neural network`.
 
 ![](https://i.ooxx.ooo/2017/12/27/ab7149f31f904f8f2bd6f15e0b9900c9.png)
- 
+
 * https://www.comp.nus.edu.sg/~xiangnan/papers/sigir17-nfm.pdf
 
 **Attentional Factorization Machines**
+
+Attentional Factorization Machine (AFM) learns the importance of each feature interaction from data via a neural attention network.
+
+We employ the attention mechanism on feature interactions by performing a weighted sum on the interacted vectors:
+
+$$\sum_{(i,j)} a_{(i,j)}(V_i\odot V_j)x_i x_j$$
+
+where $a_{i,j}$ is the attention score for feature interaction.
+
+![](https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png)
 
 * https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf
 * http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89
@@ -387,8 +416,8 @@ for modelling feature interactions, which is a `multi-layered feedforward neural
 ![](https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png)
 
 - [X] https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm
+- [ ] https://arxiv.org/abs/1803.05170
 - [ ] http://kubicode.me/2018/09/17/Deep%20Learning/eXtreme-Deep-Factorization-Machine/
-- [ ] http://d0evi1.com/xdeepfm/
 - [ ] https://www.jianshu.com/p/b4128bc79df0
 
 **Restricted Boltzmann Machines for Collaborative Filtering(RBM)**
@@ -451,7 +480,7 @@ $$
 \min_{\theta}\sum_{i=1}^{n} {\|r^{i}-h(r^{i}|\theta)\|}_{O}^2 +\frac{1}{2}({\|W\|}_F^{2}+ {\|V\|}_F^{2})
 $$
 
-where $\{r^{i}\in\mathbb{R}^{d}, i=1,2,\dots,n\}$ is partially observed vector and $\| \cdot \|_{o}^2$ means that we only consider the contribution of observed ratings.
+where $\{r^{i}\in\mathbb{R}^{d}, i=1,2,\dots,n\}$ is partially observed vector and ${\| \cdot \|}_{o}^2$ means that we only consider the contribution of observed ratings.
 The function $h(r|\theta)$ is  the reconstruction of input $r\in\mathbb{R}^{d}$:
 
 $$
@@ -502,14 +531,30 @@ the selected GCN.
 
 **Hyperbolic Recommender Systems**
 
-Many well-established recommender systems are based
-on representation learning in Euclidean space. In these
-models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
-user and item representations in Hyperbolic space.
+Many well-established recommender systems are based on representation learning in Euclidean space.
+In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
+user and item representations in hyperbolic space.
+
+Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$,
+the distance between two points on *P* is given by
+$$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
+
+HyperBPR leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items. 
+Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
+$$\alpha(u, v) = f(d_p(u,v)).$$
+The objective function is defined as follows:
+$$\arg\min_{\Theta} \sum_{i,j,k} -\ln(\sigma\{\alpha(u_i, v_j) - \alpha(u_i, v_k)\}) + \lambda  {\|\Theta\|}_2^2$$
+
+where $(i, j, k)$ is the triplet that belongs to the set ${D}$ that
+contains all pairs of positive and negative items for each
+user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model parameters; and $\lambda$ is the regularization parameter.
+
+The parameters of our model are learned by using `RSGD`.
 
 * https://arxiv.org/abs/1809.01703
 * https://arxiv.org/abs/1902.08648
 * https://amds123.github.io/2018/09/05/Hyperbolic-Recommender-Systems/
+* https://arxiv.org/abs/1111.5280
 
 
 **Deep Matching Models for Recommendation**
@@ -534,9 +579,9 @@ The recommender system is essential to find the item which matches the user's de
 **Social Recommendation**
 
 We present a novel framework for studying recommendation algorithms in terms of the
-‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
+‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
 dataset and allows us to consider questions relating algorithmic parameters to properties
-of the datasets. 
+of the datasets.
 
 |Evolution of the Recommender Problem|
 |:---:|
@@ -573,7 +618,7 @@ of the datasets.
 - [ ] https://github.com/alibaba/euler
 - [ ] https://github.com/alibaba/x-deeplearning/wiki/
 - [ ] https://github.com/lyst/lightfm
-- [ ] https://github.com/Microsoft/Recommenders 
+- [ ] https://github.com/Microsoft/Recommenders
 - [ ] http://www.mymedialite.net/index.html
 - [ ] http://www.mymediaproject.org/
 

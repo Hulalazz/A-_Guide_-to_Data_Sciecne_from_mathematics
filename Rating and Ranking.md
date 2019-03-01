@@ -158,8 +158,27 @@ $$
 
 
 **How to Build a Popularity Algorithm You can be Proud of**
+
+It is  a way to score the posts, articles or something else based on the users' inputs. It is a simple voting system to determine the popularity. It is interesting to select the most popular articles in social media to the subscribers. If all the people in the community likes the same article or item in the same conditions, it is not necessary to build a popularity algorithm. However, our tastes are diverse and dynamical.
+
+It is an application of collective decision-making theory in some sense.
+For example, everyone can upvote or downvote  the answers in stackoverflow in the same question, what is the most popular answer to the question? 
+
 - [ ] http://www.ruanyifeng.com/blog/2012/02/ranking_algorithm_hacker_news.html
 - [ ] http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html
+- [ ] http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+- [ ] http://www.evanmiller.org/rank-hotness-with-newtons-law-of-cooling.html
+- [ ] http://www.evanmiller.org/ranking-items-with-star-ratings.html
+- [ ] http://www.evanmiller.org/ranking-news-items-with-upvotes.html
+- [ ] http://www.evanmiller.org/bayesian-average-ratings.html
+- [ ] https://www.sciencedirect.com/science/article/pii/S0014579304009354
+
+There are some links on the  collective decision-making theory:
+
+* https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
+* https://plato.stanford.edu/entries/arrows-theorem/
+* https://www.math.ucla.edu/~tao/arrow.pdf
+* https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem
 
 ## Ranking
 
@@ -193,6 +212,7 @@ We may use machine learn to predict the scores of players and test it in real da
 
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * https://www.cnblogs.com/bentuwuying/p/6683832.html
+* https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html
 
 
 ### RankNet
@@ -529,9 +549,5 @@ E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/0
 ***
 
 * https://www.wikiwand.com/en/Learning_to_rank
-* https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
-* https://plato.stanford.edu/entries/arrows-theorem/
-* https://www.math.ucla.edu/~tao/arrow.pdf
-* https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem
 * https://arxiv.org/abs/1812.00073
 * https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf

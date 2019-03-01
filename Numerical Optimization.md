@@ -35,7 +35,9 @@ depends on effective choices of both the direction $p^{k}$ and the step length $
 $\color{lime}{Note}$: we use the notation $x^{k}$ and $\alpha_k$ to represent the $k$th iteration of the vector variables $x$ and $k$th step length, respectively.
 Most line search algorithms require $p^k$ to be a descent direction — one for which
 $\left< {p^k},\nabla f_k \right> < 0$ — because this property guarantees that the function $f$ can be reduced along this direction, where $\nabla f_k$ is the gradient of objective function $f$ at the $k$th iteration point $x_k$ i.e. $\nabla f_k=\nabla f(x^{k})$.
+
 ***
+
 Gradient descent and its variants are to find the local solution of  the unconstrained optimization problem:
 
 $$
@@ -77,8 +79,8 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally and the step length $\
 $$
 x^{k}=y^{k}-\alpha^{k+1}\nabla_{x}f(y^k) \qquad \text{Descent} \\
 y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  \text{Momentum}
-
 $$
+
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
 
 They are called as **inertial gradient methods** or **accelerated gradient methods**.
@@ -472,8 +474,19 @@ $$
 ### Lagrange Multipliers and Generalized Lagrange Function
 
 The penalty function methods do not take the optimal conditions into consideration although it works.
+If $x^{\star}$ is in the solution set of the optimization problem above, it is obvious that $Ax^{\star}=b$ and $L(x^{\star}, \lambda)=f(x^{\star})$ where
+$$L(x, \lambda)= f(x) + \lambda^T(Ax-b).$$
 
-$$L(x, \lambda)= f(x) + \lambda^T(Ax-b)$$
+In another direction, we want to prove that $x^{\star}$ is the optima of the optimization problem if 
+$$
+L(x^{\star}, {\lambda}^{\star})=\quad \max_{\lambda}\min_{x} L(x, \lambda).
+$$
+
+By the definition, 
+$L(x^{\star}, {\lambda}^{\star})\geq L(x^{\star}, \lambda)=f(x^{\star})+\lambda^T(Ax^{\star}-b)$, which implies that $\lambda^T(Ax^{\star}-b)=0$ i.e., $Ax^{\star}=b$. And $L(x^{\star}, {\lambda}^{\star}) = f(x^{\star})\leq L(x, {\lambda}^{\star})\forall x$.
+
+It is dual problem is in the following form:
+$$\min_{x}\max_{\lambda} L(x, \lambda)$$
 
 **KKT theorem**
 
@@ -532,7 +545,7 @@ $$
 L_{\beta}^{\phi}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}B_{\phi}(b- Ax, By).
 $$
 
-where $B_(\phi)$ is the Bregman divergence induced by the convex function $\phi$.
+where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$.
 
 **BADMM**
 
@@ -562,7 +575,7 @@ $$
 f(x,y) = g(x) + h(y)
 $$
 with or without constraints.
-Specially, if the cost function is additively separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f(x_i), i=1,2,\cdots, n$ rather than the cost function itself
+Specially, if the cost function is additively separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f_i(x_i), i=1,2,\cdots, n$ rather than the cost function itself
 $$
 \min \sum_{i} f_i(x_i) \leq \sum_{i}\min{f_i(x_i)}.
 $$
@@ -659,6 +672,9 @@ Another example, it is `Newton interpolation formula` in numerical analysis. The
 $$
 P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots + a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
 $$
+This form is incremental and if another points $(x_{n+1}, f(x_{n+1}))$ is observed we will fit the function $f$ more precisely just by adding another term $a_{n+1}(x-x_1)(x-x_2)\cdots (x-x_n)(x-x_{n+1})$
+where the coefficients $a_0, a_1,\cdots, a_n$ are determined by $f(x_1), f(x_2), \cdots, f(x_n)$.
+
 
 See the following links for more information on *stochastic gradient descent*.
 
