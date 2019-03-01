@@ -238,12 +238,14 @@ Generalized linear models extend the distribution of outputs so that the loss fu
 
 It is supposed that there is a link function $g$ such that $\mathbb{E}(Y) = \pi = g^{−1}(\eta)$. However, why it is the expectation $\mathbb{E}(Y)$ rather than others?
 
+Robust regression can be used in any situation in which you would use least squares regression. When fitting a least squares regression, we might find some outliers or high leverage data points. We have decided that these data points are not data entry errors, neither they are from a different population than most of our data. So we have no compelling reason to exclude them from the analysis. Robust regression might be a good strategy since it is a compromise between excluding these points entirely from the analysis and including all the data points and treating all them equally in OLS regression. The idea of robust regression is to weigh the observations differently based on how well behaved these observations are. Roughly speaking, it is a form of weighted and reweighted least squares regression. Draw form[https://stats.idre.ucla.edu/r/dae/robust-regression/].
+
 ![](https://ww2.mathworks.cn/help/examples/stats/win64/CompareRobustAndLeastSquaresRegressionExample_01.png)
 
 **M-estimators** are given by
 $$\hat{\beta}_M=\arg\min_{\beta}{\sum}_{i}\rho({\epsilon}_i)$$
 where  error term as ${\epsilon}_i(\beta)$ is to reflect the error term's dependency on the regression coefficients $\beta$ and  function $\rho(\cdot)$  is chosen which is acting on the residuals.
-A reasonable ρ should have the following properties
+A reasonable $\rho$ should have the following properties
 
 * Nonnegative, $\rho(e)\geq 0 \,\,\forall e$;
 * Equal to zero when its argument is zero, $\rho(0)=0$;
@@ -260,6 +262,8 @@ For example, $\rho$ can be absolute value function.
 |Winsorizing|[Wiki page](https://www.wikiwand.com/en/Winsorizing)|
 
 ![](https://upload.wikimedia.org/wikipedia/commons/c/c1/RhoFunctions.png)
+
+Three common functions chosen in M-estimation are given in [Robust Regression Methods](https://newonlinecourses.science.psu.edu/stat501/node/353/).
 
 And it is really close to supervised machine learning.
 
@@ -347,6 +351,29 @@ and in Bayesian everything can be measured in the belief degree in $[0, 1]$.
 * https://magesblog.com/post/2016-02-02-first-bayesian-mixer-meeting-in-london/
 * https://www.meetup.com/Bayesian-Mixer-London/
 * https://sites.google.com/site/doingbayesiandataanalysis/
+
+### Smoothing Splines and Generalized Additive Model
+
+Given samples $(x_i, y_i), i = 1, \cdots, n$, we can consider estimating the regression function
+$r(x) = E(Y |X = x)$ by fitting a kth order `spline` with knots at some prespecified locations $t_1 < t_2 <\cdots < t_m$.
+We want the function ${f}$ in the model $Y = f(X) + \epsilon$ where $f$ is the spline function.
+The coefficients of the spline functions are just estimated by least squares:
+$$\sum_{i=1}^{n}[y_i - f(x_i)]^2.$$
+
+The regularization technique can be applied to control the model complexity
+$$\sum_{i=1}^{n}[y_i - f(x_i)]^2 + \lambda\int \{f^{\prime\prime}(t)\}^2\mathrm{d}t$$
+where $\lambda$ is a fixed smoothing parameter.
+It is different from LASSSO or ridge regression that we constrain the smoothness of the function rather than the norm of coefficients.
+
+It can date back to  spline interpolation in computational or numerical analysis. There may be some points such as $(x_1, y_1)$ and $(x_2, y_2)$ that $x_1=x_2$ while $y_1\not= y_2$ in smoothing splines.
+And it is also different from `ploynomial regression`:
+$$Y = \beta_0 +\beta_1 X +\beta_2 X^2+\cdots+\beta_h X^{h}+\epsilon$$
+where ${h}$ is called the degree of the polynomial. 
+
+* http://www.stat.cmu.edu/~ryantibs/advmethods/notes/smoothspline.pdf
+* https://web.stanford.edu/class/stats202/content/lec17.pdf
+* https://robjhyndman.com/etc5410/splines.pdf
+* https://newonlinecourses.science.psu.edu/stat501/node/324/
 
 ### Projection pursuit regression
 
