@@ -113,7 +113,7 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * https://www.fromthegenesis.com/gradient-descent-part-2/
 * http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/
 
-## Mirror Gradient Method
+## Projected Gradient Method
 
 It is often called **mirror descent**.
 It can be regarded as non-Euclidean generalization of **projected gradient descent** to solve some constrained optimization problems.
@@ -124,6 +124,8 @@ $$
 $$
 
 where $f,\mathbb{S}\subset\mathbb{R}^n$ are convex.
+The optimal condition for this constrained optimization problem is that the feasible direction is not the descent or profitable direction: if $x^{\star}\in\mathbb{S}$ is the solution to the problem, we can  assert that
+$$\forall x \in \mathbb{S}, \left<\nabla f(x^{\star}),x-x^{\star} \right> \geq 0.$$
 
 ### Projected Gradient Descent
 
@@ -477,18 +479,30 @@ The penalty function methods do not take the optimal conditions into considerati
 If $x^{\star}$ is in the solution set of the optimization problem above, it is obvious that $Ax^{\star}=b$ and $L(x^{\star}, \lambda)=f(x^{\star})$ where
 $$L(x, \lambda)= f(x) + \lambda^T(Ax-b).$$
 
-In another direction, we want to prove that $x^{\star}$ is the optima of the optimization problem if 
+In another direction, we want to prove that $x^{\star}$ is the optima of the optimization problem if
 $$
-L(x^{\star}, {\lambda}^{\star})=\quad \max_{\lambda}\min_{x} L(x, \lambda).
+L(x^{\star}, {\lambda}^{\star})=\quad \min_{x}[\max_{\lambda} L(x, \lambda)].
 $$
 
-By the definition, 
-$L(x^{\star}, {\lambda}^{\star})\geq L(x^{\star}, \lambda)=f(x^{\star})+\lambda^T(Ax^{\star}-b)$, which implies that $\lambda^T(Ax^{\star}-b)=0$ i.e., $Ax^{\star}=b$. And $L(x^{\star}, {\lambda}^{\star}) = f(x^{\star})\leq L(x, {\lambda}^{\star})\forall x$.
+By the definition,
+$L(x^{\star}, {\lambda}^{\star})\geq L(x^{\star}, \lambda)=f(x^{\star})+\lambda^T(Ax^{\star}-b)$, which implies that $\lambda^T(Ax^{\star}-b)=0$ i.e., $Ax^{\star}=b$. And $L(x^{\star}, {\lambda}^{\star}) = f(x^{\star})\leq L(x, {\lambda}^{\star})\forall x$ if $Ax=b$
+thus $x^{\star}$ is the solution to the primary problem.
 
 It is dual problem is in the following form:
-$$\min_{x}\max_{\lambda} L(x, \lambda)$$
+$$\max_{\lambda}[\min_{x} L(x, \lambda)].$$
 
-**KKT theorem**
+Note that
+$$
+\min_{x} L(x, \lambda)\leq L(x,\lambda)\leq \max_{\lambda}L(x,\lambda)\implies \\
+\max_{\lambda}[\min_{x} L(x, \lambda)]\leq \max_{\lambda} L(x, \lambda)\leq \min_{x}[\max_{\lambda} L(x, \lambda)].
+$$
+
+**Dual Ascent** takes advantages of this properties:
+
+> 1. $x^{k+1}=\arg\min_{x} L(x,\lambda)$;
+> 2. ${\lambda}^{k+1}= {\lambda}^{k}+\alpha_k(Ax^{k+1}-b)$.
+
+If the constraints are more complex, **KKT theorem** may be necessary.
 
 - http://www.ece.ust.hk/~palomar/ELEC5470_lectures/07/slides_Lagrange_duality.pdf
 - https://cs.stanford.edu/people/davidknowles/lagrangian_duality.pdf
