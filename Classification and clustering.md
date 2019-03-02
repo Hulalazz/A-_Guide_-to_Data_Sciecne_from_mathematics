@@ -6,11 +6,8 @@
 There are two different contexts in clustering, depending on how the entities to be clustered are organized.
 In some cases one starts from an **internal representation** of each entity (typically an $M$-dimensional vector $x_i$ assigned to entity $i$) and
 derives mutual dissimilarities or mutual similarities from the internal representation.
-In this case one can derive prototypes (or centroids) for each cluster,
-for example by averaging the characteristics of the contained entities (the vectors).
-In other cases only an **external representation** of dissimilarities is available and
-the resulting model is an **undirected and weighted graph** of entities connected by edges.
-From <https://www.intelligent-optimization.org/LIONbook/>.[^13]
+In this case one can derive prototypes (or centroids) for each cluster, for example by averaging the characteristics of the contained entities (the vectors).
+In other cases only an **external representation** of dissimilarities is available and the resulting model is an **undirected and weighted graph** of entities connected by edges. From <https://www.intelligent-optimization.org/LIONbook/>.[^13]
 ***
 The external representation of dissimilarity will be discussed in **Graph Algorithm**.
 
@@ -74,6 +71,8 @@ $$
 \mu_k = \frac{\sum_n \mathbb{I}_{nk}x_n}{\sum_n \mathbb{I}_{nk}}.
 $$
 
+In the first procedure, it is supposed to maximize the inter-cluster dissimilarity;
+The second procedure, it is supposed to minimize the intra-cluster distance.
 
 * https://www.wikiwand.com/en/K-means_clustering
 * [Visualizing K-Means Clustering](http://web.stanford.edu/class/ee103/visualizations/kmeans/kmeans.html)
@@ -303,6 +302,17 @@ A grid-based method quantizes ${D}$ into a finite number of cells forming a grid
 
 #### Bi-clustering
 
+It is from biological information.
+
+Bi-clustering identifies groups of genes with similar/coherent expression patterns under a specific **subset** of the conditions.
+Clustering identifies groups of genes/conditions that show similar activity patterns
+under **all the set** of conditions/all the set of genes under analysis.
+
+The matrix ${A}$ contains the rows index ${X}$ and columns index ${Y}$, whose element $a_{ij}$ is the expression level of gene ${i}$ under condition ${j}$ (quantity of mRNA) in biology.
+And the submatrix of ${A}$ is denoted by $A_{IJ}$ where $I\subset X, J\subset Y$. 
+
+A bicluster is defined as a submatrix spanned by a set of genes and a set of samples. Alternatively, a bicluster may be defined as the corresponding gene and sample subsets.
+
 - http://www.cs.princeton.edu/courses/archive/spr05/cos598E/Biclustering.pdf
 - https://cw.fel.cvut.cz/old/_media/courses/a6m33bin/biclustering.pdf
 - http://www.kemaleren.com/post/an-introduction-to-biclustering/
@@ -311,7 +321,7 @@ A grid-based method quantizes ${D}$ into a finite number of cells forming a grid
 
 #### Ensemble methods of Clusterings
 
-Combining Multiple Clusterings Using Evidence Accumulation
+* [Combining Multiple Clusterings Using Evidence Accumulation](https://ieeexplore.ieee.org/document/1432715/)
 
 ### Classification
 
@@ -321,7 +331,7 @@ And in statistics, it is regarded as one regression tasks with discrete output s
 It is one of the most fundamental and common tasks in machine learning.
 
 
-
+* http://vision.stanford.edu/teaching/cs231n-demos/knn/
 * https://en.wikipedia.org/wiki/Category:Classification_algorithms
 * https://people.eecs.berkeley.edu/~jordan/classification.html
 
