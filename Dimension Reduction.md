@@ -21,14 +21,13 @@ $$
 $\color{aqua}{PS:}$ the dimension reduction is classified into unsupervised learning while it can be converted to optimization problems.
 Additionally, it will miss some properties of the data set so please do not delete the previous data sets.
 
-It is a wonderful review of dimension reduction at \url{https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf}.
+It is a wonderful review of dimension reduction at <https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf>.
 
-* https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf
+* https://lvdmaaten.github.io/software/
 * https://jakevdp.github.io/PythonDataScienceHandbook/05.10-manifold-learning.html
 * http://www.lcayton.com/resexam.pdf
 * https://www.wikiwand.com/en/Data_compression
 * https://brilliant.org/wiki/compression/
-* https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf
 * https://www.wikiwand.com/en/Curse_of_dimensionality
 * http://www.cnblogs.com/xbinworld/archive/2012/07/09/LLE.html
 * https://www.ayasdi.com/blog/artificial-intelligence/prediction-needs-unsupervised-learning/
@@ -71,17 +70,17 @@ Classical MDS assumes Euclidean distances. So this is not applicable for direct 
 * https://www.springer.com/in/book/9780387251509
 * https://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec8_mds_combined.pdf
 * https://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec4_pca_slides.pdf
-* https://www.ibm.com/support/knowledgecenter/en/SSLVMB_22.0.0/com.ibm.spss.statistics.help/spss/base/idh_alsc.htm
+* https://www.ibm.com/support/knowledgecenter/en/SSLVMB_22.0.0/
 * https://www.wikiwand.com/en/Multidimensional_scaling
 
 
 ### Locally Linear Embedding
 
-**Locally Linear Embedding(LLE)** is a topology preserving manifold learning method.Topology preservation means the neighborhood structure is intact. Methods like SOM(self-organizing map) are also topology preserving but they assume a predefined lattice for the lower manifold. LLE creates the lattice based on the information contained in the dataset.
+**Locally Linear Embedding(LLE)** is a topology preserving manifold learning method. Topology preservation means the neighborhood structure is intact. Methods like SOM(self-organizing map) are also topology preserving but they assume a predefined lattice for the lower manifold. LLE creates the lattice based on the information contained in the dataset.
 
-![lle](https://s3-us-west-2.amazonaws.com/articles-dimred/lle/lle_main.pn)
+![lle](https://s3-us-west-2.amazonaws.com/articles-dimred/lle/lle_main.png)
 
-![](https://cs.nyu.edu/~roweis/lle/images/llef2med.gif)
+![lleStep](https://cs.nyu.edu/~roweis/lle/images/llef2med.gif)
 ***
 
 1. Compute the neighbors of each data point, $\vec{X}_i$.
@@ -175,7 +174,7 @@ $$
 q_{i|j} = \frac{(1+\|y_i-y_j\|^2)^{-1}}{\sum_{j\not= i} (1+\|y_i -  y_j\|^2)^{-1}}.
 $$
 
-
+* https://lvdmaaten.github.io/tsne/
 * https://blog.paperspace.com/dimension-reduction-with-t-sne/
 * https://www.analyticsvidhya.com/blog/2017/01/t-sne-implementation-r-python/
 * https://distill.pub/2016/misread-tsne
@@ -315,6 +314,41 @@ The projection pursuit methods can extend to density estimation and regreesion.
 * http://sun.cwru.edu/~jiayang/nsf/ipp.html
 * https://rd.springer.com/chapter/10.1007/978-1-4612-4214-7_9
 * https://www.sciencedirect.com/science/article/pii/S0925231214010091
+
+###  Self Organizing Maps
+
+One source of `ICA` is "general infomax learning principle" well known in machine learning or signal processing community.
+
+However, we can not explain all efficient methods in mathematics or statistics then write it in the textbook.
+`Self organizing map` is not well-known. These networks are based
+on competitive learning; the output neurons of the network compete among themselves to
+be activated or fired, with the result that only one output neuron, or one neuron per group.
+
+Each node has a specific topological position (an x, y coordinate in the lattice) and contains a vector of weights of the same dimension as the input vectors. That is to say, if the training data consists of vectors, V,  of n dimensions:
+
+$$V_1, V_2, V_3, \cdots, V_n.$$
+
+Then each node will contain a corresponding weight vector ${W}$, of ${n}$ dimensions:
+
+$$W_1, W_2, W_3, \cdots, W_n.$$
+
+Training occurs in several steps and over many iterations:
+
+- Each node's weights are initialized.
+- A vector is chosen at random from the set of training data and presented to the lattice.
+- Every node is examined to calculate which one's weights are most like the input vector. The winning node is commonly known as the `Best Matching Unit (BMU)`.
+- The radius of the neighbourhood of the BMU is now calculated. This is a value that starts large, typically set to the 'radius' of the lattice,  but diminishes each time-step. Any nodes found within this radius are deemed to be inside the BMU's neighbourhood.
+- Each neighbouring node's (the nodes found in step 4) weights are adjusted to make them more like the input vector. The closer a node is to the BMU, the more its weights get altered.
+- Repeat step 2 for N iterations.
+
+
+***
+
+* http://www.lohninger.com/helpcsuite/kohonen_network_-_background_information.htm
+* https://users.ics.aalto.fi/teuvo/
+* http://www.ai-junkie.com/ann/som/som1.html
+* http://www.mlab.uiah.fi/~timo/som/thesis-som.html
+* http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html
 
 ***
 
