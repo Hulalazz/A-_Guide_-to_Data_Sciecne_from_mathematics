@@ -21,6 +21,8 @@ It is related with Bayesian statistics, computational statistics, probabilistic 
 
 ## Naive Bayes
 
+Naive Bayes classifier takes the attribute conditional independence.
+
 * https://www.saedsayad.com/naive_bayesian.htm
 
 ## Gaussian Naive Bayes
