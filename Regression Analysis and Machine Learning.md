@@ -327,13 +327,14 @@ From [ALPAYDIN, Ethem, 2004. Introduction to Machine Learning. Cambridge, MA: Th
 
 It seems simple and easy while in fact it is not completely solved because of the diverse distributions.
 For example, what is the probability density function of the pixels in the given size pictures?
-Not all distribution function of interest are clear to us in high dimensional space although Gaussian mixture is a universal approximator of distribution function in $\mathbb{R}$.
+Not all distribution function of interest are clear to us in high dimensional space although Gaussian mixture is a universal approximation of distribution function in $\mathbb{R}$.
 
-* stable distributions such as generalized Laplacian distribution in finance;
-* semi-circle distribution of the random matrix eigenvalues in physics;
-* Gaussian-type distribution in high dimensional space.
+* stable distributions such as [generalized Laplacian distribution](https://krys.neocities.org/Research/LaplaceDistribution/LaplaceDistribution.html) in finance;
+* [semi-circle distribution](https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/) of the random matrix eigenvalues in physics;
+* [sub-Gaussian distribution](https://sites.ualberta.ca/~omarr/publications/subgaussians.pdf) in high dimensional space.
 
-And it is one of the core problem in point estimation. It is more difficult if we can not observe the samples directly such as the semi-circle distribution.
+And it is one of the core problem in statistical estimation. It is more difficult if we can not observe the samples directly such as the probability of root of polynomials given some properties. Like other tasks, the `dimension curse` makes it more complicated than in low dimensional space. Density estimation is related with sampling on random.
+ 
 
 
 ***
@@ -354,7 +355,7 @@ https://www.cs.toronto.edu/~hinton/science.pdf
 ***
 There are two different contexts in clustering, depending on how the entities to be clustered are organized.
 In some cases one starts from an **internal representation** of each entity (typically an $M$-dimensional vector $x_i$ assigned to entity $i$) and
-derives mutual dissimilarities or mutual similarities from the internal representation.In
+derives mutual dissimilarities or mutual similarities from the internal representation. In
 this case one can derive prototypes (or centroids) for each cluster, for example by averaging the characteristics of the contained entities (the vectors).
 In other cases only an **external representation** of dissimilarities is available and the resulting model is an
 **undirected and weighted graph** of entities connected by edges. From <https://www.intelligent-optimization.org/LIONbook/>.[^13]
