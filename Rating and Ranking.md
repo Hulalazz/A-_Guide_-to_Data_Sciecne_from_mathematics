@@ -162,7 +162,7 @@ $$
 It is  a way to score the posts, articles or something else based on the users' inputs. It is a simple voting system to determine the popularity. It is interesting to select the most popular articles in social media to the subscribers. If all the people in the community likes the same article or item in the same conditions, it is not necessary to build a popularity algorithm. However, our tastes are diverse and dynamical.
 
 It is an application of collective decision-making theory in some sense.
-For example, everyone can upvote or downvote  the answers in stackoverflow in the same question, what is the most popular answer to the question? 
+For example, everyone can upvote or downvote  the answers in stackoverflow in the same question, what is the most popular answer to the question? The following links may help a little.
 
 - [ ] http://www.ruanyifeng.com/blog/2012/02/ranking_algorithm_hacker_news.html
 - [ ] http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html
@@ -205,7 +205,43 @@ We may use machine learn to predict the scores of players and test it in real da
 * https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/
 * http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf
 
-![](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
+![meituan.net](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
+
+http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
+
+
+
+### Collaborative Ranking
+
+Collaborative Ranking sounds like collaborative filtering. In fact, collaborative ranking is also used to rank the items based on the feedback from users. [The computation of the Top-N item list for making recommendations is essentially a ranking problem.](http://www.cs.ust.hk/~qyang/Docs/2008/SIGIR297-liu.pdf)
+
+* https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
+* https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking
+* http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf
+* http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf
+* http://proceedings.mlr.press/v37/park15.html
+* https://ai.google/research/pubs/pub42242
+* http://proceedings.mlr.press/v80/wu18c.html
+* http://www.markusweimer.com/files/pub/2007/2007-NIPS.pdf
+* https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/
+* https://arxiv.org/abs/1808.04957v1
+
+**Collaborative Multi-objective Ranking**
+
+The rowwise ranking problem, also known as personalized ranking, aims to build user-specific models such that the correct order of items (in terms of user preference) is most accurately predicted and then items on the top of ranked list will be recommended to a specific
+user, while column-wise ranking aims to build item-specific models focusing on targeting users who are most interested in the specific item (for example, for distributing coupons to customers).
+
+The key part of collaborative ranking algorithms is to learn effective user and item latent factors
+which are combined to decide user preference scores over items.
+
+In **Collaborative Multi-objective Ranking**, it is to jointly solve row-wise and column-wise
+ranking problems through a parameter sharing framework which optimizes three objectives together: to accurately predict rating
+scores, to satisfy the user-specific order constraints on all the rated items, and to satisfy the item-specific order constraints.
+
+It includes **Pairwise Comparisons through Bradley-Terry Model**.
+
+* http://column.hongliangjie.com/
+
 
 
 ### RankSVM
@@ -477,7 +513,7 @@ always hold.
 
 For a typical user ${U}$, in order to calculate the over all likelihood of pairwise preferences (LPP) among all
 items ${I}$, Bernoulli distribution over the binary random variable
-$\delta(U_i\triangleleft U_j)$ is used in 
+$\delta(U_i\triangleleft U_j)$ is used in
 $$
 LLP(U) = \prod_{i, j \in I} P(U_i\triangleleft U_j)^{\delta(U_i\triangleleft U_j)} \times [1 - P(U_i\triangleleft U_j)]^{1- \delta(U_i\triangleleft U_j)}
 $$

@@ -283,12 +283,16 @@ NEWTON’S METHOD and QUASI-NEWTON METHODS are classified to variable metric met
 
 It is also to find the solution of unconstrained optimization problems, i.e.
 $$\min f(x)$$
-where $x\in \mathbb{R}^{n}$.
+where $x\in \mathbb{R}^{n}$. If the objective function is convex,i.e.,
+$$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1]$$
+this optimization is called convex optimization.
 ***
 If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
 So if we can find all the solution of the equation system $\nabla f(x) = 0$, it helps us to find the solution to the optimization problem $\arg\min_{x\in\mathbb{R}^n} f(x)$.
 
-**Newton's method** is given by
+**Newton's method** is one of the fixed-point methods to solve nonlinear equation system.
+
+It is given by
 $$
 x^{k+1}=x^{k}-\alpha^{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}
 $$
@@ -297,6 +301,9 @@ It is called **Newton–Raphson algorithm** in statistics.
 Especially when the log-likelihood function $\ell(\theta)$ is well-behaved,
 a natural candidate for finding the MLE is the **Newton–Raphson algorithm** with quadratic convergence rate.
 
+* http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
+* http://wwwf.imperial.ac.uk/metric/metric_public/numerical_methods/iteration/fixed_point_iteration.html
+* https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
 
 ### The Fisher Scoring Algorithm
 
@@ -530,13 +537,13 @@ L_{\beta}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}{\|Ax+By-b\|}_{2}
 $$
 
 ***
-Augmented Lagrange Method
+Augmented Lagrange Method at step $t$ is described as following
 
 > 1. $(x^{k+1}, y^{k+1})=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y,\lambda^{\color{aqua}{k}});$
 > 2. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 ***
-ADMM is described as following:
+ADMM at step $t$ is described as following:
 
 > 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
@@ -567,6 +574,50 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}^{\phi}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
+**Multi-Block ADMM**
+
+Firstly we consider the following optimization problem 
+
+$$
+\min f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)\\
+s.t.\quad A_1x_1 + A_2x_2 + \cdots + A_n x_n = b, \\
+x_i\in\mathop{X_i}\in\mathbb{R}^{d_i}, i=1,2,\cdots, n.
+$$
+
+We defined its augmented Lagrangian multipliers as 
+$$
+L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)-\lambda^T(A_1x_1 + A_2x_2 + \cdots + A_n x_n - b)+\frac{\beta}{2}\|A_1x_1 + A_2x_2 + \cdots + A_n x_n - b\|_2^2
+$$
+
+[It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf)
+A counter-example shows that this method diverges.
+
+
+- http://maths.nju.edu.cn/~hebma/slides/17C.pdf
+- http://maths.nju.edu.cn/~hebma/slides/18C.pdf
+
+Randomly Permuted ADMM given initial values at round $k$ is described at 
+****
+1. Primal update: 
+    - Pick a permutation $\sigma$ of ${1,.. ., n}$ uniformly at random;
+    - For $i = 1,2,\cdots, n$, compute $x^{k+1}_{\sigma(i)}$ by
+      $$x^{k+1}_{\sigma(i)}=\arg\min_{x_{\sigma(i)}} L(x^{k+1}_{\sigma(1)},\cdots, x^{k+1}_{\sigma(i-1)}, x_{\sigma(i)}, x^{k+1}_{\sigma(i+1)},\cdots\mid \lambda^{k}).$$
+2. Dual update. Update the dual variable by
+   $${\lambda}^{k+1}={\lambda}^{k}-\mu(\sum_{i=1}^{n}A_i x_i -b)$$
+
+- [Randomly Permuted ADMM](https://web.stanford.edu/~yyye/MORfinal.pdf)
+- http://opt-ml.org/oldopt/papers/OPT2015_paper_47.pdf
+- https://arxiv.org/abs/1503.06387
+
+***
+
+Stochastic ADMM
+
+- http://proceedings.mlr.press/v28/ouyang13.pdf
+- https://arxiv.org/abs/1707.03190
+- https://people.eecs.berkeley.edu/~sazadi/icml_2014_presentation.pdf
+- http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf
+
 ***
 * http://maths.nju.edu.cn/~hebma/
 * https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
@@ -582,6 +633,11 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 * https://tlienart.github.io/pub/csml/cvxopt/split.html
 
 ****
+**Primal-dual fixed point algorithm**
+
+* http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf
+* http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf
+* https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf
 
 The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
 For example, we want to minimize the following cost function
