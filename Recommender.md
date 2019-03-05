@@ -8,8 +8,9 @@ Xavier Amatriain discusses the traditional definition and its data mining core.
 
 Traditional definition: The **recommender system** is to estimate a utility  function that automatically predicts how a user will like an item.
 
-
 User Interest is **implicitly** reflected in `Interaction history`, `Demographics` and `Contexts`, which can be regarded as a typical example of data mining. Recommender system should match a context to a collection of information objects. There are some methods called `Deep Matching Models for Recommendation`.
+
+
 
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/benfred/implicit
@@ -21,14 +22,23 @@ User Interest is **implicitly** reflected in `Interaction history`, `Demographic
 - [ ] https://www.jianshu.com/c/e12d7195a9ff
 - [ ] https://www.alansaid.com/publications.html
 - [ ] http://www.mymedialite.net/links.html
-- [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-i
-- [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii
-- [ ] https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914
 - [ ] http://www.deitel.com/ResourceCenters/Web20/RecommenderSystems/RecommenderSystemAlgorithms/tabid/1317/Default.aspx
 
 ## Collaborative Filtering
 
+There are 3 kinds of collaborative filtering: user-based, item-based and model-based collaborative filtering. 
 
+The user-based methods are based on the similarities of users. If user ${u}$ and ${v}$ are very similar friends, we may recommend the items which user ${u}$ bought to the user ${v}$ and explains it that your friends also bought it.
+
+The item-based methods are based on the similarity of items. If one person added a brush to shopping-list, it is reasonable to recommend some toothpaste to him or her. And we can explain that you bought item $X$ and the people who bought $X$ also bought $Y$.
+
+- https://www.cnblogs.com/ECJTUACM-873284962/p/8729010.html
+- https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html
+- http://topgeek.org/blog/2012/02/10/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-1-%E9%83%A8%E5%88%86-%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%88%9D%E6%8E%A2/
+- http://topgeek.org/blog/2012/02/13/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-2-%E9%83%A8%E5%88%86-%E6%B7%B1%E5%85%A5%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E/
+
+
+***
 Matrix completion is to complete the matrix $X$ with missing elements, such as
 
 $$
@@ -56,7 +66,7 @@ $$
 2. Producing $Z^{k+1}$ by
     $$Z^{k+1}=\arg\min {L(Z,Y^{k+1}) + \frac{r}{2}\|Z-Z^k\|}.$$
 
-![](https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png)
+![ADMM](https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png)
 
 * http://statweb.stanford.edu/~candes/papers/SVT.pdf
 * [Customized PPA for convex optimization](http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf)
@@ -77,6 +87,11 @@ where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{
 * https://users.ece.cmu.edu/~yuejiec/ece18898G_notes/ece18898g_nonconvex_lowrank_recovery.pdf
 
 ![](https://pic3.zhimg.com/80/771b16ac7e7aaeb50ffd8a8f5cf4e582_hd.png)
+
+* http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html
+* http://people.eecs.berkeley.edu/~yima/
+* [Matrix Completion/Sensing as NonConvex Optimization Problem](http://sunju.org/research/nonconvex/)
+* http://statweb.stanford.edu/~candes/papers/MatrixCompletion.pdf
 
 If we have collected user ${u}$'s explicit evaluation score to the item ${i}$ ,  $R_{[u][i]}$, and all such data makes up a matrix $R=(R_{[u][i]})$ while the user $u$ cannot evaluate all the item so that the matrix is incomplete and missing much data.
 **SVD** is to factorize the matrix into the multiplication of matrices so that
@@ -105,45 +120,16 @@ $$
 C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}+\lambda_u\|P_u\|^2+\lambda_i\|Q_i\|^2.
 $$
 
-It is called [the regularized singular value decomposition](https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf).
+It is called [the regularized singular value decomposition](https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf)  or **Regularized SVD**.
 
 And the evaluation score is always positive and discrete such as $\{2, 4, 6, 8. 10\}$. This technique is also called **nonnegative matrix factorization**.
 
+**Maximum Margin Matrix Factorization**
+
+- http://www.markusweimer.com/files/pub/2007/2007-NIPS.pdf
+- https://ttic.uchicago.edu/~nati/mmmf/
+
 ***
-
-Another advantage of collaborative filtering or matrix completion is that even the element of matrix is binary or implicit information such as
-
-* [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf),
-* [Applications of the conjugate gradient method for implicit feedback collaborative filtering](http://rs1.sze.hu/~gtakacs/download/recsys_2011_draft.pdf),
-* https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
-* [a curated list in github.com](https://github.com/benfred/implicit),
-* https://zhuanlan.zhihu.com/p/42269534
-
-|Explicit and implicit feedback|
-|:---:|
-|![](https://www.msra.cn/wp-content/uploads/2018/06/knowledge-graph-in-recommendation-system-i-8.png)|
-
-**WRMF** is simply a modification of this loss function:
-$$
-C(P,Q)_{WRMF} = \sum_{(u,i):Observed}c_{u,i}(I_{u,i} - \sum_f p_{u,f}q_{i,f})^{2} + \lambda_u\|P_u\|^2 + \lambda_i\|Q_i\|^2.
-$$
-
-We make the assumption that if a user has interacted at all with an item, then $I_{u,i} = 1$. Otherwise, $I_{u,i} = 0$.
-If we take $d_{u,i}$ to be the number of times a user ${u}$ has clicked on an item ${i}$ on a website, then
-$$c_{u,i}=1+\alpha d_{u,i}$$
-where $\alpha$ is some hyperparameter determined by cross validation.
-The new  term in cost function $C=(c_{u,i})$ is called confidence matrix.
-
-WRMF does not make the assumption that a user who has not interacted with an item does not like the item. WRMF does assume that that user has a negative preference towards that item, but we can choose how confident we are in that assumption through the confidence hyperparameter.
-
-[Alternating least square](http://suo.im/4YCM5f) (**ALS**) can give an analytic solution to this optimization problem by setting the gradients equal to 0s.
-
-
-* http://nicolas-hug.com/blog/matrix_facto_1
-* http://nicolas-hug.com/blog/matrix_facto_2
-* http://nicolas-hug.com/blog/matrix_facto_3
-* http://yifanhu.net/PUB/cf.pdf
-* https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/
 
 **Funk-SVD** considers the user's preferences or bias.
 It predicts the scores by
@@ -177,7 +163,7 @@ We learn the values of involved parameters by minimizing the regularized squared
 
 One possible improvement of this cost function is that we may design more appropriate loss function other than the squared  error function.
 
-![](http://bigdata.ices.utexas.edu/wp-content/uploads/2015/09/IMC.png)
+![utexas.edu](http://bigdata.ices.utexas.edu/wp-content/uploads/2015/09/IMC.png)
 
 **Inductive Matrix Completion (IMC)** is an algorithm for recommender systems with side-information of users and items. The IMC formulation incorporates features associated with rows (users) and columns (items) in matrix completion, so that it enables predictions for users or items that were not seen during training, and for which only features are known but no dyadic information (such as ratings or linkages).
 
@@ -228,11 +214,46 @@ The boosting or stacking methods may help us to enhance these methods.
 * https://www.netflixprize.com/assets/GrandPrize2009_BPC_BigChaos.pdf
 
 ***
+Another advantage of collaborative filtering or matrix completion is that even the element of matrix is binary or implicit information such as
+
+* [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf),
+* [Applications of the conjugate gradient method for implicit feedback collaborative filtering](http://rs1.sze.hu/~gtakacs/download/recsys_2011_draft.pdf),
+* https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
+* [a curated list in github.com](https://github.com/benfred/implicit),
+* https://zhuanlan.zhihu.com/p/42269534
+
+|Explicit and implicit feedback|
+|:---:|
+|![](https://www.msra.cn/wp-content/uploads/2018/06/knowledge-graph-in-recommendation-system-i-8.png)|
+
+**WRMF** is simply a modification of this loss function:
+$$
+C(P,Q)_{WRMF} = \sum_{(u,i):Observed}c_{u,i}(I_{u,i} - \sum_f p_{u,f}q_{i,f})^{2} + \lambda_u\|P_u\|^2 + \lambda_i\|Q_i\|^2.
+$$
+
+We make the assumption that if a user has interacted at all with an item, then $I_{u,i} = 1$. Otherwise, $I_{u,i} = 0$.
+If we take $d_{u,i}$ to be the number of times a user ${u}$ has clicked on an item ${i}$ on a website, then
+$$c_{u,i}=1+\alpha d_{u,i}$$
+where $\alpha$ is some hyperparameter determined by cross validation.
+The new  term in cost function $C=(c_{u,i})$ is called confidence matrix.
+
+WRMF does not make the assumption that a user who has not interacted with an item does not like the item. WRMF does assume that that user has a negative preference towards that item, but we can choose how confident we are in that assumption through the confidence hyperparameter.
+
+[Alternating least square](http://suo.im/4YCM5f) (**ALS**) can give an analytic solution to this optimization problem by setting the gradients equal to 0s.
+
+
+* http://nicolas-hug.com/blog/matrix_facto_1
+* http://nicolas-hug.com/blog/matrix_facto_2
+* http://nicolas-hug.com/blog/matrix_facto_3
+* http://yifanhu.net/PUB/cf.pdf
+* https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/
+  
 
 **Recommendation with Implict Information**
 
 Sometimes, the information of user we could collect is implicit such as the clicking at some item.
-`CLiMF` the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).
+
+In `CLiMF` [the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).](https://github.com/gamboviol/climf)
 
 Its objective function is 
 $$
@@ -243,8 +264,8 @@ where ${M, N}$ is the number of users and items, respectively. Additionally, $\l
 The vector $U_i$ denotes a d-dimensional latent factor vector for
 user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
 
-|||||||
-|---|---|---|---|---|---|
+|Numbers||Factors||Others||
+|:------:|---|:---:|---|:---:|---|
 |$M$|the number of users|$U_i$|latent factor vector for user ${i}$|$Y_{ij}$|binary relevance score|
 |$N$|the number of items|$V_j$|latent factor vector for item ${i}$|$f$|logistic function|
 
@@ -256,26 +277,51 @@ We use stochastic gradient ascent to maximize the objective function.
 * https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
 * https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/
 * http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/
+* https://www.benfrederickson.com/matrix-factorization/
 * https://www.benfrederickson.com/fast-implicit-matrix-factorization/
 * https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/
 * https://github.com/gamboviol/climf
 
 
 ***
-* [Matrix Completion/Sensing](http://sunju.org/research/nonconvex/)
-* http://statweb.stanford.edu/~candes/papers/MatrixCompletion.pdf
-* http://surpriselib.com/
+
 * https://www.cnblogs.com/Xnice/p/4522671.html
 * https://blog.csdn.net/turing365/article/details/80544594
 * https://en.wikipedia.org/wiki/Collaborative_filtering
 * \url{https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)}
-* https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html
-* http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018
 * http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html
-* http://perception.csl.illinois.edu/matrix-rank/home.html
 * https://www.acemap.info/author/page?AuthorID=7E61F31B
 
 ****
+
+
+**Hyperbolic Recommender Systems**
+
+Many well-established recommender systems are based on representation learning in Euclidean space.
+In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
+user and item representations in hyperbolic space.
+
+Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$,
+the distance between two points on *P* is given by
+$$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
+
+HyperBPR leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items. 
+Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
+$$\alpha(u, v) = f(d_p(u,v)).$$
+The objective function is defined as follows:
+$$\arg\min_{\Theta} \sum_{i,j,k} -\ln(\sigma\{\alpha(u_i, v_j) - \alpha(u_i, v_k)\}) + \lambda  {\|\Theta\|}_2^2$$
+
+where $(i, j, k)$ is the triplet that belongs to the set ${D}$ that
+contains all pairs of positive and negative items for each
+user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model parameters; and $\lambda$ is the regularization parameter.
+
+The parameters of our model are learned by using `RSGD`.
+
+* https://arxiv.org/abs/1809.01703
+* https://arxiv.org/abs/1902.08648
+* https://amds123.github.io/2018/09/05/Hyperbolic-Recommender-Systems/
+* https://arxiv.org/abs/1111.5280
+
 
 ## Deep Learning and Recommender System
 
@@ -392,6 +438,8 @@ where the first and second terms are the linear regression part similar to tha
 of features. The third term $f(x)$ is the core component of NFM
 for modelling feature interactions, which is a `multi-layered feedforward neural network`.
 
+`B-Interaction Layer` including `Bi-Interaction Pooling` is an innovation in artificial neural network.
+
 ![](https://i.ooxx.ooo/2017/12/27/ab7149f31f904f8f2bd6f15e0b9900c9.png)
 
 * https://www.comp.nus.edu.sg/~xiangnan/papers/sigir17-nfm.pdf
@@ -412,6 +460,8 @@ where $a_{i,j}$ is the attention score for feature interaction.
 * http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89
 
 **xDeepFM**
+
+`Compressed Interaction Network(CIN)`
 
 ![](https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png)
 
@@ -527,46 +577,25 @@ the selected GCN.
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
 * [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 * https://arxiv.org/abs/1704.06803
-
-
-**Hyperbolic Recommender Systems**
-
-Many well-established recommender systems are based on representation learning in Euclidean space.
-In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
-user and item representations in hyperbolic space.
-
-Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$,
-the distance between two points on *P* is given by
-$$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
-
-HyperBPR leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items. 
-Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
-$$\alpha(u, v) = f(d_p(u,v)).$$
-The objective function is defined as follows:
-$$\arg\min_{\Theta} \sum_{i,j,k} -\ln(\sigma\{\alpha(u_i, v_j) - \alpha(u_i, v_k)\}) + \lambda  {\|\Theta\|}_2^2$$
-
-where $(i, j, k)$ is the triplet that belongs to the set ${D}$ that
-contains all pairs of positive and negative items for each
-user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model parameters; and $\lambda$ is the regularization parameter.
-
-The parameters of our model are learned by using `RSGD`.
-
-* https://arxiv.org/abs/1809.01703
-* https://arxiv.org/abs/1902.08648
-* https://amds123.github.io/2018/09/05/Hyperbolic-Recommender-Systems/
-* https://arxiv.org/abs/1111.5280
+* http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018
 
 
 **Deep Matching Models for Recommendation**
 
-The recommender system is essential to find the item which matches the user's demand.
+It is essential for the recommender system  to find the item which matches the users' demand. Its difference from web search is that recommender system provides item information even if the users' demands or generally interests are not provided.
+It sounds like modern crystal ball to read your mind.
 
+In [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](http://sonyis.me/paperpdf/frp1159-songA-www-2015.pdf) the authors propose to extract rich features from user’s browsing
+and search histories to model user’s interests. The underlying assumption is that, users’ historical online activities
+reflect a lot about user’s background and preference, and
+therefore provide a precise insight of what items and topics users might be interested in.
 
 * http://sonyis.me/dnn.html
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
 * https://www.comp.nus.edu.sg/~xiangnan/papers/www18-tutorial-deep-matching.pdf
 * http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf
+* https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf
 
 ***
 |Traditional Approaches|Beyond Traditional Methods|
@@ -580,8 +609,16 @@ The recommender system is essential to find the item which matches the user's de
 
 We present a novel framework for studying recommendation algorithms in terms of the
 ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
-dataset and allows us to consider questions relating algorithmic parameters to properties
-of the datasets.
+dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.
+
+- [ ] http://dmml.asu.edu/smm/slides/
+- [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
+
+**Knowledge Graph and Recommender System**
+
+- [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-i
+- [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii
+- [ ] https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914
 
 |Evolution of the Recommender Problem|
 |:---:|
@@ -592,6 +629,7 @@ of the datasets.
 
 
 - [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
+- [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
 - [ ] https://github.com/wzhe06/Reco-papers
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/hongleizhang/RSAlgorithms

@@ -5,7 +5,7 @@ After each game, this data is updated for the participants in the game.
 
 The rating algorithms are to match the players in video games or compare the players in sports. It is a numerical score to describe the level  of the players' skill based on the results of many competition.
 
-The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items which may  answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reversible engineer of the ranking algorithms of search engine.
+The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items which may  answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
 
 They share some techniques although their purpose is different such as the logistic regression.
 
@@ -159,7 +159,7 @@ $$
 
 **How to Build a Popularity Algorithm You can be Proud of**
 
-It is  a way to score the posts, articles or something else based on the users' inputs. It is a simple voting system to determine the popularity. It is interesting to select the most popular articles in social media to the subscribers. If all the people in the community likes the same article or item in the same conditions, it is not necessary to build a popularity algorithm. However, our tastes are diverse and dynamical.
+It is  a way to score the posts, articles or something else based on the users' inputs. It is a simple voting system to determine the popularity. It is interesting to select the most popular articles in social media to the subscribers. If all the people in the community likes the same article or item in the same conditions, it is not necessary to build a popularity algorithm. However, our tastes are diverse and dynamical. Not all people like the best apple.
 
 It is an application of collective decision-making theory in some sense.
 For example, everyone can upvote or downvote  the answers in stackoverflow in the same question, what is the most popular answer to the question? The following links may help a little.
@@ -193,6 +193,7 @@ We are designed to compare some indexed document with the query.
 The algorithms above are based on feedback to tune the rank or scores of players or documents. The drawback of these methods is that they do not take the features of the players into consideration.
 We may use machine learn to predict the scores of players and test it in real data set such as **RankNet, LambdaRank, and LambdaMART**.
 
+And it can apply to information retrieval and recommender system.
 
 * https://github.com/cgravier/RankLib
 * http://fastml.com/evaluating-recommender-systems/
@@ -214,16 +215,24 @@ http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
 ### Collaborative Ranking
 
 Collaborative Ranking sounds like collaborative filtering. In fact, collaborative ranking is also used to rank the items based on the feedback from users. [The computation of the Top-N item list for making recommendations is essentially a ranking problem.](http://www.cs.ust.hk/~qyang/Docs/2008/SIGIR297-liu.pdf)
+The general idea of CR is to combine matrix factorization (MF) with learning-to-rank (LTR) techniques for the purpose of accurately recommending interesting items to users. And in this part we only talk the Top-N recommendation.
 
 * https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
 * https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking
 * http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf
-* http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf
 * http://proceedings.mlr.press/v37/park15.html
 * https://ai.google/research/pubs/pub42242
 * http://proceedings.mlr.press/v80/wu18c.html
-* http://www.markusweimer.com/files/pub/2007/2007-NIPS.pdf
 * https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/
+
+
+
+
+**Top-N recommendation**
+
+* http://glaros.dtc.umn.edu/gkhome/node/1192
+* https://www.ijcai.org/Proceedings/16/Papers/339.pdf
+* https://blog.csdn.net/lthirdonel/article/details/80021282
 * https://arxiv.org/abs/1808.04957v1
 
 **Collaborative Multi-objective Ranking**
@@ -241,7 +250,7 @@ scores, to satisfy the user-specific order constraints on all the rated items, a
 It includes **Pairwise Comparisons through Bradley-Terry Model**.
 
 * http://column.hongliangjie.com/
-
+* http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf
 
 
 ### RankSVM
