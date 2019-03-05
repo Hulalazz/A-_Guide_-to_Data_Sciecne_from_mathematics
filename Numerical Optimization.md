@@ -557,6 +557,8 @@ Taking $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described a
 > 3. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}});$
 > 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}} } - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b).$
 
+* http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
+
 
 $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me those.}}$[^9]
 ***
@@ -574,6 +576,9 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}^{\phi}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
+* https://arxiv.org/abs/1306.3203
+* https://www.swmath.org/software/20288
+
 **Multi-Block ADMM**
 
 Firstly we consider the following optimization problem 
@@ -586,22 +591,25 @@ $$
 
 We defined its augmented Lagrangian multipliers as 
 $$
-L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)-\lambda^T(A_1x_1 + A_2x_2 + \cdots + A_n x_n - b)+\frac{\beta}{2}\|A_1x_1 + A_2x_2 + \cdots + A_n x_n - b\|_2^2
+L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + \cdots + f_n(x_n)-\lambda^T(A_1 x_1 + \cdots + A_n x_n - b)+\frac{\beta}{2}\|A_1x_1 + \cdots + A_n x_n - b\|_2^2
 $$
 
 [It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf)
 A counter-example shows that this method diverges.
 
-
+- http://scis.scichina.com/en/2018/122101.pdf
 - http://maths.nju.edu.cn/~hebma/slides/17C.pdf
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
 
-Randomly Permuted ADMM given initial values at round $k$ is described at 
+Randomly Permuted ADMM given initial values at round $k$ is described as follows:
 ****
+
 1. Primal update: 
     - Pick a permutation $\sigma$ of ${1,.. ., n}$ uniformly at random;
     - For $i = 1,2,\cdots, n$, compute $x^{k+1}_{\sigma(i)}$ by
-      $$x^{k+1}_{\sigma(i)}=\arg\min_{x_{\sigma(i)}} L(x^{k+1}_{\sigma(1)},\cdots, x^{k+1}_{\sigma(i-1)}, x_{\sigma(i)}, x^{k+1}_{\sigma(i+1)},\cdots\mid \lambda^{k}).$$
+      $$
+      x^{k+1}_{\sigma(i)}=\arg\min_{x_{\sigma(i)}} L(x^{k+1}_{\sigma(1)},\cdots, x^{k+1}_{\sigma(i-1)}, x_{\sigma(i)}, x^{k+1}_{\sigma(i+1)},\cdots\mid \lambda^{k}).
+      $$
 2. Dual update. Update the dual variable by
    $${\lambda}^{k+1}={\lambda}^{k}-\mu(\sum_{i=1}^{n}A_i x_i -b)$$
 
@@ -621,15 +629,11 @@ Stochastic ADMM
 ***
 * http://maths.nju.edu.cn/~hebma/
 * https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
-* https://www.swmath.org/software/20288
-* http://scis.scichina.com/en/2018/122101.pdf
-* https://arxiv.org/abs/1306.3203
 * https://www.birs.ca/cmo-workshops/2017/17w5030/files/
 * http://stanford.edu/~boyd/admm.html
 * http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * https://blog.csdn.net/shanglianlm/article/details/45919679
-* http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
 * https://tlienart.github.io/pub/csml/cvxopt/split.html
 
 ****
