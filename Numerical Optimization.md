@@ -201,7 +201,7 @@ $$
 
 In another compact form, mirror gradient can be described in the proximal form:
 $$
-x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k}B(x,x^k)\}
+x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}
 $$
 with $g^k\in\partial f(x^k)$.
 
@@ -581,7 +581,7 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 
 **Multi-Block ADMM**
 
-Firstly we consider the following optimization problem 
+Firstly we consider the following optimization problem
 
 $$
 \min f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)\\
@@ -589,9 +589,9 @@ s.t.\quad A_1x_1 + A_2x_2 + \cdots + A_n x_n = b, \\
 x_i\in\mathop{X_i}\in\mathbb{R}^{d_i}, i=1,2,\cdots, n.
 $$
 
-We defined its augmented Lagrangian multipliers as 
+We defined its augmented Lagrangian multipliers as
 $$
-L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + \cdots + f_n(x_n)-\lambda^T(A_1 x_1 + \cdots + A_n x_n - b)+\frac{\beta}{2}\|A_1x_1 + \cdots + A_n x_n - b\|_2^2
+L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + \cdots + f_n(x_n)-\lambda^T(A_1 x_1 + \cdots + A_n x_n - b)+\frac{\beta}{2}{\|A_1x_1 + \cdots + A_n x_n - b\|}_2^2
 $$
 
 [It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf)
@@ -604,9 +604,9 @@ A counter-example shows that this method diverges.
 Randomly Permuted ADMM given initial values at round $k$ is described as follows:
 ****
 
-1. Primal update: 
+1. Primal update:
     - Pick a permutation $\sigma$ of ${1,.. ., n}$ uniformly at random;
-    - For $i = 1,2,\cdots, n$, compute $x^{k+1}_{\sigma(i)}$ by
+    - For $i = 1,2,\cdots, n$, compute ${x}^{k+1}_{\sigma(i)}$ by
       $$
       x^{k+1}_{\sigma(i)}=\arg\min_{x_{\sigma(i)}} L(x^{k+1}_{\sigma(1)},\cdots, x^{k+1}_{\sigma(i-1)}, x_{\sigma(i)}, x^{k+1}_{\sigma(i+1)},\cdots\mid \lambda^{k}).
       $$
@@ -736,7 +736,7 @@ The variants of gradient descent such as momentum methods or mirror gradient met
 * There are decay schemes, i.e. the step length ${\alpha}_k$ diminishes such as ${\alpha}_k=\frac{\alpha}{k}$, where $\alpha$ is constant.
 * And another strategy is to tune the step length adaptively such as *AdaGrad, ADAM*.
 
-$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionaly, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
+$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionally, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
 
 We can see some examples to see the advantages of incremental method such as the estimation of mean.
 Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$. If now we observed more data $y_1, y_2, \dots, y_m$ from the population, the mean could be estimated by $\frac{n\bar{x}}{m+n} + \frac{\sum_{j=1}^{m} y_j }{m+n} =\frac{n\bar{x}+\sum_{j=1}^{m} y_j}{m+n}$. It is not necessary to summarize ${x_1, \dots, x_n}$.
@@ -794,6 +794,47 @@ It is obvious that the choice of optimization methods relies on the objective fu
 * [Bregman Divergences and Surrogates for Learning](https://www.computer.org/csdl/trans/tp/2009/11/ttp2009112048-abs.html)
 * [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
 * [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
+
+## Fixed Point Iteration Methods
+
+The fixed point algorithm is initially to find approximate solutions of the equation
+$$f(x)=0\tag 1$$
+where $f:\mathbb{R}\to\mathbb{R},x\in\mathbb{R}^{n}$.
+
+In this method, we first rewrite the question(1) in the following form
+$$x=g(x)\tag 2$$
+
+in such a way that any solution of the equation (2), which is a fixed point of the function ${g}$, is a solution of
+equation (1). Then consider the following algorithm.
+
+> 1. Give the initial point $x^{0}$;
+> 2. Compute the recursive procedure $x^{n+1}=g(x^n), n=1,2,\ldots$
+
+So that finally we obtain an sequence $\{x^0, x^1, \cdots, x^{n},\cdots\}$. There are many methods to test whether this sequence is convergent or not as learn in calculus.
+
+In high dimensional space, it is a little different.
+
+The contracting mapping ${F}:\mathbb{R}^{d}\to\mathbb{R}^{d}$ is defined as
+$$\|F(x)-F(y)\|\leq \alpha\|x-y\|, \forall x,y \in\mathbb{R},\alpha\in[0,1).$$
+Thus $\lim_{\|x-y\|\to 0}\frac{\|F(x)-F(y)\|}{\|x-y\|}\leq \alpha\in[0,1)$.
+
+Now we consider the necessary condition of unconstrainted optimization problems:
+
+$$
+\nabla f(x) = 0 \\
+\to x - \nabla f(x) = x \\
+\to H(x)(x - \nabla f(x))=H(x)x \\
+\to H(x)x- \nabla f(x) = H(x)x \\
+\to x - H(x)^{-1} \nabla f(x) = x
+$$
+
+where $H(x)$ is the lambda-matrix.
+
+
+- https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
+- http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
+- https://www.wikiwand.com/en/Fixed-point_theorem
+
 ***
 
 - [ ] http://www.optimization-online.org/
