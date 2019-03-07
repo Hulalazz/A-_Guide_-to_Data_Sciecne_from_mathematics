@@ -821,15 +821,28 @@ Thus $\lim_{\|x-y\|\to 0}\frac{\|F(x)-F(y)\|}{\|x-y\|}\leq \alpha\in[0,1)$.
 Now we consider the necessary condition of unconstrainted optimization problems:
 
 $$
-\nabla f(x) = 0 \\
-\to x - \nabla f(x) = x \\
-\to H(x)(x - \nabla f(x))=H(x)x \\
-\to H(x)x- \nabla f(x) = H(x)x \\
-\to x - H(x)^{-1} \nabla f(x) = x
+\nabla f(x) = 0
+\Rightarrow x - \alpha\nabla f(x) = x \\
+\Rightarrow H(x)x- \alpha\nabla f(x) = H(x)x
+\Rightarrow x - \alpha H(x)^{-1} \nabla f(x) = x \\
+\nabla f(x) = 0
+\Rightarrow M(x)\nabla f(x) = 0
+\Rightarrow x -\alpha M(x)\nabla f(x) = x
 $$
 
 where $H(x)$ is the lambda-matrix.
 
+These correspond to gradient descent, Newton's method and quasi-Newton's method, respectively.
+
+
+And the projected (sub)gradient methods are in the fixed-point ierative form:
+$$
+x = Proj_{\mathbb{S}}(x-\alpha \nabla f(x))
+$$
+
+as well as the mirror gradient and proximal gradient methods different from the projection operator.
+
+This will introduce the operator splitting methods analyses by Wotao Yin.
 
 - https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
 - http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
