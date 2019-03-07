@@ -2,8 +2,12 @@
 
 Probabilistic Programming and Topological Data Analysis may be most theoretical subject in data science.
 Probabilistic Programming is designed to solve the uncertain problems via Bayesian statistics.
+If $\{A_i\}_{i=1}^{n}$ are disjoint events and ${\cup}_{i=1}^{n}A_i$  is all the results possible to happen, we should keep it in mind:
 
-
+$$
+P(A_i\mid B)=\frac{P(B\mid A_i)P(A_i)}{P(B)}, \\
+P(A_i\mid B)\approx P(B\mid A_i)P(A_i).
+$$
 
 ## Bayesian Learning
 
@@ -21,22 +25,52 @@ It is related with Bayesian statistics, computational statistics, probabilistic 
 
 ## Naive Bayes
 
-Naive Bayes classifier takes the attribute conditional independence.
+Naive Bayes classifier takes the attribute conditional independence assumption.
 
 * https://www.saedsayad.com/naive_bayesian.htm
+* https://www.wikiwand.com/en/Naive_Bayes_classifier
+* https://www.cnblogs.com/rhyswang/p/8326478.html
 
 ## Gaussian Naive Bayes
 
 ## Average One-Dependence Estimator (AODE)
 
+* https://www.wikiwand.com/en/Averaged_one-dependence_estimators
+* https://link.springer.com/article/10.1007%2Fs10994-005-4258-6
+
 ## Bayesian Belief Network(BBN)
 
 ## Bayesian Network
 
+It is a probabilistic graphical model.
+- https://www.wikiwand.com/en/Bayesian_network
+- https://blog.csdn.net/gdp12315_gu/article/details/50002195
+
 ## Optimal Learning
 
-Everyday decisions are made without the benefit of accurate information. Optimal Learning develops the needed principles for gathering information to make decisions, especially when collecting information is time-consuming and expensive.
+The Bayesian perspective casts a different interpretation
+on the statistics we compute, which is particularly useful in the context of optimal learning.
+In the frequentist perspective, we do not start with any knowledge about the system before we have collected any data.
+By contrast, in the Bayesian perspective we assume that we begin with a prior distribution of belief about the unknown parameters.
 
+Everyday decisions are made without the benefit of accurate information. Optimal Learning develops the needed principles for gathering information to make decisions, especially when collecting information is time-consuming and expensive.
+Optimal learning addresses the problem of efficiently collecting information with which to make decisions.
+Optimal learning is an issue primarily in applications where observations
+or measurements are expensive.
+
+
+It is possible to approach the learning problem using classical and familiar ideas from
+optimization. The operations research community is very familiar with the use of gradients to
+minimize or maximize functions. Dual variables in linear programs are a form of gradient, and
+these are what guide the simplex algorithm. Gradients capture the value of an incremental
+change in some input such as a price, fleet size or the size of buffers in a manufacturing system.
+We can apply this same idea to learning.
+
+
+There is [a list of optimal learning problems](https://people.orie.cornell.edu/pfrazier/info_collection_examples.pdf).
+
+* http://yelp.github.io/MOE/
+* https://people.orie.cornell.edu/pfrazier/
 * http://optimallearning.princeton.edu/
 * http://optimallearning.princeton.edu/#course
 * https://onlinelibrary.wiley.com/doi/book/10.1002/9781118309858
@@ -44,12 +78,25 @@ Everyday decisions are made without the benefit of accurate information. Optimal
 
 ## Bayesian Optimization
 
+Bayesian optimization has been successful at global optimization of expensive-to-evaluate multimodal objective functions. However, unlike most optimization methods, Bayesian optimization typically does not use derivative information.
+
+As `response surface methods`, they date back to Box and Wilson in 1951.
+
+![Bayesian Optimization](https://github.com/fmfn/BayesianOptimization/blob/master/examples/func.png)
+****
+
+* http://www.sigopt.com/
+* https://mlconf.com/blog/lets-talk-bayesian-optimization/
+* https://pubsonline.informs.org/doi/10.1287/
+* https://github.com/fmfn/BayesianOptimizationeduc.2018.0188
+* http://proceedings.mlr.press/v84/martinez-cantin18a/martinez-cantin18a.pdf
+* https://arxiv.org/abs/1703.04389
 * https://www.iro.umontreal.ca/~bengioy/cifar/NCAP2014-summerschool/slides/Ryan_adams_140814_bayesopt_ncap.pdf
 
 ## Probabilistic Graphical Model
 
 A graphical model or probabilistic graphical model (PGM) or structured probabilistic model is a probabilistic model for which a graph expresses the conditional dependence structure between random variables.
-They are commonly used in probability theory, statistics — particularly Bayesian statistics — and machine learning.It is a marriage of graph theory and probability theory.
+They are commonly used in probability theory, statistics — particularly Bayesian statistics — and machine learning. It is a marriage of graph theory and probability theory.
 It is aimed to solve the causal inferences, which is based on principles rather than models.
 
 + http://mlg.eng.cam.ac.uk/zoubin/course04/hbtnn2e-I.pdf
@@ -70,6 +117,12 @@ It is aimed to solve the causal inferences, which is based on principles rather 
 
 ## Probabilistic Programming
 
+Probabilistic graphical models provide a formal lingua franca for modeling and a common target for efficient inference algorithms. Their introduction gave rise to an extensive body of work in machine learning, statistics, robotics, vision, biology, neuroscience, artificial intelligence (AI) and cognitive science. However, many of the most innovative and useful probabilistic models published by the AI, machine learning, and statistics community far outstrip the representational capacity of graphical models and associated inference techniques. Models are communicated using a mix of natural language, pseudo code, and mathematical formulae and solved using special purpose, one-off inference methods. Rather than precise specifications suitable for automatic inference, graphical models typically serve as coarse, high-level descriptions, eliding critical aspects such as fine-grained independence, abstraction and recursion.
+
+PROBABILISTIC PROGRAMMING LANGUAGES aim to close this representational gap, unifying general purpose programming with probabilistic modeling; literally, users specify a probabilistic model in its entirety (e.g., by writing code that generates a sample from the joint distribution) and inference follows automatically given the specification. These languages provide the full power of modern programming languages for describing complex distributions, and can enable reuse of libraries of models, support interactive modeling and formal verification, and provide a much-needed abstraction barrier to foster generic, efficient inference in universal model classes.
+
+[We believe that the probabilistic programming language approach within AI has the potential to fundamentally change the way we understand, design, build, test and deploy probabilistic systems. This approach has seen growing interest within AI over the last 10 years, yet the endeavor builds on over 40 years of work in range of diverse fields including mathematical logic, theoretical computer science, formal methods, programming languages, as well as machine learning, computational statistics, systems biology, probabilistic AI.](http://www.probabilistic-programming.org/wiki/Home)
+
 |Graph Nets library|
 |--------------------------|
 | ![Graph net](https://raw.githubusercontent.com/Hulalazz/graph_nets/master/images/graph-nets-deepmind-shortest-path0.gif) |
@@ -78,12 +131,23 @@ It is aimed to solve the causal inferences, which is based on principles rather 
 * https://www.cs.cornell.edu/courses/cs4110/2016fa/lectures/lecture33.html
 * https://hakaru-dev.github.io/intro/probprog/
 * https://www.extension.harvard.edu/course-catalog/courses/probabilistic-programming-and-artificial-intelligence/15757
+* http://probcomp.csail.mit.edu/
 * https://probprog.cc/
 * http://pymc-devs.github.io/pymc3/
 * http://mc-stan.org/
 * http://pyro.ai/examples/
 * http://dustintran.com/blog/a-quick-update-edward-and-some-motivations
 * https://www.wikiwand.com/en/Random_graph
+
+## Hierarchical Bayesian Regression
+
+
+- [ ] https://twiecki.io/
+- [ ] http://www.est.uc3m.es/BayesUC3M/Master_course/Chapter4.pdf
+- [ ] https://docs.pymc.io/notebooks/GLM-hierarchical.html
+- [ ] http://varianceexplained.org/r/hierarchical_bayes_baseball/
+- [ ] http://idiom.ucsd.edu/~rlevy/pmsl_textbook/chapters/pmsl_8.pdf
+- [ ] https://twiecki.io/blog/2014/03/17/bayesian-glms-3/
 
 ## Topological Data Analysis
 
