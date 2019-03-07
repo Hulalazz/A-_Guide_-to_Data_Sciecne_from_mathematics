@@ -135,6 +135,7 @@ ends up with a very large number of possible models for a given task.
 
 
 * [Zhou Zhihua's publication on ensemble methods](http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Ensemble%20Learning)
+* http://www.machine-learning.martinsewell.com/ensembles/
 * https://mlwave.com/kaggle-ensembling-guide/
 * https://www.springer.com/us/book/9781441993250
 * https://web.stanford.edu/~hastie/THESES/gareth_james.pdf
@@ -378,6 +379,8 @@ One important advantage of this definition is that the value of the objective fu
 - https://tech.yandex.com/catboost/
 - https://catboost.ai/
 - https://lightgbm.readthedocs.io/en/latest/s
+- https://github.com/Xtra-Computing/thundergbm
+- https://www.comp.nus.edu.sg/~hebs/pub/IPDPS18-GPUGBDT.pdf
 
 *****
 
@@ -395,12 +398,13 @@ The procedure is as follows:
 3. Test the base learners on the second part.
 4. Using the predictions from 3) as the inputs, and the correct responses as the outputs, train a higher level learner.
 
-Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we train a meta-learner to combine the base learners, possibly non-linearly such as feedforward neural network. It is a little similar with **composition** of functions in mathematics.
+[Note that steps 1) to 3) are the same as cross-validation, but instead of using a winner-takes-all approach, we train a meta-learner to combine the base learners, possibly non-linearly.](http://www.machine-learning.martinsewell.com/ensembles/stacking/) It is a little similar with **composition** of functions in mathematics.
 
 ![](https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier_files/stackingclassification_overview.png)
 
 [Stacking, Blending and and Stacked Generalization are all the same thing with different names. It is a kind of ensemble learning.](http://www.chioka.in/stacking-blending-and-stacked-generalization/)
 
+* http://www.machine-learning.martinsewell.com/ensembles/stacking/
 * https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier/
 * http://www.machine-learning.martinsewell.com/ensembles/stacking/
 * [Stacking与神经网络 - 微调的文章 - 知乎](https://zhuanlan.zhihu.com/p/32896968)
@@ -436,7 +440,8 @@ Deep learning and ensemble learning share some similar guide line.
 
 
 ****
-Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble.
+
+Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
 
 *****
 * https://www.wikiwand.com/en/Ensemble_learning

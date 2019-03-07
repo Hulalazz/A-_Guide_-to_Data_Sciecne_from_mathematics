@@ -1,9 +1,21 @@
 ## Stochastic Processes
 
-Stochastic processes focus on the independent random variables.
 For more information see the [Wikipedia page](https://www.wikiwand.com/en/Stochastic_process).
+> To every outcome $\omega$ we now assign – according to a certain rule – a
+function of time $\xi(\omega, t)$, real or complex. We have thus created a family
+of functions, one for each $\omega$. This family is called a stochastic process
+(or a random function). from [the little book](https://www.math.uwaterloo.ca/~mscott/Little_Notes.pdf)
 
-![](https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg)
+For example, if $\xi(t)$
+is a real stochastic process, then its cumulative distribution function is given by
+$$F(x;t)=P(\xi(t)\leq x).$$
+
+||
+|---|
+|![](https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg)|
+
+- http://wwwf.imperial.ac.uk/~ejm/M3S4/INTRO.PDF
+
 
 ### Poisson Process
 
@@ -37,15 +49,20 @@ It is the fundamental of Markov Chain Montel Carlo(**MCMC**).
 People introduced to Markov chains through a typical course on stochastic processes have
 usually only seen examples where the state space is finite or countable. If the state space
 is finite, written $\{x_1,\cdots,x_n\}$, then the initial distribution can be associated with a vector $\lambda =(\lambda_1,\cdots, \lambda_n)$ defined by
+
 $$
 P(X=x_i)=\lambda_i\quad i=1,\cdots, n,
 $$
-and the transition probabilities can be associated with a matrix $P$ having elements $p_{i j}$
+
+and the **transition probabilities** can be associated with a matrix $P$ having elements $p_{i j}$
 defined by
+
 $$
 P(X_{n+1}=x_i|X_n=x_j)=p_{i j}\quad i=1,\cdots, n,\text{and}\, j=1,\cdots,n.
 $$
-When the state space is countably infinite, we can think of an infinite vector and matrix.
+
+When the state space is countably infinite, we can think of an infinite vector and matrix. And $\sum_{j=1}^{n}p_{ij}=1$.
+
 But most Markov chains of interest in **MCMC** have uncountable state space, and then we
 cannot think of the initial distribution as a vector or the transition probability distribution
 as a matrix. We must think of them as an unconditional probability distribution and a
@@ -64,6 +81,12 @@ An initial distribution is said to be **stationary** or **invariant** or **equil
 
 Stationarity implies stationary transition probabilities, but not vice versa.
 
+Let ${P}$ be the transition matrix of a Markov chain with state
+space ${S}$. A probability distribution $\pi = (\pi_1, \pi_2, \dots)$ on ${S}$ satisfying
+$$\pi P=\pi$$
+is called a stationary distribution of the chain.
+
+
 #### Reversibility
 
 A transition probability distribution is reversible with respect to an initial distribution if, for
@@ -81,10 +104,10 @@ A Markov chain is reversible if its transition probability is reversible with re
 * http://www.mcmchandbook.net/HandbookChapter1.pdf
 * http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTES3.pdf
 
-### Random Walk and Stochastic Process
+### Random Walk on Graph and Stochastic Process
 
-A random walk on a directed graph consists of a sequence of vertices generated from
-a start vertex by selecting an edge, traversing the edge to a new vertex, and repeating the process.
+> A random walk on a directed graph consists of a sequence of vertices generated from
+> a start vertex by selecting an edge, traversing the edge to a new vertex, and repeating the process. From [Foundations of Data Science](https://www.microsoft.com/en-us/research/publication/foundations-of-data-science/)
 
 | Random Walk | Markov Chain |
 |:-----------:|:------------:|
@@ -95,4 +118,45 @@ a start vertex by selecting an edge, traversing the edge to a new vertex, and re
 |strongly connected  and aperiodic | ergotic |
 | undirected graph |  time reversible |
 
+A random walk in the Markov chain starts at some state. At a given time step, if it is in state ${x}$, the next state ${y}$ is selected
+randomly with probability $p_{xy}$. A Markov chain can be represented by a directed graph
+with a vertex representing each state and a directed edge with weight $p_{xy}$ from vertex ${x}$
+to vertex ${y}$.
+We say that the Markov chain is *connected* if the underlying directed graph
+is *strongly connected*. The matrix ${P}$ consisting of the $p_{xy}$ is called the transition probability matrix of
+the chain.
+
+A state of a Markov chain is `persistent` if it has the property that should the state ever
+be reached, the random process will return to it with probability ${1}$.This is equivalent
+to the property that the state is in a strongly connected component with no out edges.
+
+A connected Markov Chain is said to be `aperiodic` if the greatest common divisor of the lengths of directed cycles is ${1}$.
+It is known that for connected aperiodic chains, the
+probability distribution of the random walk converges to a unique stationary distribution.
+Aperiodicity is a technical condition needed in this proof.
+
+The `hitting time` $h_{xy}$, sometimes called discovery time, is the expected time of a random walk starting at vertex ${x}$ to reach vertex ${y}$.
+
+In an undirected graph where $\pi_x p_{xy} = \pi_y p_{yx}$,  edges can be assigned weights such that 
+$$P_{xy}=\frac{w_{xy}}{\sum_y w_{xy}}.$$
+
+Thus the Metropolis-Hasting algorithm and Gibbs
+sampling both involve random walks on edge-weighted undirected graphs.
+
 https://www.zhihu.com/question/41289973/answer/248935294
+
+**Definition**: Let ${X(t), t \geq 0}$ be a collection of discrete random
+variables taking values in some set ${S}$ and that evolves in time as follows:
+
+* (a) If the current state is ${i}$, the time until the state is changed has an exponential distribution with parameter $\lambda(i)$.
+* (b) When state ${i}$ is left, a new state  $j\neq i$ is chosen according to the transition probabilities of a discrete-time Markov chain.
+ 
+Then $\{X(t)\}$ is called a continuous-time Markov chain.
+
+- Markov property: $P(X(t)=j\mid X(t_1)=i_1,\dots, X(t_n)=i_n)=P(X(t)=j\mid X(t_n)=i_n)$ for any $n>1$ and $t_1<t_2<\cdots<t_n<t$.
+- Time Homogeneity: $P(X(t)=j\mid X(s)=i) =P(X(t-1)=j\mid X(0)=i)$ for $0<s<t$.
+
+And discrete stochastic process is matrix-based computation while the stochastic calculus is the blend of differential equation and statistical analysis.
+
+* https://wiki.math.ntnu.no/ma8109/2015h/start
+* http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTEScurrent.PDF
