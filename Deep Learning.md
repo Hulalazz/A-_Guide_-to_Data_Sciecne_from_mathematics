@@ -864,6 +864,8 @@ In this section, we will talk other optimization tricks such as **Normalization*
 - https://srdas.github.io/DLBook/ImprovingModelGeneralization.html
 - https://srdas.github.io/DLBook/HyperParameterSelection.html
 - https://github.com/scutan90/DeepLearning-500-questions/tree/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95
+- https://arxiv.org/pdf/1803.09820.pdf
+- https://github.com/kmkolasinski/deep-learning-notes/tree/master/seminars/2018-12-Improving-DL-with-tricks
 
 
 ##### Initialization and More
@@ -873,9 +875,8 @@ In this section, we will talk other optimization tricks such as **Normalization*
 **Initialization**
 
 
-* https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html
+
 * https://srdas.github.io/DLBook/GradientDescentTechniques.html#InitializingWeights
-* https://github.com/kmkolasinski/deep-learning-notes/tree/master/seminars/2018-12-Improving-DL-with-tricks
 * [An Empirical Model of Large-Batch Training Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieva](http://www.princeton.edu/~congm/Publication/RandomInit/main.pdf)
 * [Gradient descent and variants](http://www.cnblogs.com/yymn/articles/4995755.html)
 * [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
@@ -886,11 +887,20 @@ In this section, we will talk other optimization tricks such as **Normalization*
 * https://intoli.com/blog/neural-network-initialization/
 * https://adventuresinmachinelearning.com/weight-initialization-tutorial-tensorflow/
 
+**Learning Rate**
+
+* https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html
+* https://www.jeremyjordan.me/nn-learning-rate/
+* https://sgugger.github.io/the-1cycle-policy.html
+* https://arxiv.org/abs/1506.01186
+* https://arxiv.org/abs/1708.07120
+* https://arxiv.org/abs/1702.04283
 
 **Batch Size**
 
 - https://supercomputersfordl2017.github.io/Presentations/DLSC_talk.pdf
 - https://openreview.net/pdf?id=B1Yy1BxCZ
+- https://arxiv.org/abs/1711.00489
 
 
 ##### Normalization

@@ -56,7 +56,7 @@ The regularization techniques in regression may not suit the tree algorithms suc
 
 **Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees)
 
-![](https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg)
+![https://www.treesaregood.org](https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg)
 
 In machine learning, we prune the decision tree to make a balance between overfitting and underfitting. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:		
 
@@ -236,10 +236,10 @@ $$
 
 One of the frequently asked questions is `What's the basic idea behind gradient boosting?` and the answer from [https://explained.ai/gradient-boosting/faq.html] is the best one I know:
 > Instead of creating a single powerful model, boosting combines multiple simple models into a single **composite model**. The idea is that, as we introduce more and more simple models, the overall model becomes stronger and stronger. In boosting terminology, the simple models are called weak models or weak learners.
-> To improve its predictions, gradient boosting looks at the difference between its current approximation,$\hat{y}$ , and the known correct target vector, $y$, which is called the residual, $y-\hat{y}$. It then trains a weak model that maps feature vector $x$  to that residual vector. Adding a residual predicted by a weak model to an existing model's approximation nudges the model towards the correct target. Adding lots of these nudges, improves the overall models approximation.
+> To improve its predictions, gradient boosting looks at the difference between its current approximation,$\hat{y}$ , and the known correct target vector ${y}$, which is called the residual, $y-\hat{y}$. It then trains a weak model that maps feature vector ${x}$  to that residual vector. Adding a residual predicted by a weak model to an existing model's approximation nudges the model towards the correct target. Adding lots of these nudges, improves the overall models approximation.
 
 |Gradient Boosting|
-|:---:|
+|:---------------:|
 |![golf](https://explained.ai/gradient-boosting/images/golf-MSE.png)|
 
 It is the first solution to the question that if weak learner is equivalent to strong learner.
@@ -341,7 +341,7 @@ which is easier to fit than a general common non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
 
-In general, we can expand the objective function at up to  the second order
+In general, we can expand the objective function at $x^{t-1}$ up to  the second order
 
 $$
 obj^{(t)}
@@ -369,6 +369,7 @@ One important advantage of this definition is that the value of the objective fu
 * https://www.cnblogs.com/wxquare/p/5541414.html
 * https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/
 
+
 ![](https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg)
 
 - https://github.com/Microsoft/LightGBM/blob/master/docs/Features.rst
@@ -378,6 +379,10 @@ One important advantage of this definition is that the value of the objective fu
 - https://catboost.ai/
 - https://lightgbm.readthedocs.io/en/latest/s
 
+*****
+
+- https://arxiv.org/abs/1901.04055
+- https://arxiv.org/abs/1901.04065
 
 ### Stacking
 
@@ -411,12 +416,32 @@ Note that steps 1) to 3) are the same as cross-validation, but instead of using 
 * https://github.com/kingfengji/gcForest
 * https://zhuanlan.zhihu.com/p/37492203
 * https://arxiv.org/abs/1806.00007
+* https://arxiv.org/abs/1502.00712
+* http://adsabs.harvard.edu/abs/2015arXiv150200712P
 * https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/
 
 ***
 
+**Deep Learning Ensemble**
+
+Deep learning and ensemble learning share some similar guide line.
+
+![snapshot](http://ruder.io/content/images/2017/11/snapshot_ensembles.png)
+- [ ] https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/
+- [ ] http://ruder.io/deep-learning-optimization-2017/
+- [ ] https://arxiv.org/abs/1704.00109v1
+- [ ] http://jtleek.com/advdatasci/17-blending.html
+- [ ] https://arxiv.org/abs/1708.03704
+- [ ] https://www.isca-speech.org/archive/archive_papers/interspeech_2014/i14_1915.pdf
+
+
+****
+Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble.
+
+*****
 * https://www.wikiwand.com/en/Ensemble_learning
 * https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
 * https://www.toptal.com/machine-learning/ensemble-methods-machine-learning
 * https://machinelearningmastery.com/products/
 * https://blog.csdn.net/willduan1/article/details/73618677#
+* http://www.scholarpedia.org/article/Ensemble_learning

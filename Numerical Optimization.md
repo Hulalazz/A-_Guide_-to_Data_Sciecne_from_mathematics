@@ -591,15 +591,21 @@ $$
 
 We defined its augmented Lagrangian multipliers as
 $$
-L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + \cdots + f_n(x_n)-\lambda^T(A_1 x_1 + \cdots + A_n x_n - b)+\frac{\beta}{2}{\|A_1x_1 + \cdots + A_n x_n - b\|}_2^2
+L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + \cdots + f_n(x_n)-\lambda^T(A_1 x_1 + \cdots + A_n x_n - b)+\frac{\beta}{2}{\|A_1x_1 + \cdots + A_n x_n - b\|}_2^2.
 $$
 
-[It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf)
+Particularly, we firstly consider the case when $n=3$:
+$$
+L_{\beta}(x_1,x_2,x_3\mid \lambda)=f_1(x_1) + f_2(x_2) + f_3(x_3)-\lambda^T(A_1 x_1 + A_2 x_2 + A_3 x_3 - b)+\frac{\beta}{2}{\|A_1 x_1 + A_2 x_2 + A_n x_n - b\|}_2^2.
+$$
+
+[It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf).
 A counter-example shows that this method diverges.
 
 - http://scis.scichina.com/en/2018/122101.pdf
 - http://maths.nju.edu.cn/~hebma/slides/17C.pdf
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
+- http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf
 
 Randomly Permuted ADMM given initial values at round $k$ is described as follows:
 ****
@@ -842,7 +848,7 @@ $$
 
 as well as the mirror gradient and proximal gradient methods different from the projection operator.
 
-This will introduce the operator splitting methods analyses by Wotao Yin.
+This will introduce the operator splitting methods analyses by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
 
 - https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
 - http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
