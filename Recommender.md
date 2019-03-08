@@ -11,7 +11,7 @@ Traditional definition: The **recommender system** is to estimate a utility  fun
 User Interest is **implicitly** reflected in `Interaction history`, `Demographics` and `Contexts`, which can be regarded as a typical example of data mining. Recommender system should match a context to a collection of information objects. There are some methods called `Deep Matching Models for Recommendation`.
 
 
-
+- [X] https://blog.csdn.net/u013166160/article/details/17935193
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/benfred/implicit
 - [ ] https://github.com/YuyangZhangFTD/awesome-RecSys-papers
@@ -160,6 +160,7 @@ We learn the values of involved parameters by minimizing the regularized squared
 * https://orange3-recommendation.readthedocs.io/en/latest/widgets/svdplusplus.html
 * https://cloud.tencent.com/developer/article/1107364
 * https://www.bbsmax.com/A/KE5Q0M9ZJL/
+* https://zhuanlan.zhihu.com/p/42269534
 
 One possible improvement of this cost function is that we may design more appropriate loss function other than the squared  error function.
 
@@ -218,9 +219,10 @@ Another advantage of collaborative filtering or matrix completion is that even t
 
 * [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf),
 * [Applications of the conjugate gradient method for implicit feedback collaborative filtering](http://rs1.sze.hu/~gtakacs/download/recsys_2011_draft.pdf),
-* https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
-* [a curated list in github.com](https://github.com/benfred/implicit),
-* https://zhuanlan.zhihu.com/p/42269534
+* [Intro to Implicit Matrix Factorization](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
+* [a curated list in github.com](https://github.com/benfred/implicit).
+
+**Recommendation with Implict Information**
 
 |Explicit and implicit feedback|
 |:---:|
@@ -245,11 +247,11 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * http://nicolas-hug.com/blog/matrix_facto_1
 * http://nicolas-hug.com/blog/matrix_facto_2
 * http://nicolas-hug.com/blog/matrix_facto_3
-* http://yifanhu.net/PUB/cf.pdf
-* https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/
+* [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
+* [Alternating Least Squares Method for Collaborative Filtering](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/)
+* [Implicit Feedback and Collaborative Filtering](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/)
   
-
-**Recommendation with Implict Information**
+**Collaborative Less-is-More Filtering**
 
 Sometimes, the information of user we could collect is implicit such as the clicking at some item.
 
@@ -271,18 +273,24 @@ user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
 
 
 We use stochastic gradient ascent to maximize the objective function.
+
 * https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html
-* http://yifanhu.net/PUB/cf.pdf
-* https://github.com/benfred/implicit
-* https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
-* https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/
-* http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/
-* https://www.benfrederickson.com/matrix-factorization/
-* https://www.benfrederickson.com/fast-implicit-matrix-factorization/
-* https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/
-* https://github.com/gamboviol/climf
+* https://dl.acm.org/citation.cfm?id=2540581
+* [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
+* [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
+
+**Adaptive Boosting Personalized Ranking (AdaBPR)**
+
+`AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
+In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
+The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
+
+Here explicit feedback refers to users’ ratings to items while implicit feedback is derived
+from users’ interactions with items, e.g., number of
+times a user plays a song.
 
 
+- [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 ***
 
 * https://www.cnblogs.com/Xnice/p/4522671.html
@@ -291,7 +299,13 @@ We use stochastic gradient ascent to maximize the objective function.
 * \url{https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)}
 * http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html
 * https://www.acemap.info/author/page?AuthorID=7E61F31B
-
+* [Fast Python Collaborative Filtering for Implicit Feedback Datasets](https://github.com/benfred/implicit)
+* https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
+* https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/
+* https://www.benfrederickson.com/matrix-factorization/
+* https://www.benfrederickson.com/fast-implicit-matrix-factorization/
+* https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 ****
 
 
@@ -599,7 +613,7 @@ therefore provide a precise insight of what items and topics users might be inte
 
 ***
 |Traditional Approaches|Beyond Traditional Methods|
-|---|---|
+|----------------------|--------------------------|
 |Collaborative Filtering|Tensor Factorization & Factorization Machines|
 |Content-Based Recommendation|Social Recommendations|
 |Item-based Recommendation|Learning to rank|
@@ -613,6 +627,7 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 
 - [ ] http://dmml.asu.edu/smm/slides/
 - [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
+- [ ] https://arxiv.org/pdf/1304.3405.pdf
 
 **Knowledge Graph and Recommender System**
 
@@ -627,6 +642,12 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 |Page Optimization|
 |Context-aware Recommendations|
 
+- [ ] https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/
+- [ ] https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/
+- [ ] https://tech.meituan.com/2018/06/07/searchads-dnn.html
+- [ ] http://benanne.github.io/2014/08/05/spotify-cnns.html
+
+****
 
 - [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 - [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
@@ -635,17 +656,14 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://github.com/hongleizhang/RSAlgorithms
 - [ ] https://github.com/cheungdaven/DeepRec
 - [ ] https://github.com/cyhong549/DeepFM-Keras
+- [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] [Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/pdf/1707.07435.pdf)
 - [ ] http://dlrs-workshop.org/
 - [ ] https://zhuanlan.zhihu.com/p/26977788
 - [ ] https://zhuanlan.zhihu.com/p/45097523
 - [ ] https://www.zhihu.com/question/20830906
 - [ ] https://www.zhihu.com/question/56806755/answer/150755503
-- [ ] https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/
-- [ ] https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/
-- [ ] https://tech.meituan.com/2018/06/07/searchads-dnn.html
-- [ ] http://benanne.github.io/2014/08/05/spotify-cnns.html
-- [ ] https://github.com/grahamjenson/list_of_recommender_systems
+
 
 ### Implementation
 
@@ -656,7 +674,7 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://github.com/alibaba/euler
 - [ ] https://github.com/alibaba/x-deeplearning/wiki/
 - [ ] https://github.com/lyst/lightfm
-- [ ] https://github.com/Microsoft/Recommenders
+- [ ] https://orange3-recommendation.readthedocs.io/en/latest/
 - [ ] http://www.mymedialite.net/index.html
 - [ ] http://www.mymediaproject.org/
 

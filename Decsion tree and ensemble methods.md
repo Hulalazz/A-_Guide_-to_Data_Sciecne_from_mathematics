@@ -381,6 +381,7 @@ One important advantage of this definition is that the value of the objective fu
 - https://lightgbm.readthedocs.io/en/latest/s
 - https://github.com/Xtra-Computing/thundergbm
 - https://www.comp.nus.edu.sg/~hebs/pub/IPDPS18-GPUGBDT.pdf
+- https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md
 
 *****
 

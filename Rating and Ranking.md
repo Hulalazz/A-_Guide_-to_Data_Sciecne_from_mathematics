@@ -13,6 +13,7 @@ They share some techniques although their purpose is different such as the logis
 * http://www.ams.org/notices/201301/rnoti-p81.pdf
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
 * http://math.bu.edu/people/mg/ratings/rs/
+* https://www.jstor.org/stable/2282923
 
 ## Elo Rating
 
@@ -442,6 +443,7 @@ And in this part we only talk on the Top-N recommendation.
 * https://www.ijcai.org/Proceedings/16/Papers/339.pdf
 * https://blog.csdn.net/lthirdonel/article/details/80021282
 * https://arxiv.org/abs/1808.04957v1
+* http://ceur-ws.org/Vol-1127/paper4.pdf
 
 
 ### Bayesian Personalized Ranking
@@ -499,7 +501,7 @@ And we can use stochastic gradient descent to find the parameters $\Theta$.
 - [ ] https://blog.csdn.net/qq_20599123/article/details/51315697
 - [ ] https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
 - [ ] https://arxiv.org/pdf/1510.01784.pdf
-- [ ] https://core.ac.uk/display/23873231
+- [ ] [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 
 
 ***
@@ -610,7 +612,7 @@ $$
 Then, the objective function becomes:
 
 $$
-L_{column-wise}= -\sum_{u_i\triangleleft u^{\prime}_i }\log(P(r_{ui}>r_{u^{\prime}i})) + {\lambda}_{I}\sum_{U}\|U_u\|_2^2 .\tag 3
+L_{column-wise}= -\sum_{u_i\triangleleft u^{\prime}_i }\log(P(r_{ui}>r_{u^{\prime}i})) + {\lambda}_{I}\sum_{u}\|U_u\|_2^2 .\tag 3
 $$
 
 We introduce two balance factors $\alpha ∈ [0, 1]$
@@ -636,7 +638,26 @@ be set differently in solving different problems.
 In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
 The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
 
-- https://www.ijcai.org/Proceedings/15/Papers/255.pdf
+The primary idea of applying boosting for item recommendation is to learn a set of homogeneous component recommenders and then create an ensemble of the component recommenders to predict users' preferences.
+
+Here, we use a linear combination of component recommenders as the final recommendation model
+$$f=\sum_{t=1}^{T}{\alpha}_t f_{t}.$$
+
+In the training process, AdaBPR runs for ${T}$ rounds, and the component recommender $f_t$ is created at t-th round by
+$$
+\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}_{u} \exp\{-E(\pi(u,i,\sum_{n=1}^{t}{\alpha}_n f_{n}))\}
+$$
+
+where the notations are listed as follows:
+
+- $\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms; 
+- $E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair; 
+- $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$; 
+- $\mathbb{O}$ is the set of all observed user-item interactions; 
+- ${\beta}_{u}$ is defined as reciprocal of the number of user $u$'s  historical items  ${\beta}_{u}=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).
+
+***
+- [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 
 **Deep Online Ranking System**
 
