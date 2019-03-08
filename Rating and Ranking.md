@@ -210,48 +210,7 @@ And it can apply to information retrieval and recommender system.
 
 http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
 
-
-
-### Collaborative Ranking
-
-Collaborative Ranking sounds like collaborative filtering. In fact, collaborative ranking is also used to rank the items based on the feedback from users. [The computation of the Top-N item list for making recommendations is essentially a ranking problem.](http://www.cs.ust.hk/~qyang/Docs/2008/SIGIR297-liu.pdf)
-The general idea of CR is to combine matrix factorization (MF) with learning-to-rank (LTR) techniques for the purpose of accurately recommending interesting items to users. And in this part we only talk the Top-N recommendation.
-
-* https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
-* https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking
-* http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf
-* http://proceedings.mlr.press/v37/park15.html
-* https://ai.google/research/pubs/pub42242
-* http://proceedings.mlr.press/v80/wu18c.html
-* https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/
-
-
-
-
-**Top-N recommendation**
-
-* http://glaros.dtc.umn.edu/gkhome/node/1192
-* https://www.ijcai.org/Proceedings/16/Papers/339.pdf
-* https://blog.csdn.net/lthirdonel/article/details/80021282
-* https://arxiv.org/abs/1808.04957v1
-
-**Collaborative Multi-objective Ranking**
-
-The rowwise ranking problem, also known as personalized ranking, aims to build user-specific models such that the correct order of items (in terms of user preference) is most accurately predicted and then items on the top of ranked list will be recommended to a specific
-user, while column-wise ranking aims to build item-specific models focusing on targeting users who are most interested in the specific item (for example, for distributing coupons to customers).
-
-The key part of collaborative ranking algorithms is to learn effective user and item latent factors
-which are combined to decide user preference scores over items.
-
-In **Collaborative Multi-objective Ranking**, it is to jointly solve row-wise and column-wise
-ranking problems through a parameter sharing framework which optimizes three objectives together: to accurately predict rating
-scores, to satisfy the user-specific order constraints on all the rated items, and to satisfy the item-specific order constraints.
-
-It includes **Pairwise Comparisons through Bradley-Terry Model**.
-
-* http://column.hongliangjie.com/
-* http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf
-
+For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
 
 ### RankSVM
 
@@ -409,6 +368,14 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [ ] https://maciejkula.github.io/spotlight/index.html#
 - [ ] http://quickrank.isti.cnr.it/research-papers/
 
+**AdaRank**
+
+- https://github.com/rueycheng/AdaRank
+- https://dl.acm.org/citation.cfm?id=1277809
+
+**McRank**
+
+- http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf
 ### LambdaLoss
 
 LambdaRank is a novel algorithm that incorporates
@@ -451,6 +418,31 @@ We show that the loss functions of these methods are upper bounds of the measure
 
 - [ ] https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/
 - [ ] https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/
+
+### Collaborative Ranking
+
+Collaborative Ranking sounds like collaborative filtering. In fact, collaborative ranking is also used to rank the items based on the feedback from users. [The computation of the Top-N item list for making recommendations is essentially a ranking problem.](http://www.cs.ust.hk/~qyang/Docs/2008/SIGIR297-liu.pdf)
+**The general idea of CR is to combine matrix factorization (MF) with learning-to-rank (LTR) techniques for the purpose of accurately recommending interesting items to users.** More matrix factorization for recommender system techniques  includes SVD, regularized SVD, SVD++ and so on.
+And in this part we only talk on the Top-N recommendation.
+
+* https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
+* https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking
+* http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf
+* http://proceedings.mlr.press/v37/park15.html
+* https://ai.google/research/pubs/pub42242
+* http://proceedings.mlr.press/v80/wu18c.html
+* https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/
+
+
+
+
+**Top-N recommendation**
+
+* http://glaros.dtc.umn.edu/gkhome/node/1192
+* https://www.ijcai.org/Proceedings/16/Papers/339.pdf
+* https://blog.csdn.net/lthirdonel/article/details/80021282
+* https://arxiv.org/abs/1808.04957v1
+
 
 ### Bayesian Personalized Ranking
 
@@ -509,9 +501,8 @@ And we can use stochastic gradient descent to find the parameters $\Theta$.
 - [ ] https://arxiv.org/pdf/1510.01784.pdf
 - [ ] https://core.ac.uk/display/23873231
 
-***
 
-And the above algorithms are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1+\exp(-x)}$.
+***
 
 However, the two fundamental assumptions made in the pairwise ranking methods,
 (1) individual pairwise preference over two items
@@ -568,6 +559,84 @@ See more transfer learning algorithm in [http://csse.szu.edu.cn/staff/panwk/publ
 * http://csse.szu.edu.cn/staff/panwk/publications/Journal-TBD-19-CoFiToR-Slides.pdf
 * [The code and data of GBPR](http://csse.szu.edu.cn/staff/panwk/publications/index.html).
 
+**Collaborative Multi-objective Ranking**
+
+The rowwise ranking problem, also known as personalized ranking, aims to build user-specific models such that the correct order of items (in terms of user preference) is most accurately predicted and then items on the top of ranked list will be recommended to a specific
+user, while column-wise ranking aims to build item-specific models focusing on targeting users who are most interested in the specific item (for example, for distributing coupons to customers).
+
+The key part of collaborative ranking algorithms is to learn effective user and item latent factors
+which are combined to decide user preference scores over items.
+
+In **Collaborative Multi-objective Ranking**, it is to jointly solve row-wise and column-wise
+ranking problems through a parameter sharing framework which optimizes three objectives together: to accurately predict rating
+scores, to satisfy the user-specific order constraints on all the rated items, and to satisfy the item-specific order constraints.
+
+
+And the above algorithms are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1+\exp(-ax)}$ as the surrogate of zero-one loss such as the  **Bradley-Terry Model** and **Bayesian Personalized Ranking**.
+
+In logistic function, the value of "a" determines the shape of the function. In other words, it tells how close the approximation of logistic function to the zero-one loss. However, in the context of matrix factorization, the change of ${U_u}$ doesn’t necessarily
+contribute to the change of approximation to zero-one loss as any change to ${U_u}$ (e.g., double ${U_u}$ ) can be compensated by changing all the item factors $V_i$ accordingly (e.g., reduce $V_i$ by half).
+
+
+The general idea of matrix factorization is to assume that the rating matrix $R \in \mathbb{R}^{m\times n}$ has low rank and thus it can be approximated by $R = UV^⊺$, 
+where $U\in \mathbb{R}^{m\times k}$ and $V ∈ \mathbb{R}^{n\times k}$ respectively represent user latent factors and item latent factors, and ${k}$ is the rank of
+approximation.
+The prediction loss of rating prediction through matrix factorization on the training set is formulated as
+$$
+L_{pointwise}=\sum_{u}\sum_{i}(r_{ui}-\hat{r}_{ui})^2 + {\lambda}_{U}\sum_{u}\|U_u\|_2^2 + {\lambda}_{I}\sum_{i}\|V_i\|_2^2 \tag 1
+$$
+
+where $r_{ui}$ and $\hat{r}_{ui}$ are respectively the observed and estimated rating scores. The regularized term is set in order to prevent from over-fitting.
+
+By modeling row-wise comparisons of (user-specific) item pairs using Bradley-Terry model together with matrix factorization, it can be formulated as follows
+
+$$
+P(u_i\triangleleft u_j )=P(r_{ui}>r_{uj})=\frac{\exp(U_u V_i^T)}{\exp(U_u V_i^T)+\exp(U_u V_j^T)}.
+$$
+
+We then minimize negative log likelihood on all the comparisons
+of observed item pairs, obtaining the following objective function
+
+$$
+L_{row-wise}= -\sum_{u_i\triangleleft u_j }\log(P(r_{ui}>r_{uj})) + {\lambda}_{I}\sum_{i}\|V_i\|_2^2 .\tag 2
+$$
+
+Symmetric to that in modeling the row-wise comparisons, we model the (item-specific) column-wise comparisons
+
+$$
+P(u_i\triangleleft u^{\prime}_i )=P(r_{ui}>r_{u^{\prime}i})=\frac{\exp(U_u V_i^T)}{\exp(U_u V_i^T)+\exp(U_{u^{\prime}} V_j^T)}.
+$$
+
+Then, the objective function becomes:
+
+$$
+L_{column-wise}= -\sum_{u_i\triangleleft u^{\prime}_i }\log(P(r_{ui}>r_{u^{\prime}i})) + {\lambda}_{I}\sum_{U}\|U_u\|_2^2 .\tag 3
+$$
+
+We introduce two balance factors $\alpha ∈ [0, 1]$
+and $\beta ∈ [0, 1]$, s.t., $\alpha +\beta \le 1$, to combine aforementioned three losses.
+The final integrated loss is introduced in the following formulation:
+$$
+L= \alpha L_{column-wise}  + \beta L_{row-wise} +(1-\alpha -\beta)L_{point-wise}
+$$
+
+where balance factors $\alpha$ and $\beta$ are set to model the importance of individual losses. 
+Intuitively, the weight of each loss function should
+be set differently in solving different problems.
+
+
+* http://column.hongliangjie.com/
+* http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf
+* https://sites.google.com/site/hujun1010/
+
+
+**Adaptive Boosting Personalized Ranking (AdaBPR)**
+
+`AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
+In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
+The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
+
+- https://www.ijcai.org/Proceedings/15/Papers/255.pdf
 
 **Deep Online Ranking System**
 
