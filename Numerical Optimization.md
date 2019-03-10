@@ -77,8 +77,8 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally and the step length $\
 **Nesterov accelerated gradient method** at the $k$th step is given by:
 
 $$
-x^{k}=y^{k}-\alpha^{k+1}\nabla_{x}f(y^k) \qquad \text{Descent} \\
-y^{k+1}=x^{k}+\rho^{k}(x^{k}-x^{k-1})   \qquad  \text{Momentum}
+x^{k}=y^{k}-\alpha_{k+1}\nabla_{x}f(y^k) \qquad \text{Descent} \\
+y^{k+1}=x^{k}+\rho_{k}(x^{k}-x^{k-1})   \qquad  \text{Momentum}
 $$
 
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
@@ -124,7 +124,7 @@ $$
 $$
 
 where $f,\mathbb{S}\subset\mathbb{R}^n$ are convex.
-The optimal condition for this constrained optimization problem is that the feasible direction is not the descent or profitable direction: if $x^{\star}\in\mathbb{S}$ is the solution to the problem, we can  assert that
+The optimal condition for this constrained optimization problem is that the feasible direction is not the descent or profitable direction: if $x^{\star}\in\mathbb{S}$ is the solution to the problem, we can  assert that `variational inequality` holds:
 $$\forall x \in \mathbb{S}, \left<\nabla f(x^{\star}),x-x^{\star} \right> \geq 0.$$
 
 ### Projected Gradient Descent
@@ -203,7 +203,7 @@ In another compact form, mirror gradient can be described in the proximal form:
 $$
 x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}
 $$
-with $g^k\in\partial f(x^k)$.
+with $g^k=\nabla f(x^k)$.
 
 The original "mirror" form of mirror gradient method is described as
 $$
@@ -228,7 +228,7 @@ See more on the following link list.
 
 The `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
 $$
-prox_h(x)=\arg\min_{x}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}
+prox_h(x)=\arg\min_{u}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}
 $$
 
 Unconstrained problem with cost function split in two components:
@@ -261,9 +261,32 @@ h(x)=\delta_C(x)=
  \end{cases}
 $$
 
+$\color{aqua}{Note}$: the projection from a point $x^0$ into a subset $C\subset\mathbb{R}^n$ is defined in proximal operator as
+
+$$
+=\arg\min_{x}\{\delta_C(x)+\frac{1}{2}{\|x-x^0\|}_2^2\}
+\\=\arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
+$$
+
+while it can also written in the following form:
+$$
+x^{+}=\arg\min_{x}\{\frac{1}{1_C(x)}\cdot {\|x-x^0\|}_2^2\}
+$$
+
+where
+$$
+1_C(x)=
+ \begin{cases}
+   1, & \text{if} \quad x \in C,\\
+   0, & \text{otherwise}.
+ \end{cases}
+$$
+
+How we can generalize this form into the proximal form?
+
 And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
 $$
-\arg\min_{x}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}\to \arg\min_{x}\{h(u)+ B(x,u)\}.
+\arg\min_{u}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}\to \arg\min_{u}\{h(u)+ B(x,u)\}.
 $$
 so that the primary proximal gradient methods are modified to the Bregman version,
 which is called as `Bregman proximal gradient` method.
@@ -330,7 +353,7 @@ where $J^{-1}(\theta^{k})$ is the inverse of observed information matrix at the 
 See <http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/scoring.pdf> or <https://wiseodd.github.io/techblog/2018/03/11/fisher-information/>.
 
 **Fisher scoring algorithm** is regarded  as an example of **Natural Gradient Descent** in
-information geometry  such as <https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/>
+information geometry as shown in <https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/>
 and <https://www.zhihu.com/question/266846405>.
 
 ### Quasi-Newton Methods
@@ -549,13 +572,50 @@ ADMM at step $t$ is described as following:
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
+
+**Linearized ADMM**
+
+Note that the $x$ subproblem in ADMM
+$$
+\arg\min_{x}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})
+\\=\arg\min_{x}\{f(x)+g(y^k)+{\lambda^k}^{T}(Ax+By^{k}-b)+\frac{\beta}{2}{\|Ax+By^{k}-b\|}_{2}^{2}\}
+\\=\arg\min_{x}f(x)+\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda\|}_{2}^{2}\tag 1
+$$
+
+However, the
+solution of the subproblem (1) does not have the closed form solution because of the
+general structure of the matrix ${A}$. In this case, we linearize the quadratic term of
+$$\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda^k\|}_{2}^{2}$$
+
+at $x^k$ and add a proximal term $\frac{r}{2}{\|x-x^k\|}_2^2$ to the objective function.
+In another word, we solve the following ${x}$ subproblem if ignoring the constant term of the objective function:
+$$\min_{x}f(x)+\beta(Ax)^T(Ax^k+By^k-b-\frac{1}{\lambda^k})+\frac{r}{2}{\|x-x^k\|}_2^2.$$
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}f(x)+\beta(Ax)^T(Ax^k+By^k-b-\frac{1}{\lambda^k})+\frac{r}{2}{\|x-x^k\|}_2^2$,
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}})$,
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+
+For given $\beta > 0$, choose ${r}$ such that
+the matrix $rI_{1}-\beta A^TA$ is definitely positive, i.e.,
+$$rI_{1}-\beta A^TA\geq 0.$$
+
+We can also linearize  the ${y}$ subproblem:
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^k,\lambda^k)$,
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} g(y)+\beta (By)^{T}(Ax^{\color{red}{k+1}}+By^k-b-\frac{1}{\beta}\lambda^k)+\frac{r}{2}\|y-y^k\|^2$,
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+
+For given $\beta > 0$, choose ${r}$ such that
+the matrix $rI_{2}-\beta B^T B$ is definitely positive, i.e.,
+$$rI_{2}-\beta B^T B\geq 0.$$
+
 ***
 Taking $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described as
 
-> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
-> 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k} - \mu\beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b).$
-> 3. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}});$
-> 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}} } - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b).$
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})$,
+> 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k} - \mu\beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b)$,
+> 3. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}})$,
+> 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}} } - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b)$.
 
 * http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
 
@@ -596,19 +656,48 @@ $$
 
 Particularly, we firstly consider the case when $n=3$:
 $$
-L_{\beta}(x_1,x_2,x_3\mid \lambda)=f_1(x_1) + f_2(x_2) + f_3(x_3)-\lambda^T(A_1 x_1 + A_2 x_2 + A_3 x_3 - b)+\frac{\beta}{2}{\|A_1 x_1 + A_2 x_2 + A_n x_n - b\|}_2^2.
+L_{\beta}^{3}(x_1,x_2,x_3\mid \lambda)=f_1(x_1) + f_2(x_2) + f_3(x_3)-\lambda^T(A_1 x_1 + A_2 x_2 + A_3 x_3 - b)+\frac{\beta}{2}{\|A_1 x_1 + A_2 x_2 + A_n x_n - b\|}_2^2.
 $$
 
 [It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf).
-A counter-example shows that this method diverges.
+[A counter-example shows that this method diverges.](https://link.springer.com/article/10.1007/s10107-014-0826-5)
+
+***
+And [Professor Bingsheng He](http://maths.nju.edu.cn/~hebma/) and his coauthors proposed some schemes for this problem.
+
+[Parallel splitting augmented Lagrangian method](https://link.springer.com/article/10.1007/s10589-007-9109-x) (abbreviated to `PSALM`) is described as follows:
+> 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x,y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$;
+> 2. $y^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y,z^k,\lambda^k)\mid y\in\mathbb{Y}\}$;
+> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y^{\color{yellow}{k}},z,\lambda^k)\mid z\in\mathbb{Z}\}$;
+> 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$.
+
+We can add one more correction step
+$$
+v^{k+1} := v^{k}-\alpha(v^k-v^{k+1}),\alpha\in (0,2-\sqrt{2})
+$$
+
+where $v^{k+1}=(y^{k+1},z^{k+1},\lambda^{k+1})$.
+
+Another approach is to add an regularized terms:
+
+> 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x,y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$,
+> 2. $y^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y,z^k,\lambda^k)+\color{red}{\frac{\tau}{2}\beta{\|A_2(y-y^k)\|}^{2}}\mid y\in\mathbb{Y}\}$,
+> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y^{\color{yellow}{k}},z,\lambda^k)+\color{yellow}{\frac{\tau}{2}\beta{\|A_3(z-z^k)\|}^{2}}\mid z\in\mathbb{Z}\}$,
+> 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$,
+
+where $\tau>1$.
+
+***
 
 - http://scis.scichina.com/en/2018/122101.pdf
 - http://maths.nju.edu.cn/~hebma/slides/17C.pdf
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
 - http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf
+- https://link.springer.com/article/10.1007/s10107-014-0826-5
 
-Randomly Permuted ADMM given initial values at round $k$ is described as follows:
+
 ****
+`Randomly Permuted ADMM` given initial values at round $k$ is described as follows:
 
 1. Primal update:
     - Pick a permutation $\sigma$ of ${1,.. ., n}$ uniformly at random;
@@ -625,7 +714,13 @@ Randomly Permuted ADMM given initial values at round $k$ is described as follows
 
 ***
 
-Stochastic ADMM
+**Stochastic ADMM**
+
+Linearly constrained stochastic convex optimization is given by
+$$
+\min_{x,y}\mathbb{E}_{\vartheta}(F(x,\vartheta))+h(y),\\ s.t.Ax+By = b, x\in\mathbb{X}, y\in\mathbb{Y}.
+$$
+where the expectation $\mathbb{E}_{\vartheta}(F(x,\vartheta))$ is some loss function and ${h}$ is regularizor.
 
 - http://proceedings.mlr.press/v28/ouyang13.pdf
 - https://arxiv.org/abs/1707.03190
@@ -661,6 +756,7 @@ $$
 $$
 
 And ADMM or proximal gradient methods are to split the cost function to 2 blocks, of which one is differentiable and smooth while the other may not be differentiable. In another word, we can use them to solve some non-smooth optimization problem.
+However, what if there is no constraints application to the optimization problem?
 
 **Coordinate descent** is aimed to minimize the following cost function
 $$
@@ -670,12 +766,16 @@ $$
 where $g(x)$ is convex, differentiable and each $h_i(x)$ is convex.
 We can use coordinate descent to find a minimizer: start with some initial guess $x^0$, and repeat for $k = 1, 2, 3, \dots$:
 
+***
 > 1. $x_{1}^{k} \in\arg\min_{x_1}f(x_1, x_2^{k-1}, x_3^{k-1}, \dots, x_n^{k-1});$
 > 2. $x_{2}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2,x_3^{k-1},\dots, x_n^{k-1});$
 > 3. $x_{3}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3,\dots, x_n^{k-1});$
 > 4. $\vdots$
 > 5. $x_{n}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3^{\color{red}{k}},\dots, x_n).$
 
+It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, \dots, x_n}$ are separable in some blocks.
+
+***
 - http://bicmr.pku.edu.cn/conference/opt-2014/index.html
 - https://calculus.subwiki.org/wiki/Additively_separable_function
 - https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
@@ -848,11 +948,14 @@ $$
 
 as well as the mirror gradient and proximal gradient methods different from the projection operator.
 
-This will introduce the operator splitting methods analyses by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
+Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf).
+
+This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
 
 - https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
 - http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
 - https://www.wikiwand.com/en/Fixed-point_theorem
+- https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf
 
 ***
 
