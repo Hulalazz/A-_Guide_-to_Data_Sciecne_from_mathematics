@@ -653,19 +653,19 @@ $$
 
 We defined its augmented Lagrangian multipliers as
 $$
-L_{\beta}(x_1,x_2,\cdots,x_n\mid \lambda)=f_1(x_1) + \cdots + f_n(x_n)-\lambda^T(A_1 x_1 + \cdots + A_n x_n - b)+\frac{\beta}{2}{\|A_1x_1 + \cdots + A_n x_n - b\|}_2^2.
+L_{\beta}^{n}(x_1,x_2,\cdots,x_n\mid \lambda)=\sum_{i=1}^{n}f_i(x_i) -\lambda^T(\sum_{i=1}^{n}A_i x_i - b)+\frac{\beta}{2}{\|\sum_{i=1}^{n}A_i x_i - b\|}_{2}^{2}.
 $$
 
 Particularly, we firstly consider the case when $n=3$:
 $$
-L_{\beta}^{3}(x_1,x_2,x_3\mid \lambda)=f_1(x_1) + f_2(x_2) + f_3(x_3)-\lambda^T(A_1 x_1 + A_2 x_2 + A_3 x_3 - b)+\frac{\beta}{2}{\|A_1 x_1 + A_2 x_2 + A_n x_n - b\|}_2^2.
+L_{\beta}^{3}(x,y,z\mid \lambda)=f_1(x) + f_2(y) + f_3(z)-\lambda^T(A_1 x + A_2 y + A_3 z - b)+\frac{\beta}{2}{\|A_1 x + A_2 y + A_3 z - b\|}_2^2.
 $$
 
 [It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf).
 [A counter-example shows that this method diverges.](https://link.springer.com/article/10.1007/s10107-014-0826-5)
 
 ***
-And [Professor Bingsheng He](http://maths.nju.edu.cn/~hebma/) and his coauthors proposed some schemes for this problem.
+And [Professor Bingsheng He](http://maths.nju.edu.cn/~hebma/), who taught me this section in his class, and his coauthors proposed some schemes for this problem.
 
 [Parallel splitting augmented Lagrangian method](https://link.springer.com/article/10.1007/s10589-007-9109-x) (abbreviated to `PSALM`) is described as follows:
 > 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x,y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$;
@@ -684,19 +684,35 @@ Another approach is to add an regularized terms:
 
 > 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x,y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$,
 > 2. $y^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y,z^k,\lambda^k)+\color{red}{\frac{\tau}{2}\beta{\|A_2(y-y^k)\|}^{2}}\mid y\in\mathbb{Y}\}$,
-> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y^{\color{yellow}{k}},z,\lambda^k)+\color{yellow}{\frac{\tau}{2}\beta{\|A_3(z-z^k)\|}^{2}}\mid z\in\mathbb{Z}\}$,
+> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y^{\color{yellow}{k}},z,\lambda^k)+\color{blue}{\frac{\tau}{2}\beta{\|A_3(z-z^k)\|}^{2}}\mid z\in\mathbb{Z}\}$,
 > 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$,
 
 where $\tau>1$.
 
-***
 
 - http://scis.scichina.com/en/2018/122101.pdf
 - http://maths.nju.edu.cn/~hebma/slides/17C.pdf
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
-- http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf
 - https://link.springer.com/article/10.1007/s10107-014-0826-5
 
+****
+**Davis-Yin three operator splitting**
+
+If $f_1$ is strongly convex, then apply Davis-Yin (to dual problem) gives:
+
+> 1. $x^{k+1}=\arg\min_{x}\{L^3(\color{green}{x},y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$;
+> 2. $y^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{k+1},\color{green}{y},z^k,\lambda^k)\mid y\in\mathbb{Y}\}$;
+> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{k+1},y^{k+1},\color{green}{z},\lambda^k)\mid z\in\mathbb{Z}\}$;
+> 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$.
+
+where $L^3(x,y^k,z^k,\lambda^k)=f_1(x) + f_2(y^k) + f_3(z^k)-{\lambda^k}^T(A_1 x + A_2 y^k + A_3 z^k - b)$
+is the Lagrangian rather than  augmented Lagrangian.
+
+- http://fa.bianp.net/blog/2018/tos/
+- https://link.springer.com/article/10.1007%2Fs11228-017-0421-z
+- http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf
+- ftp://ftp.math.ucla.edu/pub/camreport/cam15-13.pdf
+- http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_operator_splitting_ICCM16.pdf
 
 ****
 `Randomly Permuted ADMM` given initial values at round $k$ is described as follows:
@@ -722,7 +738,7 @@ Linearly constrained stochastic convex optimization is given by
 $$
 \min_{x,y}\mathbb{E}_{\vartheta}[F(x,\vartheta)]+h(y),\\ s.t. \, Ax+By = b, x\in\mathbb{X}, y\in\mathbb{Y}.
 $$
-where the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ is some loss function and ${h}$ is regularizer to prevent from over-fitting.
+where typically the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ is some loss function and ${h}$ is regularizer to prevent from over-fitting.
 
 The first problem is that the distribution of $\vartheta$ is unknown as well as the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ in the objective function.
 
@@ -735,10 +751,11 @@ $$
 
 where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 
-- http://proceedings.mlr.press/v28/ouyang13.pdf
-- https://arxiv.org/abs/1707.03190
-- https://people.eecs.berkeley.edu/~sazadi/icml_2014_presentation.pdf
+- [Stochastic ADMM](http://proceedings.mlr.press/v28/ouyang13.pdf)
+- [Accelerated Variance Reduced Stochastic ADMM](https://arxiv.org/abs/1707.03190)
+- [Towards optimal stochastic ADMM](https://people.eecs.berkeley.edu/~sazadi/icml_2014.pdf) or [the talk in ICML](https://people.eecs.berkeley.edu/~sazadi/icml_2014_presentation.pdf)
 - [V-Cycle or Double Sweep ADMM](http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf)
+- https://arxiv.org/abs/1903.01786
 
 ***
 * http://maths.nju.edu.cn/~hebma/
@@ -756,6 +773,7 @@ where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 * http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf
 * http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf
 * https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf
+* [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
 
 The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
 For example, we want to minimize the following cost function
@@ -881,6 +899,7 @@ See the following links for more information on *stochastic gradient descent*.
 * https://henripal.github.io/blog/stochasticdynamics
 * https://henripal.github.io/blog/langevin
 * http://fa.bianp.net/teaching/2018/eecs227at/stochastic_gradient.html
+* [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
 
 |The Differences of Gradient Descent and Stochastic Gradient Descent|  
 |:-----------------------------------------------------------------:|
@@ -964,6 +983,12 @@ as well as the mirror gradient and proximal gradient methods different from the 
 Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf).
 
 This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
+Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
+> First-order methods are described and analyzed with gradients or subgradients, while second-order methods use second-order derivatives or their approximations.
+
+> During the 70s–90s the majority of the optimization community focused on second-order methods since they are more efficient for those problems that have the sizes of interest at that time. Beginning around fifteen years ago, however, the demand to solve ever larger problems started growing very quickly. Many large problems are further complicated by non-differentiable functions and constraints. Because simple first-order and classic second-order methods are ineffective or infeasible for these problems, operator splitting methods regained their popularity.
+
+> Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
 
 - https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
 - http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
