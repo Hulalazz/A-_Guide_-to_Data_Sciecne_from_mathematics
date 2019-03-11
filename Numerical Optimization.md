@@ -577,9 +577,11 @@ ADMM at step $t$ is described as following:
 
 Note that the $x$ subproblem in ADMM
 $$
+\begin{align}
 \arg\min_{x}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})
-\\=\arg\min_{x}\{f(x)+g(y^k)+{\lambda^k}^{T}(Ax+By^{k}-b)+\frac{\beta}{2}{\|Ax+By^{k}-b\|}_{2}^{2}\}
-\\=\arg\min_{x}f(x)+\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda\|}_{2}^{2}\tag 1
+&=\arg\min_{x}\{f(x)+g(y^k)+{\lambda^k}^{T}(Ax+By^{k}-b)+\frac{\beta}{2}{\|Ax+By^{k}-b\|}_{2}^{2}\} \\
+&=\arg\min_{x}f(x)+\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda\|}_{2}^{2}\tag 1
+\end{align}
 $$
 
 However, the
@@ -718,14 +720,25 @@ where $\tau>1$.
 
 Linearly constrained stochastic convex optimization is given by
 $$
-\min_{x,y}\mathbb{E}_{\vartheta}(F(x,\vartheta))+h(y),\\ s.t.Ax+By = b, x\in\mathbb{X}, y\in\mathbb{Y}.
+\min_{x,y}\mathbb{E}_{\vartheta}[F(x,\vartheta)]+h(y),\\ s.t. \, Ax+By = b, x\in\mathbb{X}, y\in\mathbb{Y}.
 $$
-where the expectation $\mathbb{E}_{\vartheta}(F(x,\vartheta))$ is some loss function and ${h}$ is regularizor.
+where the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ is some loss function and ${h}$ is regularizer to prevent from over-fitting.
+
+The first problem is that the distribution of $\vartheta$ is unknown as well as the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ in the objective function.
+
+**Modified Augmented Lagrangian**
+
+Linearize $f(x)$ at $x_k$ and add a proximal term：
+$$
+L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, Ax+By-b\right>+\frac{\beta}{2}{\|Ax+By-b\|}_2^2 \\+\frac{1}{2\eta_k}\|x-x_{k}\|^2
+$$
+
+where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 
 - http://proceedings.mlr.press/v28/ouyang13.pdf
 - https://arxiv.org/abs/1707.03190
 - https://people.eecs.berkeley.edu/~sazadi/icml_2014_presentation.pdf
-- http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf
+- [V-Cycle or Double Sweep ADMM](http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf)
 
 ***
 * http://maths.nju.edu.cn/~hebma/
