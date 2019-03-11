@@ -46,11 +46,11 @@ $$
 
 where $x\in \mathbb{R}^{n}$.
 
-It is obvious
-$$f(x) \approx f(x^k)+(x - x^k)^{T}\nabla f(x^{k}) + \frac{s}{2}{\|x-x^k\|}_2^2$$
+It is not difficult to observe that
+$$f(x) \approx f(x^k)+(x - x^k)^{T}\nabla f(x^{k}) + \frac{s_k}{2}{\|x-x^k\|}_2^2$$
 by Taylor expansion of $f$ near the point $x^{k}$ for some constant $s$.
 
-Let $x^{k+1}=\arg\min_{x} f(x^k)+(x - x^k)^{T}\nabla f(x^{k}) + \frac{s}{2}{\|x-x^k\|}_2^2$,  we will obtain $x^{k+1}=x^{k}-\frac{1}{s}{\nabla}_{x}f(x^k)$.
+Let $x^{k+1}=\arg\min_{x} f(x^k) + (x - x^k)^{T}\nabla f(x^{k}) + \frac{s_k}{2}{\|x-x^k\|}_2^2$,  we will obtain $x^{k+1} = x^{k}-\frac{1}{s_k}{\nabla}_{x} f(x^k)$. However, the constant $s_k$ is difficult to estimate.
 
 And the general gradient descent methods are given by
 
@@ -60,8 +60,11 @@ $$
 
 where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$ so that $f(x^{k+1})=\min_{\alpha} f(x^k - \alpha\nabla_x f(x^k))$.
 
+- http://59.80.44.100/www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf
 
 ![](https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg)
+
+There are many ways to choose some proper step pr learning rate sequence $\{\alpha_k\}$.
 
 ***
 
@@ -83,7 +86,7 @@ $$
 
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
 
-They are called as **inertial gradient methods** or **accelerated gradient methods**.
+They are called as **inertial gradient methods** or **accelerated gradient methods**. [And there are some different forms.](https://jlmelville.github.io/mize/nesterov.html)
 
 |Inventor of Nesterov accelerated Gradient|
 |:---:|
@@ -100,7 +103,6 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf
 * http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf
 * http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf
-* https://smartech.gatech.edu/handle/1853/60525
 * https://zhuanlan.zhihu.com/p/41263068
 * https://zhuanlan.zhihu.com/p/35692553
 * https://zhuanlan.zhihu.com/p/35323828
@@ -108,11 +110,196 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.cs.cmu.edu/~ggordon/10725-F12/slides/09-acceleration.pdf
-* https://arxiv.org/pdf/1805.09077.pdf
 * https://saugatbhattarai.com.np/what-is-gradient-descent-in-machine-learning/
 * https://www.fromthegenesis.com/gradient-descent-part-2/
 * http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/
 
+
+## Variable Metric Methods
+
+### Newton's Method
+
+NEWTON’S METHOD and QUASI-NEWTON METHODS are classified to variable metric methods.
+
+It is also to find the solution of unconstrained optimization problems, i.e.
+$$\min f(x)$$
+where $x\in \mathbb{R}^{n}$. If the objective function is convex,i.e.,
+$$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1]$$
+this optimization is called convex optimization.
+***
+If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
+So if we can find all the solution of the equation system $\nabla f(x) = 0$, it helps us to find the solution to the optimization problem $\arg\min_{x\in\mathbb{R}^n} f(x)$.
+
+**Newton's method** is one of the fixed-point methods to solve nonlinear equation system.
+
+It is given by
+$$
+x^{k+1}=x^{k}-\alpha^{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}
+$$
+where $H^{-1}(x^{k})$ is inverse of the Hessian matrix of the function $f(x)$ at the point $x^{k}$.
+It is called **Newton–Raphson algorithm** in statistics.
+Especially when the log-likelihood function $\ell(\theta)$ is well-behaved,
+a natural candidate for finding the MLE is the **Newton–Raphson algorithm** with quadratic convergence rate.
+
+* http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
+* http://wwwf.imperial.ac.uk/metric/metric_public/numerical_methods/iteration/fixed_point_iteration.html
+* https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
+
+### The Fisher Scoring Algorithm
+
+In maximum likelihood estimation, the objective function is the log-likelihood function, i.e.
+$$
+\ell(\theta)=\sum_{i=1}^{n}\log{P(x_i|\theta)}
+$$
+where $P(x_i|\theta)$ is the probability of realization $X_i=x_i$ with the unknown parameter $\theta$.
+However, when the sample random variable $\{X_i\}_{i=1}^{n}$ are not observed or realized, it is best to
+replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$)
+of the likelihood function with the  **observed information matrix**:
+$$
+J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})
+=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
+$$
+where $f(x_1, \cdots, x_n|\theta)$ is the joint probability density function of  $X_1, \cdots, X_n$ with unknown parameter $\theta$.
+
+And the **Fisher scoring algorithm** is given by
+$$
+\theta^{k+1}=\theta^{k}+\alpha_{k}J^{-1}(\theta^{k})\nabla_{\theta} \ell(\theta^{k})
+$$
+where $J^{-1}(\theta^{k})$ is the inverse of observed information matrix at the point $\theta^{k}$.
+
+See <http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/scoring.pdf> or <https://wiseodd.github.io/techblog/2018/03/11/fisher-information/>.
+
+**Fisher scoring algorithm** is regarded  as an example of **Natural Gradient Descent** in
+information geometry as shown in <https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/>
+and <https://www.zhihu.com/question/266846405>.
+
+### Quasi-Newton Methods
+
+Quasi-Newton methods, like steepest descent, require only the gradient of the objective
+function to be supplied at each iterate.
+By measuring the changes in gradients, they construct a model of the objective function
+that is good enough to produce superlinear convergence.
+The improvement over steepest descent is dramatic, especially on difficult
+problems. Moreover, since second derivatives are not required, quasi-Newton methods are
+sometimes more efficient than Newton’s method.[^11]
+
+In optimization, quasi-Newton methods (a special case of **variable-metric methods**) are algorithms for finding local maxima and minima of functions. Quasi-Newton methods are based on Newton's method to find the stationary point of a function, where the gradient is 0.
+In quasi-Newton methods the Hessian matrix does not need to be computed. The Hessian is updated by analyzing successive gradient vectors instead. Quasi-Newton methods are a generalization of the secant method to find the root of the first derivative for multidimensional problems.
+In multiple dimensions the secant equation is under-determined, and quasi-Newton methods differ in how they constrain the solution, typically by adding a simple low-rank update to the current estimate of the Hessian.
+One of the chief advantages of quasi-Newton methods over Newton's method is that the Hessian matrix (or, in the case of quasi-Newton methods, its approximation) $\mathbf{B}$ does not need to be inverted. The Hessian approximation $\mathbf{B}$ is chosen to satisfy
+$$
+\nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),
+$$
+which is called the **secant equation** (the Taylor series of the gradient itself).
+In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method).
+The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
+
+For example,
+
+|Method|$\displaystyle B_{k+1}=$| $H_{k+1}=B_{k+1}^{-1}=$|
+|---|---|---|
+|DFP|$(I-\frac{y_k \Delta x_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) B_k (I-\frac{ \Delta x_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}} \Delta x_k$|$H_k +\frac{\Delta x_k \Delta x_k^T}{\Delta x_k^T y_k} -\frac{H_k y_ky_k^T H_k}{y_K^T H_K y_k}$|
+|BFGS|$B_k + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}\Delta x_k} - \frac{B_k\Delta x_k(B_k\Delta x_k)^T}{\Delta x_k B_k \Delta x_k}$|$(I-\frac{ \Delta x_k^{\mathrm{T}} y_k}{ y_k^{\mathrm{T}} \Delta x_k}) H_k (I-\frac{y_k \Delta x_k^{\mathrm{T}}}{ y_k^{\mathrm{T}} \Delta x_k}) + \frac{\Delta x_k \Delta x_k^T}{y_k^T \Delta x_k}$|
+|SR1|$B_{k} + \frac{(y_{k} - B_{k}\,\Delta x_{k} )(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T}} }{(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T} }\,\Delta x_{k}}$|	$H_{k} + \frac{(\Delta x_{k}-H_{k}y_{k}) (\Delta x_{k}  -H_{k} y_{k})^{\mathrm{T}} }{(\Delta x_{k}-H_{k}y_{k})^{\mathrm {T} }y_{k}}$|
+
+![BFGS](http://aria42.com/images/bfgs.png)
+***
+
+* [Wikipedia page](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
+* [Newton-Raphson Visualization (1D)](http://bl.ocks.org/dannyko/ffe9653768cb80dfc0da)
+* [Newton-Raphson Visualization (2D)](http://bl.ocks.org/dannyko/0956c361a6ce22362867)
+* [Newton's method](https://www.wikiwand.com/en/Newton%27s_method)
+* [Quasi-Newton method](https://www.wikiwand.com/en/Quasi-Newton_method)
+* [Using Gradient Descent for Optimization and Learning](http://www.gatsby.ucl.ac.uk/teaching/courses/ml2-2008/graddescent.pdf)
+* http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
+* https://core.ac.uk/download/pdf/82136573.pdf
+* http://59.80.44.98/www.seas.ucla.edu/~vandenbe/236C/lectures/qnewton.pdf
+
+
+### Natural Gradient Descent
+
+Natural gradient descent is to solve the optimization problem $\min_{\theta} L(\theta)$ by
+$$
+\theta^{(t+1)}=\theta^{(t+1)}-\alpha_{(t)}F^{-1}(\theta^{(t)})\nabla_{\theta}L(\theta^{(t)})
+$$
+where $F^{-1}(\theta^{(t)})$ is the inverse of `Remiann metric` at the point $\theta^{(t)}$.
+And **Fisher scoring** algorithm is a typical application of **Natural Gradient Descent** to statistics.  
+**Natural gradient descent** for manifolds corresponding to
+exponential families can be implemented as a first-order method through **mirror descent** (https://www.stat.wisc.edu/~raskutti/publication/MirrorDescent.pdf).
+
+| Originator of Information Geometry |
+|:----:|
+|![Shun-ichi Amari](https://groups.oist.jp/sites/default/files/imce/u34/images/people/shun-ichi-amari.jpg)|
+
+* http://www.yann-ollivier.org/rech/publs/natkal.pdf
+* http://www.dianacai.com/blog/2018/02/16/natural-gradients-mirror-descent/
+* https://www.zhihu.com/question/266846405
+* http://bicmr.pku.edu.cn/~dongbin/Conferences/Mini-Course-IG/index.html
+* http://ipvs.informatik.uni-stuttgart.de/mlr/wp-content/uploads/2015/01/mathematics_for_intelligent_systems_lecture12_notes_I.pdf
+* http://www.luigimalago.it/tutorials/algebraicstatistics2015tutorial.pdf
+* http://www.yann-ollivier.org/rech/publs/tango.pdf
+* http://www.brain.riken.jp/asset/img/researchers/cv/s_amari.pdf
+* https://people.cs.umass.edu/~pthomas/papers/Thomas2016b_ICML.pdf
+* https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf
+* http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
+
+## Expectation Maximization Algorithm
+
+**Expectation-Maximization algorithm**, popularly known as the  **EM algorithm** has become a standard piece in the statistician’s repertoire.
+It is used in incomplete-data problems or latent-variable problems such as Gaussian mixture model in maximum likelihood  estimation.
+The basic principle behind the **EM** is that instead of performing a complicated optimization,
+one augments the observed data with latent data to perform a series of simple optimizations.
+
+Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta|Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$。
+We augment the observed data $Y_{obs}$ with latent variables $Z$ so that both the
+complete-data log-likelihood $\ell(\theta|Y_{obs}, Z)$ and the conditional predictive distribution $f(z|Y_{obs}, \theta)$ are available.
+Each iteration of the **EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
+Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
+is to compute the **Q** function defined by
+$$
+\begin{align}
+Q(\theta|\theta^{(t)})
+        &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
+        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
+\end{align}
+$$
+
+and the M-step is to maximize **Q** with respect to $\theta$ to obtain
+
+$$
+\theta^{(t+1)}=\arg\max_{\theta} Q(\theta|\theta^{(t)}).
+$$
+
+* https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
+* http://cs229.stanford.edu/notes/cs229-notes8.pdf
+* https://www2.stat.duke.edu/courses/Spring06/sta376/Support/EM/EM.Mixtures.Figueiredo.2004.pdf
+* [EM算法存在的意义是什么？ - 史博的回答 - 知乎](https://www.zhihu.com/question/40797593/answer/275171156)
+
+|Diagram of EM algorithm|
+|:---------------------:|
+|![](https://i.stack.imgur.com/v5bqe.png)|
+
+### Generalized EM Algorithm
+
+Each iteration of the **generalized EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
+Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
+is to compute the **Q** function defined by
+$$
+Q(\theta|\theta^{(t)})
+        = \mathbb{E}[ \ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)} ] \\
+        = \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
+$$
+and the another step is to find  $\theta$ that satisfies $Q(\theta^{t+1}|\theta^{t})>Q(\theta^{t}|\theta^{t})$, i.e.
+$$
+\theta^{(t+1)}\in \{\hat{\theta}|Q(\hat{\theta}|\theta^{(t)} \geq Q(\theta|\theta^{(t)}) \}.
+$$
+
+It is not to maximize the conditional expectation.
+
+See more on the book [The EM Algorithm and Extensions, 2nd Edition
+by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
+
+* https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 ## Projected Gradient Method
 
 It is often called **mirror descent**.
@@ -282,7 +469,7 @@ $$
  \end{cases}
 $$
 
-How we can generalize this form into the proximal form?
+How we can generalize this form into the proximal form? And what  is the difference with the original addition proximal operator?
 
 And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
 $$
@@ -297,191 +484,6 @@ which is called as `Bregman proximal gradient` method.
 * https://arxiv.org/abs/1808.03045
 * https://arxiv.org/abs/1812.10198
 
-
-## Variable Metric Methods
-
-### Newton's Method
-
-NEWTON’S METHOD and QUASI-NEWTON METHODS are classified to variable metric methods.
-
-It is also to find the solution of unconstrained optimization problems, i.e.
-$$\min f(x)$$
-where $x\in \mathbb{R}^{n}$. If the objective function is convex,i.e.,
-$$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1]$$
-this optimization is called convex optimization.
-***
-If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
-So if we can find all the solution of the equation system $\nabla f(x) = 0$, it helps us to find the solution to the optimization problem $\arg\min_{x\in\mathbb{R}^n} f(x)$.
-
-**Newton's method** is one of the fixed-point methods to solve nonlinear equation system.
-
-It is given by
-$$
-x^{k+1}=x^{k}-\alpha^{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}
-$$
-where $H^{-1}(x^{k})$ is inverse of the Hessian matrix of the function $f(x)$ at the point $x^{k}$.
-It is called **Newton–Raphson algorithm** in statistics.
-Especially when the log-likelihood function $\ell(\theta)$ is well-behaved,
-a natural candidate for finding the MLE is the **Newton–Raphson algorithm** with quadratic convergence rate.
-
-* http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
-* http://wwwf.imperial.ac.uk/metric/metric_public/numerical_methods/iteration/fixed_point_iteration.html
-* https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
-
-### The Fisher Scoring Algorithm
-
-In maximum likelihood estimation, the objective function is the log-likelihood function, i.e.
-$$
-\ell(\theta)=\sum_{i=1}^{n}\log{P(x_i|\theta)}
-$$
-where $P(x_i|\theta)$ is the probability of realization $X_i=x_i$ with the unknown parameter $\theta$.
-However, when the sample random variable $\{X_i\}_{i=1}^{n}$ are not observed or realized, it is best to
-replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$)
-of the likelihood function with the  **observed information matrix**:
-$$
-J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})
-=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
-$$
-where $f(x_1, \cdots, x_n|\theta)$ is the joint probability density function of  $X_1, \cdots, X_n$ with unknown parameter $\theta$.
-
-And the **Fisher scoring algorithm** is given by
-$$
-\theta^{k+1}=\theta^{k}+\alpha_{k}J^{-1}(\theta^{k})\nabla_{\theta} \ell(\theta^{k})
-$$
-where $J^{-1}(\theta^{k})$ is the inverse of observed information matrix at the point $\theta^{k}$.
-
-See <http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/scoring.pdf> or <https://wiseodd.github.io/techblog/2018/03/11/fisher-information/>.
-
-**Fisher scoring algorithm** is regarded  as an example of **Natural Gradient Descent** in
-information geometry as shown in <https://wiseodd.github.io/techblog/2018/03/14/natural-gradient/>
-and <https://www.zhihu.com/question/266846405>.
-
-### Quasi-Newton Methods
-
-Quasi-Newton methods, like steepest descent, require only the gradient of the objective
-function to be supplied at each iterate.
-By measuring the changes in gradients, they construct a model of the objective function
-that is good enough to produce superlinear convergence.
-The improvement over steepest descent is dramatic, especially on difficult
-problems. Moreover, since second derivatives are not required, quasi-Newton methods are
-sometimes more efficient than Newton’s method.[^11]
-
-In optimization, quasi-Newton methods (a special case of **variable-metric methods**) are algorithms for finding local maxima and minima of functions. Quasi-Newton methods are based on Newton's method to find the stationary point of a function, where the gradient is 0.
-In quasi-Newton methods the Hessian matrix does not need to be computed. The Hessian is updated by analyzing successive gradient vectors instead. Quasi-Newton methods are a generalization of the secant method to find the root of the first derivative for multidimensional problems.
-In multiple dimensions the secant equation is under-determined, and quasi-Newton methods differ in how they constrain the solution, typically by adding a simple low-rank update to the current estimate of the Hessian.
-One of the chief advantages of quasi-Newton methods over Newton's method is that the Hessian matrix (or, in the case of quasi-Newton methods, its approximation) $\mathbf{B}$ does not need to be inverted. The Hessian approximation $\mathbf{B}$ is chosen to satisfy
-$$
-\nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),
-$$
-which is called the **secant equation** (the Taylor series of the gradient itself).
-In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method).
-The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
-
-For example,
-
-|Method|$\displaystyle B_{k+1}=$| $H_{k+1}=B_{k+1}^{-1}=$|
-|---|---|---|
-|DFP|$(I-\frac{y_k \Delta x_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) B_k (I-\frac{ \Delta x_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}} \Delta x_k}) + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}} \Delta x_k$|$H_k +\frac{\Delta x_k \Delta x_k^T}{\Delta x_k^T y_k} -\frac{H_k y_ky_k^T H_k}{y_K^T H_K y_k}$|
-|BFGS|$B_k + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}\Delta x_k} - \frac{B_k\Delta x_k(B_k\Delta x_k)^T}{\Delta x_k B_k \Delta x_k}$|$(I-\frac{ \Delta x_k^{\mathrm{T}} y_k}{ y_k^{\mathrm{T}} \Delta x_k}) H_k (I-\frac{y_k \Delta x_k^{\mathrm{T}}}{ y_k^{\mathrm{T}} \Delta x_k}) + \frac{\Delta x_k \Delta x_k^T}{y_k^T \Delta x_k}$|
-|SR1|$B_{k} + \frac{(y_{k} - B_{k}\,\Delta x_{k} )(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T}} }{(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T} }\,\Delta x_{k}}$|	$H_{k} + \frac{(\Delta x_{k}-H_{k}y_{k}) (\Delta x_{k}  -H_{k} y_{k})^{\mathrm{T}} }{(\Delta x_{k}-H_{k}y_{k})^{\mathrm {T} }y_{k}}$|
-
-![BFGS](http://aria42.com/images/bfgs.png)
-***
-
-* [Wikipedia page](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
-* [Newton-Raphson Visualization (1D)](http://bl.ocks.org/dannyko/ffe9653768cb80dfc0da)
-* [Newton-Raphson Visualization (2D)](http://bl.ocks.org/dannyko/0956c361a6ce22362867)
-* [Newton's method](https://www.wikiwand.com/en/Newton%27s_method)
-* [Quasi-Newton method](https://www.wikiwand.com/en/Quasi-Newton_method)
-* [Using Gradient Descent for Optimization and Learning](http://www.gatsby.ucl.ac.uk/teaching/courses/ml2-2008/graddescent.pdf)
-* http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
-* https://core.ac.uk/download/pdf/82136573.pdf
-
-
-### Natural Gradient Descent
-
-Natural gradient descent is to solve the optimization problem $\min_{\theta} L(\theta)$ by
-$$
-\theta^{(t+1)}=\theta^{(t+1)}-\alpha_{(t)}F^{-1}(\theta^{(t)})\nabla_{\theta}L(\theta^{(t)})
-$$
-where $F^{-1}(\theta^{(t)})$ is the inverse of `Remiann metric` at the point $\theta^{(t)}$.
-And **Fisher scoring** algorithm is a typical application of **Natural Gradient Descent** to statistics.  
-**Natural gradient descent** for manifolds corresponding to
-exponential families can be implemented as a first-order method through **mirror descent** (https://www.stat.wisc.edu/~raskutti/publication/MirrorDescent.pdf).
-
-| Originator of Information Geometry |
-|:----:|
-|![Shun-ichi Amari](https://groups.oist.jp/sites/default/files/imce/u34/images/people/shun-ichi-amari.jpg)|
-
-* http://www.yann-ollivier.org/rech/publs/natkal.pdf
-* http://www.dianacai.com/blog/2018/02/16/natural-gradients-mirror-descent/
-* https://www.zhihu.com/question/266846405
-* http://bicmr.pku.edu.cn/~dongbin/Conferences/Mini-Course-IG/index.html
-* http://ipvs.informatik.uni-stuttgart.de/mlr/wp-content/uploads/2015/01/mathematics_for_intelligent_systems_lecture12_notes_I.pdf
-* http://www.luigimalago.it/tutorials/algebraicstatistics2015tutorial.pdf
-* http://www.yann-ollivier.org/rech/publs/tango.pdf
-* http://www.brain.riken.jp/asset/img/researchers/cv/s_amari.pdf
-* https://people.cs.umass.edu/~pthomas/papers/Thomas2016b_ICML.pdf
-* https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf
-* http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
-
-## Expectation Maximization Algorithm
-
-**Expectation-Maximization algorithm**, popularly known as the  **EM algorithm** has become a standard piece in the statistician’s repertoire.
-It is used in incomplete-data problems or latent-variable problems such as Gaussian mixture model in maximum likelihood  estimation.
-The basic principle behind the **EM** is that instead of performing a complicated optimization,
-one augments the observed data with latent data to perform a series of simple optimizations.
-
-Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta|Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$。
-We augment the observed data $Y_{obs}$ with latent variables $Z$ so that both the
-complete-data log-likelihood $\ell(\theta|Y_{obs}, Z)$ and the conditional predictive distribution $f(z|Y_{obs}, \theta)$ are available.
-Each iteration of the **EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
-Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
-is to compute the **Q** function defined by
-$$
-\begin{align}
-Q(\theta|\theta^{(t)})
-        &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
-        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
-\end{align}
-$$
-
-and the M-step is to maximize **Q** with respect to $\theta$ to obtain
-
-$$
-\theta^{(t+1)}=\arg\max_{\theta} Q(\theta|\theta^{(t)}).
-$$
-
-* https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
-* http://cs229.stanford.edu/notes/cs229-notes8.pdf
-* https://www2.stat.duke.edu/courses/Spring06/sta376/Support/EM/EM.Mixtures.Figueiredo.2004.pdf
-* [EM算法存在的意义是什么？ - 史博的回答 - 知乎](https://www.zhihu.com/question/40797593/answer/275171156)
-
-|Diagram of EM algorithm|
-|:---------------------:|
-|![](https://i.stack.imgur.com/v5bqe.png)|
-
-### Generalized EM Algorithm
-
-Each iteration of the **generalized EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
-Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
-is to compute the **Q** function defined by
-$$
-Q(\theta|\theta^{(t)})
-        = \mathbb{E}[ \ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)} ] \\
-        = \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
-$$
-and the another step is to find  $\theta$ that satisfies $Q(\theta^{t+1}|\theta^{t})>Q(\theta^{t}|\theta^{t})$, i.e.
-$$
-\theta^{(t+1)}\in \{\hat{\theta}|Q(\hat{\theta}|\theta^{(t)} \geq Q(\theta|\theta^{(t)}) \}.
-$$
-
-It is not to maximize the conditional expectation.
-
-See more on the book [The EM Algorithm and Extensions, 2nd Edition
-by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
-
-* https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 
 ## Lagrange Multipliers and Duality
 
@@ -653,12 +655,13 @@ $$
 
 We defined its augmented Lagrangian multipliers as
 $$
-L_{\beta}^{n}(x_1,x_2,\cdots,x_n\mid \lambda)=\sum_{i=1}^{n}f_i(x_i) -\lambda^T(\sum_{i=1}^{n}A_i x_i - b)+\frac{\beta}{2}{\|\sum_{i=1}^{n}A_i x_i - b\|}_{2}^{2}.
+L_{\beta}^{n}(x_1,x_2,\cdots,x_n\mid \lambda)=\sum_{i=1}^{n}f_i(x_i) -\lambda^T(\sum_{i=1}^{n}A_i x_i - b)+\frac{\beta}{2}{\|\sum_{i=1}^{n}A_i x_i - b\|}_2^2.
 $$
 
 Particularly, we firstly consider the case when $n=3$:
 $$
-L_{\beta}^{3}(x,y,z\mid \lambda)=f_1(x) + f_2(y) + f_3(z)-\lambda^T(A_1 x + A_2 y + A_3 z - b)+\frac{\beta}{2}{\|A_1 x + A_2 y + A_3 z - b\|}_2^2.
+L_{\beta}^{3}(x,y,z\mid \lambda)=f_1(x) + f_2(y) + f_3(z)-\lambda^T(A_1 x + A_2 y + A_3 z - b)
+\\+\frac{\beta}{2}{\|A_1 x + A_2 y + A_3 z - b\|}_2^2.
 $$
 
 [It is natural and computationally beneficial to extend the original ADMM directly to solve the general n-block problem](https://web.stanford.edu/~yyye/MORfinal.pdf).
@@ -715,6 +718,7 @@ is the Lagrangian rather than  augmented Lagrangian.
 - http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_operator_splitting_ICCM16.pdf
 
 ****
+
 `Randomly Permuted ADMM` given initial values at round $k$ is described as follows:
 
 1. Primal update:
@@ -750,6 +754,10 @@ L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, A
 $$
 
 where $g_k$ is  a stochastic (sub)gradient of ${f}$.
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}^{k}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}^{k}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 - [Stochastic ADMM](http://proceedings.mlr.press/v28/ouyang13.pdf)
 - [Accelerated Variance Reduced Stochastic ADMM](https://arxiv.org/abs/1707.03190)
@@ -959,13 +967,10 @@ Thus $\lim_{\|x-y\|\to 0}\frac{\|F(x)-F(y)\|}{\|x-y\|}\leq \alpha\in[0,1)$.
 Now we consider the necessary condition of unconstrainted optimization problems:
 
 $$
-\nabla f(x) = 0
-\Rightarrow x - \alpha\nabla f(x) = x \\
-\Rightarrow H(x)x- \alpha\nabla f(x) = H(x)x
+\nabla f(x) = 0 \Rightarrow x - \alpha\nabla f(x) = x \\
+\nabla f(x) = 0\Rightarrow H(x)x- \alpha\nabla f(x) = H(x)x
 \Rightarrow x - \alpha H(x)^{-1} \nabla f(x) = x \\
-\nabla f(x) = 0
-\Rightarrow M(x)\nabla f(x) = 0
-\Rightarrow x -\alpha M(x)\nabla f(x) = x
+\nabla f(x) = 0 \Rightarrow M(x)\nabla f(x) = 0 \Rightarrow x -\alpha M(x)\nabla f(x) = x
 $$
 
 where $H(x)$ is the lambda-matrix.
