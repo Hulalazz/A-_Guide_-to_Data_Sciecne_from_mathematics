@@ -156,8 +156,8 @@ However, when the sample random variable $\{X_i\}_{i=1}^{n}$ are not observed or
 replace negative Hessian matrix (i.e. -$\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}$)
 of the likelihood function with the  **observed information matrix**:
 $$
-J(\theta)=\mathbb{E}(\color{red}{\text{-}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})
-=\color{red}{-}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
+J(\theta)=\mathbb{E}({\color{red}{-1}}\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}})
+=\text{$\color{red}{-}$}\int\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^{T}}f(x_1, \cdots, x_n|\theta)\mathrm{d}x_1\cdots\mathrm{d}x_n
 $$
 where $f(x_1, \cdots, x_n|\theta)$ is the joint probability density function of  $X_1, \cdots, X_n$ with unknown parameter $\theta$.
 
@@ -194,6 +194,15 @@ which is called the **secant equation** (the Taylor series of the gradient itsel
 In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method).
 The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
 
+The unknown $x_{k}$ is updated applying the Newton's step calculated using the current approximate Hessian matrix $B_{k}$:
+
+1. ${\displaystyle \Delta x_{k}=-\alpha _{k}B_{k}^{-1}\nabla f(x_{k})}$, with $\alpha$  chosen to satisfy the Wolfe conditions;
+2. $x_{k+1}=x_{k}+\Delta x_{k}$;
+3. The gradient computed at the new point $\nabla f(x_{k+1})$, and
+$y_{k}=\nabla f(x_{k+1})-\nabla f(x_{k})$is used to update the approximate Hessian $B_{k+1}$, or directly its inverse $H_{k+1} = B_{k+1}^{-1}$ using the Sherman–Morrison formula.
+
+A key property of the BFGS and DFP updates is that if $B_{k}$ is positive-definite, and $\alpha _{k}$ is chosen to satisfy the Wolfe conditions, then $B_{k+1}$ is also positive-definite.
+
 For example,
 
 |Method|$\displaystyle B_{k+1}=$| $H_{k+1}=B_{k+1}^{-1}=$|
@@ -203,17 +212,49 @@ For example,
 |SR1|$B_{k} + \frac{(y_{k} - B_{k}\,\Delta x_{k} )(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T}} }{(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T} }\,\Delta x_{k}}$|	$H_{k} + \frac{(\Delta x_{k}-H_{k}y_{k}) (\Delta x_{k}  -H_{k} y_{k})^{\mathrm{T}} }{(\Delta x_{k}-H_{k}y_{k})^{\mathrm {T} }y_{k}}$|
 
 ![BFGS](http://aria42.com/images/bfgs.png)
+
+* [Quasi-Newton methods in Wikipedia page](https://www.wikiwand.com/en/Quasi-Newton_method)
+* http://59.80.44.98/www.seas.ucla.edu/~vandenbe/236C/lectures/qnewton.pdf
+* http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
+
+**The Barzilai-Borwein method**
+
+Consider the gradient iteration form
+$$x^{k+1}=x^{k}-\alpha_k \nabla f(x^k)$$
+
+which can be written as
+$$x^{k+1}=x^{k}- D_k \nabla f(x^k)$$
+where $D_k = \alpha_k I$.
+In order to make the matrix $D_k$ have quasi-Newton property, we compute $\alpha_k$ such that
+$$\min \|s_{k-1}-D_k y_{k-1}\|$$
+which yields 
+
+$$\alpha_k =\frac{\left<s_{k-1},y_{k-1}\right>}{\left<y_{k-1},y_{k-1}\right>}\tag 1$$
+
+where $s_{k-1}= x_k-x_{k-1}, y_{k-1}=\nabla f(x^k)-\nabla f(x^{k-1})$.
+
+By symmetry, we may minimize $\|D_k^{-1}s_{k-1}- y_{k-1}\|$ with respect to $\alpha_k$ and get
+
+$$\alpha_k =\frac{\left<s_{k-1},s_{k-1}\right>}{\left<s_{k-1},y_{k-1}\right>}.\tag 2$$
+
+In short, the iteration formula of Barzilai-Borwein method is given by 
+
+$$x^{k+1}=x^{k}-\alpha_k\nabla f(x^k)$$
+where $\alpha_k$ is determined by (1) or (2).
+
+It is easy to see that in this method no matrix computations and no line searches (except $k = 0$) are required.
+
+- https://mp.weixin.qq.com/s/G9HH29b2-VBnk_Sqze8pDg
+- http://www.math.ucla.edu/~wotaoyin/math273a/slides/Lec4a_Baizilai_Borwein_method_273a_2015_f.pdf
+- http://bicmr.pku.edu.cn/~wenzw/courses/WenyuSun_YaxiangYuan_BB.pdf
+- https://www.math.lsu.edu/~hozhang/papers/cbb.pdf
 ***
 
-* [Wikipedia page](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
+* [Wikipedia page on Newton Method](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
 * [Newton-Raphson Visualization (1D)](http://bl.ocks.org/dannyko/ffe9653768cb80dfc0da)
 * [Newton-Raphson Visualization (2D)](http://bl.ocks.org/dannyko/0956c361a6ce22362867)
-* [Newton's method](https://www.wikiwand.com/en/Newton%27s_method)
-* [Quasi-Newton method](https://www.wikiwand.com/en/Quasi-Newton_method)
 * [Using Gradient Descent for Optimization and Learning](http://www.gatsby.ucl.ac.uk/teaching/courses/ml2-2008/graddescent.pdf)
-* http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
-* https://core.ac.uk/download/pdf/82136573.pdf
-* http://59.80.44.98/www.seas.ucla.edu/~vandenbe/236C/lectures/qnewton.pdf
+
 
 
 ### Natural Gradient Descent
