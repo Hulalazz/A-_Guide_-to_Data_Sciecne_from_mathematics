@@ -66,6 +66,11 @@ where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< 
 
 There are many ways to choose some proper step pr learning rate sequence $\{\alpha_k\}$.
 
+The proof of convergence  or complexity is often based  on the convex case where the objective function is convex, i.e.,
+$$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1].$$
+
+And this optimization is called convex optimization.
+
 ***
 
 Some variants of gradient descent methods are not line search method.
@@ -123,9 +128,7 @@ NEWTON’S METHOD and QUASI-NEWTON METHODS are classified to variable metric met
 
 It is also to find the solution of unconstrained optimization problems, i.e.
 $$\min f(x)$$
-where $x\in \mathbb{R}^{n}$. If the objective function is convex,i.e.,
-$$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1]$$
-this optimization is called convex optimization.
+where $x\in \mathbb{R}^{n}$.
 ***
 If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
 So if we can find all the solution of the equation system $\nabla f(x) = 0$, it helps us to find the solution to the optimization problem $\arg\min_{x\in\mathbb{R}^n} f(x)$.
@@ -141,9 +144,7 @@ It is called **Newton–Raphson algorithm** in statistics.
 Especially when the log-likelihood function $\ell(\theta)$ is well-behaved,
 a natural candidate for finding the MLE is the **Newton–Raphson algorithm** with quadratic convergence rate.
 
-* http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
-* http://wwwf.imperial.ac.uk/metric/metric_public/numerical_methods/iteration/fixed_point_iteration.html
-* https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
+
 
 ### The Fisher Scoring Algorithm
 
@@ -199,9 +200,9 @@ The unknown $x_{k}$ is updated applying the Newton's step calculated using the c
 1. ${\displaystyle \Delta x_{k}=-\alpha _{k}B_{k}^{-1}\nabla f(x_{k})}$, with $\alpha$  chosen to satisfy the Wolfe conditions;
 2. $x_{k+1}=x_{k}+\Delta x_{k}$;
 3. The gradient computed at the new point $\nabla f(x_{k+1})$, and
-$y_{k}=\nabla f(x_{k+1})-\nabla f(x_{k})$is used to update the approximate Hessian $B_{k+1}$, or directly its inverse $H_{k+1} = B_{k+1}^{-1}$ using the Sherman–Morrison formula.
+$y_{k}=\nabla f(x_{k+1})-\nabla f(x_{k})$ is used to update the approximate Hessian $B_{k+1}$, or directly its inverse $H_{k+1} = B_{k+1}^{-1}$ using the Sherman–Morrison formula.
 
-A key property of the BFGS and DFP updates is that if $B_{k}$ is positive-definite, and $\alpha _{k}$ is chosen to satisfy the Wolfe conditions, then $B_{k+1}$ is also positive-definite.
+A key property of the BFGS and DFP updates is that if $B_{k}$ is positive-definite, and ${\alpha}_{k}$ is chosen to satisfy the Wolfe conditions, then $B_{k+1}$ is also positive-definite.
 
 For example,
 
@@ -227,7 +228,7 @@ $$x^{k+1}=x^{k}- D_k \nabla f(x^k)$$
 where $D_k = \alpha_k I$.
 In order to make the matrix $D_k$ have quasi-Newton property, we compute $\alpha_k$ such that
 $$\min \|s_{k-1}-D_k y_{k-1}\|$$
-which yields 
+which yields
 
 $$\alpha_k =\frac{\left<s_{k-1},y_{k-1}\right>}{\left<y_{k-1},y_{k-1}\right>}\tag 1$$
 
@@ -237,7 +238,7 @@ By symmetry, we may minimize $\|D_k^{-1}s_{k-1}- y_{k-1}\|$ with respect to $\al
 
 $$\alpha_k =\frac{\left<s_{k-1},s_{k-1}\right>}{\left<s_{k-1},y_{k-1}\right>}.\tag 2$$
 
-In short, the iteration formula of Barzilai-Borwein method is given by 
+In short, the iteration formula of Barzilai-Borwein method is given by
 
 $$x^{k+1}=x^{k}-\alpha_k\nabla f(x^k)$$
 where $\alpha_k$ is determined by (1) or (2).
@@ -245,7 +246,7 @@ where $\alpha_k$ is determined by (1) or (2).
 It is easy to see that in this method no matrix computations and no line searches (except $k = 0$) are required.
 
 - https://mp.weixin.qq.com/s/G9HH29b2-VBnk_Sqze8pDg
-- http://www.math.ucla.edu/~wotaoyin/math273a/slides/Lec4a_Baizilai_Borwein_method_273a_2015_f.pdf
+- http://www.math.ucla.edu/~wotaoyin/math273a/slides/
 - http://bicmr.pku.edu.cn/~wenzw/courses/WenyuSun_YaxiangYuan_BB.pdf
 - https://www.math.lsu.edu/~hozhang/papers/cbb.pdf
 ***
@@ -290,6 +291,8 @@ exponential families can be implemented as a first-order method through **mirror
 It is used in incomplete-data problems or latent-variable problems such as Gaussian mixture model in maximum likelihood  estimation.
 The basic principle behind the **EM** is that instead of performing a complicated optimization,
 one augments the observed data with latent data to perform a series of simple optimizations.
+
+It is really popular for Bayesian statistician.
 
 Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta|Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$。
 We augment the observed data $Y_{obs}$ with latent variables $Z$ so that both the
@@ -340,11 +343,17 @@ It is not to maximize the conditional expectation.
 See more on the book [The EM Algorithm and Extensions, 2nd Edition
 by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
 
-* https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
-## Projected Gradient Method
+![projection EM](https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg)
 
-It is often called **mirror descent**.
-It can be regarded as non-Euclidean generalization of **projected gradient descent** to solve some constrained optimization problems.
+* https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
+
+**Qudratic Loweer Bound**
+
+- http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
+
+## Projected Gradient Method and More
+
+We will focus on  **projected gradient descent** and its some non-Euclidean generalization in order to solve some simply constrained optimization problems.
 
 If not specified, all these methods are aimed to solve convex optimization problem with explicit constraints, i.e.
 $$
@@ -354,6 +363,8 @@ $$
 where $f,\mathbb{S}\subset\mathbb{R}^n$ are convex.
 The optimal condition for this constrained optimization problem is that the feasible direction is not the descent or profitable direction: if $x^{\star}\in\mathbb{S}$ is the solution to the problem, we can  assert that `variational inequality` holds:
 $$\forall x \in \mathbb{S}, \left<\nabla f(x^{\star}),x-x^{\star} \right> \geq 0.$$
+
+And it is the optimal condition of constrained optimization problem.
 
 ### Projected Gradient Descent
 
@@ -392,7 +403,7 @@ $$
  B_h(x,y) = h(x) - h(y)-\left<\nabla h(y),x-y\right>
 $$
 
-where $\left<\cdot,\cdot\right>$ is inner product.
+where $\left<\cdot,\cdot\right>$ is inner product and it also denoted as $D_h$.
 
 It is convex in $x$ and  $\frac{\partial B_h(x, y)}{\partial x} = \nabla h(x) - \nabla h(y)$.
 
@@ -439,7 +450,13 @@ $$
 $$
 where the convex function ${h}$ induces the Bregman divergence.
 
-One special method is called **entropic mirror descent(multiplicative weight)** when $f=e^x$ and $\mathbb{S}$ is simplex.
+One special method is called `entropic mirror descent(multiplicative weight)` when the Bregman divergence induced by  $e^x$ and  the constraint set $\mathbb{S}\subset\mathbb{R}^n$ is simplex, i.e. $\sum_{i=1}^{n}x_i =1, \forall x_i \geq 0$.
+
+**Entropic mirror descent(multiplicative weight)** at step ${k}$ is given as follows:
+
+$$
+{x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla f(x^k))}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla f(x^k))}}, i=1,2,\dots, n.
+$$
 
 See more on the following link list.
 
@@ -451,6 +468,7 @@ See more on the following link list.
 * http://www.princeton.edu/~yc5/ele538_optimization/lectures/mirror_descent.pdf
 * http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf
 * https://tlienart.github.io/pub/csml/cvxopt/mda.html
+* https://web.stanford.edu/class/cs229t/2017/Lectures/mirror-descent.pdf
 
 ### Proximal Gradient Method
 
@@ -489,11 +507,24 @@ h(x)=\delta_C(x)=
  \end{cases}
 $$
 
+And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
+$$
+\arg\min_{u}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}\to \arg\min_{u}\{h(u)+ B(x,u)\}.
+$$
+so that the primary proximal gradient methods are modified to the Bregman version,
+which is called as `Bregman proximal gradient` method.
+
+* http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf
+* https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf
+* https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
+* https://arxiv.org/abs/1808.03045
+* https://arxiv.org/abs/1812.10198
+
+***
 $\color{aqua}{Note}$: the projection from a point $x^0$ into a subset $C\subset\mathbb{R}^n$ is defined in proximal operator as
 
 $$
-=\arg\min_{x}\{\delta_C(x)+\frac{1}{2}{\|x-x^0\|}_2^2\}
-\\=\arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
+x^+ =\arg\min_{x}\{\delta_C(x)+\frac{1}{2}{\|x-x^0\|}_2^2\}
 $$
 
 while it can also written in the following form:
@@ -509,22 +540,25 @@ $$
    0, & \text{otherwise}.
  \end{cases}
 $$
-
 How we can generalize this form into the proximal form? And what  is the difference with the original addition proximal operator?
 
-And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
+If $x^0$ is in the set ${C}$, the projection can be rewritten in proximal operator:
 $$
-\arg\min_{u}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}\to \arg\min_{u}\{h(u)+ B(x,u)\}.
+x^{+}=\arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}.
 $$
-so that the primary proximal gradient methods are modified to the Bregman version,
-which is called as `Bregman proximal gradient` method.
 
-* http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf
-* https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf
-* https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
-* https://arxiv.org/abs/1808.03045
-* https://arxiv.org/abs/1812.10198
+How we can generalize the function $\delta_{C}$ to more general convex function? What are the advantages of this generalization?
+As likelihood and log-likelihood, we can transfer the product of some functions to sum by taking logarithm.
 
+$$
+x^{+} = \arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
+\\ =  \arg\min_{x}\log\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
+\\=  \arg\min_{x} \{\delta_C(x)+\log({\|x-x^0\|}_2^2)\}.
+$$
+
+**Proximal and Projected Newton Methods**
+
+- http://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/24-prox-newton.pdf
 
 ## Lagrange Multipliers and Duality
 
@@ -570,6 +604,12 @@ $$
 \max_{\lambda}[\min_{x} L(x, \lambda)]\leq \max_{\lambda} L(x, \lambda)\leq \min_{x}[\max_{\lambda} L(x, \lambda)].
 $$
 
+And note that necessary condition of extrema is that the gradients are equal to 0s:
+$$
+\frac{\partial L(x,\lambda)}{\partial x}= \frac{\partial f(x)}{\partial x}+ A\lambda = 0 \\
+\frac{\partial L(x,\lambda)}{\partial \lambda} = Ax-b=0
+$$
+
 **Dual Ascent** takes advantages of this properties:
 
 > 1. $x^{k+1}=\arg\min_{x} L(x,\lambda)$;
@@ -603,7 +643,7 @@ L_{\beta}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}{\|Ax+By-b\|}_{2}
 $$
 
 ***
-Augmented Lagrange Method at step $t$ is described as following
+Augmented Lagrange Method at step $k$ is described as following
 
 > 1. $(x^{k+1}, y^{k+1})=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y,\lambda^{\color{aqua}{k}});$
 > 2. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
@@ -615,6 +655,8 @@ ADMM at step $t$ is described as following:
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
+
+The convergence  proof of ADMM in convex optimization can be reduced to [verifying the stability of a dynamical system](https://arxiv.org/pdf/1502.02009.pdf) or based on the optimal condition `variational inequality` like [On the O(1/t) convergence rate of alternating direction method](http://www.optimization-online.org/DB_FILE/2011/09/3157.pdf).
 
 **Linearized ADMM**
 
@@ -709,7 +751,7 @@ $$
 [A counter-example shows that this method diverges.](https://link.springer.com/article/10.1007/s10107-014-0826-5)
 
 ***
-And [Professor Bingsheng He](http://maths.nju.edu.cn/~hebma/), who taught me this section in his class, and his coauthors proposed some schemes for this problem.
+And [Professor Bingsheng He](http://maths.nju.edu.cn/~hebma/), who taught me this section in his class, and his coauthors proposed some schemes for this problem based on his unified frame work for convex optimization and monotonic variational inequality.
 
 [Parallel splitting augmented Lagrangian method](https://link.springer.com/article/10.1007/s10589-007-9109-x) (abbreviated to `PSALM`) is described as follows:
 > 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x,y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$;
@@ -738,6 +780,7 @@ where $\tau>1$.
 - http://maths.nju.edu.cn/~hebma/slides/17C.pdf
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
 - https://link.springer.com/article/10.1007/s10107-014-0826-5
+
 
 ****
 **Davis-Yin three operator splitting**
@@ -774,6 +817,7 @@ is the Lagrangian rather than  augmented Lagrangian.
 - [Randomly Permuted ADMM](https://web.stanford.edu/~yyye/MORfinal.pdf)
 - http://opt-ml.org/oldopt/papers/OPT2015_paper_47.pdf
 - https://arxiv.org/abs/1503.06387
+- https://community.apan.org/cfs-file/__key/docpreview-s/00-00-01-07-11/Ye.pdf
 
 ***
 
@@ -811,6 +855,7 @@ where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 * https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
 * https://www.birs.ca/cmo-workshops/2017/17w5030/files/
 * http://stanford.edu/~boyd/admm.html
+* [A General Analysis of the Convergence of ADMM](https://arxiv.org/pdf/1502.02009.pdf)
 * http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * https://blog.csdn.net/shanglianlm/article/details/45919679
@@ -1040,7 +1085,8 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 - http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
 - https://www.wikiwand.com/en/Fixed-point_theorem
 - https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf
-
+* http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
+* https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
 ***
 
 - [ ] http://www.optimization-online.org/
