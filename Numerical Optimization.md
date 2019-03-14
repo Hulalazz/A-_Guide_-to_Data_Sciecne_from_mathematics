@@ -5,7 +5,7 @@ $\color{aqua}{LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION}.$
 
 * Representation as the core of the note is the general (mathematical) **model** that computer can handle.
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
-* Optimization is to aimed to find the parameters that optimizes the evaluation function, i.e.
+* Optimization is aimed to find the parameters that optimizes the evaluation function, i.e.
     $$
     \arg\min_{\theta} f(\theta)=\{\theta^*|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
     $$
@@ -370,7 +370,7 @@ And it is the optimal condition of constrained optimization problem.
 
 **Projected gradient descent** has two steps:
 $$
-z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}\\
+z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Descent}\\
 x^{k+1} = Proj_{\mathbb{S}}(z^{k+1})=\arg\min_{x\in \mathbb{S}}\|x-z^{k+1}\|^{2} \qquad\text{Projection}
 $$
 
@@ -388,6 +388,11 @@ h(x) =\delta_{\mathbb{S}}(x)=
    \infty, & \text{otherwise}.
  \end{cases}
 $$
+
+Each projection is an optimization so that the iterative points satisfy the optimal conditions, which also restricts the projection  method into the case where the projection is available or simple to compute.
+And it is natural to search better Descent step or Projection step.
+
+The following links are recommended if you want more theoretical proof:
 
 * http://maths.nju.edu.cn/~hebma/slides/03C.pdf
 * http://maths.nju.edu.cn/~hebma/slides/00.pdf
@@ -1009,9 +1014,10 @@ See the following links for more information on *stochastic gradient descent*.
 |![](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
 
 
-$\color{green}{PS}$: Zeyuan Allen-Zhu and others published much work on acceleration of stochastic gradient descent.
+$\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
 
 - https://arxiv.org/pdf/1811.03962.pdf
+- http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
 
 ## Surrogate Loss Functions
 
@@ -1081,12 +1087,15 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 
 > Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
 
-- https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
-- http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
-- https://www.wikiwand.com/en/Fixed-point_theorem
-- https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf
-* http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf
-* https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf
+* https://www.wikiwand.com/en/Fixed-point_theorem
+* [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
+* [Lecture 8 : Fixed Point Iteration Method, Newton’s Method](http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf)
+* [FixedPoint: A suite of acceleration algorithms with Application](https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf)
+* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
+
+However, it is best to think from  the necessary condition of optima  in non-convex optimization. 
+
+
 ***
 
 - [ ] http://www.optimization-online.org/

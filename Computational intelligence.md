@@ -2,70 +2,21 @@
 * https://github.github.com/gfm/
 * https://help.github.com/articles/about-writing-and-formatting-on-github/
 
-
-# Probabilistic Programming and Topological Data Analysis
-
-## Probabilistic Graphical Model
-
-A graphical model or probabilistic graphical model (PGM) or structured probabilistic model is a probabilistic model for which a graph expresses the conditional dependence structure between random variables. They are commonly used in probability theory, statistics — particularly Bayesian statistics — and machine learning.
-It is a marriage of graph theory and probability theory.
-
-+ http://mlg.eng.cam.ac.uk/zoubin/course04/hbtnn2e-I.pdf
-+ https://www.wikiwand.com/en/Graphical_model
-+ http://www.cs.columbia.edu/~blei/fogm/2016F/
-+ https://cs.stanford.edu/~ermon/cs228/index.html
-+ https://www.stat.cmu.edu/~cshalizi/uADA/17/
-+ https://www.cs.cmu.edu/~aarti/Class/10701/lecs.html
-+ http://www.cs.cmu.edu/~epxing/Class/10708/lecture.html
-+ http://www.cs.princeton.edu/courses/archive/spring09/cos513/
-+ https://www.cs.princeton.edu/courses/archive/fall11/cos597C/#prerequisites
-
-## Probabilistic Programming
-
-http://www.cnblogs.com/jesse123/p/7802258.html
-
-|Graph Nets library |
-|-------------------|
-|![Graph net](https://raw.githubusercontent.com/Hulalazz/graph_nets/master/images/graph-nets-deepmind-shortest-path0.gif)|
-
-* http://pymc-devs.github.io/pymc3/
-* http://mc-stan.org/
-* http://pyro.ai/examples/
-* http://dustintran.com/blog/a-quick-update-edward-and-some-motivations
-* https://www.cs.princeton.edu/courses/archive/fall11/cos597C/
-* https://www.wikiwand.com/en/Random_graph
-
-## Topological Data Analysis
-
-|TDA|
-|---|
-|![TDA](https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg)|
-
-* https://www.wikiwand.com/en/Topological_data_analysis
-* [TDA overview](https://perfectial.com/blog/topological-data-analysis-overview/)
-* [Studying the Shape of Data Using Topology](https://www.ias.edu/ideas/2013/lesnick-topological-data-analysis)
-* [Topological Data Analysis](https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1)
-* [Why TDA works?](https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/)
-* http://outlace.com/TDApart1.html
-* https://www.springer.com/cn/book/9783642150135
-
-# AutoML
-
-* https://arxiv.org/abs/1810.13306
-* https://github.com/hibayesian/awesome-automl-papers
-* https://github.com/pierre-chaville/automlk
-* https://www.simonwenkel.com/2018/08/29/introduction-to-autokeras.html
-* https://www.microsoft.com/en-us/research/blog/discovering-the-best-neural-architectures-in-the-continuous-space/?OCID=msr_blog_neuralarchitecture_neurips_hero
-
 # Computational Intelligence
 
 Computational intelligence is rooted in the artificial neural network and evolutionary algorithms.
 [No free lunch theorem](https://www.wikiwand.com/en/No_free_lunch_in_search_and_optimization) implies  that searching for the ‘best’ general purpose black box optimization algorithm is irresponsible as no such procedure is theoretically possible.
 
-Swarm Intelligence | Evolutionary Algorithms| Others
------------------- | -----------------------|-------
-Ant Colony Optimization | Genetic Algorithm |Fuzzy Intelligence
-Particle Swarm Optimization |  Genetic and Evolutionary Programming| Artificial Immune Systems
+- https://cse.buffalo.edu/~rapaport/575/F01/ai.intro.html
+- https://arxiv.org/pdf/1307.4186.pdf
+
+Swarm intelligence based algorithms | Bio-inspired (not SI-based) algorithms|Physics and Chemistry based algorithms|Others
+---------- | -------------|-------|----
+Ant Colony Optimization | Genetic Algorithm |Simulated Annealing|Fuzzy Intelligence
+Particle Swarm Optimization | Differential Evolution| Gravitational Search |Tabu Search
+See the article [A Brief Review of Nature-Inspired Algorithms for Optimization](https://arxiv.org/pdf/1307.4186.pdf) for more nature-inspired optimization algorithms or [Clever Algorithms: Nature-Inspired Programming Recipes](http://www.cleveralgorithms.com/nature-inspired/introduction.html) for nature-inspired AI.
+
+
 
 * https://www.tecweb.org/styles/gardner.html
 * http://www.mae.cuhk.edu.hk/~cil/index.htm
@@ -73,18 +24,64 @@ Particle Swarm Optimization |  Genetic and Evolutionary Programming| Artificial 
 * http://ai.berkeley.edu/lecture_videos.html
 * http://www.comp.hkbu.edu.hk/~hknnc/index.php
 * https://www.cleverism.com/artificial-intelligence-complete-guide/
+* https://www.eurekalert.org/pub_releases/2018-03/uom-csw032918.php
 
-## Swarm Intelligence
+
+Some packages:
+- [ ] https://github.com/facebookresearch/nevergrad
+- [ ] https://github.com/DEAP/deap
+- [ ] https://github.com/SioKCronin/swarmopt
+
+## Swarm Intelligence(SI)
 
 Swarm intelligence is the study of computational systems inspired by the
 'collective intelligence'. Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment.
 
 1. Swarm Intelligence
-   - Ant Colony Optimization
-     - Particle Swarm Optimization
-     - [x] Finish my changes
-     - [ ] Push my commits to GitHub
-     - [ ] Open a pull request :+1:
+     - [ ] Particle Swarm Optimization(PSO)
+     - [ ] Accelerated PSO
+     - [ ] Ant Colony Optimization
+     - [ ] Fish swarm/school
+
+
+## Bio-inspired (not SI-based) algorithms
+
+- [ ] Differential evolution
+- [ ] Genetic Algorithms
+- [ ] Biogeography-based optimization
+- [ ] [Neuroscience-Inspired Artificial Intelligence](https://www.ncbi.nlm.nih.gov/pubmed/28728020) 
+
+[Terrence J. Sejnowski](https://cnl.salk.edu/) in *The Deep Learning Revolution* asserts that
+>The only existence proof that any of the hard problems in artificial intelligence can be solved is the fact that, through evolution, nature has already solved them.
+
+However, the evolution itself is not clear for us since the [Darwin's Theory Of Evolution](https://www.darwins-theory-of-evolution.com/) was proposed.
+[Natural selection](https://www.wikiwand.com/en/Natural_selection) is really based on the principles of physics and chemistry, but not all animals live in the world understand physics or chemistry.
+From different levels and perspectives, we would research the adaptiveness, intelligence and evolution.
+
+![Investigation level](https://cnl.salk.edu/images/figures/LevelsOfInvestigation.svg)
+
+**Evolutionary Computation**
+
+
+
+- [Evolutionary Computation](https://courses.cs.washington.edu/courses/cse466/05sp/pdfs/lectures/10-EvolutionaryComputation.pdf),
+- [Introduction to Evolutionary Computing  by A.E. Eiben and J.E. Smith](https://www.cs.vu.nl/~gusz/ecbook/ecbook-course.html),
+- http://biology.ucsd.edu/research/faculty/tsejnowski
+- [Understanding Evolution](https://evolution.berkeley.edu/evolibrary/home.php )
+- [Genetic Algorithms](https://www.doane.edu/evolutionary-computation-0).
+
+## Physics and Chemistry based algorithms
+
+- [ ] Simulated annealing
+- [ ] Gravitational search
+- [ ] Stochastic difusion search
+
+## Others
+
+- [ ] Fuzzy Intelligence
+- [ ] Differential search algorithm
+- [ ] Backtracking optimization search
+
 ***
 
 1. https://readyforai.com/
