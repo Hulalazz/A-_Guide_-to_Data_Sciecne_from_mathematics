@@ -26,7 +26,8 @@ It includes the following content:
 - [X] sampling algorithm based on uniformly distributed data;
 - [X] MCMC and stochastic methods;
 - [X] generalized linear model and regression analysis;
-- [ ] probabilistic programming and graph models;
-- [ ] basic machine learning;
+- [X] basic machine learning;
 - [X] some materials on artifical neural network and deep learning;
-- [ ] other data anslysis such as topological data analysis.
+- [ ] probabilistic programming and graph models;
+- [ ] other data anslysis such as topological data analysis;
+- [ ] other computational intelligence such as simulated annealing.
