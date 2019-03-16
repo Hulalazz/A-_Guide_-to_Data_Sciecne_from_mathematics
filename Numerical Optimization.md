@@ -1070,7 +1070,7 @@ where $H(x)$ is the lambda-matrix.
 These correspond to gradient descent, Newton's method and quasi-Newton's method, respectively.
 
 
-And the projected (sub)gradient methods are in the fixed-point ierative form:
+And the projected (sub)gradient methods are in the fixed-point iterative form:
 $$
 x = Proj_{\mathbb{S}}(x-\alpha \nabla f(x))
 $$
@@ -1094,7 +1094,7 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 * [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
 
 However, it is best to think from  the necessary condition of optima  in non-convex optimization. 
-
+Another question is to generalize the fixed point iteration to stochastic gradient descent.
 
 ***
 

@@ -112,7 +112,7 @@ where
       $$
       \begin{align}
          y_{j}(t) & =f[\mathbf{w}(t)\cdot\mathbf{x}_{j}]\\
-       ​           & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb +w_{n}(t)x_{j,n}]
+       ​           & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb         +w_{n(t)x_{j,n}]
       \end{align}
       $$
 
@@ -1541,7 +1541,7 @@ In fact, the propagation rule introduced in [Kipf & Welling (ICLR 2017)](https:/
 $$
 {H}_{i+1} = \sigma \circ ({H}_{i}, A)=\sigma \circ(\hat{D}^{-\frac{1}{2}} \hat{A} \hat{D}^{-\frac{1}{2}} {H}_{i} {W}_{i}),
 $$
-with $\hat{A}=A+I$, where $I$ is the identity matrix and $\hat{D}$ is the diagonal node degree matrix of $\hat{A}$.
+with $\hat{A}=A+I$, where ${I}$ is the identity matrix and $\hat{D}$ is the diagonal node degree matrix of $\hat{A}$.
 See more details at [Multi-layer Graph Convolutional Network (GCN) with first-order filters](http://tkipf.github.io/graph-convolutional-networks/).
 
 Like other neural network, GCN is also composite of linear and nonlinear mapping. In details,\
