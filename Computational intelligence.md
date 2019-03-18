@@ -1,17 +1,14 @@
-* https://guides.github.com/features/mastering-markdown/
-* https://github.github.com/gfm/
-* https://help.github.com/articles/about-writing-and-formatting-on-github/
 
-# Computational Intelligence
+# Computational Intelligenc
 
 Computational intelligence is rooted in the artificial neural network and evolutionary algorithms.
-[No free lunch theorem](https://www.wikiwand.com/en/No_free_lunch_in_search_and_optimization) implies  that searching for the ‘best’ general purpose black box optimization algorithm is irresponsible as no such procedure is theoretically possible.
+[No free lunch theorem](https://www.wikiwand.com/en/No_free_lunch_in_search_and_optimization) implies  that searching for the 'best' general purpose black box optimization algorithm is irresponsible as no such procedure is theoretically possible.
 
 - https://cse.buffalo.edu/~rapaport/575/F01/ai.intro.html
 - https://arxiv.org/pdf/1307.4186.pdf
 
 Swarm intelligence based algorithms | Bio-inspired (not SI-based) algorithms|Physics and Chemistry based algorithms|Others
----------- | -------------|-------|----
+---------- | -------------|-----------|---------------
 Ant Colony Optimization | Genetic Algorithm |Simulated Annealing|Fuzzy Intelligence
 Particle Swarm Optimization | Differential Evolution| Gravitational Search |Tabu Search
 More|More|More|More
@@ -19,7 +16,9 @@ More|More|More|More
 
 See the article [A Brief Review of Nature-Inspired Algorithms for Optimization](https://arxiv.org/pdf/1307.4186.pdf) for more nature-inspired optimization algorithms or [Clever Algorithms: Nature-Inspired Programming Recipes](http://www.cleveralgorithms.com/nature-inspired/introduction.html) for nature-inspired AI.
 
-![CI](https://cis.ieee.org/images/files/slideshow/04mci04-cover1.jpg)
+|Computational Intelligence|
+|---|
+|![CI](https://cis.ieee.org/images/files/slideshow/04mci04-cover1.jpg)|
 
 In [IEEE Computtaional Intelligence Society](https://cis.ieee.org/about/what-is-ci), computational intelligence is introduced as follows:
 > Computational Intelligence (CI) is the theory, design, application and development of biologically and linguistically motivated computational paradigms. Traditionally the three main pillars of CI have been Neural Networks, Fuzzy Systems and Evolutionary Computation. However, in time many nature inspired computing paradigms have evolved. Thus CI is an evolving field and at present in addition to the three main constituents, it encompasses computing paradigms like ambient intelligence, artificial life, cultural learning, artificial endocrine networks, social reasoning, and artificial hormone networks. CI plays a major role in developing successful intelligent systems, including games and cognitive developmental systems. Over the last few years there has been an explosion of research on Deep Learning, in particular deep convolutional neural networks. Nowadays, deep learning has become the core method for artificial intelligence. In fact, some of the most successful AI systems are based on CI.
@@ -31,6 +30,9 @@ In [IEEE Computtaional Intelligence Society](https://cis.ieee.org/about/what-is-
 * http://www.comp.hkbu.edu.hk/~hknnc/index.php
 * https://www.cleverism.com/artificial-intelligence-complete-guide/
 * https://www.eurekalert.org/pub_releases/2018-03/uom-csw032918.php
+* http://www.cis.pku.edu.cn/faculty/system/tanying/CI/CIlecture1.pdf
+* [Computational Intelligence: An Introduction](http://papers.harvie.cz/unsorted/computational-intelligence-an-introduction.pdf)
+* https://people.eecs.berkeley.edu/~russell/papers/mitecs-computational-intelligence.pdf
 
 
 Some packages:
@@ -38,10 +40,22 @@ Some packages:
 - [ ] https://github.com/DEAP/deap
 - [ ] https://github.com/SioKCronin/swarmopt
 
+Optimization is to minimize the cost or maximize the utility. Particularly, we call it as numerical optimization if the cost or utility can be formulated in mathematical form.
+Some general principles are written in the form of optimization such as **Maximum Entropy Principle**.
+It raises in operation research, numerical analysis, computational mathematics and more technological applications such as the engine design.
+It is clear that optimization relies on at least perspectives *the objective to optimize* and *the approach to optimize the objective* with or without some constraints.
+
+Another topic on computational intelligence is to search some object or goals in complex and uncertain system.
+Optimization is to search the best or optimal configuration in some sense. Search is to explore the system with some goals.
+
+Evolution or adaptation is in the level of population, which leads to this diverse earth. It is related with transfer learning.
+Like in ecosystem, what the computational learners can do if the system changes a lot in order to survive?  In numerical optimization, if the objective function changes, we may consider different optimization methods. 
+
+
 ## Swarm Intelligence(SI)
 
-Swarm intelligence is the study of computational systems inspired by the
-'collective intelligence'. Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment.
+Swarm intelligence is the study of computational systems inspired by the 'collective intelligence'. 
+Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment.
 
 - [ ] Particle Swarm Optimization(PSO)
 - [ ] Accelerated PSO
@@ -50,15 +64,45 @@ Swarm intelligence is the study of computational systems inspired by the
 
 **Particle Swarm Optimization(PSO)**
 
+Individuals in a particle swarm follow a very simple behavior: to emulate the success of
+neighboring individuals and their own successes. The collective behavior that emerges
+from this simple behavior is that of discovering optimal regions of a high dimensional search space.
 
+In simple terms, the particles are "flown" through a multidimensional search space, where the position
+of each particle is adjusted according to its own experience and that of its neighbors.
+The position of the particle is changed
+by adding a velocity, $v_i(t)$, to the current position, i.e.
+$$X_{i}(t+1) = X_{i}(t)+v_i(t).$$
+
+with $X_0\sim Unif[X_{min}, X_{max}]$ and $X_{i}(t)$ is the position of particle $i$ at time ${t}$.
+
+![](https://cssanalytics.files.wordpress.com/2013/09/pso-graphic.png)
+- http://www.cs.armstrong.edu/saad/csci8100/pso_slides.pdf
+- http://www.swarmintelligence.org/tutorials.php
 - https://github.com/tisimst/pyswarm
+- http://mnemstudio.org/particle-swarm-introduction.htm
+- https://arxiv.org/ftp/arxiv/papers/1804/1804.05319.pdf
 
-**Ant Colony OPtimization**
+**Ant Colony Optimization**
+
+It is an meta-heuristic optimization for searching for optimal path in the graph based on
+behaviour of ants seeking a path between their colony and
+source of food.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Aco_branches.svg/2000px-Aco_branches.svg.png)
+
 
 - http://mat.uab.cat/~alseda/MasterOpt/ACO_Intro.pdf
 - https://www.ics.uci.edu/~welling/teaching/271fall09/antcolonyopt.pdf
 - http://www.aco-metaheuristic.org/
 - http://mathworld.wolfram.com/AntColonyAlgorithm.html
+
+**Fish swarm/school**
+
+- https://link.springer.com/article/10.1007/s10462-012-9342-2
+- http://cloudbus.org/~adel/pdf/AIR2014.pdf
+- http://www.mecs-press.org/ijisa/ijisa-v2-n1/IJISA-V2-N1-6.pdf
+- http://www.scielo.br/pdf/lajss/v11n1/09.pdf
 
 ## Bio-inspired (not SI-based) algorithms
 
@@ -133,6 +177,11 @@ Artificial immune systems (AISs) are inspired by biological immune systems and m
 - http://www.artificial-immune-systems.org/
 - https://www.sciencedirect.com/science/article/pii/S1568494610002723
 
+**Neuroscience-Inspired Artificial Intelligence**
+
+- [Neuroscience-Inspired Artificial Intelligence](https://www.ncbi.nlm.nih.gov/pubmed/28728020)
+- https://www.cbicr.tsinghua.edu.cn/
+- https://blog.csdn.net/u013088062/article/details/50489674
 
 ## Physics and Chemistry based algorithms
 
@@ -141,6 +190,10 @@ Artificial immune systems (AISs) are inspired by biological immune systems and m
 - [ ] Stochastic diffusion search
 
 **Simulated Annealing(SA)**
+
+Simulated Annealing (SA) is an effective and general form of optimization.  It is useful in finding global optima in the presence of large numbers of local optima.  "Annealing" refers to an analogy with thermodynamics, specifically with the way that metals cool and anneal.  Simulated annealing uses the objective function of an optimization problem instead of the energy of a material.
+
+Implementation of SA is surprisingly simple.  The algorithm is basically hill-climbing except instead of picking the best move, it picks a random move.  If the selected move improves the solution, then it is always accepted.  Otherwise, the algorithm makes the move anyway with some probability less than 1.  The probability decreases exponentially with the "badness" of the move, which is the amount $\Delta E$ by which the solution is worsened (i.e., energy is increased.)
 
 - http://www.theprojectspot.com/tutorial-post/simulated-annealing-algorithm-for-beginners/6
 - http://mathworld.wolfram.com/SimulatedAnnealing.html
@@ -162,6 +215,11 @@ In contrast to many nature-inspired algorithms, SDS has a strong mathematical fr
 - http://www.scholarpedia.org/article/Stochastic_diffusion_search
 - http://www.doc.gold.ac.uk/~mas02gw/MSCI11/2010/1/SDS_Review_27%20Sep%202010.pdf
 
+**Fireworks Algorithm**
+
+- http://www.cil.pku.edu.cn/research/fwa/publication/IntroducetoFireworksAlgorithm.pdf
+- http://adsabs.harvard.edu/abs/2018EnOp...50.1829G
+- https://msdn.microsoft.com/en-us/magazine/dn857364.aspx
 ## Others
 
 - [ ] Fuzzy Intelligence

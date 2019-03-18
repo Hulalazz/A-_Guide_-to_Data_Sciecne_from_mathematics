@@ -867,13 +867,15 @@ where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 * https://tlienart.github.io/pub/csml/cvxopt/split.html
 
 ****
-**Primal-dual fixed point algorithm**
+**Primal-dual fixed point algorithm** and **Primary Dual Hybrid Gradient**
 
-* http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf
-* http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf
-* https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf
+* [A primal-dual fixed point algorithm for multi-block convex minimization](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
+* [A primal–dual fixed point algorithm for convex separable minimization](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
+* [A Unified Primal-Dual Algorithm Framework Based on Bregman Iteration](https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf)
 * [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
+* [PDHG](https://www.cs.umd.edu/~tomg/projects/pdhg/)
 
+****
 The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
 For example, we want to minimize the following cost function
 $$
@@ -1077,7 +1079,7 @@ $$
 
 as well as the mirror gradient and proximal gradient methods different from the projection operator.
 
-Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf).
+Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf) as well as Markov chain.
 
 This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
 Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):

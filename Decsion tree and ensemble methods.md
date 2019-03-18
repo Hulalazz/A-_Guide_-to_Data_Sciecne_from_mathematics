@@ -180,7 +180,7 @@ if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
 * https://www.cnblogs.com/earendil/p/8872001.html
 * https://www.wikiwand.com/en/Bootstrap_aggregating
 * [Bagging Regularizes](http://dspace.mit.edu/bitstream/handle/1721.1/7268/AIM-2002-003.pdf?sequence=2)
-
+* http://users.rowan.edu/~polikar/RESEARCH/PUBLICATIONS/spm2007.pdf
 
 ### Boosting
 
