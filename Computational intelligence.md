@@ -1,5 +1,5 @@
 
-# Computational Intelligenc
+# Computational Intelligence
 
 Computational intelligence is rooted in the artificial neural network and evolutionary algorithms.
 [No free lunch theorem](https://www.wikiwand.com/en/No_free_lunch_in_search_and_optimization) implies  that searching for the 'best' general purpose black box optimization algorithm is irresponsible as no such procedure is theoretically possible.
@@ -20,7 +20,7 @@ See the article [A Brief Review of Nature-Inspired Algorithms for Optimization](
 |---|
 |![CI](https://cis.ieee.org/images/files/slideshow/04mci04-cover1.jpg)|
 
-In [IEEE Computtaional Intelligence Society](https://cis.ieee.org/about/what-is-ci), computational intelligence is introduced as follows:
+In [IEEE Computational Intelligence Society](https://cis.ieee.org/about/what-is-ci), computational intelligence is introduced as follows:
 > Computational Intelligence (CI) is the theory, design, application and development of biologically and linguistically motivated computational paradigms. Traditionally the three main pillars of CI have been Neural Networks, Fuzzy Systems and Evolutionary Computation. However, in time many nature inspired computing paradigms have evolved. Thus CI is an evolving field and at present in addition to the three main constituents, it encompasses computing paradigms like ambient intelligence, artificial life, cultural learning, artificial endocrine networks, social reasoning, and artificial hormone networks. CI plays a major role in developing successful intelligent systems, including games and cognitive developmental systems. Over the last few years there has been an explosion of research on Deep Learning, in particular deep convolutional neural networks. Nowadays, deep learning has become the core method for artificial intelligence. In fact, some of the most successful AI systems are based on CI.
 
 * https://www.tecweb.org/styles/gardner.html
@@ -30,15 +30,25 @@ In [IEEE Computtaional Intelligence Society](https://cis.ieee.org/about/what-is-
 * http://www.comp.hkbu.edu.hk/~hknnc/index.php
 * https://www.cleverism.com/artificial-intelligence-complete-guide/
 * https://www.eurekalert.org/pub_releases/2018-03/uom-csw032918.php
-* http://www.cis.pku.edu.cn/faculty/system/tanying/CI/CIlecture1.pdf
 * [Computational Intelligence: An Introduction](http://papers.harvie.cz/unsorted/computational-intelligence-an-introduction.pdf)
-* https://people.eecs.berkeley.edu/~russell/papers/mitecs-computational-intelligence.pdf
 
 
 Some packages:
+
 - [ ] https://github.com/facebookresearch/nevergrad
 - [ ] https://github.com/DEAP/deap
 - [ ] https://github.com/SioKCronin/swarmopt
+- [ ] https://cilib.net/
+- [ ] http://fuzzy.cs.ovgu.de/nefcon/
+
+Some courses:
+
+- [ ] http://www.cs.armstrong.edu/saad/csci8100/
+- [ ] http://www.cis.pku.edu.cn/faculty/system/tanying/CI/CIlecture1.pdf
+- [ ] https://people.eecs.berkeley.edu/~russell/papers/mitecs-computational-intelligence.pdf
+- [ ] http://www.soft-computing.de/def.html
+- [ ] http://mat.uab.cat/~alseda/MasterOpt/index.html
+
 
 Optimization is to minimize the cost or maximize the utility. Particularly, we call it as numerical optimization if the cost or utility can be formulated in mathematical form.
 Some general principles are written in the form of optimization such as **Maximum Entropy Principle**.
@@ -46,16 +56,17 @@ It raises in operation research, numerical analysis, computational mathematics a
 It is clear that optimization relies on at least perspectives *the objective to optimize* and *the approach to optimize the objective* with or without some constraints.
 
 Another topic on computational intelligence is to search some object or goals in complex and uncertain system.
-Optimization is to search the best or optimal configuration in some sense. Search is to explore the system with some goals.
+Optimization is to search the best or optimal configuration in some sense. Search is to explore the system with some fuzzy goals.
 
-Evolution or adaptation is in the level of population, which leads to this diverse earth. It is related with transfer learning.
+Evolution or adaptation is in the level of population, which leads to this diverse earth. And this is an important criteria which differs from other entities. It is related with transfer learning.
 Like in ecosystem, what the computational learners can do if the system changes a lot in order to survive?  In numerical optimization, if the objective function changes, we may consider different optimization methods. 
 
 
 ## Swarm Intelligence(SI)
 
-Swarm intelligence is the study of computational systems inspired by the 'collective intelligence'. 
-Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment.
+Swarm intelligence is the study of computational systems inspired by the 'collective intelligence'.
+Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment. Swarm intelligence believes that scale matters. And agents in different scale are different: more agents, more power. 
+
 
 - [ ] Particle Swarm Optimization(PSO)
 - [ ] Accelerated PSO
@@ -72,11 +83,45 @@ In simple terms, the particles are "flown" through a multidimensional search spa
 of each particle is adjusted according to its own experience and that of its neighbors.
 The position of the particle is changed
 by adding a velocity, $v_i(t)$, to the current position, i.e.
-$$X_{i}(t+1) = X_{i}(t)+v_i(t).$$
+$$x_{i}(t+1) = x_{i}(t)+v_i(t+1)$$
 
-with $X_0\sim Unif[X_{min}, X_{max}]$ and $X_{i}(t)$ is the position of particle $i$ at time ${t}$.
+with $x_0\sim Unif[x_{min}, x_{max}]$ and $x_{i}(t)$ is the position of particle $i$ at time ${t}$.
+
+Each particle’s velocity is updated using this
+equation at time $t$:
+
+$$
+v_{i+1}(t)=\omega v_{i}(t)+c_1r_1[\hat{x}_{i}(t)-x_{i}(t)]+c_2r_2[g(t)-x_i(t)]
+$$
+where the notations will explain in the following table:
+
+|||||||
+|--|----|-----|-----|----|--------|
+|$\omega$|the inertial coefficient usually in $[0.8, 1.2]$|$c_1,c_2$| acceleration coefficients in [0,2]|$r_1,r_2$|random values in [0,1] at each update|
+|$v_i(t)$|the particle’s velocity at time ${t}$|$\hat{x}_{i}(t)$|the particle’s individual best solution as of time${t}$|$g(t)$| the swarm’s best solution as of time $t$|
+
+Inertia Component $\omega v_{i}(t)$:
+
+- Keeps the particle moving in the same direction it was originally heading.
+- Lower values speed up convergence, higher values encourage exploring the search space.
+
+Cognitive Component $c_1r_1[\hat{x}_{i}(t)-x_{i}(t)]$:
+
+- Acts as the particle’s memory, causing it to return to its individual best regions of the search space;
+- Cognitive coefficient $c_1$ usually close to 2
+- Coefficient limits the size of the step the particle takes toward its individual best $\hat{x}_i(t)$.
+
+Social Component $c_2r_2[g(t)-x_i(t)]$:
+
+- Causes the particle to move to the best regions the swarm has found so far;
+- Social coefficient $c_2$ usually close to 2;
+- Coefficient limits the size of the step the particle takes toward the global best $g$.
+
+It does not compute the gradient of the function. And like accelerated gradient, it uses the previous iteration result.
 
 ![](https://cssanalytics.files.wordpress.com/2013/09/pso-graphic.png)
+
+
 - http://www.cs.armstrong.edu/saad/csci8100/pso_slides.pdf
 - http://www.swarmintelligence.org/tutorials.php
 - https://github.com/tisimst/pyswarm
@@ -89,15 +134,91 @@ It is an meta-heuristic optimization for searching for optimal path in the graph
 behaviour of ants seeking a path between their colony and
 source of food.
 
+|Overview of the Concept|
+|---|
+|1. Ants navigate from nest to food source.|
+|2. Shortest path is discovered via pheromone trails.|
+|3. Each ant moves at random.|
+|4. Pheromone is deposited on path.|
+|5. More pheromone on path increases probability of path being followed.|
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Aco_branches.svg/2000px-Aco_branches.svg.png)
 
+>
+Overview of the System:
++ Virtual trail accumulated on path segments;
++ Path selected at random based on amount of "trail" present on possible paths from starting node ;
++ Ant reaches next node, selects next path;
++ Continues until reaches starting node；
++ Finished tour is a solution；
++ Tour is analyzed for optimality.
+>
+*****
+An ant will move from node i to node j with probability
+$$
+p_{ij} = \frac{(\tau_{ij}^{\alpha})(\eta_{ij}^{\beta})}{\sum (\tau_{ij}^{\alpha})(\eta_{ij}^{\beta})}
+$$
+ where  $\tau_{ij},\eta_{ij}$ are  the amount and desirablity of pheromone on edge i, j;  $\alpha, \beta$ are parameters to control the influence of $\tau_{ij},\eta_{ij}$.
 
+
+ Amount of pheromone is updated according to the equation
+$$
+ \tau_{ij} = (1-\rho)\tau_{ij} +\Delta \tau_{ij}
+$$
+where $\Delta\tau_{ij}$ is the amount of pheromone deposited, typically given by
+$$
+\Delta\tau^{k}_{ij} =
+\begin{cases}
+\frac{1}{L_k}, & \text{if ant $k$ travels from on edge i,j}\\
+0, &\text{otherwise}
+\end{cases}
+$$
+where $L_k$ is the cost of the ${k}$ th ant’s tour (typically length).
+
+The three most successful special cases of the ACO metaheuristic are: Ant System, Ant Colony System (ACS), and MAX-MIN Ant System (MMAS).
+
+**Ant System**
+
+Pheromone values are updated by all the ants that have
+completed the tour:
+
+$$
+\tau_{ij} = (1-\rho)\tau_{ij} +\sum_{k=1}^{m}\Delta \tau_{ij}^{k}.
+$$
+
+**Ant Colony System**
+
+Ants in ACS use the pseudorandom proportional rule:
+
++ Probability for an ant to move from city i to city j depends on a random variable ${q}$ uniformly distributed over [0, 1], and a parameter $q_0$.
++ If $q\leq q_0$, then, among the feasible components, the component that maximizes the product $\tau_{il}\eta_{il}^{\beta}$ is chosen, otherwise the same equation as in Ant System is used.
++ This rule favours exploitation of pheromone information.
+
+Each ant applies it only to the last edge traversed
+
+$$
+\tau_{ij} = (1-\rho)\tau_{ij} +\phi \tau_0
+$$
+
+where $\tau_0$ is the initial value of the pheromone.
+
+*****
 - http://mat.uab.cat/~alseda/MasterOpt/ACO_Intro.pdf
 - https://www.ics.uci.edu/~welling/teaching/271fall09/antcolonyopt.pdf
 - http://www.aco-metaheuristic.org/
 - http://mathworld.wolfram.com/AntColonyAlgorithm.html
 
-**Fish swarm/school**
+**AFSA (artificial fish-swarm algorithm)**
+
+Let $X=(x_1, x_2, \dots, x_n)$ and $X_{v}=(x_1^v, x_2^v, \dots, x_n^v)$ then this process can be
+expressed as follows:
+$$
+x_i^v = x_i + Visual* rand()\\
+X_{next} = X +\frac{X_v - X}{\|X_v - X\|}* Step * rand()
+$$
+
+where $rand()$ produces random numbers between zero and 1, Step is the step length, and
+$x_i$ is the optimizing variable, n is the number of variables. The variables include: ${X}$ is the current position of the AF, Step is the
+moving step length, Visual represents the visual distance,
 
 - https://link.springer.com/article/10.1007/s10462-012-9342-2
 - http://cloudbus.org/~adel/pdf/AIR2014.pdf
@@ -149,6 +270,7 @@ In EC, core concepts from evolutionary biology — inheritance, random variation
 - [Introduction to Evolutionary Computing  by A.E. Eiben and J.E. Smith](https://www.cs.vu.nl/~gusz/ecbook/ecbook-course.html),
 - [Understanding Evolution](https://evolution.berkeley.edu/evolibrary/home.php )
 - https://github.com/lmarti/evolutionary-computation-course
+- http://lmarti.com/aec-2014
 
 **Differential Evolution(DE)**
 
@@ -165,23 +287,44 @@ At each iteration, called a generation, new vectors are generated by the combina
 
 > Genetic Algorithms (GAs) mimic natural selection in order to solve several types of problems, including function optimization, scheduling, and combinatorial problems. To do this, the GA maintains and "evolves" over time a population of individual solutions to the problem at hand. Each generation of individual solutions (hopefully) becomes better and better, until some individual in the population represents an acceptable solution. Two of the most important characteristics of GAs are the representation used and the genetic operators employed.
 
->In GAs, representation is how we encode solutions to a problem. For example, individuals in the population of a GA may be simple binary strings, or they may be a series of integers or floating point numbers in some specified range.
+> In GAs, representation is how we encode solutions to a problem. For example, individuals in the population of a GA may be simple binary strings, or they may be a series of integers or floating point numbers in some specified range.
 > Aside from representation, another facet that may affect GA performance is the set of genetic operators used. Genetic operators are the means by which the population evolves towards a solution. In a simple GA, these operators may be classified as crossover, mutation, and selection operators.
+
+
+
+*****
 - [Genetic Algorithms](https://www.doane.edu/evolutionary-computation-0).
+- http://www.genetic-programming.com/gecco2004tutorial.pdf
 - http://mathworld.wolfram.com/GeneticAlgorithm.html
+- http://mat.uab.cat/~alseda/MasterOpt/Dziedzic.GA_intro.pdf
+- http://mat.uab.cat/~alseda/MasterOpt/Beasley93GA1.pdf
+- http://mat.uab.cat/~alseda/MasterOpt/Beasley93GA2.pdf
 
 **Artificial Immune Sysytems**
 
 Artificial immune systems (AISs) are inspired by biological immune systems and mimic these by means of computer simulations. They are seen with interest from immunologists as well as engineers. Immunologists hope to gain a deeper understanding of the mechanisms at work in biological immune systems. Engineers hope that these nature-inspired systems prove useful in very difficult computational tasks, ranging from applications in intrusion-detection systems to general optimization. Moreover, computer scientists identified artificial immune systems as another example of a nature-inspired randomized search heuristic (like evolutionary algorithms, ant colony optimization, particle swarm optimization, simulated annealing, and others) and aim at understanding their potential and limitations. While the relatively new field has its successful applications and much potential its theoretical foundation is still in its infancy. Currently there are several not well connected strands within AIS theory, not even a general agreement on what the central open problems are, and only a weak connection between AIS theory and AIS applications. The main goals of the proposed seminar include bringing together computer scientists and engineers to strengthen the connections within AIS theory, connections to other researchers working on the theory of randomized search heuristics, and to improve connectivity between AIS theory and applications.
 [Adopted from Artificial Immune Systems seminar](https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=11172)
+
 - http://www.artificial-immune-systems.org/
 - https://www.sciencedirect.com/science/article/pii/S1568494610002723
 
 **Neuroscience-Inspired Artificial Intelligence**
 
+|AI and Beyond|
+|:---:|
+|![https://zhuanlan.zhihu.com/p/20727283s](https://pic1.zhimg.com/8d02ad62036808353f181a4996aa52e6_1200x500.jpg)|
+
 - [Neuroscience-Inspired Artificial Intelligence](https://www.ncbi.nlm.nih.gov/pubmed/28728020)
 - https://www.cbicr.tsinghua.edu.cn/
 - https://blog.csdn.net/u013088062/article/details/50489674
+- https://zhuanlan.zhihu.com/p/23965227
+- https://zhuanlan.zhihu.com/p/30190719
+- https://zhuanlan.zhihu.com/p/20726556
+- https://zhuanlan.zhihu.com/p/23782226
+- https://zhuanlan.zhihu.com/p/23804250
+- https://zhuanlan.zhihu.com/p/23979871
+- https://www.zhihu.com/question/59408117/answer/164972455
+- http://www.psy.vanderbilt.edu/courses/hon1850/Brain_Structure_Function_Chapter.pdf
 
 ## Physics and Chemistry based algorithms
 
@@ -199,6 +342,8 @@ Implementation of SA is surprisingly simple.  The algorithm is basically hill-cl
 - http://mathworld.wolfram.com/SimulatedAnnealing.html
 - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/learn-43/lib/photoz/.g/web/glossary/anneal.html
 - http://120.52.51.16/web.mit.edu/dbertsim/www/papers/Optimization/Simulated%20annealing
+- http://mat.uab.cat/~alseda/MasterOpt/ComprehensiveSimulatedAnnealing.pdf
+- 
 
 **Gravitational Search Algorithms(GSA)**
 
@@ -220,6 +365,8 @@ In contrast to many nature-inspired algorithms, SDS has a strong mathematical fr
 - http://www.cil.pku.edu.cn/research/fwa/publication/IntroducetoFireworksAlgorithm.pdf
 - http://adsabs.harvard.edu/abs/2018EnOp...50.1829G
 - https://msdn.microsoft.com/en-us/magazine/dn857364.aspx
+
+
 ## Others
 
 - [ ] Fuzzy Intelligence
