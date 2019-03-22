@@ -72,6 +72,7 @@ Collective Intelligence emerges through the cooperation of large numbers of homo
 - [ ] Accelerated PSO
 - [ ] Ant Colony Optimization
 - [ ] Fish swarm/school
+- [ ] http://www.scholarpedia.org/article/Swarm_intelligence
 
 **Particle Swarm Optimization(PSO)**
 
@@ -225,6 +226,17 @@ moving step length, Visual represents the visual distance,
 - http://www.mecs-press.org/ijisa/ijisa-v2-n1/IJISA-V2-N1-6.pdf
 - http://www.scielo.br/pdf/lajss/v11n1/09.pdf
 
+**Stochastic Diffusion Search(SDS)**
+
+In contrast to many nature-inspired algorithms, SDS has a strong mathematical framework describing its behaviour and convergence.
+Stochastic Diffusion Search (SDS) was first proposed by Bishop (1989) as a population based `best-fit pattern matching` algorithm. Such algorithms can also be recast in terms of an optimisation by defining the objective function, $F(x)$, for a hypothesis ${(x)}$ about the best-fit location of the solution, as the similarity between the target pattern and the corresponding region at position ${(x)}$ in the search space and finding ${(x)}$ such that $F(x)$ is maximised.
+
+In general, SDS can most easily be applied to optimisation problems where the objective function is decomposable into components that can be evaluated independently. In order to locate the optima of a given objective function SDS employs a swarm of n agents, each of which maintains a hypothesis, ${(x_i)}$, about the optima. The SDS algorithm entails iteration of TEST and DIFFUSION phases until a swarm of agents converge upon the optimum hypothesis.
+
+- http://www.scholarpedia.org/article/Stochastic_diffusion_search
+- http://www.doc.gold.ac.uk/~mas02gw/MSCI11/2010/1/SDS_Review_27%20Sep%202010.pdf
+- http://trac.mystic.cacr.caltech.edu/project/mystic/wiki.html
+
 ## Bio-inspired (not SI-based) algorithms
 
 In machine learning, it is always thought in the *representation + evaluation + optimization* way. For specific  tasks, we represent the conditions or inputs in binary code so that the computer can handle them; then a family of mathematical model is choose to transform and process the inputs. And an evaluation as a performance metric is used to show how good a model is such as the loss function in supervised machine learning.
@@ -343,7 +355,6 @@ Implementation of SA is surprisingly simple.  The algorithm is basically hill-cl
 - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/learn-43/lib/photoz/.g/web/glossary/anneal.html
 - http://120.52.51.16/web.mit.edu/dbertsim/www/papers/Optimization/Simulated%20annealing
 - http://mat.uab.cat/~alseda/MasterOpt/ComprehensiveSimulatedAnnealing.pdf
-- 
 
 **Gravitational Search Algorithms(GSA)**
 
@@ -352,13 +363,6 @@ GSAs are among the most recently introduced techniques that are not yet heavily 
 
 - http://home.ijasca.com/data/documents/ijasc08_published.pdf
 - https://www.sciencedirect.com/science/article/pii/S0020025509001200
-
-**Stochastic Diffusion Search(SDS)**
-
-In contrast to many nature-inspired algorithms, SDS has a strong mathematical framework describing its behaviour and convergence.
-
-- http://www.scholarpedia.org/article/Stochastic_diffusion_search
-- http://www.doc.gold.ac.uk/~mas02gw/MSCI11/2010/1/SDS_Review_27%20Sep%202010.pdf
 
 **Fireworks Algorithm**
 

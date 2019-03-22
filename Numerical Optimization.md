@@ -1098,6 +1098,18 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 However, it is best to think from  the necessary condition of optima  in non-convex optimization. 
 Another question is to generalize the fixed point iteration to stochastic gradient descent.
 
+And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
+
+Some courses on optimization:
++ http://mat.uab.cat/~alseda/MasterOpt/;
++ http://www.math.ucla.edu/~wotaoyin/math273c/
++ http://www.math.ucla.edu/~lvese/273.1.10f/
++ http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html
++ https://web.stanford.edu/~boyd/teaching.html
++ http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
++ http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
++ 
+
 ***
 
 - [ ] http://www.optimization-online.org/
@@ -1108,9 +1120,9 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 - [ ] https://arxiv.org/pdf/1712.07897.pdf
 - [ ] https://arxiv.org/pdf/1707.02444.pdf
 - [ ] http://www.vision.jhu.edu/assets/HaeffeleCVPR17.pdf
-- [ ] https://core.ac.uk/display/73408878
 - [ ] https://www.springer.com/us/book/9783319314822
 - [ ] https://core.ac.uk/display/83849901
+- [ ] https://core.ac.uk/display/73408878
 - [ ] https://zhuanlan.zhihu.com/p/51514687
 - [ ] http://math.cmu.edu/~hschaeff/research.html
 - [ ] https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
