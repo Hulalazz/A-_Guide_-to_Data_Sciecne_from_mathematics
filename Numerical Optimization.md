@@ -221,26 +221,38 @@ For example,
 **The Barzilai-Borwein method**
 
 Consider the gradient iteration form
-$$x^{k+1}=x^{k}-\alpha_k \nabla f(x^k)$$
+$$
+x^{k+1}=x^{k}-\alpha_k \nabla f(x^k)
+$$
 
 which can be written as
-$$x^{k+1}=x^{k}- D_k \nabla f(x^k)$$
+$$
+x^{k+1}=x^{k}- D_k \nabla f(x^k)
+$$
 where $D_k = \alpha_k I$.
 In order to make the matrix $D_k$ have quasi-Newton property, we compute $\alpha_k$ such that
-$$\min \|s_{k-1}-D_k y_{k-1}\|$$
+$$
+\min \|s_{k-1}-D_k y_{k-1}\|
+$$
 which yields
 
-$$\alpha_k =\frac{\left<s_{k-1},y_{k-1}\right>}{\left<y_{k-1},y_{k-1}\right>}\tag 1$$
+$$
+\alpha_k =\frac{\left<s_{k-1},y_{k-1}\right>}{\left<y_{k-1},y_{k-1}\right>}\tag 1
+$$
 
 where $s_{k-1}= x_k-x_{k-1}, y_{k-1}=\nabla f(x^k)-\nabla f(x^{k-1})$.
 
 By symmetry, we may minimize $\|D_k^{-1}s_{k-1}- y_{k-1}\|$ with respect to $\alpha_k$ and get
 
-$$\alpha_k =\frac{\left<s_{k-1},s_{k-1}\right>}{\left<s_{k-1},y_{k-1}\right>}.\tag 2$$
+$$
+\alpha_k =\frac{\left<s_{k-1},s_{k-1}\right>}{\left<s_{k-1},y_{k-1}\right>}.\tag 2
+$$
 
 In short, the iteration formula of Barzilai-Borwein method is given by
 
-$$x^{k+1}=x^{k}-\alpha_k\nabla f(x^k)$$
+$$
+x^{k+1}=x^{k}-\alpha_k\nabla f(x^k)
+$$
 where $\alpha_k$ is determined by (1) or (2).
 
 It is easy to see that in this method no matrix computations and no line searches (except $k = 0$) are required.
@@ -525,6 +537,20 @@ which is called as `Bregman proximal gradient` method.
 * https://arxiv.org/abs/1808.03045
 * https://arxiv.org/abs/1812.10198
 
+**Proximal and Projected Newton Methods**
+
+A fundamental difference between gradient descent and Newton’s
+method was that the latter also iteratively minimized quadratic
+approximations, but these used the local Hessian of the function in
+question.
+Proximal Newton method can be also applied to such optimization problem:
+$$
+y^{k} = prox_{H_{k-1}}(x^{k-1}-H_{k-1}^{-1}\nabla g(x^{k-1}))\\
+x^{k} = x^{k-1}+t_{k}(y^{k}-x^{k-1}).
+$$
+
+- http://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/24-prox-newton.pdf
+
 ***
 $\color{aqua}{Note}$: the projection from a point $x^0$ into a subset $C\subset\mathbb{R}^n$ is defined in proximal operator as
 
@@ -561,9 +587,7 @@ x^{+} = \arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
 \\=  \arg\min_{x} \{\delta_C(x)+\log({\|x-x^0\|}_2^2)\}.
 $$
 
-**Proximal and Projected Newton Methods**
 
-- http://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/24-prox-newton.pdf
 
 ## Lagrange Multipliers and Duality
 
@@ -681,9 +705,9 @@ $$\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda^k\|}_{2}^{2}$$
 
 at $x^k$ and add a proximal term $\frac{r}{2}{\|x-x^k\|}_2^2$ to the objective function.
 In another word, we solve the following ${x}$ subproblem if ignoring the constant term of the objective function:
-$$\min_{x}f(x)+\beta(Ax)^T(Ax^k+By^k-b-\frac{1}{\lambda^k})+\frac{r}{2}{\|x-x^k\|}_2^2.$$
+$$\min_{x}f(x)+\beta(Ax)^T(A x^k + B y^k - b-\frac{1}{\lambda^k}) + \frac{r}{2}{\|x - x^k\|}_2^2.$$
 
-> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}f(x)+\beta(Ax)^T(Ax^k+By^k-b-\frac{1}{\lambda^k})+\frac{r}{2}{\|x-x^k\|}_2^2$,
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}} f(x) + \beta(A x)^T (A x^k + B y^k - b -\frac{1}{\lambda^k})+ \frac{r}{2}{\|x - x^k\|}_2^2$,
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}})$,
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
@@ -693,8 +717,8 @@ $$rI_{1}-\beta A^TA\geq 0.$$
 
 We can also linearize  the ${y}$ subproblem:
 
-> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^k,\lambda^k)$,
-> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} g(y)+\beta (By)^{T}(Ax^{\color{red}{k+1}}+By^k-b-\frac{1}{\beta}\lambda^k)+\frac{r}{2}\|y-y^k\|^2$,
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x, y^k, \lambda^k)$,
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} g(y) + \beta (By)^{T}(Ax^{\color{red}{k+1}} + B y^k - b -\frac{1}{\beta}\lambda^k) + \frac{r}{2}\|y - y^k\|^2$,
 > 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 For given $\beta > 0$, choose ${r}$ such that
@@ -704,10 +728,10 @@ $$rI_{2}-\beta B^T B\geq 0.$$
 ***
 Taking $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described as
 
-> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})$,
-> 2. $\lambda^{k+\frac{1}{2}} = \lambda^{k} - \mu\beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b)$,
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}(x, y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})$,
+> 2. $\lambda^{k + \frac{1}{2}} = \lambda^{k} - \mu\beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k}}-b)$,
 > 3. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k+\frac{1}{2}}})$,
-> 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}} } - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b)$.
+> 4. $\lambda^{k+1} = \lambda^{\color{red}{k+\frac{1}{2}}} - \mu\beta (A x^{\color{red}{k+1}} + B y^{\color{red}{k+1}}-b)$.
 
 * http://www.optimization-online.org/DB_FILE/2015/05/4925.pdf
 
@@ -717,7 +741,7 @@ $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me those.}}$[^9]
 
 One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence:
 $$
-L_{\beta}^{\phi}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}B_{\phi}(b- Ax, By).
+L_{\beta}^{\phi}(x, y)=f(x)+g(y) - \lambda^{T}(Ax + By - b) + \frac{\beta}{2} B_{\phi}(b- Ax, By).
 $$
 
 where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$.
@@ -730,6 +754,12 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 
 * https://arxiv.org/abs/1306.3203
 * https://www.swmath.org/software/20288
+
+
+**Relaxed and Inertial ADMM**
+
+* http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf
+* http://www.iutzeler.org/pres/osl2017.pdf
 
 **Multi-Block ADMM**
 
@@ -1026,7 +1056,7 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
 The surrogate function is also known as merit function.
 
-It is obvious that the choice of optimization methods relies on the objective function.
+It is obvious that the choice of optimization methods relies on the objective function. Surrogate loss transform the original problem into successive  trackable subproblems.  
 
 * [Divergences, surrogate loss functions and experimental design](https://people.eecs.berkeley.edu/~jordan/papers/NguWaiJor_nips05.pdf)
 * http://fa.bianp.net/teaching/2018/eecs227at/
@@ -1081,6 +1111,40 @@ as well as the mirror gradient and proximal gradient methods different from the 
 
 Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf) as well as Markov chain.
 
+* https://www.wikiwand.com/en/Fixed-point_theorem
+* [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
+* [Lecture 8 : Fixed Point Iteration Method, Newton’s Method](http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf)
+* [FixedPoint: A suite of acceleration algorithms with Application](https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf)
+* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
+* [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
+
+**ISTA and FASTA**
+
+The $\ell_1$ regularization is to solve the ill-conditioned equations such as
+$$\min_{x}{\|Ax-b\|}_2^2+{\|x\|}_1.$$
+
+It is less sensitive to outliers and  obtain much more sparse solutions (as opposed to $\ell_2$ regularization).
+Its application includes and is not restricted in *LASSO*, *compressed sensing* and *sparse approximation  of signals*.
+
+It is clear that the absolute value function is not smooth or differentiable  everywhere even the objective function ${\|Ax-b\|}_2^2+{\|x\|}_1$ is convex.
+It is not best to solve this problem by gradient-based methods.
+
+**Iterative Shrinkage-Threshold Algorithms(ISTA)** for $\ell_1$ regularization is
+$$x^{k+1}=\mathbf{T}_{\lambda t}(x^{k}-tA ^{T}(Ax-b))$$
+where $t> 0$ is a step size and $\mathbf{T}_{\alpha}$ is the shrinkage operator defined by
+$${\mathbf{T}_{\alpha}(x)}_{i}={(x_i-\alpha)}_{+}sgn(x_{i})$$
+where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
+
+**FISTA with constant stepsize**
+
+> * $x^{k}= p_{L}(y^k)$ computed as ISTA;
+> * $t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}$;
+> * $y^{k+1}=x^k+\frac{t_k -1}{t_{k+1}}(x^k-x^{k-1})$.
+
+* https://www.polyu.edu.hk/~ama/events/conference/NPA2008/Keynote_Speakers/teboulle_NPA_2008.pdf
+* https://pylops.readthedocs.io/en/latest/gallery/plot_ista.html
+* https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/
+
 This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
 Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
 > First-order methods are described and analyzed with gradients or subgradients, while second-order methods use second-order derivatives or their approximations.
@@ -1089,18 +1153,14 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 
 > Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
 
-* https://www.wikiwand.com/en/Fixed-point_theorem
-* [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
-* [Lecture 8 : Fixed Point Iteration Method, Newton’s Method](http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf)
-* [FixedPoint: A suite of acceleration algorithms with Application](https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf)
-* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
 
-However, it is best to think from  the necessary condition of optima  in non-convex optimization. 
+However, it is best to think from  the necessary condition of optima  in non-convex optimization.
 Another question is to generalize the fixed point iteration to stochastic gradient descent.
 
 And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
 
 Some courses on optimization:
+
 + http://mat.uab.cat/~alseda/MasterOpt/;
 + http://www.math.ucla.edu/~wotaoyin/math273c/
 + http://www.math.ucla.edu/~lvese/273.1.10f/
@@ -1108,7 +1168,7 @@ Some courses on optimization:
 + https://web.stanford.edu/~boyd/teaching.html
 + http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
 + http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
-+ 
++ http://www.stat.cmu.edu/~ryantibs/convexopt/
 
 ***
 
