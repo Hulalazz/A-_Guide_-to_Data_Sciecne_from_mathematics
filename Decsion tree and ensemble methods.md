@@ -359,6 +359,37 @@ $$
 
 One important advantage of this definition is that the value of the objective function only depends on $g_i$ and $h_i$. This is how XGBoost supports custom loss functions.
 
+ In order to define the complexity of the tree $\Omega(f)$, let us first refine the definition of the tree $f(x)$ as
+$$
+f_t(x)= w_{q(x)}, w\in\mathbb{R}^{T}, q:\mathbb{R}^d\Rightarrow \{1,2,\dots, T\}.
+$$
+
+Here ${w}$ is the vector of scores on leaves, ${q}$ is a function assigning each data point to the corresponding leaf, and ${T}$ is the number of leaves. In XGBoost, we define the complexity as
+$$
+\Omega(f)=\gamma T+\frac{1}{2}\lambda \sum_{i=1}^{n}w_i^2.
+$$
+
+After re-formulating the tree model, we can write the objective value with the ${t}$-th tree as:
+$$
+obj^{(t)} = \sum_{i=1}^{n}[g_i w_{q(x_i)}+\frac{1}{2} h_i w_{q(x_i)}^2 + \gamma T+\frac{1}{2}\lambda \sum_{i=1}^{n}w_i^2]
+\\=\sum_{j=1}^{T}[(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2]+\gamma T
+$$
+where $I_j=\{i|q(x_i)=j\}$ is the set of indices of data points assigned to the $j$-th leaf.
+We could further compress the expression by defining $G_j=\sum_{i\in I_j}g_i$ and $H_j=\sum_{i\in I_j}h_i$:
+$$
+obj^{(t)} = \sum_{j=1}^{T}[(G_j w_j+\frac{1}{2}(H_j +\lambda)w_j^2]+\gamma T
+$$
+
+In this equation, $w_j$ are independent with respect to each other, the form $G_j w_j+\frac{1}{2}(H_j+\lambda)w^2_j$ is quadratic and the best $w_j$ for a given structure $q(x)$ and the best objective reduction we can get is:
+$$
+\begin{align}
+w_j^{*} &=-(H_j+\lambda I)^{-1}G_j\\
+obj^{*} &=\frac{1}{2}\sum_{j=1}^{T}
+-(H_j+\lambda I)^{-1}G_j^2
+\end{align}+\gamma T.
+$$
+
+
 ***
 
 * https://xgboost.readthedocs.io/en/latest/tutorials/model.html
