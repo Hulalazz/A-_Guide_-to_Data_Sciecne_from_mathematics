@@ -7,7 +7,7 @@ $\color{aqua}{LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION}.$
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
 * Optimization is aimed to find the parameters that optimizes the evaluation function, i.e.
     $$
-    \arg\min_{\theta} f(\theta)=\{\theta^*|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
+    \arg\min_{\theta} f(\theta)=\{\theta^{*}|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
     $$
 
 ***********************************************
@@ -48,7 +48,7 @@ where $x\in \mathbb{R}^{n}$.
 
 It is not difficult to observe that
 $$f(x) \approx f(x^k)+(x - x^k)^{T}\nabla f(x^{k}) + \frac{s_k}{2}{\|x-x^k\|}_2^2$$
-by Taylor expansion of $f$ near the point $x^{k}$ for some constant $s$.
+by Taylor expansion of $f$ near the point $x^{k}$ for some constant $s_k$.
 
 Let $x^{k+1}=\arg\min_{x} f(x^k) + (x - x^k)^{T}\nabla f(x^{k}) + \frac{s_k}{2}{\|x-x^k\|}_2^2$,  we will obtain $x^{k+1} = x^{k}-\frac{1}{s_k}{\nabla}_{x} f(x^k)$. However, the constant $s_k$ is difficult to estimate.
 
@@ -102,8 +102,11 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * http://wiki.fast.ai/index.php/Gradient_Descent
 * https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/
 * https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
-* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
+* https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
+* https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/
+* https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf
 * https://jlmelville.github.io/mize/nesterov.html
+* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf
 * http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf
@@ -137,14 +140,13 @@ So if we can find all the solution of the equation system $\nabla f(x) = 0$, it 
 
 It is given by
 $$
-x^{k+1}=x^{k}-\alpha^{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}
+x^{k+1}=\arg\min_{x}f(x^k)+(x-x^k)^T \nabla_x f(x^k)+\frac{1}{2\alpha_{k+1}}(x-x^k)^T H(x^k)(x-x^k)
+\\=x^{k}-\alpha_{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}
 $$
 where $H^{-1}(x^{k})$ is inverse of the Hessian matrix of the function $f(x)$ at the point $x^{k}$.
 It is called **Newton–Raphson algorithm** in statistics.
 Especially when the log-likelihood function $\ell(\theta)$ is well-behaved,
 a natural candidate for finding the MLE is the **Newton–Raphson algorithm** with quadratic convergence rate.
-
-
 
 ### The Fisher Scoring Algorithm
 
@@ -285,17 +287,21 @@ exponential families can be implemented as a first-order method through **mirror
 |:----:|
 |![Shun-ichi Amari](https://groups.oist.jp/sites/default/files/imce/u34/images/people/shun-ichi-amari.jpg)|
 
-* http://www.yann-ollivier.org/rech/publs/natkal.pdf
-* http://www.dianacai.com/blog/2018/02/16/natural-gradients-mirror-descent/
+
+* [Natural gradient descent and mirror descent](http://www.dianacai.com/blog/2018/02/16/natural-gradients-mirror-descent/)
+* [Online Natural Gradient as a Kalman Filter](http://www.yann-ollivier.org/rech/publs/natkal.pdf)
 * https://www.zhihu.com/question/266846405
-* http://bicmr.pku.edu.cn/~dongbin/Conferences/Mini-Course-IG/index.html
-* http://ipvs.informatik.uni-stuttgart.de/mlr/wp-content/uploads/2015/01/mathematics_for_intelligent_systems_lecture12_notes_I.pdf
-* http://www.luigimalago.it/tutorials/algebraicstatistics2015tutorial.pdf
-* http://www.yann-ollivier.org/rech/publs/tango.pdf
-* http://www.brain.riken.jp/asset/img/researchers/cv/s_amari.pdf
-* https://people.cs.umass.edu/~pthomas/papers/Thomas2016b_ICML.pdf
-* https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf
+* [2016 PKU Mini-Course: Information Geometry](http://bicmr.pku.edu.cn/~dongbin/Conferences/Mini-Course-IG/index.html)
+* [Information Geometry and Natural Gradients](http://ipvs.informatik.uni-stuttgart.de/mlr/wp-content/uploads/2015/01/mathematics_for_intelligent_systems_lecture12_notes_I.pdf)
+* [Tutorial on Information Geometry and Algebraic Statistics](http://www.luigimalago.it/tutorials/algebraicstatistics2015tutorial.pdf)
+* [True Asymptotic Natural Gradient Optimization
+](http://www.yann-ollivier.org/rech/publs/tango.pdf)
+* [Shun-ichi Amari's CV in RIKEN](http://www.brain.riken.jp/asset/img/researchers/cv/s_amari.pdf)
+* [Energetic Natural Gradient Descent](https://people.cs.umass.edu/~pthomas/papers/Thomas2016b_ICML.pdf)
+* [Natural gradients and K-FAC](https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf)
 * http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
+* [谈谈优化算法 - 郑思座的文章 - 知乎](https://zhuanlan.zhihu.com/p/60088231)
+
 
 ## Expectation Maximization Algorithm
 
@@ -359,7 +365,7 @@ by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM
 
 * https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 
-**Qudratic Loweer Bound**
+**Quadratic Lower Bound**
 
 - http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
 
@@ -372,7 +378,7 @@ $$
 \arg\min_{x\in\mathbb{S}}f(x)
 $$
 
-where $f,\mathbb{S}\subset\mathbb{R}^n$ are convex.
+where $f$ is convex and differentiable, $\mathbb{S}\subset\mathbb{R}^n$  is convex.
 The optimal condition for this constrained optimization problem is that the feasible direction is not the descent or profitable direction: if $x^{\star}\in\mathbb{S}$ is the solution to the problem, we can  assert that `variational inequality` holds:
 $$\forall x \in \mathbb{S}, \left<\nabla f(x^{\star}),x-x^{\star} \right> \geq 0.$$
 
@@ -409,18 +415,25 @@ The following links are recommended if you want more theoretical proof:
 * http://maths.nju.edu.cn/~hebma/slides/03C.pdf
 * http://maths.nju.edu.cn/~hebma/slides/00.pdf
 
+For the non-differentiable but convex function such as the absolute value function $f(x)=|x|$,  we therefore consider sub-gradients in place of the gradient, where sub-gradient $\phi$ at the point $\hat{x}$ is defined as the elements in the  domain of convex function ${f}$ (denoted as $D_f$), satisfying
+
+$$
+\left<\phi, x-\hat{x}\right>\leq f(x) -f(\hat{x}),\forall x \in D_f.
+$$
 
 ### Mirror descent
 
 **Mirror descent** can be regarded as the non-Euclidean generalization via replacing the $\ell_2$ norm or Euclidean distance in projected gradient descent by [Bregman divergence](https://www.mdpi.com/1099-4300/16/12/6338/htm).
 
-Bregman divergence is induced by convex smooth function $f$:
+Bregman divergence is induced by convex smooth function ${h}$:
 
 $$
  B_h(x,y) = h(x) - h(y)-\left<\nabla h(y),x-y\right>
 $$
 
 where $\left<\cdot,\cdot\right>$ is inner product and it also denoted as $D_h$.
+
+The function ${h}$ is usually required to be strongly convex. And if the convex function ${h}$ is not differentiable, one element of the subgradient ${\partial h(y)}$ may replace the gradient $\nabla h(y)$.
 
 It is convex in $x$ and  $\frac{\partial B_h(x, y)}{\partial x} = \nabla h(x) - \nabla h(y)$.
 
@@ -429,7 +442,7 @@ Especially, when ${h}$ is quadratic function, the Bregman divergence induced by 
 $$
  B_h(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
 $$
-i.e. the Euclidean distance.
+i.e. the square of Euclidean distance.
 
 A wonderful introduction to **Bregman divergence** is **Meet the Bregman Divergences**
 by [Mark Reid](http://mark.reid.name/) at <http://mark.reid.name/blog/meet-the-bregman-divergences.html>.
@@ -457,19 +470,21 @@ $$
 
 In another compact form, mirror gradient can be described in the proximal form:
 $$
-x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}
+x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}\tag {1}
 $$
 with $g^k=\nabla f(x^k)$.
 
-The original "mirror" form of mirror gradient method is described as
+Note that the next iteration point $x^{k+1}$ only depends the current iteration point $x^{k}$ no more previous iteration points.
+
+By the optimal conditions of equation (1), the original "mirror" form of mirror gradient method is described as
 $$
-\nabla h(x^{k+1}) = \nabla h(x^k) - \nabla f(x^k)
+\nabla h(x^{k+1}) = \nabla h(x^k) - \alpha_k \nabla f(x^k), x\in \mathbb{S}
 $$
 where the convex function ${h}$ induces the Bregman divergence.
 
-One special method is called `entropic mirror descent(multiplicative weight)` when the Bregman divergence induced by  $e^x$ and  the constraint set $\mathbb{S}\subset\mathbb{R}^n$ is simplex, i.e. $\sum_{i=1}^{n}x_i =1, \forall x_i \geq 0$.
+One special method is called `entropic mirror descent(Multiplicative Weights Update, Exponential Gradient Descent)` when the Bregman divergence induced by  $e^x$ and  the constraint set $\mathbb{S}\subset\mathbb{R}^n$ is simplex, i.e. $\sum_{i=1}^{n}x_i =1, \forall x_i \geq 0$.
 
-**Entropic mirror descent(multiplicative weight)** at step ${k}$ is given as follows:
+**Entropic descent method** at step ${k}$ is given as follows:
 
 $$
 {x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla f(x^k))}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla f(x^k))}}, i=1,2,\dots, n.
@@ -477,15 +492,16 @@ $$
 
 See more on the following link list.
 
-* http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf
+* [Bregman Divergence and Mirror Descent, Xinhua Zhang(张歆华)](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
+* [CS 294 / Stat 260, Fall 2014: Learning in Sequential Decision Problems](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf)
+* [ELE522: Large-Scale Optimization for Data Science , Yuxin Chen, Princeton University, Fall 2019](http://www.princeton.edu/~yc5/ele522_optimization/lectures/mirror_descent.pdf)
+* [Mirror Descent and the Multiplicative Weight Update Method, CS 435, 201, Nisheeth Vishnoi](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
 * https://zhuanlan.zhihu.com/p/34299990
 * https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/
 * https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/
-* https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf
-* http://www.princeton.edu/~yc5/ele538_optimization/lectures/mirror_descent.pdf
-* http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf
 * https://tlienart.github.io/pub/csml/cvxopt/mda.html
 * https://web.stanford.edu/class/cs229t/2017/Lectures/mirror-descent.pdf
+
 
 ### Proximal Gradient Method
 
@@ -654,6 +670,8 @@ If the constraints are more complex, **KKT theorem** may be necessary.
 - http://web.mit.edu/dimitrib/www/lagr_mult.html
 - https://zhuanlan.zhihu.com/p/50823110
 
+*exponentia laugmented Lagrangean method*
+
 ### Alternating Direction Method of Multipliers
 
 Alternating direction method of multipliers is called **ADMM** shortly.
@@ -756,10 +774,12 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 * https://www.swmath.org/software/20288
 
 
-**Relaxed and Inertial ADMM**
+**Relaxed, Inertial and Fast ADMM**
 
 * http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf
 * http://www.iutzeler.org/pres/osl2017.pdf
+* https://www.mia.uni-saarland.de/Publications/goldstein-cam12-35.pdf
+* [The Classical Augmented Lagrangian Method and Nonexpansiveness](http://rutcor.rutgers.edu/pub/rrr/reports2012/32_2012.pdf)
 
 **Multi-Block ADMM**
 
@@ -773,12 +793,12 @@ $$
 
 We defined its augmented Lagrangian multipliers as
 $$
-L_{\beta}^{n}(x_1,x_2,\cdots,x_n\mid \lambda)=\sum_{i=1}^{n}f_i(x_i) -\lambda^T(\sum_{i=1}^{n}A_i x_i - b)+\frac{\beta}{2}{\|\sum_{i=1}^{n}A_i x_i - b\|}_2^2.
+L_{\beta}^{n}(x_1,x_2,\cdots, x_n\mid \lambda)=\sum_{i=1}^{n} f_i(x_i) -\lambda^T (\sum_{i=1}^{n} A_i x_i - b) + \frac{\beta}{2}{\|\sum_{i=1}^{n} A_i x_i - b\|}_2^2.
 $$
 
 Particularly, we firstly consider the case when $n=3$:
 $$
-L_{\beta}^{3}(x,y,z\mid \lambda)=f_1(x) + f_2(y) + f_3(z)-\lambda^T(A_1 x + A_2 y + A_3 z - b)
+L_{\beta}^{3}(x, y, z\mid \lambda)=f_1(x) + f_2(y) + f_3(z)-\lambda^T (A_1 x + A_2 y + A_3 z - b)
 \\+\frac{\beta}{2}{\|A_1 x + A_2 y + A_3 z - b\|}_2^2.
 $$
 
@@ -929,6 +949,7 @@ where $g(x)$ is convex, differentiable and each $h_i(x)$ is convex.
 We can use coordinate descent to find a minimizer: start with some initial guess $x^0$, and repeat for $k = 1, 2, 3, \dots$:
 
 ***
+
 > 1. $x_{1}^{k} \in\arg\min_{x_1}f(x_1, x_2^{k-1}, x_3^{k-1}, \dots, x_n^{k-1});$
 > 2. $x_{2}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2,x_3^{k-1},\dots, x_n^{k-1});$
 > 3. $x_{3}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3,\dots, x_n^{k-1});$
@@ -965,7 +986,7 @@ The stochastic gradient method is defined as
 $$
 \theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})
 $$
-where $x_{j}^{\prime}$ is stochastically draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$.
+where $x_{j}^{\prime}$ is draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$ on random.
 
 It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent.
 There is fluctuations in the total objective function as gradient steps with respect to mini-batches are taken.
@@ -1054,16 +1075,68 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 ## Surrogate Loss Functions
 
 It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
-The surrogate function is also known as merit function.
 
-It is obvious that the choice of optimization methods relies on the objective function. Surrogate loss transform the original problem into successive  trackable subproblems.  
+It is obvious that the choice of optimization methods relies on the objective function. Surrogate loss transform the original problem $\min_{x} f(x)$ into successive  trackable subproblems:
+$$x^{k+1}=\arg\min_{x} Q_{k}(x).$$
 
+We will call $Q_k(x)$ surrogate function. Surrogate function is also known as `merit function`.
+
+A good surrogate function should:
+
++ Approximate the objective function.
++ Easy to optimize.
+
+This always leads to the `convexification technique` where the surrogate function is convex. For example, we can rewrite gradient descent in the following form
+$$
+x^{k+1}=\arg\min_{x} \{f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}{\|x-x^k\|}_2^2\}.
+$$
+
+In Newton’s method, we approximate the objective with a quadratic surrogate of the form:
+$$
+Q_k(x)=f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_k(x-x^k).
+$$
+Note that the Hessian matrix $H_k$ is supposed to be positive definite. The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. And they can rewrite in the principle of surrogate function, where the surrogate function is convex in the form of linear function + squared functions in some sense.  
+
+It is natural to replace the squared function with some nonnegative function
+such as mirror gradient methods
+$$
+x^{k+1} = \arg\min_{x} \{ f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}
+$$
+
++ http://fa.bianp.net/teaching/2018/eecs227at/
++ http://fa.bianp.net/teaching/2018/eecs227at/newton.html
++ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
++ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
++ [Convexification and Global Optimization
+of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
++ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
++ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
+
+Another related method is `graduated optimization`, which [is a global optimization technique that attempts to solve a difficult optimization problem by initially solving a greatly simplified problem, and progressively transforming that problem (while optimizing) until it is equivalent to the difficult optimization problem.](https://www.wikiwand.com/en/Graduated_optimization)
+
+|Graduated Optimization|
+|:---:|
+|![](https://upload.wikimedia.org/wikipedia/commons/b/be/Graduated_optimization.svg)|
+
++ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
++ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
++ [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
++ [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
++ [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
++ [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
++ https://pratikac.github.io/
++ https://www.wikiwand.com/en/Numerical_continuation
++ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
+
+***
+* [Surrogate loss function](http://www.cs.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf)
 * [Divergences, surrogate loss functions and experimental design](https://people.eecs.berkeley.edu/~jordan/papers/NguWaiJor_nips05.pdf)
-* http://fa.bianp.net/teaching/2018/eecs227at/
 * [Surrogate Regret Bounds for Proper Losses](http://mark.reid.name/bits/pubs/icml09.pdf)
 * [Bregman Divergences and Surrogates for Learning](https://www.computer.org/csdl/trans/tp/2009/11/ttp2009112048-abs.html)
 * [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
 * [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
+* https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
+* http://fa.bianp.net/blog/2014/surrogate-loss-functions-in-machine-learning/
 
 ## Fixed Point Iteration Methods
 
@@ -1082,24 +1155,27 @@ equation (1). Then consider the following algorithm.
 
 So that finally we obtain an sequence $\{x^0, x^1, \cdots, x^{n},\cdots\}$. There are many methods to test whether this sequence is convergent or not as learn in calculus.
 
-In high dimensional space, it is a little different.
+In high dimensional space, it is a little different. Fixed point iteration as well as the fixed point itself arises in many cases such as [https://arxiv.org/pdf/1511.06393.pdf].
 
 The contracting mapping ${F}:\mathbb{R}^{d}\to\mathbb{R}^{d}$ is defined as
 $$\|F(x)-F(y)\|\leq \alpha\|x-y\|, \forall x,y \in\mathbb{R},\alpha\in[0,1).$$
 Thus $\lim_{\|x-y\|\to 0}\frac{\|F(x)-F(y)\|}{\|x-y\|}\leq \alpha\in[0,1)$.
 
-Now we consider the necessary condition of unconstrainted optimization problems:
+Now we rewrite  the necessary condition of unconstrainted optimization problems $\nabla f(x) = 0$ to the fixed point equation:
 
 $$
-\nabla f(x) = 0 \Rightarrow x - \alpha\nabla f(x) = x \\
+\begin{align}
+\nabla f(x) = 0 \Rightarrow & x - \alpha\nabla f(x) = x \\
+\nabla f(x) = 0 \Rightarrow  g(x) - \alpha\nabla f(x) = g(x) \Rightarrow & x - g^{-1}(\alpha\nabla f(x)) = x\\
 \nabla f(x) = 0\Rightarrow H(x)x- \alpha\nabla f(x) = H(x)x
-\Rightarrow x - \alpha H(x)^{-1} \nabla f(x) = x \\
-\nabla f(x) = 0 \Rightarrow M(x)\nabla f(x) = 0 \Rightarrow x -\alpha M(x)\nabla f(x) = x
+\Rightarrow & x - \alpha H(x)^{-1} \nabla f(x) = x \\
+\nabla f(x) = 0 \Rightarrow M(x)\nabla f(x) = 0 \Rightarrow & x -\alpha M(x)\nabla f(x) = x
+\end{align}
 $$
 
 where $H(x)$ is the lambda-matrix.
 
-These correspond to gradient descent, Newton's method and quasi-Newton's method, respectively.
+These correspond to gradient descent, mirror gradient methods, Newton's methods and quasi-Newton's methods, respectively.
 
 
 And the projected (sub)gradient methods are in the fixed-point iterative form:
@@ -1111,22 +1187,28 @@ as well as the mirror gradient and proximal gradient methods different from the 
 
 Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf) as well as Markov chain.
 
+![http://www.drkhamsi.com/fpt/books.html](http://www.drkhamsi.com/fpt/fix2small.gif)
+
 * https://www.wikiwand.com/en/Fixed-point_theorem
 * [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
 * [Lecture 8 : Fixed Point Iteration Method, Newton’s Method](http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf)
 * [FixedPoint: A suite of acceleration algorithms with Application](https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf)
 * [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
 * [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
+* [http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
+* [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
+* http://www.drkhamsi.com/fpt/books.html
+
 
 **ISTA and FASTA**
 
 The $\ell_1$ regularization is to solve the ill-conditioned equations such as
-$$\min_{x}{\|Ax-b\|}_2^2+{\|x\|}_1.$$
+$$\min_{x}{\|Ax-b\|}_2^2+\lambda{\|x\|}_1.$$
 
 It is less sensitive to outliers and  obtain much more sparse solutions (as opposed to $\ell_2$ regularization).
 Its application includes and is not restricted in *LASSO*, *compressed sensing* and *sparse approximation  of signals*.
 
-It is clear that the absolute value function is not smooth or differentiable  everywhere even the objective function ${\|Ax-b\|}_2^2+{\|x\|}_1$ is convex.
+It is clear that the absolute value function is not smooth or differentiable  everywhere even the objective function ${\|Ax-b\|}_2^2+\lambda{\|x\|}_1$ is convex.
 It is not best to solve this problem by gradient-based methods.
 
 **Iterative Shrinkage-Threshold Algorithms(ISTA)** for $\ell_1$ regularization is
@@ -1141,11 +1223,13 @@ where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
 > * $t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}$;
 > * $y^{k+1}=x^k+\frac{t_k -1}{t_{k+1}}(x^k-x^{k-1})$.
 
-* https://www.polyu.edu.hk/~ama/events/conference/NPA2008/Keynote_Speakers/teboulle_NPA_2008.pdf
+* [A Fast Iterative Shrinkage Algorithm for Convex Regularized Linear Inverse Problems](https://www.polyu.edu.hk/~ama/events/conference/NPA2008/Keynote_Speakers/teboulle_NPA_2008.pdf)
 * https://pylops.readthedocs.io/en/latest/gallery/plot_ista.html
-* https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/
+* [ORF523: ISTA and FISTA](https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/)
+* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
+* [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
 
-This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html).
+This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
 Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
 > First-order methods are described and analyzed with gradients or subgradients, while second-order methods use second-order derivatives or their approximations.
 
@@ -1161,14 +1245,29 @@ And there are more topics on optimization such as [this site](http://mat.uab.cat
 
 Some courses on optimization:
 
++ http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
 + http://mat.uab.cat/~alseda/MasterOpt/;
 + http://www.math.ucla.edu/~wotaoyin/math273c/
 + http://www.math.ucla.edu/~lvese/273.1.10f/
++ https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
 + http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html
 + https://web.stanford.edu/~boyd/teaching.html
 + http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
 + http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
 + http://www.stat.cmu.edu/~ryantibs/convexopt/
++ https://lavaei.ieor.berkeley.edu/Course_IEOR262B_Spring_2019.html
++ https://nisheethvishnoi.wordpress.com/convex-optimization/
++ [Optimization by Vector Space Methods](https://courses.engr.illinois.edu/ECE580/sp2019/)
+
+## Dynamical Systems
+
+- [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
+- [Variational and Dynamical Perspectives On Learning
+and Optimization
+](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
+- [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
+- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
+- https://www.pnas.org/content/113/47/E7351
 
 ***
 
@@ -1186,3 +1285,4 @@ Some courses on optimization:
 - [ ] https://zhuanlan.zhihu.com/p/51514687
 - [ ] http://math.cmu.edu/~hschaeff/research.html
 - [ ] https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
+- [ ] https://blogs.princeton.edu/imabandit/
