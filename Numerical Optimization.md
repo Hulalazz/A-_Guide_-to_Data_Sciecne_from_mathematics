@@ -102,20 +102,17 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * http://wiki.fast.ai/index.php/Gradient_Descent
 * https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/
 * https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
-* https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
 * https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/
+* https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
 * https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf
 * https://jlmelville.github.io/mize/nesterov.html
-* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
+* http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
-* http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf
-* http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf
-* http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf
+* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
 * https://zhuanlan.zhihu.com/p/41263068
 * https://zhuanlan.zhihu.com/p/35692553
 * https://zhuanlan.zhihu.com/p/35323828
 * http://www.optimization-online.org/DB_FILE/2018/11/6938.pdf
-* https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.cs.cmu.edu/~ggordon/10725-F12/slides/09-acceleration.pdf
 * https://saugatbhattarai.com.np/what-is-gradient-descent-in-machine-learning/
@@ -501,6 +498,7 @@ See more on the following link list.
 * https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/
 * https://tlienart.github.io/pub/csml/cvxopt/mda.html
 * https://web.stanford.edu/class/cs229t/2017/Lectures/mirror-descent.pdf
+* https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf
 
 
 ### Proximal Gradient Method
@@ -1118,6 +1116,8 @@ Another related method is `graduated optimization`, which [is a global optimizat
 |:---:|
 |![](https://upload.wikimedia.org/wikipedia/commons/b/be/Graduated_optimization.svg)|
 
+[Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf)
+
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
 + [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
@@ -1193,11 +1193,7 @@ Expectation maximization is also an accelerated [fixed point iteration](https://
 * [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
 * [Lecture 8 : Fixed Point Iteration Method, Newton’s Method](http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf)
 * [FixedPoint: A suite of acceleration algorithms with Application](https://cran.r-project.org/web/packages/FixedPoint/vignettes/FixedPoint.pdf)
-* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
-* [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
-* [http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
-* [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
-* http://www.drkhamsi.com/fpt/books.html
+* [Books on Fixed Point Theory](http://www.drkhamsi.com/fpt/books.html)
 
 
 **ISTA and FASTA**
@@ -1228,6 +1224,16 @@ where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
 * [ORF523: ISTA and FISTA](https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/)
 * [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
 * [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
+
+There is an acceleration framework of fixed point iterations called `Anderson Acceleration`.
+
+* [Anderson acceleration for fixed point iterations](https://users.wpi.edu/~walker/Papers/Walker-Ni,SINUM,V49,1715-1735.pdf)
+* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
+* [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
+* [Convergence Analysis For Anderson Acceleration](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
+* [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
+* [Globally Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations](http://59.80.44.49/web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf)
+* http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf
 
 This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
 Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
@@ -1262,13 +1268,17 @@ Some courses on optimization:
 ## Dynamical Systems
 
 - [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
-- [Variational and Dynamical Perspectives On Learning
-and Optimization
-](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
+- [Variational and Dynamical Perspectives On Learning and Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
+- [Continuous and Discrete Dynamics For Online Learning and Convex Optimization](http://walid.krichene.net/papers/thesis-continuous-discrete.pdf)
 - [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
+- [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)
+- http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf
+- http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf
+- http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf
+- https://arxiv.org/abs/1802.03653
 - https://www.pnas.org/content/113/47/E7351
-
+- https://people.eecs.berkeley.edu/~jordan/optimization.html
 ***
 
 - [ ] http://www.optimization-online.org/
