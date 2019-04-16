@@ -74,7 +74,7 @@ And this optimization is called convex optimization.
 ***
 
 Some variants of gradient descent methods are not line search method.
-For example, the **heavy ball method**:
+For example, the **heavy ball methods or momentum methods**:
 
 $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1})
@@ -101,11 +101,13 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * https://www.wikiwand.com/en/Gradient_descent
 * http://wiki.fast.ai/index.php/Gradient_Descent
 * https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/
+* https://blogs.princeton.edu/imabandit/2014/03/06/nesterovs-accelerated-gradient-descent-for-smooth-and-strongly-convex-optimization/
 * https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
 * https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/
 * https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
 * https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf
 * https://jlmelville.github.io/mize/nesterov.html
+* https://distill.pub/2017/momentum/
 * http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
@@ -430,14 +432,14 @@ $$
 
 where $\left<\cdot,\cdot\right>$ is inner product and it also denoted as $D_h$.
 
-The function ${h}$ is usually required to be strongly convex. And if the convex function ${h}$ is not differentiable, one element of the subgradient ${\partial h(y)}$ may replace the gradient $\nabla h(y)$.
+The function ${h}$ is usually required to be strongly convex. And if the convex function ${h}$ is not differentiable, one element of the sub-gradient ${\partial h(y)}$ may replace the gradient $\nabla h(y)$.
 
 It is convex in $x$ and  $\frac{\partial B_h(x, y)}{\partial x} = \nabla h(x) - \nabla h(y)$.
 
 
 Especially, when ${h}$ is quadratic function, the Bregman divergence induced by $h$ is
 $$
- B_h(x,y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
+ B_h(x, y)=x^2-y^2-\left<2y,x-y\right>=x^2+y^2-2xy=(x-y)^2
 $$
 i.e. the square of Euclidean distance.
 
@@ -845,7 +847,7 @@ If $f_1$ is strongly convex, then apply Davis-Yin (to dual problem) gives:
 > 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{k+1},y^{k+1},\color{green}{z},\lambda^k)\mid z\in\mathbb{Z}\}$;
 > 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$.
 
-where $L^3(x,y^k,z^k,\lambda^k)=f_1(x) + f_2(y^k) + f_3(z^k)-{\lambda^k}^T(A_1 x + A_2 y^k + A_3 z^k - b)$
+where $L^3(x, y^k, z^k, \lambda^k)=f_1(x) + f_2(y^k) + f_3(z^k)-{\lambda^k}^T(A_1 x + A_2 y^k + A_3 z^k - b)$
 is the Lagrangian rather than  augmented Lagrangian.
 
 - http://fa.bianp.net/blog/2018/tos/
@@ -1095,10 +1097,17 @@ Q_k(x)=f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_
 $$
 Note that the Hessian matrix $H_k$ is supposed to be positive definite. The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. And they can rewrite in the principle of surrogate function, where the surrogate function is convex in the form of linear function + squared functions in some sense.  
 
+Note that momentum methods can be rewrite in the surrogate function form:
+$$
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1}) \\
+= \arg\min_{x}\{f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{2\alpha_k} {\|x-x^k-\rho_k(x^k-x^{k-1})\|}_2^2\}.
+$$
+$\color{aqua}{PS}$: How we can extend it to Nestrov gradient methods or stochastic gradient methods?
+
 It is natural to replace the squared function with some nonnegative function
 such as mirror gradient methods
 $$
-x^{k+1} = \arg\min_{x} \{ f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}
+x^{k+1} = \arg\min_{x} \{ f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}.
 $$
 
 + http://fa.bianp.net/teaching/2018/eecs227at/
@@ -1116,7 +1125,7 @@ Another related method is `graduated optimization`, which [is a global optimizat
 |:---:|
 |![](https://upload.wikimedia.org/wikipedia/commons/b/be/Graduated_optimization.svg)|
 
-[Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf)
+[Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
 
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
@@ -1148,7 +1157,8 @@ In this method, we first rewrite the question(1) in the following form
 $$x=g(x)\tag 2$$
 
 in such a way that any solution of the equation (2), which is a fixed point of the function ${g}$, is a solution of
-equation (1). Then consider the following algorithm.
+equation (1). For example, we can set $g(x)=f(x)+x, g(x)=x-f(x)$.
+Then consider the following algorithm.
 
 > 1. Give the initial point $x^{0}$;
 > 2. Compute the recursive procedure $x^{n+1}=g(x^n), n=1,2,\ldots$
@@ -1188,6 +1198,13 @@ as well as the mirror gradient and proximal gradient methods different from the 
 Expectation maximization is also an accelerated [fixed point iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf) as well as Markov chain.
 
 ![http://www.drkhamsi.com/fpt/books.html](http://www.drkhamsi.com/fpt/fix2small.gif)
+
+The following figures in the table is form [Formulations to overcome the divergence of iterative method
+of fixed-point in nonlinear equations solution](http://www.scielo.org.co/pdf/tecn/v19n44/v19n44a15.pdf)
+|||
+|---|--|
+|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg)|![](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f2.jpg)|
+|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg)|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg)|
 
 * https://www.wikiwand.com/en/Fixed-point_theorem
 * [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
@@ -1273,12 +1290,16 @@ Some courses on optimization:
 - [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)
-- http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf
-- http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf
-- http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf
-- https://arxiv.org/abs/1802.03653
-- https://www.pnas.org/content/113/47/E7351
+- [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights
+](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
+- [Acceleration via Symplectic Discretization of High-Resolution Differential Equations](http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf)
+- [Understanding the Acceleration Phenomenon via High-Resolution Differential Equations
+](http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf)
+- [On Symplectic Optimization](https://arxiv.org/abs/1802.03653)
+- [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
+- [A variational perspective on accelerated methods in optimization](https://www.pnas.org/content/113/47/E7351)
 - https://people.eecs.berkeley.edu/~jordan/optimization.html
+https://www.math.ucdavis.edu/~hunter/m207/m207.pdf
 ***
 
 - [ ] http://www.optimization-online.org/
