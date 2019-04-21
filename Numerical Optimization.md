@@ -29,7 +29,7 @@ $$
 x^{k+1}=x^{k}+\alpha_{k}p^{k}\tag{Line search}
 $$
 
-where the positive scalar $\alpha^{k}$ is called the step length. The success of a line search method
+where the positive scalar $\alpha_{k}$ is called the step length. The success of a line search method
 depends on effective choices of both the direction $p^{k}$ and the step length $\alpha_{k}$.
 
 $\color{lime}{Note}$: we use the notation $x^{k}$ and $\alpha_k$ to represent the $k$th iteration of the vector variables $x$ and $k$th step length, respectively.
@@ -55,14 +55,14 @@ Let $x^{k+1}=\arg\min_{x} f(x^k) + (x - x^k)^{T}\nabla f(x^{k}) + \frac{s_k}{2}{
 And the general gradient descent methods are given by
 
 $$
-x^{k+1}=x^{k}-\alpha_{k}{\nabla}_{x}f(x^k)
+x^{k+1}=x^{k}-\alpha_{k}{\nabla}_{x} f(x^k)
 $$
 
 where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$ so that $f(x^{k+1})=\min_{\alpha} f(x^k - \alpha\nabla_x f(x^k))$.
 
 - http://59.80.44.100/www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf
 
-![](https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg)
+![fromthegenesis](https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg)
 
 There are many ways to choose some proper step pr learning rate sequence $\{\alpha_k\}$.
 
@@ -120,6 +120,7 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * https://saugatbhattarai.com.np/what-is-gradient-descent-in-machine-learning/
 * https://www.fromthegenesis.com/gradient-descent-part-2/
 * http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/
+* https://ee227c.github.io/notes/ee227c-lecture08.pdf
 
 
 ## Variable Metric Methods
@@ -130,7 +131,7 @@ NEWTON’S METHOD and QUASI-NEWTON METHODS are classified to variable metric met
 
 It is also to find the solution of unconstrained optimization problems, i.e.
 $$\min f(x)$$
-where $x\in \mathbb{R}^{n}$.
+where $x\in \mathbb{R}^{n}$. Specially, the objective function $f(x)$ is convex so that the local minima is global minima.
 ***
 If ${x^{\star}}$ is the extrema of the cost function $f(x)$, it is necessary that $\nabla f(x^{\star}) = 0$.
 So if we can find all the solution of the equation system $\nabla f(x) = 0$, it helps us to find the solution to the optimization problem $\arg\min_{x\in\mathbb{R}^n} f(x)$.
@@ -198,7 +199,7 @@ The various quasi-Newton methods differ in their choice of the solution to the *
 
 The unknown $x_{k}$ is updated applying the Newton's step calculated using the current approximate Hessian matrix $B_{k}$:
 
-1. ${\displaystyle \Delta x_{k}=-\alpha _{k}B_{k}^{-1}\nabla f(x_{k})}$, with $\alpha$  chosen to satisfy the Wolfe conditions;
+1. ${\displaystyle \Delta x_{k}=-\alpha_{k} B_{k}^{-1}\nabla f(x_{k})}$, with $\alpha$  chosen to satisfy the Wolfe conditions;
 2. $x_{k+1}=x_{k}+\Delta x_{k}$;
 3. The gradient computed at the new point $\nabla f(x_{k+1})$, and
 $y_{k}=\nabla f(x_{k+1})-\nabla f(x_{k})$ is used to update the approximate Hessian $B_{k+1}$, or directly its inverse $H_{k+1} = B_{k+1}^{-1}$ using the Sherman–Morrison formula.
@@ -246,13 +247,13 @@ where $s_{k-1}= x_k-x_{k-1}, y_{k-1}=\nabla f(x^k)-\nabla f(x^{k-1})$.
 By symmetry, we may minimize $\|D_k^{-1}s_{k-1}- y_{k-1}\|$ with respect to $\alpha_k$ and get
 
 $$
-\alpha_k =\frac{\left<s_{k-1},s_{k-1}\right>}{\left<s_{k-1},y_{k-1}\right>}.\tag 2
+\alpha_k = \frac{\left<s_{k-1}, s_{k-1}\right>}{\left<s_{k-1}, y_{k-1}\right>}.\tag 2
 $$
 
 In short, the iteration formula of Barzilai-Borwein method is given by
 
 $$
-x^{k+1}=x^{k}-\alpha_k\nabla f(x^k)
+x^{k+1}=x^{k}-\alpha_k \nabla f(x^k)
 $$
 where $\alpha_k$ is determined by (1) or (2).
 
@@ -298,6 +299,7 @@ exponential families can be implemented as a first-order method through **mirror
 * [Shun-ichi Amari's CV in RIKEN](http://www.brain.riken.jp/asset/img/researchers/cv/s_amari.pdf)
 * [Energetic Natural Gradient Descent](https://people.cs.umass.edu/~pthomas/papers/Thomas2016b_ICML.pdf)
 * [Natural gradients and K-FAC](https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf)
+* http://www.divergence-methods.org/
 * http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
 * [谈谈优化算法 - 郑思座的文章 - 知乎](https://zhuanlan.zhihu.com/p/60088231)
 
@@ -452,7 +454,7 @@ y^{\prime}= \arg\min_{x\in C} B(x,y)
 $$
 is unique.
 
-A `generalised Pythagorean theorem` holds: for convex $C\subset \mathbb{R}^n$ and for all $x\in C$ and $y\in \mathbb{R}^n$ we have
+A `generalized Pythagorean theorem` holds: for convex $C\subset \mathbb{R}^n$ and for all $x\in C$ and $y\in \mathbb{R}^n$ we have
 $$B(x,y)\geq B(x,y^{\prime}) + B(y^{\prime},y)$$
 where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds
 when the convex set C defining the projection $y^{\prime}$ is affine.
@@ -495,6 +497,7 @@ See more on the following link list.
 * [CS 294 / Stat 260, Fall 2014: Learning in Sequential Decision Problems](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf)
 * [ELE522: Large-Scale Optimization for Data Science , Yuxin Chen, Princeton University, Fall 2019](http://www.princeton.edu/~yc5/ele522_optimization/lectures/mirror_descent.pdf)
 * [Mirror Descent and the Multiplicative Weight Update Method, CS 435, 201, Nisheeth Vishnoi](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
+* http://www.divergence-methods.org/
 * https://zhuanlan.zhihu.com/p/34299990
 * https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/
 * https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/
@@ -670,7 +673,7 @@ If the constraints are more complex, **KKT theorem** may be necessary.
 - http://web.mit.edu/dimitrib/www/lagr_mult.html
 - https://zhuanlan.zhihu.com/p/50823110
 
-*exponentia laugmented Lagrangean method*
+*exponential augmented Lagrangian method*
 
 ### Alternating Direction Method of Multipliers
 
@@ -816,17 +819,17 @@ And [Professor Bingsheng He](http://maths.nju.edu.cn/~hebma/), who taught me thi
 
 We can add one more correction step
 $$
-v^{k+1} := v^{k}-\alpha(v^k-v^{k+1}),\alpha\in (0,2-\sqrt{2})
+v^{k+1} := v^{k}-\alpha(v^k - v^{k+1}),\alpha\in (0, 2 -\sqrt{2})
 $$
 
 where $v^{k+1}=(y^{k+1},z^{k+1},\lambda^{k+1})$.
 
 Another approach is to add an regularized terms:
 
-> 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x,y^k,z^k,\lambda^k)\mid x\in\mathbb{X}\}$,
-> 2. $y^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y,z^k,\lambda^k)+\color{red}{\frac{\tau}{2}\beta{\|A_2(y-y^k)\|}^{2}}\mid y\in\mathbb{Y}\}$,
-> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}},y^{\color{yellow}{k}},z,\lambda^k)+\color{blue}{\frac{\tau}{2}\beta{\|A_3(z-z^k)\|}^{2}}\mid z\in\mathbb{Z}\}$,
-> 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$,
+> 1. $x^{k+1}=\arg\min_{x}\{L_{\beta}^3(x, y^k, z^k, \lambda^k)\mid x\in\mathbb{X}\}$,
+> 2. $y^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}}, y, z^k,\lambda^k)+\color{red}{\frac{\tau}{2}\beta{\|A_2(y-y^k)\|}^{2}}\mid y\in\mathbb{Y}\}$,
+> 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{\color{red}{k+1}}, y^{\color{yellow}{k}}, z, \lambda^k)+\color{blue}{\frac{\tau}{2}\beta{\|A_3(z - z^k)\|}^{2}}\mid z\in\mathbb{Z}\}$,
+> 4. $\lambda^{k+1} = {\lambda}^{k} - \beta(A_1 x^{k+1} + A_2 y^{k+1} + A_3 z^{k+1}-b)$,
 
 where $\tau>1$.
 
@@ -1072,7 +1075,7 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 - https://arxiv.org/pdf/1811.03962.pdf
 - http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
 
-## Surrogate Loss Functions
+## Surrogate Optimization
 
 It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
 
@@ -1102,7 +1105,8 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1}) \\
 = \arg\min_{x}\{f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{2\alpha_k} {\|x-x^k-\rho_k(x^k-x^{k-1})\|}_2^2\}.
 $$
-$\color{aqua}{PS}$: How we can extend it to Nestrov gradient methods or stochastic gradient methods?
+$\color{aqua}{PS}$: How we can extend it to Nesterov gradient methods or stochastic gradient methods?
+[Discover acceleration](https://ee227c.github.io/notes/ee227c-lecture06.pdf)
 
 It is natural to replace the squared function with some nonnegative function
 such as mirror gradient methods
@@ -1112,10 +1116,43 @@ $$
 
 + http://fa.bianp.net/teaching/2018/eecs227at/
 + http://fa.bianp.net/teaching/2018/eecs227at/newton.html
+
+The parameters $\alpha_k$ is chosen so that the surrogate function is convex by observing that the condition number of  Hessian matrix is determined by the factor $\frac{1}{\alpha_k}$. And gradient are used in these methods to construct the surrogate function. There are still two problems in unconstrained optimization:
+
+1. If the cost function is not smooth or differential such as absolute value function, the gradient is not available so that it is a problem to construct a convex surrogate function without gradient;
+2. In another hand, there is no unified principle to construct a convex surrogate function if we know more information of higher order derivatives.
+
+*****
+
+`Moreau envelope (or Moreau-Yosida regularization)` of a convex
+function $f$ with parameter $\mu > 0$ is defined as
+$$M_{\mu f}(x)=\inf_{z}\{f(z) + \frac{1}{2\mu}{\|z-x\|}_2^2\}$$
+
+Minimizing $f$ and $M_f$ are equivalent.
+$prox_{\mu f} (x)$ is unique point that achieves the infimum that defines
+$M_{\mu f}$ , i.e.
+$$
+M_{\mu f}(x)=f(prox_{\mu f} (x)) + \frac{1}{2}{\|prox_{\mu f} (x)-x\|}_2^2\}.
+$$
+
+`Moreau envelope` $M_f$ is continuously differentiable with gradients
+$$\nabla M_{\mu f} = \frac{1}{\mu}(prox_{\mu f} (x)-x).$$
+
+This means
+$$prox_{\mu f} (x)=x-\mu \nabla M_{\mu f} $$
+i.e., $prox_{\mu f} (x)$ is gradient step for minimizing $M_{\mu f}$.
+
+`Fenchel Conjugate` of a function ${h}$ is is the function $h^{\star}$ defined by
+$$h^{\star}(x)=\sup_{z} \{\left<z, x\right>-h(z)\}.$$
+
++ [Smoothing for nonsmooth optimization, ELE522: Large-Scale Optimization for Data Science](http://www.princeton.edu/~yc5/ele522_optimization/lectures/smoothing.pdf)
++ [Smoothing, EE236C (Spring 2013-14)](http://www.seas.ucla.edu/~vandenbe/236C/lectures/smoothing.pdf)
++ [Smoothing and First Order Methods: A Unified Framework](https://epubs.siam.org/doi/abs/10.1137/100818327)
 + [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
 + [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 + [Convexification and Global Optimization
 of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
++ [Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 
@@ -1130,9 +1167,11 @@ Another related method is `graduated optimization`, which [is a global optimizat
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
 + [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
++ [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
 + [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 + [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
 + [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
++ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
 + https://pratikac.github.io/
 + https://www.wikiwand.com/en/Numerical_continuation
 + [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
@@ -1201,8 +1240,9 @@ Expectation maximization is also an accelerated [fixed point iteration](https://
 
 The following figures in the table is form [Formulations to overcome the divergence of iterative method
 of fixed-point in nonlinear equations solution](http://www.scielo.org.co/pdf/tecn/v19n44/v19n44a15.pdf)
-|||
-|---|--|
+
+|Fixed Point Iterations||
+|---|---|
 |![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg)|![](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f2.jpg)|
 |![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg)|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg)|
 
@@ -1239,18 +1279,6 @@ where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
 * [A Fast Iterative Shrinkage Algorithm for Convex Regularized Linear Inverse Problems](https://www.polyu.edu.hk/~ama/events/conference/NPA2008/Keynote_Speakers/teboulle_NPA_2008.pdf)
 * https://pylops.readthedocs.io/en/latest/gallery/plot_ista.html
 * [ORF523: ISTA and FISTA](https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/)
-* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
-* [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
-
-There is an acceleration framework of fixed point iterations called `Anderson Acceleration`.
-
-* [Anderson acceleration for fixed point iterations](https://users.wpi.edu/~walker/Papers/Walker-Ni,SINUM,V49,1715-1735.pdf)
-* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
-* [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
-* [Convergence Analysis For Anderson Acceleration](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
-* [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
-* [Globally Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations](http://59.80.44.49/web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf)
-* http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf
 
 This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
 Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
@@ -1260,35 +1288,60 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 
 > Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
 
+* [ORIE 6326: Convex Optimization Operator Splitting](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
+* [Monotone Operator Splitting Methods](https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf)
+* [A Course on First-Order, Operator Splitting, and Coordinate Update Methods for Optimization](http://www.math.ucla.edu/~wotaoyin/summer2016/)
+* [Operator Splitting Methods for Convex Optimization Analysis and Implementation](http://people.ee.ethz.ch/~gbanjac/pdfs/banjac_thesis.pdf)
+* [Some Operator Splitting Methods for Convex Optimization](https://repository.hkbu.edu.hk/cgi/viewcontent.cgi?article=1042&context=etd_oa)
 
-However, it is best to think from  the necessary condition of optima  in non-convex optimization.
-Another question is to generalize the fixed point iteration to stochastic gradient descent.
+`Krasnosel'skii-Mann(KM, or averaged) iterations` update $x^k$
+in iteration ${k}$ to
+$$x^{k+1}=(1-\alpha)x^k+\alpha g(x^k), \alpha\in (0,1)$$
+for the fixed point problem (2). Specially, $g(x^k)=x^k-\alpha_k \nabla f(x^k)$ for the convex optimization problems.
 
-And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
+[The Baillon-Haddad Theorem provides an important link between convex
+optimization and fixed-point iteration.](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
 
-Some courses on optimization:
+* [A Generic online acceleration scheme for Optimization algorithms via Relaxation and Inertia](https://arxiv.org/abs/1603.05398)
+* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
+* [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
+* [Convergence theorems for inertial KM-type algorithms](https://www.sciencedirect.com/science/article/pii/S0377042707003901)
+* [On the Convergence Rate of the Halpern-Iteration](http://www.optimization-online.org/DB_FILE/2017/11/6336.pdf)
+* [Iterative Convex Optimization Algorithms; Part One: Using the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
 
-+ http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
-+ http://mat.uab.cat/~alseda/MasterOpt/;
-+ http://www.math.ucla.edu/~wotaoyin/math273c/
-+ http://www.math.ucla.edu/~lvese/273.1.10f/
-+ https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
-+ http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html
-+ https://web.stanford.edu/~boyd/teaching.html
-+ http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
-+ http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
-+ http://www.stat.cmu.edu/~ryantibs/convexopt/
-+ https://lavaei.ieor.berkeley.edu/Course_IEOR262B_Spring_2019.html
-+ https://nisheethvishnoi.wordpress.com/convex-optimization/
-+ [Optimization by Vector Space Methods](https://courses.engr.illinois.edu/ECE580/sp2019/)
+There is an acceleration framework of fixed point iterations called `Anderson Acceleration` or `regularized nonlinear acceleration`：
+
+> * $F_k = (h_{k-m_k}, \dots, h_k)$ where $h_i=g(x_i)-x_i$;
+> * Determine $\alpha^{k}=(\alpha_0^{k},\dots, \alpha_{m_k}^{k})^{T}$ that solves $\min_{\alpha^{k}}{\|F_k\alpha^k\|}_2^2$ s.t. $\sum_{i=0}^{m_k}\alpha_i^{k}=1$;
+> * Set $x_{k+1}=\sum_{i=0}^{m_k}\alpha_i^{k}g(x_{k-m_k+i})$.
+
+* [Anderson acceleration for fixed point iterations](https://users.wpi.edu/~walker/Papers/Walker-Ni,SINUM,V49,1715-1735.pdf)
+* [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
+* [MS142 Anderson Acceleration and Applications](http://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=19874)
+* [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
+* [Convergence Analysis For Anderson Acceleration](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
+* [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
+* [Globally Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations](http://59.80.44.49/web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf)
+
+
+However, it is best to think from  the necessary condition of optima  in non-convex optimization in my opinion.
+Another question is to generalize the fixed point iteration to stochastic gradient methods.
+
 
 ## Dynamical Systems
 
-- [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
+There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC
+PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan.
+Some new connections between dynamical systems and optimization is found.
+
+- [A Dynamical Approach to an Inertial Forward-Backward Algorithm for Convex Minimization
+](https://epubs.siam.org/doi/pdf/10.1137/130910294)
+- [An Inertial Proximal Method for Maximal Monotone Operators via Discretization of a Nonlinear Oscillator with Damping](https://link.springer.com/article/10.1023/A:1011253113155)
+- [THE HEAVY BALL WITH FRICTION METHOD, I. THE CONTINUOUS DYNAMICAL SYSTEM: GLOBAL EXPLORATION OF THE LOCAL MINIMA OF A REAL-VALUED FUNCTION BY ASYMPTOTIC ANALYSIS OF A DISSIPATIVE DYNAMICAL SYSTEM](https://www.worldscientific.com/doi/abs/10.1142/S0219199700000025)
+- [Viscosity Solutions of Minimization Problems](https://epubs.siam.org/doi/abs/10.1137/S1052623493259616?journalCode=sjope8)
+- [Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha \leq 3$](https://arxiv.org/abs/1706.05671)
 - [Variational and Dynamical Perspectives On Learning and Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
 - [Continuous and Discrete Dynamics For Online Learning and Convex Optimization](http://walid.krichene.net/papers/thesis-continuous-discrete.pdf)
-- [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
-- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)
 - [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights
 ](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
@@ -1298,8 +1351,58 @@ Some courses on optimization:
 - [On Symplectic Optimization](https://arxiv.org/abs/1802.03653)
 - [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
 - [A variational perspective on accelerated methods in optimization](https://www.pnas.org/content/113/47/E7351)
+- [The Physical Systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
+- [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
+- [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
+- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - https://people.eecs.berkeley.edu/~jordan/optimization.html
 https://www.math.ucdavis.edu/~hunter/m207/m207.pdf
+
+We will focus on the optimization methods in the form of fixed point iteration and dynamical systems.
+It is to minimize the following function
+$$
+f(x), x\in\mathbb{R}^p, \quad\nabla f(x) = g(x), \quad\nabla^2 f(x)= H(x).
+$$
+
+| Iteration | ODE  |
+|---|---|
+|$x^{k}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$|
+|$x^{k}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$|
+
+Like Newton interpolation, more points can compute higher order derivatives.
+The dynamics of accelerated gradient methods are expected to correspond to higher order differential equations.
+
+Some acceleration methods are iterations of the corresponding algorithms of `Asymptotic Vanishing Damping` called by [Hedy Attouch](https://arxiv.org/search/math?searchtype=author&query=Attouch%2C+H):
+
+$$
+\begin{equation*}
+ \mbox{(AVD)}_{\alpha} \quad \quad \ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
+\nabla \Phi (x(t)) =0. \end{equation*}
+$$
+
+where $\Phi(x(t))$ is dependent on the objective function.
+
+https://eta.impa.br/dl/028.pdf
+
+***
+And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
+And more courses on optimization:
+
++ http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
++ http://mat.uab.cat/~alseda/MasterOpt/;
++ http://www.math.ucla.edu/~wotaoyin/math273c/
++ http://www.math.ucla.edu/~lvese/273.1.10f/
++ https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
++ http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html
++ https://web.stanford.edu/~boyd/teaching.html
++ http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
++ http://www.stat.cmu.edu/~ryantibs/convexopt/
++ https://lavaei.ieor.berkeley.edu/Course_IEOR262B_Spring_2019.html
++ https://nisheethvishnoi.wordpress.com/convex-optimization/
++ http://www.math.ucla.edu/~wotaoyin/summer2016/
++ [Optimization by Vector Space Methods](https://courses.engr.illinois.edu/ECE580/sp2019/)
++ [Algorithms for Convex Optimization](https://nisheethvishnoi.wordpress.com/convex-optimization/)
+
 ***
 
 - [ ] http://www.optimization-online.org/
