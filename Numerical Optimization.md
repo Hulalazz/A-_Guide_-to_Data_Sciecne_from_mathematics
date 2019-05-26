@@ -1,7 +1,7 @@
 # Numerical Optimization
 
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
-$\color{aqua}{LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION}.$
+$\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVALUATION}$ + $\color{red}{OPTIMIZATION}.$
 
 * Representation as the core of the note is the general (mathematical) **model** that computer can handle.
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
@@ -32,7 +32,7 @@ $$
 where the positive scalar $\alpha_{k}$ is called the step length. The success of a line search method
 depends on effective choices of both the direction $p^{k}$ and the step length $\alpha_{k}$.
 
-$\color{lime}{Note}$: we use the notation $x^{k}$ and $\alpha_k$ to represent the $k$th iteration of the vector variables $x$ and $k$th step length, respectively.
+$\color{lime}{Note}$: we use the notation $x^{k}$ and $\alpha_k$ to represent the $k$th iteration of the vector variables $x$ and $k$ th step length, respectively.
 Most line search algorithms require $p^k$ to be a descent direction — one for which
 $\left< {p^k},\nabla f_k \right> < 0$ — because this property guarantees that the function $f$ can be reduced along this direction, where $\nabla f_k$ is the gradient of objective function $f$ at the $k$th iteration point $x_k$ i.e. $\nabla f_k=\nabla f(x^{k})$.
 
@@ -95,25 +95,24 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 
 |Inventor of Nesterov accelerated Gradient|
 |:---:|
-|![Yurii Nesterov](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Nesterov_yurii.jpg/440px-Nesterov_yurii.jpg)}|
+|![Yurii Nesterov](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Nesterov_yurii.jpg/440px-Nesterov_yurii.jpg)|
 ****
 
-* https://www.wikiwand.com/en/Gradient_descent
 * http://wiki.fast.ai/index.php/Gradient_Descent
 * https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/
 * https://blogs.princeton.edu/imabandit/2014/03/06/nesterovs-accelerated-gradient-descent-for-smooth-and-strongly-convex-optimization/
 * https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
 * https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/
 * https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
-* https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf
-* https://jlmelville.github.io/mize/nesterov.html
-* https://distill.pub/2017/momentum/
 * http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
 * https://zhuanlan.zhihu.com/p/41263068
 * https://zhuanlan.zhihu.com/p/35692553
 * https://zhuanlan.zhihu.com/p/35323828
+* [On Gradient-Based Optimization: Accelerated, Asynchronous, Distributed and Stochastic](https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf)
+* https://jlmelville.github.io/mize/nesterov.html
+* https://distill.pub/2017/momentum/
 * http://www.optimization-online.org/DB_FILE/2018/11/6938.pdf
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.cs.cmu.edu/~ggordon/10725-F12/slides/09-acceleration.pdf
@@ -181,7 +180,7 @@ and <https://www.zhihu.com/question/266846405>.
 Quasi-Newton methods, like steepest descent, require only the gradient of the objective
 function to be supplied at each iterate.
 By measuring the changes in gradients, they construct a model of the objective function
-that is good enough to produce superlinear convergence.
+that is good enough to produce super-linear convergence.
 The improvement over steepest descent is dramatic, especially on difficult
 problems. Moreover, since second derivatives are not required, quasi-Newton methods are
 sometimes more efficient than Newton’s method.[^11]
@@ -301,8 +300,33 @@ exponential families can be implemented as a first-order method through **mirror
 * [Natural gradients and K-FAC](https://www.depthfirstlearning.com/assets/k-fac-tutorial.pdf)
 * http://www.divergence-methods.org/
 * http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
+* [NATURAL GRADIENTS AND STOCHASTIC VARIATIONAL INFERENCE](http://andymiller.github.io/2016/10/02/natural_gradient_bbvi.html)
 * [谈谈优化算法 - 郑思座的文章 - 知乎](https://zhuanlan.zhihu.com/p/60088231)
 
+## Trust Region Methods
+
+Trust-region methods define a region around
+the current iterate within which they trust the model to be an adequate representation of
+the objective function, and then choose the step to be the approximate minimizer of the
+model in this region.
+If a step is not acceptable, they reduce the size of the region and find a new minimizer.
+In general, the direction of the step changes whenever the size of the trust region
+is altered.
+
+$$
+\min_{p\in\mathbb{R}^n} m_k(p)=f_k+ g_k^T p+\frac{1}{2}p^T B_k p, \, \, s.t. \|p\|\leq {\Delta}_k,
+$$
+where $f_k=f(x^k), g_k = \nabla f(x^k)$;$B_k$ is some symmetric matrix as an
+approximation to the Hessian $\nabla^2 f(x^k+tp)$; $\Delta_k>0$ is the trust-region radius.
+In most of our discussions, we define $\|\cdot\|$ to be the Euclidean norm.
+Thus, the trust-region approach requires us to solve a sequence of subproblems
+in which the objective function and constraint are both quadratic.
+Generally, we set $B_k = \nabla^2 f(x^k)$.
+
+![](https://optimization.mccormick.northwestern.edu/images/c/c0/TRM_Dogleg.png)
+* https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods
+* [Concise Complexity Analyses for Trust-Region Methods](https://arxiv.org/abs/1802.07843)
+* https://www.nmr-relax.com/manual/Trust_region_methods.html
 
 ## Expectation Maximization Algorithm
 
@@ -313,7 +337,7 @@ one augments the observed data with latent data to perform a series of simple op
 
 It is really popular for Bayesian statistician.
 
-Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta|Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$。
+Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta|Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$.
 We augment the observed data $Y_{obs}$ with latent variables $Z$ so that both the
 complete-data log-likelihood $\ell(\theta|Y_{obs}, Z)$ and the conditional predictive distribution $f(z|Y_{obs}, \theta)$ are available.
 Each iteration of the **EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
@@ -335,7 +359,6 @@ $$
 
 * https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
 * http://cs229.stanford.edu/notes/cs229-notes8.pdf
-* https://www2.stat.duke.edu/courses/Spring06/sta376/Support/EM/EM.Mixtures.Figueiredo.2004.pdf
 * [EM算法存在的意义是什么？ - 史博的回答 - 知乎](https://www.zhihu.com/question/40797593/answer/275171156)
 
 |Diagram of EM algorithm|
@@ -552,9 +575,11 @@ which is called as `Bregman proximal gradient` method.
 
 * http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf
 * https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf
-* https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf
 * https://arxiv.org/abs/1808.03045
-* https://arxiv.org/abs/1812.10198
+* [A unified framework for Bregman proximal methods: subgradient, gradient, and accelerated gradient schemes](https://arxiv.org/abs/1812.10198)
+* [A collection of proximity operators implemented in Matlab and Python.](http://proximity-operator.net/)
+* [Proximal Algorithms, N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/prox_algs.html)
+* [For more (non exhaustive) informations regarding the proximity operator and the associated proximal algorithms](http://proximity-operator.net/bibliography.html)
 
 **Proximal and Projected Newton Methods**
 
@@ -665,7 +690,7 @@ $$
 
 If the constraints are more complex, **KKT theorem** may be necessary.
 
-- http://www.ece.ust.hk/~palomar/ELEC5470_lectures/07/slides_Lagrange_duality.pdf
+- [Duality](http://www.ece.ust.hk/~palomar/ELEC5470_lectures/07/slides_Lagrange_duality.pdf)
 - https://cs.stanford.edu/people/davidknowles/lagrangian_duality.pdf
 - https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture7.pdf
 - https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/
@@ -674,8 +699,11 @@ If the constraints are more complex, **KKT theorem** may be necessary.
 - https://zhuanlan.zhihu.com/p/50823110
 
 *exponential augmented Lagrangian method*
+* [An exponential augmented Lagrangian method with second order convergence](https://impa.br/wp-content/uploads/2016/12/maria_daniela_abstract.pdf)
+* [On the convergence of the exponential
+multiplier method for convex programming ](https://web.mit.edu/dimitrib/www/Expmult.pdf)
 
-### Alternating Direction Method of Multipliers
+### Splitting Methods
 
 Alternating direction method of multipliers is called **ADMM** shortly.
 It is aimed to solve the following convex optimization problem:
@@ -713,9 +741,9 @@ The convergence  proof of ADMM in convex optimization can be reduced to [verifyi
 Note that the $x$ subproblem in ADMM
 $$
 \begin{align}
-\arg\min_{x}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})
-&=\arg\min_{x}\{f(x)+g(y^k)+{\lambda^k}^{T}(Ax+By^{k}-b)+\frac{\beta}{2}{\|Ax+By^{k}-b\|}_{2}^{2}\} \\
-&=\arg\min_{x}f(x)+\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda\|}_{2}^{2}\tag 1
+\arg\min_{x}L_{\beta}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}})\\
+=\arg\min_{x}\{f(x)+g(y^k)+{\lambda^k}^{T}(Ax+By^{k}-b)+\frac{\beta}{2}{\|Ax+By^{k}-b\|}_{2}^{2}\} \\
+=\arg\min_{x}f(x)+\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda\|}_{2}^{2}\tag 1
 \end{align}
 $$
 
@@ -839,7 +867,6 @@ where $\tau>1$.
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
 - https://link.springer.com/article/10.1007/s10107-014-0826-5
 
-
 ****
 **Davis-Yin three operator splitting**
 
@@ -855,9 +882,9 @@ is the Lagrangian rather than  augmented Lagrangian.
 
 - http://fa.bianp.net/blog/2018/tos/
 - https://link.springer.com/article/10.1007%2Fs11228-017-0421-z
-- http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf
+- [Three-Operator Splitting and its Optimization Applications](http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf)
 - ftp://ftp.math.ucla.edu/pub/camreport/cam15-13.pdf
-- http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_operator_splitting_ICCM16.pdf
+- [A Three-Operator Splitting Scheme and its Applications](http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_operator_splitting_ICCM16.pdf)
 
 ****
 
@@ -892,6 +919,7 @@ The first problem is that the distribution of $\vartheta$ is unknown as well as 
 **Modified Augmented Lagrangian**
 
 Linearize $f(x)$ at $x_k$ and add a proximal term：
+
 $$
 L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, Ax+By-b\right>+\frac{\beta}{2}{\|Ax+By-b\|}_2^2 \\+\frac{1}{2\eta_k}\|x-x_{k}\|^2
 $$
@@ -910,14 +938,15 @@ where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 
 ***
 * http://maths.nju.edu.cn/~hebma/
-* https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
-* https://www.birs.ca/cmo-workshops/2017/17w5030/files/
+* [Split Bregman](https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html)
+* [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
 * http://stanford.edu/~boyd/admm.html
 * [A General Analysis of the Convergence of ADMM](https://arxiv.org/pdf/1502.02009.pdf)
-* http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/
+* [用ADMM实现统计学习问题的分布式计算](http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/)
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
-* https://blog.csdn.net/shanglianlm/article/details/45919679
-* https://tlienart.github.io/pub/csml/cvxopt/split.html
+* [凸优化：ADMM(Alternating Direction Method of Multipliers)交替方向乘子算法](https://blog.csdn.net/shanglianlm/article/details/45919679)
+* [Splitting methods and ADMM, Thibaut Lienart](https://tlienart.github.io/pub/csml/cvxopt/split.html)
+* https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf
 
 ****
 **Primal-dual fixed point algorithm** and **Primary Dual Hybrid Gradient**
@@ -934,8 +963,10 @@ For example, we want to minimize the following cost function
 $$
 f(x,y) = g(x) + h(y)
 $$
+
 with or without constraints.
-Specially, if the cost function is additively separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f_i(x_i), i=1,2,\cdots, n$ rather than the cost function itself
+Specially, if the cost function is additionally separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f_i(x_i), i=1,2,\cdots, n$ rather than the cost function itself
+
 $$
 \min \sum_{i} f_i(x_i) \leq \sum_{i}\min{f_i(x_i)}.
 $$
@@ -967,120 +998,15 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 - https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
 - http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
 
-## Stochastic Gradient Descent
-
-Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
-It is **stochastic gradient** but may not be **descent**.
-The name **stochastic gradient methods**  may be more appropriate to call the methods with stochastic gradient.
-It can date back to **stochastic approximation** in statistics.
-
-It is aimed to solve the problem with finite sum optimization problem, i.e.
-$$
-\arg\min_{\theta}\frac{1}{n}\sum_{i=1}^{n}f(\theta|x_i)
-$$
-where $n<\infty$ and $\{f(\theta|x_i)\}_{i=1}^{n}$ are in the same function family and $\{x_i\}_{i=1}^{n}\subset \mathbb{R}^{d}$ are constants  while $\theta\in\mathbb{R}^{p}$ is the variable vector.
-
-The difficulty is $p$, that the dimension of $\theta$, is tremendous. In other words, the model is **overparameterized**. And the number $n$ is far larger than $p$ generally, i.e. $n \gg  p\gg d$.
-What is worse, the functions  $\{f(\theta|x_i)\}_{i=1}^{n}$ are not convex in most case.
-
-***
-
-The stochastic gradient method is defined as
-$$
-\theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})
-$$
-where $x_{j}^{\prime}$ is draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$ on random.
-
-It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent.
-There is fluctuations in the total objective function as gradient steps with respect to mini-batches are taken.
-
-******************************************************************
-
-|The fluctuations in the objective function as gradient steps with respect to mini-batches are taken|
-|:------------------------------------:|
-|![](https://upload.wikimedia.org/wikipedia/commons/f/f3/Stogra.png)|
-
-***
-
-An heuristic proposal for avoiding the choice and for modifying the learning rate while the learning task runs is the **bold driver (BD) method**[^14].
-The learning rate increases *exponentially* if successive steps reduce the objective function $f$, and decreases rapidly if an “accident” is encountered (if objective function $f$ increases), until a suitable value is found.
-After starting with a small learning rate, its modifications are described by the following equation:
-$$
-  \alpha_{k+1}=
-   \begin{cases}
-       \rho \alpha_{k}, & {f(\theta^{k+1})< f(\theta^{k})}; \\
-       \eta^n \alpha_{k}, & {f(\theta^{k+1})> f(\theta^{k})} \text{using ${\alpha}_k$},
-   \end{cases}
-$$
-
-where $\rho$ is close to 1 such as $\rho=1.1$  in order to avoid frequent “accidents” because the
-objective function computation is wasted in these cases, $\eta$ is chosen to provide a rapid reduction
-($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
-
-******
-
-The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$.
-Thus it is not clever to determine the learning rate $\alpha_k$ by line search.
-And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization.
-The variants of gradient descent such as momentum methods or mirror gradient methods have their stochastic counterparts.
-
-* It is simplest to set the step length a constant, such as ${\alpha}_k=3\times 10^{-3}\, \forall k$.
-* There are decay schemes, i.e. the step length ${\alpha}_k$ diminishes such as ${\alpha}_k=\frac{\alpha}{k}$, where $\alpha$ is constant.
-* And another strategy is to tune the step length adaptively such as *AdaGrad, ADAM*.
-
-$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionally, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
-
-We can see some examples to see the advantages of incremental method such as the estimation of mean.
-Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$. If now we observed more data $y_1, y_2, \dots, y_m$ from the population, the mean could be estimated by $\frac{n\bar{x}}{m+n} + \frac{\sum_{j=1}^{m} y_j }{m+n} =\frac{n\bar{x}+\sum_{j=1}^{m} y_j}{m+n}$. It is not necessary to summarize ${x_1, \dots, x_n}$.
-
-Another example, it is `Newton interpolation formula` in numerical analysis. The task is to fit the function via polynomials given some point in th function $(x_i , f(x_i)), i = 1,2, \dots, n$.
-[The Newton form of the interpolating polynomial  is given by](https://nptel.ac.in/courses/122104019/numerical-analysis/Rathish-kumar/rathish-oct31/fratnode5.html)
-$$
-P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots + a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
-$$
-This form is incremental and if another points $(x_{n+1}, f(x_{n+1}))$ is observed we will fit the function $f$ more precisely just by adding another term $a_{n+1}(x-x_1)(x-x_2)\cdots (x-x_n)(x-x_{n+1})$
-where the coefficients $a_0, a_1,\cdots, a_n$ are determined by $f(x_1), f(x_2), \cdots, f(x_n)$.
-
-
-See the following links for more information on *stochastic gradient descent*.
-
-* https://www.wikiwand.com/en/Stochastic_gradient_descent
-* https://www.bonaccorso.eu/2017/10/03/a-brief-and-comprehensive-guide-to-stochastic-gradient-descent-algorithms/
-* https://leon.bottou.org/projects/sgd
-* https://leon.bottou.org/research/stochastic
-* https://leon.bottou.org/papers/bottou-bousquet-2008
-* http://ruder.io/optimizing-gradient-descent/
-* https://zhuanlan.zhihu.com/p/22252270
-* https://henripal.github.io/blog/stochasticdynamics
-* https://henripal.github.io/blog/langevin
-* http://fa.bianp.net/teaching/2018/eecs227at/stochastic_gradient.html
-* [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
-
-|The Differences of Gradient Descent and Stochastic Gradient Descent|  
-|:-----------------------------------------------------------------:|
-|![](https://wikidocs.net/images/page/3413/sgd.png)|
-
-### Adam
-
-- https://arxiv.org/abs/1412.6980
-- http://ruder.io/deep-learning-optimization-2017/
-
-|The Differences of Stochastic Gradient Descent and its Variants|  
-|:-------------------------------------------------------------:|
-|![](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
-
-
-$\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
-
-- https://arxiv.org/pdf/1811.03962.pdf
-- http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
 
 ## Surrogate Optimization
 
 It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
 
 It is obvious that the choice of optimization methods relies on the objective function. Surrogate loss transform the original problem $\min_{x} f(x)$ into successive  trackable subproblems:
-$$x^{k+1}=\arg\min_{x} Q_{k}(x).$$
+$$
+x^{k+1}=\arg\min_{x} Q_{k}(x).
+$$
 
 We will call $Q_k(x)$ surrogate function. Surrogate function is also known as `merit function`.
 
@@ -1096,8 +1022,9 @@ $$
 
 In Newton’s method, we approximate the objective with a quadratic surrogate of the form:
 $$
-Q_k(x)=f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_k(x-x^k).
+Q_k(x) = f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_k(x-x^k).
 $$
+
 Note that the Hessian matrix $H_k$ is supposed to be positive definite. The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. And they can rewrite in the principle of surrogate function, where the surrogate function is convex in the form of linear function + squared functions in some sense.  
 
 Note that momentum methods can be rewrite in the surrogate function form:
@@ -1105,17 +1032,21 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1}) \\
 = \arg\min_{x}\{f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{2\alpha_k} {\|x-x^k-\rho_k(x^k-x^{k-1})\|}_2^2\}.
 $$
+
 $\color{aqua}{PS}$: How we can extend it to Nesterov gradient methods or stochastic gradient methods?
 [Discover acceleration](https://ee227c.github.io/notes/ee227c-lecture06.pdf)
 
-It is natural to replace the squared function with some nonnegative function
+It is natural to replace the squared function with some non-negative function
 such as mirror gradient methods
 $$
 x^{k+1} = \arg\min_{x} \{ f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}.
 $$
 
+More generally, auxiliary function $g_k(x)$ may replace the Bregman divergence $B(x, x^k)$, where the auxiliary functions $g_k(x)$ have the properties $g_k(x)\geq 0$ and $g_k(x^{k-1})=0$.
+
 + http://fa.bianp.net/teaching/2018/eecs227at/
 + http://fa.bianp.net/teaching/2018/eecs227at/newton.html
++ http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf
 
 The parameters $\alpha_k$ is chosen so that the surrogate function is convex by observing that the condition number of  Hessian matrix is determined by the factor $\frac{1}{\alpha_k}$. And gradient are used in these methods to construct the surrogate function. There are still two problems in unconstrained optimization:
 
@@ -1126,35 +1057,128 @@ The parameters $\alpha_k$ is chosen so that the surrogate function is convex by 
 
 `Moreau envelope (or Moreau-Yosida regularization)` of a convex
 function $f$ with parameter $\mu > 0$ is defined as
-$$M_{\mu f}(x)=\inf_{z}\{f(z) + \frac{1}{2\mu}{\|z-x\|}_2^2\}$$
+$$
+M_{\mu f}(x)=\inf_{z}\{f(z) + \frac{1}{2\mu}{\|z-x\|}_2^2\}.
+$$
 
 Minimizing $f$ and $M_f$ are equivalent.
 $prox_{\mu f} (x)$ is unique point that achieves the infimum that defines
 $M_{\mu f}$ , i.e.
+
 $$
 M_{\mu f}(x)=f(prox_{\mu f} (x)) + \frac{1}{2}{\|prox_{\mu f} (x)-x\|}_2^2\}.
 $$
 
 `Moreau envelope` $M_f$ is continuously differentiable with gradients
-$$\nabla M_{\mu f} = \frac{1}{\mu}(prox_{\mu f} (x)-x).$$
+$$
+\nabla M_{\mu f} = \frac{1}{\mu}(prox_{\mu f} (x)-x).
+$$
 
 This means
-$$prox_{\mu f} (x)=x-\mu \nabla M_{\mu f} $$
+$$
+prox_{\mu f} (x)=x-\mu \nabla M_{\mu f}
+$$
+
 i.e., $prox_{\mu f} (x)$ is gradient step for minimizing $M_{\mu f}$.
 
 `Fenchel Conjugate` of a function ${h}$ is is the function $h^{\star}$ defined by
-$$h^{\star}(x)=\sup_{z} \{\left<z, x\right>-h(z)\}.$$
+
+$$
+h^{\star}(x)=\sup_{z} \{\left<z, x\right>-h(z)\}.
+$$
 
 + [Smoothing for nonsmooth optimization, ELE522: Large-Scale Optimization for Data Science](http://www.princeton.edu/~yc5/ele522_optimization/lectures/smoothing.pdf)
 + [Smoothing, EE236C (Spring 2013-14)](http://www.seas.ucla.edu/~vandenbe/236C/lectures/smoothing.pdf)
 + [Smoothing and First Order Methods: A Unified Framework](https://epubs.siam.org/doi/abs/10.1137/100818327)
+
+****
+
+[Charles Byrne](http://faculty.uml.edu/cbyrne/cbyrne.html) gives a unified treatment of some iterative optimization algorithms such as auxiliary function methods.
+
+![https://www.crcpress.com/authors/i11230-charles-byrne](http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg)
+
+[He is a featured author of CRC press. ](https://www.crcpress.com/authors/i11230-charles-byrne)
+
+`Auxiliary-Function Methods` minimize the function
+$$
+G_k(x) = f(x) + g_k(x)
+$$
+over $x\in \mathbb{S}$ for $k=1,2,\cdots$ if $f(x):\mathbb{S}\mapsto\mathbb{R}$ and $g_k(x)$ is auxiliary function.
+We do not linearize the cost function as the previous methods.
+
+Auxiliary-Function Methods(AF methods) include
+* Barrier- and Penalty-Function Algorithms such as sequential unconstrained minimization (SUM) methods, interior-point methods exterior-point methods;
+* Proximal Minimization Algorithms such as majorization minimization.
+
+And an AF method is said to be in the SUMMA class if the SUMMA Inequality holds:
+
+$$
+G_k(x) - G_k(x^k)\geq g_{k+1}(x), \forall x\in \mathbb{S}.
+$$
+
+Proximal minimization algorithms using Bregman distances, called here `PMAB`,  minimize the function
+
+$$
+G_k(x) = f(x) + B(x, x^{k-1}),\forall x\in \mathbb{S}.
+$$
+
+The `forward-backward splitting (FBS)` methods is to minimize the function
+$$f_1(x) + f_2(x)$$
+ where both functions
+are convex and $f_2(x)$ is differentiable with its gradient L-Lipschitz continuous in the Euclidean norm.  The iterative step of the FBS algorithm is
+$$
+x^{k} = prox_{\gamma f_1}(x^{k-1}-\gamma \nabla f_2(x^{k-1})).
+$$
+
+It is equivalent to minimize
+
+
+$$
+G_k(x) = f(x) + \frac{1}{2\gamma} {\|x-x^{k-1}\|}_2^2-B(x, x^{k-1}),
+$$
+
+where $B(x,x^{k-1})=f_1(x)-f_1(x^{k-1})-\left<\nabla f_1(x^{k-1}),x-x^{k-1}\right>,\, 0 < \gamma\leq \frac{1}{L}$.
+`Alternating Minimization (AM)` can be regarded as coordinate optimization methods with 2 blocks:
+
+> * $p^{n+1}=\arg\min_{p\in P} f(p,q^n)$,
+> * $q^{n+1}=\arg\min_{p\in Q} f(p^{n+1},q)$,
+
+where $f(p,q), p\in  P, q\in Q$ is the objective function. It is proved that the sequence $f(p^n,q^n)$ converge tothe minimizer  if the `Five-Point Property` hold:
+$$
+f(p,q) + f(p,q^{n-1}) \geq f(p,q^{n}) + f(p^n,q^{n-1}).
+$$
+
+For each p in the set P, define $q(p)$ in Q as a member of Q for which $f(p; q(p)) \leq f(p; q)$, for all $q \in P$. Let $\hat{f}(p) = f(p; q(p))$.
+At the nth step of AM we minimize
+$$G_n(p)=f(p; q(p))+[f(p; q^{n-1})-f(p; q(p))]$$
+to get $p^n$, where $g_n(p)=f(p; q^{n-1})-f(p; q(p))$ is the auxiliary function. So we can write that $G_n(p)= f(p;q(p))+g_n(p)$.
+
+See [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
+or [Alternating Minimization, Proximal Minimization and Optimization Transfer Are Equivalent](https://arxiv.org/abs/1512.03034) for more information on AF methods.
+
+Expectation-Maximization can be classified to AF method.
+
+> * $Q(\theta|\theta^{(t)})=\mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)})$;
+> * $\theta^{t+1}=\arg\min_{\theta} Q(\theta|\theta^t)$.
+
+The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete data $(Y_{os}, Z)$ given $(Y_{obs}, \theta^{(t)})$.
+
++ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
++ [Alternating Minimization, Proximal Minimization and Optimization Transfer Are Equivalent](https://arxiv.org/abs/1512.03034)
++ [A unified treatment of some iterative algorithms in signal processing and image reconstruction](http://adsabs.harvard.edu/abs/2004InvPr..20..103B)
++ [Convergence Rate of Expectation-Maximization](http://opt-ml.org/papers/OPT2017_paper_42.pdf)
+
+*****
+
+[Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf) applied to Gaussian Process models (Kriging).
+
+
 + [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
 + [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 + [Convexification and Global Optimization
 of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
 + [Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf)
-+ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
-+ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
+
 
 Another related method is `graduated optimization`, which [is a global optimization technique that attempts to solve a difficult optimization problem by initially solving a greatly simplified problem, and progressively transforming that problem (while optimizing) until it is equivalent to the difficult optimization problem.](https://www.wikiwand.com/en/Graduated_optimization)
 
@@ -1164,17 +1188,21 @@ Another related method is `graduated optimization`, which [is a global optimizat
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
 
++ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
++ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
 + [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
 + [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
++ https://pratikac.github.io/
++ https://www.wikiwand.com/en/Numerical_continuation
 + [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 + [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
 + [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
 + [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
-+ https://pratikac.github.io/
-+ https://www.wikiwand.com/en/Numerical_continuation
 + [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
++ [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
++ [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
 
 ***
 * [Surrogate loss function](http://www.cs.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf)
@@ -1189,6 +1217,7 @@ Another related method is `graduated optimization`, which [is a global optimizat
 ## Fixed Point Iteration Methods
 
 The fixed point algorithm is initially to find approximate solutions of the equation
+
 $$f(x)=0\tag 1$$
 where $f:\mathbb{R}\to\mathbb{R},x\in\mathbb{R}^{n}$.
 
@@ -1296,24 +1325,66 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 
 `Krasnosel'skii-Mann(KM, or averaged) iterations` update $x^k$
 in iteration ${k}$ to
-$$x^{k+1}=(1-\alpha)x^k+\alpha g(x^k), \alpha\in (0,1)$$
-for the fixed point problem (2). Specially, $g(x^k)=x^k-\alpha_k \nabla f(x^k)$ for the convex optimization problems.
 
-[The Baillon-Haddad Theorem provides an important link between convex
-optimization and fixed-point iteration.](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
+$$
+x^{k+1}=(1-\alpha_k)x^k+ {\alpha}_k T(x^k), {\alpha}_k \in (0,1)
+$$
 
-* [A Generic online acceleration scheme for Optimization algorithms via Relaxation and Inertia](https://arxiv.org/abs/1603.05398)
-* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
-* [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
+for the fixed point problem (2). Specially, $T(x^k)= x^k-\alpha_k \nabla f(x^k)$ for the convex optimization problems.
+If the operator $T$ is non-expensive, then the sequence $\{x^{k}\mid k=0,1,2,\dots\}$ is convergent by `Krasnosel'skii-Mann Theorem`.
+
+In 1953, [Mann](http://www.ams.org/journals/proc/1953-004-03/S0002-9939-1953-0054846-3/S0002-9939-1953-0054846-3.pdf) defined an iterative method:
+$$
+x^{k+1}=M(x^k, \alpha_k , T)=(1-\alpha_k)x^k+ {\alpha}_k T(x^k),\\
+\alpha_k \in [0,1)\,\,\text{satisfying}\, \sum_{k=1}^{\infty}{\alpha}_k = \infty.
+$$
+
+The sequence $\{x^{k}\}$ defined by
+
+$$
+x^{k+1}= (1-\alpha_k)x^k+ {\alpha}_k T^{k}(x^k), 0 < a\leq {\alpha}_k \leq b < 1
+$$
+(additionally $\sum_{k=1}^{\infty}{\alpha}_k = \infty$ )is called a `modied Mann iteration`.
+Take $\{\alpha_k, \beta_k\}$ two sequences in $[0, 1]$ satisfying
+$$
+\sum_{k=1}^{\infty}{\alpha}_k {\beta}_k = \infty, \lim_{k\infty}\beta_k =0, 0 \leq {\alpha}_k \leq \beta_k \leq 1.
+$$
+
+Then the sequence $\{x^{k}\}$ defined by
+
+$$
+x^{k+1}= (1-\alpha_k)x^k+ {\alpha}_k T^{k}(y^k), \\
+y^{k} = (1-\beta_k)x^k + {\beta}_k T(x^k),
+$$
+
+is called the `Ishikawa iteration`.
+
+[Hojjat Afshari and Hassen Aydi](https://www.isr-publications.com/jnsa/articles-2534-some-results-about-krasnoselskii-mann-iteration-process) proposes another Mann type iteration:
+$$
+x^{k+1} = {\alpha}_k x^k + {\beta}_k T(x^k) + {\gamma}_k T^{2}(x^k)
+$$
+
+where ${\alpha}_k + {\beta}_k + {\gamma}_k = 1, {\alpha}_k, {\beta}_k, {\gamma}_k \in [0,1)$ for all $k\geq 1$, $\sum_{k}^{\infty}(1-\alpha_k)=\infty$, $\sum_{k=1}^{\infty}\gamma_k < \infty$.
+
+If the Mann type iteration $\{x^k\}$ converges strongly to a point $p$, then $p$ is afixed point of T.
+
+* [Krasnoselskii-Mann method for non-self mappings](https://fixedpointtheoryandapplications.springeropen.com/track/pdf/10.1186/s13663-015-0287-4)
+* http://www.krasnoselskii.iitp.ru/papereng.pdf
+* [Strong convergence of the modified Mann iterative method for strict pseudo-contractions](https://www.sciencedirect.com/science/article/pii/S0898122108006330)
+* [Some results on a modified Mann iterative scheme in a reflexive Banach space](https://fixedpointtheoryandapplications.springeropen.com/articles/10.1186/1687-1812-2013-227)
+* [Some results about Krasnosel'skiĭ-Mann iteration process](https://www.isr-publications.com/jnsa/articles-2534-some-results-about-krasnoselskii-mann-iteration-process)
 * [Convergence theorems for inertial KM-type algorithms](https://www.sciencedirect.com/science/article/pii/S0377042707003901)
-* [On the Convergence Rate of the Halpern-Iteration](http://www.optimization-online.org/DB_FILE/2017/11/6336.pdf)
-* [Iterative Convex Optimization Algorithms; Part One: Using the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
 
-There is an acceleration framework of fixed point iterations called `Anderson Acceleration` or `regularized nonlinear acceleration`：
+There is an acceleration framework of fixed point iterations for the problem (2) called `Anderson Acceleration` or `regularized nonlinear acceleration`：
 
-> * $F_k = (h_{k-m_k}, \dots, h_k)$ where $h_i=g(x_i)-x_i$;
-> * Determine $\alpha^{k}=(\alpha_0^{k},\dots, \alpha_{m_k}^{k})^{T}$ that solves $\min_{\alpha^{k}}{\|F_k\alpha^k\|}_2^2$ s.t. $\sum_{i=0}^{m_k}\alpha_i^{k}=1$;
-> * Set $x_{k+1}=\sum_{i=0}^{m_k}\alpha_i^{k}g(x_{k-m_k+i})$.
+> 1. $F_k = (h_{k-m_k}, \dots, h_k)$ where $h_i=g(x_i)-x_i$;
+> 2. Determine $\alpha^{k}=(\alpha_0^{k},\dots, \alpha_{m_k}^{k})^{T}$ that solves $\min_{\alpha^{k}}{\|F_k\alpha^k\|}_2^2$ s.t. $\sum_{i=0}^{m_k}\alpha_i^{k}=1$;
+> 3. Set $x_{k+1}=\sum_{i=0}^{m_k} \alpha_i^{k} g(x_{k - m_k + i})$.
+
+It is maybe interesting to introduce some Bregman divergence $D_{f}(\cdot, \cdot)$ instead of the squared $\ell_2$ norm when choosing $\alpha^{k}$ so that
+$$\alpha^{k}=\arg\min_{\alpha^k}\{D_{f}(F_k \alpha^k)\mid \sum_{i=0}^{m_k}\alpha_i^{k}=1\}.$$
+[It is proved that the Anderson acceleration converges if the fixed point mapping is cotractive.](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
+
 
 * [Anderson acceleration for fixed point iterations](https://users.wpi.edu/~walker/Papers/Walker-Ni,SINUM,V49,1715-1735.pdf)
 * [Anderson Acceleration](https://nickhigham.wordpress.com/2015/08/05/anderson-acceleration/)
@@ -1321,8 +1392,19 @@ There is an acceleration framework of fixed point iterations called `Anderson Ac
 * [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2310/)
 * [Convergence Analysis For Anderson Acceleration](https://www.casl.gov/sites/default/files/docs/CASL-U-2014-0226-000.pdf)
 * [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
-* [Globally Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations](http://59.80.44.49/web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf)
+* [Comments on "Anderson Acceleration, Mixing and Extrapolation"](https://dash.harvard.edu/handle/1/34773632)
 
+[The Baillon-Haddad Theorem provides an important link between convex
+optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf) which proves that if the gradient of a convex and continuously differentiable function is nonexpansive, then it is actually `firmly nonexpansive`.
+
+* [The Baillon-Haddad Theorem Revisited](https://people.ok.ubc.ca/bauschke/Research/60.pdf)
+* [Recent Advances in Convex Optimization and Fixed Point Algorithms by Jean-Christophe Pesquet](https://www.i2m.univ-amu.fr/seminaires_signal_apprentissage/Slides/2015_04_28_Pesquet_course_main.pdf)
+* [A Generic online acceleration scheme for Optimization algorithms via Relaxation and Inertia](https://arxiv.org/abs/1603.05398)
+* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
+* [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
+* [Globally Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations](http://59.80.44.49/web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf)
+* [On the Convergence Rate of the Halpern-Iteration](http://www.optimization-online.org/DB_FILE/2017/11/6336.pdf)
+* [Iterative Convex Optimization Algorithms; Part One: Using the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
 
 However, it is best to think from  the necessary condition of optima  in non-convex optimization in my opinion.
 Another question is to generalize the fixed point iteration to stochastic gradient methods.
@@ -1331,15 +1413,12 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 ## Dynamical Systems
 
 There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC
-PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan.
+PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
+
+![http://www.icm2018.org/wp/2018/08/09/jordan-on-data-is-there-an-optimal-way-to-optimize/](http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg)
+
 Some new connections between dynamical systems and optimization is found.
 
-- [A Dynamical Approach to an Inertial Forward-Backward Algorithm for Convex Minimization
-](https://epubs.siam.org/doi/pdf/10.1137/130910294)
-- [An Inertial Proximal Method for Maximal Monotone Operators via Discretization of a Nonlinear Oscillator with Damping](https://link.springer.com/article/10.1023/A:1011253113155)
-- [THE HEAVY BALL WITH FRICTION METHOD, I. THE CONTINUOUS DYNAMICAL SYSTEM: GLOBAL EXPLORATION OF THE LOCAL MINIMA OF A REAL-VALUED FUNCTION BY ASYMPTOTIC ANALYSIS OF A DISSIPATIVE DYNAMICAL SYSTEM](https://www.worldscientific.com/doi/abs/10.1142/S0219199700000025)
-- [Viscosity Solutions of Minimization Problems](https://epubs.siam.org/doi/abs/10.1137/S1052623493259616?journalCode=sjope8)
-- [Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha \leq 3$](https://arxiv.org/abs/1706.05671)
 - [Variational and Dynamical Perspectives On Learning and Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
 - [Continuous and Discrete Dynamics For Online Learning and Convex Optimization](http://walid.krichene.net/papers/thesis-continuous-discrete.pdf)
 - [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)
@@ -1357,6 +1436,11 @@ Some new connections between dynamical systems and optimization is found.
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - https://people.eecs.berkeley.edu/~jordan/optimization.html
 https://www.math.ucdavis.edu/~hunter/m207/m207.pdf
+* [ESAIM: Control, Optimization and Calculus of Variations (ESAIM: COCV)](https://www.esaim-cocv.org/)
+* [MCT'03  Louisiana Conference on Mathematical Control Theory](https://www.math.lsu.edu/~malisoff/LCMCT/)
+* [International Workshop “Variational Analysis and Applications”, ERICE, August 28 – September 5, 2018](http://varana.org/2018/)
+* [Games, Dynamics and Optimization, 2019](http://gdo2019.com/programme/)
+* [System dynamics & optimization](https://www.b-tu.de/en/fg-ingenieurmathematik-optimierung/forschung/projects/system-dynamics-optimization)
 
 We will focus on the optimization methods in the form of fixed point iteration and dynamical systems.
 It is to minimize the following function
@@ -1375,31 +1459,199 @@ The dynamics of accelerated gradient methods are expected to correspond to highe
 Some acceleration methods are iterations of the corresponding algorithms of `Asymptotic Vanishing Damping` called by [Hedy Attouch](https://arxiv.org/search/math?searchtype=author&query=Attouch%2C+H):
 
 $$
-\begin{equation*}
- \mbox{(AVD)}_{\alpha} \quad \quad \ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
-\nabla \Phi (x(t)) =0. \end{equation*}
+\mbox{(AVD)}_{\alpha} \quad \quad \ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
+\nabla \Phi (x(t)) =0.
 $$
 
-where $\Phi(x(t))$ is dependent on the objective function.
+where $\Phi(x(t))$ is dependent on the objective function; $\alpha >0$ is constant in $\mathbb{R}$.
+
+![second-order evolution equation](https://perso.math.univ-toulouse.fr/spot/files/2011/02/EDO.jpg)
+
+
+![Hedy Attouch](https://i1.rgstatic.net/ii/profile.image/291292945895424-1446461058178_Q128/Hedy_Attouch.jpg)
+
+- <https://arxiv.org/abs/1601.07113>
+- <https://perso.math.univ-toulouse.fr/spot/resumes/>
+- [A proximal-Newton method for monotone inclusions in Hilbert spaces with complexity $O(1/k^2)$](https://www.ljll.math.upmc.fr/~plc/sestri/attouch2014.pdf)
+- <https://www.researchgate.net/profile/Hedy_Attouch>
+- https://www.ljll.math.upmc.fr/~plc/sestri/
+- [Hedy Attouch at https://biography.omicsonline.org](https://biography.omicsonline.org/france/montpellier-2-university/hedy-attouch-662580)
+- [Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha\leq 3$](http://www.birs.ca/events/2017/5-day-workshops/17w5030/videos/watch/201709180902-Attouch.html)
+- [A Dynamical Approach to an Inertial Forward-Backward Algorithm for Convex Minimization
+](https://epubs.siam.org/doi/pdf/10.1137/130910294)
+- [An Inertial Proximal Method for Maximal Monotone Operators via Discretization of a Nonlinear Oscillator with Damping](https://link.springer.com/article/10.1023/A:1011253113155)
+- [THE HEAVY BALL WITH FRICTION METHOD, I. THE CONTINUOUS DYNAMICAL SYSTEM: GLOBAL EXPLORATION OF THE LOCAL MINIMA OF A REAL-VALUED FUNCTION BY ASYMPTOTIC ANALYSIS OF A DISSIPATIVE DYNAMICAL SYSTEM](https://www.worldscientific.com/doi/abs/10.1142/S0219199700000025)
+- [Viscosity Solutions of Minimization Problems](https://epubs.siam.org/doi/abs/10.1137/S1052623493259616?journalCode=sjope8)
+- [Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha \leq 3$](https://arxiv.org/abs/1706.05671)
+- [A dynamic approach to a proximal-Newton method for monotone inclusions in Hilbert spaces, with complexity $O(\frac{1}{n^2})$](http://mtm.ufsc.br/~maicon/pdf/alv.att.sva-new.jca16.pdf)
+- [FAST CONVERGENCE OF INERTIAL DYNAMICS AND ALGORITHMS WITH ASYMPTOTIC VANISHING DAMPING](http://www.optimization-online.org/DB_FILE/2015/10/5179.pdf)
+
 
 https://eta.impa.br/dl/028.pdf
+
+
+
+
+
+## Stochastic Gradient Descent
+
+[Clearing the Jungle of Stochastic Optimization](https://castlelab.princeton.edu/jungle/)
+
+Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
+It is **stochastic gradient** but may not be **descent**.
+The name **stochastic gradient methods**  may be more appropriate to call the methods with stochastic gradient.
+It can date back to **stochastic approximation** in statistics.
+
+It is aimed to solve the problem with finite sum optimization problem, i.e.
+$$
+\arg\min_{\theta}\frac{1}{n}\sum_{i=1}^{n}f(\theta|x_i)
+$$
+where $n<\infty$ and $\{f(\theta|x_i)\}_{i=1}^{n}$ are in the same function family and $\{x_i\}_{i=1}^{n}\subset \mathbb{R}^{d}$ are constants  while $\theta\in\mathbb{R}^{p}$ is the variable vector.
+
+The difficulty is $p$, that the dimension of $\theta$, is tremendous. In other words, the model is **overparameterized**. And the number $n$ is far larger than $p$ generally, i.e. $n \gg  p\gg d$.
+What is worse, the functions  $\{f(\theta|x_i)\}_{i=1}^{n}$ are not convex in most case.
+
+***
+
+The stochastic gradient method is defined as
+$$
+\theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})
+$$
+where $x_{j}^{\prime}$ is draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$ on random.
+
+It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent.
+There is fluctuations in the total objective function as gradient steps with respect to mini-batches are taken.
+
+******************************************************************
+
+|The fluctuations in the objective function as gradient steps with respect to mini-batches are taken|
+|:------------------------------------:|
+|![](https://upload.wikimedia.org/wikipedia/commons/f/f3/Stogra.png)|
+
+***
+
+An heuristic proposal for avoiding the choice and for modifying the learning rate while the learning task runs is the **bold driver (BD) method**[^14].
+The learning rate increases *exponentially* if successive steps reduce the objective function $f$, and decreases rapidly if an “accident” is encountered (if objective function $f$ increases), until a suitable value is found.
+After starting with a small learning rate, its modifications are described by the following equation:
+$$
+  \alpha_{k+1}=
+   \begin{cases}
+       \rho \alpha_{k}, & {f(\theta^{k+1})< f(\theta^{k})}; \\
+       \eta^n \alpha_{k}, & {f(\theta^{k+1})> f(\theta^{k})} \text{using ${\alpha}_k$},
+   \end{cases}
+$$
+
+where $\rho$ is close to 1 such as $\rho=1.1$  in order to avoid frequent “accidents” because the
+objective function computation is wasted in these cases, $\eta$ is chosen to provide a rapid reduction
+($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
+
+******
+
+The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$.
+Thus it is not clever to determine the learning rate $\alpha_k$ by line search.
+And most stochastic gradient methods are to find  proper step length $\alpha_{k}$ to make it converge at least in convex optimization.
+The variants of gradient descent such as momentum methods or mirror gradient methods have their stochastic counterparts.
+
+* It is simplest to set the step length a constant, such as ${\alpha}_k=3\times 10^{-3}\, \forall k$.
+* There are decay schemes, i.e. the step length ${\alpha}_k$ diminishes such as ${\alpha}_k=\frac{\alpha}{k}$, where $\alpha$ is constant.
+* And another strategy is to tune the step length adaptively such as *AdaGrad, ADAM*.
+
+$\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionally, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
+
+We can see some examples to see the advantages of incremental method such as the estimation of mean.
+Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$. If now we observed more data $y_1, y_2, \dots, y_m$ from the population, the mean could be estimated by $\frac{n\bar{x}}{m+n} + \frac{\sum_{j=1}^{m} y_j }{m+n} =\frac{n\bar{x}+\sum_{j=1}^{m} y_j}{m+n}$. It is not necessary to summarize ${x_1, \dots, x_n}$.
+
+Another example, it is `Newton interpolation formula` in numerical analysis. The task is to fit the function via polynomials given some point in th function $(x_i , f(x_i)), i = 1,2, \dots, n$.
+[The Newton form of the interpolating polynomial  is given by](https://nptel.ac.in/courses/122104019/numerical-analysis/Rathish-kumar/rathish-oct31/fratnode5.html)
+$$
+P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots \\
++ a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
+$$
+
+This form is incremental and if another points $(x_{n+1}, f(x_{n+1}))$ is observed we will fit the function $f$ more precisely just by adding another term $a_{n+1}(x-x_1)(x-x_2)\cdots (x-x_n)(x-x_{n+1})$
+where the coefficients $a_0, a_1,\cdots, a_n$ are determined by $f(x_1), f(x_2), \cdots, f(x_n)$.
+
+
+See the following links for more information on *stochastic gradient descent*.
+
+* https://www.wikiwand.com/en/Stochastic_gradient_descent
+* https://www.bonaccorso.eu/2017/10/03/a-brief-and-comprehensive-guide-to-stochastic-gradient-descent-algorithms/
+* https://leon.bottou.org/projects/sgd
+* https://leon.bottou.org/research/stochastic
+* https://leon.bottou.org/papers/bottou-bousquet-2008
+* http://ruder.io/optimizing-gradient-descent/
+* https://zhuanlan.zhihu.com/p/22252270
+* https://henripal.github.io/blog/stochasticdynamics
+* https://henripal.github.io/blog/langevin
+* http://fa.bianp.net/teaching/2018/eecs227at/stochastic_gradient.html
+* [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
+
+|The Differences of Gradient Descent and Stochastic Gradient Descent|
+|:-----------------------------------------------------------------:|
+|![](https://wikidocs.net/images/page/3413/sgd.png)|
+
+### Adam
+
+- https://arxiv.org/abs/1412.6980
+- http://ruder.io/deep-learning-optimization-2017/
+
+|The Differences of Stochastic Gradient Descent and its Variants|
+|:-------------------------------------------------------------:|
+|![sgd variants](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
+
+
+$\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
+
+- https://arxiv.org/pdf/1811.03962.pdf
+- http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
+
+
+#### Parallel Gradient-based Optimization
+
+[Beginning around ten years ago, the single-threaded CPU performance stopped improving significantly, due to physical limitations; it is the numbers of cores in each machine that continue to arise. Today we can buy 8-core phones, 64-core workstations, and 2.5k-core GPUs at affordable prices. On the other hand, most of our algorithms are still single-threaded, and because so, their running time is about the same as it was to ten years ago and will stay so in the future, say, ten or twenty years. To develop faster algorithms, especially for those large-scale problems that arise in signal processing, medical imaging, and machine learning, it is inevitable to consider parallel computing.](http://www.math.ucla.edu/~wotaoyin/research.html)
+Machine learning especially deep learning requires more powerful `distributed and decentralized` optimization methods.
+- [ ] [Math 285J: A First Course on Large-Scale Optimization Methods](http://www.math.ucla.edu/~wotaoyin/math285j.18f/)
+- [ ] http://bicmr.pku.edu.cn/~wenzw/bigdata2019.html
+- [ ] [Data Science meet optimzation](http://ds-o.org/)
+- [ ] https://www.euro-online.org/websites/dso/
+- http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html
+
+![walkman_randomwalk.png](http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png)
+
+**Parallelizing Stochastic Gradient Descent**
+
+- [Hogwild: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent](http://papers.nips.cc/paper/4390-hogwild-a-lock-free-approach-to-parallelizing-stochastic-gradient-descent)
+- [Asynchronous Decentralized Parallel Stochastic Gradient Descent](http://proceedings.mlr.press/v80/lian18a/lian18a.pdf)
+- https://arxiv.org/abs/1905.05920v1
+- https://ray.readthedocs.io/en/latest/distributed_sgd.html
+- https://www.podc.org/data/podc2018/podc2018-tutorial-alistarh.pdf
+
+**Distributed ADMM**
+
+* http://users.isr.ist.utl.pt/~jmota/DADMM/
+* http://repository.ust.hk/ir/Record/1783.1-66353
+* https://ieeexplore.ieee.org/document/7039496
+
+#### Gradient Free Methods
+
 
 ***
 And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
 And more courses on optimization:
 
 + http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
-+ http://mat.uab.cat/~alseda/MasterOpt/;
++ http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
++ http://mat.uab.cat/~alseda/MasterOpt/
++ http://www.math.ucla.edu/~wotaoyin/summer2016/
 + http://www.math.ucla.edu/~wotaoyin/math273c/
 + http://www.math.ucla.edu/~lvese/273.1.10f/
-+ https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
 + http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html
-+ https://web.stanford.edu/~boyd/teaching.html
-+ http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
-+ http://www.stat.cmu.edu/~ryantibs/convexopt/
++ https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
 + https://lavaei.ieor.berkeley.edu/Course_IEOR262B_Spring_2019.html
++ https://web.stanford.edu/~boyd/teaching.html
++ http://web.stanford.edu/class/ee364b/lectures.html
++ http://www.stat.cmu.edu/~ryantibs/convexopt/
 + https://nisheethvishnoi.wordpress.com/convex-optimization/
-+ http://www.math.ucla.edu/~wotaoyin/summer2016/
 + [Optimization by Vector Space Methods](https://courses.engr.illinois.edu/ECE580/sp2019/)
 + [Algorithms for Convex Optimization](https://nisheethvishnoi.wordpress.com/convex-optimization/)
 
@@ -1410,6 +1662,7 @@ And more courses on optimization:
 - [ ] More [Optimization Online Links](http://www.optimization-online.org/links.html)
 - [ ] **TUTORIALS AND BOOKS** at <http://plato.asu.edu/sub/tutorials.html>.
 - [ ] [Provable Nonconvex Methods/Algorithms](http://sunju.org/research/nonconvex/)
+- [ ] https://optimization.mccormick.northwestern.edu/index.php/Main_Page
 - [ ] https://arxiv.org/pdf/1712.07897.pdf
 - [ ] https://arxiv.org/pdf/1707.02444.pdf
 - [ ] http://www.vision.jhu.edu/assets/HaeffeleCVPR17.pdf
