@@ -6,9 +6,9 @@ Its name -deep learning- is to distinguish from the classical machine learning "
 However, its complexity makes it yet engineering even art far from science.
 There is no first principle in deep learning but trial and error.
 In theory, we do not clearly understand how to design more robust and efficient network architecture;
-in practice, we can apply it to diverse fields. It is considered as one approach to artificial intelligence
+in practice, we can apply it to diverse fields. It is considered as one approach to artificial intelligence.
 
-Deep learning is a typical hierarchy model.
+Deep learning is a typical hierarchical machine learning model, consists of `hierarchical representation of input data,  non-linear evaluation and non-convex optimization`.
 The application of deep learning are partial listed in
 
 * [Awesome deep learning](https://github.com/ChristosChristofidis/awesome-deep-learning);
@@ -23,7 +23,7 @@ The application of deep learning are partial listed in
 |[A history of deep learning](https://www.import.io/post/history-of-deep-learning/)|
 |[Three Giants' Survey in *(Nature 521 p 436)*](http://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf)|
 |[Critique of Paper by "Deep Learning Conspiracy" (Nature 521 p 436)](http://people.idsia.ch/~juergen/deep-learning-conspiracy.html) |
-|http://principlesofdeeplearning.com/|
+|<http://principlesofdeeplearning.com/>|
 |[**Deep Learning in Neural Networks: An Overview**](http://people.idsia.ch/~juergen/deep-learning-overview.html)|
 |[AI winter](https://www.wikiwand.com/en/AI_winter)|
 |[Deep learning in wiki](https://www.wikiwand.com/en/Deep_learning), [Deep Learning in Scholarpedia](http://www.scholarpedia.org/article/Deep_Learning).|
@@ -42,7 +42,7 @@ The application of deep learning are partial listed in
 
 ***
 
-Deep learning origins from neural networks and extends to many fields.
+Deep learning origins from neural networks and applies to many fields including computer vision, natural language processing.
 The **architecture** and **optimization** are the core content of deep learning models. We will focus on the first one.
 The optimization methods are almost the content of **stochastic/incremental gradient descent**.
 
@@ -59,10 +59,9 @@ In the case of sigmoidal units, node ${s}$ represents sigmoidal unit  and direct
 And there are connection between the node and itself in some kinds of neural networks.
 The way or topology that nodes connected is an important part of deep neural network architecture. The other part is choice of **activation function**.
 And any deep neural network can be expressed in the form of **computational graph**.
-We will talk all the details while we give a glimpse to neural network zoo.
+We will talk all the details after we give a glimpse to neural network zoo.
 
 ![](http://www.asimovinstitute.org/wp-content/uploads/2016/09/neuralnetworks.png)
-
 ![](http://www.asimovinstitute.org/wp-content/uploads/2016/12/neuralnetworkcells.png)
 
 ***
@@ -97,8 +96,9 @@ We draw it from the [Wikipedia page](https://en.wikipedia.org/w/index.php?title=
 Learning is to find optimal parameters of the model. Before that, we must feed data into the model.
 The training data of $n$ sample size is
 $$
-D=\{(\mathbf{x}_i,d_i)\}_{i=1}^{n}
+D=\{(\mathbf{x}_i, d_i)\}_{i=1}^{n}
 $$
+
 where
 
 * $\mathbf{x}_i$ is the $n$-dimensional input vector;
@@ -108,16 +108,11 @@ where
 
 1. Initialize the weights and the threshold. Weights may be initialized to 0 or to a small random value. In the example below, we use 0.
 2. For each example $j$ in our training set $D$, perform the following steps over the input $\mathbf{x}_{j}$ and desired output $d_{j}$:  
-   * Calculate the actual output：
-      $$
-      \begin{align}
-         y_{j}(t) & =f[\mathbf{w}(t)\cdot\mathbf{x}_{j}]\\
-       ​           & =f[w_{0}(t)x_{j,0}+w_{1}(t)x_{j,1}+w_{2}(t)x_{j,2}+\dotsb         +w_{n(t)x_{j,n}]
-      \end{align}
-      $$
 
+   * Calculate the actual output：
+      $$y_{j}(t)= f(\left<\mathbf{w}(t), \mathbf{x}_{j}\right>).$$
    * Update the weights:
-       $w_{i}(t+1)=w_{i}(t)+r\cdot (d_{j}-y_{j}(t))x_{(j,i)},$
+       $w_{i}(t+1) = w_{i}(t) + r\cdot (d_{j}-y_{j}(t))x_{(j,i)},$
        for all features $[0\leq i\leq n]$, is the learning rate.
 3. For [offline learning](https://www.wikiwand.com/en/Offline_learning), the second step may be repeated until the iteration error $\frac{1}{s}\sum_{j=1}^{s}|d_{j}-y_{j}(t)|$ is less than a user-specified error threshold $\gamma$, or a predetermined number of iterations have been completed, where _s_ is again the size of the sample set.
 
@@ -132,6 +127,8 @@ $\color{lime}{Note}$: the perceptron model is linear classifier, i.e. the traini
 More in [Wikipedia page](https://www.wikiwand.com/en/Perceptron).
 
 It is the first time to model cognition.
+
+![](http://www.cs.jyu.fi/ai/vagan/DL4CC_files/image003.gif)
 
 * [Neural Networks, Types, and Functional Programming](http://colah.github.io/posts/2015-09-NN-Types-FP/)
 * [AI and Neuroscience: A virtuous circle](https://deepmind.com/blog/ai-and-neuroscience-virtuous-circle/)
@@ -239,7 +236,7 @@ where $H_{0}=X\in\mathbb{R}^p$, $b_i$ is a vector and $W_{i}$ is matrix. And the
 The ordinary feedforward neural networks take the *sigmoid* function $\sigma(x)=\frac{1}{1+e^{-x}}$ as the nonlinear activation function
 while the *RBF networks* take the [Radial basis function](https://www.wikiwand.com/en/Radial_basis_function) as the activation function such as $\sigma(x)=e^{c{\|x\|}_2^2}$.
 
-In theory, the universal approximation theorem show the power of feedforward neural network
+In theory, the `universal approximation theorem` show the power of feed-forward neural network
 if we take some proper activation functions such as sigmoid function.
 
 * https://www.wikiwand.com/en/Universal_approximation_theorem
@@ -407,7 +404,6 @@ It is defined as
 $$\rho(t;\lambda) = \lambda \int_{0}^{t}{(1-\frac{x}{\gamma\lambda})}_{+} \mathrm{d}x.$$
 
 The function defined by its derivative is convenient for us to minimize the cost function via gradient-based methods.
-
 
 ***
 The two page paper [Eliminating All Bad Local Minima from Loss Landscapes
@@ -582,7 +578,7 @@ $$
 And the gradient of the first layer is computed by
 $$
 \frac{\partial L(x_0,y_0)}{\partial W_1^i}
-=\sum_{j}\frac{\partial L(x_0,y_0)}{\partial y^j}\frac{\partial y^j}{\partial z}\frac{\partial z}{\partial W_1^i}                              \\
+=\sum_{j}\frac{\partial L(x_0,y_0)}{\partial y^j}\frac{\partial y^j}{\partial z}\frac{\partial z}{\partial W_1^i}       \\
 =\sum_{j}\frac{\partial L}{\partial y^j}
 [\sum_{k}\frac{\partial y^j}{\partial H^k}
 \sum_{m}\frac{\partial H^k}{\partial H_3^m}
@@ -605,6 +601,7 @@ See more information on backpropagation in the following list
 * The chapter 2 *How the backpropagation algorithm works* at the online book <http://neuralnetworksanddeeplearning.com/chap2.html>
 * For more information on automatic differentiation see the book *Evaluating Derivatives: Principles and Techniques of Algorithmic Differentiation, Second Edition* by Andreas Griewank and Andrea Walther_ at <https://epubs.siam.org/doi/book/10.1137/1.9780898717761>.
 * https://maciejkula.github.io/2018/07/18/building-an-autodifferentiation-library/
+* https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation
 
 ![](http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg)
 
@@ -613,14 +610,17 @@ See more information on backpropagation in the following list
 `Gradients vanishing` is the fundamental problem of deep neural networks according to [Juergen](http://people.idsia.ch/~juergen/).
 The the 1991 diploma thesis of [Sepp Hochreiter](http://www.bioinf.jku.at/people/hochreiter/) formally showed that deep neural networks are hard to train, because they suffer from the now famous problem of vanishing or exploding gradients: in typical deep or recurrent networks, back-propagated error signals either shrink rapidly, or grow out of bounds. In fact, they decay exponentially in the number of layers, or they explode.
 
+This fundamental problem makes it impossible to decrease the total loss function via gradient-based optimization problems.
+One direction solution is to replace the sigmoid functions in order to take the advantages of gradient-based methods.
+Another approach is to minimize the cost function via gradient-free optimization methods such as simulated annealing.
 
-The sigmoid function as the first function to replace the step function is a cumulative density function (CDF), which satisfy the following conditions:
+The sigmoid function as the first function to replace the step function actually is a cumulative density function (CDF), which satisfy the following conditions:
 
 - The function, $\sigma(x)=\frac{1}{1+exp(-x)}$,  is left  continuous;
 - $0\leq \sigma(x) \leq 1, \forall x\in\mathbb{R}$;
 - $\lim_{x\to -\infty}\sigma(x)=0, \lim_{x\to\infty}\sigma(x)=1$.
 
-It is called *logistic function* in statistics.
+It is called *logistic function* in statistics. This function is easy to explain as a continuous alternative to the step function. And it is much easier to evaluate than the common normal distribution.
 
 And the derivative function of this function is simple to compute if we know the function itself:
 
@@ -641,6 +641,7 @@ $$
 The problems of `Vanishing gradients` can be worsened by saturated neurons. Suppose, that pre-activation ${\omega}^T x + b$ that is fed to a neuron with a Sigmoid activation is either very high or very low. The gradient of sigmoid at very high or low values is almost 0. Any gradient update would hardly produce a change in the weights $\omega$ and the bias $b$, and it would take a lot of steps for the neuron to get modify weights so that the pre-activation falls in an area where the gradient has a substantial value.
 
 And if all the data points fed into layers are close to ${0}$, it may help to solve the vanishing gradients problems. And the sigmoid function $\sigma(x)$ is always non-negative and is not symmetric about ${0}$ so we may modify this function into
+
 $$
 tanh(x) = 2\sigma(2x) - 1
 = \frac{2}{1 + \exp(-2x)}-1
@@ -697,20 +698,20 @@ In order to combat the problem of dying ReLUs, the `leaky ReLU` was proposed. A 
 
 $$
 f(x) =
-\begin{cases}
-x, & \text{if}\quad x > 0;\\
-\alpha x, & \text{otherwise}.
-\end{cases}
+ \begin{cases}
+   x, & \text{if}\quad x > 0;\\
+   \alpha x, & \text{otherwise}.
+ \end{cases}
 $$
 
 `Randomized Leaky ReLU`
 
 $$
 f(x) =
-\begin{cases}
-x, & \text{if} \quad x > 0;\\
-\alpha x, & \text{otherwise}.
-\end{cases} \\
+   \begin{cases}
+      x, & \text{if} \quad x > 0;\\
+      \alpha x, & \text{otherwise}.
+   \end{cases} \\
 \alpha\sim U[0,1]
 $$
 
@@ -793,7 +794,6 @@ The soft sign function is not continuous at ${0}$ as well as sign function while
 
 Softsign is another alternative to Tanh activation. Like Tanh, it's anti-symmetrical, zero centered, differentiable and returns a value between -1 and 1. Its flatter shape and more slowly declining derivative suggest that it may learn more efficiently. On the other hand, calculation of the derivative is more computationally cumbersome than Tanh.
 
-
 `Bent identity`:
 $$
 f(x)=\frac{\sqrt{x^2+1}-1}{2}+x \in(-\infty, +\infty) \\
@@ -817,16 +817,16 @@ A sort of compromise between Identity and ReLU activation, Bent Identity allows 
 The functions in the right column are  approximate to the identity function in $\mathbb{R}^{+}$, i.e., $\lim_{x\to +\infty}\frac{f(x)}{x} = 1$. And activation function ${f}$ is potential to result in gradient vanishing if its derivative is always less than 1: $f^{\prime}(x) < 1 \quad\forall x$. The non-saturation function can result in gradient exposition.
 [Wide Neural Networks of Any Depth Evolve as Linear Models Under Gradient Descent](https://arxiv.org/abs/1902.06720)
 
-- [ ] https://arxiv.org/abs/1511.07289
-- [ ] https://arxiv.org/abs/1502.01852
-- [ ] https://arxiv.org/abs/1710.05941v1
-- [ ] https://arxiv.org/abs/1803.08375
-- [ ] https://sefiks.com/2017/11/10/softsign-as-a-neural-networks-activation-function/
-- [ ] https://www.gabormelli.com/RKB/Softsign_Activation_Function
-- [ ] http://sharpneat.sourceforge.net/research/activation-fn-review/activation-fn-review.html
-- [ ] https://rpubs.com/shailesh/activation-functions
-- [ ] https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md
-- [ ] <https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions>;
+- [Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs)](https://arxiv.org/abs/1511.07289)
+- [Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification](https://arxiv.org/abs/1502.01852)
+- [Swish: a Self-Gated Activation Function](https://arxiv.org/abs/1710.05941v1)
+- [Deep Learning using Rectified Linear Units (ReLU)](https://arxiv.org/abs/1803.08375)
+- [Softsign as a Neural Networks Activation Function](https://sefiks.com/2017/11/10/softsign-as-a-neural-networks-activation-function/)
+- [Softsign Activation Function](https://www.gabormelli.com/RKB/Softsign_Activation_Function)
+- [A Review of Activation Functions in SharpNEAT](http://sharpneat.sourceforge.net/research/activation-fn-review/activation-fn-review.html)
+- [Activation Functions](https://rpubs.com/shailesh/activation-functions)
+- [第一十三章 优化算法](https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md)
+- [ReLU and Softmax Activation Functions] (https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions).
 
 ****
 * http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
@@ -867,14 +867,25 @@ In this section, we will talk other optimization tricks such as **Normalization*
 - https://arxiv.org/pdf/1803.09820.pdf
 - https://github.com/kmkolasinski/deep-learning-notes/tree/master/seminars/2018-12-Improving-DL-with-tricks
 
+See **Improve the way neural networks learn** at <http://neuralnetworksanddeeplearning.com/chap3.html>.
+See more on nonconvex optimization at <http://sunju.org/research/nonconvex/>.
+
+For some specific or given tasks, we would choose some proper models before training them.
+
+![model](https://srdas.github.io/DLBook/DL_images/HPO3.png)
+
+Given machine learning models, optimization methods are used to minimize the cost function or maximize the performance index.
+![algorithm](https://srdas.github.io/DLBook/DL_images/HPO4.png)
+
+
+![manual tuning](https://srdas.github.io/DLBook/DL_images/HPO2.png)
 
 ##### Initialization and More
+
 
 ![](https://image.jiqizhixin.com/uploads/editor/5aa8c27f-c832-4105-83de-954be7420763/1535523576187.png)
 
 **Initialization**
-
-
 
 * https://srdas.github.io/DLBook/GradientDescentTechniques.html#InitializingWeights
 * [An Empirical Model of Large-Batch Training Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieva](http://www.princeton.edu/~congm/Publication/RandomInit/main.pdf)
@@ -884,8 +895,8 @@ In this section, we will talk other optimization tricks such as **Normalization*
 * [可视化超参数作用机制：二、权重初始化](https://zhuanlan.zhihu.com/p/38315135)
 * [第6章 网络优化与正则化](https://nndl.github.io/chap-%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96.pdf)
 * [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/pdf/1812.01187.pdf)
-* https://intoli.com/blog/neural-network-initialization/
-* https://adventuresinmachinelearning.com/weight-initialization-tutorial-tensorflow/
+* [Choosing Weights: Small Changes, Big Differences](https://intoli.com/blog/neural-network-initialization/)
+* [Weight initialization tutorial in TensorFlow](https://adventuresinmachinelearning.com/weight-initialization-tutorial-tensorflow/)
 
 **Learning Rate**
 
@@ -901,87 +912,6 @@ In this section, we will talk other optimization tricks such as **Normalization*
 - https://supercomputersfordl2017.github.io/Presentations/DLSC_talk.pdf
 - https://openreview.net/pdf?id=B1Yy1BxCZ
 - https://arxiv.org/abs/1711.00489
-
-
-##### Normalization
-
-**Batch Normalization**
-
-It is an effective way to accelerate deep  learning training.
-
-![](https://img-blog.csdn.net/20161128135254463)
-
-And `Batch Normalization` transformation is differentiable so that we can compute the gradient in backpropagation.
-For example, let $\ell$ be the cost function to be minimized, then we could compute the gradients
-$$
-\frac{\partial \ell}{\partial \hat{x}_i} = \frac{\partial \ell}{\partial y_i} \frac{\partial y_i}{\partial \hat{x}_i} =
-\frac{\partial \ell}{\partial y_i} \gamma
-$$
-****
-
-$$
-\frac{\partial \ell}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-\frac{1}{2}(x_i - \mu_B)}{(\sigma_B^2 + \epsilon)^{\frac{3}{2}}}
-$$
-
-***
-
-$$
-\frac{\partial \ell}{\partial \mu_B} = \frac{\partial \ell}{\partial \sigma_B^2} \frac{\partial \sigma_B^2}{\partial \mu_B} + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \mu_B}=
-\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}}
-$$
-
-***
-$$
-\frac{\partial \ell}{\partial {x}_i} = \frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial {x}_i} +       \frac{\partial \ell}{\partial \mu_B} \frac{\partial \mu_B}{\partial {x}_i} + \frac{\partial \ell}{\partial \sigma^2_B}    \frac{\partial \sigma^2_B}{\partial {x}_i}
-$$
-
-$$
-\frac{\partial \ell}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i \\
-\frac{\partial \ell}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i
- $$
-
-|Batch Normalization in Neural|
-|:---:|
-|![BN](https://srdas.github.io/DLBook/DL_images/BatchNormalization.png)|
-
-||
-|---|
-|![BN in NN](https://image.jiqizhixin.com/uploads/editor/4f055102-a306-4a76-9dec-d0c69ef60e6f/1535523577800.png)|
-
-**Layer Normalization**
-
-Different from the Batch Normalization, `Layer Normalization` compute the average $\mu$ or variance $\sigma$ for all the inputs of the given hidden layer, as
-$$
-\mu = \frac{1}{n}\sum_{i}^{n} x_i \\
-\sigma = \sqrt{\frac{1}{n}\sum_{i}^{n}(x_i - \mu)^2 + \epsilon}
-$$
-where ${n}$ is the number of units in the given hidden layer.
-
-|Layer Normalization|
-|:---:|
-|![LN](https://pic1.zhimg.com/80/v2-2f1ad5749e4432d11e777cf24b655da8_hd.jpg)|
-
-||
-|---|
-|![LN+FNN](https://image.jiqizhixin.com/uploads/editor/eaf495c1-9254-4418-b15d-53ba4b0b09c4/1535523579078.png)|
-
-**Weight Normalization**
-
-![WN](https://pic2.zhimg.com/80/v2-93d904e4fff751a0e5b940ab3c27b6d5_hd.jpg)
-
-* [Batch normalization 和 Instance normalization 的对比？ - Naiyan Wang的回答 - 知乎](https://www.zhihu.com/question/68730628/answer/277339783)
-* [Weight Normalization 相比 batch Normalization 有什么优点呢？](https://www.zhihu.com/question/55132852/answer/171250929)
-* [深度学习中的Normalization模型](https://www.jiqizhixin.com/articles/2018-08-29-7)
-* [Group Normalization](https://arxiv.org/abs/1803.08494)
-* [Busting the myth about batch normalization at paperspace.com](https://blog.paperspace.com/busting-the-myths-about-batch-normalization/)
-* https://zhuanlan.zhihu.com/p/33173246
-* The original paper *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift* at <https://arxiv.org/pdf/1502.03167.pdf>.
-* https://machinelearningmastery.com/batch-normalization-for-training-of-deep-neural-networks/
-* http://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/
-* https://srdas.github.io/DLBook/GradientDescentTechniques.html#BatchNormalization
-
-See **Improve the way neural networks learn** at <http://neuralnetworksanddeeplearning.com/chap3.html>.
-See more on nonconvex optimization at <http://sunju.org/research/nonconvex/>.
 
 #### Regularization
 
@@ -1004,7 +934,6 @@ See the following links for more information on optimization and generalization.
 * https://blog.csdn.net/xzy_thu/article/details/80732220
 * https://srdas.github.io/DLBook/ImprovingModelGeneralization.html#Regularization
 
-
 ##### Parameter norm penalty
 
 The $\ell_2$ norm penalty  is to add the squares of $\ell_2$ norm of parameters to the objective function $J(\theta)$ to reduce the parameters(or weights) as shown in ridge regression with regular term coefficient $\lambda$, i.e.
@@ -1015,9 +944,10 @@ $$
 $$
 thus
 $$
-\frac{\partial J(\theta)}{\partial \theta}=-2\lambda\theta\implies J(\theta)=e^{-2\lambda \theta}.
+\frac{\partial J(\theta)}{\partial \theta} = -2\lambda\theta\implies J(\theta)=e^{-2\lambda \theta}.
 $$
 
+So $\lim_{\lambda\to \infty}J(\theta)\to 0$.
 If we want to find the minima of $E(\theta)$, $\theta$ will decay to $0$.
 It extends to the following iterative formula:
 $$
@@ -1030,11 +960,29 @@ The new term $\lambda$ coming from the regularization causes the weight to decay
 * https://metacademy.org/graphs/concepts/weight_decay_neural_networks
 * https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-neural-networks-with-weight-constraints-in-keras/
 * https://machinelearningmastery.com/how-to-reduce-overfitting-in-deep-learning-with-weight-regularization/
-*
+* https://papers.nips.cc/paper/4409-the-manifold-tangent-classifier.pdf
 
 The $\ell_1$ norm penalty is also used in deep learning as in **LASSO**. It is to solve the following optimization problem:
   $$\min_{\theta}J(\theta)+\lambda{\|\theta\|}_1,$$
 where $\lambda$ is a hyperparameter. Sparsity  brings to the model as shown as in **LASSO**.
+* [深度学习训练中是否有必要使用L1获得稀疏解?](https://www.zhihu.com/question/51822759/answer/675969996)
+
+`Max norm constraints` is to set an upper bound to regularize the networks, i.e., it is to minimize the constrainted cost function
+$$
+J(\theta), \qquad s.t. \qquad \|\theta\|\leq c.
+$$
+
+Consider the fact that the parameters or weights are always in the matrix form, i.e.,
+$$\theta=\{W_1, W_2, \dots, W_n\}$$
+
+the regularization terms sometimes are in the sum of norm of matrix in each layer.
+
+`Tangent prop` is to minimize the cost function with penalty on gradient:
+$$
+J(\theta)+\sum_{i} [(\nabla_x f(x)^T v^{(i)})]^2
+$$
+
+![The Manifold Tangent Classifier](http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_1440,w_720,f_auto,q_auto/v1/29096/manifold_copy_sycxlo.png)
 
 ##### Early stop
 
@@ -1079,6 +1027,9 @@ It is to collect more datum in the statistical perspective.
 |:----------------------------------:|
 |![TF](http://beamandrew.github.io//images/deep_learning_101/tensors_flowing.gif)|
 
+
+
+
 ## Convolutional Neural Network
 
 Convolutional neural network is originally aimed to solve visual tasks. In so-called [Three Giants' Survey](http://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf), the history of ConvNet and deep learning is curated.
@@ -1112,8 +1063,19 @@ where each entry $x_{ij}\in\{1,2\cdots,256\},i\in\{1,2,\cdots,m\},j\in\{1,2,\cdo
 * Spatial information extraction
    + [Kernel in image processing ](https://www.wikiwand.com/en/Kernel_(image_processing)) takes the relationship of the neighboring entries into consideration. It transforms the neighboring entries into one real value. It is the local pattern that we can learn.
 
-In mathematics, the matrix space $\mathbb{M}^{m\times n}$ in real domain , which consists of the matrix with $m\times n$ size, is `linear isomorphic` to the linear space $\mathbb{R}^{m\times n}$.
+In mathematics, the matrix space $\mathbb{M}^{m\times n}$ in real domain, which consists of the matrix with $m\times n$ size, is `linear isomorphic` to the linear space $\mathbb{R}^{m\times n}$.
 And thus in 2-dimenional space, convolution corresponds to $\color{aqua}{\text{doubly block circulant matrix}}$ if the matrix is flatten.
+
+![conv](http://jermmy.xyz/images/2017-12-16/convolution-mlp-mapping.png)
+
+Let $\otimes$ denote the convolution operator and $K\in\mathbb{R}^{w\times l}$, then we obtain that
+$$
+F=M\otimes K \in \mathbb{R}^{(m-1)\times (n-1)},
+$$
+
+where $F_{ij}=\sum_{l=0}^{w-1}\sum_{m=0}^{l-1} M_{(i+l),(j+m)}K_{(l+1),(m+1)}$.
+
+So that $\frac{\partial F_{ij}}{\partial K_{l,m}}=M_{(i+l-1),(j+m-1)}$.
 
 |The illustration of convolution operator|
 |:---:|
@@ -1126,17 +1088,16 @@ And thus in 2-dimenional space, convolution corresponds to $\color{aqua}{\text{d
 
 ***
 As similar as the inner product of vector, the convolution operators  can compute the similarity between the submatrix of images and the kernels (also called filters).
+
 The convolution operators play the role as *parameter sharing* and *local connection*.
 
-For more information on CNN, click the following links.
+For more information on `convolution`, click the following links.
 
-* [CNN(卷积神经网络)是什么？有入门简介或文章吗？ - 机器之心的回答 - 知乎](https://www.zhihu.com/question/52668301/answer/131573702)
-* [能否对卷积神经网络工作原理做一个直观的解释？ - YJango的回答 - 知乎](https://www.zhihu.com/question/39022858/answer/194996805)
 * [One by one convolution](https://iamaaditya.github.io/2016/03/one-by-one-convolution/)
 * [conv arithmetic](https://github.com/vdumoulin/conv_arithmetic)
-* [Convolution deep learning](http://timdettmers.com/2015/03/26/convolution-deep-learning/)
+* [Understanding Convolution in Deep Learning](http://timdettmers.com/2015/03/26/convolution-deep-learning/)
 * https://zhuanlan.zhihu.com/p/28749411
-
+* http://colah.github.io/posts/2014-12-Groups-Convolution/
 
 #### Padding
 
@@ -1201,9 +1162,11 @@ In the $i$th layer of convolutional neural network, it can be expressed as
 
 $$
 \hat{H}_{i} = P\oplus H_{i-1}         \\
-\tilde{H_i}=C_i\otimes(\hat{H}_{t})   \\
-H_i = Pooling\cdot (\sigma\circ \tilde{H_i})
+\tilde{H_i} = C_i\otimes(\hat{H}_{t})   \\
+Z_i = \mathrm{N}\cdot  \tilde{H_i} \\
+H_i = Pooling\cdot (\sigma\circ Z_i)
 $$
+
 
 where $\otimes,\oplus,\cdot$ represent convolution operation, padding and pooling, respectively.
 
@@ -1212,9 +1175,11 @@ where $\otimes,\oplus,\cdot$ represent convolution operation, padding and poolin
 |![](http://www.linleygroup.com/mpr/h/2016/11561/U26_F3.png)|
 
 The outputs of each layer are matrices or tensors rather than real vectors in CNN.
+The vanila CNN has no feedback or loops in the architecture.
 
 * [CS231n Convolutional Neural Network for Visual Recognition](http://vision.stanford.edu/teaching/cs231n/index.html)
-* The *Wikipeida* page <https://www.wikiwand.com/en/Convolutional_neural_network>
+* [CNN(卷积神经网络)是什么？有入门简介或文章吗？ - 机器之心的回答 - 知乎](https://www.zhihu.com/question/52668301/answer/131573702)
+* [能否对卷积神经网络工作原理做一个直观的解释？ - YJango的回答 - 知乎](https://www.zhihu.com/question/39022858/answer/194996805)
 * [Awesome deep vision](https://github.com/kjw0612/awesome-deep-vision)
 * [解析深度学习——卷积神经网络原理与视觉实践](http://lamda.nju.edu.cn/weixs/book/CNN_book.html)
 * [Interpretable Convolutional Neural Networks](http://qszhang.com/index.php/icnn/)
@@ -1223,7 +1188,180 @@ The outputs of each layer are matrices or tensors rather than real vectors in CN
 * [ConvNetJS](https://cs.stanford.edu/people/karpathy/convnetjs/)
 * https://www.vicarious.com/2017/10/20/toward-learning-a-compositional-visual-representation/
 * https://nndl.github.io/chap-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.pdf
+* https://srdas.github.io/DLBook/ConvNets.html
+* https://mlnotebook.github.io/post/CNN1/
+* http://scs.ryerson.ca/~aharley/vis/conv/flat.html
+* https://wiki.tum.de/pages/viewpage.action?pageId=22578448
 
+
+#### Optimization in CNNs
+
+
+* [Bag of Tricks for Image Classification with Convolutional Neural Networks](http://arxiv.org/abs/1812.01187)
+* [Applying Gradient Descent in Convolutional Neural Networks](https://iopscience.iop.org/article/10.1088/1742-6596/1004/1/012027/pdf)
+
+##### Backpropagation in CNNs
+
+Convolutional neural networks extract the features of the images by trial and error to tune the convolutions $\{C_i \mid i=1,2,\dots, n\}$.
+
+At each convolutional layer,  we feed forwards the information like:
+
+$$
+\hat{H}_{i} = P \oplus H_{i-1}         \\
+\tilde{H_i} = C_i \otimes(\hat{H}_{t})   \\
+Z_i = \mathrm{N}\cdot  \tilde{H_i} \\
+H_i = Pooling\cdot (\sigma\circ Z_i)
+$$
+
+In order to design proper convolutions for specific task automatically according to the labelled images via gradient-based optimization methods, we should compute the gradient of error with respect to convolutions:
+
+$$
+\frac{\partial L}{\partial H_n}   \to
+\frac{\partial H_n}{\partial C_n} \to
+\frac{\partial H_n}{\partial H_{n-1}}\to\cdots \to
+\frac{\partial H_1}{\partial M}.
+$$
+In fully connected layer, the backpropagation is as the same as in feedforward neural networks.
+
+In convolutional layer, it is made up of padding, convolution, activation, normalization and pooling.
+
+Note that even that there is only one  output of the convolutional layer (for example when the kernels or filters are in the same form of input without pooling), it is accessible to compute the gradient of the kernels like the inner product.
+
+For example, we compute the gradient with respect to the convolution:
+
+$$
+F:\mathbb{R}^{m\times n}  \to \mathbb{R}^{\hat{m}\times \hat{n}}\\
+F = Pooling \cdot \mathrm{N} \cdot \sigma[(P \oplus M) \otimes C],
+$$
+
+which is a composite of operators/functions.
+So that by the chain rule of derivatives
+
+$$
+\frac{\partial F}{\partial K} = \frac{\partial Pooling}{\partial n}
+\frac{\partial n}{\partial \sigma}
+\frac{\partial \sigma}{\partial C}
+\frac{\partial C}{\partial M}.
+$$
+
+
+* http://jermmy.xyz/2017/12/16/2017-12-16-cnn-back-propagation/
+* http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/
+* https://www.cnblogs.com/tornadomeet/p/3468450.html
+* http://www.cnblogs.com/pinard/p/6494810.html
+
+**Backward Propagation of the Pooling Layers**
+
+$$\frac{\partial Pooling}{\partial n}$$
+![BP in Pooling](https://lanstonchu.files.wordpress.com/2018/08/avg-pool.gif?w=614&zoom=2)
+
+* [Convolutional Neural Network (CNN) – Backward Propagation of the Pooling Layers](https://lanstonchu.wordpress.com/2018/09/01/convolutional-neural-network-cnn-backward-propagation-of-the-pooling-layers/)
+
+**Backward Propagation of the Normalization Layers**
+
+$$\frac{\partial n}{\partial \sigma}$$
+
+**Batch Normalization**
+
+It is an effective way to accelerate deep  learning training.
+
+![](https://img-blog.csdn.net/20161128135254463)
+
+And `Batch Normalization` transformation is differentiable so that we can compute the gradient in backpropagation.
+For example, let $\ell$ be the cost function to be minimized, then we could compute the gradients
+
+$$
+\frac{\partial \ell}{\partial \hat{x}_i} = \frac{\partial \ell}{\partial y_i} \frac{\partial y_i}{\partial \hat{x}_i} =
+\frac{\partial \ell}{\partial y_i} \gamma
+$$
+
+****
+
+$$
+\frac{\partial \ell}{\partial \sigma_B^2} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \sigma_B^2} = \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-\frac{1}{2}(x_i - \mu_B)}{(\sigma_B^2 + \epsilon)^{\frac{3}{2}}}
+$$
+
+***
+
+$$
+\frac{\partial \ell}{\partial \mu_B} = \frac{\partial \ell}{\partial \sigma_B^2} \frac{\partial \sigma_B^2}{\partial \mu_B} + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial \mu_B} =
+\frac{\partial \ell}{\partial \sigma_B^2}[\frac{2}{m}\sum_{i=1}^{m}(x_i-\mu_B)] + \sum_{i=1}^{m}\frac{\partial \ell}{\partial \hat{x}_i}\frac{-1}{\sqrt{(\sigma_B^2 + \epsilon)}}
+$$
+
+***
+$$
+\frac{\partial \ell}{\partial {x}_i} = \frac{\partial \ell}{\partial \hat{x}_i} \frac{\partial \hat{x}_i}{\partial {x}_i} + \frac{\partial \ell}{\partial \mu_B} \frac{\partial \mu_B}{\partial {x}_i} + \frac{\partial \ell}{\partial \sigma^2_B}  \frac{\partial \sigma^2_B}{\partial {x}_i}
+$$
+
+$$
+\frac{\partial \ell}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i \\
+\frac{\partial \ell}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial \ell}{\partial y_i} \hat{x}_i
+ $$
+
+|Batch Normalization in Neural|
+|:---:|
+|![BN](https://srdas.github.io/DLBook/DL_images/BatchNormalization.png)|
+
+||
+|---|
+|![BN in NN](https://image.jiqizhixin.com/uploads/editor/4f055102-a306-4a76-9dec-d0c69ef60e6f/1535523577800.png)|
+
+**Layer Normalization**
+
+Different from the Batch Normalization, `Layer Normalization` compute the average $\mu$ or variance $\sigma$ for all the inputs of the given hidden layer, as
+$$
+\mu = \frac{1}{n}\sum_{i}^{n} x_i \\
+\sigma = \sqrt{\frac{1}{n}\sum_{i}^{n}(x_i - \mu)^2 + \epsilon}
+$$
+where ${n}$ is the number of units in the given hidden layer.
+
+|Layer Normalization|
+|:---:|
+|![LN](https://pic1.zhimg.com/80/v2-2f1ad5749e4432d11e777cf24b655da8_hd.jpg)|
+
+|Layer Normalization in FNN|
+|---|
+|![LN+FNN](https://image.jiqizhixin.com/uploads/editor/eaf495c1-9254-4418-b15d-53ba4b0b09c4/1535523579078.png)|
+
+**Weight Normalization**
+
+![WN](https://pic2.zhimg.com/80/v2-93d904e4fff751a0e5b940ab3c27b6d5_hd.jpg)
+
+* [Batch normalization 和 Instance normalization 的对比？ - Naiyan Wang的回答 - 知乎](https://www.zhihu.com/question/68730628/answer/277339783)
+* [Weight Normalization 相比 batch Normalization 有什么优点呢？](https://www.zhihu.com/question/55132852/answer/171250929)
+* [深度学习中的Normalization模型](https://www.jiqizhixin.com/articles/2018-08-29-7)
+* [Group Normalization](https://arxiv.org/abs/1803.08494)
+* [Busting the myth about batch normalization at paperspace.com](https://blog.paperspace.com/busting-the-myths-about-batch-normalization/)
+* https://zhuanlan.zhihu.com/p/33173246
+* The original paper *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift* at <https://arxiv.org/pdf/1502.03167.pdf>.
+* https://machinelearningmastery.com/batch-normalization-for-training-of-deep-neural-networks/
+* [An Overview of Normalization Methods in Deep Learning](http://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/)
+* [Batch Normalization](https://srdas.github.io/DLBook/GradientDescentTechniques.html#BatchNormalization)
+
+
+**Backward Propagation of the Activation Layers**
+
+$$\frac{\partial \sigma}{\partial C}$$
+
+| $\sigma$|$\frac{\partial \sigma}{\partial C}$|
+|---|---|
+|activation function | the partial derivatives after convolution |
+
+**Backward Propagation of the Convolution Layers**
+
+$$\frac{\partial C}{\partial M}$$
+
+
+##### Data Augmentation
+
+- [深度学习中的Data Augmentation方法和代码实现](https://absentm.github.io/2016/06/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84Data-Augmentation%E6%96%B9%E6%B3%95%E5%9)
+- [The Effectiveness of Data Augmentation in Image Classification using Deep Learning](http://cs231n.stanford.edu/reports/2017/pdfs/300.pdf)
+- [500 questions on deep learning](https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch04_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/%E7%AC%AC%E5%9B%9B%E7%AB%A0_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C.md)
+- [算法面试](https://github.com/imhuay/Algorithm_Interview_Notes-Chinese/blob/master/B-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/B-%E4%B8%93%E9%A2%98-%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B.md)
+- [Awesome Computer Vision](https://github.com/jbhuang0604/awesome-computer-vision)
+- [some research blogs](https://world4jason.gitbooks.io/research-log/content/deepLearning/Deep%20Learning.html)
+- [SOTA](http://openresearch.ai/tags/sota)
+- [Deep Neural Networks Motivated by Partial Differential Equations](https://arxiv.org/pdf/1804.04272.pdf)
 ***
 
 ![](http://1reddrop.com/wp-content/uploads/2016/08/deeplearning.jpg)
@@ -1231,7 +1369,7 @@ The outputs of each layer are matrices or tensors rather than real vectors in CN
 - https://grzegorzgwardys.wordpress.com/2016/04/22/8/
 - https://lanstonchu.wordpress.com/category/deep-learning/
 
-### Visualization of CNN
+### Visualization or Interpretation of CNN
 
 [It has shown](https://openreview.net/pdf?id=Bygh9j09KX) that
 > ImageNet trained CNNs are strongly biased towards recognising `textures` rather than `shapes`,
@@ -1239,17 +1377,21 @@ which is in stark contrast to human behavioural evidence and reveals fundamental
 
 * [Deep Visualization](http://yosinski.com/deepvis)
 * [Interpretable Representation Learning for Visual Intelligence](http://bzhou.ie.cuhk.edu.hk/publication/thesis.pdf)
+* [IMAGENET-TRAINED CNNS ARE BIASED TOWARDS TEXTURE; INCREASING SHAPE BIAS IMPROVES ACCURACY AND ROBUSTNESS](https://openreview.net/pdf?id=Bygh9j09KX)
 * https://www.zybuluo.com/lutingting/note/459569
 * https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf
 * [卷积网络的可视化与可解释性（资料整理） - 陈博的文章 - 知乎](https://zhuanlan.zhihu.com/p/36474488)
 * https://zhuanlan.zhihu.com/p/24833574
 * https://zhuanlan.zhihu.com/p/30403766
+* https://zhuanlan.zhihu.com/p/28054589
 * https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
 * http://people.csail.mit.edu/bzhou/ppt/presentation_ICML_workshop.pdf
 * https://www.robots.ox.ac.uk/~vedaldi//research/visualization/visualization.html
 * https://www.graphcore.ai/posts/what-does-machine-learning-look-like
-* https://openreview.net/pdf?id=Bygh9j09KX
-
+* https://srdas.github.io/DLBook/ConvNets.html#visualizing-convnets
+* [CNN meets PDEs](https://deqefw538d79t.cloudfront.net/api/file/jSBt1r2nTeP0ItVIVY9o?cache=true)
+* [Deep Neural Network motivated by PDEs](https://gateway.newton.ac.uk/sites/default/files/asset/doc/1805/2018-DeepLearning-beamer_0.pdf)
+* https://www.semanticscholar.org/author/Lars-Ruthotto/2557699
 ****
 |graphcore.ai|
 |:----------:|
@@ -1266,6 +1408,7 @@ $$
     H_{i}    &= \sigma\circ(\mathbf{z}_i),
 \end{align}
 $$
+
 where $W_i\in\mathbb{R}^{l_{i}\times l_{i-1}}$, $H_i (\text{as well as}\, b_i)\in \mathbb{R}^{l_i}\forall i\in\{1, 2, \dots, D\}$ and $\sigma$ is activation function.
 In convention, $H_0$ is defined as input $X\in\mathbb{R}^{p}$.
 In short, the formula in the $i$th layer of feedforward neural network is given by
@@ -1273,25 +1416,41 @@ $$
 H_i=\sigma\circ(W_i H_{i-1}+b_i).
 $$
 
+![RNN](http://www.dam.brown.edu/people/mraissi/assets/img/RNN.png)
+
 It may suit the **identically independently distributed** data set.
 However, the sequence data is not **identically independently distributed** in most cases. For example, the outcome of current decision determines the next decision.
+
+![RNN](https://srdas.github.io/DLBook/DL_images/rnn1b.png)
 In mathematics it can be expressed as
+
 $$
 H_{t}=\sigma\circ(X_t,H_{t-1})=\sigma\circ(W H_{t-1} + U X_{t}+b),
 $$
+
 where $X_{t}\in\mathbb{R}^{p}$ is the output $\forall t\in\{1,2\dots,\tau\}$.
+The Hidden Variable sequence  $H_{t}$  captures the lossy history of the  $X_t$  sequence, and hence serves as a type of memory.
+We can compute the gradient with respect to the parameters $W, U, b$:
+
+$$
+\frac{\partial H_t}{\partial W} = \sigma^{\prime} \circ H_{t-1}\\
+\frac{\partial H_t}{\partial U} = \sigma^{\prime} \circ X_t \\
+\frac{\partial H_t}{\partial b} =  \sigma^{\prime} \circ b  .
+$$
 
 |RNN Cell|
 |:------:|
 |![](http://imgtec.eetrend.com/sites/imgtec.eetrend.com/files/201810/blog/18051-37153-6.gif)|
 
 For each step from $t=1$ to $t=\tau$, the complete update equations of RNN:
+
 $$
 \begin{align}
 H_{t} &=\sigma\circ(W H_{t-1} + U X_{t} + b) \\
 O_{t} &= \mathrm{softmax}(V H_{t} + c)
 \end{align}
 $$
+
 where the parameters are the bias vectors $b$ and $c$ along with the weight matrices
 $U$, $V$ and $W$, respectively for input-to-hidden, hidden-to-output and hidden-to-hidden connections.
 
@@ -1299,19 +1458,35 @@ $U$, $V$ and $W$, respectively for input-to-hidden, hidden-to-output and hidden-
 
 |Types of RNN|
 |:---:|
-|![](https://devblogs.nvidia.com/wp-content/uploads/2015/05/Figure_3-624x208.png)|\
-|(https://www.altoros.com/blog/wp-content/uploads/2017/01/Deep-Learning-Using-TensorFlow-recurrent-neural-networks.png)|
+|![](https://devblogs.nvidia.com/wp-content/uploads/2015/05/Figure_3-624x208.png)|
+|![](https://www.altoros.com/blog/wp-content/uploads/2017/01/Deep-Learning-Using-TensorFlow-recurrent-neural-networks.png)|
+
+* https://srdas.github.io/DLBook/RNNs.html
+* [A Beginner’s Guide on Recurrent Neural Networks with PyTorch](https://blog.floydhub.com/a-beginners-guide-on-recurrent-neural-networks-with-pytorch/)
+* [Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
+* [Recurrent Neural Networks Tutorial, Part 2 – Implementing a RNN with Python, Numpy and Theano](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/)
+* [Attention and Augmented Recurrent Neural Networks](https://distill.pub/2016/augmented-rnns/)
+* <https://github.com/kjw0612/awesome-rnn>
+* <https://blog.acolyer.org/2017/03/03/rnn-models-for-image-generation/>
+* <https://nlpoverview.com/>
+
+### The Back Propagation Through Time (BPTT) Algorithm
+
+![](https://srdas.github.io/DLBook/DL_images/rnn3.png)
+- https://srdas.github.io/DLBook/RNNs.html#Training
 
 ### Bi-directional RNN
 
 For each step from $t=1$ to $t = \tau$, the complete update equations of RNN:
+
 $$
 \begin{align}
-\stackrel{\rightarrow}H_{t} &=\sigma\circ(W_1\stackrel{\rightarrow}H_{t-1}+U_1X_{t}+b_1) \\
-\stackrel{\leftarrow}H_{t}  &=\sigma\circ(W_2\stackrel{\leftarrow}H_{t+1}+U_2X_{t}+b_2) \\
+\stackrel{\rightarrow} H_{t} &= \sigma\circ(W_1\stackrel{\rightarrow}H_{t-1}+U_1X_{t}+b_1) \\
+\stackrel{\leftarrow}H_{t}  &= \sigma\circ(W_2\stackrel{\leftarrow}H_{t+1}+U_2X_{t}+b_2) \\
 O_{t} &= \mathrm{softmax}(VH_{t}+c)
 \end{align}
 $$
+
 where $H_{t} = [\stackrel{\rightarrow} H_{t};\stackrel{\leftarrow} H_{t}]$.
 
 |Bi-directional RNN|
@@ -1335,21 +1510,29 @@ It is the first time to solve the **gradient vanishing problem** and
 |![](http://5b0988e595225.cdn.sohucs.com/images/20181017/cd0e8107c3f94e849bd82e0fd0123776.jpeg)|
 
 * forget gate
-$f_{t}=\sigma(W_{f}[h_{t-1},x_t]+b_f)$
+
+$$f_{t} = \sigma(W_{f}[h_{t-1},x_t]+b_f). \tag{forget gate}$$
 
 ![forget gate](http://5b0988e595225.cdn.sohucs.com/images/20181017/87957492ade3445ea90871dda02c92ca.gif)
 * input gate
-$i_{t}=\sigma(W_i[h_{t-1},x_t]+b_i)$,
-$\tilde{C}_{t}=tanh(W_C[h_{t-1},x_t]+b_C)$
+
+$$
+i_{t} = \sigma(W_i[h_{t-1}, x_t] + b_i),
+\tilde{C}_{t} = tanh(W_C[h_{t-1}, x_t] + b_C).\tag{input gate}
+$$
 
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/dac15a9da4164b3da346ac891d10ff9e.gif)
 * memory cell
-$c_{t}=f_t\times c_{t-1}+i_{t}\times{\tilde{C}_{t}}$
+
+$$C_{t} = f_t \odot c_{t-1}+i_{t} \otimes {\tilde{C}_{t}}.\tag{memory cell}$$
 
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/ad6435e481064d57833a4733e716fa8f.gif)
+
 * output gate
-$O_{t}=\sigma(W_{O}[h_{t-1},x_t]+b_{O})$ and
-$h_{t}=O_{t}\times tanh(c_{t})$
+
+$$o_{t} = \sigma(W_{O}[h_{t-1},x_t]+b_{O}),\tag{ouput gate 1}$$
+and
+$$Z_{t} = O_{t}\odot tanh(c_{t}).\tag{ouput gate 2}$$
 
 ![](http://5b0988e595225.cdn.sohucs.com/images/20181017/bca51dcc89f14b1c9a2e9076f419540a.gif)
 
@@ -1357,13 +1540,47 @@ $h_{t}=O_{t}\times tanh(c_{t})$
 |[Inventor of LSTM](https://www.mitpressjournals.org/doi/abs/10.1162/neco.1997.9.8.1735?journalCode=neco)|
 |:---:|
 |![Juergen Schmidhuber](https://www.analyticsindiamag.com/wp-content/uploads/2018/09/jurgen-banner.png) more on (http://people.idsia.ch/~juergen/)|
+|![Internals of a LSTM Cell](https://srdas.github.io/DLBook/DL_images/rnn22.png)|
 
 
 * [LSTM in Wikipeida](https://www.wikiwand.com/en/Long_short-term_memory)
 * [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) and its Chinese version <https://www.jianshu.com/p/9dc9f41f0b29>.
 * [LTSMvis](http://lstm.seas.harvard.edu/)
 * [Jürgen Schmidhuber's page on Recurrent Neural Networks](http://people.idsia.ch/~juergen/rnn.html)
-* https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/
+* [Exporing LSTM](http://blog.echen.me/2017/05/30/exploring-lstms/)
+* [Essentials of Deep Learning : Introduction to Long Short Term Memory](https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/)
+* [LSTM为何如此有效？](https://www.zhihu.com/question/278825804)
+
+### Gated Recurrent Units (GRUs)
+
+GRUs are a recently proposed alternative to LSTMs, that share its good properties, i.e., they are also designed to avoid the Vanishing Gradient problem. The main difference from LSTMs is that GRUs don’t have a cell memory state  $C_t$ , but instead are able to function effectively using the Hidden State  $Z_t$  alone.
+
+![](https://srdas.github.io/DLBook/DL_images/rnn6.png)
+
+* Update Gate
+$$
+\begin{equation}
+o_t = \sigma(W^o X_t + U^o Z_{t-1}). \tag{ Update Gate}
+\end{equation}$$
+
+* Reset Gate
+$$
+\begin{equation}
+r_t = \sigma(W^r X_t + U^r Z_{t-1}). \tag{Reset Gate}
+\end{equation}
+$$
+
+* Hidden State
+$$
+\begin{equation}
+{\tilde Z}_t = \tanh(r_t\odot U Z_{t-1} + W X_t), \\
+Z_t = (1 - o_t)\odot {\tilde Z}_t + o_t\odot Z_{t-1}). \tag{Hidden State}
+\end{equation}
+$$
+***
+* https://wugh.github.io/posts/2016/03/cs224d-notes4-recurrent-neural-networks-continue/
+* https://srdas.github.io/DLBook/RNNs.html#GRU
+* https://d2l.ai/chapter_recurrent-neural-networks/gru.html
 
 ### Deep RNN
 
@@ -1371,7 +1588,7 @@ Deep RNN is composed of *RNN cell* as MLP is composed of perceptrons.
 For each step from $t=1$ to $t=\tau$, the complete update equations of deep $d$-RNN  at the $i$th layer:
 $$
 \begin{align}
-H_{t}^{i} &=\sigma\circ(W_{i} H_{t-1} + U_{i} X_{t} + b) \\
+H_{t}^{i} &= \sigma\circ(W_{i} H_{t-1} + U_{i} X_{t} + b) \\
 O_{t} &= \mathrm{softmax}(V H_{d} + c)
 \end{align}
 $$
@@ -1384,23 +1601,24 @@ Other RNN cells also can compose deep RNN via this stacking way such as deep Bi-
 |:---:|
 |![](http://opennmt.net/OpenNMT/img/brnn.png)|
 
-* <http://blog.songru.org/posts/notebook/Opinion_Mining_with_Deep_Recurrent_Neural_Networks_NOTE/>
+* [Application of Deep RNNs](http://blog.songru.org/posts/notebook/Opinion_Mining_with_Deep_Recurrent_Neural_Networks_NOTE/)
 * http://opennmt.net/OpenNMT/training/models/
 * https://machinelearningmastery.com/stacked-long-short-term-memory-networks/
 
 ***
 
-* https://machinelearningmastery.com/recurrent-neural-network-algorithms-for-deep-learning/
-* http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/
-* http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/
-* https://zhuanlan.zhihu.com/p/27485750
+* [A Tour of Recurrent Neural Network Algorithms for Deep Learning](https://machinelearningmastery.com/recurrent-neural-network-algorithms-for-deep-learning/)
+* [Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
+* [Recurrent Neural Networks Tutorial, Part 2 – Implementing a RNN with Python, Numpy and Theano](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/)
+* [当我们在谈论 Deep Learning：RNN 其常见架构](https://zhuanlan.zhihu.com/p/27485750)
 * [RNN in Wikipeida](https://en.wikipedia.org/wiki/Recurrent_neural_network)
 * [Awesome RNN](https://github.com/kjw0612/awesome-rnn)
 * [RNN in metacademy](https://metacademy.org/graphs/concepts/recurrent_neural_networks)
 * https://zhuanlan.zhihu.com/p/49834993
 * [RNNs in Tensorflow, a Practical Guide and Undocumented Features](http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/)
 * [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
-* https://kvitajakub.github.io/2016/04/14/rnn-diagrams/
+* [Visualizations of RNN units
+Diagrams of RNN unrolling, LSTM and GRU.](https://kvitajakub.github.io/2016/04/14/rnn-diagrams/)
 * http://www.zmonster.me/notes/visualization-analysis-for-rnn.html
 * http://imgtec.eetrend.com/d6-imgtec/blog/2018-10/18051.html
 * https://arxiv.org/pdf/1801.01078.pdf
@@ -1408,15 +1626,16 @@ Other RNN cells also can compose deep RNN via this stacking way such as deep Bi-
 * https://skymind.ai/wiki/lstm
 * [循环神经网络(RNN, Recurrent Neural Networks)介绍](https://blog.csdn.net/heyongluoyao8/article/details/48636251)
 * https://arxiv.org/pdf/1506.02078.pdf
+* https://srdas.github.io/DLBook/RNNs.html#Applications
 
-## Attention Mechanism
+### Attention Mechanism
 
 An attention model is a method that takes $n$ arguments $y_1, \dots, y_n$  and a context $c$. It return a vector $z$ which is supposed to be the  **summary** of the ${y}_i\in \mathbb{R}^{d}$, focusing on information linked to the context $c$. More formally, it returns a weighted arithmetic mean of the $y_i$, and the weights are chosen according the relevance of each $y_i$ given the context $c$.
 In mathematics, it can be expressed as:
 
 $$
-{\alpha}_i = softmax[s(y_i,c)]               \\
-         z = \sum_{i=1}^{n} {\alpha}_i y_i
+{\alpha}_i = softmax [s(y_i,c)]               \\
+z = \sum_{i=1}^{n} {\alpha}_i y_i
 $$
 
 where $s(\cdot, \cdot)$ is the attention scoring function.
@@ -1429,9 +1648,12 @@ The attention scoring function $s({y}_i, c)$ is diverse, such as:
 
 It is always as one component of some complex network as normalization.
 
+![Attension](https://srdas.github.io/DLBook/DL_images/rnn32.png)
+
 ***
 
 * [第 8 章 注意力机制与外部记忆](https://nndl.github.io/chap-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%96%E9%83%A8%E8%AE%B0%E5%BF%86.pdf)
+* https://srdas.github.io/DLBook/RNNs.html#Memory
 * https://skymind.ai/wiki/attention-mechanism-memory-network
 * https://distill.pub/2016/augmented-rnns/
 * https://blog.heuritech.com/2016/01/20/attention-mechanism/
@@ -1439,6 +1661,15 @@ It is always as one component of some complex network as normalization.
 * [Attention and Memory in Deep Learning and NLP](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
 * http://www.deeplearningpatterns.com/doku.php?id=attention
 * [细想神毫注意深-注意力机制 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/51747716)
+* http://www.charuaggarwal.net/Chap10slides.pdf
+* https://d2l.ai/chapter_attention-mechanism/seq2seq-attention.html
+
+
+***
+* [What is DRAW (Deep Recurrent Attentive Writer)?](http://kvfrans.com/what-is-draw-deep-recurrent-attentive-writer/)
+* [Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+* [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+* [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning)](http://jalammar.github.io/illustrated-bert/)
 
 ## Recursive Neural Network
 
@@ -1452,7 +1683,15 @@ It is always as one component of some complex network as normalization.
 |-----------------------------------|
 |![](http://www.cs.cornell.edu/~oirsoy/files/drsv/deep-recursive.png)|
 
-## Generative Adversarial Network
+
+## Generative Models
+
+![](https://reiinakano.github.io/images/wp/s1/shard-painting.jpg)
+* [CSC 2541 Fall 2016: Differentiable Inference and Generative Models](https://www.cs.toronto.edu/~duvenaud/courses/csc2541/index.html)
+* [Learning Discrete Latent Structure](https://duvenaud.github.io/learn-discrete/)
+* [The Living Thing / Notebooks : Reparameterisation tricks in differentiable inference](https://livingthing.danmackinlay.name/reparameterisation_diff.html)
+- https://grzegorzgwardys.wordpress.com/2016/06/19/convolutional-autoencoder-for-dummies/
+### Generative Adversarial Network
 
 http://unsupervised.cs.princeton.edu/deeplearningtutorial.html
 
@@ -1489,6 +1728,7 @@ $$\min_{G}\max_{D}\mathbb{E}_{x\sim P} [f(D(x))] + \mathbb{E}_{h}[f(1 - D(G(h)))
 
 where $G$ is the generator and $D$ is the discriminator.
 
+`Cycle-GAN`
 ****
 
 * https://skymind.ai/wiki/generative-adversarial-network-gan
@@ -1496,6 +1736,7 @@ where $G$ is the generator and $D$ is the discriminator.
 * [生成模型中的左右互搏术：生成对抗网络GAN——深度学习第二十章（四） - 川陀学者的文章 - 知乎](https://)https://zhuanlan.zhihu.com/p/37846221)
 * [Really awesome GANs](https://github.com/nightrome/really-awesome-gan)
 * [GAN zoo](https://github.com/hindupuravinash/the-gan-zoo)
+* [Open Questions about Generative Adversarial Networks](https://distill.pub/2019/gan-open-problems/)
 * https://gandissect.csail.mit.edu/
 * https://poloclub.github.io/ganlab
 * https://github.com/nndl/Generative-Adversarial-Network-Tutorial
@@ -1506,6 +1747,39 @@ where $G$ is the generator and $D$ is the discriminator.
 * https://www.cs.princeton.edu/courses/archive/spring17/cos598E/GANs.pdf
 * https://seas.ucla.edu/~kao/nndl/lectures/gans.pdf
 
+![](https://gandissect.csail.mit.edu/img/framework-d2.svg)
+More generative models include GLOW, variational autoencoder and energy-based models.
+
+### Variational Autoencoder
+
+- https://jaan.io/what-is-variational-autoencoder-vae-tutorial/
+- http://kvfrans.com/variational-autoencoders-explained/
+- https://ermongroup.github.io/cs228-notes/extras/vae/
+- https://www.jeremyjordan.me/variational-autoencoders/
+- http://anotherdatum.com/vae-moe.html
+- http://anotherdatum.com/vae.html
+- [STYLE TRANSFER: VAE](https://www.andrewszot.com/blog/machine_learning/deep_learning/variational_autoencoders)
+- [Pixel Art generation using VAE](https://mlexplained.wordpress.com/2017/05/06/pixel-art-generation-using-vae/)
+- [Pixel Art generation Part 2. Using Hierarchical VAE](https://mlexplained.wordpress.com/2017/07/27/pixel-art-generation-part-2-using-hierarchical-vae/)
+
+
+### PixelRNN
+
+- https://zhuanlan.zhihu.com/p/25299749
+- http://vsooda.github.io/2016/10/30/pixelrnn-pixelcnn/
+- http://www.qbitlogic.com/challenges/pixel-rnn
+***
+* https://worldmodels.github.io/
+* https://openai.com/blog/glow/
+* https://github.com/wiseodd/generative-models
+* http://www.gg.caltech.edu/genmod/gen_mod_page.html
+* https://deepgenerativemodels.github.io/
+* [Flow-based Deep Generative Models](https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html)
+* [Deep Generative Models](https://ermongroup.github.io/generative-models/)
+* [Teaching agents to paint inside their own dreams](https://reiinakano.github.io/2019/01/27/world-painters.html)
+* [Optimal Transformation and Machine Learning](http://otml17.marcocuturi.net/)
+
+- http://computationalcreativity.net/home/
 
 ## Graph Convolution Network
 
@@ -1581,6 +1855,7 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 * http://colah.github.io/posts/2015-09-NN-Types-FP/
 * https://www.zhihu.com/question/305395488/answer/554847680
 * https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf
+* https://blog.acolyer.org/2019/02/06/a-comprehensive-survey-on-graph-neural-networks/
 
 $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
 
@@ -1628,6 +1903,8 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 - https://blog.csdn.net/NockinOnHeavensDoor/article/details/80661180
 - http://building-babylon.net/2018/04/10/graph-embeddings-in-hyperbolic-space/
 
+
+[Differential geometry based geometric data analysis (DG-GDA) of molecular datasets](https://weilab.math.msu.edu/DG-GL/)
 ## Network Compression and Acceleration
 
 The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
@@ -1669,7 +1946,7 @@ Quantization is to quantize the weights in order to store the weights with less 
 
 [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
 
-### Knowledgement Distillation
+### Knowledge Distillation
 
 * https://nervanasystems.github.io/distiller/knowledge_distillation/index.html
 * https://github.com/dkozlov/awesome-knowledge-distillation
@@ -1686,8 +1963,8 @@ Note that the deep learning models are composite of linear and non-linear maps. 
 The matrix $A_{m\times n}$ can be decompsed as the multiplication of two matrices such as $A_{m\times n}=Q_{m\times r}R_{r\times n}$, so that the storage is from $O(m\times n)$ to $O(m+n)\times O(r)$.
 
 * https://en.wikipedia.org/wiki/Low-rank_approximation
-* http://www.cs.yale.edu/homes/el327/papers/lowRankMatrixApproximation.pdf
-* http://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
+* [Low Rank Matrix Approximation](http://www.cs.yale.edu/homes/el327/papers/lowRankMatrixApproximation.pdf)
+* [On Compressing Deep Models by Low Rank and Sparse Decomposition](http://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf)
 * https://www.cnblogs.com/zhonghuasong/p/7821170.html
 
 ***
@@ -1708,12 +1985,13 @@ The matrix $A_{m\times n}$ can be decompsed as the multiplication of two matrice
 * http://slazebni.cs.illinois.edu/spring17/
 * http://slazebni.cs.illinois.edu/spring17/lec06_compression.pdf
 * http://slazebni.cs.illinois.edu/spring17/reading_lists.html#lec06
-* https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/
+* [模型压缩之deep compression](https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/)
 * https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning
+* https://vistalab-technion.github.io/cs236605/lectures/
 
 ## Bayesian Deep Learning
 
-[The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/)put that:
+[The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/) put that:
 
 > While deep learning has been revolutionary for machine learning, most modern deep learning models cannot represent their uncertainty nor take advantage of the well studied tools of probability theory. This has started to change following recent developments of tools and techniques combining Bayesian approaches with deep learning. The intersection of the two fields has received great interest from the community over the past few years, with the introduction of new deep learning models that take advantage of Bayesian techniques, as well as Bayesian models that incorporate deep learning elements [1-11]. In fact, the use of Bayesian techniques in deep learning can be traced back to the 1990s’, in seminal works by Radford Neal [12], David MacKay [13], and Dayan et al. [14]. These gave us tools to reason about deep models’ confidence, and achieved state-of-the-art performance on many tasks. However earlier tools did not adapt when new needs arose (such as scalability to big data), and were consequently forgotten. Such ideas are now being revisited in light of new advances in the field, yielding many exciting new results
 > Extending on last year’s workshop’s success, this workshop will again study the advantages and disadvantages of such ideas, and will be a platform to host the recent flourish of ideas using Bayesian approaches in deep learning and using deep learning tools in Bayesian modelling. The program includes a mix of invited talks, contributed talks, and contributed posters. It will be composed of five themes: deep generative models, variational inference using neural network recognition models, practical approximate inference techniques in Bayesian neural networks, applications of Bayesian neural networks, and information theory in deep learning. Future directions for the field will be debated in a panel discussion.
@@ -1745,6 +2023,7 @@ The matrix $A_{m\times n}$ can be decompsed as the multiplication of two matrice
 * http://bayesiandeeplearning.org/
 * http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
 * http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
+* https://uvadlc.github.io/lectures/apr2019/lecture9-bayesiandeeplearning.pdf
 
 ## Theories of Deep Learning
 
@@ -1768,15 +2047,17 @@ There are more mathematical perspectives to deep learning: dynamical system, the
 The information theory or code theory helps to accelerate the deep neural network inference as well as computer system design.
 
 The limitation and extension of deep learning methods is also discussed such as F-principle, capsule-net, biological plausible methods.
-The deep learing method is more engineer. The computational evolutaionary adaptive  cognitive intelligence does not occur untill now.
+The deep learning method is more engineer. The computational evolutionary adaptive  cognitive intelligence does not occur until now.
 
 
 * https://www.msra.cn/zh-cn/news/people-stories/wei-chen
 * https://www.microsoft.com/en-us/research/people/tyliu/
 * https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/85815724
+* https://uvadlc.github.io/
 
 ***
 
+* [Open Source Deep Learning Curriculum, 2016](https://www.deeplearningweekly.com/blog/open-source-deep-learning-curriculum/)
 * [Short Course of Deep Learning 2016 Autumn, PKU](http://www.xn--vjq503akpco3w.top/)
 * [Foundation of deep learning](https://github.com/soumyadsanyal/foundations_for_deep_learning)
 * [深度学习名校课程大全 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/31988246)
@@ -1822,11 +2103,9 @@ The deep learing method is more engineer. The computational evolutaionary adapti
 * http://clgiles.ist.psu.edu/IST597/index.html
 * https://zhuanlan.zhihu.com/p/44003318
 * https://deepai.org/
+* https://deepnotes.io/deep-clustering
 
-***
-|Deep Dream|
-|:--------:|
-|![Deep Dream](http://grayarea.org/wp-content/uploads/2016/03/3057368-inline-i-1-inside-the-first-deep-dream-art-show.jpg)|
+
 ***
 
 * [A guide to deep learning](https://yerevann.com/a-guide-to-deep-learning/)
@@ -1858,12 +2137,14 @@ The deep learing method is more engineer. The computational evolutaionary adapti
 * [**Deep Learning course: lecture slides and lab notebooks**](https://m2dsupsdlclass.github.io/lectures-labs/)
 * [EE-559 – DEEP LEARNING (SPRING 2018)](https://fleuret.org/ee559/)
 * [The Functions of Deep Learning](https://sinews.siam.org/Details-Page/the-functions-of-deep-learning)
+* https://deeplearninganalytics.org/
 * https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-deep-learning
 * https://www.deeplearningwizard.com/
 * https://www.stateoftheart.ai/
 * [神经网络与深度学习](https://nndl.github.io/)
 * https://mchromiak.github.io/articles/2017/Sep/01/Primer-NN/#.XBXb42h3hPY
 * https://www.european-big-data-value-forum.eu/program/explainable-artificial-intelligence/
+* http://staff.ustc.edu.cn/~lgliu/Resources/DL/What_is_DeepLearning.html
 
 ## The Future
 
@@ -1878,6 +2159,14 @@ The ultimate goal is general artificial intelligence.
 * https://barghouthi.github.io/2018/05/01/differentiable-programming/
 * https://darioizzo.github.io/d-CGP/
 * https://aifuture2016.stanford.edu/
-* https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=505614
+* [Harnessing the Data Revolution (HDR): Institutes for Data-Intensive Research in Science and Engineering - Ideas Labs  (I-DIRSE-IL)](https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=505614)
 * https://wsdm2019-dapa.github.io/
 * https://leon.bottou.org/slides/mlss13/mlss-nn.pdf
+* [Physics Informed Deep Learning](http://www.dam.brown.edu/people/mraissi/research/1_physics_informed_neural_networks/)
+* http://www.dam.brown.edu/people/mraissi/teaching/1_deep_learning_tutorial/
+* https://ieeexplore.ieee.org/abstract/document/1035030
+* https://arxiv.org/abs/1805.10451
+* https://deepai.org/machine-learning/researcher/na-lei
+* [Differential Geometry in Computer Vision and Machine Learning ](https://diffcvml2018.wordpress.com/)
+* http://primo.ai/index.php?title=PRIMO.ai
+* https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/

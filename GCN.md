@@ -1,10 +1,117 @@
-## Graph Convolution Network
+## Geometric Deep Learning
 
-http://cbl.eng.cam.ac.uk/Public/Lengyel/News
-
+- [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
+- [Beyond deep learnig](http://beyond-deep-nets.clps.brown.edu/)
+- [Cognitive Computation Group @ U. Penn.](https://cogcomp.org/)
+- [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
+- [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
+- http://cocosci.princeton.edu/research.php
 ### Graph Embedding
 
 Graph embedding is an example of representation learning to find proper representation form of graph data structure.
+- https://github.com/thunlp/NRLpapers
+- https://github.com/thunlp/GNNPapers
+- http://snap.stanford.edu/proj/embeddings-www/
+- https://arxiv.org/abs/1709.05584
+- http://cazabetremy.fr/Teaching/EmbeddingClass.html
+- [A Beginner's Guide to Graph Analytics and Deep Learning](https://skymind.ai/wiki/graph-analysis)
+
+**DeepWalk**
+
+`DeepWalk` is an approach for learning latent representations of vertices in a network, which maps the nodes in the graph into real vectors:
+$$
+f: \mathbb{V}\to\mathbb{R}^{d}.
+$$
+
+[DeepWalk generalizes recent advancements in language modeling and unsupervised feature learning (or deep learning) from sequences of words to graphs. DeepWalk uses local information obtained from truncated random walks to learn latent representations by treating walks as the equivalent of sentences.](http://www.perozzi.net/projects/deepwalk/)
+And if we consider the  text as digraph, `word2vec` is an specific example of `DeepWalk`.
+Given the word sequence $\mathbb{W}=(w_0, w_1, \dots, w_n)$, we can compute the conditional probability $P(w_n|w_0, w_1, \dots, w_{n-1})$. And
+$$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
+
+>> * DeepWalk  $G, w, d, \gamma, t$
+ * Input: graph $G(V, E)$;
+     window size $w$;
+     embedding size $d$;
+     walks per vertex $\gamma$;
+     walk length $t$.
+ * Output:  matrix of vertex representations $\Phi\in\mathbb{R}^{|V|\times d}$
+ 1.  Initialization: Sample $\Phi$ from $\mathbb{U}^{|V|\times d}$;
+ 2. Build a binary Tree T from V;
+ 3. for $i = 0$ to $\gamma$ do
+ 4. $O = Shuffle(V )$
+ 5. for each $v_i \in O$ do
+ 6. $W_{v_i}== RandomWalk(G, v_i, t)$
+ 7. $SkipGram(Φ, W_{v_i}, w)$
+ 8. end for
+ 9. end for
+>> $SkipGram(Φ, W_{v_i}, w)$
+1. for each $v_j \in W_{v_i}$ do
+2. for each $u_k \in W_{v_i}[j − w : j + w]$ do
+3.  $J(\Phi)=-\log Pr(u_k\mid \Phi(v_j))$
+4.  $\Phi =\Phi -\alpha\frac{\partial J}{\partial \Phi}$
+5. end for
+6. end for
+
+Computing the partition function (normalization factor) is expensive, so instead we will factorize the
+conditional probability using `Hierarchical softmax`.
+If the path to vertex $u_k$
+is identified by a sequence of tree nodes $(b_0, b_1, \cdots , b_{[log |V|]})$,
+$(b_0 = root, b_{[log |V|]} = u_k)$ then
+$$
+Pr(u_k\mid \Phi(v_j)) =\prod_{l=1}^{[log |V|]}Pr(b_l\mid \Phi(v_j)).
+$$
+
+
+Now, $Pr(b_l\mid \Phi(v_j))$ could be modeled by a binary classifier
+that is assigned to the parent of the node $b_l$ as below
+$$
+Pr(b_l\mid \Phi(v_j))=\frac{1}{1 + \exp(-\Phi(v_j)\cdot \Phi(b_l))}
+$$
+where $\Phi(b_l)$ is the representation assigned to tree node
+$b_l$ ’s parents.
+
+
+
+***
+- [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
+- [ ] [DeepWalk: Online Learning of Social Representations](https://arxiv.org/abs/1403.6652)
+- [ ] https://github.com/phanein/deepwalk
+- [ ] http://www.perozzi.net/projects/deepwalk/
+- [ ] http://www.cnblogs.com/lavi/p/4323691.html
+- [ ] https://www.ijcai.org/Proceedings/16/Papers/547.pdf
+
+**node2vec**
+
+`node2vec` is an algorithmic framework for representational learning on graphs. Given any graph, it can learn continuous feature representations for the nodes, which can then be used for various downstream machine learning tasks.
+
+By extending the Skip-gram architecture to networks, it seeks to optimize the following objective function,
+which maximizes the log-probability of observing a network neighborhood $N_{S}(u)$ for a node $u$ conditioned on its feature representation, given by $f$:
+$$
+\max_{f} \sum_{u\in V}\log Pr(N_S(u)\mid f(u))
+$$
+
+`Conditional independence` and `Symmetry` in feature space are expected  to  make the optimization problem tractable.
+We model the conditional likelihood of every source-neighborhood node pair as a softmax
+unit parametrized by a dot product of their features:
+$$
+Pr(n_i\mid f(u))=\frac{\exp(f(n_i)\cdot f(u))}{\sum_{v\in V} \exp(f(v)\cdot f(u))}.
+$$
+
+The objective function simplifies to
+$$\max_{f}\sum_{u\in V}[-\log Z_u + \sum_{n_i\in N_S(u)} f(n_i)\cdot f(u).$$
+
+- [ ] https://zhuanlan.zhihu.com/p/30599602
+- [ ] http://snap.stanford.edu/node2vec/
+- [ ] https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf
+- [ ] https://www.kdd.org/kdd2016/papers/files/rfp0218-groverA.pdf
+
+
+**struc2vec**
+
+- [ ] http://jackieanxis.coding.me/2018/01/17/STRUC2VEC/
+- [ ] http://www.land.ufrj.br/~leo/struc2vec.html
+- [ ] https://arxiv.org/abs/1704.03165
+- [Struc2vec: learning node representations from structural identity](https://blog.acolyer.org/2017/09/15/struc2vec-learning-node-representations-from-structural-identity/)
 
 **word2vec**
 
@@ -21,32 +128,41 @@ The conditional probability of generating the context word for the given central
 $$
 P(w_o|w_c) = \frac{\exp(u_o^T u_c)}{\sum_{i\in\mathbb{V}} \exp(u_i^T u_c)},
 $$
+
 where vocabulary index set $V = \{1,2,\dots, |V|-1\}$. Assume that a text sequence of length ${T}$  is given, where the word at time step  ${t}$  is denoted as  $w^{(t)}$.
 Assume that context words are independently generated given center words. When context window size is  ${m}$ , the likelihood function of the skip-gram model is the joint probability of generating all the context words given any center word
 $$
-\prod_{t=1}^{T}\prod_{-m\leq j \leq m, j\not = i}\mathbb{P}(w^{(t+j)}|w^{(j)}),
+\prod_{t=1}^{T}\prod_{-m\leq j \leq m, j\not = i}{P}(w^{(t+j)}|w^{(j)}),
 $$
+
 Here, any time step that is less than 1 or greater than ${T}$  can be ignored.
 
 The skip-gram model parameters are the central target word vector and context word vector for each individual word. In the training process, we are going to learn the model parameters by maximizing the likelihood function, which is also known as maximum likelihood estimation. his is equivalent to minimizing the following loss function:
 $$
--\log(\prod_{t=1}^{T}\prod_{-m\leq j \leq m, j\not = i}\mathbb{P}(w^{(t+j)}|w^{(j)})) 
-= \\ -\sum_{t=1}^{T}\sum_{-m\leq j \leq m, j \not= i} \log(\mathbb{P}(w^{(t+j)}|w^{(j)}))).
+-\log(\prod_{t=1}^{T}\prod_{-m\leq j \leq m, j\not = i}{P}(w^{(t+j)}|w^{(j)}))
+= \\ -\sum_{t=1}^{T}\sum_{-m\leq j \leq m, j \not= i} \log({P}(w^{(t+j)}|w^{(j)}))).
 $$
 
-And we could compute the negative logarithm of the conditional probability 
+And we could compute the negative logarithm of the conditional probability
 $$
--\log(P(w_o|w_c)) 
+-\log(P(w_o|w_c))
 = -\log(\frac{\exp(u_o^T u_c)}{\sum_{i\in\mathbb{V}} \exp(u_i^T u_c)})
 \\= -u_o^T u_c + \log(\sum_{i\in\mathbb{V}} \exp(u_i^T u_c)).
 $$
 
 Then we could compute the gradient or Hessian matrix of the loss functions to update the parameters such as:
+
 $$
-\frac{\partial \log(P(w_o|w_c))}{\partial u_c} 
-= \frac{\partial }{\partial u_c} [u_o^T u_c - \log(\sum_{i\in\mathbb{V}} \exp(u_i^T u_c))]
-\\= u_o - \sum_{j\in\mathbb{V}}\frac{ \exp(u_j^T u_c)) }{\sum_{i\in\mathbb{V}} \exp(u_i^T u_c))} u_j
-\\= u_o - \sum_{j\in\mathbb{V}}P(w_j|w_c) u_j.
+\frac{\partial \log(P(w_o|w_c))}{\partial u_c}
+    \\= \frac{\partial }{\partial u_c} [u_o^T u_c - \log(\sum_{i\in\mathbb{V}} \exp(u_i^T u_c))]
+    \\= u_o - \sum_{j\in\mathbb{V}}\frac{ \exp(u_j^T u_c)) }{\sum_{i\in\mathbb{V}} \exp(u_i^T u_c))} u_j
+    \\= u_o - \sum_{j\in\mathbb{V}}P(w_j|w_c) u_j.
+$$
+
+The `continuous bag of words (CBOW)` model is similar to the skip-gram model. The biggest difference is that the CBOW model assumes that the central target word is generated based on the context words before and after it in the text sequence. Let central target word  $w_c$  be indexed as $c$ , and context words  $w_{o_1},…,w_{o_{2m}}$  be indexed as  $o_1,…,o_{2m}$  in the dictionary. Thus, the conditional probability of generating a central target word from the given context word is
+
+$$
+P(w_c|w_{o_1},…,w_{o_{2m}}) = \frac{\exp(\frac{1}{2m}u_c^T(u_{o_1}+ \cdots + u_{o_{2m}}))}{\sum_{i\in V}\exp(\frac{1}{2m}u_i^T(u_{o_1}+ \cdots + u_{o_{2m}}))}.
 $$
 
 - https://code.google.com/archive/p/word2vec/
@@ -54,52 +170,49 @@ $$
 - https://arxiv.org/abs/1402.3722v1
 - https://zhuanlan.zhihu.com/p/35500923
 - https://zhuanlan.zhihu.com/p/26306795
-- https://d2l.ai/chapter_natural-language-processing/word2vec.html
 - https://zhuanlan.zhihu.com/p/56382372
+- http://anotherdatum.com/vae-moe.html
+- https://d2l.ai/chapter_natural-language-processing/word2vec.html
 
-**DeepWalk**
-
-DeepWalk is another graph embedding technique, which maps the graph data into real vectors:
-$$
-f: \mathbb{G}\to\mathbb{R}^{d}.
-$$
-
-And if we consider the  text as digraph, `word2vec` is an specific example of `DeepWalk`.
-Given the word sequence $\mathbb{W}=(w_0, w_1, \dots, w_n)$, we can compute the conditional probability $P(w_n|w_0, w_1, \dots, w_{n-1})$. And 
-$$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
-
-- [ ] https://arxiv.org/abs/1301.3226
-- [ ] https://arxiv.org/abs/1403.6652
-- [ ] https://github.com/phanein/deepwalk
-- [ ] http://www.perozzi.net/projects/deepwalk/
-- [ ] http://www.cnblogs.com/lavi/p/4323691.html
-
-**node2vec**
-
-- [ ] https://zhuanlan.zhihu.com/p/30599602
-- [ ] https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf
-- [ ] https://www.kdd.org/kdd2016/papers/files/rfp0218-groverA.pdf
-
-
-**struc2vec**
-
-- [ ] http://jackieanxis.coding.me/2018/01/17/STRUC2VEC/
-- [ ] https://arxiv.org/abs/1704.03165
 
 **Doc2Vec**
 
 - [ ] https://blog.csdn.net/Walker_Hao/article/details/78995591
-
+- [Distributed Representations of Sentences and Documents](http://proceedings.mlr.press/v32/le14.pdf)
+- [Sentiment Analysis using Doc2Vec](http://linanqiu.github.io/2015/10/07/word2vec-sentiment/)
+***
+- [Statistical Models of Language](http://cocosci.princeton.edu/publications.php?topic=Statistical%20Models%20of%20Language)
+- [Semantic Word Embeddings](https://www.offconvex.org/2015/12/12/word-embeddings-1/)
+- [Word Embeddings](https://synalp.loria.fr/python4nlp/posts/embeddings/)
+- [GloVe: Global Vectors for Word Representation Jeffrey Pennington,   Richard Socher,   Christopher D. Manning
+](https://nlp.stanford.edu/projects/glove/)
+- https://levyomer.wordpress.com/category/word-embeddings/
+- [Open Sourcing BERT: State-of-the-Art Pre-training for Natural Language Processing
+Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
+- http://jalammar.github.io/illustrated-bert/
+- http://smir2014.noahlab.com.hk/paper%204.pdf
+***
 **graph2vec**
 
 - [ ] https://arxiv.org/abs/1707.05005
+- [ ] https://allentran.github.io/graph2vec
+- [ ] http://humanativaspa.it/tag/graph2vec/
 
+**Atom2Vec**
 
-**Graph Embedding**
+- [ ] [Deep Learning For Molecules and Materials](http://www.rqrm.ca/DATA/TEXTEDOC/03a-total-september2018-v1.pdf)
+**tile2Vec**
+- [ ] https://ermongroup.github.io/blog/tile2vec/
+- [ ] https://arxiv.org/abs/1805.02855
+ **Graph Embedding**
 
 - [ ] https://zhuanlan.zhihu.com/p/33732033
 - [ ] https://github.com/benedekrozemberczki/awesome-graph-embedding
 - [ ] https://github.com/palash1992/GEM
+- [ ] https://www.deeplearningpatterns.com/doku.php?id=graph_embedding
+- [ ] https://rlgm.github.io/
+- [ ] https://graphreason.github.io/
+- [ ] https://arxiv.org/abs/1503.03578
 - [ ] https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/
 
 *****
@@ -110,8 +223,6 @@ $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
 - https://blog.csdn.net/NockinOnHeavensDoor/article/details/80661180
 - http://building-babylon.net/2018/04/10/graph-embeddings-in-hyperbolic-space/
 - https://paperswithcode.com/task/graph-embedding
-
-
 
 ### Graph Convolutional Network
 
@@ -172,6 +283,8 @@ $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning
 
 GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
 
+* [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
+* [GRAPH CONVOLUTIONAL NETWORKS](https://tkipf.github.io/graph-convolutional-networks/)
 ### ChebNet, CayleyNet, MotifNet
 
 In the previous post, the convolution of the graph Laplacian is defined in its **graph Fourier space** as outlined in the paper of Bruna et. al. (arXiv:1312.6203). However, the **eigenmodes** of the graph Laplacian are not ideal because it makes the bases to be graph-dependent. A lot of works were done in order to solve this problem, with the help of various special functions to express the filter functions. Examples include Chebyshev polynomials and Cayley transform.
@@ -205,33 +318,42 @@ $$
 where $c_0$ is real and other $c_j$’s are generally complex, and ${h}$ is a zoom parameter, and $\lambda$’s are the eigenvalues of the graph Laplacian.
 Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$'s are computed by training. This solves the problem of unfavorable clusters in ChebNet.
 
-**MotifNet**
+* [CayleyNets: Graph Convolutional Neural Networks with Complex Rational Spectral Filters](https://arxiv.org/abs/1705.07664)
 
+***
+**MotifNet**
 `MotifNet` is aimed to address the direted graph convolution.
 
-* https://rowanzellers.com/neuralmotifs/
+![](https://datawarrior.files.wordpress.com/2018/08/f1-large.jpg)
+* [MotifNet: a motif-based Graph Convolutional Network for directed graphs](https://arxiv.org/abs/1802.01572)
+* [Neural Motifs: Scene Graph Parsing with Global Context (CVPR 2018)](https://rowanzellers.com/neuralmotifs/)
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
-* https://github.com/thunlp/GNNPapers
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
 * [graph convolution network 有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
-* https://arxiv.org/abs/0912.3848
-* https://arxiv.org/abs/1312.6203
-* https://arxiv.org/abs/1609.02907
-* https://arxiv.org/abs/1704.06803
-* https://arxiv.org/abs/1705.07664
-* https://arxiv.org/abs/1802.01572
+* [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
+***
+
+* https://zhuanlan.zhihu.com/p/62300527
+* https://zhuanlan.zhihu.com/p/64498484
+* https://zhuanlan.zhihu.com/p/28170197
+* [Wavelets on Graphs via Spectral Graph Theory](https://arxiv.org/abs/0912.3848)
+* [Spectral Networks and Locally Connected Networks on Graphs](https://arxiv.org/abs/1312.6203)
+
+
+***
+
 * https://github.com/alibaba/euler
 * https://ieeexplore.ieee.org/document/8521593
 * https://ieeexplore.ieee.org/document/8439897
-* http://science.sciencemag.org/content/353/6295/163
-* https://zhuanlan.zhihu.com/p/28170197
+* [Higher-order organization of complex networks](http://science.sciencemag.org/content/353/6295/163)
+* [Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks](https://arxiv.org/abs/1704.06803)
 
 |Image|Graph|
 |:-----:|:-----:|
 |Convolutional Neural Network|Graph Convolution Network|
 |Attention|[Graph Attention](http://petar-v.com/GAT/)|
 |Gated|[Gated Graph Network](https://zhuanlan.zhihu.com/p/28170197)|
-|Generative|
+|Generative|[Generative Models for Graphs](http://david-white.net/generative.html)|
 
 *****
 
@@ -245,17 +367,15 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 
 
 *****
-* https://skymind.ai/wiki/graph-analysis
-* http://deeploria.gforge.inria.fr/thomasTalk.pdf
-* https://arxiv.org/abs/1812.04202
-* https://skymind.ai/wiki/graph-analysis
+
+* [Python for NLP](https://synalp.loria.fr/python4nlp/)
+* [Deep Learning on Graphs: A Survey](https://arxiv.org/abs/1812.04202)
 * [Graph-based Neural Networks](https://github.com/sungyongs/graph-based-nn)
 * [Geometric Deep Learning](http://geometricdeeplearning.com/)
 * [Deep Chem](https://deepchem.io/)
 * [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012)
 * https://zhuanlan.zhihu.com/p/49258190
 * https://www.zhihu.com/question/54504471
-* https://www.experoinc.com/post/node-classification-by-graph-convolutional-network
 * http://sungsoo.github.io/2018/02/01/geometric-deep-learning.html
 * https://rusty1s.github.io/pytorch_geometric/build/html/notes/introduction.html
 * [.mp4 illustration](http://tkipf.github.io/graph-convolutional-networks/images/video.mp4)
@@ -279,3 +399,4 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * https://sites.google.com/site/erodola/publications
 * https://people.lu.usi.ch/mascij/publications.html
 * http://www.cs.utoronto.ca/~fidler/publications.html
+* http://practicalcheminformatics.blogspot.com/
