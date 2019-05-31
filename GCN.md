@@ -6,9 +6,13 @@
 - [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
 - [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
 - http://cocosci.princeton.edu/research.php
+- https://jian-tang.com/teaching/graph2019
+- https://eventil.com/events/introducing-grakn-ai-to-paris
+
 ### Graph Embedding
 
-Graph embedding is an example of representation learning to find proper representation form of graph data structure.
+Graph embedding is an example of representation learning to find proper numerical representation form of graph data structure.
+
 - https://github.com/thunlp/NRLpapers
 - https://github.com/thunlp/GNNPapers
 - http://snap.stanford.edu/proj/embeddings-www/
@@ -201,19 +205,24 @@ Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-s
 **Atom2Vec**
 
 - [ ] [Deep Learning For Molecules and Materials](http://www.rqrm.ca/DATA/TEXTEDOC/03a-total-september2018-v1.pdf)
+
 **tile2Vec**
+
 - [ ] https://ermongroup.github.io/blog/tile2vec/
 - [ ] https://arxiv.org/abs/1805.02855
+
  **Graph Embedding**
 
 - [ ] https://zhuanlan.zhihu.com/p/33732033
-- [ ] https://github.com/benedekrozemberczki/awesome-graph-embedding
-- [ ] https://github.com/palash1992/GEM
-- [ ] https://www.deeplearningpatterns.com/doku.php?id=graph_embedding
-- [ ] https://rlgm.github.io/
-- [ ] https://graphreason.github.io/
-- [ ] https://arxiv.org/abs/1503.03578
-- [ ] https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/
+- [ ] [Awesome graph embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
+- [ ] [Graph Embedding Methods](https://github.com/palash1992/GEM)
+- [ ] [Graph Embedding @ deep learning pattern](https://www.deeplearningpatterns.com/doku.php?id=graph_embedding)
+- [ ] [Representation learning in graph and manifold](https://rlgm.github.io/)
+- [ ] [Learning and Reasoning with Graph-Structured Representations
+ICML 2019 Workshop](https://graphreason.github.io/)
+- [ ] [LINE: Large-scale Information Network Embedding](https://arxiv.org/abs/1503.03578)
+- [ ] [Latent Network Summarization: Bridging Network Embedding and Summarization](http://ryanrossi.com/pubs/Jin-et-al-latent-network-summarization.pdf)
+- [ ] http://web.eecs.umich.edu/~dkoutra/group/index.html
 
 *****
 
@@ -329,19 +338,48 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * [Neural Motifs: Scene Graph Parsing with Global Context (CVPR 2018)](https://rowanzellers.com/neuralmotifs/)
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
-* [graph convolution network 有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 * [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
+* Higher-order Graph Convolutional Networks
 ***
-
 * https://zhuanlan.zhihu.com/p/62300527
 * https://zhuanlan.zhihu.com/p/64498484
 * https://zhuanlan.zhihu.com/p/28170197
 * [Wavelets on Graphs via Spectral Graph Theory](https://arxiv.org/abs/0912.3848)
 * [Spectral Networks and Locally Connected Networks on Graphs](https://arxiv.org/abs/1312.6203)
 
+### Application
+
+- [ ] [graph convolution network 有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
+- [ ] [Use of graph network in machine learning](https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/)
+
+**GCN for RecSys**
+
+- https://daiwk.github.io/posts/dl-graph-recommendations.html
+- https://arxiv.org/abs/1806.01973
+- https://arxiv.org/abs/1904.12575
+
+**GCN for Bio & Chem**
+
+- https://deepchem.io/docs/notebooks/index.html
+- [Chemi-Net: A molecular graph convolutional network for accurate drug property prediction](https://arxiv.org/ftp/arxiv/papers/1803/1803.06236.pdf)
+- [Chainer Chemistry: A Library for Deep Learning in Biology and Chemistry](https://github.com/pfnet-research/chainer-chemistry)
+- [Modeling Polypharmacy Side Effects with Graph Convolutional Networks](https://cs.stanford.edu/people/jure/pubs/drugcomb-ismb18.pdf)
+- http://www.grakn.ai/?ref=Welcome.AI
+- https://deepmind.com/blog/alphafold/
+- [A graph-convolutional neural network model for the prediction of chemical reactivity](https://pubs.rsc.org/en/content/articlepdf/2019/sc/c8sc04228d)
+
+**GCN for NLP**
+
+- https://www.akbc.ws/2019/
+- http://www.akbc.ws/2017/slides/ivan-titov-slides.pdf
+- https://github.com/icoxfog417/graph-convolution-nlp
+- https://nlp.stanford.edu/pubs/zhang2018graph.pdf
+
+
+
 
 ***
-
+* https://cs.stanford.edu/people/jure/
 * https://github.com/alibaba/euler
 * https://ieeexplore.ieee.org/document/8521593
 * https://ieeexplore.ieee.org/document/8439897
