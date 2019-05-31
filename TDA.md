@@ -23,12 +23,12 @@ As [The NIPS 2012 workshop on Algebraic Topology and Machine Learning](https://s
 + [Topological Data Analysis](https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1)
 + [Why TDA works?](https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/)
 + [Topology-Based Active Learning](http://www.sci.utah.edu/publications/Mal2014a/UUSCI-2014-001.pdf)
-+ https://sites.google.com/site/nips2012topology/
-+ http://outlace.com/TDApart1.html
-+ https://www.springer.com/cn/book/9783642150135
++ [The NIPS 2012 workshop on Algebraic Topology and Machine Learning.](https://sites.google.com/site/nips2012topology/)
++ [Topological Data Analysis - Part 4 - Persistent Homology](http://outlace.com/TDApart1.html)
++ [Topological Methods in Data Analysis and Visualization @springer](https://www.springer.com/cn/book/9783642150135)
 + https://jsseely.github.io/notes/TDA/
 + [Extracting insights from the shape of complex data using topology](https://www.nature.com/articles/srep01236).
-+ http://appliedtopology.org/
++ [Applied topology](http://appliedtopology.org/)
 + http://www.computational-geometry.org/
 + https://www.h-its.org/event/workshop-grg-2018/
 + https://sites.google.com/view/dragon-applied-topology
@@ -138,3 +138,30 @@ Topological data analysis is principle-driven and application-inspired in some s
 + https://courses.maths.ox.ac.uk/node/161
 + https://www2.cs.duke.edu/courses/fall06/cps296.1/
 + http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html
+
+### Computational Geometry
+
+#### Optimal Transport
+
+![](https://cedricvillani.org/wp-content/themes/SF-Blueprint-WP/img/Cedric-Villani-Sebastien-Godefroy.jpg)
++ [The geometry of optimal transportation](https://projecteuclid.org/download/pdf_1/euclid.acta/1485890981)
++ [Transformations of PDEs: Optimal Transport and Conservation Laws by Woo-Hyun Cook](http://digitalassets.lib.berkeley.edu/etd/ucb/text/Cook_berkeley_0028E_15678.pdf)
++ [Optimal transport, old and new](https://cedricvillani.org/wp-content/uploads/2012/08/preprint-1.pdf)
++ https://optimaltransport.github.io/
++ http://www.math.ucla.edu/~wgangbo/Cedric-Villani.pdf
++ https://pot.readthedocs.io/en/stable/
++ [Optimal Transport Methods in Density Functional Theory (19w5035)](https://www.birs.ca/events/2019/5-day-workshops/19w5035)
++ [Discrete OT](https://remi.flamary.com/demos/transport.html)
++ https://www.mindcodec.com/an-intuitive-guide-to-optimal-transport-for-machine-learning/
++ http://faculty.virginia.edu/rohde/transport/
++ http://otml17.marcocuturi.net/
++ [Optimal Transport & Machine Learning](https://sites.google.com/site/nipsworkshopoptimaltransport/)
++ [Optimal Transport and Machine learning course at DS3 2018](https://github.com/rflamary/OTML_DS3_2018)
++ [Hot Topics: Optimal transport and applications to machine learning and statistics](https://www.msri.org/workshops/928)
++ https://anr.fr/Project-ANR-17-CE23-0012
++ http://otnm.lakecomoschool.org/program/
++ https://sites.uclouvain.be/socn/drupal/socn/node/113
++ [Topics on Optimal Transport in Machine Learning and Shape Analysis
+(OT.ML.SA)](https://people.math.osu.edu/memoli.2/courses/cse-topics-2018/)
++ [Optimal Transport in Biomedical Imaging](http://imagedatascience.com/transport/tutorials_isbi18.html)
++ [Optimal transport for documents classification: Classifying news with Word Mover Distance](http://www.lumenai.fr/blog/optimal-transport-for-documents-classification)

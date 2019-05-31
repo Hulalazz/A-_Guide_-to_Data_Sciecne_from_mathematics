@@ -13,24 +13,48 @@ It is related with `Bayesian statistics, computational statistics, probabilistic
 * [Bayesian Learning for Machine Learning: Part II - Linear Regression](https://wso2.com/blog/research/part-two-linear-regression)
 * [Bayesian Learning by Burr H. Settles, CS-540, UW-Madison, www.cs.wisc.edu/~cs540-1](http://pages.cs.wisc.edu/~bsettles/cs540/lectures/15_bayesian_learning.pdf)
 * [Bayesian machine learning @fastML](http://fastml.com/bayesian-machine-learning/)
-* [Understanding emprical Bayesian hierchical learning](http://varianceexplained.org/r/hierarchical_bayes_baseball/)
+* [Understanding emprical Bayesian hierarchical learning](http://varianceexplained.org/r/hierarchical_bayes_baseball/)
 * [While My MCMC Gently Samples - Bayesian modeling, Data Science, and Python](https://twiecki.io/)
 * [Probabilistic Models in the Study of Language](http://idiom.ucsd.edu/~rlevy/pmsl_textbook/text.html)
 * [Statistical Rethinking A Bayesian Course with Examples in R and Stan (& PyMC3 & brms too)](http://xcelab.net/rm/statistical-rethinking/)
 + [COS597C: Advanced Methods in Probabilistic Modeling](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/#prerequisites)
 + [COS513: Foundations of Probabilistic Modeling](http://www.cs.princeton.edu/courses/archive/spring09/cos513/)
 + [ CSSS 564: Bayesian Statistics for the Social Sciences (University of Washington, Spring 2018)](https://github.com/UW-CSSS-564/2018/blob/master/notes/links.md)
++ [Learn Bayesian statistics](https://docs.pymc.io/learn.html)
++ http://ryanrossi.com/search.php
++ https://bayesianwatch.wordpress.com/
 
 ![](https://frnsys.com/ai_notes/assets/model_based_clustering.svg)
 
 |Bayes Formulae | Inverse Bayes Formulae|
 |---|---|
-|$Pr(B)=\frac{Pr(A\cup B)}{Pr(A\mid B)}$|$f_X(x) = (\int_{S_y} \frac{ f_{Y\mid X}(y\mid x)}{f_{X\mid Y}(x\mid y)}\mathrm{d}y)^{-1}$|
+|$f_X(x)=\frac{f_{X, Y}(X, Y)}{f_{Y\mid X}(y\mid x)}=\frac{f_{X\mid Y}(x\mid y)f_Y(y)}{f_{Y\mid X}(y\mid x)}$|$f_X(x) = (\int_{S_y} \frac{ f_{Y\mid X}(y\mid x)}{f_{X\mid Y}(x\mid y)}\mathrm{d}y)^{-1}$|
+|$f_X(x)\propto f_{X\mid Y}(x\mid y)f_Y(y)(=f_{X, Y}(X, Y))$|$f_X(x) \propto \frac{f_{X\mid Y}(x\mid y_0)}{f_{Y\mid X}(y_0\mid x)}$|
 
 ## Naive Bayes
 
+`Naive Bayes` is to reconstruct the joint distribution of features and labels $Pr(\vec{x}, y)$ given some training dataset/samples $T=\{(\vec{X}_i, y_i)\}_{i=1}^{n}$.
+However, the features are usually in high dimensional space in practice so the dimension curse occurs which makes it impossible to compute the joint distribution $Pr(\vec{X}, y)$ via the (emprical) conditional probability $Pr(\vec{X}\mid y)$ and the prior $Pr(y)$.
+A `naive` idea is to simplify the computation process by assumption that the features are conditional independence so that
+$$
+Pr(\vec{X}\mid y) =\prod_{i=1}^{p} Pr(\vec{X}^{(i)}\mid y).\tag{1}
+$$  
+
+And the predicted labels will be computed via
+$$
+Pr(y\mid \vec{X}) = \frac{Pr(y) Pr(\vec{x}\mid y)}{\sum Pr(y)Pr(\vec{x}\mid y)}. \tag{2}
+$$
+
+where the conditional probability $Pr(\vec{X}\mid y)$ is simplified by the conditional independence assumption in formula (1).
+Thus the naive Bayes classifier is represented as maximum a posteriori (MAP)
+$$
+y=f(x)=\arg_{y} Pr(y\mid \vec{X}).
+$$
+
+The prior probability $Pr(y)$ can be emprical or estimated.
+
 * [Naive Bayesian](https://www.saedsayad.com/naive_bayesian.htm)
-* https://jrnold.github.io/bayesian_notes/naive-bayes.html
+* [Ritchie Ng on Machine Learning](https://jrnold.github.io/bayesian_notes/naive-bayes.html)
 * [MLE/MAP + Naïve Bayes](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture5-nb.pdf)
 
 
@@ -45,15 +69,6 @@ It is related with `Bayesian statistics, computational statistics, probabilistic
 * [Not so naive Bayes: Aggregating one-dependence estimators](https://perun.pmf.uns.ac.rs/radovanovic/dmsem/cd/install/Weka/doc/classifiers-papers/bayes/AODE/WebbBoughtonWang04.pdf)
 * https://link.springer.com/article/10.1007%2Fs10994-005-4258-6
 
-
-## Bayesian Belief Network(BBN)
-
-## Bayesian Network
-
-* [Bayesian Networks(Part I)](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture22-bayesnet1.pdf)
-* [Bayesian Networks(Part II)](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture23-bayesnet2.pdf)
-
-## Hidden Markov Models
 
 ## Hierarchical Bayesian Regression
 
@@ -77,7 +92,7 @@ We can take any factor into consideration in this hierarchical Bayesian model. A
 - [ ] [BAYESIAN HIERARCHICAL MODELS](https://www.stat.ubc.ca/~gavin/STEPIBookNewStyle/course_clapem.html)
 - [ ] https://www.cnblogs.com/huangxiao2015/p/5667941.html
 - [ ] https://www.cnblogs.com/huangxiao2015/p/5668140.html
-- [ ] http://www.est.uc3m.es/BayesUC3M/Master_course/Chapter4.pdf
+- [ ] [Chapter 4: Regression and Hierarchical Models](http://www.est.uc3m.es/BayesUC3M/Master_course/Chapter4.pdf)
 - [ ] https://docs.pymc.io/notebooks/GLM-hierarchical.html
 - [ ] http://varianceexplained.org/r/hierarchical_bayes_baseball/
 - [ ] http://idiom.ucsd.edu/~rlevy/pmsl_textbook/chapters/pmsl_8.pdf
@@ -134,12 +149,13 @@ Bayesian optimization usually uses `Gaussian process` regression.
 
 ![Bayesian Optimization](https://github.com/fmfn/BayesianOptimization/blob/master/examples/func.png)
 
-![BayOpt](https://docs.polyaxon.com/static/d538260415f314e9592d1fe1d2c3bff3/48ba6/bayesian-optimization.png)
+![BayOpt](https://raw.githubusercontent.com/mlr-org/mlrMBO/master/docs/articles/helpers/animation-.gif)
 
 ****
 
 * http://www.sigopt.com/
 * https://jmhessel.github.io/Bayesian-Optimization/
+* https://mlrmbo.mlr-org.com/index.html
 * [Let’s Talk Bayesian Optimization](https://mlconf.com/blog/lets-talk-bayesian-optimization/)
 * [Bayesian optimization tutorial slides and article (from INFORMS 2018)](https://people.orie.cornell.edu/pfrazier/Presentations/2018.11.INFORMS.tutorial.pdf)
 * [Practical Bayesian optimization in the presence of outliers](http://proceedings.mlr.press/v84/martinez-cantin18a/martinez-cantin18a.pdf)
@@ -179,6 +195,36 @@ It is aimed to solve the causal inferences, which is based on principles rather 
 + https://blog.applied.ai/probabilistic-graphical-models-for-fraud-detection-part-3/
 + https://frnsys.com/ai_notes/foundations/probabilistic_graphical_models.html
 
+### Bayesian Belief Network(BBN)
+
+### Bayesian Network
+
+Bayesian networks are a type of `Probabilistic Graphical Model` that can be used to build models from data and/or expert opinion.
+They are also commonly referred to as `Bayes nets, Belief networks and sometimes Causal networks`.
+
+[Bayesian Network (BN) is an intuitive, graphical representation of a joint probability distribution of a set of random variables with a possible mutual causal relationship.](https://research.csu.edu.au/research-support/data-methods-and-tools/statistics-workshops-and-tools/bayesian-network-workshops)
+
+It is of wide application in many fields such as NLP, medical image analysis.
+![BN](https://www.bayesserver.com/docs/images/analytics.png)
+
+* [Bayesian Network Repository](http://www.bnlearn.com/bnrepository/)
+* [Bayesian Networks by João Neto](http://www.di.fc.ul.pt/~jpn/r/bayesnets/bayesnets.html)
+* [Additive Bayesian Network Modelling in R](http://r-bayesian-networks.org/)
+* https://silo.ai/bayesian-networks-for-fast-troubleshooting/
+* [Bayesian networks - an introduction](https://www.bayesserver.com/docs/introduction/bayesian-networks)
+* [Bayesian Networks: Introductory Examples](http://www.bayesia.com/bayesian-networks-examples)
+* [Bayesian Network – Brief Introduction, Characteristics & Examples](https://data-flair.training/blogs/bayesian-network-in-r/)
+* [Bayesian Networks(Part I)](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture22-bayesnet1.pdf)
+* [Bayesian Networks(Part II)](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture23-bayesnet2.pdf)
+* [pomegranate is a Python package that implements fast and flexible probabilistic models.](https://pomegranate.readthedocs.io/en/latest/BayesianNetwork.html)
+* http://robsonfernandes.net/bnviewer/
+* https://www.hugin.com/
+
+### Hidden Markov Models
+
+- [Hidden Markov Model (HMM) Markov Processes and HMM](https://maelfabien.github.io/machinelearning/HMM_2/#decoding-with-viterbi-algorithm)
+- https://web.stanford.edu/~jurafsky/slp3/A.pdf
+- https://pomegranate.readthedocs.io/en/latest/index.html
 
 ## Probabilistic Programming
 
