@@ -11,6 +11,13 @@ As a result, CNNs now form the crux of deep learning algorithms in computer visi
 
 ![hayo.io](https://hayo.io/under_development/wp-content/uploads/2017/01/shema1-2.jpg)
 
+* https://sites.google.com/visipedia.org/index
+* [Computational Vision at Caltech](http://www.vision.caltech.edu/)
+* [SE(3) COMPUTER VISION GROUP AT CORNELL TECH](https://vision.cornell.edu/se3/publications/)
+* https://vcla.stat.ucla.edu/index.html
+* [香港中文大学多媒体实验室](http://mmlab.ie.cuhk.edu.hk/index_cn.html)
+* [Center for Research in Computer Vision](https://www.crcv.ucf.edu/)
+* [Vision and Content Engineering Lab](http://www.kalisteo.eu/en/index.htm)
 * https://github.com/jbhuang0604/awesome-computer-vision
 * [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/)
 * [Spring 2019 CS 543/ECE 549: Computer Vision](http://slazebni.cs.illinois.edu/spring19/)
@@ -20,17 +27,17 @@ As a result, CNNs now form the crux of deep learning algorithms in computer visi
 * http://www.robots.ox.ac.uk/~vgg/research/text/
 * https://ieeexplore.ieee.org/document/8295029
 * http://www.vlfeat.org/matconvnet/
+* http://cvcl.mit.edu/aude.htm
 
-> Low-level image processing algorithms include:
-1. Edge detection
-2. Segmentation
-3. Classification
-4. Feature detection and matching
+![](http://cvcl.mit.edu/imagesAude/triangle2.png)
 
-> Examples of high-level image analysis are:
-1. 3D scene mapping
-2. Object recognition
-3. Object tracking
+Image acquisition | Image processing | Image analysis|
+--|--|-----
+ Webcams & embedded cameras |Edge detection| 3D scene mapping
+Digital compact cameras & DSLR |Segmentation| Object recognition
+Consumer 3D cameras  | Classification | Object tracking
+ Laser range finders |Feature detection and matching|---
+
 
 - [ ] [9 Applications of Deep Learning for Computer Vision](https://machinelearningmastery.com/applications-of-deep-learning-for-computer-vision/)
 - [ ] [Deep Learning for Computer Vision
@@ -41,6 +48,7 @@ Image Classification, Object Detection, and Face Recognition in Python](https://
 
 * https://cv-tricks.com/cnn/understand-resnet-alexnet-vgg-inception/
 * https://www.jeremyjordan.me/convnet-architectures/
+* http://www.tamaraberg.com/teaching/Spring_16/
 
 **LeNet**
 
@@ -95,7 +103,7 @@ An important feature of the AlexNet is the use of `ReLU(Rectified Linear Unit)` 
 ![DenseNet](http://openresearch.ai/uploads/default/original/1X/a3bd62739f80a8faf6b92861bf82ace09201c7ee.png)
 
 * [Densely Connected Convolutional Networks](http://openaccess.thecvf.com/content_cvpr_2017/papers/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.pdf)
-* https://zh.d2l.ai/chapter_convolutional-neural-networks/densenet.html
+* [Dive to Deep Learning](https://zh.d2l.ai/chapter_convolutional-neural-networks/densenet.html)
 
 #### Optical Character Recognition
 
@@ -140,6 +148,34 @@ https://cv-tricks.com/object-tracking/quick-guide-mdnet-goturn-rolo/
 * https://github.com/xinghaochen/awesome-hand-pose-estimation
 * https://github.com/cbsudux/awesome-human-pose-estimation
 * https://cv-tricks.com/pose-estimation/using-deep-learning-in-opencv/
+
+#### Image Caption
+
+- https://cs.stanford.edu/people/karpathy/sfmltalk.pdf
+- https://www.ripublication.com/ijaer18/ijaerv13n9_102.pdf
+- [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://github.com/karpathy/neuraltalk2)
+- [Automatic Image Captioning using Deep Learning (CNN and LSTM) in PyTorch](https://www.analyticsvidhya.com/blog/2018/04/solving-an-image-captioning-task-using-deep-learning/)
+- [How to Develop a Deep Learning Photo Caption Generator from Scratch](https://machinelearningmastery.com/develop-a-deep-learning-caption-generation-model-in-python/)
+- [Deep Learning Image Caption Generator](https://github.com/damminhtien/Deep-Learning-Image-Caption-Generator)
+- [Conceptual Captions: A New Dataset and Challenge for Image Captioning
+Wednesday, September 5, 2018](https://ai.googleblog.com/2018/09/conceptual-captions-new-dataset-and.html)
+
+#### Scene Understanding
+
+- [Towards Total Scene Understanding:
+Classification, Annotation and Segmentation in an Automatic Framewor](http://vision.stanford.edu/projects/totalscene/index.html)
+- [6.870 Object Recognition and Scene Understanding Fall 2008](http://people.csail.mit.edu/torralba/courses/6.870/6.870.recognition.htm)
+- http://vladlen.info/projects/scene-understanding/
+- [Holistic Scene Understanding](https://ttic.uchicago.edu/~yaojian/HolisticSceneUnderstanding.html)
+- http://www.kalisteo.eu/en/thematic_vs.htm
+- https://ps.is.tue.mpg.de/research_fields/semantic-scene-understanding
+- [ScanNet Indoor Scene Understanding Challenge
+CVPR 2019 Workshop, Long Beach, CA](http://www.scan-net.org/cvpr2019workshop/)
+- [Human-Centric Scene Understanding from Single View 360 Video](https://cvssp.org/projects/s3a/AffordRecon/)
+- [HoloVis - 3D Holistic Scene Understanding](http://www.l3s.de/en/node/1133)
+- [Scene Recognition and Understanding](http://sunai.uoc.edu/index.php/2016/02/07/scene-recognition-and-understanding/)
+- [BlitzNet: A Real-Time Deep Network for Scene Understanding](http://thoth.inrialpes.fr/research/blitznet/)
+- [L3ViSU: Lifelong Learning of Visual Scene Understanding](http://cvml.ist.ac.at/erc/)
 
 #### Style Transfer
 

@@ -29,21 +29,20 @@ As [The NIPS 2012 workshop on Algebraic Topology and Machine Learning](https://s
 + https://jsseely.github.io/notes/TDA/
 + [Extracting insights from the shape of complex data using topology](https://www.nature.com/articles/srep01236).
 + [Applied topology](http://appliedtopology.org/)
-+ http://www.computational-geometry.org/
 + https://www.h-its.org/event/workshop-grg-2018/
-+ https://sites.google.com/view/dragon-applied-topology
++ [Dragon Applied Topology Conference](https://sites.google.com/view/dragon-applied-topology)
 + https://icerm.brown.edu/tripods/tri17-1-gtd/
 + https://www.ipam.ucla.edu/programs/long-programs/geometry-and-learning-from-data-in-3d-and-beyond/
 + http://kurlin.org/index.php#group
 + http://chomp.rutgers.edu/
 + http://chomp.rutgers.edu/Projects/Topological_Data_Analysis.html
 + https://www.jstage.jst.go.jp/article/tjsai/32/3/32_D-G72/_pdf
-+ http://www.maths.usyd.edu.au/u/tillmann/cats2017/
-+ http://www.maths.ox.ac.uk/groups/topology/
++ [Computational & Algorithmic Topology, Sydney	](http://www.maths.usyd.edu.au/u/tillmann/cats2017/)
++ [Oxford Topology](http://www.maths.ox.ac.uk/groups/topology/)
 + https://cs.nyu.edu/~yap/classes/
-+ http://www.sci.utah.edu/~beiwang/
-+ https://www.cs.montana.edu/tda/
-+ https://www.csun.edu/~ctoth/Handbook/
++ [Wang Bei](http://www.sci.utah.edu/~beiwang/)
++ [Computational Topology and Geometry (CompTaG)](https://www.cs.montana.edu/tda/)
+
 
 ### Topology
 
@@ -89,31 +88,29 @@ whereas in computational geometry the data are usually seen as fixed.
 
 TDA can be applied to manifold estimation, nonlinear dimension reduction, mode estimation, ridge estimation and persistent homology.
 
++ [Topological Data Analysis of fMRI data
+11 Apr 2018 by Manish Saggar](https://web.stanford.edu/group/bdl/blog/tda-cme-paper/)
++ [DBI: ABI Innovation: A Scalable Framework for Visual Exploration and Hypotheses Extraction of Phenomics Data using Topological Analytics](http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html)
 ***
 
-+ https://datawarrior.wordpress.com/2015/08/03/tda-1-starting-the-journey-of-topological-data-analysis-tda/
-+ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
-+ http://brickisland.net/cs177fa12/
++ [A series of blogs on TDA](https://datawarrior.wordpress.com/2015/08/03/tda-1-starting-the-journey-of-topological-data-analysis-tda/)
++ [Topological Data Analysis @ Annual Review of Statistics and Its Application](https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045)
 + https://github.com/prokopevaleksey/TDAforCNN
 + https://github.com/ognis1205/spark-tda
 + https://github.com/stephenhky/PyTDA
-+ https://people.clas.ufl.edu/peterbubenik/intro-to-tda/
-+ https://www.math.colostate.edu//~adams/research/
-+ http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/
-+ https://www.math.upenn.edu/~ghrist/research.html
-+ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
-+ https://web.stanford.edu/group/bdl/blog/tda-cme-paper/
-+ https://www.math.upenn.edu/~ghrist/research.html
-+ http://www.stat.cmu.edu/topstat/presentations.html
++ [Topological Data Analysis by peterbubenik](https://people.clas.ufl.edu/peterbubenik/intro-to-tda/)
++ [ Applied Algebraic Topology Research Network](https://topology.ima.umn.edu/)
++ [Henry Adams interests in computational topology and geometry, combinatorial topology, and applied topology](https://www.math.colostate.edu//~adams/research/)
++ [Robert Ghrist's research is in applied topology that is, applications of topology to engineering systems, data, dynamics, & more](https://www.math.upenn.edu/~ghrist/research.html)
++ [CSE 5559: Computational Topology and Data Analysis by Tamal K Dey ](http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html)
++ [CMU TopStat](http://www.stat.cmu.edu/topstat/presentations.html)
 + http://www.stat.cmu.edu/research/statistical-theory-methodology/252
-+ https://perfectial.com/blog/topological-data-analysis-overview/
++ [Topological Data Analysis: an Overview of the World’s Most Promising Data Mining Methodology](https://perfectial.com/blog/topological-data-analysis-overview/)
 + http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017/
-+ http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html
-+ http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html
-+ https://drona.csa.iisc.ac.in/~vijayn/courses/
-+ https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1
-+ https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045
-+ https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis
++ [Topological Data Analysis: One Applied Mathematician’s Heartwarming Story of Struggle, Triumph, and (Ultimately) More Struggle
+By Chad Topaz](https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1)
++ [Scalable topological data analysis](https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis)
++ [Topology, Computation and Data Analysis](https://www.dagstuhl.de/de/programm/kalender/semhp/?semnr=19212)
 
 ### Computational Topology
 
@@ -137,19 +134,35 @@ Topological data analysis is principle-driven and application-inspired in some s
 + https://cs.nyu.edu/~yap/classes/modeling/06f/
 + https://courses.maths.ox.ac.uk/node/161
 + https://www2.cs.duke.edu/courses/fall06/cps296.1/
-+ http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html
++ [Math 574--Introduction to Computational Topology (Spring 2016)](http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html)
+
+![](http://www.math.wsu.edu/faculty/bkrishna/pics/MultipleTunnels.png)
 
 ### Computational Geometry
 
++ [Probabilistic Approach to Geometry](https://www.mathsoc.jp/meeting/msjsi08/)
++ [Applied Geometry Lab webpage!](http://www.geometry.caltech.edu/)
++ [Titane: Geometric Modeling of 3D Environments](https://team.inria.fr/titane/)
++ http://www.multires.caltech.edu/research/research.htm
++ [Geometry in Graphics Group in Computer Science and Engineering@Michigan State University](http://geometry.cse.msu.edu/)
++ [ Computational Geometry Week (CG Week 2019](http://eecs.oregonstate.edu/socg19/)
++ https://drona.csa.iisc.ac.in/~gsat/Course/CGT/
++ http://www.computational-geometry.org/
++ [Handbook of Discrete and Computational Geometry —Third Edition— edited by Jacob E. Goodman, Joseph O'Rourke, and Csaba D. Tóth](https://www.csun.edu/~ctoth/Handbook/)
++ [CS171: Discrete Differential Geometry](http://brickisland.net/cs177fa12/)
++ http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/
+![discrete differential geomety](http://brickisland.net/DDGSpring2019/wp-content/uploads/2019/01/cropped-cropped-header.png)
 #### Optimal Transport
 
 ![](https://cedricvillani.org/wp-content/themes/SF-Blueprint-WP/img/Cedric-Villani-Sebastien-Godefroy.jpg)
 + [The geometry of optimal transportation](https://projecteuclid.org/download/pdf_1/euclid.acta/1485890981)
 + [Transformations of PDEs: Optimal Transport and Conservation Laws by Woo-Hyun Cook](http://digitalassets.lib.berkeley.edu/etd/ucb/text/Cook_berkeley_0028E_15678.pdf)
 + [Optimal transport, old and new](https://cedricvillani.org/wp-content/uploads/2012/08/preprint-1.pdf)
++ [Math 3015 (Topics in Optimal Transport). Spring 2010](http://www.pitt.edu/~pakzad/optimaltransport.html)
 + https://optimaltransport.github.io/
 + http://www.math.ucla.edu/~wgangbo/Cedric-Villani.pdf
 + https://pot.readthedocs.io/en/stable/
++ [Optimal Transport @ESI](https://www.esi.ac.at/activities/events/2019/optimal-transport)
 + [Optimal Transport Methods in Density Functional Theory (19w5035)](https://www.birs.ca/events/2019/5-day-workshops/19w5035)
 + [Discrete OT](https://remi.flamary.com/demos/transport.html)
 + https://www.mindcodec.com/an-intuitive-guide-to-optimal-transport-for-machine-learning/
@@ -165,3 +178,4 @@ Topological data analysis is principle-driven and application-inspired in some s
 (OT.ML.SA)](https://people.math.osu.edu/memoli.2/courses/cse-topics-2018/)
 + [Optimal Transport in Biomedical Imaging](http://imagedatascience.com/transport/tutorials_isbi18.html)
 + [Optimal transport for documents classification: Classifying news with Word Mover Distance](http://www.lumenai.fr/blog/optimal-transport-for-documents-classification)
++ [Monge-Kantorovich Optimal Transport – Theory and Applications](https://cnls.lanl.gov/MK/)

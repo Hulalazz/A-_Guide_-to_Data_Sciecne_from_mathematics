@@ -1,5 +1,11 @@
 # Bayesian Learning and Probabilistic Programming
 
+- https://dsteinberg.github.io/pages/research-projects.html
+- https://tminka.github.io/papers/index.html
+- http://am207.info/resources.html
+- http://mlg.eng.cam.ac.uk/tutorials/07/
+
+
 Bayesian learning can be regarded as the extension of Bayesian statistics. The core topic of Bayesian learning is thought as prior information to explain the uncertainty of parameters.
 It is related with `Bayesian statistics, computational statistics, probabilistic programming and machine learning`.
 

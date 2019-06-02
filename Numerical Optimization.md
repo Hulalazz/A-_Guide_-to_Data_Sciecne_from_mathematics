@@ -1,5 +1,7 @@
 # Numerical Optimization
 
+https://pcombet.math.ncsu.edu/confab.html
+
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
 $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVALUATION}$ + $\color{red}{OPTIMIZATION}.$
 
@@ -19,6 +21,10 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * https://www.wikiwand.com/en/Mathematical_optimization
 * https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
+* [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
+* http://awibisono.github.io/2016/06/06/world-of-optimization.html
+* http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
+* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
 
 ## Gradient Descent and More
 
@@ -61,10 +67,12 @@ $$
 where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$ so that $f(x^{k+1})=\min_{\alpha} f(x^k - \alpha\nabla_x f(x^k))$.
 
 - http://59.80.44.100/www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf
+- http://wiki.fast.ai/index.php/Gradient_Descent
 
-![fromthegenesis](https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg)
 
-There are many ways to choose some proper step pr learning rate sequence $\{\alpha_k\}$.
+<img src="https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg" width=50%>
+
+There are many ways to choose some proper step or learning rate sequence $\{\alpha_k\}$.
 
 The proof of convergence  or complexity is often based  on the convex case where the objective function is convex, i.e.,
 $$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1].$$
@@ -95,18 +103,14 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 
 |Inventor of Nesterov accelerated Gradient|
 |:---:|
-|![Yurii Nesterov](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Nesterov_yurii.jpg/440px-Nesterov_yurii.jpg)|
-****
+|<img src=https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Nesterov_yurii.jpg/440px-Nesterov_yurii.jpg width = 60% />|
 
-* http://wiki.fast.ai/index.php/Gradient_Descent
 * https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/
 * https://blogs.princeton.edu/imabandit/2014/03/06/nesterovs-accelerated-gradient-descent-for-smooth-and-strongly-convex-optimization/
 * https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
 * https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/
 * https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
-* http://awibisono.github.io/2016/06/06/world-of-optimization.html
-* http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
-* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
+***
 * https://zhuanlan.zhihu.com/p/41263068
 * https://zhuanlan.zhihu.com/p/35692553
 * https://zhuanlan.zhihu.com/p/35323828
@@ -213,7 +217,8 @@ For example,
 |BFGS|$B_k + \frac{y_k y_k^{\mathrm{T}}}{y_k^{\mathrm{T}}\Delta x_k} - \frac{B_k\Delta x_k(B_k\Delta x_k)^T}{\Delta x_k B_k \Delta x_k}$|$(I-\frac{ \Delta x_k^{\mathrm{T}} y_k}{ y_k^{\mathrm{T}} \Delta x_k}) H_k (I-\frac{y_k \Delta x_k^{\mathrm{T}}}{ y_k^{\mathrm{T}} \Delta x_k}) + \frac{\Delta x_k \Delta x_k^T}{y_k^T \Delta x_k}$|
 |SR1|$B_{k} + \frac{(y_{k} - B_{k}\,\Delta x_{k} )(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T}} }{(y_{k} - B_{k}\,\Delta x_{k})^{\mathrm{T} }\,\Delta x_{k}}$|	$H_{k} + \frac{(\Delta x_{k}-H_{k}y_{k}) (\Delta x_{k}  -H_{k} y_{k})^{\mathrm{T}} }{(\Delta x_{k}-H_{k}y_{k})^{\mathrm {T} }y_{k}}$|
 
-![BFGS](http://aria42.com/images/bfgs.png)
+
+<img src="http://aria42.com/images/bfgs.png" width = "60%" />
 
 * [Quasi-Newton methods in Wikipedia page](https://www.wikiwand.com/en/Quasi-Newton_method)
 * http://59.80.44.98/www.seas.ucla.edu/~vandenbe/236C/lectures/qnewton.pdf
@@ -282,9 +287,9 @@ And **Fisher scoring** algorithm is a typical application of **Natural Gradient 
 **Natural gradient descent** for manifolds corresponding to
 exponential families can be implemented as a first-order method through **mirror descent** (https://www.stat.wisc.edu/~raskutti/publication/MirrorDescent.pdf).
 
-| Originator of Information Geometry |
+| Originator of Information Geometry: Shunichi Amari |
 |:----:|
-|![Shun-ichi Amari](https://groups.oist.jp/sites/default/files/imce/u34/images/people/shun-ichi-amari.jpg)|
+|<img src="https://groups.oist.jp/sites/default/files/imce/u34/images/people/shun-ichi-amari.jpg" width = "70%" />|
 
 
 * [Natural gradient descent and mirror descent](http://www.dianacai.com/blog/2018/02/16/natural-gradients-mirror-descent/)
@@ -302,6 +307,7 @@ exponential families can be implemented as a first-order method through **mirror
 * http://www.deeplearningpatterns.com/doku.php?id=natural_gradient_descent
 * [NATURAL GRADIENTS AND STOCHASTIC VARIATIONAL INFERENCE](http://andymiller.github.io/2016/10/02/natural_gradient_bbvi.html)
 * [谈谈优化算法 - 郑思座的文章 - 知乎](https://zhuanlan.zhihu.com/p/60088231)
+* [Accelerating Natural Gradient with Higher-Order Invariance](https://ermongroup.github.io/blog/geo/)
 
 ## Trust Region Methods
 
@@ -385,7 +391,7 @@ It is not to maximize the conditional expectation.
 See more on the book [The EM Algorithm and Extensions, 2nd Edition
 by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
 
-![projection EM](https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg)
+![projection EM](https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg =360x328)
 
 * https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
 
@@ -482,7 +488,7 @@ $$B(x,y)\geq B(x,y^{\prime}) + B(y^{\prime},y)$$
 where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds
 when the convex set C defining the projection $y^{\prime}$ is affine.
 
-![](https://upload.wikimedia.org/wikipedia/commons/2/2e/Bregman_divergence_Pythagorean.png)
+<img src = "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bregman_divergence_Pythagorean.png" width=80%>
 
 ***
 It is given in the projection form:
@@ -683,6 +689,8 @@ $$
 \frac{\partial L(x,\lambda)}{\partial \lambda} = Ax-b=0
 $$
 
+<img src="https://www.thefamouspeople.com/profiles/images/joseph-louis-lagrange-2.jpg" width=70%>
+
 **Dual Ascent** takes advantages of this properties:
 
 > 1. $x^{k+1}=\arg\min_{x} L(x,\lambda)$;
@@ -786,6 +794,8 @@ Taking $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described a
 
 
 $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me those.}}$[^9]
+
+![He Bingsheng](https://pic1.zhimg.com/v2-bc583f2c01d8ac2a346982b1133753f9_1200x500.jpg)
 ***
 
 One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence:
@@ -877,7 +887,8 @@ If $f_1$ is strongly convex, then apply Davis-Yin (to dual problem) gives:
 > 3. $z^{k+1}=\arg\min_{x}\{L_{\beta}^3(x^{k+1},y^{k+1},\color{green}{z},\lambda^k)\mid z\in\mathbb{Z}\}$;
 > 4. $\lambda^{k+1} = {\lambda}^{k}-\beta(A_1x^{k+1}+A_2y^{k+1}+A_3z^{k+1}-b)$.
 
-where $L^3(x, y^k, z^k, \lambda^k)=f_1(x) + f_2(y^k) + f_3(z^k)-{\lambda^k}^T(A_1 x + A_2 y^k + A_3 z^k - b)$
+where the notation $L^3(x, y, z, \lambda)$ is deefined by
+$$L^3(x, y, z, \lambda) = f_1(x) + f_2(y) + f_3(z)-{\lambda}^T(A_1 x + A_2 y + A_3 z - b)$$
 is the Lagrangian rather than  augmented Lagrangian.
 
 - http://fa.bianp.net/blog/2018/tos/
@@ -902,51 +913,25 @@ is the Lagrangian rather than  augmented Lagrangian.
 - [Randomly Permuted ADMM](https://web.stanford.edu/~yyye/MORfinal.pdf)
 - http://opt-ml.org/oldopt/papers/OPT2015_paper_47.pdf
 - https://arxiv.org/abs/1503.06387
-- https://community.apan.org/cfs-file/__key/docpreview-s/00-00-01-07-11/Ye.pdf
+- [Multi-Block ADMM and its Convergence
+Random Permutation Helps-A talk by Ye](https://community.apan.org/cfs-file/__key/docpreview-s/00-00-01-07-11/Ye.pdf)
 
-***
-
-**Stochastic ADMM**
-
-Linearly constrained stochastic convex optimization is given by
-$$
-\min_{x,y}\mathbb{E}_{\vartheta}[F(x,\vartheta)]+h(y),\\ s.t. \, Ax+By = b, x\in\mathbb{X}, y\in\mathbb{Y}.
-$$
-where typically the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ is some loss function and ${h}$ is regularizer to prevent from over-fitting.
-
-The first problem is that the distribution of $\vartheta$ is unknown as well as the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ in the objective function.
-
-**Modified Augmented Lagrangian**
-
-Linearize $f(x)$ at $x_k$ and add a proximal term：
-
-$$
-L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, Ax+By-b\right>+\frac{\beta}{2}{\|Ax+By-b\|}_2^2 \\+\frac{1}{2\eta_k}\|x-x_{k}\|^2
-$$
-
-where $g_k$ is  a stochastic (sub)gradient of ${f}$.
-
-> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}^{k}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
-> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}^{k}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
-> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
-
-- [Stochastic ADMM](http://proceedings.mlr.press/v28/ouyang13.pdf)
-- [Accelerated Variance Reduced Stochastic ADMM](https://arxiv.org/abs/1707.03190)
-- [Towards optimal stochastic ADMM](https://people.eecs.berkeley.edu/~sazadi/icml_2014.pdf) or [the talk in ICML](https://people.eecs.berkeley.edu/~sazadi/icml_2014_presentation.pdf)
-- [V-Cycle or Double Sweep ADMM](http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf)
-- https://arxiv.org/abs/1903.01786
 
 ***
 * http://maths.nju.edu.cn/~hebma/
-* [Split Bregman](https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html)
-* [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
 * http://stanford.edu/~boyd/admm.html
 * [A General Analysis of the Convergence of ADMM](https://arxiv.org/pdf/1502.02009.pdf)
 * [用ADMM实现统计学习问题的分布式计算](http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/)
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * [凸优化：ADMM(Alternating Direction Method of Multipliers)交替方向乘子算法](https://blog.csdn.net/shanglianlm/article/details/45919679)
 * [Splitting methods and ADMM, Thibaut Lienart](https://tlienart.github.io/pub/csml/cvxopt/split.html)
-* https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf
+* [Split Bregman](https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html)
+* [Accelerated Bregman operator splitting with backtracking](https://www.aimsciences.org/article/doi/10.3934/ipi.2017048)
+* [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
+* [17w5030 Workshop on
+Splitting Algorithms, Modern Operator Theory,
+and Applications](https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf)
+
 
 ****
 **Primal-dual fixed point algorithm** and **Primary Dual Hybrid Gradient**
@@ -1095,9 +1080,11 @@ $$
 
 [Charles Byrne](http://faculty.uml.edu/cbyrne/cbyrne.html) gives a unified treatment of some iterative optimization algorithms such as auxiliary function methods.
 
-![https://www.crcpress.com/authors/i11230-charles-byrne](http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg)
+|Young | Recent |Now|
+----|---|---
+<img src=http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg width = 150% />|<img src =https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg width = 600% />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = 60% />
 
-[He is a featured author of CRC press. ](https://www.crcpress.com/authors/i11230-charles-byrne)
+[He is a featured author of CRC press ](https://www.crcpress.com/authors/i11230-charles-byrne) and [professor in UML](https://www.uml.edu/umass-BMEBT/faculty/Byrne-Charles.aspx)
 
 `Auxiliary-Function Methods` minimize the function
 $$
@@ -1159,7 +1146,7 @@ or [Alternating Minimization, Proximal Minimization and Optimization Transfer Ar
 Expectation-Maximization can be classified to AF method.
 
 > * $Q(\theta|\theta^{(t)})=\mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)})$;
-> * $\theta^{t+1}=\arg\min_{\theta} Q(\theta|\theta^t)$.
+> * $\theta^{(t+1)}=\arg\min_{\theta} Q(\theta|\theta^{(t)})$.
 
 The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete data $(Y_{os}, Z)$ given $(Y_{obs}, \theta^{(t)})$.
 
@@ -1187,7 +1174,9 @@ Another related method is `graduated optimization`, which [is a global optimizat
 |![](https://upload.wikimedia.org/wikipedia/commons/b/be/Graduated_optimization.svg)|
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
-
++ [Multilevel Optimization: Convergence Theory, Algorithms and Application to Derivative-Free Optimization](http://www.mtm.ufsc.br/~melissa/arquivos/thesis_melissa.pdf)
++ [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
++ [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
@@ -1201,8 +1190,7 @@ Another related method is `graduated optimization`, which [is a global optimizat
 + [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
 + [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
 + [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
-+ [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
-+ [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
+
 
 ***
 * [Surrogate loss function](http://www.cs.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf)
@@ -1412,36 +1400,6 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 
 ## Dynamical Systems
 
-There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC
-PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
-
-![http://www.icm2018.org/wp/2018/08/09/jordan-on-data-is-there-an-optimal-way-to-optimize/](http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg)
-
-Some new connections between dynamical systems and optimization is found.
-
-- [Variational and Dynamical Perspectives On Learning and Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
-- [Continuous and Discrete Dynamics For Online Learning and Convex Optimization](http://walid.krichene.net/papers/thesis-continuous-discrete.pdf)
-- [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)
-- [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights
-](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
-- [Acceleration via Symplectic Discretization of High-Resolution Differential Equations](http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf)
-- [Understanding the Acceleration Phenomenon via High-Resolution Differential Equations
-](http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf)
-- [On Symplectic Optimization](https://arxiv.org/abs/1802.03653)
-- [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
-- [A variational perspective on accelerated methods in optimization](https://www.pnas.org/content/113/47/E7351)
-- [The Physical Systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
-- [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
-- [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
-- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
-- https://people.eecs.berkeley.edu/~jordan/optimization.html
-https://www.math.ucdavis.edu/~hunter/m207/m207.pdf
-* [ESAIM: Control, Optimization and Calculus of Variations (ESAIM: COCV)](https://www.esaim-cocv.org/)
-* [MCT'03  Louisiana Conference on Mathematical Control Theory](https://www.math.lsu.edu/~malisoff/LCMCT/)
-* [International Workshop “Variational Analysis and Applications”, ERICE, August 28 – September 5, 2018](http://varana.org/2018/)
-* [Games, Dynamics and Optimization, 2019](http://gdo2019.com/programme/)
-* [System dynamics & optimization](https://www.b-tu.de/en/fg-ingenieurmathematik-optimierung/forschung/projects/system-dynamics-optimization)
-
 We will focus on the optimization methods in the form of fixed point iteration and dynamical systems.
 It is to minimize the following function
 $$
@@ -1460,18 +1418,25 @@ Some acceleration methods are iterations of the corresponding algorithms of `Asy
 
 $$
 \mbox{(AVD)}_{\alpha} \quad \quad \ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
-\nabla \Phi (x(t)) =0.
+\nabla \Phi (x(t)) =0.\tag{AVD}
 $$
 
 where $\Phi(x(t))$ is dependent on the objective function; $\alpha >0$ is constant in $\mathbb{R}$.
 
-![second-order evolution equation](https://perso.math.univ-toulouse.fr/spot/files/2011/02/EDO.jpg)
+The fast minimization properties of the trajectories of the second-order evolution equation is also studied by Hedy's group in 2016:
+$$
+\ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
+\nabla^2 \Phi (x(t))\dot{x}(t) + \nabla \Phi (x(t)) =0\tag{HDD}
+$$
 
+When it comes to numerical solution to differential equations, it is to find the solution of the equations $x(t)$ so that the equations hold; in optimization, the optima is our goal so that the focus is limit order
+$$\lim_{t\to t_0} x(t)=x^{\star}$$
+if possible where $x^{\star}$ optimizes the cost/objective function $f(x)$ specially $t_0=\infty$.
 
-![Hedy Attouch](https://i1.rgstatic.net/ii/profile.image/291292945895424-1446461058178_Q128/Hedy_Attouch.jpg)
+<img src="https://i1.rgstatic.net/ii/profile.image/291292945895424-1446461058178_Q128/Hedy_Attouch.jpg" width = "50%" />
 
-- <https://arxiv.org/abs/1601.07113>
 - <https://perso.math.univ-toulouse.fr/spot/resumes/>
+- [Fast convex optimization via inertial dynamics with Hessian driven damping](https://arxiv.org/abs/1601.07113)
 - [A proximal-Newton method for monotone inclusions in Hilbert spaces with complexity $O(1/k^2)$](https://www.ljll.math.upmc.fr/~plc/sestri/attouch2014.pdf)
 - <https://www.researchgate.net/profile/Hedy_Attouch>
 - https://www.ljll.math.upmc.fr/~plc/sestri/
@@ -1485,7 +1450,51 @@ where $\Phi(x(t))$ is dependent on the objective function; $\alpha >0$ is consta
 - [Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha \leq 3$](https://arxiv.org/abs/1706.05671)
 - [A dynamic approach to a proximal-Newton method for monotone inclusions in Hilbert spaces, with complexity $O(\frac{1}{n^2})$](http://mtm.ufsc.br/~maicon/pdf/alv.att.sva-new.jca16.pdf)
 - [FAST CONVERGENCE OF INERTIAL DYNAMICS AND ALGORITHMS WITH ASYMPTOTIC VANISHING DAMPING](http://www.optimization-online.org/DB_FILE/2015/10/5179.pdf)
+***
+It is difficult to generalize these methods to stochastic cases.
 
+There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC
+PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
+
+![http://www.icm2018.org/wp/2018/08/09/jordan-on-data-is-there-an-optimal-way-to-optimize/](http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg)
+
+Some new connections between dynamical systems and optimization is found.
+
+- [Variational and Dynamical Perspectives On Learning and Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
+- [Continuous and Discrete Dynamics For Online Learning and Convex Optimization](http://walid.krichene.net/papers/thesis-continuous-discrete.pdf)
+- [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)s
+- [On Symplectic Optimization](https://arxiv.org/abs/1802.03653)
+- [A variational perspective on accelerated methods in optimization](https://www.pnas.org/content/113/47/E7351)
+- [A Dynamical Systems Perspective on Nesterov Acceleration](https://arxiv.org/abs/1905.07436)
+- [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
+- https://people.eecs.berkeley.edu/~jordan/optimization.html
+***
+
+[Weijie J. Su](http://stat.wharton.upenn.edu/~suw/) (joint with Bin Shi, Simon Du, and Michael Jordan)  introduced a set of high-resolution differential equations to model, analyze, interpret, and design accelerated optimization methods.
+
+
+<img src="http://stat.wharton.upenn.edu/~suw/WeijieSu.jpg" width = "30%" />
+
+- [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights
+](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
+- [Acceleration via Symplectic Discretization of High-Resolution Differential Equations](http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf)
+- [Understanding the Acceleration Phenomenon via High-Resolution Differential Equations
+](http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf)
+- [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
+
+***
+- [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
+- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
+- [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
+
+***
+* [ESAIM: Control, Optimization and Calculus of Variations (ESAIM: COCV)](https://www.esaim-cocv.org/)
+* [MCT'03  Louisiana Conference on Mathematical Control Theory](https://www.math.lsu.edu/~malisoff/LCMCT/)
+* [International Workshop “Variational Analysis and Applications”, ERICE, August 28 – September 5, 2018](http://varana.org/2018/)
+* [Games, Dynamics and Optimization, 2019](http://gdo2019.com/programme/)
+* [System dynamics & optimization](https://www.b-tu.de/en/fg-ingenieurmathematik-optimierung/forschung/projects/system-dynamics-optimization)
+* [Introduction to Dynamical Systems by John K. Hunter, Department of Mathematics, University of California at Davis](https://www.math.ucdavis.edu/~hunter/m207/m207.pdf)
++ [Special Focus on Bridging Continuous and Discrete Optimization](http://dimacs.rutgers.edu/programs/sf/sf-optimization/)
 
 https://eta.impa.br/dl/028.pdf
 
@@ -1588,17 +1597,20 @@ See the following links for more information on *stochastic gradient descent*.
 
 |The Differences of Gradient Descent and Stochastic Gradient Descent|
 |:-----------------------------------------------------------------:|
-|![](https://wikidocs.net/images/page/3413/sgd.png)|
+|<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
 
-### Adam
+### ADAM
 
 - https://arxiv.org/abs/1412.6980
 - http://ruder.io/deep-learning-optimization-2017/
 
 |The Differences of Stochastic Gradient Descent and its Variants|
 |:-------------------------------------------------------------:|
-|![sgd variants](http://beamandrew.github.io//images/deep_learning_101/sgd.gif)|
+|<img src="http://beamandrew.github.io//images/deep_learning_101/sgd.gif" width = "60%" />|
 
++ http://blavatnikawards.org/honorees/profile/leon-bottou/
+
+![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 
 $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
 
@@ -1606,19 +1618,41 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 - http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
 
 
-#### Parallel Gradient-based Optimization
+#### Distributed Optimization Methods
 
 [Beginning around ten years ago, the single-threaded CPU performance stopped improving significantly, due to physical limitations; it is the numbers of cores in each machine that continue to arise. Today we can buy 8-core phones, 64-core workstations, and 2.5k-core GPUs at affordable prices. On the other hand, most of our algorithms are still single-threaded, and because so, their running time is about the same as it was to ten years ago and will stay so in the future, say, ten or twenty years. To develop faster algorithms, especially for those large-scale problems that arise in signal processing, medical imaging, and machine learning, it is inevitable to consider parallel computing.](http://www.math.ucla.edu/~wotaoyin/research.html)
 Machine learning especially deep learning requires more powerful `distributed and decentralized` optimization methods.
+
+Large scale supervised machine learning methods, which are based on gradient to improve their performance, need online near-real-time feedback from massive users.
+
 - [ ] [Math 285J: A First Course on Large-Scale Optimization Methods](http://www.math.ucla.edu/~wotaoyin/math285j.18f/)
 - [ ] http://bicmr.pku.edu.cn/~wenzw/bigdata2019.html
 - [ ] [Data Science meet optimzation](http://ds-o.org/)
+- [ ] [Distributed optimization for control and learning](https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=7605&context=etd)
+- [ ] [ME 555: Distributed Optimization](https://sites.duke.edu/me555_07_s2015/)
 - [ ] https://www.euro-online.org/websites/dso/
-- http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html
+- [ ] https://labs.criteo.com/2014/09/poh-part-3-distributed-optimization/
+- [ ] [Convex and Distributed Optimization](https://ljk.imag.fr/membres/Jerome.Malick/CDO.pdf)
+- [ ] [(749g) Accelerated Parallel Alternating Method of Multipliers (ADMM) for Distributed Optimization](https://www.aiche.org/conferences/aiche-annual-meeting/2018/proceeding/paper/749g-accelerated-parallel-alternating-method-multipliers-admm-distributed-optimization)
+- [ ] [8th IEEE Workshop Parallel / Distributed Computing and Optimization (PDCO 2018)](https://pdco2018.sciencesconf.org/)
+- [ ] [Distributed Optimization and Control](https://www.nrel.gov/grid/distributed-optimization-control.html)
+- [ ] [ADOPT: Asynchronous Distributed Constraint Optimization with Quality Guarantees](http://teamcore.usc.edu/papers/2005/aij-modi.pdf)
+- [On Distributed Optimization in
+Networked Systems](https://people.kth.se/~kallej/grad_students/johansson_thesis08.pdfs)
+- [Distributed Optimization and Control using Operator Splitting Methods](https://infoscience.epfl.ch/record/255661)
+- [Foundations of Distributed and Large Scale Computing Optimization](http://www-syscom.univ-mlv.fr/~chouzeno/ECP/index.htm)
+- [Distributed Optimization of Large-Scale Complex Networks](https://sites.google.com/site/paolodilorenzohp/research/adaptation-and-learning-over-complex-networks)
+- http://principlesofoptimaldesign.org/
+- [Walkman: A Communication-Efﬁcient Random-Walk Algorithm for Decentralized Optimization](http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html)
+- [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
+- http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
+- http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/
+- http://shivaram.org/publications/hemingway-mlsys-2016.pdf
 
-![walkman_randomwalk.png](http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png)
 
-**Parallelizing Stochastic Gradient Descent**
+<img src="http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png" width = "50%" />
+
+##### Parallelizing Stochastic Gradient Descent
 
 - [Hogwild: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent](http://papers.nips.cc/paper/4390-hogwild-a-lock-free-approach-to-parallelizing-stochastic-gradient-descent)
 - [Asynchronous Decentralized Parallel Stochastic Gradient Descent](http://proceedings.mlr.press/v80/lian18a/lian18a.pdf)
@@ -1626,15 +1660,110 @@ Machine learning especially deep learning requires more powerful `distributed an
 - https://ray.readthedocs.io/en/latest/distributed_sgd.html
 - https://www.podc.org/data/podc2018/podc2018-tutorial-alistarh.pdf
 
-**Distributed ADMM**
+##### Stochastic ADMM
+
+Linearly constrained stochastic convex optimization is given by
+$$
+\min_{x,y}\mathbb{E}_{\vartheta}[F(x,\vartheta)]+h(y),\\ s.t. \, Ax+By = b, x\in\mathbb{X}, y\in\mathbb{Y}.
+$$
+where typically the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ is some loss function and ${h}$ is regularizer to prevent from over-fitting.
+
+The first problem is that the distribution of $\vartheta$ is unknown as well as the expectation $\mathbb{E}_{\vartheta}[F(x,\vartheta)]$ in the objective function.
+
+**Modified Augmented Lagrangian**
+
+Linearize $f(x)$ at $x_k$ and add a proximal term：
+
+$$
+L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, Ax+By-b\right>+\frac{\beta}{2}{\|Ax+By-b\|}_2^2 \\+\frac{1}{2\eta_k}\|x-x_{k}\|^2
+$$
+
+where $g_k$ is  a stochastic (sub)gradient of ${f}$.
+
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}L_{\beta}^{k}(x,y^{\color{aqua}{k}},\lambda^{\color{aqua}{k}});$
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}^{k}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}});$
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+
+- [Stochastic ADMM](http://proceedings.mlr.press/v28/ouyang13.pdf)
+- [Accelerated Variance Reduced Stochastic ADMM](https://arxiv.org/abs/1707.03190)
+- [Towards optimal stochastic ADMM](https://people.eecs.berkeley.edu/~sazadi/icml_2014.pdf) or [the talk in ICML](https://people.eecs.berkeley.edu/~sazadi/icml_2014_presentation.pdf)
+- [V-Cycle or Double Sweep ADMM](http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf)
+- https://arxiv.org/abs/1903.01786
+
+##### Distributed ADMM
+
+Let us assume that the function $F$ has the following decomposition where each $x_i$ has its own dimension.
+$$
+\min_{x} F(x)\{=\sum_{i=1}^{n}f_i(x_i)\}, \\
+s.t. \quad x\in\mathrm{C}
+$$
+
+We can reformulate the problem  to get
+$$
+\min_{x} F(x) + g(y), \\
+s.t.\quad x=y
+$$
+
+where $g(z)$ is the indictor function of set $\mathrm{C}$.
+
+We can dene an augmented Lagrangian
+$$
+L_{\beta}(x, y, \lambda)
+= F(x)+g(y) - \lambda^{T}(x-y) + \frac{\beta}{2}{\|x-y\|}_{2}^{2} \\
+= \sum_{i=1}^{n} [f_i(x_i) - {\lambda}_i(x_i -y_i)+\frac{\beta}{2}(x_i - y_i)^2] + g(y)\\
+= \sum_{i=1}^{n}L_{(\beta,i)}(x_i, y, \lambda_i).
+$$
+
+We can split the optimization over $x_i$:
+> $$x_i^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i, y^{k}, \lambda_i^{k})\quad i=1,2,\cdots, n;$$
+> $$y^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i^{\color{green}{k+1}}, y, \lambda_i^k);$$
+> $$\lambda^{k+1}=\lambda^k+\lambda (x^{\color{green}{k+1}} - y^{\color{green}{k+1}}).$$
+
+Then optimization over $x_i$ is done in parallel. Subsequently, the results are communicated
+back to a master node which performs the $y$ update (usually just a projection as in the example
+above) and returns back the result to other worker nodes. The update over $\lambda_i$ is again done
+independently.
 
 * http://users.isr.ist.utl.pt/~jmota/DADMM/
 * http://repository.ust.hk/ir/Record/1783.1-66353
 * https://ieeexplore.ieee.org/document/7039496
+* http://www.iutzeler.org/pres/sem_louvain.pdf
+* [Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers by S. Boyd, N. Parikh, E. Chu, B. Peleato, and J. Eckstein](https://web.stanford.edu/~boyd/papers/admm_distr_stats.html)
+* [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.pdf)
+* [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
+***
+**Monotone Operator Splitting Methods**
 
-#### Gradient Free Methods
++ https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf
++ [A note on the equivalence of operator splitting methods](https://arxiv.org/pdf/1806.03353.pdf)
++ [Splitting methods for monotone operators with applications to parallel optimization](https://dspace.mit.edu/handle/1721.1/14356)
++ http://www.syscop.de/files/2015ss/numopt/splitting.pdf
++ https://staffportal.curtin.edu.au/staff/profile/view/Jie.Sun/
++ [Operator Splitting Methods in Data Analysis](https://www.simonsfoundation.org/event/operator-splitting-methods-in-data-analysis/)
 
 
+## Gradient Free Optimization Methods
+
+As shown in `Principle of Optimal Design`, `nongradient methods` are classified into 3 classes:
+
+[We organize the discussion of nongradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
+`Heuristic methods` will be introduced in computational intelligence.
+
+
+- [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
+- [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
+- [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)
+- [Delaunay-based derivative-free optimization via global surrogates, part I: linear constraints](http://fccr.ucsd.edu/pubs/BCB16.pdf)
+- [Delaunay-based derivative-free optimization via global surrogates, part II: convex constraints](http://fccr.ucsd.edu/pubs/BB16a.pdf)
+- https://projects.coin-or.org/Dfo
+- https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/
+- http://adl.stanford.edu/aa222/Lecture_Notes_files/chapter6_gradfree.pdf
+- https://code.fb.com/ai-research/nevergrad/
+- https://github.com/facebookresearch/nevergrad
+- https://www.kthohr.com/optimlib.html
+- https://www.infoq.com/presentations/black-box-optimization
+
+![never grad](https://code.fb.com/wp-content/uploads/2018/12/nevergrad_hero_v1.gif)
 ***
 And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
 And more courses on optimization:
@@ -1673,3 +1802,4 @@ And more courses on optimization:
 - [ ] http://math.cmu.edu/~hschaeff/research.html
 - [ ] https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
 - [ ] https://blogs.princeton.edu/imabandit/
+- [ ] http://www.probabilistic-numerics.org/research/index.html
