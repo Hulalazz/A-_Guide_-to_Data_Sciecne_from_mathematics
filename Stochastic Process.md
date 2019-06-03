@@ -62,6 +62,7 @@ P(X_{n+1}=x_i|X_n=x_j)=p_{i j}\quad i=1,\cdots, n,\text{and}\, j=1,\cdots,n.
 $$
 
 When the state space is countably infinite, we can think of an infinite vector and matrix. And $\sum_{j=1}^{n}p_{ij}=1$.
+![](http://iacs-courses.seas.harvard.edu/courses/am207/blog/files/images/Markov_ex1.png)
 
 But most Markov chains of interest in **MCMC** have uncountable state space, and then we
 cannot think of the initial distribution as a vector or the transition probability distribution
@@ -86,6 +87,7 @@ space ${S}$. A probability distribution $\pi = (\pi_1, \pi_2, \dots)$ on ${S}$ s
 $$\pi P=\pi$$
 is called a stationary distribution of the chain.
 
+It is the largest eigenvalue problem of the transition matrix ${P}$. It is also the fixed point problem of the linear operator ${P}$ so that the `Anderson acceleration` may speed up the convergence in its iterative computational process.
 
 #### Reversibility
 
@@ -97,7 +99,7 @@ A Markov chain is reversible if its transition probability is reversible with re
 
 |[Andrey (Andrei) Andreyevich Markov,1856-1922](https://www.wikiwand.com/en/Andrey_Markov)|
 |:---------------------------------------------------------------------------------------:|
-|![](https://upload.wikimedia.org/wikipedia/commons/a/a8/Andrei_Markov.jpg)|
+|<img src=https://upload.wikimedia.org/wikipedia/commons/a/a8/Andrei_Markov.jpg width=40% />|
 |[his short biography in .pdf file format](https://wayback.archive-it.org/all/20121218173228/https://netfiles.uiuc.edu/meyn/www/spm_files/Markov-Work-and-life.pdf)|
 |http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html|
 
@@ -137,8 +139,8 @@ Aperiodicity is a technical condition needed in this proof.
 
 The `hitting time` $h_{xy}$, sometimes called discovery time, is the expected time of a random walk starting at vertex ${x}$ to reach vertex ${y}$.
 
-In an undirected graph where $\pi_x p_{xy} = \pi_y p_{yx}$,  edges can be assigned weights such that 
-$$P_{xy}=\frac{w_{xy}}{\sum_y w_{xy}}.$$
+In an undirected graph where $\pi_x p_{xy} = \pi_y p_{yx}$,  edges can be assigned weights such that
+$$P_{xy} = \frac{w_{xy}}{\sum_y w_{xy}}.$$
 
 Thus the Metropolis-Hasting algorithm and Gibbs
 sampling both involve random walks on edge-weighted undirected graphs.
@@ -150,13 +152,18 @@ variables taking values in some set ${S}$ and that evolves in time as follows:
 
 * (a) If the current state is ${i}$, the time until the state is changed has an exponential distribution with parameter $\lambda(i)$.
 * (b) When state ${i}$ is left, a new state  $j\neq i$ is chosen according to the transition probabilities of a discrete-time Markov chain.
- 
+
 Then $\{X(t)\}$ is called a continuous-time Markov chain.
 
 - Markov property: $P(X(t)=j\mid X(t_1)=i_1,\dots, X(t_n)=i_n)=P(X(t)=j\mid X(t_n)=i_n)$ for any $n>1$ and $t_1<t_2<\cdots<t_n<t$.
-- Time Homogeneity: $P(X(t)=j\mid X(s)=i) =P(X(t-1)=j\mid X(0)=i)$ for $0<s<t$.
+- Time Homogeneity: $P(X(t)=j\mid X(s)=i) = P(X(t-1)=j\mid X(0)=i)$ for $0<s<t$.
 
 And discrete stochastic process is matrix-based computation while the stochastic calculus is the blend of differential equation and statistical analysis.
 
+Define $p_{ij}(s, t+s)= P(X(t+s)=j\mid X(s)=i), p_{ij}(0, t)=P(X(t)=j\mid X(0)=i)$, continuous time analogue of C-K equations we obtain $P(s+t)=P(s)P(t)$.
+$p_{ij} (t)$ is  continuous and differentiable so that we could $q_{ij}=\frac{\mathrm{d}}{\mathrm{d} t}p_{ij}(t)\mid_{t=0} =\lim_{t\to 0}=$
+
 * https://wiki.math.ntnu.no/ma8109/2015h/start
+* [Martingales and the ItÙ Integral](https://www.math.ntnu.no/emner/MA8109/2013h/notes/HEK2011/MartingalesAndIto2011.pdf)
 * http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTEScurrent.PDF
+* https://www.statslab.cam.ac.uk/~rrw1/markov/
