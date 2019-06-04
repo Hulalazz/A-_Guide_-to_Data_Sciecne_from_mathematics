@@ -13,8 +13,8 @@ As [The NIPS 2012 workshop on Algebraic Topology and Machine Learning](https://s
 > The machine learning community thus far has focused almost exclusively on clustering as the main tool for unsupervised data analysis.
 > Clustering however only scratches the surface, and algebraic topological methods aim at extracting much richer topological information from data.
 
+<img src = "https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg" width = "50%" />
 
-![TDA](https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg)
 ***
 
 + https://www.wikiwand.com/en/Topological_data_analysis
@@ -42,7 +42,8 @@ As [The NIPS 2012 workshop on Algebraic Topology and Machine Learning](https://s
 + https://cs.nyu.edu/~yap/classes/
 + [Wang Bei](http://www.sci.utah.edu/~beiwang/)
 + [Computational Topology and Geometry (CompTaG)](https://www.cs.montana.edu/tda/)
-
++ [Topological Methods for Machine Learning: An ICML 2014 Workshop in Beijing, China](http://topology.cs.wisc.edu/references.html)
++ [Towards topological machine learning](http://bastian.rieck.me/blog/posts/2019/towards_topological_machine_learning/)
 
 ### Topology
 
@@ -60,8 +61,7 @@ As the definition shows the topology may be really not based on the definition o
 
 > **Definition**: Let $(X,\tau)$ be a topological space. Then the members of $\tau$ (the subsets of $X$) is said to be **open set**. If $X-S$ is open set, we call $S$ as **closed set**.
 
-
-![klein bottle](https://www.ics.uci.edu/~eppstein/junkyard/nested-klein-bottles.jpg)
+<img src = "https://www.ics.uci.edu/~eppstein/junkyard/nested-klein-bottles.jpg" width ="30%">
 
 + https://www.wikiwand.com/en/Topology
 + http://www.topologywithouttears.net/
@@ -120,7 +120,7 @@ Topological data analysis is principle-driven and application-inspired in some s
 [CS 598: Computational Topology Spring 2013](http://jeffe.cs.illinois.edu/teaching/comptop/) put that
 > Potential mathematical topics include the topology of ++cell complexes, topological graph theory, homotopy, covering spaces, simplicial homology, persistent homology, discrete Morse theory, discrete differential geometry, and normal surface theory. Potential computing topics include algorithms for computing topological invariants, graphics and geometry processing, mesh generation, curve and surface reconstruction, VLSI routing, motion planning, manifold learning, clustering, image processing, and combinatorial optimization++.
 
-![bugs-topology](http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png)
+<img src = "http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png" width = 40% />
 
 + https://datawarrior.wordpress.com/
 + http://graphics.stanford.edu/courses/cs468-09-fall/
@@ -136,7 +136,8 @@ Topological data analysis is principle-driven and application-inspired in some s
 + https://www2.cs.duke.edu/courses/fall06/cps296.1/
 + [Math 574--Introduction to Computational Topology (Spring 2016)](http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html)
 
-![](http://www.math.wsu.edu/faculty/bkrishna/pics/MultipleTunnels.png)
+<img src = "http://www.math.wsu.edu/faculty/bkrishna/pics/MultipleTunnels.png" width= "20%" />
+
 
 ### Computational Geometry
 

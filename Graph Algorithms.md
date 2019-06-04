@@ -2,6 +2,7 @@
 
 http://mat.uab.cat/~alseda/MasterOpt/
 http://ryanrossi.com/search.php
+https://iss.oden.utexas.edu/
 
 Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
 And graph processing is widely applied in industry and science such as the `graph convolutional network (GCN)`, `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
@@ -27,7 +28,7 @@ All data in computer machine is digitalized bits. The primitive goal is to repre
 
 |The adjacency matrix|
 |:---:|
-|![](https://cdncontribute.geeksforgeeks.org/wp-content/uploads/adjacencymatrix.png)|
+|<img src = https://cdncontribute.geeksforgeeks.org/wp-content/uploads/adjacencymatrix.png width=60% />|
 
 > **Definition**: Let $G$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$.The `adjacency` matrix of $G$, denoted by $A(G)$, is the $n\times n$ matrix defined as follows. The rows and
 > the columns of $A(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $A(G)$ is
@@ -52,8 +53,7 @@ See *Graph representations using set and hash* at <https://www.geeksforgeeks.org
 
 > **Definition**:  A *directed graph* (or `digraph`) is a set of vertices and a collection of directed edges that each connects an ordered pair of vertices. We say that a directed edge points from the first vertex in the pair and points to the second vertex in the pair. We use the names 0 through V-1 for the vertices in a V-vertex graph. Via <https://algs4.cs.princeton.edu/42digraph/>.
 
-It seems that graph theory is the application of matrix theory partially. The spectral theory does not always hold.
-However, the space cost is really high when the graph is stored as matrix specially as sparse matrix.
+
 `Adjacency List` is an array of lists.  An entry array[i] represents the list of vertices adjacent to the ith vertex. This representation can also be used to represent a weighted graph. The weights of edges can be represented as lists of pairs.
 See more representation of graph in computer in <https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/>.
 Although the adjacency-list representation is asymptotically at least as efficient as the adjacency-matrix representation, the simplicity of an adjacency matrix may make it preferable when graphs are reasonably small. Moreover, if the graph is unweighted, there is an additional advantage in storage for the adjacency-matrix representation.
@@ -72,49 +72,39 @@ Although the adjacency-list representation is asymptotically at least as efficie
 * https://www.wikiwand.com/en/Directed_graph
 * https://www.wikiwand.com/en/Directed_acyclic_graph
 ****
-* http://ww3.algorithmdesign.net/sample/ch07-weights.pdf
-* https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/
-* https://www.geeksforgeeks.org/graph-types-and-applications/
-* https://github.com/neo4j-contrib/neo4j-graph-algorithms
-* https://algs4.cs.princeton.edu/40graphs/
-* http://networkscience.cn/
-* http://www.ericweisstein.com/encyclopedias/books/GraphTheory.html
-* http://mathworld.wolfram.com/CayleyGraph.html
-* http://yaoyao.codes/algorithm/2018/06/11/laplacian-matrix
-* The book **Graphs and Matrices** <https://www.springer.com/us/book/9781848829800>
-* The book **Random Graph** <https://www.math.cmu.edu/~af1p/BOOK.pdf>
-* The book [Graph Signal Processing: Overview, Challenges and Application](https://arxiv.org/pdf/1712.00468.pdf)
-* http://www.andres.sc/graph.html
-* https://github.com/sungyongs/graph-based-nn
-* https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html
 
+It seems that graph theory is partially the application of matrix theory.
+[Graph Algorithms in the Language of Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918?mobileUi=0) shows how to leverage existing parallel matrix computation techniques and the large amount of software infrastructure that exists for these computations to implement efficient and scalable parallel graph algorithms. The benefits of this approach are reduced algorithmic complexity, ease of implementation, and improved performance.
+______
+Matrix Theory        | Graph Theory
+---------------------|--------------
+Matrix Addition      |?
+Matrix Powder        |?
+Matrix Multiplication|?
+Spectral Theory      |?
+Jordan Form          |?
+Rank                 |?
+Basis                |?
+_____
 
+**Definition**. A `walk` in a digraph is an alternating sequence of vertices and
+edges that begins with a vertex, ends with a vertex, and such that for every edge
+$\left<u\to v\right>$ in the walk, vertex $u$ is the element just before the edge, and vertex $v$ is the
+next element after the edge.
 
-#### Chain
+A payoff of this representation is that we can use matrix powers to count numbers
+of walks between vertices. The matrix ${A(G)}^k$ provides a count of the number of length $k$
+walks between vertices in any digraph $G$.
 
-Chain is the simplest graph such as the Markov chain in probabilistic graph model and linked list in data structure. The adjacent matrix of chain is some sparse diagonal matrix, directed or not.
-Thus different kinds of graph structure correspond to different family of matrix.
+**Definition** The length-k walk counting matrix for an n-vertex graph $G$ is
+the $n \times n$ matrix $C$ such that:
+$$
+C_{uv} ::= \text{the number of length-k walks from $u$ to $v$}.
+$$
 
+> The length-k counting matrix of a digraph $G$ is ${A(G)}^k$, for all $k\in\mathbb{N}$.
 
-#### Tree
-
-A tree is a connected acyclic graph.
-
-#### Binary Trees
-
-#### Black-red Tree
-
-#### Bigraph
-
-#### DAG
-
-`Directed acyclic graph`
-
-#### Graph adjacency matrix duality
-
-
-+ [Graph Algorithms in the Language of Linear Algebra](https://sites.cs.ucsb.edu/~gilbert/cs240a/slides/old/cs240a-GALA.pdf)
-+ [Mathematics of Big Data: Spreadsheets, Databases, Matrices, and Graphs](http://www.mit.edu/~kepner/D4M/MathOfBigData.html)
+#### Shortest Paths
 #### A* Algorithm
 
 In computer science, A* (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found A* to be superior to other approaches.
@@ -140,10 +130,51 @@ Dijkstra's algorithm is an algorithm for finding the shortest paths between node
 + https://www.wikiwand.com/en/Shortest_path_problem
 + https://www.cnblogs.com/chxer/p/4542068.html
 + http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html
-+ https://networkx.github.io/documentation/stable/reference/algorithms/shortest_paths.html
 
 
 See the page at Wikipedia [A* search algorithm](https://www.wikiwand.com/en/A*_search_algorithm)
+
+#### Graph adjacency matrix duality
+
+Perhaps even more important is the duality that exists with the fundamental
+operation of linear algebra (vector matrix multiply) and a breadth-first search (BFS)
+step performed on G from a starting vertex s:
+$$
+BFS(G, s) \iff A^T v, v(s)=1.
+$$
+
+This duality allows graph algorithms to be simply recast as a sequence of linear
+algebraic operations. Many additional relations exist between fundamental linear
+algebraic operations and fundamental graph operations
+
++ [Graph Algorithms in the Language of Linear Algebra](https://sites.cs.ucsb.edu/~gilbert/cs240a/slides/old/cs240a-GALA.pdf)
++ [Mathematics of Big Data: Spreadsheets, Databases, Matrices, and Graphs](http://www.mit.edu/~kepner/D4M/MathOfBigData.html)
++ [Dual Adjacency Matrix: Exploring Link Groups in Dense Networks by K. Dinkla  N. Henry Riche  M.A. Westenberg](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.12643)
+
+- [On the p-Rank of the Adjacency Matrices
+of Strongly Regular Graphs](http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JACO/Volume1_4/q1ur742gt117v044.fulltext.pdf)
+- []()
+
+#### Chain
+
+Chain is the simplest graph such as the Markov chain in probabilistic graph model and linked list in data structure. The adjacent matrix of chain is some sparse diagonal matrix, directed or not.
+Thus different kinds of graph structure correspond to different family of matrix.
+
+
+#### Tree
+
+A tree is a connected acyclic graph.
+
+#### Binary Trees
+
+#### Black-red Tree
+
+#### Bigraph
+
+#### DAG
+
+`Directed acyclic graph`
+
 
 #### Spectral Clustering Algorithm
 
@@ -208,3 +239,26 @@ https://leon.bottou.org/publications/pdf/transducer-1996.pdf
 
 
 ### Computational Graph
+
+* https://colah.github.io/posts/2015-08-Backprop/
+* [Visualization of Computational Graph@chainer.org](https://docs.chainer.org/en/stable/reference/graph.html)
+* [Efficiently performs automatic differentiation on arbitrary functions. ](https://github.com/lobachevzky/computational-graph)
+__________________________________
+
+* http://ww3.algorithmdesign.net/sample/ch07-weights.pdf
+* https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/
+* https://www.geeksforgeeks.org/graph-types-and-applications/
+* https://algs4.cs.princeton.edu/40graphs/
+* http://networkscience.cn/
+* http://www.ericweisstein.com/encyclopedias/books/GraphTheory.html
+* http://mathworld.wolfram.com/CayleyGraph.html
+* http://yaoyao.codes/algorithm/2018/06/11/laplacian-matrix
+* The book **Graphs and Matrices** <https://www.springer.com/us/book/9781848829800>
+* The book **Random Graph** <https://www.math.cmu.edu/~af1p/BOOK.pdf>
+* The book [Graph Signal Processing: Overview, Challenges and Application](https://arxiv.org/pdf/1712.00468.pdf)
+* http://www.andres.sc/graph.html
+* https://github.com/sungyongs/graph-based-nn
+* [Probabilistische Graphische Modelle](https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html)
++ [NetworkX is a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.](https://networkx.github.io/documentation/stable/index.html)
++ [The Neo4j Graph Algorithms User Guide v3.5](https://github.com/neo4j-contrib/neo4j-graph-algorithms)
++ [Matlab tools for working with simple graphs](https://github.com/scheinerman/matgraph)

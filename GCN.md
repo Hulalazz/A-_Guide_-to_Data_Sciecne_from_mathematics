@@ -1,5 +1,7 @@
 ## Geometric Deep Learning
 
+* https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/
+
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
 
 - [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
@@ -65,22 +67,23 @@ $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
      walks per vertex $\gamma$;
      walk length $t$.
  * Output:  matrix of vertex representations $\Phi\in\mathbb{R}^{|V|\times d}$
- 1.  Initialization: Sample $\Phi$ from $\mathbb{U}^{|V|\times d}$;
- 2. Build a binary Tree T from V;
- 3. for $i = 0$ to $\gamma$ do
- 4. $O = Shuffle(V )$
- 5. for each $v_i \in O$ do
- 6. $W_{v_i}== RandomWalk(G, v_i, t)$
- 7. $SkipGram(Φ, W_{v_i}, w)$
- 8. end for
- 9. end for
+
+     +  Initialization: Sample $\Phi$ from $\mathbb{U}^{|V|\times d}$;
+     + Build a binary Tree T from V;
+     + for $i = 0$ to $\gamma$ do
+        -  $O = Shuffle(V )$
+        -  for each $v_i \in O$ do
+        -  $W_{v_i}== RandomWalk(G, v_i, t)$
+        -  $SkipGram(Φ, W_{v_i}, w)$
+        - end for
+     + end for
 >> $SkipGram(Φ, W_{v_i}, w)$
-1. for each $v_j \in W_{v_i}$ do
-2. for each $u_k \in W_{v_i}[j − w : j + w]$ do
-3.  $J(\Phi)=-\log Pr(u_k\mid \Phi(v_j))$
-4.  $\Phi =\Phi -\alpha\frac{\partial J}{\partial \Phi}$
-5. end for
-6. end for
+* 1. for each $v_j \in W_{v_i}$ do
+    + 2. for each $u_k \in W_{v_i}[j − w : j + w]$ do
+    + 3.  $J(\Phi)=-\log Pr(u_k\mid \Phi(v_j))$
+    + 4.  $\Phi =\Phi -\alpha\frac{\partial J}{\partial \Phi}$
+    + 5. end for
+* 6. end for
 
 Computing the partition function (normalization factor) is expensive, so instead we will factorize the
 conditional probability using `Hierarchical softmax`.
@@ -411,8 +414,12 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * [Neural Motifs: Scene Graph Parsing with Global Context (CVPR 2018)](https://rowanzellers.com/neuralmotifs/)
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
-* [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
-* Higher-order Graph Convolutional Networks
+
+**Higher-order Graph Convolutional Networks**
+
+- [Higher-order Graph Convolutional Networks](http://ryanrossi.com/pubs/Higher-order-GCNs.pdf)
+- [A Higher-Order Graph Convolutional Layer](http://sami.haija.org/papers/high-order-gc-layer.pdf)
+- [MixHop: Higher-Order Graph Convolutional Architectures via Sparsified Neighborhood Mixing](http://proceedings.mlr.press/v97/abu-el-haija19a/abu-el-haija19a.pdf)
 ***
 * https://zhuanlan.zhihu.com/p/62300527
 * https://zhuanlan.zhihu.com/p/64498484
@@ -425,6 +432,7 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 - [ ] [graph convolution network 有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 - [ ] [Use of graph network in machine learning](https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/)
 - [ ] [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
+- [ ] [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
 
 **GCN for RecSys**
 
