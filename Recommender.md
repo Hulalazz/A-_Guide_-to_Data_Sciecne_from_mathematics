@@ -9,31 +9,40 @@ Xavier Amatriain discusses the traditional definition and its data mining core.
 Traditional definition: The **recommender system** is to estimate a utility  function that automatically predicts how a user will like an item.
 
 User Interest is **implicitly** reflected in `Interaction history`, `Demographics` and `Contexts`, which can be regarded as a typical example of data mining. Recommender system should match a context to a collection of information objects. There are some methods called `Deep Matching Models for Recommendation`.
+It is an application of machine learning, which is in the *representation + evaluation + optimization* form. And we will focus on the `representation and evaluation`.
 
 
-- [X] https://blog.csdn.net/u013166160/article/details/17935193
+- [X] [直接优化物品排序的推荐算法](https://blog.csdn.net/u013166160/article/details/17935193)
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/benfred/implicit
 - [ ] https://github.com/YuyangZhangFTD/awesome-RecSys-papers
 - [ ] https://github.com/daicoolb/RecommenderSystem-Paper
 - [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] https://www.zhihu.com/question/20465266/answer/142867207
-- [ ] http://bigdata.ices.utexas.edu/project/large-scale-recommender-systems/
-- [ ] https://www.jianshu.com/c/e12d7195a9ff
-- [ ] https://www.alansaid.com/publications.html
-- [ ] http://www.mymedialite.net/links.html
-- [ ] http://www.deitel.com/ResourceCenters/Web20/RecommenderSystems/RecommenderSystemAlgorithms/tabid/1317/Default.aspx
+- [ ] [推荐系统遇上深度学习](https://www.jianshu.com/c/e12d7195a9ff)
+- [ ] [Large-Scale Recommender Systems@UTexas](http://bigdata.ices.utexas.edu/project/large-scale-recommender-systems/)
+- [ ] [Alan Said's publication](https://www.alansaid.com/publications.html)
+- [ ] [MyMediaLite Recommender System Library](http://www.mymedialite.net/links.html)
+- [ ] [Recommender System Algorithms @ deitel.com](http://www.deitel.com/ResourceCenters/Web20/RecommenderSystems/RecommenderSystemAlgorithms/tabid/1317/Default.aspx)
+
+**Evaluation of Recommendation System**
+
+The evaluation of machine learning algorithms depends on the tasks.
+The evalution of recommendation system can be regarded as some machine learning models such as regression, classification and so on.
+We only take the mathematical convenience into consideration in the following methods.
+Gini index, covering rate and more realistic factors are not discussed in the following content.
 
 ## Collaborative Filtering
 
-There are 3 kinds of collaborative filtering: user-based, item-based and model-based collaborative filtering. 
+There are 3 kinds of collaborative filtering: user-based, item-based and model-based collaborative filtering.
 
 The user-based methods are based on the similarities of users. If user ${u}$ and ${v}$ are very similar friends, we may recommend the items which user ${u}$ bought to the user ${v}$ and explains it that your friends also bought it.
 
 The item-based methods are based on the similarity of items. If one person added a brush to shopping-list, it is reasonable to recommend some toothpaste to him or her. And we can explain that you bought item $X$ and the people who bought $X$ also bought $Y$.
+And we focus on the model-based collaborative filtering.
 
-- https://www.cnblogs.com/ECJTUACM-873284962/p/8729010.html
-- https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html
+- [协同过滤详解](https://www.cnblogs.com/ECJTUACM-873284962/p/8729010.html)
+- [深入推荐引擎相关算法 - 协同过滤](https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html)
 - http://topgeek.org/blog/2012/02/10/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-1-%E9%83%A8%E5%88%86-%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%88%9D%E6%8E%A2/
 - http://topgeek.org/blog/2012/02/13/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-2-%E9%83%A8%E5%88%86-%E6%B7%B1%E5%85%A5%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E/
 
@@ -68,8 +77,6 @@ $$
 
 ![ADMM](https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png)
 
-* http://statweb.stanford.edu/~candes/papers/SVT.pdf
-* [Customized PPA for convex optimization](http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf)
 
 [Rahul Mazumder, Trevor Hastie, Robert Tibshirani](http://www.jmlr.org/papers/v11/mazumder10a.html) reformulate it as the following:
 
@@ -80,18 +87,20 @@ $$
 where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{\star}$ is the nuclear norm of matrix.
 
 
-* https://www.zhihu.com/question/47716840/answer/110843844
-* http://www.convexoptimization.com/wikimization/index.php/Matrix_Completion.m
-* http://delab.csd.auth.gr/papers/RecSys2016s.pdf
-* http://www.princeton.edu/~yc5/ele538b_sparsity/lectures/matrix_recovery.pdf
-* https://users.ece.cmu.edu/~yuejiec/ece18898G_notes/ece18898g_nonconvex_lowrank_recovery.pdf
+* [A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION](https://www.zhihu.com/question/47716840/answer/110843844)
+* [Matrix and Tensor Decomposition in Recommender Systems](http://delab.csd.auth.gr/papers/RecSys2016s.pdf)
+* [Low-Rank Matrix Recovery](http://www.princeton.edu/~yc5/ele538b_sparsity/lectures/matrix_recovery.pdf)
+* [ECE 18-898G: Special Topics in Signal Processing: Sparsity, Structure, and Inference Low-rank matrix recovery via nonconvex optimization](https://users.ece.cmu.edu/~yuejiec/ece18898G_notes/ece18898g_nonconvex_lowrank_recovery.pdf)
 
 ![](https://pic3.zhimg.com/80/771b16ac7e7aaeb50ffd8a8f5cf4e582_hd.png)
 
-* http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html
 * http://people.eecs.berkeley.edu/~yima/
+* [New tools for recovering low-rank matrices from incomplete or corrupted observations by Yi Ma@UCB](http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html)
 * [Matrix Completion/Sensing as NonConvex Optimization Problem](http://sunju.org/research/nonconvex/)
-* http://statweb.stanford.edu/~candes/papers/MatrixCompletion.pdf
+* [Exact Matrix Completion via Convex Optimization](http://statweb.stanford.edu/~candes/papers/MatrixCompletion.pdf)
+* [A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION](http://statweb.stanford.edu/~candes/papers/SVT.pdf)
+* [Customized PPA for convex optimization](http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf)
+* [Matrix Completion.m](http://www.convexoptimization.com/wikimization/index.php/Matrix_Completion.m)
 
 If we have collected user ${u}$'s explicit evaluation score to the item ${i}$ ,  $R_{[u][i]}$, and all such data makes up a matrix $R=(R_{[u][i]})$ while the user $u$ cannot evaluate all the item so that the matrix is incomplete and missing much data.
 **SVD** is to factorize the matrix into the multiplication of matrices so that
@@ -126,8 +135,13 @@ And the evaluation score is always positive and discrete such as $\{2, 4, 6, 8. 
 
 **Maximum Margin Matrix Factorization**
 
-- http://www.markusweimer.com/files/pub/2007/2007-NIPS.pdf
-- https://ttic.uchicago.edu/~nati/mmmf/
+> A  novel approach to collaborative prediction is presented, using low-norm instead of low-rank factorizations. The approach is inspired by, and has strong connections to, large-margin linear discrimination. We show how to learn low-norm factorizations by solving a semi-definite program, and present generalization error bounds based on analyzing the Rademacher complexity of low-norm factorizations.
+
+   
+
+- [Maximum Margin Matrix Factorization](https://ttic.uchicago.edu/~nati/Publications/MMMFnips04.pdf)
+- [Fast Maximum Margin Matrix Factorization for Collaborative Prediction](https://ttic.uchicago.edu/~nati/Publications/RennieSrebroICML05.pdf)
+- [Maximum Margin Matrix Factorization by Nathan Srebro](https://ttic.uchicago.edu/~nati/mmmf/)
 
 ***
 
@@ -156,10 +170,10 @@ And it can decompose into 3 parts:
 
 We learn the values of involved parameters by minimizing the regularized squared error function.
 
-* https://orange3-recommendation.readthedocs.io/en/latest/scripting/rating.html
-* https://orange3-recommendation.readthedocs.io/en/latest/widgets/svdplusplus.html
-* https://cloud.tencent.com/developer/article/1107364
-* https://www.bbsmax.com/A/KE5Q0M9ZJL/
+* [Biased Regularized Incremental Simultaneous Matrix Factorization@orange3-recommender](https://orange3-recommendation.readthedocs.io/en/latest/scripting/rating.html)
+* [SVD++@orange3-recommender](https://orange3-recommendation.readthedocs.io/en/latest/widgets/svdplusplus.html)
+* [矩阵分解之SVD和SVD++](https://cloud.tencent.com/developer/article/1107364)
+* [SVD++：推荐系统的基于矩阵分解的协同过滤算法的提高](https://www.bbsmax.com/A/KE5Q0M9ZJL/)
 * https://zhuanlan.zhihu.com/p/42269534
 
 One possible improvement of this cost function is that we may design more appropriate loss function other than the squared  error function.
@@ -181,8 +195,8 @@ $$
 The loss function $\ell$ penalizes the deviation of estimated entries from the observations.
 And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logistic error $\ell(a,b) = \log(1 + \exp(-ab))$.
 
-* http://bigdata.ices.utexas.edu/software/inductive-matrix-completion/
-* http://www.cs.utexas.edu/users/inderjit/public_papers/imc_bioinformatics14.pdf
+* [Inductive Matrix Completion for Recommender Systems with Side-Information](http://bigdata.ices.utexas.edu/software/inductive-matrix-completion/)
+* [Inductive Matrix Completion for Predicting Gene-Diseasev Associations](http://www.cs.utexas.edu/users/inderjit/public_papers/imc_bioinformatics14.pdf)
 
 **Probabilistic Matrix Factorization**
 
@@ -198,8 +212,8 @@ And $\sigma_u^2$ and $\sigma_i^2$ is related with the regular term $\lambda_u$ a
 
 So that we can reformulate the optimization problem as maximum likelihood estimation.
 
-* http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf
-* https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf
+* [Latent Factor Models for Web Recommender Systems](http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf)
+* [Regression-based Latent Factor Models@CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 
 **BellKor's Progamatic Chaos**
 
@@ -250,19 +264,19 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 * [Alternating Least Squares Method for Collaborative Filtering](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/)
 * [Implicit Feedback and Collaborative Filtering](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/)
-  
+
 **Collaborative Less-is-More Filtering**
 
 Sometimes, the information of user we could collect is implicit such as the clicking at some item.
 
 In `CLiMF` [the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).](https://github.com/gamboviol/climf)
 
-Its objective function is 
+Its objective function is
 $$
-F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))]-\frac{\lambda}{2}({\|U\|}^2 + {\|V\|}^2)
+F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))] \\-\frac{\lambda}{2}({\|U\|}^2 + {\|V\|}^2)
 $$
 
-where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e.,$Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$. 
+where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e.,$Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$.
 The vector $U_i$ denotes a d-dimensional latent factor vector for
 user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
 
@@ -274,7 +288,7 @@ user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
 
 We use stochastic gradient ascent to maximize the objective function.
 
-* https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html
+* [Collaborative Less-is-More Filtering@orange3-recommendation](https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html)
 * https://dl.acm.org/citation.cfm?id=2540581
 * [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
 * [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
@@ -319,7 +333,7 @@ Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B
 the distance between two points on *P* is given by
 $$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
 
-HyperBPR leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items. 
+HyperBPR leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
 Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
 $$\alpha(u, v) = f(d_p(u,v)).$$
 The objective function is defined as follows:
@@ -355,7 +369,7 @@ The model equation for a factorization machine of degree ${d = 2}$ is defined as
 $$
 \hat{y}
 = w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\\
-= w_0  + \left<w,x\right> + \sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j
+= w_0  + \left<w, x\right> + \sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j
 $$
 
 where the model parameters that have to be estimated are
@@ -370,7 +384,7 @@ And the linear regression $w_0 + \sum_{i=1}^{n} w_i x_i$ is called `the first or
 $\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is called the `second order part`.
 
 * https://blog.csdn.net/g11d111/article/details/77430095
-* https://getstream.io/blog/factorization-recommendation-systems/
+* [Factorization Machines for Recommendation Systems](https://getstream.io/blog/factorization-recommendation-systems/)
 * http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/
 * https://www.cnblogs.com/pinard/p/6370127.html
 
@@ -405,7 +419,7 @@ where the `wide` part deal with the categorical features such as user demographi
 * https://www.jianshu.com/p/dbaf2d9d8c94
 * https://www.sohu.com/a/190148302_115128
 
-![](http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png)
+<img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/>
 
 **Deep FM**
 
@@ -414,7 +428,7 @@ $$\hat{y}=\sigma(y_{FM} + y_{DNN})$$
 where $\sigma$ is the sigmoid function so that $\hat{y}\in[0, 1]$ is the predicted CTR, $y_{FM}$ is the output of
 FM component, and $y_{DNN}$ is the output of deep component.
 
-![](https://pic3.zhimg.com/v2-c0b871f214bdae6284e98989dc8ac99b_1200x500.jpg)
+<img src = https://pic3.zhimg.com/v2-c0b871f214bdae6284e98989dc8ac99b_1200x500.jpg width=60%/>
 
 The **FM component** is a factorization machine and the output of FM is the summation of
 an `Addition` unit and a number of `Inner Product` units:
@@ -448,15 +462,17 @@ It is worth pointing out that FM component and deep component share the same fea
 $$
 \hat{y} = w_0 + \left<w,x\right> + f(x)
 $$
-where the first and second terms are the linear regression part similar to that for FM, which models global bias of data and weight
+where the first and second terms are the linear regression part similar to that for FM, which models global bias of data and weight
 of features. The third term $f(x)$ is the core component of NFM
 for modelling feature interactions, which is a `multi-layered feedforward neural network`.
 
 `B-Interaction Layer` including `Bi-Interaction Pooling` is an innovation in artificial neural network.
 
-![](https://i.ooxx.ooo/2017/12/27/ab7149f31f904f8f2bd6f15e0b9900c9.png)
+![https://i.ooxx.ooo](https://i.ooxx.ooo/2017/12/27/ab7149f31f904f8f2bd6f15e0b9900c9.png)
 
 * https://www.comp.nus.edu.sg/~xiangnan/papers/sigir17-nfm.pdf
+* http://staff.ustc.edu.cn/~hexn/
+* https://github.com/hexiangnan/neural_factorization_machine
 
 **Attentional Factorization Machines**
 
@@ -523,7 +539,7 @@ $$
 p(v_i^k = 1 | h) = \frac{\exp(b_i^k+\sum_{j=1}^{F}h_j W_{i,j}^{k})}{\sum_{l=1}^{K}\exp(b_i^k+\sum_{j=1}^{F}h_j W_{i,j}^{l})} \\
 p( h_j = 1 | V) = \frac{1}{\sqrt{2\pi}\sigma_j} \exp(\frac{(h - b_j -\sigma_j \sum_{i=1}^{m}\sum_{k=1}^{K} v_i^k W_{i,j}^k)^2}{2\sigma_j^2})
 $$
-where $\sigma_j^2$ is the variance of the hidden unit j
+where $\sigma_j^2$ is the variance of the hidden unit ${j}$.
 
 
 * https://www.cnblogs.com/pinard/p/6530523.html
@@ -531,7 +547,7 @@ where $\sigma_j^2$ is the variance of the hidden unit j
 * https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf
 * http://www.cs.toronto.edu/~fritz/absps/cdmiguel.pdf
 * http://deeplearning.net/tutorial/rbm.html
-* https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb
+* [RBM notebook form Microsoft](https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb)
 
 **AutoRec**
 
@@ -635,6 +651,8 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii
 - [ ] https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914
 
+**RL and RecSys**
+
 |Evolution of the Recommender Problem|
 |:---:|
 |Rating|
@@ -649,22 +667,20 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 
 ****
 
-- [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 - [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
+- [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 - [ ] https://github.com/wzhe06/Reco-papers
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/hongleizhang/RSAlgorithms
 - [ ] https://github.com/cheungdaven/DeepRec
 - [ ] https://github.com/cyhong549/DeepFM-Keras
 - [ ] https://github.com/grahamjenson/list_of_recommender_systems
-- [ ] [Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/pdf/1707.07435.pdf)
-- [ ] http://dlrs-workshop.org/
 - [ ] https://zhuanlan.zhihu.com/p/26977788
 - [ ] https://zhuanlan.zhihu.com/p/45097523
 - [ ] https://www.zhihu.com/question/20830906
 - [ ] https://www.zhihu.com/question/56806755/answer/150755503
-
-
++ [DLRS 2018 : 3rd Workshop on Deep Learning for Recommender Systems](http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=76328&copyownerid=87252)
++ [Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/pdf/1707.07435.pdf)
 ### Implementation
 
 - [ ] https://github.com/maciejkula/spotlight
@@ -677,6 +693,7 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://orange3-recommendation.readthedocs.io/en/latest/
 - [ ] http://www.mymedialite.net/index.html
 - [ ] http://www.mymediaproject.org/
+
 
 ## Computational Advertising
 
@@ -713,3 +730,14 @@ When the feature vector ${x}$ are given, the tree split the features by GBRT the
 * http://quinonero.net/Publications/predicting-clicks-facebook.pdf
 * https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html
 * http://yelp.github.io/MOE/
+______________________________________________________
+
+### Labs
+
+- [Data Mining Machine Learning @The University of Texas at Austin](http://www.ideal.ece.utexas.edu/)
+- [Center for Big Data Analytics@The University of Texas at Austin](https://bigdata.oden.utexas.edu/)
+- [Multimedia Computing Group@tudelft.nl](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/multimedia-computing/)
+- [knowledge Lab@Uchicago](https://www.knowledgelab.org/)
+- [DIGITAL TECHNOLOGY CENTER@UMN](https://www.dtc.umn.edu/)
+- [The Innovation Center for Artificial Intelligence (ICAI)](https://icai.ai/)
+- [Data Mining and Machine Learning lab (DMML)@ASU](http://dmml.asu.edu/)
