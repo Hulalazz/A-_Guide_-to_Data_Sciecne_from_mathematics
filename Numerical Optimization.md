@@ -1082,7 +1082,7 @@ $$
 
 |Young | Recent |Now|
 ----|---|---
-<img src=http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg width = 150% />|<img src =https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg width = 600% />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = 60% />
+<img src=http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg width = 150% />|<img src =https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg width = 200% />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = 60% />
 
 [He is a featured author of CRC press ](https://www.crcpress.com/authors/i11230-charles-byrne) and [professor in UML](https://www.uml.edu/umass-BMEBT/faculty/Byrne-Charles.aspx)
 
@@ -1160,39 +1160,8 @@ The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete da
 [Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf) applied to Gaussian Process models (Kriging).
 
 
-+ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
-+ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
-+ [Convexification and Global Optimization
-of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
+
 + [Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf)
-
-
-Another related method is `graduated optimization`, which [is a global optimization technique that attempts to solve a difficult optimization problem by initially solving a greatly simplified problem, and progressively transforming that problem (while optimizing) until it is equivalent to the difficult optimization problem.](https://www.wikiwand.com/en/Graduated_optimization)
-
-|Graduated Optimization|
-|:---:|
-|![](https://upload.wikimedia.org/wikipedia/commons/b/be/Graduated_optimization.svg)|
-
-[Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
-+ [Multilevel Optimization: Convergence Theory, Algorithms and Application to Derivative-Free Optimization](http://www.mtm.ufsc.br/~melissa/arquivos/thesis_melissa.pdf)
-+ [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
-+ [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
-+ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
-+ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
-+ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
-+ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
-+ [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
-+ [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
-+ https://pratikac.github.io/
-+ https://www.wikiwand.com/en/Numerical_continuation
-+ [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
-+ [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
-+ [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
-+ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
-+ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
-
-
-***
 * [Surrogate loss function](http://www.cs.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf)
 * [Divergences, surrogate loss functions and experimental design](https://people.eecs.berkeley.edu/~jordan/papers/NguWaiJor_nips05.pdf)
 * [Surrogate Regret Bounds for Proper Losses](http://mark.reid.name/bits/pubs/icml09.pdf)
@@ -1202,6 +1171,25 @@ Another related method is `graduated optimization`, which [is a global optimizat
 * https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
 * http://fa.bianp.net/blog/2014/surrogate-loss-functions-in-machine-learning/
 
+### Relaxation and Convexification
+
++ https://pratikac.github.io/
++ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
++ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
++ [Convexification and Global Optimization
+of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
++ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
++ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
++ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
++ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
++ [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
++ [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
++ [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
++ [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
++ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
++ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
+  
+_____
 ## Fixed Point Iteration Methods
 
 The fixed point algorithm is initially to find approximate solutions of the equation
@@ -1417,7 +1405,7 @@ The dynamics of accelerated gradient methods are expected to correspond to highe
 Some acceleration methods are iterations of the corresponding algorithms of `Asymptotic Vanishing Damping` called by [Hedy Attouch](https://arxiv.org/search/math?searchtype=author&query=Attouch%2C+H):
 
 $$
-\mbox{(AVD)}_{\alpha} \quad \quad \ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
+\quad \quad \ddot{x}(t) + \frac{\alpha}{t} \dot{x}(t) +
 \nabla \Phi (x(t)) =0.\tag{AVD}
 $$
 
@@ -1462,7 +1450,7 @@ Some new connections between dynamical systems and optimization is found.
 
 - [Variational and Dynamical Perspectives On Learning and Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-78.pdf)
 - [Continuous and Discrete Dynamics For Online Learning and Convex Optimization](http://walid.krichene.net/papers/thesis-continuous-discrete.pdf)
-- [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)s
+- [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf)
 - [On Symplectic Optimization](https://arxiv.org/abs/1802.03653)
 - [A variational perspective on accelerated methods in optimization](https://www.pnas.org/content/113/47/E7351)
 - [A Dynamical Systems Perspective on Nesterov Acceleration](https://arxiv.org/abs/1905.07436)
@@ -1472,8 +1460,11 @@ Some new connections between dynamical systems and optimization is found.
 
 [Weijie J. Su](http://stat.wharton.upenn.edu/~suw/) (joint with Bin Shi, Simon Du, and Michael Jordan)  introduced a set of high-resolution differential equations to model, analyze, interpret, and design accelerated optimization methods.
 
+> <img src="http://stat.wharton.upenn.edu/~suw/WeijieSu.jpg" width = "30%" />
 
-<img src="http://stat.wharton.upenn.edu/~suw/WeijieSu.jpg" width = "30%" />
+$$
+\ddot{x}(t) + 2\sqrt{\mu}\dot{x}(t) + \sqrt{s}\nabla^2 f(x) \dot{x}(t) + (1+\sqrt{\mu s})\nabla f(x) = 0\, \tag{Su}
+$$
 
 - [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights
 ](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
@@ -1715,9 +1706,9 @@ L_{\beta}(x, y, \lambda)
 $$
 
 We can split the optimization over $x_i$:
-> $$x_i^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i, y^{k}, \lambda_i^{k})\quad i=1,2,\cdots, n;$$
-> $$y^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i^{\color{green}{k+1}}, y, \lambda_i^k);$$
-> $$\lambda^{k+1}=\lambda^k+\lambda (x^{\color{green}{k+1}} - y^{\color{green}{k+1}}).$$
+> 1. $$x_i^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i, y^{k}, \lambda_i^{k})\quad i=1,2,\cdots, n;$$
+> 2. $$y^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i^{\color{green}{k+1}}, y, \lambda_i^k);$$
+> 3. $$\lambda^{k+1}=\lambda^k+\lambda (x^{\color{green}{k+1}} - y^{\color{green}{k+1}}).$$
 
 Then optimization over $x_i$ is done in parallel. Subsequently, the results are communicated
 back to a master node which performs the $y$ update (usually just a projection as in the example
@@ -1731,10 +1722,17 @@ independently.
 * [Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers by S. Boyd, N. Parikh, E. Chu, B. Peleato, and J. Eckstein](https://web.stanford.edu/~boyd/papers/admm_distr_stats.html)
 * [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.pdf)
 * [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
-***
-**Monotone Operator Splitting Methods**
+  
+****
+
+**Monotone Operator Splitting Methods for Optimization**
+
+Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures).
+
+![](https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90)
 
 + https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf
++ [Operator Splitting by Professor Udell @ORIE 6326: Convex Optimization](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
 + [A note on the equivalence of operator splitting methods](https://arxiv.org/pdf/1806.03353.pdf)
 + [Splitting methods for monotone operators with applications to parallel optimization](https://dspace.mit.edu/handle/1721.1/14356)
 + http://www.syscop.de/files/2015ss/numopt/splitting.pdf
@@ -1748,6 +1746,73 @@ As shown in `Principle of Optimal Design`, `nongradient methods` are classified 
 
 [We organize the discussion of nongradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
 `Heuristic methods` will be introduced in computational intelligence.
+
+Let us start with the example and suppose that we want to
+$$
+\arg\min_{x}f(x)=x^{2}+4\sin(2x).\tag{1}
+$$
+
+The objective function $f(x)$, a non-convex function, has many local minimizer or extrema.
+The function (1) is upper bounded by $x^2+4$ and lower bounded by $x^2 - 4$.
+
+![](http://freemind.pluskid.org/att/2016/03/nonconvex.svg)
+
+Another insightful example is to minimize the following cost function:
+$$
+x^{2}+4\sin(2x) - 1001 \color{red}{\mathbb{I}_{\sqrt{2}}}(x) \tag{2}
+$$
+where the last part $\color{red}{\mathbb{I}_{\sqrt{2}}}(x)$ is equal to 1 when $x=\sqrt{2}$ and 0 otherwise, a Dirac function.
+It is almost equal to the first function (1) except at the point $x=\sqrt{2}$.
+The minimal value of the above function is  $2+4\sin(2\sqrt{2})-1001$ when $x=\sqrt{2}$.
+And these two functions are two different kinds of non-convex functions.
+
+
+[Optimization and Assumptions @ Freemind](http://freemind.pluskid.org/misc/optimization-and-assumptions/)|[Test functions for optimization](https://www.wikiwand.com/en/Test_functions_for_optimization)
+
+Another related method is `graduated optimization`, which [is a global optimization technique that attempts to solve a difficult optimization problem by initially solving a greatly simplified problem, and progressively transforming that problem (while optimizing) until it is equivalent to the difficult optimization problem.](https://www.wikiwand.com/en/Graduated_optimization)Further, when certain conditions exist, it can be shown to find an optimal solution to the final problem in the sequence. These conditions are:
+
++ The first optimization problem in the sequence can be solved given the initial starting point.
++ The locally convex region around the global optimum of each problem in the sequence includes the point that corresponds to the global optimum of the previous problem in the sequence.
+
+|Graduated Optimization|
+|:---:|
+|![Graduated opt](https://upload.wikimedia.org/wikipedia/commons/b/be/Graduated_optimization.svg)|
+
++ https://www.wikiwand.com/en/Numerical_continuation
++ [Multi-Resolution Methods and Graduated Non-Convexity](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/BMVA96Tut/node29.html)
+
+****
+
+[Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
+
+![The basic scheme of multilevel optimization](http://www.iosotech.com/img/text/ml_sch.gif)
+
+The simplified scheme of work for the `multilevel optimization` procedure can be represented as follows.
+
+1. Solving the optimization problem using a surrogate model. For this purpose, the method of indirect optimization based on the self-organization (IOSO) is used. This method allows finding the single solution for single-objective optimization or the Pareto-optimal set of solutions for multi-objective problems.
+2. For the obtained solution the indicators of efficiency are updated using the high-fidelity analysis tools. 
+3. The adjustment of a current search region is performed. 
+4. The adjustment of the surrogate model is performed. Depending upon the particular features of the applied mathematical simulation, the adjustment procedure can performed using several approaches. One such approach involves constructing non-linear corrective dependencies. This includes evaluation of the results obtained with different fidelity analysis tools. The other possible approach is application of nonlinear estimation of surrogate model internal parameters. 
+5. Replacement of the surrogate model by the adjusted one and the return to step (1).
+
+
++ [Multilevel Optimization: Convergence Theory, Algorithms and Application to Derivative-Free Optimization](http://www.mtm.ufsc.br/~melissa/arquivos/thesis_melissa.pdf)
++ [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
++ [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
+
+****
+
+`Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
+
+
++ [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
++ [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
++ [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
++ [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
++ [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
++ [https://www.wikiwand.com/en/Non-negative_matrix_factorization](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
+
+****
 
 
 - [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)

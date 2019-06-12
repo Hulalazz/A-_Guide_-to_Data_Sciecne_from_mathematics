@@ -58,7 +58,7 @@ The regularization techniques in regression may not suit the tree algorithms suc
 
 ![https://www.treesaregood.org](https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg)
 
-In machine learning, we prune the decision tree to make a balance between overfitting and underfitting. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:		
+In machine learning, we prune the decision tree to make a balance between over-fitting and under-fitting. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
 
 1. Use a distinct dataset from the training set (called validation set), to evaluate the effect of post-pruning nodes from the tree.
 2. Build the tree by using the training set, then apply a statistical test to estimate whether pruning or expanding a particular node is likely to produce an improvement beyond the training set.
@@ -125,7 +125,8 @@ On many problems the performance of random forests is very similar to boosting, 
 * https://www.wikiwand.com/en/Random_forest
 * https://sktbrain.github.io/awesome-recruit-en.v2/
 * https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
-* https://dimensionless.in/introduction-to-random-forest/https://www.elderresearch.com/blog/modeling-with-random-forests
+* https://dimensionless.in/introduction-to-random-forest/
+* https://www.elderresearch.com/blog/modeling-with-random-forests
 
 ## Ensemble methods
 
@@ -232,6 +233,12 @@ $$
 
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
 * [CSDN blog](https://blog.csdn.net/v_july_v/article/details/40718799)
+
+#### LogitBoost 
+
+- [ ] [Fundamental Techniques in Big Data Data Streams, Trees, Learning, and Search by Li Ping](https://www.stat.rutgers.edu/home/pingli/doc/PingLiTutorial.pdf)
+- [ ] [LogitBoost python package](https://logitboost.readthedocs.io/)
+- [ ] [ABC-LogitBoost for Multi-Class Classification](http://www.datascienceassn.org/sites/default/files/LogitBoost%20Algorithm.pdf)
 
 #### Gradient Boosting Decision Tree
 
@@ -394,25 +401,33 @@ $$
 
 * https://xgboost.readthedocs.io/en/latest/tutorials/model.html
 * https://xgboost.ai/
-* http://blog.kaggle.com/2017/01/23/a-kaggle-master-explains-gradient-boosting/
-* https://datascienceplus.com/extreme-gradient-boosting-with-r/
+* [A Kaggle Master Explains Gradient Boosting](http://blog.kaggle.com/2017/01/23/a-kaggle-master-explains-gradient-boosting/)
+* [Extreme Gradient Boosting with R](https://datascienceplus.com/extreme-gradient-boosting-with-r/)
 * [XGBoost: A Scalable Tree Boosting System](https://arxiv.org/abs/1603.02754)
 * [xgboost的原理没你想像的那么难](https://www.jianshu.com/p/7467e616f227)
-* https://www.cnblogs.com/wxquare/p/5541414.html
-* https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/
+* [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html)
+* [How to Visualize Gradient Boosting Decision Trees With XGBoost in Python](https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/)
+* [Awesome XGBoost](https://github.com/dmlc/xgboost/blob/master/demo/README.md#machine-learning-challenge-winning-solutions)
 
+#### LightGBM
 
 ![](https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg)
 
-- https://github.com/Microsoft/LightGBM/blob/master/docs/Features.rst
+- [LightGBM, Light Gradient Boosting Machine](https://github.com/Microsoft/LightGBM/)
+- [LightGBM: A Highly Efficient Gradient Boosting
+Decision Tree](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)
 - [Python3机器学习实践：集成学习之LightGBM - AnFany的文章 - 知乎](https://zhuanlan.zhihu.com/p/53583034)
-- https://ieeexplore.ieee.org/abstract/document/7929984
+- https://lightgbm.readthedocs.io/en/latest/
+- https://www.msra.cn/zh-cn/news/features/lightgbm-20170105
+
+#### CatBoost
+
 - https://tech.yandex.com/catboost/
 - https://catboost.ai/
-- https://lightgbm.readthedocs.io/en/latest/s
-- https://github.com/Xtra-Computing/thundergbm
-- https://www.comp.nus.edu.sg/~hebs/pub/IPDPS18-GPUGBDT.pdf
-- https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md
+- [ThunderGBM: Fast GBDTs and Random Forests on GPUs](https://github.com/Xtra-Computing/thundergbm)
+- [Efficient Gradient Boosted Decision Tree Training on GPUs](https://www.comp.nus.edu.sg/~hebs/pub/IPDPS18-GPUGBDT.pdf)
+- [GBDT on Angel](https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md)
+- [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
 
 *****
 
@@ -443,6 +458,8 @@ The procedure is as follows:
 * http://www.chioka.in/stacking-blending-and-stacked-generalization/
 * https://blog.csdn.net/willduan1/article/details/73618677
 * [今我来思，堆栈泛化(Stacked Generalization)](https://www.jianshu.com/p/46ccf40222d6)
+
+In the sense of stacking, deep neural network is thought as the stacked `logistic regression`. And `Boltzman machine` can be stacked in order to construct more expressive model for discrete random variables.
 
 **Deep Forest**
 

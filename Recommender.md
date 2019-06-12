@@ -24,6 +24,8 @@ It is an application of machine learning, which is in the *representation + eval
 - [ ] [Alan Said's publication](https://www.alansaid.com/publications.html)
 - [ ] [MyMediaLite Recommender System Library](http://www.mymedialite.net/links.html)
 - [ ] [Recommender System Algorithms @ deitel.com](http://www.deitel.com/ResourceCenters/Web20/RecommenderSystems/RecommenderSystemAlgorithms/tabid/1317/Default.aspx)
+- [ ] [Workshop on Recommender Systems: Algorithms and Evaluation](http://sigir.org/files/forum/F99/Soboroff.html)
+- [ ] [Semantic Recommender Systems. Analysis of the state of the topic](https://www.upf.edu/hipertextnet/en/numero-6/recomendacion.html)
 
 **Evaluation of Recommendation System**
 
@@ -51,7 +53,7 @@ And we focus on the model-based collaborative filtering.
 Matrix completion is to complete the matrix $X$ with missing elements, such as
 
 $$
-\min Rank(Z) \\
+\min_{Z} Rank(Z) \\
 s.t. \sum_{(i,j):Observed}(Z_{(i,j)}-X_{(i,j)})^2\leq \delta
 $$
 
@@ -71,9 +73,9 @@ L(Z,Y) = {\|Z\|}_{\star} - Y(Z_{\Omega} - X_{\Omega}).
 $$
 
 1. Producing $Y^{k+1}$ by
-   $$Y^{k+1}=\arg\max {L([2Z^k-Z^{k-1}],Y)-\frac{s}{2}\|Y-Y^k\|};$$
+   $$Y^{k+1}=\arg\max_{Y} {L([2Z^k-Z^{k-1}],Y)-\frac{s}{2}\|Y-Y^k\|};$$
 2. Producing $Z^{k+1}$ by
-    $$Z^{k+1}=\arg\min {L(Z,Y^{k+1}) + \frac{r}{2}\|Z-Z^k\|}.$$
+    $$Z^{k+1}=\arg\min_{Z} {L(Z,Y^{k+1}) + \frac{r}{2}\|Z-Z^k\|}.$$
 
 ![ADMM](https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png)
 
@@ -101,6 +103,36 @@ where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{
 * [A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION](http://statweb.stanford.edu/~candes/papers/SVT.pdf)
 * [Customized PPA for convex optimization](http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf)
 * [Matrix Completion.m](http://www.convexoptimization.com/wikimization/index.php/Matrix_Completion.m)
+
+**Maximum Margin Matrix Factorization**
+
+> A  novel approach to collaborative prediction is presented, using low-norm instead of low-rank factorizations. The approach is inspired by, and has strong connections to, large-margin linear discrimination. We show how to learn low-norm factorizations by solving a semi-definite program, and present generalization error bounds based on analyzing the Rademacher complexity of low-norm factorizations.
+
+Consider the soft-margin learning, where we minimize a trade-off between the trace norm of $Z$ and its
+hinge-loss relative to $X_O$:
+$$
+\min_{Z} { \| Z \| }_{\Omega} + c \sum_{(ui)\in O}\max(0, 1 - Z_{ui}X_{ui}).
+$$
+
+And it can be rewritten  as  a semi-definite optimization problem (SDP):
+$$
+\min_{A, B} \frac{1}{2}(tr(A)+tr(B))+c\sum_{(ui)\in O}\xi_{ui}, \\
+s.t.  \, \begin{bmatrix} A & X \\ X^T & B \\ \end{bmatrix} \geq 0, Z_{ui}X_{ui}\geq 1- \xi_{ui},
+\xi_{ui}>0 \,\forall ui\in O
+$$
+where $c$ is a trade-off constant.
+
+- [Maximum Margin Matrix Factorization](https://ttic.uchicago.edu/~nati/Publications/MMMFnips04.pdf)
+- [Fast Maximum Margin Matrix Factorization for Collaborative Prediction](https://ttic.uchicago.edu/~nati/Publications/RennieSrebroICML05.pdf)
+- [Maximum Margin Matrix Factorization by Nathan Srebro](https://ttic.uchicago.edu/~nati/mmmf/)
+
+This technique is also called **nonnegative matrix factorization**.
+
+The data sets we more frequently encounter in collaborative prediction problem are of `ordinal ratings` $X_{ij} \in \{1, 2, \dots, R\}$ such as $\{1, 2, 3, 4, 5\}$.
+To relate the real-valued $Z_{ij}$ to the
+discrete $X_{ij}$. we use $R − 1$ thresholds $\theta_{1}, \dots, \theta_{R-1}$.
+
+***
 
 If we have collected user ${u}$'s explicit evaluation score to the item ${i}$ ,  $R_{[u][i]}$, and all such data makes up a matrix $R=(R_{[u][i]})$ while the user $u$ cannot evaluate all the item so that the matrix is incomplete and missing much data.
 **SVD** is to factorize the matrix into the multiplication of matrices so that
@@ -131,19 +163,6 @@ $$
 
 It is called [the regularized singular value decomposition](https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf)  or **Regularized SVD**.
 
-And the evaluation score is always positive and discrete such as $\{2, 4, 6, 8. 10\}$. This technique is also called **nonnegative matrix factorization**.
-
-**Maximum Margin Matrix Factorization**
-
-> A  novel approach to collaborative prediction is presented, using low-norm instead of low-rank factorizations. The approach is inspired by, and has strong connections to, large-margin linear discrimination. We show how to learn low-norm factorizations by solving a semi-definite program, and present generalization error bounds based on analyzing the Rademacher complexity of low-norm factorizations.
-
-   
-
-- [Maximum Margin Matrix Factorization](https://ttic.uchicago.edu/~nati/Publications/MMMFnips04.pdf)
-- [Fast Maximum Margin Matrix Factorization for Collaborative Prediction](https://ttic.uchicago.edu/~nati/Publications/RennieSrebroICML05.pdf)
-- [Maximum Margin Matrix Factorization by Nathan Srebro](https://ttic.uchicago.edu/~nati/mmmf/)
-
-***
 
 **Funk-SVD** considers the user's preferences or bias.
 It predicts the scores by
@@ -186,11 +205,11 @@ IMC assumes that the associations matrix is generated by applying feature vector
 its rows as well as columns to a low-rank matrix ${Z}$.
 The goal is to recover ${Z}$ using observations from ${P}$.
 
-The  inputs $x_i, y_j$ are feature vector.
-The entry $P_{(i,j)}$ of the matrix is modeled as $P_{(i,j)}=x_i^T Z  y_j$ and ${Z}$ is to recover in the form of $Z=WH^T$.
+The  inputs $x_i, y_j$ are feature vectors.
+The entry $P_{(i, j)}$ of the matrix is modeled as $P_{(i, j)}=x_i^T Z  y_j$ and ${Z}$ is to recover in the form of $Z=WH^T$.
 
 $$
-\min \sum_{(i,j)\in \Omega}\ell(P_{(i,j)},x_i^T W H^T y_j) + \frac{\lambda}{2}(\|W\|^2+\|H\|^2)
+\min \sum_{(i,j)\in \Omega}\ell(P_{(i,j)}, x_i^T W H^T y_j) + \frac{\lambda}{2}(\| W \|^2+\| H \|^2)
 $$
 The loss function $\ell$ penalizes the deviation of estimated entries from the observations.
 And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logistic error $\ell(a,b) = \log(1 + \exp(-ab))$.
@@ -293,18 +312,7 @@ We use stochastic gradient ascent to maximize the objective function.
 * [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
 * [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
 
-**Adaptive Boosting Personalized Ranking (AdaBPR)**
 
-`AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
-In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
-The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
-
-Here explicit feedback refers to users’ ratings to items while implicit feedback is derived
-from users’ interactions with items, e.g., number of
-times a user plays a song.
-
-
-- [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 ***
 
 * https://www.cnblogs.com/Xnice/p/4522671.html
@@ -346,8 +354,7 @@ user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model p
 The parameters of our model are learned by using `RSGD`.
 
 * https://arxiv.org/abs/1809.01703
-* https://arxiv.org/abs/1902.08648
-* https://amds123.github.io/2018/09/05/Hyperbolic-Recommender-Systems/
+* https://arxiv.org/abs/1902.0864
 * https://arxiv.org/abs/1111.5280
 
 
@@ -495,10 +502,10 @@ where $a_{i,j}$ is the attention score for feature interaction.
 
 ![](https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png)
 
-- [X] https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm
+- [X] [KDD 2018 | 推荐系统特征构建新进展：极深因子分解机模型](https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm)
 - [ ] https://arxiv.org/abs/1803.05170
 - [ ] http://kubicode.me/2018/09/17/Deep%20Learning/eXtreme-Deep-Factorization-Machine/
-- [ ] https://www.jianshu.com/p/b4128bc79df0
+- [ ] [推荐系统遇上深度学习(二十二)--DeepFM升级版XDeepFM模型强势来袭！](https://www.jianshu.com/p/b4128bc79df0)
 
 **Restricted Boltzmann Machines for Collaborative Filtering(RBM)**
 
@@ -573,7 +580,7 @@ for for activation functions $f, g$ as described in  dimension reduction. Here $
 * http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf
 
 ***
-![](http://kubicode.me/img/More-Session-Based-Recommendation/repeatnet_arch.png)
+![http://kubicode.me](http://kubicode.me/img/More-Session-Based-Recommendation/repeatnet_arch.png)
 
 ****
 
@@ -604,11 +611,10 @@ Every (user, item) pair in the multi-graph approach and every user/item in the s
 one present in this case an independent state, which is updated (at every step) by means of the features produced by
 the selected GCN.
 
-* http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
 * [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 * https://arxiv.org/abs/1704.06803
 * http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018
-
+* http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf
 
 **Deep Matching Models for Recommendation**
 
@@ -626,14 +632,7 @@ therefore provide a precise insight of what items and topics users might be inte
 * https://www.comp.nus.edu.sg/~xiangnan/papers/www18-tutorial-deep-matching.pdf
 * http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf
 * https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf
-
-***
-|Traditional Approaches|Beyond Traditional Methods|
-|----------------------|--------------------------|
-|Collaborative Filtering|Tensor Factorization & Factorization Machines|
-|Content-Based Recommendation|Social Recommendations|
-|Item-based Recommendation|Learning to rank|
-|Hybrid Approaches|MAB Explore/Exploit|
+* http://www.wanghao.in/CDL.htm
 
 **Social Recommendation**
 
@@ -651,8 +650,11 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii
 - [ ] https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914
 
-**RL and RecSys**
+**Reinforcement Learning and RecSys**
 
+* [Deep Reinforcement Learning for Page-wise Recommendations](https://arxiv.org/abs/1805.02343)
+* [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
+_____________
 |Evolution of the Recommender Problem|
 |:---:|
 |Rating|
@@ -660,11 +662,50 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 |Page Optimization|
 |Context-aware Recommendations|
 
-- [ ] https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/
-- [ ] https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/
+- [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
+- [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
 - [ ] https://tech.meituan.com/2018/06/07/searchads-dnn.html
-- [ ] http://benanne.github.io/2014/08/05/spotify-cnns.html
+- [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
+_______
+|Traditional Approaches | Beyond Traditional Methods|
+|---------------------- |--------------------------|
+|Collaborative Filtering | Tensor Factorization & Factorization Machines|
+|Content-Based Recommendation | Social Recommendations|
+|Item-based Recommendation | Learning to rank|
+|Hybrid Approaches | MAB Explore/Exploit|
 
+#### Ensemble Methods for RecSys
+
+The RecSys can be considered as some regression or classification tasks, so that we can apply the ensemble methods to these methods as  `BellKor's Progamatic Chaos` used the blended solution to win the prize.
+In fact, its essence is bagging or blending, which is one sequential ensemble strategy in order to avoid over-fitting or reduce the variance.
+
+In this section, the boosting is the focus, which is to reduce the error and boost the performance from a weaker learner.
+
+There are two common methods to construct a stronger learner from a weaker learner: (1) rewight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting. 
+
+- [General Functional Matrix Factorization Using Gradient Boosting](http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf)
+
+**BoostFM**
+
+- [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
+
+**Adaptive Boosting Personalized Ranking (AdaBPR)**
+
+`AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
+In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
+The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
+
+Here explicit feedback refers to users' ratings to items while implicit feedback is derived
+from users' interactions with items, e.g., number of
+times a user plays a song.
+
+
+- [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
+- [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
+
+**Gradient Boosting Factorization Machines**
+
+- [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
 ****
 
 - [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
@@ -681,6 +722,13 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://www.zhihu.com/question/56806755/answer/150755503
 + [DLRS 2018 : 3rd Workshop on Deep Learning for Recommender Systems](http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=76328&copyownerid=87252)
 + [Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/pdf/1707.07435.pdf)
++ [$5^{th}$ International Workshop on Machine Learning Methods for Recommender Systems](https://doogkong.github.io/2019/)
++ [MoST-Rec 2019: Workshop on Model Selection and Parameter Tuning in Recommender Systems](http://most-rec.gt-arc.com/)
++ [2018 Personalization, Recommendation and Search (PRS) Workshop](https://prs2018.splashthat.com/)
++ [WIDE & DEEP RECOMMENDER SYSTEMS AT PAPI](https://www.papis.io/recommender-systems)
++ [Interdisciplinary Workshop on Recommender Systems](http://www.digitaluses-congress.univ-paris8.fr/Interdisciplinary-Workshop-on-Recommender-Systems)
++ [2nd FATREC Workshop: Responsible Recommendation](https://piret.gitlab.io/fatrec2018/)
+
 ### Implementation
 
 - [ ] https://github.com/maciejkula/spotlight
@@ -693,7 +741,9 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://orange3-recommendation.readthedocs.io/en/latest/
 - [ ] http://www.mymedialite.net/index.html
 - [ ] http://www.mymediaproject.org/
-
+- [Workshop: Building Recommender Systems w/ Apache Spark 2.x](https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x)
+- [A Leading Java Library for Recommender Systems](https://www.librec.net/)
+- [lenskit: Python Tools for Recommender Experiments](https://lenskit.org/)
 
 ## Computational Advertising
 
@@ -708,7 +758,7 @@ Advertising is nothing except information.
 Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
 Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).
 
-![](https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png)
+<img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "60%" />
 
 When the feature vector ${x}$ are given, the tree split the features by GBRT then we transform and input the features to the logistic regression.
 
