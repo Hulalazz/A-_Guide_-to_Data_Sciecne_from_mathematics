@@ -953,7 +953,7 @@ with or without constraints.
 Specially, if the cost function is additionally separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f_i(x_i), i=1,2,\cdots, n$ rather than the cost function itself
 
 $$
-\min \sum_{i} f_i(x_i) \leq \sum_{i}\min{f_i(x_i)}.
+\min_{x} \sum_{i} f_i(x_i) \leq \sum_{i}\min_{x_i}{f_i(x_i)}.
 $$
 
 And ADMM or proximal gradient methods are to split the cost function to 2 blocks, of which one is differentiable and smooth while the other may not be differentiable. In another word, we can use them to solve some non-smooth optimization problem.
@@ -1173,13 +1173,21 @@ The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete da
 
 ### Relaxation and Convexification
 
+The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
+
+![block relaxation methods](https://bookdown.org/jandeleeuw6/bras/graphics/bookfig1.png)
+
+In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. We choose initial values for all blocks, and then minimize over one of the blocks, while keeping all other blocks fixed at their current values. We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. An iteration of the algorithm steps through all blocks in turn, each time keeping the non-active blocks fixed at current values, and each time replacing the active blocks by solving the minimization subproblems. If there are more than two blocks there are different ways to cycle through the blocks. If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
+
+In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
+
+[Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
+Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
+integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
+
+***
 + https://pratikac.github.io/
-+ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
-+ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
-+ [Convexification and Global Optimization
-of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
-+ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
-+ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
++ [Block Relaxation Methods in Statistics by Jan de Leeuw](https://bookdown.org/jandeleeuw6/bras/)
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
 + [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
@@ -1188,8 +1196,25 @@ of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawa
 + [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
 + [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
 + [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
-  
-_____
++ [Relaxation and Decomposition Methods for Mixed Integer Nonlinear Programming](https://www.springer.com/gp/book/9783764372385)
+
+*****
+
+![nonconvex](https://www.math.hu-berlin.de/~stefan/B19/nonconvex.gif)
+
+In order for primal-dual methods to be applicable to a
+constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied. 
+A nonconvex problem can be convexified and transformed
+into one which can be solved with the aid of primal-dual methods.
+
++ [Convexification and Global Optimization in Continuous and Mixed-Integer Nonlinear Programming: Theory, Algorithms, Software, and Applications](https://b-ok.cc/book/2099773/6478de)
++ [Convexification and Global Optimization of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
++ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
++ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
++ [Conic Optimization Theory: Convexification Techniques and Numerical Algorithms](https://arxiv.org/abs/1709.08841)
++ [Convexification of polynomial optimization problems by means of monomial patterns](http://www.optimization-online.org/DB_FILE/2019/01/7034.pdf)
++ [On convexification/optimization of functionals including an $\ell^2$-misfit term](http://www.maths.lth.se/matematiklu/personal/mc/On%20convexification%20MP%20version%202.pdf)
+
 ## Fixed Point Iteration Methods
 
 The fixed point algorithm is initially to find approximate solutions of the equation
@@ -1248,8 +1273,8 @@ of fixed-point in nonlinear equations solution](http://www.scielo.org.co/pdf/tec
 
 |Fixed Point Iterations||
 |---|---|
-|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg)|![](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f2.jpg)|
-|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg)|![http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg)|
+|![fig_1](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg)|![fig_2](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f2.jpg)|
+|![fig_3](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg)|![fig_4](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg)|
 
 * https://www.wikiwand.com/en/Fixed-point_theorem
 * [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
@@ -1497,6 +1522,10 @@ https://eta.impa.br/dl/028.pdf
 
 [Clearing the Jungle of Stochastic Optimization](https://castlelab.princeton.edu/jungle/)
 
+[The Tradeoffs of Large-scale Learning](https://leon.bottou.org/talks/largescale)
+
+![diff](https://castlelab.princeton.edu/html/images/detvsstoch.jpg)
+
 Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
 It is **stochastic gradient** but may not be **descent**.
 The name **stochastic gradient methods**  may be more appropriate to call the methods with stochastic gradient.
@@ -1575,39 +1604,45 @@ where the coefficients $a_0, a_1,\cdots, a_n$ are determined by $f(x_1), f(x_2),
 See the following links for more information on *stochastic gradient descent*.
 
 * https://www.wikiwand.com/en/Stochastic_gradient_descent
-* https://www.bonaccorso.eu/2017/10/03/a-brief-and-comprehensive-guide-to-stochastic-gradient-descent-algorithms/
-* https://leon.bottou.org/projects/sgd
-* https://leon.bottou.org/research/stochastic
-* https://leon.bottou.org/papers/bottou-bousquet-2008
 * http://ruder.io/optimizing-gradient-descent/
 * https://zhuanlan.zhihu.com/p/22252270
-* https://henripal.github.io/blog/stochasticdynamics
-* https://henripal.github.io/blog/langevin
 * http://fa.bianp.net/teaching/2018/eecs227at/stochastic_gradient.html
-* [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
+* [A Brief (and Comprehensive) Guide to Stochastic Gradient Descent Algorithms](https://www.bonaccorso.eu/2017/10/03/a-brief-and-comprehensive-guide-to-stochastic-gradient-descent-algorithms/)
+* [A look at SGD from a physicist's perspective - Part 1](https://henripal.github.io/blog/stochasticdynamics)
+* [A look at SGD from a physicists's perspective - Part 2, Bayesian Deep Learning](https://henripal.github.io/blog/nealbayesian)
+* [A look at SGD from a physicists's perspective - Part 3, Langevin Dynamics and Applications](https://henripal.github.io/blog/langevin)
+
 
 |The Differences of Gradient Descent and Stochastic Gradient Descent|
 |:-----------------------------------------------------------------:|
 |<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
 
+
+
+![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
+* http://blavatnikawards.org/honorees/profile/leon-bottou/
+* https://leon.bottou.org/projects/sgd
+* https://leon.bottou.org/research/stochastic
+* https://leon.bottou.org/papers/bottou-bousquet-2008
+
 ### ADAM
 
-- https://arxiv.org/abs/1412.6980
+- [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
+- [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
 - http://ruder.io/deep-learning-optimization-2017/
 
 |The Differences of Stochastic Gradient Descent and its Variants|
 |:-------------------------------------------------------------:|
 |<img src="http://beamandrew.github.io//images/deep_learning_101/sgd.gif" width = "60%" />|
 
-+ http://blavatnikawards.org/honorees/profile/leon-bottou/
-
-![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 
 $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
 
 - https://arxiv.org/pdf/1811.03962.pdf
 - http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
-
++ [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
++ [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
++ [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 
 #### Distributed Optimization Methods
 
@@ -1722,7 +1757,7 @@ independently.
 * [Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers by S. Boyd, N. Parikh, E. Chu, B. Peleato, and J. Eckstein](https://web.stanford.edu/~boyd/papers/admm_distr_stats.html)
 * [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.pdf)
 * [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
-  
+
 ****
 
 **Monotone Operator Splitting Methods for Optimization**
@@ -1745,7 +1780,16 @@ Operator splitting is to decompose one omplicated operator(procedure) into some 
 As shown in `Principle of Optimal Design`, `nongradient methods` are classified into 3 classes:
 
 [We organize the discussion of nongradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
-`Heuristic methods` will be introduced in computational intelligence.
+> Derivative-free optimization (DFO) algorithms differ in the way they use the sampled
+function values to determine the new iterate. One class of methods constructs a linear
+or quadratic model of the objective function and defines the next iterate by seeking to
+minimize this model inside a trust region. We pay particular attention to these model-based
+approaches because they are related to the unconstrained minimization methods described
+in earlier chapters. Other widely used DFO methods include the simplex-reflection method
+of Nelder and Mead, pattern-search methods, conjugate-direction methods, and simulated
+annealing.
+
+`Heuristic methods` will be introduced in computational intelligence as well as `Bayesian Optimization`.
 
 Let us start with the example and suppose that we want to
 $$
@@ -1790,9 +1834,9 @@ Another related method is `graduated optimization`, which [is a global optimizat
 The simplified scheme of work for the `multilevel optimization` procedure can be represented as follows.
 
 1. Solving the optimization problem using a surrogate model. For this purpose, the method of indirect optimization based on the self-organization (IOSO) is used. This method allows finding the single solution for single-objective optimization or the Pareto-optimal set of solutions for multi-objective problems.
-2. For the obtained solution the indicators of efficiency are updated using the high-fidelity analysis tools. 
-3. The adjustment of a current search region is performed. 
-4. The adjustment of the surrogate model is performed. Depending upon the particular features of the applied mathematical simulation, the adjustment procedure can performed using several approaches. One such approach involves constructing non-linear corrective dependencies. This includes evaluation of the results obtained with different fidelity analysis tools. The other possible approach is application of nonlinear estimation of surrogate model internal parameters. 
+2. For the obtained solution the indicators of efficiency are updated using the high-fidelity analysis tools.
+3. The adjustment of a current search region is performed.
+4. The adjustment of the surrogate model is performed. Depending upon the particular features of the applied mathematical simulation, the adjustment procedure can performed using several approaches. One such approach involves constructing non-linear corrective dependencies. This includes evaluation of the results obtained with different fidelity analysis tools. The other possible approach is application of nonlinear estimation of surrogate model internal parameters.
 5. Replacement of the surrogate model by the adjusted one and the return to step (1).
 
 
@@ -1804,13 +1848,15 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 
 `Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
 
+![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
 
 + [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
 + [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
 + [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
 + [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
 + [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
-+ [https://www.wikiwand.com/en/Non-negative_matrix_factorization](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
++ [Nonnegative matrix factorization A Combinatorial, Primal-Dual approach to Semidefinite Programs with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
++ [A Combinatorial, Primal-Dual approach to Semidefinite Programs](http://www.satyenkale.com/papers/mmw.pdf)
 
 ****
 
