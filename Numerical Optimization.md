@@ -9,7 +9,8 @@ $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVA
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
 * Optimization is aimed to find the parameters that optimizes the evaluation function, i.e.
     $$
-    \arg\min_{\theta} f(\theta)=\{\theta^{*}|f(\theta^*)=\min f(\theta)\}\,\text{or}\,\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
+    \arg\min_{\theta} f(\theta)=\{\theta^{*}|f(\theta^*)=\min f(\theta)\}\,\text{or}
+    \\ \quad\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
     $$
 
 ***********************************************
@@ -729,7 +730,8 @@ L_{\beta}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}{\|Ax+By-b\|}_{2}
 $$
 
 ***
-Augmented Lagrange Method at step $k$ is described as following
+
+Augmented Lagrange Method at step $k$ is described as following:
 
 > 1. $(x^{k+1}, y^{k+1})=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y,\lambda^{\color{aqua}{k}});$
 > 2. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
@@ -833,11 +835,14 @@ x_i\in\mathop{X_i}\in\mathbb{R}^{d_i}, i=1,2,\cdots, n.
 $$
 
 We defined its augmented Lagrangian multipliers as
+
 $$
 L_{\beta}^{n}(x_1,x_2,\cdots, x_n\mid \lambda)=\sum_{i=1}^{n} f_i(x_i) -\lambda^T (\sum_{i=1}^{n} A_i x_i - b) + \frac{\beta}{2}{\|\sum_{i=1}^{n} A_i x_i - b\|}_2^2.
 $$
 
+
 Particularly, we firstly consider the case when $n=3$:
+
 $$
 L_{\beta}^{3}(x, y, z\mid \lambda)=f_1(x) + f_2(y) + f_3(z)-\lambda^T (A_1 x + A_2 y + A_3 z - b)
 \\+\frac{\beta}{2}{\|A_1 x + A_2 y + A_3 z - b\|}_2^2.
@@ -1080,8 +1085,8 @@ $$
 
 [Charles Byrne](http://faculty.uml.edu/cbyrne/cbyrne.html) gives a unified treatment of some iterative optimization algorithms such as auxiliary function methods.
 
-|Young | Recent |Now|
-----|---|---
+Young | Recent |Now
+------|--------|---
 <img src=http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg width = 150% />|<img src =https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg width = 200% />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = 60% />
 
 [He is a featured author of CRC press ](https://www.crcpress.com/authors/i11230-charles-byrne) and [professor in UML](https://www.uml.edu/umass-BMEBT/faculty/Byrne-Charles.aspx)
@@ -1186,6 +1191,7 @@ Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms fo
 integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 
 ***
+
 + https://pratikac.github.io/
 + [Block Relaxation Methods in Statistics by Jan de Leeuw](https://bookdown.org/jandeleeuw6/bras/)
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
@@ -1195,25 +1201,26 @@ integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 + [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
 + [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
 + [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
-+ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
 + [Relaxation and Decomposition Methods for Mixed Integer Nonlinear Programming](https://www.springer.com/gp/book/9783764372385)
 
 *****
 
 ![nonconvex](https://www.math.hu-berlin.de/~stefan/B19/nonconvex.gif)
 
-In order for primal-dual methods to be applicable to a
-constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied. 
-A nonconvex problem can be convexified and transformed
-into one which can be solved with the aid of primal-dual methods.
+In order for primal-dual methods to be applicable to a constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied. 
+A nonconvex problem can be convexified and transformed into one which can be solved with the aid of primal-dual methods.
 
 + [Convexification and Global Optimization in Continuous and Mixed-Integer Nonlinear Programming: Theory, Algorithms, Software, and Applications](https://b-ok.cc/book/2099773/6478de)
 + [Convexification and Global Optimization of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
 + [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
-+ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 + [Conic Optimization Theory: Convexification Techniques and Numerical Algorithms](https://arxiv.org/abs/1709.08841)
 + [Convexification of polynomial optimization problems by means of monomial patterns](http://www.optimization-online.org/DB_FILE/2019/01/7034.pdf)
 + [On convexification/optimization of functionals including an $\ell^2$-misfit term](http://www.maths.lth.se/matematiklu/personal/mc/On%20convexification%20MP%20version%202.pdf)
++ [Lossless Convexification of Nonconvex Control Bound and Pointing Constraints of the Soft Landing Optimal Control Problem](http://larsblackmore.com/iee_tcst13.pdf)
++ [A General Class of Convexification Transformation for the Noninferior Frontier of a Multiobjective Program](http://file.scirp.org/Html/8-1040011_31681.htm)
++ [Implementation of a Convexification Technique for Signomial Functions](http://www.users.abo.fi/alundell/files/Escape19.pdf)
++ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
++ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 
 ## Fixed Point Iteration Methods
 
@@ -1466,10 +1473,9 @@ if possible where $x^{\star}$ optimizes the cost/objective function $f(x)$ speci
 ***
 It is difficult to generalize these methods to stochastic cases.
 
-There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC
-PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
+There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
 
-![http://www.icm2018.org/wp/2018/08/09/jordan-on-data-is-there-an-optimal-way-to-optimize/](http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg)
+![jordan in ICM 2018](http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg)
 
 Some new connections between dynamical systems and optimization is found.
 
@@ -1514,17 +1520,22 @@ $$
 
 https://eta.impa.br/dl/028.pdf
 
-
-
-
-
-## Stochastic Gradient Descent
+## Stochastic Approximation
 
 [Clearing the Jungle of Stochastic Optimization](https://castlelab.princeton.edu/jungle/)
 
 [The Tradeoffs of Large-scale Learning](https://leon.bottou.org/talks/largescale)
 
 ![diff](https://castlelab.princeton.edu/html/images/detvsstoch.jpg)
+[`Stochastic approximation` methods are a family of iterative methods typically used for *root-finding* problems or for *optimization* problems. The recursive update rules of stochastic approximation methods can be used, among other things, for solving linear systems when the collected data is corrupted by noise, or for approximating extreme values of functions which cannot be computed directly, but only estimated via noisy observations.](https://www.wikiwand.com/en/Stochastic_approximation)
+
+- [Kiefer-Wolfowitz Algorithm](https://link.springer.com/chapter/10.1007/978-1-4471-4285-0_4)
+- [Stochatic Process and Application](http://www.math.wayne.edu/~gyin/conf_web/index.html)
+
+### Stochastic Gradient Descent
+
+`Stochastic gradient descent` is classified to stochastic optimization which is considered as the generalization of `gradient descent`.
+
 
 Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
 It is **stochastic gradient** but may not be **descent**.
@@ -1546,7 +1557,7 @@ The stochastic gradient method is defined as
 $$
 \theta^{k+1}=\theta^{k}-\alpha_{k}\frac{1}{m}\sum_{j=1}^{m}\nabla f(\theta^{k}| x_{j}^{\prime})
 $$
-where $x_{j}^{\prime}$ is draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$ on random.
+where $x_{j}^{\prime}$ is draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$ is on random.
 
 It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent.
 There is fluctuations in the total objective function as gradient steps with respect to mini-batches are taken.
@@ -1618,14 +1629,13 @@ See the following links for more information on *stochastic gradient descent*.
 |<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
 
 
-
 ![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 * http://blavatnikawards.org/honorees/profile/leon-bottou/
 * https://leon.bottou.org/projects/sgd
 * https://leon.bottou.org/research/stochastic
 * https://leon.bottou.org/papers/bottou-bousquet-2008
 
-### ADAM
+### ADAM and More
 
 - [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
 - [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
@@ -1663,17 +1673,16 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - [ ] [8th IEEE Workshop Parallel / Distributed Computing and Optimization (PDCO 2018)](https://pdco2018.sciencesconf.org/)
 - [ ] [Distributed Optimization and Control](https://www.nrel.gov/grid/distributed-optimization-control.html)
 - [ ] [ADOPT: Asynchronous Distributed Constraint Optimization with Quality Guarantees](http://teamcore.usc.edu/papers/2005/aij-modi.pdf)
-- [On Distributed Optimization in
-Networked Systems](https://people.kth.se/~kallej/grad_students/johansson_thesis08.pdfs)
+- [On Distributed Optimization in Networked Systems](https://people.kth.se/~kallej/grad_students/johansson_thesis08.pdfs)
 - [Distributed Optimization and Control using Operator Splitting Methods](https://infoscience.epfl.ch/record/255661)
 - [Foundations of Distributed and Large Scale Computing Optimization](http://www-syscom.univ-mlv.fr/~chouzeno/ECP/index.htm)
 - [Distributed Optimization of Large-Scale Complex Networks](https://sites.google.com/site/paolodilorenzohp/research/adaptation-and-learning-over-complex-networks)
-- http://principlesofoptimaldesign.org/
 - [Walkman: A Communication-Efﬁcient Random-Walk Algorithm for Decentralized Optimization](http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html)
 - [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
 - http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
-- http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/
 - http://shivaram.org/publications/hemingway-mlsys-2016.pdf
+- http://principlesofoptimaldesign.org/
+- http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/
 
 
 <img src="http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png" width = "50%" />
@@ -1753,7 +1762,7 @@ independently.
 * http://users.isr.ist.utl.pt/~jmota/DADMM/
 * http://repository.ust.hk/ir/Record/1783.1-66353
 * https://ieeexplore.ieee.org/document/7039496
-* http://www.iutzeler.org/pres/sem_louvain.pdf
+* [DISTRIBUTED ASYNCHRONOUS OPTIMIZATION WITH THE ALTERNATING DIRECTION METHOD OF MULTIPLIERS](http://www.iutzeler.org/pres/sem_louvain.pdf)
 * [Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers by S. Boyd, N. Parikh, E. Chu, B. Peleato, and J. Eckstein](https://web.stanford.edu/~boyd/papers/admm_distr_stats.html)
 * [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.pdf)
 * [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
@@ -1762,9 +1771,17 @@ independently.
 
 **Monotone Operator Splitting Methods for Optimization**
 
-Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures).
+Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures). For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
+$$
+\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda) \to \\
+\arg\min_{x}L_{\beta}(x,y\mid \lambda) \circ
+\\ \,\arg\min_{y}L_{\beta}(x,y\mid \lambda) \circ
+\arg\max_{\lambda} L_{\beta}(x,y,\mid \lambda).
+$$ 
 
 ![](https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90)
+
+They are really some block relaxation techniques.
 
 + https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf
 + [Operator Splitting by Professor Udell @ORIE 6326: Convex Optimization](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
@@ -1780,14 +1797,11 @@ Operator splitting is to decompose one omplicated operator(procedure) into some 
 As shown in `Principle of Optimal Design`, `nongradient methods` are classified into 3 classes:
 
 [We organize the discussion of nongradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
-> Derivative-free optimization (DFO) algorithms differ in the way they use the sampled
-function values to determine the new iterate. One class of methods constructs a linear
-or quadratic model of the objective function and defines the next iterate by seeking to
-minimize this model inside a trust region. We pay particular attention to these model-based
-approaches because they are related to the unconstrained minimization methods described
-in earlier chapters. Other widely used DFO methods include the simplex-reflection method
-of Nelder and Mead, pattern-search methods, conjugate-direction methods, and simulated
-annealing.
+
+> Derivative-free optimization (DFO) algorithms differ in the way they use the sampled function values to determine the new iterate. One class of methods constructs a linear
+or quadratic model of the objective function and defines the next iterate by seeking to minimize this model inside a trust region. We pay particular attention to these model-based
+approaches because they are related to the unconstrained minimization methods described in earlier chapters. Other widely used DFO methods include the simplex-reflection method
+of Nelder and Mead, pattern-search methods, conjugate-direction methods, and simulated annealing.
 
 `Heuristic methods` will be introduced in computational intelligence as well as `Bayesian Optimization`.
 
@@ -1847,6 +1861,10 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 ****
 
 `Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
+The name “multiplicative weights” comes from how we implement the last step: if the weight of the chosen object at step $t$ is $w_t$ before the event, and $G$ represents how well the object did in the event, then we’ll update the weight according to the rule:
+$$
+w_{t+1}=w_{t}(1+G).
+$$
 
 ![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
 
@@ -1855,8 +1873,11 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 + [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
 + [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
 + [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
-+ [Nonnegative matrix factorization A Combinatorial, Primal-Dual approach to Semidefinite Programs with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
++ [Nonnegative matrix factorization with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
 + [A Combinatorial, Primal-Dual approach to Semidefinite Programs](http://www.satyenkale.com/papers/mmw.pdf)
++ [Milosh Drezgich, Shankar Sastry. "Matrix Multiplicative Weights and Non-Zero Sum Games".](https://ptolemy.berkeley.edu/projects/chess/pubs/780.html)
++ [The Matrix Multiplicative Weights Algorithm for Domain Adaptation by David Alvarez Melis](https://people.csail.mit.edu/davidam/assets/publications/MS_thesis/MSThesis.pdf)
++ [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
 
 ****
 

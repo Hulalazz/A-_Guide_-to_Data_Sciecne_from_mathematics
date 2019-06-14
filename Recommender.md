@@ -12,13 +12,13 @@ User Interest is **implicitly** reflected in `Interaction history`, `Demographic
 It is an application of machine learning, which is in the *representation + evaluation + optimization* form. And we will focus on the `representation and evaluation`.
 
 
-- [X] [直接优化物品排序的推荐算法](https://blog.csdn.net/u013166160/article/details/17935193)
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/benfred/implicit
 - [ ] https://github.com/YuyangZhangFTD/awesome-RecSys-papers
 - [ ] https://github.com/daicoolb/RecommenderSystem-Paper
 - [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] https://www.zhihu.com/question/20465266/answer/142867207
+- [X] [直接优化物品排序的推荐算法](https://blog.csdn.net/u013166160/article/details/17935193)
 - [ ] [推荐系统遇上深度学习](https://www.jianshu.com/c/e12d7195a9ff)
 - [ ] [Large-Scale Recommender Systems@UTexas](http://bigdata.ices.utexas.edu/project/large-scale-recommender-systems/)
 - [ ] [Alan Said's publication](https://www.alansaid.com/publications.html)
@@ -26,6 +26,8 @@ It is an application of machine learning, which is in the *representation + eval
 - [ ] [Recommender System Algorithms @ deitel.com](http://www.deitel.com/ResourceCenters/Web20/RecommenderSystems/RecommenderSystemAlgorithms/tabid/1317/Default.aspx)
 - [ ] [Workshop on Recommender Systems: Algorithms and Evaluation](http://sigir.org/files/forum/F99/Soboroff.html)
 - [ ] [Semantic Recommender Systems. Analysis of the state of the topic](https://www.upf.edu/hipertextnet/en/numero-6/recomendacion.html)
+- [ ] [Recommender Systems (2019/1)](https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/)
+- [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 
 **Evaluation of Recommendation System**
 
@@ -33,6 +35,7 @@ The evaluation of machine learning algorithms depends on the tasks.
 The evalution of recommendation system can be regarded as some machine learning models such as regression, classification and so on.
 We only take the mathematical convenience into consideration in the following methods.
 Gini index, covering rate and more realistic factors are not discussed in the following content.
+- [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
 
 ## Collaborative Filtering
 
@@ -654,6 +657,8 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 
 * [Deep Reinforcement Learning for Page-wise Recommendations](https://arxiv.org/abs/1805.02343)
 * [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
++ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
++ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
 _____________
 |Evolution of the Recommender Problem|
 |:---:|
@@ -791,3 +796,5 @@ ______________________________________________________
 - [DIGITAL TECHNOLOGY CENTER@UMN](https://www.dtc.umn.edu/)
 - [The Innovation Center for Artificial Intelligence (ICAI)](https://icai.ai/)
 - [Data Mining and Machine Learning lab (DMML)@ASU](http://dmml.asu.edu/)
+- [Next Generation Personalization Technologies](http://ids.csom.umn.edu/faculty/gedas/NSFcareer/)
+- [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)

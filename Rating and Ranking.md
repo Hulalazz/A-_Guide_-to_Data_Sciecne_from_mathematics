@@ -63,7 +63,7 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
  $$
    r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
  $$
-   where $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1+10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$, $q=\frac{\ln(10)}{400}\approx 0.00575646273$, $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$, $r_i$ represents the ratings of the individual opponents. $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
+   where $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$, $q=\frac{\ln(10)}{400}\approx 0.00575646273$, $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$, $r_i$ represents the ratings of the individual opponents. $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
 
 3. Determine New Ratings Deviation
 
@@ -165,14 +165,14 @@ It is  a way to score the posts, articles or something else based on the users' 
 It is an application of collective decision-making theory in some sense.
 For example, everyone can upvote or downvote  the answers in stackoverflow in the same question, what is the most popular answer to the question? The following links may help a little.
 
-- [ ] http://www.ruanyifeng.com/blog/2012/02/ranking_algorithm_hacker_news.html
-- [ ] http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html
+- [ ] [基于用户投票的排名算法（一）：Delicious和Hacker News](http://www.ruanyifeng.com/blog/2012/02/ranking_algorithm_hacker_news.html)
+- [ ] [基于用户投票的排名算法（五）：威尔逊区间](http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html)
 - [ ] http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
 - [ ] http://www.evanmiller.org/rank-hotness-with-newtons-law-of-cooling.html
 - [ ] http://www.evanmiller.org/ranking-items-with-star-ratings.html
 - [ ] http://www.evanmiller.org/ranking-news-items-with-upvotes.html
 - [ ] http://www.evanmiller.org/bayesian-average-ratings.html
-- [ ] https://www.sciencedirect.com/science/article/pii/S0014579304009354
+- [ ] [Rank products: a simple, yet powerful, new method to detect differentially regulated genes in replicated microarray experiments](https://www.sciencedirect.com/science/article/pii/S0014579304009354)
 
 There are some links on the  collective decision-making theory:
 
@@ -183,11 +183,10 @@ There are some links on the  collective decision-making theory:
 
 ## Ranking
 
+http://www.cs.cmu.edu/~kdelaros/
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every search engine, is responsible for the matching between processed queries and indexed documents in information retrieval.
-The goal of a ranking system is to find the best possible
-ordering of a set of items for a user, within a specific context,
-in real-time in recommender system.
+The goal of a ranking system is to find the best possible ordering of a set of items for a user, within a specific context, in real-time in recommender system.
 
 In general, we call all those methods that use machine learning technologies to solve the problem of ranking **"learning-to-rank"** methods or **LTR** or **L2R**.
 We are designed to compare some indexed document with the query.
@@ -199,26 +198,48 @@ And it can apply to information retrieval and recommender system.
 * https://github.com/cgravier/RankLib
 * http://fastml.com/evaluating-recommender-systems/
 * https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
-* https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/
-* https://blog.csdn.net/cht5600/article/details/54381011
-* https://www.ijcai.org/proceedings/2018/0738.pdf
 * http://quickrank.isti.cnr.it/research-papers/
-* http://learningtorank.isti.cnr.it/
-* https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/
-* http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf
+* [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/)
+* [BPR [Bayesian Personalized Ranking] 算法详解及应用实践](https://blog.csdn.net/cht5600/article/details/54381011)
+* [Unbiased Learning-to-Rank with Biased Feedback@IJCAI](https://www.ijcai.org/proceedings/2018/0738.pdf)
+* [Research and Software on Learning To Rank @ HPC Lab, ISTI-CNR, Pisa, Italy](http://learningtorank.isti.cnr.it/)
+* [CIKM 2018 Papers Notes by Hong Liangjie](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
+* [Unbiased Learning-to-Rank with Biased Feedback](http://www.cs.cornell.edu/people/tj/publications/joachims_etal_17a.pdf)
+* [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
+* [Tasks Track 2015](http://www.cs.ucl.ac.uk/tasks-track-2015/)
+* [TREC 2014 Session Track](http://ir.cis.udel.edu/sessions/)
 
 ![meituan.net](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
 
-http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
+*Learning to Rank* can be classified into [pointwise, pairwise and listless approaches](http://www.l3s.de/~anand/tir15/lectures/ws15-tir-l2r.pdf).
+In breif, the pointwise approach is to find a function whcih can predict the releveance of a query and a given document;
+the pairwise approach is to predict the relevent preference of two document when given a query;
+the listwise approach is to predict the ranks of documents in a list when given a query.
 
-For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
++ [Ranking Models (2018/2) by Rodrygo Santos](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
++ [Temporal Information Retrieval: A course on Information Retreival with a temporal twist, Lecturer: Dr. Avishek Anand](http://www.l3s.de/~anand/tir15/) 
++ [Learn to rank: An overview](https://www.cl.cam.ac.uk/teaching/1516/R222/l2r-overview.pdf)
++ [Learning to Rank: From Pairwise Approach to Listwise Approach](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2007-40.pdf)
++ [Generalization Analysis of Listwise Learning-to-Rank Algorithms](https://icml.cc/Conferences/2009/papers/101.pdf)
++ [Ranking and Filtering by Weinan Zhang](http://wnzhang.net/teaching/cs420/slides/7-ranking-filtering.pdf)
++ [On the Consistency of Ranking Algorithms](https://www.shivani-agarwal.net/Teaching/E0371/Papers/icml10-ranking-consistency.pdf)
++ [Catarina Moreira's master thesis](http://web.ist.utl.pt/~catarina.p.moreira/coursera.html)
+
+**Ranking Metrics**
+
+- [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
+- [A Short Survey on Search Evaluation](https://staff.fnwi.uva.nl/e.kanoulas/a-short-survey-on-search-evaluation/)
+- [Metrics for evaluating ranking algorithms](https://stats.stackexchange.com/questions/159657/metrics-for-evaluating-ranking-algorithms)
+- [Metric Learning to Rank](https://bmcfee.github.io/papers/mlr.pdf)
+- [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 
 ### RankSVM
 
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * https://www.cnblogs.com/bentuwuying/p/6683832.html
 * https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html
-
+* [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
+* [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
 
 ### RankNet
 
@@ -303,15 +324,14 @@ where $\Delta Z$ is the size of the change in some **Information Retrieval Measu
 And $\lambda_{i}$ with respect to ${i}$-th item is defined as
 $$\lambda_i = \sum_{i\in(i,j)}\lambda_{(i,j)}-\sum_{j\in(j,i)}\lambda_{(i,j)}$$
 
-![](https://p0.meituan.net/travelcube/d6142123b31212f4854fd4e53da5831e14664.png)
+<img src=https://p0.meituan.net/travelcube/d6142123b31212f4854fd4e53da5831e14664.png width=50% />
 
 ***
 
 - http://blog.camlcity.org/blog/lambdarank.html
-- http://wnzhang.net/papers/lambdafm.pdf
-- http://quinonero.net/Publications/predicting-clicks-facebook.pdf
-- https://staff.fnwi.uva.nl/e.kanoulas/wp-content/uploads/Lecture-8-1-LambdaMart-Demystified.pdf
-- https://liam.page/uploads/slides/lambdamart.pdf
+- [LambdaFM: Learning Optimal Ranking with Factorization Machines Using Lambda Surrogates](http://wnzhang.net/papers/lambdafm.pdf)
+- [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+
 
 
 ### LambdaMART
@@ -325,58 +345,64 @@ In LambdaRank, we compute the gradient. And we can use this gradient to make up 
 ***
 ![LambdaMART](https://liam.page/uploads/images/LTR/LambdaMART.png)
 ***
+
 To implement LambdaMART we just use MART, specifying appropriate gradients
 and the Newton step.
 The key point is the gradient of the ${\lambda}_i$:
-$$w_i = \frac{\partial y_i}{\partial F_{k-1}(\vec{x}_i)}$$
+$$ w_i = \frac{\partial y_i}{\partial F_{k-1}(\vec{x}_i)} $$
 where $\lambda_i = y_i$ is defined in **LambdaRank**.
 LambdaRank updates all the weights after each query is examined. The
-decisions (splits at the nodes) in LambdaMART, on the other hand, are computed
-using all the data that falls to that node, and so LambdaMART updates only a few
-parameters at a time (namely, the split values for the current leaf nodes), but using
-all the data (since every xi
-lands in some leaf). This means in particular that LambdaMART is able to choose splits and leaf values that may decrease the utility for
-some queries, as long as the overall utility increases.
+decisions (splits at the nodes) in LambdaMART, on the other hand, are computed using all the data that falls to that node, and so LambdaMART updates only a few
+parameters at a time (namely, the split values for the current leaf nodes), but using all the data (since every $x_i$ lands in some leaf). 
+This means in particular that LambdaMART is able to choose splits and leaf values that may decrease the utility for some queries, as long as the overall utility increases.
 
 - [x] https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
 - [X] https://blog.csdn.net/huagong_adu/article/details/40710305
 - [X] https://liam.page/uploads/slides/lambdamart.pdf
 - [ ] https://arxiv.org/abs/1811.04415
-- [ ] https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/
-- [ ] https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/
-- [ ] https://staff.fnwi.uva.nl/e.kanoulas/wp-content/uploads/Lecture-8-1-LambdaMart-Demystified.pdf
-
+- [ ] [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
+- [ ] [Ranknet a ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/)
+- [ ] [LambdaMart Demystified](https://staff.fnwi.uva.nl/e.kanoulas/wp-content/uploads/Lecture-8-1-LambdaMart-Demystified.pdf)
+- [ ] [Unbiased LambdaMART: An Unbiased Pairwise Learning-to-Rank Algorithm](https://arxiv.org/pdf/1809.05818.pdf)
 
 **GBRT+LR** can also used to predict the CTR ratio. On short but incomplete word, it is **GBRT + LR** - **gradient boosting regression tree and logistic regression**.
 GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the same in RankNet.
 
 - [ ] https://arxiv.org/pdf/1811.12776.pdf
-- [ ] https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf
 - [X] https://www.jianshu.com/p/96173f2c2fb4
+- [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 
 
 ### Selective Gradient Boosting
 
-![](https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg)
+![Selective Gradient Boosting](https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg)
 
-- [ ] http://quickrank.isti.cnr.it/selective-data/selective-SIGIR2018.pdf
+- [ ] [Selective Gradient Boosting for Effective Learning to Rank](http://quickrank.isti.cnr.it/selective-data/selective-SIGIR2018.pdf)
 - [ ] [基于Selective Gradient Boosting的排序方法 - BeyondTheData的文章 - 知乎](https://zhuanlan.zhihu.com/p/55768029)
 - [ ] http://quickrank.isti.cnr.it/
-- [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
 - [ ] http://quickrank.isti.cnr.it/research-papers/
-- [ ] https://github.com/Isminoula/DL-to-Rank
+- [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
 - [ ] https://github.com/tensorflow/ranking
 - [ ] https://maciejkula.github.io/spotlight/index.html#
-- [ ] http://quickrank.isti.cnr.it/research-papers/
+
+**QuickScorer**
+
+- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 
 **AdaRank**
 
-- https://github.com/rueycheng/AdaRank
-- https://dl.acm.org/citation.cfm?id=1277809
+- [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
+- [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
 
 **McRank**
 
-- http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf
+The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
+for relevance ranking in Web search in `McRank`.
+
+![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
+
+- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
+
 ### LambdaLoss
 
 LambdaRank is a novel algorithm that incorporates
@@ -396,8 +422,7 @@ previous work, we assume that scores of documents ${s}$ determine a distribution
 Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote
 the distribution. In our framework, we treat the ranked list ${\pi}$ as
 a hidden variable and define the loss based on the likelihood of
-observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a
-mixture model over ${\Pi}$:
+observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a mixture model over ${\Pi}$:
 $$
 P(y|s)=\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s).
 $$
@@ -409,7 +434,7 @@ $$
 
 And such a loss can be minimized by the well-known `Expectation-Maximization (EM)` algorithm.
 
-- [ ] https://ai.google/research/pubs/pub47258
+- [ ] [The LambdaLoss Framework for Ranking Metric Optimization](https://ai.google/research/pubs/pub47258)
 - [ ] http://bendersky.github.io/pubs.html
 - [ ] http://marc.najork.org/
 
@@ -417,33 +442,8 @@ And such a loss can be minimized by the well-known `Expectation-Maximization (EM
 
 We show that the loss functions of these methods are upper bounds of the measure-based ranking errors. As a result, the minimization of these loss functions will lead to the maximization of the ranking measures. The key to obtaining this result is to model ranking as a sequence of classification tasks, and define a so-called essential loss for ranking as the weighted sum of the classification errors of individual tasks in the sequence. We have proved that the essential loss is both an upper bound of the measure-based ranking errors, and a lower bound of the loss functions in the aforementioned methods. Our proof technique also suggests a way to modify existing loss functions to make them tighter bounds of the measure-based ranking errors. Experimental results on benchmark datasets show that the modifications can lead to better ranking performances, demonstrating the correctness of our theoretical analysis.
 
-- [ ] https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/
-- [ ] https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/
-
-### Collaborative Ranking
-
-Collaborative Ranking sounds like collaborative filtering. In fact, collaborative ranking is also used to rank the items based on the feedback from users. [The computation of the Top-N item list for making recommendations is essentially a ranking problem.](http://www.cs.ust.hk/~qyang/Docs/2008/SIGIR297-liu.pdf)
-**The general idea of CR is to combine matrix factorization (MF) with learning-to-rank (LTR) techniques for the purpose of accurately recommending interesting items to users.** More matrix factorization for recommender system techniques  includes SVD, regularized SVD, SVD++ and so on.
-And in this part we only talk on the Top-N recommendation.
-
-* https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
-* https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking
-* http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf
-* http://proceedings.mlr.press/v37/park15.html
-* https://ai.google/research/pubs/pub42242
-* http://proceedings.mlr.press/v80/wu18c.html
-* https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/
-
-
-
-
-**Top-N recommendation**
-
-* http://glaros.dtc.umn.edu/gkhome/node/1192
-* https://www.ijcai.org/Proceedings/16/Papers/339.pdf
-* https://blog.csdn.net/lthirdonel/article/details/80021282
-* https://arxiv.org/abs/1808.04957v1
-* http://ceur-ws.org/Vol-1127/paper4.pdf
+- [ ] [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/)
+- [ ] [RankExplorer: Visualization of Ranking Changes in Large Time Series Data](https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/)
 
 
 ### Bayesian Personalized Ranking
@@ -477,11 +477,10 @@ We introduce a general prior density $P(\Theta)$ which is a normal distribution
 with zero mean and variance-covariance matrix $\Sigma_{\Theta}$:
 $$\Theta\sim N(0, \Sigma_{\Theta}).$$
 
-To reduce the number of unknown
-hyperparameters we set
+To reduce the number of unknown hyperparameters we set
 $$\Sigma_{\Theta}=\lambda_{\Theta}I.$$
-Now we can formulate the **maximum posterior estimator** to derive our
-generic optimization criterion for personalized ranking:
+
+Now we can formulate the **maximum posterior estimator** to derive our generic optimization criterion for personalized ranking:
 $$
 \ln(P(\Theta|\triangleleft_{U}))\\
   =\ln(P(\triangleleft_{U}|\Theta) P(\Theta))\\
@@ -558,7 +557,7 @@ where $\Omega(\Theta)$ is the regularization term used to avoid overfitting.
 See more transfer learning algorithm in [http://csse.szu.edu.cn/staff/panwk/publications/].
 
 * https://www.ijcai.org/Proceedings/13/Papers/396.pdf
-* http://csse.szu.edu.cn/staff/panwk/publications/Journal-TBD-19-CoFiToR-Slides.pdf
+* [Transfer to Rank for Top-N Recommendation](http://csse.szu.edu.cn/staff/panwk/publications/Journal-TBD-19-CoFiToR-Slides.pdf)
 * [The code and data of GBPR](http://csse.szu.edu.cn/staff/panwk/publications/index.html).
 
 **Collaborative Multi-objective Ranking**
@@ -627,8 +626,8 @@ Intuitively, the weight of each loss function should
 be set differently in solving different problems.
 
 
-* http://column.hongliangjie.com/
-* http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf
+* http://column.hongliangjie.com
+* [Learning to Rank with Multiple Objective Functions](http://www.cs.toronto.edu/~mvolkovs/www2011_lambdarank.pdf)
 * https://sites.google.com/site/hujun1010/
 
 
@@ -663,26 +662,61 @@ where the notations are listed as follows:
 
 DORS is designed and implemented in a three-level novel architecture, which includes (1) candidate retrieval; (2) learning-to-rank deep neural network (DNN) ranking; and (3) online
 re-ranking via multi-arm bandits (MAB).
-https://zhuanlan.zhihu.com/p/57056588
-- [ ] [A Practical Deep Online Ranking System in
-E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/09/723.pdf)
-- [ ] http://www.ecmlpkdd2018.org/
-- [ ] https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html
-- [ ] https://academic.microsoft.com/#/detail/2149166361
-- [ ] http://www.wsdm-conference.org/2019/acm-proceedings.php
+- [ ] https://zhuanlan.zhihu.com/p/57056588
+- [ ] [A Practical Deep Online Ranking System in E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/09/723.pdf)
+- [ ] [European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases](http://www.ecmlpkdd2018.org/)
+- [ ] [大众点评基于知识图谱的深度学习排序](https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html)
+- [ ] [Log-Linear Models for Label Ranking](https://academic.microsoft.com/#/detail/2149166361)
+- [ ] [International Conference on Web Search and Data Mining](http://www.wsdm-conference.org/2019/acm-proceedings.php)
+- [ ] [Learning to Rank with Deep Neural Networks](https://github.com/Isminoula/DL-to-Rank)
 
 
 **RankGAN**
 
 
-![](https://x-algo.cn/wp-content/uploads/2018/04/WX20180409-223208@2x-768x267.png)
+![RankGAN](https://x-algo.cn/wp-content/uploads/2018/04/WX20180409-223208@2x-768x267.png)
 
 - https://x-algo.cn/index.php/2018/04/09/rankgan/
 - https://arxiv.org/pdf/1705.10513.pdf
 - http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation
 
++ [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
++ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
+
+![adversial IR](https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png)
 ***
 
 * https://www.wikiwand.com/en/Learning_to_rank
 * https://arxiv.org/abs/1812.00073
 * https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
+
+### Collaborative Ranking
+
+Collaborative Ranking sounds like collaborative filtering. In fact, collaborative ranking is also used to rank the items based on the feedback from users. [The computation of the Top-N item list for making recommendations is essentially a ranking problem.](http://www.cs.ust.hk/~qyang/Docs/2008/SIGIR297-liu.pdf)
+**The general idea of CR is to combine matrix factorization (MF) with learning-to-rank (LTR) techniques for the purpose of accurately recommending interesting items to users.** More matrix factorization for recommender system techniques  includes SVD, regularized SVD, SVD++ and so on.
+And in this part we only talk on the Top-N recommendation.
+
+* https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
+- [ ] [Decoupled Collaborative Ranking](https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking)
+- [ ] [Large-scale Collaborative Ranking in Near-Linear Time](http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf)
+- [ ] [Preference Completion: Large-scale Collaborative Ranking from Pairwise Comparisons](http://proceedings.mlr.press/v37/park15.html)
+- [ ] [Local Collaborative Ranking](https://ai.google/research/pubs/pub42242)
+- [ ] [SQL-Rank: A Listwise Approach to Collaborative Ranking](http://proceedings.mlr.press/v80/wu18c.html)
+- [ ] [Machine Learning: recommendation and ranking](https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/)
+- [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
+- [ ] [Recommendation and ranking by Mark Jelasity](http://www.inf.u-szeged.hu/~jelasity/ddm/graphalgs.pdf)
+
+For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
+
+* http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
+* http://fastml.com/evaluating-recommender-systems/
+ 
+
+**Top-N recommendation**
+
+* http://glaros.dtc.umn.edu/gkhome/node/1192
+* https://www.ijcai.org/Proceedings/16/Papers/339.pdf
+* https://blog.csdn.net/lthirdonel/article/details/80021282
+* https://arxiv.org/abs/1808.04957v1
+* http://ceur-ws.org/Vol-1127/paper4.pdf
+

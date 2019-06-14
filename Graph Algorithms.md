@@ -5,7 +5,7 @@ http://ryanrossi.com/search.php
 https://iss.oden.utexas.edu/
 
 Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
-And graph processing is widely applied in industry and science such as the `graph convolutional network (GCN)`, `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
+And graph processing is widely applied in industry and science such as the `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
 
 A graph ${G=(V,E)}$ consists of a finite set of vertices $V(G)$ and a set of edges $E(G)$ consisting of distinct, unordered pairs of vertices, where nodes stand for entities and edges stand for their connections.
 It is the foundation of **network science**.
@@ -31,10 +31,9 @@ All data in computer machine is digitalized bits. The primitive goal is to repre
 |<img src = https://cdncontribute.geeksforgeeks.org/wp-content/uploads/adjacencymatrix.png width=60% />|
 
 > **Definition**: Let $G$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$.The `adjacency` matrix of $G$, denoted by $A(G)$, is the $n\times n$ matrix defined as follows. The rows and
-> the columns of $A(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $A(G)$ is
-> $0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{1}}$ for $i$ and $j$ adjacent. The
-> $(i,i)$-entry of $A(G)$ is 0 for $i = 1,\dots,n.$ We often denote $A(G)$ simply by $A$.
-> `Adjacency Matrix` is also used to represent `weighted graphs`. If the $(i,i)$-entry of $A(G)$ is $w_{i,j}$, i.e. $A[i][j] = w_{i,j}$, then there is an edge from vertex $i$ to vertex $j$ with weight $w$.
+> the columns of $A(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $A(G)$ is $0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{1}}$ for $i$ and $j$ adjacent. The $(i,i)$-entry of $A(G)$ is 0 for $i = 1,\dots,n.$ We often denote $A(G)$ simply by $A$.
+
+> `Adjacency Matrix` is also used to represent `weighted graphs`. If the $(i, j)$-entry of $A(G)$ is $w_{i, j}$, i.e. $A[i][j] = w_{i, j}$, then there is an edge from vertex $i$ to vertex $j$ with weight $w$.
 > The `Adjacency Matrix` of `weighted graphs` $G$ is also called `weight` matrix of $G$, denoted by $W(G)$ or simply by $W$.
 
 See *Graph representations using set and hash* at <https://www.geeksforgeeks.org/graph-representations-using-set-hash/>.
@@ -75,48 +74,54 @@ Although the adjacency-list representation is asymptotically at least as efficie
 
 It seems that graph theory is partially the application of matrix theory.
 [Graph Algorithms in the Language of Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918?mobileUi=0) shows how to leverage existing parallel matrix computation techniques and the large amount of software infrastructure that exists for these computations to implement efficient and scalable parallel graph algorithms. The benefits of this approach are reduced algorithmic complexity, ease of implementation, and improved performance.
-______
-Matrix Theory        | Graph Theory
----------------------|--------------
-Matrix Addition      |?
-Matrix Powder        |?
-Matrix Multiplication|?
-Spectral Theory      |?
-Jordan Form          |?
-Rank                 |?
-Basis                |?
-_____
+__________________________________
+Matrix Theory        | Graph Theory|-----|---
+---------------------|-------------|-----|---
+Matrix Addition      |?   | Spectral Theory |?
+Matrix Powder        |?   | Jordan Form     |?
+Matrix Multiplication|?   | Rank            |?
+Basis                |  ? | Spectra         |?
+__________________________________
 
-**Definition**. A `walk` in a digraph is an alternating sequence of vertices and
+> **Definition** A `walk` in a digraph is an alternating sequence of vertices and
 edges that begins with a vertex, ends with a vertex, and such that for every edge
-$\left<u\to v\right>$ in the walk, vertex $u$ is the element just before the edge, and vertex $v$ is the
-next element after the edge.
+$\left<u\to v\right>$ in the walk, vertex $u$ is the element just before the edge,
+and vertex $v$ is the next element after the edge.
 
 A payoff of this representation is that we can use matrix powers to count numbers
-of walks between vertices. The matrix ${A(G)}^k$ provides a count of the number of length $k$
+of walks between vertices. The adjacent matrix ${A(G)}^k$ provides a count of the number of length $k$
 walks between vertices in any digraph $G$.
 
 **Definition** The length-k walk counting matrix for an n-vertex graph $G$ is
-the $n \times n$ matrix $C$ such that:
+the $n \times n$ matrix $C^{k}$ such that:
 $$
-C_{uv} ::= \text{the number of length-k walks from $u$ to $v$}.
+C_{uv}^{k} ::= \text{the number of length-k walks from $u$ to $v$}.
 $$
 
 > The length-k counting matrix of a digraph $G$ is ${A(G)}^k$, for all $k\in\mathbb{N}$.
 
-#### Shortest Paths
-#### A* Algorithm
 
-In computer science, A* (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found A* to be superior to other approaches.
-It is draw from [Wikipedia page on A* algorithm](https://www.wikiwand.com/en/A*_search_algorithm).
-
-A **walk** in an undirected graph is a sequence of vertices, where each
+> **Definition** A **walk** in an undirected graph is a sequence of vertices, where each
 successive pair of vertices are adjacent; informally, we can also think of a walk as
 a sequence of edges. A walk is called a **path** if it visits each vertex at most once. For any two vertices $u$ and $v$ in a graph $G$, we say that v is reachable from u
 if $G$ contains a walk (and therefore a path) between $u$ and $v$. An undirected
 graph is connected if every vertex is reachable from every other vertex.
 A **cycle** is a path that starts and ends at the same vertex and has at least one
 edge.
+
+#### Shortest Paths
+
+In graph theory, the `shortest path` problem is the problem of finding a path between two vertices (or nodes) in a graph such that the sum of the weights of its constituent edges is minimized.
+
+Given the start node and end node, it is supposed to identify whether there is a path and find the shortest path(s) among all these possible paths.
+
+The distance between the node $u$ and $v$ is the minimal number $k$ that makes $A^{k}_{uv}>0$.
+
+#### $A^{\ast}$ Algorithm
+
+ As introduced in wikipedia, $A^{\ast}$ algorithm has its advantages and disadvantages:
+> In computer science, $A^{\ast}$ (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found A* to be superior to other approaches.
+
 
 First we learn the **Dijkstra's algorithm**.
 Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist [Edsger W. Dijkstra](https://www.wikiwand.com/en/Edsger_W._Dijkstra) in 1956 and published three years later.
@@ -129,7 +134,7 @@ Dijkstra's algorithm is an algorithm for finding the shortest paths between node
 + https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 + https://www.wikiwand.com/en/Shortest_path_problem
 + https://www.cnblogs.com/chxer/p/4542068.html
-+ http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html
++ [Introduction to A*: From Amit’s Thoughts on Pathfinding](http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html)
 
 
 See the page at Wikipedia [A* search algorithm](https://www.wikiwand.com/en/A*_search_algorithm)
@@ -151,29 +156,33 @@ algebraic operations and fundamental graph operations
 + [Mathematics of Big Data: Spreadsheets, Databases, Matrices, and Graphs](http://www.mit.edu/~kepner/D4M/MathOfBigData.html)
 + [Dual Adjacency Matrix: Exploring Link Groups in Dense Networks by K. Dinkla  N. Henry Riche  M.A. Westenberg](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.12643)
 
-- [On the p-Rank of the Adjacency Matrices
-of Strongly Regular Graphs](http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JACO/Volume1_4/q1ur742gt117v044.fulltext.pdf)
-- []()
-
-#### Chain
-
-Chain is the simplest graph such as the Markov chain in probabilistic graph model and linked list in data structure. The adjacent matrix of chain is some sparse diagonal matrix, directed or not.
-Thus different kinds of graph structure correspond to different family of matrix.
+- [On the p-Rank of the Adjacency Matrices of Strongly Regular Graphs](http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JACO/Volume1_4/q1ur742gt117v044.fulltext.pdf)
+- [Matrix techniques for strongly regular graphs and related geometries](http://cage.ugent.be/~fdc/intensivecourse2/haemers2.pdf)
 
 
-#### Tree
+#### Directed Acyclic Graph
 
-A tree is a connected acyclic graph.
+`Directed acyclic graph` is the directed graph without any cycles. It is used widely in scheduling, distributed computation.
 
-#### Binary Trees
 
-#### Black-red Tree
+> **Definition** The acyclic graph is called `forest`. A connected acyclic graph is called a `tree`.
 
-#### Bigraph
+A graph $G$ is a tree if and only if $G$ is a forest and $|V(G)|=|E(G)| + 1$.
 
-#### DAG
+#### Graph Partitioning
 
-`Directed acyclic graph`
+[The fundamental problem that is trying to solve is that of splitting a large irregular graphs into k parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
+The partitioning is usually done so that it satisfies certain constraints and optimizes certain objectives. The most common constraint is that of producing equal-size partitions, whereas the most common objective is that of minimizing the number of cut edges (i.e., the edges that straddle partition boundaries). However, in many cases, different application areas tend to require their own type of constraints and objectives; thus, making the problem all that more interesting and challenging!
+
+The research in the lab is focusing on a class of algorithms that have come to be known as multilevel graph partitioning algorithms. These algorithms solve the problem by following an approximate-and-solve paradigm, which is very effective for this as well as other (combinatorial) optimization problems.
+
+Over the years we focused and produced good solutions for a number of graph-partitioning related problems. This includes partitioning algorithms for graphs corresponding to finite element meshes, multilevel nested dissection, parallel graph/mesh partitioning, dynamic/adaptive graph repartitioning, multi-constraint and multi-objective partitioning, and circuit and hypergraph partitioning.](http://glaros.dtc.umn.edu/gkhome/views/projects)
+
++ [Graph Partitioning](http://glaros.dtc.umn.edu/gkhome/views/projects)
+
+![Moore Graphs](https://jeremykun.files.wordpress.com/2016/11/hoffman_singleton_graph_circle2.gif?w=900)
+
+[A Spectral Analysis of Moore Graphs](https://jeremykun.com/2016/11/03/a-spectral-analysis-of-moore-graphs/)
 
 
 #### Spectral Clustering Algorithm
@@ -228,17 +237,22 @@ $$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-\alpha^k A^k)
 
 + https://www.wikiwand.com/en/Graph_product
 + https://www.wikiwand.com/en/Graph_kernel
-+ http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf
-+ https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf
-+ https://github.com/BorgwardtLab/graph-kernels
++ [Graph Kernels](http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf)
++ [GRAPH KERNELS by Karsten M. Borgwardt](https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf)
++ [List of graph kernels](https://github.com/BorgwardtLab/graph-kernels)
 + [Deep Graph Kernel](http://www.mit.edu/~pinary/kdd/YanVis15.pdf)
-+ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/
-
-https://github.com/benedekrozemberczki/awesome-graph-embedding
-https://leon.bottou.org/publications/pdf/transducer-1996.pdf
++ [Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/)
++ [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
++ [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
 
 
 ### Computational Graph
+
+Computational graphs are a nice way to think about mathematical expressions, where the mathematical expression will be in the decomposed form and in topological order.
+
+![Computational Graph](https://colah.github.io/posts/2015-08-Backprop/img/tree-eval.png)
+
+[To create a computational graph, we make each of these operations, along with the input variables, into nodes. When one node’s value is the input to another node, an arrow goes from one to another.These sorts of graphs come up all the time in computer science, especially in talking about functional programs. They are very closely related to the notions of dependency graphs and call graphs. They’re also the core abstraction behind the popular deep learning framework `TensorFlow`.](https://colah.github.io/posts/2015-08-Backprop/)
 
 * https://colah.github.io/posts/2015-08-Backprop/
 * [Visualization of Computational Graph@chainer.org](https://docs.chainer.org/en/stable/reference/graph.html)
@@ -259,6 +273,11 @@ __________________________________
 * http://www.andres.sc/graph.html
 * https://github.com/sungyongs/graph-based-nn
 * [Probabilistische Graphische Modelle](https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html)
-+ [NetworkX is a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.](https://networkx.github.io/documentation/stable/index.html)
++ [NetworkX : a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks](https://networkx.github.io/documentation/stable/index.html)
 + [The Neo4j Graph Algorithms User Guide v3.5](https://github.com/neo4j-contrib/neo4j-graph-algorithms)
 + [Matlab tools for working with simple graphs](https://github.com/scheinerman/matgraph)
++ [GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms](https://julialang.org/blog/2019/02/light-graphs)
++ [Graph theory (network) library for visualisation and analysis](http://js.cytoscape.org/)
++ [graph-tool | Efficient network analysis](https://graph-tool.skewed.de/)
++ [JGraphT: a Java library of graph theory data structures and algorithms](https://jgrapht.org/)
++ [Stanford Network Analysis Project](http://snap.stanford.edu/)
