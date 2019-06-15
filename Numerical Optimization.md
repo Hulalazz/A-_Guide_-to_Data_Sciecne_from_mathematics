@@ -726,14 +726,14 @@ where $f(x)$ and $g(y)$ is convex; ${A}$ and ${B}$ are matrices.
 
 Define the augmented Lagrangian:
 $$
-L_{\beta}(x,y)=f(x)+g(y) - \lambda^{T}(Ax+By-b)+\frac{\beta}{2}{\|Ax+By-b\|}_{2}^{2}.
+L_{\beta}(x, y)=f(x)+g(y) - \lambda^{T}(Ax + By -b)+ \frac{\beta}{2}{\|Ax + By - b\|}_{2}^{2}.
 $$
 
 ***
 
 Augmented Lagrange Method at step $k$ is described as following:
 
-> 1. $(x^{k+1}, y^{k+1})=\arg\min_{x\in\mathbf{X}}L_{\beta}(x,y,\lambda^{\color{aqua}{k}});$
+> 1. $(x^{k+1}, y^{k+1})=\arg\min_{x\in\mathbf{X}}L_{\beta}(x, y,\lambda^{\color{aqua}{k}});$
 > 2. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
 
 ***
@@ -1135,9 +1135,9 @@ where $B(x,x^{k-1})=f_1(x)-f_1(x^{k-1})-\left<\nabla f_1(x^{k-1}),x-x^{k-1}\righ
 > * $p^{n+1}=\arg\min_{p\in P} f(p,q^n)$,
 > * $q^{n+1}=\arg\min_{p\in Q} f(p^{n+1},q)$,
 
-where $f(p,q), p\in  P, q\in Q$ is the objective function. It is proved that the sequence $f(p^n,q^n)$ converge tothe minimizer  if the `Five-Point Property` hold:
+where $f(p, q), p\in  P, q\in Q$ is the objective function. It is proved that the sequence $f(p^n, q^n)$ converge tothe minimizer  if the `Five-Point Property` hold:
 $$
-f(p,q) + f(p,q^{n-1}) \geq f(p,q^{n}) + f(p^n,q^{n-1}).
+f(p, q) + f(p, q^{n-1}) \geq f(p, q^{n}) + f(p^n, q^{n-1}).
 $$
 
 For each p in the set P, define $q(p)$ in Q as a member of Q for which $f(p; q(p)) \leq f(p; q)$, for all $q \in P$. Let $\hat{f}(p) = f(p; q(p))$.
@@ -1207,7 +1207,7 @@ integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 
 ![nonconvex](https://www.math.hu-berlin.de/~stefan/B19/nonconvex.gif)
 
-In order for primal-dual methods to be applicable to a constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied. 
+In order for primal-dual methods to be applicable to a constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied.
 A nonconvex problem can be convexified and transformed into one which can be solved with the aid of primal-dual methods.
 
 + [Convexification and Global Optimization in Continuous and Mixed-Integer Nonlinear Programming: Theory, Algorithms, Software, and Applications](https://b-ok.cc/book/2099773/6478de)
@@ -1532,6 +1532,18 @@ https://eta.impa.br/dl/028.pdf
 - [Kiefer-Wolfowitz Algorithm](https://link.springer.com/chapter/10.1007/978-1-4471-4285-0_4)
 - [Stochatic Process and Application](http://www.math.wayne.edu/~gyin/conf_web/index.html)
 
+
+**Robbins–Monro algorithm** introduced in 1951 by Herbert Robbins and Sutton Monro, presented a methodology for solving a root finding problem, where the function is represented as an expected value. Assume that we have a function ${\textstyle M(\theta )}$, and a constant ${\textstyle \alpha }$, such that the equation ${\textstyle M(\theta )=\alpha }$ has a unique root at ${\textstyle \theta ^{\ast}}$. It is assumed that while we cannot directly observe the function ${\textstyle M(\theta )}$, we can instead obtain measurements of the random variable ${\textstyle N(\theta )}$ where ${\textstyle \operatorname {E} [N(\theta )]=M(\theta )}$. The structure of the algorithm is to then generate iterates of the form:
+$${\displaystyle \theta _{n+1}=\theta _{n}-a_{n}(N(\theta _{n})-\alpha )}$$
+Here, $a_{1},a_{2},\dots$  is a sequence of positive step sizes. Robbins and Monro proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
+
+${\textstyle N(\theta )}$ is uniformly bounded,
+${\textstyle M(\theta )}$ is nondecreasing,
+${\textstyle M'(\theta ^{*})}$ exists and is positive, and
+The sequence ${\textstyle a_{n}}$ satisfies the following requirements:
+$$\sum_{n=0}^{\infty} a_{n}=\infty \quad \mbox{ and }\quad \sum_{n=0}^{\infty} a_{n}^{2} < \infty \quad$$ 
+A particular sequence of steps which satisfy these conditions, and was suggested by Robbins–Monro, have the form: ${\textstyle a_{n}=a/n}$, for ${\textstyle a>0}$. Other series are possible but in order to average out the noise in ${\textstyle N(\theta )}$, the above condition must be met.
+
 ### Stochastic Gradient Descent
 
 `Stochastic gradient descent` is classified to stochastic optimization which is considered as the generalization of `gradient descent`.
@@ -1773,11 +1785,14 @@ independently.
 
 Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures). For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
 $$
-\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda) \to \\
+\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda) 
+$$
+to
+$$
 \arg\min_{x}L_{\beta}(x,y\mid \lambda) \circ
 \\ \,\arg\min_{y}L_{\beta}(x,y\mid \lambda) \circ
 \arg\max_{\lambda} L_{\beta}(x,y,\mid \lambda).
-$$ 
+$$
 
 ![](https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90)
 

@@ -1905,6 +1905,14 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 
 
 [Differential geometry based geometric data analysis (DG-GDA) of molecular datasets](https://weilab.math.msu.edu/DG-GL/)
+
+## DeepRL
+
++ https://spinningup.openai.com/en/latest/
++ http://rll.berkeley.edu/deeprlcoursesp17/
++ https://simoninithomas.github.io/Deep_reinforcement_learning_Course/
++ https://fullstackdeeplearning.com/march2019
+
 ## Network Compression and Acceleration
 
 The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
@@ -2104,6 +2112,7 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * https://zhuanlan.zhihu.com/p/44003318
 * https://deepai.org/
 * https://deepnotes.io/deep-clustering
+* http://www.phontron.com/class/nn4nlp2019/schedule.html
 
 
 ***

@@ -174,18 +174,22 @@ For example, everyone can upvote or downvote  the answers in stackoverflow in th
 - [ ] http://www.evanmiller.org/bayesian-average-ratings.html
 - [ ] [Rank products: a simple, yet powerful, new method to detect differentially regulated genes in replicated microarray experiments](https://www.sciencedirect.com/science/article/pii/S0014579304009354)
 
+[This is the “paradox of voting”. Discovered by the Marquis de Condorcet (1785), it shows that possibilities for choosing rationally can be lost when individual preferences are aggregated into social preferences.](https://plato.stanford.edu/entries/arrows-theorem/)
+
 There are some links on the  collective decision-making theory:
 
-* https://www.wikiwand.com/en/Arrow%27s_impossibility_theorem
+* https://www.wikiwand.com/Arrow%27s_impossibility_theorem
 * https://plato.stanford.edu/entries/arrows-theorem/
-* https://www.math.ucla.edu/~tao/arrow.pdf
-* https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem
+* [Arrow's THeorem by Terence Tao](https://www.math.ucla.edu/~tao/arrow.pdf)
+* [Gibbard–Satterthwaite theorem @ wikiwand](https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem)
 
 ## Ranking
 
 http://www.cs.cmu.edu/~kdelaros/
+[Raning in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
+
 Combining feedback from multiple users to rank a collection of items is an important task.
-The ranker, a central component in every search engine, is responsible for the matching between processed queries and indexed documents in information retrieval.
+The ranker, a central component in every `search engine`, is responsible for the matching between processed queries and indexed documents in information retrieval.
 The goal of a ranking system is to find the best possible ordering of a set of items for a user, within a specific context, in real-time in recommender system.
 
 In general, we call all those methods that use machine learning technologies to solve the problem of ranking **"learning-to-rank"** methods or **LTR** or **L2R**.
@@ -197,8 +201,8 @@ And it can apply to information retrieval and recommender system.
 
 * https://github.com/cgravier/RankLib
 * http://fastml.com/evaluating-recommender-systems/
-* https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
 * http://quickrank.isti.cnr.it/research-papers/
+* [Explicit feedback movie recommendations@spotlight](https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit)
 * [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/)
 * [BPR [Bayesian Personalized Ranking] 算法详解及应用实践](https://blog.csdn.net/cht5600/article/details/54381011)
 * [Unbiased Learning-to-Rank with Biased Feedback@IJCAI](https://www.ijcai.org/proceedings/2018/0738.pdf)
@@ -208,44 +212,120 @@ And it can apply to information retrieval and recommender system.
 * [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 * [Tasks Track 2015](http://www.cs.ucl.ac.uk/tasks-track-2015/)
 * [TREC 2014 Session Track](http://ir.cis.udel.edu/sessions/)
+* [Introduction to Information Retrievel](https://nlp.stanford.edu/IR-book/)
 
 ![meituan.net](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
 
 *Learning to Rank* can be classified into [pointwise, pairwise and listless approaches](http://www.l3s.de/~anand/tir15/lectures/ws15-tir-l2r.pdf).
-In breif, the pointwise approach is to find a function whcih can predict the releveance of a query and a given document;
-the pairwise approach is to predict the relevent preference of two document when given a query;
+In brief, the pointwise approach is to find a function which can predict the relevance of a query and a given document;
+the pairwise approach is to predict the relative  preference of two document when given a query;
 the listwise approach is to predict the ranks of documents in a list when given a query.
 
 + [Ranking Models (2018/2) by Rodrygo Santos](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
-+ [Temporal Information Retrieval: A course on Information Retreival with a temporal twist, Lecturer: Dr. Avishek Anand](http://www.l3s.de/~anand/tir15/) 
++ [Temporal Information Retrieval: A course on Information Retrieval with a temporal twist, Lecturer: Dr. Avishek Anand](http://www.l3s.de/~anand/tir15/)
 + [Learn to rank: An overview](https://www.cl.cam.ac.uk/teaching/1516/R222/l2r-overview.pdf)
 + [Learning to Rank: From Pairwise Approach to Listwise Approach](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2007-40.pdf)
 + [Generalization Analysis of Listwise Learning-to-Rank Algorithms](https://icml.cc/Conferences/2009/papers/101.pdf)
 + [Ranking and Filtering by Weinan Zhang](http://wnzhang.net/teaching/cs420/slides/7-ranking-filtering.pdf)
 + [On the Consistency of Ranking Algorithms](https://www.shivani-agarwal.net/Teaching/E0371/Papers/icml10-ranking-consistency.pdf)
 + [Catarina Moreira's master thesis](http://web.ist.utl.pt/~catarina.p.moreira/coursera.html)
++ [Ranking in Information Retrieval](https://www.cse.iitb.ac.in/internal/techreports/reports/TR-CSE-2010-31.pdf)
+- [ ] [Learning Groupwise Scoring Functions Using Deep Neural Networks](https://arxiv.org/abs/1811.04415)
+
 
 **Ranking Metrics**
 
+The metrics or evaluation is different in regression and classification. And many loss function is introduced in maximum likelihood estimation.
+
+![Recall](https://nlp.stanford.edu/IR-book/html/htmledition/img532.png)
+
+`Precision` measures the exactness of the retrieval process. If the actual set of relevant documents is denoted by _I_ and the retrieved set of documents is denoted by _O_, then the precision is given by:
+$$Precision= \frac{|O\cap I|}{|O|}.$$
+
+`Recall` is a measure of completeness of the IR process. If the actual set of relevant documents is denoted by _I_ and the retrieved set of documents is denoted by _O_, then the recall is given by:
+$$Recall=\frac{|O\cap I|}{|O|}.$$
+
+`F1 Score` tries to combine the precision and recall measure. It is the harmonic mean of the two. If _P_ is the precision and _R_ is the recall then the F-Score is given by:
+$$F1 = 2\frac{P\times R}{P+R}.$$
+
+Precision and recall are single-value metrics based on the whole list of documents returned by the system. For systems that return a ranked sequence of documents, it is desirable to also consider the order in which the returned documents are presented. By computing a precision and recall at every position in the ranked sequence of documents, one can plot a precision-recall curve, plotting precision $p(r)$ as a function of recall $r$. 
+`Average precision` computes the average value of $p(r)$ over the interval from $r=0$ to $r=1$:
+$$
+AveP=\int_{0}^{1} p(r)\mathrm{d} r.
+$$
+
+That is the area under the precision-recall curve. This integral is in practice replaced with a finite sum over every position in the ranked sequence of documents:
+$$
+AveP= \sum_{k=1}^{n} p(k)\Delta r(k).
+$$
+where $k$ is the rank in the sequence of retrieved documents, $n$ is the number of retrieved documents, $P(k)$ is the precision at cut-off k in the list, and $\Delta r(k)$ is the change in recall from items $k-1$ to $k$.
+****
+`Cumulative Gain (CG)` is the predecessor of DCG and does not include the position of a result in the consideration of the usefulness of a result set. In this way, it is the sum of the graded relevance values of all results in a search result list. The CG at a particular rank position _p_ is defined as:
+$${CG}_p=\sum_{i=1}^{p}{rel}_i$$
+
+Where ${rel}_{i}$ is the graded relevance of the result at position _i_.
+
+The premise of `Discounted Cumulative Gain(DCG)` is that highly relevant documents appearing lower in a search result list should be penalized as the graded relevance value is reduced logarithmically proportional to the position of the result.
+
+The traditional formula of _DCG_ accumulated at a particular rank position p is defined as:
+$$
+{DCG}_p= \sum_{i=1}^{p}\frac{{rel}_i}{{\log}_{2}(i+1)}
+$$
+For every pair of substantially different ranking functions, it has shown that the NDCG can decide which one is better in a consistent manner.
+
+An alternative formulation of _DCG_ places stronger emphasis on retrieving relevant documents:
+$$
+{DCG}_p= \sum_{i=1}^{p}\frac{2^{{rel}_i}-1}{{\log}_{2}(i+1)}
+$$
+
+For a query, the normalized discounted cumulative gain, or `nDCG`, is computed as:
+$$
+{nDCG}_p=\frac{{DCG}_p}{{IDCG}_p}
+$$
+
+where `IDCG` is ideal discounted cumulative gain,
+$$
+{IDCG}_p = \sum_{i=1}^{|REL_p|}\frac{2^{{rel}_i}-1}{{\log}_{2}(i+1)}
+$$
+and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered by their relevance) in the corpus up to position _p_.
+
+- [信息检索中的评价指标MAP和NDCG](http://lixinzhang.github.io/xin-xi-jian-suo-zhong-de-ping-jie-zhi-biao-maphe-ndcg.html)
+- [Discounted cumulative gain@wikiwand](https://www.wikiwand.com/en/Discounted_cumulative_gain)
 - [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
 - [A Short Survey on Search Evaluation](https://staff.fnwi.uva.nl/e.kanoulas/a-short-survey-on-search-evaluation/)
 - [Metrics for evaluating ranking algorithms](https://stats.stackexchange.com/questions/159657/metrics-for-evaluating-ranking-algorithms)
 - [Metric Learning to Rank](https://bmcfee.github.io/papers/mlr.pdf)
 - [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
+- [Evaluation of Ranking @ Stanford CS276](https://web.stanford.edu/class/cs276/handouts/EvaluationNew-handout-6-per.pdf)
+- [Evaluation measure in information retrieval @ wikiwand](https://www.wikiwand.com/en/Evaluation_measures_(information_retrieval))
+- [mAP（mean average precision）平均精度均值](https://www.jianshu.com/p/82be426f776e)
 
 ### RankSVM
 
+> The basic idea of SVMrank is to attempt to minimize the number of misclassified document pairs. This is achieved by modifying the default support vector machine optimization problem, which considers a set of documents, by constraining the optimization problem to perform the minimization of each pair of documents.
+
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * https://www.cnblogs.com/bentuwuying/p/6683832.html
-* https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html
+* [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
 * [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
 * [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
+
+### McRank
+
+The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
+for relevance ranking in Web search in `McRank`.
+
+![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
+
+- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
 
 ### RankNet
 
 > RankNet is a feedforward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
 
 RankNet takes the ranking  as **regression** task.
+
+![RankNet](http://web.ist.utl.pt/~catarina.p.moreira/images/ranknet.png)
 
 Suppose that two players $u_i$ and $u_j$ with feature vectors $x_i$ and $x_j$ is presented to the model, which computes the scores $s_i = f(x_i)$ and $s_j = f(x_j)$.
 Another output of the model is the probability that $U_i$ should be ranked
@@ -353,13 +433,12 @@ $$ w_i = \frac{\partial y_i}{\partial F_{k-1}(\vec{x}_i)} $$
 where $\lambda_i = y_i$ is defined in **LambdaRank**.
 LambdaRank updates all the weights after each query is examined. The
 decisions (splits at the nodes) in LambdaMART, on the other hand, are computed using all the data that falls to that node, and so LambdaMART updates only a few
-parameters at a time (namely, the split values for the current leaf nodes), but using all the data (since every $x_i$ lands in some leaf). 
+parameters at a time (namely, the split values for the current leaf nodes), but using all the data (since every $x_i$ lands in some leaf).
 This means in particular that LambdaMART is able to choose splits and leaf values that may decrease the utility for some queries, as long as the overall utility increases.
 
-- [x] https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/
-- [X] https://blog.csdn.net/huagong_adu/article/details/40710305
-- [X] https://liam.page/uploads/slides/lambdamart.pdf
-- [ ] https://arxiv.org/abs/1811.04415
+- [x] [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
+- [X] [Learning To Rank之LambdaMART的前世今生](https://blog.csdn.net/huagong_adu/article/details/40710305)s
+- [X] [LambdaMart Slides](https://liam.page/uploads/slides/lambdamart.pdf)
 - [ ] [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
 - [ ] [Ranknet a ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/)
 - [ ] [LambdaMart Demystified](https://staff.fnwi.uva.nl/e.kanoulas/wp-content/uploads/Lecture-8-1-LambdaMart-Demystified.pdf)
@@ -394,15 +473,6 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
 - [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
 
-**McRank**
-
-The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
-for relevance ranking in Web search in `McRank`.
-
-![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
-
-- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
-
 ### LambdaLoss
 
 LambdaRank is a novel algorithm that incorporates
@@ -435,7 +505,7 @@ $$
 And such a loss can be minimized by the well-known `Expectation-Maximization (EM)` algorithm.
 
 - [ ] [The LambdaLoss Framework for Ranking Metric Optimization](https://ai.google/research/pubs/pub47258)
-- [ ] http://bendersky.github.io/pubs.html
+- [ ] [Michael Bendersky's pibilication on rankig](http://bendersky.github.io/pubs.html)
 - [ ] http://marc.najork.org/
 
 **Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank**
@@ -494,12 +564,12 @@ where $\lambda_{\Theta}$ are model specific regularization parameters.
 And we can use stochastic gradient descent to find the parameters $\Theta$.
 ***
 
-- [ ] http://lipixun.me/2018/01/22/bpr
-- [ ] https://liuzhiqiangruc.iteye.com/blog/2073526
-- [ ] https://blog.csdn.net/cht5600/article/details/54381011
-- [ ] https://blog.csdn.net/qq_20599123/article/details/51315697
-- [ ] https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
-- [ ] https://arxiv.org/pdf/1510.01784.pdf
+- [ ] [论文快读 - BPR: Bayesian Personalized Ranking from Implicit Feedback](http://lipixun.me/2018/01/22/bpr)
+- [ ] [BPR [Bayesian Personalized Ranking] 算法详解及应用实践](https://liuzhiqiangruc.iteye.com/blog/2073526)
+- [ ] [BPR [Bayesian Personalized Ranking] 算法详解及应用实践](https://blog.csdn.net/cht5600/article/details/54381011)
+- [ ] [BPR：面向隐偏好数据的贝叶斯个性化排序学习模型](https://blog.csdn.net/qq_20599123/article/details/51315697)
+- [ ] [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf)
+- [ ] [VBPR: Visual Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/pdf/1510.01784.pdf)
 - [ ] [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 
 
@@ -556,7 +626,7 @@ where $\Omega(\Theta)$ is the regularization term used to avoid overfitting.
 
 See more transfer learning algorithm in [http://csse.szu.edu.cn/staff/panwk/publications/].
 
-* https://www.ijcai.org/Proceedings/13/Papers/396.pdf
+* [The paper of GBPR](https://www.ijcai.org/Proceedings/13/Papers/396.pdf)
 * [Transfer to Rank for Top-N Recommendation](http://csse.szu.edu.cn/staff/panwk/publications/Journal-TBD-19-CoFiToR-Slides.pdf)
 * [The code and data of GBPR](http://csse.szu.edu.cn/staff/panwk/publications/index.html).
 
@@ -573,13 +643,13 @@ ranking problems through a parameter sharing framework which optimizes three obj
 scores, to satisfy the user-specific order constraints on all the rated items, and to satisfy the item-specific order constraints.
 
 
-And the above algorithms are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1+\exp(-ax)}$ as the surrogate of zero-one loss such as the  **Bradley-Terry Model** and **Bayesian Personalized Ranking**.
+And the above algorithms are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1 + \exp(-ax)}$ as the surrogate of zero-one loss such as the  **Bradley-Terry Model** and **Bayesian Personalized Ranking**.
 
 In logistic function, the value of "a" determines the shape of the function. In other words, it tells how close the approximation of logistic function to the zero-one loss. However, in the context of matrix factorization, the change of ${U_u}$ doesn’t necessarily
 contribute to the change of approximation to zero-one loss as any change to ${U_u}$ (e.g., double ${U_u}$ ) can be compensated by changing all the item factors $V_i$ accordingly (e.g., reduce $V_i$ by half).
 
 
-The general idea of matrix factorization is to assume that the rating matrix $R \in \mathbb{R}^{m\times n}$ has low rank and thus it can be approximated by $R = UV^⊺$, 
+The general idea of matrix factorization is to assume that the rating matrix $R \in \mathbb{R}^{m\times n}$ has low rank and thus it can be approximated by $R = UV^⊺$,
 where $U\in \mathbb{R}^{m\times k}$ and $V ∈ \mathbb{R}^{n\times k}$ respectively represent user latent factors and item latent factors, and ${k}$ is the rank of
 approximation.
 The prediction loss of rating prediction through matrix factorization on the training set is formulated as
@@ -621,7 +691,7 @@ $$
 L= \alpha L_{column-wise}  + \beta L_{row-wise} +(1-\alpha -\beta)L_{point-wise}
 $$
 
-where balance factors $\alpha$ and $\beta$ are set to model the importance of individual losses. 
+where balance factors $\alpha$ and $\beta$ are set to model the importance of individual losses.
 Intuitively, the weight of each loss function should
 be set differently in solving different problems.
 
@@ -649,10 +719,10 @@ $$
 
 where the notations are listed as follows:
 
-- $\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms; 
-- $E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair; 
-- $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$; 
-- $\mathbb{O}$ is the set of all observed user-item interactions; 
+- $\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms;
+- $E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair;
+- $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$;
+- $\mathbb{O}$ is the set of all observed user-item interactions;
 - ${\beta}_{u}$ is defined as reciprocal of the number of user $u$'s  historical items  ${\beta}_{u}=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).
 
 ***
@@ -710,7 +780,7 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 
 * http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
 * http://fastml.com/evaluating-recommender-systems/
- 
+
 
 **Top-N recommendation**
 
@@ -720,3 +790,10 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 * https://arxiv.org/abs/1808.04957v1
 * http://ceur-ws.org/Vol-1127/paper4.pdf
 
+
+### Personalized Search
+
+* https://www.algolia.com/
+* https://www.cognik.net/
+* [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
+* [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
