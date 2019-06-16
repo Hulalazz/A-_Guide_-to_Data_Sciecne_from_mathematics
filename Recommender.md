@@ -633,9 +633,9 @@ therefore provide a precise insight of what items and topics users might be inte
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
 * https://www.comp.nus.edu.sg/~xiangnan/papers/www18-tutorial-deep-matching.pdf
-* http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf
-* https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf
-* http://www.wanghao.in/CDL.htm
+* [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
+* [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
+* [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
 
 **Social Recommendation**
 
@@ -655,8 +655,9 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 
 **Reinforcement Learning and RecSys**
 
-* [Deep Reinforcement Learning for Page-wise Recommendations](https://arxiv.org/abs/1805.02343)
-* [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
+* [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
+* [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
++ [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 + [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
 _____________
@@ -686,7 +687,7 @@ In fact, its essence is bagging or blending, which is one sequential ensemble st
 
 In this section, the boosting is the focus, which is to reduce the error and boost the performance from a weaker learner.
 
-There are two common methods to construct a stronger learner from a weaker learner: (1) rewight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting. 
+There are two common methods to construct a stronger learner from a weaker learner: (1) rewight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting.
 
 - [General Functional Matrix Factorization Using Gradient Boosting](http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf)
 
@@ -701,9 +702,25 @@ In this framework, multiple homogeneous component recommenders are linearly comb
 The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
 
 Here explicit feedback refers to users' ratings to items while implicit feedback is derived
-from users' interactions with items, e.g., number of
-times a user plays a song.
+from users' interactions with items, e.g., number of times a user plays a song.
 
+The primary idea of applying boosting for item recommendation is to learn a set of homogeneous component recommenders and then create an ensemble of the component recommenders to predict users' preferences.
+
+Here, we use a linear combination of component recommenders as the final recommendation model
+$$f=\sum_{t=1}^{T}{\alpha}_t f_{t}.$$
+
+In the training process, AdaBPR runs for ${T}$ rounds, and the component recommender $f_t$ is created at t-th round by
+$$
+\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}_{u} \exp\{-E(\pi(u,i,\sum_{n=1}^{t}{\alpha}_n f_{n}))\}
+$$
+
+where the notations are listed as follows:
+
+- $\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms;
+- $E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair;
+- $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$;
+- $\mathbb{O}$ is the set of all observed user-item interactions;
+- ${\beta}_{u}$ is defined as reciprocal of the number of user $u$'s  historical items  ${\beta}_{u}=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).
 
 - [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 - [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
@@ -770,20 +787,20 @@ When the feature vector ${x}$ are given, the tree split the features by GBRT the
 
 ****
 
-* http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/
 * https://github.com/shenweichen/DeepCTR
 * https://github.com/wzhe06/Ad-papers
 * https://github.com/wnzhang/rtb-papers
 * https://github.com/wzhe06/CTRmodel
 * https://github.com/cnkuangshi/LightCTR
-* http://www.cse.fau.edu/~xqzhu/courses/cap6807.html
-* https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising
-* http://alex.smola.org/teaching/ucsc2009/ucsc_1.pdf
-* https://deepctr.readthedocs.io/en/latest/models/DeepModels.html
-* https://blog.csdn.net/john_xyz/article/details/78933253
-* https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf
-* http://quinonero.net/Publications/predicting-clicks-facebook.pdf
-* https://tech.meituan.com/2019/01/17/dianping-search-deeplearning.html
+* [聊聊CTR预估的中的深度学习](http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/)
+* [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
+* [Computational Advertising
+Contract Preferences for Display Advertising](https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising)
+* [Machine Learning for Computational Advertising, UC Santa Cruz, April 22, 2009, Alex Smola, Yahoo Labs, Santa Clara, CA](http://alex.smola.org/teaching/ucsc2009/)
+* [Deep Models at DeepCTR](https://deepctr.readthedocs.io/en/latest/models/DeepModels.html)
+* [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/john_xyz/article/details/78933253)
+* [Computational Advertising and Recommendation](https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf)
+* [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
 * http://yelp.github.io/MOE/
 ______________________________________________________
 
@@ -798,3 +815,5 @@ ______________________________________________________
 - [Data Mining and Machine Learning lab (DMML)@ASU](http://dmml.asu.edu/)
 - [Next Generation Personalization Technologies](http://ids.csom.umn.edu/faculty/gedas/NSFcareer/)
 - [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
+- [Secure Personalization: Building Trustworthy Recommender Systems](https://www.nsf.gov/awardsearch/showAward?AWD_ID=0430303)
+- [Similar grants of  Next Generation Personalization Technologies](https://app.dimensions.ai/details/grant/grant.3063812)

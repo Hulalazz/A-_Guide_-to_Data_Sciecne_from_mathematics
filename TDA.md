@@ -85,13 +85,19 @@ Topological data analysis employs the use of simplicial complexes, which are com
 For example, the probability simplex in $\mathbb{R}^n$ is defined as
 $$\sum_{i=1}^{n}x_i=1,\quad x_i\geq 0\quad \forall i\in\{1, 2,  \dots, n\}.$$
 
+In fact, each component in probability simplex is in the interval $[0, 1]$.
+
+> **Definition** A k-simplex in $X$ is an unordered collection of $k + 1$ distinct elements of $X$.
+
 ![simplex](http://outlace.com/images/TDAimages/simplices2.svg)
 
 The faces of a simplex are its boundaries.
 > **Definition** An `abstract simplex` is any finite set of vertices.
 
+> **Definition**  A `complex` is a collection of multiple simplices.
+
 > **Definition** A `simplicial complex` $\mathcal {K}$ is a set of simplices that satisfies the following conditions:  
-> 
+>
 > 1. Any face of a simplex in $\mathcal {K}$ is also in $\mathcal {K}$.
 > 2. The intersection of any two simplices $\sigma_{1}, \sigma_{2}\in \mathcal {K}$ is either $\emptyset$ or a face of both $\sigma_{1}$ and $\sigma_{2}$.
 
@@ -101,13 +107,64 @@ $$
 V_{\epsilon}(P) = \{\sigma\subset P\mid d(u, v)\leq \epsilon,\forall u≠v\in\sigma\}
 $$
 
-> **Definition** A family $\Delta$ of non-empty finite subsets of a set $S$ is an `abstract simplicial complex` if, for every set $X$ in $\delta$, and every non-empty subset $Y \subset X$, $Y$ also belongs to $\Delta$.
+These VR complexes have been used as a way of associating a simplicial complex to point cloud data sets.
+>>>
+1. **Flag/clique complexes** : Given a graph (network) $X$, the flag complex or clique complex of $X$ is the maximal simplicial complex $$ that has the graph as its 1-skeleton: $X^{(1)}=X$.
+2. **Banner Complexes**:
+3. **Nerve Complexes**: Let $U = \{U_{\alpha}\}$ be a collection of open subsets of a topological space $X$. The
+nerve of $U$, $N(U)$, is the simplicial complex defined by the intersection lattice of $U$.
+4.  **Dowker Complexes**: For simplicity, let $X$ and $Y$ be finite sets with #R \subset X\times Y$ representing
+the ones in a binary matrix (also denoted R) whose columns are indexed by $X$
+and whose rows are indexed by $Y$. The `Dowker complex` of $R$ on $X$ is the simplicial
+complex on the vertex set $X$ defined by the rows of the matrix $R$. That is, each
+row of $R$ determines a subset of $X$: use these to generate a simplex and all its
+faces. Doing so for all the rows gives the Dowker complex on $X$. There is a dual
+Dowker complex on $Y$ whose simplices on the vertex set $Y$ are determined by the
+ones in columns of $R$.
+5. **Cell Complexes**:        
+
+
+******
+
+> **Definition** A family $\Delta$ of non-empty finite subsets of a set $S$ is an `abstract simplicial complex` if, for every set $X$ in $\Delta$, and every non-empty subset $Y \subset X$, $Y$ also belongs to $\Delta$.
 
 > **Definition** The `n-chain`, denoted $C_n(S)$ is the subset of an oriented abstract simplicial complex $S$ of n-dimensional simplicies.
 
-> The `boundary` of an n-simplex $X$ with vertex set $[v_0, v_1, v_2,...v_n]$, denoted $\partial(X)$, is:
+> **Definition** The `boundary` of an n-simplex $X$ with vertex set $[v_0, v_1, v_2,...v_n]$, denoted $\partial(X)$, is:
 $$\partial(X)=\sum_{i=0}^{n}(−1)^i[v_0, v_1, v_2,...v_n],$$
 > where the i-th vertex is removed from the sequence.
+
+
+#### Persistent Homology
+
+Persistent homology (henceforth just PH) gives us a way to find interesting patterns in data without having to "downgrade" the data in anyway so we can see it.
+
+<img src = "https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg" width = "50%" />
+
+________________
+
+[Persistent homology “generalizes clustering” in two ways: first, that it includes higher-order homological features in addition to the 0th order feature (i.e. the clusters); second, that it includes a persitence parameter that tells us what homological features exist at which scales. One only has to look to the ubiquity of clustering to see that persistent homology is a sensible thing to do.](https://jsseely.github.io/notes/TDA/)
+
+Robert Ghrist said that
+> Homology is the simplest, general, computable invariant of topological data. In its most primal manifestation, the homology of a space $X$ returns a sequence of vector spaces $H•(X)$, the dimensions of which count various types of linearly independent holes in $X$. Homology is inherently linear-algebraic, but transcends linear algebra, serving as the inspiration for homological algebra. It is this algebraic engine that powers the subject.
+
+> **Definition** A `homotopy` between maps, $f_0 \simeq f_1 : X \to Y$ is a continuous 1-parameter family of maps $f_t: X \to Y$.
+> A `homotopy equivalence` is a map $f : X \to Y$ with a homotopy inverse, $g: Y \to X$ satisfying $f \circ g \simeq {Id}_Y$ and $g \circ f \simeq {Id}_X$.
+
+![Greedy optimal homotopy and homology generators Written with Kim Whittlesey](http://jeffe.cs.illinois.edu/pubs/pix/gohog.gif)
+![HomotopySmall](https://upload.wikimedia.org/wikipedia/commons/7/7e/HomotopySmall.gif)
+
+**Euler Characteristic**
+
+***
+* http://outlace.com/TDApart1.html
+* http://outlace.com/TDApart2.html
+* http://outlace.com/TDApart3.html
+* http://outlace.com/TDApart4.html
+* http://outlace.com/TDApart5.html
+* [Homological Algebra and Data by Robert Ghrist](https://www.math.upenn.edu/~ghrist/preprints/HAD.pdf)
+* [homotopy theory](https://ncatlab.org/nlab/show/homotopy+theory)
+* [Henry Adams: Persistent Homology](https://github.com/henryadams/Leiden-PersistentHomology/wiki)
 
 ___________
 + https://www.wikiwand.com/en/Topology
@@ -125,6 +182,7 @@ name suggests, these methods make use of topological ideas. Often, the term TDA 
 to describe a particular method called **persistent homology**.
 
 TDA, which originates from mathematical topology, is a discipline that studies shape. It’s concerned with measuring the shape, by means applying math functions to data, and with representing it in forms of topological networks or combinatorial graphs.
+> Topological data analysis is more fundamental than revolutionary: such methods are not intended to supplant analytic, probabilistic, or spectral techniques. They can however reveal a deeper basis for why some data sets and systems behave the way they do. It is unwise to wield topological techniques in isolation, assuming that the weapons of unfamiliar "higher" mathematics are clad in incorruptible silver
 
 There is another field that deals with the topological and geometric structure of data: computational geometry.
 The main difference is that in TDA we treat the data as random points,
@@ -147,24 +205,10 @@ TDA can be applied to manifold estimation, nonlinear dimension reduction, mode e
 + [Topological Analysis and Visualization of Cyclical Behavior in Memory Reference Traces](http://www.cspaul.com/wordpress/publications_choudhury-2012-pv/)
 + http://tdaphenomics.eecs.wsu.edu/
 
-#### Persistent Homology
-
-Persistent homology (henceforth just PH) gives us a way to find interesting patterns in data without having to "downgrade" the data in anyway so we can see it.
-
-<img src = "https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg" width = "50%" />
-
-________________
-
-[Persistent homology “generalizes clustering” in two ways: first, that it includes higher-order homological features in addition to the 0th order feature (i.e. the clusters); second, that it includes a persitence parameter that tells us what homological features exist at which scales. One only has to look to the ubiquity of clustering to see that persistent homology is a sensible thing to do.](https://jsseely.github.io/notes/TDA/)
-
-* http://outlace.com/TDApart1.html
-* http://outlace.com/TDApart2.html
-* http://outlace.com/TDApart3.html
-* http://outlace.com/TDApart4.html
-* http://outlace.com/TDApart5.html
-* [Homological Algebra and Data by Robert Ghrist](https://www.math.upenn.edu/~ghrist/preprints/HAD.pdf)
 
 #### TDA Mapper
+
++ [Data Visualization with TDA Mapper](http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html)
 
 ##### Density Cluster with TDA
 
@@ -175,16 +219,12 @@ ________________
 
 + [A series of blogs on TDA](https://datawarrior.wordpress.com/2015/08/03/tda-1-starting-the-journey-of-topological-data-analysis-tda/)
 + [Topological Data Analysis @ Annual Review of Statistics and Its Application](https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045)
-+ https://github.com/prokopevaleksey/TDAforCNN
-+ https://github.com/ognis1205/spark-tda
-+ https://github.com/stephenhky/PyTDA
 + [Topological Data Analysis by peterbubenik](https://people.clas.ufl.edu/peterbubenik/intro-to-tda/)
 + [ Applied Algebraic Topology Research Network](https://topology.ima.umn.edu/)
 + [Henry Adams interests in computational topology and geometry, combinatorial topology, and applied topology](https://www.math.colostate.edu//~adams/research/)
 + [Robert Ghrist's research is in applied topology that is, applications of topology to engineering systems, data, dynamics, & more](https://www.math.upenn.edu/~ghrist/research.html)
 + [CSE 5559: Computational Topology and Data Analysis by Tamal K Dey ](http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html)
 + [CMU TopStat](http://www.stat.cmu.edu/topstat/presentations.html)
-+ [Data Visualization with TDA Mapper](http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html)
 + [Topological & Functional Data Analysis @ CMU](http://www.stat.cmu.edu/research/statistical-theory-methodology/252)
 + [Topological Data Analysis: an Overview of the World’s Most Promising Data Mining Methodology](https://perfectial.com/blog/topological-data-analysis-overview/)
 + [Index of /~beiwang/teaching/cs6170-spring-2017](http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017/)
@@ -193,6 +233,11 @@ ________________
 + [Topology, Computation and Data Analysis](https://www.dagstuhl.de/de/programm/kalender/semhp/?semnr=19212)
 + https://www-apr.lip6.fr/~tierny/topologicalDataAnalysisClass.html
 * [Topological Data Analysis and Persistent Homology](http://www.science.unitn.it/cirm/TDAPH2018.html)
+* https://github.com/henryadams/Charleston-TDA-ML
+* https://github.com/prokopevaleksey/TDAforCNN
+* https://github.com/ognis1205/spark-tda
+* https://github.com/stephenhky/PyTDA
+* [Topology ToolKit: Efficient, generic and easy Topological data analysis and visualization](https://topology-tool-kit.github.io/)
 
 ### Computational Topology
 
@@ -206,16 +251,16 @@ Topological data analysis is principle-driven and application-inspired in some s
 
 + https://datawarrior.wordpress.com/
 + http://graphics.stanford.edu/courses/cs468-09-fall/
-+ https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html
++ [CS 468 - Fall 2002: Introduction to  Computational  Topology](https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html)
 + http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf
-+ https://jeremykun.com/tag/computational-topology/
-+ http://jeffe.cs.illinois.edu/teaching/comptop/
-+ http://www.enseignement.polytechnique.fr/informatique/INF556/
-+ https://topology-tool-kit.github.io/
-+ https://www.kth.se/student/kurser/kurs/SF2956?l=en
-+ https://cs.nyu.edu/~yap/classes/modeling/06f/
-+ https://courses.maths.ox.ac.uk/node/161
-+ https://www2.cs.duke.edu/courses/fall06/cps296.1/
++ [The Čech Complex and the Vietoris-Rips Complex](https://jeremykun.com/tag/computational-topology/)
++ [CS 598: Computational Topology , Spring 2013, Jeff Erickson](http://jeffe.cs.illinois.edu/teaching/comptop/)
++ [INF556 -- Topological Data Analysis (2018-19) Steve Oudot](http://www.enseignement.polytechnique.fr/informatique/INF556/)
++ [SF2956 Topological Data Analysis 7.5 credits](https://www.kth.se/student/kurser/kurs/SF2956?l=en)
++ [Computational Topology and Geometry
+G22.3033.007 & G63.2400, Fall 2006 @NYU](https://cs.nyu.edu/~yap/classes/modeling/06f/)
++ [C3.9 Computational Algebraic Topology (2016-2017)](https://courses.maths.ox.ac.uk/node/161)
++ [CPS296.1: COMPUTATIONAL TOPOLOGY @Duke](https://www2.cs.duke.edu/courses/fall06/cps296.1/)
 + [Math 574--Introduction to Computational Topology (Spring 2016)](http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html)
 + [NSF-CBMS Conference and Software Day on Topological Methods in Machine Learning and Artificial Intelligence: May 13–17 and May 18, 2019. Department of Mathematics, College of Charleston, South Carolina](https://blogs.cofc.edu/cbms-tda2019/)
 + [Data science and applied topology](http://cunygc.appliedtopology.nyc/)
@@ -224,14 +269,16 @@ Topological data analysis is principle-driven and application-inspired in some s
 
 
 ### Computational Geometry
+
 https://shapeofdata.wordpress.com/
+
 + [Probabilistic Approach to Geometry](https://www.mathsoc.jp/meeting/msjsi08/)
 + [Applied Geometry Lab @Caltech](http://www.geometry.caltech.edu/)
 + [Titane: Geometric Modeling of 3D Environments](https://team.inria.fr/titane/)
 + [Computational Geometry and Modeling G22.3033.007 Spring 2005](https://cs.nyu.edu/~yap/classes/modeling/05s/)
 + [Multi-Res Modeling Group@Caltech](http://www.multires.caltech.edu/research/research.htm)
 + [Geometry in Graphics Group in Computer Science and Engineering@Michigan State University](http://geometry.cse.msu.edu/)
-+ [ Computational Geometry Week (CG Week 2019](http://eecs.oregonstate.edu/socg19/)
++ [Computational Geometry Week (CG Week) 2019](http://eecs.oregonstate.edu/socg19/)
 + [Computational Geometry and Topology](https://drona.csa.iisc.ac.in/~gsat/Course/CGT/)
 + http://www.computational-geometry.org/
 + [Handbook of Discrete and Computational Geometry —Third Edition— edited by Jacob E. Goodman, Joseph O'Rourke, and Csaba D. Tóth](https://www.csun.edu/~ctoth/Handbook/)
@@ -267,17 +314,16 @@ https://shapeofdata.wordpress.com/
 + [Optimal Transport @ESI](https://www.esi.ac.at/activities/events/2019/optimal-transport)
 + [Optimal Transport Methods in Density Functional Theory (19w5035)](https://www.birs.ca/events/2019/5-day-workshops/19w5035)
 + [Discrete OT](https://remi.flamary.com/demos/transport.html)
-+ https://www.mindcodec.com/an-intuitive-guide-to-optimal-transport-for-machine-learning/
-+ http://faculty.virginia.edu/rohde/transport/
-+ http://otml17.marcocuturi.net/
 + [Optimal Transport & Machine Learning](https://sites.google.com/site/nipsworkshopoptimaltransport/)
 + [Optimal Transport and Machine learning course at DS3 2018](https://github.com/rflamary/OTML_DS3_2018)
 + [Hot Topics: Optimal transport and applications to machine learning and statistics](https://www.msri.org/workshops/928)
++ [An intuitive guide to optimal transport for machine learning](https://www.mindcodec.com/an-intuitive-guide-to-optimal-transport-for-machine-learning/)
++ http://faculty.virginia.edu/rohde/transport/
++ http://otml17.marcocuturi.net/
 + https://anr.fr/Project-ANR-17-CE23-0012
 + http://otnm.lakecomoschool.org/program/
 + https://sites.uclouvain.be/socn/drupal/socn/node/113
-+ [Topics on Optimal Transport in Machine Learning and Shape Analysis
-(OT.ML.SA)](https://people.math.osu.edu/memoli.2/courses/cse-topics-2018/)
++ [Topics on Optimal Transport in Machine Learning and Shape Analysis(OT.ML.SA)](https://people.math.osu.edu/memoli.2/courses/cse-topics-2018/)
 + [Optimal Transport in Biomedical Imaging](http://imagedatascience.com/transport/tutorials_isbi18.html)
 + [Optimal transport for documents classification: Classifying news with Word Mover Distance](http://www.lumenai.fr/blog/optimal-transport-for-documents-classification)
 + [Monge-Kantorovich Optimal Transport – Theory and Applications](https://cnls.lanl.gov/MK/)

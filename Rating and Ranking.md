@@ -248,7 +248,7 @@ $$Recall=\frac{|O\cap I|}{|O|}.$$
 `F1 Score` tries to combine the precision and recall measure. It is the harmonic mean of the two. If _P_ is the precision and _R_ is the recall then the F-Score is given by:
 $$F1 = 2\frac{P\times R}{P+R}.$$
 
-Precision and recall are single-value metrics based on the whole list of documents returned by the system. For systems that return a ranked sequence of documents, it is desirable to also consider the order in which the returned documents are presented. By computing a precision and recall at every position in the ranked sequence of documents, one can plot a precision-recall curve, plotting precision $p(r)$ as a function of recall $r$. 
+Precision and recall are single-value metrics based on the whole list of documents returned by the system. For systems that return a ranked sequence of documents, it is desirable to also consider the order in which the returned documents are presented. By computing a precision and recall at every position in the ranked sequence of documents, one can plot a precision-recall curve, plotting precision $p(r)$ as a function of recall $r$.
 `Average precision` computes the average value of $p(r)$ over the interval from $r=0$ to $r=1$:
 $$
 AveP=\int_{0}^{1} p(r)\mathrm{d} r.
@@ -727,6 +727,7 @@ where the notations are listed as follows:
 
 ***
 - [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
+- [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
 
 **Deep Online Ranking System**
 
@@ -752,13 +753,14 @@ re-ranking via multi-arm bandits (MAB).
 
 + [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
-
++ [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
 ![adversial IR](https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png)
 ***
 
 * https://www.wikiwand.com/en/Learning_to_rank
 * https://arxiv.org/abs/1812.00073
 * https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
+
 
 ### Collaborative Ranking
 
@@ -767,18 +769,21 @@ Collaborative Ranking sounds like collaborative filtering. In fact, collaborativ
 And in this part we only talk on the Top-N recommendation.
 
 * https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
+- [ ] [Collaborative ranking-based recommender systems](https://rucore.libraries.rutgers.edu/rutgers-lib/59115/)
 - [ ] [Decoupled Collaborative Ranking](https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking)
 - [ ] [Large-scale Collaborative Ranking in Near-Linear Time](http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf)
 - [ ] [Preference Completion: Large-scale Collaborative Ranking from Pairwise Comparisons](http://proceedings.mlr.press/v37/park15.html)
 - [ ] [Local Collaborative Ranking](https://ai.google/research/pubs/pub42242)
 - [ ] [SQL-Rank: A Listwise Approach to Collaborative Ranking](http://proceedings.mlr.press/v80/wu18c.html)
+- [ ] [VSRank: A Novel Framework for Ranking-Based
+Collaborative Filtering](http://users.jyu.fi/~swang/publications/TIST14.pdf)
 - [ ] [Machine Learning: recommendation and ranking](https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [ ] [Recommendation and ranking by Mark Jelasity](http://www.inf.u-szeged.hu/~jelasity/ddm/graphalgs.pdf)
 
 For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
 
-* http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf
+* [Ranking Evaluation](http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf)
 * http://fastml.com/evaluating-recommender-systems/
 
 
@@ -793,7 +798,26 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 
 ### Personalized Search
 
+[The basic functions of a search engine can be described as _crawling, data mining, indexing and query processing_. `Crawling` is the act of sending small programed bots out to collect information. `Data mining` is storing the information collected by the bots. `Indexing` is ordering the information systematically. And `query processing` is the mathematical process in which a person's query is compared to the index and the results are presented to that person.](https://lifepacific.libguides.com/c.php?g=155121&p=1018180)
+
+<img title = search-process src = http://www.searchtools.com/slides/images/search-process.gif width=50% />
+
+[Personalised Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommender systems.
+
+And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.   
+
 * https://www.algolia.com/
 * https://www.cognik.net/
+* http://www.collarity.com/
+* https://www.wikiwand.com/en/Personalized_search
+* [Personalised Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
+* [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
+* [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
+* [Google's Personalized Search Explained:
+How personalization works, what it means for SEO, and how to make sure it doesn't skew your ranking reports](https://www.link-assistant.com/news/personalized-search.html)
 * [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
 * [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
+* [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
+* [Web Personalisation and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
+* [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
+* [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
