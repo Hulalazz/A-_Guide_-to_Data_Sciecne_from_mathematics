@@ -389,14 +389,21 @@ $$
 
 It is not to maximize the conditional expectation.
 
-See more on the book [The EM Algorithm and Extensions, 2nd Edition
-by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
+See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
 
 ![projection EM](https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg =360x328)
 
-* https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf
+* [The MM Algorithm by Kenneth Lange](https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf)
+
++ [Majorization Methods](https://bookdown.org/jandeleeuw6/bras/majorization-methods.html)
++ [Tangential Majorization](https://bookdown.org/jandeleeuw6/bras/tangential-majorization.html)
++ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
++ [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
++ [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
 
 **Quadratic Lower Bound**
+
+![cali](https://bookdown.org/jandeleeuw6/bras/graphics/cali.png)
 
 - http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
 
@@ -1205,6 +1212,14 @@ In a block relaxation method we minimize a real-valued function of several varia
 
 In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
 
+**Augmentation Methods**
+
+[Augmentation and Decomposition Methods](https://bookdown.org/jandeleeuw6/bras/augmentation-and-decomposition-methods.html)
+
+**Alternating Conditional Expectations**
+
+[The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
+
 [Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
 Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
 integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
@@ -1715,6 +1730,7 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - [Distributed Optimization of Large-Scale Complex Networks](https://sites.google.com/site/paolodilorenzohp/research/adaptation-and-learning-over-complex-networks)
 - [Walkman: A Communication-Efﬁcient Random-Walk Algorithm for Decentralized Optimization](http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html)
 - [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
+- [NOVEL GRADIENT-TYPE OPTIMIZATION ALGORITHMS FOR EXTREMELY LARGE-SCALE NONSMOOTH CONVEX OPTIMIZATION](https://www2.isye.gatech.edu/~nemirovs/Lena.pdf)
 - http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
 - http://shivaram.org/publications/hemingway-mlsys-2016.pdf
 - http://principlesofoptimaldesign.org/
@@ -1886,7 +1902,7 @@ In stochastic gradient descent, the estimated gradient is a partial sum of the p
 `Kiefer-Wolfowitz Algorithm` is the gradient-free version of stochastic gradient descent.
 It is a recursive scheme to approximate the minimum or maximum  of the form
 $$
-x^{k+1} =x^{k} -\alpha_n \Delta(x^k)
+x^{k+1} =x^{k} - a_n \Delta(x^k)
 $$
 
 During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are taken at the design levels $x^{\prime\prime}=x^k+c_k$ and $x^{\prime}=x^k - c_k$, respectively. And $\Delta(x^k)=\frac{y^{\prime\prime} - y^{\prime}}{2c_n}$, $a_n$ and $c_n$ are positive constants so that $c_n\to 0, \sum_{i=0}^{\infty}(a_n/c_n)^2< \infty, \sum a_n =\infty$.
@@ -1899,7 +1915,7 @@ During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are take
 + [Strong Convergence of a Stochastic Approximation Algorithm](https://projecteuclid.org/euclid.aos/1176344212)
 + [Almost Sure Approximations to the Robbins-Monro and Kiefer-Wolfowitz Processes with Dependent Noise](https://projecteuclid.org/euclid.aop/1176993921)
 + [A Kiefer–Wolfowitz Algorithm with Randomized Differences](http://lsc.amss.ac.cn/paper-pdf/hfchen-1.pdf)
-+ [Stochastic Approxiamtion by Tze Leung Lai](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/2002-31.pdf)
++ [Stochastic Approximation by Tze Leung Lai](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/2002-31.pdf)
 ****
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
@@ -1984,15 +2000,15 @@ And more courses on optimization:
 + [Algorithms for Convex Optimization](https://nisheethvishnoi.wordpress.com/convex-optimization/)
 
 ***
-
+* http://niaohe.ise.illinois.edu/IE598_2016/index.html
 - [ ] http://www.optimization-online.org/
 - [ ] http://convexoptimization.com/
 - [ ] More [Optimization Online Links](http://www.optimization-online.org/links.html)
 - [ ] **TUTORIALS AND BOOKS** at <http://plato.asu.edu/sub/tutorials.html>.
 - [ ] [Provable Nonconvex Methods/Algorithms](http://sunju.org/research/nonconvex/)
 - [ ] https://optimization.mccormick.northwestern.edu/index.php/Main_Page
-- [ ] https://arxiv.org/pdf/1712.07897.pdf
-- [ ] https://arxiv.org/pdf/1707.02444.pdf
+- [ ] [Non-convex Optimization for Machine Learning](https://arxiv.org/abs/1712.07897)
+- [ ] [GLOBAL OPTIMALITY CONDITIONS FOR DEEP NEURAL NETWORKS](https://arxiv.org/pdf/1707.02444.pdf)
 - [ ] http://www.vision.jhu.edu/assets/HaeffeleCVPR17.pdf
 - [ ] https://www.springer.com/us/book/9783319314822
 - [ ] https://core.ac.uk/display/83849901
