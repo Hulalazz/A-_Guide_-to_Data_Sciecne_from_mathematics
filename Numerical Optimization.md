@@ -7,8 +7,8 @@ $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVA
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
 * Optimization is aimed to find the parameters that optimizes the evaluation function, i.e.
     $$
-    \arg\min_{\theta} f(\theta)=\{\theta^{*}|f(\theta^*)=\min f(\theta)\}\,\text{or}
-    \\ \quad\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
+    \arg\min_{\theta} f(\theta)=\{\theta^{\ast}|f(\theta^{\ast})=\min f(\theta)\}\,\text{or}
+    \\ \quad\arg\max_{\theta}f(\theta)=\{\theta^{\ast}|f(\theta^{\ast})=\max f(\theta)\}.
     $$
 
 ***
@@ -21,7 +21,8 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
-* [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)***
+* [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)
+***
 * http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
@@ -517,7 +518,7 @@ One special method is called `entropic mirror descent(Multiplicative Weights Upd
 **Entropic descent method** at step ${k}$ is given as follows:
 
 $$
-{x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla f(x^k))}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla f(x^k))}}, i=1,2,\dots, n.
+{x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla {f(x^k)}_{i})}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla  {f(x^k)}_{j})}}, i=1,2,\dots, n.
 $$
 
 See more on the following link list.
@@ -679,7 +680,7 @@ $$\max_{\lambda}[\min_{x} L(x, \lambda)].$$
 
 Note that
 $$
-\min_{x} L(x, \lambda)\leq L(x,\lambda)\leq \max_{\lambda}L(x,\lambda) 
+\min_{x} L(x, \lambda)\leq L(x,\lambda)\leq \max_{\lambda}L(x,\lambda)
 $$
 implies
 $$\\
@@ -698,6 +699,26 @@ $$
 
 > 1. $x^{k+1}=\arg\min_{x} L(x,\lambda)$;
 > 2. ${\lambda}^{k+1}= {\lambda}^{k}+\alpha_k(Ax^{k+1}-b)$.
+
+***
+[Entropy minimization algorithms](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-253-convex-analysis-and-optimization-spring-2012/lecture-notes/MIT6_253S12_lec24.pdf):
+$$
+x^{k+1}\in \arg\min_{x}\{f(x)+\frac{1}{c_k} \sum_{i=1}^{n} x^{i}(\ln(\frac{x_i}{x^{k}_{i}})-1)\}.
+$$
+A special case for the convex problem
+$$\text{minimize}\quad f(x),
+\\ s.t.  g_1(x) \leq 0, g_2(x) \leq 0, \cdots, g_r(x) \leq 0, x\in X$$
+
+is the [**exponential augmented Lagrangean method**](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-253-convex-analysis-and-optimization-spring-2012/lecture-notes/MIT6_253S12_lec24.pdf).
+
+It Consists of unconstrained minimizations:
+$$
+x^{k}\in \arg\min_{x\in X}\{f(x)+\frac{1}{c_k} \sum_{j=1}^{r} {\mu}^{k}_{j}\exp(c_k g_j(x))
+$$
+followed by the multiplier iterations
+$$
+{\mu}^{k+1}_{j} = {\mu}^{k}_{j}\exp(c_k g_j(x^k)).
+$$
 
 If the constraints are more complex, **KKT theorem** may be necessary.
 
@@ -1483,7 +1504,7 @@ Some new connections between dynamical systems and optimization is found.
 - [On Symplectic Optimization](https://arxiv.org/abs/1802.03653)
 - [A variational perspective on accelerated methods in optimization](https://www.pnas.org/content/113/47/E7351)
 - [A Dynamical Systems Perspective on Nesterov Acceleration](https://arxiv.org/abs/1905.07436)
-- [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
+- [Generalized Momentum-Based Methods: A Hamiltonian Perspective](https://arxiv.org/abs/1906.00436v1)
 - https://people.eecs.berkeley.edu/~jordan/optimization.html
 ***
 
@@ -1506,7 +1527,7 @@ $$
 - [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
-
+- [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
 ***
 * [ESAIM: Control, Optimization and Calculus of Variations (ESAIM: COCV)](https://www.esaim-cocv.org/)
 * [MCT'03  Louisiana Conference on Mathematical Control Theory](https://www.math.lsu.edu/~malisoff/LCMCT/)
@@ -1528,12 +1549,12 @@ https://eta.impa.br/dl/028.pdf
 [`Stochastic approximation` methods are a family of iterative methods typically used for *root-finding* problems or for *optimization* problems. The recursive update rules of stochastic approximation methods can be used, among other things, for solving linear systems when the collected data is corrupted by noise, or for approximating extreme values of functions which cannot be computed directly, but only estimated via noisy observations.](https://www.wikiwand.com/en/Stochastic_approximation)
 
 - [Kiefer-Wolfowitz Algorithm](https://link.springer.com/chapter/10.1007/978-1-4471-4285-0_4)
-- [Stochatic Process and Application](http://www.math.wayne.edu/~gyin/conf_web/index.html)
+- [Stochastic Process and Application](http://www.math.wayne.edu/~gyin/conf_web/index.html)
 
 
 **Robbins–Monro algorithm** introduced in 1951 by Herbert Robbins and Sutton Monro, presented a methodology for solving a root finding problem, where the function is represented as an expected value. Assume that we have a function ${\textstyle M(\theta )}$, and a constant ${\textstyle \alpha }$, such that the equation ${\textstyle M(\theta )=\alpha }$ has a unique root at ${\textstyle \theta ^{\ast}}$. It is assumed that while we cannot directly observe the function ${\textstyle M(\theta )}$, we can instead obtain measurements of the random variable ${\textstyle N(\theta )}$ where ${\textstyle \operatorname {E} [N(\theta )]=M(\theta )}$. The structure of the algorithm is to then generate iterates of the form:
-$${\displaystyle \theta _{n+1}=\theta _{n}-a_{n}(N(\theta _{n})-\alpha )}$$
-Here, $a_{1},a_{2},\dots$  is a sequence of positive step sizes. Robbins and Monro proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
+$${\displaystyle {\theta}_{n+1}= {\theta}_{n} - a_{n}(N({\theta}_{n})-\alpha )}$$
+Here, $a_{1},a_{2},\dots$  is a sequence of positive step sizes. `Robbins and Monro` proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
 
 ${\textstyle N(\theta )}$ is uniformly bounded,
 ${\textstyle M(\theta )}$ is nondecreasing,
@@ -1859,15 +1880,26 @@ Another related method is `graduated optimization`, which [is a global optimizat
 
 ****
 
-**Kiefer-Wolfowitz Algorithm** 
+**Kiefer-Wolfowitz Algorithm**
 
 In stochastic gradient descent, the estimated gradient is a partial sum of the population gradient so that it is necessary to compute the gradient of `sample` function.
-`Kiefer-Wolfowitz Algorithm` is the gradient-free version of stochastic gradient descent.  
+`Kiefer-Wolfowitz Algorithm` is the gradient-free version of stochastic gradient descent.
+It is a recursive scheme to approximate the minimum or maximum  of the form
+$$
+x^{k+1} =x^{k} -\alpha_n \Delta(x^k)
+$$
 
+During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are taken at the design levels $x^{\prime\prime}=x^k+c_k$ and $x^{\prime}=x^k - c_k$, respectively. And $\Delta(x^k)=\frac{y^{\prime\prime} - y^{\prime}}{2c_n}$, $a_n$ and $c_n$ are positive constants so that $c_n\to 0, \sum_{i=0}^{\infty}(a_n/c_n)^2< \infty, \sum a_n =\infty$.
+
+
+![function with noise](http://pawel.sawicz.eu/wp-content/uploads/2014/08/example-of-function.png)
++ http://pawel.sawicz.eu/tag/kiefer-wolfowitz/
 + [A compansion to Kiefer-Wolfowit algorithm](https://projecteuclid.org/euclid.aos/1188405629)
 + [Archive for Kiefer-Wolfowitz algorithm](https://xianblog.wordpress.com/tag/kiefer-wolfowitz-algorithm/)
-
-
++ [Strong Convergence of a Stochastic Approximation Algorithm](https://projecteuclid.org/euclid.aos/1176344212)
++ [Almost Sure Approximations to the Robbins-Monro and Kiefer-Wolfowitz Processes with Dependent Noise](https://projecteuclid.org/euclid.aop/1176993921)
++ [A Kiefer–Wolfowitz Algorithm with Randomized Differences](http://lsc.amss.ac.cn/paper-pdf/hfchen-1.pdf)
++ [Stochastic Approxiamtion by Tze Leung Lai](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/2002-31.pdf)
 ****
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
