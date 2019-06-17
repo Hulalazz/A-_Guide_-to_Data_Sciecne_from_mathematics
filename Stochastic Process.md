@@ -10,9 +10,9 @@ For example, if $\xi(t)$
 is a real stochastic process, then its cumulative distribution function is given by
 $$F(x;t)=P(\xi(t)\leq x).$$
 
-||
-|---|
-|![](https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg)|
+| Stochastic Process and Management |
+|:---------------------------------:|
+|![www.azquotes.com](https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg)|
 
 - http://wwwf.imperial.ac.uk/~ejm/M3S4/INTRO.PDF
 
@@ -21,6 +21,7 @@ $$F(x;t)=P(\xi(t)\leq x).$$
 
 Poisson process is named after the statistician [**Siméon Denis Poisson**](https://www.wikiwand.com/en/Sim%C3%A9on_Denis_Poisson).
 > *Definition*:The homogeneous Poisson point process, when considered on the positive half-line, can be defined as a counting process, a type of stochastic process, which can be denoted as  $\{N(t),t\geq 0\}$. A counting process represents the total number of occurrences or events that have happened up to and including time $t$. A counting process is a Poisson counting process with rate $\lambda >0$ if it has the following three properties:
+> 
 * $N(0)=0$;
 * has independent increments, i.e. $N(t)-N(t-\tau)$ and $N(t+\tau)-N(t)$ are independent for $0\leq\tau\leq{t}$; and
 * the number of events (or points) in any interval of length $t$ is a Poisson random variable with parameter (or mean) $\lambda t$.
@@ -69,6 +70,8 @@ cannot think of the initial distribution as a vector or the transition probabili
 as a matrix. We must think of them as an unconditional probability distribution and a
 conditional probability distribution.
 
+![markov](http://www.statslab.cam.ac.uk/~rrw1/markov/chipfiring.png)
+
 #### Stationarity
 
 A stochastic process is stationary if for every positive integer $k$ the
@@ -101,10 +104,10 @@ A Markov chain is reversible if its transition probability is reversible with re
 |:---------------------------------------------------------------------------------------:|
 |<img src=https://upload.wikimedia.org/wikipedia/commons/a/a8/Andrei_Markov.jpg width=40% />|
 |[his short biography in .pdf file format](https://wayback.archive-it.org/all/20121218173228/https://netfiles.uiuc.edu/meyn/www/spm_files/Markov-Work-and-life.pdf)|
-|http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html|
+|[Hamiltonian Monte Carlo explained](http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html)|
 
-* http://www.mcmchandbook.net/HandbookChapter1.pdf
-* http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTES3.pdf
+* [Introduction to Markov Chain Monte Carlo by Charles J. Geyer](http://www.mcmchandbook.net/HandbookChapter1.pdf)
+* [6 Markov Chains](http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTES3.pdf)
 
 ### Random Walk on Graph and Stochastic Process
 
@@ -145,7 +148,7 @@ $$P_{xy} = \frac{w_{xy}}{\sum_y w_{xy}}.$$
 Thus the Metropolis-Hasting algorithm and Gibbs
 sampling both involve random walks on edge-weighted undirected graphs.
 
-https://www.zhihu.com/question/41289973/answer/248935294
+****
 
 **Definition**: Let ${X(t), t \geq 0}$ be a collection of discrete random
 variables taking values in some set ${S}$ and that evolves in time as follows:
@@ -160,10 +163,75 @@ Then $\{X(t)\}$ is called a continuous-time Markov chain.
 
 And discrete stochastic process is matrix-based computation while the stochastic calculus is the blend of differential equation and statistical analysis.
 
-Define $p_{ij}(s, t+s)= P(X(t+s)=j\mid X(s)=i), p_{ij}(0, t)=P(X(t)=j\mid X(0)=i)$, continuous time analogue of C-K equations we obtain $P(s+t)=P(s)P(t)$.
-$p_{ij} (t)$ is  continuous and differentiable so that we could $q_{ij}=\frac{\mathrm{d}}{\mathrm{d} t}p_{ij}(t)\mid_{t=0} =\lim_{t\to 0}=$
+Define $p_{ij}(s, t+s)= P(X(t+s)=j\mid X(s)=i), p_{ij}(0, t)=P(X(t)=j\mid X(0)=i)$, continuous time analogue of C-K equations we obtain $P(s+t)=P(s)P(t)$, where $P_{ij}(t)=(p_{ij}(t))$.
+And the initial probability is defined as follows:
+$$
+p_{ij}(0)=
+\begin{cases}1, & \quad\text{if} \quad i=j; \\
+0, & \quad\text{otherwise}.
+\end{cases}
+$$ 
 
-* https://wiki.math.ntnu.no/ma8109/2015h/start
+So that $P(0)$ is the identity matrix.
+$p_{ij} (t)$ is  continuous and differentiable so that we could compute the derivative:
+$$q_{ij}=\frac{\mathrm{d}}{\mathrm{d} t}p_{ij}(t)\mid_{t=0} =\lim_{h\to 0}\frac{p_{ij}(h)-p_{ij}(0)}{h}.$$
+
+Therefore, by taking first order Taylor expansion of $p_{ij}(h)$ at $t=0$, 
+$$
+p_{ij}(h)=p_{ij}(0)+q_{ij}h+o(h)=
+\begin{cases}
+1 + q_{ij}h+o(h) &\text{if $i=j$}\\
+\,\,\,\,\quad q_{ij}h+o(h) &\text{otherwise}.
+\end{cases}
+$$
+
+Let _Q_ be the matrix of $q_{ij}$, i.e. $Q_{ij}=q_{ij}$.
+Note that the state must transfer to one of the finite state:
+$$\sum_{j}p_{ij}=1 \quad \forall i.$$
+so that by taking the derivative of both sides:
+$$\frac{\mathrm{d}}{\mathrm{d} t}\sum_{j}p_{ij}=\frac{\mathrm{d}}{\mathrm{d} t}1,\\ \sum_{j}q_{ij}=0,$$
+ i.e. rows of _Q_ sum to zero.
+A continuous time Markov process may be specified by stating its _Q_ matrix.
+
+**Description of process**
+
+Let $T_i$ be the time spent in state $i$ before moving to another state.
+$$P(T_i\leq t)= 1- e^{tq_{ii}}$$
+
+**Embedded Markov Chain**
+
+If the process is observed only at jumps, then a Markov chain is observed with transition matrix
+$$
+P=\begin{pmatrix}
+\ddots  & -\frac{q_{ij}}{q_{ii}}  &-\frac{q_{ij}}{q_{ii} } &\cdots \\
+-\frac{q_{ij}}{q_{ii}} & 0  &-\frac{q_{ij}}{q_{ii}} &\cdots \\
+\vdots & -\frac{q_{ij}}{q_{ii}} & 0 &\cdots \\
+\vdots & \cdots & \cdots &\cdots 
+\end{pmatrix}
+$$
+
+known as the **Embedded Markov Chain**.
+
+**Forward and Backward Equations**
+
+Given _Q_, how do we get $P(t), t \geq 0$ ?
+
+
+***
+* [MA8109 Stochastic processes and differential equations](https://wiki.math.ntnu.no/ma8109/2015h/start)
 * [Martingales and the ItÙ Integral](https://www.math.ntnu.no/emner/MA8109/2013h/notes/HEK2011/MartingalesAndIto2011.pdf)
-* http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTEScurrent.PDF
-* https://www.statslab.cam.ac.uk/~rrw1/markov/
+* [Continuous time Markov processes](http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTEScurrent.PDF)
+* [Course information, a blog, discussion and resources for a course of 12 lectures on Markov Chains to second year mathematicians at Cambridge in autumn 2012.](https://www.statslab.cam.ac.uk/~rrw1/markov/)
+* [Markov Chains: Engel's probabilistic abacus](http://www.statslab.cam.ac.uk/~rrw1/markov/index2011.html)
+* [Reversible Markov Chains and Random Walks on Graphs by Aldous ](https://www.stat.berkeley.edu/~aldous/RWG/book.html)
+* [Markov Chains and Mixing Times by David A. Levin, Yuval Peres, Elizabeth L. Wilmer](https://pages.uoregon.edu/dlevin/MARKOV/markovmixing.pdf)
+* [Random walks and electric networks by Peter G. Doyle J. Laurie Snell](https://www.math.dartmouth.edu//~doyle/docs/walks/walks.pdf)
+* [The PageRank Citation Ranking: Bringing Order to the Web](http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf)
+* [能否通俗的介绍一下Hamiltonian MCMC？](https://www.zhihu.com/question/41289973/answer/248935294)
+  
+### Time Series Analysis
+
+Time series analysis is the statistical counterpart of stochastic process in some sense. 
+In practice, we may observe a series of random variable but its hidden parameters are not clear before some computation.
+The parameter estimation of stochastic process and more time series analysis will cover more practical problems.
+  

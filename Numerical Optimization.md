@@ -1,7 +1,5 @@
 # Numerical Optimization
 
-https://pcombet.math.ncsu.edu/confab.html
-
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
 $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVALUATION}$ + $\color{red}{OPTIMIZATION}.$
 
@@ -13,7 +11,7 @@ $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVA
     \\ \quad\arg\max_{\theta}f(\theta)=\{\theta^*|f(\theta^*)=\max f(\theta)\}.
     $$
 
-***********************************************
+***
 
 The objective function to be minimized is also called cost function.
 
@@ -23,6 +21,7 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
+* [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)***
 * http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
@@ -680,7 +679,10 @@ $$\max_{\lambda}[\min_{x} L(x, \lambda)].$$
 
 Note that
 $$
-\min_{x} L(x, \lambda)\leq L(x,\lambda)\leq \max_{\lambda}L(x,\lambda)\implies \\
+\min_{x} L(x, \lambda)\leq L(x,\lambda)\leq \max_{\lambda}L(x,\lambda) 
+$$
+implies
+$$\\
 \max_{\lambda}[\min_{x} L(x, \lambda)]\leq \max_{\lambda} L(x, \lambda)\leq \min_{x}[\max_{\lambda} L(x, \lambda)].
 $$
 
@@ -876,7 +878,6 @@ Another approach is to add an regularized terms:
 
 where $\tau>1$.
 
-
 - http://scis.scichina.com/en/2018/122101.pdf
 - http://maths.nju.edu.cn/~hebma/slides/17C.pdf
 - http://maths.nju.edu.cn/~hebma/slides/18C.pdf
@@ -896,30 +897,29 @@ where the notation $L^3(x, y, z, \lambda)$ is deefined by
 $$L^3(x, y, z, \lambda) = f_1(x) + f_2(y) + f_3(z)-{\lambda}^T(A_1 x + A_2 y + A_3 z - b)$$
 is the Lagrangian rather than  augmented Lagrangian.
 
-- http://fa.bianp.net/blog/2018/tos/
-- https://link.springer.com/article/10.1007%2Fs11228-017-0421-z
+- [Three-Operator Splitting](http://fa.bianp.net/blog/2018/tos/)
+- [A Three-Operator Splitting Scheme and its Optimization Applications](https://link.springer.com/article/10.1007%2Fs11228-017-0421-z)
 - [Three-Operator Splitting and its Optimization Applications](http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_op_splitting_wotao_yin_40_min.pdf)
-- ftp://ftp.math.ucla.edu/pub/camreport/cam15-13.pdf
+- [A Three-Operator Splitting Scheme and its Optimization Applications](ftp://ftp.math.ucla.edu/pub/camreport/cam15-13.pdf)
 - [A Three-Operator Splitting Scheme and its Applications](http://www.math.ucla.edu/~wotaoyin/papers/pdf/three_operator_splitting_ICCM16.pdf)
 
 ****
 
 `Randomly Permuted ADMM` given initial values at round $k$ is described as follows:
 
-1. Primal update:
-    - Pick a permutation $\sigma$ of ${1,.. ., n}$ uniformly at random;
-    - For $i = 1,2,\cdots, n$, compute ${x}^{k+1}_{\sigma(i)}$ by
+1. Primal update
+    * Pick a permutation $\sigma$ of ${1,.. ., n}$ uniformly at random;
+    * For $i = 1,2,\cdots, n$, compute ${x}^{k+1}_{\sigma(i)}$ by
       $$
       x^{k+1}_{\sigma(i)}=\arg\min_{x_{\sigma(i)}} L(x^{k+1}_{\sigma(1)},\cdots, x^{k+1}_{\sigma(i-1)}, x_{\sigma(i)}, x^{k+1}_{\sigma(i+1)},\cdots\mid \lambda^{k}).
       $$
 2. Dual update. Update the dual variable by
-   $${\lambda}^{k+1}={\lambda}^{k}-\mu(\sum_{i=1}^{n}A_i x_i -b)$$
+   $${\lambda}^{k+1}={\lambda}^{k}-\mu(\sum_{i=1}^{n}A_i x_i -b).$$
 
 - [Randomly Permuted ADMM](https://web.stanford.edu/~yyye/MORfinal.pdf)
 - http://opt-ml.org/oldopt/papers/OPT2015_paper_47.pdf
 - https://arxiv.org/abs/1503.06387
-- [Multi-Block ADMM and its Convergence
-Random Permutation Helps-A talk by Ye](https://community.apan.org/cfs-file/__key/docpreview-s/00-00-01-07-11/Ye.pdf)
+- [Multi-Block ADMM and its Convergence Random Permutation Helps-A talk by Ye](https://community.apan.org/cfs-file/__key/docpreview-s/00-00-01-07-11/Ye.pdf)
 
 
 ***
@@ -933,9 +933,7 @@ Random Permutation Helps-A talk by Ye](https://community.apan.org/cfs-file/__key
 * [Split Bregman](https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html)
 * [Accelerated Bregman operator splitting with backtracking](https://www.aimsciences.org/article/doi/10.3934/ipi.2017048)
 * [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
-* [17w5030 Workshop on
-Splitting Algorithms, Modern Operator Theory,
-and Applications](https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf)
+* [17w5030 Workshop on Splitting Algorithms, Modern Operator Theory, and Applications](https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf)
 
 
 ****
@@ -1539,9 +1537,9 @@ Here, $a_{1},a_{2},\dots$  is a sequence of positive step sizes. Robbins and Mon
 
 ${\textstyle N(\theta )}$ is uniformly bounded,
 ${\textstyle M(\theta )}$ is nondecreasing,
-${\textstyle M'(\theta ^{*})}$ exists and is positive, and
+${\textstyle M'(\theta ^{\ast})}$ exists and is positive, and
 The sequence ${\textstyle a_{n}}$ satisfies the following requirements:
-$$\sum_{n=0}^{\infty} a_{n}=\infty \quad \mbox{ and }\quad \sum_{n=0}^{\infty} a_{n}^{2} < \infty \quad$$ 
+$$\sum_{n=0}^{\infty} a_{n}=\infty \quad \mbox{ and }\quad \sum_{n=0}^{\infty} a_{n}^{2} < \infty \quad$$
 A particular sequence of steps which satisfy these conditions, and was suggested by Robbins–Monro, have the form: ${\textstyle a_{n}=a/n}$, for ${\textstyle a>0}$. Other series are possible but in order to average out the noise in ${\textstyle N(\theta )}$, the above condition must be met.
 
 ### Stochastic Gradient Descent
@@ -1640,6 +1638,11 @@ See the following links for more information on *stochastic gradient descent*.
 |:-----------------------------------------------------------------:|
 |<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
 
++ [Convergence Analysis of Gradient Descent Stochastic Algorithms](https://www2.isye.gatech.edu/~ashapiro/JOTA96[1].pdf)
++ [Stochastic Approximations, Diffusion Limit
+and Small Random Perturbations of
+Dynamical Systems
+](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
 
 ![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 * http://blavatnikawards.org/honorees/profile/leon-bottou/
@@ -1722,7 +1725,7 @@ The first problem is that the distribution of $\vartheta$ is unknown as well as 
 Linearize $f(x)$ at $x_k$ and add a proximal term：
 
 $$
-L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, Ax+By-b\right>+\frac{\beta}{2}{\|Ax+By-b\|}_2^2 \\+\frac{1}{2\eta_k}\|x-x_{k}\|^2
+L_{\beta}^{k}(x,y,\lambda):= f(x_k)+\left<x_k, g_k\right>+h(y)-\left< \lambda, Ax+By-b\right>+\frac{\beta}{2}{\|Ax + By-b\|}_2^2 \\+\frac{1}{2\eta_k}\|x-x_{k}\|^2
 $$
 
 where $g_k$ is  a stochastic (sub)gradient of ${f}$.
@@ -1785,7 +1788,7 @@ independently.
 
 Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures). For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
 $$
-\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda) 
+\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda)
 $$
 to
 $$
@@ -1794,7 +1797,7 @@ $$
 \arg\max_{\lambda} L_{\beta}(x,y,\mid \lambda).
 $$
 
-![](https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90)
+![conference](https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90)
 
 They are really some block relaxation techniques.
 
@@ -1802,7 +1805,7 @@ They are really some block relaxation techniques.
 + [Operator Splitting by Professor Udell @ORIE 6326: Convex Optimization](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
 + [A note on the equivalence of operator splitting methods](https://arxiv.org/pdf/1806.03353.pdf)
 + [Splitting methods for monotone operators with applications to parallel optimization](https://dspace.mit.edu/handle/1721.1/14356)
-+ http://www.syscop.de/files/2015ss/numopt/splitting.pdf
++ [Operator Splitting Methods for Fast MPC](http://www.syscop.de/files/2015ss/numopt/splitting.pdf)
 + https://staffportal.curtin.edu.au/staff/profile/view/Jie.Sun/
 + [Operator Splitting Methods in Data Analysis](https://www.simonsfoundation.org/event/operator-splitting-methods-in-data-analysis/)
 
@@ -1828,7 +1831,7 @@ $$
 The objective function $f(x)$, a non-convex function, has many local minimizer or extrema.
 The function (1) is upper bounded by $x^2+4$ and lower bounded by $x^2 - 4$.
 
-![](http://freemind.pluskid.org/att/2016/03/nonconvex.svg)
+![pluskid](http://freemind.pluskid.org/att/2016/03/nonconvex.svg)
 
 Another insightful example is to minimize the following cost function:
 $$
@@ -1853,6 +1856,17 @@ Another related method is `graduated optimization`, which [is a global optimizat
 
 + https://www.wikiwand.com/en/Numerical_continuation
 + [Multi-Resolution Methods and Graduated Non-Convexity](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/BMVA96Tut/node29.html)
+
+****
+
+**Kiefer-Wolfowitz Algorithm** 
+
+In stochastic gradient descent, the estimated gradient is a partial sum of the population gradient so that it is necessary to compute the gradient of `sample` function.
+`Kiefer-Wolfowitz Algorithm` is the gradient-free version of stochastic gradient descent.  
+
++ [A compansion to Kiefer-Wolfowit algorithm](https://projecteuclid.org/euclid.aos/1188405629)
++ [Archive for Kiefer-Wolfowitz algorithm](https://xianblog.wordpress.com/tag/kiefer-wolfowitz-algorithm/)
+
 
 ****
 
@@ -1883,6 +1897,14 @@ $$
 
 ![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
 
+[Jeremy](https://jeremykun.com/) wrote a blog on this topic:
+
+> In general we have some set $X$ of objects and some set $Y$ of “event outcomes” which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
+
+> The `MWUA` algorithm randomly chooses an object $x \in X$ in every round, observing the outcome $y \in Y$, and collecting the reward $M(x,y)$ (or losing it as a penalty). The guarantee of the MWUA theorem is that the expected sum of rewards/penalties of MWUA is not much worse than if one had picked the best object (in hindsight) every single round.
+
+**Theorem (from [Arora et al](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)):** The cumulative reward of the MWUA algorithm is, up to constant multiplicative factors, at least the cumulative reward of the best object minus $\log(n)$, where $n$ is the number of objects.
+
 + [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
 + [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
 + [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
@@ -1894,9 +1916,7 @@ $$
 + [The Matrix Multiplicative Weights Algorithm for Domain Adaptation by David Alvarez Melis](https://people.csail.mit.edu/davidam/assets/publications/MS_thesis/MSThesis.pdf)
 + [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
 
-****
-
-
+______
 - [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
 - [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
 - [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)

@@ -186,7 +186,7 @@ There are some links on the  collective decision-making theory:
 ## Ranking
 
 http://www.cs.cmu.edu/~kdelaros/
-[Raning in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
+[Ranking in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
 
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every `search engine`, is responsible for the matching between processed queries and indexed documents in information retrieval.
