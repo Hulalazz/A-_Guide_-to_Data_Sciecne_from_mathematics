@@ -22,7 +22,9 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
 * [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)
+
 ***
+
 * http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
@@ -645,8 +647,6 @@ x^{+} = \arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
 \\=  \arg\min_{x} \{\delta_C(x)+\log({\|x-x^0\|}_2^2)\}.
 $$
 
-
-
 ## Lagrange Multipliers and Duality
 
 It is to solve the constrained optimization problem
@@ -713,8 +713,10 @@ $$
 x^{k+1}\in \arg\min_{x}\{f(x)+\frac{1}{c_k} \sum_{i=1}^{n} x^{i}(\ln(\frac{x_i}{x^{k}_{i}})-1)\}.
 $$
 A special case for the convex problem
-$$\text{minimize}\quad f(x),
-\\ s.t.  g_1(x) \leq 0, g_2(x) \leq 0, \cdots, g_r(x) \leq 0, x\in X$$
+$$
+\text{minimize}\quad f(x),
+\\ s.t.  g_1(x) \leq 0, g_2(x) \leq 0, \cdots, g_r(x) \leq 0, x\in X
+$$
 
 is the [**exponential augmented Lagrangean method**](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-253-convex-analysis-and-optimization-spring-2012/lecture-notes/MIT6_253S12_lec24.pdf).
 
@@ -1509,7 +1511,7 @@ It is difficult to generalize these methods to stochastic cases.
 
 There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
 
-![jordan in ICM 2018](http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg)
+<img title = "jordan in ICM 2018" src = "http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg" width = 80% />
 
 Some new connections between dynamical systems and optimization is found.
 
@@ -1731,6 +1733,7 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - [Walkman: A Communication-Efﬁcient Random-Walk Algorithm for Decentralized Optimization](http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html)
 - [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
 - [NOVEL GRADIENT-TYPE OPTIMIZATION ALGORITHMS FOR EXTREMELY LARGE-SCALE NONSMOOTH CONVEX OPTIMIZATION](https://www2.isye.gatech.edu/~nemirovs/Lena.pdf)
+- [Projects: Structure Exploitation in Large-Scale Non-Convex Optimisation](https://optimisation.doc.ic.ac.uk/project/structure-exploitation-in-large-scale-non-convex-optimisation/)
 - http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
 - http://shivaram.org/publications/hemingway-mlsys-2016.pdf
 - http://principlesofoptimaldesign.org/
@@ -1802,9 +1805,9 @@ L_{\beta}(x, y, \lambda)
 $$
 
 We can split the optimization over $x_i$:
-> 1. $$x_i^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i, y^{k}, \lambda_i^{k})\quad i=1,2,\cdots, n;$$
-> 2. $$y^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i^{\color{green}{k+1}}, y, \lambda_i^k);$$
-> 3. $$\lambda^{k+1}=\lambda^k+\lambda (x^{\color{green}{k+1}} - y^{\color{green}{k+1}}).$$
+> 1. $x_i^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i, y^{k}, \lambda_i^{k})\quad i=1,2,\cdots, n;$
+> 2. $y^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i^{\color{green}{k+1}}, y, \lambda_i^k);$
+> 3. $\lambda^{k+1}=\lambda^k+\lambda (x^{\color{green}{k+1}} - y^{\color{green}{k+1}}).$
 
 Then optimization over $x_i$ is done in parallel. Subsequently, the results are communicated
 back to a master node which performs the $y$ update (usually just a projection as in the example
@@ -1919,6 +1922,22 @@ During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are take
 ****
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
+> Multi-level optimization methods repeat three steps:
+> 
+>> 1. Cheap minimization of modified $\hat{f}$: 
+  $$y^{k}=\arg\min_{x\in \mathbb{R}^p} + \left<v_k, x\right>.$$ 
+>> 2. Use $y^{k}$ to give descent direction,
+  $$x^{k+1} = x^k -a_k(x^k - y^k) .$$
+>> 3. Set $v_k$ to satisfy first-order coherence
+$$v_{k+1}=\frac{L_f}{L_F} F^{\prime}(x^{k+1}) - f^{\prime}(x^{k+1}).$$
+
+[Panos Parpas](https://www.imperial.ac.uk/people/panos.parpas)
+[Panos Parpas](http://www.doc.ic.ac.uk/~pp500/)
+[EMERITUS PROFESSORBERCRUSTEM](https://www.imperial.ac.uk/people/b.rustem/publications.html)
++ [Multilevel Optimization Methods: Convergence and Problem Structure](http://www.optimization-online.org/DB_HTML/2016/11/5701.html)
++ [A Multilevel Proximal Algorithm for Large Scale Composite Convex Optimization](https://www.kcl.ac.uk/nms/depts/mathematics/news/)
++ [Multiresolution Algorithms for Faster
+Optimization in Machine Learning](https://gateway.newton.ac.uk/sites/default/files/asset/doc/1805/Parpas%20ML-Workshop-May-2018.pdf)
 
 ![The basic scheme of multilevel optimization](http://www.iosotech.com/img/text/ml_sch.gif)
 

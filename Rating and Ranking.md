@@ -304,6 +304,20 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 
 > The basic idea of SVMrank is to attempt to minimize the number of misclassified document pairs. This is achieved by modifying the default support vector machine optimization problem, which considers a set of documents, by constraining the optimization problem to perform the minimization of each pair of documents.
 
+A training set for ranking SVM is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e. $x_i$ is preferred to $x_j$. The ranking function outputs a score for each data object, from which a global
+ordering of data is constructed. That is, the target function $F(x_i)$ outputs a score
+such that $F(x-i) > F(x_j)$ for any $x_i ≻ x_j$.
+
+
+Using the techniques of SVM, a global ranking function F can be learned from an ordering R. Assume F is a linear ranking function such that
+$$\forall \{(\mathrm{X_i, X_j})\}: y_i < y_j, F(X_i)>F(X_j)\iff w\cdot X_i > w\cdot X_j.$$
+The solution can be approximated using SVM techniques by introducing (non-negative) slack variables ${\xi}_{i j}$ and minimizing the upper bound $\sum {\xi}_{i j}$ as follows:
+$$
+\text{minimize}\qquad L(w, \xi)= C \sum {\xi}_{i j} + {\|w\|}_2^2 \\
+\text{subject to } \quad \forall \{(\mathrm{X_i, X_j})\}: w\cdot X_i > w\cdot X_j + 1 -{\xi}_{ij},
+\\ \forall {\xi}_{ij}\geq 0. 
+$$
+
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * https://www.cnblogs.com/bentuwuying/p/6683832.html
 * [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
@@ -423,7 +437,9 @@ In LambdaRank, we compute the gradient. And we can use this gradient to make up 
 > LambdaMART had an added advantage: the training of tree ensemble models can be very significantly sped up over the neural net equivalent (this work, led by O. Dekel, is not yet published). This allows us to train with much larger data sets, which again gives improved ranking accuracy. From [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
 
 ***
-![LambdaMART](https://liam.page/uploads/images/LTR/LambdaMART.png)
+
+<img title="LambdaMART" src = "https://liam.page/uploads/images/LTR/LambdaMART.png" width = 80% />
+
 ***
 
 To implement LambdaMART we just use MART, specifying appropriate gradients
@@ -454,7 +470,7 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 
 ### Selective Gradient Boosting
 
-![Selective Gradient Boosting](https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg)
+<img title="Selective Gradient Boosting" src = "https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg" width = 80% />
 
 - [ ] [Selective Gradient Boosting for Effective Learning to Rank](http://quickrank.isti.cnr.it/selective-data/selective-SIGIR2018.pdf)
 - [ ] [基于Selective Gradient Boosting的排序方法 - BeyondTheData的文章 - 知乎](https://zhuanlan.zhihu.com/p/55768029)
@@ -622,7 +638,7 @@ Finally, we reach the objective function of our GBPR,
 
 $$\min_{\Theta} -\frac{1}{2}\ln(GBPR) + \frac{1}{2} \Omega(\Theta)$$
 
-where $\Omega(\Theta)$ is the regularization term used to avoid overfitting.
+where $\Omega(\Theta)$ is the regularization term used to avoid over-fitting.
 
 See more transfer learning algorithm in [http://csse.szu.edu.cn/staff/panwk/publications/].
 

@@ -1,5 +1,8 @@
 # Recommender System
 
+[最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
+[2018 Workshop on ExplainAble Recommendation and Search (EARS 2018)](https://ears2018.github.io/)
+
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
 RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items that a Web site, for example, may offer.
@@ -589,16 +592,15 @@ for for activation functions $f, g$ as described in  dimension reduction. Here $
 
 * https://github.com/hwwang55/DKN
 * https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf
-* http://lipixun.me/2018/02/01/youtube
 * https://www.cnblogs.com/pinard/p/6370127.html
 * https://www.jianshu.com/p/6f1c2643d31b
 * https://blog.csdn.net/John_xyz/article/details/78933253
-* http://kubicode.me/2018/02/23/Deep%20Learning/Deep-in-out-Factorization-Machines-Series/
 * https://zhuanlan.zhihu.com/p/38613747
 * https://www.infosec-wiki.com/?p=394011
-* http://danyangliu.me/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B/
-* https://amundtveit.com/2016/11/20/recommender-systems-with-deep-learning/
-* http://kubicode.me/2018/10/25/Deep%20Learning/More-Session-Based-Recommendation/
+* [Recommender Systems with Deep Learning](https://amundtveit.com/2016/11/20/recommender-systems-with-deep-learning/)
+* [深度学习在序列化推荐中的应用](http://kubicode.me/2018/10/25/Deep%20Learning/More-Session-Based-Recommendation/)
+* [深入浅出 Factorization Machine 系列](http://kubicode.me/2018/02/23/Deep%20Learning/Deep-in-out-Factorization-Machines-Series/)
+* [论文快读 - Deep Neural Networks for YouTube Recommendations](http://lipixun.me/2018/02/01/youtube)
 
 **Deep Geometric Matrix Completion**
 

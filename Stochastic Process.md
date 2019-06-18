@@ -12,7 +12,7 @@ $$F(x;t)=P(\xi(t)\leq x).$$
 
 | Stochastic Process and Management |
 |:---------------------------------:|
-|![www.azquotes.com](https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg)|
+| <img titile="www.azquotes.com" src="https://www.azquotes.com/picture-quotes/quote-a-stochastic-process-is-about-the-results-of-convolving-probabilities-which-is-just-anthony-stafford-beer-111-68-26.jpg" width = "80%" />
 
 - http://wwwf.imperial.ac.uk/~ejm/M3S4/INTRO.PDF
 
@@ -231,7 +231,33 @@ Given _Q_, how do we get $P(t), t \geq 0$ ?
   
 ### Time Series Analysis
 
-Time series analysis is the statistical counterpart of stochastic process in some sense. 
+Time series analysis is the statistical counterpart of stochastic process in some sense.
 In practice, we may observe a series of random variable but its hidden parameters are not clear before some computation.
-The parameter estimation of stochastic process and more time series analysis will cover more practical problems.
-  
+It is the independence that makes the parameter estimation of statistical models and  time series analysis, which will cover more practical consideration.
+
+[Time series data often arise when monitoring industrial processes or tracking corporate business metrics. The essential difference between modeling data via time series methods or using the process monitoring methods discussed earlier in this chapter is the following:
+Time series analysis accounts for the fact that data points taken over time may have an internal structure (such as autocorrelation, trend or seasonal variation) that should be accounted for.](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm)  
+
+**[A brief history of time series analysis](https://www.statistics.su.se/english/research/time-series-analysis/a-brief-history-of-time-series-analysis-1.259451)**
+> 
+> The theoretical developments in time series analysis started early with stochastic processes. The first actual application of autoregressive models to data can be brought back to the work of G. U Yule and J. Walker in the 1920s and 1930s.
+> 
+> During this time the moving average was introduced to remove periodic fluctuations in the time series, for example fluctuations due to seasonality. Herman Wold introduced ARMA (AutoRegressive Moving Average) models for stationary series, but was unable to derive a likelihood function to enable maximum likelihood (ML) estimation of the parameters.
+> 
+> It took until 1970 before this was accomplished. At that time, the classic book "Time Series Analysis" by G. E. P. Box and G. M. Jenkins came out, containing the full modeling procedure for individual series: specification, estimation, diagnostics and forecasting.
+> 
+> Nowadays, the so-called Box-Jenkins models are perhaps the most commonly used and many techniques used for forecasting and seasonal adjustment can be traced back to these models.
+>
+> The first generalization was to accept multivariate ARMA models, among which especially VAR models (Vector AutoRegressive) have become popular. These techniques, however, are only applicable for stationary time series. However, especially economic time series often exhibit a rising trend suggesting non-stationarity, that is, a unit root.
+>
+> Tests for unit roots developed mainly during the 1980:s. In the multivariate case, it was found that non-stationary time series could have a common unit root. These time series are called cointegrated time series and can be used in so called error-correction models within both long-term relationships and short-term dynamics are estimated.
+> 
+> **ARCH and GARCH models**
+> Another line of development in time series, originating from Box-Jenkins models, are the non-linear generalizations, mainly ARCH (AutoRegressive Conditional Heteroscedasticity) - and GARCH- (G = Generalized) models. These models allow parameterization and prediction of non-constant variance. These models have thus proved very useful for financial time series. The invention of them and the launch of the error correction model gave C. W. J Granger and R. F. Engle the Nobel Memorial Prize in Economic Sciences in 2003.
+>
+> Other non-linear models impose time-varying parameters or parameters whose values changes when the process switches between different regimes. These models have proved useful for modeling many macroeconomic time series, which are widely considered to exhibit non-linear characteristics.
+
+* [Introduction to Time Series Analysis](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm)
+* [Time Series Analysis with R](http://r-statistics.co/Time-Series-Analysis-With-R.html)
+* [Time series analysis (FMSN45/MASM17)](http://www.maths.lu.se/kurshemsida/time-series-analysis/)
+* [6CCM344A Time Series Analysis, Lecturer: Professor Michael Pitt](https://www.kcl.ac.uk/nms/depts/mathematics/study/current/handbook/progs/modules/6CCM344a)
