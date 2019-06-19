@@ -21,6 +21,7 @@ It is an application of machine learning, which is in the *representation + eval
 - [ ] https://github.com/daicoolb/RecommenderSystem-Paper
 - [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] https://www.zhihu.com/question/20465266/answer/142867207
+- [ ] http://www.mbmlbook.com/Recommender.html
 - [X] [直接优化物品排序的推荐算法](https://blog.csdn.net/u013166160/article/details/17935193)
 - [ ] [推荐系统遇上深度学习](https://www.jianshu.com/c/e12d7195a9ff)
 - [ ] [Large-Scale Recommender Systems@UTexas](http://bigdata.ices.utexas.edu/project/large-scale-recommender-systems/)
@@ -119,7 +120,7 @@ where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{
 * [Customized PPA for convex optimization](http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf)
 * [Matrix Completion.m](http://www.convexoptimization.com/wikimization/index.php/Matrix_Completion.m)
 
-**Maximum Margin Matrix Factorization**
+### Maximum Margin Matrix Factorization
 
 > A  novel approach to collaborative prediction is presented, using low-norm instead of low-rank factorizations. The approach is inspired by, and has strong connections to, large-margin linear discrimination. We show how to learn low-norm factorizations by solving a semi-definite program, and present generalization error bounds based on analyzing the Rademacher complexity of low-norm factorizations.
 
@@ -232,7 +233,10 @@ And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logisti
 * [Inductive Matrix Completion for Recommender Systems with Side-Information](http://bigdata.ices.utexas.edu/software/inductive-matrix-completion/)
 * [Inductive Matrix Completion for Predicting Gene-Diseasev Associations](http://www.cs.utexas.edu/users/inderjit/public_papers/imc_bioinformatics14.pdf)
 
-**Probabilistic Matrix Factorization**
+### Probabilistic Matrix Factorization
+
+In linear regression, the least square methods is equivalent to maximum likelihood estimation of the error in standard normal distribution.  
+
 
 |Regularized SVD|
 |---------------|
@@ -249,7 +253,7 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 * [Latent Factor Models for Web Recommender Systems](http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf)
 * [Regression-based Latent Factor Models@CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 
-**BellKor's Progamatic Chaos**
+### BellKor's Progamatic Chaos
 
 Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
 The boosting or stacking methods may help us to enhance these methods.
@@ -270,7 +274,7 @@ Another advantage of collaborative filtering or matrix completion is that even t
 * [Intro to Implicit Matrix Factorization](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
 * [a curated list in github.com](https://github.com/benfred/implicit).
 
-**Recommendation with Implict Information**
+### Recommendation with Implicit Information
 
 |Explicit and implicit feedback|
 |:---:|
@@ -299,7 +303,7 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * [Alternating Least Squares Method for Collaborative Filtering](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/)
 * [Implicit Feedback and Collaborative Filtering](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/)
 
-**Collaborative Less-is-More Filtering**
+### Collaborative Less-is-More Filtering
 
 Sometimes, the information of user we could collect is implicit such as the clicking at some item.
 
@@ -344,24 +348,22 @@ We use stochastic gradient ascent to maximize the objective function.
 * [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
 * [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 * [DiFacto — Distributed Factorization Machines](https://www.cs.cmu.edu/~muli/file/difacto.pdf)
-****
 
-
-**Hyperbolic Recommender Systems**
+### Hyperbolic Recommender Systems
 
 Many well-established recommender systems are based on representation learning in Euclidean space.
-In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
+In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
 user and item representations in hyperbolic space.
 
 Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$,
 the distance between two points on *P* is given by
 $$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
 
-HyperBPR leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
+`HyperBPR` leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
 Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
-$$\alpha(u, v) = f(d_p(u,v)).$$
+$$\alpha(u, v) = f(d_p(u, v)).$$
 The objective function is defined as follows:
-$$\arg\min_{\Theta} \sum_{i,j,k} -\ln(\sigma\{\alpha(u_i, v_j) - \alpha(u_i, v_k)\}) + \lambda  {\|\Theta\|}_2^2$$
+$$\arg\min_{\Theta} \sum_{i, j, k} -\ln(\sigma\{\alpha(u_i, v_j) - \alpha(u_i, v_k)\}) + \lambda  {\|\Theta\|}_2^2$$
 
 where $(i, j, k)$ is the triplet that belongs to the set ${D}$ that
 contains all pairs of positive and negative items for each
@@ -382,9 +384,7 @@ Deep learning models for recommender system may come from the restricted Boltzma
 And deep learning models are powerful information extractors.
 Deep learning is really popular in recommender system such as [spotlight](https://github.com/maciejkula/spotlight).
 
-***
-
-**Factorization Machines(FM)**
+### Factorization Machines(FM)
 
 The matrix completion used in recommender system are linear combination of some features such as regularized SVD.
 The model equation for a factorization machine of degree ${d = 2}$ is defined as
@@ -410,7 +410,7 @@ $\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is called the `sec
 * http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/
 * https://www.cnblogs.com/pinard/p/6370127.html
 
-**Field-aware Factorization Machine(FFM)**
+### Field-aware Factorization Machine(FFM)
 
 In FMs, every feature has only one latent vector to learn the latent effect with any other features.
 In FFMs, each feature has several latent vectors. Depending on the field of other features, one of them is used to do the inner product.
@@ -423,7 +423,7 @@ where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
 * https://huangzhanpeng.github.io/2018/01/04/Field-aware-Factorization-Machines-for-CTR-Prediction/
 * https://blog.csdn.net/mmc2015/article/details/51760681
 
-**Wide & Deep Model**
+### Wide & Deep Model
 
 The output of this model is
 $$
@@ -432,20 +432,19 @@ $$
 where the `wide` part deal with the categorical features such as user demographics and the `deep` part deal with continuous features.
 
 
-![](https://upload-images.jianshu.io/upload_images/1500965-13fa11d119bb20b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-![](http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/fnn_pnn_wdl.png)
+<img src=https://upload-images.jianshu.io/upload_images/1500965-13fa11d119bb20b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp width=70%/>
+<img src=http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/fnn_pnn_wdl.png width=70%/>
 
 * https://arxiv.org/pdf/1606.07792.pdf
-* https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html
+* [Wide & Deep Learning: Better Together with TensorFlow, Wednesday, June 29, 2016](https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html)
 * https://www.jianshu.com/p/dbaf2d9d8c94
 * https://www.sohu.com/a/190148302_115128
 
 <img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/>
 
-**Deep FM**
+### Deep FM
 
-DeepFM ensembles FM and DNN and to learn both second order and higher-order feature interactions:
+`DeepFM` ensembles FM and DNN and to learn both second order and higher-order feature interactions:
 $$\hat{y}=\sigma(y_{FM} + y_{DNN})$$
 where $\sigma$ is the sigmoid function so that $\hat{y}\in[0, 1]$ is the predicted CTR, $y_{FM}$ is the output of
 FM component, and $y_{DNN}$ is the output of deep component.
@@ -472,17 +471,18 @@ It is worth pointing out that FM component and deep component share the same fea
 1) it learns both low- and high-order feature interactions from raw features;
 2) there is no need for expertise feature engineering of the input.
 
-![](http://kubicode.me/img/Deep-in-out-Wide-n-Deep-Series/deepfm_arch.png)
+<img src=http://kubicode.me/img/Deep-in-out-Wide-n-Deep-Series/deepfm_arch.png width=80% />
+
 * https://zhuanlan.zhihu.com/p/27999355
 * https://zhuanlan.zhihu.com/p/25343518
 * https://zhuanlan.zhihu.com/p/32127194
 * https://arxiv.org/pdf/1703.04247.pdf
 * https://blog.csdn.net/John_xyz/article/details/78933253#deep-fm
 
-**Neural Factorization Machines**
+### Neural Factorization Machines
 
 $$
-\hat{y} = w_0 + \left<w,x\right> + f(x)
+\hat{y} = w_0 + \left<w, x\right> + f(x)
 $$
 where the first and second terms are the linear regression part similar to that for FM, which models global bias of data and weight
 of features. The third term $f(x)$ is the core component of NFM
@@ -496,22 +496,22 @@ for modelling feature interactions, which is a `multi-layered feedforward neural
 * http://staff.ustc.edu.cn/~hexn/
 * https://github.com/hexiangnan/neural_factorization_machine
 
-**Attentional Factorization Machines**
+### Attentional Factorization Machines
 
 Attentional Factorization Machine (AFM) learns the importance of each feature interaction from data via a neural attention network.
 
 We employ the attention mechanism on feature interactions by performing a weighted sum on the interacted vectors:
 
-$$\sum_{(i,j)} a_{(i,j)}(V_i\odot V_j)x_i x_j$$
+$$\sum_{(i, j)} a_{(i, j)}(V_i \odot V_j) x_i x_j$$
 
-where $a_{i,j}$ is the attention score for feature interaction.
+where $a_{i, j}$ is the attention score for feature interaction.
 
-![](https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png)
+<img src=https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png width=80% />
 
 * https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf
 * http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89
 
-**xDeepFM**
+### xDeepFM
 
 `Compressed Interaction Network(CIN)`
 
@@ -522,7 +522,7 @@ where $a_{i,j}$ is the attention score for feature interaction.
 - [ ] http://kubicode.me/2018/09/17/Deep%20Learning/eXtreme-Deep-Factorization-Machine/
 - [ ] [推荐系统遇上深度学习(二十二)--DeepFM升级版XDeepFM模型强势来袭！](https://www.jianshu.com/p/b4128bc79df0)
 
-**Restricted Boltzmann Machines for Collaborative Filtering(RBM)**
+### Restricted Boltzmann Machines for Collaborative Filtering(RBM)
 
 Let ${V}$ be a $K\times m$ observed binary indicator matrix with $v_i^k = 1$ if the user rated item ${i}$ as ${k}$ and ${0}$ otherwise.
 We also let $h_j$, $j = 1, \dots, F,$ be the binary values of hidden (latent) variables, that can be thought of as representing
@@ -532,10 +532,10 @@ We use a conditional multinomial distribution (a “softmax”) for modeling eac
 "visible" binary rating matrix ${V}$ and a conditional
 Bernoulli distribution for modeling "hidden" user features *${h}$*:
 $$
-p(v_i^k = 1 | h) = \frac{\exp(b_i^k+\sum_{j=1}^{F}h_j W_{i,j}^{k})}{\sum_{l=1}^{K}\exp(b_i^k+\sum_{j=1}^{F}h_j W_{i,j}^{l})} \\
-p( h_j = 1 | V) = \sigma(b_j + \sum_{i=1}^{m}\sum_{k=1}^{K} v_i^k W_{i,j}^k)
+p(v_i^k = 1 \mid h) = \frac{\exp(b_i^k + \sum_{j=1}^{F} h_j W_{i,j}^{k})}{\sum_{l=1}^{K}\exp( b_i^k + \sum_{j=1}^{F} h_j W_{i, j}^{l})} \\
+p( h_j = 1 \mid V) = \sigma(b_j + \sum_{i=1}^{m}\sum_{k=1}^{K} v_i^k W_{i,j}^k)
 $$
-where $\sigma(x)=\frac{1}{1+exp(-x)}$ is the logistic function, $W_{i,j}^{k}$ is is a symmetric interaction parameter between feature
+where $\sigma(x) = \frac{1}{1 + exp(-x)}$ is the logistic function, $W_{i,j}^{k}$ is is a symmetric interaction parameter between feature
 ${j}$ and rating ${k}$ of item ${i}$, $b_i^k$ is the bias of rating ${k}$ for item ${i}$, and $b_j$ is the bias of feature $j$.
 
 The marginal distribution over the visible ratings ${V}$ is
@@ -571,7 +571,7 @@ where $\sigma_j^2$ is the variance of the hidden unit ${j}$.
 * http://deeplearning.net/tutorial/rbm.html
 * [RBM notebook form Microsoft](https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb)
 
-**AutoRec**
+### AutoRec
 
 [AutoRec](http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf) is a novel `autoencoder` framework for collaborative filtering (CF). Empirically, AutoRec’s
 compact and efficiently trainable model outperforms state-of-the-art CF techniques (biased matrix factorization, RBMCF and LLORMA) on the Movielens and Netflix datasets.
@@ -611,7 +611,7 @@ for for activation functions $f, g$ as described in  dimension reduction. Here $
 * [深入浅出 Factorization Machine 系列](http://kubicode.me/2018/02/23/Deep%20Learning/Deep-in-out-Factorization-Machines-Series/)
 * [论文快读 - Deep Neural Networks for YouTube Recommendations](http://lipixun.me/2018/02/01/youtube)
 
-**Deep Geometric Matrix Completion**
+### Deep Geometric Matrix Completion
 
 It’s easy to observe how better matrix completions can be achieved by considering the sparse matrix as defined over two different graphs:
 a user graph and an item graph. From a signal processing point of view, the matrix ${X}$
@@ -630,7 +630,7 @@ the selected GCN.
 * http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018
 * http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf
 
-**Deep Matching Models for Recommendation**
+### Deep Matching Models for Recommendation
 
 It is essential for the recommender system  to find the item which matches the users' demand. Its difference from web search is that recommender system provides item information even if the users' demands or generally interests are not provided.
 It sounds like modern crystal ball to read your mind.
@@ -654,9 +654,13 @@ We present a novel framework for studying recommendation algorithms in terms of 
 ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
 dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.
 
-- [ ] http://dmml.asu.edu/smm/slides/
+- [ ] [Social Media Mining: An Introduction](http://dmml.asu.edu/smm/slides/)
 - [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
 - [ ] https://arxiv.org/pdf/1304.3405.pdf
+- [ ] [Social Recommendation With Evolutionary Opinion Dynamics](https://shiruipan.github.io/pdf/TSMC-18-Xiong.pdf)
+- [ ] [Workshop on Responsible Recommendation](https://piret.gitlab.io/fatrec/)
+- [ ] [A Probabilistic Model for Using Social Networks in Personalized Item Recommendation](http://ajbc.io/projects/papers/Chaney2015.pdf)
+- [ ] [Product Recommendation and Rating Prediction based on Multi-modal Social Networks](http://delab.csd.auth.gr/papers/RecSys2011stm.pdf)
 
 **Knowledge Graph and Recommender System**
 
@@ -685,24 +689,60 @@ _______
 |Item-based Recommendation | Learning to rank|
 |Hybrid Approaches | MAB Explore/Exploit|
 
-#### Ensemble Methods for RecSys
+## Ensemble Methods for RecSys
 
 The RecSys can be considered as some regression or classification tasks, so that we can apply the ensemble methods to these methods as  `BellKor's Progamatic Chaos` used the blended solution to win the prize.
 In fact, its essence is bagging or blending, which is one sequential ensemble strategy in order to avoid over-fitting or reduce the variance.
 
 In this section, the boosting is the focus, which is to reduce the error and boost the performance from a weaker learner.
 
-There are two common methods to construct a stronger learner from a weaker learner: (1) rewight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting.
+There are two common methods to construct a stronger learner from a weaker learner: (1) reweight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting.
 
 - [General Functional Matrix Factorization Using Gradient Boosting](http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf)
 
 
-**BoostFM**
+### Gradient Boosting Factorization Machines
 
-`BoostFM` integrates boosting into factorization models during the process of item ranking. Specifically, BoostFM is an adaptive boosting framework that linearly
-combines multiple homogeneous component recommenders,
-which are repeatedly constructed on the basis of the individual
-FM model by a re-weighting scheme.
+`Gradient Boosting Factorization Machine (GBFM)` model is to incorporate feature selection algorithm with Factorization Machines into a unified framework.
+
+**Gradient Boosting Factorization Machine Model**
+> + _Input_: Training Data $S =\{(\mathbf{x}_i, y_i)\}$.
+> + _Output_: $\hat{y}_S =y_0(x) + {\sum}^S_
+{s=1}\left<v_{si}, v_{sj}\right>$.
+> + Initialize rating prediction function as $\hat{y}_0(x)$
+> + for $s = 1 \to S$ do
+> +  1. Select interaction feature $C_p$ and $C_q$ from Greedy Feature Selection Algorithm;
+> +  2. Estimate latent feature matrices $V_p$ and $V_q$;
+> +  3. Update  $\hat{y}_s(\mathrm{x}) = \hat{y}_{s-1}(\mathrm{x}) + {\sum}_
+{i\in C_p}{\sum}_
+{j\in C_q} \mathbb{I}[i,j\in \mathrm{x}]\left<V_{p}^{i}, V_{q}^{j}\right>$
+> + end for
+
+where s is the iteration step of the learning algorithm. At step s, we greedily select two interaction features $C_p$ and $C_q$
+where $\mathbb{I}$ is the indicator function, the value is 1 if the condition holds otherwise 0.
+
+**Greedy Feature Selection Algorithm**
+
+From the view of gradient boosting machine, at each
+step s, we would like to search a function ${f}$ in the function
+space ${F}$ that minimize the objective function:
+$$L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$$
+
+where $\hat{y}_s(\mathrm{x}) = \hat{y}_{s−1}(\mathrm{x}) + \alpha_s f_s(\mathrm{x})$.
+
+We heuristically assume that the
+function ${f}$ has the following form:
+$$f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell}q_{C_{i}(t)}(\mathrm{x})$$
+where the function q maps latent feature
+vector x to real value domain
+$$q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{tj}.$$
+
+- [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
+### BoostFM
+
+`BoostFM` integrates boosting into factorization models during the process of item ranking.
+Specifically, BoostFM is an adaptive boosting framework that linearly combines multiple homogeneous component recommender system,
+which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.
 
 - [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
 - http://wnzhang.net/
@@ -710,7 +750,7 @@ FM model by a re-weighting scheme.
 - https://www.librec.net/luckymoon.me/
 - [The author’s final accepted version.](http://eprints.gla.ac.uk/135914/7/135914.pdf)
 
-**Adaptive Boosting Personalized Ranking (AdaBPR)**
+### Adaptive Boosting Personalized Ranking (AdaBPR)
 
 `AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
 In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
@@ -740,12 +780,7 @@ where the notations are listed as follows:
 - [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 - [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
 
-**Gradient Boosting Factorization Machines**
 
-`Gradient Boosting Factorization Machine (GBFM)` model is to incorporate feature selection algorithm with Factorization Machines into a unified framework.
-
-
-- [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
 ****
 
 - [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
@@ -769,7 +804,7 @@ where the notations are listed as follows:
 + [Interdisciplinary Workshop on Recommender Systems](http://www.digitaluses-congress.univ-paris8.fr/Interdisciplinary-Workshop-on-Recommender-Systems)
 + [2nd FATREC Workshop: Responsible Recommendation](https://piret.gitlab.io/fatrec2018/)
 
-#### Implementation
+## Implementation
 
 - [ ] https://github.com/maciejkula/spotlight
 - [ ] https://github.com/Microsoft/Recommenders
@@ -806,8 +841,20 @@ When the feature vector ${x}$ are given, the tree split the features by GBRT the
 [Hongliang Jie](http://www.hongliangjie.com/talks/Etsy_ML.pdf) shares 3 challenges of computational advertising in Etsy,
 which will be the titles of the following subsections.
 
++ [ONLINE VIDEO ADVERTISING: All you need to know in 2019](https://strategico.io/video-advertising/)
++ [计算广告](https://dirtysalt.github.io/html/computational-advertising.html)
++ https://headerbidding.co/category/adops/
++ [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
 
 ### Click-Through Rate Modeling
+
+* [聊聊CTR预估的中的深度学习](http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/)
+* [Deep Models at DeepCTR](https://deepctr.readthedocs.io/en/latest/models/DeepModels.html)
+* [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/john_xyz/article/details/78933253)
+* [Turning Clicks into Purchases](https://www.hongliangjie.com/talks/SF_2018-05-09.pdf)
+* https://github.com/shenweichen/DeepCTR
+* https://github.com/wzhe06/CTRmodel
+* https://github.com/cnkuangshi/LightCTR
 
 ### Conversion Rate Modeling
 
@@ -817,18 +864,10 @@ which will be the titles of the following subsections.
 
 ****
 
-* https://github.com/shenweichen/DeepCTR
-* https://github.com/wzhe06/Ad-papers
-* https://github.com/wnzhang/rtb-papers
-* https://github.com/wzhe06/CTRmodel
-* https://github.com/cnkuangshi/LightCTR
-* [聊聊CTR预估的中的深度学习](http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/)
+* [Papers on Computational Advertising](https://github.com/wzhe06/Ad-papers)
 * [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
-* [Computational Advertising
-Contract Preferences for Display Advertising](https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising)
+* [Computational Advertising Contract Preferences for Display Advertising](https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising)
 * [Machine Learning for Computational Advertising, UC Santa Cruz, April 22, 2009, Alex Smola, Yahoo Labs, Santa Clara, CA](http://alex.smola.org/teaching/ucsc2009/)
-* [Deep Models at DeepCTR](https://deepctr.readthedocs.io/en/latest/models/DeepModels.html)
-* [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/john_xyz/article/details/78933253)
 * [Computational Advertising and Recommendation](https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf)
 * [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
 * http://yelp.github.io/MOE/
@@ -838,6 +877,8 @@ ______________________________________________________
 
 ### Labs
 
+- https://libraries.io/github/computational-class
+- http://www.52caml.com/
 - [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
 - [Data Mining Machine Learning @The University of Texas at Austin](http://www.ideal.ece.utexas.edu/)
 - [Center for Big Data Analytics@The University of Texas at Austin](https://bigdata.oden.utexas.edu/)

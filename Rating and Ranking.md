@@ -2,6 +2,7 @@
 
 + [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
 + <https://www.cse.iitb.ac.in/~soumen/>
++ http://www.mbmlbook.com/TrueSkill.html
 
 The basic idea is the back-feed from the results.
 After each game, this data is updated for the participants in the game.
@@ -820,7 +821,7 @@ Collaborative Filtering](http://users.jyu.fi/~swang/publications/TIST14.pdf)
 - [ ] [Machine Learning: recommendation and ranking](https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [ ] [Recommendation and ranking by Mark Jelasity](http://www.inf.u-szeged.hu/~jelasity/ddm/graphalgs.pdf)
-- [ ] ["Tutorial ：Learning to Rank for Recommender Systems" by](http://www.slideshare.net/kerveros99/learning-to-rank-for-recommender-system-tutorial-acm-recsys-2013) 
+- [ ] ["Tutorial ：Learning to Rank for Recommender Systems" by](http://www.slideshare.net/kerveros99/learning-to-rank-for-recommender-system-tutorial-acm-recsys-2013)
 
 For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
 

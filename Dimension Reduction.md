@@ -4,8 +4,9 @@ Principal component analysis or singular value decomposition can be applied to m
 The data collected in practice always save in the table form, which can considered as a matrix. Another techniques similar to PCA is  eigenvalue-eigenvector decomposition. Dimension reduction is really the topic of data science as data preprocessing .
 
 The basic idea of dimension reduction is that not all information is necessary for a specific task.
-The motivation of dimension reduction is **Curse of dimensionality**, limit of storage and computation and so on. The high dimensional space is not easy for us to visualize, imagine or understand. The intuition or insight to high dimensional space is weak for us, the people who live in the three dimensional space.
-As a preprocessing data method, it helps us to select features and learn proper representation.  A more theoretical and useful topic is data compression, a branch of information theory. The dimension reduction is related with geometry of data set, which includes manifold learning and topological data analysis.
+The motivation of dimension reduction is **Curse of Dimensionality**, limit of storage/computation and so on. The high dimensional space is not easy for us to visualize, imagine or understand. The intuition or insight to high dimensional space is weak for us, the people who live in the three dimensional space.
+As a preprocessing data method, it helps us to select features and learn proper representation.  
+The dimension reduction is related with geometry of data set, which includes manifold learning and topological data analysis.
 
 All manifold learning algorithms assume that data set lies on a smooth non-linear manifold of low dimension and a mapping
 
@@ -21,7 +22,11 @@ $$
 $\color{aqua}{PS:}$ the dimension reduction is classified into unsupervised learning while it can be converted to optimization problems.
 Additionally, it will miss some properties of the data set so please do not delete the previous data sets.
 
-It is a wonderful review of dimension reduction at <https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf>.
+What is more, [the __blessings of dimensionality__ include the concentration of measure phenomenon (so-called in the geometry of Banach spaces), which means that certain random fluctuations are very well controlled in high dimensions and the success of asymptotic methods, used widely in mathematical statistics and statistical physics, which suggest that statements about very high-dimensional settings may be made where moderate dimensions would be too complicated.](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180lecture1.pdf)
+
+It is a wonderful review of dimension reduction at [TiCC TR 2009–005, Dimensionality Reduction: A Comparative Review, Laurens van der Maaten Eric Postma, Jaap van den Herik TiCC, Tilburg University](https://lvdmaaten.github.io/publications/papers/TR_Dimensionality_Reduction_Review_2009.pdf).
+
+A related top is data compression, a branch of information theory, a more  useful and fundamental topic in computer science.
 
 * https://lvdmaaten.github.io/software/
 * https://jakevdp.github.io/PythonDataScienceHandbook/05.10-manifold-learning.html
@@ -31,9 +36,11 @@ It is a wonderful review of dimension reduction at <https://lvdmaaten.github.io/
 * https://www.wikiwand.com/en/Curse_of_dimensionality
 * http://www.cnblogs.com/xbinworld/archive/2012/07/09/LLE.html
 * https://www.ayasdi.com/blog/artificial-intelligence/prediction-needs-unsupervised-learning/
-* https://cs.nyu.edu/~roweis/lle/related.html
-* https://www2.cs.duke.edu/courses/spring18/compsci630/lecture10.pdf
-* http://faculty.ucmerced.edu/mcarreira-perpinan/papers/phd-ch04.pdf
+* [Nonlinear Dimensionality Reduction](https://cs.nyu.edu/~roweis/lle/related.html)
+* [COMPSCI 630: Randomized Algorithms](https://www2.cs.duke.edu/courses/spring18/compsci630/lecture10.pdf)
+* [Dimensionality reduction](http://faculty.ucmerced.edu/mcarreira-perpinan/papers/phd-ch04.pdf)
+* [Surprises in high dimensions](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180lecture1.pdf)
+* [Linear dimension reduction via Johnson-Lindenstrauss](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180lecture_jl.pdf)
 
 ### PCA and MDS
 
@@ -78,9 +85,9 @@ Classical MDS assumes Euclidean distances. So this is not applicable for direct 
 
 **Locally Linear Embedding(LLE)** is a topology preserving manifold learning method. Topology preservation means the neighborhood structure is intact. Methods like SOM(self-organizing map) are also topology preserving but they assume a predefined lattice for the lower manifold. LLE creates the lattice based on the information contained in the dataset.
 
-![lle](https://s3-us-west-2.amazonaws.com/articles-dimred/lle/lle_main.png)
+<img src = https://s3-us-west-2.amazonaws.com/articles-dimred/lle/lle_main.png width = 50%/>
+<img src = https://cs.nyu.edu/~roweis/lle/images/llef2med.gif width = 50%/>
 
-![lleStep](https://cs.nyu.edu/~roweis/lle/images/llef2med.gif)
 ***
 
 1. Compute the neighbors of each data point, $\vec{X}_i$.
@@ -243,8 +250,7 @@ ICA is very closely related to the method called blind source separation (BSS) o
 + http://arnauddelorme.com/ica_for_dummies/
 + https://sccn.ucsd.edu/wiki/Chapter_09:_Decomposing_Data_Using_ICA
 + http://cs229.stanford.edu/notes/cs229-notes11.pdf
-+ https://blog.paperspace.com/dimension-reduction-with-independent-components-analysis/
-+ http://deeplearning.stanford.edu/wiki/index.php/Independent_Component_Analysis
++ [Diving Deeper into Dimension Reduction with Independent Components Analysis (ICA)](https://blog.paperspace.com/dimension-reduction-with-independent-components-analysis/)
 + https://www.zhihu.com/question/28845451/answer/42292804
 + http://www.gipsa-lab.grenoble-inp.fr/~pierre.comon/publications_en.html#book
 + https://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec6_FA_ICA.pdf
@@ -296,24 +302,23 @@ $$
 and $\hat{f}(z) = \frac{1}{n}\sum_{j=1}^{n} K (z -\left<\alpha, X_j\right>)$ with some kernel function ${K}$.
 If the high-dimensional distribution of $X$ is normal, then each projection $z=\alpha^{\top}X$ is standard normal since $\vert\vert\alpha\vert\vert=1$ and since  ${X}$ has been centered and sphered by, e.g., the [Mahalanobis transformation](https://www.wikiwand.com/en/Whitening_transformation).
 
-The projection pursuit methods can extend to density estimation and regreesion.
+The projection pursuit methods can extend to density estimation and regression.
 
 ****
 
 * https://projecteuclid.org/euclid.aos/1176349519
 * https://projecteuclid.org/euclid.aos/1176349520
 * https://projecteuclid.org/euclid.aos/1176349535
-* https://people.maths.bris.ac.uk/~magpn/Research/PP/PP.html
+* [guynason, Professor of Statistics, University of Bristol](https://people.maths.bris.ac.uk/~magpn/Research/PP/PP.html)
 * http://sci-hub.fun/10.1002/wics.23
-* https://www.stat.washington.edu/wxs/Visualization-papers/projection-pursuit.pdf
-* http://cis.legacy.ics.tkk.fi/aapo/papers/IJCNN99_tutorialweb/node23.html
+* [Werner Stuetzle, Department of Statistics, University of Washington](https://www.stat.washington.edu/wxs/Visualization-papers/projection-pursuit.pdf)
+* [ICA and Projection Pursuit](http://cis.legacy.ics.tkk.fi/aapo/papers/IJCNN99_tutorialweb/node23.html)
 * https://www.pnas.org/content/115/37/9151
-* https://www.ncbi.nlm.nih.gov/pubmed/30150379
+* [Projection pursuit in high dimensions](https://www.ncbi.nlm.nih.gov/pubmed/30150379)
 * https://github.com/pavelkomarov/projection-pursuit
-* http://cis.legacy.ics.tkk.fi/aapo/papers/IJCNN99_tutorialweb/node23.html
-* http://sun.cwru.edu/~jiayang/nsf/ipp.html
-* https://rd.springer.com/chapter/10.1007/978-1-4612-4214-7_9
-* https://www.sciencedirect.com/science/article/pii/S0925231214010091
+* [Interactive Projection Pursuit (IPP) by Jiayang Sun, Jeremy Fleischer, Catherine Loader](http://sun.cwru.edu/~jiayang/nsf/ipp.html)
+* [Exploratory Projection Pursuit](https://rd.springer.com/chapter/10.1007/978-1-4612-4214-7_9)
+* [A Projection Pursuit framework for supervised dimension reduction of high dimensional small sample datasets](https://www.sciencedirect.com/science/article/pii/S0925231214010091)
 
 ###  Self Organizing Maps
 
@@ -343,15 +348,23 @@ Training occurs in several steps and over many iterations:
 
 
 ***
+<img title ="Kohonen" src="http://www.lohninger.com/helpcsuite/img/kohonen1.gif" width=80% />
 
-* http://www.lohninger.com/helpcsuite/kohonen_network_-_background_information.htm
+* [Kohonen Network - Background Information](http://www.lohninger.com/helpcsuite/kohonen_network_-_background_information.htm)
 * https://users.ics.aalto.fi/teuvo/
 * http://www.ai-junkie.com/ann/som/som1.html
 * http://www.mlab.uiah.fi/~timo/som/thesis-som.html
 * http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html
 
-***
+### Diffusion map
+
+
+<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Diffusion_map_of_a_torodial_helix.jpg/640px-Diffusion_map_of_a_torodial_helix.jpg" width = "40%" />
+
+https://www.wikiwand.com/en/Diffusion_map
 
 * https://www.wikiwand.com/en/Nonlinear_dimensionality_reduction
-* https://scikit-learn.org/stable/modules/decomposition.html#decompositions
-* http://www.idm.pku.edu.cn/staff/wangyizhou/papers/GAE-CVPRwDeepVision2014.pdf
+* [destiny:An R package for diffusion maps, with additional features for large-scale and single cell data](https://theislab.github.io/destiny/index.html)
+* [A short introduction to Diffusion Maps](https://stephanosterburg.github.io/an_introductio_to_diffusion_maps)
+* [pydiffmap: an open-source project to develop a robust and accessible diffusion map code for public use.](https://pydiffmap.readthedocs.io/en/master/index.html)
+* [MAT 585: Diffusion Maps by Amit Singer](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/Singer_diffusionmaps.pdf)
