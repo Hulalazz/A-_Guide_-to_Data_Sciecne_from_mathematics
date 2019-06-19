@@ -5,7 +5,7 @@
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
 
 - [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
-- [Beyond deep learnig](http://beyond-deep-nets.clps.brown.edu/)
+- [Beyond deep learning](http://beyond-deep-nets.clps.brown.edu/)
 - [Cognitive Computation Group @ U. Penn.](https://cogcomp.org/)
 - [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
 - [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
@@ -39,6 +39,7 @@ Graph embedding, preprocessing of graph data processing, is an example of repres
 - http://snap.stanford.edu/proj/embeddings-www/
 - https://arxiv.org/abs/1709.05584
 - http://cazabetremy.fr/Teaching/EmbeddingClass.html
+- [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 - [A Beginner's Guide to Graph Analytics and Deep Learning](https://skymind.ai/wiki/graph-analysis)
 - [Representation Learning on Graphs: Methods and Applications](https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf)
 - [DOOCN-XII: Network Representation Learning
@@ -60,7 +61,7 @@ And if we consider the  text as digraph, `word2vec` is an specific example of `D
 Given the word sequence $\mathbb{W}=(w_0, w_1, \dots, w_n)$, we can compute the conditional probability $P(w_n|w_0, w_1, \dots, w_{n-1})$. And
 $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
 
->> * DeepWalk  $G, w, d, \gamma, t$
+> * DeepWalk  $G, w, d, \gamma, t$
  * Input: graph $G(V, E)$;
      window size $w$;
      embedding size $d$;
@@ -77,7 +78,8 @@ $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
         -  $SkipGram(Φ, W_{v_i}, w)$
         - end for
      + end for
->> $SkipGram(Φ, W_{v_i}, w)$
+***  
+> $SkipGram(Φ, W_{v_i}, w)$
 * 1. for each $v_j \in W_{v_i}$ do
     + 2. for each $u_k \in W_{v_i}[j − w : j + w]$ do
     + 3.  $J(\Phi)=-\log Pr(u_k\mid \Phi(v_j))$
@@ -149,10 +151,10 @@ This is a paper about identifying nodes in graphs that play a similar role based
 
 Struc2vec has four main steps:
 
->1. Determine the structural similarity between each vertex pair in the graph, for different neighbourhood sizes.
->2. Construct a weighted multi-layer graph, in which each layer corresponds to a level in a hierarchy measuring structural similarity (think: ‘at this level of zoom, these things look kind of similar’).
->3. Use the multi-layer graph to generate context for each node based on biased random walking.
->4. Apply standard techniques to learn a latent representation from the context given by the sequence of nodes in the random walks.
+> 1. Determine the structural similarity between each vertex pair in the graph, for different neighbourhood sizes.
+> 2. Construct a weighted multi-layer graph, in which each layer corresponds to a level in a hierarchy measuring structural similarity (think: ‘at this level of zoom, these things look kind of similar’).
+> 3. Use the multi-layer graph to generate context for each node based on biased random walking.
+> 4. Apply standard techniques to learn a latent representation from the context given by the sequence of nodes in the random walks.
 
 ![](https://adriancolyer.files.wordpress.com/2017/09/struc2vec-sketch-8.jpeg?w=200&zoom=1)
 
@@ -216,7 +218,7 @@ $$
 - https://zhuanlan.zhihu.com/p/56382372
 - http://anotherdatum.com/vae-moe.html
 - https://d2l.ai/chapter_natural-language-processing/word2vec.html
-
+- https://www.gavagai.io/text-analytics/word-embeddings/
 
 **Doc2Vec**
 
@@ -229,11 +231,13 @@ $$
 - [Word Embeddings](https://synalp.loria.fr/python4nlp/posts/embeddings/)
 - [GloVe: Global Vectors for Word Representation Jeffrey Pennington,   Richard Socher,   Christopher D. Manning
 ](https://nlp.stanford.edu/projects/glove/)
-- https://levyomer.wordpress.com/category/word-embeddings/
+- [BERT-is-All-You-Need](https://github.com/Eurus-Holmes/BERT-is-All-You-Need)
+- [Word embedding](https://levyomer.wordpress.com/category/word-embeddings/)
 - [Open Sourcing BERT: State-of-the-Art Pre-training for Natural Language Processing
 Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
-- http://jalammar.github.io/illustrated-bert/
-- http://smir2014.noahlab.com.hk/paper%204.pdf
+- [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) ](http://jalammar.github.io/illustrated-bert/)
+- [Deep Semantic Embedding](http://smir2014.noahlab.com.hk/paper%204.pdf)
+- [无监督词向量/句向量:W2v/Glove/Swivel/ELMo/BERT](https://x-algo.cn/index.php/2018/11/12/3083/)
 ***
 **graph2vec**
 
@@ -241,7 +245,29 @@ Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-s
 - [ ] https://allentran.github.io/graph2vec
 - [ ] http://humanativaspa.it/tag/graph2vec/
 
+**GB-CENT**
+
+- http://www.hongliangjie.com/talks/GB-CENT_SD_2017-02-22.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_SantaClara_2017-03-28.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_Lehigh_2017-04-12.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_PopUp_2017-06-14.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_CAS_2017-06-23.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_Boston_2017-09-07.pdf
+- [Talk: Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
+- [Paper: Gradient Boosted Categorical Embedding and Numerical Trees](http://papers.www2017.com.au.s3-website-ap-southeast-2.amazonaws.com/proceedings/p1311.pdf)
+
+**Gaussian Auto Embeddings**
+
+http://koaning.io/gaussian-auto-embeddings.html
+
 **Atom2Vec**
+
+M. V. Diudea, I. Gutman and L. Jantschi wrote in the preface of the book _Molecular Topology_:
+[One of the principal goals of chemistry is to establish (causal) relations between the chemical and
+physical (experimentally observable and measurable) properties of substance and the
+structure of the corresponding molecules. Countless results along these lines have been
+obtained, and their presentation comprise significant parts of textbooks of organic,
+inorganic and physical chemistry, not to mention treatises on theoretical chemistry](http://www.moleculartopology.com/)
 
 - [ ] [Deep Learning For Molecules and Materials](http://www.rqrm.ca/DATA/TEXTEDOC/03a-total-september2018-v1.pdf)
 
@@ -267,11 +293,12 @@ ICML 2019 Workshop](https://graphreason.github.io/)
 - [ ] [NodeSketch: Highly-Efficient Graph Embeddings via Recursive Sketching](https://exascale.info/assets/pdf/yang2019nodesketch.pdf)
 - [ ] http://web.eecs.umich.edu/~dkoutra/group/index.html
 - [Graph Embeddings — The Summary](http://sungsoo.github.io/2019/05/26/graph-embedding.html)
-- [Graph Embeddings search result@Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
+- [Graph Embeddings search result @ Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
 
 **Deep Semantic Embedding**
 
 + http://smir2014.noahlab.com.hk/paper%204.pdf
++ [Deep Embedding Logistic Regression](https://www.cse.wustl.edu/~z.cui/papers/DELR_ICBK.pdf)
 + [DeViSE: A Deep Visual-Semantic Embedding Model](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/41473.pdf)
 + [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
 + [Semantic Embedding for Sketch-Based 3D Shape Retrieval](http://bmvc2018.org/contents/papers/0040.pdf)
@@ -285,19 +312,17 @@ ICML 2019 Workshop](https://graphreason.github.io/)
 - [Implementing Poincaré Embeddings](https://rare-technologies.com/implementing-poincare-embeddings/)
 - [Hyperbolic Embedding search result @Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Hyperbolic+Embeddings)
 
-<img src = "https://hazyresearch.github.io/hyperE/pc.svg" width=40% />
+<img src=https://hazyresearch.github.io/hyperE/pc.svg  width=40% />
 
 - [Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole](https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/)
 - [HyperE: Hyperbolic Embeddings for Entities](https://hazyresearch.github.io/hyperE/)
-- [Efficient embedding of complex
-networks to hyperbolic space via
-their Laplacian](https://www.nature.com/articles/srep30108)
+- [Efficient embedding of complex networks to hyperbolic space via their Laplacian](https://www.nature.com/articles/srep30108)
 - [Embedding Text in Hyperbolic Spaces](https://ai.google/research/pubs/pub47117)
 - [Hyperbolic Function Embedding: Learning Hierarchical Representation for Functions of Source Code in Hyperbolic Spaces](https://www.mdpi.com/2073-8994/11/2/254/htm)
 - http://hyperbolicdeeplearning.com/papers/
 
 
-|||
+--|--
 --|--
 ![](https://hazyresearch.github.io/hyperE/pytorch_tree.gif)|![](https://hazyresearch.github.io/hyperE/combinatorial_tree.gif)
 
@@ -406,10 +431,14 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * [CayleyNets: Graph Convolutional Neural Networks with Complex Rational Spectral Filters](https://arxiv.org/abs/1705.07664)
 
 ***
-**MotifNet**
-`MotifNet` is aimed to address the direted graph convolution.
 
-![](https://datawarrior.files.wordpress.com/2018/08/f1-large.jpg)
+**MotifNet**
+
+`MotifNet` is aimed to address the directed graph convolution.
+
+<img title="motifNet" src=https://datawarrior.files.wordpress.com/2018/08/f1-large.jpg width=70%/>
+
+
 * [MotifNet: a motif-based Graph Convolutional Network for directed graphs](https://arxiv.org/abs/1802.01572)
 * [Neural Motifs: Scene Graph Parsing with Global Context (CVPR 2018)](https://rowanzellers.com/neuralmotifs/)
 * https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
@@ -464,7 +493,7 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * https://ieeexplore.ieee.org/document/8439897
 * [Higher-order organization of complex networks](http://science.sciencemag.org/content/353/6295/163)
 * [Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks](https://arxiv.org/abs/1704.06803)
-|
+
 
 *****
 
@@ -499,8 +528,6 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * http://www.cs.nuim.ie/~gunes/files/Baydin-MSR-Slides-20160201.pdf
 * http://colah.github.io/posts/2015-09-NN-Types-FP/
 * https://www.zhihu.com/question/305395488/answer/554847680
-
-
 
 
 ***

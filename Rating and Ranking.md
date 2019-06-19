@@ -1,5 +1,8 @@
 # Rating and Ranking
 
++ [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
++ <https://www.cse.iitb.ac.in/~soumen/>
+
 The basic idea is the back-feed from the results.
 After each game, this data is updated for the participants in the game.
 
@@ -49,25 +52,23 @@ Glickman's principal contribution to measurement is "ratings reliability", calle
 The RD measures the accuracy of a player's rating, with one RD being equal to one standard deviation.
 If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 
-1. Determine RD
-
-   The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
- $$
-   RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}
- $$
-   where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
-
-2. Determine New Rating
-
-   The new ratings, after a series of m games, are determined by the following equation:
- $$
-   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
- $$
-   where $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$, $q=\frac{\ln(10)}{400}\approx 0.00575646273$, $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$, $r_i$ represents the ratings of the individual opponents. $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
-
-3. Determine New Ratings Deviation
-
-   $$RD^{\prime}=\sqrt{(RD^{-2}+d^{-2})^{-1}} .$$
+> 1. Determine RD
+>>   The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
+>> $$
+>>   RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}
+>> $$
+>>>   where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
+>
+> 2. Determine New Rating
+>>   The new ratings, after a series of m games, are determined by the following equation:
+>> $$
+>>   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
+>> $$
+>>>   where $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$, $q=\frac{\ln(10)}{400}\approx 0.00575646273$, $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$, $r_i$ represents the ratings of the individual opponents. $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
+>
+> 3. Determine New Ratings Deviation
+>>
+>>   $$RD^{\prime}=\sqrt{(RD^{-2}+d^{-2})^{-1}} .$$
 
 * http://www.glicko.net/research.html
 * https://www.wikiwand.com/en/Glicko_rating_system
@@ -299,23 +300,30 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [Evaluation of Ranking @ Stanford CS276](https://web.stanford.edu/class/cs276/handouts/EvaluationNew-handout-6-per.pdf)
 - [Evaluation measure in information retrieval @ wikiwand](https://www.wikiwand.com/en/Evaluation_measures_(information_retrieval))
 - [mAP（mean average precision）平均精度均值](https://www.jianshu.com/p/82be426f776e)
+- [Online User Engagement: Metrics and Optimization.](https://onlineuserengagement.github.io/)
+
+**Training Setup**
+
+A training set for ranking  is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e., $x_i$ is preferred to $x_j$ or in the reverse order. In other word, the label $y_i$ is ordinal. By the way, the labels are categorical or  nominal  in most classification tasks.
+
+The ranking function outputs a score for each data object, from which a global
+ordering of data is constructed. That is, the target function $F(x_i)$ outputs a score
+such that $F(x_i) > F(x_j)$ for any $x_i ≻ x_j$.
+
+- [WHAT IS THE DIFFERENCE BETWEEN CATEGORICAL, ORDINAL AND INTERVAL VARIABLES?](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-interval-variables/)
 
 ### RankSVM
 
 > The basic idea of SVMrank is to attempt to minimize the number of misclassified document pairs. This is achieved by modifying the default support vector machine optimization problem, which considers a set of documents, by constraining the optimization problem to perform the minimization of each pair of documents.
 
-A training set for ranking SVM is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e. $x_i$ is preferred to $x_j$. The ranking function outputs a score for each data object, from which a global
-ordering of data is constructed. That is, the target function $F(x_i)$ outputs a score
-such that $F(x-i) > F(x_j)$ for any $x_i ≻ x_j$.
 
-
-Using the techniques of SVM, a global ranking function F can be learned from an ordering R. Assume F is a linear ranking function such that
-$$\forall \{(\mathrm{X_i, X_j})\}: y_i < y_j, F(X_i)>F(X_j)\iff w\cdot X_i > w\cdot X_j.$$
+Using the techniques of SVM, a global ranking function _F_ can be learned from an ordering R. Assume _F_ is a linear ranking function such that
+$$\forall \{(\mathrm{X_i, X_j}): y_i < y_j\}, F(X_i)>F(X_j)\iff w\cdot X_i > w\cdot X_j.$$
 The solution can be approximated using SVM techniques by introducing (non-negative) slack variables ${\xi}_{i j}$ and minimizing the upper bound $\sum {\xi}_{i j}$ as follows:
 $$
 \text{minimize}\qquad L(w, \xi)= C \sum {\xi}_{i j} + {\|w\|}_2^2 \\
 \text{subject to } \quad \forall \{(\mathrm{X_i, X_j})\}: w\cdot X_i > w\cdot X_j + 1 -{\xi}_{ij},
-\\ \forall {\xi}_{ij}\geq 0. 
+\\ \forall {\xi}_{ij}\geq 0.
 $$
 
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
@@ -324,14 +332,6 @@ $$
 * [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
 * [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
 
-### McRank
-
-The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
-for relevance ranking in Web search in `McRank`.
-
-![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
-
-- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
 
 ### RankNet
 
@@ -463,12 +463,34 @@ This means in particular that LambdaMART is able to choose splits and leaf value
 **GBRT+LR** can also used to predict the CTR ratio. On short but incomplete word, it is **GBRT + LR** - **gradient boosting regression tree and logistic regression**.
 GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the same in RankNet.
 
-- [ ] https://arxiv.org/pdf/1811.12776.pdf
+- [ ] [Learning From Weights: A Cost-Sensitive Approach For Ad Retrieval](https://arxiv.org/abs/1811.12776)
 - [X] https://www.jianshu.com/p/96173f2c2fb4
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 
+### McRank
+
+The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
+for relevance ranking in Web search in `McRank`.
+
+We learn the class probabilities $p_{i,k} = Pr(y_i = k)$, denoted by $\hat{p}_{i,k},\forall k\in [0,1,2,\dots, K-1]$ and define a scoring function for the sample $(\mathrm{X_i}, y_i)$:
+$$S_i = {\sum}_{k=0}^{K-1} \hat{p}_{i,k} T(k)$$
+where where $T (k)$ is some monotone (increasing) function of the relevance level.
+And in this setting as an example  $y_i = 4$ corresponds to a “perfect” relevance and $y_i = 0$ corresponds to a “poor” relevance when $K=5$.
+
+When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the sample $(\mathrm{X_i}, y_i)$.
+
+![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
+
+- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
+- [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
+- [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
 
 ### Selective Gradient Boosting
+
+`Selective Gradient Boosting (SelGB)` is an algorithm addressing the
+Learning-to-Rank task by focusing on those irrelevant documents
+that are most likely to be mis-ranked, thus severely hindering the
+quality of the learned model.
 
 <img title="Selective Gradient Boosting" src = "https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg" width = 80% />
 
@@ -485,6 +507,8 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 
 **AdaRank**
+
+Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data. Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures. For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs. To deal with the problem, we propose a novel learning algorithm within the framework of boosting, which can minimize a loss function directly defined on the performance measures. Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data and finally linearly combines the weak rankers for making ranking predictions. We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
 
 - [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
 - [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
@@ -505,9 +529,9 @@ can predict the relevance scores ${s}$ for all documents in a query:
 $$\Phi(x): X\to S.$$
 We formulate the loss function in a probabilistic manner. Similar to
 previous work, we assume that scores of documents ${s}$ determine a distribution over all possible ranked lists or permutations.
-Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote
-the distribution. In our framework, we treat the ranked list ${\pi}$ as
-a hidden variable and define the loss based on the likelihood of
+Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote the distribution.
+In our framework, we treat the ranked list ${\pi}$ as a hidden variable
+and define the loss based on the likelihood of
 observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a mixture model over ${\Pi}$:
 $$
 P(y|s)=\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s).
@@ -670,7 +694,7 @@ where $U\in \mathbb{R}^{m\times k}$ and $V ∈ \mathbb{R}^{n\times k}$ respectiv
 approximation.
 The prediction loss of rating prediction through matrix factorization on the training set is formulated as
 $$
-L_{pointwise}=\sum_{u}\sum_{i}(r_{ui}-\hat{r}_{ui})^2 + {\lambda}_{U}\sum_{u}\|U_u\|_2^2 + {\lambda}_{I}\sum_{i}\|V_i\|_2^2 \tag 1
+L_{pointwise}=\sum_{u}\sum_{i}(r_{ui}-\hat{r}_{ui})^2 + {\lambda}_{U}\sum_{u}{\|U_u\|}_2^2 + {\lambda}_{I}\sum_{i}{\|V_i\|}_2^2 \tag 1
 $$
 
 where $r_{ui}$ and $\hat{r}_{ui}$ are respectively the observed and estimated rating scores. The regularized term is set in order to prevent from over-fitting.
@@ -685,7 +709,7 @@ We then minimize negative log likelihood on all the comparisons
 of observed item pairs, obtaining the following objective function
 
 $$
-L_{row-wise}= -\sum_{u_i\triangleleft u_j }\log(P(r_{ui}>r_{uj})) + {\lambda}_{I}\sum_{i}\|V_i\|_2^2 .\tag 2
+L_{row-wise}= -\sum_{u_i\triangleleft u_j }\log(P(r_{ui}>r_{uj})) + {\lambda}_{I}\sum_{i}{\|V_i\|}_2^2 .\tag 2
 $$
 
 Symmetric to that in modeling the row-wise comparisons, we model the (item-specific) column-wise comparisons
@@ -697,7 +721,7 @@ $$
 Then, the objective function becomes:
 
 $$
-L_{column-wise}= -\sum_{u_i\triangleleft u^{\prime}_i }\log(P(r_{ui}>r_{u^{\prime}i})) + {\lambda}_{I}\sum_{u}\|U_u\|_2^2 .\tag 3
+L_{column-wise}= -\sum_{u_i\triangleleft u^{\prime}_i }\log(P(r_{ui}>r_{u^{\prime}i})) + {\lambda}_{I}\sum_{u}{\|U_u\|}_2^2 .\tag 3
 $$
 
 We introduce two balance factors $\alpha ∈ [0, 1]$
@@ -796,6 +820,7 @@ Collaborative Filtering](http://users.jyu.fi/~swang/publications/TIST14.pdf)
 - [ ] [Machine Learning: recommendation and ranking](https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [ ] [Recommendation and ranking by Mark Jelasity](http://www.inf.u-szeged.hu/~jelasity/ddm/graphalgs.pdf)
+- [ ] ["Tutorial ：Learning to Rank for Recommender Systems" by](http://www.slideshare.net/kerveros99/learning-to-rank-for-recommender-system-tutorial-acm-recsys-2013) 
 
 For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
 
@@ -826,11 +851,13 @@ And here search engine and recommender system coincide except the recommender sy
 * https://www.cognik.net/
 * http://www.collarity.com/
 * https://www.wikiwand.com/en/Personalized_search
+* [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
+* [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
+* [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
 * [Personalised Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
 * [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
 * [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
-* [Google's Personalized Search Explained:
-How personalization works, what it means for SEO, and how to make sure it doesn't skew your ranking reports](https://www.link-assistant.com/news/personalized-search.html)
+* [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
 * [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
 * [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
 * [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)

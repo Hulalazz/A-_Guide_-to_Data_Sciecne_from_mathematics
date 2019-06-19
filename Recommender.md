@@ -32,13 +32,23 @@ It is an application of machine learning, which is in the *representation + eval
 - [ ] [Recommender Systems (2019/1)](https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 
+|Evolution of the Recommender Problem|
+|:---:|
+|Rating|
+|Ranking|
+|Page Optimization|
+|Context-aware Recommendations|
+
+
 **Evaluation of Recommendation System**
 
 The evaluation of machine learning algorithms depends on the tasks.
-The evalution of recommendation system can be regarded as some machine learning models such as regression, classification and so on.
+The evaluation of recommendation system can be regarded as some machine learning models such as regression, classification and so on.
 We only take the mathematical convenience into consideration in the following methods.
-Gini index, covering rate and more realistic factors are not discussed in the following content.
+`Gini index, covering rate` and more realistic factors are not discussed in the following content.
+
 - [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
+- [Distance Metrics for Fun and Profit](https://www.benfrederickson.com/distance-metrics/)
 
 ## Collaborative Filtering
 
@@ -83,8 +93,7 @@ $$
 2. Producing $Z^{k+1}$ by
     $$Z^{k+1}=\arg\min_{Z} {L(Z,Y^{k+1}) + \frac{r}{2}\|Z-Z^k\|}.$$
 
-![ADMM](https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png)
-
+<img title = "Netflix DataSet" src=https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png width = 80% />
 
 [Rahul Mazumder, Trevor Hastie, Robert Tibshirani](http://www.jmlr.org/papers/v11/mazumder10a.html) reformulate it as the following:
 
@@ -100,7 +109,7 @@ where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{
 * [Low-Rank Matrix Recovery](http://www.princeton.edu/~yc5/ele538b_sparsity/lectures/matrix_recovery.pdf)
 * [ECE 18-898G: Special Topics in Signal Processing: Sparsity, Structure, and Inference Low-rank matrix recovery via nonconvex optimization](https://users.ece.cmu.edu/~yuejiec/ece18898G_notes/ece18898g_nonconvex_lowrank_recovery.pdf)
 
-![](https://pic3.zhimg.com/80/771b16ac7e7aaeb50ffd8a8f5cf4e582_hd.png)
+<img title = "MMM" src=https://pic3.zhimg.com/80/771b16ac7e7aaeb50ffd8a8f5cf4e582_hd.png width = 80% />
 
 * http://people.eecs.berkeley.edu/~yima/
 * [New tools for recovering low-rank matrices from incomplete or corrupted observations by Yi Ma@UCB](http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html)
@@ -324,16 +333,17 @@ We use stochastic gradient ascent to maximize the objective function.
 * https://www.cnblogs.com/Xnice/p/4522671.html
 * https://blog.csdn.net/turing365/article/details/80544594
 * https://en.wikipedia.org/wiki/Collaborative_filtering
-* \url{https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)}
+* [Matrix_factorization for recommender system](https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)})
 * http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html
 * https://www.acemap.info/author/page?AuthorID=7E61F31B
 * [Fast Python Collaborative Filtering for Implicit Feedback Datasets](https://github.com/benfred/implicit)
-* https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/
-* https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/
-* https://www.benfrederickson.com/matrix-factorization/
-* https://www.benfrederickson.com/fast-implicit-matrix-factorization/
-* https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/
+* [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
+* [Learning to Rank Sketchfab Models with LightFM](https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/)
+* [Finding Similar Music using Matrix Factorization](https://www.benfrederickson.com/matrix-factorization/)
+* [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
+* [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
 * [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
+* [DiFacto — Distributed Factorization Machines](https://www.cs.cmu.edu/~muli/file/difacto.pdf)
 ****
 
 
@@ -359,10 +369,9 @@ user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model p
 
 The parameters of our model are learned by using `RSGD`.
 
+* https://arxiv.org/abs/1111.5280
 * https://arxiv.org/abs/1809.01703
 * https://arxiv.org/abs/1902.0864
-* https://arxiv.org/abs/1111.5280
-
 
 ## Deep Learning and Recommender System
 
@@ -634,7 +643,7 @@ therefore provide a precise insight of what items and topics users might be inte
 * http://sonyis.me/dnn.html
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
-* https://www.comp.nus.edu.sg/~xiangnan/papers/www18-tutorial-deep-matching.pdf
+* http://staff.ustc.edu.cn/~hexn/
 * [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
 * [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 * [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
@@ -663,12 +672,6 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 + [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
 _____________
-|Evolution of the Recommender Problem|
-|:---:|
-|Rating|
-|Ranking|
-|Page Optimization|
-|Context-aware Recommendations|
 
 - [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
 - [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
@@ -693,9 +696,19 @@ There are two common methods to construct a stronger learner from a weaker learn
 
 - [General Functional Matrix Factorization Using Gradient Boosting](http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf)
 
+
 **BoostFM**
 
+`BoostFM` integrates boosting into factorization models during the process of item ranking. Specifically, BoostFM is an adaptive boosting framework that linearly
+combines multiple homogeneous component recommenders,
+which are repeatedly constructed on the basis of the individual
+FM model by a re-weighting scheme.
+
 - [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
+- http://wnzhang.net/
+- https://fajieyuan.github.io/
+- https://www.librec.net/luckymoon.me/
+- [The author’s final accepted version.](http://eprints.gla.ac.uk/135914/7/135914.pdf)
 
 **Adaptive Boosting Personalized Ranking (AdaBPR)**
 
@@ -729,6 +742,9 @@ where the notations are listed as follows:
 
 **Gradient Boosting Factorization Machines**
 
+`Gradient Boosting Factorization Machine (GBFM)` model is to incorporate feature selection algorithm with Factorization Machines into a unified framework.
+
+
 - [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
 ****
 
@@ -753,21 +769,23 @@ where the notations are listed as follows:
 + [Interdisciplinary Workshop on Recommender Systems](http://www.digitaluses-congress.univ-paris8.fr/Interdisciplinary-Workshop-on-Recommender-Systems)
 + [2nd FATREC Workshop: Responsible Recommendation](https://piret.gitlab.io/fatrec2018/)
 
-### Implementation
+#### Implementation
 
 - [ ] https://github.com/maciejkula/spotlight
-- [ ] http://surpriselib.com/
 - [ ] https://github.com/Microsoft/Recommenders
 - [ ] https://github.com/cheungdaven/DeepRec
 - [ ] https://github.com/alibaba/euler
 - [ ] https://github.com/alibaba/x-deeplearning/wiki/
 - [ ] https://github.com/lyst/lightfm
-- [ ] https://orange3-recommendation.readthedocs.io/en/latest/
-- [ ] http://www.mymedialite.net/index.html
+- [ ] [Surprise: a Python scikit building and analyzing recommender systems](http://surpriselib.com/)
+- [ ] [Orange3-Recommendation: a Python library that extends Orange3 to include support for recommender systems.](https://orange3-recommendation.readthedocs.io/en/latest/)
+- [ ] [MyMediaLite: a recommender system library for the Common Language Runtime](http://www.mymedialite.net/index.html)
 - [ ] http://www.mymediaproject.org/
 - [Workshop: Building Recommender Systems w/ Apache Spark 2.x](https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x)
 - [A Leading Java Library for Recommender Systems](https://www.librec.net/)
 - [lenskit: Python Tools for Recommender Experiments](https://lenskit.org/)
+- [Samantha - A generic recommender and predictor server](https://grouplens.github.io/samantha/)
+
 
 ## Computational Advertising
 
@@ -778,14 +796,24 @@ Advertising is nothing except information.
 
 **GBRT+LR**
 
-[Practical Lessons from Predicting Clicks on Ads at
-Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
+[Practical Lessons from Predicting Clicks on Ads at Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
 Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).
 
 <img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "60%" />
 
 When the feature vector ${x}$ are given, the tree split the features by GBRT then we transform and input the features to the logistic regression.
 
+[Hongliang Jie](http://www.hongliangjie.com/talks/Etsy_ML.pdf) shares 3 challenges of computational advertising in Etsy,
+which will be the titles of the following subsections.
+
+
+### Click-Through Rate Modeling
+
+### Conversion Rate Modeling
+
+### Bid Optimization
+
++ [A collection of research and survey papers of real-time bidding (RTB) based display advertising techniques.](https://github.com/wnzhang/rtb-papers)
 
 ****
 
@@ -804,10 +832,13 @@ Contract Preferences for Display Advertising](https://www.soe.ucsc.edu/departmen
 * [Computational Advertising and Recommendation](https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf)
 * [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
 * http://yelp.github.io/MOE/
+* http://www.hongliangjie.com/talks/AICon2018.pdf
+* https://sites.google.com/view/tsmo2018/invited-talks
 ______________________________________________________
 
 ### Labs
 
+- [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
 - [Data Mining Machine Learning @The University of Texas at Austin](http://www.ideal.ece.utexas.edu/)
 - [Center for Big Data Analytics@The University of Texas at Austin](https://bigdata.oden.utexas.edu/)
 - [Multimedia Computing Group@tudelft.nl](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/multimedia-computing/)

@@ -3,6 +3,8 @@
 http://mat.uab.cat/~alseda/MasterOpt/
 http://ryanrossi.com/search.php
 https://iss.oden.utexas.edu/
+http://michele-ackerer.fr/algorithmic-graph-theory.htm
+http://www.columbia.edu/~mc2775/
 
 Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
 And graph processing is widely applied in industry and science such as the `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
@@ -45,8 +47,8 @@ See *Graph representations using set and hash* at <https://www.geeksforgeeks.org
 > the columns of $L(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $L(G)$ is
 > $0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{ −1}}$ for $i$ and $j$ adjacent. The
 > $(i,i)$-entry of $L(G)$ is $\color{red}{d_i}$, the degree of the vertex $i$, for $i = 1,\dots,n.$
-> In other words, the $(i,i)$-entry of $L(G)$, $L(G)_{i,j}$, is defined by
-> $$L(G)_{i,j} = \begin{cases} \deg(V_i) & \text{if $i=j$,}\\ -1  & \text{if $i\not= j$ and $V_i$ and $V_j$ is adjacent,} \\ 0  & \text{otherwise.}\end{cases}$$
+> In other words, the $(i,i)$-entry of $L(G)$, ${L(G)}_{i,j}$, is defined by
+> $${L(G)}_{i,j} = D - A = \begin{cases} \deg(V_i) & \text{if $i=j$,}\\ -1  & \text{if $i\not= j$ and $V_i$ and $V_j$ is adjacent,} \\ 0  & \text{otherwise.}\end{cases}$$
 > Laplacian matrix of  a  graph $G$ with `weighted matrix` $W$ is ${L^{W}=D-W}$, where $D$ is the degree matrix of $G$.
 > We often denote $L(G)$ simply by $L$.
 
@@ -134,10 +136,10 @@ Dijkstra's algorithm is an algorithm for finding the shortest paths between node
 + https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 + https://www.wikiwand.com/en/Shortest_path_problem
 + https://www.cnblogs.com/chxer/p/4542068.html
-+ [Introduction to A*: From Amit’s Thoughts on Pathfinding](http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html)
++ [Introduction to $A^{\ast}$: From Amit’s Thoughts on Pathfinding](http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html)
 
 
-See the page at Wikipedia [A* search algorithm](https://www.wikiwand.com/en/A*_search_algorithm)
+See the page at Wikipedia [$A^{\ast}$ search algorithm](https://www.wikiwand.com/en/A*_search_algorithm)
 
 #### Graph adjacency matrix duality
 
@@ -169,14 +171,51 @@ algebraic operations and fundamental graph operations
 
 A graph $G$ is a tree if and only if $G$ is a forest and $|V(G)|=|E(G)| + 1$.
 
+#### PageRank
+
+![page rank](https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PageRanks-Example.jpg/800px-PageRanks-Example.jpg)
++ [Page rank](https://www.wikiwand.com/en/PageRank)
++ http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html
++ [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
+
+#### Chemical Graph Theory
+
+Graph theory applied in the study of molecular structures represents an interdisciplinary science, called `chemical graph theory` or `molecular topology`.
+
+A chemical graph  is a model of a chemical system, used to characterize   the
+interactions among its components: atoms, bonds, groups of atoms or molecules. A structural formula
+of a chemical compound can be represented by a molecular graph, its
+vertices being atoms and edges corresponding to covalent bonds.
+Usually hydrogen atoms are not depicted in which case we speak of `hydrogen depleted molecular graphs`.
+
+In a `multigraph` two points may be joined by more than one line.
+If multibonds are taken into account, a variant of adjacency matrix $A(G)$ , denoted $C(G)$, (the connectivity matrix) can be written:
+$$
+{[C]}_{ij}=\begin{cases} b_{ij} &\text{if $i\not=j$ and $(i, j)\in E(G)$},\\
+0 &\text{otherwise}
+\end{cases}
+$$
+where $b_{ij}$ is the conventional bond order: 1; 2; 3; 1.5 for simple, double, triple and
+aromatic bonds, respectively.
+
+`Distance Matrix` $D(G)$, is a square
+symmetric table, of size $n\times n$, similar to adjacency matrix by replacing the entity of topological distance:
+$$
+{[D]}_{ij}=\begin{cases} d_{ij} &\text{if $i\not=j$},\\
+0 &\text{otherwise}
+\end{cases}
+$$
+where $d_{ij}$, the topological distance between $i$ and $j$.
+
+
 #### Graph Partitioning
 
-[The fundamental problem that is trying to solve is that of splitting a large irregular graphs into k parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
+>> The fundamental problem that is trying to solve is that of splitting a large irregular graphs into k parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
 The partitioning is usually done so that it satisfies certain constraints and optimizes certain objectives. The most common constraint is that of producing equal-size partitions, whereas the most common objective is that of minimizing the number of cut edges (i.e., the edges that straddle partition boundaries). However, in many cases, different application areas tend to require their own type of constraints and objectives; thus, making the problem all that more interesting and challenging!
 
-The research in the lab is focusing on a class of algorithms that have come to be known as multilevel graph partitioning algorithms. These algorithms solve the problem by following an approximate-and-solve paradigm, which is very effective for this as well as other (combinatorial) optimization problems.
+> The research in the lab is focusing on a class of algorithms that have come to be known as multilevel graph partitioning algorithms. These algorithms solve the problem by following an approximate-and-solve paradigm, which is very effective for this as well as other (combinatorial) optimization problems.
 
-Over the years we focused and produced good solutions for a number of graph-partitioning related problems. This includes partitioning algorithms for graphs corresponding to finite element meshes, multilevel nested dissection, parallel graph/mesh partitioning, dynamic/adaptive graph repartitioning, multi-constraint and multi-objective partitioning, and circuit and hypergraph partitioning.](http://glaros.dtc.umn.edu/gkhome/views/projects)
+> [Over the years we focused and produced good solutions for a number of graph-partitioning related problems. This includes partitioning algorithms for graphs corresponding to finite element meshes, multilevel nested dissection, parallel graph/mesh partitioning, dynamic/adaptive graph repartitioning, multi-constraint and multi-objective partitioning, and circuit and hypergraph partitioning.](http://glaros.dtc.umn.edu/gkhome/views/projects)
 
 + [Graph Partitioning](http://glaros.dtc.umn.edu/gkhome/views/projects)
 

@@ -383,7 +383,7 @@ Except the *representation* or model, it is the objective function that affects 
 
 The **smoothly clipped absolute deviation (SCAD) penalty** for `variable selection` in *high dimensional statistics* is defined by its derivative:
 $$
-p_{\lambda}^{\prime} (\theta) = \lambda \{\mathbb{I}(\theta \leq \lambda)+\frac{{(a\lambda-\theta)}_{+}}{(a-1)\lambda}\mathbb{I}(\theta > \lambda)\}
+p_{\lambda}^{\prime} (\theta) = \lambda \{ \mathbb{I}(\theta \leq \lambda)+\frac{{(a\lambda-\theta)}_{+}}{(a-1)\lambda}\mathbb{I}(\theta > \lambda) \}
 $$
 
 or in another word
@@ -392,7 +392,7 @@ $$
 p_{\lambda}^{\prime} (\theta) =
  \begin{cases}
    \lambda  & \,\quad\text{if $\theta \leq \lambda$;} \\
-   \frac{{(a\lambda-\theta)}_{+}}{(a-1)\lambda} &\,\quad\text{otherwise}
+   \frac{ {(a\lambda-\theta)}_{+} }{ (a-1)\lambda } &\,\quad\text{otherwise}
  \end{cases}
 $$
 
@@ -1599,7 +1599,7 @@ Other RNN cells also can compose deep RNN via this stacking way such as deep Bi-
 
 |Deep Bi-RNN|
 |:---:|
-|![](http://opennmt.net/OpenNMT/img/brnn.png)|
+|![brnn](http://opennmt.net/OpenNMT/img/brnn.png)|
 
 * [Application of Deep RNNs](http://blog.songru.org/posts/notebook/Opinion_Mining_with_Deep_Recurrent_Neural_Networks_NOTE/)
 * http://opennmt.net/OpenNMT/training/models/
@@ -1681,7 +1681,7 @@ It is always as one component of some complex network as normalization.
 
 |Diagram of Recursive Neural Network|
 |-----------------------------------|
-|![](http://www.cs.cornell.edu/~oirsoy/files/drsv/deep-recursive.png)|
+|![dr](http://www.cs.cornell.edu/~oirsoy/files/drsv/deep-recursive.png)|
 
 
 ## Generative Models
@@ -1691,6 +1691,7 @@ It is always as one component of some complex network as normalization.
 * [Learning Discrete Latent Structure](https://duvenaud.github.io/learn-discrete/)
 * [The Living Thing / Notebooks : Reparameterisation tricks in differentiable inference](https://livingthing.danmackinlay.name/reparameterisation_diff.html)
 - https://grzegorzgwardys.wordpress.com/2016/06/19/convolutional-autoencoder-for-dummies/
+
 ### Generative Adversarial Network
 
 http://unsupervised.cs.princeton.edu/deeplearningtutorial.html
@@ -2062,6 +2063,7 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * https://www.microsoft.com/en-us/research/people/tyliu/
 * https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/85815724
 * https://uvadlc.github.io/
+* [Understanding Neural Networks by embedding hidden representations](https://rakeshchada.github.io/Neural-Embedding-Animation.html)
 
 ***
 
