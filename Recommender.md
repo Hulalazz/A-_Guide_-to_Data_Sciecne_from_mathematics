@@ -1,7 +1,6 @@
 # Recommender System
 
 [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
-[2018 Workshop on ExplainAble Recommendation and Search (EARS 2018)](https://ears2018.github.io/)
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -66,7 +65,8 @@ And we focus on the model-based collaborative filtering.
 - http://topgeek.org/blog/2012/02/13/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-2-%E9%83%A8%E5%88%86-%E6%B7%B1%E5%85%A5%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E/
 
 
-***
+### Matrix Completion
+
 Matrix completion is to complete the matrix $X$ with missing elements, such as
 
 $$
@@ -148,7 +148,7 @@ The data sets we more frequently encounter in collaborative prediction problem a
 To relate the real-valued $Z_{ij}$ to the
 discrete $X_{ij}$. we use $R − 1$ thresholds $\theta_{1}, \dots, \theta_{R-1}$.
 
-***
+### SVD and Beyond
 
 If we have collected user ${u}$'s explicit evaluation score to the item ${i}$ ,  $R_{[u][i]}$, and all such data makes up a matrix $R=(R_{[u][i]})$ while the user $u$ cannot evaluate all the item so that the matrix is incomplete and missing much data.
 **SVD** is to factorize the matrix into the multiplication of matrices so that
@@ -210,6 +210,8 @@ We learn the values of involved parameters by minimizing the regularized squared
 * [矩阵分解之SVD和SVD++](https://cloud.tencent.com/developer/article/1107364)
 * [SVD++：推荐系统的基于矩阵分解的协同过滤算法的提高](https://www.bbsmax.com/A/KE5Q0M9ZJL/)
 * https://zhuanlan.zhihu.com/p/42269534
+
+### Inductive Matrix Completion
 
 One possible improvement of this cost function is that we may design more appropriate loss function other than the squared  error function.
 
@@ -352,11 +354,10 @@ We use stochastic gradient ascent to maximize the objective function.
 ### Hyperbolic Recommender Systems
 
 Many well-established recommender systems are based on representation learning in Euclidean space.
-In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. This paper investigates the notion of learning
-user and item representations in hyperbolic space.
+In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. 
+This paper investigates the notion of learning user and item representations in hyperbolic space.
 
-Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$,
-the distance between two points on *P* is given by
+Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$, the distance between two points on *P* is given by
 $$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
 
 `HyperBPR` leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
@@ -420,7 +421,6 @@ $$
 $$
 where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
 * https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf
-* https://huangzhanpeng.github.io/2018/01/04/Field-aware-Factorization-Machines-for-CTR-Prediction/
 * https://blog.csdn.net/mmc2015/article/details/51760681
 
 ### Wide & Deep Model
@@ -627,8 +627,8 @@ the selected GCN.
 
 * [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 * https://arxiv.org/abs/1704.06803
-* http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018
-* http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf
+* [Deep Geometric Matrix Completion: a Geometric Deep Learning approach to Recommender Systems](http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018)
+* [Talk: Deep Geometric Matrix Completion](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
 
 ### Deep Matching Models for Recommendation
 
@@ -656,7 +656,8 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 
 - [ ] [Social Media Mining: An Introduction](http://dmml.asu.edu/smm/slides/)
 - [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
-- [ ] https://arxiv.org/pdf/1304.3405.pdf
+- [ ] [Do Social Explanations Work? Studying and Modeling the
+Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
 - [ ] [Social Recommendation With Evolutionary Opinion Dynamics](https://shiruipan.github.io/pdf/TSMC-18-Xiong.pdf)
 - [ ] [Workshop on Responsible Recommendation](https://piret.gitlab.io/fatrec/)
 - [ ] [A Probabilistic Model for Using Social Networks in Personalized Item Recommendation](http://ajbc.io/projects/papers/Chaney2015.pdf)
@@ -667,19 +668,20 @@ dataset and allows us to consider questions relating algorithmic parameters to p
 - [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-i
 - [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii
 - [ ] https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914
+- [ ] [深度学习与知识图谱在美团搜索广告排序中的应用实践](https://tech.meituan.com/2018/06/07/searchads-dnn.html)
 
-**Reinforcement Learning and RecSys**
+**Reinforcement Learning and Recommender System**
 
 * [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
 * [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
 + [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 + [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
++ [xplore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
 _____________
 
 - [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
 - [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
-- [ ] https://tech.meituan.com/2018/06/07/searchads-dnn.html
 - [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
 _______
 |Traditional Approaches | Beyond Traditional Methods|
@@ -689,7 +691,7 @@ _______
 |Item-based Recommendation | Learning to rank|
 |Hybrid Approaches | MAB Explore/Exploit|
 
-## Ensemble Methods for RecSys
+## Ensemble Methods for Recommender System
 
 The RecSys can be considered as some regression or classification tasks, so that we can apply the ensemble methods to these methods as  `BellKor's Progamatic Chaos` used the blended solution to win the prize.
 In fact, its essence is bagging or blending, which is one sequential ensemble strategy in order to avoid over-fitting or reduce the variance.
@@ -707,15 +709,12 @@ There are two common methods to construct a stronger learner from a weaker learn
 
 **Gradient Boosting Factorization Machine Model**
 > + _Input_: Training Data $S =\{(\mathbf{x}_i, y_i)\}$.
-> + _Output_: $\hat{y}_S =y_0(x) + {\sum}^S_
-{s=1}\left<v_{si}, v_{sj}\right>$.
+> + _Output_: $\hat{y}_S =y_0(x) + {\sum}^S_{s=1}\left<v_{si}, v_{sj}\right>$.
 > + Initialize rating prediction function as $\hat{y}_0(x)$
 > + for $s = 1 \to S$ do
 > +  1. Select interaction feature $C_p$ and $C_q$ from Greedy Feature Selection Algorithm;
 > +  2. Estimate latent feature matrices $V_p$ and $V_q$;
-> +  3. Update  $\hat{y}_s(\mathrm{x}) = \hat{y}_{s-1}(\mathrm{x}) + {\sum}_
-{i\in C_p}{\sum}_
-{j\in C_q} \mathbb{I}[i,j\in \mathrm{x}]\left<V_{p}^{i}, V_{q}^{j}\right>$
+> +  3. Update  $\hat{y}_s(\mathrm{x}) = \hat{y}_{s-1}(\mathrm{x}) + {\sum}_{i\in C_p}{\sum}_{j\in C_q} \mathbb{I}[i,j\in \mathrm{x}]\left<V_{p}^{i}, V_{q}^{j}\right>$
 > + end for
 
 where s is the iteration step of the learning algorithm. At step s, we greedily select two interaction features $C_p$ and $C_q$
@@ -732,17 +731,38 @@ where $\hat{y}_s(\mathrm{x}) = \hat{y}_{s−1}(\mathrm{x}) + \alpha_s f_s(\mathr
 
 We heuristically assume that the
 function ${f}$ has the following form:
-$$f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell}q_{C_{i}(t)}(\mathrm{x})$$
+$$f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell} q_{C_{i}(t)}(\mathrm{x})$$
 where the function q maps latent feature
 vector x to real value domain
 $$q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{tj}.$$
 
+It is hard for a general convex loss function $\ell$ to search function ${f}$ to optimize the objective function:
+$L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$.
+
+The most common way is to approximate it by least-square
+minimization, i.e., $\ell={\| \cdot \|}_2^2$. Like in `xGBoost`, it takes second order Taylor expansion of the loss function $\ell$ and problem is finalized to find the ${i}$(t)-th feature which:
+$$\arg{\min}_{i(t)\in \{0, \dots, m\}} \sum_{i=1}^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}_i) q_{C_{i}(t)}(\mathrm{x}_i))^2 + {\|\theta\|}_2^2$$
+where the negative first derivative and the second derivative at instance ${i}$ as $g_i$ and $h_i$.
+
 - [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
+  
 ### BoostFM
 
 `BoostFM` integrates boosting into factorization models during the process of item ranking.
 Specifically, BoostFM is an adaptive boosting framework that linearly combines multiple homogeneous component recommender system,
 which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.
+
+**BoostFM**
+> + _Input_: The observed context-item interactions or Ttraining Data $S =\{(\mathbf{x}_i, y_i)\}$parameters E and T.
+> + _Output_: The strong recommender $g^{T}$.
+> + Initialize $Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S$.
+> + for $s = 1 \to T$ do
+> +  1. Create component recommender;
+> +  2. Compute the ranking accuracy;
+> +  3. Compute the coefficient;
+> +  4. Create the strong recommender;
+> +  5. Update weight distribution;
+> + end for
 
 - [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
 - http://wnzhang.net/
@@ -766,7 +786,7 @@ $$f=\sum_{t=1}^{T}{\alpha}_t f_{t}.$$
 
 In the training process, AdaBPR runs for ${T}$ rounds, and the component recommender $f_t$ is created at t-th round by
 $$
-\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}_{u} \exp\{-E(\pi(u,i,\sum_{n=1}^{t}{\alpha}_n f_{n}))\}
+\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}_{u} \exp\{-E(\pi(u,i,\sum_{n=1}^{t}{\alpha}_n f_{n}))\}.
 $$
 
 where the notations are listed as follows:
@@ -776,21 +796,35 @@ where the notations are listed as follows:
 - $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$;
 - $\mathbb{O}$ is the set of all observed user-item interactions;
 - ${\beta}_{u}$ is defined as reciprocal of the number of user $u$'s  historical items  ${\beta}_{u}=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).
-
+***
 - [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 - [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
 
 
-****
+## Explainable Recommendations
+
++ [Explainable Recommendation and Search @ rutgers](https://www.cs.rutgers.edu/content/explainable-recommendation-and-search)
++ [Explainable Recommendation: A Survey and New Perspectives](https://www.groundai.com/project/explainable-recommendation-a-survey-and-new-perspectives/)
++ [Explainable Entity-based Recommendations with Knowledge Graphs](http://www.cs.cmu.edu/~wcohen/postscript/recsys-2017-poster.pdf)
++ [2018 Workshop on ExplainAble Recommendation and Search (EARS 2018)](https://ears2018.github.io/)
++ [EARS 2019](https://sigir.org/sigir2019/program/workshops/ears/)
++ [ExplainAble Recommendation and Search (EARS)](http://yongfeng.me/projects/)
++ [TEM: Tree-enhanced Embedding Model for Explainable Recommendation](http://staff.ustc.edu.cn/~hexn/slides/www18-tree-embedding-recsys.pdf)
++ [EARS 2019](https://sigir.org/sigir2019/program/workshops/ears/)
++ https://ears2019.github.io/
++ [Explainable Recommendation for Self-Regulated Learning](http://www.cogsys.org/papers/ACSvol6/posters/Freed.pdf)
++ [Dynamic Explainable Recommendation based on Neural Attentive Models](http://www.yongfeng.me/attach/dynamic-explainable-recommendation.pdf)
++ https://github.com/fridsamt/Explainable-Recommendation
++ [Explainable Recommendation for Event Sequences: A Visual Analytics Approach by Fan Du](https://talks.cs.umd.edu/talks/2028)
++ https://wise.cs.rutgers.edu/code/
++ http://www.cs.cmu.edu/~rkanjira/thesis/rose_proposal.pdf
++ http://jamesmc.com/publications
 
 - [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
 - [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 - [ ] https://github.com/wzhe06/Reco-papers
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/hongleizhang/RSAlgorithms
-- [ ] https://github.com/cheungdaven/DeepRec
-- [ ] https://github.com/cyhong549/DeepFM-Keras
-- [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] https://zhuanlan.zhihu.com/p/26977788
 - [ ] https://zhuanlan.zhihu.com/p/45097523
 - [ ] https://www.zhihu.com/question/20830906
@@ -806,9 +840,11 @@ where the notations are listed as follows:
 
 ## Implementation
 
+- [ ] https://github.com/cheungdaven/DeepRec
+- [ ] https://github.com/cyhong549/DeepFM-Keras
+- [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] https://github.com/maciejkula/spotlight
 - [ ] https://github.com/Microsoft/Recommenders
-- [ ] https://github.com/cheungdaven/DeepRec
 - [ ] https://github.com/alibaba/euler
 - [ ] https://github.com/alibaba/x-deeplearning/wiki/
 - [ ] https://github.com/lyst/lightfm
@@ -857,6 +893,10 @@ which will be the titles of the following subsections.
 * https://github.com/cnkuangshi/LightCTR
 
 ### Conversion Rate Modeling
+
++ [ ] [Post-Click Conversion Modeling and Analysis for Non-Guaranteed Delivery Display Advertising](http://people.csail.mit.edu/romer/papers/NGDAdvertisingWSDM12.pdf)
++ [ ] [Estimating Conversion Rate in Display Advertising from Past Performance Data](http://wnzhang.net/share/rtb-papers/cvr-est.pdf)
++ [ ] [https://www.optimizesmart.com/](https://www.optimizesmart.com/introduction-machine-learning-conversion-optimization/)
 
 ### Bid Optimization
 

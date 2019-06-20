@@ -4,12 +4,14 @@
 + <https://www.cse.iitb.ac.in/~soumen/>
 + http://www.mbmlbook.com/TrueSkill.html
 
-The basic idea is the back-feed from the results.
-After each game, this data is updated for the participants in the game.
 
-The rating algorithms are to match the players in video games or compare the players in sports. It is a numerical score to describe the level  of the players' skill based on the results of many competition.
+The rating algorithms are to match the players in video games or compare the players in sports. 
+It is a numerical score to describe the level  of the players' skill based on the results of many competition.
+The basic idea is the back-feed from the results to improve the experience. After each game, this data is updated for the participants in the game.
 
-The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items which may  answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
+
+The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items 
+which may answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
 
 They share some techniques although their purpose is different such as the logistic regression.
 
@@ -215,7 +217,7 @@ And it can apply to information retrieval and recommender system.
 * [Tasks Track 2015](http://www.cs.ucl.ac.uk/tasks-track-2015/)
 * [TREC 2014 Session Track](http://ir.cis.udel.edu/sessions/)
 * [Introduction to Information Retrievel](https://nlp.stanford.edu/IR-book/)
-
+* [Images do npt lie](https://arxiv.org/abs/1511.06746)
 ![meituan.net](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
 
 *Learning to Rank* can be classified into [pointwise, pairwise and listless approaches](http://www.l3s.de/~anand/tir15/lectures/ws15-tir-l2r.pdf).
@@ -233,6 +235,7 @@ the listwise approach is to predict the ranks of documents in a list when given 
 + [Catarina Moreira's master thesis](http://web.ist.utl.pt/~catarina.p.moreira/coursera.html)
 + [Ranking in Information Retrieval](https://www.cse.iitb.ac.in/internal/techreports/reports/TR-CSE-2010-31.pdf)
 - [ ] [Learning Groupwise Scoring Functions Using Deep Neural Networks](https://arxiv.org/abs/1811.04415)
+- [ ] https://github.com/tensorflow/ranking
 
 
 **Ranking Metrics**
@@ -488,10 +491,8 @@ When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the 
 
 ### Selective Gradient Boosting
 
-`Selective Gradient Boosting (SelGB)` is an algorithm addressing the
-Learning-to-Rank task by focusing on those irrelevant documents
-that are most likely to be mis-ranked, thus severely hindering the
-quality of the learned model.
+`Selective Gradient Boosting (SelGB)` is an algorithm addressing the Learning-to-Rank task by focusing on those irrelevant documents
+that are most likely to be mis-ranked, thus severely hindering the quality of the learned model.
 
 <img title="Selective Gradient Boosting" src = "https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg" width = 80% />
 
@@ -500,40 +501,56 @@ quality of the learned model.
 - [ ] http://quickrank.isti.cnr.it/
 - [ ] http://quickrank.isti.cnr.it/research-papers/
 - [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
-- [ ] https://github.com/tensorflow/ranking
 - [ ] https://maciejkula.github.io/spotlight/index.html#
 
-**QuickScorer**
+**QuickScorer and QUickRank**
+
+Given a query-document pair $(q, di)$, represented by a feature vector $\mathrm{x}$, 
+a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents. 
+Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
+Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$. 
+Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left branch is taken iff the test succeeds. 
+Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score. 
+The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it is computed as a weighted sum of all the tree predictions.
 
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
+- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
+- [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
+- http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf
 
 **AdaRank**
 
-Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data. Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures. For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs. To deal with the problem, we propose a novel learning algorithm within the framework of boosting, which can minimize a loss function directly defined on the performance measures. Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data and finally linearly combines the weak rankers for making ranking predictions. We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
+In the abstract, the authors wrote:
+> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data. 
+> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures. 
+> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs. 
+> To deal with the problem, we propose a novel learning algorithm within the framework of boosting, 
+> which can minimize a loss function directly defined on the performance measures. 
+> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data 
+> and finally linearly combines the weak rankers for making ranking predictions. 
+>We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
 
 - [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
 - [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
 
 ### LambdaLoss
 
-LambdaRank is a novel algorithm that incorporates
-ranking metrics into its learning procedure. The underlying loss that LambdaRank optimizes for remains unknown until now.
-Due to this, there is no principled way to advance the LambdaRank algorithm further. The LambdaLoss framework allows
-us to define metric-driven loss functions that have clear connection
-to different ranking metrics.
+LambdaRank is a novel algorithm that incorporates ranking metrics into its learning procedure. 
+The underlying loss that LambdaRank optimizes for remains unknown until now.
+Due to this, there is no principled way to advance the LambdaRank algorithm further. 
+The LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
 A commonly used pairwise loss function is the logistic loss. LambdaRank is a special configuration with a well-defined loss
-in the LambdaLoss framework, and thus provide theoretical justification for it. More importantly, the LambdaLoss framework allows
-us to define metric-driven loss functions that have clear connection to different ranking metrics.
+in the LambdaLoss framework, and thus provide theoretical justification for it. 
+More importantly, the LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
 
 A learning-to-rank algorithm is to find a ranking model $\Phi$ that
 can predict the relevance scores ${s}$ for all documents in a query:
 $$\Phi(x): X\to S.$$
-We formulate the loss function in a probabilistic manner. Similar to
-previous work, we assume that scores of documents ${s}$ determine a distribution over all possible ranked lists or permutations.
+We formulate the loss function in a probabilistic manner. 
+Similar to previous work, we assume that scores of documents ${s}$ determine a distribution over all possible ranked lists or permutations.
 Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote the distribution.
 In our framework, we treat the ranked list ${\pi}$ as a hidden variable
-and define the loss based on the likelihood of
-observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a mixture model over ${\Pi}$:
+and define the loss based on the likelihood of observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a mixture model over ${\Pi}$:
 $$
 P(y|s)=\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s).
 $$
