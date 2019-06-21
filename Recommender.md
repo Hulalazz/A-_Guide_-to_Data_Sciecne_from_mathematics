@@ -1,6 +1,10 @@
 # Recommender System
 
-[最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
+* [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
+* [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
+* [CSE 291: Trends in Recommender Systems and Human Behavioral Modeling](https://cseweb.ucsd.edu/classes/fa17/cse291-b/)
+* [THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)](https://recnlp2019.github.io/)
+* [Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan](https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html)
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -255,6 +259,34 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 * [Latent Factor Models for Web Recommender Systems](http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf)
 * [Regression-based Latent Factor Models@CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 
+### Collaborative Less-is-More Filtering
+
+Sometimes, the information of user we could collect is implicit such as the clicking at some item.
+
+In `CLiMF` [the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).](https://github.com/gamboviol/climf)
+
+Its objective function is
+$$
+F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))] \\-\frac{\lambda}{2}({\|U\|}^2 + {\|V\|}^2)
+$$
+
+where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e.,$Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$.
+The vector $U_i$ denotes a d-dimensional latent factor vector for
+user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
+
+|Numbers||Factors||Others||
+|:------:|---|:---:|---|:---:|---|
+|$M$|the number of users|$U_i$|latent factor vector for user ${i}$|$Y_{ij}$|binary relevance score|
+|$N$|the number of items|$V_j$|latent factor vector for item ${i}$|$f$|logistic function|
+
+
+We use stochastic gradient ascent to maximize the objective function.
+
+* [Collaborative Less-is-More Filtering@orange3-recommendation](https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html)
+* https://dl.acm.org/citation.cfm?id=2540581
+* [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
+* [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
+
 ### BellKor's Progamatic Chaos
 
 Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
@@ -304,34 +336,10 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 * [Alternating Least Squares Method for Collaborative Filtering](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/)
 * [Implicit Feedback and Collaborative Filtering](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/)
-
-### Collaborative Less-is-More Filtering
-
-Sometimes, the information of user we could collect is implicit such as the clicking at some item.
-
-In `CLiMF` [the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).](https://github.com/gamboviol/climf)
-
-Its objective function is
-$$
-F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))] \\-\frac{\lambda}{2}({\|U\|}^2 + {\|V\|}^2)
-$$
-
-where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e.,$Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$.
-The vector $U_i$ denotes a d-dimensional latent factor vector for
-user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
-
-|Numbers||Factors||Others||
-|:------:|---|:---:|---|:---:|---|
-|$M$|the number of users|$U_i$|latent factor vector for user ${i}$|$Y_{ij}$|binary relevance score|
-|$N$|the number of items|$V_j$|latent factor vector for item ${i}$|$f$|logistic function|
-
-
-We use stochastic gradient ascent to maximize the objective function.
-
-* [Collaborative Less-is-More Filtering@orange3-recommendation](https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html)
-* https://dl.acm.org/citation.cfm?id=2540581
-* [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
-* [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
+* [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
+* [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
+* [Fast Python Collaborative Filtering for Implicit Feedback Datasets](https://github.com/benfred/implicit)
+* [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
 
 
 ***
@@ -342,27 +350,25 @@ We use stochastic gradient ascent to maximize the objective function.
 * [Matrix_factorization for recommender system](https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)})
 * http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html
 * https://www.acemap.info/author/page?AuthorID=7E61F31B
-* [Fast Python Collaborative Filtering for Implicit Feedback Datasets](https://github.com/benfred/implicit)
-* [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
 * [Learning to Rank Sketchfab Models with LightFM](https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/)
 * [Finding Similar Music using Matrix Factorization](https://www.benfrederickson.com/matrix-factorization/)
-* [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
-* [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
 * [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 * [DiFacto — Distributed Factorization Machines](https://www.cs.cmu.edu/~muli/file/difacto.pdf)
 
 ### Hyperbolic Recommender Systems
 
 Many well-established recommender systems are based on representation learning in Euclidean space.
-In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings. 
+In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings.
 This paper investigates the notion of learning user and item representations in hyperbolic space.
 
 Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$, the distance between two points on *P* is given by
 $$d_p(x, y)=cosh^{-1}(1+2\frac{\|(x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)}).$$
 
-`HyperBPR` leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
+`Hyperbolic Bayesian Personalized
+Ranking(HyperBPR)` leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
 Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
-$$\alpha(u, v) = f(d_p(u, v)).$$
+$$\alpha(u, v) = f(d_p(u, v))$$
+where $f(\cdot)$ is simply preferred as a linear function $f(x) = \beta x + c$ with $\beta\in\mathbb{R}$ and $c\in\mathbb{R}$ are scalar parameters and learned along with the network.
 The objective function is defined as follows:
 $$\arg\min_{\Theta} \sum_{i, j, k} -\ln(\sigma\{\alpha(u_i, v_j) - \alpha(u_i, v_k)\}) + \lambda  {\|\Theta\|}_2^2$$
 
@@ -370,20 +376,12 @@ where $(i, j, k)$ is the triplet that belongs to the set ${D}$ that
 contains all pairs of positive and negative items for each
 user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model parameters; and $\lambda$ is the regularization parameter.
 
-The parameters of our model are learned by using `RSGD`.
+The parameters of our model are learned by using [`RSGD`](https://arxiv.org/abs/1111.5280).
 
-* https://arxiv.org/abs/1111.5280
-* https://arxiv.org/abs/1809.01703
-* https://arxiv.org/abs/1902.0864
+* [Stochastic gradient descent on Riemannian manifolds](https://arxiv.org/abs/1111.5280)
+* [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
+* [Scalable Hyperbolic Recommender Systems](https://arxiv.org/abs/1902.08648v1)
 
-## Deep Learning and Recommender System
-
-Deep learning is powerful in processing visual and text information so that it helps to find the interests of users such as
-[Deep Interest Network](http://www.cnblogs.com/rongyux/p/8026323.html), [xDeepFM](https://www.jianshu.com/p/b4128bc79df0)  and more.
-
-Deep learning models for recommender system may come from the restricted Boltzman machine.
-And deep learning models are powerful information extractors.
-Deep learning is really popular in recommender system such as [spotlight](https://github.com/maciejkula/spotlight).
 
 ### Factorization Machines(FM)
 
@@ -391,8 +389,8 @@ The matrix completion used in recommender system are linear combination of some 
 The model equation for a factorization machine of degree ${d = 2}$ is defined as
 $$
 \hat{y}
-= w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\\
-= w_0  + \left<w, x\right> + \sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j
+= w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\\
+= w_0  + \left<w, x\right> + \sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j
 $$
 
 where the model parameters that have to be estimated are
@@ -406,10 +404,17 @@ A row $v_i$ within ${V}$ describes the ${i}$-th latent variable with ${k}$ facto
 And the linear regression $w_0 + \sum_{i=1}^{n} w_i x_i$ is called `the first order part`; the pair-wise interactions between features
 $\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is called the `second order part`.
 
+However, why we call it `factorization machine`? Where is the _factorization_?
+If ${[W]}_{ij}=w_{ij}= \left<v_i, v_j\right>$, $W=V V^T$.
+
+In order to reduce the computation complexity, the second order part $\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is rewritten in the following form
+$$\frac{1}{2}\sum_{l=1}^{k}[{(\sum_{i=1}^{n}(v_{il}x_i))}^2-\sum_{i=1}^{n}(v_{il}x_i)^2].$$
+
 * https://blog.csdn.net/g11d111/article/details/77430095
+* [分解机(Factorization Machines)推荐算法原理 by 刘建平Pinard](https://www.cnblogs.com/pinard/p/6370127.html)
 * [Factorization Machines for Recommendation Systems](https://getstream.io/blog/factorization-recommendation-systems/)
-* http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/
-* https://www.cnblogs.com/pinard/p/6370127.html
+* [第09章：深入浅出ML之Factorization家族](http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/)
+
 
 ### Field-aware Factorization Machine(FFM)
 
@@ -423,6 +428,14 @@ where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
 * https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf
 * https://blog.csdn.net/mmc2015/article/details/51760681
 
+## Deep Learning for Recommender System
+
+Deep learning is powerful in processing visual and text information so that it helps to find the interests of users such as
+[Deep Interest Network](http://www.cnblogs.com/rongyux/p/8026323.html), [xDeepFM](https://www.jianshu.com/p/b4128bc79df0)  and more.
+
+Deep learning models for recommender system may come from the restricted Boltzman machine.
+And deep learning models are powerful information extractors.
+Deep learning is really popular in recommender system such as [spotlight](https://github.com/maciejkula/spotlight).
 ### Wide & Deep Model
 
 The output of this model is
@@ -492,7 +505,7 @@ for modelling feature interactions, which is a `multi-layered feedforward neural
 
 ![https://i.ooxx.ooo](https://i.ooxx.ooo/2017/12/27/ab7149f31f904f8f2bd6f15e0b9900c9.png)
 
-* https://www.comp.nus.edu.sg/~xiangnan/papers/sigir17-nfm.pdf
+
 * http://staff.ustc.edu.cn/~hexn/
 * https://github.com/hexiangnan/neural_factorization_machine
 
@@ -646,50 +659,18 @@ therefore provide a precise insight of what items and topics users might be inte
 * http://staff.ustc.edu.cn/~hexn/
 * [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
 * [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
+
+### Collaborative Deep Learning for Recommender Systems
+
+[Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.](http://www.wanghao.in/CDL.htm)
+
 * [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
-
-**Social Recommendation**
-
-We present a novel framework for studying recommendation algorithms in terms of the
-‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
-dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.
-
-- [ ] [Social Media Mining: An Introduction](http://dmml.asu.edu/smm/slides/)
-- [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
-- [ ] [Do Social Explanations Work? Studying and Modeling the
-Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
-- [ ] [Social Recommendation With Evolutionary Opinion Dynamics](https://shiruipan.github.io/pdf/TSMC-18-Xiong.pdf)
-- [ ] [Workshop on Responsible Recommendation](https://piret.gitlab.io/fatrec/)
-- [ ] [A Probabilistic Model for Using Social Networks in Personalized Item Recommendation](http://ajbc.io/projects/papers/Chaney2015.pdf)
-- [ ] [Product Recommendation and Rating Prediction based on Multi-modal Social Networks](http://delab.csd.auth.gr/papers/RecSys2011stm.pdf)
-
-**Knowledge Graph and Recommender System**
-
-- [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-i
-- [ ] https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii
-- [ ] https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914
-- [ ] [深度学习与知识图谱在美团搜索广告排序中的应用实践](https://tech.meituan.com/2018/06/07/searchads-dnn.html)
-
-**Reinforcement Learning and Recommender System**
-
-* [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
-* [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
-+ [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
-+ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
-+ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
-+ [xplore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
-_____________
-
+* [Deep Learning for Recommender Systems](https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf)
+* https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 - [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
 - [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
 - [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
-_______
-|Traditional Approaches | Beyond Traditional Methods|
-|---------------------- |--------------------------|
-|Collaborative Filtering | Tensor Factorization & Factorization Machines|
-|Content-Based Recommendation | Social Recommendations|
-|Item-based Recommendation | Learning to rank|
-|Hybrid Approaches | MAB Explore/Exploit|
+
 
 ## Ensemble Methods for Recommender System
 
@@ -740,12 +721,12 @@ It is hard for a general convex loss function $\ell$ to search function ${f}$ to
 $L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$.
 
 The most common way is to approximate it by least-square
-minimization, i.e., $\ell={\| \cdot \|}_2^2$. Like in `xGBoost`, it takes second order Taylor expansion of the loss function $\ell$ and problem is finalized to find the ${i}$(t)-th feature which:
+minimization, i.e., $\ell={\| \cdot \|}_2^2$. Like in `xGBoost`, it takes second order Taylor expansion of the loss function $\ell$ and problem isfinalized to find the ${i}$(t)-th feature which:
 $$\arg{\min}_{i(t)\in \{0, \dots, m\}} \sum_{i=1}^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}_i) q_{C_{i}(t)}(\mathrm{x}_i))^2 + {\|\theta\|}_2^2$$
-where the negative first derivative and the second derivative at instance ${i}$ as $g_i$ and $h_i$.
+where the negativefirst derivative and the second derivative at instance ${i}$ as $g_i$ and $h_i$.
 
 - [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
-  
+
 ### BoostFM
 
 `BoostFM` integrates boosting into factorization models during the process of item ranking.
@@ -753,7 +734,7 @@ Specifically, BoostFM is an adaptive boosting framework that linearly combines m
 which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.
 
 **BoostFM**
-> + _Input_: The observed context-item interactions or Ttraining Data $S =\{(\mathbf{x}_i, y_i)\}$parameters E and T.
+> + _Input_: The observed context-item interactions or Ttraining Data $S =\{(\mathbf{x}_i, y_i)\}$ parameters E and T.
 > + _Output_: The strong recommender $g^{T}$.
 > + Initialize $Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S$.
 > + for $s = 1 \to T$ do
@@ -803,6 +784,8 @@ where the notations are listed as follows:
 
 ## Explainable Recommendations
 
+Explainable recommendation and search attempt to develop models or methods that not only generate high-quality recommendation or search results, but also intuitive explanations of the results for users or system designers, which can help improve the system transparency, persuasiveness, trustworthiness, and effectiveness, etc.
+
 + [Explainable Recommendation and Search @ rutgers](https://www.cs.rutgers.edu/content/explainable-recommendation-and-search)
 + [Explainable Recommendation: A Survey and New Perspectives](https://www.groundai.com/project/explainable-recommendation-a-survey-and-new-perspectives/)
 + [Explainable Entity-based Recommendations with Knowledge Graphs](http://www.cs.cmu.edu/~wcohen/postscript/recsys-2017-poster.pdf)
@@ -810,7 +793,6 @@ where the notations are listed as follows:
 + [EARS 2019](https://sigir.org/sigir2019/program/workshops/ears/)
 + [ExplainAble Recommendation and Search (EARS)](http://yongfeng.me/projects/)
 + [TEM: Tree-enhanced Embedding Model for Explainable Recommendation](http://staff.ustc.edu.cn/~hexn/slides/www18-tree-embedding-recsys.pdf)
-+ [EARS 2019](https://sigir.org/sigir2019/program/workshops/ears/)
 + https://ears2019.github.io/
 + [Explainable Recommendation for Self-Regulated Learning](http://www.cogsys.org/papers/ACSvol6/posters/Freed.pdf)
 + [Dynamic Explainable Recommendation based on Neural Attentive Models](http://www.yongfeng.me/attach/dynamic-explainable-recommendation.pdf)
@@ -819,9 +801,51 @@ where the notations are listed as follows:
 + https://wise.cs.rutgers.edu/code/
 + http://www.cs.cmu.edu/~rkanjira/thesis/rose_proposal.pdf
 + http://jamesmc.com/publications
++ [FIRST INTERNATIONAL WORKSHOP ON  DEEP MATCHING IN PRACTICAL APPLICATIONS ](https://wsdm2019-dapa.github.io/#section-ketnotes)
 
-- [ ] https://wsdm2019-dapa.github.io/#section-ketnotes
-- [ ] https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
+**Social Recommendation**
+
+[We present a novel framework for studying recommendation algorithms in terms of the
+‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
+dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
+
+
+- [ ] [Do Social Explanations Work? Studying and Modeling the
+Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
+- [ ] [Existing Methods for Including Social Networks until 2015](http://ajbc.io/projects/slides/chaney_recsys2015.pdf)
+- [ ] [Social Recommendation With Evolutionary Opinion Dynamics](https://shiruipan.github.io/pdf/TSMC-18-Xiong.pdf)
+- [ ] [Workshop on Responsible Recommendation](https://piret.gitlab.io/fatrec/)
+- [ ] https://recsys.acm.org/recsys18/fatrec/
+- [ ] [A Probabilistic Model for Using Social Networks in Personalized Item Recommendation](http://ajbc.io/projects/papers/Chaney2015.pdf)
+- [ ] [Product Recommendation and Rating Prediction based on Multi-modal Social Networks](http://delab.csd.auth.gr/papers/RecSys2011stm.pdf)
+- [ ] [Graph Neural Networks for Social Recommendation](https://paperswithcode.com/paper/graph-neural-networks-for-social)
+- [ ] [Studying Recommendation Algorithms by Graph Analysis](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
+
+**Knowledge Graph and Recommender System**
+
+- [ ] [推荐算法不够精准？让知识图谱来解决](https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-i)
+- [ ] [如何将知识图谱特征学习应用到推荐系统？](https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii)
+- [ ] [可解释推荐系统：身怀绝技，一招击中用户心理](https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914)
+- [ ] [深度学习与知识图谱在美团搜索广告排序中的应用实践](https://tech.meituan.com/2018/06/07/searchads-dnn.html)
+
+**Reinforcement Learning and Recommender System**
+
+* [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
+* [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
++ [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
++ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
++ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
++ [Explore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
+
+_______
+|Traditional Approaches | Beyond Traditional Methods|
+|---------------------- |--------------------------|
+|Collaborative Filtering | Tensor Factorization & Factorization Machines|
+|Content-Based Recommendation | Social Recommendations|
+|Item-based Recommendation | Learning to rank|
+|Hybrid Approaches | MAB Explore/Exploit|
+
+
 - [ ] https://github.com/wzhe06/Reco-papers
 - [ ] https://github.com/hongleizhang/RSPapers
 - [ ] https://github.com/hongleizhang/RSAlgorithms
@@ -837,9 +861,12 @@ where the notations are listed as follows:
 + [WIDE & DEEP RECOMMENDER SYSTEMS AT PAPI](https://www.papis.io/recommender-systems)
 + [Interdisciplinary Workshop on Recommender Systems](http://www.digitaluses-congress.univ-paris8.fr/Interdisciplinary-Workshop-on-Recommender-Systems)
 + [2nd FATREC Workshop: Responsible Recommendation](https://piret.gitlab.io/fatrec2018/)
+- [ ] [Social Media Mining: An Introduction](http://dmml.asu.edu/smm/slides/)
+- [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
 
 ## Implementation
 
+- [ ] https://github.com/gasevi/pyreclab
 - [ ] https://github.com/cheungdaven/DeepRec
 - [ ] https://github.com/cyhong549/DeepFM-Keras
 - [ ] https://github.com/grahamjenson/list_of_recommender_systems
@@ -879,6 +906,7 @@ which will be the titles of the following subsections.
 
 + [ONLINE VIDEO ADVERTISING: All you need to know in 2019](https://strategico.io/video-advertising/)
 + [计算广告](https://dirtysalt.github.io/html/computational-advertising.html)
++ [计算广告和机器学习](http://www.52caml.com/)
 + https://headerbidding.co/category/adops/
 + [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
 

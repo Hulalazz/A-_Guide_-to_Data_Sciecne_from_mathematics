@@ -2,26 +2,51 @@
 
 + [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
 + <https://www.cse.iitb.ac.in/~soumen/>
-+ http://www.mbmlbook.com/TrueSkill.html
++ https://fate-events.github.io/facts-ir/
 
 
-The rating algorithms are to match the players in video games or compare the players in sports. 
-It is a numerical score to describe the level  of the players' skill based on the results of many competition.
+The rating algorithms help to match the players in video games or compare the players in sports.
+Ratings is a numerical score to describe the level  of the players' skill based on the results of many competition.
 The basic idea is the back-feed from the results to improve the experience. After each game, this data is updated for the participants in the game.
 
 
-The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items 
+The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items
 which may answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
 
 They share some techniques although their purpose is different such as the logistic regression.
 
-* https://www.remi-coulom.fr/WHR/WHR.pdf
-* http://www.ams.org/notices/201301/rnoti-p81.pdf
-* https://www.cs.cornell.edu/jeh/book2016June9.pdf
-* http://math.bu.edu/people/mg/ratings/rs/
-* https://www.jstor.org/stable/2282923
 
-## Elo Rating
+- [ ] [Whole-History Rating: A Bayesian Rating System for Players of Time-Varying Strength
+](https://arxiv.org/pdf/1701.08055v1.pdf)
+- [ ] [Who’s #1? The Science
+of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
+- [ ] [WhoScored Ratings Explained](https://www.whoscored.com/Explanations)
+- [ ] [Ranking Algorithm Definition](http://www.meteorsite.com/ranking-algorithm)
+- [ ] [EdgeRank](http://edgerank.net/)
+- [ ] [Rating Algorithm for Evaluation of Web Pages: W3C Working Draft](https://www.w3.org/WAI/ER/IG/rating/)
+- [ ] [PvP Matchmaking Algorithm](https://wiki.guildwars2.com/wiki/PvP_Matchmaking_Algorithm)
+- [ ] [Finding the perfect match by Justin O'Dell on November 20, 2014](https://www.guildwars2.com/en/news/finding-the-perfect-match/)
+- [ ] [College Football Ranking Composite](http://www.atomicfootball.com/af-algorithm.html)
+- [ ] [A Bayesian Mean-Value Approach with a Self-Consistently Determined Prior Distribution for the Ranking of College Football Teams](https://arxiv.org/abs/physics/0607064)
+- [ ] [SofaScore Statistical Ratings](https://www.sofascore.com/news/sofascore-player-ratings/)
+- [ ] [Everything You Need to Know About the TripAdvisor Popularity Ranking](https://www.tripadvisor.com/TripAdvisorInsights/w765)
+- [ ] [Deconstructing the App Store Rankings Formula with a Little Mad Science](https://moz.com/blog/app-store-rankings-formula-deconstructed-in-5-mad-science-experiments)
+* [The USCF Rating System, Prof. Mark E. Glickman , Boston University - Thomas Doan
+Estima](http://math.bu.edu/people/mg/ratings/rs/)
+* [Introducing Steam Database's new rating algorithm](https://steamdb.info/blog/steamdb-rating/)
+* https://www.cs.cornell.edu/jeh/book2016June9.pdf
+
+## Rating
+
+
+| [The Four Commandments of a Perfect Rating Algorithm](http://www.atomicfootball.com/af-algorithm.html)|
+|----|
+|A Perfect Rating Algorithm is self-contained. It should have no "knobs" or "tuning parameters." Knobs mean an algorithm is incomplete.|
+|A Perfect Rating Algorithm has a solid statistical foundation. It follows accepted practice.|
+|A Perfect Rating Algorithm is able to inherently estimate its own accuracy. A good statistical foundation is normally conducive to this.|
+|A Perfect Rating Algorithm is capable of producing either measurable quantities or quantities from which measurables can be derived. For example, the probability that one team will win over another.|
+
+### Elo Rating
 
 Elo rating is popular at many games such as Go game, soccer and so on.
 It supposes that the performance are random and the winning rate is determined by the differences of two players.
@@ -42,11 +67,13 @@ $${R}_{A}^{New} = R_{A} + K(S_A - E_A)$$
 where $K$ is a constant.
 
 * https://www.wikiwand.com/en/Elo_rating_system
-* https://www.wikiwand.com/en/Bradley%E2%80%93Terry_model
-* http://www.calvin.edu/~rpruim/fast/R/BradleyTerry/html/BTm.html
-* https://homepage.divms.uiowa.edu/~luke/xls/glim/glim/node8.html
+* [Bradley-Terry model @wikiwand](https://www.wikiwand.com/en/Bradley%E2%80%93Terry_model)
+* [Bradley-Terry model and extensions](http://www.calvin.edu/~rpruim/fast/R/BradleyTerry/html/BTm.html)
+* [Fitting a Bradley-Terry Model](https://homepage.divms.uiowa.edu/~luke/xls/glim/glim/node8.html)
+* [Ties in Paired-Comparison Experiments: A Generalization of the Bradley-Terry Model](https://www.jstor.org/stable/2282923)
+* [The Math behind ELO](https://blog.mackie.io/the-elo-algorithm)
 
-## Glicko
+### Glicko
 
 The problem with the Elo system that the Glicko system addresses has to do with the
 reliability of a player’s rating.
@@ -67,18 +94,25 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 >> $$
 >>   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
 >> $$
->>>   where $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$, $q=\frac{\ln(10)}{400}\approx 0.00575646273$, $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$, $r_i$ represents the ratings of the individual opponents. $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
+>>>   
+>>> where
+>>> * $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$,
+>>> * $q=\frac{\ln(10)}{400}\approx 0.00575646273$,
+>>> * $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$,
+>>> * $r_i$ represents the ratings of the individual opponents.
+>>> * $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
 >
 > 3. Determine New Ratings Deviation
 >>
 >>   $$RD^{\prime}=\sqrt{(RD^{-2}+d^{-2})^{-1}} .$$
 
-* http://www.glicko.net/research.html
+* [Mark Glickman's Research](http://www.glicko.net/research.html)
+* [Glicko Ratings](http://www.glicko.net/glicko.html)
 * https://www.wikiwand.com/en/Glicko_rating_system
-* https://zhuanlan.zhihu.com/p/21434252
-* http://www.glicko.net/glicko.html
+* [Java implementation of the Glicko-2 rating algorithm](https://github.com/goochjs/glicko2)
 
-## TrueSkill
+
+### TrueSkill
 
 As shown in the rule to update the score in Elo, it only take the differences of score into consideration.
 The TrueSkill system will assume that the distribution of the skill is **location-scale** distribution. In fact, the prior distribution in Elo is **Gaussian distribution**.
@@ -109,11 +143,14 @@ $$
 where $\beta^2$ is the average of all players' variances, $\nu(t) =\frac{N(t)}{\Phi(t)}, w(t)=\nu(t)[\nu(t)+1]$. And $N(t),\Phi(t)$ is the PDF and CDF of standard normal distribution, respectively.
 
 - [X] https://www.wikiwand.com/en/TrueSkill
-- [X] https://www.jianshu.com/p/c1fbba3af787
-- [ ] https://zhuanlan.zhihu.com/p/48737998
+- [X] [算法_TrueSkill_Python](https://www.jianshu.com/p/c1fbba3af787)
+- [ ] [Chapter 3: Meeting Your Match](http://www.mbmlbook.com/TrueSkill.html)
+- [ ] [TrueSkill原理简介](https://zhuanlan.zhihu.com/p/48737998)
 - [ ] https://www.wikiwand.com/en/Location%E2%80%93scale_family
+- [ ] [TrueSkill™ Ranking System](https://www.microsoft.com/en-us/research/project/trueskill-ranking-system/)
+- [ ] [TrueSkill: the video game rating system](https://trueskill.org/)
 
-## Whole-History Rating
+### Whole-History Rating
 
 Incremental Rating Systems or dynamical rating systems such as TrueSkill  do not make optimal use of data.
 The principle of Bayesian Inference consists in computing a probability distribution
@@ -156,10 +193,11 @@ $$
 r\leftarrow r - (\frac{\partial^2 \log(p)}{\partial r^2})^{-1} \frac{\partial \log(p)}{\partial r} .
 $$
 
-- [ ] https://www.wikiwand.com/en/Bradley%E2%80%93Terry_model
-- [ ] https://www.wikiwand.com/en/Ranking
-- [ ] https://arxiv.org/pdf/1701.08055v1.pdf
-- [X] https://www.remi-coulom.fr/WHR/WHR.pdf
+
+- https://www.remi-coulom.fr/WHR/
+- [X] [Whole-History Rating: A Bayesian Rating
+System for Players of Time-Varying Strength
+](https://www.remi-coulom.fr/WHR/WHR.pdf)
 
 
 **How to Build a Popularity Algorithm You can be Proud of**
@@ -485,6 +523,8 @@ When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the 
 
 ![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
 
+A common approach for multiple ordinal classification is to learn the cumulative probabilities $Pr (y_i \leq k)$ instead of the class probabilities $Pr (y_i = k) = p_{i, k}$.
+
 - [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
 - [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
 - [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
@@ -503,15 +543,18 @@ that are most likely to be mis-ranked, thus severely hindering the quality of th
 - [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
 - [ ] https://maciejkula.github.io/spotlight/index.html#
 
-**QuickScorer and QUickRank**
+**QuickScorer and QuickRank**
 
-Given a query-document pair $(q, di)$, represented by a feature vector $\mathrm{x}$, 
-a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents. 
+Given a query-document pair $(q, di)$, represented by a feature vector $\mathrm{x}$,
+a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents.
 Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
-Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$. 
-Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left branch is taken iff the test succeeds. 
-Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score. 
+Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
+Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left branch is taken iff the test succeeds.
+Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
 The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it is computed as a weighted sum of all the tree predictions.
+
+
+The building block of this approach is an alternative method for tree traversal based on bitvector computations.
 
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 - [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
@@ -521,13 +564,13 @@ The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it
 **AdaRank**
 
 In the abstract, the authors wrote:
-> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data. 
-> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures. 
-> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs. 
-> To deal with the problem, we propose a novel learning algorithm within the framework of boosting, 
-> which can minimize a loss function directly defined on the performance measures. 
-> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data 
-> and finally linearly combines the weak rankers for making ranking predictions. 
+> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
+> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures.
+> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs.
+> To deal with the problem, we propose a novel learning algorithm within the framework of boosting,
+> which can minimize a loss function directly defined on the performance measures.
+> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data
+> and finally linearly combines the weak rankers for making ranking predictions.
 >We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
 
 - [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
@@ -535,18 +578,18 @@ In the abstract, the authors wrote:
 
 ### LambdaLoss
 
-LambdaRank is a novel algorithm that incorporates ranking metrics into its learning procedure. 
+LambdaRank is a novel algorithm that incorporates ranking metrics into its learning procedure.
 The underlying loss that LambdaRank optimizes for remains unknown until now.
-Due to this, there is no principled way to advance the LambdaRank algorithm further. 
+Due to this, there is no principled way to advance the LambdaRank algorithm further.
 The LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
 A commonly used pairwise loss function is the logistic loss. LambdaRank is a special configuration with a well-defined loss
-in the LambdaLoss framework, and thus provide theoretical justification for it. 
+in the LambdaLoss framework, and thus provide theoretical justification for it.
 More importantly, the LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
 
 A learning-to-rank algorithm is to find a ranking model $\Phi$ that
 can predict the relevance scores ${s}$ for all documents in a query:
 $$\Phi(x): X\to S.$$
-We formulate the loss function in a probabilistic manner. 
+We formulate the loss function in a probabilistic manner.
 Similar to previous work, we assume that scores of documents ${s}$ determine a distribution over all possible ranked lists or permutations.
 Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote the distribution.
 In our framework, we treat the ranked list ${\pi}$ as a hidden variable
@@ -563,7 +606,7 @@ $$
 And such a loss can be minimized by the well-known `Expectation-Maximization (EM)` algorithm.
 
 - [ ] [The LambdaLoss Framework for Ranking Metric Optimization](https://ai.google/research/pubs/pub47258)
-- [ ] [Michael Bendersky's pibilication on rankig](http://bendersky.github.io/pubs.html)
+- [ ] [Michael Bendersky's publication on rankig](http://bendersky.github.io/pubs.html)
 - [ ] http://marc.najork.org/
 
 **Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank**
@@ -800,19 +843,24 @@ re-ranking via multi-arm bandits (MAB).
 - [ ] [Learning to Rank with Deep Neural Networks](https://github.com/Isminoula/DL-to-Rank)
 
 
-**RankGAN**
 
+
+
++ [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
++ [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
++ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
+![adversial IR](https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png)
+
+**RankGAN**
 
 ![RankGAN](https://x-algo.cn/wp-content/uploads/2018/04/WX20180409-223208@2x-768x267.png)
 
 - https://x-algo.cn/index.php/2018/04/09/rankgan/
-- https://arxiv.org/pdf/1705.10513.pdf
-- http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation
+- [IRGAN: A Minimax Game for Unifying Generative and Discriminative Information Retrieval](https://arxiv.org/pdf/1705.10513.pdf)
+- [Adversarial Ranking for Language Generation](http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation)
 
-+ [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
-+ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
-+ [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
-![adversial IR](https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png)
+
+
 ***
 
 * https://www.wikiwand.com/en/Learning_to_rank
@@ -859,12 +907,12 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 
 [The basic functions of a search engine can be described as _crawling, data mining, indexing and query processing_. `Crawling` is the act of sending small programed bots out to collect information. `Data mining` is storing the information collected by the bots. `Indexing` is ordering the information systematically. And `query processing` is the mathematical process in which a person's query is compared to the index and the results are presented to that person.](https://lifepacific.libguides.com/c.php?g=155121&p=1018180)
 
-<img title = search-process src = http://www.searchtools.com/slides/images/search-process.gif width=50% />
+<img title = "”search process" src = http://www.searchtools.com/slides/images/search-process.gif width=50% />
 
-[Personalised Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommender systems.
+[Personalised Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommender s
 
 And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.   
-
+* https://a9.com/what-we-do/product-search.html
 * https://www.algolia.com/
 * https://www.cognik.net/
 * http://www.collarity.com/

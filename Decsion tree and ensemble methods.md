@@ -1,5 +1,29 @@
+## Tree-based Learning Algorithms
+
+The [simple function](https://proofwiki.org/wiki/Definition:Simple_Function) is a real-valued  function $f: \mathrm{X}\to \mathbb{R}$ if and only if it is a finite linear combination of characteristic functions:
+$$f=\sum_{i=1}^{n}a_k {\chi}_{S_{k}}$$
+where $a_k\in\mathbb{R}$ and the characteristic function is defined as follow
+$${\chi}_{S_{k}}=\begin{cases}1, &\text{if $x \in S_{k}$}\\
+0, &\text{otherwise}\end{cases}.$$
+
+The tree-based learning algorithms take advantages of these universal approximators to approximate the decision function.
+
+
+The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and $S_k\in\mathbb{R}^p$ when only some finite sample or training data $\{(\mathrm{x}_i, y_i)\mid i=1, 2, \dots, n\}$ is accessible or available where $\mathrm{x}_i\in\mathbb{R}^p$ and $y_i\in\mathbb{R}$ or some categorical domain.
+
 ### Decision Tree
 
+> A decision tree is the function $T :\mathbb{R}^d \to \mathbb{R}$ resulting from a learning algorithm applied on training data lying in input space $\mathbb{R}^d$ , which always has the following form:
+> $$
+> T(x) = \sum_{i\in\text{leaves}} g_i(x)\mathbb{I}(x\in R_i) = \sum_{i\in \,\text{leaves}} g_i(x) \prod_{a\in\,\text{ancestors(i)}} \mathbb{I}(S_{a (x)}=c_{a,i})
+> $$
+> where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node i, $c_{a,i}$ is the child of node a on the path from a to leaf i, and $S_a$ is the n -ary split function at node a.
+> $g_i(\cdot)$ is the decision function associated with leaf i and
+> is learned only from training examples in $R_i$.
+
+* http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php
+* [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
+* [On the Boosting Ability of Top-Down Decision Tree Learning Algorithms](http://www.columbia.edu/~aec2163/NonFlash/Papers/Boosting2016.pdf)
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
@@ -49,6 +73,17 @@ $$
 Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
 $$
 
+Algorithm | Impurity
+---|---
+[ID3](https://www.wikiwand.com/en/ID3_algorithm)| Entropy $Ent(D)$
+[C4.5](https://www.wikiwand.com/en/C4.5_algorithm)| Normalized information gain ratio
+
+* [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
+* [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
+* https://www.wikiwand.com/en/Decision_tree_learning
+* https://www.wikiwand.com/en/Decision_tree
+* https://www.wikiwand.com/en/Recursive_partitioning
+* http://timesleuth-rule.sourceforge.net/
 ***
 
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
@@ -56,7 +91,7 @@ The regularization techniques in regression may not suit the tree algorithms suc
 
 **Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees)
 
-<img title = " pruning" src="https://www.treesaregood.org](https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="80%" />
+<img title = "pruning" src="https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="40%" />
 
 In machine learning, we prune the decision tree to make a balance between over-fitting and under-fitting. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
 
@@ -81,10 +116,7 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 
 ***
 
-* [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
-* https://www.wikiwand.com/en/Decision_tree_learning
-* https://www.wikiwand.com/en/Decision_tree
-* https://www.wikiwand.com/en/Recursive_partitioning
+
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
 * [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
@@ -97,7 +129,7 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * https://www.ncbi.nlm.nih.gov/pubmed/16149128
 * http://www.cnblogs.com/en-heng/p/5035945.html
 
-#### Random Forest
+### Random Forest
 
 Random forests (Breiman, 2001) is a substantial modification of bagging
 that builds a large collection of de-correlated trees, and then averages them.
@@ -161,7 +193,7 @@ the base learners, that is, voting for classification and averaging for regressi
 * Train the $i$th base learner $F_i$ at the ${B}_{i}$;
 * Vote for classification and average for regression.
 
-![bootstrap-sample](https://www.statisticshowto.datasciencecentral.com/wp-content/uploads/2016/10/bootstrap-sample.png)
+<img title = bootstrap-sample src=https://www.statisticshowto.datasciencecentral.com/wp-content/uploads/2016/10/bootstrap-sample.png width=80%/>
 
 It is a sample-based ensemble method.
 
@@ -174,7 +206,7 @@ $$
 if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
 
 
-![weighted-unweighted](https://blogs.sas.com/content/subconsciousmusings/files/2017/05/weighted-unweighted.png)
+<img title = weighted-unweighted src=https://blogs.sas.com/content/subconsciousmusings/files/2017/05/weighted-unweighted.png width=80%/>
 
 ***
 
@@ -199,19 +231,19 @@ the learner may pay more attention to the data drawn from $S$.
 For the regression problem, of which the output results are continuous, it  progressively reduce the error by trial.
 In another word, we will reduce the error at each iteration.
 
-![Chinese_herb_clinic](http://www.stat.ucla.edu/~sczhu/Vision_photo/Chinese_herb_clinic.jpg)
+<img title = Chinese_herb_clinic src = http://www.stat.ucla.edu/~sczhu/Vision_photo/Chinese_herb_clinic.jpg width=50% />
 
-[Reweighting with Boosted Decision Trees](https://arogozhnikov.github.io/2015/10/09/gradient-boosted-reweighter.html)
 
+* [Reweighting with Boosted Decision Trees](https://arogozhnikov.github.io/2015/10/09/gradient-boosted-reweighter.html)
 * https://betterexplained.com/articles/adept-method/
-* https://web.stanford.edu/~hastie/Papers/buehlmann.pdf
-* https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/
-* http://www.machine-learning.martinsewell.com/ensembles/boosting/
+* [BOOSTING ALGORITHMS: REGULARIZATION, PREDICTION AND MODEL FITTING](https://web.stanford.edu/~hastie/Papers/buehlmann.pdf)
+* [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/)
+* [Boosting](http://www.machine-learning.martinsewell.com/ensembles/boosting/) and [Ensemble Learning](http://www.machine-learning.martinsewell.com/ensembles/)
 * [Boosting at Wikipedia](https://www.wikiwand.com/en/Boosting_(machine_learning))
 
 #### AdaBoost
 
-AdaBoost is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$.
+`AdaBoost` is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$.
 AdaBoost is to change the distribution of training data and learn from the shuffled data.
 It is an iterative trial-and-error in some sense.
 
@@ -244,14 +276,14 @@ $$
 
 **Real AdaBoost**
 
-
+In AdaBoost, the error is binary- it is 0 if the classification is right otherwise it is 1. It is not precise for some setting.
 
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$;
-* For $t = 1, 2, \dots, T$:
+* For $m = 1, 2, \dots, T$:
    +  Fit a classifier $G_m(x)$ to obtain a class probability estimate $p_m(x)=\hat{P}_{w}(y=1\mid x)\in [0, 1]$, using weights $w_i$.
    +  Compute $f_m(x)\leftarrow \frac{1}{2}\log{p_m(x)/(1-p_m(x))}\in\mathbb{R}$.
    +  Set $w_i\leftarrow w_i\exp[-y_if_m(x_i)], i=1,2,\dots, N$ and renormalize so that $\sum_{i=1}w_i =1$.
-* Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}f_m(x)]$.
+* Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_m(x)]$.
 
 _______
 
@@ -339,13 +371,13 @@ $$
 * https://explained.ai/gradient-boosting/faq.html
 * [GBDT算法原理 - 飞奔的猫熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/50176849)
 * https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
-* https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/
-* https://data-flair.training/blogs/gradient-boosting-algorithm/
+* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
+* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
 * https://arxiv.org/abs/1803.02042
-* [Greedy Function Approxiamtion: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
+* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
 * [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
 
-***
+
 
 A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
 
@@ -353,30 +385,6 @@ A general gradient descent “boosting” paradigm is developed for additive exp
 * https://machinelearningmastery.com/start-with-gradient-boosting/
 * https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
 
-#### LogitBoost
-
-Given a training data set ${\{\mathrm{X}_i, y_i\}}_{i=1}^{N}$, where $\mathrm{X}_i\in\mathbb{R}^p$ is the feature and $y_i\in\{1, 2, \dots, K\}$ is the desired categorical label.
-The classifier $F$ learned from data is a function
-$$
-F:\mathbb{R}^P\to y \\
-\quad X_i \mapsto y_i.
-$$
- And the function $F$ is usually in the additive model $F(x)=\sum_{m=1}^{M}h(x\mid {\theta}_m)$.
-
-![logitBoost](https://img-blog.csdn.net/20151028220708460)
-where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
-
-![robust logitBoost](https://img-blog.csdn.net/20151029111043502)
-
-+ LogitBoost used first and second derivatives to construct the trees;
-+ LogitBoost was believed to have numerical instability problems.
-
-- [ ] [Fundamental Techniques in Big Data Data Streams, Trees, Learning, and Search by Li Ping](https://www.stat.rutgers.edu/home/pingli/doc/PingLiTutorial.pdf)
-- [ ] [LogitBoost python package](https://logitboost.readthedocs.io/)
-- [ ] [ABC-LogitBoost for Multi-Class Classification](http://www.datascienceassn.org/sites/default/files/LogitBoost%20Algorithm.pdf)
-- [ ] [LogitBoost学习](https://blog.csdn.net/u014568921/article/details/49474293)
-- [ ] [几种Boost算法的比较](https://www.cnblogs.com/jcchen1987/p/4581651.html)
-- [ ] [Robust LogitBoost and Adaptive Base Class (ABC) LogitBoost](https://arxiv.org/ftp/arxiv/papers/1203/1203.3491.pdf)
 
 #### xGBoost
 
@@ -452,6 +460,8 @@ $$
 * [How to Visualize Gradient Boosting Decision Trees With XGBoost in Python](https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/)
 * [Awesome XGBoost](https://github.com/dmlc/xgboost/blob/master/demo/README.md#machine-learning-challenge-winning-solutions)
 
+<img src=https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg />
+
 #### LightGBM
 
 LightGBM is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:
@@ -465,7 +475,14 @@ LightGBM is a gradient boosting framework that uses tree based learning algorith
 
 ![lightGBM](http://zhoutao822.coding.me/2019/01/13/LightGBM/2.png)
 
-<img src=https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg />
+
+
+A major reason is that for each feature, they need to scan all the data instances to estimate the information gain of all
+possible split points, which is very time consuming. To tackle this problem, the authors of lightGBM propose two novel techniques: Gradient-based One-Side Sampling (GOSS) and Exclusive Feature Bundling (EFB).
+
+`Leaf-wise`
+
+![leaf-wise](http://zhoutao822.coding.me/2019/01/13/LightGBM/7.png)
 
 - [LightGBM, Light Gradient Boosting Machine](https://github.com/Microsoft/LightGBM/)
 - [LightGBM: A Highly Efficient Gradient Boosting Decision Tree](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)
@@ -487,7 +504,8 @@ Before learning, the possible values of objects are divided into disjoint ranges
 Quantization is also used to split the label values when working with categorical features. А random subset of the dataset is used for this purpose on large datasets.
 
 - https://tech.yandex.com/catboost/
-- https://catboost.ai/
+- [Reference papers of CatBoost](https://catboost.ai/docs/concepts/educational-materials-papers.html)
+- [CatBoost: unbiased boosting with categorical features](https://arxiv.org/abs/1706.09516)
 - [Efficient Gradient Boosted Decision Tree Training on GPUs](https://www.comp.nus.edu.sg/~hebs/pub/IPDPS18-GPUGBDT.pdf)
 
 
@@ -499,8 +517,34 @@ Quantization is also used to split the label values when working with categorica
 - [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
 - [GBDT on Angel](https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md)
 - [Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
-*****
 
+#### LogitBoost
+
+Given a training data set ${\{\mathrm{X}_i, y_i\}}_{i=1}^{N}$, where $\mathrm{X}_i\in\mathbb{R}^p$ is the feature and $y_i\in\{1, 2, \dots, K\}$ is the desired categorical label.
+The classifier $F$ learned from data is a function
+$$
+F:\mathbb{R}^P\to y \\
+\quad X_i \mapsto y_i.
+$$
+ And the function $F$ is usually in the additive model $F(x)=\sum_{m=1}^{M}h(x\mid {\theta}_m)$.
+
+<img title ="logitBoost" src="https://img-blog.csdn.net/20151028220708460" width="80%" />
+
+where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
+
+<img title ="robust logitBoost" src="https://img-blog.csdn.net/20151029111043502" width="80%" />
+
++ LogitBoost used first and second derivatives to construct the trees;
++ LogitBoost was believed to have numerical instability problems.
+
+- [ ] [Fundamental Techniques in Big Data Data Streams, Trees, Learning, and Search by Li Ping](https://www.stat.rutgers.edu/home/pingli/doc/PingLiTutorial.pdf)
+- [ ] [LogitBoost python package](https://logitboost.readthedocs.io/)
+- [ ] [ABC-LogitBoost for Multi-Class Classification](http://www.datascienceassn.org/sites/default/files/LogitBoost%20Algorithm.pdf)
+- [ ] [LogitBoost学习](https://blog.csdn.net/u014568921/article/details/49474293)
+- [ ] [几种Boost算法的比较](https://www.cnblogs.com/jcchen1987/p/4581651.html)
+- [ ] [Robust LogitBoost and Adaptive Base Class (ABC) LogitBoost](https://arxiv.org/ftp/arxiv/papers/1203/1203.3491.pdf)
+
+***
 - https://arxiv.org/abs/1901.04055
 - https://arxiv.org/abs/1901.04065
 
@@ -558,7 +602,7 @@ Deep learning and ensemble learning share some similar guide line.
 - [ ] https://arxiv.org/abs/1704.00109v1
 - [ ] http://jtleek.com/advdatasci/17-blending.html
 - [ ] https://arxiv.org/abs/1708.03704
-- [ ] https://www.isca-speech.org/archive/archive_papers/interspeech_2014/i14_1915.pdf
+- [ ] [Ensemble Deep Learning for Speech Recognition](https://www.isca-speech.org/archive/archive_papers/interspeech_2014/i14_1915.pdf)
 
 
 ****
