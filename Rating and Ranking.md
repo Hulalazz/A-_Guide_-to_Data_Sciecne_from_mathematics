@@ -3,7 +3,17 @@
 + [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
 + <https://www.cse.iitb.ac.in/~soumen/>
 + https://fate-events.github.io/facts-ir/
-
++ [DocRank: Computer Science Capstone Project with the College of Charleston](https://fullmetalhealth.com/docrank-computer-science-capstone-project-college-charleston/index.html)
++ [Ratings and rankings: voodoo or science?](http://www.andreasaltelli.eu/file/repository/rssa_1059.pdf)
++ [The Science of Ranking Items: from webpages to teams to movies](http://langvillea.people.cofc.edu/RankAggJapan.pdf)
++ [Ranking with Optimization Techniques](http://langvillea.people.cofc.edu/RankbyOptim.pdf)
++ [Rank and Rating Aggregation](http://langvillea.people.cofc.edu/RankAgg.pdf)
++ [Sensitivity and Stability of Ranking Vectors](https://epubs.siam.org/doi/10.1137/090772745)
++ [The Rankability of Data](https://epubs.siam.org/doi/pdf/10.1137/18M1183595)
++ [ ] [A Bayesian Mean-Value Approach with a Self-Consistently Determined Prior Distribution for the Ranking of College Football Teams](https://arxiv.org/abs/physics/0607064)
++ [Massey Ratings Description](https://www.masseyratings.com/theory/massey.htm)
++ [A Rating-Ranking Method for Crowdsourced Top-k Computation](http://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod18-crowdtopk.pdf)
++ [the (data) science of sports](http://thespread.us/category/ranking.html)
 
 The rating algorithms help to match the players in video games or compare the players in sports.
 Ratings is a numerical score to describe the level  of the players' skill based on the results of many competition.
@@ -15,19 +25,29 @@ which may answer this query as the PageRank does for web searching. And `search 
 
 They share some techniques although their purpose is different such as the logistic regression.
 
+|[3 R's for the internet age](https://phys.org/news/2016-12-recommendingthree-internet-age.html)|Rating, ranking and recommending|
+|---|--- |
+| Rating |A rating of items assigns a numerical score to each item. A rating list, when sorted, creates a ranking list.|
+| Ranking |A ranking of items is a rank-ordered list of the items. Thus, a ranking vector is a permutation of the integers 1 through n.|
+| Recommendation | Recommendation Algorithms predict how each specific user would rate different items she has not yet bought by looking at the past history of her own ratings and comparing them with those of similar users.|
+
+In some sense, rating is to evaluate in a quantity approach, i.e. how much the item is popular; ranking is to evaluate in a quality approach. i.e., whether it is popular or preferred; recommendation is to rate or rank the items if the information is undirected or implicit.
 
 - [ ] [Whole-History Rating: A Bayesian Rating System for Players of Time-Varying Strength
 ](https://arxiv.org/pdf/1701.08055v1.pdf)
 - [ ] [Who’s #1? The Science
 of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
+- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
 - [ ] [WhoScored Ratings Explained](https://www.whoscored.com/Explanations)
 - [ ] [Ranking Algorithm Definition](http://www.meteorsite.com/ranking-algorithm)
 - [ ] [EdgeRank](http://edgerank.net/)
 - [ ] [Rating Algorithm for Evaluation of Web Pages: W3C Working Draft](https://www.w3.org/WAI/ER/IG/rating/)
 - [ ] [PvP Matchmaking Algorithm](https://wiki.guildwars2.com/wiki/PvP_Matchmaking_Algorithm)
 - [ ] [Finding the perfect match by Justin O'Dell on November 20, 2014](https://www.guildwars2.com/en/news/finding-the-perfect-match/)
+- [ ] [Ranking of sports teams](http://www.phys.utk.edu/sorensen/ranking/)
+- [ ] [PlayeRank: data-driven performance evaluation and player ranking in soccer via a machine learning approach](https://arxiv.org/pdf/1802.04987.pdf)
 - [ ] [College Football Ranking Composite](http://www.atomicfootball.com/af-algorithm.html)
-- [ ] [A Bayesian Mean-Value Approach with a Self-Consistently Determined Prior Distribution for the Ranking of College Football Teams](https://arxiv.org/abs/physics/0607064)
++ [An overview of some methods for ranking sports teams, Soren P. Sorensen](http://www.phys.utk.edu/sorensen/ranking/Documentation/Sorensen_documentation_v1.pdf)
 - [ ] [SofaScore Statistical Ratings](https://www.sofascore.com/news/sofascore-player-ratings/)
 - [ ] [Everything You Need to Know About the TripAdvisor Popularity Ranking](https://www.tripadvisor.com/TripAdvisorInsights/w765)
 - [ ] [Deconstructing the App Store Rankings Formula with a Little Mad Science](https://moz.com/blog/app-store-rankings-formula-deconstructed-in-5-mad-science-experiments)
@@ -194,11 +214,10 @@ r\leftarrow r - (\frac{\partial^2 \log(p)}{\partial r^2})^{-1} \frac{\partial \l
 $$
 
 
-- https://www.remi-coulom.fr/WHR/
-- [X] [Whole-History Rating: A Bayesian Rating
-System for Players of Time-Varying Strength
+* [X] https://www.remi-coulom.fr/WHR/
+* [X] [Whole-History Rating: A Bayesian Rating System for Players of Time-Varying Strength
 ](https://www.remi-coulom.fr/WHR/WHR.pdf)
-
+* [X] [Scientific Ranking Methods: is risk-free betting possible?](https://www.inria.fr/en/news/news-from-inria/scientific-ranking-methods)
 
 **How to Build a Popularity Algorithm You can be Proud of**
 
@@ -224,6 +243,7 @@ There are some links on the  collective decision-making theory:
 * https://plato.stanford.edu/entries/arrows-theorem/
 * [Arrow's THeorem by Terence Tao](https://www.math.ucla.edu/~tao/arrow.pdf)
 * [Gibbard–Satterthwaite theorem @ wikiwand](https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem)
+* [Do the Math: Why No Ranking System Is No. 1](https://www.scientificamerican.com/article/why-ranking-systems-are-flawed/)
 
 ## Ranking
 
@@ -509,73 +529,6 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [X] https://www.jianshu.com/p/96173f2c2fb4
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 
-### McRank
-
-The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
-for relevance ranking in Web search in `McRank`.
-
-We learn the class probabilities $p_{i,k} = Pr(y_i = k)$, denoted by $\hat{p}_{i,k},\forall k\in [0,1,2,\dots, K-1]$ and define a scoring function for the sample $(\mathrm{X_i}, y_i)$:
-$$S_i = {\sum}_{k=0}^{K-1} \hat{p}_{i,k} T(k)$$
-where where $T (k)$ is some monotone (increasing) function of the relevance level.
-And in this setting as an example  $y_i = 4$ corresponds to a “perfect” relevance and $y_i = 0$ corresponds to a “poor” relevance when $K=5$.
-
-When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the sample $(\mathrm{X_i}, y_i)$.
-
-![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
-
-A common approach for multiple ordinal classification is to learn the cumulative probabilities $Pr (y_i \leq k)$ instead of the class probabilities $Pr (y_i = k) = p_{i, k}$.
-
-- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
-- [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
-- [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
-
-### Selective Gradient Boosting
-
-`Selective Gradient Boosting (SelGB)` is an algorithm addressing the Learning-to-Rank task by focusing on those irrelevant documents
-that are most likely to be mis-ranked, thus severely hindering the quality of the learned model.
-
-<img title="Selective Gradient Boosting" src = "https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg" width = 80% />
-
-- [ ] [Selective Gradient Boosting for Effective Learning to Rank](http://quickrank.isti.cnr.it/selective-data/selective-SIGIR2018.pdf)
-- [ ] [基于Selective Gradient Boosting的排序方法 - BeyondTheData的文章 - 知乎](https://zhuanlan.zhihu.com/p/55768029)
-- [ ] http://quickrank.isti.cnr.it/
-- [ ] http://quickrank.isti.cnr.it/research-papers/
-- [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
-- [ ] https://maciejkula.github.io/spotlight/index.html#
-
-**QuickScorer and QuickRank**
-
-Given a query-document pair $(q, di)$, represented by a feature vector $\mathrm{x}$,
-a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents.
-Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
-Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
-Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left branch is taken iff the test succeeds.
-Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
-The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it is computed as a weighted sum of all the tree predictions.
-
-
-The building block of this approach is an alternative method for tree traversal based on bitvector computations.
-
-- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
-- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
-- [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
-- http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf
-
-**AdaRank**
-
-In the abstract, the authors wrote:
-> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
-> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures.
-> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs.
-> To deal with the problem, we propose a novel learning algorithm within the framework of boosting,
-> which can minimize a loss function directly defined on the performance measures.
-> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data
-> and finally linearly combines the weak rankers for making ranking predictions.
->We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
-
-- [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
-- [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
-
 ### LambdaLoss
 
 LambdaRank is a novel algorithm that incorporates ranking metrics into its learning procedure.
@@ -615,6 +568,76 @@ We show that the loss functions of these methods are upper bounds of the measure
 
 - [ ] [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/)
 - [ ] [RankExplorer: Visualization of Ranking Changes in Large Time Series Data](https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/)
+- [ ] [Revisiting Approximate Metric Optimization in the Age of Deep Neural Networks](https://ai.google/research/pubs/pub48168)
+- [ ] [Revisiting Online Personal Search Metrics with the User in Mind](https://ai.google/research/pubs/pub48243)
+
+
+### McRank
+
+The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
+for relevance ranking in Web search in `McRank`.
+
+We learn the class probabilities $p_{i,k} = Pr(y_i = k)$, denoted by $\hat{p}_{i,k},\forall k\in [0,1,2,\dots, K-1]$ and define a scoring function for the sample $(\mathrm{X_i}, y_i)$:
+$$S_i = {\sum}_{k=0}^{K-1} \hat{p}_{i,k} T(k)$$
+where where $T (k)$ is some monotone (increasing) function of the relevance level.
+And in this setting as an example  $y_i = 4$ corresponds to a “perfect” relevance and $y_i = 0$ corresponds to a “poor” relevance when $K=5$.
+
+When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the sample $(\mathrm{X_i}, y_i)$.
+
+![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
+
+A common approach for multiple ordinal classification is to learn the cumulative probabilities $Pr (y_i \leq k)$ instead of the class probabilities $Pr (y_i = k) = p_{i, k}$.
+
+- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
+- [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
+- [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
+
+### Selective Gradient Boosting
+
+`Selective Gradient Boosting (SelGB)` is an algorithm addressing the Learning-to-Rank task by focusing on those irrelevant documents
+that are most likely to be mis-ranked, thus severely hindering the quality of the learned model.
+
+<img title="Selective Gradient Boosting" src = "https://pic4.zhimg.com/80/v2-2880337351fec6ae22cd93addbe5f453_hd.jpg" width = 80% />
+
+- [ ] [Selective Gradient Boosting for Effective Learning to Rank](http://quickrank.isti.cnr.it/selective-data/selective-SIGIR2018.pdf)
+- [ ] [基于Selective Gradient Boosting的排序方法 - BeyondTheData的文章 - 知乎](https://zhuanlan.zhihu.com/p/55768029)
+- [ ] http://quickrank.isti.cnr.it/
+- [ ] http://quickrank.isti.cnr.it/research-papers/
+- [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
+- [ ] https://maciejkula.github.io/spotlight/index.html#
+
+**QuickScorer and QuickRank**
+
+Given a query-document pair \((q, d_i)\), represented by a feature vector $\mathrm{x}$,
+a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents.
+Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
+Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
+Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left branch is taken iff the test succeeds.
+Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
+The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it is computed as a weighted sum of all the tree predictions.
+
+
+The building block of this approach is an alternative method for tree traversal based on bitvector computations.
+
+- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
+- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
+- [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
+- http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf
+
+**AdaRank**
+
+In the abstract, the authors wrote:
+> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
+> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures.
+> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs.
+> To deal with the problem, we propose a novel learning algorithm within the framework of boosting,
+> which can minimize a loss function directly defined on the performance measures.
+> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data
+> and finally linearly combines the weak rankers for making ranking predictions.
+>We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
+
+- [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
+- [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
 
 
 ### Bayesian Personalized Ranking
@@ -673,8 +696,7 @@ And we can use stochastic gradient descent to find the parameters $\Theta$.
 - [ ] [VBPR: Visual Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/pdf/1510.01784.pdf)
 - [ ] [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 
-
-***
+#### Group Preference Based Bayesian Personalized Ranking
 
 However, the two fundamental assumptions made in the pairwise ranking methods,
 (1) individual pairwise preference over two items
@@ -731,7 +753,7 @@ See more transfer learning algorithm in [http://csse.szu.edu.cn/staff/panwk/publ
 * [Transfer to Rank for Top-N Recommendation](http://csse.szu.edu.cn/staff/panwk/publications/Journal-TBD-19-CoFiToR-Slides.pdf)
 * [The code and data of GBPR](http://csse.szu.edu.cn/staff/panwk/publications/index.html).
 
-**Collaborative Multi-objective Ranking**
+#### Collaborative Multi-objective Ranking
 
 The rowwise ranking problem, also known as personalized ranking, aims to build user-specific models such that the correct order of items (in terms of user preference) is most accurately predicted and then items on the top of ranked list will be recommended to a specific
 user, while column-wise ranking aims to build item-specific models focusing on targeting users who are most interested in the specific item (for example, for distributing coupons to customers).
@@ -802,7 +824,7 @@ be set differently in solving different problems.
 * https://sites.google.com/site/hujun1010/
 
 
-**Adaptive Boosting Personalized Ranking (AdaBPR)**
+#### Adaptive Boosting Personalized Ranking (AdaBPR)
 
 `AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
 In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
@@ -917,6 +939,7 @@ And here search engine and recommender system coincide except the recommender sy
 * https://www.cognik.net/
 * http://www.collarity.com/
 * https://www.wikiwand.com/en/Personalized_search
+* [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html)
 * [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
 * [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
 * [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)

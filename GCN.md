@@ -1,6 +1,15 @@
 ## Geometric Deep Learning
 
-* https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/
+* http://www.ai3sd.org/
+* https://heidelberg.ai/2019/07/09/graph-neural-networks.html
+* https://sites.google.com/site/rdftestxyz/home
+* [Lecture 11: Learning on Non-Euclidean Domains](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
+* [Network Embedding](https://shiruipan.github.io/project/effective-network-embedding/)
+* [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/index.html)
+* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - Ph0en1x的文章 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
+* [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
+* [如何评价百度新发布的NLP预训练模型ERNIE？ - 飞桨PaddlePaddle的回答 - 知乎](https://www.zhihu.com/question/316140575/answer/719617103)
+* [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
 
@@ -13,6 +22,7 @@
 - https://jian-tang.com/teaching/graph2019
 - [Introducing Grakn & Knowledge Graph Convolutional Networks: Dec 4, 2018 · Paris, France](https://eventil.com/events/introducing-grakn-ai-to-paris)
 - [International Workshop on Deep Learning for Graphs and Structured Data Embedding](https://www.aminer.cn/dl4g-sde)
+- [HYPERBOLIC DEEP LEARNING: A nascent and promising field](http://hyperbolicdeeplearning.com/papers/)
 
 Images are stored in computer as matrix roughly. The spatial distribution of pixel on the screen project to us a colorful digitalized world.
 `Convolutional neural network(ConvNet or CNN)` has been proved to be efficient to process and analyses the images for visual cognitive tasks.
@@ -61,24 +71,26 @@ And if we consider the  text as digraph, `word2vec` is an specific example of `D
 Given the word sequence $\mathbb{W}=(w_0, w_1, \dots, w_n)$, we can compute the conditional probability $P(w_n|w_0, w_1, \dots, w_{n-1})$. And
 $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
 
+>
 > * DeepWalk  $G, w, d, \gamma, t$
- * Input: graph $G(V, E)$;
+>> * Input: graph $G(V, E)$;
      window size $w$;
      embedding size $d$;
      walks per vertex $\gamma$;
      walk length $t$.
- * Output:  matrix of vertex representations $\Phi\in\mathbb{R}^{|V|\times d}$
-
-     +  Initialization: Sample $\Phi$ from $\mathbb{U}^{|V|\times d}$;
-     + Build a binary Tree T from V;
-     + for $i = 0$ to $\gamma$ do
-        -  $O = Shuffle(V )$
-        -  for each $v_i \in O$ do
-        -  $W_{v_i}== RandomWalk(G, v_i, t)$
-        -  $SkipGram(Φ, W_{v_i}, w)$
-        - end for
-     + end for
+>> * Output:  matrix of vertex representations $\Phi\in\mathbb{R}^{|V|\times d}$
+>
+>> *  Initialization: Sample $\Phi$ from $\mathbb{U}^{|V|\times d}$;
+>>     + Build a binary Tree T from V;
+>>     + for $i = 0$ to $\gamma$ do
+>>        -  $O = Shuffle(V )$
+>>        -  for each $v_i \in O$ do
+>>        -  $W_{v_i}== RandomWalk(G, v_i, t)$
+>>        -  $SkipGram(Φ, W_{v_i}, w)$
+>>        - end for
+>>     + end for
 ***  
+
 > $SkipGram(Φ, W_{v_i}, w)$
 * 1. for each $v_j \in W_{v_i}$ do
     + 2. for each $u_k \in W_{v_i}[j − w : j + w]$ do
@@ -151,7 +163,7 @@ This is a paper about identifying nodes in graphs that play a similar role based
 
 Struc2vec has four main steps:
 
-> 1. Determine the structural similarity between each vertex pair in the graph, for different neighbourhood sizes.
+> 1. Determine the structural similarity between each vertex pair in the graph, for different neigbourhood sizes.
 > 2. Construct a weighted multi-layer graph, in which each layer corresponds to a level in a hierarchy measuring structural similarity (think: ‘at this level of zoom, these things look kind of similar’).
 > 3. Use the multi-layer graph to generate context for each node based on biased random walking.
 > 4. Apply standard techniques to learn a latent representation from the context given by the sequence of nodes in the random walks.
@@ -324,7 +336,7 @@ ICML 2019 Workshop](https://graphreason.github.io/)
 
 --|--
 --|--
-![](https://hazyresearch.github.io/hyperE/pytorch_tree.gif)|![](https://hazyresearch.github.io/hyperE/combinatorial_tree.gif)
+![combinatorial_tree](https://hazyresearch.github.io/hyperE/pytorch_tree.gif)|![](https://hazyresearch.github.io/hyperE/combinatorial_tree.gif)
 
 + http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/
 *****
@@ -423,10 +435,10 @@ $$
 
 Instead of Chebyshev polynomials, it approximates the filter as:
 $$
-g(\lambda) = c_0 + \sum_{j=1}^{r}[c_jC^{j}(h\lambda) + c_j^{\star} C^{j^{\star}}(h\lambda)]
+g(\lambda) = c_0 + \sum_{j=1}^{r}[c_jC^{j}(h\lambda) + c_j^{\ast} C^{j^{\ast}}(h\lambda)]
 $$
-where $c_0$ is real and other $c_j$’s are generally complex, and ${h}$ is a zoom parameter, and $\lambda$’s are the eigenvalues of the graph Laplacian.
-Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$'s are computed by training. This solves the problem of unfavorable clusters in ChebNet.
+where $c_0$ is real and other $c_j'$ s are generally complex, and ${h}$ is a zoom parameter, and $\lambda'$ s are the eigenvalues of the graph Laplacian.
+Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$'s are computed by training. This solves the problem of unfavorable clusters in `ChebNet`.
 
 * [CayleyNets: Graph Convolutional Neural Networks with Complex Rational Spectral Filters](https://arxiv.org/abs/1705.07664)
 

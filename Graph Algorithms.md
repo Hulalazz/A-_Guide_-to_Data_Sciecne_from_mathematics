@@ -1,13 +1,16 @@
 #### Graph as Data  Structure
 
+https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html
 http://mat.uab.cat/~alseda/MasterOpt/
 http://ryanrossi.com/search.php
 https://iss.oden.utexas.edu/
 http://michele-ackerer.fr/algorithmic-graph-theory.htm
 http://www.columbia.edu/~mc2775/
 
+[Learn about graph, graph representations, graph traversals and their running time.](https://kobiso.github.io//data%20structure/coding-DS_graph/)
+
 Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
-And graph processing is widely applied in industry and science such as the `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
+And graph processing is widely applied in industry and science such as the `network analysis`, `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
 
 A graph ${G=(V,E)}$ consists of a finite set of vertices $V(G)$ and a set of edges $E(G)$ consisting of distinct, unordered pairs of vertices, where nodes stand for entities and edges stand for their connections.
 It is the foundation of **network science**.
@@ -59,10 +62,12 @@ See *Graph representations using set and hash* at <https://www.geeksforgeeks.org
 See more representation of graph in computer in <https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/>.
 Although the adjacency-list representation is asymptotically at least as efficient as the adjacency-matrix representation, the simplicity of an adjacency matrix may make it preferable when graphs are reasonably small. Moreover, if the graph is unweighted, there is an additional advantage in storage for the adjacency-matrix representation.
 
+![list](https://kobiso.github.io//assets/images/graph/list.png)
+
 ***
 |Cayley graph of F2 in Wikimedia | Moreno Sociogram 1st Grade|
 |:------------------------------:|:---------------------------:|
-|![Cayley graph of F2](http://mathworld.wolfram.com/images/eps-gif/CayleyGraph_1000.gif)|![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Moreno_Sociogram_1st_Grade.png/440px-Moreno_Sociogram_1st_Grade.png)|
+|<img src="http://mathworld.wolfram.com/images/eps-gif/CayleyGraph_1000.gif?w=200" width="80%" />|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Moreno_Sociogram_1st_Grade.png/440px-Moreno_Sociogram_1st_Grade.png?w=400" width="50%" />|
 
 * http://mathworld.wolfram.com/Graph.html
 * https://www.wikiwand.com/en/Graph_theory
@@ -74,7 +79,7 @@ Although the adjacency-list representation is asymptotically at least as efficie
 * https://www.wikiwand.com/en/Directed_acyclic_graph
 ****
 
-It seems that graph theory is partially the application of matrix theory.
+It seems that graph theory is partially the application of nonnegative matrix theory.
 [Graph Algorithms in the Language of Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918?mobileUi=0) shows how to leverage existing parallel matrix computation techniques and the large amount of software infrastructure that exists for these computations to implement efficient and scalable parallel graph algorithms. The benefits of this approach are reduced algorithmic complexity, ease of implementation, and improved performance.
 __________________________________
 Matrix Theory        | Graph Theory|-----|---
@@ -137,7 +142,7 @@ Dijkstra's algorithm is an algorithm for finding the shortest paths between node
 + https://www.wikiwand.com/en/Shortest_path_problem
 + https://www.cnblogs.com/chxer/p/4542068.html
 + [Introduction to $A^{\ast}$: From Amit’s Thoughts on Pathfinding](http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html)
-
++ [Graph Search Algorithms by Steve Mussmann and Abi See](https://cs.stanford.edu/people/abisee/gs.pdf)
 
 See the page at Wikipedia [$A^{\ast}$ search algorithm](https://www.wikiwand.com/en/A*_search_algorithm)
 
@@ -164,19 +169,13 @@ algebraic operations and fundamental graph operations
 
 #### Directed Acyclic Graph
 
-`Directed acyclic graph` is the directed graph without any cycles. It is used widely in scheduling, distributed computation.
+`Directed acyclic graph (DAG)` is the directed graph without any cycles. It is used widely in scheduling, distributed computation.
 
 
 > **Definition** The acyclic graph is called `forest`. A connected acyclic graph is called a `tree`.
 
 A graph $G$ is a tree if and only if $G$ is a forest and $|V(G)|=|E(G)| + 1$.
 
-#### PageRank
-
-![page rank](https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PageRanks-Example.jpg/800px-PageRanks-Example.jpg)
-+ [Page rank](https://www.wikiwand.com/en/PageRank)
-+ http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html
-+ [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
 
 #### Chemical Graph Theory
 
@@ -210,19 +209,64 @@ where $d_{ij}$, the topological distance between $i$ and $j$.
 
 #### Graph Partitioning
 
->> The fundamental problem that is trying to solve is that of splitting a large irregular graphs into k parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
+> The fundamental problem that is trying to solve is that of splitting a large irregular graphs into k parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
 The partitioning is usually done so that it satisfies certain constraints and optimizes certain objectives. The most common constraint is that of producing equal-size partitions, whereas the most common objective is that of minimizing the number of cut edges (i.e., the edges that straddle partition boundaries). However, in many cases, different application areas tend to require their own type of constraints and objectives; thus, making the problem all that more interesting and challenging!
-
+>
 > The research in the lab is focusing on a class of algorithms that have come to be known as multilevel graph partitioning algorithms. These algorithms solve the problem by following an approximate-and-solve paradigm, which is very effective for this as well as other (combinatorial) optimization problems.
-
+>
 > [Over the years we focused and produced good solutions for a number of graph-partitioning related problems. This includes partitioning algorithms for graphs corresponding to finite element meshes, multilevel nested dissection, parallel graph/mesh partitioning, dynamic/adaptive graph repartitioning, multi-constraint and multi-objective partitioning, and circuit and hypergraph partitioning.](http://glaros.dtc.umn.edu/gkhome/views/projects)
 
 + [Graph Partitioning](http://glaros.dtc.umn.edu/gkhome/views/projects)
 
-![Moore Graphs](https://jeremykun.files.wordpress.com/2016/11/hoffman_singleton_graph_circle2.gif?w=900)
+
+<img title="Moore Graphs" src="https://jeremykun.files.wordpress.com/2016/11/hoffman_singleton_graph_circle2.gif?w=400" />
 
 [A Spectral Analysis of Moore Graphs](https://jeremykun.com/2016/11/03/a-spectral-analysis-of-moore-graphs/)
 
+#### PageRank
+
+Raluca Tanase and Remus Radu, in [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html), asserted that
+> The usefulness of a search engine depends on the relevance of the result set it gives back. There may of course be millions of web pages that include a particular word or phrase; however some of them will be more relevant, popular, or authoritative than others. A user does not have the ability or patience to scan through all pages that contain the given query words. One expects the relevant pages to be displayed within the top 20-30 pages returned by the search engine.
+>
+> Modern search engines employ methods of ranking the results to provide the "best" results first that are more elaborate than just plain text ranking. One of the most known and influential algorithms for computing the relevance of web pages is the Page Rank algorithm used by the Google search engine. It was invented by Larry Page and Sergey Brin while they were graduate students at Stanford, and it became a Google trademark in 1998. The idea that Page Rank brought up was that, _the importance of any web page can be judged by looking at the pages that link to it_. If we create a web page i and include a hyperlink to the web page j, this means that we consider j important and relevant for our topic. If there are a lot of pages that link to j, this means that the common belief is that page j is important. If on the other hand, j has only one backlink, but that comes from an authoritative site k, (like www.google.com, www.cnn.com, www.cornell.edu) we say that k transfers its authority to j; in other words, k asserts that j is important. Whether we talk about popularity or authority, we can iteratively assign a rank to each web page, based on the ranks of the pages that point to it.
+
+PageRank is the first importance measure of webpage in large scale application. And this is content-free so that it does not  take the relevance of webpages into consideration.
+
+<img title = "page rank" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PageRanks-Example.jpg/800px-PageRanks-Example.jpg" width="47%"/>
+
+Here's how the PageRank is determined. Suppose that page $P_j$ has $l_j$ links. If one of those links is to page $P_i$, then $P_j$ will pass on $1/l_j$ of its importance to $P_i$. The importance ranking of $P_i$ is then the sum of all the contributions made by pages linking to it. That is, if we denote the set of pages linking to $P_i$ by $B_i$, then
+$$I(P_i)=\sum_{P_j\in B_i}\frac{I(P_j)}{l_j}.$$
+
+Note that the importance ranking of $P_i$ is the finite sum of 2 factors: the importance of its neighbors' importance $I(P_j)$ and the number of links $l_j$ when $P_j\in B_i$ thus it can be rewritten as
+$$I(P_i)=\sum_{j} [I(P_j)\cdot \frac{1}{l_j}] \mathbb{I}(ij)$$
+where the indictor function $\mathbb{I}(ij)$ is equal to 1 if the page $P_i$ is linked with the page $P_j$.
+If we define a matrix, called the hyperlink matrix, $\mathbf{H}=[\mathbf{H}_{ij}]$ in which the entry in the $i^{th}$ row and $j^{th}$ column is
+$$
+[\mathbf{H}_{ij}]=
+\begin{cases}
+\frac{1}{l_j}\quad &\text{if $P_j\in B_i$},\\
+0 \quad & \text{otherwise}.
+\end{cases}
+$$
+
+The condition above defining the PageRank \(I\) may be expressed as
+
+\[  I = {\bf H}I  \]
+In other words, the vector I is an eigenvector of the matrix H with eigenvalue 1. We also call this a stationary vector of H.
+
+It is not very simple and easy to compute the eigenvalue vectors of large scale matrix.
+If we denote by \(\bf 1\) the  \(n\times n\)  matrix whose entries are all one, we obtain the _Google matrix_:
+
+\[  {\bf G}=\alpha{\bf S}+ (1-\alpha)\frac{1}{n}{\bf 1}  \]
+Notice now that G is stochastic as it is a combination of stochastic matrices. Furthermore, all the entries of G are positive, which implies that G is both primitive and irreducible. Therefore, G has a unique stationary vector I that may be found using the power method.
+
++ [Page rank@wikiwand](https://www.wikiwand.com/en/PageRank)
++ [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page ](http://infolab.stanford.edu/pub/papers/google.pdf)
++ [Lecture #3: PageRank Algorithm - The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
++ [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
++ http://langvillea.people.cofc.edu/
++ [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
++ [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
 
 #### Spectral Clustering Algorithm
 
@@ -233,15 +277,13 @@ The similarity matrix is provided as an input and consists of a quantitative ass
 
 **Similarity matrix** is to measure the similarity between the input features $\{\mathbf{x}_i\}_{i=1}^{n}\subset\mathbb{R}^{p}$.
 For example, we can use Gaussian kernel function
-$$
-f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})
-$$
+\[ f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2}) \]
 to measure the *similarity* of inputs.
-The element of *similarity matrix* $S$ is $S_{i,j}=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
-Thus $S$ is symmetrical, i.e. $S_{i,j}=S_{j,i}$ for $i,j\in\{1,2,\dots,n\}$.
-If the sample size $n\gg p$, the storage of **similarity matrix** is much larger than the original input $\{\mathbf{x}_i\}_{i=1}^{n}$, when we would only preserve the entries above some values.
-The **Laplacian matrix** is defined by $L=D-S$ where $D=Diag\{D_1,D_2,\dots,D_n\}$ and
-$D_{i}=\sum_{j=1}^{n}S_{i,j}=\sum_{j=1}^{n}exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
+The element of *similarity matrix* $S$ is $S_{i, j} = exp(-\frac{{\| \mathbf{x_i} -\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
+Thus $S$ is symmetrical, i.e. $S_{i, j}=S_{j, i}$ for $i,j\in\{1,2,\dots, n\}$.
+If the sample size $n\gg p$, the storage of **similarity matrix** is much larger than the original input $\{\mathbf{x}_i \}_{i=1}^{n}$, when we would only preserve the entries above some values.
+The **Laplacian matrix** is defined by $L=D-S$ where $D = Diag\{D_1, D_2, \dots, D_n\}$ and
+$D_{i} = \sum_{j=1}^{n} S_{i,j} = \sum_{j=1}^{n} exp(-\frac{{\|\mathbf{x_i} - \mathbf{x}_j\|}_2^2}{2\sigma^2})$.
 
 Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ to reduce the data dimension. After that we can perform $K-means$ or other clustering.
 
@@ -251,8 +293,8 @@ Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ t
 * **谱聚类** <https://www.cnblogs.com/pinard/p/6221564.html>.
 * *Spectral Clustering* <http://www.datasciencelab.cn/clustering/spectral>.
 * https://en.wikipedia.org/wiki/Category:Graph_algorithms
-* The course *Spectral Graph Theory, Fall 2015* at<http://www.cs.yale.edu/homes/spielman/561/>.
-* <http://swoh.web.engr.illinois.edu/courses/ie532/project.html>.
+* The course *Spectral Graph Theory, Fall 2015* at <http://www.cs.yale.edu/homes/spielman/561/>.
+* [IE532. Analysis of Network Data, Sewoong Oh, University of Illinois Urbana-Champaign](http://swoh.web.engr.illinois.edu/courses/ie532/).
 * https://skymind.ai/wiki/graph-analysis
 
 #### Graph Kernel and Spectral Graph Theory
@@ -272,7 +314,8 @@ Graph kernel are convolution kernels on pairs of graphs. A graph kernel makes th
 
 `Exponential diffusion` is defined as $K_{ED}=\sum_{k=0}^{\infty}\frac{1}{k!}{\alpha}^{k}{A}^{k}=\exp(\alpha A)$.
 `Katz method` is defined as the truncation of `Von Neumann diffusion`
-$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-\alpha^k A^k).$$
+$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A}^K).$$
+
 
 + https://www.wikiwand.com/en/Graph_product
 + https://www.wikiwand.com/en/Graph_kernel
@@ -289,7 +332,7 @@ $$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-\alpha^k A^k)
 
 Computational graphs are a nice way to think about mathematical expressions, where the mathematical expression will be in the decomposed form and in topological order.
 
-![Computational Graph](https://colah.github.io/posts/2015-08-Backprop/img/tree-eval.png)
+<img title="Computational Graph" src="https://colah.github.io/posts/2015-08-Backprop/img/tree-eval.png" width=40% />
 
 [To create a computational graph, we make each of these operations, along with the input variables, into nodes. When one node’s value is the input to another node, an arrow goes from one to another.These sorts of graphs come up all the time in computer science, especially in talking about functional programs. They are very closely related to the notions of dependency graphs and call graphs. They’re also the core abstraction behind the popular deep learning framework `TensorFlow`.](https://colah.github.io/posts/2015-08-Backprop/)
 

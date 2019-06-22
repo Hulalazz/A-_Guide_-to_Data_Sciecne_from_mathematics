@@ -5,12 +5,13 @@
 * [CSE 291: Trends in Recommender Systems and Human Behavioral Modeling](https://cseweb.ucsd.edu/classes/fa17/cse291-b/)
 * [THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)](https://recnlp2019.github.io/)
 * [Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan](https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html)
+* [Recommendations for all : solving thousands of recommendation problems a day](https://ai.google/research/pubs/pub46822)
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
 RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items that a Web site, for example, may offer.
 
-Xavier Amatriain discusses the traditional definition and its data mining core.
+[Xavier Amatriain discusses the traditional definition and its data mining core.](https://www.kdd.org/exploration_files/V14-02-05-Amatriain.pdf)
 
 Traditional definition: The **recommender system** is to estimate a utility  function that automatically predicts how a user will like an item.
 
@@ -83,14 +84,14 @@ Note that the rank of a matrix is not easy or robust  to compute.
 We can apply [customized PPA](http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf) to matrix completion problem
 
 $$
-\min \{ {\|Z\|}_{\star}\} \\
+\min \{ {\|Z\|}_{\ast}\} \\
 s.t. Z_{\Omega} = X_{\Omega}
 $$
 
 We let ${Y}\in\mathbb{R}^{n\times n}$ be the the Lagrangian multiplier to the constraints $Z_{\Omega} = X_{\Omega}$
 and Lagrange function is
 $$
-L(Z,Y) = {\|Z\|}_{\star} - Y(Z_{\Omega} - X_{\Omega}).
+L(Z,Y) = {\|Z\|}_{\ast} - Y(Z_{\Omega} - X_{\Omega}).
 $$
 
 1. Producing $Y^{k+1}$ by
@@ -103,10 +104,10 @@ $$
 [Rahul Mazumder, Trevor Hastie, Robert Tibshirani](http://www.jmlr.org/papers/v11/mazumder10a.html) reformulate it as the following:
 
 $$
-\min f_{\lambda}(Z)=\frac{1}{2}{\|P_{\Omega}(Z-X)\|}_F^2 + \lambda {\|Z\|}_{\star}
+\min f_{\lambda}(Z)=\frac{1}{2}{\|P_{\Omega}(Z-X)\|}_F^2 + \lambda {\|Z\|}_{\ast}
 $$
 
-where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{\star}$ is the nuclear norm of matrix.
+where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{\ast}$ is the nuclear norm of matrix.
 
 
 * [A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION](https://www.zhihu.com/question/47716840/answer/110843844)
@@ -425,7 +426,7 @@ $$
 \hat{y}=\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_{j_1,f_2}, v_{j_2,f_1}\right> x_{j_1} x_{j_2}
 $$
 where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
-* https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf
+* [Field-aware Factorization Machines for CTR Prediction](https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf)
 * https://blog.csdn.net/mmc2015/article/details/51760681
 
 ## Deep Learning for Recommender System
@@ -450,7 +451,7 @@ where the `wide` part deal with the categorical features such as user demographi
 
 * https://arxiv.org/pdf/1606.07792.pdf
 * [Wide & Deep Learning: Better Together with TensorFlow, Wednesday, June 29, 2016](https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html)
-* https://www.jianshu.com/p/dbaf2d9d8c94
+* [Wide & Deep](https://www.jianshu.com/p/dbaf2d9d8c94)
 * https://www.sohu.com/a/190148302_115128
 
 <img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/>
@@ -490,7 +491,7 @@ It is worth pointing out that FM component and deep component share the same fea
 * https://zhuanlan.zhihu.com/p/25343518
 * https://zhuanlan.zhihu.com/p/32127194
 * https://arxiv.org/pdf/1703.04247.pdf
-* https://blog.csdn.net/John_xyz/article/details/78933253#deep-fm
+* [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/John_xyz/article/details/78933253#deep-fm)
 
 ### Neural Factorization Machines
 
@@ -653,10 +654,27 @@ and search histories to model user’s interests. The underlying assumption is t
 reflect a lot about user’s background and preference, and
 therefore provide a precise insight of what items and topics users might be interested in.
 
+**Learning to Match** as Supervised Learning
+
+Its training data set and the test data is  \(\{(\mathrm{X}_i, y_i, r_i)\mid i =1, 2, \cdots, n\}\) and \((\mathrm{X}_{n+1}, y_{n+1})\), respectively.
+Matching Model is trained using the training data set: \(r(\mathrm{X}, y)\) and the \(r_{n+1}\) is predicted as  \(r_{n+1}=r(\mathrm{X}_{n+1}, y_{n+1})\).
+
+|Framework of Matching|
+|:---:|
+|Output: MLP|
+|Aggregation: Pooling, Concatenation|
+|Interaction: Matrix, Tensor|
+|Representation: MLP, CNN, LSTM|
+|Input: ID Vectors \(\mathrm{X}\), Feature Vectors \(y\)|
+
+Sometimes, matching model and ranking model are combined and trained together with pairwise loss.
+
 * http://sonyis.me/dnn.html
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
 * http://staff.ustc.edu.cn/~hexn/
+* [Deep Learning for Matching in Search and Recommendation](http://staff.ustc.edu.cn/~hexn/papers/sigir18-tutorial-deep-matching.pdf)
+* [Facilitating the design, comparison and sharing of deep text matching models.](https://github.com/NTMC-Community/MatchZoo)
 * [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
 * [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 
@@ -809,7 +827,7 @@ Explainable recommendation and search attempt to develop models or methods that 
 ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
 dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
 
-
+- [ ] [Accurate and scalable social recommendation using mixed-membership stochastic block models](https://www.pnas.org/content/113/50/14207)
 - [ ] [Do Social Explanations Work? Studying and Modeling the
 Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
 - [ ] [Existing Methods for Including Social Networks until 2015](http://ajbc.io/projects/slides/chaney_recsys2015.pdf)
@@ -820,6 +838,7 @@ Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/130
 - [ ] [Product Recommendation and Rating Prediction based on Multi-modal Social Networks](http://delab.csd.auth.gr/papers/RecSys2011stm.pdf)
 - [ ] [Graph Neural Networks for Social Recommendation](https://paperswithcode.com/paper/graph-neural-networks-for-social)
 - [ ] [Studying Recommendation Algorithms by Graph Analysis](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
+- [ ] [Low-rank Linear Cold-Start Recommendation from Social Data](https://akmenon.github.io/papers/loco/loco-paper.pdf)
 
 **Knowledge Graph and Recommender System**
 
