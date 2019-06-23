@@ -6,6 +6,7 @@
 * [THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)](https://recnlp2019.github.io/)
 * [Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan](https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html)
 * [Recommendations for all : solving thousands of recommendation problems a day](https://ai.google/research/pubs/pub46822)
+* http://staff.ustc.edu.cn/~hexn/
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -117,8 +118,7 @@ where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${\|\cdot\|}_{
 
 <img title = "MMM" src=https://pic3.zhimg.com/80/771b16ac7e7aaeb50ffd8a8f5cf4e582_hd.png width = 80% />
 
-* http://people.eecs.berkeley.edu/~yima/
-* [New tools for recovering low-rank matrices from incomplete or corrupted observations by Yi Ma@UCB](http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html)
+
 * [Matrix Completion/Sensing as NonConvex Optimization Problem](http://sunju.org/research/nonconvex/)
 * [Exact Matrix Completion via Convex Optimization](http://statweb.stanford.edu/~candes/papers/MatrixCompletion.pdf)
 * [A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION](http://statweb.stanford.edu/~candes/papers/SVT.pdf)
@@ -149,7 +149,7 @@ where $c$ is a trade-off constant.
 
 This technique is also called **nonnegative matrix factorization**.
 
-The data sets we more frequently encounter in collaborative prediction problem are of `ordinal ratings` $X_{ij} \in \{1, 2, \dots, R\}$ such as $\{1, 2, 3, 4, 5\}$.
+\(\color{red}{Note:}\) The data sets we more frequently encounter in collaborative prediction problem are of `ordinal ratings` $X_{ij} \in \{1, 2, \dots, R\}$ such as $\{1, 2, 3, 4, 5\}$.
 To relate the real-valued $Z_{ij}$ to the
 discrete $X_{ij}$. we use $R − 1$ thresholds $\theta_{1}, \dots, \theta_{R-1}$.
 
@@ -163,7 +163,7 @@ $$
 
 And we can predict the score $R_{[u][i]}$ via
 $$
-\hat{R}_{[u][i]} = \hat{r}_{u,i} = \left<P_u,Q_i\right> = \sum_f p_{u,f} q_{i,f}
+\hat{R}_{[u][i]} = \hat{r}_{u,i} = \left<P_u, Q_i\right> = \sum_f p_{u,f} q_{i,f}
 $$
 
 where $P_u, Q_i$ is the ${u}$-th column of ${P}$ and the ${i}$-th column of ${Q}$, respectively.
@@ -259,6 +259,7 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 
 * [Latent Factor Models for Web Recommender Systems](http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf)
 * [Regression-based Latent Factor Models@CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
+* [Probabilistic Matrix Factorization](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf)
 
 ### Collaborative Less-is-More Filtering
 
@@ -347,14 +348,23 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 
 * https://www.cnblogs.com/Xnice/p/4522671.html
 * https://blog.csdn.net/turing365/article/details/80544594
-* https://en.wikipedia.org/wiki/Collaborative_filtering
-* [Matrix_factorization for recommender system](https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)})
+* [Matrix factorization for recommender system@Wikiwand](https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)})
 * http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html
-* https://www.acemap.info/author/page?AuthorID=7E61F31B
 * [Learning to Rank Sketchfab Models with LightFM](https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/)
 * [Finding Similar Music using Matrix Factorization](https://www.benfrederickson.com/matrix-factorization/)
 * [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
-* [DiFacto — Distributed Factorization Machines](https://www.cs.cmu.edu/~muli/file/difacto.pdf)
+
+**More on Matrix Factorization**
+
+- [The Advanced Matrix Factorization Jungle](https://sites.google.com/site/igorcarron2/matrixfactorizations)
+- [Non-negative Matrix Factorizations](http://www.ams.org/publicoutreach/feature-column/fc-2019-03)
+- http://people.eecs.berkeley.edu/~yima/
+- [New tools for recovering low-rank matrices from incomplete or corrupted observations by Yi Ma@UCB](http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html)
+- [DiFacto — Distributed Factorization Machines](https://www.cs.cmu.edu/~muli/file/difacto.pdf)
+- [Learning with Nonnegative Matrix Factorizations](https://sinews.siam.org/Details-Page/learning-with-nonnegative-matrix-factorizations)
+- [Nonconvex Optimization Meets Low-Rank Matrix Factorization: An Overview](http://www.princeton.edu/~yc5/publications/NcxOverview_Arxiv.pdf)
+- [Taming Nonconvexity in Information Science, tutorial at ITW 2018.](https://www.princeton.edu/~yc5/slides/itw2018_tutorial.pdf)
+- [Nonnegative Matrix Factorization by Optimization on the Stiefel Manifold with SVD Initialization](https://user.eng.umd.edu/~smiran/Allerton16.pdf)
 
 ### Hyperbolic Recommender Systems
 
@@ -426,6 +436,8 @@ $$
 \hat{y}=\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_{j_1,f_2}, v_{j_2,f_1}\right> x_{j_1} x_{j_2}
 $$
 where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
+
+* [Yuchin Juan at ACEMAP](https://www.acemap.info/author/page?AuthorID=7E61F31B)
 * [Field-aware Factorization Machines for CTR Prediction](https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf)
 * https://blog.csdn.net/mmc2015/article/details/51760681
 
@@ -437,104 +449,6 @@ Deep learning is powerful in processing visual and text information so that it h
 Deep learning models for recommender system may come from the restricted Boltzman machine.
 And deep learning models are powerful information extractors.
 Deep learning is really popular in recommender system such as [spotlight](https://github.com/maciejkula/spotlight).
-### Wide & Deep Model
-
-The output of this model is
-$$
-P(Y=1|x) = \sigma(W_{wide}^T[x,\phi(x)] + W_{deep}^T \alpha^{(lf)}+b)
-$$
-where the `wide` part deal with the categorical features such as user demographics and the `deep` part deal with continuous features.
-
-
-<img src=https://upload-images.jianshu.io/upload_images/1500965-13fa11d119bb20b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp width=70%/>
-<img src=http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/fnn_pnn_wdl.png width=70%/>
-
-* https://arxiv.org/pdf/1606.07792.pdf
-* [Wide & Deep Learning: Better Together with TensorFlow, Wednesday, June 29, 2016](https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html)
-* [Wide & Deep](https://www.jianshu.com/p/dbaf2d9d8c94)
-* https://www.sohu.com/a/190148302_115128
-
-<img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/>
-
-### Deep FM
-
-`DeepFM` ensembles FM and DNN and to learn both second order and higher-order feature interactions:
-$$\hat{y}=\sigma(y_{FM} + y_{DNN})$$
-where $\sigma$ is the sigmoid function so that $\hat{y}\in[0, 1]$ is the predicted CTR, $y_{FM}$ is the output of
-FM component, and $y_{DNN}$ is the output of deep component.
-
-<img src = https://pic3.zhimg.com/v2-c0b871f214bdae6284e98989dc8ac99b_1200x500.jpg width=60%/>
-
-The **FM component** is a factorization machine and the output of FM is the summation of
-an `Addition` unit and a number of `Inner Product` units:
-
-$$
-\hat{y}
-= \left<w, x\right>+\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_i, v_j\right> x_{j_1} x_{j_2}.
-$$
-
-The **deep component** is a `feed-forward neural network`, which is used to learn high-order feature interactions. There is a personal guess that the component function in activation function $e^x$ can expand in the polynomials form $e^x=1+x+\frac{x^2}{2!}+\dots,+\frac{x^n}{n!}+\dots$, which include all the order of interactions.
-
-We would like to point out the two interesting features of this network structure:
-
-1) while the lengths of different input field vectors can be different, their embeddings are of the same size $(k)$;
-2) the latent feature vectors $(V)$ in FM now server as network weights which are learned and used to compress the input field vectors to the embedding vectors.
-
-It is worth pointing out that FM component and deep component share the same feature embedding, which brings two important benefits:
-
-1) it learns both low- and high-order feature interactions from raw features;
-2) there is no need for expertise feature engineering of the input.
-
-<img src=http://kubicode.me/img/Deep-in-out-Wide-n-Deep-Series/deepfm_arch.png width=80% />
-
-* https://zhuanlan.zhihu.com/p/27999355
-* https://zhuanlan.zhihu.com/p/25343518
-* https://zhuanlan.zhihu.com/p/32127194
-* https://arxiv.org/pdf/1703.04247.pdf
-* [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/John_xyz/article/details/78933253#deep-fm)
-
-### Neural Factorization Machines
-
-$$
-\hat{y} = w_0 + \left<w, x\right> + f(x)
-$$
-where the first and second terms are the linear regression part similar to that for FM, which models global bias of data and weight
-of features. The third term $f(x)$ is the core component of NFM
-for modelling feature interactions, which is a `multi-layered feedforward neural network`.
-
-`B-Interaction Layer` including `Bi-Interaction Pooling` is an innovation in artificial neural network.
-
-![https://i.ooxx.ooo](https://i.ooxx.ooo/2017/12/27/ab7149f31f904f8f2bd6f15e0b9900c9.png)
-
-
-* http://staff.ustc.edu.cn/~hexn/
-* https://github.com/hexiangnan/neural_factorization_machine
-
-### Attentional Factorization Machines
-
-Attentional Factorization Machine (AFM) learns the importance of each feature interaction from data via a neural attention network.
-
-We employ the attention mechanism on feature interactions by performing a weighted sum on the interacted vectors:
-
-$$\sum_{(i, j)} a_{(i, j)}(V_i \odot V_j) x_i x_j$$
-
-where $a_{i, j}$ is the attention score for feature interaction.
-
-<img src=https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png width=80% />
-
-* https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf
-* http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89
-
-### xDeepFM
-
-`Compressed Interaction Network(CIN)`
-
-![](https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png)
-
-- [X] [KDD 2018 | 推荐系统特征构建新进展：极深因子分解机模型](https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm)
-- [ ] https://arxiv.org/abs/1803.05170
-- [ ] http://kubicode.me/2018/09/17/Deep%20Learning/eXtreme-Deep-Factorization-Machine/
-- [ ] [推荐系统遇上深度学习(二十二)--DeepFM升级版XDeepFM模型强势来袭！](https://www.jianshu.com/p/b4128bc79df0)
 
 ### Restricted Boltzmann Machines for Collaborative Filtering(RBM)
 
@@ -608,18 +522,118 @@ for for activation functions $f, g$ as described in  dimension reduction. Here $
 * https://blog.csdn.net/studyless/article/details/70880829
 * http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf
 
-***
+### Wide & Deep Model
+
+The output of this model is
+$$
+P(Y=1|x) = \sigma(W_{wide}^T[x,\phi(x)] + W_{deep}^T \alpha^{(lf)}+b)
+$$
+where the `wide` part deal with the categorical features such as user demographics and the `deep` part deal with continuous features.
+
+
+<img src=https://upload-images.jianshu.io/upload_images/1500965-13fa11d119bb20b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp width=70%/>
+<img src=http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/fnn_pnn_wdl.png width=70%/>
+
+* https://arxiv.org/pdf/1606.07792.pdf
+* [Wide & Deep Learning: Better Together with TensorFlow, Wednesday, June 29, 2016](https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html)
+* [Wide & Deep](https://www.jianshu.com/p/dbaf2d9d8c94)
+* https://www.sohu.com/a/190148302_115128
+
+<img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/>
+
+### Deep FM
+
+`DeepFM` ensembles FM and DNN and to learn both second order and higher-order feature interactions:
+$$\hat{y}=\sigma(y_{FM} + y_{DNN})$$
+where $\sigma$ is the sigmoid function so that $\hat{y}\in[0, 1]$ is the predicted CTR, $y_{FM}$ is the output of
+FM component, and $y_{DNN}$ is the output of deep component.
+
+<img src = https://pic3.zhimg.com/v2-c0b871f214bdae6284e98989dc8ac99b_1200x500.jpg width=60%/>
+
+The **FM component** is a factorization machine and the output of FM is the summation of
+an `Addition` unit and a number of `Inner Product` units:
+
+$$
+\hat{y}
+= \left<w, x\right>+\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_i, v_j\right> x_{j_1} x_{j_2}.
+$$
+
+The **deep component** is a `feed-forward neural network`, which is used to learn high-order feature interactions. There is a personal guess that the component function in activation function $e^x$ can expand in the polynomials form $e^x=1+x+\frac{x^2}{2!}+\dots,+\frac{x^n}{n!}+\dots$, which include all the order of interactions.
+
+We would like to point out the two interesting features of this network structure:
+
+1) while the lengths of different input field vectors can be different, their embeddings are of the same size $(k)$;
+2) the latent feature vectors $(V)$ in FM now server as network weights which are learned and used to compress the input field vectors to the embedding vectors.
+
+It is worth pointing out that FM component and deep component share the same feature embedding, which brings two important benefits:
+
+1) it learns both low- and high-order feature interactions from raw features;
+2) there is no need for expertise feature engineering of the input.
+
+<img src=http://kubicode.me/img/Deep-in-out-Wide-n-Deep-Series/deepfm_arch.png width=80% />
+
+* https://zhuanlan.zhihu.com/p/27999355
+* https://zhuanlan.zhihu.com/p/25343518
+* https://zhuanlan.zhihu.com/p/32127194
+* https://arxiv.org/pdf/1703.04247.pdf
+* [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/John_xyz/article/details/78933253#deep-fm)
+
+### Neural Factorization Machines
+
+$$
+\hat{y} = w_0 + \left<w, x\right> + f(x)
+$$
+where the first and second terms are the linear regression part similar to that for FM, which models global bias of data and weight
+of features. The third term $f(x)$ is the core component of NFM
+for modelling feature interactions, which is a `multi-layered feedforward neural network`.
+
+`B-Interaction Layer` including `Bi-Interaction Pooling` is an innovation in artificial neural network.
+
+![Neu FM](https://pic2.zhimg.com/80/v2-c7012d7a76e488643db9911d7588ccbd_hd.jpg)
+
+
+* http://staff.ustc.edu.cn/~hexn/
+* https://github.com/hexiangnan/neural_factorization_machine
+* [LibRec 每周算法：NFM (SIGIR'17)](https://www.infosec-wiki.com/?p=394011)
+
+### Attentional Factorization Machines
+
+Attentional Factorization Machine (AFM) learns the importance of each feature interaction from data via a neural attention network.
+
+We employ the attention mechanism on feature interactions by performing a weighted sum on the interacted vectors:
+
+$$\sum_{(i, j)} a_{(i, j)}(V_i \odot V_j) x_i x_j$$
+
+where $a_{i, j}$ is the attention score for feature interaction.
+
+<img src=https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png width=80% />
+
+* https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf
+* http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89
+
+### xDeepFM
+
+It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Network(CIN)` and `DNN`.
+
+![](https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png)
+
+- [X] [KDD 2018 | 推荐系统特征构建新进展：极深因子分解机模型](https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm)
+- [ ] [xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems](https://arxiv.org/abs/1803.05170)
+- [ ] https://arxiv.org/abs/1803.05170
+- [ ] [据说有RNN和CNN结合的xDeepFM](http://kubicode.me/2018/09/17/Deep%20Learning/eXtreme-Deep-Factorization-Machine/)
+- [ ] [推荐系统遇上深度学习(二十二)--DeepFM升级版XDeepFM模型强势来袭！](https://www.jianshu.com/p/b4128bc79df0)
+
+
 ![http://kubicode.me](http://kubicode.me/img/More-Session-Based-Recommendation/repeatnet_arch.png)
 
 ****
 
-* https://github.com/hwwang55/DKN
+* [Deep Knowledge-aware Network for News Recommendation](https://github.com/hwwang55/DKN)
 * https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf
 * https://www.cnblogs.com/pinard/p/6370127.html
 * https://www.jianshu.com/p/6f1c2643d31b
 * https://blog.csdn.net/John_xyz/article/details/78933253
 * https://zhuanlan.zhihu.com/p/38613747
-* https://www.infosec-wiki.com/?p=394011
 * [Recommender Systems with Deep Learning](https://amundtveit.com/2016/11/20/recommender-systems-with-deep-learning/)
 * [深度学习在序列化推荐中的应用](http://kubicode.me/2018/10/25/Deep%20Learning/More-Session-Based-Recommendation/)
 * [深入浅出 Factorization Machine 系列](http://kubicode.me/2018/02/23/Deep%20Learning/Deep-in-out-Factorization-Machines-Series/)
@@ -669,10 +683,11 @@ Matching Model is trained using the training data set: \(r(\mathrm{X}, y)\) and 
 
 Sometimes, matching model and ranking model are combined and trained together with pairwise loss.
 
+
+* https://sites.google.com/site/nkxujun/
 * http://sonyis.me/dnn.html
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
-* http://staff.ustc.edu.cn/~hexn/
 * [Deep Learning for Matching in Search and Recommendation](http://staff.ustc.edu.cn/~hexn/papers/sigir18-tutorial-deep-matching.pdf)
 * [Facilitating the design, comparison and sharing of deep text matching models.](https://github.com/NTMC-Community/MatchZoo)
 * [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
@@ -730,17 +745,17 @@ where $\hat{y}_s(\mathrm{x}) = \hat{y}_{s−1}(\mathrm{x}) + \alpha_s f_s(\mathr
 
 We heuristically assume that the
 function ${f}$ has the following form:
-$$f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell} q_{C_{i}(t)}(\mathrm{x})$$
-where the function q maps latent feature
+\[ f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell} q_{C_{i}(t)}(\mathrm{x}) \]
+where the function _q_ maps latent feature
 vector x to real value domain
-$$q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{tj}.$$
+\[ q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{tj}. \]
 
 It is hard for a general convex loss function $\ell$ to search function ${f}$ to optimize the objective function:
 $L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$.
 
 The most common way is to approximate it by least-square
 minimization, i.e., $\ell={\| \cdot \|}_2^2$. Like in `xGBoost`, it takes second order Taylor expansion of the loss function $\ell$ and problem isfinalized to find the ${i}$(t)-th feature which:
-$$\arg{\min}_{i(t)\in \{0, \dots, m\}} \sum_{i=1}^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}_i) q_{C_{i}(t)}(\mathrm{x}_i))^2 + {\|\theta\|}_2^2$$
+\[ \arg{\min}_{i(t)\in \{0, \dots, m\}} \sum_{i=1}^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}_i) q_{C_{i}(t)}(\mathrm{x}_i))^2 + {\|\theta\|}_2^2 \]
 where the negativefirst derivative and the second derivative at instance ${i}$ as $g_i$ and $h_i$.
 
 - [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
@@ -752,16 +767,31 @@ Specifically, BoostFM is an adaptive boosting framework that linearly combines m
 which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.
 
 **BoostFM**
-> + _Input_: The observed context-item interactions or Ttraining Data $S =\{(\mathbf{x}_i, y_i)\}$ parameters E and T.
+
+> + _Input_: The observed context-item interactions or Training Data \(S =\{(\mathbf{x}_i, y_i)\}\) parameters E and T.
 > + _Output_: The strong recommender $g^{T}$.
-> + Initialize $Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S$.
-> + for $s = 1 \to T$ do
-> +  1. Create component recommender;
-> +  2. Compute the ranking accuracy;
-> +  3. Compute the coefficient;
-> +  4. Create the strong recommender;
-> +  5. Update weight distribution;
+> + Initialize \(Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S\).
+> + for \(t = 1 \to T\) do
+> +  1. Create component recommender \(\hat{y}^{(t)}\) with \(\bf{Q}^{(t)}\) on \(\bf S\),\(\forall (c,i) \in \bf S\), , i.e., `Component Recommender Learning Algorithm`;
+> +  2. Compute the ranking accuracy \(E[\hat{r}(c, i, y^{(t)})], \forall (c,i) \in \bf S\);
+> +  3. Compute the coefficient \(\beta_t\),
+> \[ \beta_t = \ln (\frac{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1 + E[\hat{r}(c, i, y^{(t)})]\}}{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1-  E[\hat{r}(c, i, y^{(t)})]\}})^{\frac{1}{2}} ; \]
+> +  4. Create the strong recommender \(g^{(t)}\),
+> \[ g^{(t)} = \sum_{h=1}^{t} \beta_h \hat{y}^{(t)} ;\]
+> +  5. Update weight distribution \(\bf{Q}^{t+1}\),
+> \[ \bf{Q}^{t+1}_{ci} = \frac{\exp(E[\hat{r}(c, i, y^{(t)})])}{\sum_{(c,i)\in \bf{S}} E[\hat{r}(c, i, y^{(t)})]} ; \]
 > + end for
+
+
+**Component Recommender**
+
+Naturally, it is feasible to exploit the L2R techniques to optimize Factorization Machines
+(FM). There are two major approaches in the field of L2R, namely, pairwise and listwise approaches.
+In the following, we demonstrate ranking factorization machines with both pairwise and listwise optimization.
+
+`Weighted Pairwise FM (WPFM)`
+
+`Weighted ‘Listwise’ FM (WLFM)`
 
 - [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
 - http://wnzhang.net/
@@ -846,6 +876,8 @@ Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/130
 - [ ] [如何将知识图谱特征学习应用到推荐系统？](https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii)
 - [ ] [可解释推荐系统：身怀绝技，一招击中用户心理](https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914)
 - [ ] [深度学习与知识图谱在美团搜索广告排序中的应用实践](https://tech.meituan.com/2018/06/07/searchads-dnn.html)
+- [ ] [Unifying Knowledge Graph Learning and Recommendation: Towards a Better Understanding of User Preferences](http://staff.ustc.edu.cn/~hexn/papers/www19-KGRec.pdf)
+- [ ] [Explainable Reasoning over Knowledge Graphs for Recommendation](https://arxiv.org/pdf/1811.04540.pdf)
 
 **Reinforcement Learning and Recommender System**
 
