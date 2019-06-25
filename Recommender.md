@@ -1,5 +1,7 @@
 # Recommender System
 
+<img src= https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg width=70% />
+
 * [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
 * [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
 * [CSE 291: Trends in Recommender Systems and Human Behavioral Modeling](https://cseweb.ucsd.edu/classes/fa17/cse291-b/)
@@ -7,6 +9,10 @@
 * [Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan](https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html)
 * [Recommendations for all : solving thousands of recommendation problems a day](https://ai.google/research/pubs/pub46822)
 * http://staff.ustc.edu.cn/~hexn/
+* [Learning Item-Interaction Embeddings for User Recommendations](https://arxiv.org/abs/1812.04407)
+* [Summary of RecSys](https://github.com/fuxuemingzhu/Summary-of-Recommender-System-Papers)
+* [How Netflix’s Recommendations System Works](https://help.netflix.com/en/node/100639)
+
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -450,6 +456,9 @@ Deep learning models for recommender system may come from the restricted Boltzma
 And deep learning models are powerful information extractors.
 Deep learning is really popular in recommender system such as [spotlight](https://github.com/maciejkula/spotlight).
 
+* [A review on deep learning for recommender systems:
+challenges and remedies](https://daiwk.github.io/assets/Batmaz2018_Article_AReviewOnDeepLearningForRecomm.pdf)
+
 ### Restricted Boltzmann Machines for Collaborative Filtering(RBM)
 
 Let ${V}$ be a $K\times m$ observed binary indicator matrix with $v_i^k = 1$ if the user rated item ${i}$ as ${k}$ and ${0}$ otherwise.
@@ -670,8 +679,8 @@ therefore provide a precise insight of what items and topics users might be inte
 
 **Learning to Match** as Supervised Learning
 
-Its training data set and the test data is  \(\{(\mathrm{X}_i, y_i, r_i)\mid i =1, 2, \cdots, n\}\) and \((\mathrm{X}_{n+1}, y_{n+1})\), respectively.
-Matching Model is trained using the training data set: \(r(\mathrm{X}, y)\) and the \(r_{n+1}\) is predicted as  \(r_{n+1}=r(\mathrm{X}_{n+1}, y_{n+1})\).
+Its training data set and the test data is  $\{(\mathrm{X}_i, y_i, r_i)\mid i =1, 2, \cdots, n\}$ and $(\mathrm{X}_{n+1}, y_{n+1})$, respectively.
+Matching Model is trained using the training data set: $r(\mathrm{X}, y)$ and the $r_{n+1}$ is predicted as  $r_{n+1}=r(\mathrm{X}_{n+1}, y_{n+1})$.
 
 |Framework of Matching|
 |:---:|
@@ -679,7 +688,7 @@ Matching Model is trained using the training data set: \(r(\mathrm{X}, y)\) and 
 |Aggregation: Pooling, Concatenation|
 |Interaction: Matrix, Tensor|
 |Representation: MLP, CNN, LSTM|
-|Input: ID Vectors \(\mathrm{X}\), Feature Vectors \(y\)|
+|Input: ID Vectors $\mathrm{X}$, Feature Vectors $y$|
 
 Sometimes, matching model and ranking model are combined and trained together with pairwise loss.
 
@@ -716,6 +725,44 @@ There are two common methods to construct a stronger learner from a weaker learn
 
 - [General Functional Matrix Factorization Using Gradient Boosting](http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf)
 
+### BoostFM
+
+`BoostFM` integrates boosting into factorization models during the process of item ranking.
+Specifically, BoostFM is an adaptive boosting framework that linearly combines multiple homogeneous component recommender system,
+which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.
+
+**BoostFM**
+
+> + _Input_: The observed context-item interactions or Training Data \(S =\{(\mathbf{x}_i, y_i)\}\) parameters E and T.
+> + _Output_: The strong recommender $g^{T}$.
+> + Initialize \(Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S\).
+> + for \(t = 1 \to T\) do
+>> +  1. Create component recommender \(\hat{y}^{(t)}\) with \(\bf{Q}^{(t)}\) on \(\bf S\),\(\forall (c,i) \in \bf S\), , i.e., `Component Recommender Learning Algorithm`;
+>> +  2. Compute the ranking accuracy \(E[\hat{r}(c, i, y^{(t)})], \forall (c,i) \in \bf S\);
+>> +  3. Compute the coefficient \(\beta_t\),
+>> \[ \beta_t = \ln (\frac{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1 + E[\hat{r}(c, i, y^{(t)})]\}}{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1-  E[\hat{r}(c, i, y^{(t)})]\}})^{\frac{1}{2}} ; \]
+>> +  4. Create the strong recommender \(g^{(t)}\),
+>> \[ g^{(t)} = \sum_{h=1}^{t} \beta_h \hat{y}^{(t)} ;\]
+>> +  5. Update weight distribution \(\bf{Q}^{t+1}\),
+>> \[ \bf{Q}^{t+1}_{ci} = \frac{\exp(E[\hat{r}(c, i, y^{(t)})])}{\sum_{(c,i)\in \bf{S}} E[\hat{r}(c, i, y^{(t)})]} ; \]
+> + end for
+
+
+**Component Recommender**
+
+Naturally, it is feasible to exploit the L2R techniques to optimize Factorization Machines
+(FM). There are two major approaches in the field of L2R, namely, pairwise and listwise approaches.
+In the following, we demonstrate ranking factorization machines with both pairwise and listwise optimization.
+
+`Weighted Pairwise FM (WPFM)`
+
+`Weighted ‘Listwise’ FM (WLFM)`
+
+- [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
+- http://wnzhang.net/
+- https://fajieyuan.github.io/
+- https://www.librec.net/luckymoon.me/
+- [The author’s final accepted version.](http://eprints.gla.ac.uk/135914/7/135914.pdf)
 
 ### Gradient Boosting Factorization Machines
 
@@ -755,49 +802,43 @@ $L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$.
 
 The most common way is to approximate it by least-square
 minimization, i.e., $\ell={\| \cdot \|}_2^2$. Like in `xGBoost`, it takes second order Taylor expansion of the loss function $\ell$ and problem isfinalized to find the ${i}$(t)-th feature which:
-\[ \arg{\min}_{i(t)\in \{0, \dots, m\}} \sum_{i=1}^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}_i) q_{C_{i}(t)}(\mathrm{x}_i))^2 + {\|\theta\|}_2^2 \]
+
+$$\arg{\min}_{i(t)\in \{0, \dots, m\}} \sum_{i=1}^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}_i) q_{C_{i}(t)}(\mathrm{x}_i))^2 + {\|\theta\|}_2^2 $$
 where the negativefirst derivative and the second derivative at instance ${i}$ as $g_i$ and $h_i$.
 
 - [Gradient boosting factorization machines](http://tongzhang-ml.org/papers/recsys14-fm.pdf)
 
-### BoostFM
+#### Gradient Boosted Categorical Embedding and Numerical Trees
 
-`BoostFM` integrates boosting into factorization models during the process of item ranking.
-Specifically, BoostFM is an adaptive boosting framework that linearly combines multiple homogeneous component recommender system,
-which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.
+`Gradient Boosted Categorical Embedding and Numerical Trees (GB-CSENT)` is to combine Tree-based Models and Matrix-based Embedding Models in order to handle numerical features and large-cardinality categorical features.
+A prediction is based on:
 
-**BoostFM**
+* Bias terms from each categorical feature.
+* Dot-product of embedding features of two categorical features,e.g., user-side v.s. item-side.
+* Per-categorical decision trees based on numerical features ensemble of numerical decision trees where each tree is based on one categorical feature.
 
-> + _Input_: The observed context-item interactions or Training Data \(S =\{(\mathbf{x}_i, y_i)\}\) parameters E and T.
-> + _Output_: The strong recommender $g^{T}$.
-> + Initialize \(Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S\).
-> + for \(t = 1 \to T\) do
-> +  1. Create component recommender \(\hat{y}^{(t)}\) with \(\bf{Q}^{(t)}\) on \(\bf S\),\(\forall (c,i) \in \bf S\), , i.e., `Component Recommender Learning Algorithm`;
-> +  2. Compute the ranking accuracy \(E[\hat{r}(c, i, y^{(t)})], \forall (c,i) \in \bf S\);
-> +  3. Compute the coefficient \(\beta_t\),
-> \[ \beta_t = \ln (\frac{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1 + E[\hat{r}(c, i, y^{(t)})]\}}{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1-  E[\hat{r}(c, i, y^{(t)})]\}})^{\frac{1}{2}} ; \]
-> +  4. Create the strong recommender \(g^{(t)}\),
-> \[ g^{(t)} = \sum_{h=1}^{t} \beta_h \hat{y}^{(t)} ;\]
-> +  5. Update weight distribution \(\bf{Q}^{t+1}\),
-> \[ \bf{Q}^{t+1}_{ci} = \frac{\exp(E[\hat{r}(c, i, y^{(t)})])}{\sum_{(c,i)\in \bf{S}} E[\hat{r}(c, i, y^{(t)})]} ; \]
-> + end for
+In details, it is as following:
+$$
+\hat{y}(x) = \underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E} + \underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}.
+$$ 
+And it is decomposed as the following table.
+_____
+Ingredients| Formulae| Features
+---|---|---
+Factorization Machines |$\underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E}$ | Categorical Features 
+GBDT |$\underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}$ | Numerical Features
+_________
+- http://www.hongliangjie.com/talks/GB-CENT_SD_2017-02-22.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_SantaClara_2017-03-28.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_Lehigh_2017-04-12.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_PopUp_2017-06-14.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_CAS_2017-06-23.pdf
+- http://www.hongliangjie.com/talks/GB-CENT_Boston_2017-09-07.pdf
+- [Talk: Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
+- [Paper: Gradient Boosted Categorical Embedding and Numerical Trees](https://qzhao2018.github.io/zhao/publication/zhao2017www.pdf)
+- https://qzhao2018.github.io/
 
 
-**Component Recommender**
-
-Naturally, it is feasible to exploit the L2R techniques to optimize Factorization Machines
-(FM). There are two major approaches in the field of L2R, namely, pairwise and listwise approaches.
-In the following, we demonstrate ranking factorization machines with both pairwise and listwise optimization.
-
-`Weighted Pairwise FM (WPFM)`
-
-`Weighted ‘Listwise’ FM (WLFM)`
-
-- [BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation](http://wnzhang.net/papers/boostfm.pdf)
-- http://wnzhang.net/
-- https://fajieyuan.github.io/
-- https://www.librec.net/luckymoon.me/
-- [The author’s final accepted version.](http://eprints.gla.ac.uk/135914/7/135914.pdf)
 
 ### Adaptive Boosting Personalized Ranking (AdaBPR)
 
@@ -857,6 +898,8 @@ Explainable recommendation and search attempt to develop models or methods that 
 ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender
 dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
 
+User-item/user-user interactions are usually in the form of graph/network structure. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
+
 - [ ] [Accurate and scalable social recommendation using mixed-membership stochastic block models](https://www.pnas.org/content/113/50/14207)
 - [ ] [Do Social Explanations Work? Studying and Modeling the
 Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
@@ -887,6 +930,8 @@ Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/130
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 + [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
 + [Explore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
++ [Learning from logged bandit feedback](https://drive.google.com/file/d/0B2Rxz7LRWLOMX2dycXpWTGxoUE5lNkRnRWZuaDNZUlVRZ1kw/view)
++ [Improving the Quality of Top-N Recommendation](https://drive.google.com/file/d/0B2Rxz7LRWLOMekRtdExZVVpZQmlXNks0Y2FJTnd6ZG90TXdZ/view)
 
 _______
 |Traditional Approaches | Beyond Traditional Methods|
@@ -992,9 +1037,11 @@ which will be the titles of the following subsections.
 * http://yelp.github.io/MOE/
 * http://www.hongliangjie.com/talks/AICon2018.pdf
 * https://sites.google.com/view/tsmo2018/invited-talks
+* https://matinathomaidou.github.io/research/
 ______________________________________________________
 
 ### Labs
+
 
 - https://libraries.io/github/computational-class
 - http://www.52caml.com/
@@ -1010,3 +1057,4 @@ ______________________________________________________
 - [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [Secure Personalization: Building Trustworthy Recommender Systems](https://www.nsf.gov/awardsearch/showAward?AWD_ID=0430303)
 - [Similar grants of  Next Generation Personalization Technologies](https://app.dimensions.ai/details/grant/grant.3063812)
+- [Big Data and Social Computing Lab @UIC](https://bdsc.lab.uic.edu/)

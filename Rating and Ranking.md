@@ -1,5 +1,11 @@
 # Rating and Ranking
 
+![https://zhuanlan.zhihu.com/p/25443972](https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg)
+
++ [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
++ [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
++ [Information Retrieval and the Web @Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
++ [Yandex Research](https://research.yandex.com/)
 + [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
 + <https://www.cse.iitb.ac.in/~soumen/>
 + https://fate-events.github.io/facts-ir/
@@ -10,8 +16,6 @@
 + [Rank and Rating Aggregation](http://langvillea.people.cofc.edu/RankAgg.pdf)
 + [Sensitivity and Stability of Ranking Vectors](https://epubs.siam.org/doi/10.1137/090772745)
 + [The Rankability of Data](https://epubs.siam.org/doi/pdf/10.1137/18M1183595)
-+ [ ] [A Bayesian Mean-Value Approach with a Self-Consistently Determined Prior Distribution for the Ranking of College Football Teams](https://arxiv.org/abs/physics/0607064)
-+ [Massey Ratings Description](https://www.masseyratings.com/theory/massey.htm)
 + [A Rating-Ranking Method for Crowdsourced Top-k Computation](http://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod18-crowdtopk.pdf)
 + [the (data) science of sports](http://thespread.us/category/ranking.html)
 
@@ -23,6 +27,8 @@ The basic idea is the back-feed from the results to improve the experience. Afte
 The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items
 which may answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
 
+<img title="science of rating and ranking" src="https://images-na.ssl-images-amazon.com/images/I/51bML705X7L._SX353_BO1,204,203,200_.jpg" width="20%" />
+
 They share some techniques although their purpose is different such as the logistic regression.
 
 |[3 R's for the internet age](https://phys.org/news/2016-12-recommendingthree-internet-age.html)|Rating, ranking and recommending|
@@ -33,26 +39,16 @@ They share some techniques although their purpose is different such as the logis
 
 In some sense, rating is to evaluate in a quantity approach, i.e. how much the item is popular; ranking is to evaluate in a quality approach. i.e., whether it is popular or preferred; recommendation is to rate or rank the items if the information is undirected or implicit.
 
-- [ ] [Whole-History Rating: A Bayesian Rating System for Players of Time-Varying Strength
-](https://arxiv.org/pdf/1701.08055v1.pdf)
 - [ ] [Who’s #1? The Science
 of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
 - [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
 - [ ] [WhoScored Ratings Explained](https://www.whoscored.com/Explanations)
 - [ ] [Ranking Algorithm Definition](http://www.meteorsite.com/ranking-algorithm)
 - [ ] [EdgeRank](http://edgerank.net/)
-- [ ] [Rating Algorithm for Evaluation of Web Pages: W3C Working Draft](https://www.w3.org/WAI/ER/IG/rating/)
-- [ ] [PvP Matchmaking Algorithm](https://wiki.guildwars2.com/wiki/PvP_Matchmaking_Algorithm)
-- [ ] [Finding the perfect match by Justin O'Dell on November 20, 2014](https://www.guildwars2.com/en/news/finding-the-perfect-match/)
-- [ ] [Ranking of sports teams](http://www.phys.utk.edu/sorensen/ranking/)
-- [ ] [PlayeRank: data-driven performance evaluation and player ranking in soccer via a machine learning approach](https://arxiv.org/pdf/1802.04987.pdf)
-- [ ] [College Football Ranking Composite](http://www.atomicfootball.com/af-algorithm.html)
-+ [An overview of some methods for ranking sports teams, Soren P. Sorensen](http://www.phys.utk.edu/sorensen/ranking/Documentation/Sorensen_documentation_v1.pdf)
 - [ ] [SofaScore Statistical Ratings](https://www.sofascore.com/news/sofascore-player-ratings/)
 - [ ] [Everything You Need to Know About the TripAdvisor Popularity Ranking](https://www.tripadvisor.com/TripAdvisorInsights/w765)
 - [ ] [Deconstructing the App Store Rankings Formula with a Little Mad Science](https://moz.com/blog/app-store-rankings-formula-deconstructed-in-5-mad-science-experiments)
-* [The USCF Rating System, Prof. Mark E. Glickman , Boston University - Thomas Doan
-Estima](http://math.bu.edu/people/mg/ratings/rs/)
+
 * [Introducing Steam Database's new rating algorithm](https://steamdb.info/blog/steamdb-rating/)
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
 
@@ -65,6 +61,18 @@ Estima](http://math.bu.edu/people/mg/ratings/rs/)
 |A Perfect Rating Algorithm has a solid statistical foundation. It follows accepted practice.|
 |A Perfect Rating Algorithm is able to inherently estimate its own accuracy. A good statistical foundation is normally conducive to this.|
 |A Perfect Rating Algorithm is capable of producing either measurable quantities or quantities from which measurables can be derived. For example, the probability that one team will win over another.|
+
+- [ ] [Rating Algorithm for Evaluation of Web Pages: W3C Working Draft](https://www.w3.org/WAI/ER/IG/rating/)
+- [ ] [PvP Matchmaking Algorithm](https://wiki.guildwars2.com/wiki/PvP_Matchmaking_Algorithm)
+- [ ] [Finding the perfect match by Justin O'Dell on November 20, 2014](https://www.guildwars2.com/en/news/finding-the-perfect-match/)
+- [ ] [Ranking of sports teams](http://www.phys.utk.edu/sorensen/ranking/)
+- [ ] [PlayeRank: data-driven performance evaluation and player ranking in soccer via a machine learning approach](https://arxiv.org/pdf/1802.04987.pdf)
+- [ ] [Massey Ratings Description](https://www.masseyratings.com/theory/massey.htm)
+- [ ] [The USCF Rating System, Prof. Mark E. Glickman , Boston University - Thomas Doan
+Estima](http://math.bu.edu/people/mg/ratings/rs/)
+- [ ] [College Football Ranking Composite](http://www.atomicfootball.com/af-algorithm.html)
+- [ ] [A Bayesian Mean-Value Approach with a Self-Consistently Determined Prior Distribution for the Ranking of College Football Teams](https://arxiv.org/abs/physics/0607064)
+- [ ] [An overview of some methods for ranking sports teams, Soren P. Sorensen](http://www.phys.utk.edu/sorensen/ranking/Documentation/Sorensen_documentation_v1.pdf)
 
 ### Elo Rating
 
@@ -247,8 +255,12 @@ There are some links on the  collective decision-making theory:
 
 ## Ranking
 
-http://www.cs.cmu.edu/~kdelaros/
-[Ranking in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
+* [Learning to Rank explained](https://everything.explained.today/Learning_to_rank/)
+* http://www.cs.cmu.edu/~kdelaros/
+* [Ranking in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
+* [Learning to Rank](https://jimmy-walker.gitbooks.io/rank/L2R.html)
+* [Hardened Fork of Ranklib learning to rank library](https://github.com/o19s/RankyMcRankFace)
+* [OpenSource Connections](https://github.com/o19s)
 
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every `search engine`, is responsible for the matching between processed queries and indexed documents in information retrieval.
@@ -286,6 +298,7 @@ the listwise approach is to predict the ranks of documents in a list when given 
 + [Ranking Models (2018/2) by Rodrygo Santos](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
 + [Temporal Information Retrieval: A course on Information Retrieval with a temporal twist, Lecturer: Dr. Avishek Anand](http://www.l3s.de/~anand/tir15/)
 + [Learn to rank: An overview](https://www.cl.cam.ac.uk/teaching/1516/R222/l2r-overview.pdf)
++ [Yahoo! Learning to Rank Challenge Overview](https://course.ccs.neu.edu/cs6200sp15/extra/07_du/chapelle11a.pdf)
 + [Learning to Rank: From Pairwise Approach to Listwise Approach](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2007-40.pdf)
 + [Generalization Analysis of Listwise Learning-to-Rank Algorithms](https://icml.cc/Conferences/2009/papers/101.pdf)
 + [Ranking and Filtering by Weinan Zhang](http://wnzhang.net/teaching/cs420/slides/7-ranking-filtering.pdf)
@@ -295,6 +308,15 @@ the listwise approach is to predict the ranks of documents in a list when given 
 - [ ] [Learning Groupwise Scoring Functions Using Deep Neural Networks](https://arxiv.org/abs/1811.04415)
 - [ ] https://github.com/tensorflow/ranking
 
+**Training Setup**
+
+A training set for ranking  is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e., $x_i$ is preferred to $x_j$ or in the reverse order. In other word, the label $y_i$ is ordinal. By the way, the labels are categorical or  nominal  in most classification tasks.
+
+The ranking function outputs a score for each data object, from which a global
+ordering of data is constructed. That is, the target function $F(x_i)$ outputs a score
+such that $F(x_i) > F(x_j)$ for any $x_i ≻ x_j$.
+
+- [WHAT IS THE DIFFERENCE BETWEEN CATEGORICAL, ORDINAL AND INTERVAL VARIABLES?](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-interval-variables/)
 
 **Ranking Metrics**
 
@@ -324,8 +346,7 @@ $$
 where $k$ is the rank in the sequence of retrieved documents, $n$ is the number of retrieved documents, $P(k)$ is the precision at cut-off k in the list, and $\Delta r(k)$ is the change in recall from items $k-1$ to $k$.
 ****
 `Cumulative Gain (CG)` is the predecessor of DCG and does not include the position of a result in the consideration of the usefulness of a result set. In this way, it is the sum of the graded relevance values of all results in a search result list. The CG at a particular rank position _p_ is defined as:
-$${CG}_p=\sum_{i=1}^{p}{rel}_i$$
-
+$${CG}_p=\sum_{i=1}^{p}{rel}_i,$$
 Where ${rel}_{i}$ is the graded relevance of the result at position _i_.
 
 The premise of `Discounted Cumulative Gain(DCG)` is that highly relevant documents appearing lower in a search result list should be penalized as the graded relevance value is reduced logarithmically proportional to the position of the result.
@@ -343,9 +364,8 @@ $$
 
 For a query, the normalized discounted cumulative gain, or `nDCG`, is computed as:
 $$
-{nDCG}_p=\frac{{DCG}_p}{{IDCG}_p}
+{nDCG}_p=\frac{{DCG}_p}{{IDCG}_p},
 $$
-
 where `IDCG` is ideal discounted cumulative gain,
 $$
 {IDCG}_p = \sum_{i=1}^{|REL_p|}\frac{2^{{rel}_i}-1}{{\log}_{2}(i+1)}
@@ -363,16 +383,8 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [Evaluation measure in information retrieval @ wikiwand](https://www.wikiwand.com/en/Evaluation_measures_(information_retrieval))
 - [mAP（mean average precision）平均精度均值](https://www.jianshu.com/p/82be426f776e)
 - [Online User Engagement: Metrics and Optimization.](https://onlineuserengagement.github.io/)
-
-**Training Setup**
-
-A training set for ranking  is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e., $x_i$ is preferred to $x_j$ or in the reverse order. In other word, the label $y_i$ is ordinal. By the way, the labels are categorical or  nominal  in most classification tasks.
-
-The ranking function outputs a score for each data object, from which a global
-ordering of data is constructed. That is, the target function $F(x_i)$ outputs a score
-such that $F(x_i) > F(x_j)$ for any $x_i ≻ x_j$.
-
-- [WHAT IS THE DIFFERENCE BETWEEN CATEGORICAL, ORDINAL AND INTERVAL VARIABLES?](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-interval-variables/)
+- [Rank and Relevance in Novelty and Diversity Metrics for Recommender Systems](http://ir.ii.uam.es/predict/pubs/recsys11-vargas.pdf)
+- [Implementing Triplet Losses for Implicit Feedback Recommender Systems with R and Keras](https://nanx.me/blog/post/triplet-loss-r-keras/)
 
 ### RankSVM
 
@@ -387,7 +399,7 @@ $$
 \text{subject to } \quad \forall \{(\mathrm{X_i, X_j})\}: w\cdot X_i > w\cdot X_j + 1 -{\xi}_{ij},
 \\ \forall {\xi}_{ij}\geq 0.
 $$
-
+Then it can trained in the same way as a classifer.
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * https://www.cnblogs.com/bentuwuying/p/6683832.html
 * [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
@@ -472,9 +484,8 @@ $$
 What is more, we can extend it to
 
 $$
-{\lambda}_{i,j}=  -\frac{\sigma}{1+\exp(\sigma(s_i-s_j))}|\Delta Z|.
+{\lambda}_{i,j}=  -\frac{\sigma}{1+\exp(\sigma(s_i-s_j))}|\Delta Z|,
 $$
-
 where $\Delta Z$ is the size of the change in some **Information Retrieval Measures** ${Z}$.
 
 And $\lambda_{i}$ with respect to ${i}$-th item is defined as
@@ -487,8 +498,6 @@ $$\lambda_i = \sum_{i\in(i,j)}\lambda_{(i,j)}-\sum_{j\in(j,i)}\lambda_{(i,j)}$$
 - http://blog.camlcity.org/blog/lambdarank.html
 - [LambdaFM: Learning Optimal Ranking with Factorization Machines Using Lambda Surrogates](http://wnzhang.net/papers/lambdafm.pdf)
 - [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
-
-
 
 ### LambdaMART
 
@@ -572,6 +581,25 @@ We show that the loss functions of these methods are upper bounds of the measure
 - [ ] [Revisiting Online Personal Search Metrics with the User in Mind](https://ai.google/research/pubs/pub48243)
 
 
+
+### AdaRank
+
+In the abstract, the authors wrote:
+> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
+> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures.
+> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs.
+> To deal with the problem, we propose a novel learning algorithm within the framework of boosting,
+> which can minimize a loss function directly defined on the performance measures.
+> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data
+> and finally linearly combines the weak rankers for making ranking predictions.
+>We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
+
+- [An Efficient Boosting Algorithm for Combining Preferences](http://jmlr.csail.mit.edu/papers/volume4/freund03a/freund03a.pdf)
+- [Concave Learners for Rankboost](http://www.jmlr.org/papers/volume8/melnik07a/melnik07a.pdf)
+- [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
+- [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
+
+
 ### McRank
 
 The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
@@ -591,6 +619,36 @@ A common approach for multiple ordinal classification is to learn the cumulative
 - [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
 - [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
 - [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
+
+### Margin-based Ranking
+
+The algorithm is a modification of RankBoost, analogous to “approximate coordinate ascent boosting.”
+
+- http://rob.schapire.net/
+- [Margin-based Ranking and an Equivalence between AdaBoost and RankBoost](http://rob.schapire.net/papers/marginranking.pdf)
+
+### YetiRank and MatrixNet
+
+`PageRank, LambdaRank, MatrixNet` is under the support of commercial firms *Google, Microsoft, Yandex*. The practical ranking algorithms in the search engines are the key to search engine optimization.
+Today the word Yandex has become synonymous with Internet search in Russian-speaking countries, just the same as Google in English-speaking countries.
+
+[MatrixNet is a proprietary machine learning algorithm developed by Yandex and used widely throughout the company products. The algorithm is based on **gradient boosting** and was introduced since 2009.](https://www.wikiwand.com/en/MatrixNet)
+
+[Comparative Analysis of Yandex and Google Search Engines by Anna Paananen](https://www.theseus.fi/bitstream/handle/10024/46483/Paananen_Anna.pdf?sequence=1&isAllowed=y) contributes to the comparison of the ranking methods of both of
+the search engines, the quality of the results, and the main ranking factors of Yandex and Google.
+As summarized in the previous thesis, the key feature of this method is
+* its `resistance to overfitting`;
+* a multitude of various factors and their combinations;
+* allowance to customize a ranking formula for a specific class of search queries.
+
+The difficulty of the analysis of MatrixNet algorithm is that the formula has never been published, unlike Google’s PageRank.
+[CatBoost is an algorithm for gradient boosting on decision trees. Developed by Yandex researchers and engineers, it is the successor of the MatrixNet algorithm that is widely used within the company for ranking tasks, forecasting and making recommendations. It is universal and can be applied across a wide range of areas and to a variety of problems.](https://betapage.co/startup/catboost)
++ [Winning The Transfer Learning Track of Yahoo!’s Learning
+To Rank Challenge with YetiRank](http://proceedings.mlr.press/v14/gulin11a/gulin11a.pdf)
++ [MatrixNet: New Level of Search Quality](https://yandex.com/company/technologies/matrixnet/)
++ [The Ultimate Guide To Yandex Algorithms](https://salt.agency/blog/the-ultimate-guide-to-yandex-algorithms/)
++ [CERN boosts its search for antimatter with Yandex’s MatrixNet search engine tech](https://www.extremetech.com/extreme/147320-cern-boosts-its-search-for-antimatter-with-yandexs-matrixnet-search-engine-tech)
++ [MatrixNet as a specific Boosted Decision Tree algorithm which is available as a service](https://github.com/yandex/rep/blob/master/rep/estimators/matrixnet.py)
 
 ### Selective Gradient Boosting
 
@@ -616,29 +674,19 @@ Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left bra
 Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
 The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it is computed as a weighted sum of all the tree predictions.
 
+All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.
+The scoring of a document represented by a feature vector x requires the traversing of all the trees in the ensemble, starting at their root nodes.
+If a visited node in N is a false one, then the right branch is taken, and the left branch otherwise.
+The visit continues recursively until a leaf node is reached, where the value of the prediction is returned.
 
-The building block of this approach is an alternative method for tree traversal based on bitvector computations.
+The building block of this approach is an alternative method for tree traversal based on bit-vector computations.
 
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 - [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
 - [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
 - http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf
-
-**AdaRank**
-
-In the abstract, the authors wrote:
-> Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
-> Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures.
-> For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs.
-> To deal with the problem, we propose a novel learning algorithm within the framework of boosting,
-> which can minimize a loss function directly defined on the performance measures.
-> Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data
-> and finally linearly combines the weak rankers for making ranking predictions.
->We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
-
-- [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
-- [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
-
++ [Boosted Ranking Models: A Unifying
+Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
 
 ### Bayesian Personalized Ranking
 
@@ -866,8 +914,6 @@ re-ranking via multi-arm bandits (MAB).
 
 
 
-
-
 + [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
 + [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
@@ -880,8 +926,6 @@ re-ranking via multi-arm bandits (MAB).
 - https://x-algo.cn/index.php/2018/04/09/rankgan/
 - [IRGAN: A Minimax Game for Unifying Generative and Discriminative Information Retrieval](https://arxiv.org/pdf/1705.10513.pdf)
 - [Adversarial Ranking for Language Generation](http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation)
-
-
 
 ***
 
@@ -909,6 +953,7 @@ Collaborative Filtering](http://users.jyu.fi/~swang/publications/TIST14.pdf)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [ ] [Recommendation and ranking by Mark Jelasity](http://www.inf.u-szeged.hu/~jelasity/ddm/graphalgs.pdf)
 - [ ] ["Tutorial ：Learning to Rank for Recommender Systems" by](http://www.slideshare.net/kerveros99/learning-to-rank-for-recommender-system-tutorial-acm-recsys-2013)
+- [ ] [Rank and Relevance in Novelty and Diversity Metrics for Recommender Systems](http://ir.ii.uam.es/predict/pubs/recsys11-vargas.pdf)
 
 For item recommendation tasks, the accuracy of a recommendation model is usually evaluated using the `ranking metrics`.
 
@@ -933,7 +978,9 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 
 [Personalised Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommender s
 
-And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.   
+And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
+
+* http://ryanrossi.com/search.php
 * https://a9.com/what-we-do/product-search.html
 * https://www.algolia.com/
 * https://www.cognik.net/
@@ -953,3 +1000,65 @@ And here search engine and recommender system coincide except the recommender sy
 * [Web Personalisation and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
 * [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
 * [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
+
+## IR and Search
+
+If the recommendation is to solve the information overload problem, information retrieval and search technology  is to find the relative entity in web or some data base if the query is given.
+[Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
+Information is in diverse format or form, such as charactor strings(articles), images, voices and videos.
+`Ranking` and `Relavance`  is two perpsectives of search.  
+In this section, we focus on relavance rather than rank.
+If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
+
+
++ [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
++ [Search and information retrieval@Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
++ [Web search and mining @Yandex](https://research.yandex.com/publications?themeSlug=web-mining-and-search)
++ [Information Retrieval Lab: A research group @ University of A Coruña (Spain)](https://www.irlab.org/)
++ [ BCS-IRSG: Information Retrieval Specialist Group](https://irsg.bcs.org/)
++ [智能技术与系统国家重点实验室信息检索课题组](http://www.thuir.org/)
++ [The Cochrane Information Retrieval Methods Group (Cochrane IRMG)](https://methods.cochrane.org/irmg/)
++ [SOCIETY OF INFORMATION RETRIEVAL & KNOWLEDGE MANAGEMENT (MALAYSIA)](http://pecamp.org/web14/)
++ [Quantum Information Access and Retrieval Theory)](https://www.quartz-itn.eu/)
++ [Center for Intelligent Information Retrieval (CIIR)](http://ciir.cs.umass.edu/)
++ [InfoSeeking Lab is situated in School of Communication & Information at Rutgers University.](https://infoseeking.org/)
++ http://mlwiki.org/index.php/Information_Retrieval
++ [information and language processing systems](https://ilps.science.uva.nl/)
++ [information retrieval facility](https://www.ir-facility.org/)
++ [Center for Information and Language Processing](https://www.cis.uni-muenchen.de/)
++ [Summarized Research in Information Retrieval for HTA](http://vortal.htai.org/?q=sure-info)
++ [SIGIR](https://sigir.org/)
++ http://cistern.cis.lmu.de/
++ http://hpc.isti.cnr.it/
+***
++ [European Conference on Information Retrieval (ECIR 2018)](https://www.ecir2018.org/)
++ [ECIR 2019](http://ecir2019.org/workshops/)
++ [IR @wikiwand](https://www.wikiwand.com/en/Information_retrieval)
++ [Algorithm Selection and Meta-Learning in Information Retrieval (AMIR)](http://amir-workshop.org/)
++ [The ACM SIGIR International Conference on the Theory of Information Retrieval (ICTIR)2019](http://www.ictir2019.org/)
++ [KDIR 2019](http://www.kdir.ic3k.org/)
++ [Advances in Semantic Information Retrieval (ASIR’19)](https://fedcsis.org/2019/asir)
++ [Music Information Retrieval Evaluation eXchange (MIREX 2019)](https://www.music-ir.org/mirex/wiki/MIREX_HOME)
++ [20th annual conference of the International Society for Music Information Retrieval (ISMIR)](https://ismir2019.ewi.tudelft.nl/)
++ [8th International Workshop on Bibliometric-enhanced Information Retrieval](http://ceur-ws.org/Vol-2345/)
++ [ICMR 2019](http://www.icmr2019.org/)
++ [3rd International Conference on Natural Language Processing and Information Retrieval](http://www.nlpir.net/)
++ [FACTS-IR Workshop @ SIGIR 2019](https://fate-events.github.io/facts-ir/)
++ [ACM Conference of Web Search and Data Mining 2019](http://www.wsdm-conference.org/2019/)
++ [SMIR 2014](http://smir2014.noahlab.com.hk/SMIR2014.htm)
++ [2018 PRS WORKSHOP:  Personalization, Recommendation and Search (PRS)](https://prs2018.splashthat.com/)
+***
++ [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
++ [CS 371R: Information Retrieval and Web Search](https://www.cs.utexas.edu/~mooney/ir-course/)
++ [CS 242: Information Retrieval & Web Search, Winter 2019](http://www.cs.ucr.edu/~vagelis/classes/CS242/index.htm)
++ [Winter 2017 CS293S: Information Retrieval and Web Search](https://sites.cs.ucsb.edu/~tyang/class/293S17/)
++ [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)
++ [Information Retrieval and Web Search 2015](http://web.eecs.umich.edu/~mihalcea/498IR/)
++ [Data and Web Mining](http://www.dsi.unive.it/~dm/)
++ [Neural Networks for Information Retrieval](http://wwwir.com)
++ [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
++ [INFORMATION RETRIEVAL FOR GOOD](http://romip.ru/russir2018/)
++ [Search user interfaces](http://searchuserinterfaces.com/book/)
++ [Morden Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
++ [Search Engine: Information Retrieval in Practice](http://www.search-engines-book.com/)
++ [Neu-IR: The SIGIR 2016 Workshop on Neural Information Retrieval](https://www.microsoft.com/en-us/research/event/neuir2016/)
