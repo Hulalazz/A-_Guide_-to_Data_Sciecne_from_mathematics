@@ -5,30 +5,27 @@
 * https://sites.google.com/site/rdftestxyz/home
 * [Lecture 11: Learning on Non-Euclidean Domains](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
 * [Network Embedding](https://shiruipan.github.io/project/effective-network-embedding/)
-* [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/index.html)
-* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - Ph0en1x的文章 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
-* [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 * [如何评价百度新发布的NLP预训练模型ERNIE？ - 飞桨PaddlePaddle的回答 - 知乎](https://www.zhihu.com/question/316140575/answer/719617103)
 * [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
 * [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
+* [Jure Leskovec.](https://cs.stanford.edu/people/jure/)
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
 
-- [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
-- [Beyond deep learning](http://beyond-deep-nets.clps.brown.edu/)
-- [Cognitive Computation Group @ U. Penn.](https://cogcomp.org/)
-- [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
-- [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
-- [Computational Cognitive Science Lab](http://cocosci.princeton.edu/research.php)
-- https://jian-tang.com/teaching/graph2019
-- [Introducing Grakn & Knowledge Graph Convolutional Networks: Dec 4, 2018 · Paris, France](https://eventil.com/events/introducing-grakn-ai-to-paris)
-- [International Workshop on Deep Learning for Graphs and Structured Data Embedding](https://www.aminer.cn/dl4g-sde)
-- [HYPERBOLIC DEEP LEARNING: A nascent and promising field](http://hyperbolicdeeplearning.com/papers/)
+* [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
+* [Beyond deep learning](http://beyond-deep-nets.clps.brown.edu/)
+* [Cognitive Computation Group @ U. Penn.](https://cogcomp.org/)
+* [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
+* [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
+* [Computational Cognitive Science Lab](http://cocosci.princeton.edu/research.php)
+* https://jian-tang.com/teaching/graph2019
+* [Introducing Grakn & Knowledge Graph Convolutional Networks: Dec 4, 2018 · Paris, France](https://eventil.com/events/introducing-grakn-ai-to-paris)
+* [International Workshop on Deep Learning for Graphs and Structured Data Embedding](https://www.aminer.cn/dl4g-sde)
+* [HYPERBOLIC DEEP LEARNING: A nascent and promising field](http://hyperbolicdeeplearning.com/papers/)
 
 Images are stored in computer as matrix roughly. The spatial distribution of pixel on the screen project to us a colorful digitalized world.
 `Convolutional neural network(ConvNet or CNN)` has been proved to be efficient to process and analyses the images for visual cognitive tasks.
 What if we generalize these methods to graph structure which can be represented as adjacent matrix?
-
 
 |Image | Graph|
 |:-----:|:-----:|
@@ -44,6 +41,7 @@ What if we generalize these methods to connected data?
 ### Graph Embedding
 
 Graph embedding, preprocessing of graph data processing, is an example of representation learning to find proper numerical representation form of graph data structure.
+It maps the graph structure to numerical domain:  $f:\mathbf{G}\mapsto \mathbb{R}^{n}$.
 
 - https://github.com/thunlp/NRLpapers
 - https://github.com/thunlp/GNNPapers
@@ -59,8 +57,9 @@ Dynamics On and Of Complex Networks 2019](http://doocn.org/)
 MINING AND LEARNING WITH GRAPHS](http://www.mlgworkshop.org/2019/)
 - [Hyperbolic geometry and real life networks](http://www.ec2017.org/celinska/)
 - [Network Embedding as Matrix Factorization: Unifying DeepWalk, LINE, PTE, and node2vec](https://arxiv.org/abs/1710.02971)
+- [Representation Learning on Networks](http://snap.stanford.edu/proj/embeddings-www/)
 
-**DeepWalk**
+#### DeepWalk
 
 `DeepWalk` is an approach for learning latent representations of vertices in a network, which maps the nodes in the graph into real vectors:
 $$
@@ -90,7 +89,7 @@ $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
 >>        -  $SkipGram(Φ, W_{v_i}, w)$
 >>        - end for
 >>     + end for
-***  
+***
 
 > $SkipGram(Φ, W_{v_i}, w)$
 * 1. for each $v_j \in W_{v_i}$ do
@@ -118,16 +117,13 @@ where $\Phi(b_l)$ is the representation assigned to tree node
 $b_l$ ’s parents.
 
 
-
-***
-- [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
 - [ ] [DeepWalk: Online Learning of Social Representations](https://arxiv.org/abs/1403.6652)
-- [ ] https://github.com/phanein/deepwalk
-- [ ] http://www.perozzi.net/projects/deepwalk/
+- [ ] [DeepWalk at github](https://github.com/phanein/deepwalk)
+- [ ] [Deep Walk Project @perozzi.net](http://www.perozzi.net/projects/deepwalk/)
 - [ ] http://www.cnblogs.com/lavi/p/4323691.html
 - [ ] https://www.ijcai.org/Proceedings/16/Papers/547.pdf
 
-**node2vec**
+#### node2vec
 
 `node2vec` is an algorithmic framework for representational learning on graphs. Given any graph, it can learn continuous feature representations for the nodes, which can then be used for various downstream machine learning tasks.
 
@@ -153,23 +149,25 @@ $$\max_{f}\sum_{u\in V}[-\log Z_u + \sum_{n_i\in N_S(u)} f(n_i)\cdot f(u).$$
 - [ ] https://www.kdd.org/kdd2016/papers/files/rfp0218-groverA.pdf
 
 
-**struc2vec**
-
-- [ ] http://jackieanxis.coding.me/2018/01/17/STRUC2VEC/
-- [ ] http://www.land.ufrj.br/~leo/struc2vec.html
-- [ ] https://arxiv.org/abs/1704.03165
-- [Struc2vec: learning node representations from structural identity](https://blog.acolyer.org/2017/09/15/struc2vec-learning-node-representations-from-structural-identity/)
+#### struc2vec
 
 This is a paper about identifying nodes in graphs that play a similar role based solely on the structure of the graph, for example computing the structural identity of individuals in social networks. That’s nice and all that, but what I personally find most interesting about the paper is the meta-process by which the authors go about learning the latent distributed vectors that capture the thing they’re interested in (structural similarity in this case). Once you’ve got those vectors, you can do vector arithmetic, distance calculations, use them in classifiers and other higher-level learning tasks and so on. As word2vec places semantically similar words close together in space, so we want structurally similar nodes to be close together in space.
 
 Struc2vec has four main steps:
 
-> 1. Determine the structural similarity between each vertex pair in the graph, for different neigbourhood sizes.
+> 1. Determine the structural similarity between each vertex pair in the graph, for different neighborhood sizes.
 > 2. Construct a weighted multi-layer graph, in which each layer corresponds to a level in a hierarchy measuring structural similarity (think: ‘at this level of zoom, these things look kind of similar’).
 > 3. Use the multi-layer graph to generate context for each node based on biased random walking.
 > 4. Apply standard techniques to learn a latent representation from the context given by the sequence of nodes in the random walks.
 
 ![](https://adriancolyer.files.wordpress.com/2017/09/struc2vec-sketch-8.jpeg?w=200&zoom=1)
+
+- [ ] [STRUC2VEC（图结构→向量）论文方法解读](http://jackieanxis.coding.me/2018/01/17/STRUC2VEC/)
+- [ ] [struc2vec: Learning Node Representations from Structural Identity](http://www.land.ufrj.br/~leo/struc2vec.html)
+- [ ] https://arxiv.org/abs/1704.03165
+- [Struc2vec: learning node representations from structural identity](https://blog.acolyer.org/2017/09/15/struc2vec-learning-node-representations-from-structural-identity/)
+
+#### Word Embedding
 
 **word2vec**
 
@@ -239,27 +237,42 @@ $$
 - [Distributed Representations of Sentences and Documents](http://proceedings.mlr.press/v32/le14.pdf)
 - [Sentiment Analysis using Doc2Vec](http://linanqiu.github.io/2015/10/07/word2vec-sentiment/)
 ***
+* [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/index.html)
+* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - Ph0en1x的文章 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
+* [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 - [Statistical Models of Language](http://cocosci.princeton.edu/publications.php?topic=Statistical%20Models%20of%20Language)
 - [Semantic Word Embeddings](https://www.offconvex.org/2015/12/12/word-embeddings-1/)
 - [Word Embeddings](https://synalp.loria.fr/python4nlp/posts/embeddings/)
-- [GloVe: Global Vectors for Word Representation Jeffrey Pennington,   Richard Socher,   Christopher D. Manning
-](https://nlp.stanford.edu/projects/glove/)
+- [GloVe: Global Vectors for Word Representation Jeffrey Pennington,   Richard Socher,   Christopher D. Manning](https://nlp.stanford.edu/projects/glove/)
 - [BERT-is-All-You-Need](https://github.com/Eurus-Holmes/BERT-is-All-You-Need)
 - [Word embedding](https://levyomer.wordpress.com/category/word-embeddings/)
-- [Open Sourcing BERT: State-of-the-Art Pre-training for Natural Language Processing
-Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
+- [Open Sourcing BERT: State-of-the-Art Pre-training for Natural Language Processing， Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
 - [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) ](http://jalammar.github.io/illustrated-bert/)
 - [Deep Semantic Embedding](http://smir2014.noahlab.com.hk/paper%204.pdf)
 - [无监督词向量/句向量:W2v/Glove/Swivel/ELMo/BERT](https://x-algo.cn/index.php/2018/11/12/3083/)
-***
-**graph2vec**
+- [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
 
-- [ ] https://arxiv.org/abs/1707.05005
-- [ ] https://allentran.github.io/graph2vec
-- [ ] http://humanativaspa.it/tag/graph2vec/
 
-**GB-CENT**
+#### Gradient Boosted Categorical Embedding and Numerical Trees
 
+`Gradient Boosted Categorical Embedding and Numerical Trees (GB-CSENT)` is to combine Tree-based Models and Matrix-based Embedding Models in order to handle numerical features and large-cardinality categorical features.
+A prediction is based on:
+
+* Bias terms from each categorical feature.
+* Dot-product of embedding features of two categorical features,e.g., user-side v.s. item-side.
+* Per-categorical decision trees based on numerical features ensemble of numerical decision trees where each tree is based on one categorical feature.
+
+In details, it is as following:
+$$
+\hat{y}(x) = \underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E} + \underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}.
+$$
+And it is decomposed as the floowing table.
+_____
+Ingredients| Formulae| Features
+---|---|---
+Factorization Machines |$\underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E}$ | Categorical Features
+GBDT |$\underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}$ | Numerical Features
+_________
 - http://www.hongliangjie.com/talks/GB-CENT_SD_2017-02-22.pdf
 - http://www.hongliangjie.com/talks/GB-CENT_SantaClara_2017-03-28.pdf
 - http://www.hongliangjie.com/talks/GB-CENT_Lehigh_2017-04-12.pdf
@@ -267,7 +280,8 @@ Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-s
 - http://www.hongliangjie.com/talks/GB-CENT_CAS_2017-06-23.pdf
 - http://www.hongliangjie.com/talks/GB-CENT_Boston_2017-09-07.pdf
 - [Talk: Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
-- [Paper: Gradient Boosted Categorical Embedding and Numerical Trees](http://papers.www2017.com.au.s3-website-ap-southeast-2.amazonaws.com/proceedings/p1311.pdf)
+- [Paper: Gradient Boosted Categorical Embedding and Numerical Trees](https://qzhao2018.github.io/zhao/publication/zhao2017www.pdf)
+- https://qzhao2018.github.io/zhao/
 
 **Gaussian Auto Embeddings**
 
@@ -292,23 +306,30 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 * [RDF2Vec: RDF Graph Embeddings and Their Applications](http://www.semantic-web-journal.net/system/files/swj1495.pdf)
 * [EmbedS: Scalable and Semantic-Aware Knowledge Graph Embeddings](https://expolab.org/papers/embeds-slides.pdf)
 
- **Graph Embedding**
+#### Graph Embedding
+
+**graph2vec**
+
+`graph2vec` is to learn data-driven distributed representations of arbitrary sized graphs in an unsupervised manner and are task agnostic.
+
+- [ ] [graph2vec: Learning Distributed Representations of Graphs](https://arxiv.org/abs/1707.05005)
+- [ ] https://allentran.github.io/graph2vec
+- [ ] http://humanativaspa.it/tag/graph2vec/
 
 - [ ] https://zhuanlan.zhihu.com/p/33732033
 - [ ] [Awesome graph embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 - [ ] [Graph Embedding Methods](https://github.com/palash1992/GEM)
 - [ ] [Graph Embedding @ deep learning pattern](https://www.deeplearningpatterns.com/doku.php?id=graph_embedding)
 - [ ] [Representation learning in graph and manifold](https://rlgm.github.io/)
-- [ ] [Learning and Reasoning with Graph-Structured Representations
-ICML 2019 Workshop](https://graphreason.github.io/)
+- [ ] [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/)
 - [ ] [LINE: Large-scale Information Network Embedding](https://arxiv.org/abs/1503.03578)
 - [ ] [Latent Network Summarization: Bridging Network Embedding and Summarization](http://ryanrossi.com/pubs/Jin-et-al-latent-network-summarization.pdf)
 - [ ] [NodeSketch: Highly-Efficient Graph Embeddings via Recursive Sketching](https://exascale.info/assets/pdf/yang2019nodesketch.pdf)
-- [ ] http://web.eecs.umich.edu/~dkoutra/group/index.html
+- [ ] [GEMS Lab](http://web.eecs.umich.edu/~dkoutra/group/index.html)
 - [Graph Embeddings — The Summary](http://sungsoo.github.io/2019/05/26/graph-embedding.html)
 - [Graph Embeddings search result @ Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
 
-**Deep Semantic Embedding**
+#### Deep Semantic Embedding
 
 + http://smir2014.noahlab.com.hk/paper%204.pdf
 + [Deep Embedding Logistic Regression](https://www.cse.wustl.edu/~z.cui/papers/DELR_ICBK.pdf)
@@ -316,7 +337,7 @@ ICML 2019 Workshop](https://graphreason.github.io/)
 + [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
 + [Semantic Embedding for Sketch-Based 3D Shape Retrieval](http://bmvc2018.org/contents/papers/0040.pdf)
 
-**Hyperbolic Embeddings**
+#### Hyperbolic Embeddings
 
 - [Spherical and Hyperbolic Embeddings of Data](https://www.cs.york.ac.uk/cvpr/embedding/index.html)
 - [Embedding Networks in Hyperbolic Spaces ](http://bactra.org/notebooks/hyperbolic-networks.html)
@@ -335,9 +356,9 @@ ICML 2019 Workshop](https://graphreason.github.io/)
 - http://hyperbolicdeeplearning.com/papers/
 
 
---|--
---|--
-![combinatorial_tree](https://hazyresearch.github.io/hyperE/pytorch_tree.gif)|![](https://hazyresearch.github.io/hyperE/combinatorial_tree.gif)
+
+<img title="combinatorial_tree1" src="https://hazyresearch.github.io/hyperE/pytorch_tree.gif" width="50%" />
+<img title = tree2 src=https://hazyresearch.github.io/hyperE/combinatorial_tree.gif width=50% />
 
 + http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/
 *****
@@ -350,12 +371,14 @@ ICML 2019 Workshop](https://graphreason.github.io/)
 
 ### Graph Convolutional Network
 
+If images is regarded as a matrix in computer and text as a chain( or sequence), their representation contain all the spatial and semantic information of the entity.
 
 Graph can be represented as `adjacency matrix` as shown in *Graph Algorithm*. However, the adjacency matrix only describe the connections between the nodes.
 The feature of the nodes does not appear. The node itself really matters.
 For example, the chemical bonds can be represented as `adjacency matrix` while the atoms in molecule really determine the properties of the molecule.
 
-A simple and direct way is to concatenate the `feature matrix` $X\in \mathbb{R}^{N\times E}$ and `adjacency matrix` $A\in\mathbb{B}^{N\times N}$, i.e., $X_{in}=[X, A]\in \mathbb{R}^{N\times (N+E)}$. What is more, $\mathbb{B}$ is binary so that each element of the adjacent  matrix $a_{i,j}$ is ${0}$ or ${1}$.
+
+A simple and direct way is to concatenate the `feature matrix` $X\in \mathbb{R}^{N\times E}$ and `adjacency matrix` $A\in\mathbb{B}^{N\times N}$, i.e., $X_{in}=[X, A]\in \mathbb{R}^{N\times (N+E)}$. What is more, $\mathbb{B}$ is binary where each element of the adjacent  matrix $a_{i,j}$ is ${1}$ if the node ${i}$ is adjacent to the node ${j}$ otherwise 0.
 
 And what is the output? How can deep learning apply to them? And how can we extend the tree-based algorithms such as decision tree into graph-based algorithms?
 
@@ -408,6 +431,77 @@ GCN can be regarded as the counterpart of CNN for graphs so that the optimizatio
 
 * [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
 * [GRAPH CONVOLUTIONAL NETWORKS](https://tkipf.github.io/graph-convolutional-networks/)
+
+### Spectral ConvNets
+
+Compositional layers of convolutional neural network  can be expressed as
+
+$$
+\hat{H}_{i} = P\oplus H_{i-1}         \\
+\tilde{H_i} = C_i\otimes(\hat{H}_{t})   \\
+Z_i = \mathrm{N}\cdot  \tilde{H_i} \\
+H_i = Pooling\cdot (\sigma\circ Z_i)
+$$
+
+where $\otimes,\oplus,\cdot$ represent convolution operation, padding and pooling, respectively.
+
+[Xavier Bresson](https://www.ntu.edu.sg/home/xbresson/) gave  a talk on  [New Deep Learning Techniques
+FEBRUARY 5-9, 2018](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14506.pdf).
+We would ideally like our graph convolutional layer to have:
+
+* Computational and storage efficiency (requiring no more t$O(E+V)$ time and memory);
+* Fixed number of parameters (independent of input graph size);
+* Localisation (acting on a local neighbourhood of a node);
+* Ability to specify arbitrary importances to different neighbours;
+* Applicability to inductive problems (arbitrary, unseen graph structures).
+
+|CNN|GCN|
+|---|---|
+|padding|?|
+|convolution|?|
+|pooling|?|
+
+* `Spectral graph theory` allows to redefine convolution in the context of graphs with Fourier analysis.
+* Graph downsampling ⇔ graph coarsening ⇔ graph partitioning: Decompose G into smaller meaningful clusters.
+* Structured pooling[18]: Arrangement of the node indexing such that adjacent nodes are hierarchically merged at the next coarser level.
+
+
+Laplacian operator is represented as a positive semi-definite $n \times n$ matrix:
+
+|Laplacian|Representation|
+|---|---|
+|Unnormalized Laplacian|$\Delta = \bf{D - A}$|
+|Normalized Laplacian|$\Delta = \bf{I -D^{-\frac{1}{2}}AD^{-\frac{1}{2}}}$|
+|Random walk Laplacian|$\Delta = \bf{I - D^{-1}A}$|
+|$\mathbf A$：Adajacency Matrix|$\mathbf D$: Degree Matrix|
+
+
+
+**Vanilla spectral graph ConvNets**
+
+
+Every graph convolutional layer starts off with a shared node-wise feature transformation (in order to achieve a higher-level representation), specified by a weight matrix $W$. This transforms the feature vectors into $\vec{g}_i = {\bf W}\vec{h}_i$. After this, the vectors $\vec{g}_i$ are typically recombined in some way at each node.
+
+In general, to satisfy the localization property, we will define a graph convolutional operator as an aggregation of features across neighborhoods; defining $\mathcal{N}_i$ as the neighborhood of node i
+(typically consisting of all first-order neighbours of $i$ , including $i$ itself), we can define the output eatures of node $i$ as:
+$$\vec{h}'_i = \sigma\left(\sum_{j\in\mathcal{N}_i}\alpha_{ij}\vec{g}_j\right)$$
+
+**SplineNets**
+
+**Spectral graph ConvNets with polynomial filters**
+
+**Simplified ChebNets**
+
+Graph convolution network  always deal with unstructured data sets where the graph has different size. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
+
+<img src=https://pic3.zhimg.com/80/v2-34c698539a34d506ff3f05c24ddd3482_hd.jpg width=70% />
+<img src=https://pic2.zhimg.com/80/v2-41f380e6db85ae9173701c33c0f75311_hd.jpg width=70% />
+
+
+* https://www.ntu.edu.sg/home/xbresson/
+* https://github.com/xbresson
+
+
 ### ChebNet, CayleyNet, MotifNet
 
 In the previous post, the convolution of the graph Laplacian is defined in its **graph Fourier space** as outlined in the paper of Bruna et. al. (arXiv:1312.6203). However, the **eigenmodes** of the graph Laplacian are not ideal because it makes the bases to be graph-dependent. A lot of works were done in order to solve this problem, with the help of various special functions to express the filter functions. Examples include Chebyshev polynomials and Cayley transform.
@@ -442,6 +536,7 @@ where $c_0$ is real and other $c_j'$ s are generally complex, and ${h}$ is a zoo
 Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$'s are computed by training. This solves the problem of unfavorable clusters in `ChebNet`.
 
 * [CayleyNets: Graph Convolutional Neural Networks with Complex Rational Spectral Filters](https://arxiv.org/abs/1705.07664)
+* [CayleyNets at IEEE](https://ieeexplore.ieee.org/document/8521593)
 
 ***
 
@@ -454,7 +549,7 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 
 * [MotifNet: a motif-based Graph Convolutional Network for directed graphs](https://arxiv.org/abs/1802.01572)
 * [Neural Motifs: Scene Graph Parsing with Global Context (CVPR 2018)](https://rowanzellers.com/neuralmotifs/)
-* https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/
+* [GCN Part II @datawarrior](https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/)
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
 
 **Higher-order Graph Convolutional Networks**
@@ -469,6 +564,35 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * [Wavelets on Graphs via Spectral Graph Theory](https://arxiv.org/abs/0912.3848)
 * [Spectral Networks and Locally Connected Networks on Graphs](https://arxiv.org/abs/1312.6203)
 
+#### Graph Attention Networks
+
+Graph convolutional layer then computes a set of new node features, $(\vec{h}_{1},\cdots, \vec{h}_{n})$ , based on the input features as well as the graph structure.
+
+Most prior work defines the kernels $\alpha_{ij}$ explicitly (either based on the structural properties of the graph, or as a learnable weight); this requires compromising at least one other desirable property.
+
+In `Graph Attention Networks` the kernels $\alpha_{ij}$ be computed as a byproduct of an attentiona mechanism, $a : \mathbb{R}^N \times \mathbb{R}^N \rightarrow \mathbb{R}$, which computes unnormalised coefficients $e_{ij}$ across pairs of nodes $i,j$ based on their features:
+
+$$
+e_{ij} = a(\vec{h}_i, \vec{h}_j).
+$$
+
+We inject the graph structure by only allowing node $i$ to attend over nodes in its neighbourhood, $j\in\mathcal{N}_{i}$.These coefficients are then typically normalised using the softmax function, in order to be comparable across different neighbourhoods:
+$$
+\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k\in\mathcal{N}_i}\exp(e_{ik})}.
+$$
+
+- http://petar-v.com/GAT/
+
+<img src=“https://www.cl.cam.ac.uk/~pv273/images/gat.jpg” width=“70%” />
+
+#### Gated Graph Neural Networks
+
+- https://github.com/Microsoft/gated-graph-neural-network-samples
+
+#### Generative Models for Graphs
+
+* [Generative Models for Graphs by David White & Richard Wilson](http://david-white.net/generative.html)
+
 ### Application
 
 - [ ] [graph convolution network 有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
@@ -478,19 +602,26 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 
 **GCN for RecSys**
 
-- https://daiwk.github.io/posts/dl-graph-recommendations.html
-- https://arxiv.org/abs/1806.01973
-- https://arxiv.org/abs/1904.12575
+**PinSAGE**
+Node’s neighborhood defines a computation graph. The key idea is to generate node embeddings based on local neighborhoods. Nodes aggregate information from
+their neighbors using neural networks.
+
+- [ ] [Graph Neural Networks for Social Recommendation](https://paperswithcode.com/paper/graph-neural-networks-for-social)
+- [ ] [图神经网络+推荐](https://daiwk.github.io/posts/dl-graph-recommendations.html)
+- [ ] [Graph Convolutional Neural Networks for Web-Scale Recommender Systems](https://arxiv.org/abs/1806.01973)
+- [ ] [Graph Convolutional Networks for Recommender Systems](https://arxiv.org/abs/1904.12575)
 
 **GCN for Bio & Chem**
 
-- https://deepchem.io/docs/notebooks/index.html
+- [DeepChem is a Python library democratizing deep learning for science.](https://deepchem.io/docs/notebooks/index.html)
 - [Chemi-Net: A molecular graph convolutional network for accurate drug property prediction](https://arxiv.org/ftp/arxiv/papers/1803/1803.06236.pdf)
 - [Chainer Chemistry: A Library for Deep Learning in Biology and Chemistry](https://github.com/pfnet-research/chainer-chemistry)
+- [Release Chainer Chemistry: A library for Deep Learning in Biology and Chemistry](https://preferredresearch.jp/2017/12/18/chainer-chemistry-beta-release/)
 - [Modeling Polypharmacy Side Effects with Graph Convolutional Networks](https://cs.stanford.edu/people/jure/pubs/drugcomb-ismb18.pdf)
 - http://www.grakn.ai/?ref=Welcome.AI
-- https://deepmind.com/blog/alphafold/
+- [AlphaFold: Using AI for scientific discovery](https://deepmind.com/blog/alphafold/)
 - [A graph-convolutional neural network model for the prediction of chemical reactivity](https://pubs.rsc.org/en/content/articlepdf/2019/sc/c8sc04228d)
+
 
 **GCN for NLP**
 
@@ -502,22 +633,17 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 ***
 * https://cs.stanford.edu/people/jure/
 * https://github.com/alibaba/euler
-* https://ieeexplore.ieee.org/document/8521593
 * https://ieeexplore.ieee.org/document/8439897
 * [Higher-order organization of complex networks](http://science.sciencemag.org/content/353/6295/163)
 * [Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks](https://arxiv.org/abs/1704.06803)
-
 
 *****
 
 - http://snap.stanford.edu/proj/embeddings-www/
 - http://ryanrossi.com/
-- http://petar-v.com/GAT/
 - http://www.ipam.ucla.edu/programs/workshops/geometry-and-learning-from-data-tutorials/
-- https://github.com/Microsoft/gated-graph-neural-network-samples
 - https://zhuanlan.zhihu.com/p/51990489
 - https://www.cs.toronto.edu/~yujiali/
-
 
 *****
 
@@ -541,7 +667,6 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * http://www.cs.nuim.ie/~gunes/files/Baydin-MSR-Slides-20160201.pdf
 * http://colah.github.io/posts/2015-09-NN-Types-FP/
 * https://www.zhihu.com/question/305395488/answer/554847680
-
 
 ***
 * http://www.cis.upenn.edu/~kostas/

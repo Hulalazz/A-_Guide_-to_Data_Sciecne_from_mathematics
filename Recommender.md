@@ -73,8 +73,6 @@ And we focus on the model-based collaborative filtering.
 
 - [协同过滤详解](https://www.cnblogs.com/ECJTUACM-873284962/p/8729010.html)
 - [深入推荐引擎相关算法 - 协同过滤](https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html)
-- http://topgeek.org/blog/2012/02/10/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-1-%E9%83%A8%E5%88%86-%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%88%9D%E6%8E%A2/
-- http://topgeek.org/blog/2012/02/13/%E6%8E%A2%E7%B4%A2%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%86%85%E9%83%A8%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%8C%E7%AC%AC-2-%E9%83%A8%E5%88%86-%E6%B7%B1%E5%85%A5%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E/
 
 
 ### Matrix Completion
@@ -267,7 +265,7 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 * [Regression-based Latent Factor Models@CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 * [Probabilistic Matrix Factorization](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf)
 
-### Collaborative Less-is-More Filtering
+### Collaborative Less-is-More Filtering(CliMF)
 
 Sometimes, the information of user we could collect is implicit such as the clicking at some item.
 
@@ -402,12 +400,13 @@ The parameters of our model are learned by using [`RSGD`](https://arxiv.org/abs/
 
 ### Factorization Machines(FM)
 
-The matrix completion used in recommender system are linear combination of some features such as regularized SVD.
-The model equation for a factorization machine of degree ${d = 2}$ is defined as
+The matrix completion used in recommender system are linear combination of some features such as regularized SVD and they only take the user-user interaction and item-item similarity.
+`Factorization Machines(FM)` is inspired from previous factorization models.
+It represents each feature an embedding vector, and models the second-order feature interactions:
 $$
 \hat{y}
 = w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\\
-= w_0  + \left<w, x\right> + \sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j
+= \underbrace{w_0  + \left<w, x\right>}_{\text{First-order: Linear Regression}} + \underbrace{\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j}_{\text{Second-order: pair-wise interactions between features}}
 $$
 
 where the model parameters that have to be estimated are
@@ -500,11 +499,13 @@ p( h_j = 1 | V) = \frac{1}{\sqrt{2\pi}\sigma_j} \exp(\frac{(h - b_j -\sigma_j \s
 $$
 where $\sigma_j^2$ is the variance of the hidden unit ${j}$.
 
+<img title = "RBM " src ="https://raw.githubusercontent.com/adityashrm21/adityashrm21.github.io/master/_posts/imgs/book_reco/rbm.png" width="50%" />
 
 * https://www.cnblogs.com/pinard/p/6530523.html
 * https://www.cnblogs.com/kemaswill/p/3269138.html
-* https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf
-* http://www.cs.toronto.edu/~fritz/absps/cdmiguel.pdf
+* [Restricted Boltzmann Machines for Collaborative Filtering](https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf)
+* [Building a Book Recommender System using Restricted Boltzmann Machines](https://adityashrm21.github.io/Book-Recommender-System-RBM/)
+* [On Contrastive Divergence Learning](http://www.cs.toronto.edu/~fritz/absps/cdmiguel.pdf)
 * http://deeplearning.net/tutorial/rbm.html
 * [RBM notebook form Microsoft](https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb)
 
@@ -528,8 +529,8 @@ $$
 
 for for activation functions $f, g$ as described in  dimension reduction. Here $\theta = \{W,V,r,b\}$.
 
-* https://blog.csdn.net/studyless/article/details/70880829
-* http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf
+* [《AutoRec: Autoencoders Meet Collaborative Filtering》WWW2015 阅读笔记](https://blog.csdn.net/studyless/article/details/70880829)
+* [AutoRec: Autoencoders Meet Collaborative Filtering](http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf)
 
 ### Wide & Deep Model
 
@@ -598,7 +599,7 @@ for modelling feature interactions, which is a `multi-layered feedforward neural
 
 `B-Interaction Layer` including `Bi-Interaction Pooling` is an innovation in artificial neural network.
 
-![Neu FM](https://pic2.zhimg.com/80/v2-c7012d7a76e488643db9911d7588ccbd_hd.jpg)
+<img title="Neu FM" src="https://pic2.zhimg.com/80/v2-c7012d7a76e488643db9911d7588ccbd_hd.jpg" width="70%" />
 
 
 * http://staff.ustc.edu.cn/~hexn/
@@ -624,7 +625,7 @@ where $a_{i, j}$ is the attention score for feature interaction.
 
 It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Network(CIN)` and `DNN`.
 
-![](https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png)
+<img title="xDeepFM" src="https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png" width="60%" />
 
 - [X] [KDD 2018 | 推荐系统特征构建新进展：极深因子分解机模型](https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm)
 - [ ] [xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems](https://arxiv.org/abs/1803.05170)
@@ -647,6 +648,11 @@ It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Networ
 * [深度学习在序列化推荐中的应用](http://kubicode.me/2018/10/25/Deep%20Learning/More-Session-Based-Recommendation/)
 * [深入浅出 Factorization Machine 系列](http://kubicode.me/2018/02/23/Deep%20Learning/Deep-in-out-Factorization-Machines-Series/)
 * [论文快读 - Deep Neural Networks for YouTube Recommendations](http://lipixun.me/2018/02/01/youtube)
+
+### Deep Matrix Factorization
+
+* [Deep Matrix Factorization Models for Recommender Systems](https://www.ijcai.org/proceedings/2017/0447.pdf)
+* [Deep Matrix Factorization for Recommender Systems with Missing Data not at Random](https://iopscience.iop.org/article/10.1088/1742-6596/1060/1/012001)
 
 ### Deep Geometric Matrix Completion
 
@@ -677,10 +683,20 @@ and search histories to model user’s interests. The underlying assumption is t
 reflect a lot about user’s background and preference, and
 therefore provide a precise insight of what items and topics users might be interested in.
 
-**Learning to Match** as Supervised Learning
 
 Its training data set and the test data is  $\{(\mathrm{X}_i, y_i, r_i)\mid i =1, 2, \cdots, n\}$ and $(\mathrm{X}_{n+1}, y_{n+1})$, respectively.
-Matching Model is trained using the training data set: $r(\mathrm{X}, y)$ and the $r_{n+1}$ is predicted as  $r_{n+1}=r(\mathrm{X}_{n+1}, y_{n+1})$.
+Matching Model is trained using the training data set: a class of `matching functions’
+$\cal F= \{f(x, y)\}$ is defined, while the value of the function $r(\mathrm{X}, y)\in \cal F$ is a real number  a set of numbers $R$ and the $r_{n+1}$ is predicted as  $r_{n+1} = r(\mathrm{X}_{n+1}, y_{n+1})$.
+
+The data is assumed to be generated according to the distributions $(x, y) \sim P(X,Y)$, $r \sim P(R \mid X,Y)$ . The goal of
+the learning task is to select a matching function $f (x, y)$ from the class $F$ based on the observation of the training data.
+The learning task, then, becomes the following optimization problem.
+$$\arg\min_{r\in \cal F}\sum_{i=1}^{n}L(r_i, r(x_i, y_i))+\Omega(r)$$
+where $L(\cdot, \cdot)$ denotes a loss function and $\Omega(\cdot)$ denotes regularization.
+
+In fact, the inputs x and y can be instances (IDs), feature vectors, and structured objects, and thus the task can be carried out at instance level, feature level, and structure level.
+
+And $r(x, y)$ is supposed to be non-negative in some cases.
 
 |Framework of Matching|
 |:---:|
@@ -690,17 +706,21 @@ Matching Model is trained using the training data set: $r(\mathrm{X}, y)$ and th
 |Representation: MLP, CNN, LSTM|
 |Input: ID Vectors $\mathrm{X}$, Feature Vectors $y$|
 
-Sometimes, matching model and ranking model are combined and trained together with pairwise loss.
 
+Sometimes, matching model and ranking model are combined and trained together with pairwise loss.
+Deep Matching models takes the ID vectors and features together as the input to a deep neural network to train the matching scores including **Deep Matrix Factorization, AutoRec, Collaborative Denoising Auto-Encoder, Deep User and Image Feature, Attentive Collaborative Filtering, Collaborative Knowledge Base Embedding**.
 
 * https://sites.google.com/site/nkxujun/
 * http://sonyis.me/dnn.html
 * https://akmenon.github.io/
 * https://sigir.org/sigir2018/program/tutorials/
+* [Learning  to Match](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/learning_to_match.pdf)
 * [Deep Learning for Matching in Search and Recommendation](http://staff.ustc.edu.cn/~hexn/papers/sigir18-tutorial-deep-matching.pdf)
 * [Facilitating the design, comparison and sharing of deep text matching models.](https://github.com/NTMC-Community/MatchZoo)
 * [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
 * [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
+* [Learning to Match using Local and Distributed Representations of Text for Web Search](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/wwwfp0192-mitra.pdf)
+* https://github.com/super-zhangchao/learning-to-match
 
 ### Collaborative Deep Learning for Recommender Systems
 
@@ -733,18 +753,18 @@ which are repeatedly constructed on the basis of the individual FM model by a re
 
 **BoostFM**
 
-> + _Input_: The observed context-item interactions or Training Data \(S =\{(\mathbf{x}_i, y_i)\}\) parameters E and T.
+> + _Input_: The observed context-item interactions or Training Data $S =\{(\mathbf{x}_i, y_i)\}$ parameters E and T.
 > + _Output_: The strong recommender $g^{T}$.
-> + Initialize \(Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S\).
-> + for \(t = 1 \to T\) do
->> +  1. Create component recommender \(\hat{y}^{(t)}\) with \(\bf{Q}^{(t)}\) on \(\bf S\),\(\forall (c,i) \in \bf S\), , i.e., `Component Recommender Learning Algorithm`;
->> +  2. Compute the ranking accuracy \(E[\hat{r}(c, i, y^{(t)})], \forall (c,i) \in \bf S\);
->> +  3. Compute the coefficient \(\beta_t\),
->> \[ \beta_t = \ln (\frac{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1 + E[\hat{r}(c, i, y^{(t)})]\}}{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1-  E[\hat{r}(c, i, y^{(t)})]\}})^{\frac{1}{2}} ; \]
->> +  4. Create the strong recommender \(g^{(t)}\),
->> \[ g^{(t)} = \sum_{h=1}^{t} \beta_h \hat{y}^{(t)} ;\]
+> + Initialize $Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S$.
+> + for $t = 1 \to T$ do
+>> +  1. Create component recommender $\hat{y}^{(t)}$ with $\bf{Q}^{(t)}$ on $\bf S$,$\forall (c,i) \in \bf S$, , i.e., `Component Recommender Learning Algorithm`;
+>> +  2. Compute the ranking accuracy $E[\hat{r}(c, i, y^{(t)})], \forall (c,i) \in \bf S$;
+>> +  3. Compute the coefficient $\beta_t$,
+>> $$ \beta_t = \ln (\frac{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1 + E[\hat{r}(c, i, y^{(t)})]\}}{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}_{ci}\{1-  E[\hat{r}(c, i, y^{(t)})]\}})^{\frac{1}{2}} ; $$
+>> +  4. Create the strong recommender $g^{(t)}$,
+>> $$ g^{(t)} = \sum_{h=1}^{t} \beta_h \hat{y}^{(t)} ;$$
 >> +  5. Update weight distribution \(\bf{Q}^{t+1}\),
->> \[ \bf{Q}^{t+1}_{ci} = \frac{\exp(E[\hat{r}(c, i, y^{(t)})])}{\sum_{(c,i)\in \bf{S}} E[\hat{r}(c, i, y^{(t)})]} ; \]
+>> $$ \bf{Q}^{t+1}_{ci} = \frac{\exp(E[\hat{r}(c, i, y^{(t)})])}{\sum_{(c,i)\in \bf{S}} E[\hat{r}(c, i, y^{(t)})]} ; $$
 > + end for
 
 
@@ -792,10 +812,10 @@ where $\hat{y}_s(\mathrm{x}) = \hat{y}_{s−1}(\mathrm{x}) + \alpha_s f_s(\mathr
 
 We heuristically assume that the
 function ${f}$ has the following form:
-\[ f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell} q_{C_{i}(t)}(\mathrm{x}) \]
+$$ f_{\ell}(\mathrm{x})={\prod}_{t=1}^{\ell} q_{C_{i}(t)}(\mathrm{x}) $$
 where the function _q_ maps latent feature
 vector x to real value domain
-\[ q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{tj}. \]
+$$ q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{t} $$
 
 It is hard for a general convex loss function $\ell$ to search function ${f}$ to optimize the objective function:
 $L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$.
@@ -820,12 +840,12 @@ A prediction is based on:
 In details, it is as following:
 $$
 \hat{y}(x) = \underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E} + \underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}.
-$$ 
+$$
 And it is decomposed as the following table.
 _____
 Ingredients| Formulae| Features
 ---|---|---
-Factorization Machines |$\underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E}$ | Categorical Features 
+Factorization Machines |$\underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E}$ | Categorical Features
 GBDT |$\underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}$ | Numerical Features
 _________
 - http://www.hongliangjie.com/talks/GB-CENT_SD_2017-02-22.pdf
@@ -986,16 +1006,9 @@ _______
 Online advertising has grown over the past decade to over $26 billion in recorded revenue in 2010. The revenues generated are based on different pricing models that can be fundamentally grouped into two types: cost per (thousand) impressions (CPM) and cost per action (CPA), where an action can be a click, signing up with the advertiser, a sale, or any other measurable outcome. A web publisher generating revenues by selling advertising space on its site can offer either a CPM or CPA contract. We analyze the conditions under which the two parties agree on each contract type, accounting for the relative risk experienced by each party.
 
 The information technology industry relies heavily on the on-line advertising such as [Google，Facebook or Alibaba].
-Advertising is nothing except information.
+Advertising is nothing except information, which is not usually accepted gladly. In fact, it is more difficult than recommendation because it is less known of the context where the advertisement is placed.
 
-**GBRT+LR**
 
-[Practical Lessons from Predicting Clicks on Ads at Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
-Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).
-
-<img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "60%" />
-
-When the feature vector ${x}$ are given, the tree split the features by GBRT then we transform and input the features to the logistic regression.
 
 [Hongliang Jie](http://www.hongliangjie.com/talks/Etsy_ML.pdf) shares 3 challenges of computational advertising in Etsy,
 which will be the titles of the following subsections.
@@ -1007,6 +1020,16 @@ which will be the titles of the following subsections.
 + [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
 
 ### Click-Through Rate Modeling
+
+
+**GBRT+LR**
+
+When the feature vector ${x}$ are given, the tree split the features by GBRT then we transform and input the features to the logistic regression.
+
+[Practical Lessons from Predicting Clicks on Ads at Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
+Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).
+
+<img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "60%" />
 
 * [聊聊CTR预估的中的深度学习](http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/)
 * [Deep Models at DeepCTR](https://deepctr.readthedocs.io/en/latest/models/DeepModels.html)
@@ -1042,7 +1065,7 @@ ______________________________________________________
 
 ### Labs
 
-
+- [Recommender Systems](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/recommendation/index.html)
 - https://libraries.io/github/computational-class
 - http://www.52caml.com/
 - [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
@@ -1058,3 +1081,4 @@ ______________________________________________________
 - [Secure Personalization: Building Trustworthy Recommender Systems](https://www.nsf.gov/awardsearch/showAward?AWD_ID=0430303)
 - [Similar grants of  Next Generation Personalization Technologies](https://app.dimensions.ai/details/grant/grant.3063812)
 - [Big Data and Social Computing Lab @UIC](https://bdsc.lab.uic.edu/)
+- [Web Intelligence and Social Computing](https://www.cse.cuhk.edu.hk/irwin.king/wisc_lab/home)
