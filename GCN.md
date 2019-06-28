@@ -1,5 +1,6 @@
 ## Geometric Deep Learning
 
+![](https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg)
 * http://www.ai3sd.org/
 * https://heidelberg.ai/2019/07/09/graph-neural-networks.html
 * https://sites.google.com/site/rdftestxyz/home
@@ -315,7 +316,6 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - [ ] [graph2vec: Learning Distributed Representations of Graphs](https://arxiv.org/abs/1707.05005)
 - [ ] https://allentran.github.io/graph2vec
 - [ ] http://humanativaspa.it/tag/graph2vec/
-
 - [ ] https://zhuanlan.zhihu.com/p/33732033
 - [ ] [Awesome graph embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 - [ ] [Graph Embedding Methods](https://github.com/palash1992/GEM)
@@ -463,7 +463,7 @@ We would ideally like our graph convolutional layer to have:
 
 * `Spectral graph theory` allows to redefine convolution in the context of graphs with Fourier analysis.
 * Graph downsampling ⇔ graph coarsening ⇔ graph partitioning: Decompose G into smaller meaningful clusters.
-* Structured pooling[18]: Arrangement of the node indexing such that adjacent nodes are hierarchically merged at the next coarser level.
+* Structured pooling: Arrangement of the node indexing such that adjacent nodes are hierarchically merged at the next coarser level.
 
 
 Laplacian operator is represented as a positive semi-definite $n \times n$ matrix:
@@ -493,13 +493,17 @@ $$\vec{h}'_i = \sigma\left(\sum_{j\in\mathcal{N}_i}\alpha_{ij}\vec{g}_j\right)$$
 **Simplified ChebNets**
 
 Graph convolution network  always deal with unstructured data sets where the graph has different size. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
+* [Graph Convolutional Neural Network (Part I)](https://datawarrior.wordpress.com/2018/08/08/graph-convolutional-neural-network-part-i/)
+* https://www.ntu.edu.sg/home/xbresson/
+* https://github.com/xbresson
+
+
+**PinSage**
 
 <img src=https://pic3.zhimg.com/80/v2-34c698539a34d506ff3f05c24ddd3482_hd.jpg width=70% />
 <img src=https://pic2.zhimg.com/80/v2-41f380e6db85ae9173701c33c0f75311_hd.jpg width=70% />
 
 
-* https://www.ntu.edu.sg/home/xbresson/
-* https://github.com/xbresson
 
 
 ### ChebNet, CayleyNet, MotifNet
@@ -570,7 +574,7 @@ Graph convolutional layer then computes a set of new node features, $(\vec{h}_{1
 
 Most prior work defines the kernels $\alpha_{ij}$ explicitly (either based on the structural properties of the graph, or as a learnable weight); this requires compromising at least one other desirable property.
 
-In `Graph Attention Networks` the kernels $\alpha_{ij}$ be computed as a byproduct of an attentiona mechanism, $a : \mathbb{R}^N \times \mathbb{R}^N \rightarrow \mathbb{R}$, which computes unnormalised coefficients $e_{ij}$ across pairs of nodes $i,j$ based on their features:
+In `Graph Attention Networks` the kernels $\alpha_{ij}$ be computed as a byproduct of an attentional mechanism, $a : \mathbb{R}^N \times \mathbb{R}^N \rightarrow \mathbb{R}$, which computes unnormalised coefficients $e_{ij}$ across pairs of nodes $i,j$ based on their features:
 
 $$
 e_{ij} = a(\vec{h}_i, \vec{h}_j).
