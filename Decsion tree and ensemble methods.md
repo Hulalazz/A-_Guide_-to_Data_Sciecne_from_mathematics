@@ -40,7 +40,7 @@ result, the partitioning can be represented graphically as a decision tree.
 **Algorithm**  Pseudocode for tree construction by exhaustive search
 
 1. Start at root node.
-2. For each node X, find the set $S$ that **minimizes** the sum of the node impurities in the two child nodes and choose the split $\{X^{\star}\in S^{\star}\}$ that gives the minimum overall $X$ and $S$.
+2. For each node ${X}$, find the set ${S}$ that **minimizes** the sum of the node impurities in the two child nodes and choose the split $\{X^{\ast}\in S^{\ast}\}$ that gives the minimum overall $X$ and $S$.
 3. If a stopping criterion is reached, exit. Otherwise, apply step 2 to each child node in turn.
 
 ***
@@ -111,7 +111,7 @@ In machine learning, we prune the decision tree to make a balance between over-f
 3. Minimum Description Length principle : Use an explicit measure of the complexity for encoding the training set and the decision tree, stopping growth of the tree when this encoding size (size(tree) + size(misclassifications(tree)) is minimized.
 
 - https://www.saedsayad.com/decision_tree_overfitting.htm
-- http://www.cs.bc.edu/~alvarez/ML/statPruning.html
+- [Decision Tree Pruning based on Confidence Intervals (as in C4.5) ](http://www.cs.bc.edu/~alvarez/ML/statPruning.html)
 
 ***
 
@@ -390,13 +390,14 @@ Particularly, we take $L(x,y)=(x-y)^2$, and the objective function is given by
 $$
 obj^{(t)}
 =  \sum_{i=1}^{n} [y_i - (\hat{y}^{(t-1)}_i + f_t(x_i))]^2 + \Omega(f_t) + C \\
-= \sum_{i=1}^{n} [(y_i - \hat{y}^{(t-1)}_i) f_t(x_i)) +  f_t(x_i)^2 ] + \Omega(f_t) + C^{\prime}
+= \sum_{i=1}^{n} [2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t(x_i)^2 ] + \Omega(f_t) + C^{\prime}
 $$
 
 where $C^{\prime}=\sum_{i=1}^{n} (y_i - \hat{y}^{(t-1)}_i)^2 + \sum_{k=1}^{t-1} \Omega(f_k)$.
 
-If there is no regular term $\sum_{k=1}^{t} \Omega(f_k)$, the problem is simplfied to $\arg\min_{f_{t}}\sum_{i=1}^{n} [(y_i - \hat{y}^{(t-1)}_i) f_t(x_i)) +  f_t(x_i)^2 ]$.
-
+If there is no regular term $\sum_{k=1}^{t} \Omega(f_k)$, the problem is simplified to
+$$\arg\min_{f_{t}}\sum_{i=1}^{n} [2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t(x_i)^2 ]\implies f_t(x_i) = -(y_i - \hat{y}^{(t-1)}_i) $$
+where $i\in \{1,\cdots, n\}$ and $-(y_i - \hat{y}^{(t-1)}_i)=-\frac{1}{2} {[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
 
 ***
 * Input training data set $\{(x_i, \mathrm{y}_i)\mid i=1, \cdots, n\}$.
@@ -408,7 +409,7 @@ If there is no regular term $\sum_{k=1}^{t} \Omega(f_k)$, the problem is simplfi
    $$R_{j,m}, j = 1, 2,\dots , J_m. $$
    +  For $j = 1, 2,\dots , J_m$ compute
       $$\gamma_{j,t}=\arg\min_{\gamma}\sum_{x_i\in R_{j,m}}{L(\mathrm{d}_i, f_{t-1}(x_i)+\gamma)}. $$
-  +  Update $f_t = f_{t-1}+{\sum}_{j=1}^{J_m}{\gamma}_{j, t} \mathbb{I}(x\in R_{j, m})$.
+  +  Update $f_t = f_{t-1}+ \nu{\sum}_{j=1}^{J_m}{\gamma}_{j, t} \mathbb{I}(x\in R_{j, m})$.
 * Output $f_T(x)$.
 
 ***
@@ -420,6 +421,10 @@ f_{t}
 \approx f_{t-1} + \nu \underbrace{ {\sum}_{i=1}^{n} -{[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}} }_{ \text{fitted by a regression tree} },
  \nu\in(0,1).
 $$
+
+Note that the incremental tree is approximate to the negative gradient of the loss function, i.e.,
+$$\fbox{ $\sum_{j=1}^{J_m} \gamma_{j, t} \mathbb{I}(x\in R_{j, m}) \approx {\sum}_{i=1}^{n} -{[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$ }$$
+where $J_m$ is the number of the terminal regions and ${n}$ is the number of training samples/data.
 
 * [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
 * [Gradient Boosting at Wikipedia](https://www.wikiwand.com/en/Gradient_boosting)
@@ -595,7 +600,7 @@ And it limits the depth of the tree in order to avoid over-fitting.
 
 The number of trees is controlled by the starting parameters. To prevent over-fitting, use the over-fitting detector. When it is triggered, trees stop being built.
 
-Before learning, the possible values of objects are divided into disjoint ranges (buckets) delimited by the threshold values (splits). The size of the quantization (the number of splits) is determined by the starting parameters (separately for numerical features and numbers obtained as a result of converting categorical features into numerical features).
+Before learning, the possible values of objects are divided into disjoint ranges ($\color{red}{\fbox{buckets}}$) delimited by the threshold values ($\color{red}{\fbox{splits}}$). The size of the quantization (the number of splits) is determined by the starting parameters (separately for numerical features and numbers obtained as a result of converting categorical features into numerical features).
 
 Quantization is also used to split the label values when working with categorical features. А random subset of the dataset is used for this purpose on large datasets.
 
@@ -605,7 +610,6 @@ an innovative algorithm for processing `categorical features`. Both techniques w
 created to fight a prediction shift caused by a special kind of target leakage present
 in all currently existing implementations of gradient boosting algorithms.
 
-CatBoost is an implementation of gradient boosting, which uses binary decision trees as base predictors.
 
 ---|---|---
 ---|---|---
@@ -629,7 +633,7 @@ CatBoost is an implementation of gradient boosting, which uses binary decision t
 
 There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, GBDT on angle and H2o.
 
-[Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for datasets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained datasets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either mapreduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely TencentBoost, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
+[Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely TencentBoost, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
 
 - [ThunderGBM: Fast GBDTs and Random Forests on GPUs](https://github.com/Xtra-Computing/thundergbm)
 - [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
@@ -669,6 +673,8 @@ Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boo
 
 **Accelerated Gradient Boosting**
 
+The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
+
 * Initialize $f_0(x)=g_0(x)=0$;
 * For $m = 1, 2, \dots, M$:
    +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
@@ -691,6 +697,9 @@ Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boo
 * [拍拍贷教你如何用GBDT做评分卡](http://www.sfinst.com/?p=1389)
 * [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
 * https://catboost.ai/news
+* [Finding Influential Training Samples for Gradient Boosted Decision Trees](https://research.yandex.com/publications/151)
++ [CERN boosts its search for antimatter with Yandex’s MatrixNet search engine tech](https://www.extremetech.com/extreme/147320-cern-boosts-its-search-for-antimatter-with-yandexs-matrixnet-search-engine-tech)
++ [MatrixNet as a specific Boosted Decision Tree algorithm which is available as a service](https://github.com/yandex/rep/blob/master/rep/estimators/matrixnet.py)
 
 ### Stacking
 
@@ -755,7 +764,6 @@ Other ensemble methods include clustering methods ensemble, dimensionality reduc
 
 *****
 * https://www.wikiwand.com/en/Ensemble_learning
-* https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
 * https://www.toptal.com/machine-learning/ensemble-methods-machine-learning
 * https://machinelearningmastery.com/products/
 * https://blog.csdn.net/willduan1/article/details/73618677#
