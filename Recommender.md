@@ -12,7 +12,9 @@
 * [Learning Item-Interaction Embeddings for User Recommendations](https://arxiv.org/abs/1812.04407)
 * [Summary of RecSys](https://github.com/fuxuemingzhu/Summary-of-Recommender-System-Papers)
 * [How Netflix’s Recommendations System Works](https://help.netflix.com/en/node/100639)
-
+* [个性化推荐系统，必须关注的五大研究热点](https://www.msra.cn/zh-cn/news/executivebylines/tech-bylines-personalized-recommendation-system)
+* https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3
+* https://buildingrecommenders.wordpress.com/
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -61,6 +63,14 @@ We only take the mathematical convenience into consideration in the following me
 
 - [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
 - [Distance Metrics for Fun and Profit](https://www.benfrederickson.com/distance-metrics/)
+
+|[Recommendation Strategies](https://datawarrior.wordpress.com/2019/06/19/strategies-of-recommendation-systems/)|
+|:---:|
+|Collaborative Filtering (CF)|
+|Content-Based Filtering (CBF)|
+|Demographic Filtering (DF)|
+|Knowledge-Based Filtering (KBF)|
+|Hybrid Recommendation Systems|
 
 ## Collaborative Filtering
 
@@ -250,11 +260,11 @@ In linear regression, the least square methods is equivalent to maximum likeliho
 
 
 |Regularized SVD|
-|---------------|
+|:-------------:|
 |$C(P,Q) = \sum_{(u,i):Observed}(r_{(u,i)}-\sum_f p_{(u,f)} q_{(i,f)})^{2}+\lambda_u\|P_u\|^2+\lambda_i\|Q_i\|^2$|
 
 |Probabilistic model|
-|------------------|
+|:-----------------:|
 |$r_{u,i}\sim N(\sum_f p_{(u,f)} q_{(i,f)},\sigma^2), P_u\sim N(0,\sigma_u^2 I), Q_i\sim N(0,\sigma_i^2 I)$|
 
 And $\sigma_u^2$ and $\sigma_i^2$ is related with the regular term $\lambda_u$ and $\lambda_u$.
@@ -499,7 +509,7 @@ p( h_j = 1 | V) = \frac{1}{\sqrt{2\pi}\sigma_j} \exp(\frac{(h - b_j -\sigma_j \s
 $$
 where $\sigma_j^2$ is the variance of the hidden unit ${j}$.
 
-<img title = "RBM " src ="https://raw.githubusercontent.com/adityashrm21/adityashrm21.github.io/master/_posts/imgs/book_reco/rbm.png" width="50%" />
+<img title = "RBM " src ="https://raw.githubusercontent.com/adityashrm21/adityashrm21.github.io/master/_posts/imgs/book_reco/rbm.png" width="30%" />
 
 * https://www.cnblogs.com/pinard/p/6530523.html
 * https://www.cnblogs.com/kemaswill/p/3269138.html
@@ -673,6 +683,55 @@ the selected GCN.
 * [Deep Geometric Matrix Completion: a Geometric Deep Learning approach to Recommender Systems](http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018)
 * [Talk: Deep Geometric Matrix Completion](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
 
+### Collaborative Deep Learning for Recommender Systems
+
+[Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.](http://www.wanghao.in/CDL.htm)
+
+Given part of the ratings in ${R}$ and the content information $X_c$, the problem is to predict the other ratings in ${R}$,
+where row ${j}$ of the content information matrix $X_c$ is the bag-of-words vector $Xc;j{\ast}$ for item ${j}$ based on a vocabulary of size ${S}$.
+
+`Stacked denoising autoencoders(SDAE)` is a feedforward neural network for learning
+representations (encoding) of the input data by learning to predict the clean input itself in the output.
+Using the Bayesian SDAE as a component, the generative
+process of CDL is defined as follows:
+1. For each layer ${l}$ of the SDAE network,
+    * For each column ${n}$ of the weight matrix $W_l$, draw
+    $$W_l;{\ast}n \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
+    * Draw the bias vector
+    $$b_l \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
+    * For each row ${j}$ of $X_l$, draw
+    $$X_{l;j\ast}\sim \mathcal{N}(\sigma(X_{l-1;j\ast}W_l b_l), \lambda_s^{-1} I_{K_l}).$$
+
+2. For each item ${j}$,
+      * Draw a clean input
+        $$X_{c;j\ast}\sim \mathcal{N}(X_{L, j\ast}, \lambda_n^{-1} I_{K_l}).$$
+      * Draw a latent item offset vector $\epsilon_j \sim \mathcal{N}(0, \lambda_v^{-1} I_{K_l})$ and then set the latent item vector to be:
+        $$v_j=\epsilon_j+X^T_{\frac{L}{2},j\ast}.$$
+3. Draw a latent user vector for each user ${i}$:
+     $$u_i \sim \mathcal{N}(0, \lambda_u^{-1} I_{K_l}).$$
+4. Draw a rating $R_{ij}$ for each user-item pair $(i; j)$:
+  $$R_{ij}\sim \mathcal{N}(u_i^tv_j, C_{ij}^{-1}).$$
+
+Here $\lambda_w, \lambda_s, \lambda_n, \lambda_u$and $\lambda_v$ are hyperparameters and $C_{ij}$ is
+a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R+{ij} = 1$ and $C_{ij} = b$ otherwise).
+
+And joint log-likelihood of these parameters is
+$$L=-\frac{\lambda_u}{2}\sum_{i} {\|u_i\|}_2^2-\frac{\lambda_w}{2}\sum_{l} [{\|W_l\|}_F+{\|b_l\|}_2^2]\\
+-\frac{\lambda_v}{2}\sum_{j} {\|v_j - X^T_{\frac{L}{2},j\ast}\|}_2^2-\frac{\lambda_n}{2}\sum_{l} {\|X_{c;j\ast}-X_{L;j\ast}\|}_2^2 \\
+-\frac{\lambda_v}{2}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2
+$$
+
+* http://www.winsty.net/
+* http://www.wanghao.in/
+* https://www.cse.ust.hk/~dyyeung/
+* [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
+* [Deep Learning for Recommender Systems](https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf)
+* https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
+* [推荐系统中基于深度学习的混合协同过滤模型](http://www.10tiao.com/html/236/201701/2650688117/2.html)
+- [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
+- [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
+- [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
+
 ### Deep Matching Models for Recommendation
 
 It is essential for the recommender system  to find the item which matches the users' demand. Its difference from web search is that recommender system provides item information even if the users' demands or generally interests are not provided.
@@ -686,12 +745,12 @@ therefore provide a precise insight of what items and topics users might be inte
 
 Its training data set and the test data is  $\{(\mathrm{X}_i, y_i, r_i)\mid i =1, 2, \cdots, n\}$ and $(\mathrm{X}_{n+1}, y_{n+1})$, respectively.
 Matching Model is trained using the training data set: a class of `matching functions’
-$\cal F= \{f(x, y)\}$ is defined, while the value of the function $r(\mathrm{X}, y)\in \cal F$ is a real number  a set of numbers $R$ and the $r_{n+1}$ is predicted as  $r_{n+1} = r(\mathrm{X}_{n+1}, y_{n+1})$.
+$\mathcal F= \{f(x, y)\}$ is defined, while the value of the function $r(\mathrm{X}, y)\in \mathcal F$ is a real number  a set of numbers $R$ and the $r_{n+1}$ is predicted as  $r_{n+1} = r(\mathrm{X}_{n+1}, y_{n+1})$.
 
 The data is assumed to be generated according to the distributions $(x, y) \sim P(X,Y)$, $r \sim P(R \mid X,Y)$ . The goal of
 the learning task is to select a matching function $f (x, y)$ from the class $F$ based on the observation of the training data.
 The learning task, then, becomes the following optimization problem.
-$$\arg\min_{r\in \cal F}\sum_{i=1}^{n}L(r_i, r(x_i, y_i))+\Omega(r)$$
+$$\arg\min_{r\in \mathcal F}\sum_{i=1}^{n}L(r_i, r(x_i, y_i))+\Omega(r)$$
 where $L(\cdot, \cdot)$ denotes a loss function and $\Omega(\cdot)$ denotes regularization.
 
 In fact, the inputs x and y can be instances (IDs), feature vectors, and structured objects, and thus the task can be carried out at instance level, feature level, and structure level.
@@ -721,17 +780,6 @@ Deep Matching models takes the ID vectors and features together as the input to 
 * [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 * [Learning to Match using Local and Distributed Representations of Text for Web Search](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/wwwfp0192-mitra.pdf)
 * https://github.com/super-zhangchao/learning-to-match
-
-### Collaborative Deep Learning for Recommender Systems
-
-[Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.](http://www.wanghao.in/CDL.htm)
-
-* [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
-* [Deep Learning for Recommender Systems](https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf)
-* https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
-- [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
-- [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
-- [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
 
 
 ## Ensemble Methods for Recommender System
@@ -1029,7 +1077,7 @@ When the feature vector ${x}$ are given, the tree split the features by GBRT the
 [Practical Lessons from Predicting Clicks on Ads at Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
 Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).
 
-<img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "60%" />
+<img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "40%" />
 
 * [聊聊CTR预估的中的深度学习](http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/)
 * [Deep Models at DeepCTR](https://deepctr.readthedocs.io/en/latest/models/DeepModels.html)
@@ -1063,6 +1111,17 @@ Once we have the right features and the right model (decisions trees plus logist
 * https://matinathomaidou.github.io/research/
 ______________________________________________________
 
+### User Engagement
+
+[User engagement measures whether users find value in a product or service. Engagement can be measured by a variety or combination of activities such as downloads, clicks, shares, and more. Highly engaged users are generally more profitable, provided that their activities are tied to valuable outcomes such as purchases, signups, subscriptions, or clicks.](https://mixpanel.com/topics/what-is-user-engagement/)
+
+* [WHAT IS USER ENGAGEMENT?](https://mixpanel.com/topics/what-is-user-engagement/)
+* [What is Customer Engagement, and Why is it Important?](https://blog.smile.io/what-is-customer-engagement-and-why-is-it-important)
+* [What is user engagement? A conceptual framework for defining user engagement with technology](https://open.library.ubc.ca/cIRcle/collections/facultyresearchandpublications/52383/items/1.0107445)
+* [How to apply AI for customer engagement](https://www.pega.com/artificial-intelligence-applications)
+* [The future of customer engagement](https://dma.org.uk/event/the-future-of-customer-engagement)
+
+
 ### Labs
 
 - [Recommender Systems](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/recommendation/index.html)
@@ -1082,3 +1141,8 @@ ______________________________________________________
 - [Similar grants of  Next Generation Personalization Technologies](https://app.dimensions.ai/details/grant/grant.3063812)
 - [Big Data and Social Computing Lab @UIC](https://bdsc.lab.uic.edu/)
 - [Web Intelligence and Social Computing](https://www.cse.cuhk.edu.hk/irwin.king/wisc_lab/home)
+- [Welcome to the family, Zalando AdTech Lab Hamburg!](https://jobs.zalando.com/tech/blog/zalando-adtech-lab-hamburg/)
+- [Data and Marketing Associat](https://dma.org.uk/)
+- [Web search and data mining(WSDM) 2019](http://www.wsdm-conference.org/2019/)
+- [Web Intelligent Systems and Economics(WISE) lab @Rutgers](https://wise.cs.rutgers.edu/)
+- [Ishizuka Lab. was closed. (2013.3) ](http://www.miv.t.u-tokyo.ac.jp/HomePageEng.html)

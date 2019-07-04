@@ -8,7 +8,7 @@ where $a_k\in\mathbb{R}$ and the characteristic function is defined as follow
 $${\chi}_{S_{k}}=\begin{cases}1, &\text{if $x \in S_{k}$}\\
 0, &\text{otherwise}\end{cases}.$$
 
-The tree-based learning algorithms take advantages of these universal approximators to approximate the decision function.
+The tree-based learning algorithms take advantages of these [universal approximators](http://mathonline.wikidot.com/the-simple-function-approximation-theorem) to fit the decision function.
 
 <img title="https://cdn.stocksnap.io/" src="https://cdn.stocksnap.io/img-thumbs/960w/TIHPAM0QFG.jpg" width="80%" />
 
@@ -22,11 +22,13 @@ In brief, decision tree is to find the optimal parameters by **coordinate-wise**
 > $$
 > T(x) = \sum_{i\in\text{leaves}} g_i(x)\mathbb{I}(x\in R_i) = \sum_{i\in \,\text{leaves}} g_i(x) \prod_{a\in\,\text{ancestors(i)}} \mathbb{I}(S_{a (x)}=c_{a,i})
 > $$
-> where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node i, $c_{a,i}$ is the child of node a on the path from a to leaf i, and $S_a$ is the n -ary split function at node a.
+> where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node i, $c_{a,i}$ is the child of node a on the path from a to leaf i, and $S_a$ is the n-array split function at node a.
 > $g_i(\cdot)$ is the decision function associated with leaf i and
 > is learned only from training examples in $R_i$.
 
-* http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php
+The $g_{i}(x)$ can be a constant in $\mathbb{R}$ or some mathematical expression such as logistic regression. When $g_i(x)$ is constant, the decision tree is actually piecewise constant, a concrete example of simple function.
+
+* [Decision Trees (for Classification) by Willkommen auf meinen Webseiten.](http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php)
 * [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
 * [On the Boosting Ability of Top-Down Decision Tree Learning Algorithms](http://www.columbia.edu/~aec2163/NonFlash/Papers/Boosting2016.pdf)
 
@@ -40,7 +42,7 @@ result, the partitioning can be represented graphically as a decision tree.
 **Algorithm**  Pseudocode for tree construction by exhaustive search
 
 1. Start at root node.
-2. For each node ${X}$, find the set ${S}$ that **minimizes** the sum of the node impurities in the two child nodes and choose the split $\{X^{\ast}\in S^{\ast}\}$ that gives the minimum overall $X$ and $S$.
+2. For each node ${X}$, find the set ${S}$ that **minimizes** the sum of the node $\fbox{impurities}$ in the two child nodes and choose the split $\{X^{\ast}\in S^{\ast}\}$ that gives the minimum overall $X$ and $S$.
 3. If a stopping criterion is reached, exit. Otherwise, apply step 2 to each child node in turn.
 
 ***
@@ -49,9 +51,8 @@ Creating a binary decision tree is actually a process of dividing up the input s
 
 This learning process is to minimize the impurities.
 C4.5 and CART6 are two later classification
-tree algorithms that follow this approach. C4.5 uses
-`entropy` for its impurity function, whereas CART
-uses a generalization of the binomial variance called the `Gini index`.
+tree algorithms that follow this approach. C4.5 uses `entropy` for its impurity function,
+whereas CART uses a generalization of the binomial variance called the `Gini index`.
 
 If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
 reduced, and the amount of the reduction is the information gain,
@@ -92,7 +93,7 @@ $\color{red}{\text{PS: all above impurities}}$  are based on the probability $\f
 * https://www.wikiwand.com/en/Decision_tree_learning
 * https://www.wikiwand.com/en/Decision_tree
 * https://www.wikiwand.com/en/Recursive_partitioning
-* http://timesleuth-rule.sourceforge.net/
+* [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
 ***
 
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
@@ -110,8 +111,8 @@ In machine learning, we prune the decision tree to make a balance between over-f
     * Significance testing (e.g., Chi-square test)
 3. Minimum Description Length principle : Use an explicit measure of the complexity for encoding the training set and the decision tree, stopping growth of the tree when this encoding size (size(tree) + size(misclassifications(tree)) is minimized.
 
-- https://www.saedsayad.com/decision_tree_overfitting.htm
-- [Decision Tree Pruning based on Confidence Intervals (as in C4.5) ](http://www.cs.bc.edu/~alvarez/ML/statPruning.html)
+* [Decision Tree - Overfitting saedsayad](https://www.saedsayad.com/decision_tree_overfitting.htm)
+* [Decision Tree Pruning based on Confidence Intervals (as in C4.5)](http://www.cs.bc.edu/~alvarez/ML/statPruning.html)
 
 ***
 
@@ -142,27 +143,38 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 
 ### Random Forest
 
+[Decision Trees do not generalize to new variations](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf) demonstrates some theoretical limitations of decision trees. And they can be seriously hurt by the curse of dimensionality in a sense that is a bit different
+from other nonparametric statistical methods, but most importantly, that they cannot generalize to variations not
+seen in the training set. This is because a decision tree creates a partition of the input space and needs at least
+one example in each of the regions associated with a leaf to make a sensible prediction in that region. A better
+understanding of the fundamental reasons for this limitation suggests that one should use forests or even deeper
+architectures instead of trees, which provide a form of distributed representation and can generalize to variations
+not encountered in the training data.
+
 Random forests (Breiman, 2001) is a substantial modification of bagging
 that builds a large collection of de-correlated trees, and then averages them.
+
+
 On many problems the performance of random forests is very similar to boosting, and they are simpler to train and tune.
 
 ***
 
 * For $t=1, 2, \dots, T$:
-    + Draw a bootstrap sample $Z^{\ast}$ of size $N$ from the training data.
-    + Grow a random-forest tree $T_t$ to the bootstrapped data, by recursively repeating the following steps for each terminal node of the tree, until the minimum node size $n_{min}$ is reached.
-      - Select $m$ variables at random from the $p$ variables.
-      - Pick the best variable/split-point among the $m$.
-      - Split the node into two daughter nodes.
+   + Draw a bootstrap sample $Z^{\ast}$ of size $N$ from the training data.
+   + Grow a random-forest tree $T_t$ to the bootstrapped data, by recursively repeating the following steps for each terminal node of the tree, until the minimum node size $n_{min}$ is reached.
+     - Select $m$ variables at random from the $p$ variables.
+     - Pick the best variable/split-point among the $m$.
+     - Split the node into two daughter nodes.
 * Vote for classification and average for regression.
 
-![](https://dimensionless.in/wp-content/uploads/RandomForest_blog_files/figure-html/voting.png)
+<img src="https://dimensionless.in/wp-content/uploads/RandomForest_blog_files/figure-html/voting.png" width="80%" />
+
 ***
 
-* https://mi2datalab.github.io/randomForestExplainer/index.html
-* https://github.com/kjw0612/awesome-random-forest
-* https://blog.datadive.net/interpreting-random-forests/
-* https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm
+* [randomForestExplainer](https://mi2datalab.github.io/randomForestExplainer/index.html)
+* [Awesome Random Forest](https://github.com/kjw0612/awesome-random-forest)
+* [Interpreting random forests](https://blog.datadive.net/interpreting-random-forests/)
+* [Random Forests by Leo Breiman and Adele Cutler](https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm)
 * https://dimensionless.in/author/raghav/
 * http://www.rhaensch.de/vrf.html
 * https://www.wikiwand.com/en/Random_forest
@@ -264,14 +276,15 @@ It is an iterative trial-and-error in some sense.
 
 
 ***
-* Input  $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$ where $x\in \cal X$ and $y\in \{+1, -1\}$.
+
+* Input  $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $\mathrm{d}\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$.
 * For $t = 1, 2, \dots, T$:
    +  Fit a classifier $G_m(x)$ to the training data using weights $w_i$.
    +  Compute
-      $$err_{t}=\frac{\sum_{i=1}^{N}\mathbb{I}(G_t(x_i) \not= \mathrm{d}_i)}{\sum_{i=1}^{N} w_i}.$$
+      $$err_{t}=\frac{\sum_{i=1}^{N}w_i \mathbb{I}(G_t(x_i) \not= \mathrm{d}_i)}{\sum_{i=1}^{N} w_i}.$$
    +  Compute $\alpha_t = \log(\frac{1-err_t}{err_t})$.
-   +  Set $w_i\leftarrow w_i\exp[\alpha_t\mathbb{I}(\mathrm{d}_i\not=G_t(x_i))], i=1,2,\dots, N$.
+   +  Set $w_i\leftarrow w_i\exp[\alpha_t(\mathrm{d}_i G_t(x_i))], i=1,2,\dots, N$.
 * Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_t(x)]$.
 
 The indicator function $\mathbb{I}(x\neq y)$ is defined as
@@ -287,21 +300,24 @@ $$
 ***
 
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
-* [CSDN blog](https://blog.csdn.net/v_july_v/article/details/40718799)
+* [BrownBoost at Wikipedia](https://www.wikiwand.com/en/BrownBoost)
+* [CoBoosting at Wikipedia ](https://www.wikiwand.com/en/CoBoosting)
+* [CSDN blog: Adaboost 算法的原理与推导](https://blog.csdn.net/v_july_v/article/details/40718799)
 
 <img src ="https://cseweb.ucsd.edu/~yfreund/portraitsmall.jpg" width="30%" />
 <img src=https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/avatar_user_33549_1504711750-180x180.jpg width=40% />
 
 **Real AdaBoost**
 
-In AdaBoost, the error is binary- it is 0 if the classification is right otherwise it is 1. It is not precise for some setting.
+In AdaBoost, the error is binary- it is 0 if the classification is right otherwise it is 1. It is not precise for some setting. The output of decision trees is a class probability estimate $p(x) = P(y=1 | x)$, the probability that ${x}$ is in the positive class
 
+* Input  $D=\{ (x_i, \mathrm{y}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $y\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$;
-* For $m = 1, 2, \dots, T$:
+* For $m = 1, 2, \dots, M$:
    +  Fit a classifier $G_m(x)$ to obtain a class probability estimate $p_m(x)=\hat{P}_{w}(y=1\mid x)\in [0, 1]$, using weights $w_i$.
    +  Compute $f_m(x)\leftarrow \frac{1}{2}\log{p_m(x)/(1-p_m(x))}\in\mathbb{R}$.
    +  Set $w_i\leftarrow w_i\exp[-y_if_m(x_i)], i=1,2,\dots, N$ and renormalize so that $\sum_{i=1}w_i =1$.
-* Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_m(x)]$.
+* Output $G(x)=sign[\sum_{t=1}^{M}\alpha_{t}G_m(x)]$.
 
 _______
 
@@ -309,11 +325,12 @@ _______
 
 **Gentle AdaBoost**
 
+* Input  $D=\{ (x_i, \mathrm{y}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $y\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N, F(x)=0$;
 * For $m = 1, 2, \dots, M$:
-   +  Fit a classifier $f_m(x)$ by weighted least-squares of $\mathrm{y}_i$ to $x_i$ $ with weights $w_i$.
-   +  Update $F(x)\leftarrow F(x)+f_m (x)$.
-   + UPdate $w_i \leftarrow w_i \exp(-\mathrm{y}_i f_m (x_i))$ and renormalize
+   + Fit a classifier $f_m(x)$ by weighted least-squares of $\mathrm{y}_i$ to $x_i$ with weights $w_i$.
+   + Update $F(x)\leftarrow F(x)+f_m (x)$.
+   + UPdate $w_i \leftarrow w_i \exp(-\mathrm{y}_i f_m (x_i))$ and renormalize.
 * Output the classifier  $sign[F(x)]=sign[\sum_{t=1}^{M}\alpha_{t}f_m(x)]$.
 
 
@@ -441,11 +458,7 @@ where $J_m$ is the number of the terminal regions and ${n}$ is the number of tra
 * [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
 * [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
 
-______________
-Batch | Mini-Batch
----|---
-Gradient Descent | Stochastic Gradient Descent
-Gradient Boost | Stochastic Gradient Boost
+
 _______________
 
 A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
@@ -454,6 +467,40 @@ A general gradient descent “boosting” paradigm is developed for additive exp
 * [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
 * [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
 
+### Bonsai Boosted Decision Tree
+
+AdaBoost is related with so-called expentontial loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+And the weight is update via the following formula:
+$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
+
+When the lables are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
+general expression of the AdaBoost criteria
+$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
+
+where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
+the AdaBoost weighting procedure is recovered.
+
+**bonsai BDT (BBDT)**:
+
+1. $\fbox{discretizes}$ input variables before training which ensures a fast
+and robust implementation
+2. converts decision trees to n-dimentional table to store
+3. prediction operation takes one reading from this table
+
+The first step of preprocessing data limits where the splits of the data can be made and, in effect, permits the grower of the tree to
+control and shape its growth; thus, we are calling this a bonsai BDT (BBDT).
+The discretization works by enforcing that the smallest keep interval that can be created when training the BBDT is:
+$$\Delta x_{min} > \delta_x \forall x\,\,\text{on all leaves}$$
+where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
+
+***
+* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
+* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
+* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
+* [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](https://arxiv.org/abs/1210.6861)
+* [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
+* [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
+* [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
 
 #### xGBoost
 
@@ -543,6 +590,7 @@ This formula can be decomposed as 1) the score on the new left leaf 2) the score
 * [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html)
 * [How to Visualize Gradient Boosting Decision Trees With XGBoost in Python](https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/)
 * [Awesome XGBoost](https://github.com/dmlc/xgboost/blob/master/demo/README.md#machine-learning-challenge-winning-solutions)
+* [Stroy and lessons from xGBoost](https://homes.cs.washington.edu/~tqchen/2016/03/10/story-and-lessons-behind-the-evolution-of-xgboost.html)
 
 <img src=https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg />
 
@@ -558,8 +606,6 @@ LightGBM is a gradient boosting framework that uses tree based learning algorith
 
 
 ![lightGBM](http://zhoutao822.coding.me/2019/01/13/LightGBM/2.png)
-
-
 
 A major reason is that for each feature, they need to scan all the data instances to estimate the information gain of all
 possible split points, which is very time consuming. To tackle this problem, the authors of lightGBM propose two novel techniques: Gradient-based One-Side Sampling (GOSS) and Exclusive Feature Bundling (EFB).
@@ -592,6 +638,7 @@ And it limits the depth of the tree in order to avoid over-fitting.
 - [Reference papers of lightGBM](https://lightgbm.readthedocs.io/en/latest/Features.html#references)
 - https://lightgbm.readthedocs.io/en/latest/Features.html
 
+
 #### CatBoost
 
 `CatBoost` is an algorithm for gradient boosting on decision trees. [Developed by Yandex researchers and engineers, it is the successor of the `MatrixNet` algorithm that is widely used within the company for ranking tasks, forecasting and making recommendations. It is universal and can be applied across a wide range of areas and to a variety of problems](https://betapage.co/startup/catboost) such as search, recommendation systems, personal assistant, self-driving cars, weather prediction and many other tasks. It is in open-source and can be used by anyone now.
@@ -611,10 +658,11 @@ created to fight a prediction shift caused by a special kind of target leakage p
 in all currently existing implementations of gradient boosting algorithms.
 
 
----|---|---
----|---|---
-<img src = "https://s2.51cto.com/oss/201808/30/108338cbd6df1a13dd9ed6d14c9da35d.png" width="100%" />|<img src = "https://s1.51cto.com/oss/201808/30/e0ac1ddc9b9c0e513e2669f56151edc7.png" width="100%" />|<img src = "https://s1.51cto.com/oss/201808/30/4183b4bba0529b55e5f4f1bef8072ab5.png" width="100%" />
-
+|THREE|
+|:---:|
+|<img src = "https://s2.51cto.com/oss/201808/30/108338cbd6df1a13dd9ed6d14c9da35d.png" width="100%" />|
+|<img src = "https://s1.51cto.com/oss/201808/30/e0ac1ddc9b9c0e513e2669f56151edc7.png" width="100%" />|
+|<img src = "https://s1.51cto.com/oss/201808/30/4183b4bba0529b55e5f4f1bef8072ab5.png" width="100%" />|
 
 
 ***
@@ -646,13 +694,14 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 
 **Optimization and Boosting**
 
+
 How to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
 Can we do leaves splitting and optimization in the same stage?
 
 The core transfer is how to change the original optimization to one linearly constrained  convex optimization  so that it adjusts to ADMM:  
 
 $$
-\arg\min_{f_{t}\in\cal F}\sum_{i=1}^{n} L[y_i,\hat{y}^{(t-1)}_i + f_t(x_i)] + \gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2 \iff \fbox{???} \quad ?
+\arg\min_{f_{t}\in\mathcal F}\sum_{i=1}^{n} L[y_i,\hat{y}^{(t-1)}_i + f_t(x_i)] + \gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2 \iff \fbox{???} \quad ?
 $$
 where $f_t(x)={\sum}_{i=1}^{T}w_i\mathbb{I}(q(x)=i)$.
 
@@ -671,6 +720,14 @@ Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boo
 * [Survey of Boosting from an Optimization Perspective](https://users.soe.ucsc.edu/~manfred/pubs/tut/icml2009/ws.pdf)
 * [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
 
+______________
+Boosting | Optimziation
+---|---
+AdaBoost | Coordinate-wise Descent
+Stochastic Gradient Boost | Stochastic Gradient Descent
+Gradient Boost |  Gradient Descent
+Accelerated Gradient Boosting | Accelerated Gradient Descent
+
 **Accelerated Gradient Boosting**
 
 The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
@@ -678,18 +735,16 @@ The difficulty in accelerating GBM lies in the fact that weak (inexact) learners
 * Initialize $f_0(x)=g_0(x)=0$;
 * For $m = 1, 2, \dots, M$:
    +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
-   +   For $i = 1, 2,\dots , n$ compute
+   +  For $i = 1, 2,\dots , n$ compute
     $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
-   +   Find the best weak-learner for pseudo residual:
-   $${\tau}_{m,1}=\arg\min_{\tau\in \cal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
-  +   Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
-  +   Update the corrected residual:
+   +  Find the best weak-learner for pseudo residual:
+   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
+  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
+  +  Update the corrected residual:
   $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
-  +   Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \cal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
-  +   Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
+  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
+  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
 * Output $f^{M}(x)$.
-
-
 
 
 #### Application
@@ -698,6 +753,7 @@ The difficulty in accelerating GBM lies in the fact that weak (inexact) learners
 * [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
 * https://catboost.ai/news
 * [Finding Influential Training Samples for Gradient Boosted Decision Trees](https://research.yandex.com/publications/151)
++ [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](http://inspirehep.net/record/1193348)
 + [CERN boosts its search for antimatter with Yandex’s MatrixNet search engine tech](https://www.extremetech.com/extreme/147320-cern-boosts-its-search-for-antimatter-with-yandexs-matrixnet-search-engine-tech)
 + [MatrixNet as a specific Boosted Decision Tree algorithm which is available as a service](https://github.com/yandex/rep/blob/master/rep/estimators/matrixnet.py)
 
@@ -725,6 +781,7 @@ The procedure is as follows:
 * http://www.chioka.in/stacking-blending-and-stacked-generalization/
 * https://blog.csdn.net/willduan1/article/details/73618677
 * [今我来思，堆栈泛化(Stacked Generalization)](https://www.jianshu.com/p/46ccf40222d6)
+* [我爱机器学习:集成学习（一）模型融合与Bagging](https://www.hrwhisper.me/machine-learning-model-ensemble-and-bagging/)
 
 In the sense of stacking, deep neural network is thought as the stacked `logistic regression`. And `Boltzman machine` can be stacked in order to construct more expressive model for discrete random variables.
 

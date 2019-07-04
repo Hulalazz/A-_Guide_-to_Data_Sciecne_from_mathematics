@@ -1,15 +1,20 @@
 ## Geometric Deep Learning
 
-![](https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg)
+<img src="https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg" width="80%" />
+
+* [Graph Embedding：深度学习推荐系统的"基本操作"](https://zhuanlan.zhihu.com/p/68247149)
+* [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
 * http://www.ai3sd.org/
 * https://heidelberg.ai/2019/07/09/graph-neural-networks.html
 * https://sites.google.com/site/rdftestxyz/home
 * [Lecture 11: Learning on Non-Euclidean Domains](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
 * [Network Embedding](https://shiruipan.github.io/project/effective-network-embedding/)
-* [如何评价百度新发布的NLP预训练模型ERNIE？ - 飞桨PaddlePaddle的回答 - 知乎](https://www.zhihu.com/question/316140575/answer/719617103)
+* [如何评价百度新发布的NLP预训练模型ERNIE? - 知乎](https://www.zhihu.com/question/316140575/answer/719617103)
 * [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
 * [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
 * [Jure Leskovec.](https://cs.stanford.edu/people/jure/)
+* http://www-connex.lip6.fr/~denoyer/wordpress/
+* https://blog.feedly.com/learning-context-with-item2vec/
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
 
@@ -70,7 +75,7 @@ $$
 [DeepWalk generalizes recent advancements in language modeling and unsupervised feature learning (or deep learning) from sequences of words to graphs. DeepWalk uses local information obtained from truncated random walks to learn latent representations by treating walks as the equivalent of sentences.](http://www.perozzi.net/projects/deepwalk/)
 And if we consider the  text as digraph, `word2vec` is an specific example of `DeepWalk`.
 Given the word sequence $\mathbb{W}=(w_0, w_1, \dots, w_n)$, we can compute the conditional probability $P(w_n|w_0, w_1, \dots, w_{n-1})$. And
-$$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
+$$P(w_n|f(w_0), f(w_1), \cdots, f(w_{n_1}))$$
 
 >
 > * DeepWalk  $G, w, d, \gamma, t$
@@ -94,7 +99,7 @@ $$P(w_n|f(w_0), f(w_1),⋯, f(w_{n−1}))$$
 
 > $SkipGram(Φ, W_{v_i}, w)$
 * 1. for each $v_j \in W_{v_i}$ do
-    + 2. for each $u_k \in W_{v_i}[j − w : j + w]$ do
+    + 2. for each $u_k \in W_{v_i}[j - w : j + w]$ do
     + 3.  $J(\Phi)=-\log Pr(u_k\mid \Phi(v_j))$
     + 4.  $\Phi =\Phi -\alpha\frac{\partial J}{\partial \Phi}$
     + 5. end for
@@ -157,7 +162,7 @@ This is a paper about identifying nodes in graphs that play a similar role based
 Struc2vec has four main steps:
 
 > 1. Determine the structural similarity between each vertex pair in the graph, for different neighborhood sizes.
-> 2. Construct a weighted multi-layer graph, in which each layer corresponds to a level in a hierarchy measuring structural similarity (think: ‘at this level of zoom, these things look kind of similar’).
+> 2. Construct a weighted multi-layer graph, in which each layer corresponds to a level in a hierarchy measuring structural similarity (think: ‘at this level of zoom, these things look kind of similar�?).
 > 3. Use the multi-layer graph to generate context for each node based on biased random walking.
 > 4. Apply standard techniques to learn a latent representation from the context given by the sequence of nodes in the random walks.
 
@@ -196,7 +201,7 @@ Here, any time step that is less than 1 or greater than ${T}$  can be ignored.
 
 The skip-gram model parameters are the central target word vector and context word vector for each individual word. In the training process, we are going to learn the model parameters by maximizing the likelihood function, which is also known as maximum likelihood estimation. his is equivalent to minimizing the following loss function:
 $$
--\log(\prod_{t=1}^{T}\prod_{-m\leq j \leq m, j\not = i}{P}(w^{(t+j)}|w^{(j)}))
+-\log(\prod_{t=1}^{T}\prod_{-m\leq j \leq m, j\not = i}{P}(w^{(t+j)}\mid w^{(j)}))
 = \\ -\sum_{t=1}^{T}\sum_{-m\leq j \leq m, j \not= i} \log({P}(w^{(t+j)}|w^{(j)}))).
 $$
 
@@ -216,10 +221,10 @@ $$
     \\= u_o - \sum_{j\in\mathbb{V}}P(w_j|w_c) u_j.
 $$
 
-The `continuous bag of words (CBOW)` model is similar to the skip-gram model. The biggest difference is that the CBOW model assumes that the central target word is generated based on the context words before and after it in the text sequence. Let central target word  $w_c$  be indexed as $c$ , and context words  $w_{o_1},…,w_{o_{2m}}$  be indexed as  $o_1,…,o_{2m}$  in the dictionary. Thus, the conditional probability of generating a central target word from the given context word is
+The `continuous bag of words (CBOW)` model is similar to the skip-gram model. The biggest difference is that the CBOW model assumes that the central target word is generated based on the context words before and after it in the text sequence. Let central target word  $w_c$  be indexed as $c$ , and context words  $w_{o_1},\cdots, w_{o_{2m}}$  be indexed as  $o_1,\cdots,o_{2m}$  in the dictionary. Thus, the conditional probability of generating a central target word from the given context word is
 
 $$
-P(w_c|w_{o_1},…,w_{o_{2m}}) = \frac{\exp(\frac{1}{2m}u_c^T(u_{o_1}+ \cdots + u_{o_{2m}}))}{\sum_{i\in V}\exp(\frac{1}{2m}u_i^T(u_{o_1}+ \cdots + u_{o_{2m}}))}.
+P(w_c|w_{o_1},\cdots, w_{o_{2m}}) = \frac{\exp(\frac{1}{2m}u_c^T(u_{o_1}+ \cdots + u_{o_{2m}}))}{\sum_{i\in V}\exp(\frac{1}{2m} u_i^T(u_{o_1}+ \cdots + u_{o_{2m}}))}.
 $$
 
 - https://code.google.com/archive/p/word2vec/
@@ -239,7 +244,7 @@ $$
 - [Sentiment Analysis using Doc2Vec](http://linanqiu.github.io/2015/10/07/word2vec-sentiment/)
 ***
 * [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/index.html)
-* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - Ph0en1x的文章 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
+* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - Ph0en1x的文�? - 知乎](https://zhuanlan.zhihu.com/p/69290203)
 * [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 - [Statistical Models of Language](http://cocosci.princeton.edu/publications.php?topic=Statistical%20Models%20of%20Language)
 - [Semantic Word Embeddings](https://www.offconvex.org/2015/12/12/word-embeddings-1/)
@@ -247,10 +252,10 @@ $$
 - [GloVe: Global Vectors for Word Representation Jeffrey Pennington,   Richard Socher,   Christopher D. Manning](https://nlp.stanford.edu/projects/glove/)
 - [BERT-is-All-You-Need](https://github.com/Eurus-Holmes/BERT-is-All-You-Need)
 - [Word embedding](https://levyomer.wordpress.com/category/word-embeddings/)
-- [Open Sourcing BERT: State-of-the-Art Pre-training for Natural Language Processing， Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
+- [Open Sourcing BERT: State-of-the-Art Pre-training for Natural Language Processing? Friday, November 2, 2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
 - [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) ](http://jalammar.github.io/illustrated-bert/)
 - [Deep Semantic Embedding](http://smir2014.noahlab.com.hk/paper%204.pdf)
-- [无监督词向量/句向量:W2v/Glove/Swivel/ELMo/BERT](https://x-algo.cn/index.php/2018/11/12/3083/)
+- [无监督词向量/句向量?:W2v/Glove/Swivel/ELMo/BERT](https://x-algo.cn/index.php/2018/11/12/3083/)
 - [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
 
 
@@ -267,7 +272,7 @@ In details, it is as following:
 $$
 \hat{y}(x) = \underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}_{bias} + \underbrace{(\sum_{a_i\in U(a)} Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }_{factors}}_{CAT-E} + \underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}.
 $$
-And it is decomposed as the floowing table.
+And it is decomposed as the following table.
 _____
 Ingredients| Formulae| Features
 ---|---|---
@@ -346,7 +351,7 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - [Implementing Poincaré Embeddings](https://rare-technologies.com/implementing-poincare-embeddings/)
 - [Hyperbolic Embedding search result @Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Hyperbolic+Embeddings)
 
-<img src=https://hazyresearch.github.io/hyperE/pc.svg  width=40% />
+<img src="https://hazyresearch.github.io/hyperE/pc.svg"  width="40%" />
 
 - [Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole](https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/)
 - [HyperE: Hyperbolic Embeddings for Entities](https://hazyresearch.github.io/hyperE/)
@@ -356,9 +361,9 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - http://hyperbolicdeeplearning.com/papers/
 
 
-
-<img title="combinatorial_tree1" src="https://hazyresearch.github.io/hyperE/pytorch_tree.gif" width="50%" />
-<img title = tree2 src=https://hazyresearch.github.io/hyperE/combinatorial_tree.gif width=50% />
+---|---
+---|---
+<img title="combinatorial_tree1" src="https://hazyresearch.github.io/hyperE/pytorch_tree.gif" width="90%" />|<img title = "tree2" src="https://hazyresearch.github.io/hyperE/combinatorial_tree.gif" width="90%" />
 
 + http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/
 *****
@@ -403,7 +408,7 @@ where ${W}_{i}$ is a weight matrix for the $i$-th neural network layer and $\sig
 
 * But first, let us address two limitations of this simple model: multiplication with $A$ means that, for every node, we sum up all the feature vectors of all neighboring nodes but not the node itself (unless there are self-loops in the graph). We can "fix" this by enforcing self-loops in the graph: we simply add the identity matrix $I$ to $A$.
 
-* The second major limitation is that $A$ is typically not normalized and therefore the multiplication with $A$ will completely change the scale of the feature vectors (we can understand that by looking at the eigenvalues of $A$).Normalizing ${A}$ such that all rows sum to one, i.e. $D^{−1}A$, where $D$ is the diagonal node degree matrix, gets rid of this problem.
+* The second major limitation is that $A$ is typically not normalized and therefore the multiplication with $A$ will completely change the scale of the feature vectors (we can understand that by looking at the eigenvalues of $A$).Normalizing ${A}$ such that all rows sum to one, i.e. $D^{-1}A$, where $D$ is the diagonal node degree matrix, gets rid of this problem.
 
 In fact, the propagation rule introduced in [Kipf & Welling (ICLR 2017)](https://arxiv.org/abs/1609.02907) is given by:
 $$
@@ -431,6 +436,7 @@ GCN can be regarded as the counterpart of CNN for graphs so that the optimizatio
 
 * [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
 * [GRAPH CONVOLUTIONAL NETWORKS](https://tkipf.github.io/graph-convolutional-networks/)
+* https://benevolent.ai/publications
 
 ### Spectral ConvNets
 
@@ -449,20 +455,20 @@ where $\otimes,\oplus,\cdot$ represent convolution operation, padding and poolin
 FEBRUARY 5-9, 2018](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14506.pdf).
 We would ideally like our graph convolutional layer to have:
 
-* Computational and storage efficiency (requiring no more t$O(E+V)$ time and memory);
+* Computational and storage efficiency (requiring no more than $O(E+V)$ time and memory);
 * Fixed number of parameters (independent of input graph size);
 * Localisation (acting on a local neighbourhood of a node);
 * Ability to specify arbitrary importances to different neighbours;
 * Applicability to inductive problems (arbitrary, unseen graph structures).
 
-|CNN|GCN|
-|---|---|
-|padding|?|
-|convolution|?|
-|pooling|?|
+|CNN|GCN|---|
+|---|---|---|
+|padding|?|?|
+|convolution|?|Information of neighbors|
+|pooling|?|Invariance|
 
 * `Spectral graph theory` allows to redefine convolution in the context of graphs with Fourier analysis.
-* Graph downsampling ⇔ graph coarsening ⇔ graph partitioning: Decompose G into smaller meaningful clusters.
+* Graph downsampling $\iff$ graph coarsening $\iff$ graph partitioning: Decompose ${G}$ into smaller meaningful clusters.
 * Structured pooling: Arrangement of the node indexing such that adjacent nodes are hierarchically merged at the next coarser level.
 
 
@@ -473,9 +479,46 @@ Laplacian operator is represented as a positive semi-definite $n \times n$ matri
 |Unnormalized Laplacian|$\Delta = \bf{D - A}$|
 |Normalized Laplacian|$\Delta = \bf{I -D^{-\frac{1}{2}}AD^{-\frac{1}{2}}}$|
 |Random walk Laplacian|$\Delta = \bf{I - D^{-1}A}$|
-|$\mathbf A$：Adajacency Matrix|$\mathbf D$: Degree Matrix|
+|$\mathbf A$：Adjacency Matrix|$\mathbf D$: Degree Matrix|
 
+Eigendecomposition of graph Laplacian:
 
+$$\Delta = {\Phi}^{T} {\Lambda} {\Phi}$$
+
+where ${\Phi}$ is the matrix consisting of eigenvectors and ${\Lambda}= diag({\lambda}_1，\dots, {\lambda}_n )$.
+In matrix-vector notation, with the $n\times n$ Fourier matrix and a n-dimensional vector $f\in\mathbb{R}^{n}$, it is proven that if $\hat{f}={\Phi}^{T}f$ as the projection of $f$ into the column space  of  $\Phi$, where $\hat{f}_{i}$ the inner product of ${f, \phi_i}$, then $f={\Phi}\hat{f}$ the inverse Fourier transform.
+
+Convolution of two vectors $f=(f_1, \cdots, f_n )^{T}$ and $g=(g_1, \cdots, g_n )^{T}$ is defined as $(f\star g)_i = \sum_{m} g_{(i-m) \,\,\, mod \,\,\,n } \,\cdot f_m$ or in matrix notation
+$$ (f\star g)=
+\underbrace{\begin{pmatrix}
+& g_1, & g_2, & \cdots, & g_{n-1}, & g_n &\\
+& g_n, & g_1, & \cdots, & g_{n-2}, & g_{n-1} & \\
+& \vdots & \vdots &\ddots & \vdots & \vdots & \\
+& g_3, & g_4, & \cdots, & g_{1}, & g_2 &\\
+& g_2, & g_3, & \cdots, & g_{n}, & g_1 &\\
+\end{pmatrix}}_{\text{Circulant matrix G} }
+\begin{pmatrix}
+f_1 \\
+\vdots \\
+f_n
+\end{pmatrix} \\
+= \underbrace{ {\Phi} {diag(\hat{g}_1, \cdots, \hat{g}_m)} \Phi^T }_{G} \quad f \\
+= {\Phi}({\Phi}^Tg\circ {\Phi}^{T} f)
+$$
+
+where the last equation is because the matrix multiplication is associative and $\Phi^Tg$ is the $\fbox{Fourier transform}$; the notation $\circ$ is the inner product.
+What is more,
+$${\Phi}({\Phi}^Tg\circ {\Phi}^{T} f)={\Phi}\hat{g}(\Lambda){\Phi}^{T} f=\hat{g}({\Phi}(\Lambda){\Phi}^{T})f=\hat{g}(\Delta)f$$
+where $\Delta$ is the Laplacian of the graph; $\hat{g}(\Lambda)$ is the polynomial of matrix.
+
+****
+
+Graph Convolution: Recursive Computation with Shared Parameters:
+
+* Represent each node based on its neighbourhood
+* Recursively compute the state of each node by propagating previous
+states using relation specific transformations
+* Backpropagation through Structure
 
 **Vanilla spectral graph ConvNets**
 
@@ -483,28 +526,61 @@ Laplacian operator is represented as a positive semi-definite $n \times n$ matri
 Every graph convolutional layer starts off with a shared node-wise feature transformation (in order to achieve a higher-level representation), specified by a weight matrix $W$. This transforms the feature vectors into $\vec{g}_i = {\bf W}\vec{h}_i$. After this, the vectors $\vec{g}_i$ are typically recombined in some way at each node.
 
 In general, to satisfy the localization property, we will define a graph convolutional operator as an aggregation of features across neighborhoods; defining $\mathcal{N}_i$ as the neighborhood of node i
-(typically consisting of all first-order neighbours of $i$ , including $i$ itself), we can define the output eatures of node $i$ as:
+(typically consisting of all first-order neighbours of $i$ , including $i$ itself), we can define the output features of node $i$ as:
 $$\vec{h}'_i = \sigma\left(\sum_{j\in\mathcal{N}_i}\alpha_{ij}\vec{g}_j\right)$$
+where $\sigma$ is some activation function such as **rectified linear unit (ReLU)** in ConvNet.
 
 **SplineNets**
 
+Parametrize the smooth spectral filter function
+
 **Spectral graph ConvNets with polynomial filters**
 
-**Simplified ChebNets**
+Represent smooth spectral functions with polynomials of Laplacian eigenvalues
+$$w_{\alpha}(\lambda)={\sum}_{j=0}^r{\alpha}_{j} {\lambda}^j$$
+
+where $\alpha=(\alpha_1, \cdots, \alpha_r)^{T}$ is the vector of filter parameters
+
+Convolutional layer: Apply spectral filter to feature signal ${f}$:
+$$w_{\alpha}(\Lambda)f= {\sum}_{j=0}^r{\alpha}_{j} {\Lambda}^j f$$
+
+Such graph convolutional layers are GPU friendly.
+
+**ChebNet**
 
 Graph convolution network  always deal with unstructured data sets where the graph has different size. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
+
+Graph convolution with (non-orthogonal) monomial basis $1, x, x^2, x^3, \cdots$:
+$$w_{\alpha}(\lambda)={\sum}_{j=0}^{r}{\alpha}_{j} {\lambda}^{j}$$
+Graph convolution with (orthogonal) Chebyshev polynomials
+$$w_{\alpha}(\lambda) = {\sum}_{j=0}^{r}{\alpha}_{j} T_j(\lambda)$$
+where $T_k(x)$ are the Chebyshev polynomials.
+
+Kipf and Welling proposed the ChebNet (arXiv:1609.02907) to approximate the filter using Chebyshev polynomial.
+Application of the filter with the scaled Laplacian:
+$$\tilde{\mathbf{\Delta}}=2{\lambda}_{n}^{-1}\mathbf{\Delta-I}$$
+
+$$w_{\alpha}(\tilde{\mathbf{\Delta}})f= {\sum}_{j=0}^r{\alpha}_{j} T_j({\tilde{\mathbf{\Delta}}}) f={\sum}_{j=0}^r{\alpha}_{j}X^{(j)}$$
+with
+$$X^{(j)}=T_j({\tilde{\mathbf{\Delta}}}) f=2\mathbf{\Delta} X^{(j-1)}-X^{(j-2)}, X^{(0)}=f, X^{(1)}=\tilde{\mathbf{\Delta}} f.$$
+
+
 * [Graph Convolutional Neural Network (Part I)](https://datawarrior.wordpress.com/2018/08/08/graph-convolutional-neural-network-part-i/)
 * https://www.ntu.edu.sg/home/xbresson/
 * https://github.com/xbresson
 
+**Simplified ChebNets**
+
+Use Chebychev polynomials of degree $r=2$ and assume $r_2\approx 2$:
+$$w_{\alpha}(\tilde{\mathbf{\Delta}})f ={\alpha}_0 f + {\alpha}_1(\mathbf{\Delta-I})f= {\alpha}_0 f - {\alpha}_1\mathbf D^{-\frac{1}{2}}WD^{-\frac{1}{2}} f $$
+
+Further constrain $\alpha=-\alpha_1=\alpha_0$ to obtain a single-parameter filter:
+$$w_{\alpha}(\tilde{\mathbf{\Delta}})f ={\alpha}\mathbf{(I-D^{-\frac{1}{2}}WD^{-\frac{1}{2}})} f $$
 
 **PinSage**
 
 <img src=https://pic3.zhimg.com/80/v2-34c698539a34d506ff3f05c24ddd3482_hd.jpg width=70% />
 <img src=https://pic2.zhimg.com/80/v2-41f380e6db85ae9173701c33c0f75311_hd.jpg width=70% />
-
-
-
 
 ### ChebNet, CayleyNet, MotifNet
 
@@ -513,15 +589,9 @@ In the previous post, the convolution of the graph Laplacian is defined in its *
 Graph Convolution Networks (GCNs) generalize the operation of convolution from traditional data (images or grids) to graph data.
 The key is to learn a function f to generate
 a node $v_i$’s representation by aggregating its own features
-$X_i$ and neighbors’ features $X_j$ , where $j \in N(v_i)$.
+$X_i$ and neighbors? features $X_j$ , where $j \in N(v_i)$.
 
-**ChebNet**
 
-Kipf and Welling proposed the ChebNet (arXiv:1609.02907) to approximate the filter using Chebyshev polynomial. It approximates the filter in terms of Chebyshev polynomial:
-$$
-g_{\theta}(\Lambda) \approx \sum_{k=0}^{K}\theta_k T_k(\Lambda)
-$$
-where $T_k(x)$ are the Chebyshev polynomials.
 
 **CayleyNet**
 
@@ -556,6 +626,17 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * [GCN Part II @datawarrior](https://datawarrior.wordpress.com/2018/08/12/graph-convolutional-neural-network-part-ii/)
 * http://mirlab.org/conference_papers/International_Conference/ICASSP%202018/pdfs/0006852.pdf
 
+Minimal inner structures:
+
+* Invariant by vertex re-indexing (no graph matching is required)
+* Locality (only neighbors are considered)
+Weight sharing (convolutional operations)
+* Independence w.r.t. graph size
+
+$$\color{green}{\fbox{${h_i} = f_{GCN}(h_j: j\to i)$} }$$
+
++ https://github.com/xbresson
+
 **Higher-order Graph Convolutional Networks**
 
 - [Higher-order Graph Convolutional Networks](http://ryanrossi.com/pubs/Higher-order-GCNs.pdf)
@@ -574,7 +655,7 @@ Graph convolutional layer then computes a set of new node features, $(\vec{h}_{1
 
 Most prior work defines the kernels $\alpha_{ij}$ explicitly (either based on the structural properties of the graph, or as a learnable weight); this requires compromising at least one other desirable property.
 
-In `Graph Attention Networks` the kernels $\alpha_{ij}$ be computed as a byproduct of an attentional mechanism, $a : \mathbb{R}^N \times \mathbb{R}^N \rightarrow \mathbb{R}$, which computes unnormalised coefficients $e_{ij}$ across pairs of nodes $i,j$ based on their features:
+In `Graph Attention Networks` the kernels $\alpha_{ij}$ be computed as a byproduct of an attentional mechanism, $a : \mathbb{R}^N \times \mathbb{R}^N \rightarrow \mathbb{R}$, which computes un-normalized coefficients $e_{ij}$ across pairs of nodes $i,j$ based on their features:
 
 $$
 e_{ij} = a(\vec{h}_i, \vec{h}_j).
@@ -587,7 +668,7 @@ $$
 
 - http://petar-v.com/GAT/
 
-<img src=“https://www.cl.cam.ac.uk/~pv273/images/gat.jpg” width=“70%” />
+<img src="https://www.cl.cam.ac.uk/~pv273/images/gat.jpg" width="70%" />
 
 #### Gated Graph Neural Networks
 
@@ -599,7 +680,7 @@ $$
 
 ### Application
 
-- [ ] [graph convolution network 有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
+- [ ] [graph convolution network 有什么比较好的应用task? - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 - [ ] [Use of graph network in machine learning](https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/)
 - [ ] [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
 - [ ] [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
@@ -611,7 +692,7 @@ Node’s neighborhood defines a computation graph. The key idea is to generate n
 their neighbors using neural networks.
 
 - [ ] [Graph Neural Networks for Social Recommendation](https://paperswithcode.com/paper/graph-neural-networks-for-social)
-- [ ] [图神经网络+推荐](https://daiwk.github.io/posts/dl-graph-recommendations.html)
+- [ ] [图神经网+推荐](https://daiwk.github.io/posts/dl-graph-recommendations.html)
 - [ ] [Graph Convolutional Neural Networks for Web-Scale Recommender Systems](https://arxiv.org/abs/1806.01973)
 - [ ] [Graph Convolutional Networks for Recommender Systems](https://arxiv.org/abs/1904.12575)
 
@@ -625,6 +706,7 @@ their neighbors using neural networks.
 - http://www.grakn.ai/?ref=Welcome.AI
 - [AlphaFold: Using AI for scientific discovery](https://deepmind.com/blog/alphafold/)
 - [A graph-convolutional neural network model for the prediction of chemical reactivity](https://pubs.rsc.org/en/content/articlepdf/2019/sc/c8sc04228d)
+- [Convolutional Networks on Graphs for Learning Molecular Fingerprints](http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints)
 
 
 **GCN for NLP**
