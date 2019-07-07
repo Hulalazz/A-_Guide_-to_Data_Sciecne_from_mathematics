@@ -1,11 +1,15 @@
 #### Graph as Data  Structure
 
-https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html
-http://mat.uab.cat/~alseda/MasterOpt/
-http://ryanrossi.com/search.php
-https://iss.oden.utexas.edu/
-http://michele-ackerer.fr/algorithmic-graph-theory.htm
-http://www.columbia.edu/~mc2775/
+<img title="http://davidhall.io/visualising-music-graphic-scores/" src="http://davidhall.io/wp-content/uploads/2017/08/graphic-notation-Roman-Haubenstock-Ramati-2.jpg" width="80%"/>
+
+* https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html
+* http://mat.uab.cat/~alseda/MasterOpt/
+* http://ryanrossi.com/search.php
+* https://iss.oden.utexas.edu/
+* http://michele-ackerer.fr/algorithmic-graph-theory.htm
+* http://www.columbia.edu/~mc2775/
+* http://web.eecs.umich.edu/~dkoutra/tut/sdm17.html
+* http://web.eecs.umich.edu/~dkoutra/tut/icdm18.html
 
 [Learn about graph, graph representations, graph traversals and their running time.](https://kobiso.github.io//data%20structure/coding-DS_graph/)
 
@@ -85,9 +89,9 @@ __________________________________
 Matrix Theory        | Graph Theory|-----|---
 ---------------------|-------------|-----|---
 Matrix Addition      |?   | Spectral Theory |?
-Matrix Powder        |?   | Jordan Form     |?
+Matrix Power         |?   | Jordan Form     |?
 Matrix Multiplication|?   | Rank            |?
-Basis                |  ? | Spectra         |?
+Basis                |?   | Spectra         |?
 __________________________________
 
 > **Definition** A `walk` in a digraph is an alternating sequence of vertices and
@@ -108,13 +112,11 @@ $$
 > The length-k counting matrix of a digraph $G$ is ${A(G)}^k$, for all $k\in\mathbb{N}$.
 
 
-> **Definition** A **walk** in an undirected graph is a sequence of vertices, where each
-successive pair of vertices are adjacent; informally, we can also think of a walk as
-a sequence of edges. A walk is called a **path** if it visits each vertex at most once. For any two vertices $u$ and $v$ in a graph $G$, we say that v is reachable from u
-if $G$ contains a walk (and therefore a path) between $u$ and $v$. An undirected
-graph is connected if every vertex is reachable from every other vertex.
-A **cycle** is a path that starts and ends at the same vertex and has at least one
-edge.
+> **Definition** A **walk** in an undirected graph is a sequence of vertices, where each successive pair of vertices are adjacent; informally, we can also think of a walk as a sequence of edges.
+> A walk is called a **path** if it visits each vertex at most once.
+> For any two vertices $u$ and $v$ in a graph $G$, we say that $v$ is reachable from $u$ if $G$ contains a walk (and therefore a path) between $u$ and $v$.
+>An undirected graph is connected if every vertex is reachable from every other vertex.
+> A **cycle** is a path that starts and ends at the same vertex and has at least one edge.
 
 #### Shortest Paths
 
@@ -123,19 +125,85 @@ In graph theory, the `shortest path` problem is the problem of finding a path be
 Given the start node and end node, it is supposed to identify whether there is a path and find the shortest path(s) among all these possible paths.
 
 The distance between the node $u$ and $v$ is the minimal number $k$ that makes $A^{k}_{uv}>0$.
+Given two nodes $E_1, E_2$ in graph $\mathrm{G}$, if we would like begin from the node $E_1$ to the end node $E_2$, we must judege that if there is a path from $E_1$ to $E_2$ before finding the shortest way.
+In the perspective of optimization, the feasible domain is finite in the shortest path problem.
+
+#### Depth-first Search and Breadth-First
+
+Because it is unknown whether there is a path between the given nodes, it is necessary to take the first brave walk into a neighbor of the start node $E_1$.
+
+Breadth first search explores the space level by level only when there are no more states to be explored at a given level does the algorithm move on to the next level.
+We implement BFS using lists open and closed to keep track of progress through the state space.
+In the order list, the elements will be those who have been generated but whose children have not been examined.
+The closed list records the states that have been examined and whose children have been generated.
+The order of removing the states from the open list will be the order of searching.
+The open is maintained as a queue on the first in first out data structure.
+States are added to the right of the list and removed from the left.
+
+<img src="https://kobiso.github.io//assets/images/graph/depth.png" width ="50%" /><img src="https://kobiso.github.io//assets/images/graph/breadth.png" width ="50%" />
+
+After initialization, each vertex is enqueued at most once and hence dequeued at most once.
+The operations of enqueuing and dequeuing take $O (1)$ time, so the total time devoted to queue operations is $O (v)$.
+Because the adjacency list of each vertex is scanned only when the vertex is dequeued, the adjacency list of each vertex is scanned at most once.
+Since the sum of the lengths of all the adjacency lists is the $ta(E)$, at most $O(E)$ time is spent in total scanning adjacency lists.
+The overhead for the initialization is $O(v)$, and thus the total running time of BFS is $O(v+E)$. Thus, breadth first search runs in time linear in the size of the adjacency list representation.
+
+
+In depth first search, when a state is examined all of its children and their descendants are examined before any of its siblings. Depth first search goes deeper into the search space whenever this is possible, only when no further descendants of a state can be found, are its siblings considered.
+
+A depth first traversal takes O(N*E) time for adjacency list representation and $O(N^2)$ for matrix representation.
+
++ https://brilliant.org/wiki/depth-first-search-dfs/
++ [Breadth First Search (BFS) and Depth First Search (DFS) Algorithms](https://www.includehelp.com/algorithms/breadth-first-search-bfs-and-depth-first-search-dfs.aspx)
+
+<img src="https://kobiso.github.io//assets/images/graph/bid.png" width="80%" />
 
 #### $A^{\ast}$ Algorithm
 
  As introduced in wikipedia, $A^{\ast}$ algorithm has its advantages and disadvantages:
-> In computer science, $A^{\ast}$ (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found A* to be superior to other approaches.
+> In computer science, $A^{\ast}$ (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found $A^{\ast}$ to be superior to other approaches.
 
 
 First we learn the **Dijkstra's algorithm**.
 Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist [Edsger W. Dijkstra](https://www.wikiwand.com/en/Edsger_W._Dijkstra) in 1956 and published three years later.
 
+For example, we want to find the shortest path between a and b in the following graph.
+The distance of every pair is given.
+
+1. the distance to its neighbors is computed:
+
+a(0)| 2 | 3 | 6
+----|---|---|---
+0   |7  | 9 | 14
+
+
+2. as the first step, compute the distance to all neighbors:
+
+ 2  | 3 | 4 | 3 | 4 | 6 |
+----|---|---|---|---|---|
+  0 | 10| 15|0  | 11| 2 |
+
+Now we have 2 choices from 1 to 3: (1) $1\to3\mid 9$;(2) $1\to 2\to3\mid (7+10=17 >9)$. And we find all paths from 1 to 3 and the shortest path from 1 to 3  is $1\to3$ with distance 9.
+
+From 1 to 4: (1) $1\to2\to4\mid 7+15=22$; (2) $1\to3\to4\mid 9+11=20<22$.
+the shortest path from 1 to 6  is $1\to3\to4$ with distance 20.
+
+From 1 to 6: (1) $1\to6\mid 14$; (2) $1\to3\to6\mid 9+2=11<14$.
+the shortest path from 1 to 6  is $1\to3\to6$ with distance 11.
+
+3. distance to neighbor:
+
+ 4  | b | 6 | b |
+----|---|---|---|
+  0 | 6 | 0 | 9 |
+
+ $1\to3\to4\to b\mid 9+11+6=26$ and
+ $1\to3\to6\to b\mid 9+2+9=20<26$ is the shortest.
+***
+
 |Dijkstra algorithm|
 |:----------------:|
-|![Dijkstra algorithm](https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif)|
+|<img title="Dijkstra algorithm" src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif" width = " 80%"/>|
 
 + https://www.wikiwand.com/en/Dijkstra%27s_algorithm
 + https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
@@ -176,6 +244,14 @@ algebraic operations and fundamental graph operations
 
 A graph $G$ is a tree if and only if $G$ is a forest and $|V(G)|=|E(G)| + 1$.
 
+Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge ${uv}$, vertex ${u}$ comes before ${v}$ in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.
+
+
+
+* [拓扑排序（Topological Sorting）
+](https://songlee24.github.io/2015/05/07/topological-sorting/)
+* https://www.geeksforgeeks.org/topological-sorting/
+
 
 #### Chemical Graph Theory
 
@@ -209,19 +285,51 @@ where $d_{ij}$, the topological distance between $i$ and $j$.
 
 #### Graph Partitioning
 
-> The fundamental problem that is trying to solve is that of splitting a large irregular graphs into k parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
-The partitioning is usually done so that it satisfies certain constraints and optimizes certain objectives. The most common constraint is that of producing equal-size partitions, whereas the most common objective is that of minimizing the number of cut edges (i.e., the edges that straddle partition boundaries). However, in many cases, different application areas tend to require their own type of constraints and objectives; thus, making the problem all that more interesting and challenging!
+**Definition**: `Separators` A subsect of vertices ${C}$ of a graph ${G}$ with ${n}$ vertices is an $f(n)$-separator that $\delta$-splits if $|C|<f(n)$ and vertices $G-C$ can be partitioned into two sets ${A}$ and ${B}$ such that $|A|, |B|<\delta n$ and there is no edge between ${A}$ and ${B}$, where $f$ is a positive function and $0<\delta < 1$.
+
+> The fundamental problem that is trying to solve is that of splitting a large irregular graphs into ${k}$ parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
+> The partitioning is usually done so that it satisfies certain constraints and optimizes certain objectives. The most common constraint is that of producing equal-size partitions, whereas the most common objective is that of minimizing the number of cut edges (i.e., the edges that straddle partition boundaries). However, in many cases, different application areas tend to require their own type of constraints and objectives; thus, making the problem all that more interesting and challenging!
 >
 > The research in the lab is focusing on a class of algorithms that have come to be known as multilevel graph partitioning algorithms. These algorithms solve the problem by following an approximate-and-solve paradigm, which is very effective for this as well as other (combinatorial) optimization problems.
 >
 > [Over the years we focused and produced good solutions for a number of graph-partitioning related problems. This includes partitioning algorithms for graphs corresponding to finite element meshes, multilevel nested dissection, parallel graph/mesh partitioning, dynamic/adaptive graph repartitioning, multi-constraint and multi-objective partitioning, and circuit and hypergraph partitioning.](http://glaros.dtc.umn.edu/gkhome/views/projects)
 
 + [Graph Partitioning](http://glaros.dtc.umn.edu/gkhome/views/projects)
++ [Gary L. Miller's Publications on Graph Separartor](https://www.cs.cmu.edu/~glmiller/Publications/class_rescat.html#Graph%20Separators)
++ [Points, Spheres, and Separators: A Unified Geometric Approach to Graph Partitioning](https://www.cs.cmu.edu/~glmiller/Publications/TengPHD.pdf)
+
+Let $P = \{p_i, \cdots, p_n \}$ be a set of ${n}$ points in $\mathbb{R}^d$. For each $p_i\in P$, let $N(p_i)$ be a closest
+neighbor of ${p}$ in ${P}$, where ties are broken arbitrarily. Similarly, for any integer ${k}$, let $N_k(p_i)$ be the
+set of ${k}$ nearest neighbors of ${p}$ in ${P}$, where the ties too are broken arbitrarily.
+
+**Definition**  A ${k}$-nearest neighborhood graph of  $P = \{p_i, \cdots, p_n \}$ in $\mathbb{R}^d$
+, is a graph with
+vertices $V = {1, \cdots,n}$, and edges ${E}$,
+
+$$ E = \{ (i, j) \mid p_i\in N_k(p_j)\quad \text{or}\quad p_j \in N_k(p_i) \}. $$
+
 
 
 <img title="Moore Graphs" src="https://jeremykun.files.wordpress.com/2016/11/hoffman_singleton_graph_circle2.gif?w=400" />
 
 [A Spectral Analysis of Moore Graphs](https://jeremykun.com/2016/11/03/a-spectral-analysis-of-moore-graphs/)
+
+#### Spectral Graph  Theory
+
+As the title suggests, `Spectral Graph  Theory` is about the eigenvalues and eigenvectors of matrices associated
+with graphs, and their applications.
+---|---
+---|---
+Adjacency matrix| ${A}$
+Degree matrix | ${D}$
+Laplacian matrix| ${L}$
+
+For the symmetric matrix $L = D - A$, we can obtain that $x^T Lx=\sum_{(u,v)\in E}(x_u-x_v)^2$. If the graph ${G}$ is directed, then $x^T Lx=\sum_{(u,v)\in E}w(u,v) (x_u-x_v)^2$.
+> Let $G = (V;E)$ be a graph, and let $\lambda=(\lambda_1, \cdots, \lambda_n)^T$ be the eigenvalues of
+its Laplacian matrix. Then, $\lambda_2>0$ if and only if G is connected.
+
+There are many iterative computational methods to approximate the eigenvalues of the graph-related matrices.
+
 
 #### PageRank
 
@@ -239,8 +347,8 @@ $$I(P_i)=\sum_{P_j\in B_i}\frac{I(P_j)}{l_j}.$$
 
 Note that the importance ranking of $P_i$ is the finite sum of 2 factors: the importance of its neighbors' importance $I(P_j)$ and the number of links $l_j$ when $P_j\in B_i$ thus it can be rewritten as
 $$I(P_i)=\sum_{j} [I(P_j)\cdot \frac{1}{l_j}] \mathbb{I}(ij)$$
-where the indictor function $\mathbb{I}(ij)$ is equal to 1 if the page $P_i$ is linked with the page $P_j$.
-If we define a matrix, called the hyperlink matrix, $\mathbf{H}=[\mathbf{H}_{ij}]$ in which the entry in the $i^{th}$ row and $j^{th}$ column is
+where the indicator function $\mathbb{I}(ij)$ is equal to 1 if the page $P_i$ is linked with the page $P_j$.
+If we define a matrix, called the hyper-link matrix, $\mathbf{H}=[\mathbf{H}_{ij}]$ in which the entry in the $i^{th}$ row and $j^{th}$ column is
 $$
 [\mathbf{H}_{ij}]=
 \begin{cases}
@@ -249,24 +357,30 @@ $$
 \end{cases}
 $$
 
-The condition above defining the PageRank \(I\) may be expressed as
 
-\[  I = {\bf H}I  \]
+
+The condition above defining the PageRank $I$ may be expressed as
+
+$$ I = {\bf H}I  $$
 In other words, the vector I is an eigenvector of the matrix H with eigenvalue 1. We also call this a stationary vector of H.
 
 It is not very simple and easy to compute the eigenvalue vectors of large scale matrix.
-If we denote by \(\bf 1\) the  \(n\times n\)  matrix whose entries are all one, we obtain the _Google matrix_:
+If we denote by $\bf 1$the  $n\times n$  matrix whose entries are all one, we obtain the _Google matrix_:
 
-\[  {\bf G}=\alpha{\bf S}+ (1-\alpha)\frac{1}{n}{\bf 1}  \]
+$$ {\bf G}=\alpha{\bf S}+ (1-\alpha)\frac{1}{n}{\bf 1}  $$
 Notice now that G is stochastic as it is a combination of stochastic matrices. Furthermore, all the entries of G are positive, which implies that G is both primitive and irreducible. Therefore, G has a unique stationary vector I that may be found using the power method.
 
-+ [Page rank@wikiwand](https://www.wikiwand.com/en/PageRank)
-+ [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page ](http://infolab.stanford.edu/pub/papers/google.pdf)
-+ [Lecture #3: PageRank Algorithm - The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
-+ [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
-+ http://langvillea.people.cofc.edu/
-+ [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
-+ [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
+* [Page rank@wikiwand](https://www.wikiwand.com/en/PageRank)
+* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page ](http://infolab.stanford.edu/pub/papers/google.pdf)
+* [Lecture #3: PageRank Algorithm - The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
+* [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
+* http://langvillea.people.cofc.edu/
+* [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
+* [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
+* [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
+* [Learning Supervised PageRank with Gradient-Based and Gradient-Free Optimization Methods](https://research.yandex.com/publications/140)
+
+
 
 #### Spectral Clustering Algorithm
 
@@ -277,7 +391,7 @@ The similarity matrix is provided as an input and consists of a quantitative ass
 
 **Similarity matrix** is to measure the similarity between the input features $\{\mathbf{x}_i\}_{i=1}^{n}\subset\mathbb{R}^{p}$.
 For example, we can use Gaussian kernel function
-\[ f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2}) \]
+$$ f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2}) $$
 to measure the *similarity* of inputs.
 The element of *similarity matrix* $S$ is $S_{i, j} = exp(-\frac{{\| \mathbf{x_i} -\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
 Thus $S$ is symmetrical, i.e. $S_{i, j}=S_{j, i}$ for $i,j\in\{1,2,\dots, n\}$.
@@ -297,7 +411,7 @@ Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ t
 * [IE532. Analysis of Network Data, Sewoong Oh, University of Illinois Urbana-Champaign](http://swoh.web.engr.illinois.edu/courses/ie532/).
 * https://skymind.ai/wiki/graph-analysis
 
-#### Graph Kernel and Spectral Graph Theory
+#### Graph Kernel
 
 Like kernels in **kernel methods**, graph kernel is used as functions measuring the similarity of pairs of graphs.
 They allow kernelized learning algorithms such as support vector machines to work directly on graphs, without having to do feature extraction to transform them to fixed-length, real-valued feature vectors.
@@ -327,6 +441,28 @@ $$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A
 + [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 + [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
 
+### Link Prediction
+
+The above algorithms are unsupervised algorithms so what is the supervised algorithms in graph data sets? Do prediction algorithms such as classification and regression matter?
+
+* [Link Prediction Based on Graph Neural Networks](https://arxiv.org/abs/1802.09691)
+* [Chapter 9. Link Prediction algorithms@neo4j](https://neo4j.com/docs/graph-algorithms/current/algorithms/linkprediction/index.html)
+
+### Probability on Graph
+
+It is to answer the question how to characterize a network in the term of some summary statistic.
+The following distribution may be the key:
+
+* the distribution of the degree;
+* the distribution of the eigenvalue of the Laplacian matrix;
+* random matrix and dynamical network.
+
+A particle moves around the vertex-set ${V}$. Having arrived at the vertex $S_n$ at time n, its next position Sn+1 is chosen uniformly at random from the set of neighbours of $S_n$.
+The trajectory of the particle is called a
+symmetric random walk (SRW) on ${G}$.
+Two of the basic questions concerning symmetric random walk are:
+1. Under what conditions is the walk recurrent, in that it returns (almost surely) to its starting point?
+2. How does the distance between S0 and Sn behave as $n\to\infty$?
 
 ### Computational Graph
 
@@ -334,11 +470,20 @@ Computational graphs are a nice way to think about mathematical expressions, whe
 
 <img title="Computational Graph" src="https://colah.github.io/posts/2015-08-Backprop/img/tree-eval.png" width=40% />
 
-[To create a computational graph, we make each of these operations, along with the input variables, into nodes. When one node’s value is the input to another node, an arrow goes from one to another.These sorts of graphs come up all the time in computer science, especially in talking about functional programs. They are very closely related to the notions of dependency graphs and call graphs. They’re also the core abstraction behind the popular deep learning framework `TensorFlow`.](https://colah.github.io/posts/2015-08-Backprop/)
+[To create a computational graph, we make each of these operations, along with the input variables, into nodes. When one node’s value is the input to another node, an arrow goes from one to another. These sorts of graphs come up all the time in computer science, especially in talking about functional programs. They are very closely related to the notions of dependency graphs and call graphs. They’re also the core abstraction behind the popular deep learning framework `TensorFlow`.](https://colah.github.io/posts/2015-08-Backprop/)
+Computational graph is an convenient representation of the work flow or process pipeline, which describes the dependence/composite relationship of every variable.
+Additionally, each composite relationship is specified.
+
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png" width="40%" />
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/undirectedgraph.png" width="50%" />
+
+Decision tree looks like simple graph without loops, where only the leaf nodes specify the output values and the middle nodes specify their test or computation.
 
 * https://colah.github.io/posts/2015-08-Backprop/
 * [Visualization of Computational Graph@chainer.org](https://docs.chainer.org/en/stable/reference/graph.html)
 * [Efficiently performs automatic differentiation on arbitrary functions. ](https://github.com/lobachevzky/computational-graph)
+* [计算图反向传播的原理及实现](https://zhuanlan.zhihu.com/p/69175484)
+* [运用计算图搭建 LR、NN、Wide & Deep、FM、FFM 和 DeepFM](https://zhuanlan.zhihu.com/p/70075944)
 __________________________________
 
 * http://ww3.algorithmdesign.net/sample/ch07-weights.pdf
@@ -359,7 +504,7 @@ __________________________________
 + [The Neo4j Graph Algorithms User Guide v3.5](https://github.com/neo4j-contrib/neo4j-graph-algorithms)
 + [Matlab tools for working with simple graphs](https://github.com/scheinerman/matgraph)
 + [GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms](https://julialang.org/blog/2019/02/light-graphs)
-+ [Graph theory (network) library for visualisation and analysis](http://js.cytoscape.org/)
++ [Graph theory (network) library for visualization and analysis](http://js.cytoscape.org/)
 + [graph-tool | Efficient network analysis](https://graph-tool.skewed.de/)
 + [JGraphT: a Java library of graph theory data structures and algorithms](https://jgrapht.org/)
 + [Stanford Network Analysis Project](http://snap.stanford.edu/)

@@ -1,6 +1,6 @@
 # Recommender System
 
-<img src= https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg width=70% />
+<img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
 * [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
 * [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
@@ -13,6 +13,7 @@
 * [Summary of RecSys](https://github.com/fuxuemingzhu/Summary-of-Recommender-System-Papers)
 * [How Netflix’s Recommendations System Works](https://help.netflix.com/en/node/100639)
 * [个性化推荐系统，必须关注的五大研究热点](https://www.msra.cn/zh-cn/news/executivebylines/tech-bylines-personalized-recommendation-system)
+* [How Does Spotify Know You So Well?](https://medium.com/s/story/spotifys-discover-weekly-how-machine-learning-finds-your-new-music-19a41ab76efe)
 * https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3
 * https://buildingrecommenders.wordpress.com/
 
@@ -709,17 +710,21 @@ process of CDL is defined as follows:
         $$v_j=\epsilon_j+X^T_{\frac{L}{2},j\ast}.$$
 3. Draw a latent user vector for each user ${i}$:
      $$u_i \sim \mathcal{N}(0, \lambda_u^{-1} I_{K_l}).$$
+
 4. Draw a rating $R_{ij}$ for each user-item pair $(i; j)$:
-  $$R_{ij}\sim \mathcal{N}(u_i^tv_j, C_{ij}^{-1}).$$
+  $$R_{ij}\sim \mathcal{N}(u_i^T v_j, C_{ij}^{-1}).$$
 
 Here $\lambda_w, \lambda_s, \lambda_n, \lambda_u$and $\lambda_v$ are hyperparameters and $C_{ij}$ is
-a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R+{ij} = 1$ and $C_{ij} = b$ otherwise).
+a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R_{ij} = 1$ and $C_{ij} = b$ otherwise).
 
 And joint log-likelihood of these parameters is
 $$L=-\frac{\lambda_u}{2}\sum_{i} {\|u_i\|}_2^2-\frac{\lambda_w}{2}\sum_{l} [{\|W_l\|}_F+{\|b_l\|}_2^2]\\
 -\frac{\lambda_v}{2}\sum_{j} {\|v_j - X^T_{\frac{L}{2},j\ast}\|}_2^2-\frac{\lambda_n}{2}\sum_{l} {\|X_{c;j\ast}-X_{L;j\ast}\|}_2^2 \\
--\frac{\lambda_v}{2}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2
+-\frac{\lambda_v}{2}\sum_{l}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2 -\sum_{ij} \|R_{ij}-u_i^Tv_j\|_2^2
 $$
+
+It is not easy to prove that it converges.
+
 
 * http://www.winsty.net/
 * http://www.wanghao.in/
@@ -837,6 +842,7 @@ In the following, we demonstrate ranking factorization machines with both pairwi
 `Gradient Boosting Factorization Machine (GBFM)` model is to incorporate feature selection algorithm with Factorization Machines into a unified framework.
 
 **Gradient Boosting Factorization Machine Model**
+
 > + _Input_: Training Data $S =\{(\mathbf{x}_i, y_i)\}$.
 > + _Output_: $\hat{y}_S =y_0(x) + {\sum}^S_{s=1}\left<v_{si}, v_{sj}\right>$.
 > + Initialize rating prediction function as $\hat{y}_0(x)$
@@ -1061,11 +1067,12 @@ Advertising is nothing except information, which is not usually accepted gladly.
 [Hongliang Jie](http://www.hongliangjie.com/talks/Etsy_ML.pdf) shares 3 challenges of computational advertising in Etsy,
 which will be the titles of the following subsections.
 
-+ [ONLINE VIDEO ADVERTISING: All you need to know in 2019](https://strategico.io/video-advertising/)
-+ [计算广告](https://dirtysalt.github.io/html/computational-advertising.html)
-+ [计算广告和机器学习](http://www.52caml.com/)
-+ https://headerbidding.co/category/adops/
-+ [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
+* [广告为什么要计算](https://zhuanlan.zhihu.com/p/72092504)
+* [ONLINE VIDEO ADVERTISING: All you need to know in 2019](https://strategico.io/video-advertising/)
+* [计算广告](https://dirtysalt.github.io/html/computational-advertising.html)
+* [计算广告和机器学习](http://www.52caml.com/)
+* https://headerbidding.co/category/adops/
+* [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
 
 ### Click-Through Rate Modeling
 
@@ -1120,7 +1127,8 @@ ______________________________________________________
 * [What is user engagement? A conceptual framework for defining user engagement with technology](https://open.library.ubc.ca/cIRcle/collections/facultyresearchandpublications/52383/items/1.0107445)
 * [How to apply AI for customer engagement](https://www.pega.com/artificial-intelligence-applications)
 * [The future of customer engagement](https://dma.org.uk/event/the-future-of-customer-engagement)
-
+* [Second Uber Science Symposium: Exploring Advances in Behavioral Science](https://eng.uber.com/second-uber-science-symposium-behavioral-science)
+* https://uberbehavioralsciencesymposium.splashthat.com/
 
 ### Labs
 
@@ -1146,3 +1154,9 @@ ______________________________________________________
 - [Web search and data mining(WSDM) 2019](http://www.wsdm-conference.org/2019/)
 - [Web Intelligent Systems and Economics(WISE) lab @Rutgers](https://wise.cs.rutgers.edu/)
 - [Ishizuka Lab. was closed. (2013.3) ](http://www.miv.t.u-tokyo.ac.jp/HomePageEng.html)
+- [Online Marketing Congress 2017](https://gorrion.io/blog/online-marketing-congress-2017)
+- [course-materials of Sys for ML/AI](https://pooyanjamshidi.github.io/mls/course-materials/)
+- https://sigopt.com/blog/
+- [Web Understanding, Modeling, and Evaluation Lab](http://wume.cse.lehigh.edu/)
+- [The User Engagement Optimization Workshop2](http://www.ueo-workshop.com/)
+- [The User Engagement Optimization Workshop1](http://www.ueo-workshop.com/previous-editions/ueo-2013-at-cikm-2013/)

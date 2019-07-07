@@ -1,5 +1,7 @@
 # Numerical Optimization
 
+![http://art.ifeng.com/2015/1116/2606232.shtml](http://upload.art.ifeng.com/2015/1116/1447668349594.jpg)
+
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
 $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVALUATION}$ + $\color{red}{OPTIMIZATION}.$
 
@@ -402,10 +404,12 @@ See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey M
 + [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
 + [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
 + [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
++ [AN ASSEMBLY AND DECOMPOSITION APPROACH FOR CONSTRUCTING SEPARABLE MINORIZING FUNCTIONS IN A CLASS OF MM ALGORITHMS](https://www.semanticscholar.org/paper/AN-ASSEMBLY-AND-DECOMPOSITION-APPROACH-FOR-IN-A-OF-Tian-Huang/fdffff8c1bf5cdd258f287136e0bbcd8ab0b7529)
+
 
 **Quadratic Lower Bound**
 
-![cali](https://bookdown.org/jandeleeuw6/bras/graphics/cali.png)
+<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
 
 - http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
 
@@ -700,7 +704,7 @@ $$
 \frac{\partial L(x,\lambda)}{\partial \lambda} = Ax-b=0
 $$
 
-<img src="https://www.thefamouspeople.com/profiles/images/joseph-louis-lagrange-2.jpg" width=70%>
+<img src="https://www.thefamouspeople.com/profiles/images/joseph-louis-lagrange-2.jpg" width="60%">
 
 **Dual Ascent** takes advantages of this properties:
 
@@ -1115,7 +1119,7 @@ $$
 
 Young | Recent |Now
 ------|--------|---
-<img src=http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg width = 150% />|<img src =https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg width = 200% />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = 60% />
+<img src="http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg" width = "150%" />|<img src ="https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg" width = "400%" />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = "50%" />
 
 [He is a featured author of CRC press ](https://www.crcpress.com/authors/i11230-charles-byrne) and [professor in UML](https://www.uml.edu/umass-BMEBT/faculty/Byrne-Charles.aspx)
 
@@ -1316,8 +1320,8 @@ of fixed-point in nonlinear equations solution](http://www.scielo.org.co/pdf/tec
 
 |Fixed Point Iterations||
 |---|---|
-|![fig_1](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg)|![fig_2](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f2.jpg)|
-|![fig_3](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg)|![fig_4](http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg)|
+|<img src="http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f1.jpg"  width="70%" />|<img src="http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f2.jpg" width="70%"/>|
+|<img src="http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f3.jpg"  width="70%" />|<img src="http://www.scielo.org.co/img/revistas/tecn/v19n44/v19n44a15f4.jpg"  width="70%" />|
 
 * https://www.wikiwand.com/en/Fixed-point_theorem
 * [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
@@ -1562,7 +1566,8 @@ https://eta.impa.br/dl/028.pdf
 
 [The Tradeoffs of Large-scale Learning](https://leon.bottou.org/talks/largescale)
 
-![diff](https://castlelab.princeton.edu/html/images/detvsstoch.jpg)
+<img src = https://castlelab.princeton.edu/html/images/detvsstoch.jpg width=80% />
+
 [`Stochastic approximation` methods are a family of iterative methods typically used for *root-finding* problems or for *optimization* problems. The recursive update rules of stochastic approximation methods can be used, among other things, for solving linear systems when the collected data is corrupted by noise, or for approximating extreme values of functions which cannot be computed directly, but only estimated via noisy observations.](https://www.wikiwand.com/en/Stochastic_approximation)
 
 - [Kiefer-Wolfowitz Algorithm](https://link.springer.com/chapter/10.1007/978-1-4471-4285-0_4)
@@ -1651,10 +1656,11 @@ Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1
 
 Another example, it is `Newton interpolation formula` in numerical analysis. The task is to fit the function via polynomials given some point in th function $(x_i , f(x_i)), i = 1,2, \dots, n$.
 [The Newton form of the interpolating polynomial  is given by](https://nptel.ac.in/courses/122104019/numerical-analysis/Rathish-kumar/rathish-oct31/fratnode5.html)
-$$
-P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots \\
-+ a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
-$$
+
+ $$
+   P_n(x) = a_0 + a_1 (x-x_1) + a_2 (x-x_1)(x-x_2) + \cdots \\
+         + a_n(x-x_1)(x-x_2)(x-x_3)\cdots (x-x_n).
+ $$
 
 This form is incremental and if another points $(x_{n+1}, f(x_{n+1}))$ is observed we will fit the function $f$ more precisely just by adding another term $a_{n+1}(x-x_1)(x-x_2)\cdots (x-x_n)(x-x_{n+1})$
 where the coefficients $a_0, a_1,\cdots, a_n$ are determined by $f(x_1), f(x_2), \cdots, f(x_n)$.
@@ -1805,6 +1811,7 @@ L_{\beta}(x, y, \lambda)
 $$
 
 We can split the optimization over $x_i$:
+
 > 1. $x_i^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i, y^{k}, \lambda_i^{k})\quad i=1,2,\cdots, n;$
 > 2. $y^{k+1} =\arg\min_{x_i} L_{(\beta,i)}(x_i^{\color{green}{k+1}}, y, \lambda_i^k);$
 > 3. $\lambda^{k+1}=\lambda^k+\lambda (x^{\color{green}{k+1}} - y^{\color{green}{k+1}}).$
@@ -1885,6 +1892,8 @@ And these two functions are two different kinds of non-convex functions.
 
 [Optimization and Assumptions @ Freemind](http://freemind.pluskid.org/misc/optimization-and-assumptions/)|[Test functions for optimization](https://www.wikiwand.com/en/Test_functions_for_optimization)
 
+### Graduated Optimization
+
 Another related method is `graduated optimization`, which [is a global optimization technique that attempts to solve a difficult optimization problem by initially solving a greatly simplified problem, and progressively transforming that problem (while optimizing) until it is equivalent to the difficult optimization problem.](https://www.wikiwand.com/en/Graduated_optimization)Further, when certain conditions exist, it can be shown to find an optimal solution to the final problem in the sequence. These conditions are:
 
 + The first optimization problem in the sequence can be solved given the initial starting point.
@@ -1897,9 +1906,7 @@ Another related method is `graduated optimization`, which [is a global optimizat
 + https://www.wikiwand.com/en/Numerical_continuation
 + [Multi-Resolution Methods and Graduated Non-Convexity](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/BMVA96Tut/node29.html)
 
-****
-
-**Kiefer-Wolfowitz Algorithm**
+### Kiefer-Wolfowitz Algorithm
 
 In stochastic gradient descent, the estimated gradient is a partial sum of the population gradient so that it is necessary to compute the gradient of `sample` function.
 `Kiefer-Wolfowitz Algorithm` is the gradient-free version of stochastic gradient descent.
@@ -1911,7 +1918,8 @@ $$
 During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are taken at the design levels $x^{\prime\prime}=x^k+c_k$ and $x^{\prime}=x^k - c_k$, respectively. And $\Delta(x^k)=\frac{y^{\prime\prime} - y^{\prime}}{2c_n}$, $a_n$ and $c_n$ are positive constants so that $c_n\to 0, \sum_{i=0}^{\infty}(a_n/c_n)^2< \infty, \sum a_n =\infty$.
 
 
-![function with noise](http://pawel.sawicz.eu/wp-content/uploads/2014/08/example-of-function.png)
+<img title="function with noise" src="http://pawel.sawicz.eu/wp-content/uploads/2014/08/example-of-function.png" width="70%" />
+
 + http://pawel.sawicz.eu/tag/kiefer-wolfowitz/
 + [A compansion to Kiefer-Wolfowit algorithm](https://projecteuclid.org/euclid.aos/1188405629)
 + [Archive for Kiefer-Wolfowitz algorithm](https://xianblog.wordpress.com/tag/kiefer-wolfowitz-algorithm/)
@@ -1919,13 +1927,15 @@ During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are take
 + [Almost Sure Approximations to the Robbins-Monro and Kiefer-Wolfowitz Processes with Dependent Noise](https://projecteuclid.org/euclid.aop/1176993921)
 + [A Kiefer–Wolfowitz Algorithm with Randomized Differences](http://lsc.amss.ac.cn/paper-pdf/hfchen-1.pdf)
 + [Stochastic Approximation by Tze Leung Lai](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/2002-31.pdf)
-****
+
+
+### Multi-Level Optimization
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
 > Multi-level optimization methods repeat three steps:
-> 
->> 1. Cheap minimization of modified $\hat{f}$: 
-  $$y^{k}=\arg\min_{x\in \mathbb{R}^p} + \left<v_k, x\right>.$$ 
+>
+>> 1. Cheap minimization of modified $\hat{f}$:
+  $$y^{k}=\arg\min_{x\in \mathbb{R}^p} + \left<v_k, x\right>.$$
 >> 2. Use $y^{k}$ to give descent direction,
   $$x^{k+1} = x^k -a_k(x^k - y^k) .$$
 >> 3. Set $v_k$ to satisfy first-order coherence
@@ -1954,7 +1964,7 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 + [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
 + [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
 
-****
+### Matrix Multiplicative Weight Algorithms
 
 `Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
 The name “multiplicative weights” comes from how we implement the last step: if the weight of the chosen object at step $t$ is $w_t$ before the event, and $G$ represents how well the object did in the event, then we’ll update the weight according to the rule:
@@ -1962,7 +1972,7 @@ $$
 w_{t+1}=w_{t}(1+G).
 $$
 
-![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
+> ![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
 
 [Jeremy](https://jeremykun.com/) wrote a blog on this topic:
 

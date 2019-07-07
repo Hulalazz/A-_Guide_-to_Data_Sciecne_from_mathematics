@@ -3,6 +3,10 @@
 ![https://www.artsky.com/read/524](https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg)
 
 https://aifiddle.io/
+https://www.wikiwand.com/en/Universal_approximation_theorem
+https://www.scienceofintelligence.de/
+https://lilianweng.github.io/lil-log/
+https://lfai.foundation/
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
 In mathematics, it is nonlinear non-convex and composite of many functions.
@@ -1810,7 +1814,9 @@ More generative models include GLOW, variational autoencoder and energy-based mo
 
 - http://computationalcreativity.net/home/
 
-## Graph Convolution Network
+## Gepometric Deep Learning
+
+### Graph Convolution Network
 
 Graph can be represented as `adjacency matrix` as shown in *Graph Algorithm*. However, the adjacency matrix only describe the connections between the nodes. The feature of the nodes does not appear. The node itself really matters.
 For example, the chemical bonds can be represented as `adjacency matrix` while the atoms in molecule really determine the properties of the molecule.
@@ -1885,7 +1891,7 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 * https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf
 * https://blog.acolyer.org/2019/02/06/a-comprehensive-survey-on-graph-neural-networks/
 
-$\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
+$\color{navy}{\text{Graph convolution network is potential to}}\, \mathcal{reasoning}$ as the blend of $\mathfrak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
 
 GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
 
@@ -1947,6 +1953,24 @@ https://sites.ualberta.ca/~szepesva/RLBook.html
 + https://deeplearning4j.org/deepreinforcementlearning.html
 + https://openai.com/blog/spinning-up-in-deep-rl/
 
+
+## Deep Learning Ensemble
+
+Deep learning and ensemble learning share some similar guide line.
+
+![snapshot](http://ruder.io/content/images/2017/11/snapshot_ensembles.png)
+
+
+- [ ] [Neural Network Ensembles](https://www.computer.org/csdl/journal/tp/1990/10/i0993/13rRUyv53Gg)
+- [ ] [Deep Neural Network Ensembles](https://arxiv.org/abs/1904.05488)
+- [ ] [Ensemble Learning Methods for Deep Learning Neural Networks](https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/)
+- [ ] http://ruder.io/deep-learning-optimization-2017/
+- [ ] https://arxiv.org/abs/1704.00109v1
+- [ ] http://jtleek.com/advdatasci/17-blending.html
+- [ ] https://arxiv.org/abs/1708.03704
+- [ ] [Ensemble Deep Learning for Speech Recognition](https://www.isca-speech.org/archive/archive_papers/interspeech_2014/i14_1915.pdf)
+
+
 ## Bayesian Deep Learning
 
 [The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/) put that:
@@ -1975,6 +1999,8 @@ https://sites.ualberta.ca/~szepesva/RLBook.html
 
 ***
 
+* [Towards Bayesian Deep Learning: A Framework and Some Existing Methods](https://arxiv.org/abs/1608.06884)
+* http://www.wanghao.in/mis.html
 * https://github.com/junlulocky/bayesian-deep-learning-notes
 * https://github.com/robi56/awesome-bayesian-deep-learning
 * https://alexgkendall.com/computer_vision/phd_thesis/

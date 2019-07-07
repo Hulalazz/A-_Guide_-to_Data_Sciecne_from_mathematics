@@ -140,6 +140,9 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
 * https://www.ncbi.nlm.nih.gov/pubmed/16149128
 * http://www.cnblogs.com/en-heng/p/5035945.html
+* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
+* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
+* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
 
 ### Random Forest
 
@@ -190,6 +193,7 @@ by choices and meta-parameters: when this flexibility is taken into account, one
 ends up with a very large number of possible models for a given task.
 
 * [Computer Science 598A: Boosting: Foundations & Algorithms](http://www.cs.princeton.edu/courses/archive/spring12/cos598A/)
+* [4th Workshop on Ensemble Methods](http://www.raetschlab.org/ensembleWS)
 * [Zhou Zhihua's publication on ensemble methods](http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Ensemble%20Learning)
 * [Ensemble Learning  literature review](http://www.machine-learning.martinsewell.com/ensembles/)
 * [KAGGLE ENSEMBLING GUIDE](https://mlwave.com/kaggle-ensembling-guide/)
@@ -296,7 +300,10 @@ $$
   \end{cases}
 $$
 
-![1-reweighting](https://arogozhnikov.github.io/images/reweighter/1-reweighting.png)
+<img title="reweighting" src="https://arogozhnikov.github.io/images/reweighter/1-reweighting.png" width= "80%" />
+
+<img src="https://cdn-images-1.medium.com/max/1600/0*WOo4d8oNmb85y_Eb.png" width="60%">
+
 ***
 
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
@@ -363,6 +370,7 @@ where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
 ***
 - https://arxiv.org/abs/1901.04055
 - https://arxiv.org/abs/1901.04065
+- [Open machine learning course. Theme 10. Gradient boosting](https://weekly-geekly.github.io/articles/327250/index.html)
 
 #### Gradient Boosting Decision Tree
 
@@ -466,19 +474,11 @@ A general gradient descent “boosting” paradigm is developed for additive exp
 * [Gradient Boosting Machines](http://uc-r.github.io/gbm_regression)
 * [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
 * [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
+* [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
 
 ### Bonsai Boosted Decision Tree
 
-AdaBoost is related with so-called expentontial loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
-And the weight is update via the following formula:
-$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
 
-When the lables are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
-general expression of the AdaBoost criteria
-$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
-
-where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
-the AdaBoost weighting procedure is recovered.
 
 **bonsai BDT (BBDT)**:
 
@@ -494,13 +494,46 @@ $$\Delta x_{min} > \delta_x \forall x\,\,\text{on all leaves}$$
 where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
 
 ***
-* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
-* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
-* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
 * [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](https://arxiv.org/abs/1210.6861)
 * [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
 * [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
+
+AdaBoost is related with so-called expentontial loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+And the weight is update via the following formula:
+$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
+
+When the lables are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
+general expression of the AdaBoost criteria
+$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
+
+where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
+the AdaBoost weighting procedure is recovered.
+
+* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
+* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
+* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
+
+#### Accelerated Gradient Boosting
+
+The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
+
+* Initialize $f_0(x)=g_0(x)=0$;
+* For $m = 1, 2, \dots, M$:
+   +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
+   +  For $i = 1, 2,\dots , n$ compute
+    $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
+   +  Find the best weak-learner for pseudo residual:
+   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
+  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
+  +  Update the corrected residual:
+  $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
+  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
+  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
+* Output $f^{M}(x)$.
+____________
+
+* [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
 
 #### xGBoost
 
@@ -657,6 +690,22 @@ an innovative algorithm for processing `categorical features`. Both techniques w
 created to fight a prediction shift caused by a special kind of target leakage present
 in all currently existing implementations of gradient boosting algorithms.
 
+The most widely used technique which is usually applied to low-cardinality categorical features
+is one-hot encoding; another way to deal with categorical features is to compute some statistics using the label values of the examples.
+Namely, assume that we are given a dataset of observations $D = \{(\mathrm{X}_i, \mathrm{Y}_i)\mid i=1,2,\cdots, n\}$,
+where $\mathrm{X}_i = (x_{i,1}, x_{i, 2}, \cdots, x_{i,m})$ is a vector of ${m}$ features, some numerical, some categorical, and $\mathrm{Y}_i\in\mathbb{R}$ is a label value.
+The simplest way is to substitute the category with the _average_ label value on the whole train dataset. So, $x_{i;k}$ is substituted with $\frac{\sum_{j=1}^n [x_{j;k}=x_{i;k}]\cdot \mathrm{Y}_j}{\sum_{j=1}^n [x_{j;k}=x_{i;k}]}$; where $[\cdot]$ denotes Iverson
+brackets, i.e., $[x_{j;k} = x_{i;k}]$ equals 1 if $x_{j;k} = x_{i;k}$ and 0 otherwise.
+This procedure, obviously, leads to overfitting.
+
+CatBoost uses a more efficient strategy which reduces overfitting and allows to use the whole dataset
+for training.
+Namely, we perform a random permutation of the dataset and
+for each example we compute average label value for the example with the same category value placed before the given one in the permutation.
+Let $\sigma=(\sigma_1, \cdots, \sigma_n)$ be the permutation, then $x_{\sigma_p;k}$ is substituted with
+$$\frac{\sum_{j=1}^{p-1} [x_{\sigma_j; k}=x_{\sigma_p;k}]\cdot \mathrm{Y}_{\sigma_j} + a\cdot P}{\sum_{j=1}^{p-1} [x_{\sigma_j; k}=x_{\sigma_p;k}]}$$
+
+where we also add a prior value ${P}$ and a parameter $a > 0$, which is the weight of the prior.
 
 |THREE|
 |:---:|
@@ -695,7 +744,7 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 **Optimization and Boosting**
 
 
-How to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
+What is the alternative of gradient descent  in order to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
 Can we do leaves splitting and optimization in the same stage?
 
 The core transfer is how to change the original optimization to one linearly constrained  convex optimization  so that it adjusts to ADMM:  
@@ -718,33 +767,19 @@ Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boo
 * [Boosting, Convex Optimization, and Information Geometry](https://ieeexplore.ieee.org/document/6282239?arnumber=6282239)
 * [Generalized Boosting Algorithms for Convex Optimization](https://www.ri.cmu.edu/publications/generalized-boosting-algorithms-for-convex-optimization/)
 * [Survey of Boosting from an Optimization Perspective](https://users.soe.ucsc.edu/~manfred/pubs/tut/icml2009/ws.pdf)
-* [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
+
 
 ______________
 Boosting | Optimziation
 ---|---
 AdaBoost | Coordinate-wise Descent
-Stochastic Gradient Boost | Stochastic Gradient Descent
+[Stochastic Gradient Boost](https://statweb.stanford.edu/~jhf/ftp/stobst.pdf) | Stochastic Gradient Descent
 Gradient Boost |  Gradient Descent
 Accelerated Gradient Boosting | Accelerated Gradient Descent
+xGBoost | Newton's Methods
+? | ADMM
 
-**Accelerated Gradient Boosting**
-
-The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
-
-* Initialize $f_0(x)=g_0(x)=0$;
-* For $m = 1, 2, \dots, M$:
-   +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
-   +  For $i = 1, 2,\dots , n$ compute
-    $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
-   +  Find the best weak-learner for pseudo residual:
-   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
-  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
-  +  Update the corrected residual:
-  $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
-  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
-  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
-* Output $f^{M}(x)$.
+Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
 
 
 #### Application
@@ -807,6 +842,7 @@ Deep learning and ensemble learning share some similar guide line.
 
 
 - [ ] [Neural Network Ensembles](https://www.computer.org/csdl/journal/tp/1990/10/i0993/13rRUyv53Gg)
+- [ ] [Deep Neural Network Ensembles](https://arxiv.org/abs/1904.05488)
 - [ ] [Ensemble Learning Methods for Deep Learning Neural Networks](https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/)
 - [ ] http://ruder.io/deep-learning-optimization-2017/
 - [ ] https://arxiv.org/abs/1704.00109v1
