@@ -9,8 +9,8 @@ $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVA
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
 * Optimization is aimed to find the parameters that optimizes the evaluation function, i.e.
     $$
-    \arg\min_{\theta} f(\theta)=\{\theta^{\ast}|f(\theta^{\ast})=\min f(\theta)\}\,\text{or}
-    \\ \quad\arg\max_{\theta}f(\theta)=\{\theta^{\ast}|f(\theta^{\ast})=\max f(\theta)\}.
+    \arg\min_{\theta\in \Theta} f(\theta)=\{\theta^{\ast}|f(\theta^{\ast})=\min f(\theta)\}\,\text{or}
+    \\ \quad\arg\max_{\theta\in \Theta}f(\theta)=\{\theta^{\ast}|f(\theta^{\ast})=\max f(\theta)\}.
     $$
 
 ***
@@ -24,6 +24,13 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
 * [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)
+
+The proof of convergence  or complexity is often based  on the convex cases where the objective function as well as the constrained set is convex, i.e.,
+$$t x+(1-t)y\in\Theta,\\
+f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\\
+\quad t\in [0,1], \quad \forall x, y\in\Theta.$$
+
+And this optimization is called convex optimization.
 
 ***
 
@@ -78,11 +85,49 @@ where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< 
 <img src="https://www.fromthegenesis.com/wp-content/uploads/2018/06/Gradie_Desce.jpg" width=50%>
 
 There are many ways to choose some proper step or learning rate sequence $\{\alpha_k\}$.
+***
+The first-order Taylor approximation of $f(x + v)$ around ${x}$ is
+$$f(x+v)\approx \hat{f}(x+v)=f(x)+\nabla_x f(x)^T v.$$
 
-The proof of convergence  or complexity is often based  on the convex case where the objective function is convex, i.e.,
-$$f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\quad t\in [0,1].$$
+The second term on the righthand side, $\nabla f(x)^T v$, is the directional derivative of ${f}$ at ${x}$ in the direction ${v}$. It gives the approximate change in ${f}$ for a small step ${v}$.
+The step ${v}$ is a descent direction if the directional derivative is negative. Since the directional derivative $\nabla_x f(x)^T v$ is linear in
+${v}$, it can be made as negative as we like by taking ${v}$ large (provided ${v}$ is a descent
+direction, i.e., $\nabla_x f(x)^T v< 0$). To make the question sensible we have to limit the
+size of ${v}$, or normalize by the length of ${v}$.
 
-And this optimization is called convex optimization.
+We define a normalized steepest descent direction
+(with respect to the norm $\|\cdot \|$ in $\mathbb{R}^n$) as
+$$\Delta x_{nsd}=\arg\min_{v}\{f(x)^T v\mid \|v\|=1\}.$$
+
+(We say ‘a’ steepest descent direction because there can be multiple minimizers.)
+It is also convenient to consider a steepest descent step $\Delta x_{sd}$ that is unnormalized,
+by scaling the normalized steepest descent direction in a particular way:
+$$\Delta x_{sd}={\|\nabla f(x)\|}_{\ast}\Delta x_{nsd}$$
+
+where ${\| \cdot \|}_{\ast}$ denotes the dual norm.
+
+***
+> Algorithm  Steepest descent method.
+given a starting point $x \in domf$.
+> * repeat
+>   1. Compute steepest descent direction $\Delta x_{sd}$.
+>   2. Line search. Choose ${t}$ via backtracking or exact line search.
+>   3. Update. $x := x + t \Delta x_{sd}$.
+> * until stopping criterion is satisfied.
+
+If the variable ${x}$ is restricted in some bounded domain, i.e., $x\in D$, the steepest gradient descemt methods can be modified to `conditional gradient descent method` or `Frank-Wolfe algorithm`.
+***
+> Algorithm  Frank–Wolfe algorithm.
+given a starting point $x \in domf$.
+> * repeat
+>   1. Find $s^k$: $s^k =\arg\min_{v}\{f(x^{k})^T v\mid v\in D \}$.
+>   2. Set $t=\frac{2}{k+2}$ or $t=\arg\min\{f(x^k+t(s^k - x^k))\mid t\in [0, 1]\}$
+>   3. Update. $x^{k+1}= x^k + t(s^k-x^k), k\leftarrow k+1$.
+> * until stopping criterion is satisfied.
+
+* [梯度下降法和最速下降法的细微差别](https://blog.csdn.net/Timingspace/article/details/50963564)
+* [An Introduction to Conditional Gradient](http://www.cs.cmu.edu/~yaoliang/mytalks/condgrad.pdf)
+* [Frank–Wolfe algorithm ](https://www.wikiwand.com/en/Frank%E2%80%93Wolfe_algorithm)
 
 ***
 
@@ -502,7 +547,7 @@ $$B(x,y)\geq B(x,y^{\prime}) + B(y^{\prime},y)$$
 where $y^{\prime}$ is the Bregman projection of ${y}$, and equality holds
 when the convex set C defining the projection $y^{\prime}$ is affine.
 
-<img src = "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bregman_divergence_Pythagorean.png" width=80%>
+<img src = "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bregman_divergence_Pythagorean.png" width="70%">
 
 ***
 It is given in the projection form:
@@ -551,16 +596,30 @@ See more on the following link list.
 
 ### Proximal Gradient Method
 
+Recall the projected gradient method,  it converts the constrained problem $\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$ into unconstrained (also uncontinuous) problem $\arg\min_{x}\{f(x)+\delta_{\mathbb{S}}(x)\}$ literally
+and it follows the following iteration:
+$$
+x^{k+1} = \arg\min_{x}\{\|x-(x^{k}-\alpha_k\nabla_x f(x^{k}))\|^{2} +\delta_{\mathbb{S}}(x) \}
+$$
+where the function $\delta_{\mathbb{S}}(x)$ is obviously non-differentiable, defined as follows
+$$
+h(x) =\delta_{\mathbb{S}}(x)=
+ \begin{cases}
+   0, & \text{if} \quad x \in \mathbb{S};\\
+   \infty, & \text{otherwise}.
+ \end{cases}
+$$
+
 The `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
 $$
-prox_h(x)=\arg\min_{u}\{h(u)+\frac{1}{2} {\|x-u\|}_2^2\}
+prox_h(x)=\arg\min_{u}\{\mathbf{h}(u)+\frac{1}{2} {\|x-u\|}_2^2\}
 $$
 
 Unconstrained problem with cost function split in two components:
-$$minimize \qquad f(x) = g(x)+h(x)$$
+$$minimize \qquad f(x) = g(x)+\mathbf{h}(x)$$
 
 - ${g}$ is convex, differentiable;
-- ${h}$ is closed, convex, possibly non-differentiable while $prox_h(x)$ is inexpensive.
+- $\mathbf{h}$ is closed, convex, possibly non-differentiable while $prox_h(x)$ is inexpensive.
 
 **Proximal gradient algorithm**
 $$x^{k}=prox_{t_k h} \{x^{k-1}-t_k\nabla g(x^{k-1})\}$$
@@ -740,8 +799,9 @@ If the constraints are more complex, **KKT theorem** may be necessary.
 - https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture7.pdf
 - https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/
 - https://www.cs.jhu.edu/~svitlana/papers/non_refereed/optimization_1.pdf
-- http://web.mit.edu/dimitrib/www/lagr_mult.html
+- [Constrained Optimization and Lagrange Multiplier Methods](http://web.mit.edu/dimitrib/www/lagr_mult.html)
 - https://zhuanlan.zhihu.com/p/50823110
+- [ ] [The proximal augmented Lagrangian method for nonsmooth composite optimization](https://arxiv.org/abs/1610.04514)
 
 *exponential augmented Lagrangian method*
 * [An exponential augmented Lagrangian method with second order convergence](https://impa.br/wp-content/uploads/2016/12/maria_daniela_abstract.pdf)
@@ -1221,10 +1281,18 @@ In the special case in which blocks consist of only one coordinate we speak of t
 **Augmentation Methods**
 
 [Augmentation and Decomposition Methods](https://bookdown.org/jandeleeuw6/bras/augmentation-and-decomposition-methods.html)
+Note: augmentation duality.
+$$ h(y)=\min_{x\in\mathcal{X}} g(x,y) $$
+then
+$$ \min_{x\in\mathcal{X}}f(x)=\min_{x\in\mathcal{X}}\min_{y\in\mathcal{Y}}g(x,y)=\min_{y\in\mathcal{Y}}\min_{x\in\mathcal{X}}g(x,y)=\min_{y\in\mathcal{Y}}h(y). $$
 
 **Alternating Conditional Expectations**
 
 [The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
+
+A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
+
+As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
 
 [Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
 Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
@@ -1460,6 +1528,7 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 
 ## Dynamical Systems
 
+
 We will focus on the optimization methods in the form of fixed point iteration and dynamical systems.
 It is to minimize the following function
 $$
@@ -1493,7 +1562,7 @@ When it comes to numerical solution to differential equations, it is to find the
 $$\lim_{t\to t_0} x(t)=x^{\star}$$
 if possible where $x^{\star}$ optimizes the cost/objective function $f(x)$ specially $t_0=\infty$.
 
-<img src="https://i1.rgstatic.net/ii/profile.image/291292945895424-1446461058178_Q128/Hedy_Attouch.jpg" width = "50%" />
+<img src="https://i1.rgstatic.net/ii/profile.image/291292945895424-1446461058178_Q128/Hedy_Attouch.jpg" width = "40%" />
 
 - <https://perso.math.univ-toulouse.fr/spot/resumes/>
 - [Fast convex optimization via inertial dynamics with Hessian driven damping](https://arxiv.org/abs/1601.07113)
@@ -1545,7 +1614,11 @@ $$
 - [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
 
 ***
+- [ ] [Analysis of Hamilton-Jacobi Equation: Optimization, Dynamics and Control - Part II of II](https://www.pathlms.com/siam/courses/1825/sections/2464)
+- [ ] [Optimization via the Hamilton-Jacobi-Bellman Method: Theory and Applications by Navin Khaneja, Harvard & KITP](http://online.kitp.ucsb.edu/online/qcontrol09/khaneja3/)
+- [ ] [GRADIENT FLOW DYNAMICS](http://www-bcf.usc.edu/~mihailo/Keyword/GRADIENT-FLOW-DYNAMICS.html)
 - [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
+- [The dynamics of Lagrange and Hamilton](https://nisheethvishnoi.wordpress.com/2018/09/19/the-dynamics-of-lagrange-and-hamilton/)
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
 - [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
@@ -1589,6 +1662,7 @@ A particular sequence of steps which satisfy these conditions, and was suggested
 
 `Stochastic gradient descent` is classified to stochastic optimization which is considered as the generalization of `gradient descent`.
 
+https://arxiv.org/abs/1901.00035
 
 Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
 It is **stochastic gradient** but may not be **descent**.
@@ -1964,36 +2038,7 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 + [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
 + [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
 
-### Matrix Multiplicative Weight Algorithms
-
-`Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
-The name “multiplicative weights” comes from how we implement the last step: if the weight of the chosen object at step $t$ is $w_t$ before the event, and $G$ represents how well the object did in the event, then we’ll update the weight according to the rule:
-$$
-w_{t+1}=w_{t}(1+G).
-$$
-
-> ![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
-
-[Jeremy](https://jeremykun.com/) wrote a blog on this topic:
-
-> In general we have some set $X$ of objects and some set $Y$ of “event outcomes” which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
-
-> The `MWUA` algorithm randomly chooses an object $x \in X$ in every round, observing the outcome $y \in Y$, and collecting the reward $M(x,y)$ (or losing it as a penalty). The guarantee of the MWUA theorem is that the expected sum of rewards/penalties of MWUA is not much worse than if one had picked the best object (in hindsight) every single round.
-
-**Theorem (from [Arora et al](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)):** The cumulative reward of the MWUA algorithm is, up to constant multiplicative factors, at least the cumulative reward of the best object minus $\log(n)$, where $n$ is the number of objects.
-
-+ [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
-+ [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
-+ [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
-+ [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
-+ [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
-+ [Nonnegative matrix factorization with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
-+ [A Combinatorial, Primal-Dual approach to Semidefinite Programs](http://www.satyenkale.com/papers/mmw.pdf)
-+ [Milosh Drezgich, Shankar Sastry. "Matrix Multiplicative Weights and Non-Zero Sum Games".](https://ptolemy.berkeley.edu/projects/chess/pubs/780.html)
-+ [The Matrix Multiplicative Weights Algorithm for Domain Adaptation by David Alvarez Melis](https://people.csail.mit.edu/davidam/assets/publications/MS_thesis/MSThesis.pdf)
-+ [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
-
-______
+****
 - [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
 - [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
 - [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)
@@ -2012,19 +2057,21 @@ ______
 And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
 And more courses on optimization:
 
-+ http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html
-+ http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html
-+ http://mat.uab.cat/~alseda/MasterOpt/
-+ http://www.math.ucla.edu/~wotaoyin/summer2016/
-+ http://www.math.ucla.edu/~wotaoyin/math273c/
-+ http://www.math.ucla.edu/~lvese/273.1.10f/
-+ http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html
-+ https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
-+ https://lavaei.ieor.berkeley.edu/Course_IEOR262B_Spring_2019.html
++ [凸优化 (2018年秋季) by 文在文](http://bicmr.pku.edu.cn/~wenzw/opt-2018-fall.html)
++ [2010- Shanghai Jiao Tong University 张小群](http://math.sjtu.edu.cn/faculty/xqzhang/html/teaching.html)
++ [Optimisation: Master's degree in Modelling for Science and Engineering](http://mat.uab.cat/~alseda/MasterOpt/)
++ [A Course on First-Order, Operator Splitting, and Coordinate Update Methods for Optimization by Yinwo Tao](http://www.math.ucla.edu/~wotaoyin/summer2016/)
++ [Math 273C: Numerical Optimizatoin by Yinwo Tao](http://www.math.ucla.edu/~wotaoyin/math273c/)
++ [Math 273, Section 1, Fall 2009: Optimization, Calculus of Variations, and Control Theory](http://www.math.ucla.edu/~lvese/273.1.10f/)
++ [ECE236B - Convex Optimization (Winter Quarter 2018-19) by Prof. L. Vandenberghe, UCLA](http://www.seas.ucla.edu/~vandenbe/ee236b/ee236b.html)
++ [EECS 127 / 227AT: Optimization Models and Applications  —  Fall 2018
+Instructors: A. Bayen, L. El Ghaoui.](https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html)
++ [IEOR 262B: Mathematical Programming II by Professor Javad Lavaei, UC Berkeley](https://lavaei.ieor.berkeley.edu/Course_IEOR262B_Spring_2019.html)
 + https://web.stanford.edu/~boyd/teaching.html
-+ http://web.stanford.edu/class/ee364b/lectures.html
-+ http://www.stat.cmu.edu/~ryantibs/convexopt/
-+ https://nisheethvishnoi.wordpress.com/convex-optimization/
++ [EE364b - Convex Optimization II](http://web.stanford.edu/class/ee364b/lectures.html)
++ [Convex Optimization: Fall 2018
+Machine Learning 10-725](http://www.stat.cmu.edu/~ryantibs/convexopt/)
++ [Algorithms for Convex Optimization](https://nisheethvishnoi.wordpress.com/convex-optimization/)
 + [Optimization by Vector Space Methods](https://courses.engr.illinois.edu/ECE580/sp2019/)
 + [Algorithms for Convex Optimization](https://nisheethvishnoi.wordpress.com/convex-optimization/)
 
@@ -2047,3 +2094,7 @@ And more courses on optimization:
 - [ ] https://people.eecs.berkeley.edu/~elghaoui/Teaching/EECS127/index.html
 - [ ] https://blogs.princeton.edu/imabandit/
 - [ ] http://www.probabilistic-numerics.org/research/index.html
+- [ ] https://people.eecs.berkeley.edu/~brecht/eecs227c.html
+- [ ] https://neos-guide.org/content/optimization-under-uncertainty
+- [ ] [Optimization and Gradient Descent on Riemannian Manifolds](https://wiseodd.github.io/techblog/2019/02/22/optimization-riemannian-manifolds/)
+- [ ] https://homepages.laas.fr/lasserre/drupal/content/approximation-theory-convex-optimization
