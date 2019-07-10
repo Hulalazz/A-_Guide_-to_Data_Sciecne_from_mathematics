@@ -284,11 +284,11 @@ It is an iterative trial-and-error in some sense.
 * Input  $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $\mathrm{d}\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$.
 * For $t = 1, 2, \dots, T$:
-   +  Fit a classifier $G_m(x)$ to the training data using weights $w_i$.
+   +  Fit a classifier $G_t(x)$ to the training data using weights $w_i$.
    +  Compute
       $$err_{t}=\frac{\sum_{i=1}^{N}w_i \mathbb{I}(G_t(x_i) \not= \mathrm{d}_i)}{\sum_{i=1}^{N} w_i}.$$
    +  Compute $\alpha_t = \log(\frac{1-err_t}{err_t})$.
-   +  Set $w_i\leftarrow w_i\exp[\alpha_t(\mathrm{d}_i G_t(x_i))], i=1,2,\dots, N$.
+   +  Set $w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{d}_i G_t(x_i))], i=1,2,\dots, N$ and renormalize.
 * Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_t(x)]$.
 
 The indicator function $\mathbb{I}(x\neq y)$ is defined as
@@ -304,6 +304,7 @@ $$
 
 <img src="https://cdn-images-1.medium.com/max/1600/0*WOo4d8oNmb85y_Eb.png" width="60%">
 
+
 ***
 
 * [AdaBoost at Wikipedia](https://www.wikiwand.com/en/AdaBoost)
@@ -313,6 +314,10 @@ $$
 
 <img src ="https://cseweb.ucsd.edu/~yfreund/portraitsmall.jpg" width="30%" />
 <img src=https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/avatar_user_33549_1504711750-180x180.jpg width=40% />
+
+**The Generic Leveraging Algorithm**
+
+$\fbox{Leveraging = Boosting without PAC Boosting property}$
 
 **Real AdaBoost**
 
@@ -478,8 +483,6 @@ A general gradient descent “boosting” paradigm is developed for additive exp
 
 ### Bonsai Boosted Decision Tree
 
-
-
 **bonsai BDT (BBDT)**:
 
 1. $\fbox{discretizes}$ input variables before training which ensures a fast
@@ -499,7 +502,7 @@ where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
 * [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
 
-AdaBoost is related with so-called expentontial loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+AdaBoost is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
 And the weight is update via the following formula:
 $$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
 
@@ -739,10 +742,8 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 - [从结构到性能，一文概述XGBoost、Light GBM和CatBoost的同与不同](https://zhuanlan.zhihu.com/p/34698733)
 - [从决策树、GBDT到XGBoost/lightGBM/CatBoost](https://zhuanlan.zhihu.com/p/59419786)
 - [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
-***
 
-**Optimization and Boosting**
-
+#### Optimization and Boosting
 
 What is the alternative of gradient descent  in order to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
 Can we do leaves splitting and optimization in the same stage?
@@ -761,7 +762,6 @@ To be more general, how to connect the numerical optimization methods such as fi
 Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boosting}$ ?  
 
 
-
 * [OPTIMIZATION BY GRADIENT BOOSTING](http://www.lsta.upmc.fr/BIAU/bc2.pdf)
 * [boosting as optimization](https://metacademy.org/graphs/concepts/boosting_as_optimization)
 * [Boosting, Convex Optimization, and Information Geometry](https://ieeexplore.ieee.org/document/6282239?arnumber=6282239)
@@ -777,9 +777,54 @@ AdaBoost | Coordinate-wise Descent
 Gradient Boost |  Gradient Descent
 Accelerated Gradient Boosting | Accelerated Gradient Descent
 xGBoost | Newton's Methods
+? | Mirror Gradient Descent
 ? | ADMM
 
+
+AdaBoost stepwise minimizes a function
+$$L(G_t)=\sum_{n=1}^N \exp(\mathrm{d}_n G_t(x_n))$$
+The gradient of $L(G_t)$ gives the example weights used for AdaBoost:
+$$\frac{\partial L(G_t)}{\partial G_t(x_n)}=\exp(-\mathrm{d}_nG_t(x_n)).$$
+
+Compared with `entropic descent method`, in each iteration of AdaBoost:
+$$w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{d}_i G_t(x_i))]>0,  i=1,2,\dots, N, \sum_{n=1}^{N}w_n=1$$
+
+the step is $\alpha_t$ and the gradient is $\mathrm{d}_i G_t(x_i)=\nabla f(x_i)$ so that $f(x)=\frac{1}{2}[\mathrm{d}_i G_t(x_i))]^2$
+
+* [Boost: Theory and Application](https://mitpress.mit.edu/sites/default/files/titles/content/boosting_foundations_algorithms/toc.html)
+* [机器学习算法中GBDT与Adaboost的区别与联系是什么？](https://www.zhihu.com/question/54626685)
+* [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/article/10.1023/A:1013912006537)
+
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
+
+### Matrix Multiplicative Weight Algorithms
+
+`Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
+The name “multiplicative weights” comes from how we implement the last step: if the weight of the chosen object at step $t$ is $w_t$ before the event, and $G$ represents how well the object did in the event, then we’ll update the weight according to the rule:
+$$
+w_{t+1}=w_{t}(1+G).
+$$
+
+> ![Matrix Multiplicative Weight](https://pic3.zhimg.com/80/v2-bb705627cf962661e5eedfc78c3420aa_hd.jpg)
+
+[Jeremy](https://jeremykun.com/) wrote a blog on this topic:
+
+> In general we have some set $X$ of objects and some set $Y$ of “event outcomes” which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
+
+> The `MWUA` algorithm randomly chooses an object $x \in X$ in every round, observing the outcome $y \in Y$, and collecting the reward $M(x,y)$ (or losing it as a penalty). The guarantee of the MWUA theorem is that the expected sum of rewards/penalties of MWUA is not much worse than if one had picked the best object (in hindsight) every single round.
+
+**Theorem (from [Arora et al](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)):** The cumulative reward of the MWUA algorithm is, up to constant multiplicative factors, at least the cumulative reward of the best object minus $\log(n)$, where $n$ is the number of objects.
+
++ [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
++ [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
++ [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
++ [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
++ [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
++ [Nonnegative matrix factorization with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
++ [A Combinatorial, Primal-Dual approach to Semidefinite Programs](http://www.satyenkale.com/papers/mmw.pdf)
++ [Milosh Drezgich, Shankar Sastry. "Matrix Multiplicative Weights and Non-Zero Sum Games".](https://ptolemy.berkeley.edu/projects/chess/pubs/780.html)
++ [The Matrix Multiplicative Weights Algorithm for Domain Adaptation by David Alvarez Melis](https://people.csail.mit.edu/davidam/assets/publications/MS_thesis/MSThesis.pdf)
++ [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
 
 
 #### Application
@@ -822,35 +867,14 @@ In the sense of stacking, deep neural network is thought as the stacked `logisti
 
 **Deep Forest**
 
-![Deep Forest](https://raw.githubusercontent.com/DataXujing/Cos_pic/master/pic2.png)
+<img title="Deep Forest" src="https://raw.githubusercontent.com/DataXujing/Cos_pic/master/pic2.png" width="80%" />
 
 * [Deep forest](http://lamda.nju.edu.cn/code_gcForest.ashx?AspxAutoDetectCookieSupport=1)
 * https://github.com/kingfengji/gcForest
-* https://zhuanlan.zhihu.com/p/37492203
-* https://arxiv.org/abs/1806.00007
-* https://arxiv.org/abs/1502.00712
-* http://adsabs.harvard.edu/abs/2015arXiv150200712P
-* https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/
-
-
-
-**Deep Learning Ensemble**
-
-Deep learning and ensemble learning share some similar guide line.
-
-![snapshot](http://ruder.io/content/images/2017/11/snapshot_ensembles.png)
-
-
-- [ ] [Neural Network Ensembles](https://www.computer.org/csdl/journal/tp/1990/10/i0993/13rRUyv53Gg)
-- [ ] [Deep Neural Network Ensembles](https://arxiv.org/abs/1904.05488)
-- [ ] [Ensemble Learning Methods for Deep Learning Neural Networks](https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/)
-- [ ] http://ruder.io/deep-learning-optimization-2017/
-- [ ] https://arxiv.org/abs/1704.00109v1
-- [ ] http://jtleek.com/advdatasci/17-blending.html
-- [ ] https://arxiv.org/abs/1708.03704
-- [ ] [Ensemble Deep Learning for Speech Recognition](https://www.isca-speech.org/archive/archive_papers/interspeech_2014/i14_1915.pdf)
-
-
+* [周志华团队和蚂蚁金服合作：用分布式深度森林算法检测套现欺诈](https://zhuanlan.zhihu.com/p/37492203)
+* [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
+* [Deep Boosting: Layered Feature Mining for General Image Classification](https://arxiv.org/abs/1502.00712)
+* [gcForest 算法原理及 Python 与 R 实现](https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/)
 ****
 
 Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.

@@ -571,7 +571,7 @@ $$
 $$
 where the convex function ${h}$ induces the Bregman divergence.
 
-One special method is called `entropic mirror descent(Multiplicative Weights Update, Exponential Gradient Descent)` when the Bregman divergence induced by  $e^x$ and  the constraint set $\mathbb{S}\subset\mathbb{R}^n$ is simplex, i.e. $\sum_{i=1}^{n}x_i =1, \forall x_i \geq 0$.
+One special method is called `entropic mirror descent(Exponential Gradient Descent)` when the Bregman divergence induced by  $e^x$ and  the constraint set $\mathbb{S}\subset\mathbb{R}^n$ is simplex, i.e. $\sum_{i=1}^{n}x_i =1, \forall x_i \geq 0$.
 
 **Entropic descent method** at step ${k}$ is given as follows:
 
@@ -579,7 +579,7 @@ $$
 {x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla {f(x^k)}_{i})}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla  {f(x^k)}_{j})}}, i=1,2,\dots, n.
 $$
 
-See more on the following link list.
+`Multiplicative Weights Update` is closely related with entropic descent method. See more on the following link list.
 
 * [Bregman Divergence and Mirror Descent, Xinhua Zhang(张歆华)](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
 * [CS 294 / Stat 260, Fall 2014: Learning in Sequential Decision Problems](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf)
@@ -610,7 +610,7 @@ h(x) =\delta_{\mathbb{S}}(x)=
  \end{cases}
 $$
 
-The `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
+If the function $\delta_{\mathbb{S}}(x)$ is replaced by general non-differential while  convex function $\mathbf{h}(x)$, the `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
 $$
 prox_h(x)=\arg\min_{u}\{\mathbf{h}(u)+\frac{1}{2} {\|x-u\|}_2^2\}
 $$
@@ -636,14 +636,7 @@ $$
 
 $x^{+}$ minimizes $h(u)$ plus a simple quadratic local model of $g(u)$ around ${x}$.
 
-And projected gradient method is a special case of proximal gradient methods with
-$$
-h(x)=\delta_C(x)=
- \begin{cases}
-   0, & \text{if} \quad x \in C;\\
-   \infty, & \text{otherwise}.
- \end{cases}
-$$
+And projected gradient method is a special case of proximal gradient method. 
 
 And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
 $$
@@ -709,6 +702,26 @@ x^{+} = \arg\min_{x}\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
 \\ =  \arg\min_{x}\log\{\exp[\delta_C(x)]\cdot \frac{1}{2}{\|x-x^0\|}_2^2\}
 \\=  \arg\min_{x} \{\delta_C(x)+\log({\|x-x^0\|}_2^2)\}.
 $$
+
+## Penalty/Barrier Function Methods
+
+In projected gradient method,  it converts the constrained problem into  an unsmooth problem.
+
+***
+constrained problem|unconstrained problem|desired properties
+---|---|---
+$\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$| $\arg\min_{x}\{f(x)+\delta_{\mathbb{S}}(x)\}$| unsmooth, inexpensive
+$\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$|$\arg\min_{x}\{f(x) + g_{\mathbb{S}}(x)\}$| smooth, inexpensive
+$\arg\min_{x}\{f(x)\mid g(x)\in \mathbb{S}\}$| $\arg\min_{x}\{f(x)+\fbox{?}\}$|smooth, inexpensive
+
+[In constrained optimization, a field of mathematics, a barrier function is a continuous function whose value on a point increases to infinity as the point approaches the boundary of the feasible region of an optimization problem.](https://en.wikipedia.org/wiki/Barrier_function)
+
+- [ ] [Line Search Procedures for the Logarithmic Barrier Function](https://epubs.siam.org/doi/abs/10.1137/0804013)
+- [ ] [Penalty method](https://en.wikipedia.org/wiki/Penalty_method)
+- http://s-mat-pcs.oulu.fi/~keba/Optimointi/OP_penalty_engl.pdf
+- https://www.me.utexas.edu/~jensen/ORMM/supplements/units/nlp_methods/const_opt.pdf
+- http://users.jyu.fi/~jhaka/opt/TIES483_constrained_indirect.pdf
+
 
 ## Lagrange Multipliers and Duality
 
@@ -804,6 +817,7 @@ If the constraints are more complex, **KKT theorem** may be necessary.
 - [ ] [The proximal augmented Lagrangian method for nonsmooth composite optimization](https://arxiv.org/abs/1610.04514)
 
 *exponential augmented Lagrangian method*
+
 * [An exponential augmented Lagrangian method with second order convergence](https://impa.br/wp-content/uploads/2016/12/maria_daniela_abstract.pdf)
 * [On the convergence of the exponential
 multiplier method for convex programming ](https://web.mit.edu/dimitrib/www/Expmult.pdf)

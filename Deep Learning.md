@@ -2,11 +2,15 @@
 
 ![https://www.artsky.com/read/524](https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg)
 
-https://aifiddle.io/
-https://www.wikiwand.com/en/Universal_approximation_theorem
-https://www.scienceofintelligence.de/
-https://lilianweng.github.io/lil-log/
-https://lfai.foundation/
+* https://aifiddle.io/
+* https://www.wikiwand.com/en/Universal_approximation_theorem
+* https://www.scienceofintelligence.de/
+* https://lilianweng.github.io/lil-log/
+* https://lfai.foundation/
+* [Framework for Better Deep Learning](https://machinelearningmastery.com/framework-for-better-deep-learning/)
+* [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
+* [Large Scale Distributed Deep Networks 中译文](http://blog.sina.com.cn/s/blog_81f72ca70101kuk9.html)
+* [深度树匹配模型(TDM)](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
 In mathematics, it is nonlinear non-convex and composite of many functions.

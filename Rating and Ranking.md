@@ -1,6 +1,6 @@
 # Rating and Ranking
 
-![https://zhuanlan.zhihu.com/p/25443972](https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg)
+<img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
 
 + [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
@@ -41,8 +41,8 @@ In some sense, rating is to evaluate in a quantity approach, i.e. how much the i
 
 - [ ] [Who’s #1? The Science
 of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
-- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
 - [ ] [WhoScored Ratings Explained](https://www.whoscored.com/Explanations)
+- [ ] [Who are the best MMA fighters of all time. A Bayesian study](https://blog.datadive.net/who-are-the-best-mma-fighters-of-all-time-a-bayesian-study/)
 - [ ] [Ranking Algorithm Definition](http://www.meteorsite.com/ranking-algorithm)
 - [ ] [EdgeRank](http://edgerank.net/)
 - [ ] [SofaScore Statistical Ratings](https://www.sofascore.com/news/sofascore-player-ratings/)
@@ -170,6 +170,7 @@ $$
 
 where $\beta^2$ is the average of all players' variances, $\nu(t) =\frac{N(t)}{\Phi(t)}, w(t)=\nu(t)[\nu(t)+1]$. And $N(t),\Phi(t)$ is the PDF and CDF of standard normal distribution, respectively.
 
+$\color{red}{PS}$: $TrueSkill^{TM}$ is a commercial trademark.
 - [X] https://www.wikiwand.com/en/TrueSkill
 - [X] [算法_TrueSkill_Python](https://www.jianshu.com/p/c1fbba3af787)
 - [ ] [Chapter 3: Meeting Your Match](http://www.mbmlbook.com/TrueSkill.html)
@@ -261,6 +262,8 @@ There are some links on the  collective decision-making theory:
 * [Learning to Rank](https://jimmy-walker.gitbooks.io/rank/L2R.html)
 * [Hardened Fork of Ranklib learning to rank library](https://github.com/o19s/RankyMcRankFace)
 * [OpenSource Connections](https://github.com/o19s)
+* [AIM Workshop on the Mathematics of Ranking](https://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/)
+* [Symposium: The mathematics of ranking](https://nalag.cs.kuleuven.be/research/workshops/ranking/)
 
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every `search engine`, is responsible for the matching between processed queries and indexed documents in information retrieval.
@@ -351,7 +354,7 @@ Where ${rel}_{i}$ is the graded relevance of the result at position _i_.
 
 The premise of `Discounted Cumulative Gain(DCG)` is that highly relevant documents appearing lower in a search result list should be penalized as the graded relevance value is reduced logarithmically proportional to the position of the result.
 
-The traditional formula of _DCG_ accumulated at a particular rank position p is defined as:
+The traditional formula of _DCG_ accumulated at a particular rank position _p_ is defined as:
 $$
 {DCG}_p= \sum_{i=1}^{p}\frac{{rel}_i}{{\log}_{2}(i+1)}
 $$
@@ -501,6 +504,8 @@ $$\lambda_i = \sum_{i\in(i,j)}\lambda_{(i,j)}-\sum_{j\in(j,i)}\lambda_{(i,j)}$$
 
 ### LambdaMART
 
+* https://github.com/wepe/efficient-decision-tree-notes
+
 **LambdaMART** is the boosted tree version of LambdaRank, which is based on RankNet. It takes the ranking problem as classification problem.
 
 MART stands for [Multiple Additive Regression Tree](http://statweb.stanford.edu/~jhf/MART.html).
@@ -629,7 +634,7 @@ The algorithm is a modification of RankBoost, analogous to “approximate coordi
 
 ### YetiRank and MatrixNet
 
-`PageRank, LambdaRank, MatrixNet` is under the support of commercial firms *Google, Microsoft, Yandex*. The practical ranking algorithms in the search engines are the key to search engine optimization.
+`PageRank, LambdaRank, MatrixNet` is under the support of commercial firms *Google, Microsoft, Yandex*, respectively. The practical ranking algorithms in the search engines are the key to search engine optimization.
 Today the word Yandex has become synonymous with Internet search in Russian-speaking countries, just the same as Google in English-speaking countries.
 
 [MatrixNet is a proprietary machine learning algorithm developed by Yandex and used widely throughout the company products. The algorithm is based on **gradient boosting** and was introduced since 2009.](https://www.wikiwand.com/en/MatrixNet)
@@ -643,12 +648,13 @@ As summarized in the previous thesis, the key feature of this method is
 
 The difficulty of the analysis of MatrixNet algorithm is that the formula has never been published, unlike Google’s PageRank.
 [CatBoost is an algorithm for gradient boosting on decision trees. Developed by Yandex researchers and engineers, it is the successor of the MatrixNet algorithm that is widely used within the company for ranking tasks, forecasting and making recommendations. It is universal and can be applied across a wide range of areas and to a variety of problems.](https://betapage.co/startup/catboost)
-+ [Winning The Transfer Learning Track of Yahoo!’s Learning
-To Rank Challenge with YetiRank](http://proceedings.mlr.press/v14/gulin11a/gulin11a.pdf)
+
++ [YetiRank: Everybody Lies](http://download.yandex.ru/company/ICML2010-kuralenok.pdf)
++ [Yandex employees won the competition for the best search](https://weekly-geekly.github.io/articles/97689/index.html)
++ [Winning The Transfer Learning Track of Yahoo!’s Learning To Rank Challenge with YetiRank](http://proceedings.mlr.press/v14/gulin11a/gulin11a.pdf)
 + [MatrixNet: New Level of Search Quality](https://yandex.com/company/technologies/matrixnet/)
 + [The Ultimate Guide To Yandex Algorithms](https://salt.agency/blog/the-ultimate-guide-to-yandex-algorithms/)
-+ [CERN boosts its search for antimatter with Yandex’s MatrixNet search engine tech](https://www.extremetech.com/extreme/147320-cern-boosts-its-search-for-antimatter-with-yandexs-matrixnet-search-engine-tech)
-+ [MatrixNet as a specific Boosted Decision Tree algorithm which is available as a service](https://github.com/yandex/rep/blob/master/rep/estimators/matrixnet.py)
+
 
 ### Selective Gradient Boosting
 
@@ -933,6 +939,13 @@ re-ranking via multi-arm bandits (MAB).
 * https://arxiv.org/abs/1812.00073
 * https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
 
+### HodgeRank
+
+- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
+- [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
+- [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
+- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](http://repository.ust.hk/ir/Record/1783.1-90160)
+- [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
 
 ### Collaborative Ranking
 
@@ -974,7 +987,7 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 
 [The basic functions of a search engine can be described as _crawling, data mining, indexing and query processing_. `Crawling` is the act of sending small programed bots out to collect information. `Data mining` is storing the information collected by the bots. `Indexing` is ordering the information systematically. And `query processing` is the mathematical process in which a person's query is compared to the index and the results are presented to that person.](https://lifepacific.libguides.com/c.php?g=155121&p=1018180)
 
-<img title = "”search process" src = http://www.searchtools.com/slides/images/search-process.gif width=50% />
+<img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
 
 [Personalised Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommender s
 
@@ -1005,23 +1018,50 @@ And here search engine and recommender system coincide except the recommender sy
 
 If the recommendation is to solve the information overload problem, information retrieval and search technology  is to find the relative entity in web or some data base if the query is given.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
-Information is in diverse format or form, such as charactor strings(articles), images, voices and videos.
-`Ranking` and `Relavance`  is two perpsectives of search.  
-In this section, we focus on relavance rather than rank.
+Information is in diverse format or form, such as charactor strings(articles), images, voices and videos so that information retrieval has diverse subfields such as multimedia information retrieval. Search engine is considered as a pratical application of information retrieval.  
+
+`Relavance`, `Ranking`  and `Context`  are three foundstones of search. In this section, we focus on relavance more than rank.
 If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
 
+<img title="IR Process" src="https://hsto.org/files/4b9/a9b/1a6/4b9a9b1a60d041b2b4dfeca4b7989586.png" width="60%" /> 
+
+***
+
+Recall the definition of  Discounted Cumulative Gain(DCG):
+$$
+{DCG}_p= \sum_{i=1}^{p}\frac{{rel}_i}{{\log}_{2}(i+1)}
+$$
+
+where ${rel}_i$ is the relavance of the document and query.
+However, it is discussed how to compute the the relavance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relavances.
+For other types information retrieval system, it is different to compute the relavance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
+
+* [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
+* [relevant search](http://manning.com/books/relevant-search)
+* [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
+* http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
+* https://en.wikipedia.org/wiki/List_of_search_engines
+* https://www.opensemanticsearch.org/
+* https://www.seekquarry.com/
+* http://l-lists.com/en/lists/qukoen.html
+* [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
+* [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
+
+### Labs and Resources  
+
+#### Labs on Search and Information Retrieval
 
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
 + [Search and information retrieval@Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
 + [Web search and mining @Yandex](https://research.yandex.com/publications?themeSlug=web-mining-and-search)
 + [Information Retrieval Lab: A research group @ University of A Coruña (Spain)](https://www.irlab.org/)
-+ [ BCS-IRSG: Information Retrieval Specialist Group](https://irsg.bcs.org/)
++ [BCS-IRSG: Information Retrieval Specialist Group](https://irsg.bcs.org/)
 + [智能技术与系统国家重点实验室信息检索课题组](http://www.thuir.org/)
 + [The Cochrane Information Retrieval Methods Group (Cochrane IRMG)](https://methods.cochrane.org/irmg/)
 + [SOCIETY OF INFORMATION RETRIEVAL & KNOWLEDGE MANAGEMENT (MALAYSIA)](http://pecamp.org/web14/)
 + [Quantum Information Access and Retrieval Theory)](https://www.quartz-itn.eu/)
 + [Center for Intelligent Information Retrieval (CIIR)](http://ciir.cs.umass.edu/)
-+ [InfoSeeking Lab is situated in School of Communication & Information at Rutgers University.](https://infoseeking.org/)
++ [InfoSeeking Lab situated in School of Communication & Information at Rutgers University.](https://infoseeking.org/)
 + http://mlwiki.org/index.php/Information_Retrieval
 + [information and language processing systems](https://ilps.science.uva.nl/)
 + [information retrieval facility](https://www.ir-facility.org/)
@@ -1030,7 +1070,9 @@ If interested in the history of information retrieval, Mark Sanderson and W. Bru
 + [SIGIR](https://sigir.org/)
 + http://cistern.cis.lmu.de/
 + http://hpc.isti.cnr.it/
-***
+
+#### Conference on Information Retrieval
+
 + [European Conference on Information Retrieval (ECIR 2018)](https://www.ecir2018.org/)
 + [ECIR 2019](http://ecir2019.org/workshops/)
 + [IR @wikiwand](https://www.wikiwand.com/en/Information_retrieval)
@@ -1047,7 +1089,10 @@ If interested in the history of information retrieval, Mark Sanderson and W. Bru
 + [ACM Conference of Web Search and Data Mining 2019](http://www.wsdm-conference.org/2019/)
 + [SMIR 2014](http://smir2014.noahlab.com.hk/SMIR2014.htm)
 + [2018 PRS WORKSHOP:  Personalization, Recommendation and Search (PRS)](https://prs2018.splashthat.com/)
-***
++ [Neu-IR: The SIGIR 2016 Workshop on Neural Information Retrieval](https://www.microsoft.com/en-us/research/event/neuir2016/)
+
+#### Cources on Information Retrieval and Search
+
 + [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
 + [CS 371R: Information Retrieval and Web Search](https://www.cs.utexas.edu/~mooney/ir-course/)
 + [CS 242: Information Retrieval & Web Search, Winter 2019](http://www.cs.ucr.edu/~vagelis/classes/CS242/index.htm)
@@ -1055,10 +1100,10 @@ If interested in the history of information retrieval, Mark Sanderson and W. Bru
 + [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)
 + [Information Retrieval and Web Search 2015](http://web.eecs.umich.edu/~mihalcea/498IR/)
 + [Data and Web Mining](http://www.dsi.unive.it/~dm/)
-+ [Neural Networks for Information Retrieval](http://wwwir.com)
++ [Neural Networks for Information Retrieval](http://www.nn4ir.com)
 + [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
 + [INFORMATION RETRIEVAL FOR GOOD](http://romip.ru/russir2018/)
 + [Search user interfaces](http://searchuserinterfaces.com/book/)
 + [Morden Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
 + [Search Engine: Information Retrieval in Practice](http://www.search-engines-book.com/)
-+ [Neu-IR: The SIGIR 2016 Workshop on Neural Information Retrieval](https://www.microsoft.com/en-us/research/event/neuir2016/)
++ [Information Retrieval  潘微科](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/IR201702/index.html)
