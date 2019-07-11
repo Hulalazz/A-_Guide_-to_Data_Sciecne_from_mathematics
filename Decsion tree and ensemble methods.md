@@ -12,11 +12,11 @@ The tree-based learning algorithms take advantages of these [universal approxima
 
 <img title="https://cdn.stocksnap.io/" src="https://cdn.stocksnap.io/img-thumbs/960w/TIHPAM0QFG.jpg" width="80%" />
 
-The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and $S_k\in\mathbb{R}^p$ when only some finite sample or training data $\{(\mathrm{x}_i, y_i)\mid i=1, 2, \dots, n\}$ is accessible or available where $\mathrm{x}_i\in\mathbb{R}^p$ and $y_i\in\mathbb{R}$ or some categorical domain.
+The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and the region $S_k\in\mathbb{R}^p$  when only some finite sample or training data $\{(\mathrm{x}_i, y_i)\mid i=1, 2, \dots, n\}$ is accessible or available where $\mathrm{x}_i\in\mathbb{R}^p$ and $y_i\in\mathbb{R}$ or some categorical domain and the number of regions also depends on the training data set.
 
 ### Decision Tree
 
-In brief, decision tree is to find the optimal parameters by **coordinate-wise** splitting methods.
+In brief, A decision tree is a classifier expressed as a recursive partition of the instance space.
 
 > A decision tree is the function $T :\mathbb{R}^d \to \mathbb{R}$ resulting from a learning algorithm applied on training data lying in input space $\mathbb{R}^d$ , which always has the following form:
 > $$
@@ -81,7 +81,7 @@ $$
 
 Algorithm | Impurity
 ---|---
-[ID3](https://www.wikiwand.com/en/ID3_algorithm)| Informatio
+[ID3](https://www.wikiwand.com/en/ID3_algorithm)| Information Gain
 [C4.5](https://www.wikiwand.com/en/C4.5_algorithm)| Normalized information gain ratio
 CART|Gini Index
 
@@ -99,11 +99,11 @@ $\color{red}{\text{PS: all above impurities}}$  are based on the probability $\f
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
 The regularization techniques in regression may not suit the tree algorithms such as LASSO.
 
-**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees)
+**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees) 
 
 <img title = "pruning" src="https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="40%" />
 
-In machine learning, we prune the decision tree to make a balance between over-fitting and under-fitting. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
+In machine learning, it is to avoid the overfitting, to make a balance between over-fitting and under-fitting and boost the generalization ability. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
 
 1. Use a distinct dataset from the training set (called validation set), to evaluate the effect of post-pruning nodes from the tree.
 2. Build the tree by using the training set, then apply a statistical test to estimate whether pruning or expanding a particular node is likely to produce an improvement beyond the training set.
@@ -204,7 +204,9 @@ ends up with a very large number of possible models for a given task.
 * [Additive Models, Boosting, and Inference for Generalized Divergences ](https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf)
 * [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
 * [Weak Learning, Boosting, and the AdaBoost algorithm](https://jeremykun.com/2015/05/18/boosting-census/)
-
+* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
+* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
+  
 ### Bagging
 
 Bagging, short for 'bootstrap aggregating', is a simple but highly effective ensemble method that creates diverse models on different random bootstrap samples of the original data set.
@@ -274,21 +276,20 @@ In another word, we will reduce the error at each iteration.
 
 #### AdaBoost
 
-`AdaBoost` is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$.
+`AdaBoost` is a boosting methods for supervised classification algorithms, so that the labeled data set is given in the form $D=\{ (x_i, \mathrm{y}_i)\}_{i=1}^{N}$.
 AdaBoost is to change the distribution of training data and learn from the shuffled data.
 It is an iterative trial-and-error in some sense.
 
-
 ***
 
-* Input  $D=\{ (x_i, \mathrm{d}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $\mathrm{d}\in \{+1, -1\}$.
+* Input  $D=\{ (x_i, \mathrm{y}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $\mathrm{y}\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$.
 * For $t = 1, 2, \dots, T$:
    +  Fit a classifier $G_t(x)$ to the training data using weights $w_i$.
    +  Compute
-      $$err_{t}=\frac{\sum_{i=1}^{N}w_i \mathbb{I}(G_t(x_i) \not= \mathrm{d}_i)}{\sum_{i=1}^{N} w_i}.$$
+      $$err_{t}=\frac{\sum_{i=1}^{N}w_i \mathbb{I}(G_t(x_i) \not= \mathrm{y}_i)}{\sum_{i=1}^{N} w_i}.$$
    +  Compute $\alpha_t = \log(\frac{1-err_t}{err_t})$.
-   +  Set $w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{d}_i G_t(x_i))], i=1,2,\dots, N$ and renormalize.
+   +  Set $w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{y}_i G_t(x_i))], i=1,2,\dots, N$ and renormalize.
 * Output $G(x)=sign[\sum_{t=1}^{T}\alpha_{t}G_t(x)]$.
 
 The indicator function $\mathbb{I}(x\neq y)$ is defined as
@@ -315,9 +316,6 @@ $$
 <img src ="https://cseweb.ucsd.edu/~yfreund/portraitsmall.jpg" width="30%" />
 <img src=https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/avatar_user_33549_1504711750-180x180.jpg width=40% />
 
-**The Generic Leveraging Algorithm**
-
-$\fbox{Leveraging = Boosting without PAC Boosting property}$
 
 **Real AdaBoost**
 
@@ -377,6 +375,28 @@ where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
 - https://arxiv.org/abs/1901.04065
 - [Open machine learning course. Theme 10. Gradient boosting](https://weekly-geekly.github.io/articles/327250/index.html)
 
+### Bonsai Boosted Decision Tree
+
+**bonsai BDT (BBDT)**:
+
+1. $\fbox{discretizes}$ input variables before training which ensures a fast
+and robust implementation
+2. converts decision trees to n-dimentional table to store
+3. prediction operation takes one reading from this table
+
+The first step of preprocessing data limits where the splits of the data can be made and, in effect, permits the grower of the tree to
+control and shape its growth; thus, we are calling this a bonsai BDT (BBDT).
+The discretization works by enforcing that the smallest keep interval that can be created when training the BBDT is:
+$$\Delta x_{min} > \delta_x \forall x\,\,\text{on all leaves}$$
+where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
+
+***
+* [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](https://arxiv.org/abs/1210.6861)
+* [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
+* [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
+* [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
+
+
 #### Gradient Boosting Decision Tree
 
 One of the frequently asked questions is `What's the basic idea behind gradient boosting?` and the answer from [https://explained.ai/gradient-boosting/faq.html] is the best one I know:
@@ -414,23 +434,44 @@ obj^{(t)} = \sum_{i=1}^{n} L(y_i,\hat{y}^{(t)}_i) + \sum_{k=1}^{t} \Omega(f_k) \
 =  \sum_{i=1}^{n} L(y_i,\hat{y}^{(t-1)}_i + f_t(x_i)) + \Omega(f_t) + C
 $$
 
-where C is constant and $C=\sum_{k=1}^{t-1} \Omega(f_k)$.
+where $C=\sum_{k=1}^{t-1} \Omega(f_k)$.
+
 Particularly, we take $L(x,y)=(x-y)^2$, and the objective function is given by
 
 $$
 obj^{(t)}
 =  \sum_{i=1}^{n} [y_i - (\hat{y}^{(t-1)}_i + f_t(x_i))]^2 + \Omega(f_t) + C \\
-= \sum_{i=1}^{n} [2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t(x_i)^2 ] + \Omega(f_t) + C^{\prime}
+= \sum_{i=1}^{n} [-2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t^2(x_i) ] + \Omega(f_t) + C^{\prime}
 $$
 
 where $C^{\prime}=\sum_{i=1}^{n} (y_i - \hat{y}^{(t-1)}_i)^2 + \sum_{k=1}^{t-1} \Omega(f_k)$.
 
 If there is no regular term $\sum_{k=1}^{t} \Omega(f_k)$, the problem is simplified to
-$$\arg\min_{f_{t}}\sum_{i=1}^{n} [2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t(x_i)^2 ]\implies f_t(x_i) = -(y_i - \hat{y}^{(t-1)}_i) $$
-where $i\in \{1,\cdots, n\}$ and $-(y_i - \hat{y}^{(t-1)}_i)=-\frac{1}{2} {[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
+$$\arg\min_{f_{t}}\sum_{i=1}^{n} [-2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t^2(x_i) ]\implies f_t(x_i) = (y_i - \hat{y}^{(t-1)}_i) $$
+where $i\in \{1,\cdots, n\}$ and $(y_i - \hat{y}^{(t-1)}_i)=-\frac{1}{2} {[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
 
 ***
-* Input training data set $\{(x_i, \mathrm{y}_i)\mid i=1, \cdots, n\}$.
+
+**Boosting  for Regression Tree**
+
+* Input training data set $\{(x_i, \mathrm{y}_i)\mid i=1, \cdots, n\}, x_i\in\mathcal x\subset\mathbb{R}^n, y_i\in\mathcal Y\subset\mathbb R$.
+* Initialize $f_0(x)=0$.
+* For $t = 1, 2, \dots, T$:
+   +   For $i = 1, 2,\dots , n$ compute the residuals
+    $$r_{i,t}=y_i-f_{t-1}(x_i)=y_i - \hat{y}_i^{t-1}.$$
+   +  Fit a regression tree to the targets $r_{i,t}$   giving **terminal regions**
+   $$R_{j,m}, j = 1, 2,\dots , J_m. $$
+   +  For $j = 1, 2,\dots , J_m$ compute
+      $$\gamma_{j,t}=\arg\min_{\gamma}\sum_{x_i\in R_{j,m}}{L(\mathrm{d}_i, f_{t-1}(x_i)+\gamma)}. $$
+  +  Update $f_t = f_{t-1}+ \nu{\sum}_{j=1}^{J_m}{\gamma}_{j, t} \mathbb{I}(x\in R_{j, m}),\nu\in(0, 1)$.
+* Output $f_T(x)$.
+
+***
+For general loss function, it is more common that $(y_i - \hat{y}^{(t-1)}_i) \not=-\frac{1}{2} {[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
+
+**Gradeint Boosting for Regression Tree**
+
+* Input training data set $\{(x_i, \mathrm{y}_i)\mid i=1, \cdots, n\}, x_i\in\mathcal x\subset\mathbb{R}^n, y_i\in\mathcal Y\subset\mathbb R$.
 * Initialize $f_0(x)=\arg\min_{\gamma} L(\mathrm{y}_i,\gamma)$.
 * For $t = 1, 2, \dots, T$:
    +   For $i = 1, 2,\dots , n$ compute
@@ -439,7 +480,7 @@ where $i\in \{1,\cdots, n\}$ and $-(y_i - \hat{y}^{(t-1)}_i)=-\frac{1}{2} {[\fra
    $$R_{j,m}, j = 1, 2,\dots , J_m. $$
    +  For $j = 1, 2,\dots , J_m$ compute
       $$\gamma_{j,t}=\arg\min_{\gamma}\sum_{x_i\in R_{j,m}}{L(\mathrm{d}_i, f_{t-1}(x_i)+\gamma)}. $$
-  +  Update $f_t = f_{t-1}+ \nu{\sum}_{j=1}^{J_m}{\gamma}_{j, t} \mathbb{I}(x\in R_{j, m})$.
+  +  Update $f_t = f_{t-1}+ \nu{\sum}_{j=1}^{J_m}{\gamma}_{j, t} \mathbb{I}(x\in R_{j, m}),\nu\in(0, 1)$.
 * Output $f_T(x)$.
 
 ***
@@ -470,7 +511,33 @@ where $J_m$ is the number of the terminal regions and ${n}$ is the number of tra
 * https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 * [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
 * [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
+  
+****
 
+AdaBoost is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+And the weight is update via the following formula:
+$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
+
+
+The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
+When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
+general expression of the AdaBoost criteria
+$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
+
+where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
+the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
+e.g., consider the sparse matrix $A_{knn}$ given by
+$$a_{ij}^{knn}=
+\begin{cases}
+1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
+0, & \text{otherwise}.
+\end{cases}$$
+
+
+* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
+* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
+* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
+* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
 
 _______________
 
@@ -481,41 +548,6 @@ A general gradient descent “boosting” paradigm is developed for additive exp
 * [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
 * [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
 
-### Bonsai Boosted Decision Tree
-
-**bonsai BDT (BBDT)**:
-
-1. $\fbox{discretizes}$ input variables before training which ensures a fast
-and robust implementation
-2. converts decision trees to n-dimentional table to store
-3. prediction operation takes one reading from this table
-
-The first step of preprocessing data limits where the splits of the data can be made and, in effect, permits the grower of the tree to
-control and shape its growth; thus, we are calling this a bonsai BDT (BBDT).
-The discretization works by enforcing that the smallest keep interval that can be created when training the BBDT is:
-$$\Delta x_{min} > \delta_x \forall x\,\,\text{on all leaves}$$
-where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
-
-***
-* [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](https://arxiv.org/abs/1210.6861)
-* [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
-* [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
-* [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
-
-AdaBoost is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
-And the weight is update via the following formula:
-$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
-
-When the lables are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
-general expression of the AdaBoost criteria
-$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
-
-where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
-the AdaBoost weighting procedure is recovered.
-
-* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
-* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
-* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
 
 #### Accelerated Gradient Boosting
 
@@ -782,20 +814,45 @@ xGBoost | Newton's Methods
 
 
 AdaBoost stepwise minimizes a function
-$$L(G_t)=\sum_{n=1}^N \exp(\mathrm{d}_n G_t(x_n))$$
+$$L(G_t)=\sum_{n=1}^N \exp(-\mathrm{y}_n G_t(x_n))$$
 The gradient of $L(G_t)$ gives the example weights used for AdaBoost:
-$$\frac{\partial L(G_t)}{\partial G_t(x_n)}=\exp(-\mathrm{d}_nG_t(x_n)).$$
+$$\frac{\partial L(G_t)}{\partial G_t(x_n)}=-\mathrm{y}_n\exp(-\mathrm{y}_nG_t(x_n)).$$
 
 Compared with `entropic descent method`, in each iteration of AdaBoost:
-$$w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{d}_i G_t(x_i))]>0,  i=1,2,\dots, N, \sum_{n=1}^{N}w_n=1$$
+$$w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{y}_i G_t(x_i))]>0,  i=1,2,\dots, N, \sum_{n=1}^{N}w_n=1.$$
 
-the step is $\alpha_t$ and the gradient is $\mathrm{d}_i G_t(x_i)=\nabla f(x_i)$ so that $f(x)=\frac{1}{2}[\mathrm{d}_i G_t(x_i))]^2$
+$\color{red}{Note}$: given the input feature  $x_i$, the label $\mathrm y_i$ is a fixed constant and the model is modified  with the training data set and the distribution $(D, w)$ i.e., $\{(x_i, y_i, w_i)\mid i=1,2,\cdots, N\}$.
 
 * [Boost: Theory and Application](https://mitpress.mit.edu/sites/default/files/titles/content/boosting_foundations_algorithms/toc.html)
 * [机器学习算法中GBDT与Adaboost的区别与联系是什么？](https://www.zhihu.com/question/54626685)
 * [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/article/10.1023/A:1013912006537)
 
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
+
+
+### The Generic Leveraging Algorithm
+
+Let us assume the loss function $G(f, D)$ has the following additive form
+$$G(f, D)=\sum_{n=1}^{N} g(f(x_n), y_n),$$
+and we would like to solve the optimization problem
+$$\min_{f\in\mathcal F}G(f, D)=\min_{w}\sum_{n=1}^{N} g(f_w(x_n), y_n).$$
+And $g^{\prime}(f_w(x_n), y_n))=\frac{\partial g(f_w(x_n), y_n)}{\partial f_w(x_n)}$ for $n=1,2,\cdots, N$.
+***
+* Input  $D=\{ (x_i, y_i)\}_{i=1}^{N}$;Loss function $G:\mathbb{R}^n\to\mathbb{R}$ .
+* Initialize the observation weights $f_o=0, d_n^1=g^{\prime}(f_0(x_n), y_n), n=1, 2, \dots, N$.
+* For $t = 1, 2, \dots, T$:
+   +  Train classifier on $\{D, \mathbf d^t\}$ and obtain hypothesis $h_t:\mathbb{X}\to\mathbb{Y}$
+   +  Set $\alpha_t=\arg\min_{\alpha\in\mathbb{R}}G[f_t + \alpha h_t]$
+   +  Update $f_{t+1} = f_t + {\alpha_t}h_t$ and $d_n^{t+1}=g^{\prime}(f_{t+1}(x_n), y_n), n=1, 2, \dots, N$
+* Output $f_T$.
+
+Here $\mathbf d^t=(d^t_1, d^t_2, \cdots, d^t_N)$ for $t=1,2,\cdots, T$.
+______
+$\fbox{Leveraging = Boosting without PAC Boosting property}$
+* [An Introduction to Boosting and Leveraging](http://face-rec.org/algorithms/Boosting-Ensemble/8574x0tm63nvjbem.pdf)
+* [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
+* [FACE RECOGNITION HOMEPAGE](http://face-rec.org/algorithms/)
+
 
 ### Matrix Multiplicative Weight Algorithms
 

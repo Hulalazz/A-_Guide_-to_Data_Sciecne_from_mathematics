@@ -2,6 +2,7 @@
 
 <img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
 
++ https://cs.uwaterloo.ca/~jimmylin/projects/index.html
 + [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
 + [Information Retrieval and the Web @Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
@@ -29,7 +30,7 @@ which may answer this query as the PageRank does for web searching. And `search 
 
 <img title="science of rating and ranking" src="https://images-na.ssl-images-amazon.com/images/I/51bML705X7L._SX353_BO1,204,203,200_.jpg" width="20%" />
 
-They share some techniques although their purpose is different such as the logistic regression.
+They share some techniques such as the logistic regression although their purpose is different.
 
 |[3 R's for the internet age](https://phys.org/news/2016-12-recommendingthree-internet-age.html)|Rating, ranking and recommending|
 |---|--- |
@@ -145,8 +146,9 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 As shown in the rule to update the score in Elo, it only take the differences of score into consideration.
 The TrueSkill system will assume that the distribution of the skill is **location-scale** distribution. In fact, the prior distribution in Elo is **Gaussian distribution**.
 The expected performance of the player is his mean of the distribution. The variance is the uncertainty  of the system.
-
+[For a new player, this distribution will represent our (significant) uncertainty in their skill value. Again, we make this modelling assumption precise through the choice of a Gaussian distribution. Once a new player has played a game, we aim to use the outcome of the game to infer the updated skill distribution for the player (and also for any other players in the game). This involves solving a probabilistic inference problem to calculate the posterior distribution of each player’s skill, taking account of the new information provided by the result of the game. Although the prior distribution is Gaussian, the corresponding posterior distribution may not be Gaussian. However, we shall see that there is considerable benefit in approximating the exact posterior distribution by a Gaussian. ](http://www.mbmlbook.com/TrueSkill_Inferring_the_players_skills.html)
 The update rule will update the mean and variance:
+***
 $$
 \mu_{winner} \leftarrow \mu_{winner} + \frac{\sigma_{winner}^2}{c} \cdot \nu(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c})
 $$
@@ -178,6 +180,9 @@ $\color{red}{PS}$: $TrueSkill^{TM}$ is a commercial trademark.
 - [ ] https://www.wikiwand.com/en/Location%E2%80%93scale_family
 - [ ] [TrueSkill™ Ranking System](https://www.microsoft.com/en-us/research/project/trueskill-ranking-system/)
 - [ ] [TrueSkill: the video game rating system](https://trueskill.org/)
+- [ ] [Herbrich, R., Minka, T., and Graepel, T. (2007). TrueSkill(TM): A Bayesian Skill Rating System. In Advances in Neural Information Processing Systems 20, pages 569–576. MIT Press.](https://ieeexplore.ieee.org/document/6287323/)
+- [ ] https://pypi.org/project/trueskill/
+
 
 ### Whole-History Rating
 
@@ -296,7 +301,10 @@ And it can apply to information retrieval and recommender system.
 *Learning to Rank* can be classified into [pointwise, pairwise and listless approaches](http://www.l3s.de/~anand/tir15/lectures/ws15-tir-l2r.pdf).
 In brief, the pointwise approach is to find a function which can predict the relevance of a query and a given document;
 the pairwise approach is to predict the relative  preference of two document when given a query;
-the listwise approach is to predict the ranks of documents in a list when given a query.
+the listwise approach is to predict the ranks of documents in a list when given a query. Recall the following relation:
+$$\fbox{Learning = Representation + Evaluation + Optimization}.$$
+
+The representation of the `l2r` is the core and focus.
 
 + [Ranking Models (2018/2) by Rodrygo Santos](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
 + [Temporal Information Retrieval: A course on Information Retrieval with a temporal twist, Lecturer: Dr. Avishek Anand](http://www.l3s.de/~anand/tir15/)
@@ -388,6 +396,7 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [Online User Engagement: Metrics and Optimization.](https://onlineuserengagement.github.io/)
 - [Rank and Relevance in Novelty and Diversity Metrics for Recommender Systems](http://ir.ii.uam.es/predict/pubs/recsys11-vargas.pdf)
 - [Implementing Triplet Losses for Implicit Feedback Recommender Systems with R and Keras](https://nanx.me/blog/post/triplet-loss-r-keras/)
+- [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
 
 ### RankSVM
 
@@ -473,21 +482,21 @@ You can think of these gradients as little arrows attached to each document in t
 
 We compute the  gradients of RankNet by:
 $$
-\frac{\partial L}{\partial w} = \sum_{(i,j)}\frac{\partial L_{i,j}}{\partial w}=\sum_{(i,j)}[\frac{\partial L_{i,j}}{\partial s_i}+\frac{\partial L_{i,j}}{\partial s_j}].
+\frac{\partial L}{\partial w} = \sum_{(i, j)}\frac{\partial L_{i, j}}{\partial w}=\sum_{(i, j)}[\frac{\partial L_{i, j}}{\partial s_i}+\frac{\partial L_{i,j}}{\partial s_j}].
 $$
 
 Observe that
-$$\frac{\partial L_{i,j}}{\partial s_i} = -\frac{\partial L_{i,j}}{\partial s_j}$$
+$$\frac{\partial L_{i, j}}{\partial s_i} = -\frac{\partial L_{i,j}}{\partial s_j}$$
 and define
 
 $$
-{\lambda}_{i,j}=\frac{\partial L_{i,j}}{\partial s_i} = -\frac{\partial L_{i,j}}{\partial s_j} = -\frac{\sigma}{1+\exp(\sigma(s_i-s_j))}.
+{\lambda}_{i,j}=\frac{\partial L_{i, j}}{\partial s_i} = -\frac{\partial L_{i, j}}{\partial s_j} = -\frac{\sigma}{1 + \exp(\sigma(s_i - s_j))}.
 $$
 
 What is more, we can extend it to
 
 $$
-{\lambda}_{i,j}=  -\frac{\sigma}{1+\exp(\sigma(s_i-s_j))}|\Delta Z|,
+{\lambda}_{i,j}=  -\frac{\sigma}{1+\exp(\sigma( s_i -s_j))}|\Delta Z|,
 $$
 where $\Delta Z$ is the size of the change in some **Information Retrieval Measures** ${Z}$.
 
@@ -941,6 +950,8 @@ re-ranking via multi-arm bandits (MAB).
 
 ### HodgeRank
 
+
+
 - [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
 - [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
 - [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
@@ -960,8 +971,7 @@ And in this part we only talk on the Top-N recommendation.
 - [ ] [Preference Completion: Large-scale Collaborative Ranking from Pairwise Comparisons](http://proceedings.mlr.press/v37/park15.html)
 - [ ] [Local Collaborative Ranking](https://ai.google/research/pubs/pub42242)
 - [ ] [SQL-Rank: A Listwise Approach to Collaborative Ranking](http://proceedings.mlr.press/v80/wu18c.html)
-- [ ] [VSRank: A Novel Framework for Ranking-Based
-Collaborative Filtering](http://users.jyu.fi/~swang/publications/TIST14.pdf)
+- [ ] [VSRank: A Novel Framework for Ranking-Based  Collaborative Filtering](http://users.jyu.fi/~swang/publications/TIST14.pdf)
 - [ ] [Machine Learning: recommendation and ranking](https://jhui.github.io/2017/01/15/Machine-learning-recommendation-and-ranking/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [ ] [Recommendation and ranking by Mark Jelasity](http://www.inf.u-szeged.hu/~jelasity/ddm/graphalgs.pdf)
@@ -1018,34 +1028,67 @@ And here search engine and recommender system coincide except the recommender sy
 
 If the recommendation is to solve the information overload problem, information retrieval and search technology  is to find the relative entity in web or some data base if the query is given.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
-Information is in diverse format or form, such as charactor strings(articles), images, voices and videos so that information retrieval has diverse subfields such as multimedia information retrieval. Search engine is considered as a pratical application of information retrieval.  
+Information is in diverse format or form, such as character strings(articles), images, voices and videos so that information retrieval has diverse subfields such as multimedia information retrieval. Search engine is considered as a practical application of information retrieval.  
 
-`Relavance`, `Ranking`  and `Context`  are three foundstones of search. In this section, we focus on relavance more than rank.
+`Relevance`, `Ranking`  and `Context`  are three foundation stones of search. In this section, we focus on relevance more than rank.
 If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
 
-<img title="IR Process" src="https://hsto.org/files/4b9/a9b/1a6/4b9a9b1a60d041b2b4dfeca4b7989586.png" width="60%" /> 
+<img title="IR Process" src="https://hsto.org/files/4b9/a9b/1a6/4b9a9b1a60d041b2b4dfeca4b7989586.png" width="50%" />
+<img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
 
-***
+
+* [sease: make research in Information Retrieval more accessible](https://sease.io/)
+* [search|hub](http://searchhub.io)
+* [Cortical.io](https://www.cortical.io/)
+* [FreeDiscovery Engine](http://freediscovery.io/doc/stable/engine/)
+* [Index weblogs, mainstream news, and social media with Datastreamer](https://www.datastreamer.io/)
+* https://www.omnity.io/
+
+### Information Acquisition and Overload
+
+
+* https://iorgforum.org/
+* [VII. Information Acquisition](www.science.unitn.it/~pgiorgio/db2/slides/9-infoacquisition.pdf)
+
+### Indexing and Index
+
+Index as data structure is to organize the information efficiently.
+
+
+### Relevance
 
 Recall the definition of  Discounted Cumulative Gain(DCG):
+
 $$
-{DCG}_p= \sum_{i=1}^{p}\frac{{rel}_i}{{\log}_{2}(i+1)}
+{DCG}_p= \sum_{i=1}^{p} \frac{{rel}_i}{\log_{2}(i+1)}
 $$
 
-where ${rel}_i$ is the relavance of the document and query.
-However, it is discussed how to compute the the relavance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relavances.
-For other types information retrieval system, it is different to compute the relavance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
+where ${rel}_i$ is the relevance of the document and query.
+However, it is discussed how to compute the the relevance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relevances.
+For other types information retrieval system, it is different to compute the relevance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
 
-* [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
+**tf-idf** is a rough way of approximating how users value the relevance of a text match.
+**BM25(Best Matching 25)**
+https://ai-distillery.io/
+
+* [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/)
 * [relevant search](http://manning.com/books/relevant-search)
 * [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
 * http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
 * https://en.wikipedia.org/wiki/List_of_search_engines
-* https://www.opensemanticsearch.org/
+* [Open Semantic Search](https://www.opensemanticsearch.org/)
 * https://www.seekquarry.com/
 * http://l-lists.com/en/lists/qukoen.html
-* [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
 * [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
+* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page](http://infolab.stanford.edu/~backrub/google.html)
+* [gt4ireval: Generalizability Theory for Information Retrieval Evaluation](https://rdrr.io/cran/gt4ireval/)
+* [Some Tutorilas in IR](https://ielab.io/publications/scells-2018-querylab)
+
+
+#### Comparison and Matching
+
+`Query and Indexed Object` is similar with `Question and Answers`.
+<img title = "search process" src = "https://ekanou.github.io/dynamicsearch/DynSe2018.png" width="80%" />
 
 ### Labs and Resources  
 
@@ -1054,6 +1097,7 @@ For other types information retrieval system, it is different to compute the rel
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
 + [Search and information retrieval@Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
 + [Web search and mining @Yandex](https://research.yandex.com/publications?themeSlug=web-mining-and-search)
++ [The Information Engineering Lab](https://ielab.io/)
 + [Information Retrieval Lab: A research group @ University of A Coruña (Spain)](https://www.irlab.org/)
 + [BCS-IRSG: Information Retrieval Specialist Group](https://irsg.bcs.org/)
 + [智能技术与系统国家重点实验室信息检索课题组](http://www.thuir.org/)
@@ -1067,12 +1111,23 @@ For other types information retrieval system, it is different to compute the rel
 + [information retrieval facility](https://www.ir-facility.org/)
 + [Center for Information and Language Processing](https://www.cis.uni-muenchen.de/)
 + [Summarized Research in Information Retrieval for HTA](http://vortal.htai.org/?q=sure-info)
++ [IR Lab](http://www.ir.disco.unimib.it/)
++ [CLEF 2018 LAB](https://ekanou.github.io/dynamicsearch/clef-lab.html)
++ [QANTA: Question Answering is Not a Trivial Activity](https://sites.google.com/view/qanta/home)
 + [SIGIR](https://sigir.org/)
 + http://cistern.cis.lmu.de/
 + http://hpc.isti.cnr.it/
++ http://trec-car.cs.unh.edu/
++ [LETOR: Learning to Rank for Information Retrieval](https://www.microsoft.com/en-us/research/project/letor-learning-rank-information-retrieval)
++ [A Lucene toolkit for replicable information retrieval research ](https://github.com/castorini/anserini)
++ [Information Overload Research Group](https://iorgforum.org/)
++ [National Information Standards Organization by ANSI](https://www.niso.org/niso-io)
 
 #### Conference on Information Retrieval
 
++ https://datanatives.io/conference/
++ [HE 3RD STRATEGIC WORKSHOP ON INFORMATION RETRIEVAL IN LORNE (SWIRL)](https://sites.google.com/view/swirl3/home)
++ [Text Retrieval COnference(TREC)](https://trec.nist.gov/)
 + [European Conference on Information Retrieval (ECIR 2018)](https://www.ecir2018.org/)
 + [ECIR 2019](http://ecir2019.org/workshops/)
 + [IR @wikiwand](https://www.wikiwand.com/en/Information_retrieval)
@@ -1090,6 +1145,11 @@ For other types information retrieval system, it is different to compute the rel
 + [SMIR 2014](http://smir2014.noahlab.com.hk/SMIR2014.htm)
 + [2018 PRS WORKSHOP:  Personalization, Recommendation and Search (PRS)](https://prs2018.splashthat.com/)
 + [Neu-IR: The SIGIR 2016 Workshop on Neural Information Retrieval](https://www.microsoft.com/en-us/research/event/neuir2016/)
++ [TREC 2019 Fair Ranking Track](https://fair-trec.github.io/)
++ [LEARNING FROM LIMITED OR NOISY DATA
+FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
++ [DYNAMIC SEARCH: Develop algorithms and evaluation methodologies with the user in the search loop](https://ekanou.github.io/dynamicsearch/)
++ [European Summer School in Information Retrieval ’15](http://www.rybak.io/european-summer-school-in-information-retrieval-15/)
 
 #### Cources on Information Retrieval and Search
 
@@ -1107,3 +1167,4 @@ For other types information retrieval system, it is different to compute the rel
 + [Morden Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
 + [Search Engine: Information Retrieval in Practice](http://www.search-engines-book.com/)
 + [Information Retrieval  潘微科](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/IR201702/index.html)
++ https://github.com/castorini/anserini

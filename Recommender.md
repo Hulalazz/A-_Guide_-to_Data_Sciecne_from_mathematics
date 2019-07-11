@@ -3,6 +3,7 @@
 <img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
 * [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
+* https://github.com/jeanigarcia/recsys2018-evaluation-tutorial
 * [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
 * [CSE 291: Trends in Recommender Systems and Human Behavioral Modeling](https://cseweb.ucsd.edu/classes/fa17/cse291-b/)
 * [THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)](https://recnlp2019.github.io/)
@@ -707,7 +708,7 @@ process of CDL is defined as follows:
       * Draw a clean input
         $$X_{c;j\ast}\sim \mathcal{N}(X_{L, j\ast}, \lambda_n^{-1} I_{K_l}).$$
       * Draw a latent item offset vector $\epsilon_j \sim \mathcal{N}(0, \lambda_v^{-1} I_{K_l})$ and then set the latent item vector to be:
-        $$v_j=\epsilon_j+X^T_{\frac{L}{2},j\ast}.$$
+        $$v_j=\epsilon_j+X^T_{\frac{L}{2}, j\ast}.$$
 3. Draw a latent user vector for each user ${i}$:
      $$u_i \sim \mathcal{N}(0, \lambda_u^{-1} I_{K_l}).$$
 
@@ -720,7 +721,7 @@ a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R_{ij} = 1$ an
 And joint log-likelihood of these parameters is
 $$L=-\frac{\lambda_u}{2}\sum_{i} {\|u_i\|}_2^2-\frac{\lambda_w}{2}\sum_{l} [{\|W_l\|}_F+{\|b_l\|}_2^2]\\
 -\frac{\lambda_v}{2}\sum_{j} {\|v_j - X^T_{\frac{L}{2},j\ast}\|}_2^2-\frac{\lambda_n}{2}\sum_{l} {\|X_{c;j\ast}-X_{L;j\ast}\|}_2^2 \\
--\frac{\lambda_v}{2}\sum_{l}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2 -\sum_{ij} \|R_{ij}-u_i^Tv_j\|_2^2
+-\frac{\lambda_s}{2}\sum_{l}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2 -\sum_{ij} {\|R_{ij}-u_i^Tv_j\|}_2^2
 $$
 
 It is not easy to prove that it converges.
@@ -1066,13 +1067,19 @@ Advertising is nothing except information, which is not usually accepted gladly.
 
 [Hongliang Jie](http://www.hongliangjie.com/talks/Etsy_ML.pdf) shares 3 challenges of computational advertising in Etsy,
 which will be the titles of the following subsections.
+<img title="ad" src="https://gokulchittaranjan.files.wordpress.com/2016/06/blog-on-advertising-figures-e1466486030771.png" width="70%" />
 
 * [广告为什么要计算](https://zhuanlan.zhihu.com/p/72092504)
+* [计算广告资料汇总](https://www.jianshu.com/p/8c591feb9fc4)
 * [ONLINE VIDEO ADVERTISING: All you need to know in 2019](https://strategico.io/video-advertising/)
+* [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
+* [Tutorial: Information Retrieval Challenges in Computational Advertising](http://www.cikm2011.org/tutorials/PM3.html)
 * [计算广告](https://dirtysalt.github.io/html/computational-advertising.html)
 * [计算广告和机器学习](http://www.52caml.com/)
 * https://headerbidding.co/category/adops/
 * [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
+* [Computational Marketing](https://www.marketing-schools.org/types-of-marketing/computational-marketing.html)
+* [Data Science and Analytics in Computational Advertising](https://gokulchittaranjan.wordpress.com/2016/06/22/datascienceinadvertising/)
 
 ### Click-Through Rate Modeling
 
@@ -1093,6 +1100,9 @@ Once we have the right features and the right model (decisions trees plus logist
 * https://github.com/shenweichen/DeepCTR
 * https://github.com/wzhe06/CTRmodel
 * https://github.com/cnkuangshi/LightCTR
+* https://github.com/evah/CTR_Prediction
+* http://2016.qconshanghai.com/track/3025/
+* https://blog.csdn.net/u011747443/article/details/68928447
 
 ### Conversion Rate Modeling
 
@@ -1116,6 +1126,7 @@ Once we have the right features and the right model (decisions trees plus logist
 * http://www.hongliangjie.com/talks/AICon2018.pdf
 * https://sites.google.com/view/tsmo2018/invited-talks
 * https://matinathomaidou.github.io/research/
+* https://www.usermind.com/
 ______________________________________________________
 
 ### User Engagement
@@ -1128,7 +1139,14 @@ ______________________________________________________
 * [How to apply AI for customer engagement](https://www.pega.com/artificial-intelligence-applications)
 * [The future of customer engagement](https://dma.org.uk/event/the-future-of-customer-engagement)
 * [Second Uber Science Symposium: Exploring Advances in Behavioral Science](https://eng.uber.com/second-uber-science-symposium-behavioral-science)
+* [Measuring User Engagement](https://mounia-lalmas.blog/2013/04/29/measuring-user-engagement/)
 * https://uberbehavioralsciencesymposium.splashthat.com/
+* https://inlabdigital.com/
+* https://www.futurelab.net/
+- [The User Engagement Optimization Workshop2](http://www.ueo-workshop.com/)
+- [The User Engagement Optimization Workshop1](http://www.ueo-workshop.com/previous-editions/ueo-2013-at-cikm-2013/)
+- [EVALUATION OF USER EXPERIENCE IN MOBILE ADVERTISI](http://galjot.si/research)
+- [WWW 2019 Tutorial on Online User Engagement](https://onlineuserengagement.github.io/)
 
 ### Labs
 
@@ -1137,7 +1155,7 @@ ______________________________________________________
 - http://www.52caml.com/
 - [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
 - [Data Mining Machine Learning @The University of Texas at Austin](http://www.ideal.ece.utexas.edu/)
-- [Center for Big Data Analytics@The University of Texas at Austin](https://bigdata.oden.utexas.edu/)
+- [Center for Big Data Analytics @The University of Texas at Austin](https://bigdata.oden.utexas.edu/)
 - [Multimedia Computing Group@tudelft.nl](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/multimedia-computing/)
 - [knowledge Lab@Uchicago](https://www.knowledgelab.org/)
 - [DIGITAL TECHNOLOGY CENTER@UMN](https://www.dtc.umn.edu/)
@@ -1158,5 +1176,4 @@ ______________________________________________________
 - [course-materials of Sys for ML/AI](https://pooyanjamshidi.github.io/mls/course-materials/)
 - https://sigopt.com/blog/
 - [Web Understanding, Modeling, and Evaluation Lab](http://wume.cse.lehigh.edu/)
-- [The User Engagement Optimization Workshop2](http://www.ueo-workshop.com/)
-- [The User Engagement Optimization Workshop1](http://www.ueo-workshop.com/previous-editions/ueo-2013-at-cikm-2013/)
+- https://knightlab.northwestern.edu/
