@@ -34,9 +34,17 @@ And this optimization is called convex optimization.
 
 ***
 
+Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
+> First-order methods are described and analyzed with gradients or subgradients, while second-order methods use second-order derivatives or their approximations.
+
+> During the 70s–90s the majority of the optimization community focused on second-order methods since they are more efficient for those problems that have the sizes of interest at that time. Beginning around fifteen years ago, however, the demand to solve ever larger problems started growing very quickly. Many large problems are further complicated by non-differentiable functions and constraints. Because simple first-order and classic second-order methods are ineffective or infeasible for these problems, operator splitting methods regained their popularity.
+
+> Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
+
 * http://awibisono.github.io/2016/06/06/world-of-optimization.html
 * http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
 * http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
+
 
 ## Gradient Descent and More
 
@@ -246,7 +254,7 @@ One of the chief advantages of quasi-Newton methods over Newton's method is that
 $$
 \nabla f(x^{k+1})=\nabla f(x^{k})+B(x^{k+1}-x^{k}),
 $$
-which is called the **secant equation** (the Taylor series of the gradient itself).
+which is called the **$\fbox{secant equation}$** (the Taylor series of the gradient itself).
 In more than one dimension B is underdetermined. In one dimension, solving for B and applying the Newton's step with the updated value is equivalent to the [secant method](https://www.wikiwand.com/en/Secant_method).
 The various quasi-Newton methods differ in their choice of the solution to the **secant equation** (in one dimension, all the variants are equivalent).
 
@@ -274,7 +282,7 @@ For example,
 * http://59.80.44.98/www.seas.ucla.edu/~vandenbe/236C/lectures/qnewton.pdf
 * http://fa.bianp.net/teaching/2018/eecs227at/quasi_newton.html
 
-**The Barzilai-Borwein method**
+#### The Barzilai-Borwein method
 
 Consider the gradient iteration form
 $$
@@ -317,8 +325,15 @@ It is easy to see that in this method no matrix computations and no line searche
 - http://www.math.ucla.edu/~wotaoyin/math273a/slides/
 - http://bicmr.pku.edu.cn/~wenzw/courses/WenyuSun_YaxiangYuan_BB.pdf
 - https://www.math.lsu.edu/~hozhang/papers/cbb.pdf
-***
 
+#### L-BFGS
+
+
+* https://www.wikiwand.com/en/Limited-memory_BFGS
+* [On the limited memory BFGS method for large scale optimization](https://link.springer.com/article/10.1007%2FBF01589116)
+* [Numerical Optimization: Understanding L-BFGS](http://aria42.com/blog/2014/12/understanding-lbfgs)
+
+***
 * [Wikipedia page on Newton Method](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
 * [Newton-Raphson Visualization (1D)](http://bl.ocks.org/dannyko/ffe9653768cb80dfc0da)
 * [Newton-Raphson Visualization (2D)](http://bl.ocks.org/dannyko/0956c361a6ce22362867)
@@ -393,17 +408,18 @@ one augments the observed data with latent data to perform a series of simple op
 
 It is really popular for Bayesian statistician.
 
-Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta|Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$.
+Let $\ell(\theta|Y_{obs})\stackrel{\triangle}=\log{L(\theta | Y_{obs})}$ denote the log-likelihood function of observed datum $Y_{obs}$.
 We augment the observed data $Y_{obs}$ with latent variables $Z$ so that both the
-complete-data log-likelihood $\ell(\theta|Y_{obs}, Z)$ and the conditional predictive distribution $f(z|Y_{obs}, \theta)$ are available.
+complete-data log-likelihood $\ell(\theta | Y_{obs}, Z)$ and the conditional predictive distribution $f(z|Y_{obs}, \theta)$ are available.
+
 Each iteration of the **EM** algorithm consists of an expectation step (E-step) and a maximization step (M-step)
 Specifically, let $\theta^{(t)}$ be the current best guess at the MLE $\hat\theta$. The E-step
 is to compute the **Q** function defined by
 $$
 \begin{align}
 Q(\theta|\theta^{(t)})
-        &= \mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)}) \\
-        &= \int_{Z}\ell(\theta|Y_{obs}, Z)\times f(z|Y_{obs}, \theta^{(t)})\mathrm{d}z,
+        & \stackrel{\triangle}= \mathbb{E}(\ell(\theta | Y_{obs}, Z) |Y_{obs}, \theta^{(t)}) \\
+        &= \int_{Z}\ell(\theta | Y_{obs}, Z)\times f(z | Y_{obs}, \theta^{(t)})\mathrm{d}z,
 \end{align}
 $$
 
@@ -440,7 +456,7 @@ It is not to maximize the conditional expectation.
 
 See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
 
-![projection EM](https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg =360x328)
+<img title="projection " src="https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg" width="80%" />
 
 * [The MM Algorithm by Kenneth Lange](https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf)
 
@@ -636,7 +652,7 @@ $$
 
 $x^{+}$ minimizes $h(u)$ plus a simple quadratic local model of $g(u)$ around ${x}$.
 
-And projected gradient method is a special case of proximal gradient method. 
+And projected gradient method is a special case of proximal gradient method.
 
 And it is natural to consider a more general algorithm by replacing the squared Euclidean distance in definition of `proximal mapping` with a Bregman distance:
 $$
@@ -1440,12 +1456,7 @@ where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
 * [ORF523: ISTA and FISTA](https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/)
 
 This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
-Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
-> First-order methods are described and analyzed with gradients or subgradients, while second-order methods use second-order derivatives or their approximations.
 
-> During the 70s–90s the majority of the optimization community focused on second-order methods since they are more efficient for those problems that have the sizes of interest at that time. Beginning around fifteen years ago, however, the demand to solve ever larger problems started growing very quickly. Many large problems are further complicated by non-differentiable functions and constraints. Because simple first-order and classic second-order methods are ineffective or infeasible for these problems, operator splitting methods regained their popularity.
-
-> Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
 
 * [ORIE 6326: Convex Optimization Operator Splitting](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
 * [Monotone Operator Splitting Methods](https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf)
