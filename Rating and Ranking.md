@@ -425,7 +425,7 @@ Then it can trained in the same way as a classifer.
 
 RankNet takes the ranking  as **regression** task.
 
-![RankNet](http://web.ist.utl.pt/~catarina.p.moreira/images/ranknet.png)
+<img title="RankNet" src="http://web.ist.utl.pt/~catarina.p.moreira/images/ranknet.png"  width="80%" />
 
 Suppose that two players $u_i$ and $u_j$ with feature vectors $x_i$ and $x_j$ is presented to the model, which computes the scores $s_i = f(x_i)$ and $s_j = f(x_j)$.
 Another output of the model is the probability that $U_i$ should be ranked
@@ -992,14 +992,178 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 * https://arxiv.org/abs/1808.04957v1
 * http://ceur-ws.org/Vol-1127/paper4.pdf
 
+## IR and Search
 
-### Personalized Search
+[RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
+[AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
+
+If the recommendation is to solve the information overload problem, information retrieval and search technology  is to find the relative entity in web or some data base if the query is given.
+[Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
+Information is in diverse format or form, such as character strings(texts), images, voices and videos so that information retrieval has diverse subfields such as [multimedia information retrieval](http://press.liacs.nl/mlew/mir2019.html) and [music infromation retrival](https://musicinformationretrieval.com/index.html). Search engine is considered as a practical application of information retrieval.  
+
+`Relevance`, `Ranking`  and `Context`  are three foundation stones of search. In this section, we focus on relevance more than rank.
+If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
 
 [The basic functions of a search engine can be described as _crawling, data mining, indexing and query processing_. `Crawling` is the act of sending small programed bots out to collect information. `Data mining` is storing the information collected by the bots. `Indexing` is ordering the information systematically. And `query processing` is the mathematical process in which a person's query is compared to the index and the results are presented to that person.](https://lifepacific.libguides.com/c.php?g=155121&p=1018180)
 
+
+<img title="IR Process" src="https://hsto.org/files/4b9/a9b/1a6/4b9a9b1a60d041b2b4dfeca4b7989586.png" width="50%" />
 <img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
 
-[Personalised Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommender s
+* https://en.wikipedia.org/wiki/Information_retrieval
+* [sease: make research in Information Retrieval more accessible](https://sease.io/)
+* [search|hub](http://searchhub.io)
+* [Cortical.io](https://www.cortical.io/)
+* [FreeDiscovery Engine](http://freediscovery.io/doc/stable/engine/)
+* [Index weblogs, mainstream news, and social media with Datastreamer](https://www.datastreamer.io/)
+* https://www.omnity.io/
+* https://www.luigisbox.com/
+* [Some Tutorilas in IR](https://ielab.io/publications/scells-2018-querylab)
+* [multimedia information retrieval](http://press.liacs.nl/mlew/mir2019.html)
+* [Notes on Music Information Retrieval](https://musicinformationretrieval.com/index.html)
+### Information Acquisition and Overload
+
+The first step of information retrieval is to acquise the information itself. The web-scale information brings information overload problem, which `search  engine` or  `web search` attempts to solve.  
+
+* https://iorgforum.org/
+* [VII. Information Acquisition](www.science.unitn.it/~pgiorgio/db2/slides/9-infoacquisition.pdf)
+* [Automatically modelling and distilling knowledge within AI!](https://ai-distillery.io/)
+
+### Information Organization and Storage: Indexing and Index
+
+Index as data structure is to organize the information efficiently in order to search some specific terms.
+
+* [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
+* http://planet.botany.uwc.ac.za/nisl/GIS/GIS_primer/index.htm
+
+
+### Information Retrieval
+
+#### Relevance and Rank
+
+Recall the definition of  Discounted Cumulative Gain(DCG):
+
+$$
+{DCG}_p= \sum_{i=1}^{p} \frac{{rel}_i}{\log_{2}(i+1)}
+$$
+
+where ${rel}_i$ is the relevance of the document and query.
+However, it is discussed how to compute the the relevance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relevances.
+For other types information retrieval system, it is different to compute the relevance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
+
+
+`Term frequency(tf)` of a word ${w}$ in a given document ${doc}$ is definded as
+$$tf(w| doc)=\frac{\text{the number of the word ${w}$ in}\,\,\,doc}{\text{the number of words in}\,\,\,doc} .$$
+It is to measure how popular the word ${w}$ in the document $doc$.
+`Inverse document frequency(idf)` of a word ${w}$ in a given document list $D=\{doc_i\mid i=1,2,\cdots, N\}$ is defined
+$$idf(w\mid D)=\log\frac{\text{the number of documents in the list $D$} }{\text{the number of document containing the word $w$}+1},$$
+which is to measure how popular the word $w$ i the document list.
+**tf-idf** is a rough way of approximating how users value the relevance of a text match, defined as
+$$\text{tf-idf}=tf(w| doc)\times idf(w\mid D)$$
+
+**BM25(Best Matching 25)** is a modification of `Binary Independent Model`.
+$$
+\sum_{i\in Q}\log\frac{ (r_i+0.5)/(R-r_i+0.5) }{ (n_i-r_i+0.5)/(N-R-n_i+r_i+0.5) }\times \frac{(k_1+1)f_i}{ K + f_i}
+\times \frac{(k_2+1) {tf}_{tq}}{ K+{tf}_{tq} }
+$$
+
+* [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/)
+
+**TextRank**
+
+[David Ten](https://xang1234.github.io/textrank/) wrote a blog on `TextRank`:
+> For keyword extraction we want to identify a subset of terms that best describe the text. We follow these steps:
+
+> 1. Tokenize and annotate with Part of Speech (PoS). Only consider single words. No n-grams used, multi-words are reconstructed later.
+> 2. Use syntactic filter on all the lexical units (e.g. all words, nouns and verbs only).
+> 3. Create and edge if lexical units co-occur within a window of N words to obtain an unweighted undirected graph.
+> 4. Run the text rank algorithm to rank the words.
+> 5. We take the top lexical words.
+> 6. Adjacent keywords are collapsed into a multi-word keyword.
+
+TextRank model is graph-based derived from Google’s PageRank. It constructs a weighted graph $G$:
+* the node set $V$ consists of all sentences in the document;
+* the weight is the similarity of each sentence pair, i.e., $w_{i,j}=Similarity (V_i, V_j)$.
+
+The weight of each sentence depends on the weights of its neighbors:
+$$WS(V_i)=(1-d)+d\times {\sum}_{V_j\in In(V_i)}\frac{w_{ij}}{\sum_{V_k\in Out(V_j)}}WS(V_j)$$
+
+***
+* [TextRank: Bringing Order into Texts](https://www.aclweb.org/anthology/W04-3252)
+* [Keyword and Sentence Extraction with TextRank (pytextrank)](https://xang1234.github.io/textrank/)
+* https://zhuanlan.zhihu.com/p/41091116
+* [TextRank for Text Summarization](https://nlpforhackers.io/textrank-text-summarization/)
+* https://www.quantmetry.com/tag/textrank/
+* [Textrank学习](https://blog.csdn.net/Silience_Probe/article/details/80699662)
+
+**Text Summarization**
+
+* [Gensim: Topic Model for Human](https://radimrehurek.com/gensim/index.html)
+* [KISS: Keep It Short and Simple](http://sidhant.io/kiss-keep-it-short-and-simple)
+* [NLP buddy](https://nlpbuddy.io/about)
+* https://whoosh.readthedocs.io/en/latest/index.html
+* https://malaya.readthedocs.io/en/latest/
+* [Automatic Text Summarization with Python](https://ai.intelligentonlinetools.com/ml/text-summarization/)
+* http://veravandeseyp.com/ai-repository/
+* [Text Summarization in Python: Extractive vs. Abstractive techniques revisited](https://rare-technologies.com/text-summarization-in-python-extractive-vs-abstractive-techniques-revisited/)
+* https://pypi.org/project/sumy/
+* [自动文本摘要（Auto Text Summarization)](http://www.morrislee.me/%E8%87%AA%E5%8A%A8%E6%96%87%E6%9C%AC%E6%91%98%E8%A6%81%EF%BC%88auto-text-summarization%EF%BC%89/)
+
+In the popular open search engine [ElasticSearch](https://www.elastic.co/cn/products/elasticsearch), the score formula is more complex and complicated.
+
+**Document Similarity**
+
+- [ ] [Document Similarity in Machine Learning Text Analysis with ELMo](https://ai.intelligentonlinetools.com/ml/document-similarity-in-machine-learning-text-analysis-with-elmo/)
+- [ ] [Documents similarity](http://text2vec.org/similarity.html)
+- [ ] https://copyleaks.com/
+- [ ] https://www.wikiwand.com/en/Semantic_similarity
+- [ ] https://spacy.io/
+
+#### PageRank for Web Search
+
+
+***
+* [relevant search](http://manning.com/books/relevant-search)
+* [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
+* http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
+* https://en.wikipedia.org/wiki/List_of_search_engines
+* [Open Semantic Search](https://www.opensemanticsearch.org/)
+* https://www.seekquarry.com/
+* http://l-lists.com/en/lists/qukoen.html
+* [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
+* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page](http://infolab.stanford.edu/~backrub/google.html)
+* [gt4ireval: Generalizability Theory for Information Retrieval Evaluation](https://rdrr.io/cran/gt4ireval/)
+
+
+#### Comparison and Matching
+
+`Query and Indexed Object` is similar with `Question and Answers`.
+The user requested a query then a matched response is supposed to match the query in semantics. Before that we must understand the query.
+https://www.luigisbox.com/blog/query-understanding/
+
+|[NLP Pipeline](http://mlwiki.org/index.php/NLP_Pipeline)|---|
+|---|---|
+|Tokenization| Query Understanding
+|Stop words removal|
+|[Text Normalization](http://mlwiki.org/index.php/Text_Normalization)|
+|POS Tagging|
+|Named Entity Recongition|
+
+<img title = "search process" src = "https://ekanou.github.io/dynamicsearch/DynSe2018.png" width="80%" />
+
+* [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
+* https://ekanou.github.io/dynamicsearch/
+* http://mlwiki.org/index.php/NLP_Pipeline
+
+### Information Distribution
+
+[Information Distribution Methods – Information distribution is the timely collection, sharing and distribution of information to the project team. Methods can be portals, collaborative work management tools, web conferencing, web publishing, and when all technology is not available, manual filing systems and hard copy distribution.](http://www.anticlue.net/archives/000804.htm)
+
+
+
+### Personalized Search
+
+[Personalized Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommenders.
 
 And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
 
@@ -1013,82 +1177,17 @@ And here search engine and recommender system coincide except the recommender sy
 * [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
 * [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
 * [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
-* [Personalised Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
+* [Personalized Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
 * [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
 * [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
 * [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
 * [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
 * [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
 * [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
-* [Web Personalisation and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
+* [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
 * [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
 * [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
 
-## IR and Search
-
-If the recommendation is to solve the information overload problem, information retrieval and search technology  is to find the relative entity in web or some data base if the query is given.
-[Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
-Information is in diverse format or form, such as character strings(articles), images, voices and videos so that information retrieval has diverse subfields such as multimedia information retrieval. Search engine is considered as a practical application of information retrieval.  
-
-`Relevance`, `Ranking`  and `Context`  are three foundation stones of search. In this section, we focus on relevance more than rank.
-If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
-
-<img title="IR Process" src="https://hsto.org/files/4b9/a9b/1a6/4b9a9b1a60d041b2b4dfeca4b7989586.png" width="50%" />
-<img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
-
-
-* [sease: make research in Information Retrieval more accessible](https://sease.io/)
-* [search|hub](http://searchhub.io)
-* [Cortical.io](https://www.cortical.io/)
-* [FreeDiscovery Engine](http://freediscovery.io/doc/stable/engine/)
-* [Index weblogs, mainstream news, and social media with Datastreamer](https://www.datastreamer.io/)
-* https://www.omnity.io/
-
-### Information Acquisition and Overload
-
-
-* https://iorgforum.org/
-* [VII. Information Acquisition](www.science.unitn.it/~pgiorgio/db2/slides/9-infoacquisition.pdf)
-
-### Indexing and Index
-
-Index as data structure is to organize the information efficiently.
-
-
-### Relevance
-
-Recall the definition of  Discounted Cumulative Gain(DCG):
-
-$$
-{DCG}_p= \sum_{i=1}^{p} \frac{{rel}_i}{\log_{2}(i+1)}
-$$
-
-where ${rel}_i$ is the relevance of the document and query.
-However, it is discussed how to compute the the relevance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relevances.
-For other types information retrieval system, it is different to compute the relevance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
-
-**tf-idf** is a rough way of approximating how users value the relevance of a text match.
-**BM25(Best Matching 25)**
-https://ai-distillery.io/
-
-* [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/)
-* [relevant search](http://manning.com/books/relevant-search)
-* [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
-* http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
-* https://en.wikipedia.org/wiki/List_of_search_engines
-* [Open Semantic Search](https://www.opensemanticsearch.org/)
-* https://www.seekquarry.com/
-* http://l-lists.com/en/lists/qukoen.html
-* [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
-* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page](http://infolab.stanford.edu/~backrub/google.html)
-* [gt4ireval: Generalizability Theory for Information Retrieval Evaluation](https://rdrr.io/cran/gt4ireval/)
-* [Some Tutorilas in IR](https://ielab.io/publications/scells-2018-querylab)
-
-
-#### Comparison and Matching
-
-`Query and Indexed Object` is similar with `Question and Answers`.
-<img title = "search process" src = "https://ekanou.github.io/dynamicsearch/DynSe2018.png" width="80%" />
 
 ### Labs and Resources  
 
@@ -1106,12 +1205,14 @@ https://ai-distillery.io/
 + [Quantum Information Access and Retrieval Theory)](https://www.quartz-itn.eu/)
 + [Center for Intelligent Information Retrieval (CIIR)](http://ciir.cs.umass.edu/)
 + [InfoSeeking Lab situated in School of Communication & Information at Rutgers University.](https://infoseeking.org/)
++ http://nlp.uned.es/web-nlp/
 + http://mlwiki.org/index.php/Information_Retrieval
 + [information and language processing systems](https://ilps.science.uva.nl/)
 + [information retrieval facility](https://www.ir-facility.org/)
 + [Center for Information and Language Processing](https://www.cis.uni-muenchen.de/)
 + [Summarized Research in Information Retrieval for HTA](http://vortal.htai.org/?q=sure-info)
 + [IR Lab](http://www.ir.disco.unimib.it/)
++ [IR and NLP Lab](https://ir.kaist.ac.kr/about/)
 + [CLEF 2018 LAB](https://ekanou.github.io/dynamicsearch/clef-lab.html)
 + [QANTA: Question Answering is Not a Trivial Activity](https://sites.google.com/view/qanta/home)
 + [SIGIR](https://sigir.org/)
@@ -1122,6 +1223,8 @@ https://ai-distillery.io/
 + [A Lucene toolkit for replicable information retrieval research ](https://github.com/castorini/anserini)
 + [Information Overload Research Group](https://iorgforum.org/)
 + [National Information Standards Organization by ANSI](https://www.niso.org/niso-io)
++ [International Society  of Music Information Retrieval](https://ismir.net/)
++ [OpenClinical information retrieval](http://www.openclinical.org/informationretrieval.html)
 
 #### Conference on Information Retrieval
 
@@ -1145,6 +1248,8 @@ https://ai-distillery.io/
 + [SMIR 2014](http://smir2014.noahlab.com.hk/SMIR2014.htm)
 + [2018 PRS WORKSHOP:  Personalization, Recommendation and Search (PRS)](https://prs2018.splashthat.com/)
 + [Neu-IR: The SIGIR 2016 Workshop on Neural Information Retrieval](https://www.microsoft.com/en-us/research/event/neuir2016/)
++ [Neu-IR 2017: Workshop on Neural Information Retrieval](https://neu-ir.weebly.com/)
++ [NeuIR Group](http://neuir.org/)
 + [TREC 2019 Fair Ranking Track](https://fair-trec.github.io/)
 + [LEARNING FROM LIMITED OR NOISY DATA
 FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
@@ -1167,4 +1272,5 @@ FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 + [Morden Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
 + [Search Engine: Information Retrieval in Practice](http://www.search-engines-book.com/)
 + [Information Retrieval  潘微科](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/IR201702/index.html)
-+ https://github.com/castorini/anserini
++ [Information Organization and Retrieval: INFO 202](http://courses.ischool.berkeley.edu/i202/f10/)
++ [Music Information Retrieval @ NYU](http://www.nyu.edu/classes/bello/MIR.html)
