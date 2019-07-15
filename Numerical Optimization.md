@@ -1,5 +1,6 @@
 # Numerical Optimization
 
+https://github.com/tensorboy/PIDOptimizer
 ![http://art.ifeng.com/2015/1116/2606232.shtml](http://upload.art.ifeng.com/2015/1116/1447668349594.jpg)
 
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
@@ -31,7 +32,7 @@ f(t x+(1-t)y)\leq t f(x)+(1-t)f(y),\\
 \quad t\in [0,1], \quad \forall x, y\in\Theta.$$
 
 And this optimization is called convex optimization.
-
+By the  way, the name `numerical optimization` means the variables or parameters to estimate are  in numeric format, which is far from performance optimization in concept.
 ***
 
 Wotao Yin wrote a summary on [First-order methods and operator splitting for optimization](http://www.math.ucla.edu/~wotaoyin/research.html):
@@ -161,7 +162,7 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}\underbrace{(x^k-x^{k-1})}_{\text{denoted as  $\Delta_{k}$ }}\\
 \Delta_{k+1}= -\alpha_k\nabla_{x}f(x^k)+ \rho_{k}\Delta_{k}\\
 \\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{x^{k-i}}_{\triangle})+\rho_1\Delta_1
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{x^{k-i}}_{\triangle})+\rho_1\Delta_1
 $$
 
 **Nesterov accelerated gradient method** at the $k$th step is given by:
@@ -176,7 +177,7 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally.
 $$
 x^{k}=y^{k}-\alpha_{k+1}\nabla_{x}f(y^k) \\
 y^{k}=x^{k-1}+\rho_{k-1}(x^{k-1}-x^{k-2})\\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{y^{k-i}}_{\triangle})+\rho_1\Delta_1
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ -\prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{y^{k-i}}_{\triangle})+\rho_1\Delta_1.
 $$
 
 They are called as **inertial gradient methods** or **accelerated gradient methods**. [And there are some different forms.](https://jlmelville.github.io/mize/nesterov.html)
@@ -599,12 +600,12 @@ It is given in the projection form:
 
 $$
 z^{k+1} = x^{k}-\alpha_k\nabla_x f(x^{k}) \qquad \text{Gradient descent}；\\
-x^{k+1} = \arg\min_{x\in\mathbb{S}}B(x,z^{k+1}) \qquad\text{Bregman projection}.
+x^{k+1} = \arg\min_{x\in\mathbb{S}}B_h(x,z^{k+1}) \qquad\text{Bregman projection}.
 $$
 
 In another compact form, mirror gradient can be described in the proximal form:
 $$
-x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}\tag {1}
+x^{k+1} = \arg\min_{x\in\mathbb{S}} \{ f(x^k) + \left<g^k, x-x^k\right> + \frac{1}{\alpha_k} B_h(x,x^k)\}\tag {1}
 $$
 with $g^k=\nabla f(x^k)$.
 
@@ -612,7 +613,8 @@ Note that the next iteration point $x^{k+1}$ only depends the current iteration 
 
 By the optimal conditions of equation (1), the original "mirror" form of mirror gradient method is described as
 $$
-\nabla h(x^{k+1}) = \nabla h(x^k) - \alpha_k \nabla f(x^k), x\in \mathbb{S}
+\nabla h(x^{k+1}) = \nabla h(x^k) - \alpha_k \nabla f(x^k), \\
+= \nabla h(x^1) - \sum_{n=1}^{k}\alpha_n \nabla f(x^n) , x\in \mathbb{S},
 $$
 where the convex function ${h}$ induces the Bregman divergence.
 
@@ -1651,8 +1653,8 @@ $$
 
  Iteration | ODE  | Integration
 ---|---|---
-$x^{k+1}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$| $x^{k+1}-x^{0}=\sum_{i=1}^{k}\alpha_ig(x^i)$
-$x^{k+1}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$| $x^{k+1}-x^{0}=\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$
+$x^{k+1}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$| $x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_ig(x^i)$
+$x^{k+1}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$| $x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$
 
 Like Newton interpolation, more points can compute higher order derivatives.
 The dynamics of accelerated gradient methods are expected to correspond to higher order differential equations.
@@ -2152,6 +2154,13 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 + [Multilevel Optimization: Convergence Theory, Algorithms and Application to Derivative-Free Optimization](http://www.mtm.ufsc.br/~melissa/arquivos/thesis_melissa.pdf)
 + [multilevel optimization iosotech](http://www.iosotech.com/multilevel.htm)
 + [OptCom: A Multi-Level Optimization Framework for the Metabolic Modeling and Analysis of Microbial Communities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271020/)
+
+### Reactive Search Optizmiation
+
+Roberto Battiti and Mauro Brunato explains that how `Reactive Affine Shaker(RAS)` works for optimization problem without gradient in  [Machine Learning plus Intelligent Optimization](https://intelligent-optimization.org/LIONbook/).
+
+* [Curriculum-based course timetabling solver; uses Tabu Search or Simulated Annealing](https://github.com/stBecker/CB-CTT_Solver)
+* [Machine Learning plus Intelligent Optimization by Roberto Battiti and Mauro Brunato](https://intelligent-optimization.org/LIONbook/)
 
 ****
 - [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
