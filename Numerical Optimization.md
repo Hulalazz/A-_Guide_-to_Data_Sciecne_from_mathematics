@@ -3,7 +3,7 @@
 ![http://art.ifeng.com/2015/1116/2606232.shtml](http://upload.art.ifeng.com/2015/1116/1447668349594.jpg)
 
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
-$\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{yellow}{EVALUATION}$ + $\color{red}{OPTIMIZATION}.$
+$\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{blue}{EVALUATION}$ + $\color{red}{OPTIMIZATION}$.
 
 * Representation as the core of the note is the general (mathematical) **model** that computer can handle.
 * Evaluation is  **criteria**. An evaluation function (also called objective function, cost function or scoring function) is needed to distinguish good classifiers from bad ones.
@@ -41,10 +41,12 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 
 > Operators are used to develop algorithms and analyze them for a wide spectrum of problems including optimization problems, variational inequalities, and differential equations. Operator splitting is a set of ideas that generate algorithms through decomposing a problem that is too difficult as a whole into two or more smaller and simpler subproblems. During the decomposition, complicated structures like non-differentiable functions, constraint sets, and distributed problem structures end up in different subproblems and thus can be handled elegantly. We believe ideas from operator splitting provide the most eﬀective means to handle such complicated structures for computational problem sizes of modern interest.
 
-* http://awibisono.github.io/2016/06/06/world-of-optimization.html
-* http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html
-* http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html
-
+* [The world of optimization](http://awibisono.github.io/2016/06/06/world-of-optimization.html)
+* [Gradient flow and gradient descent](http://awibisono.github.io/2016/06/13/gradient-flow-gradient-descent.html)
+* [Accelerated gradient descent](http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html)
+* [Accelerated gradient flow](http://awibisono.github.io/2016/06/27/accelerated-gradient-flow.html)
+* [Stochastic gradient flow](http://awibisono.github.io/2016/09/05/stochastic-gradient-flow.html)
+* [Aristotle vs. Newton](http://awibisono.github.io/2016/07/04/aristotle-newton.html) 
 
 ## Gradient Descent and More
 
@@ -67,7 +69,7 @@ $\left< {p^k},\nabla f_k \right> < 0$ — because this property guarantees that 
 Gradient descent and its variants are to find the local solution of  the unconstrained optimization problem:
 
 $$
-\min f(x)
+\min_{x} f(x)
 $$
 
 where $x\in \mathbb{R}^{n}$.
@@ -85,6 +87,12 @@ x^{k+1}=x^{k}-\alpha_{k}{\nabla}_{x} f(x^k)
 $$
 
 where $x^{k}$ is the $k$th iterative result, $\alpha_{k}\in\{\alpha|f(x^{k+1})< f(x^{k})\}$ and particularly $\alpha_{k}=\arg\min_{\alpha}f(x^{k}-\alpha\nabla_{x}f(x^{k}))$ so that $f(x^{k+1})=\min_{\alpha} f(x^k - \alpha\nabla_x f(x^k))$.
+
+$$
+x^{k+1}=\fbox{$x^{k}$}-\alpha_{k}{\nabla}_{x} f(x^k)
+= \fbox{$x^{k-1}-\alpha_{k-1}\nabla f(x_{k-1})$}-\alpha_{k}{\nabla}_{x} f(x^k)\\
+= x^1-\sum_{n=0}^{k}\alpha_n{\nabla}_{x} f(x^n)
+$$
 
 - http://59.80.44.100/www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf
 - http://wiki.fast.ai/index.php/Gradient_Descent
@@ -126,7 +134,7 @@ given a starting point $x \in domf$.
 If the variable ${x}$ is restricted in some bounded domain, i.e., $x\in D$, the steepest gradient descemt methods can be modified to `conditional gradient descent method` or `Frank-Wolfe algorithm`.
 ***
 > Algorithm  Frank–Wolfe algorithm.
-given a starting point $x \in domf$.
+> * given a starting point $x \in domf$.
 > * repeat
 >   1. Find $s^k$: $s^k =\arg\min_{v}\{f(x^{k})^T v\mid v\in D \}$.
 >   2. Set $t=\frac{2}{k+2}$ or $t=\arg\min\{f(x^k+t(s^k - x^k))\mid t\in [0, 1]\}$
@@ -146,7 +154,15 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1})
 $$
 
+
 where the momentum coefficient $\rho_k\in[0,1]$ generally and the step length $\alpha_k$ cannot be determined by line search.
+We can unfold the recursion defining momentum  gradient descent and write:
+$$
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}\underbrace{(x^k-x^{k-1})}_{\text{denoted as  $\Delta_{k}$ }}\\
+\Delta_{k+1}= -\alpha_k\nabla_{x}f(x^k)+ \rho_{k}\Delta_{k}\\
+\\
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{x^{k-i}}_{\triangle})+\rho_1\Delta_1
+$$
 
 **Nesterov accelerated gradient method** at the $k$th step is given by:
 
@@ -157,23 +173,30 @@ $$
 
 where the momentum coefficient $\rho_k\in[0,1]$ generally.
 
+$$
+x^{k}=y^{k}-\alpha_{k+1}\nabla_{x}f(y^k) \\
+y^{k}=x^{k-1}+\rho_{k-1}(x^{k-1}-x^{k-2})\\
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{y^{k-i}}_{\triangle})+\rho_1\Delta_1
+$$
+
 They are called as **inertial gradient methods** or **accelerated gradient methods**. [And there are some different forms.](https://jlmelville.github.io/mize/nesterov.html)
 
 |Inventor of Nesterov accelerated Gradient|
 |:---:|
 |<img src=https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Nesterov_yurii.jpg/440px-Nesterov_yurii.jpg width = 60% />|
 
-* https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/
-* https://blogs.princeton.edu/imabandit/2014/03/06/nesterovs-accelerated-gradient-descent-for-smooth-and-strongly-convex-optimization/
-* https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/
-* https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/
-* https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/
+
+* [ORF523: Nesterov’s Accelerated Gradient Descent](https://blogs.princeton.edu/imabandit/2013/04/01/acceleratedgradientdescent/)
+* [Nesterov’s Accelerated Gradient Descent for Smooth and Strongly Convex Optimization](https://blogs.princeton.edu/imabandit/2014/03/06/nesterovs-accelerated-gradient-descent-for-smooth-and-strongly-convex-optimization/)
+* [Revisiting Nesterov’s Acceleration](https://blogs.princeton.edu/imabandit/2015/06/30/revisiting-nesterovs-acceleration/)
+* [A short proof for Nesterov’s momentum](https://blogs.princeton.edu/imabandit/2018/11/21/a-short-proof-for-nesterovs-momentum/)
+* [Nemirovski’s acceleration](https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/)
 ***
 * https://zhuanlan.zhihu.com/p/41263068
 * https://zhuanlan.zhihu.com/p/35692553
 * https://zhuanlan.zhihu.com/p/35323828
 * [On Gradient-Based Optimization: Accelerated, Asynchronous, Distributed and Stochastic](https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf)
-* https://jlmelville.github.io/mize/nesterov.html
+* [Nesterov Accelerated Gradient and Momentum](https://jlmelville.github.io/mize/nesterov.html)
 * https://distill.pub/2017/momentum/
 * http://www.optimization-online.org/DB_FILE/2018/11/6938.pdf
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
@@ -208,6 +231,12 @@ where $H^{-1}(x^{k})$ is inverse of the Hessian matrix of the function $f(x)$ at
 It is called **Newton–Raphson algorithm** in statistics.
 Especially when the log-likelihood function $\ell(\theta)$ is well-behaved,
 a natural candidate for finding the MLE is the **Newton–Raphson algorithm** with quadratic convergence rate.
+
+$$
+x^{k+1}=x^{k}-\alpha_{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}\\
+= x^{k-1}-\alpha_{k}H^{-1}(x^{k-1})\nabla_{x}\,{f(x^{k-1})}-\alpha_{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})} \\
+=x^{1}-\sum_{n=1}^{k} \alpha_{n+1}H^{-1}(x^{n})\nabla_{x}\,{f(x^{n})}
+$$
 
 ### The Fisher Scoring Algorithm
 
@@ -456,7 +485,7 @@ It is not to maximize the conditional expectation.
 
 See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey McLachlan , Thriyambakam Krishna](https://www.wiley.com/en-cn/The+EM+Algorithm+and+Extensions,+2nd+Edition-p-9780471201700).
 
-<img title="projection " src="https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg" width="80%" />
+<img title="projection " src="https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg" width="50%" />
 
 * [The MM Algorithm by Kenneth Lange](https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf)
 
@@ -594,6 +623,9 @@ One special method is called `entropic mirror descent(Exponential Gradient Desce
 $$
 {x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla {f(x^k)}_{i})}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla  {f(x^k)}_{j})}}, i=1,2,\dots, n.
 $$
+it is obvious that entropic decscent methods are in the coordinate-wise update formula.
+Whast is more , it can be rewritten as 
+$$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\left<x^n, -\alpha \nabla f(x^n)\right>}\propto x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n)).$$  
 
 `Multiplicative Weights Update` is closely related with entropic descent method. See more on the following link list.
 
@@ -730,7 +762,64 @@ $\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$| $\arg\min_{x}\{f(x)+\delta_{\mathbb{
 $\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$|$\arg\min_{x}\{f(x) + g_{\mathbb{S}}(x)\}$| smooth, inexpensive
 $\arg\min_{x}\{f(x)\mid g(x)\in \mathbb{S}\}$| $\arg\min_{x}\{f(x)+\fbox{?}\}$|smooth, inexpensive
 
+
+
 [In constrained optimization, a field of mathematics, a barrier function is a continuous function whose value on a point increases to infinity as the point approaches the boundary of the feasible region of an optimization problem.](https://en.wikipedia.org/wiki/Barrier_function)
+
+Recall the indicator function of constrained set in projected methods:
+ $$
+\delta_{\mathbb{S}}(x)=
+  \begin{cases}
+    0, & \text{if} \quad x \in \mathbb{S};\\
+    \infty, & \text{otherwise},
+  \end{cases}
+ $$
+there is a dramatic leap between the boundary of $\mathbb S$ and the outer.
+
+The basic idea of the barrier method is to approximate the indicator function by some functions ${f}$ satisfying:
+* convex and differentiable;
+* $f(x)< \infty$ if $x\in\mathbb S$;
+* $f(x)\to\infty$ as $x\to\partial\mathbb S$.
+
+For example, [Barrier Method](http://www.stat.cmu.edu/~ryantibs/convexopt-F15/lectures/15-barr-method.pdf) in [Convex Optimization: Fall 2018](http://www.stat.cmu.edu/~ryantibs/convexopt/) pushs the inequality constraints in the
+problem in a smooth way, reducing the problem to an equality-constrained problem.
+Consider now the following minimization problem:
+$$
+\min_{x} f(x) \\
+\text{subject to} \quad h_n \leq 0, n=1,2,\cdots, N \\
+Ax=b
+$$
+where $f, h_1, h_2,\cdots, h_N$ are assumed to be convex and twice differential functions in $\mathbb R^p$.
+The log-barrier function is defined as
+$$\phi(x)=-\sum_{n=1}^{N}\log(-h_n(x)).$$
+
+When we ignore equality constraints, the problem above
+can be written by incorporating the inequality with the identity function, which in turn can be approximated
+by the log-barrier functions as follows
+$$\min_{x} f(x)+\sum_{n=1}^{N}\mathbb{I}_{h_n(x)\leq 0}\approx \min_{x} f(x)+\frac{1}{t}\phi(x)$$
+
+for $t > 0$ being a large number.
+
+[A penalty method replaces a constrained optimization problem by a series of unconstrained problems whose solutions ideally converge to the solution of the original constrained problem. The unconstrained problems are formed by adding a term, called a penalty function, to the objective function that consists of a penalty parameter multiplied by a measure of violation of the constraints. The measure of violation is nonzero when the constraints are violated and is zero in the region where constraints are not violated.](https://www.wikiwand.com/en/Penalty_method)
+
+In the context of the equality-constrained problem
+$$\min_{x} f(x), \,\, s.t. c_n(x)=0, n = 1,2,\cdots, N,$$
+
+the quadratic penalty function $Q(x;\mu)$ for this formulation is
+$$Q(x;\mu)=f(x)+\frac{\mu}{2}\sum_{n=1}^{N}c_n^2(x)$$
+where $\mu>0$ is the `penalty parameter`. By driving $\mu\to\infty$, we penalize the constraint violations with increasing severity.
+
+**Quadratic Penalty Method**
+
+* Given $\mu_0 > 0$, a nonnegative sequence ${\tau_k}$ with $\tau_k\to 0$, and a starting point $x^s_0$;
+* __for__ $k = 0, 1, 2, . . .$:
+   * Find an approximate minimizer $x^k=\arg\min_{x}Q(x; \mu_k)$, starting at $x^s_k$ and  terminating when ${\|\nabla_x Q(x;\mu_k)\|}_2\leq \tau_k$;
+   * __if__ final convergence test satisfied,
+       * __stop__ with approximate solution $x^k$;
+   * end __if__
+   * Choose new penalty parameter $\mu_{k+1} > \mu_{k}$;
+   * Choose new starting point $x^s_{k+1}$
+ * end (__for__)
 
 - [ ] [Line Search Procedures for the Logarithmic Barrier Function](https://epubs.siam.org/doi/abs/10.1137/0804013)
 - [ ] [Penalty method](https://en.wikipedia.org/wiki/Penalty_method)
@@ -1507,7 +1596,7 @@ $$
 
 where ${\alpha}_k + {\beta}_k + {\gamma}_k = 1, {\alpha}_k, {\beta}_k, {\gamma}_k \in [0,1)$ for all $k\geq 1$, $\sum_{k}^{\infty}(1-\alpha_k)=\infty$, $\sum_{k=1}^{\infty}\gamma_k < \infty$.
 
-If the Mann type iteration $\{x^k\}$ converges strongly to a point $p$, then $p$ is afixed point of T.
+If the Mann type iteration $\{x^k\}$ converges strongly to a point $p$, then $p$ is afixed point of $T$.
 
 * [Krasnoselskii-Mann method for non-self mappings](https://fixedpointtheoryandapplications.springeropen.com/track/pdf/10.1186/s13663-015-0287-4)
 * http://www.krasnoselskii.iitp.ru/papereng.pdf
@@ -1560,10 +1649,10 @@ $$
 f(x), x\in\mathbb{R}^p, \quad\nabla f(x) = g(x), \quad\nabla^2 f(x)= H(x).
 $$
 
-| Iteration | ODE  |
-|---|---|
-|$x^{k}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$|
-|$x^{k}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$|
+ Iteration | ODE  | Integration
+---|---|---
+$x^{k+1}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$| $x^{k+1}-x^{0}=\sum_{i=1}^{k}\alpha_ig(x^i)$
+$x^{k+1}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$| $x^{k+1}-x^{0}=\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$
 
 Like Newton interpolation, more points can compute higher order derivatives.
 The dynamics of accelerated gradient methods are expected to correspond to higher order differential equations.
@@ -1610,6 +1699,7 @@ It is difficult to generalize these methods to stochastic cases.
 There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
 
 <img title = "jordan in ICM 2018" src = "http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg" width = 80% />
+<img src="http://awibisono.github.io/images/sqcomp.png" width="80%" />
 
 Some new connections between dynamical systems and optimization is found.
 
