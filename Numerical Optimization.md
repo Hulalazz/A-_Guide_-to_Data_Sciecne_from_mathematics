@@ -1,6 +1,5 @@
 # Numerical Optimization
 
-https://github.com/tensorboy/PIDOptimizer
 ![http://art.ifeng.com/2015/1116/2606232.shtml](http://upload.art.ifeng.com/2015/1116/1447668349594.jpg)
 
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
@@ -47,7 +46,8 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 * [Accelerated gradient descent](http://awibisono.github.io/2016/06/20/accelerated-gradient-descent.html)
 * [Accelerated gradient flow](http://awibisono.github.io/2016/06/27/accelerated-gradient-flow.html)
 * [Stochastic gradient flow](http://awibisono.github.io/2016/09/05/stochastic-gradient-flow.html)
-* [Aristotle vs. Newton](http://awibisono.github.io/2016/07/04/aristotle-newton.html) 
+* [Aristotle vs. Newton](http://awibisono.github.io/2016/07/04/aristotle-newton.html)
+* [Advanced non-smooth optimization](https://mathematical-coffees.github.io/mc12-advanced-optim/)
 
 ## Gradient Descent and More
 
@@ -162,7 +162,7 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}\underbrace{(x^k-x^{k-1})}_{\text{denoted as  $\Delta_{k}$ }}\\
 \Delta_{k+1}= -\alpha_k\nabla_{x}f(x^k)+ \rho_{k}\Delta_{k}\\
 \\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{x^{k-i}}_{\triangle})+\rho_1\Delta_1
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{red}{x}^{k-i}}_{\triangle})+\rho_1\Delta_1
 $$
 
 **Nesterov accelerated gradient method** at the $k$th step is given by:
@@ -177,7 +177,7 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally.
 $$
 x^{k}=y^{k}-\alpha_{k+1}\nabla_{x}f(y^k) \\
 y^{k}=x^{k-1}+\rho_{k-1}(x^{k-1}-x^{k-2})\\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ -\prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{y^{k-i}}_{\triangle})+\rho_1\Delta_1.
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ -\prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{green}{y}^{k-i}}_{\triangle})+\rho_1\Delta_1.
 $$
 
 They are called as **inertial gradient methods** or **accelerated gradient methods**. [And there are some different forms.](https://jlmelville.github.io/mize/nesterov.html)
@@ -198,13 +198,14 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * https://zhuanlan.zhihu.com/p/35323828
 * [On Gradient-Based Optimization: Accelerated, Asynchronous, Distributed and Stochastic](https://www.sigmetrics.org/sigmetrics2017/MI_Jordan_sigmetrics2017.pdf)
 * [Nesterov Accelerated Gradient and Momentum](https://jlmelville.github.io/mize/nesterov.html)
-* https://distill.pub/2017/momentum/
+* [Why Momentum Really Works](https://distill.pub/2017/momentum/)
 * http://www.optimization-online.org/DB_FILE/2018/11/6938.pdf
 * https://www.mat.univie.ac.at/~neum/glopt/mss/MasAi02.pdf
 * https://www.cs.cmu.edu/~ggordon/10725-F12/slides/09-acceleration.pdf
-* https://saugatbhattarai.com.np/what-is-gradient-descent-in-machine-learning/
+* [WHAT IS GRADIENT DESCENT IN MACHINE LEARNING?](https://saugatbhattarai.com.np/what-is-gradient-descent-in-machine-learning/)
+* https://www.fromthegenesis.com/gradient-descent-part1/
 * https://www.fromthegenesis.com/gradient-descent-part-2/
-* http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/
+* [Deep Learning From Scratch IV: Gradient Descent and Backpropagation](http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/)
 * https://ee227c.github.io/notes/ee227c-lecture08.pdf
 
 
@@ -626,16 +627,16 @@ $$
 {x_{i}^{k+1} = \frac{x_i^{k}\exp(-\alpha \nabla {f(x^k)}_{i})}{\sum_{j=1}^{n} x_j^{k}\exp(-\alpha \nabla  {f(x^k)}_{j})}}, i=1,2,\dots, n.
 $$
 it is obvious that entropic decscent methods are in the coordinate-wise update formula.
-Whast is more , it can be rewritten as 
+Whast is more , it can be rewritten as
 $$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\left<x^n, -\alpha \nabla f(x^n)\right>}\propto x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n)).$$  
 
 `Multiplicative Weights Update` is closely related with entropic descent method. See more on the following link list.
 
+* [The Divergence Methods Web Site (under construction)](http://www.divergence-methods.org/)
 * [Bregman Divergence and Mirror Descent, Xinhua Zhang(张歆华)](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
 * [CS 294 / Stat 260, Fall 2014: Learning in Sequential Decision Problems](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf)
 * [ELE522: Large-Scale Optimization for Data Science , Yuxin Chen, Princeton University, Fall 2019](http://www.princeton.edu/~yc5/ele522_optimization/lectures/mirror_descent.pdf)
 * [Mirror Descent and the Multiplicative Weight Update Method, CS 435, 201, Nisheeth Vishnoi](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
-* http://www.divergence-methods.org/
 * https://zhuanlan.zhihu.com/p/34299990
 * https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/
 * https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/
@@ -695,11 +696,11 @@ $$
 so that the primary proximal gradient methods are modified to the Bregman version,
 which is called as `Bregman proximal gradient` method.
 
+* [A collection of proximity operators implemented in Matlab and Python.](http://proximity-operator.net/)
 * http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf
 * https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf
 * https://arxiv.org/abs/1808.03045
 * [A unified framework for Bregman proximal methods: subgradient, gradient, and accelerated gradient schemes](https://arxiv.org/abs/1812.10198)
-* [A collection of proximity operators implemented in Matlab and Python.](http://proximity-operator.net/)
 * [Proximal Algorithms, N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/prox_algs.html)
 * [For more (non exhaustive) informations regarding the proximity operator and the associated proximal algorithms](http://proximity-operator.net/bibliography.html)
 
@@ -934,10 +935,8 @@ multiplier method for convex programming ](https://web.mit.edu/dimitrib/www/Expm
 Alternating direction method of multipliers is called **ADMM** shortly.
 It is aimed to solve the following convex optimization problem:
 $$
-\begin{align}
-  \min F(x,y) \{&=f(x)+g(y)\} \tag {cost function} \\
-          Ax+By &=b \tag{constraint}
-\end{align}
+\min F(x,y) \{=f(x)+g(y)\}  \\
+        \text{subject to }\quad  Ax+By =b 
 $$
 where $f(x)$ and $g(y)$ is convex; ${A}$ and ${B}$ are matrices.
 
@@ -946,6 +945,8 @@ $$
 L_{\beta}(x, y)=f(x)+g(y) - \lambda^{T}(Ax + By -b)+ \frac{\beta}{2}{\|Ax + By - b\|}_{2}^{2}.
 $$
 
+* [
+Augmented Lagrangian method](https://www.semanticscholar.org/topic/Augmented-Lagrangian-method/11373)
 ***
 
 Augmented Lagrange Method at step $k$ is described as following:
@@ -1036,12 +1037,37 @@ where $B_{\phi}$ is the Bregman divergence induced by the convex function $\phi$
 
 **Relaxed, Inertial and Fast ADMM**
 
+$$\min_{x}f(x)+g(Ax)$$
+The penalty parameter
+is $\rho > 0$ and the relaxation parameter is $\alpha\in (0, 2)$. Standard ADMM is recovered with
+$\alpha = 1$.
+> Family of relaxed A-ADMM algorithms for the above problem 
+> 
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}f(x)+\frac{\rho}{2}{\|Ax-y_k+\lambda_k\|}^2$,
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} g(y) + \frac{\rho}{2}{\|\alpha Ax_{\color{red}{k+1} }+(1-\alpha_k)y_k-y+\lambda_k\|}^2$,
+> 3. $\lambda^{k+1} = \lambda^{k} +\alpha Ax_{\color{red}{k+1}}+(1-\alpha_k)y_k-z_{\color{red}{k+1}}$.
+
+
+> Family of relaxed ADMM algorithms for the above problem 
+The damping constant is $r \geq 3$.
+>
+> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}f(x)+\frac{\rho}{2}{\|Ax-\hat y_k+\lambda_k\|}^2$,
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} g(y) + \frac{\rho}{2}{\|\alpha Ax_{\color{red}{k+1} }+(1-\alpha_k)\hat y_k-y+\lambda_k\|}^2$,
+> 3. $\lambda^{k+1} = \hat\lambda^{k} +\alpha Ax_{\color{red}{k+1}}+(1-\alpha_k)\hat y_k-z_{\color{red}{k+1}}$,
+> 4. $\gamma_{k+1}=\frac{k}{k+r}$,
+> 5. $\hat\lambda^{k+1}=\lambda^{k+1}+\gamma_{k+1}(\lambda^{k+1}-\lambda^{k})$,
+> 6. $\hat y^{k+1}=y^{k+1}+\gamma_{k+1}(y^{k+1}-y^{k})$.
+> 
 * http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf
 * http://www.iutzeler.org/pres/osl2017.pdf
 * https://www.mia.uni-saarland.de/Publications/goldstein-cam12-35.pdf
 * [The Classical Augmented Lagrangian Method and Nonexpansiveness](http://rutcor.rutgers.edu/pub/rrr/reports2012/32_2012.pdf)
+* [Relative-error inertial-relaxed inexact versions of Douglas-Rachford and ADMM splitting algorithms](https://arxiv.org/abs/1904.10502)
+* [Relax, and Accelerate: A Continuous Perspective on ADMM](https://arxiv.org/abs/1808.04048v1)
+* https://www.semanticscholar.org/author/Guilherme-Fran%C3%A7a/145512630
+* [An explicit rate bound for over-relaxed ADMM](https://ieeexplore.ieee.org/document/7541670)
 
-**Multi-Block ADMM**
+#### Multi-Block ADMM
 
 Firstly we consider the following optimization problem
 
@@ -1054,7 +1080,7 @@ $$
 We defined its augmented Lagrangian multipliers as
 
 $$
-L_{\beta}^{n}(x_1,x_2,\cdots, x_n\mid \lambda)=\sum_{i=1}^{n} f_i(x_i) -\lambda^T (\sum_{i=1}^{n} A_i x_i - b) + \frac{\beta}{2}{\|\sum_{i=1}^{n} A_i x_i - b\|}_2^2.
+L_{\beta}^{n}(x_1,x_2,\cdots, x_n\mid \lambda)=\sum_{i=1}^{n} f_i(x_i) -\lambda^T (\sum_{i=1}^{n} A_i x_i - b) + \frac{\beta}{2} ({\|\sum_{i=1}^{n} A_i x_i - b\|})_{2}^{2}.
 $$
 
 
@@ -1237,7 +1263,8 @@ x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1}) \\
 $$
 
 $\color{aqua}{PS}$: How we can extend it to Nesterov gradient methods or stochastic gradient methods?
-[Discover acceleration](https://ee227c.github.io/notes/ee227c-lecture06.pdf)
+
+* [Discover acceleration](https://ee227c.github.io/notes/ee227c-lecture06.pdf)
 
 It is natural to replace the squared function with some non-negative function
 such as mirror gradient methods
@@ -1284,13 +1311,13 @@ $$
 
 i.e., $prox_{\mu f} (x)$ is gradient step for minimizing $M_{\mu f}$.
 
-`Fenchel Conjugate` of a function ${h}$ is is the function $h^{\star}$ defined by
+`Fenchel Conjugate` of a function ${h}$ is the function $h^{\star}$ defined by
 
 $$
 h^{\star}(x)=\sup_{z} \{\left<z, x\right>-h(z)\}.
 $$
 
-+ [Smoothing for nonsmooth optimization, ELE522: Large-Scale Optimization for Data Science](http://www.princeton.edu/~yc5/ele522_optimization/lectures/smoothing.pdf)
++ [Smoothing for non-smooth optimization, ELE522: Large-Scale Optimization for Data Science](http://www.princeton.edu/~yc5/ele522_optimization/lectures/smoothing.pdf)
 + [Smoothing, EE236C (Spring 2013-14)](http://www.seas.ucla.edu/~vandenbe/236C/lectures/smoothing.pdf)
 + [Smoothing and First Order Methods: A Unified Framework](https://epubs.siam.org/doi/abs/10.1137/100818327)
 
@@ -1644,17 +1671,16 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 
 ## Dynamical Systems
 
-
 We will focus on the optimization methods in the form of fixed point iteration and dynamical systems.
 It is to minimize the following function
 $$
 f(x), x\in\mathbb{R}^p, \quad\nabla f(x) = g(x), \quad\nabla^2 f(x)= H(x).
 $$
 
- Iteration | ODE  | Integration
+ Iteration | ODE  | Name
 ---|---|---
-$x^{k+1}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$| $x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_ig(x^i)$
-$x^{k+1}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$| $x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$
+$x^{k+1}=x^{k}-\alpha_k g(x^k)$|$\dot{x}(t)=- g(x(t))$| Gradient descent
+$x^{k+1}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$| Newton's method
 
 Like Newton interpolation, more points can compute higher order derivatives.
 The dynamics of accelerated gradient methods are expected to correspond to higher order differential equations.
@@ -1750,6 +1776,27 @@ $$
 
 https://eta.impa.br/dl/028.pdf
 
+### Proportional–Integral–Derivative
+
+
+
+|Recusion|Integration|
+|:---:|:----:|
+|$x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_ig(x^i)$|?|
+|$x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$|?|
+|$\nabla h(x^{k+1})-\nabla h(x^1) =- \sum_{n=1}^{k}\alpha_i \nabla f(x^i) , x\in \mathbb{S}$|?|
+
+![PID Optimizer](http://5b0988e595225.cdn.sohucs.com/images/20180720/904ace2258564f6b98e91ad71de6ff91.jpeg)
+
+* http://www.sohu.com/a/242354509_297288
+* [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
+* [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
+* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
+* [PID Theory Explained](https://www.ni.com/en-ie/innovations/white-papers/06/pid-theory-explained.html)
+* [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
+* http://www.scholarpedia.org/article/Optimal_control
+* https://web.stanford.edu/class/ee365/
+
 ## Stochastic Approximation
 
 [Clearing the Jungle of Stochastic Optimization](https://castlelab.princeton.edu/jungle/)
@@ -1772,14 +1819,14 @@ ${\textstyle N(\theta )}$ is uniformly bounded,
 ${\textstyle M(\theta )}$ is nondecreasing,
 ${\textstyle M'(\theta ^{\ast})}$ exists and is positive, and
 The sequence ${\textstyle a_{n}}$ satisfies the following requirements:
-$$\sum_{n=0}^{\infty} a_{n}=\infty \quad \mbox{ and }\quad \sum_{n=0}^{\infty} a_{n}^{2} < \infty \quad$$
+$$\sum_{n=0}^{\infty} a_{n}=\infty \quad \fbox{ and }\quad \sum_{n=0}^{\infty} a_{n}^{2} < \infty \quad$$
 A particular sequence of steps which satisfy these conditions, and was suggested by Robbins–Monro, have the form: ${\textstyle a_{n}=a/n}$, for ${\textstyle a>0}$. Other series are possible but in order to average out the noise in ${\textstyle N(\theta )}$, the above condition must be met.
 
 ### Stochastic Gradient Descent
 
 `Stochastic gradient descent` is classified to stochastic optimization which is considered as the generalization of `gradient descent`.
 
-https://arxiv.org/abs/1901.00035
+[Convex Relaxations of Convolutional Neural Nets](https://arxiv.org/abs/1901.00035)
 
 Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
 It is **stochastic gradient** but may not be **descent**.
@@ -1931,10 +1978,11 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
 - [NOVEL GRADIENT-TYPE OPTIMIZATION ALGORITHMS FOR EXTREMELY LARGE-SCALE NONSMOOTH CONVEX OPTIMIZATION](https://www2.isye.gatech.edu/~nemirovs/Lena.pdf)
 - [Projects: Structure Exploitation in Large-Scale Non-Convex Optimisation](https://optimisation.doc.ic.ac.uk/project/structure-exploitation-in-large-scale-non-convex-optimisation/)
+- [A Distributed Flexible Delay-tolerant Proximal Gradient Algorithm](https://arxiv.org/abs/1806.09429)
 - http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
 - http://shivaram.org/publications/hemingway-mlsys-2016.pdf
 - http://principlesofoptimaldesign.org/
-- http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/
+- [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
 
 
 <img src="http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png" width = "50%" />
@@ -2124,12 +2172,11 @@ During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are take
 
 [Multi-Level Optimization](https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf) is to optimize a related cheap function $\hat{f}$ when the objective function $f$  is very expensive to evaluate.
 > Multi-level optimization methods repeat three steps:
->
->> 1. Cheap minimization of modified $\hat{f}$:
+> 1. Cheap minimization of modified $\hat{f}$:
   $$y^{k}=\arg\min_{x\in \mathbb{R}^p} + \left<v_k, x\right>.$$
->> 2. Use $y^{k}$ to give descent direction,
+> 2. Use $y^{k}$ to give descent direction,
   $$x^{k+1} = x^k -a_k(x^k - y^k) .$$
->> 3. Set $v_k$ to satisfy first-order coherence
+> 3. Set $v_k$ to satisfy first-order coherence
 $$v_{k+1}=\frac{L_f}{L_F} F^{\prime}(x^{k+1}) - f^{\prime}(x^{k+1}).$$
 
 [Panos Parpas](https://www.imperial.ac.uk/people/panos.parpas)
@@ -2157,10 +2204,11 @@ The simplified scheme of work for the `multilevel optimization` procedure can be
 
 ### Reactive Search Optizmiation
 
-Roberto Battiti and Mauro Brunato explains that how `Reactive Affine Shaker(RAS)` works for optimization problem without gradient in  [Machine Learning plus Intelligent Optimization](https://intelligent-optimization.org/LIONbook/).
+Roberto Battiti and Mauro Brunato explains that how `reactive search optimization, reactive affine shaker(RAS),  memetic algorithm` works for optimization problem without gradient in  [Machine Learning plus Intelligent Optimization](https://intelligent-optimization.org/LIONbook/).
 
 * [Curriculum-based course timetabling solver; uses Tabu Search or Simulated Annealing](https://github.com/stBecker/CB-CTT_Solver)
 * [Machine Learning plus Intelligent Optimization by Roberto Battiti and Mauro Brunato](https://intelligent-optimization.org/LIONbook/)
+* [Reactive Search and Intelligent Optimization](https://www.springer.com/gp/book/9780387096230)
 
 ****
 - [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
@@ -2221,4 +2269,4 @@ Machine Learning 10-725](http://www.stat.cmu.edu/~ryantibs/convexopt/)
 - [ ] https://people.eecs.berkeley.edu/~brecht/eecs227c.html
 - [ ] https://neos-guide.org/content/optimization-under-uncertainty
 - [ ] [Optimization and Gradient Descent on Riemannian Manifolds](https://wiseodd.github.io/techblog/2019/02/22/optimization-riemannian-manifolds/)
-- [ ] https://homepages.laas.fr/lasserre/drupal/content/approximation-theory-convex-optimization
+- [ ] [Approximation Theory & Convex Optimization](https://homepages.laas.fr/lasserre/drupal/content/approximation-theory-convex-optimization)
