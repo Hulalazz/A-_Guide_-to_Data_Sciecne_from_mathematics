@@ -164,6 +164,7 @@ x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}\underbrace{(x^k-x^{k-1})}_{\te
 \\
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{red}{x}^{k-i}}_{\triangle})+\rho_1\Delta_1
 $$
+And $\rho=\exp(\rho_k M_b)$.
 
 **Nesterov accelerated gradient method** at the $k$th step is given by:
 
@@ -936,7 +937,7 @@ Alternating direction method of multipliers is called **ADMM** shortly.
 It is aimed to solve the following convex optimization problem:
 $$
 \min F(x,y) \{=f(x)+g(y)\}  \\
-        \text{subject to }\quad  Ax+By =b 
+        \text{subject to }\quad  Ax+By =b
 $$
 where $f(x)$ and $g(y)$ is convex; ${A}$ and ${B}$ are matrices.
 
@@ -1041,14 +1042,14 @@ $$\min_{x}f(x)+g(Ax)$$
 The penalty parameter
 is $\rho > 0$ and the relaxation parameter is $\alpha\in (0, 2)$. Standard ADMM is recovered with
 $\alpha = 1$.
-> Family of relaxed A-ADMM algorithms for the above problem 
-> 
+> Family of relaxed A-ADMM algorithms for the above problem
+>
 > 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}f(x)+\frac{\rho}{2}{\|Ax-y_k+\lambda_k\|}^2$,
 > 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} g(y) + \frac{\rho}{2}{\|\alpha Ax_{\color{red}{k+1} }+(1-\alpha_k)y_k-y+\lambda_k\|}^2$,
 > 3. $\lambda^{k+1} = \lambda^{k} +\alpha Ax_{\color{red}{k+1}}+(1-\alpha_k)y_k-z_{\color{red}{k+1}}$.
 
 
-> Family of relaxed ADMM algorithms for the above problem 
+> Family of relaxed ADMM algorithms for the above problem
 The damping constant is $r \geq 3$.
 >
 > 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}}f(x)+\frac{\rho}{2}{\|Ax-\hat y_k+\lambda_k\|}^2$,
@@ -1057,7 +1058,7 @@ The damping constant is $r \geq 3$.
 > 4. $\gamma_{k+1}=\frac{k}{k+r}$,
 > 5. $\hat\lambda^{k+1}=\lambda^{k+1}+\gamma_{k+1}(\lambda^{k+1}-\lambda^{k})$,
 > 6. $\hat y^{k+1}=y^{k+1}+\gamma_{k+1}(y^{k+1}-y^{k})$.
-> 
+>
 * http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf
 * http://www.iutzeler.org/pres/osl2017.pdf
 * https://www.mia.uni-saarland.de/Publications/goldstein-cam12-35.pdf
@@ -1601,7 +1602,7 @@ $$
 The sequence $\{x^{k}\}$ defined by
 
 $$
-x^{k+1}= (1-\alpha_k)x^k+ {\alpha}_k T^{k}(x^k), 0 < a\leq {\alpha}_k \leq b < 1
+x^{k+1}= (1-\alpha_k)x^k+ {\alpha}_k T(x^k), 0 < a\leq {\alpha}_k \leq b < 1
 $$
 (additionally $\sum_{k=1}^{\infty}{\alpha}_k = \infty$ )is called a `modied Mann iteration`.
 Take $\{\alpha_k, \beta_k\}$ two sequences in $[0, 1]$ satisfying
@@ -1612,7 +1613,7 @@ $$
 Then the sequence $\{x^{k}\}$ defined by
 
 $$
-x^{k+1}= (1-\alpha_k)x^k+ {\alpha}_k T^{k}(y^k), \\
+x^{k+1}= (1-\alpha_k)x^k+ {\alpha}_k T(y^k), \\
 y^{k} = (1-\beta_k)x^k + {\beta}_k T(x^k),
 $$
 
@@ -1777,8 +1778,6 @@ $$
 https://eta.impa.br/dl/028.pdf
 
 ### Proportional–Integral–Derivative
-
-
 
 |Recusion|Integration|
 |:---:|:----:|
