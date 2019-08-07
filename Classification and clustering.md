@@ -1,5 +1,13 @@
+# Machine Learning and Analytics
 
 [Unsupervised learning is a form of descriptive analytics. Predictive analytics aims to estimate outcomes from current data. Supervised learning is a kind of predictive analytics. Finally, prescriptive analytics guides actions to take in order to guarantee outcomes.](http://www.argmin.net/2018/01/29/taxonomy/)
+
+There is another trichotomy in statistics
+ `descriptive analysis`, `exploratory analysis`, `inferential analysis`.
+
+<img title="great painting" src="http://pic.syd.com.cn/0/101/88/22/101882266_0000000049d72af6.jpg" width="80%" />
+
+## Unsupervised Learning
 
 ### Clustering
 
@@ -29,7 +37,7 @@ subsets $C = \{C_1, \cdots, C_k\}$ to reach the following objectives:
 - Maximization of inter-cluster distance.
 
 
-K-means is also called  **Lloyd’s algorithm**. It is a prototype-based clustering method.
+K-means is also called  **Lloyd algorithm**. It is a prototype-based clustering method.
 
 > * Set the class number $k$ and initialize the centers of the classes $\{c_i, c_2, \dots, c_k\}$.
 > * Split the data set to $k$ classes by the shortest distance to the center:
@@ -55,7 +63,6 @@ J = \sum_{n=1}^{N}\sum_{k=1}^{K} \mathbb{I}_{nk}\|x_n-\mu_k\|^2
 $$
 where $\mathbb{I}_{nk}$ is a binary Dirac function.
 
-
 After initializing the $K$ and $\mu_k$, we fix $\mu_k$ and optimize the objective function with respect to $\mathbb{I}_{nk}$:
 
 $$
@@ -73,6 +80,17 @@ $$
 
 In the first procedure, it is supposed to maximize the inter-cluster dissimilarity;
 The second procedure, it is supposed to minimize the intra-cluster distance.
+
+The loss function of K-means can be any sum of inter-cluster distance
+$$D_K=\sum_{k=1}^K \text{inter-cluster distance of $C_k$}.$$
+
+`Gap Statistic` is defined as 
+$$Gap(K)=\mathbb E(\log D_K)-\log D_K,$$
+where $\mathbb E(\log D_k)$ is the expectation of $\log D_k$ and $D_k$ is the loss with respect to $K$-cluster.
+
+And the optimal number of $K$ is choosen as the maximum of the gap statistic:
+$$K^{\ast}=\arg\max_{K} Gap_K.$$
+
 
 * https://www.wikiwand.com/en/K-means_clustering
 * [Visualizing K-Means Clustering](http://web.stanford.edu/class/ee103/visualizations/kmeans/kmeans.html)
@@ -92,9 +110,9 @@ P(x) = \sum_{k=1}^{K}p(k) p(x|k)
 $$
 where the discrete distribution of clustering $\sum_{k=1}^{K}\pi(k) = 1, \pi(k)\geq 0\quad\forall k$ and  $N(x|\mu_k,\Sigma_k)$ is the multivariate normal(Gaussian) distribution.
 
-Like k-means clustering, the class number ${k}$ is set manually and the $\mu_k.\Sigma_k$ are to estimate.
+Like K-means clustering, the class number ${k}$ is set manually and the $\mu_k.\Sigma_k$ are to estimate.
 
-![](https://scripts-cdn.softpedia.com/screenshots/Multivariate-Gaussian-Mixture-Model-Optimization-18533.png)
+<img src = https://scripts-cdn.softpedia.com/screenshots/Multivariate-Gaussian-Mixture-Model-Optimization-18533.png width = 50%/>
 
 The likelihood of the observed random variables is given by
 $$
@@ -106,7 +124,7 @@ $$
 \log\prod_{i}^{N} P(x_i)= \sum_{i}^{N} \log[\sum_{k=1}^{K}\pi(k) N(x_i|\mu_k,\Sigma_k)].
 $$
 
-In **The Nature of Statistical Learning**, the author gives an example of Gaussian mixture that cannot be estimated via maximum likelihood estimation.
+In **The Nature of Statistical Learning**,  an example of Gaussian mixture is given which cannot be estimated via maximum likelihood estimation directly.
 
 Bishop introduces clustering in Bayesian perspective :
 > An elegant and powerful method for finding maximum likelihood solutions for
@@ -178,7 +196,7 @@ $$
 x_{\text{medoid}} = {\arg\min}_{y\in \{x_{1},x_{2},\cdots ,x_{n}\}} \sum _{i=1}^{n} d(y,x_{i}).
 $$
 
-The simplified version is to compute the median of each attribute to approximate medoid instead of the optimization in the definition.
+The simplified version is to compute the `median` of each attribute to approximate medoid instead of the optimization in the definition, where the dissimilarity function $d(y, x)=\| y-x\|_{1}$.
 
 It also begins with randomly selecting k data items as initial medoids to represent the k clusters. All
 the other remaining items are included in a cluster which has its medoid closest to them.
@@ -194,6 +212,13 @@ members are placed in the appropriate cluster based on nearest medoid.
 * http://blog.pluskid.org/?p=40
 * https://wireilla.com/ns/maths/Papers/3314ijscmc01.pdf
 
+#### Iterative Self-Organizing Data Analysis Technique Algorithm
+
+`Iterative Self-Organizing Data Analysis Technique Algorithm(ISODATA)`
+
+* https://www.cnblogs.com/PIESat/p/10212994.html
+* https://www.cnblogs.com/huadongw/articles/4101306.html
+
 #### Hierarchical clustering
 
 **Hierarchical clustering algorithms** are either top-down or bottom-up. These methods are based on the choice of distance measure or metric.
@@ -207,7 +232,7 @@ The algorithm works as follows:
 * Repeat the above step until all the data points are in a single cluster.
 
 ***
-![](https://raw.githubusercontent.com/Hulalazz/hierarchical-clustering/master/Results/Centroid.png)
+<img src="https://raw.githubusercontent.com/Hulalazz/hierarchical-clustering/master/Results/Centroid.png" width="80%" />
 
 
 > The idea is to build a binary tree of the data that successively merges similar groups of points.
@@ -248,8 +273,6 @@ In fact, we can use Bregman divergence to cluster.
 cluster, and recursively divide one of the existing clusters into two daughter clusters at each iteration in a top-down fashion.
 The split is chosen to produce two new
 groups with the largest `between-group dissimilarity`.
-
-
 
 Its template is described as :
 
@@ -309,7 +332,7 @@ Clustering identifies groups of genes/conditions that show similar activity patt
 under **all the set** of conditions/all the set of genes under analysis.
 
 The matrix ${A}$ contains the rows index ${X}$ and columns index ${Y}$, whose element $a_{ij}$ is the expression level of gene ${i}$ under condition ${j}$ (quantity of mRNA) in biology.
-And the submatrix of ${A}$ is denoted by $A_{IJ}$ where $I\subset X, J\subset Y$. 
+And the submatrix of ${A}$ is denoted by $A_{IJ}$ where $I\subset X, J\subset Y$.
 
 A bicluster is defined as a submatrix spanned by a set of genes and a set of samples. Alternatively, a bicluster may be defined as the corresponding gene and sample subsets.
 
@@ -322,18 +345,107 @@ A bicluster is defined as a submatrix spanned by a set of genes and a set of sam
 #### Ensemble methods of Clusterings
 
 * [Combining Multiple Clusterings Using Evidence Accumulation](https://ieeexplore.ieee.org/document/1432715/)
+* [A CLUE for Cluster Ensembles](https://www.jstatsoft.org/article/view/v014i12)
 
 ### Classification
 
 Classification is a basic task in machine learning even in artificial intelligence.
-It is supervised with discrete or categorical desired labels.  
-And in statistics, it is regarded as one regression tasks with discrete output such as logistic regression.
+It is supervised with discrete or categorical desired labels. In statistics, some `regression methods` such as `logistic regression` is factually designed for classification tasks.
 It is one of the most fundamental and common tasks in machine learning.
+
+Its inputs or the feature vector is always numerical $X\in\mathbb{R}^p$ and the output or prediction is assumed to be in some discrete space $\mathbb{Z}^d$.
 
 
 * http://vision.stanford.edu/teaching/cs231n-demos/knn/
 * https://en.wikipedia.org/wiki/Category:Classification_algorithms
 * https://people.eecs.berkeley.edu/~jordan/classification.html
+
+#### Recursive Partitioning and Decision Tree for Clasification
+
+
+[高效决策树算法系列笔记](https://github.com/wepe/efficient-decision-tree-notes)
+
+
+* [Decision Trees (for Classification) by Willkommen auf meinen Webseiten.](http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php)
+* [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
+* [On the Boosting Ability of Top-Down Decision Tree Learning Algorithms](http://www.columbia.edu/~aec2163/NonFlash/Papers/Boosting2016.pdf)
+
+A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
+It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
+the data space and fitting a simple prediction model within each partition. As a
+result, the partitioning can be represented graphically as a decision tree.
+[Visual introduction to machine learning](https://explained.ai/decision-tree-viz/index.html) show an visual introduction to decision tree.
+
+***
+**Algorithm**  Pseudocode for tree construction by exhaustive search
+
+1. Start at root node.
+2. For each node ${X}$, find the set ${S}$ that **minimizes** the sum of the node $\fbox{impurities}$ in the two child nodes and choose the split $\{X^{\ast}\in S^{\ast}\}$ that gives the minimum overall $X$ and $S$.
+3. If a stopping criterion is reached, exit. Otherwise, apply step 2 to each child node in turn.
+
+***
+
+Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**.
+
+
+* [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
+* [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
+* https://www.wikiwand.com/en/Decision_tree_learning
+* https://www.wikiwand.com/en/Decision_tree
+* https://www.wikiwand.com/en/Recursive_partitioning
+* [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
+***
+
+Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
+The regularization techniques in regression may not suit the tree algorithms such as LASSO.
+
+**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees) 
+
+<img title = "pruning" src="https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="40%" />
+
+In machine learning, it is to avoid the overfitting, to make a balance between over-fitting and under-fitting and boost the generalization ability. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
+
+1. Use a distinct dataset from the training set (called validation set), to evaluate the effect of post-pruning nodes from the tree.
+2. Build the tree by using the training set, then apply a statistical test to estimate whether pruning or expanding a particular node is likely to produce an improvement beyond the training set.
+    * Error estimation
+    * Significance testing (e.g., Chi-square test)
+3. Minimum Description Length principle : Use an explicit measure of the complexity for encoding the training set and the decision tree, stopping growth of the tree when this encoding size (size(tree) + size(misclassifications(tree)) is minimized.
+
+* [Decision Tree - Overfitting saedsayad](https://www.saedsayad.com/decision_tree_overfitting.htm)
+* [Decision Tree Pruning based on Confidence Intervals (as in C4.5)](http://www.cs.bc.edu/~alvarez/ML/statPruning.html)
+
+***
+![Recursive Partitioning](http://ai-depot.com/Tutorial/DT2.jpg)
+
+When the height of a decision tree is limited to 1, i.e., it takes only one
+test to make every prediction, the tree is called a `decision stump`. While decision trees are nonlinear classifiers in general, decision stumps are a kind of linear classifiers.
+
+[Fifty Years of Classification and
+Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
+Multivariate Adaptive Regression
+Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
+`Recursive partition` is a recursive  way to construct decision tree.
+
+***
+* [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
+* [Tutorial on Regression Tree Methods for Precision Medicine and Tutorial on Medical Product Safety: Biological Models and Statistical Methods](http://ims.nus.edu.sg/events/2017/quan/tut.php)
+* [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
+* [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
+* [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
+* [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
+* [CART](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
+* [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+* [Interpretable Machine Learning: Decision Tree](https://christophm.github.io/interpretable-ml-book/tree.html)
+* [Tree-based Models](https://dinh-hung-tu.github.io/tree-based-models/)
+* http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
+* https://www.ncbi.nlm.nih.gov/pubmed/16149128
+* http://www.cnblogs.com/en-heng/p/5035945.html
+* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
+* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
+* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+* http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
+* https://www.wikiwand.com/en/Recursive_partitioning
+* [Model-Based Recursive Partitioning for Subgroup Analyses, Heidi Seibold, Achim Zeileis, Torsten Hothorn](https://www.degruyter.com/view/j/ijb.2016.12.issue-1/ijb-2015-0032/ijb-2015-0032.xml)
 
 #### K-Nearest Neighbors
 
@@ -405,9 +517,9 @@ $$
 $$
 
 
-||
-|---|
-|![](https://pic2.zhimg.com/v2-01546fedbab1df3221ecf1105bb0ebe6_1200x500.jpg)|
+| Support Vector Machine |
+|:---:|
+| <img title="Support Vector" src="https://pic2.zhimg.com/v2-01546fedbab1df3221ecf1105bb0ebe6_1200x500.jpg" width="50%"/> |
 
 It can convert to a constrained optimization problem:
 
@@ -416,7 +528,7 @@ $$
 s.t.\qquad d_i(\left< w, x \right> + b) \geq 1
 $$
 
-****
+***
 
 It is a convex quadratic programming(QP) problem. We can use [Lagrange multipliers method](https://www.svm-tutorial.com/2016/09/duality-lagrange-multipliers/) or ADMM(one augmented Lagrangian multiplier method).
 
@@ -484,12 +596,12 @@ w^{\star}=\arg\min_{w} \{ \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{n}\max\{0, 1 - d_i\l
 $$
 
 We continue our discussion of linear soft margin support vector machines. But
-first let’s break down that phrase a little bit.
+first let us break down that phrase a little bit.
 * Linear because our classifier takes a linear combination of the input features
 and outputs the sign of the result.
 * Soft margin because we allow for some points to be located within the
 margins or even on the wrong side of the decision boundary. This was the
-purpose of introducing the $\epsilon_i$ terms.
+purpose of introducing the ${\epsilon_i}$ terms.
 * Support vector machines because the final decision boundary depends only
 on a subset of the training data known as the support vectors.
 
@@ -532,7 +644,7 @@ And this is of course the last one which is used most of the time. That is why S
 The kernel methods are to enhance the regression or classification methods via  better nonlinear representation.
 Different from dimension reduction method, the kernel methods usually map the low dimensional space into higher dimensional space.
 
-![](https://nlp.stanford.edu/IR-book/html/htmledition/img1331.png)
+<img title="ISVM 4 IR" src="https://nlp.stanford.edu/IR-book/html/htmledition/img1331.png" width = "60%" />
 
 SVMs, and also a number of other linear classifiers, provide an easy and efficient way of doing this mapping to a higher dimensional space, which is referred to as "the kernel trick".
 It's not really a trick: it just exploits the math that we have seen. The SVM linear classifier relies on a dot product between data point vectors.
@@ -579,7 +691,7 @@ All of these are straightforward notions which have also been used in many other
 + https://nlp.stanford.edu/IR-book/html/htmledition/nonlinear-svms-1.html
 
 ***
-![](https://pic4.zhimg.com/v2-1dc2977c027b0cfebec991fdabfcb728_b.jpg)
+![zhihu](https://pic4.zhimg.com/v2-1dc2977c027b0cfebec991fdabfcb728_b.jpg)
 
 
 

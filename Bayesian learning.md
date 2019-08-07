@@ -1,10 +1,14 @@
 # Bayesian Learning and Probabilistic Programming
 
+
+- https://probcomp.github.io/Gen/
 - https://m-clark.github.io/workshops.html
 - https://dsteinberg.github.io/pages/research-projects.html
 - https://tminka.github.io/papers/index.html
 - http://am207.info/resources.html
 - http://mlg.eng.cam.ac.uk/tutorials/07/
+- http://pandamatak.com/people/anand/771/html/html.html
+- [Bayesian Learning for Machine Learning: Part I ](https://wso2.com/blog/research/part-one-introduction-to-bayesian-learning)
 - [Philosophy of Bayesian Inference, Radford M. Neal, January 1998](https://www.cs.toronto.edu/~radford/res-bayes-ex.html)
 - [Understanding computational Bayesian statistics](https://xianblog.wordpress.com/2011/10/10/understanding-computational-bayesian-statistics/)
 - [Variational Methods for Bayesian Independent Component Analysis by Rizwan A. Choudrey](http://www.robots.ox.ac.uk/~parg/_projects/ica/riz/Thesis/index.html)
@@ -99,11 +103,17 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 + [Approximate Bayesian Computation: a simulation based approach to inferenc](http://www0.cs.ucl.ac.uk/staff/C.Archambeau/AIS/Talks/rwilkinson_ais08.pdf)
 + [Approximate Bayesian Inference for Latent Gaussian Models Using Integrated Nested Laplace Approximations](http://www.statslab.cam.ac.uk/~rjs57/RSS/0708/Rue08.pdf)
 + [Approximate Bayesian inference via synthetic likelihood for a process-based forest model](https://theoreticalecology.wordpress.com/2014/02/04/approximate-bayesian-inference-via-synthetic-likelihood-for-a-process-based-forest-model/)
++ [A family of algorithms for approximate Bayesian inference by Thomas Minka, MIT PhD thesis, 2001](https://tminka.github.io/papers/ep/)
 + [EnLLVM – Fast Approximate Bayesian Inference](https://uncertaintyquantification.org/research/enllvm-fast-approximate-bayesian-inference/)
 + [approximate Bayesian inference under informative sampling](https://xianblog.wordpress.com/2018/03/30/approximate-bayesian-inference-under-informative-sampling/)
 + [Approximate Bayesian Inference Reveals Evidence for a Recent, Severe Bottleneck in a Netherlands Population of Drosophila melanogaster](https://www.genetics.org/content/172/3/1607)
 + [Approximate Bayesian inference methods for stochastic state space models](https://trepo.tuni.fi/handle/10024/114538)
 
+### Expectation propagation
+
+* [A roadmap to research on EP](https://tminka.github.io/papers/ep/roadmap.html)
+* https://en.wikipedia.org/wiki/Expectation_propagation
+* http://www.mbmlbook.com/TrueSkill_A_solution__expectation_propagation.html
 
 ## Variational Bayes Methods
 
@@ -118,7 +128,9 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 - [High-Level Explanation of Variational Inference by Jason Eisner (2011)](https://www.cs.jhu.edu/~jason/tutorials/variational.html)
 - [VBA (Variational Bayesian Analysis): Interpreting experimental data through computational models](https://mbb-team.github.io/VBA-toolbox/)
 
-## Hierarchical Bayesian Regression
+##  Hierarchical Models
+
+### Hierarchical Bayesian Regression
 
 `Hierarchical Bayesian Regression` extends the Bayesian models by setting  the uncertainty  of the uncertainty such as
 $$
@@ -157,6 +169,33 @@ We can take any factor into consideration in this hierarchical Bayesian model. A
 - [ ] https://jrnold.github.io/bayesian_notes/
 - http://doingbayesiandataanalysis.blogspot.com/
 
+### Beta-logistic
+
+Assume that the instantaneous event probability at time step t is characterized by a geometric distribution:
+$$P(T=t\mid \theta)=\theta(1-\theta).$$
+
+Instead of a point estimate for $\theta$, use a Beta prior parameterized as follows:
+$$\alpha(x)=\exp(a(x)), \beta(x)=\exp(b(x)).$$
+The likelihood function is
+$$L(\alpha, \beta)=\prod_{i observed} P(T=t_i\mid \alpha(x_i), \beta(x_i))\prod_{i censored} P(T> t_i\mid \alpha(x_i), \beta(x_i) ).$$
+
+Nice properties:
+- $P(T=1\mid \alpha, \beta)=\frac{\alpha}{\alpha + \beta}$;
+- $P(T=t\mid \alpha, \beta)=(\frac{\beta + t - 2}{\alpha + \beta+t-1})P(T=t-1\mid \alpha, \beta)$.
+
+If $a$ and $b$ are linear: $a(x)=\gamma_a\cdot x$ and $b(x)=\gamma_b \cdot x$,
+then
+$$P(T=1\mid \alpha, \beta)=\frac{\alpha(x)}{\alpha(x) + \beta(x)}=\frac{1}{1+\exp(\left<\gamma_a-\gamma_b, x\right>)}.$$
+
+For $T=1$, it reduces to overparameterized logistic regression.
+
+* [A Beta-logistic Model for the Analysis of Sequential Labor Force Participation by Married Women](https://www.nber.org/papers/w0112)
+* https://arxiv.org/abs/1905.03818
+
+### Latent Dirichlet Allocation
+
+
+
 ## Optimal Learning
 
 The Bayesian perspective casts a different interpretation
@@ -190,7 +229,7 @@ There is [a list of optimal learning problems](https://people.orie.cornell.edu/p
 
 Bayesian optimization has been successful at global optimization of expensive-to-evaluate multimodal objective functions. However, unlike most optimization methods, Bayesian optimization typically does not use derivative information.
 
-As `response surface methods`, they date back to Box and Wilson in 1951.
+As `response surface methods`, they date back to `Box and Wilson` in 1951.
 Bayesian optimization usually uses `Gaussian process` regression.
 
 ![Bayesian Optimization](https://github.com/fmfn/BayesianOptimization/blob/master/examples/func.png)
@@ -208,6 +247,7 @@ Bayesian optimization usually uses `Gaussian process` regression.
 * [Bayesian Optimization with Gradients](https://arxiv.org/abs/1703.04389)
 * https://www.iro.umontreal.ca/~bengioy/cifar/NCAP2014-summerschool/slides/Ryan_adams_140814_bayesopt_ncap.pdf
 * [https://haikufactory.com/](https://haikufactory.com/)
+* [](https://bayesianoptimizationtrack.splashthat.com/)
 * [Bayesian Optimization at Imperial London College](http://wp.doc.ic.ac.uk/sml/project/bayesian-optimization/)
 * [Bayesian optimization@http://krasserm.github.io/](http://krasserm.github.io/2018/03/21/bayesian-optimization/)
 * [Introduction to Bayesian Optimization by Javier Gonz´alez](http://gpss.cc/gpmc17/slides/LancasterMasterclass_1.pdf)
@@ -250,6 +290,7 @@ It is aimed to solve the causal inferences, which is based on principles rather 
 + https://blog.applied.ai/probabilistic-graphical-models-for-fraud-detection-part-2/
 + https://blog.applied.ai/probabilistic-graphical-models-for-fraud-detection-part-3/
 + [Probabilistic Graphical Models: Fundamentals](https://frnsys.com/ai_notes/foundations/probabilistic_graphical_models.html)
++ http://www.iro.umontreal.ca/~slacoste/teaching/ift6269/A17/
 
 ### Bayesian Belief Network(BBN)
 
@@ -261,7 +302,7 @@ They are also commonly referred to as `Bayes nets, Belief networks and sometimes
 [Bayesian Network (BN) is an intuitive, graphical representation of a joint probability distribution of a set of random variables with a possible mutual causal relationship.](https://research.csu.edu.au/research-support/data-methods-and-tools/statistics-workshops-and-tools/bayesian-network-workshops)
 
 It is of wide application in many fields such as NLP, medical image analysis.
-![BN](https://www.bayesserver.com/docs/images/analytics.png)
+<img title="Bayesian Network" src="https://www.bayesserver.com/docs/images/analytics.png" width="80%" />
 
 * [Bayesian Network Repository](http://www.bnlearn.com/bnrepository/)
 * [Bayesian Networks by João Neto](http://www.di.fc.ul.pt/~jpn/r/bayesnets/bayesnets.html)
@@ -278,10 +319,97 @@ It is of wide application in many fields such as NLP, medical image analysis.
 
 ### Hidden Markov Models
 
-- [Hidden Markov Model (HMM) Markov Processes and HMM](https://maelfabien.github.io/machinelearning/HMM_2/#decoding-with-viterbi-algorithm)
+<img src="https://sailinglab.github.io/pgm-spring-2019/assets/img/notes/lecture-21/recap_inference.png" width="80%"/>
+
+A HMM $\lambda$ is a sequence made of a combination of 2 stochastic processes:
+* the probability of a particular `state` depends
+only on the previous state:
+$$Pr(q_i\mid q_1, \dots, q_{i-1}) = Pr(q_i \mid q_{i-1});$$
+* the probability of an `output observation` $o_i$ depends only on the state that produced the observation $q_i$ and not on any other states or any other observations:
+$$Pr(o_i\mid q_1, \dots, q_{i-1}, o_1, \cdots, o_{i-1}) = Pr(o_i \mid q_{i}).$$
+
+A HMM model is defined by :
+* the vector of initial probabilities $\pi = [ {\pi}_1, ... {\pi}_q ]$ where $\pi_i = Pr(q_1 = i)$.
+* a transition matrix for unobserved sequence ${A}$:
+$A = [a_{ij}] = Pr(q_t  = j \mid q_{t-1} = i)$.
+* a matrix of the probabilities of the observations:
+$B = [b_{ki}] = Pr(o_t = s_k \mid q_t = i)$.
+
+The hidden Markov models should be characterized
+by three fundamental problems:
+
+1. (Likelihood): Given an HMM $\lambda = (A,B)$ and an observation sequence ${O}$, determine the likelihood $Pr(O|\lambda)$.
+2. (Decoding): Given an observation sequence ${O}$ and an HMM $\lambda = (A,B)$, discover the best hidden state sequence ${Q}$.
+3. (Learning): Given an observation sequence ${O}$ and the set of states in the HMM, learn the HMM parameters ${A}$ and ${B}$.
+
+- [Hidden Markov Model (HMM) Markov Processes and HMM](https://maelfabien.github.io/machinelearning/HMM_2/)
+- [漫谈 Hidden Markov Model](http://freemind.pluskid.org/series/hmm-tutor/)
 - https://www.maths.lancs.ac.uk/~fearnhea/GTP/
 - https://web.stanford.edu/~jurafsky/slp3/A.pdf
 - https://pomegranate.readthedocs.io/en/latest/index.html
+- http://www.shuang0420.com/2016/11/26/Hidden-Markov-Models/
+
+#### Likelihood Computation
+
+$$
+Pr(O|\lambda)=\prod_{i}\underbrace{Pr(o_i \mid q_{i})}_{observed} \underbrace{Pr(q_i\mid \lambda)}_{hidden}\\
+= \sum_{i}Pr(O, q_i\mid \lambda)
+$$
+
+**The forward algorithm**
+
+Forward probability is defined as $\alpha_t(i)=Pr(o_1, \cdots, o_t, q_t=i\mid \lambda)$.
+
+1. Initialization: $\alpha_1(i)=Pr(o_1, q_1=i\mid \lambda)=\pi_i Pr(o_1\mid q_1=i)=\pi_1 b_{o_1i}\quad\forall i$;
+2. Recursion: $\alpha_t(i)=[\sum_{j}\alpha_{t-1}(j)a_{ji}]b_{o_ti}\quad\forall i$;
+3. Termination: $Pr(O\mid \lambda)=\sum_{i}\alpha_T(i)$.
+
+**The backward algorithm**
+
+Backward probability is defined as $\beta_t(i)=Pr(o_{t+1}, o_{t+2}, \cdots, o_T\mid i_t=q, \lambda)$.
+
+1. Initialization: $\beta_T(i)=1,\quad i=1,2,\cdots,N$;
+2. For $t=T-1, T-2,\cdots, 1$,
+$$\beta_t(i)=\sum_{j=1}^Na_{ij}b_j(o_{t+1})\beta_{t+1}(j),\quad i=1,2,\cdots,N$$
+3. Termination: $Pr(O\mid \lambda)=\sum_{i}\pi_i b_i(o_1)\beta_1(i)$.
+
+* https://www.wikiwand.com/en/Forward_algorithm
+* https://www.wikiwand.com/en/Forward–backward_algorithm
+
+#### Decoding
+
+Given an HMM $\lambda = (A,B)$ and an observation sequence ${O}$, determine the likelihood $Pr(O|\lambda)$.
+$$Q^{\ast}=\arg\max_{Q}Pr(O\mid \lambda)\\
+=\arg\max_{Q}\sum_{i}\alpha_T(i)$$
+
+Viterbi is a kind of dynamic programming Viterbi algorithm
+that makes uses of a `dynamic programming trellis`.
+
+
+* [Viterbi algorithm](https://www.wikiwand.com/en/Viterbi_algorithm)
+
+#### Learning
+
+Given an observation sequence ${O}$ and the set of states in the HMM, learn the HMM parameters $\lambda=(\pi, {A}, {B})$.
+
+**Baum-Welch Algorithm**
+
+$$P(O\mid \lambda)=\sum_{I}P(O\mid I)P(I\mid \lambda)$$
+The state sequence is hidden variable.
+
+*Baum-Welch Algorithm* is exactly an application of `expectation maximum algorithm`.
+The **Q** function is defined as
+$$Q(\lambda, \bar\lambda)=\mathbb E(\log{P(O, I\mid \lambda)})=\log{P(O, I\mid \lambda)}P(O, I\mid \bar\lambda)$$
+where $\bar\lambda$ is the optimal estimation at current step.
+
+As usual, the key  step of `expectation maximum` is to find the $Q$ function which is easy to be maximized and it is defined in the recursive form as follows:
+$$\bar\lambda \leftarrow \arg\max_{\lambda}Q(\lambda, \bar\lambda).$$
+
+* https://www.wikiwand.com/en/Baum%E2%80%93Welch_algorithm
+* http://www.cs.jhu.edu/~jason/papers/#eisner-2002-tnlp
+* http://www.kanungo.com/software/software.html#umdhmm
+* http://pandamatak.com/people/anand/771/html/node26.html
+
 
 ## Probabilistic Programming
 
@@ -316,7 +444,7 @@ Bayesian Inference, Hamiltonian Monte Carlo and the No U-Turn Sampler, Variation
 * [A Simple Embedded Probabilistic Programming Language](https://jtobin.io/simple-probabilistic-programming)
 * [A modern model checker for probabilistic systems](https://www.stormchecker.org/)
 * [emcee: Seriously Kick-Ass MCMC](https://emcee.readthedocs.io/en/v2.2.1/)
-
+* [Gen: MIT probabilistic programming language](http://probcomp.csail.mit.edu/software/gen/)
 
 <img title = "factorie" src = http://factorie.cs.umass.edu/assets/images/factorie-logo-small.png />
 
@@ -334,3 +462,5 @@ _______
 + [Machine Learning](https://www.cs.cmu.edu/~aarti/Class/10701/lecs.html)
 + [HiPEDS Seminar: Probabilistic models and principled decision making @ PROWLER.io](http://wp.doc.ic.ac.uk/hipeds/event/hipeds-seminar-probabilistic-models-and-principled-decision-making-prowler-io/)
 + [Probabilistic Model-Based Reinforcement Learning Using The Differentiable Neural Computer](http://blog.adeel.io/2018/09/10/probabilistic-model-based-reinforcement-learning-using-the-differentiable-neural-computer/)
++ [Probabilistic Modeling and Inference](https://las.inf.ethz.ch/research)
++ [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/)

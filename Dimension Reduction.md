@@ -1,5 +1,12 @@
 ## Dimension Reduction
 
+<img title="https://fineartamerica.com" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/vital-statistics-ian-duncan-anderson.jpg" width="80%"  />
+
+* [CSE254, Intrinsic Dimension 2019](https://yoavfreund.miraheze.org/wiki/CSE254,_Intrinsic_Dimension_2019)
+* [Geometric Computation group in the Computer Science Department of Stanford University.](https://geometry.stanford.edu/member/guibas/)
+* [CSIC 5011: Topological and Geometric Data Reduction and Visualization
+Fall 2019](https://yao-lab.github.io/2019_csic5011/)
+
 Principal component analysis or singular value decomposition can be applied to matrix approximation.
 The data collected in practice always save in the table form, which can considered as a matrix. Another techniques similar to PCA is  eigenvalue-eigenvector decomposition. Dimension reduction is really the topic of data science as data preprocessing .
 
@@ -210,7 +217,7 @@ The starting point for ICA is the very simple assumption that the components $s_
 The fundamental restriction in ICA is that the independent components must be *nongaussian* for ICA to be possible.
 And if the mixing matrix  ${B}$ is inversible so that $W=B^{-1}$ and $s=Wx$.
 
-![](https://ars.els-cdn.com/content/image/1-s2.0-S0957417406001308-gr2.jpg)
+<img title="ICA vs PCA" src="https://ars.els-cdn.com/content/image/1-s2.0-S0957417406001308-gr2.jpg" width = "68%" />
 
 In order to solve $x=Bs$, we assume that each independent component $s_i$ has unit variance: $\mathbb{E}(s_i^2)=1$.
 The independence of random variables is not obvious when we do not know their probability distribution. Since independence implies uncorrelatedness, many ICA methods constrain the estimation procedure
@@ -280,7 +287,7 @@ projection.
 
 The minimal ingredients of an EPP algorithm are then as follows:
 
->  - (1) choose a subspace of the desired dimension and project the data onto the subspace,
+> - (1) choose a subspace of the desired dimension and project the data onto the subspace,
 > - (2) compute some index of 'information content' for the projection,
 > - and (3) iterate 1 and 2 until the index is maximized.
 
@@ -337,7 +344,7 @@ Then each node will contain a corresponding weight vector ${W}$, of ${n}$ dimens
 
 $$W_1, W_2, W_3, \cdots, W_n.$$
 
-Training occurs in several steps and over many iterations:
+[Training occurs in several steps and over many iterations](http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html):
 
 - Each node's weights are initialized.
 - A vector is chosen at random from the set of training data and presented to the lattice.
@@ -354,10 +361,12 @@ Training occurs in several steps and over many iterations:
 * https://users.ics.aalto.fi/teuvo/
 * http://www.ai-junkie.com/ann/som/som1.html
 * http://www.mlab.uiah.fi/~timo/som/thesis-som.html
-* http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html
+* [Self-Organizing Maps](http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html
+)
 
 ### Diffusion map
 
+Diffusion map uses the eigen-vectors to define coordinate  system.
 
 <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Diffusion_map_of_a_torodial_helix.jpg/640px-Diffusion_map_of_a_torodial_helix.jpg" width = "40%" />
 
@@ -368,3 +377,30 @@ https://www.wikiwand.com/en/Diffusion_map
 * [A short introduction to Diffusion Maps](https://stephanosterburg.github.io/an_introductio_to_diffusion_maps)
 * [pydiffmap: an open-source project to develop a robust and accessible diffusion map code for public use.](https://pydiffmap.readthedocs.io/en/master/index.html)
 * [MAT 585: Diffusion Maps by Amit Singer](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/Singer_diffusionmaps.pdf)
+
+### Intrinsic Dimension
+
+In [Description Of Intrinsic Dimension 2019](https://yoavfreund.miraheze.org/wiki/Description_Of_Intrinsic_Dimension_2019), Yoav Freund pointed out that:
+> It is often the case that very high dimensional data, such as images, can be compressed into low dimensional vectors with small reconstruction error. The dimension of these vectors is the **`intrinsic dimension`** of the data. We will discuss several techniques for estimating intrinsic dimension and for mapping data vectors to their low-dimensional representations. The ultimate goal is to find streaming algorithms can can process very large dataset in linear or sub-linear time.
+
+Methods for identifying the dimension：
+
+* Haussdorff dimension, Doubling dimension, epsilon-cover
+
+
+## Metric Learning
+
+### Deep Metric Learning
+
+The goal is to capture similarity between embeddings, such that the  projected distance of similar items in the embedding space is smaller  than the dissimilar items.
+Compared to the standard distance metric learning, it uses deep neural  networks to learn a nonlinear mapping to the embedding space.
+It helps with extreme classification settings with huge number classes, not many examples per class.
+
+#### Siamese Networks
+
+* Left and right legs of the network  have identical structures (siamese);
+* Weights are shared between the siamese networks during training;
+* Networks are optimized with a  loss function, such as contrastive loss.
+
+- [ ] [Siamese Neural Networks for One-shot Image Recognition](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf)
+- https://en.wikipedia.org/wiki/Siamese_network

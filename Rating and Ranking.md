@@ -32,7 +32,7 @@ which may answer this query as the PageRank does for web searching. And `search 
 
 They share some techniques such as the logistic regression although their purpose is different.
 
-|[3 R's for the internet age](https://phys.org/news/2016-12-recommendingthree-internet-age.html)|Rating, ranking and recommending|
+|[3 R's for the inter-net age](https://phys.org/news/2016-12-recommendingthree-internet-age.html)|Rating, ranking and recommending|
 |---|--- |
 | Rating |A rating of items assigns a numerical score to each item. A rating list, when sorted, creates a ranking list.|
 | Ranking |A ranking of items is a rank-ordered list of the items. Thus, a ranking vector is a permutation of the integers 1 through n.|
@@ -40,8 +40,7 @@ They share some techniques such as the logistic regression although their purpos
 
 In some sense, rating is to evaluate in a quantity approach, i.e. how much the item is popular; ranking is to evaluate in a quality approach. i.e., whether it is popular or preferred; recommendation is to rate or rank the items if the information is undirected or implicit.
 
-- [ ] [Who’s #1? The Science
-of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
+- [ ] [Who’s #1? The Science of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
 - [ ] [WhoScored Ratings Explained](https://www.whoscored.com/Explanations)
 - [ ] [Who are the best MMA fighters of all time. A Bayesian study](https://blog.datadive.net/who-are-the-best-mma-fighters-of-all-time-a-bayesian-study/)
 - [ ] [Ranking Algorithm Definition](http://www.meteorsite.com/ranking-algorithm)
@@ -49,7 +48,8 @@ of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
 - [ ] [SofaScore Statistical Ratings](https://www.sofascore.com/news/sofascore-player-ratings/)
 - [ ] [Everything You Need to Know About the TripAdvisor Popularity Ranking](https://www.tripadvisor.com/TripAdvisorInsights/w765)
 - [ ] [Deconstructing the App Store Rankings Formula with a Little Mad Science](https://moz.com/blog/app-store-rankings-formula-deconstructed-in-5-mad-science-experiments)
-
+- [ ] [Mathematics and Voting: More Than Just Counting Votes](http://www.whydomath.org/node/voting/index.html)
+* http://www.whydomath.org/index.html
 * [Introducing Steam Database's new rating algorithm](https://steamdb.info/blog/steamdb-rating/)
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
 
@@ -69,8 +69,7 @@ of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
 - [ ] [Ranking of sports teams](http://www.phys.utk.edu/sorensen/ranking/)
 - [ ] [PlayeRank: data-driven performance evaluation and player ranking in soccer via a machine learning approach](https://arxiv.org/pdf/1802.04987.pdf)
 - [ ] [Massey Ratings Description](https://www.masseyratings.com/theory/massey.htm)
-- [ ] [The USCF Rating System, Prof. Mark E. Glickman , Boston University - Thomas Doan
-Estima](http://math.bu.edu/people/mg/ratings/rs/)
+- [ ] [The USCF Rating System, Prof. Mark E. Glickman , Boston University - Thomas Doan Estima](http://math.bu.edu/people/mg/ratings/rs/)
 - [ ] [College Football Ranking Composite](http://www.atomicfootball.com/af-algorithm.html)
 - [ ] [A Bayesian Mean-Value Approach with a Self-Consistently Determined Prior Distribution for the Ranking of College Football Teams](https://arxiv.org/abs/physics/0607064)
 - [ ] [An overview of some methods for ranking sports teams, Soren P. Sorensen](http://www.phys.utk.edu/sorensen/ranking/Documentation/Sorensen_documentation_v1.pdf)
@@ -112,28 +111,28 @@ The RD measures the accuracy of a player's rating, with one RD being equal to on
 If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 
 > 1. Determine RD
->>   The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
->> $$
->>   RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}
->> $$
->>>   where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
+>  The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
+> $$
+>  RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}
+> $$
+>  where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
 >
 > 2. Determine New Rating
->>   The new ratings, after a series of m games, are determined by the following equation:
->> $$
->>   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
->> $$
->>>   
->>> where
->>> * $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$,
->>> * $q=\frac{\ln(10)}{400}\approx 0.00575646273$,
->>> * $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$,
->>> * $r_i$ represents the ratings of the individual opponents.
->>> * $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
+>   The new ratings, after a series of m games, are determined by the following equation:
+> $$
+>   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
+> $$
+>
+> where
+>  * $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$,
+>  * $q=\frac{\ln(10)}{400}\approx 0.00575646273$,
+>  * $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$,
+>  * $r_i$ represents the ratings of the individual opponents.
+>  * $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
 >
 > 3. Determine New Ratings Deviation
->>
->>   $$RD^{\prime}=\sqrt{(RD^{-2}+d^{-2})^{-1}} .$$
+>
+>   $$RD^{\prime}=\sqrt{(RD^{-2}+d^{-2})^{-1}} .$$
 
 * [Mark Glickman's Research](http://www.glicko.net/research.html)
 * [Glicko Ratings](http://www.glicko.net/glicko.html)
@@ -150,28 +149,17 @@ The expected performance of the player is his mean of the distribution. The vari
 The update rule will update the mean and variance:
 ***
 $$
-\mu_{winner} \leftarrow \mu_{winner} + \frac{\sigma_{winner}^2}{c} \cdot \nu(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c})
-$$
-
-$$
+\mu_{winner} \leftarrow \mu_{winner} + \frac{\sigma_{winner}^2}{c} \cdot \nu(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c})\\
 \mu_{loser} \leftarrow \mu_{loser} - \frac{\sigma_{loser}^2}{c} \cdot \nu(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c})
-$$
-
-$$
+\\
 \sigma_{winner} \leftarrow \sigma_{winner}^2 [1 - \frac{\sigma_{winner}^2}{c^2} \cdot w(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c}) ]
-$$
-
-
-$$
+\\
 \sigma_{loser} \leftarrow \sigma_{loser}^2 [1 - \frac{\sigma_{loser}^2}{c^2} \cdot w(\frac{(\mu_{winner}-\mu_{loser})}{c},\frac{\epsilon}{c}) ]
-$$
-
-$$
+\\
 c^2 = 2\beta^2+\sigma^2_{winner}+\sigma^{2}_{loser}
 $$
-
 where $\beta^2$ is the average of all players' variances, $\nu(t) =\frac{N(t)}{\Phi(t)}, w(t)=\nu(t)[\nu(t)+1]$. And $N(t),\Phi(t)$ is the PDF and CDF of standard normal distribution, respectively.
-
+***
 $\color{red}{PS}$: $TrueSkill^{TM}$ is a commercial trademark.
 - [X] https://www.wikiwand.com/en/TrueSkill
 - [X] [算法_TrueSkill_Python](https://www.jianshu.com/p/c1fbba3af787)
@@ -261,14 +249,16 @@ There are some links on the  collective decision-making theory:
 
 ## Ranking
 
+
+* [AIM Workshop on the Mathematics of Ranking](https://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/)
+* [Symposium: The mathematics of ranking](https://nalag.cs.kuleuven.be/research/workshops/ranking/)
 * [Learning to Rank explained](https://everything.explained.today/Learning_to_rank/)
 * http://www.cs.cmu.edu/~kdelaros/
 * [Ranking in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
 * [Learning to Rank](https://jimmy-walker.gitbooks.io/rank/L2R.html)
 * [Hardened Fork of Ranklib learning to rank library](https://github.com/o19s/RankyMcRankFace)
 * [OpenSource Connections](https://github.com/o19s)
-* [AIM Workshop on the Mathematics of Ranking](https://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/)
-* [Symposium: The mathematics of ranking](https://nalag.cs.kuleuven.be/research/workshops/ranking/)
+* https://mathcitations.github.io/
 
 Combining feedback from multiple users to rank a collection of items is an important task.
 The ranker, a central component in every `search engine`, is responsible for the matching between processed queries and indexed documents in information retrieval.
@@ -279,7 +269,7 @@ We are designed to compare some indexed document with the query.
 The algorithms above are based on feedback to tune the rank or scores of players or documents. The drawback of these methods is that they do not take the features of the players into consideration.
 We may use machine learn to predict the scores of players and test it in real data set such as **RankNet, LambdaRank, and LambdaMART**.
 
-And it can apply to information retrieval and recommender system.
+And it can be applied to information retrieval and recommender system.
 
 * https://github.com/cgravier/RankLib
 * http://fastml.com/evaluating-recommender-systems/
@@ -319,7 +309,14 @@ The representation of the `l2r` is the core and focus.
 - [ ] [Learning Groupwise Scoring Functions Using Deep Neural Networks](https://arxiv.org/abs/1811.04415)
 - [ ] https://github.com/tensorflow/ranking
 
-**Training Setup**
+Learning to rank is about performing ranking using machine learning techniques.
+It is based on previous work on ranking in machine learning and statistics, and it also has its own characteristics.
+There may be two definitions on learning to rank. In a broad sense, learning to rank refers to any machine learning techniques for ranking.
+In a narrow sense, learning to rank refers to machine learning techniques for building ranking models in `ranking creation` and `ranking aggregation`.
+
+
+
+### Training Setup
 
 A training set for ranking  is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e., $x_i$ is preferred to $x_j$ or in the reverse order. In other word, the label $y_i$ is ordinal. By the way, the labels are categorical or  nominal  in most classification tasks.
 
@@ -329,7 +326,50 @@ such that $F(x_i) > F(x_j)$ for any $x_i ≻ x_j$.
 
 - [WHAT IS THE DIFFERENCE BETWEEN CATEGORICAL, ORDINAL AND INTERVAL VARIABLES?](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-interval-variables/)
 
-**Ranking Metrics**
+**Point-wise Approach**
+
+The input space of the pointwise approach contains a feature vector of each single
+document.
+The output space contains the relevance degree of each single document.
+
+The hypothesis space contains functions that take the feature vector of a document
+as input and predict the relevance degree of the document.
+We usually call such a function $f$ the `scoring function`. Based on the scoring function, one can sort all the documents and produce the final ranked list.
+The loss function examines the accurate prediction of the ground truth label for
+each single document. In different pointwise ranking algorithms, ranking is modeled
+as regression, classification, and ordinal regression, respectively.
+Therefore the corresponding regression loss, classification loss, and ordinal regression loss are used as the loss functions.
+
+**The Pairwise Approach**
+
+The input space of the pairwise approach contains pairs of documents, both represented by feature vectors.
+The output space contains the pairwise preference (which takes values from ${+1,−1}$) between each pair of documents.
+The hypothesis space contains bi-variate functions h that take a pair of documents as input and output the relative order between them.
+
+Note that the loss function used in the pairwise approach only considers the relative order between two documents. 
+When one looks at only a pair of documents, however, the position of the documents in the final ranked list can hardly be derived.
+Furthermore, the approach ignores the fact that some pairs are generated from the documents associated with the same query. 
+Considering that most evaluation measures for information retrieval are query level and position based, 
+we can see a gap between this approach and ranking for information retrieval.
+
+**The Listwise Approach**
+
+The input space of the listwise approach contains a set of documents associated with query $q$, e.g., $x = \{x_j\}^m_{j=1}$.
+The output space of the listwise approach contains the ranked list (or permutation)
+of the documents.
+Note that for the listwise approach, the output space that facilitates the learning process is exactly the same as the output space of the task. 
+In this regard, the theoretical analysis on the listwise approach can have a more direct value to understanding the real ranking problem than the other approaches 
+where there are mismatches between the output space that facilitates learning and the real output space of the task.
+
+The hypothesis space contains multi-variate functions $h$ that operate on a set of documents and predict their **permutation**.
+
+There are two types of loss functions, widely used in the listwise approach. 
+For the first type, the loss function is explicitly related to the evaluation measures 
+(which we call the measure-specific loss function), while for the second type, the loss function
+is not (which we call the non-measure-specific loss function). 
+Note that sometimes it is not very easy to determine whether a loss function is listwise, since some building blocks of a listwise loss may also seem to be pointwise or pairwise
+
+#### Ranking Metrics
 
 The metrics or evaluation is different in regression and classification. And many loss function is introduced in maximum likelihood estimation.
 
@@ -342,6 +382,7 @@ $$Precision= \frac{|O\cap I|}{|O|}.$$
 $$Recall=\frac{|O\cap I|}{|O|}.$$
 
 `F1 Score` tries to combine the precision and recall measure. It is the harmonic mean of the two. If _P_ is the precision and _R_ is the recall then the F-Score is given by:
+
 $$F1 = 2\frac{P\times R}{P+R}.$$
 
 Precision and recall are single-value metrics based on the whole list of documents returned by the system. For systems that return a ranked sequence of documents, it is desirable to also consider the order in which the returned documents are presented. By computing a precision and recall at every position in the ranked sequence of documents, one can plot a precision-recall curve, plotting precision $p(r)$ as a function of recall $r$.
@@ -354,6 +395,7 @@ That is the area under the precision-recall curve. This integral is in practice 
 $$
 AveP= \sum_{k=1}^{n} p(k)\Delta r(k).
 $$
+
 where $k$ is the rank in the sequence of retrieved documents, $n$ is the number of retrieved documents, $P(k)$ is the precision at cut-off k in the list, and $\Delta r(k)$ is the change in recall from items $k-1$ to $k$.
 ****
 `Cumulative Gain (CG)` is the predecessor of DCG and does not include the position of a result in the consideration of the usefulness of a result set. In this way, it is the sum of the graded relevance values of all results in a search result list. The CG at a particular rank position _p_ is defined as:
@@ -398,6 +440,102 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [Implementing Triplet Losses for Implicit Feedback Recommender Systems with R and Keras](https://nanx.me/blog/post/triplet-loss-r-keras/)
 - [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
 
+#### Ranking Creation
+
+We can generalize the ranking creation problems already described as a more general task.
+Suppose that there are two sets. For simplicity, we refer to them as a set of requests $Q = {q_1, q_2, \cdots , q_i, \cdots , q_M}$ and a set of offerings (or objects) $\mathcal O = {o_1, o_2, \cdots , o_j , \cdots , o_N }$, respetively.
+$Q$ can be a set of queries, a set of users, and a set of source sentences in document retrieval,
+collaborative filtering, and machine translation, respectively.
+$O$ can be a set of documents, a set of items, and a set of target sentences, respectively. Note that $Q$ and $O$ can be infinite sets.
+Given an element $q$ of $Q$ and a subset $O$ of $\mathcal O$ ($O \in 2^{\mathcal O}$), we are to rank the elements in $O$ based on the information from $q$ and $O$.
+
+Ranking (ranking creation) is performed with ranking (scoring) function $F(q, O): Q\times \mathcal O^n\to \mathbb{R}^n$:
+$$
+S_O=F(q, O), \\ \pi=sort_{O}(O),
+$$
+
+where $n=|O|$, $q$ denotes an element of $Q$, $O$ denotes a subset of $\mathcal O$, $S_O=$ denotes a set of scores of elements in $O$, and $\pi$ denotes a ranking list (permutation) on $O$ sorted by $S_O$.
+Nte that even for the same $O$, $F$ can give two different ranking lists with two different q’s.
+That is to say, we are concerned with ranking on $O$, with respect to a specific $q$.
+
+#### Ranking Aggreagtion
+
+We can also define the general ranking aggregation task. Again, suppose that $Q = {q_1, q_2, \cdots , q_i, \cdots , q_M}$ and $\mathcal O = {o_1, o_2, \cdots , o_j , \cdots , o_N }$ are a set of requests and a set of offerings, respectively.
+For an element $q$ of $Q and a subset of $O$ of $\mathcal O$, there are $k$ ranking list on $O:\Sigma=\{\pi_i\mid \pi\in\Pi, i=1,\cdots,k\}$, where $\Pi$ is the set of all ranking lists on $O$.
+Ranking aggregation takes request $q$ and ranking lists of offerings as input and generates a new ranking list of offerings $\pi$ as output with ranking function $F(q,\Sigma):Q\times \Pi^k\to \mathbb R^n$
+$$S_O=F(q, \Sigma),\\ \pi=sort_{S_O}(O).$$
+
+We usually simply define
+$$F(q, \Sigma)=F(\Sigma).$$
+
+That is to say, we assume that the ranking function does not depend on the request.
+
+Ranking aggregation is actually a process of combining multiple ranking lists into a single
+ranking list, which is better than any of the original ranking lists.
+
+Ranking creation generates ranking based on features of request and offering, while ranking aggregation generates ranking based on ranking of offerings. Note that the output of ranking aggregation can be used as the input of ranking aggregation.
+
+
+### HodgeRank
+
+`HodgeRank` apply Hodge theory to the ranking problem. It is considered as an application of modern abstract mathemtics rather than as a technique in machine learning.
+The problem is always to evaluate some items and rank them.
+Learn a function
+$$f:\mathcal X \to \mathcal Y.$$
+
+* Data: Know $f$ on a (very small) subset $\Omega\subset \mathcal X$;
+* Model: Know that $f$ belogs to some class of functions $\mathcal F(x, y)$;
+* Ranking: Rank objects in some order.
+  * Scoring function $f:\mathcal X \to \mathbb{R}$;
+  * $f(x)> f(y)\iff x \succ y$, i.e., $x$ is preferred to $y$.
+
+Persi Diaconis, 1987 Wald Memorial Lectures:
+> A basic tenet of data analysis is this: If you’ve found some structure, take it out, and look at what’s left.
+> Thus to look at second order statistics it is natural to subtract away the observed first order structure.
+> This leads to a natural decomposition of the original data into orthogonal pieces.
+
+Hodge decomposition:
+$$\text{aggregate pairwise ranking}=\text{consistent}\oplus \text{loclly inconsisitent}\oplus \text{globally inconsistent}$$
+
+Ranking data live on **pairwise comparison graph** $G(E, V)$
+where $V$ is the set of alternatives, $E$ is pairs of alternatives to be compared.
+
+
+https://blog.csdn.net/HaleyPKU/article/details/80341932
+
+- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
+- [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
+- [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
+- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](http://repository.ust.hk/ir/Record/1783.1-90160)
+- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](https://arxiv.org/abs/1711.05957)
+- [ ] http://www.stat.uchicago.edu/~lekheng/
+- [ ] http://www.math.pku.edu.cn/teachers/yaoy/
+- [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
+
+### The Pointwise Approach
+
+According to different machine learning technologies used, the pointwise approach
+can be further divided into three subcategories: regression-based algorithms,
+classification-based algorithms, and ordinal regression-based algorithms.
+For regression-based algorithms, the output space contains real-valued relevance
+scores; for classification-based algorithms, the output space contains non-ordered
+categories; and for ordinal regression-based algorithms, the output space contains
+ordered categories.
+
+Given $x = \{x_j \}^m
+_{j=1}$, a set of documents associated with training query $q$,
+and the ground truth labels $y = \{y_j \}^m_{j=1}$ of these documents in terms of multiple ordered categories,
+suppose a scoring function $f$ is used to rank these documents.
+The loss function is defined as the following square loss,
+$$L(f;x_i, y_i)=(y_i-f(x_i))^2$$
+***
+The basic conclusion is that the square loss can upper bound the NDCG-based ranking error.
+However, according to the above discussions, even if there is a large regression loss,
+the corresponding ranking can still be optimal as long as the relative orders between the predictions $f (x_j ) (j = 1, \dots , m)$ are in accordance with those defined by the
+ground truth label.
+As a result, we can expect that the square loss is a loose bound
+of the NDCG-based ranking error.
+
 ### RankSVM
 
 > The basic idea of SVMrank is to attempt to minimize the number of misclassified document pairs. This is achieved by modifying the default support vector machine optimization problem, which considers a set of documents, by constraining the optimization problem to perform the minimization of each pair of documents.
@@ -412,16 +550,103 @@ $$
 \\ \forall {\xi}_{ij}\geq 0.
 $$
 Then it can trained in the same way as a classifer.
-* https://x-algo.cn/index.php/2016/08/09/ranksvm/
-* https://www.cnblogs.com/bentuwuying/p/6683832.html
+* [RankSVM原理](https://x-algo.cn/index.php/2016/08/09/ranksvm/)
+* [Learning to Rank算法介绍：RankSVM 和 IR SVM](https://www.cnblogs.com/bentuwuying/p/6683832.html)
 * [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
 * [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
 * [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
 
+### Ordinal Regression-Based Algorithms
 
-### RankNet
+Ordinal regression takes the ordinal relationship between the ground truth labels
+into consideration when learning the ranking model.
+Suppose there are $K$ ordered categories. The goal of ordinal regression is to find
+a scoring function $f$ , such that one can easily use thresholds $b_1 \leq b_2 ≤leq\cdots \leq b_{K−1}$
+to distinguish the outputs of the scoring function (i.e., $f (x_j ), j = 1, \dots , m$) into
+different ordered categories.
 
-> RankNet is a feedforward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
+
+#### Perceptron-Based Ranking (PRanking)
+
+The goal of `PRanking` is to find a direction defined by a parameter vector $w$, after projecting the documents
+onto which one can easily use thresholds to distinguish the documents into different ordered categories.
+
+On iteration t ,
+the learning algorithm gets an instance $x_j$ associated with query $q$. Given $x_j$, the
+algorithm predicts $\hat y_j = \arg\min_{k}\{w^T x_j − b_k < 0\}$. It then receives the ground truth
+label $y_j$ . If the algorithm makes a mistake (i.e., $\hat y_j \not= y_j$ ) then there is at least one threshold, indexed by $k$,
+for which the value of $w^T x_j$ is on the wrong side of $b_k$.
+To correct the mistake, we need to move the values of $w^T x_j$ and $b_k$ toward each other.
+After that, the model parameter $w$ is adjusted by
+$w = w + x_j$ , just as in many `perceptron-based algorithms`. This process is repeated until the training process converges.
+
+### McRank
+
+The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
+for relevance ranking in Web search in `McRank`.
+
+We learn the class probabilities $p_{i,k} = Pr(y_i = k)$, denoted by $\hat{p}_{i,k},\forall k\in [0,1,2,\dots, K-1]$ and define a scoring function for the sample $(\mathrm{X_i}, y_i)$:
+$$S_i = {\sum}_{k=0}^{K-1} \hat{p}_{i,k} T(k)$$
+where where $T (k)$ is some monotone (increasing) function of the relevance level.
+And in this setting as an example  $y_i = 4$ corresponds to a “perfect” relevance and $y_i = 0$ corresponds to a “poor” relevance when $K=5$.
+
+When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the sample $(\mathrm{X_i}, y_i)$.
+
+![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
+
+A common approach for multiple ordinal classification is to learn the cumulative probabilities $Pr (y_i \leq k)$ instead of the class probabilities $Pr (y_i = k) = p_{i, k}$.
+
+- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
+- [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
+- [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
+
+###  Ranking with Large Margin Principles
+
+Given $n$ training queries $\{q_i \}^n_{i=1}$, their associated documents $\mathrm x^{(i)}=\{x_j^{(i)}\}_{j=1}^{m^{(i)}}$
+and the corresponding relevance judgments $\mathrm y^{(i)}=\{y_j^{(i)}\}_{j=1}^{m^{(i)}}$, the learning process is defined below, where the adoption of a linear scoring function is assumed.
+The constraints basically require every document to be correctly classified into its target ordered category, i.e., for documents in category $k$,
+$w^T x_j^{(i)}$ should exceed threshold
+$b_{k−1}$ but be smaller than threshold $b_k$ , with certain soft margins (i.e., $1-\epsilon_{j,k-1}^{m^{(i)}}$ and $1-\epsilon_{j,k}^{m^{(i)}}$, respectively.
+The term $\frac{1}{2}\|w\|^2$ controls the complexity of model with parameter $w$.
+
+$$\min \frac{1}{2}\|w\|^2 +\lambda \sum_{i=1}^{n}\sum_{j=1}^{m^{(i)}}\sum_{k=1}^{K-1}(\epsilon_{j,k}^{(i)}+\epsilon_{j,k}^{(i)\ast}\\
+s.t. w^T x_{j}^{(i)} -b_k \leq -1 + \epsilon_{j,k}^{m^{(i)}}, \text{if $y_j^{(i)}=k$},\\
+w^T x_{j}^{(i)} -b_k \geq 1 - \epsilon_{j,k}^{(i)\ast}, \text{if $y_j^{(i)}=k+1$}, \\
+\epsilon_{j,k}^{j}\geq 0, \quad \epsilon_{j,k}^{(i)\ast} \geq 0, \\
+j = 1, \cdots, m^{(i)}, i=1,\dots, n, k=1,\dots, K-1.
+$$
+
+Another strategy is called the sum-of-margins strategy.
+ In this strategy, some
+additional thresholds $a_k$ are introduced, such that for category k, $b_{k-1}$ is its lower-bound threshold and $a_k$ is its upper-bound threshold.
+
+Accordingly, the constraints become that for documents in category k,$w^T x_{j}^{(i)}$ should exceed threadhold  $b_{k-1}$ but be smaller than threshold $a_k$, with certainn soft margins (i.e., $\epsilon_{j,k}^{(i)\ast}$ and $\epsilon_{j,k}^{(i)}$) respectively.
+
+The corresponding learning process can be expressed as follows,
+from which we can see that the margin term $\sum_{k=1}^{K}(a_k -b_k)$ really has the meaning of `margin`.
+$$\min  \sum_{k=1}^{K}(a_k -b_k)+\lambda \sum_{i=1}^{n}\sum_{j=1}^{m^{(i)}}\sum_{k=1}^{K-1}(\epsilon_{j,k}^{(i)}+\epsilon_{j,k}^{(i)\ast}\\
+s.t.  a_k\leq b_k\leq a_{k+1}\\
+w^T x_{j}^{(i)} \leq a_k + \epsilon_{j,k}^{(i)}, \text{if $y_j^{(i)}=k$},\\
+w^T x_{j}^{(i)}  \geq b_k - \epsilon_{j,k}^{(i)\ast}, \text{if $y_j^{(i)}=k+1$}, \\
+\|w\|^2\leq 1, \quad \epsilon_{j,k}^{j}\geq 0, \quad \epsilon_{j,k}^{(i)\ast} \geq 0, \\
+j = 1, \cdots, m^{(i)}, i=1,\dots, n, k=1,\dots, K-1.
+$$
+
+
+
+### The Pairwise Approach
+
+In the pairwise approach, ranking is usually reduced to a classification on document pairs, i.e., to determine which document in a pair is preferred.
+That is, the goal of learning is to minimize the number of miss-classified document pairs.
+In the extreme case, if all the document pairs are correctly classified, all the documents will be correctly ranked.
+Note that this classification differs from the classification in the pointwise approach, since it operates on every two documents under investigation.
+A natural concern is that document pairs are not independent, which violates the basic assumption of classification.
+The fact is that although in some cases this assumption really does not hold, one can still use classification technology to learn the ranking model.
+However, a different theoretical framework is needed to analyze the generalization of the learning process.
+
+#### RankNet
+
+> RankNet is a feed-forward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
 
 RankNet takes the ranking  as **regression** task.
 
@@ -467,10 +692,26 @@ $$
 So that we can compute the gradient of cost function with respect of $s_i$ and $s_j$, which are outputs of deep neural network.
 And we can use backpropagation and stochastic gradient descent to tune the parameters of the deep neural network.
 
+It is not difficult to verify that the cross entropy loss is an upper bound of the pairwise 0–1 loss.
+
 See more deep learning algorithms on ranking  at [https://github.com/Isminoula/DL-to-Rank] or [http://quickrank.isti.cnr.it/research-papers/].
 
 * https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/
 * http://sonyis.me/paperpdf/wsdm233-song-2014.pdf
+
+#### FRank: Ranking with a Fidelity Loss
+
+A new loss function named the fidelity loss is proposed in **: Frank: a ranking method with fidelity loss**, which is defined as:
+$$L(f; x_u, x_v, y_{u, v})=1-\sqrt{\hat P_{u, v}P_{u, v}(f)}-\sqrt{(1-\hat P_{u, v})(1-P_{u, v})}.$$
+
+The fidelity was originally used in quantum physics to measure the difference
+between two probabilistic states of a quantum.
+By comparing the fidelity loss with the cross entropy loss, we can see that the fidelity loss is bounded between 0 and 1,
+and always has a zero minimum. These properties are nicer than those of the cross entropy loss.
+On the other hand, however, while the cross entropy loss is convex, the fidelity loss becomes non-convex.
+Such a non-convex objective is more difficult to optimize and one needs to be careful when performing the optimization.
+Furthermore, the fidelity loss is no longer an upper bound of the pairwise
+0–1 loss.
 
 ### LambdaRank
 
@@ -596,9 +837,106 @@ We show that the loss functions of these methods are upper bounds of the measure
 
 
 
+### The Listwise Approach
+
+The listwise approach takes the entire set of documents associated with a query in the training data as the input and predicts their ground truth labels.
+Note that the listwise approach assumes that the ground truth labels are given in terms of permutations,
+while the judgments might be in other forms (e.g., relevance degrees or pairwise preferences).
+
+#### SoftRank
+
+In `SoftRank`, it is assumed that the ranking of the documents is not simply determined by sorting according to the scoring function.
+Instead, it introduces randomness to the ranking process by regarding the real score of a document as a random variable whose mean is the score given by the scoring function.
+In this way, it is possible that a document can be ranked at any position, of course with different probabilities. For each such possible ranking, one can compute an NDCG value.
+Then the expectation of NDCG over all possible rankings can be used as an smooth approximation of the original evaluation measure NDCG.
+The detailed steps to achieve this goal are elaborated as follows.
+
+
+The random variable is governed by a Gaussian distribution whose variance is σs and mean is $f(x_j)$, the original score outputted by the scoring function.
+That is,
+$$p(s_j)=N(s_j\mid f(x_j),\sigma_s^2).$$
+
+Due to the randomness in the scores, every document has the probability of being ranked at any position.
+Specifically, based on the score distribution, the probability of a document $x_u$ being ranked before another document $x_v$ can be deduced as follows:
+
+$$P_{u, v}=\int_{0}^{\infty}N(s\mid f(x_u)-f(x_v), 2\sigma_s^2)\mathrm d s.$$
+
+Suppose we already have document $x_j$ in the ranked list, when adding document $x_u$, if document $x_u$ can beat $x_j$ the rank of $x_j$ will be increased by one.
+Otherwise the rank of $x_j$ will remain unchanged. Mathematically, the probability of $x_j$ being ranked at position r (denoted as $P_j(r)$) can be computed as follows:
+$$P_{j}^{(u)}=P_{j}^{(u-1)}(r-1)P_{u,j}+P_{j}^{(u-1)}(r)(1-P_{u,j}).$$
+
+Third, with the rank distribution, one computes the expectation of NDCG (referred to as SoftNDCG2), and use (1 − SoftNDCG) as the loss function in learning to rank:
+$$L(f;\mathrm{x, y})=1-\frac{1}{Z_m}\sum_{j=1}^{m}(2^{y_j}-1)\sum_{i=1}^{m}\eta(r)P_j(r).$$
+
+#### Plackett–Luce Model
+
+In learning to rank, each training sample has been labeled with a relevance score, so the
+ground-truth permutation of documents related to the $i$ th query can be easily obtained and
+denoted as $\pi_i$, where $\pi(j)$ denotes the index of the document in the $j$ th position of the
+ground-truth permutation. We note that $\pi_i$ is not obligatory to be a full rank, as we may
+only care about the top K documents.
+
+Consider a ranking function with linear features, the probability of a set of candidate relevant documents $D_i$ associated with a query $q_i$ is defined as
+$$p(d_e^i)=\frac{\exp{h(d_e^i)^T w}}{\sum_{d\in D_i } \exp{h(d_e^i)^T w}}$$
+
+The probability of the Plackett-Luce model to generate a rank $\pi_i$ is given as
+$$p(\pi_i, w)=\prod_{j=1}^{\|\pi_i\|} p(d_{\pi_{i}(j)}^i\mid C_{i,j})\\
+p(d_e^i\mid C_{i,j}p(d))$$
+
+where $C_{i,j}=D_i - \{d_{\pi_{i}(1)}^{i},\dots, d_{\pi_{i}(j-1)}^{i}\}$.
+
+The training objective is to maximize the log-likelihood of all expected ranks over
+all queries and retrieved documents with corresponding ranks in the training data with a zero-mean and unit-variance Gaussian prior parameterized by $w$.
+$$L=\log\{\prod_{i}p(\pi_i, w)\}-\frac{1}{2} {\|w\|}_2^2.$$
+
+The gradient can be calculated as follows
+$$\frac{\partial L}{\partial w}=\sum_{i}\sum_{j}\{h(d_{\pi_{i}(j)}^{i})-\sum_{d\in C_{i, j}} - w\}$$
+
+
+#### ListNet
+
+Given the ranking scores of the documents outputted by the scoring function $f$ (i.e., $s = \{s_j \}^m_{j=1}$, where $s_j = f (x_j))$, the `Plackett–Luce` model defines a probability for each possible permutation $\pi$ of the documents, based on the chain rule, as follows:
+$$P(\pi\mid s)=\prod_{j=1}^{m}\frac{\phi(s_{\pi^{-1}(j)})}{\sum_{u=1}^{m}\phi(s_{\pi^{-1}(u)})}$$
+
+where $\pi^{−1}(j)$ denotes the document ranked at the j th position of permutation $\pi$
+and $\phi$ is a transformation function, which can be linear, exponential, or sigmoid.
+
+
+Please note that the `Plackett–Luce` model is scale invariant and translation invariant in certain conditions. For example, when we use the exponential function as the
+transformation function, after adding the same constant to all the ranking scores,
+the permutation probability distribution defined by the `Plackett–Luce` model will not change.
+When we use the linear function as the transformation function, after multiplying all the ranking scores by the same constant, the permutation probability distribution will not change.
+These properties are quite in accordance with our intuitions on ranking.
+
+With the `Plackett–Luce model`, for a given query $q$, ListNet first defines the permutation probability distribution based on the scores given by the scoring function $f$.
+Then it defines another permutation probability distribution $P_y(\pi)$ based on
+the ground truth label.
+
+For the next step, ListNet uses the K-L divergence between the probability distribution for the ranking model
+and that for the ground truth to define its loss function (denoted as the K-L divergence loss for short).
+$$L(f; \mathrm x, \Omega_y)=D( P_y(\pi)\mid\mid P(\pi\mid (f(w, \mathrm x))) ).$$
+
+#### ListMLE
+
+ListMLE is also based on the Plackett–Luce model. For each query q, with the
+permutation probability distribution defined with the output of the scoring function, it uses the negative log likelihood of the ground truth permutation as the loss function.
+We denote this new loss function as the likelihood loss for short:
+$$L(f;\mathrm{x},\pi_y)=-\log P(\pi_y\mid f(w, \mathrm x)).$$
+
+It is clear that in this way the training complexity has been greatly reduced as compared to ListNet,
+since one only needs to compute the probability of a single permutation $\pi_y$ but not all the permutations.
+Once again, it can be proven that this loss function is convex, and therefore one can safely use a gradient descent method to optimize the loss.
+
+### Relevance Feedback
+
+* After initial retrieval results are presented, allow the user to provide feedback on the relevance of one or more of the retrieved documents.
+* Use this feedback information to reformulate the query.
+* Produce new results based on reformulated query.
+* Allows more interactive, multi-pass process.
+
 ### AdaRank
 
-In the abstract, the authors wrote:
+In the abstract, it  claims that:
 > Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
 > Existing methods, however, are only able to train ranking models by minimizing loss functions loosely related to the performance measures.
 > For example, Ranking SVM and RankBoost train ranking models by minimizing classification errors on instance pairs.
@@ -607,32 +945,37 @@ In the abstract, the authors wrote:
 > Our algorithm, referred to as AdaRank, repeatedly constructs 'weak rankers' on the basis of reweighted training data
 > and finally linearly combines the weak rankers for making ranking predictions.
 >We prove that the training process of AdaRank is exactly that of enhancing the performance measure used.
+***
+* **Input**: the set of documents associated with each query
+* **Given**: initial distribution  $D_1$ on input queries
+* **For** $t=1,\dots, T$
+  * Train weak ranker $f_t$ based on distribution $D_t$.
+  * Choose $\alpha_t$
+  * Update $D_{t+1}( x_u^{(i)}, x_v^{(i)} )=D_{t}( x_u^{(i)}, x_v^{(i)} )\exp(\alpha_t ( f_t(x_u^{(i)}) - f_t(x_u^{(i)}) )$ and then renormalize it.
+* **Output**:$f(x)=\sum_{t}\alpha_t f_t(x)$.
 
 - [An Efficient Boosting Algorithm for Combining Preferences](http://jmlr.csail.mit.edu/papers/volume4/freund03a/freund03a.pdf)
 - [Concave Learners for Rankboost](http://www.jmlr.org/papers/volume8/melnik07a/melnik07a.pdf)
 - [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
 - [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
 
+### RankBoost
 
-### McRank
+The method of RankBoost adopts AdaBoost for the classification over document pairs.
 
-The ranking problem is cast as (1) multiple classification (“Mc”) (2) multiple ordinal classification, which lead to computationally tractable learning algorithms
-for relevance ranking in Web search in `McRank`.
+* **Input**: training data in terms of document pairs
+* **Given**: initial distribution $D_1$ on input document pairs
+* For $t=1,\dots, T$
+  * Train weak ranker $f_t$ based on distribution $D_t$.
+  * Choose $\alpha_t=\frac{1}{2}\log\frac{\sum_{i=1}^{n} D_t(i) (1 + M(f_t, x^{(i)}, y^{(i)}))}{\sum_{i=1}^{n} D_t(i) (1 - M(f_t, x^{(i)}, x^{(i)}))}$
+  * Update $D_{t+1}(i)=\frac{\exp(-M(\sum_{s=1}^t \alpha_s f_s, x^{(i)}, y^{(i)}))}{\sum_{j=1}^n \exp(-M(\sum_{s=1}^t \alpha_s f_s, x^{(j)}, y^{(j)}))}$ and then renormalize it.
+* **Output**: $f(x)=\sum_{t}\alpha_t f_t(x)$.
 
-We learn the class probabilities $p_{i,k} = Pr(y_i = k)$, denoted by $\hat{p}_{i,k},\forall k\in [0,1,2,\dots, K-1]$ and define a scoring function for the sample $(\mathrm{X_i}, y_i)$:
-$$S_i = {\sum}_{k=0}^{K-1} \hat{p}_{i,k} T(k)$$
-where where $T (k)$ is some monotone (increasing) function of the relevance level.
-And in this setting as an example  $y_i = 4$ corresponds to a “perfect” relevance and $y_i = 0$ corresponds to a “poor” relevance when $K=5$.
 
-When $T (k) = k$, the scoring function $S_i$ is the `Expected Relevance` of the sample $(\mathrm{X_i}, y_i)$.
+Here $M(f, x, y)$ represents the evaluation measure. 
+Due to the analogy to AdaBoost, AdaRank can focus on those hard queries and progressively minimize $1 −M(f, x, y)$.
 
-![McRank author](https://www.cs.rutgers.edu/files/styles/manual_crop/public/paste_1471815662.png)
 
-A common approach for multiple ordinal classification is to learn the cumulative probabilities $Pr (y_i \leq k)$ instead of the class probabilities $Pr (y_i = k) = p_{i, k}$.
-
-- [McRank: Learning to Rank Using Multiple Classification and Gradient Boosting](http://papers.nips.cc/paper/3270-mcrank-learning-to-rank-using-multiple-classification-and-gradient-boosting.pdf)
-- [The news in microsoft 2007](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-classification-and-gradient-boosting/)
-- [Ping Li's profile in dblp](https://dblp.org/pers/hd/l/Li_0001:Ping)
 
 ### Margin-based Ranking
 
@@ -785,9 +1128,8 @@ $$
 We assume that the group preference on an
 item ${i}$ is more likely to be stronger than the individual preference of user ${u}$ on item ${j}$, if the user-item pair $(u, i)$ is observed and the user-item pair $(u, j)$ is not observed.
 
-To explicitly study the unified effect of group preference
-and individual preference,  we combine them linearly
-$\hat{r}_{G, u,i} = \rho \hat{r}_{G,i} + (1-\rho)\hat{r}_{u,i}$.
+To explicitly study the unified effect of group preference and individual preference,  
+we combine them linearly: $\hat{r}_{G, u,i} = \rho \hat{r}_{G,i} + (1-\rho)\hat{r}_{u,i}$.
 
 A new criterion called group Bayesian personalized ranking (GBPR) for user ${u}$,
 $$GBPR(u) = \prod_{i\in I_{U}}\prod_{j\in (I-I_{U})} P(\hat{r}_{G, u,i} > \hat{r}_{u, j})[1 - P(\hat{r}_{G, u,i} > \hat{r}_{u, j})]$$
@@ -831,7 +1173,8 @@ scores, to satisfy the user-specific order constraints on all the rated items, a
 
 And the above algorithms are pair-wise algorithms based on the logistic function $\sigma(x)=\frac{1}{1 + \exp(-ax)}$ as the surrogate of zero-one loss such as the  **Bradley-Terry Model** and **Bayesian Personalized Ranking**.
 
-In logistic function, the value of "a" determines the shape of the function. In other words, it tells how close the approximation of logistic function to the zero-one loss. However, in the context of matrix factorization, the change of ${U_u}$ doesn’t necessarily
+In logistic function, the value of "a" determines the shape of the function. In other words, it tells how close the approximation of logistic function to the zero-one loss.
+However, in the context of matrix factorization, the change of ${U_u}$ doesn’t necessarily
 contribute to the change of approximation to zero-one loss as any change to ${U_u}$ (e.g., double ${U_u}$ ) can be compensated by changing all the item factors $V_i$ accordingly (e.g., reduce $V_i$ by half).
 
 
@@ -894,7 +1237,7 @@ In this framework, multiple homogeneous component recommenders are linearly comb
 The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
 
 The primary idea of applying boosting for item recommendation is to learn a set of homogeneous component recommenders and then create an ensemble of the component recommenders to predict users' preferences.
-
+pre
 Here, we use a linear combination of component recommenders as the final recommendation model
 $$f=\sum_{t=1}^{T}{\alpha}_t f_{t}.$$
 
@@ -915,10 +1258,46 @@ where the notations are listed as follows:
 - [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
 - [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
 
+
+### Borda Count
+
+`Borda Count` is an unsupervised method for ranking aggregation.  Aslam & Montague propose employing Borda Count in meta search.
+In such case, Borda Count ranks documents in the final ranking based on their positions in the basic rankings.
+More specifically, in the final ranking, documents are sorted according to the numbers of documents that are ranked below them in the basic rankings.
+If a document is ranked high in many basic rankings, then it will be ranked high in the final ranking list.
+
+The ranking scores of documents in the final ranking $S_D$ are calculated as
+$$S_D=F(\Sigma)=\sum_{i=1}^{K}S_i$$
+$$S_i=(s_{i, 1},\cdots, s_{i,j},\cdots, S_{i, n})^T,//
+s_{i,j}=n-\sigma_{i}(j)$$
+
+where $s_{i,j}$ denotes the number of documents ranked behind $j$ in basic ranking $\sigma_i, \sigma_i(j)$ denotes the rank of document $j$ in basic ranking $\sigma_i$ and $n$ denotes the number of documents.
+
+Unfortunately, the Borda method has one serious drawback in that it is easily manip- ulated. That is, dishonest voters can purposefully collude to skew the results in their favor.
+
+### Cranking
+
+Cranking employs the following probability model
+
+$$P(\pi\mid \theta,\Sigma)=\frac{1}{Z(\theta, \Sigma)}\exp(\sum_{j=1}^{k}\theta_j\cdot d(\pi, \sigma_j))\propto \exp(\sum_{j=1}^{k}\theta_j\cdot d(\pi, \sigma_j))$$
+
+where $\pi$ denotes the final ranking, $\Sigma=(\sigma_1,\cdots,\sigma_k)$ denotes the basic rankings, $d$ denotes the distance between two rankings, and $\theta$ denotes weight parameters.
+Distance $d$ can be, for example, Keddal's Tau. Furthermore, $Z$ is the normalizing factor over all the possible rankings defined as $Z(\theta,\Sigma)=\sum_{\pi}\exp(\sum_{j=1}^{k}\theta_j\cdot d(\pi, \sigma_j))$.
+
+It is an extension of ` Mallows model ` in statistics.
+
+In learning, the training data is given as $S=\{(\Sigma_i, \pi_i)\mid i=1, \cdots, m\}$, and the goal is to build the model for ranking aggregation based on the data.
+We can consider employing `Maximum Likelihood Estimation` to learn the parameters of the model.
+If the final ranking and the basic ranking are all ranking lists in the training data, then the log likelihood function is calculated as follows.
+$$L(\theta)=\log\prod_{i=1}^{m}P(\pi_i, \Sigma_I)=\sum_{i=1}^{m}\log\frac{\exp(\sum_{j=1}^k \theta_j\cdot d(\pi_i, \sigma_{i,j}))}{\sum_{\pi}\exp(\sum_{j=1}^{k}\theta_j\cdot d(\pi, \sigma_j))}.$$
+
+We can employ Gradient Descent to estimate the optimal parameters.
+
+----
 **Deep Online Ranking System**
 
-DORS is designed and implemented in a three-level novel architecture, which includes (1) candidate retrieval; (2) learning-to-rank deep neural network (DNN) ranking; and (3) online
-re-ranking via multi-arm bandits (MAB).
+DORS is designed and implemented in a three-level novel architecture, which includes (1) candidate retrieval; (2) learning-to-rank deep neural network (DNN) ranking; and (3) online re-ranking via multi-arm bandits (MAB).
+
 - [ ] https://zhuanlan.zhihu.com/p/57056588
 - [ ] [A Practical Deep Online Ranking System in E-commerce Recommendation](http://www.ecmlpkdd2018.org/wp-content/uploads/2018/09/723.pdf)
 - [ ] [European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases](http://www.ecmlpkdd2018.org/)
@@ -927,16 +1306,15 @@ re-ranking via multi-arm bandits (MAB).
 - [ ] [International Conference on Web Search and Data Mining](http://www.wsdm-conference.org/2019/acm-proceedings.php)
 - [ ] [Learning to Rank with Deep Neural Networks](https://github.com/Isminoula/DL-to-Rank)
 
-
-
 + [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
 + [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
-![adversial IR](https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png)
+
+<img title="adversial IR" src="https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png" width="50%">
 
 **RankGAN**
 
-![RankGAN](https://x-algo.cn/wp-content/uploads/2018/04/WX20180409-223208@2x-768x267.png)
+<img title="RankGAN" src="https://x-algo.cn/wp-content/uploads/2018/04/WX20180409-223208@2x-768x267.png" width="80%"/>
 
 - https://x-algo.cn/index.php/2018/04/09/rankgan/
 - [IRGAN: A Minimax Game for Unifying Generative and Discriminative Information Retrieval](https://arxiv.org/pdf/1705.10513.pdf)
@@ -948,15 +1326,6 @@ re-ranking via multi-arm bandits (MAB).
 * https://arxiv.org/abs/1812.00073
 * https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
 
-### HodgeRank
-
-
-
-- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
-- [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
-- [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
-- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](http://repository.ust.hk/ir/Record/1783.1-90160)
-- [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
 
 ### Collaborative Ranking
 
@@ -991,286 +1360,3 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 * https://blog.csdn.net/lthirdonel/article/details/80021282
 * https://arxiv.org/abs/1808.04957v1
 * http://ceur-ws.org/Vol-1127/paper4.pdf
-
-## IR and Search
-
-[RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
-[AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
-
-If the recommendation is to solve the information overload problem, information retrieval and search technology  is to find the relative entity in web or some data base if the query is given.
-[Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
-Information is in diverse format or form, such as character strings(texts), images, voices and videos so that information retrieval has diverse subfields such as [multimedia information retrieval](http://press.liacs.nl/mlew/mir2019.html) and [music infromation retrival](https://musicinformationretrieval.com/index.html). Search engine is considered as a practical application of information retrieval.  
-
-`Relevance`, `Ranking`  and `Context`  are three foundation stones of search. In this section, we focus on relevance more than rank.
-If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
-
-[The basic functions of a search engine can be described as _crawling, data mining, indexing and query processing_. `Crawling` is the act of sending small programed bots out to collect information. `Data mining` is storing the information collected by the bots. `Indexing` is ordering the information systematically. And `query processing` is the mathematical process in which a person's query is compared to the index and the results are presented to that person.](https://lifepacific.libguides.com/c.php?g=155121&p=1018180)
-
-
-<img title="IR Process" src="https://hsto.org/files/4b9/a9b/1a6/4b9a9b1a60d041b2b4dfeca4b7989586.png" width="50%" />
-<img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
-
-* https://en.wikipedia.org/wiki/Information_retrieval
-* [sease: make research in Information Retrieval more accessible](https://sease.io/)
-* [search|hub](http://searchhub.io)
-* [Cortical.io](https://www.cortical.io/)
-* [FreeDiscovery Engine](http://freediscovery.io/doc/stable/engine/)
-* [Index weblogs, mainstream news, and social media with Datastreamer](https://www.datastreamer.io/)
-* https://www.omnity.io/
-* https://www.luigisbox.com/
-* [Some Tutorilas in IR](https://ielab.io/publications/scells-2018-querylab)
-* [multimedia information retrieval](http://press.liacs.nl/mlew/mir2019.html)
-* [Notes on Music Information Retrieval](https://musicinformationretrieval.com/index.html)
-### Information Acquisition and Overload
-
-The first step of information retrieval is to acquise the information itself. The web-scale information brings information overload problem, which `search  engine` or  `web search` attempts to solve.  
-
-* https://iorgforum.org/
-* [VII. Information Acquisition](www.science.unitn.it/~pgiorgio/db2/slides/9-infoacquisition.pdf)
-* [Automatically modelling and distilling knowledge within AI!](https://ai-distillery.io/)
-
-### Information Organization and Storage: Indexing and Index
-
-Index as data structure is to organize the information efficiently in order to search some specific terms.
-
-* [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
-* http://planet.botany.uwc.ac.za/nisl/GIS/GIS_primer/index.htm
-
-
-### Information Retrieval
-
-#### Relevance and Rank
-
-Recall the definition of  Discounted Cumulative Gain(DCG):
-
-$$
-{DCG}_p= \sum_{i=1}^{p} \frac{{rel}_i}{\log_{2}(i+1)}
-$$
-
-where ${rel}_i$ is the relevance of the document and query.
-However, it is discussed how to compute the the relevance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relevances.
-For other types information retrieval system, it is different to compute the relevance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
-
-
-`Term frequency(tf)` of a word ${w}$ in a given document ${doc}$ is definded as
-$$tf(w| doc)=\frac{\text{the number of the word ${w}$ in}\,\,\,doc}{\text{the number of words in}\,\,\,doc} .$$
-It is to measure how popular the word ${w}$ in the document $doc$.
-`Inverse document frequency(idf)` of a word ${w}$ in a given document list $D=\{doc_i\mid i=1,2,\cdots, N\}$ is defined
-$$idf(w\mid D)=\log\frac{\text{the number of documents in the list $D$} }{\text{the number of document containing the word $w$}+1},$$
-which is to measure how popular the word $w$ i the document list.
-**tf-idf** is a rough way of approximating how users value the relevance of a text match, defined as
-$$\text{tf-idf}=tf(w| doc)\times idf(w\mid D)$$
-
-**BM25(Best Matching 25)** is a modification of `Binary Independent Model`.
-$$
-\sum_{i\in Q}\log\frac{ (r_i+0.5)/(R-r_i+0.5) }{ (n_i-r_i+0.5)/(N-R-n_i+r_i+0.5) }\times \frac{(k_1+1)f_i}{ K + f_i}
-\times \frac{(k_2+1) {tf}_{tq}}{ K+{tf}_{tq} }
-$$
-
-* [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/)
-
-**TextRank**
-
-[David Ten](https://xang1234.github.io/textrank/) wrote a blog on `TextRank`:
-> For keyword extraction we want to identify a subset of terms that best describe the text. We follow these steps:
-
-> 1. Tokenize and annotate with Part of Speech (PoS). Only consider single words. No n-grams used, multi-words are reconstructed later.
-> 2. Use syntactic filter on all the lexical units (e.g. all words, nouns and verbs only).
-> 3. Create and edge if lexical units co-occur within a window of N words to obtain an unweighted undirected graph.
-> 4. Run the text rank algorithm to rank the words.
-> 5. We take the top lexical words.
-> 6. Adjacent keywords are collapsed into a multi-word keyword.
-
-TextRank model is graph-based derived from Google’s PageRank. It constructs a weighted graph $G$:
-* the node set $V$ consists of all sentences in the document;
-* the weight is the similarity of each sentence pair, i.e., $w_{i,j}=Similarity (V_i, V_j)$.
-
-The weight of each sentence depends on the weights of its neighbors:
-$$WS(V_i)=(1-d)+d\times {\sum}_{V_j\in In(V_i)}\frac{w_{ij}}{\sum_{V_k\in Out(V_j)}}WS(V_j)$$
-
-***
-* [TextRank: Bringing Order into Texts](https://www.aclweb.org/anthology/W04-3252)
-* [Keyword and Sentence Extraction with TextRank (pytextrank)](https://xang1234.github.io/textrank/)
-* https://zhuanlan.zhihu.com/p/41091116
-* [TextRank for Text Summarization](https://nlpforhackers.io/textrank-text-summarization/)
-* https://www.quantmetry.com/tag/textrank/
-* [Textrank学习](https://blog.csdn.net/Silience_Probe/article/details/80699662)
-
-**Text Summarization**
-
-* [Gensim: Topic Model for Human](https://radimrehurek.com/gensim/index.html)
-* [KISS: Keep It Short and Simple](http://sidhant.io/kiss-keep-it-short-and-simple)
-* [NLP buddy](https://nlpbuddy.io/about)
-* https://whoosh.readthedocs.io/en/latest/index.html
-* https://malaya.readthedocs.io/en/latest/
-* [Automatic Text Summarization with Python](https://ai.intelligentonlinetools.com/ml/text-summarization/)
-* http://veravandeseyp.com/ai-repository/
-* [Text Summarization in Python: Extractive vs. Abstractive techniques revisited](https://rare-technologies.com/text-summarization-in-python-extractive-vs-abstractive-techniques-revisited/)
-* https://pypi.org/project/sumy/
-* [自动文本摘要（Auto Text Summarization)](http://www.morrislee.me/%E8%87%AA%E5%8A%A8%E6%96%87%E6%9C%AC%E6%91%98%E8%A6%81%EF%BC%88auto-text-summarization%EF%BC%89/)
-
-In the popular open search engine [ElasticSearch](https://www.elastic.co/cn/products/elasticsearch), the score formula is more complex and complicated.
-
-**Document Similarity**
-
-- [ ] [Document Similarity in Machine Learning Text Analysis with ELMo](https://ai.intelligentonlinetools.com/ml/document-similarity-in-machine-learning-text-analysis-with-elmo/)
-- [ ] [Documents similarity](http://text2vec.org/similarity.html)
-- [ ] https://copyleaks.com/
-- [ ] https://www.wikiwand.com/en/Semantic_similarity
-- [ ] https://spacy.io/
-
-#### PageRank for Web Search
-
-
-***
-* [relevant search](http://manning.com/books/relevant-search)
-* [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
-* http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
-* https://en.wikipedia.org/wiki/List_of_search_engines
-* [Open Semantic Search](https://www.opensemanticsearch.org/)
-* https://www.seekquarry.com/
-* http://l-lists.com/en/lists/qukoen.html
-* [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
-* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page](http://infolab.stanford.edu/~backrub/google.html)
-* [gt4ireval: Generalizability Theory for Information Retrieval Evaluation](https://rdrr.io/cran/gt4ireval/)
-
-
-#### Comparison and Matching
-
-`Query and Indexed Object` is similar with `Question and Answers`.
-The user requested a query then a matched response is supposed to match the query in semantics. Before that we must understand the query.
-https://www.luigisbox.com/blog/query-understanding/
-
-|[NLP Pipeline](http://mlwiki.org/index.php/NLP_Pipeline)|---|
-|---|---|
-|Tokenization| Query Understanding
-|Stop words removal|
-|[Text Normalization](http://mlwiki.org/index.php/Text_Normalization)|
-|POS Tagging|
-|Named Entity Recongition|
-
-<img title = "search process" src = "https://ekanou.github.io/dynamicsearch/DynSe2018.png" width="80%" />
-
-* [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
-* https://ekanou.github.io/dynamicsearch/
-* http://mlwiki.org/index.php/NLP_Pipeline
-
-### Information Distribution
-
-[Information Distribution Methods – Information distribution is the timely collection, sharing and distribution of information to the project team. Methods can be portals, collaborative work management tools, web conferencing, web publishing, and when all technology is not available, manual filing systems and hard copy distribution.](http://www.anticlue.net/archives/000804.htm)
-
-
-
-### Personalized Search
-
-[Personalized Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommenders.
-
-And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
-
-* http://ryanrossi.com/search.php
-* https://a9.com/what-we-do/product-search.html
-* https://www.algolia.com/
-* https://www.cognik.net/
-* http://www.collarity.com/
-* https://www.wikiwand.com/en/Personalized_search
-* [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html)
-* [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
-* [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
-* [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
-* [Personalized Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
-* [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
-* [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
-* [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
-* [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
-* [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
-* [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
-* [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
-* [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
-* [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
-
-
-### Labs and Resources  
-
-#### Labs on Search and Information Retrieval
-
-+ [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
-+ [Search and information retrieval@Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
-+ [Web search and mining @Yandex](https://research.yandex.com/publications?themeSlug=web-mining-and-search)
-+ [The Information Engineering Lab](https://ielab.io/)
-+ [Information Retrieval Lab: A research group @ University of A Coruña (Spain)](https://www.irlab.org/)
-+ [BCS-IRSG: Information Retrieval Specialist Group](https://irsg.bcs.org/)
-+ [智能技术与系统国家重点实验室信息检索课题组](http://www.thuir.org/)
-+ [The Cochrane Information Retrieval Methods Group (Cochrane IRMG)](https://methods.cochrane.org/irmg/)
-+ [SOCIETY OF INFORMATION RETRIEVAL & KNOWLEDGE MANAGEMENT (MALAYSIA)](http://pecamp.org/web14/)
-+ [Quantum Information Access and Retrieval Theory)](https://www.quartz-itn.eu/)
-+ [Center for Intelligent Information Retrieval (CIIR)](http://ciir.cs.umass.edu/)
-+ [InfoSeeking Lab situated in School of Communication & Information at Rutgers University.](https://infoseeking.org/)
-+ http://nlp.uned.es/web-nlp/
-+ http://mlwiki.org/index.php/Information_Retrieval
-+ [information and language processing systems](https://ilps.science.uva.nl/)
-+ [information retrieval facility](https://www.ir-facility.org/)
-+ [Center for Information and Language Processing](https://www.cis.uni-muenchen.de/)
-+ [Summarized Research in Information Retrieval for HTA](http://vortal.htai.org/?q=sure-info)
-+ [IR Lab](http://www.ir.disco.unimib.it/)
-+ [IR and NLP Lab](https://ir.kaist.ac.kr/about/)
-+ [CLEF 2018 LAB](https://ekanou.github.io/dynamicsearch/clef-lab.html)
-+ [QANTA: Question Answering is Not a Trivial Activity](https://sites.google.com/view/qanta/home)
-+ [SIGIR](https://sigir.org/)
-+ http://cistern.cis.lmu.de/
-+ http://hpc.isti.cnr.it/
-+ http://trec-car.cs.unh.edu/
-+ [LETOR: Learning to Rank for Information Retrieval](https://www.microsoft.com/en-us/research/project/letor-learning-rank-information-retrieval)
-+ [A Lucene toolkit for replicable information retrieval research ](https://github.com/castorini/anserini)
-+ [Information Overload Research Group](https://iorgforum.org/)
-+ [National Information Standards Organization by ANSI](https://www.niso.org/niso-io)
-+ [International Society  of Music Information Retrieval](https://ismir.net/)
-+ [OpenClinical information retrieval](http://www.openclinical.org/informationretrieval.html)
-
-#### Conference on Information Retrieval
-
-+ https://datanatives.io/conference/
-+ [HE 3RD STRATEGIC WORKSHOP ON INFORMATION RETRIEVAL IN LORNE (SWIRL)](https://sites.google.com/view/swirl3/home)
-+ [Text Retrieval COnference(TREC)](https://trec.nist.gov/)
-+ [European Conference on Information Retrieval (ECIR 2018)](https://www.ecir2018.org/)
-+ [ECIR 2019](http://ecir2019.org/workshops/)
-+ [IR @wikiwand](https://www.wikiwand.com/en/Information_retrieval)
-+ [Algorithm Selection and Meta-Learning in Information Retrieval (AMIR)](http://amir-workshop.org/)
-+ [The ACM SIGIR International Conference on the Theory of Information Retrieval (ICTIR)2019](http://www.ictir2019.org/)
-+ [KDIR 2019](http://www.kdir.ic3k.org/)
-+ [Advances in Semantic Information Retrieval (ASIR’19)](https://fedcsis.org/2019/asir)
-+ [Music Information Retrieval Evaluation eXchange (MIREX 2019)](https://www.music-ir.org/mirex/wiki/MIREX_HOME)
-+ [20th annual conference of the International Society for Music Information Retrieval (ISMIR)](https://ismir2019.ewi.tudelft.nl/)
-+ [8th International Workshop on Bibliometric-enhanced Information Retrieval](http://ceur-ws.org/Vol-2345/)
-+ [ICMR 2019](http://www.icmr2019.org/)
-+ [3rd International Conference on Natural Language Processing and Information Retrieval](http://www.nlpir.net/)
-+ [FACTS-IR Workshop @ SIGIR 2019](https://fate-events.github.io/facts-ir/)
-+ [ACM Conference of Web Search and Data Mining 2019](http://www.wsdm-conference.org/2019/)
-+ [SMIR 2014](http://smir2014.noahlab.com.hk/SMIR2014.htm)
-+ [2018 PRS WORKSHOP:  Personalization, Recommendation and Search (PRS)](https://prs2018.splashthat.com/)
-+ [Neu-IR: The SIGIR 2016 Workshop on Neural Information Retrieval](https://www.microsoft.com/en-us/research/event/neuir2016/)
-+ [Neu-IR 2017: Workshop on Neural Information Retrieval](https://neu-ir.weebly.com/)
-+ [NeuIR Group](http://neuir.org/)
-+ [TREC 2019 Fair Ranking Track](https://fair-trec.github.io/)
-+ [LEARNING FROM LIMITED OR NOISY DATA
-FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
-+ [DYNAMIC SEARCH: Develop algorithms and evaluation methodologies with the user in the search loop](https://ekanou.github.io/dynamicsearch/)
-+ [European Summer School in Information Retrieval ’15](http://www.rybak.io/european-summer-school-in-information-retrieval-15/)
-
-#### Cources on Information Retrieval and Search
-
-+ [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
-+ [CS 371R: Information Retrieval and Web Search](https://www.cs.utexas.edu/~mooney/ir-course/)
-+ [CS 242: Information Retrieval & Web Search, Winter 2019](http://www.cs.ucr.edu/~vagelis/classes/CS242/index.htm)
-+ [Winter 2017 CS293S: Information Retrieval and Web Search](https://sites.cs.ucsb.edu/~tyang/class/293S17/)
-+ [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)
-+ [Information Retrieval and Web Search 2015](http://web.eecs.umich.edu/~mihalcea/498IR/)
-+ [Data and Web Mining](http://www.dsi.unive.it/~dm/)
-+ [Neural Networks for Information Retrieval](http://www.nn4ir.com)
-+ [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
-+ [INFORMATION RETRIEVAL FOR GOOD](http://romip.ru/russir2018/)
-+ [Search user interfaces](http://searchuserinterfaces.com/book/)
-+ [Morden Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
-+ [Search Engine: Information Retrieval in Practice](http://www.search-engines-book.com/)
-+ [Information Retrieval  潘微科](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/IR201702/index.html)
-+ [Information Organization and Retrieval: INFO 202](http://courses.ischool.berkeley.edu/i202/f10/)
-+ [Music Information Retrieval @ NYU](http://www.nyu.edu/classes/bello/MIR.html)
