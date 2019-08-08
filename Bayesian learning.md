@@ -1,6 +1,6 @@
 # Bayesian Learning and Probabilistic Programming
 
-
+- http://wilkeraziz.github.io/pages/landscape
 - https://probcomp.github.io/Gen/
 - https://m-clark.github.io/workshops.html
 - https://dsteinberg.github.io/pages/research-projects.html
@@ -8,6 +8,7 @@
 - http://am207.info/resources.html
 - http://mlg.eng.cam.ac.uk/tutorials/07/
 - http://pandamatak.com/people/anand/771/html/html.html
+- https://www.cs.princeton.edu/courses/archive/fall11/cos597C/
 - [Bayesian Learning for Machine Learning: Part I ](https://wso2.com/blog/research/part-one-introduction-to-bayesian-learning)
 - [Philosophy of Bayesian Inference, Radford M. Neal, January 1998](https://www.cs.toronto.edu/~radford/res-bayes-ex.html)
 - [Understanding computational Bayesian statistics](https://xianblog.wordpress.com/2011/10/10/understanding-computational-bayesian-statistics/)
@@ -130,8 +131,22 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 
 ##  Hierarchical Models
 
+We consider a multilevel model to be a regression (a linear or generalized linear model)
+in which the parameters—the regression coefficients—are given a probability model.
+This second-level model has parameters of its own—the hyperparameters of the model—which are also estimated from data.
+The two key parts of a multilevel model are varying coefficients, and a model for those varying coefficients (which can itself include group-level predictors).
+Classical regression can sometimes accommodate varying coefficients by using indicator variables.
+The feature that distinguishes multilevel models from classical regression is in the modeling of the variation between groups.
+
+Multilevel models are also called hierarchical, for two different reasons:
+first, from the structure of the data (for example, students clustered within schools);
+and second, from the model itself, which has its own hierarchy, with the parameters of the within-school regressions at the bottom, controlled by the hyperparameters of the upper-level model.
+
 ### Hierarchical Bayesian Regression
 
+Hierarchical  Bayes：
+* **explicitly  represent  category  hierarchies**  for  sharing  abstract  knowledge.
+* explicitly  idenAfy  only  **a  small  number  of  parameters**  that  are  relevant  to  the  new  concept  being  learned.
 `Hierarchical Bayesian Regression` extends the Bayesian models by setting  the uncertainty  of the uncertainty such as
 $$
 y\sim Pr(\phi(x)\mid \theta)\\
@@ -146,13 +161,13 @@ $$
 We can take any factor into consideration in this hierarchical Bayesian model. And it is a graphical probability model, which consists of the connections and probability.
 
 - [ ] https://twiecki.io/
-- [ ] https://twiecki.io/blog/2014/03/17/bayesian-glms-3/
-- [ ] https://twiecki.io/blog/2018/08/13/hierarchical_bayesian_neural_network/
+- [ ] [The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3](https://twiecki.io/blog/2014/03/17/bayesian-glms-3/)
+- [ ] [Hierarchical Bayesian Neural Networks with Informative Priors](https://twiecki.io/blog/2018/08/13/hierarchical_bayesian_neural_network/)
 - [ ] https://www.cnblogs.com/huangxiao2015/p/5667941.html
 - [ ] https://www.cnblogs.com/huangxiao2015/p/5668140.html
 - [ ] [BAYESIAN HIERARCHICAL MODELS](https://www.stat.ubc.ca/~gavin/STEPIBookNewStyle/course_clapem.html)
 - [ ] [Chapter 4: Regression and Hierarchical Models](http://www.est.uc3m.es/BayesUC3M/Master_course/Chapter4.pdf)
-- [ ] https://docs.pymc.io/notebooks/GLM-hierarchical.html
+- [ ] [GLM: Hierarchical Linear Regression](https://docs.pymc.io/notebooks/GLM-hierarchical.html)
 - [ ] [Understanding empirical Bayesian hierarchical modeling (using baseball statistics) Previously in this series:](http://varianceexplained.org/r/hierarchical_bayes_baseball/)
 - [ ] [Probabilistic Model in the Study of Language](http://idiom.ucsd.edu/~rlevy/pmsl_textbook/chapters/pmsl_8.pdf)
 - [ ] https://www.wikiwand.com/en/Bayesian_hierarchical_modeling
@@ -177,7 +192,7 @@ $$P(T=t\mid \theta)=\theta(1-\theta).$$
 Instead of a point estimate for $\theta$, use a Beta prior parameterized as follows:
 $$\alpha(x)=\exp(a(x)), \beta(x)=\exp(b(x)).$$
 The likelihood function is
-$$L(\alpha, \beta)=\prod_{i observed} P(T=t_i\mid \alpha(x_i), \beta(x_i))\prod_{i censored} P(T> t_i\mid \alpha(x_i), \beta(x_i) ).$$
+$$L(\alpha, \beta)=\prod_{i\,\,\,\, observed} P(T=t_i\mid \alpha(x_i), \beta(x_i))\prod_{i\,\,\, censored} P(T> t_i\mid \alpha(x_i), \beta(x_i) ).$$
 
 Nice properties:
 - $P(T=1\mid \alpha, \beta)=\frac{\alpha}{\alpha + \beta}$;
@@ -194,7 +209,25 @@ For $T=1$, it reduces to overparameterized logistic regression.
 
 ### Latent Dirichlet Allocation
 
+Generative  Process: $w \sim LDA$:
+* Draw each topic $\theta_k \sim Dir(\eta)$ for $k=1,\cdots, K$.
+* For each document:
+  * Draw topic proportions $\pi_d \sim Dir(\alpha)$
+  * For each word:
+    * Draw topic indicator $z_{d, n} \sim Mult(\pi_d)$
+    * Draw word $w_{d, n} \sim Mult(\theta_{z_d, n})$
 
+- [Latent Dirichlet Allocation](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
+- [Introduction to Latent Dirichlet Allocation](https://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/)
+- [Probability and Structure in Natural Language Processing](http://www.cs.cmu.edu/~nasmith/psnlp/)
+- https://staff.fnwi.uva.nl/k.simaan/ESSLLI03.html
+
+### Hierarchical  Generative  Model
+
+* https://ermongroup.github.io/blog/hierarchy/
+
++ [Statistical Language Processing and Learning Lab.](https://staff.fnwi.uva.nl/k.simaan/research_all.html)
++ [Bayesian Analysis in Natural Language Processing, Second Edition](http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1385)
 
 ## Optimal Learning
 
@@ -232,9 +265,8 @@ Bayesian optimization has been successful at global optimization of expensive-to
 As `response surface methods`, they date back to `Box and Wilson` in 1951.
 Bayesian optimization usually uses `Gaussian process` regression.
 
-![Bayesian Optimization](https://github.com/fmfn/BayesianOptimization/blob/master/examples/func.png)
-
-![BayOpt](https://raw.githubusercontent.com/mlr-org/mlrMBO/master/docs/articles/helpers/animation-.gif)
+<img title="Bayesian Optimization" src="https://github.com/fmfn/BayesianOptimization/blob/master/examples/func.png" width="80%"/>
+<img title="BayOpt" src="https://raw.githubusercontent.com/mlr-org/mlrMBO/master/docs/articles/helpers/animation-.gif" width="80%"/>
 
 ****
 

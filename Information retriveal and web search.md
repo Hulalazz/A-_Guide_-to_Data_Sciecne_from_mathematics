@@ -138,9 +138,17 @@ Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.ph
   * Query Expansion: Add new terms to query from relevant documents.
   * Term Reweighting: Increase weight of terms in relevant documents and decrease weight of terms in irrelevant documents.
 
-Standard Rochio Method
+**Standard Rochio Method**
 
-Ide Regular Method
+- https://nlp.stanford.edu/IR-book/html/htmledition/rocchio-classification-1.html
+- http://www.cs.cmu.edu/~wcohen/10-605/rocchio.pdf
+
+**Ide Regular Method**
+
+- https://cs.brynmawr.edu/Courses/cs380/fall2006/Class13.pdf
+- http://www1.se.cuhk.edu.hk/~seem5680/lecture/rel-feed-query-exp-2016.pdf
+- http://web.eecs.umich.edu/~mihalcea/courses/EECS486/Lectures/RelevanceFeedback.pdf
+- https://researchbank.rmit.edu.au/eserv/rmit:9503/Billerbeck.pdf
 
 ##### Query Auto Completion
 
@@ -298,6 +306,15 @@ Let $\delta:X\times X\to \mathbb R$ be a distance function. $\delta$ is called a
 <img title = "search process" src = "https://ekanou.github.io/dynamicsearch/DynSe2018.png" width="80%" />
 
 In a similarity-based retrieval model, it is assumed that the relevance status of a document with respect to a query is correlated with the similarity between the query and the document at some level of representation; the more similar to a query, the more relevant the document is assumed to be.
+$\color{red}{Similarity \not= Relevance}$
+
+Similarity matching|Relevance matching
+---|---
+Whether two sentences are semantically similar|Whether a document is relevant to a query
+Homogeneous texts with comparable lengths| Heterogeneous texts (keywords query, document) and very different in lengths
+Matches at all positions of both sentences|  Matches in different parts of documents
+Symmetric matching function| Asymmetric matching function
+Representative task: Paraphrase Identification|Representative task: ad-hoc retrieval
 
 Each search is made up of $\color{red}{Match + Rank}$.
 
@@ -311,6 +328,76 @@ Each search is made up of $\color{red}{Match + Rank}$.
 * https://www.cnblogs.com/yaoyaohust/p/10642103.html
 * https://ekanou.github.io/dynamicsearch/
 * http://mlwiki.org/index.php/NLP_Pipeline
+
+##### Learning to Match
+
+User’s intent is explicitly reflected in query such as keywords, questions.
+Content is in  Webpages, images.
+Key challenge is query-document semantic gap.
+Even severe than search, since user and item are two different types of entities and are represented by different features.
+
+Common goal: matching a need (may or may not include an explicit query)
+to a collection of information objects (product descriptions, web pages, etc.)
+Difference for search and recommendation: features used for matching!
+
+  -|Matching | Ranking
+---|---|---
+Prediction|Matching degree between a query and a document|Ranking list of documents
+Model|$f(q, d)$|$f(q,\{d_1,d_2,\dots \})$
+Goal|Correct matching between query and document|Correct ranking on the top
+
+Methods of Representation Learning for Matching:
+
+*  DSSM: Learning Deep Structured Semantic Models for Web Search using Click-through Data (Huang et al., CIKM ’13)
+*  CDSSM: A latent semantic model with convolutional-pooling structure for information retrieval (Shen et al. CIKM ’14)
+*  CNTN: Convolutional Neural Tensor Network Architecture for Community-Based Question Answering (Qiu and Huang, IJCAI ’15)
+*  CA-RNN: Representing one sentence with the other sentence as its
+context (Chen et al., AAAI ’18)
+
+DSSM: Brief Summary
++  Inputs: Bag of letter-trigrams as input for improving the scalability and generalizability
++  Representations: mapping sentences to vectors with DNN:
+semantically similar sentences are close to each other
++  Matching: cosine similarity as the matching function
++  Problem: the order information of words is missing (bag of
+letter-trigrams cannot keep the word order information)
+
+Matching Function Learning:
+* Step 1: construct basic low-level matching signals
+* Step 2: aggregate matching patterns
+
+
+- http://staff.ustc.edu.cn/~hexn/papers/www18-tutorial-deep-matching-paper.pdf
+- [Deep Learning for Matching in Search and Recommendation](http://www.bigdatalab.ac.cn/~junxu/publications/SIGIR2018-DLMatch.pdf)
+- [Deep Learning for Recommendation, Matching, Ranking and Personalization](http://sonyis.me/dnn.html)
+- [Tutorials on Deep Learning for Matching in Search and Recommendation](https://www2018.thewebconf.org/program/tutorials-track/tutorial-191/)
+- [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
+
+##### Regularized Latent Semantic Indexing
+
+$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - Uv_n\|}_2^2+\lambda_1\sum_{k=1}^K{\|u_k\|}_1+\lambda_2\sum_{n=1}^{N}{\|v_n\|}_2^2$$
+
+where
+- $d_n$ is term representation of doc $n$;
+- $U$ represents topics;
+- $v_n$ is the topic representation of doc $n$;
+- $\lambda_1$ and $\lambda_2$ are regularization parameters.
+
+It is optimized by coordinate descent:
+$$u_{mk}=\arg\min_{\bar u_m}\sum_{m=1}^M {\|\bar d_m - V^T \bar u_m\|}_2^2+\lambda_1\sum_{m=1}^{M}{\|\bar u_m\|}_1,\\ v_n^{\ast}=\arg\min_{\{v_n\}}\sum_{n=1}^{N}{\|d_n -Uv_n\|}_2^2+\lambda_2\sum_{n=1}^N{\|v_n\|}_2^2=(U^T U + \lambda_2 I)^{-1}U^T d_n.$$
+
+##### Deep Structured Semantic Model
+
+DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic Similarity Model. DSSM, developed by the MSR Deep Learning Technology Center(DLTC), is a deep neural network (DNN) modeling technique for representing text strings (sentences, queries, predicates, entity mentions, etc.) in a continuous semantic space and modeling semantic similarity between two text strings (e.g., Sent2Vec).
+
+- https://www.microsoft.com/en-us/research/project/dssm/
+- https://arxiv.org/pdf/1610.08136.pdf
+##### DRMM
+
+- https://arxiv.org/abs/1711.08611
+- https://zhuanlan.zhihu.com/p/38344505
+- https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/
+- [Deep Relevance Ranking Using Enhanced Document-Query Interactions](http://nlp.cs.aueb.gr/pubs/EMNLP2018Preso.pdf)
 
 #### PageRank for Web Search
 
@@ -372,6 +459,7 @@ In return, we should also look for opportunities to apply IR intuitions into imp
 - http://nn4ir.com/
 - [Neu-IR: Workshop on Neural Information Retrieval](https://neu-ir.weebly.com/)
 - [Topics in Neural Information Retrieval](https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/teaching/ss19/topics-in-neural-information-retrieval/)
+- https://frankblood.github.io/
 
 ### Personalized Search
 
@@ -593,3 +681,4 @@ FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 + [Intelligent Information Retrieval](http://facweb.cs.depaul.edu/mobasher/classes/CSC575/)
 + [CSc 7481 / LIS 7610 Information Retrieval Spring 2008](http://www.csc.lsu.edu/~kraft/courses/csc7481.html)
 + [Winter 2016 CSI4107: Information Retrieval and the Internet](http://www.site.uottawa.ca/~diana/csi4107/)
++ [INformation Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
