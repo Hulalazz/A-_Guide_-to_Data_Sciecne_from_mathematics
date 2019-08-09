@@ -3,6 +3,7 @@
 <img src="https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg" width="80%" />
 
 * http://jalammar.github.io/
+* https://qdata.github.io/deep2Read//aReadingsIndexByCategory/#2Graphs
 * [Graph Embedding：深度学习推荐系统的"基本操作"](https://zhuanlan.zhihu.com/p/68247149)
 * [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
 * http://www.ai3sd.org/
@@ -45,6 +46,37 @@ Advanced proceedings of natural language processing(NLP) shone a light into sema
 The text or symbol, strings in computer, is designed for natural people to communicate and understand based on the context or situation, i.e., the connections of entities and concepts are essential.
 What if we generalize these methods to connected data?
 
+### Semantic Embedding
+
+<img src="https://carl-allen.github.io/assets/analogy_embeddings.png" width="80%">
+
++ http://paperreading.club/
++ https://ai-distillery.io/
++ https://amds123.github.io/
++ [semantic matching in information retrieval](http://smir2014.noahlab.com.hk/SMIR2014.htm)
++ [Semantic Web](https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki)
++ [visual semantic embedding](https://github.com/ryankiros/visual-semantic-embedding)
++ [SEMBED: Semantic Embedding of Egocentric Action Videos](https://dimadamen.github.io/SEMBED/ECCVW2016SEMBED.pdf)
++ http://smir2014.noahlab.com.hk/paper%204.pdf
++ https://joeybose.github.io/assets/vse--.pdf
++ https://blog.lateral.io/2017/09/semantic-trees-hierarchical-softmax/
++ [''Analogies Explained'' ... Explained](https://carl-allen.github.io/nlp/2019/07/01/explaining-analogies-explained.html)
++ [Deep Embedding Logistic Regression](https://www.cse.wustl.edu/~z.cui/papers/DELR_ICBK.pdf)
++ [DeViSE: A Deep Visual-Semantic Embedding Model](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/41473.pdf)
++ [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
++ [Semantic Embedding for Sketch-Based 3D Shape Retrieval](http://bmvc2018.org/contents/papers/0040.pdf)
++ [A Dual Attention Network with Semantic Embedding for Few-shot Learning](https://xmhe.bitbucket.io/papers/stanet_aaai19.pdf)
++ [Semantic AI: Bringing Machine Learning and Knowledge Graphs Together](https://www.brighttalk.com/webcast/9059/315735/semantic-ai-bringing-machine-learning-and-knowledge-graphs-together)
+
+#### Deep Semantic Embedding
+
+- [Deep Semantic Embedding](http://ceur-ws.org/Vol-1204/papers/paper_4.pdf)
+- [Learning Deep Structured Semantic Models for Web Search using Clickthrough Data ](https://posenhuang.github.io/papers/cikm2013_DSSM_fullversion.pdf)
+- [Siamese LSTM for Semantic Similarity Analysis](https://amitojdeep.github.io/amitoj-blogs/2017/12/31/semantic-similarity.html)
+- [Deep Learning Embedding/](https://weimin17.github.io/2017/10/Deep-Learning-Embedding/)
+- [Deep Structural Network Embedding (KDD 2016) in Keras Dec. 16th 2017](http://xiaohan2012.github.io/2017/deep-structral-network-embedding-keras/)
+- [Deep Learning of Knowledge Graph Embeddings for Semantic Parsing of Twitter Dialogs](https://www.microsoft.com/en-us/research/wp-content/uploads/2014/12/1569992497.pdf)
+
 ### Graph Embedding
 
 Graph embedding, preprocessing of graph data processing, is an example of representation learning to find proper numerical representation form of graph data structure.
@@ -55,6 +87,7 @@ It maps the graph structure to numerical domain:  $f:\mathbf{G}\mapsto \mathbb{R
 - http://snap.stanford.edu/proj/embeddings-www/
 - https://arxiv.org/abs/1709.05584
 - http://cazabetremy.fr/Teaching/EmbeddingClass.html
+- https://posenhuang.github.io/
 - [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 - [A Beginner's Guide to Graph Analytics and Deep Learning](https://skymind.ai/wiki/graph-analysis)
 - [Representation Learning on Graphs: Methods and Applications](https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf)
@@ -175,7 +208,20 @@ Struc2vec has four main steps:
 
 #### Word Embedding
 
-http://mostafadehghani.com/
+- https://www.cntk.ai/pythondocs/index.html
+- https://allenai.github.io/allennlp-docs/index.html
+- https://lidchallenge.github.io/
+- https://wabyking.github.io/talks/
+- http://mostafadehghani.com/
+- http://ruder.io/word-embeddings-2017/
+- http://xiaohan2012.github.io/articles/
+- [Simple and efficient semantic embeddings for rare words, n-grams, and language features](http://www.offconvex.org/2018/09/18/alacarte/)
+- [Learning Word Embedding](https://lilianweng.github.io/lil-log/2017/10/15/learning-word-embedding.html)
+- [Arithmetic Properties of Word Embeddings](https://helboukkouri.github.io/blog/arithmetic-properties-of-word-embeddings)
+- [Word Embedding Models](https://shorttext.readthedocs.io/en/latest/tutorial_wordembed.html)
+- [Embeddings, NN, Deep Learning, Distributional Semantics … in NLP](https://www.cs.upc.edu/~ageno/anlp/embeddings.pdf)
+
+<img src="https://lilianweng.github.io/lil-log/assets/images/word2vec-cbow.png" width="80%" />
 
 **word2vec**
 
@@ -239,12 +285,15 @@ $$
 - https://d2l.ai/chapter_natural-language-processing/word2vec.html
 - https://www.gavagai.io/text-analytics/word-embeddings/
 - http://jalammar.github.io/illustrated-word2vec/
+- https://devmount.github.io/GermanWordEmbeddings/
+- [Contextual String Embeddings for Sequence Labeling](http://alanakbik.github.io/papers/coling2018.pdf)
 
 **Doc2Vec**
 
 - [ ] https://blog.csdn.net/Walker_Hao/article/details/78995591
 - [Distributed Representations of Sentences and Documents](http://proceedings.mlr.press/v32/le14.pdf)
 - [Sentiment Analysis using Doc2Vec](http://linanqiu.github.io/2015/10/07/word2vec-sentiment/)
+- [From Word Embeddings To Document Distances](http://mkusner.github.io/publications/WMD.pdf)
 ***
 - [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/index.html)
 - [Statistical Models of Language](http://cocosci.princeton.edu/publications.php?topic=Statistical%20Models%20of%20Language)
@@ -256,6 +305,7 @@ $$
 - [Deep Semantic Embedding](http://smir2014.noahlab.com.hk/paper%204.pdf)
 - [无监督词向量/句向量?:W2v/Glove/Swivel/ELMo/BERT](https://x-algo.cn/index.php/2018/11/12/3083/)
 - [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
+- [ ] [word vector and semantic similarity](https://spacy.io/usage/vectors-similarity)
 
 #### Transformers and Beyond
 
@@ -265,6 +315,7 @@ $$
 * [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
 * [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 * [Universal Transformers](https://mostafadehghani.com/2019/05/05/universal-transformers/)
+* [BertEmbedding](https://bert-embedding.readthedocs.io/en/latest/api_reference/bert_embedding.html)
 
 
 #### Gradient Boosted Categorical Embedding and Numerical Trees
@@ -297,11 +348,11 @@ _________
 - [Paper: Gradient Boosted Categorical Embedding and Numerical Trees](https://qzhao2018.github.io/zhao/publication/zhao2017www.pdf)
 - https://qzhao2018.github.io/zhao/
 
-**Gaussian Auto Embeddings**
+#### Gaussian Auto Embeddings
 
 http://koaning.io/gaussian-auto-embeddings.html
 
-**Atom2Vec**
+#### Atom2Vec
 
 M. V. Diudea, I. Gutman and L. Jantschi wrote in the preface of the book _Molecular Topology_:
 [One of the principal goals of chemistry is to establish (causal) relations between the chemical and
@@ -312,7 +363,7 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 
 - [ ] [Deep Learning For Molecules and Materials](http://www.rqrm.ca/DATA/TEXTEDOC/03a-total-september2018-v1.pdf)
 
-**tile2Vec**
+#### tile2Vec
 
 - [ ] https://ermongroup.github.io/blog/tile2vec/
 - [ ] https://arxiv.org/abs/1805.02855
@@ -321,6 +372,8 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 * [EmbedS: Scalable and Semantic-Aware Knowledge Graph Embeddings](https://expolab.org/papers/embeds-slides.pdf)
 
 #### Graph Embedding
+
+The goal when embedding a graph $G$ into a space  $V$ is to preserve the graph distance (the shortest path between a pair of vertices) in the space  $V$. 
 
 **graph2vec**
 
@@ -341,32 +394,45 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - [ ] [GEMS Lab](http://web.eecs.umich.edu/~dkoutra/group/index.html)
 - [Graph Embeddings — The Summary](http://sungsoo.github.io/2019/05/26/graph-embedding.html)
 - [Graph Embeddings search result @ Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
+- [Semantic Annotation for Places in LBSN through Graph Embedding](https://yangzhangalmo.github.io/papers/CIKM17.pdf)
+- []()
 
-#### Deep Semantic Embedding
-
-+ http://smir2014.noahlab.com.hk/paper%204.pdf
-+ [Deep Embedding Logistic Regression](https://www.cse.wustl.edu/~z.cui/papers/DELR_ICBK.pdf)
-+ [DeViSE: A Deep Visual-Semantic Embedding Model](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/41473.pdf)
-+ [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
-+ [Semantic Embedding for Sketch-Based 3D Shape Retrieval](http://bmvc2018.org/contents/papers/0040.pdf)
 
 #### Hyperbolic Embeddings
 
+The motivation of hyperbolic embedding is to combine structural information with continuous representations suitable for machine learning methods. One example is embedding taxonomies (such as Wikipedia categories, lexical databases like WordNet, and phylogenetic relations).
+
+The big goal when embedding a space into another is to **preserve distances and more complex relationships**. It turns out that hyperbolic space can better embed graphs (particularly hierarchical graphs like trees) than is possible in Euclidean space. Even better—angles in the hyperbolic world are the same as in Euclidean space, suggesting that hyperbolic embeddings are useful for downstream applications (and not just a quirky theoretical idea).
+
+The motivation is to embed structured, discrete objects such as knowledge graphs into a continuous representation that can be used with modern machine learning methods. Hyperbolic embeddings can preserve graph distances and complex relationships in very few dimensions, particularly for hierarchical graphs. In this website, we release hyperbolic embeddings that can be further integrated into applications related to knowledge base completion or can be supplied as features into various NLP tasks such as Question Answering. 
+
 - [Spherical and Hyperbolic Embeddings of Data](https://www.cs.york.ac.uk/cvpr/embedding/index.html)
+- [Neural Embeddings of Graphs in Hyperbolic Space](https://arxiv.org/pdf/1705.10359.pdf)
+- [Low Distortion Delaunay Embedding of Trees in Hyperbolic Plane](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf)
 - [Embedding Networks in Hyperbolic Spaces ](http://bactra.org/notebooks/hyperbolic-networks.html)
 - [Characterizing the analogy between hyperbolic embedding and community structure of complex networks ](http://doocn.org/2018/files/radicchi-slides.pdf)
 - [Poincaré Embeddings for Learning Hierarchical Representations](https://papers.nips.cc/paper/7213-poincare-embeddings-for-learning-hierarchical-representations.pdf)
 - [Implementing Poincaré Embeddings](https://rare-technologies.com/implementing-poincare-embeddings/)
 - [Hyperbolic Embedding search result @Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Hyperbolic+Embeddings)
 
+Since hyperbolic space is tree-like, it’s natural to consider embedding trees—which we can do with arbitrarily low distortion, for any number of dimensions! 
+It is shown that [how to extend this technique to arbitrary graphs, a problem with a lot of history in Euclidean space](https://arxiv.org/pdf/1804.03329.pdf)using a two-step strategy for embedding graphs into hyperbolic space:
+
+1. Embed a graph $G = (V, E)$ into a tree $T$.
+2. Embed $T$ into the Poincaré ball.
+
+
 <img src="https://hazyresearch.github.io/hyperE/pc.svg"  width="40%" />
+<img src="https://dawn.cs.stanford.edu/assets/img/2018-03-19-hyperbolics/poincare3.png" width="80%" />
+
+
 
 - [Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole](https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/)
 - [HyperE: Hyperbolic Embeddings for Entities](https://hazyresearch.github.io/hyperE/)
 - [Efficient embedding of complex networks to hyperbolic space via their Laplacian](https://www.nature.com/articles/srep30108)
 - [Embedding Text in Hyperbolic Spaces](https://ai.google/research/pubs/pub47117)
 - [Hyperbolic Function Embedding: Learning Hierarchical Representation for Functions of Source Code in Hyperbolic Spaces](https://www.mdpi.com/2073-8994/11/2/254/htm)
-- http://hyperbolicdeeplearning.com/papers/
+
 
 
 ---|---
@@ -381,6 +447,27 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - https://blog.csdn.net/NockinOnHeavensDoor/article/details/80661180
 - http://building-babylon.net/2018/04/10/graph-embeddings-in-hyperbolic-space/
 - https://paperswithcode.com/task/graph-embedding
+
+
+
+### Hyperbolic Deep Learning
+
+[The hyperbolic space is different from the Euclidean space. It has more capacity.
+The volume of a ball grows exponentially with its radius!
+Think of a binary tree: the number of nodes grows exponentially with depth.
+Hyperbolic geometry is better suited to embed data with an underlying hierarchical/heterogeneous structure.
+Let’s make deep learning possible in hyperbolic space.](http://hyperbolicdeeplearning.com/)
+
+- [Hyperbolic Neural Networks](https://arxiv.org/abs/1805.09112)
+- http://hyperbolicdeeplearning.com/papers/
+- http://hyperbolicdeeplearning.com/
+- https://cla2019.github.io/
+***
+- http://shichuan.org/
+- [Learning Mixed-Curvature Representations in Product Spaces](https://openreview.net/forum?id=HJxeWnCcF7)
+- [Hyperbolic Attention Networks ](https://openreview.net/forum?id=rJxHsjRqFQ)
+- [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
+- [Hyperbolic Heterogeneous Information Network Embedding](http://shichuan.org/doc/65.pdf)
 
 ### Graph Convolutional Network
 
@@ -528,7 +615,7 @@ Graph Convolution: Recursive Computation with Shared Parameters:
 states using relation specific transformations
 * Backpropagation through Structure
 
-**Vanilla spectral graph ConvNets**
+#### Vanilla spectral graph ConvNets
 
 
 Every graph convolutional layer starts off with a shared node-wise feature transformation (in order to achieve a higher-level representation), specified by a weight matrix $W$. This transforms the feature vectors into $\vec{g}_i = {\bf W}\vec{h}_i$. After this, the vectors $\vec{g}_i$ are typically recombined in some way at each node.
@@ -538,11 +625,11 @@ In general, to satisfy the localization property, we will define a graph convolu
 $$\vec{h}'_i = \sigma\left(\sum_{j\in\mathcal{N}_i}\alpha_{ij}\vec{g}_j\right)$$
 where $\sigma$ is some activation function such as **rectified linear unit (ReLU)** in ConvNet.
 
-**SplineNets**
+#### SplineNets
 
 Parametrize the smooth spectral filter function
 
-**Spectral graph ConvNets with polynomial filters**
+#### Spectral graph ConvNets with polynomial filters
 
 Represent smooth spectral functions with polynomials of Laplacian eigenvalues
 $$w_{\alpha}(\lambda)={\sum}_{j=0}^r{\alpha}_{j} {\lambda}^j$$
@@ -554,7 +641,7 @@ $$w_{\alpha}(\Lambda)f= {\sum}_{j=0}^r{\alpha}_{j} {\Lambda}^j f$$
 
 Such graph convolutional layers are GPU friendly.
 
-**ChebNet**
+#### ChebNet
 
 Graph convolution network  always deal with unstructured data sets where the graph has different size. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
 
@@ -577,7 +664,7 @@ $$X^{(j)}=T_j({\tilde{\mathbf{\Delta}}}) f=2\mathbf{\Delta} X^{(j-1)}-X^{(j-2)},
 * https://www.ntu.edu.sg/home/xbresson/
 * https://github.com/xbresson
 
-**Simplified ChebNets**
+#### Simplified ChebNets
 
 Use Chebychev polynomials of degree $r=2$ and assume $r_2\approx 2$:
 $$w_{\alpha}(\tilde{\mathbf{\Delta}})f ={\alpha}_0 f + {\alpha}_1(\mathbf{\Delta-I})f= {\alpha}_0 f - {\alpha}_1\mathbf D^{-\frac{1}{2}}WD^{-\frac{1}{2}} f $$
@@ -585,7 +672,7 @@ $$w_{\alpha}(\tilde{\mathbf{\Delta}})f ={\alpha}_0 f + {\alpha}_1(\mathbf{\Delta
 Further constrain $\alpha=-\alpha_1=\alpha_0$ to obtain a single-parameter filter:
 $$w_{\alpha}(\tilde{\mathbf{\Delta}})f ={\alpha}\mathbf{(I-D^{-\frac{1}{2}}WD^{-\frac{1}{2}})} f $$
 
-**PinSage**
+#### PinSage
 
 <img src=https://pic3.zhimg.com/80/v2-34c698539a34d506ff3f05c24ddd3482_hd.jpg width=70% />
 <img src=https://pic2.zhimg.com/80/v2-41f380e6db85ae9173701c33c0f75311_hd.jpg width=70% />
@@ -601,7 +688,7 @@ $X_i$ and neighbors? features $X_j$ , where $j \in N(v_i)$.
 
 
 
-**CayleyNet**
+#### CayleyNet
 
 Defining filters as polynomials applied over the eigenvalues of the `graph Laplacian`, it is possible
 indeed to avoid any eigen-decomposition and realize convolution by means of efficient sparse routines
@@ -620,9 +707,7 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 * [CayleyNets: Graph Convolutional Neural Networks with Complex Rational Spectral Filters](https://arxiv.org/abs/1705.07664)
 * [CayleyNets at IEEE](https://ieeexplore.ieee.org/document/8521593)
 
-***
-
-**MotifNet**
+#### MotifNet
 
 `MotifNet` is aimed to address the directed graph convolution.
 
@@ -645,7 +730,7 @@ $$\color{green}{\fbox{${h_i} = f_{GCN}(h_j: j\to i)$} }$$
 
 + https://github.com/xbresson
 
-**Higher-order Graph Convolutional Networks**
+#### Higher-order Graph Convolutional Networks
 
 - [Higher-order Graph Convolutional Networks](http://ryanrossi.com/pubs/Higher-order-GCNs.pdf)
 - [A Higher-Order Graph Convolutional Layer](http://sami.haija.org/papers/high-order-gc-layer.pdf)
