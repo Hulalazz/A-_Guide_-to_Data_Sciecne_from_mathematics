@@ -2,6 +2,12 @@
 
 - [ ] [RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
 - [ ] [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
+- [ ] [Topics in Natural Language Processing (202-2-5381) Fall 2018](https://www.cs.bgu.ac.il/~elhadad/nlp18.html)
+- [ ] [CS 124: From Languages to Information Winter 2019 Dan Jurafsky](https://web.stanford.edu/class/cs124/)
+- [ ] [CS224U: Natural Language Understanding](https://web.stanford.edu/class/cs224u/)
+- [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
+- [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
+- [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
@@ -47,6 +53,7 @@ The first step of information retrieval is to acquise the information itself. Th
 * [Web Crawling By Christopher Olston and Marc Najork](http://infolab.stanford.edu/~olston/publications/crawling_survey.pdf)
 * [VII. Information Acquisition](www.science.unitn.it/~pgiorgio/db2/slides/9-infoacquisition.pdf)
 * [Automatically modelling and distilling knowledge within AI!](https://ai-distillery.io/)
+* [CH. 3: MODELS OF THE INFORMATION SEEKING PROCESS](http://searchuserinterfaces.com/book/sui_ch3_models_of_information_seeking.html)
 
 ### Information Organization and Storage: Indexing and Index
 
@@ -67,6 +74,10 @@ Search engine takes advantage of this idea: it is the best place to store  where
 ### Information Retrieval
 
 <img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
+
+- [Regular Expressions, Text Normalization,Edit Distance](http://web.stanford.edu/~jurafsky/slp3/2.pdf)
+- [Introduction to ](https://spark-public.s3.amazonaws.com/cs124/slides/ir-1.pdf)
+- [CH. 4: QUERY SPECIFICATION](http://searchuserinterfaces.com/book/sui_ch4_query_specification.html)
 
 #### Query Languages
 
@@ -92,6 +103,8 @@ Allow queries that match strings rather than word tokens.
 Requires more sophisticated data structures and algorithms than inverted indices to retrieve efficiently.
 
 **Edit (Levenstein) Distance** is defined as minimum number of character `deletions, additions, or replacements` needed to make two strings equivalent.
+
+- [Minimum	Edit	Distance](https://web.stanford.edu/class/cs124/lec/med.pdf)
 
 **Longest Common Subsequence (LCS)** is the length of the longest subsequence of characters shared by two strings
 
@@ -137,6 +150,8 @@ Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.ph
 - Query Reformulation:
   * Query Expansion: Add new terms to query from relevant documents.
   * Term Reweighting: Increase weight of terms in relevant documents and decrease weight of terms in irrelevant documents.
++ https://www.cs.bgu.ac.il/~elhadad/nlp18.html
++ [CH. 6: QUERY REFORMULATION](http://searchuserinterfaces.com/book/sui_ch6_reformulation.html)
 
 **Standard Rochio Method**
 
@@ -156,7 +171,9 @@ Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.ph
 
 ##### Spelling Correction
 
-- https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html
+- [Spelling correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html)
+- [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html)
+- [Spelling Correction and the Noisy Channel](https://web.stanford.edu/~jurafsky/slp3/B.pdf)
 
 ##### Query Suggestion
 
@@ -191,6 +208,8 @@ $$
 which is to measure how popular the word $w$ i the document list.
 **tf-idf** is a rough way of approximating how users value the relevance of a text match, defined as
 $$\text{tf-idf}=tf(w| doc)\times idf(w\mid D).$$
+
+- [tf-idf	weighting	has	many variants](https://spark-public.s3.amazonaws.com/cs124/slides/ir-2.pdf)
 
 ##### BM25
 
@@ -275,6 +294,8 @@ In the popular open search engine [ElasticSearch](https://www.elastic.co/cn/prod
 
 ##### Document Similarity
 
+Document similarity (or distance between documents) is a one of the central themes in Information Retrieval. How humans usually define how similar are documents? Usually documents treated as similar if they are semantically close and describe similar concepts.
+
 - [ ] [Document Similarity in Machine Learning Text Analysis with ELMo](https://ai.intelligentonlinetools.com/ml/document-similarity-in-machine-learning-text-analysis-with-elmo/)
 - [ ] [Documents similarity](http://text2vec.org/similarity.html)
 - [ ] https://copyleaks.com/
@@ -340,11 +361,11 @@ Common goal: matching a need (may or may not include an explicit query)
 to a collection of information objects (product descriptions, web pages, etc.)
 Difference for search and recommendation: features used for matching!
 
-  -|Matching | Ranking
----|---|---
-Prediction|Matching degree between a query and a document|Ranking list of documents
+---|Matching | Ranking
+---|---------|---
+Prediction | Matching degree between a query and a document| Ranking list of documents
 Model|$f(q, d)$|$f(q,\{d_1,d_2,\dots \})$
-Goal|Correct matching between query and document|Correct ranking on the top
+Goal | Correct matching between query and document| Correct ranking on the top
 
 Methods of Representation Learning for Matching:
 
@@ -375,7 +396,7 @@ Matching Function Learning:
 
 ##### Regularized Latent Semantic Indexing
 
-$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - Uv_n\|}_2^2+\lambda_1\sum_{k=1}^K{\|u_k\|}_1+\lambda_2\sum_{n=1}^{N}{\|v_n\|}_2^2$$
+$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - U v_n\|}_2^2+\lambda_1\sum_{k=1}^K {\|u_k\|}_1+\lambda_2\sum_{n=1}^{N}{\|v_n \|}_2^2$$
 
 where
 - $d_n$ is term representation of doc $n$;
@@ -384,7 +405,13 @@ where
 - $\lambda_1$ and $\lambda_2$ are regularization parameters.
 
 It is optimized by coordinate descent:
-$$u_{mk}=\arg\min_{\bar u_m}\sum_{m=1}^M {\|\bar d_m - V^T \bar u_m\|}_2^2+\lambda_1\sum_{m=1}^{M}{\|\bar u_m\|}_1,\\ v_n^{\ast}=\arg\min_{\{v_n\}}\sum_{n=1}^{N}{\|d_n -Uv_n\|}_2^2+\lambda_2\sum_{n=1}^N{\|v_n\|}_2^2=(U^T U + \lambda_2 I)^{-1}U^T d_n.$$
+$$u_{mk}=\arg\min_{\bar u_m}\sum_{m=1}^M {\|\bar d_m - V^T \bar u_m\|}_2^2+\lambda_1\sum_{m=1}^{M}{\|\bar u_m\|}_1,\\ v_n^{\ast}=\arg\min_{\{v_n\}}\sum_{n=1}^{N}{\|d_n -U v_n\|}_2^2+\lambda_2\sum_{n=1}^N{\|v_n\|}_2^2=(U^T U + \lambda_2 I)^{-1}U^T {d}_n.$$
+
+##### Match Pyramid
+
+##### Matching Matrix
+
+
 
 ##### Deep Structured Semantic Model
 
@@ -392,18 +419,60 @@ DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic S
 
 - https://www.microsoft.com/en-us/research/project/dssm/
 - https://arxiv.org/pdf/1610.08136.pdf
-##### DRMM
 
-- https://arxiv.org/abs/1711.08611
+##### Deep Relevance Matching Model
+
+It is argumented that
+> the ad-hoc retrieval task is mainly about relevance matching while most NLP matching tasks concern semantic matching, and there are some fundamental differences between these two matching tasks. Successful relevance matching requires proper handling of the exact matching signals, query term importance, and diverse matching requirements.
+
+A novel deep relevance matching model (DRMM) for ad-hoc retrieval employs a joint deep architecture at the query term level for relevance matching. By using matching histogram mapping, a feed forward matching network, and a term gating network, we can effectively deal with the three relevance matching factors mentioned above.
+
+<img src="https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/DRMM.jpg" width="80%" />
+
++ Matching histogram mapping for summarizing each query matching signals
++ Term gating network for weighting the query matching signals
++ Lost word order information (during histogram mapping)
+
+- [A Deep Relevance Matching Model for Ad-hoc Retrieval](https://arxiv.org/abs/1711.08611)
 - https://zhuanlan.zhihu.com/p/38344505
 - https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/
+
+##### DeepRank
+
+Calculate relevance by mimicking the human relevance judgement process
+
+1. Detecting Relevance locations: focusing on locations of query terms when scanning the whole document
+2. Determining local relevance: relevance between query and each location context, using MatchPyramid/MatchSRNN etc.
+3. Matching signals aggregation
+
 - [Deep Relevance Ranking Using Enhanced Document-Query Interactions](http://nlp.cs.aueb.gr/pubs/EMNLP2018Preso.pdf)
+
+#### Semantic Search
+
+[Alexis Sanders  as an SEO Account Manager at MERKLE | IMPAQT wrote a blog on `semantic search`](https://moz.com/blog/what-is-semantic-search):
+> The word "semantic" refers to the meaning or essence of something. Applied to search, "semantics" essentially relates to the study of words and their logic. Semantic search seeks to improve search accuracy by understanding a searcher’s intent through contextual meaning. Through concept matching, synonyms, and natural language algorithms, semantic search provides more interactive search results through transforming structured and unstructured data into an intuitive and responsive database. Semantic search brings about an enhanced understanding of searcher intent, the ability to extract answers, and delivers more personalized results. Google’s Knowledge Graph is a paradigm of proficiency in semantic search.
+
+<img src="https://blog.alexa.com/wp-content/uploads/2019/03/semantic-search-intent.png" width="80%"/>
+
+* [relevant search](http://manning.com/books/relevant-search)
+* [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
+* [MatchZoo's documentation](https://matchzoo.readthedocs.io/zh/latest/)
+* http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
+* https://en.wikipedia.org/wiki/List_of_search_engines
+* [Open Semantic Search](https://www.opensemanticsearch.org/)
+* https://www.seekquarry.com/
+* http://l-lists.com/en/lists/qukoen.html
+* [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
+* [gt4ireval: Generalizability Theory for Information Retrieval Evaluation](https://rdrr.io/cran/gt4ireval/)
+* https://daiwk.github.io/posts/nlp.html
+* http://www2003.org/cdrom/papers/refereed/p779/ess.html
+* https://blog.alexa.com/semantic-search/
 
 #### PageRank for Web Search
 
 `Centrality of network` assigns an importance score based purely on the number of links held by each node.
 
-`Search Engine Optimization(SEO)` is a bussiness type to boost the website higher.
+`Search Engine Optimization(SEO)` is a business type to boost the website higher.
 `PageRank` is introduced in `Graph Algorithms`.
 
 * http://ryanrossi.com/search.php
@@ -416,33 +485,20 @@ DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic S
 * [How Google Finds Your Needle in the Web's Haysta](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
 * [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
 
-#### Semantic Search
-
-[Alexis Sanders  as an SEO Account Manager at MERKLE | IMPAQT wrote a blog on `semantic search`](https://moz.com/blog/what-is-semantic-search):
-> The word "semantic" refers to the meaning or essence of something. Applied to search, "semantics" essentially relates to the study of words and their logic. Semantic search seeks to improve search accuracy by understanding a searcher’s intent through contextual meaning. Through concept matching, synonyms, and natural language algorithms, semantic search provides more interactive search results through transforming structured and unstructured data into an intuitive and responsive database. Semantic search brings about an enhanced understanding of searcher intent, the ability to extract answers, and delivers more personalized results. Google’s Knowledge Graph is a paradigm of proficiency in semantic search.
-
-![](https://blog.alexa.com/wp-content/uploads/2019/03/semantic-search-intent.png)
-
-* [relevant search](http://manning.com/books/relevant-search)
-* [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
-* http://mlwiki.org/index.php/Information_Retrieval_(UFRT)
-* https://en.wikipedia.org/wiki/List_of_search_engines
-* [Open Semantic Search](https://www.opensemanticsearch.org/)
-* https://www.seekquarry.com/
-* http://l-lists.com/en/lists/qukoen.html
-* [20款开源搜索引擎介绍与比较](https://blog.csdn.net/belalds/article/details/80758312)
-* [gt4ireval: Generalizability Theory for Information Retrieval Evaluation](https://rdrr.io/cran/gt4ireval/)
-* https://daiwk.github.io/posts/nlp.html
-* http://www2003.org/cdrom/papers/refereed/p779/ess.html
-* https://blog.alexa.com/semantic-search/
-
 ### Information Distribution: Search Engine Results Page
-
 
 [Information Distribution Methods – Information distribution is the timely collection, sharing and distribution of information to the project team. Methods can be portals, collaborative work management tools, web conferencing, web publishing, and when all technology is not available, manual filing systems and hard copy distribution.](http://www.anticlue.net/archives/000804.htm)
 
 * [SERP: GUIDE TO THE GOOGLE SEARCH ENGINE RESULTS (UPDATED 2019 GUIDE)](https://ignitevisibility.com/serp/)
+* [CH. 5: PRESENTATION OF SEARCH RESULTS](http://searchuserinterfaces.com/book/sui_ch5_retrieval_results.html)
+* [CH. 10: INFORMATION VISUALIZATION FOR SEARCH INTERFACES](https://searchuserinterfaces.com/book/sui_ch10_visualization.html)
+* [CH. 11: INFORMATION VISUALIZATION FOR TEXT ANALYSIS](https://searchuserinterfaces.com/book/sui_ch11_text_analysis_visualization.html)
+* [Match Zoo](https://xieydd.github.io/post/matchzoo/)
 
+#### Keywords Highlight
+
+
+#### Webpage Snapshot
 
 ### Neural Information Retrieval
 
@@ -460,6 +516,22 @@ In return, we should also look for opportunities to apply IR intuitions into imp
 - [Neu-IR: Workshop on Neural Information Retrieval](https://neu-ir.weebly.com/)
 - [Topics in Neural Information Retrieval](https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/teaching/ss19/topics-in-neural-information-retrieval/)
 - https://frankblood.github.io/
+
+### Modeling Diverse Ranking with MDP
+
+MDP factors | Corresponding diverse ranking factors
+---|---
+Timesteps | The ranking positions
+State | $𝑠_𝑡=[𝑍_𝑡,𝑋_𝑡,\mathrm h_𝑡]$
+Policy | $\pi(a_t\mid s_t=[𝑍_t,𝑋_t,\mathrm h_t])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
+Action | Selecting a doc and placing it to rank $\it t+1$
+Reward | Based on evaluation measure αDCG, SRecall etc.
+State Transition | $s_{t+1}=T(s_t, a_t)$
+
++ http://www.bigdatalab.ac.cn/~gjf/papers/2017/SIGIR2017_MDPDIV.pdf
++ http://www.bigdatalab.ac.cn/~junxu/publications/CCF@U_RL4IR.pdf
++ [Deep and Reinforcement Learning for Information Retrieval](http://cips-upload.bj.bcebos.com/ssatt2018%2FATT9_2_%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%96%B0%E8%BF%9B%E5%B1%95.pdf)
++ [Improving Session Search Performance with a Multi-MDP Model](http://www.thuir.cn/group/~YQLiu/publications/AIRS18Chen.pdf)
 
 ### Personalized Search
 
@@ -487,6 +559,7 @@ And here search engine and recommender system coincide except the recommender sy
 * [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
 * [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
 * [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
+* [CH. 9: PERSONALIZATION IN SEARCH](https://searchuserinterfaces.com/book/sui_ch9_personalization.html)
 
 ### Vertical Domain Search: Beyond String and Texts
 
@@ -529,7 +602,8 @@ Lately, the control over and access to health information by consumers has been 
 
 ##### Why is medical information retrieval difficult?
 
-????
+It is becasue medical information is really professional while critical.
+
 
 ##### How knowledge bases can improve retrieval performance?
 
@@ -584,6 +658,10 @@ Lately, the control over and access to health information by consumers has been 
 #### Multimodal Search
 
 * http://www.khresmoi.eu/overview/
+
+### Knowledgment Map
+
+Search is not only on string but also things.
 
 ### Labs and Resources  
 
@@ -662,6 +740,9 @@ FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 
 #### Cources on Information Retrieval and Search
 
++ [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)
++ [LING 289: History of Computational Linguistics
+Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
 + [CS 371R: Information Retrieval and Web Search](https://www.cs.utexas.edu/~mooney/ir-course/)
 + [CS 242: Information Retrieval & Web Search, Winter 2019](http://www.cs.ucr.edu/~vagelis/classes/CS242/index.htm)
@@ -682,3 +763,4 @@ FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 + [CSc 7481 / LIS 7610 Information Retrieval Spring 2008](http://www.csc.lsu.edu/~kraft/courses/csc7481.html)
 + [Winter 2016 CSI4107: Information Retrieval and the Internet](http://www.site.uottawa.ca/~diana/csi4107/)
 + [INformation Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
++ https://searchpatterns.org/
