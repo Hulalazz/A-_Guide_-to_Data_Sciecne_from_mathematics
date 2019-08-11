@@ -19,6 +19,7 @@
 + [The Rankability of Data](https://epubs.siam.org/doi/pdf/10.1137/18M1183595)
 + [A Rating-Ranking Method for Crowdsourced Top-k Computation](http://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod18-crowdtopk.pdf)
 + [the (data) science of sports](http://thespread.us/category/ranking.html)
++ [Learning to Rank with Tensorflow](https://quantdare.com/learning-to-rank-with-tensorflow/)
 
 The rating algorithms help to match the players in video games or compare the players in sports.
 Ratings is a numerical score to describe the level  of the players' skill based on the results of many competition.
@@ -253,6 +254,7 @@ There are some links on the  collective decision-making theory:
 * [AIM Workshop on the Mathematics of Ranking](https://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/)
 * [Symposium: The mathematics of ranking](https://nalag.cs.kuleuven.be/research/workshops/ranking/)
 * [Learning to Rank explained](https://everything.explained.today/Learning_to_rank/)
+* [Learning to Rank with (a Lot of) Word Features](http://ronan.collobert.com/pub/matos/2009_ssi_jir.pdf)
 * http://www.cs.cmu.edu/~kdelaros/
 * [Ranking in information retrieval](https://www.wikiwand.com/en/Ranking_(information_retrieval))
 * [Learning to Rank](https://jimmy-walker.gitbooks.io/rank/L2R.html)
@@ -346,10 +348,10 @@ The input space of the pairwise approach contains pairs of documents, both repre
 The output space contains the pairwise preference (which takes values from ${+1,−1}$) between each pair of documents.
 The hypothesis space contains bi-variate functions h that take a pair of documents as input and output the relative order between them.
 
-Note that the loss function used in the pairwise approach only considers the relative order between two documents. 
+Note that the loss function used in the pairwise approach only considers the relative order between two documents.
 When one looks at only a pair of documents, however, the position of the documents in the final ranked list can hardly be derived.
-Furthermore, the approach ignores the fact that some pairs are generated from the documents associated with the same query. 
-Considering that most evaluation measures for information retrieval are query level and position based, 
+Furthermore, the approach ignores the fact that some pairs are generated from the documents associated with the same query.
+Considering that most evaluation measures for information retrieval are query level and position based,
 we can see a gap between this approach and ranking for information retrieval.
 
 **The Listwise Approach**
@@ -357,16 +359,16 @@ we can see a gap between this approach and ranking for information retrieval.
 The input space of the listwise approach contains a set of documents associated with query $q$, e.g., $x = \{x_j\}^m_{j=1}$.
 The output space of the listwise approach contains the ranked list (or permutation)
 of the documents.
-Note that for the listwise approach, the output space that facilitates the learning process is exactly the same as the output space of the task. 
-In this regard, the theoretical analysis on the listwise approach can have a more direct value to understanding the real ranking problem than the other approaches 
+Note that for the listwise approach, the output space that facilitates the learning process is exactly the same as the output space of the task.
+In this regard, the theoretical analysis on the listwise approach can have a more direct value to understanding the real ranking problem than the other approaches
 where there are mismatches between the output space that facilitates learning and the real output space of the task.
 
 The hypothesis space contains multi-variate functions $h$ that operate on a set of documents and predict their **permutation**.
 
-There are two types of loss functions, widely used in the listwise approach. 
-For the first type, the loss function is explicitly related to the evaluation measures 
+There are two types of loss functions, widely used in the listwise approach.
+For the first type, the loss function is explicitly related to the evaluation measures
 (which we call the measure-specific loss function), while for the second type, the loss function
-is not (which we call the non-measure-specific loss function). 
+is not (which we call the non-measure-specific loss function).
 Note that sometimes it is not very easy to determine whether a loss function is listwise, since some building blocks of a listwise loss may also seem to be pointwise or pairwise
 
 #### Ranking Metrics
@@ -397,6 +399,9 @@ AveP= \sum_{k=1}^{n} p(k)\Delta r(k).
 $$
 
 where $k$ is the rank in the sequence of retrieved documents, $n$ is the number of retrieved documents, $P(k)$ is the precision at cut-off k in the list, and $\Delta r(k)$ is the change in recall from items $k-1$ to $k$.
+
+`Mean Average Precision` is defined as
+$$MAP=\frac{\sum_{q=1}^{Q} AveP(q)}{Q}.$$
 ****
 `Cumulative Gain (CG)` is the predecessor of DCG and does not include the position of a result in the consideration of the usefulness of a result set. In this way, it is the sum of the graded relevance values of all results in a search result list. The CG at a particular rank position _p_ is defined as:
 $${CG}_p=\sum_{i=1}^{p}{rel}_i,$$
@@ -475,43 +480,6 @@ ranking list, which is better than any of the original ranking lists.
 
 Ranking creation generates ranking based on features of request and offering, while ranking aggregation generates ranking based on ranking of offerings. Note that the output of ranking aggregation can be used as the input of ranking aggregation.
 
-
-### HodgeRank
-
-`HodgeRank` apply Hodge theory to the ranking problem. It is considered as an application of modern abstract mathemtics rather than as a technique in machine learning.
-The problem is always to evaluate some items and rank them.
-Learn a function
-$$f:\mathcal X \to \mathcal Y.$$
-
-* Data: Know $f$ on a (very small) subset $\Omega\subset \mathcal X$;
-* Model: Know that $f$ belogs to some class of functions $\mathcal F(x, y)$;
-* Ranking: Rank objects in some order.
-  * Scoring function $f:\mathcal X \to \mathbb{R}$;
-  * $f(x)> f(y)\iff x \succ y$, i.e., $x$ is preferred to $y$.
-
-Persi Diaconis, 1987 Wald Memorial Lectures:
-> A basic tenet of data analysis is this: If you’ve found some structure, take it out, and look at what’s left.
-> Thus to look at second order statistics it is natural to subtract away the observed first order structure.
-> This leads to a natural decomposition of the original data into orthogonal pieces.
-
-Hodge decomposition:
-$$\text{aggregate pairwise ranking}=\text{consistent}\oplus \text{loclly inconsisitent}\oplus \text{globally inconsistent}$$
-
-Ranking data live on **pairwise comparison graph** $G(E, V)$
-where $V$ is the set of alternatives, $E$ is pairs of alternatives to be compared.
-
-
-https://blog.csdn.net/HaleyPKU/article/details/80341932
-
-- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
-- [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
-- [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
-- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](http://repository.ust.hk/ir/Record/1783.1-90160)
-- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](https://arxiv.org/abs/1711.05957)
-- [ ] http://www.stat.uchicago.edu/~lekheng/
-- [ ] http://www.math.pku.edu.cn/teachers/yaoy/
-- [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
-
 ### The Pointwise Approach
 
 According to different machine learning technologies used, the pointwise approach
@@ -522,8 +490,8 @@ scores; for classification-based algorithms, the output space contains non-order
 categories; and for ordinal regression-based algorithms, the output space contains
 ordered categories.
 
-Given $x = \{x_j \}^m
-_{j=1}$, a set of documents associated with training query $q$,
+Given $x = \{x_j \}_{j=1}^m$,
+a set of documents associated with training query $q$,
 and the ground truth labels $y = \{y_j \}^m_{j=1}$ of these documents in terms of multiple ordered categories,
 suppose a scoring function $f$ is used to rank these documents.
 The loss function is defined as the following square loss,
@@ -533,35 +501,23 @@ The basic conclusion is that the square loss can upper bound the NDCG-based rank
 However, according to the above discussions, even if there is a large regression loss,
 the corresponding ranking can still be optimal as long as the relative orders between the predictions $f (x_j ) (j = 1, \dots , m)$ are in accordance with those defined by the
 ground truth label.
-As a result, we can expect that the square loss is a loose bound
-of the NDCG-based ranking error.
+As a result, we can expect that the square loss is a loose bound of the NDCG-based ranking error.
 
-### RankSVM
+---|---|---|---
+---|---|---|---
+---|Regression | Classification | Ordinal Regression
+Input Space| Single documents $y_i$|Single documents $y_i$|Single documents $y_i$
+Output Space | Real values |Non-ordered Categories | Ordinal categories
+Hypothesis Space| Scoring function $f(x)$| Scoring function $f(x)$| Scoring function $f(x)$
+Loss Function | Regression Loss |Classification Loss | Ordinal regression loss
 
-> The basic idea of SVMrank is to attempt to minimize the number of misclassified document pairs. This is achieved by modifying the default support vector machine optimization problem, which considers a set of documents, by constraining the optimization problem to perform the minimization of each pair of documents.
-
-
-Using the techniques of SVM, a global ranking function _F_ can be learned from an ordering R. Assume _F_ is a linear ranking function such that
-$$\forall \{(\mathrm{X_i, X_j}): y_i < y_j\}, F(X_i)>F(X_j)\iff w\cdot X_i > w\cdot X_j.$$
-The solution can be approximated using SVM techniques by introducing (non-negative) slack variables ${\xi}_{i j}$ and minimizing the upper bound $\sum {\xi}_{i j}$ as follows:
-$$
-\text{minimize}\qquad L(w, \xi)= C \sum {\xi}_{i j} + {\|w\|}_2^2 \\
-\text{subject to } \quad \forall \{(\mathrm{X_i, X_j})\}: w\cdot X_i > w\cdot X_j + 1 -{\xi}_{ij},
-\\ \forall {\xi}_{ij}\geq 0.
-$$
-Then it can trained in the same way as a classifer.
-* [RankSVM原理](https://x-algo.cn/index.php/2016/08/09/ranksvm/)
-* [Learning to Rank算法介绍：RankSVM 和 IR SVM](https://www.cnblogs.com/bentuwuying/p/6683832.html)
-* [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
-* [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
-* [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
 
 ### Ordinal Regression-Based Algorithms
 
 Ordinal regression takes the ordinal relationship between the ground truth labels
 into consideration when learning the ranking model.
 Suppose there are $K$ ordered categories. The goal of ordinal regression is to find
-a scoring function $f$ , such that one can easily use thresholds $b_1 \leq b_2 ≤leq\cdots \leq b_{K−1}$
+a scoring function $f$ , such that one can easily use thresholds $b_1 \leq b_2 \leq\cdots \leq b_{K−1}$
 to distinguish the outputs of the scoring function (i.e., $f (x_j ), j = 1, \dots , m$) into
 different ordered categories.
 
@@ -644,6 +600,13 @@ A natural concern is that document pairs are not independent, which violates the
 The fact is that although in some cases this assumption really does not hold, one can still use classification technology to learn the ranking model.
 However, a different theoretical framework is needed to analyze the generalization of the learning process.
 
+---|The Pairwise Approach
+---|----
+Input Space | Document pairs $x_u, x_v$
+Output Space | Preference $y_{u, v}\in \{+1,-1\}$
+Hypothesis Space | Preference function $h$
+Loss Function | $L(h; x_u, x_v, y_{u,v})$
+
 #### RankNet
 
 > RankNet is a feed-forward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
@@ -712,6 +675,26 @@ On the other hand, however, while the cross entropy loss is convex, the fidelity
 Such a non-convex objective is more difficult to optimize and one needs to be careful when performing the optimization.
 Furthermore, the fidelity loss is no longer an upper bound of the pairwise
 0–1 loss.
+
+### RankSVM
+
+> The basic idea of SVMrank is to attempt to minimize the number of misclassified document pairs. This is achieved by modifying the default support vector machine optimization problem, which considers a set of documents, by constraining the optimization problem to perform the minimization of each pair of documents.
+
+
+Using the techniques of SVM, a global ranking function _F_ can be learned from an ordering R. Assume _F_ is a linear ranking function such that
+$$\forall \{(\mathrm{X_i, X_j}): y_i < y_j\}, F(X_i)>F(X_j)\iff w\cdot X_i > w\cdot X_j.$$
+The solution can be approximated using SVM techniques by introducing (non-negative) slack variables ${\xi}_{i j}$ and minimizing the upper bound $\sum {\xi}_{i j}$ as follows:
+$$
+\text{minimize}\qquad L(w, \xi)= C \sum {\xi}_{i j} + {\|w\|}_2^2 \\
+\text{subject to } \quad \forall \{(\mathrm{X_i, X_j})\}: w\cdot X_i > w\cdot X_j + 1 -{\xi}_{ij},
+\\ \forall {\xi}_{ij}\geq 0.
+$$
+Then it can trained in the same way as a classifer.
+* [RankSVM原理](https://x-algo.cn/index.php/2016/08/09/ranksvm/)
+* [Learning to Rank算法介绍：RankSVM 和 IR SVM](https://www.cnblogs.com/bentuwuying/p/6683832.html)
+* [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
+* [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
+* [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
 
 ### LambdaRank
 
@@ -793,55 +776,22 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [X] https://www.jianshu.com/p/96173f2c2fb4
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 
-### LambdaLoss
-
-LambdaRank is a novel algorithm that incorporates ranking metrics into its learning procedure.
-The underlying loss that LambdaRank optimizes for remains unknown until now.
-Due to this, there is no principled way to advance the LambdaRank algorithm further.
-The LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
-A commonly used pairwise loss function is the logistic loss. LambdaRank is a special configuration with a well-defined loss
-in the LambdaLoss framework, and thus provide theoretical justification for it.
-More importantly, the LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
-
-A learning-to-rank algorithm is to find a ranking model $\Phi$ that
-can predict the relevance scores ${s}$ for all documents in a query:
-$$\Phi(x): X\to S.$$
-We formulate the loss function in a probabilistic manner.
-Similar to previous work, we assume that scores of documents ${s}$ determine a distribution over all possible ranked lists or permutations.
-Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote the distribution.
-In our framework, we treat the ranked list ${\pi}$ as a hidden variable
-and define the loss based on the likelihood of observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a mixture model over ${\Pi}$:
-$$
-P(y|s)=\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s).
-$$
-
-We define the as the negative log likelihood based on the maximum likelihood principle:
-$$
-l(y,s)=-\ln(P(y|s))=-\ln(\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s)).
-$$
-
-And such a loss can be minimized by the well-known `Expectation-Maximization (EM)` algorithm.
-
-- [ ] [The LambdaLoss Framework for Ranking Metric Optimization](https://ai.google/research/pubs/pub47258)
-- [ ] [Michael Bendersky's publication on rankig](http://bendersky.github.io/pubs.html)
-- [ ] http://marc.najork.org/
-
-**Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank**
-
-We show that the loss functions of these methods are upper bounds of the measure-based ranking errors. As a result, the minimization of these loss functions will lead to the maximization of the ranking measures. The key to obtaining this result is to model ranking as a sequence of classification tasks, and define a so-called essential loss for ranking as the weighted sum of the classification errors of individual tasks in the sequence. We have proved that the essential loss is both an upper bound of the measure-based ranking errors, and a lower bound of the loss functions in the aforementioned methods. Our proof technique also suggests a way to modify existing loss functions to make them tighter bounds of the measure-based ranking errors. Experimental results on benchmark datasets show that the modifications can lead to better ranking performances, demonstrating the correctness of our theoretical analysis.
-
-- [ ] [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/)
-- [ ] [RankExplorer: Visualization of Ranking Changes in Large Time Series Data](https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/)
-- [ ] [Revisiting Approximate Metric Optimization in the Age of Deep Neural Networks](https://ai.google/research/pubs/pub48168)
-- [ ] [Revisiting Online Personal Search Metrics with the User in Mind](https://ai.google/research/pubs/pub48243)
-
-
 
 ### The Listwise Approach
 
 The listwise approach takes the entire set of documents associated with a query in the training data as the input and predicts their ground truth labels.
 Note that the listwise approach assumes that the ground truth labels are given in terms of permutations,
 while the judgments might be in other forms (e.g., relevance degrees or pairwise preferences).
+
+---|The Listwise Approach|---
+---|---|---|
+---|Listwise Loss Minimization | Direct Optimization of IR Measure
+Input Space| Document set $\mathrm X=\{x_1, x_2, \dots, x_m\}$ |Document set $\mathrm X=\{x_1, x_2, \dots, x_m\}$
+Output Space | Permutation |Ordered categories $\mathrm Y=\{y_1, y_2, \dots, y_m\}$
+Hypothesis Space | $h(\mathrm X) = sort\circ f(\mathrm X)$ | $h(\mathrm X)=f (\mathrm X)$
+Loss Function | Listwise loss| 1-surrogate measure
+
+
 
 #### SoftRank
 
@@ -972,7 +922,7 @@ The method of RankBoost adopts AdaBoost for the classification over document pai
 * **Output**: $f(x)=\sum_{t}\alpha_t f_t(x)$.
 
 
-Here $M(f, x, y)$ represents the evaluation measure. 
+Here $M(f, x, y)$ represents the evaluation measure.
 Due to the analogy to AdaBoost, AdaRank can focus on those hard queries and progressively minimize $1 −M(f, x, y)$.
 
 
@@ -1006,7 +956,7 @@ The difficulty of the analysis of MatrixNet algorithm is that the formula has ne
 + [Winning The Transfer Learning Track of Yahoo!’s Learning To Rank Challenge with YetiRank](http://proceedings.mlr.press/v14/gulin11a/gulin11a.pdf)
 + [MatrixNet: New Level of Search Quality](https://yandex.com/company/technologies/matrixnet/)
 + [The Ultimate Guide To Yandex Algorithms](https://salt.agency/blog/the-ultimate-guide-to-yandex-algorithms/)
-
++ https://yandex.com/
 
 ### Selective Gradient Boosting
 
@@ -1293,6 +1243,124 @@ $$L(\theta)=\log\prod_{i=1}^{m}P(\pi_i, \Sigma_I)=\sum_{i=1}^{m}\log\frac{\exp(\
 
 We can employ Gradient Descent to estimate the optimal parameters.
 
+### HodgeRank
+
+`HodgeRank` apply Hodge theory to the ranking problem. It is considered as an application of modern abstract mathemtics rather than as a technique in machine learning.
+The problem is always to evaluate some items and rank them.
+Learn a function
+$$f:\mathcal X \to \mathcal Y.$$
+
+* Data: Know $f$ on a (very small) subset $\Omega\subset \mathcal X$;
+* Model: Know that $f$ belogs to some class of functions $\mathcal F(x, y)$;
+* Ranking: Rank objects in some order.
+  * Scoring function $f:\mathcal X \to \mathbb{R}$;
+  * $f(x)> f(y)\iff x \succ y$, i.e., $x$ is preferred to $y$.
+
+Persi Diaconis, 1987 Wald Memorial Lectures:
+> A basic tenet of data analysis is this: If you’ve found some structure, take it out, and look at what’s left.
+> Thus to look at second order statistics it is natural to subtract away the observed first order structure.
+> This leads to a natural decomposition of the original data into orthogonal pieces.
+
+Hodge decomposition:
+$$\text{aggregate pairwise ranking}=\text{consistent}\oplus \text{loclly inconsisitent}\oplus \text{globally inconsistent}$$
+
+Ranking data live on **pairwise comparison graph** $G(E, V)$
+where $V$ is the set of alternatives, $E$ is pairs of alternatives to be compared.
+
+The basic models optimize over model class $M$
+$$\min_{X\in M}\sum_{\alpha, i, j}w_{i,j}^{\alpha}{(X_{i,j}-Y_{ij}^{\alpha})}^2$$
+where
+* $Y_{ij}^{\alpha}$ measures preference of $i$ over $j$ of voter $\alpha$.
+* $w_{i,j}^{\alpha}$ is metric; 1 if $\alpha$ made comparison for $\{i, j\}$, 0 otherwise.
+
+Kemeny optimization is set the condition
+$$M_K =\{ X\in\mathbb{R}^{n\times n}\mid X_{ij} = sign(s_i - s_j), s: V\to \mathbb{R} \}.$$
+
+Relaxed version:
+$$M_G =\{ X\in\mathbb{R}^{n\times n}\mid X_{ij} = s_i - s_j, s: V\to \mathbb{R} \}.$$
+
+Previous problem may be reformulated
+$$\min_{X\in M_G}{\|X-\bar Y\|}_{F, W}^2=\min_{X\in M_G}\sum_{\{i, j\}\in E}w_{i,j}{(X_{i,j} - \bar Y_{ij})}^2$$
+
+where $w_{i, j}=\sum_{\alpha}w_{i,j}^{\alpha}$ and $\bar Y_{i, j}=\sum_{\alpha}w_{i,j}^{\alpha}Y_{i,j}^{\alpha}/\sum_{\alpha}w_{i,j}^{\alpha}$.
+
+Why not just aggregate over scores directly? Mean score is afirst order statistics and is inadequate because
+
+- most voters would rate just a very small portion of the alternatives,
+- different alternatives may have different voters, mean scores affected by individual rating scales.
+
+**Formation of Pairwise Ranking**：Prediction
+
+- Linear Model: average score difference between i and j over all who have rated both,
+$$Y_{i,j}=\frac{\sum_{k}(X_{k,i} - X_{k, j}) }{|\{k\mid X_{k,i}, X_{k,j} exist\}|}.$$
+- Log-linear Model: logarithmic average score ratio of positive scores,
+$$Y_{i,j}=\frac{\sum_{k}(\log X_{k,i} - \log X_{k, j}) }{|\{k\mid X_{k,i}, X_{k,j} exist\}|}.$$
+- Linear Probability Model: probability j preferred to i in excess of purely random choice,
+$$Y_{i,j}=Pr(k\mid X_{k,j}>X_{k, i})-\frac{1}{2}.$$
+- Bradley-Terry Model: logarithmic odd ratio (logit),
+$$Y_{i,j}=\log\frac{Pr(k\mid X_{k,j} > X_{k, i})}{Pr(k\mid X_{k,j} < X_{k, i})}.$$
+***
+
+pairwise rankings that are gradient of score functions, i.e. consistent or integrable.
+
+Global is ranking given by solution to
+$$\min_{s\in C^0}{\|grad\,s-\bar Y\|}_{2,w}.$$
+Minimum norm solution is
+$$s^{\ast}=-{\Delta}_{0}^{\dagger} div\,\bar Y$$
+
+Divergence is
+$$div\,\bar Y(i)=\sum_{j\mid (i,j)\in E}w_{i,j}\bar Y_{i,j}.$$
+
+Graph Laplacian is
+$${[{\Delta}_{0}]}_{(i,j)}=
+\begin{cases}
+\sum_{i} w_{i,i}, &\text{if $i=j$};\\
+- w_{(i,j)}, &\text{if $j$ such that $(i,j)\in E$};\\
+0, &\text{otherwise}.
+\end{cases}$$
+
+- [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
+- [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
+- [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
+- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](http://repository.ust.hk/ir/Record/1783.1-90160)
+- [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](https://arxiv.org/abs/1711.05957)
+- [ ] http://www.stat.uchicago.edu/~lekheng/
+- [ ] http://www.math.pku.edu.cn/teachers/yaoy/
+- [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
+- [ ] [Graph Helmholtzian and Rank Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/lekhenglim-nips.pdf)
+
+### Probabilistic relevance model
+
+- http://www.sc.ehu.es/ccwbayes/members/ekhine/tutorial_ranking/info.html
+- https://nlp.stanford.edu/IR-book/html/htmledition/probabilistic-information-retrieval-1.html
+- https://www.wikiwand.com/en/Probabilistic_relevance_model
+- http://www.sc.ehu.es/ccwbayes/members/ekhine/tutorial_ranking/data/slides.pdf
+
+#### Mallows Ranking Models and Generalized Mallows models
+
+It is one of `probabilistic ranking models`.
+Mallows model  is defined as a parametric model
+$$\mathbb P_{\theta, \pi_0, d}(\pi)=\frac{1}{\Phi(\theta, d)}\exp(-\theta d(\pi, \pi_0))$$
+where
++ $\pi$ is a permutations of $\{1, 2, \cdots, N\}$.
++ $\theta > 0$ is the dispersion parameter.
++ $\pi_0$ is the central ranking.
++ $d(\cdot, \cdot)$ is a a discrepancy function of permutations, which is right invariant $d(\pi, d)=d(\pi\circ \sigma^{-1}, id)$ for $\pi, d$ in  permutations of $\{1, 2, \cdots, N\}$.
++ $\Phi(\theta, d)$ is the normalizing constant.
+
+Mallows primarily considered two special cases of this model:
+
+1. Spearman’s rho: $d(\pi, d)=\sum_{i=1}^{n}(\pi(i)-d(i))^2$,
+2. Kendall’s tau: $d(\pi, d)=inv(\pi\circ d^{-1})$,
+
+where $inv(\sigma)$ is the number of inversions of permutation $\sigma$, i.e., $inv(\sigma)$ is the number of the set $\{(i, j)\mid i<j , \sigma(i)>\sigma(j)\}$.
+
+It showed that if the central ranking $\pi_0$ is known, the MLE of $\theta$ (or $\vec \theta$) can be easily found by convex optimization. When the number of items $n$ is large, learning a complete
+ranking model becomes impracticable.
+
+- [Mallows Ranking Models: Maximum Likelihood Estimate and Regeneration](http://proceedings.mlr.press/v97/tang19a/tang19a.pdf)
+- [Consensus ranking under the exponential model](https://www.stat.washington.edu/sites/default/files/files/reports/2007/tr515.pdf)
+- [Probabilistic Preference Learning with the Mallows Rank Model](http://www.jmlr.org/papers/volume18/15-481/15-481.pdf)
 ----
 **Deep Online Ranking System**
 
@@ -1360,3 +1428,72 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 * https://blog.csdn.net/lthirdonel/article/details/80021282
 * https://arxiv.org/abs/1808.04957v1
 * http://ceur-ws.org/Vol-1127/paper4.pdf
+
+### Loss Function in Ranking
+
+#### LambdaLoss
+
+LambdaRank is a novel algorithm that incorporates ranking metrics into its learning procedure.
+The underlying loss that LambdaRank optimizes for remains unknown until now.
+Due to this, there is no principled way to advance the LambdaRank algorithm further.
+The LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
+A commonly used pairwise loss function is the logistic loss. LambdaRank is a special configuration with a well-defined loss
+in the LambdaLoss framework, and thus provide theoretical justification for it.
+More importantly, the LambdaLoss framework allows us to define metric-driven loss functions that have clear connection to different ranking metrics.
+
+A learning-to-rank algorithm is to find a ranking model $\Phi$ that
+can predict the relevance scores ${s}$ for all documents in a query:
+$$\Phi(x): X\to S.$$
+We formulate the loss function in a probabilistic manner.
+Similar to previous work, we assume that scores of documents ${s}$ determine a distribution over all possible ranked lists or permutations.
+Let ${\Pi}$ denote a ranked list and we use ${P(\pi |s) : \pi \in \Pi}$ to denote the distribution.
+In our framework, we treat the ranked list ${\pi}$ as a hidden variable
+and define the loss based on the likelihood of observing relevance ${y}$ given ${s}$ (or equivalently ${\Phi}$ and ${x}$) using a mixture model over ${\Pi}$:
+$$
+P(y|s)=\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s).
+$$
+
+We define the as the negative log likelihood based on the maximum likelihood principle:
+$$
+l(y,s)=-\ln(P(y|s))=-\ln(\sum_{\pi\in\Pi}P(y|s,\pi)P(\pi|s)).
+$$
+
+And such a loss can be minimized by the well-known `Expectation-Maximization (EM)` algorithm.
+
+- [ ] [The LambdaLoss Framework for Ranking Metric Optimization](https://ai.google/research/pubs/pub47258)
+- [ ] [Michael Bendersky's publication on rankig](http://bendersky.github.io/pubs.html)
+- [ ] http://marc.najork.org/
+
+#### Essential Loss
+
+We show that the loss functions of these methods are upper bounds of the measure-based ranking errors. As a result, the minimization of these loss functions will lead to the maximization of the ranking measures. The key to obtaining this result is to model ranking as a sequence of classification tasks, and define a so-called essential loss for ranking as the weighted sum of the classification errors of individual tasks in the sequence. We have proved that the essential loss is both an upper bound of the measure-based ranking errors, and a lower bound of the loss functions in the aforementioned methods. Our proof technique also suggests a way to modify existing loss functions to make them tighter bounds of the measure-based ranking errors. Experimental results on benchmark datasets show that the modifications can lead to better ranking performances, demonstrating the correctness of our theoretical analysis.
+
+First, we propose an alternative representation of the labels of objects (i.e., multi-level ratings). The
+basic idea is to construct a permutation set, with all the permutations in the set being consistent with
+the labels. The definition that a permutation is consistent with multi-level ratings is given as below.
+> Given multi-level ratings $\mathcal L$ and permutation $y$, we say $y$ is consistent with $\mathcal L$, if for
+$\forall i, s \in \{1, \dots, n\}$ satisfying $i < s$, we always have $l(y(i)) \geq l(y(s))$, where $y(i)$ represents the index
+of the object that is ranked at the i-th position in $y$. We denote $Y_{\mathcal L} = \{\text{y} | \text{y is consistent with $\mathcal L$}\}$.
+
+Second, given each permutation $y \in Y_{\mathcal L}$, we decompose the ranking of objects $\mathrm x$ into several sequential steps. For each step s, we distinguish $x_{y(s)}$, the object ranked at the s-th position in $y$, from
+all the other objects ranked below the s-th position in $y$, using ranking function $f$.
+Specifically, we denote $\mathrm x_{(s)} = \{x_{y(s)}, \cdots, x_{y(n)}\}$ and define a classifier based on $f$, whose target output is $y(s)$,
+$$T_f(\mathrm x_{(s)})=\arg\max_{i\in\{y(s), y(s+1), \dots, y(n)\}}f(x_j).$$
+The 0-1 loss for this classification task can be written as follows, where the second equality is based on the definition of $T_f$,
+$$l_s(f;\mathrm X_{(s)}, y(s))=\mathbb I_{\{T_f(\mathrm x_{(s)}\not=y(s))\}}=1 -\prod_{i=s+1}^{n}\mathbb I_{\{f(x_{y(s)})> f(x_{y(i)})\}}.$$
+
+Third, we assign a non-negative weight $\beta(s), s=1,2,\cdots, n$ to the classification task at the
+s-th step, representing its importance to the entire sequence. We compute the weighted sum of the
+classification errors of all individual task,
+$$L_{\beta}(f; \mathrm x, y)=\sum_{s=1}\beta(s)(1-\prod_{i=s+1}\mathbb I_{\{f(x_{y(s)})>f(x_{y(i)})\}})$$
+
+Then the essential loss for ranking is defined the minimum value of the weighted sum over all the permutation
+$$L_{\beta}(f;\mathrm x, \mathcal L)=\min_{y\in Y_{\mathcal L}} L_{\beta}(f; \mathrm x, y).$$
+
+Denote the ranked list produced by $f$ as $\pi_f$ . Then it is easy to verify that
+$$L_{\beta}(f;\mathrm x, \mathcal L)= 0\iff \exists y\in Y_{\mathcal L}\quad satisfing \quad  L_{\beta}(f; \mathrm x, y)=0\iff \pi_f=y\in Y_{\mathcal L}.$$
+
+- [ ] [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/)
+- [ ] [RankExplorer: Visualization of Ranking Changes in Large Time Series Data](https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/)
+- [ ] [Revisiting Approximate Metric Optimization in the Age of Deep Neural Networks](https://ai.google/research/pubs/pub48168)
+- [ ] [Revisiting Online Personal Search Metrics with the User in Mind](https://ai.google/research/pubs/pub48243)

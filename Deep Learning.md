@@ -1,6 +1,6 @@
 # Deep Learning
 
-![https://www.artsky.com/read/524](https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg)
+<img title="https://www.artsky.com/read/524" src="https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg" width="60%" />
 
 * https://aifiddle.io/
 * https://www.wikiwand.com/en/Universal_approximation_theorem
@@ -130,8 +130,9 @@ where
 3. For [offline learning](https://www.wikiwand.com/en/Offline_learning), the second step may be repeated until the iteration error $\frac{1}{s}\sum_{j=1}^{s}|d_{j}-y_{j}(t)|$ is less than a user-specified error threshold $\gamma$, or a predetermined number of iterations have been completed, where _s_ is again the size of the sample set.
 
 $\color{lime}{Note}$: the perceptron model is linear classifier, i.e. the training data set $D$ is linearly separable such that the learning algorithm can converge.
+
 ***
-|||
+|----|----|
 |:-------------:|:-----------------:|
 |<img src=https://www.i-programmer.info/images/stories/Core/AI/DeepLearning/neuron.jpg width = 80% />|<img src=https://s.hswstatic.com/gif/brain-neuron-types-a.gif width = 80% />|
 |[Perceptrons](https://www.wikiwand.com/en/Perceptrons_(book))|[人工神经网络真的像神经元一样工作吗？](https://www.jqr.com/article/000595)|
@@ -140,6 +141,11 @@ $\color{lime}{Note}$: the perceptron model is linear classifier, i.e. the traini
 More in [Wikipedia page](https://www.wikiwand.com/en/Perceptron).
 
 It is the first time to model cognition.
+- [Deep Learning and Brain](https://elsc.huji.ac.il/events/elsc-conference-10)
+- [Deep Learning for Cognitive Computing, Theory (Course code: TIES4910) 5 ECTS, Autumn Semester](http://www.cs.jyu.fi/ai/vagan/DL4CC.html)
+- [Theoretical Neuroscience and Deep Learning Theory](http://videolectures.net/deeplearning2017_ganguli_deep_learning_theory/)
+- [Bridging Neuroscience and Deep Machine Learning, by building theories that work in the Real World.](https://ankitlab.co/)
+- https://ankitlab.co/talks/
 
 <img src="http://www.cs.jyu.fi/ai/vagan/DL4CC_files/image003.gif" width="50%" />
 
@@ -593,12 +599,12 @@ And the gradient of the first layer is computed by
 $$
 \frac{\partial L(x_0,y_0)}{\partial W_1^i}
 =\sum_{j}\frac{\partial L(x_0,y_0)}{\partial y^j}\frac{\partial y^j}{\partial z}\frac{\partial z}{\partial W_1^i}       \\
-=\sum_{j}\frac{\partial L}{\partial y^j}
-[\sum_{k}\frac{\partial y^j}{\partial H^k}
+=\sum_{j}\underbrace{\frac{\partial L}{\partial y^j}
+\underbrace{[\sum_{k}\frac{\partial y^j}{\partial H^k}
 \sum_{m}\frac{\partial H^k}{\partial H_3^m}
 \sum_{n}\frac{\partial H_3^k}{\partial H_2^n}
-\sum_{r}\frac{\partial H_2^n}{\partial H_1^r}]
-\frac{\partial H_1^i}{\partial W_1^i}.
+\sum_{r}\frac{\partial H_2^n}{\partial H_1^r}]}_{\text{Chian Rule}}
+\frac{\partial H_1^i}{\partial W_1^i} }_{\text{BackPropagation}}.
 $$
 
 See more information on backpropagation in the following list
@@ -607,15 +613,16 @@ See more information on backpropagation in the following list
 * [Backpropagation on Wikipedia](https://www.wikiwand.com/en/Backpropagation);
 * [Automatic differentiation on Wikipedia](https://www.wikiwand.com/en/Automatic_differentiation);
 * [backpropagation on brilliant](https://brilliant.org/wiki/backpropagation/);
+* [Who invented backpropagation ?](http://people.idsia.ch/~juergen/who-invented-backpropagation.html);
 * An introduction to automatic differentiation at <https://alexey.radul.name/ideas/2013/introduction-to-automatic-differentiation/>;
 * Reverse-mode automatic differentiation: a tutorial at <https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation>.
-* [Who invented backpropagation ?](http://people.idsia.ch/~juergen/who-invented-backpropagation.html);
-* [Autodiff Workshop](https://autodiff-workshop.github.io/)
+* [Autodiff Workshop: The future of gradient-based machine learning software and techniques, NIPS 2017](https://autodiff-workshop.github.io/)
+* http://www.autodiff.org/
 * [如何直观地解释 backpropagation 算法？ - 景略集智的回答 - 知乎](https://www.zhihu.com/question/27239198/answer/537357910)
 * The chapter 2 *How the backpropagation algorithm works* at the online book <http://neuralnetworksanddeeplearning.com/chap2.html>
 * For more information on automatic differentiation see the book *Evaluating Derivatives: Principles and Techniques of Algorithmic Differentiation, Second Edition* by Andreas Griewank and Andrea Walther_ at <https://epubs.siam.org/doi/book/10.1137/1.9780898717761>.
-* https://maciejkula.github.io/2018/07/18/building-an-autodifferentiation-library/
-* https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation
+* [Building   autodifferentiatio n library](https://maciejkula.github.io/2018/07/18/building-an-autodifferentiation-library/)
+* [The World’s Most Fundamental Matrix Equation](https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation)
 
 <img src=http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg width=50% />
 
@@ -982,9 +989,9 @@ The $\ell_1$ norm penalty is also used in deep learning as in **LASSO**. It is t
 where $\lambda$ is a hyperparameter. Sparsity  brings to the model as shown as in **LASSO**.
 * [深度学习训练中是否有必要使用L1获得稀疏解?](https://www.zhihu.com/question/51822759/answer/675969996)
 
-`Max norm constraints` is to set an upper bound to regularize the networks, i.e., it is to minimize the constrainted cost function
+`Max norm constraints` is to set an upper bound to regularize the networks, i.e., it is to minimize the Constrained cost function
 $$
-J(\theta), \qquad s.t. \qquad \|\theta\|\leq c.
+J(\theta), \qquad s.t. \qquad \|\theta \| \leq c.
 $$
 
 Consider the fact that the parameters or weights are always in the matrix form, i.e.,
@@ -993,7 +1000,7 @@ $$\theta=\{W_1, W_2, \dots, W_n\}$$
 the regularization terms sometimes are in the sum of norm of matrix in each layer.
 
 `Tangent prop` is to minimize the cost function with penalty on gradient:
-\[ J(\theta)+\sum_{i} [(\nabla_x f(x)^T v^{(i)})]^2 \]
+$$ J(\theta)+\sum_{i} [(\nabla_x f(x)^T v^{(i)})]^2 $$
 
 <img title = "The Manifold Tangent Classifier" src="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_1440,w_720,f_auto,q_auto/v1/29096/manifold_copy_sycxlo.png" width="70%" />
 
@@ -1041,6 +1048,9 @@ It is to collect more datum in the statistical perspective.
 |![TF](http://beamandrew.github.io//images/deep_learning_101/tensors_flowing.gif)|
 
 #### Ablation Studies
+
+Ablation studies have been widely used in the field of neuroscience to tackle complex biological systems such as the extensively studied Drosophila central nervous system, the vertebrate brain and more interestingly and most delicately, the human brain. In the past, these kinds of studies were utilized to uncover structure and organization in the brain, i.e. a mapping of features inherent to external stimuli onto different areas of the neocortex. considering the growth in size and complexity of state-of-the-art artificial neural networks (ANNs) and the corresponding growth in complexity of the tasks that are tackled by these networks, the question arises whether ablation studies may be used to investigate these networks for a similar organization of their inner representations. In this paper, we address this question and performed two ablation studies in two fundamentally different ANNs to investigate their inner representations of two well-known benchmark datasets from the computer vision domain. We found that features distinct to the local and global structure of the data are selectively represented in specific parts of the network. Furthermore, some of these representations are redundant, awarding the network a certain robustness to structural damages. We further determined the importance of specific parts of the network for the classification task solely based on the weight structure of single units. Finally, we examined the ability of damaged networks to recover from the consequences of ablations by means of recovery training.
+
 
 * [Ablation Studies in Artificial Neural Networks](https://arxiv.org/abs/1901.08644)
 * [Ablation of a Robot’s Brain:
@@ -1838,7 +1848,8 @@ How can deep learning apply to them?
 
 Every neural network layer can then be written as a non-linear function
 $${H}_{i+1} = \sigma \circ ({H}_{i}, A)$$
-with ${H}_0 = {X}_{in}$ and ${H}_{d} = Z$ (or $Z$ for graph-level outputs), $d$ being the number of layers. The specific models then differ only in how $\sigma$ is chosen and parameterized.
+with ${H}_0 = {X}_{in}$ and ${H}_{d} = Z$ (or $Z$ for graph-level outputs), $d$ being the number of layers.
+The specific models then differ only in how $\sigma$ is chosen and parameterized.
 
 For example, we can consider a simple form of a layer-wise propagation rule
 $$
@@ -2048,6 +2059,7 @@ The deep learning method is more engineer. The computational evolutionary adapti
 
 * [Open Source Deep Learning Curriculum, 2016](https://www.deeplearningweekly.com/blog/open-source-deep-learning-curriculum/)
 * [Short Course of Deep Learning 2016 Autumn, PKU](http://www.xn--vjq503akpco3w.top/)
+* [Website for UVA Qdata Group's Deep Learning Reading Group](https://qdata.github.io/deep2Read/)
 * [Foundation of deep learning](https://github.com/soumyadsanyal/foundations_for_deep_learning)
 * [深度学习名校课程大全 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/31988246)
 * [Theories of Deep Learning (STATS 385)](https://stats385.github.io/)
@@ -2072,6 +2084,9 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * [Deep unrolling](https://zhuanlan.zhihu.com/p/44003318)
 * [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
 * [WHY DOES DEEP LEARNING WORK?](https://calculatedcontent.com/2015/03/25/why-does-deep-learning-work/)
+* [Hugo Larochelle’s class on Neural Networks](https://sites.google.com/site/deeplearningsummerschool2016/)
+* [Deep Learning Group @microsoft](https://www.microsoft.com/en-us/research/group/deep-learning-group/)
+* [Silicon Valley Deep Learning Group](http://www.svdlg.com/)
 * http://blog.qure.ai/notes/visualizing_deep_learning
 * http://blog.qure.ai/notes/deep-learning-visualization-gradient-based-methods
 * http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/
@@ -2094,7 +2109,7 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * https://deepai.org/
 * https://deepnotes.io/deep-clustering
 * http://www.phontron.com/class/nn4nlp2019/schedule.html
-
+* https://deeplearning-cmu-10707.github.io/
 
 ***
 
@@ -2127,6 +2142,13 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * [**Deep Learning course: lecture slides and lab notebooks**](https://m2dsupsdlclass.github.io/lectures-labs/)
 * [EE-559 – DEEP LEARNING (SPRING 2018)](https://fleuret.org/ee559/)
 * [The Functions of Deep Learning](https://sinews.siam.org/Details-Page/the-functions-of-deep-learning)
+* [Deep learning and visualization infrastructure (EVL)](https://cs.uic.edu/news-stories/997k-nsf-grant-deep-learning-and-visualization-infrastructure-evl/)
+* [NSF Center for Big Learning Creating INtelligence](http://nsfcbl.org/)
+* [National Academy of Sicence Colloquia: The Science of Deep Learning](http://www.nasonline.org/programs/nas-colloquia/completed_colloquia/science-of-deep-learning.html)
+* [MRI: Development of an Instrument for Deep Learning Research](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1725729&HistoricalAwards=false)
+* [National Center for Supercomputing Application](http://www.ncsa.illinois.edu/)
+* https://nsfcbl.cs.uoregon.edu/
+* http://www.andyli.ece.ufl.edu/
 * https://deeplearninganalytics.org/
 * https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-deep-learning
 * https://www.deeplearningwizard.com/

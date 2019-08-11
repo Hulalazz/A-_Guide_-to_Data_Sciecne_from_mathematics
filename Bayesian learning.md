@@ -1,5 +1,6 @@
 # Bayesian Learning and Probabilistic Programming
 
+- https://users.cs.duke.edu/~cynthia/
 - http://wilkeraziz.github.io/pages/landscape
 - https://probcomp.github.io/Gen/
 - https://m-clark.github.io/workshops.html
@@ -9,6 +10,7 @@
 - http://mlg.eng.cam.ac.uk/tutorials/07/
 - http://pandamatak.com/people/anand/771/html/html.html
 - https://www.cs.princeton.edu/courses/archive/fall11/cos597C/
+- [O'Bayes 2019: Objective Bayes Methodology Conference](https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/robert/0bayesconference)
 - [Bayesian Learning for Machine Learning: Part I ](https://wso2.com/blog/research/part-one-introduction-to-bayesian-learning)
 - [Philosophy of Bayesian Inference, Radford M. Neal, January 1998](https://www.cs.toronto.edu/~radford/res-bayes-ex.html)
 - [Understanding computational Bayesian statistics](https://xianblog.wordpress.com/2011/10/10/understanding-computational-bayesian-statistics/)
@@ -209,6 +211,9 @@ For $T=1$, it reduces to overparameterized logistic regression.
 
 ### Latent Dirichlet Allocation
 
+Latent Dirchlet Allocation(LDA) is a topic model in natural language processing.
+
+
 Generative  Process: $w \sim LDA$:
 * Draw each topic $\theta_k \sim Dir(\eta)$ for $k=1,\cdots, K$.
 * For each document:
@@ -292,6 +297,8 @@ Bayesian optimization usually uses `Gaussian process` regression.
 * [BOAT: Building auto-tuners with structured Bayesian optimization](https://blog.acolyer.org/2017/05/18/boat-building-auto-tuners-with-structured-bayesian-optimization/)
 * [The Intuitions Behind Bayesian Optimization](https://www.mindfoundry.ai/learning-hub/the-intuitions-behing-bayesian-optimization)
 
+## Bayesian Ensemble Methods
+
 ### Bayesian parameter averaging
 
 Bayesian parameter averaging (BPA) is an ensemble technique that seeks to approximate the Bayes optimal classifier by sampling hypotheses from the hypothesis space, and combining them using Bayes' law.
@@ -303,6 +310,31 @@ Bayesian parameter averaging (BPA) is an ensemble technique that seeks to approx
 Bayesian model combination (BMC) is an algorithmic correction to Bayesian model averaging (BMA). Instead of sampling each model in the ensemble individually, it samples from the space of possible ensembles (with model weightings drawn randomly from a Dirichlet distribution having uniform parameters). This modification overcomes the tendency of BMA to converge toward giving all of the weight to a single model.
 
 + https://www.wikiwand.com/en/Ensemble_learning
+
+### Bayesian Committe Machine 
+
+The Bayesian committee machine (BCM) is a novel approach to combining estimators
+which were trained on different data sets. 
+Although the BCM can be applied to the combination of any kind of estimators the main foci are Gaussian process regression and related systems such as regularization networks and smoothing splines for which the degrees of freedom increase with the number of training data. 
+Somewhat surprisingly, we find that the performance of the BCM improves 
+if several test points are queried at the same time and is optimal 
+if the number of test points is at least as large as the degrees of freedom of the estimator. 
+The BCM also provides a new solution for online learning with potential applications to data mining. 
+We apply the BCM to systems with fixed basis functions and discuss its relationship to Gaussian process regression. 
+Finally, we also show how the ideas behind the BCM can be applied in a non-Bayesian setting to extend the input dependent combination of estimators.
+
++ http://www.kernel-machines.org/publications/Tresp00
++ http://www.dbs.ifi.lmu.de/~tresp/papers/bcm6.pdf
++ http://www.dbs.ifi.lmu.de/~tresp/papers/kddpaper2.pdf
++ http://www.gaussianprocess.org/
+
+## Objective Bayes Methodology
+
+
+- [O'Bayes 2019: Objective Bayes Methodology Conference](https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/robert/0bayesconference)
+- [objective Bayes](https://bayesian.org/sectionschapters/objective-bayes/)
+- http://www.robotics.stanford.edu/~stong/papers/tong_thesis.pdf
+- https://www.bayes-pharma.org/objectives/
 
 ## Probabilistic Graphical Model
 
