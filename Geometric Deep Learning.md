@@ -80,7 +80,9 @@ What if we generalize these methods to connected data?
 ### Graph Embedding
 
 Graph embedding, preprocessing of graph data processing, is an example of representation learning to find proper numerical representation form of graph data structure.
-It maps the graph structure to numerical domain:  $f:\mathbf{G}\mapsto \mathbb{R}^{n}$.
+It maps the graph structure to numerical domain:  $f:\mathbf{G}\mapsto V\subset \mathbb{R}^{n}$.
+The goal when embedding a graph $G$ into a space  $V$ is to preserve the graph distance (the shortest path between a pair of vertices) in the space  $V$.
+
 
 - https://github.com/thunlp/NRLpapers
 - https://github.com/thunlp/GNNPapers
@@ -307,8 +309,11 @@ $$
 - [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
 - [ ] [word vector and semantic similarity](https://spacy.io/usage/vectors-similarity)
 
-#### Transformers and Beyond
+#### Transformers，BERT and Beyond
 
+
+https://zhuanlan.zhihu.com/p/70257427
+https://zhuanlan.zhihu.com/p/51413773
 * [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
 * [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) ](http://jalammar.github.io/illustrated-bert/)
 * [BERT-is-All-You-Need](https://github.com/Eurus-Holmes/BERT-is-All-You-Need)
@@ -316,6 +321,7 @@ $$
 * [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 * [Universal Transformers](https://mostafadehghani.com/2019/05/05/universal-transformers/)
 * [BertEmbedding](https://bert-embedding.readthedocs.io/en/latest/api_reference/bert_embedding.html)
+* http://nlp.seas.harvard.edu/2018/04/03/attention.html
 
 
 #### Gradient Boosted Categorical Embedding and Numerical Trees
@@ -371,11 +377,7 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 * [RDF2Vec: RDF Graph Embeddings and Their Applications](http://www.semantic-web-journal.net/system/files/swj1495.pdf)
 * [EmbedS: Scalable and Semantic-Aware Knowledge Graph Embeddings](https://expolab.org/papers/embeds-slides.pdf)
 
-#### Graph Embedding
-
-The goal when embedding a graph $G$ into a space  $V$ is to preserve the graph distance (the shortest path between a pair of vertices) in the space  $V$. 
-
-**graph2vec**
+#### graph2vec
 
 `graph2vec` is to learn data-driven distributed representations of arbitrary sized graphs in an unsupervised manner and are task agnostic.
 
@@ -404,7 +406,7 @@ The motivation of hyperbolic embedding is to combine structural information with
 
 The big goal when embedding a space into another is to **preserve distances and more complex relationships**. It turns out that hyperbolic space can better embed graphs (particularly hierarchical graphs like trees) than is possible in Euclidean space. Even better—angles in the hyperbolic world are the same as in Euclidean space, suggesting that hyperbolic embeddings are useful for downstream applications (and not just a quirky theoretical idea).
 
-The motivation is to embed structured, discrete objects such as knowledge graphs into a continuous representation that can be used with modern machine learning methods. Hyperbolic embeddings can preserve graph distances and complex relationships in very few dimensions, particularly for hierarchical graphs. In this website, we release hyperbolic embeddings that can be further integrated into applications related to knowledge base completion or can be supplied as features into various NLP tasks such as Question Answering. 
+The motivation is to embed structured, discrete objects such as knowledge graphs into a continuous representation that can be used with modern machine learning methods. Hyperbolic embeddings can preserve graph distances and complex relationships in very few dimensions, particularly for hierarchical graphs. In this website, we release hyperbolic embeddings that can be further integrated into applications related to knowledge base completion or can be supplied as features into various NLP tasks such as Question Answering.
 
 - [Spherical and Hyperbolic Embeddings of Data](https://www.cs.york.ac.uk/cvpr/embedding/index.html)
 - [Neural Embeddings of Graphs in Hyperbolic Space](https://arxiv.org/pdf/1705.10359.pdf)
@@ -415,8 +417,8 @@ The motivation is to embed structured, discrete objects such as knowledge graphs
 - [Implementing Poincaré Embeddings](https://rare-technologies.com/implementing-poincare-embeddings/)
 - [Hyperbolic Embedding search result @Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Hyperbolic+Embeddings)
 
-Since hyperbolic space is tree-like, it’s natural to consider embedding trees—which we can do with arbitrarily low distortion, for any number of dimensions! 
-It is shown that [how to extend this technique to arbitrary graphs, a problem with a lot of history in Euclidean space](https://arxiv.org/pdf/1804.03329.pdf)using a two-step strategy for embedding graphs into hyperbolic space:
+Since hyperbolic space is tree-like, it’s natural to consider embedding trees—which we can do with arbitrarily low distortion, for any number of dimensions!
+It is shown that [how to extend this technique to arbitrary graphs, a problem with a lot of history in Euclidean space](https://arxiv.org/pdf/1804.03329.pdf) using a two-step strategy for embedding graphs into hyperbolic space:
 
 1. Embed a graph $G = (V, E)$ into a tree $T$.
 2. Embed $T$ into the Poincaré ball.
@@ -610,7 +612,7 @@ where $\Delta$ is the Laplacian of the graph; $\hat{g}(\Lambda)$ is the polynomi
 
 Graph Convolution: Recursive Computation with Shared Parameters:
 
-* Represent each node based on its neighbourhood
+* Represent each node based on its neighborhood
 * Recursively compute the state of each node by propagating previous
 states using relation specific transformations
 * Backpropagation through Structure
@@ -620,9 +622,10 @@ states using relation specific transformations
 
 Every graph convolutional layer starts off with a shared node-wise feature transformation (in order to achieve a higher-level representation), specified by a weight matrix $W$. This transforms the feature vectors into $\vec{g}_i = {\bf W}\vec{h}_i$. After this, the vectors $\vec{g}_i$ are typically recombined in some way at each node.
 
-In general, to satisfy the localization property, we will define a graph convolutional operator as an aggregation of features across neighborhoods; defining $\mathcal{N}_i$ as the neighborhood of node i
-(typically consisting of all first-order neighbours of $i$ , including $i$ itself), we can define the output features of node $i$ as:
-$$\vec{h}'_i = \sigma\left(\sum_{j\in\mathcal{N}_i}\alpha_{ij}\vec{g}_j\right)$$
+In general, to satisfy the localization property, we will define a graph convolutional operator as an aggregation of features across neighborhoods;
+defining $\mathcal{N}_i$ as the neighborhood of node i (typically consisting of all first-order neighbors of $i$ , including $i$ itself),
+we can define the output features of node $i$ as:
+$$\vec{h}_i' = \sigma\left(\sum_{j\in\mathcal{N}_i}\alpha_{ij}\vec{g}_j\right)$$
 where $\sigma$ is some activation function such as **rectified linear unit (ReLU)** in ConvNet.
 
 #### SplineNets

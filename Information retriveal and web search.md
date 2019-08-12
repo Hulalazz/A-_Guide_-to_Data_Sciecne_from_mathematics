@@ -8,6 +8,7 @@
 - [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
+- [ ] https://ntent.com/, https://www.clearquery.io/, https://www.searchhub.io/
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
@@ -75,8 +76,9 @@ Search engine takes advantage of this idea: it is the best place to store  where
 
 <img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
 
-- [Regular Expressions, Text Normalization,Edit Distance](http://web.stanford.edu/~jurafsky/slp3/2.pdf)
+- [Regular Expressions, Text Normalization, Edit Distance](http://web.stanford.edu/~jurafsky/slp3/2.pdf)
 - [Introduction to ](https://spark-public.s3.amazonaws.com/cs124/slides/ir-1.pdf)
+- [solr-vs-elasticsearch](https://solr-vs-elasticsearch.com/)
 - [CH. 4: QUERY SPECIFICATION](http://searchuserinterfaces.com/book/sui_ch4_query_specification.html)
 
 #### Query Languages
@@ -128,19 +130,17 @@ Natural language processing(NLP) or natural language understanding(NLU)  facilit
 * [Exploring Query Parsers](https://lucidworks.com/post/exploring-query-parsers/)
 * [Query Understanding: An efficient way how to deal with long tail queries](https://www.luigisbox.com/blog/query-understanding/)
 * [The Art of Tokenization](https://www.ibm.com/developerworks/community/blogs/nlp/entry/tokenization?lang=en)
-* https://ntent.com/technology/query-understanding/
 
 <img src="https://ntent.com/wp-content/uploads/2017/01/Query-Understanding2.jpg" width="60%" />
 
 
-Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.php/NLP_Pipeline)
----|---|---
-[Query Auto Completion](https://www.jianshu.com/p/c7bc74d3657d)| Before the query input is finished|[Tokenization](http://mlwiki.org/index.php/Tokenization)
-[Spelling Correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html)| When the query input is finished|[Stop words removal](http://mlwiki.org/index.php/Stop_Words)
-[Semantic Analysis](https://quanteda.io/articles/pkgdown/examples/lsa.html)| After the query input is finished|[Text Normalization](http://mlwiki.org/index.php/Text_Normalization)
-[Query Suggestion](https://zhuanlan.zhihu.com/p/23693891)| After the query input is finished|[POS Tagging](http://nlpprogress.com/english/part-of-speech_tagging.html)
-[Intention Analysis](https://aiaioo.wordpress.com/tag/intention-analysis/)|  After the query input|[Named Entity Recogition](https://cs230-stanford.github.io/pytorch-nlp.html)
-
+Response | Time|
+---|---|
+[Query Auto Completion](https://www.jianshu.com/p/c7bc74d3657d)| Before the query input is finished|
+[Spelling Correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html)| When the query input is finished|
+[Semantic Analysis](https://quanteda.io/articles/pkgdown/examples/lsa.html)| After the query input is finished|
+[Query Suggestion](https://zhuanlan.zhihu.com/p/23693891)| After the query input is finished|
+[Intention Analysis](https://aiaioo.wordpress.com/tag/intention-analysis/) |  After the query input|
 
 * http://partofspeech.org/
 * https://nlpprogress.com/
@@ -152,6 +152,7 @@ Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.ph
   * Term Reweighting: Increase weight of terms in relevant documents and decrease weight of terms in irrelevant documents.
 + https://www.cs.bgu.ac.il/~elhadad/nlp18.html
 + [CH. 6: QUERY REFORMULATION](http://searchuserinterfaces.com/book/sui_ch6_reformulation.html)
++ [Relevance feedback and query expansion](https://nlp.stanford.edu/IR-book/html/htmledition/relevance-feedback-and-query-expansion-1.html)
 
 **Standard Rochio Method**
 
@@ -167,9 +168,44 @@ Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.ph
 
 ##### Query Auto Completion
 
+The auto complete is a drop-down list populated with suggestions of what one can write in the search box.
+
+The auto complete is a list of suggestions of what one can write in the search box to reach different products or categories.
+These suggestions will also be referred to as query suggestions or completions.
+After one has written a few letters of the beginning of the query and the list is populated with query suggestions
+that in some way match the input. In the normal case matching means that the suggestion starts with the input.
+
+
+- [Design and Implementation of an Auto Complete Algorithm for E-Commerce](https://www.eit.lth.se/sprapport.php?uid=454)
 - https://www.jianshu.com/p/c7bc74d3657d
+- https://blog.floydhub.com/gpt2/
 
 ##### Spelling Correction
+
+For simplicity let us first consider correction of individual misspelled words (e.g., “elefnat” to “elephant”).
+One simple approach to spelling error correction is to **calculate the edit distance between the query word and each of the dictionary words**.
+Dictionary words within a fixed range of edit distance or a variable range of edit distance depending on word length are selected as candidates for correction.
+There are at least two drawbacks for this approach, however.
+First, probabilities of word usages as well as word misspellings are not considered in the model.
+Second, context information of correction is not taken into consideration.
+
+To address the issues, probabilistic approaches, both generative approach and discriminative approach, have been proposed.
+Suppose that the query word is represented as $q$ and a correction is represented as $c$. We want to **find the correction $\hat{c}$ having the largest conditional probability $P(c|q)$**.
+Different ways of defining the model lead to different methods.
+
+By Bayes’ rule, we can consider finding the correction $\hat c$ having the
+largest product of probability $P(c)$ and conditional probability $P(q|c)$
+$$\hat c=\arg\max_{c} P(c\mid q)=\arg\max_{c}P(c)P(q\mid c).$$
+The former is called source model and the latter channel model.
+
+The source model can be trained by using the document collection
+and/or search log. (Due to the wide variety of searches it is better to
+find the legitimate words from data.) A straightforward way would be
+to estimate the probabilities of words based on their occurrences in the
+dataset with a smoothing technique applied.
+The channel model can be defined based on weighted edit distance,
+where the model is usually trained by using data consisting of pairs of
+correct word and misspelled word.
 
 - [Spelling correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html)
 - [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html)
@@ -177,7 +213,71 @@ Response | Time|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.ph
 
 ##### Query Suggestion
 
+When a user provides a root input, such as a search query, these algorithms dynamically retrieve, curate, and present a list of related inputs, such
+as search suggestions.
+Although ubiquitous in online platforms, a lack of research addressing the ephemerality of their outputs
+and the opacity of their functioning raises concerns of transparency and accountability on where inquiry is steered.
+
+<img src="https://github.com/syw2014/query-suggestion/blob/master/doc/qs_workflow.png" width="50%" />
+
+- [How Google Instant’s Autocomplete Suggestions Work](https://searchengineland.com/how-google-instant-autocomplete-suggestions-work-62592)
+- [Visual Query Suggestion](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/08/fp12729-zha.pdf)
+- [Query Suggestion @https://www.algolia.com](https://www.algolia.com/doc/guides/getting-insights-and-analytics/leveraging-analytics-data/query-suggestions/)
+- [Incremental Algorithms for Effective and Efficient Query Recommendation](http://ir.cs.georgetown.edu/downloads/spire2010broccolo.pdf)
+- [Auditing Autocomplete: Suggestion Networks and Recursive Algorithm Interrogation](https://www.shanjiang.me/publications/websci19_paper.pdf)
 - https://zhuanlan.zhihu.com/p/23693891
+- https://github.com/syw2014/query-suggestion
+- https://www.cnblogs.com/wangzhuxing/p/9574630.html
+- https://elasticsearch-py.readthedocs.io/en/master/api.html
+- https://elasticsearch.cn/article/142
+
+##### Query Expansion
+
+Query expansion is a technique studied intensively and widely in IR.
+The basic idea is to enrich the query with additional terms (words or phrases) and to use the expanded query to conduct search in order to circumvent the query-document mismatch challenge.
+
+<img src="https://img-blog.csdn.net/20160611222923822" width="80%" />
+
++ https://blog.csdn.net/baimafujinji/article/details/50930260
++ https://www.wikiwand.com/en/Query_expansion
++ https://nlp.stanford.edu/IR-book/html/htmledition/query-expansion-1.html
++ https://dev.mysql.com/doc/refman/5.5/en/fulltext-query-expansion.html
++ [Neural Query Expansion for Code Search](https://pldi19.sigplan.org/details/mapl-2019-papers/4/Neural-Query-Expansion-for-Code-Search)
+
+##### Query Segmentation
+
+Query segmentation is to separate the input query into multiple segments, roughly corresponding to natural language phrases, for improving search relevance.
+
++ https://arxiv.org/abs/1707.07835
++ http://ra.ethz.ch/CDstore/www2011/proceedings/p97.pdf
++ https://github.com/kchro/query-segmenter
+
+##### Query Understanding
+
+[Levels of Query Understanding](https://ntent.com/technology/query-understanding/#levels):
+
+NTENT’s Search platform choreographs the interpretation of singular query constituents, and the dissemination of relevant answers through a specialized combination of Language Detection, Linguistic Processing, Semantic Processing and Pragmatic Processing.
+
+* Language Detection: The first step is to understand which language the user is using. Sometimes this is obvious, but many things can make this hard. For example, many users find themselves forced to use a keyboard that makes it hard to use accented characters, so they “ascify” their query. Users sometimes use multiple languages within a single query (“code switching”) or proper names that are the same in many languages.
+* Linguistic Processing: Every language has its own rules for how text should be broken down into individual words (“tokenized”), whether distinctions of case and accent are significant, how to normalize words to a base form (“lemmatization” or “stemming”), and categorization of words and phrases by parts of speech (“POS tagging”).
+* Semantic Processing: A traditional keyword search engine would stop after linguistic processing, but NTENT’s technology goes further, and determines what the user’s words actually mean. Many words have multiple meanings (“homonyms”), and many concepts have multiple ways to express them (“synonyms”). Drawing on many sources of information, such as a large-scale ontology, notability data, and the user’s context (e.g., location), we are able to determine all the possible interpretations of the user’s query, and assign a probability to each one. By distinguishing a particular sense of a word, and by knowing which phrases denote a single concept, we are able to improve the precision of our applications. At the same time, by recognizing that multiple expressions refer to the same concept, and also that broad terms encompass narrower ones (“hyponymy”), we are able to improve recall. Furthermore, NTENT is able to analyze the syntax of how multiple words are combined into composite concepts.
+* Intent Detection (Pragmatic Processing): NTENT goes beyond just the surface semantics of the user’s utterance, and develops hypotheses about why they typed what they did: what their information need is; what transactions they intend to perform; what website they’re looking for; or what local facilities they’re trying to find. This inductive reasoning is key to harnessing NTENT’s extensive set of experts to give the user what they want.
+
+|[NLP Pipeline of Query Understanding](http://mlwiki.org/index.php/NLP_Pipeline)|
+|---|
+|[Tokenization](http://mlwiki.org/index.php/Tokenization)|
+|[Stop words removal](http://mlwiki.org/index.php/Stop_Words)|
+|[Text Normalization](http://mlwiki.org/index.php/Text_Normalization)|
+|[POS Tagging](http://nlpprogress.com/english/part-of-speech_tagging.html)|
+|[Named Entity Recogition](https://cs230-stanford.github.io/pytorch-nlp.html)|
+
+* [Query Understanding for Search on All Devices](https://www.wsdm-conference.org/2016/workshops.html)
+* https://sites.google.com/site/queryunderstanding/
+* https://ntent.com/technology/query-understanding/
+* [查询理解(Query Understanding)—查询改写总结](http://www.zhongruitech.com/956268106.html)
+* https://www.wikiwand.com/en/Query_understanding
+* https://www.luigisbox.com/blog/query-understanding/
+* https://github.com/DataEngg/Query-Understanding
 
 ##### Intention Analysis
 
@@ -193,6 +293,15 @@ where ${rel}_{i}$ is the relevance of the document and query.
 
 However, it is discussed how to compute the relevance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relevances.
 For other types information retrieval system, it is different to compute the relevance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
+
+|Features/Attributes for ranking|
+|---|
+|Average Absolute Query Frequency|
+|Query Length|
+|Average Absolute Document Frequency|
+|Document Length|
+|Average Inverse Document Frequency|
+|Number of Terms in common between query and document|
 
 ##### TF-IDF
 
@@ -210,6 +319,20 @@ which is to measure how popular the word $w$ i the document list.
 $$\text{tf-idf}=tf(w| doc)\times idf(w\mid D).$$
 
 - [tf-idf	weighting	has	many variants](https://spark-public.s3.amazonaws.com/cs124/slides/ir-2.pdf)
+
+##### Robertson-SparckJones Model
+
+**The goal of a probabilistic retrieval model is clearly to retrieve the documents with the highest probability of relevance to the given query.**
+
+Three random variables- the query $Q$, the document $D$ and thge relevance $R \in\{0,1\}$.
+The goal is to estiamte the rank of $D$ based on $P(R=1|Q,D)$.
+
+The basic idea is to compute $Odd(R=1|Q,D)$ using Bayes’ rule
+$$Odd(R=1\mid Q, D)=\frac{P(R=1\mid Q, D)}{P(R=0\mid Q, D)}=\frac{P(Q, D\mid R=1)}{P(Q, D\mid R=0)}\frac{P(R=1)}{P(R=0)}.$$
+
+- http://www.cs.cornell.edu/home/llee/papers/idf.pdf
+- http://www.minerazzi.com/tutorials/probabilistic-model-tutorial.pdf
+- http://www.cs.cornell.edu/courses/cs6740/2010sp/guides/lec05.pdf
 
 ##### BM25
 
@@ -301,6 +424,7 @@ Document similarity (or distance between documents) is a one of the central them
 - [ ] https://copyleaks.com/
 - [ ] https://www.wikiwand.com/en/Semantic_similarity
 - [ ] https://spacy.io/
+- [ ] https://fasttext.cc/
 
 #### Comparison and Matching
 
@@ -350,6 +474,8 @@ Each search is made up of $\color{red}{Match + Rank}$.
 * https://ekanou.github.io/dynamicsearch/
 * http://mlwiki.org/index.php/NLP_Pipeline
 
+
+
 ##### Learning to Match
 
 User’s intent is explicitly reflected in query such as keywords, questions.
@@ -393,10 +519,11 @@ Matching Function Learning:
 - [Deep Learning for Recommendation, Matching, Ranking and Personalization](http://sonyis.me/dnn.html)
 - [Tutorials on Deep Learning for Matching in Search and Recommendation](https://www2018.thewebconf.org/program/tutorials-track/tutorial-191/)
 - [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
+- [Semantic Matching in Search](http://www.hangli-hl.com/uploads/3/1/6/8/3168008/ml_for_match-step2.pdf)
 
 ##### Regularized Latent Semantic Indexing
 
-$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - U v_n\|}_2^2+\lambda_1\sum_{k=1}^K {\|u_k\|}_1+\lambda_2\sum_{n=1}^{N}{\|v_n \|}_2^2$$
+$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - U v_n\|}_2^2+\underbrace{\lambda_1\sum_{k=1}^K {\|u_k\|}_1}_{\text{topics are sparse}} + \underbrace{\lambda_2\sum_{n=1}^{N}{\|v_n \|}_2^2}_{\text{documents are smooth}}$$
 
 where
 - $d_n$ is term representation of doc $n$;
@@ -446,6 +573,12 @@ Calculate relevance by mimicking the human relevance judgement process
 3. Matching signals aggregation
 
 - [Deep Relevance Ranking Using Enhanced Document-Query Interactions](http://nlp.cs.aueb.gr/pubs/EMNLP2018Preso.pdf)
+- [DeepRank: A New Deep Architecture for Relevance Ranking in Information Retrieval](https://arxiv.org/pdf/1710.05649.pdf)
+
+#### Text Matching as Image Recognition
+
+- http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_CNNTextMatch.pdf
+- http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_BiLSTMTextMatch.pdf
 
 #### Semantic Search
 
@@ -519,19 +652,38 @@ In return, we should also look for opportunities to apply IR intuitions into imp
 
 ### Modeling Diverse Ranking with MDP
 
+Key points:
+
+-  Mimic user top-down browsing behaviors
+-  Model dynamic information needs with MDP state
+
+Staets $𝑠_𝑡=[\it Z_𝑡,\it X_𝑡,\mathrm h_𝑡]$ consists of
+* sequence of 𝑡 preceding documents, $\it Z_t$ and $\it Z_0=\emptyset$;
+* set of candidate documents, $\it X_t$ and $\it X_0 = \it X$
+* latent vector $\mathrm h_𝑡$, encodes user perceived utility from preceding documents, initialized with the information needs form the query: $\mathrm h_0=\sigma(V_qq)$
+
 MDP factors | Corresponding diverse ranking factors
 ---|---
 Timesteps | The ranking positions
-State | $𝑠_𝑡=[𝑍_𝑡,𝑋_𝑡,\mathrm h_𝑡]$
-Policy | $\pi(a_t\mid s_t=[𝑍_t,𝑋_t,\mathrm h_t])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
+States | $𝑠_𝑡=[\it Z_𝑡,\it X_𝑡,\mathrm h_𝑡]$
+Policy | $\pi(a_t\mid s_t=[\it Z_t, \it X_t,\mathrm h_t])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
 Action | Selecting a doc and placing it to rank $\it t+1$
 Reward | Based on evaluation measure αDCG, SRecall etc.
-State Transition | $s_{t+1}=T(s_t, a_t)$
+State Transition | $s_{t+1}=T(s_t, a_t)=[Z_t\oplus \{\mathrm x_{m(a_t)}\}, \it X_t\setminus \{\mathrm x_{m(a_t)} \}, \sigma(V\mathrm  x_{m(a_t)}+W\mathrm h_t)]$
+
+Here $\mathrm x_{m(a_t)}$ is document embedding.
+Model parameters $\Theta=(V_q, U, V, W)$ is to optimize the expected reward.
+The goal is maximizing expected return (discounted sum of rewards) of each training query
+$$\max_{\Theta} v(q)=\mathbb E_{\pi}G_0=\mathbb E_{\pi}[\sum_{k=0}^{M-1}\gamma^k r_{k+1}].$$
+
+Monte-Carlo stochastic gradient ascent is used to conduct the optimization (REINFORCE algorithm)
+$$\nabla_{\Theta}\hat{v}(q)=\gamma^t G_t\nabla_{\Theta}\log(\pi(a_t\mid S_t;\Theta)).$$
 
 + http://www.bigdatalab.ac.cn/~gjf/papers/2017/SIGIR2017_MDPDIV.pdf
-+ http://www.bigdatalab.ac.cn/~junxu/publications/CCF@U_RL4IR.pdf
++ [Reinforcement Learning to Rank with Markov Decision Process](http://www.bigdatalab.ac.cn/~junxu/publications/CCF@U_RL4IR.pdf)
 + [Deep and Reinforcement Learning for Information Retrieval](http://cips-upload.bj.bcebos.com/ssatt2018%2FATT9_2_%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%96%B0%E8%BF%9B%E5%B1%95.pdf)
 + [Improving Session Search Performance with a Multi-MDP Model](http://www.thuir.cn/group/~YQLiu/publications/AIRS18Chen.pdf)
++ https://github.com/ICT-BDA/EasyML
 
 ### Personalized Search
 
@@ -658,10 +810,16 @@ It is becasue medical information is really professional while critical.
 #### Multimodal Search
 
 * http://www.khresmoi.eu/overview/
+* [Multi-Task Learning with Neural Networks for Voice Query Understanding on an Entertainment Platform](https://www.kdd.org/kdd2018/accepted-papers/view/multi-task-learning-with-neural-networks-for-voice-query-understanding-on-a)
 
-### Knowledgment Map
+### Knowledge Graphs
 
 Search is not only on string but also things.
+
++ [The Second Workshop on Knowledge Graphs and Semantics for Text Retrieval, Analysis, and Understanding](https://kg4ir.github.io/)
++ https://twiggle.com/
++ https://www.clearquery.io/how
++ [The Entity & Language Series: Translation and Language APIs Impact on Query Understanding & Entity Understanding (4 of 5)](https://mobilemoxie.com/blog/the-entity-language-series-translation-and-language-apis-impact-on-query-understanding-entity-understanding-4-of-5/)
 
 ### Labs and Resources  
 
@@ -701,8 +859,8 @@ Search is not only on string but also things.
 + [Information Overload Research Group](https://iorgforum.org/)
 + [National Information Standards Organization by ANSI](https://www.niso.org/niso-io)
 + [International Society  of Music Information Retrieval](https://ismir.net/)
-+ [OpenClinical information retrieval](http://www.openclinical.org/informationretrieval.html)
-+ [Medical Libary Association](https://www.mlanet.org/)
++ [Open Clinical information retrieval](http://www.openclinical.org/informationretrieval.html)
++ [Medical Library Association](https://www.mlanet.org/)
 + [AMIA](https://www.amia.org/)
 + [INternational Medical INformatics Association](https://imia-medinfo.org/wp/)
 + [Association of Directors of Information System](https://amdis.org/)
@@ -710,7 +868,7 @@ Search is not only on string but also things.
 #### Conferences on Information Retrieval
 
 + https://datanatives.io/conference/
-+ [Natrual Language Processing in Information Retrieval](http://nlpir.net/)
++ [Natural Language Processing in Information Retrieval](http://nlpir.net/)
 + [HE 3RD STRATEGIC WORKSHOP ON INFORMATION RETRIEVAL IN LORNE (SWIRL)](https://sites.google.com/view/swirl3/home)
 + [Text Retrieval COnference(TREC)](https://trec.nist.gov/)
 + [European Conference on Information Retrieval (ECIR 2018)](https://www.ecir2018.org/)
@@ -738,7 +896,7 @@ FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 + [DYNAMIC SEARCH: Develop algorithms and evaluation methodologies with the user in the search loop](https://ekanou.github.io/dynamicsearch/)
 + [European Summer School in Information Retrieval ’15](http://www.rybak.io/european-summer-school-in-information-retrieval-15/)
 
-#### Cources on Information Retrieval and Search
+#### Courses on Information Retrieval and Search
 
 + [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)
 + [LING 289: History of Computational Linguistics
@@ -754,7 +912,7 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
 + [INFORMATION RETRIEVAL FOR GOOD](http://romip.ru/russir2018/)
 + [Search user interfaces](http://searchuserinterfaces.com/book/)
-+ [Morden Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
++ [Modern Information Retrieval](http://grupoweb.upf.edu/mir2ed/home.php)
 + [Search Engine: Information Retrieval in Practice](http://www.search-engines-book.com/)
 + [Information Retrieval  潘微科](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/IR201702/index.html)
 + [Information Organization and Retrieval: INFO 202](http://courses.ischool.berkeley.edu/i202/f10/)
@@ -762,5 +920,5 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [Intelligent Information Retrieval](http://facweb.cs.depaul.edu/mobasher/classes/CSC575/)
 + [CSc 7481 / LIS 7610 Information Retrieval Spring 2008](http://www.csc.lsu.edu/~kraft/courses/csc7481.html)
 + [Winter 2016 CSI4107: Information Retrieval and the Internet](http://www.site.uottawa.ca/~diana/csi4107/)
-+ [INformation Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
++ [Information Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
 + https://searchpatterns.org/
