@@ -9,11 +9,12 @@
 * https://zhuanlan.zhihu.com/p/
 * http://graphics.cs.cmu.edu/courses/15769/fall2016/lectures
 * https://zhuanlan.zhihu.com/jackwish
+* https://machinethink.net/blog/compressing-deep-neural-nets/
 
 [To revolutionize deep learning with real-time AI solutions that scale from the edge to the datacenter](https://wavecomp.ai/).
 
 The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
-The optimization methods are used to train the deep neural network. 
+The optimization methods are used to train the deep neural network.
 To boost the training of deep learning, we would like to design faster optimization methods such as `ADAM` and delicate architure of neural network such as `ResNet`.
 After training, the parameters of the deep neural network are fixed and used for inference, we would do much matrix multiplication via the saved fixed parameters of deep neural network.  
 From [What’s the Difference Between Deep Learning Training and Inference?](https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/)
@@ -48,12 +49,18 @@ Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
 * [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
 * [AutoML 的十大开源库](https://www.52cs.com/archives/3138)
 + https://github.com/BlueWinters/research
++ [Reference workloads for modern deep learning methods](https://github.com/rdadolf/fathom)
 
+<img src="https://www.researchgate.net/profile/Gu_Yeon_Wei/publication/306398249/figure/fig2/AS:614016141512719@1523404264555/Breakdown-of-execution-time-by-operation-type-for-each-Fathom-workload.png" width="80%" />
 
 ## Sys for Deep Learning
 
+Over the past few years, deep learning has become an important technique to successfully solve problems in many different fields, such as vision, NLP, robotics. An important ingredient that is driving this success is the development of deep learning systems that efficiently support the task of learning and inference of complicated models using many devices and possibly using distributed resources. The study of how to build and optimize these deep learning systems is now an active area of research and commercialization.
+
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
 
+* [Deep Learning for Computer Architects](https://www.morganclaypool.com/doi/abs/10.2200/S00783ED1V01Y201706CAC041)
+* [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
 * [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
 * [The fastest path to machine learning integration](https://intel.github.io/dffml/)
 * https://www.xilinx.com/
@@ -61,7 +68,6 @@ Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
 * [The ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE)](https://2018.fseconference.org/home)
 * [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
 * [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu)
-* [Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks ](http://eyeriss.mit.edu/)
 * http://impact.crhc.illinois.edu/default.aspx
 * https://www.alphaics.ai/
 * http://www.cambricon.com/
@@ -83,7 +89,7 @@ Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
 * https://paco-cpu.github.io/paco-cpu/
 * [Programmable Inference Accelerator](https://developer.nvidia.com/tensorrt)
 * https://github.com/NervanaSystems/ngraph
-
+* https://rdadolf.github.io/fathom/
 
 ## Compilers for Deep Learning
 
@@ -119,7 +125,7 @@ Matrix computation dense application like deep neural network would take the adv
 ### Generalized Matrix Multiplication Optimization
 
 If the computation speed  of matrix operation is boosted, the inference of deep learning model is accelerated.
-Matrix multiplication  $C_{M\times N}=A_{M\times K}B_{K\times N}$ via dot product is defined as 
+Matrix multiplication  $C_{M\times N}=A_{M\times K}B_{K\times N}$ via dot product is defined as
 $$C[m,n]=\left< A[m,:], B[:, m]\right>=\sum_{k=1}^{K}A[m, k]\times B[k, n]$$
 ```
 for (int m = 0; m < M; m++) {
@@ -132,9 +138,11 @@ for (int m = 0; m < M; m++) {
 }
 ```
 
+It  needs $O(MKN)$ multiplication.
+
 **Strassen Algorithms**
 
-It is based on block-mulitiplication. It is required that $C\in\mathbb R^{2^n\times 2^n}$.
+It is based on block-multiplication. It is required that $C\in\mathbb R^{2^n\times 2^n}$.
 
 The matrice are rearranged as blocks:
 $$
@@ -147,14 +155,19 @@ $$
   \begin{bmatrix}
    \mathbf{B}_{1,1} & \mathbf{B}_{1,2} \\
    \mathbf{B}_{2,1} & \mathbf{B}_{2,2}
-  \end{bmatrix},
+  \end{bmatrix},\\
 \mathbf{C} =
   \begin{bmatrix}
    \mathbf{C}_{1,1} & \mathbf{C}_{1,2} \\
    \mathbf{C}_{2,1} & \mathbf{C}_{2,2}
-  \end{bmatrix} $$
+  \end{bmatrix} =
+  \begin{bmatrix}
+   \mathbf{A}_{1,1}\mathbf{B}_{1,1} & \mathbf{A}_{1,2}\mathbf{B}_{1,2} \\
+   \mathbf{A}_{2,1}\mathbf{B}_{2,1} & \mathbf{A}_{2,2}\mathbf{B}_{2,2}
+  \end{bmatrix}.
+  $$
 
-Submatrix(blocks) multiplication is performed in the following way: 
+Submatrix(blocks) multiplication is performed in the following way:
 $$
 \mathbf{M}_{1} =\left(\mathbf{A}_{1,1}+\mathbf{A}_{2,2}\right)\left(\mathbf{B}_{1,1}+\mathbf{B}_{2,2}\right) \\
 \mathbf{M}_{2} =\left(\mathbf{A}_{2,1}+\mathbf{A}_{2,2}\right) \mathbf{B}_{1,1} \\
@@ -165,7 +178,7 @@ $$
 \mathbf{M}_{7} =\left(\mathbf{A}_{1,2}-\mathbf{A}_{2,2}\right)\left(\mathbf{B}_{2,1}+\mathbf{B}_{2,2}\right)
 $$
 
-And then 
+And then
 $$
 \mathbf{C}_{1,1} =\mathbf{M}_{1}+\mathbf{M}_{4}-\mathbf{M}_{5}+\mathbf{M}_{7} \\
 \mathbf{C}_{1,2} =\mathbf{M}_{3}+\mathbf{M}_{5} \\
@@ -175,9 +188,29 @@ $$
 
 **Coppersmith–Winograd Algorithms**
 
+The tensor corresponding to the multiplication of an $m\times n$ matrix by an $n\times  p$ matrix is
+$$\left<m, n, p\right>=\sum_{i=1}^{m}\sum_{j=1}^{p}\sum_{k=1}^{n} a_{ik}\otimes b_{kj}\otimes c_{ij}.$$
+
+One can define in a natural way the tensor product of two tensors. In particular, for matrix multipli-
+cation tensors, we obtain the following identity: for any positive integers $m, m_0, n, n_0, p, p_0$,
+$$\left<m, n, p\right>\otimes \left<m_0, n_0, p_0\right>=\left<m m_0, n n_0,  p p_0\right>.$$
+
+Consider three vector spaces $U$, $V$ and $W$ over the field $\mathbb F$ and
+* $U=span\{x_1, \dots, x_{dim(U)}\}$,
+* $V=span\{y_1, \dots, y_{dim(U)}\}$,
+* $W=span\{z_1, \dots, z_{dim(U)}\}$.
+
+A tensor over $(U, V, W)$ is an element of $U\otimes V\otimes W$ i.e., a formal sum
+$$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}}_{\in\mathbb F} x_{u}\otimes y_{v}\otimes z_{w}.$$
+
+
+
 <img src="https://jackwish.net/images/2019/qnnpack/qnnpack-gemm-reduce.jpg" width="70%" />
 <img src="https://jackwish.net/images/2019/gemm-opt/gemm-1x4.svg" width="60%" />
 
+* [Powers of Tensors and Fast Matrix Multiplication](https://simons.berkeley.edu/sites/default/files/docs/2438/slideslegall.pdf)
+* https://www.kkhaydarov.com/matrix-multiplication-algorithms/
+* https://github.com/flame/blislab
 * [通用矩阵乘和卷积优化](https://jackwish.net/gemm-optimization-and-convolution.html)
 * [Fast Matrix Multiplication Algorithms](https://www.ics.uci.edu/~fastmm/)
 * [Anatomy of high-performance matrix multiplication](https://dl.acm.org/citation.cfm?id=1356053)
@@ -189,6 +222,10 @@ $$
 * [On the Coppersmith–Winograd method](http://www.cs.toronto.edu/~yuvalf/Limitations.pdf)
 * [Breaking the Coppersmith-Winograd barrier](https://www.cs.rit.edu/~rlc/Courses/Algorithms/Papers/matrixMult.pdf)
 * [Adaptive Winograd’s Matrix Multiplications](https://www.ics.uci.edu/~fastmm/FMM-Reference/dalberto-nicolau.winograd.TOMS.pdf)
+* [Multiplying matrices faster than Coppersmith-Winograd](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.2680&rep=rep1&type=pdf)
+* https://www.wikiwand.com/en/Coppersmith%E2%80%93Winograd_algorithm
+* https://www.wikiwand.com/en/Matrix_multiplication_algorithm
+* [Limits on All Known (and Some Unknown) Approaches to Matrix Multiplication](https://simons.berkeley.edu/talks/virginia)
 
 
 ### Compression and Acceleration of CNN
@@ -199,6 +236,9 @@ Parameter pruning and sharing | Reducing redundant parameters which are not sens
 Low-rank factorization| Using matrix/tensor decomposition to estimate the information parameters | Convolutional layer and fully connected layer| Standardized pipeline, easily to be implemented, can support both train from scratch and pre-trained model
 Transferred/compact convolutional filters | Designing special structural convolutional filter to save parameters | Convolutional layer  only | Algorithms are dependent on applications, usually achieve good performance, only support train from scratch
 Knowledge distillation |Training a compact neural network with distilled knowledge of a large model |Convolutional layer and fully connected layer| Model performances are sensitive to applications and network structure only support train from scratch
+
+* https://jackwish.net/convolution-neural-networks-optimization.html
+* [Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks ](http://eyeriss.mit.edu/)
 
 #### Parameter Pruning and Sharing
 
@@ -287,12 +327,25 @@ As in other entropy encoding methods, more common symbols are represented with f
 
 <img src=https://pocketflow.github.io/pics/framework_design.png width=80% />
 
+#### Transferred/compact convolutional filters
+
++ https://arxiv.org/pdf/1905.11946v1.pdf
+
 #### Low-rank Approximation
 
 
 Note that the deep learning models are composite of linear and non-linear maps. And linear maps are based on matrices.
 
 The matrix $A_{m\times n}$ can be decomposed as the multiplication of two matrices such as $A_{m\times n}= Q_{m\times r}R_{r\times n}$, so that the storage is from $O(m\times n)$ to $O(m+n)\times O(r)$.
+
+To explore a low-rank subspace combined with a sparse structure for the weight matrix $W$, we assume that $W \approx L+S$,
+where $L$ is a low-rank component and $S$ is a sparse matrix. Then, to
+compress the weight matrix, we have the following model:
+$$\min_{L, S}\frac{1}{2}{\|W-L-S\|}_F^2,\\
+s.t.\quad rnak(L) \leq r,\\
+card(S)\leq c,
+$$
+where $rank(L)$ denotes the rank of $L$ and $card(S)$ denotes the cardinality of matrix $S$.
 
 And `Toeplitz Matrix` can be applied to approximate  the  weight matrix
 $$
@@ -335,6 +388,8 @@ Efficient CNNs for Edge Devices](https://prior.allenai.org/projects/espnet)
 
 All techniques above can be used to fully-connected networks or generally feed-forward network.
 RNN is feedback network where there is rings in its computational graph.
+
+<img src="https://ars.els-cdn.com/content/image/1-s2.0-S1568494619301851-fx1_lrg.jpg" width="80%" />
 
 - [Dynamically Hierarchy Revolution: DirNet for Compressing Recurrent Neural Network on Mobile Devices](https://www.ijcai.org/proceedings/2018/0429.pdf)
 - [Compressing Recurrent Neural Network with Tensor Train](https://arxiv.org/pdf/1705.08052.pdf)

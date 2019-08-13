@@ -8,7 +8,7 @@
 - [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
-- [ ] https://ntent.com/, https://www.clearquery.io/, https://www.searchhub.io/
+- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
@@ -46,7 +46,8 @@ and that can learn form the feedback information over time, which will be talked
 
 The first step of information retrieval is to acquise the information itself. The web-scale information brings information overload problem, which `search  engine` or  `web search` attempts to solve.  
 
-(A web crawler (also known as a robot or a spider) is a system for the bulk downloading of web pages.  Web crawlers are used for a variety of purposes.  Most prominently, they are one of the main components of web search engines, systems that assemble a corpus of web pages, index them, and allow users to issue queries against the index and find the web pages that match the queries.  A related use is web archiving (a service provided by e.g., the Internet archive), where large sets of web pages are periodically collected and archived for posterity. A third use is web data mining, where web pages are analyzed for statistical properties, or where data analytics is performed on them (an example would be Attributor, a company that monitors the web for copyright and trademark infringements). Finally, web monitoring services allow their clients to submit standing queries, or triggers, and they continuously crawl the web and notify clients of pages that match those queries (an example would be GigaAlert).)[http://infolab.stanford.edu/~olston/publications/crawling_survey.pdf]
+[Web Crawling By Christopher Olston and Marc Najork](http://infolab.stanford.edu/~olston/publications/crawling_survey.pdf)
+> A web crawler (also known as a robot or a spider) is a system for the bulk downloading of web pages.  Web crawlers are used for a variety of purposes.  Most prominently, they are one of the main components of web search engines, systems that assemble a corpus of web pages, index them, and allow users to issue queries against the index and find the web pages that match the queries.  A related use is web archiving (a service provided by e.g., the Internet archive), where large sets of web pages are periodically collected and archived for posterity. A third use is web data mining, where web pages are analyzed for statistical properties, or where data analytics is performed on them (an example would be Attributor, a company that monitors the web for copyright and trademark infringements). Finally, web monitoring services allow their clients to submit standing queries, or triggers, and they continuously crawl the web and notify clients of pages that match those queries (an example would be GigaAlert).
 
 * https://iorgforum.org/
 * http://facweb.cs.depaul.edu/mobasher/classes/ect584/
@@ -55,6 +56,7 @@ The first step of information retrieval is to acquise the information itself. Th
 * [VII. Information Acquisition](www.science.unitn.it/~pgiorgio/db2/slides/9-infoacquisition.pdf)
 * [Automatically modelling and distilling knowledge within AI!](https://ai-distillery.io/)
 * [CH. 3: MODELS OF THE INFORMATION SEEKING PROCESS](http://searchuserinterfaces.com/book/sui_ch3_models_of_information_seeking.html)
+* https://zhuanlan.zhihu.com/p/70169130
 
 ### Information Organization and Storage: Indexing and Index
 
@@ -65,6 +67,10 @@ First, let us consider the case where we do not remember some key terms as readi
 <img src="http://www.kfzimg.com/G06/M00/8F/16/p4YBAFsp_5mAHTEFAAY9LXEBT0k044_b.jpg" width="50%" />
 
 Search engine takes advantage of this idea: it is the best place to store  where the terms/words appear in key-value format where the key, values is the terms and their places, respectively.
+
+#### Index Creation
+
+#### Index Compression
 
 * [Elasticsearch from the Bottom Up, Part 1](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up)
 * [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
@@ -190,7 +196,8 @@ First, probabilities of word usages as well as word misspellings are not conside
 Second, context information of correction is not taken into consideration.
 
 To address the issues, probabilistic approaches, both generative approach and discriminative approach, have been proposed.
-Suppose that the query word is represented as $q$ and a correction is represented as $c$. We want to **find the correction $\hat{c}$ having the largest conditional probability $P(c|q)$**.
+Suppose that the query word is represented as $q$ and a correction is represented as $c$.
+We want to **find the correction $\hat{c}$ having the largest conditional probability $P(c|q)$**.
 Different ways of defining the model lead to different methods.
 
 By Bayes’ rule, we can consider finding the correction $\hat c$ having the
@@ -198,14 +205,11 @@ largest product of probability $P(c)$ and conditional probability $P(q|c)$
 $$\hat c=\arg\max_{c} P(c\mid q)=\arg\max_{c}P(c)P(q\mid c).$$
 The former is called source model and the latter channel model.
 
-The source model can be trained by using the document collection
-and/or search log. (Due to the wide variety of searches it is better to
-find the legitimate words from data.) A straightforward way would be
-to estimate the probabilities of words based on their occurrences in the
-dataset with a smoothing technique applied.
+The source model can be trained by using the document collection and/or search log.
+(Due to the wide variety of searches it is better to find the legitimate words from data.)
+A straightforward way would be to estimate the probabilities of words based on their occurrences in the dataset with a smoothing technique applied.
 The channel model can be defined based on weighted edit distance,
-where the model is usually trained by using data consisting of pairs of
-correct word and misspelled word.
+where the model is usually trained by using data consisting of pairs of correct word and misspelled word.
 
 - [Spelling correction](https://nlp.stanford.edu/IR-book/html/htmledition/spelling-correction-1.html)
 - [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html)
@@ -281,6 +285,10 @@ NTENT’s Search platform choreographs the interpretation of singular query cons
 
 ##### Intention Analysis
 
+[Intent Analysis goes a level deeper than sentiment analysis and gives an idea of whether a string of text is a complaint, a suggestion or a query.Gauging the intent of messages on social media opens a lot of new possibilities.
+It uses Long Short Term Memory (LSTM) algorithms to classify a text into different. LSTMs model sentences as chain of forget-remember decisions based on context. It is trained on social media data and news data differently for handling casual and formal language. We also have trained this algorithm for various custom datasets for different clients.](https://www.paralleldots.com/intent-analysis)
+
+- https://www.paralleldots.com/intent-analysis
 - https://aiaioo.wordpress.com/tag/intention-analysis/
 
 #### Relevance and Rank
@@ -324,8 +332,8 @@ $$\text{tf-idf}=tf(w| doc)\times idf(w\mid D).$$
 
 **The goal of a probabilistic retrieval model is clearly to retrieve the documents with the highest probability of relevance to the given query.**
 
-Three random variables- the query $Q$, the document $D$ and thge relevance $R \in\{0,1\}$.
-The goal is to estiamte the rank of $D$ based on $P(R=1|Q,D)$.
+Three random variables- the query $Q$, the document $D$ and the relevance $R \in\{0,1\}$.
+The goal is to estimate the rank of $D$ based on $P(R=1|Q,D)$.
 
 The basic idea is to compute $Odd(R=1|Q,D)$ using Bayes’ rule
 $$Odd(R=1\mid Q, D)=\frac{P(R=1\mid Q, D)}{P(R=0\mid Q, D)}=\frac{P(Q, D\mid R=1)}{P(Q, D\mid R=0)}\frac{P(R=1)}{P(R=0)}.$$
@@ -418,6 +426,7 @@ In the popular open search engine [ElasticSearch](https://www.elastic.co/cn/prod
 ##### Document Similarity
 
 Document similarity (or distance between documents) is a one of the central themes in Information Retrieval. How humans usually define how similar are documents? Usually documents treated as similar if they are semantically close and describe similar concepts.
+`w-shingling`
 
 - [ ] [Document Similarity in Machine Learning Text Analysis with ELMo](https://ai.intelligentonlinetools.com/ml/document-similarity-in-machine-learning-text-analysis-with-elmo/)
 - [ ] [Documents similarity](http://text2vec.org/similarity.html)
@@ -523,6 +532,9 @@ Matching Function Learning:
 
 ##### Regularized Latent Semantic Indexing
 
+It is a matching method between query and document at topic level based on matrix factorization, which is scale up to large datasets.
+The parametric model is expressed in the following form:
+
 $$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - U v_n\|}_2^2+\underbrace{\lambda_1\sum_{k=1}^K {\|u_k\|}_1}_{\text{topics are sparse}} + \underbrace{\lambda_2\sum_{n=1}^{N}{\|v_n \|}_2^2}_{\text{documents are smooth}}$$
 
 where
@@ -534,11 +546,25 @@ where
 It is optimized by coordinate descent:
 $$u_{mk}=\arg\min_{\bar u_m}\sum_{m=1}^M {\|\bar d_m - V^T \bar u_m\|}_2^2+\lambda_1\sum_{m=1}^{M}{\|\bar u_m\|}_1,\\ v_n^{\ast}=\arg\min_{\{v_n\}}\sum_{n=1}^{N}{\|d_n -U v_n\|}_2^2+\lambda_2\sum_{n=1}^N{\|v_n\|}_2^2=(U^T U + \lambda_2 I)^{-1}U^T {d}_n.$$
 
-##### Match Pyramid
+- [Regularized Latent Semantic Indexing: A New Approach to Large Scale
+Topic Modeling](http://www.hangli-hl.com/uploads/3/1/6/8/3168008/rlsi-tois-revision.pdf)
+- https://www.academia.edu/13253156/Hierarchy-Regularized_Latent_Semantic_Indexing
+- https://patents.google.com/patent/US8533195B2/en
+- http://cse.msu.edu/~cse960/Papers/LSI/LSI.pdf
+- https://github.com/JunXu-ICT/rlsi-java-source
 
-##### Matching Matrix
+##### Partial Least Square (PLS)
 
+The input training data set is $\{(x_i, y_i, r_i)\mid i=1, 2,\cdots, N\}$ where $r_i \in \{+1, -1\}$.
 
+It is to optimize the following cost function
+$$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
+`Regularized Mapping to Latent Space` will change the constraints
+$$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
+
+- https://stats.idre.ucla.edu/wp-content/uploads/2016/02/pls.pdf
+- https://www.microsoft.com/en-us/research/publication/learning-bilinear-model-matching-queries-documents/
+- https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
 
 ##### Deep Structured Semantic Model
 
@@ -576,6 +602,19 @@ Calculate relevance by mimicking the human relevance judgement process
 - [DeepRank: A New Deep Architecture for Relevance Ranking in Information Retrieval](https://arxiv.org/pdf/1710.05649.pdf)
 
 #### Text Matching as Image Recognition
+
+Challenges
+
+- [ ] Representation: representing the word level matching signalsas well as the matching positions
+- [ ] Modeling: discovering the matching patternsbetween two texts
+- [ ] Our solutions
+  - [ ] Step 1: representing as matching matrix
+  - [ ] Step 2: matching as image recognition
+
+Matching matrix $M_{ij}=\mathbb I_{w_i=v_j}$ or $M_{ij}= \frac{w_i^T v_j}{\|w_i\| \|v_j\|}$ or $M_{ij}=\left<w_i, v_j\right>$.
+
+$$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the semantic gap between words}}+\underbrace{Hierarchical\,\, Convolution}_{\text{Capturing rich matching patterns}}$$
+
 
 - http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_CNNTextMatch.pdf
 - http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_BiLSTMTextMatch.pdf
@@ -630,6 +669,7 @@ Calculate relevance by mimicking the human relevance judgement process
 
 #### Keywords Highlight
 
+- https://doc.nuxeo.com/nxdoc/elasticsearch-highlights/
 
 #### Webpage Snapshot
 
