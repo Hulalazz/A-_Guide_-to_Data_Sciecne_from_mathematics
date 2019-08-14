@@ -32,6 +32,7 @@ It includes not limited the following content:
 - [X] some materials on artifical neural network and deep learning;
 - [ ] probabilistic programming and graph models;
 - [ ] other data anslysis such as topological data analysis;
+- [ ] applications or models in practice such as recommender system, information retrieval, computer vision;
 - [ ] other computational intelligence such as simulated annealing.
 
 ***
