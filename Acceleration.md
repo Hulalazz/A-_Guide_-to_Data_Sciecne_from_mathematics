@@ -2,14 +2,15 @@
 
 <img src="https://cs217.stanford.edu/assets/img/4___JET.gif" width="50%" />
 
+* https://github.com/1duo/awesome-ai-infrastructures
 * [FairNAS: Rethinking Evaluation Fairness of Weight Sharing Neural Architecture Search](https://github.com/fairnas/FairNAS)
-* [Bingsheng He's publication on GPU](https://www.comp.nus.edu.sg/~hebs/publication.html)
-* [Programmable Hardware Accelerators (Winter 2019)](https://cmpe293-winter19-01.courses.soe.ucsc.edu/home)
-* https://zhuanlan.zhihu.com/p/38328685
-* https://zhuanlan.zhihu.com/p/
-* http://graphics.cs.cmu.edu/courses/15769/fall2016/lectures
+* [VISUAL COMPUTING SYSTEMS](http://graphics.cs.cmu.edu/courses/15769/fall2016/lectures)
 * https://zhuanlan.zhihu.com/jackwish
 * https://machinethink.net/blog/compressing-deep-neural-nets/
+* [Rethinking Deep Learning: Architectures and Algorithms](https://nickhigham.files.wordpress.com/2019/05/talk12-constantinides.pdf)
+* https://arxiv.org/abs/1904.00938
+* https://github.com/ChanChiChoi/awesome-model-compression
+* https://github.com/fengbintu/Neural-Networks-on-Silicon
 
 [To revolutionize deep learning with real-time AI solutions that scale from the edge to the datacenter](https://wavecomp.ai/).
 
@@ -32,26 +33,35 @@ From [What’s the Difference Between Deep Learning Training and Inference?](htt
 When the computation resource is limited such as embedded or mobile system,
 can we deploy deep learning models? Definitely yes.
 
-* [Hanlab: ACCELERATED DEEP LEARNING COMPUTING
-Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
+
 * [Awesome model compression and acceleration](https://github.com/memoiry/Awesome-model-compression-and-acceleration)
 * [Acceleration and Model Compression by Handong](https://handong1587.github.io/deep_learning/2015/10/09/cnn-compression-acceleration.html)
 * [模型压缩之deep compression](https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/)
 * [论文笔记《A Survey of Model Compression and Acceleration for Deep Neural Networks》](https://blog.csdn.net/song_pipi/article/details/79154539)
 * https://zhuanlan.zhihu.com/p/67508423
-* [Distiller an open-source Python package for neural network compression research](https://nervanasystems.github.io/distiller/index.html)
 * [Network Speed and Compression](https://github.com/mrgloom/Network-Speed-and-Compression)
-* [PocketFlow： An Automatic Model Compression (AutoMC) framework for developing smaller and faster AI applications ](https://github.com/Tencent/PocketFlow)
-* https://pocketflow.github.io/
-* https://hanlab.mit.edu/
 * [Model Compression and Acceleration](https://www.jiqizhixin.com/articles/2018-05-18-4)
 * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/abs/1510.00149)
 * [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
 * [AutoML 的十大开源库](https://www.52cs.com/archives/3138)
+* [TensorFlow模型压缩和Inference加速](https://zhuanlan.zhihu.com/p/31023153)
 + https://github.com/BlueWinters/research
 + [Reference workloads for modern deep learning methods](https://github.com/rdadolf/fathom)
 
-<img src="https://www.researchgate.net/profile/Gu_Yeon_Wei/publication/306398249/figure/fig2/AS:614016141512719@1523404264555/Breakdown-of-execution-time-by-operation-type-for-each-Fathom-workload.png" width="80%" />
+
+
+|DNN Acceleratation Framework|
+|---|
+|[NVIDIA cuDNN GPU Accelerated Deep Learning](https://developer.nvidia.com/cudnn)|
+|[Distiller](https://nervanasystems.github.io/distiller/index.html)|
+|[PocketFlow](https://pocketflow.github.io/)|
+|[TensorFlow Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite), [tensorflow-compression](https://tensorflow.github.io/compression/)|
+|[cupy](https://cupy.chainer.org/), [ideep](https://github.com/intel/ideep)|
+|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
+|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
+|[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
+|[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
+|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
 
 ## Sys for Deep Learning
 
@@ -59,37 +69,63 @@ Over the past few years, deep learning has become an important technique to succ
 
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
 
-* [Deep Learning for Computer Architects](https://www.morganclaypool.com/doi/abs/10.2200/S00783ED1V01Y201706CAC041)
-* [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
-* [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
-* [The fastest path to machine learning integration](https://intel.github.io/dffml/)
-* https://www.xilinx.com/
-* https://wavecomp.ai/
-* [The ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE)](https://2018.fseconference.org/home)
+* [Hanlab: ACCELERATED DEEP LEARNING COMPUTING Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
+* [Bingsheng He's publication on GPU](https://www.comp.nus.edu.sg/~hebs/publication.html)
+* [Programmable Hardware Accelerators (Winter 2019)](https://cmpe293-winter19-01.courses.soe.ucsc.edu/home)
+* [Hardware Accelerators for Machine Learning (CS 217)](https://cs217.stanford.edu/)
 * [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
-* [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu)
-* http://impact.crhc.illinois.edu/default.aspx
-* https://www.alphaics.ai/
-* http://www.cambricon.com/
-* https://en.wikipedia.org/wiki/AI_accelerator
-* https://www.sigarch.org/call-participation/ml-benchmarking-tutorial/
-* [BENCHMARKING DEEP LEARNING SYSTEMS](https://sites.google.com/g.harvard.edu/mlperf-bench/home)
-* [Computer Systems Colloquium (EE380) Schedule](https://web.stanford.edu/class/ee380/)
-* [DNN builder](https://www.c3sr.com/publication/2018/iccad_dnnbuilder/)
+* [Illinois Microarchitecture Project using Algorithms and Compiler Technology](http://impact.crhc.illinois.edu/default.aspx)
+* [Deep Learning for Computer Architects](https://www.morganclaypool.com/doi/abs/10.2200/S00783ED1V01Y201706CAC041)
 * [System for Machine Learning @.washington.edu/](https://dlsys.cs.washington.edu/)
 * [Workshop on Systems for ML and Open Source Software at NeurIPS 2018](http://learningsys.org/nips18/schedule.html)
 * [Papers Reading List of *Embedded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
+* [Computer Systems Colloquium (EE380) Schedule](https://web.stanford.edu/class/ee380/)
+* [ML Benchmarking Tutorial](https://www.sigarch.org/call-participation/ml-benchmarking-tutorial/)
+* [The ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE)](https://2018.fseconference.org/home)
+* [The fastest path to machine learning integration](https://intel.github.io/dffml/)
+* https://www.sigarch.org/call-participation/ml-benchmarking-tutorial/
+* [DNNBuilder: an Automated Tool for Building High-Performance DNN Hardware Accelerators for FPGAs](https://www.c3sr.com/publication/2018/iccad_dnnbuilder/)
 * [SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)
-* https://sites.google.com/g.harvard.edu/mlperf-bench/home
-* http://isca2016.eecs.umich.edu/
+* [ISCA 2016 in Seoul](http://isca2016.eecs.umich.edu/)
 * [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
-* [Hardware Accelerators for Machine Learning (CS 217)](https://cs217.stanford.edu/)
 * [Acceleration of Deep Learning for Cloud and Edge Computing@UCLA](https://vast.cs.ucla.edu/projects/acceleration-deep-learning-cloud-and-edge-computing)
 * [Hot Chips: A Symposium on High Performance Chips](http://hotchips.org)
 * https://paco-cpu.github.io/paco-cpu/
 * [Programmable Inference Accelerator](https://developer.nvidia.com/tensorrt)
-* https://github.com/NervanaSystems/ngraph
-* https://rdadolf.github.io/fathom/
+* [Fair and useful benchmarks for measuring training and inference performance of ML hardware, software, and services.](https://mlperf.org/)
+* https://hanlab.mit.edu/
+* http://yanjoy.win/
+
+<img src="https://www.researchgate.net/profile/Gu_Yeon_Wei/publication/306398249/figure/fig2/AS:614016141512719@1523404264555/Breakdown-of-execution-time-by-operation-type-for-each-Fathom-workload.png" width="80%" />
+
+* https://www.alphaics.ai/
+* http://www.cambricon.com/
+* https://www.sigarch.org/
+* https://www.xilinx.com/
+* https://wavecomp.ai/
+* https://www.graphcore.ai/
+* https://www.alphaics.ai/
+* https://www.wikiwand.com/en/Hardware_acceleration
+* [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu)
+* [BENCHMARKING DEEP LEARNING SYSTEMS](https://sites.google.com/g.harvard.edu/mlperf-bench/home)
+* [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
+* [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
+
+### Numerical algorithms for high-performance computational science
+
+
+Several key themes emerged across multiple talks, all in the context of today’s high performance computing landscape in which processor clock speeds have stagnated (with the end of Moore’s law) and exascale machine are just two or three years away.
+
+* An important way of accelerating computations is through the use of `low precision floating-point arithmetic`—in particular by exploiting a hierarchy of precisions.
+* We must exploit `low rank matrix structure` where it exists, for example in hierarchical (H-matrix) form, combining it with randomized approximations.
+* Minimizing `data movement (communication)` is crucial, because of its increasing costs relative to the costs of floating-point arithmetic.
+* `Co-design` (the collaborative and concurrent development of hardware, software, and numerical algorithms, with knowledge of applications) is increasingly important for numerical computing.
+
++ [Numerical Algorithms for High-Performance Computational Science: Highlights of the Meeting](https://nickhigham.wordpress.com/2019/05/07/numerical-algorithms-for-high-performance-computational-science-highlights/)
++ [Numerical algorithms for high-performance computational science](https://royalsociety.org/science-events-and-lectures/2019/04/high-performance-computing/)
++ [Royal Society Discussion Meeting](https://constantinides.net/2019/04/23/royal-society-discussion-meeting/)
++ [Reflections on the Royal Society’s “Numerical Algorithms for High-performance Computational Science” Discussion Meeting](https://sinews.siam.org/Details-Page/reflections-on-the-royal-societys-numerical-algorithms-for-high-performance-computational-science-discussion-meeting)
+
 
 ## Compilers for Deep Learning
 
@@ -102,6 +138,11 @@ Over the past few years, deep learning has become an important technique to succ
 
 
 ### TVM and Versatile Tensor Accelerator (VTA)
+
+> TVM is an open deep learning compiler stack for CPUs, GPUs, and specialized accelerators. It aims to close the gap between the productivity-focused deep learning frameworks, and the performance- or efficiency-oriented hardware backends. TVM provides the following main features:
+
+> Compilation of deep learning models in Keras, MXNet, PyTorch, Tensorflow, CoreML, DarkNet into minimum deployable modules on diverse hardware backends.
+Infrastructure to automatic generate and optimize tensor operators on more backend with better performance.
 
 <img src="https://raw.githubusercontent.com/uwsampl/web-data/master/vta/blogpost/vta_stack.png" width="70%" />
 
@@ -120,13 +161,36 @@ Matrix computation dense application like deep neural network would take the adv
 * [如何利用TVM快速实现超越Numpy(MKL)的GEMM蓝色](https://zhuanlan.zhihu.com/p/75203171)
 * [使用TVM支持TFLite（下)](https://zhuanlan.zhihu.com/p/57147430)
 
-+ https://en.wikipedia.org/wiki/Zeroth_(software)
+#### nGraph
+
+`nGraph` is an end to end deep learning compiler for inference and training with extensive framework and hardware support.
+
+<img src="https://www.ngraph.ai/sites/default/files/2019-08/main_diagram_fw_hw.png" width="70%" />
+
++ https://www.ngraph.ai/
++ https://github.com/NervanaSystems/ngraph
+- https://en.wikipedia.org/wiki/Zeroth_(software)
+
+#### XLA
+
+- https://www.tensorflow.org/versions/master/experimental/xla/
+- https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
+- https://www.tensorflow.org/xla/overview
+- https://autodiff-workshop.github.io/slides/JeffDean.pdf
+
+##### Glow
+
+- https://arxiv.org/pdf/1805.00907.pdf
+- https://ai.facebook.com/tools/glow/
+- https://github.com/pytorch/glow
 
 ### Generalized Matrix Multiplication Optimization
 
 If the computation speed  of matrix operation is boosted, the inference of deep learning model is accelerated.
 Matrix multiplication  $C_{M\times N}=A_{M\times K}B_{K\times N}$ via dot product is defined as
 $$C[m,n]=\left< A[m,:], B[:, m]\right>=\sum_{k=1}^{K}A[m, k]\times B[k, n]$$
+
+which is esentially product-sum.
 ```
 for (int m = 0; m < M; m++) {
   for (int n = 0; n < N; n++) {
@@ -140,7 +204,7 @@ for (int m = 0; m < M; m++) {
 
 It  needs $O(MKN)$ multiplication.
 
-**Strassen Algorithms**
+##### Strassen Algorithms
 
 It is based on block-multiplication. It is required that $C\in\mathbb R^{2^n\times 2^n}$.
 
@@ -186,7 +250,9 @@ $$
 \mathbf{C}_{2,2} =\mathbf{M}_{1}-\mathbf{M}_{2}+\mathbf{M}_{3}+\mathbf{M}_{6}
 $$
 
-**Coppersmith–Winograd Algorithms**
+#### Coppersmith–Winograd Algorithms
+
+For matrix multiplication $U = V = W = \mathbb F^{n \times n}$, and we write this bilinear map as $\phi=<n, n, n>$ where $\phi(\cdot, \cdot): U\times V\mapsto W$ is bilinear.
 
 The tensor corresponding to the multiplication of an $m\times n$ matrix by an $n\times  p$ matrix is
 $$\left<m, n, p\right>=\sum_{i=1}^{m}\sum_{j=1}^{p}\sum_{k=1}^{n} a_{ik}\otimes b_{kj}\otimes c_{ij}.$$
@@ -227,6 +293,27 @@ $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}
 * https://www.wikiwand.com/en/Matrix_multiplication_algorithm
 * [Limits on All Known (and Some Unknown) Approaches to Matrix Multiplication](https://simons.berkeley.edu/talks/virginia)
 
+#### Fixed-point arithmetic and Approximate Computing
+
+Today’s computing systems are designed to deliver only exact solutions at high energy cost, while many of the algorithms that are run on data are at their heart statistical, and thus do not require exact answers.
+
+It turns out that it is sometimes possible to get high-accuracy solutions from low-precision training—and here we'll describe a new variant of stochastic gradient descent (SGD) called high-accuracy low precision (HALP) that can do it. HALP can do better than previous algorithms because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
+
+<img src="https://jackwish.net/images/2019/quantization/mixed-fp32int8-pure-int8.svg" width="80%"/>
+
+* https://www.wikiwand.com/en/Fixed-point_arithmetic
+* [Approximate Computing](http://moimani.weebly.com/approximate-computing.html)
+* [PACO: The Worlds First Approximate Computing General Purpose CPU](https://paco-cpu.github.io/paco-cpu/)
+* [System Energy Efficiency Lab](http://seelab.ucsd.edu/)
+* http://www.oliviervalery.com/publications/pdp2018
+* [Training deep neural networks with low precision multiplications](https://arxiv.org/abs/1412.7024)
+* [Ultra-Low-Precision Training of Deep Neural Networks](https://www.ibm.com/blogs/research/2019/05/ultra-low-precision-training/)
+* [HALP: High-Accuracy Low-Precision Training](https://dawn.cs.stanford.edu/2018/03/09/low-precision/)
+* [Quantized Neural Network PACKage - mobile-optimized implementation of quantized neural network operators ](https://github.com/pytorch/QNNPACK)
+* http://proceedings.mlr.press/v37/gupta15.pdf
+* [Making Neural Nets Work With Low Precision](https://sahnimanas.github.io/2018/06/24/quantization-in-tf-lite.html)
+* http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf
+* https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
 
 ### Compression and Acceleration of CNN
 
@@ -239,6 +326,7 @@ Knowledge distillation |Training a compact neural network with distilled knowled
 
 * https://jackwish.net/convolution-neural-networks-optimization.html
 * [Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks ](http://eyeriss.mit.edu/)
+* [深度学习如何进行模型压缩？](https://www.zhihu.com/question/64987081/answer/684375500)
 
 #### Parameter Pruning and Sharing
 
@@ -261,9 +349,21 @@ Pruning is to prune the connections in deep neural network in order to reduce th
 Network quantization compresses the original network by
 reducing the number of bits required to represent each weight.
 
+Uniform quantization is widely used for model compression and acceleration. Originally the weights in the network are represented by 32-bit floating-point numbers. With uniform quantization, low-precision (e.g. 4-bit or 8-bit) fixed-point numbers are used to approximate the full-precision network. For k-bit quantization, the memory saving can be up to $32/k$​. For example, 8-bit quantization can reduce the network size by 4 folds with negligible drop of performance.
+The lth quantized ReLU $\sigma(x_l, \alpha_l)$ acts element-wise on vector $x_l$ from a previous layer and is parameterized by trainable scalar $\alpha_l>0$.  
+In uniform quantization,
+$$
+\sigma (x,\alpha ) = \begin{cases}
+0, \quad & \mathrm{if}\quad x \leq 0,\\
+k\, \alpha, \quad & \mathrm{if}\quad \left(k-1\right)\alpha < x \leq k\, \alpha, \; k = 1, 2, \dots, 2^{b_a}-1,\\
+\left(2^{b_a}-1\right)\alpha,\quad & \mathrm{if}\quad x > \left(2^{b_a}-1\right)\alpha, \tag1
+\end{cases}
+$$
+where $x$ is the scalar input, $b_a$ is the bit-width, and $k$ is the quantization level. For a 4-bit quantization, $b_a=4$ and $2^{b_a}=16$ levels exist, including zero.
 
 <img src="https://jackwish.net/images/2019/quantization/calibration-and-quantization-aware-training.jpg" width="70%" />
 
+* https://zhuanlan.zhihu.com/p/38328685
 * https://nervanasystems.github.io/distiller/quantization/index.html
 * https://jackwish.net/neural-network-quantization-resources.html
 * https://jackwish.net/neural-network-quantization-introduction.html
@@ -271,33 +371,16 @@ reducing the number of bits required to represent each weight.
 * [PocketFlow is an open-source framework for compressing and accelerating deep learning models with minimal human effort.](https://pocketflow.github.io/uq_learner/)
 * [Neural Network Quantization Resources](https://jackwish.net/neural-network-quantization-resources.html)
 * [Low Precision Arithmetic Simulation in PyTorch](https://github.com/Tiiiger/QPyTorch)
+* [Training Quantized Deep Neural Networks and Applications with Blended Coarse Gradient Descent](https://sinews.siam.org/Details-Page/training-quantized-deep-neural-networks-and-applications-with-blended-coarse-gradient-descent)
 
-##### Fixed-point arithmetic and Approximate Computing
 
-It turns out that it is sometimes possible to get high-accuracy solutions from low-precision training—and here we'll describe a new variant of stochastic gradient descent (SGD) called high-accuracy low precision (HALP) that can do it. HALP can do better than previous algorithms because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
-
-<img src="https://jackwish.net/images/2019/quantization/mixed-fp32int8-pure-int8.svg" width="80%"/>
-
-* https://www.wikiwand.com/en/Fixed-point_arithmetic
-* http://moimani.weebly.com/approximate-computing.html
-* https://paco-cpu.github.io/paco-cpu/
-* http://seelab.ucsd.edu/
-* http://www.oliviervalery.com/publications/pdp2018
-* [Training deep neural networks with low precision multiplications](https://arxiv.org/abs/1412.7024)
-* [Ultra-Low-Precision Training of Deep Neural Networks](https://www.ibm.com/blogs/research/2019/05/ultra-low-precision-training/)
-* [HALP: High-Accuracy Low-Precision Training](https://dawn.cs.stanford.edu/2018/03/09/low-precision/)
-* [Quantized Neural Network PACKage - mobile-optimized implementation of quantized neural network operators ](https://github.com/pytorch/QNNPACK)
-* http://proceedings.mlr.press/v37/gupta15.pdf
-* https://sahnimanas.github.io/2018/06/24/quantization-in-tf-lite.html
-* http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf
-* https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
 
 ##### Binarized Neural Network, Ternary Weight Networks, XOR-Net
 
 <img title="XNOR Net" src="https://pic1.zhimg.com/80/v2-a5bcc5b680ec296aeb706ca4f2fe2c90_hd.jpg" width="80%" />
 
 
-
+* [Boolean Circuits are Neural Networks](https://constantinides.net/2019/04/26/boolean-circuits-are-neural-networks/)
 * https://www.sciencedirect.com/science/article/pii/S0925231217315655
 * https://arxiv.org/abs/1602.02830
 * https://pjreddie.com/media/files/papers/xnor.pdf
@@ -320,6 +403,10 @@ As in other entropy encoding methods, more common symbols are represented with f
 
 #### Knowledge Distillation
 
+Distillation (Hinton et al., 2015) is a kind of model compression approaches in which a pre-trained large model teaches a smaller model to achieve the similar prediction performance. It is often named as the "teacher-student" training, where the large model is the teacher and the smaller model is the student.
+
+With distillation, knowledge can be transferred from the teacher model to the student by minimizing a loss function to recover the distribution of class probabilities predicted by the teacher model. In most situations, the probability of the correct class predicted by the teacher model is very high, and probabilities of other classes are close to 0, which may not be able to provide extra information beyond ground-truth labels. To overcome this issue, a commonly-used solution is to raise the temperature of the final softmax function until the cumbersome model produces a suitably soft set of targets.
+
 * https://nervanasystems.github.io/distiller/knowledge_distillation/index.html
 * https://github.com/dkozlov/awesome-knowledge-distillation
 * https://github.com/lhyfst/knowledge-distillation-papers
@@ -335,6 +422,8 @@ As in other entropy encoding methods, more common symbols are represented with f
 
 
 Note that the deep learning models are composite of linear and non-linear maps. And linear maps are based on matrices.
+
+**Singular value decompsoition**
 
 The matrix $A_{m\times n}$ can be decomposed as the multiplication of two matrices such as $A_{m\times n}= Q_{m\times r}R_{r\times n}$, so that the storage is from $O(m\times n)$ to $O(m+n)\times O(r)$.
 
@@ -359,8 +448,7 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * https://en.wikipedia.org/wiki/Low-rank_approximation
 * [Low Rank Matrix Approximation](http://www.cs.yale.edu/homes/el327/papers/lowRankMatrixApproximation.pdf)
 * [On Compressing Deep Models by Low Rank and Sparse Decomposition](http://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf)
-* [ESPNets for Computer Vision
-Efficient CNNs for Edge Devices](https://prior.allenai.org/projects/espnet)
+* [ESPNets for Computer Vision Efficient CNNs for Edge Devices](https://prior.allenai.org/projects/espnet)
 * https://www.cnblogs.com/zhonghuasong/p/7821170.html
 
 

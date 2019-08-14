@@ -3,6 +3,7 @@
 <img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
 
 + https://cs.uwaterloo.ca/~jimmylin/projects/index.html
++ [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
 + [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
 + [Information Retrieval and the Web @Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
@@ -121,13 +122,13 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 > 2. Determine New Rating
 >   The new ratings, after a series of m games, are determined by the following equation:
 > $$
->   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s|r,r_i,RD_i))
+>   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s |r,r_i,RD_i))
 > $$
 >
 > where
->  * $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s|r,r_i,RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$,
+>  * $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s | r, r_ i, RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$,
 >  * $q=\frac{\ln(10)}{400}\approx 0.00575646273$,
->  * $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s|r,r_i,RD_i)[1-E(s|r,r_i,RD_i)]$,
+>  * $d^{-2} = q^2\sum_{i=1}^{m}[g(RD_i)^2]E(s | r, r_i, RD_i)[1-E(s | r, r_i, RD_i)]$,
 >  * $r_i$ represents the ratings of the individual opponents.
 >  * $s_i$ represents the outcome of the individual games. A win is ${1}$, a draw is $\frac {1}{2}$, and a loss is $0$.
 >
@@ -379,6 +380,8 @@ The metrics or evaluation is different in regression and classification. And man
 
 `Precision` measures the exactness of the retrieval process. If the actual set of relevant documents is denoted by _I_ and the retrieved set of documents is denoted by _O_, then the precision is given by:
 $$Precision= \frac{|O\cap I|}{|O|}.$$
+Precision at position k for query $q$:
+$$P@k=\frac{\text{the number of relevant documents in top k results}}{k}.$$
 
 `Recall` is a measure of completeness of the IR process. If the actual set of relevant documents is denoted by _I_ and the retrieved set of documents is denoted by _O_, then the recall is given by:
 $$Recall=\frac{|O\cap I|}{|O|}.$$
@@ -395,7 +398,7 @@ $$
 
 That is the area under the precision-recall curve. This integral is in practice replaced with a finite sum over every position in the ranked sequence of documents:
 $$
-AveP= \sum_{k=1}^{n} p(k)\Delta r(k).
+AveP= \sum_{k=1}^{n} p(k)\Delta r(k)=\frac{\sum_{k}P@k\times l_k}{\text{the number of relevant documents}}.
 $$
 
 where $k$ is the rank in the sequence of retrieved documents, $n$ is the number of retrieved documents, $P(k)$ is the precision at cut-off k in the list, and $\Delta r(k)$ is the change in recall from items $k-1$ to $k$.
@@ -776,6 +779,11 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [X] https://www.jianshu.com/p/96173f2c2fb4
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 
+### Unbiased LambdaMART
+
+Unbiased LambdaMART can jointly estimate the biases at click positions and the biases at unclick positions, and learn an unbiased ranker.
+
+- http://www.hangli-hl.com/uploads/3/4/4/6/34465961/unbiased_lambdamart.pdf
 
 ### The Listwise Approach
 
@@ -818,7 +826,7 @@ $$P_{j}^{(u)}=P_{j}^{(u-1)}(r-1)P_{u,j}+P_{j}^{(u-1)}(r)(1-P_{u,j}).$$
 Third, with the rank distribution, one computes the expectation of NDCG (referred to as SoftNDCG2), and use (1 − SoftNDCG) as the loss function in learning to rank:
 $$L(f;\mathrm{x, y})=1-\frac{1}{Z_m}\sum_{j=1}^{m}(2^{y_j}-1)\sum_{i=1}^{m}\eta(r)P_j(r).$$
 
-#### Plackett–Luce Model
+#### Plackett-Luce Model Ranking induced by pair-comparisons
 
 In learning to rank, each training sample has been labeled with a relevance score, so the
 ground-truth permutation of documents related to the $i$ th query can be easily obtained and
@@ -830,8 +838,8 @@ Consider a ranking function with linear features, the probability of a set of ca
 $$p(d_e^i)=\frac{\exp{h(d_e^i)^T w}}{\sum_{d\in D_i } \exp{h(d_e^i)^T w}}$$
 
 The probability of the Plackett-Luce model to generate a rank $\pi_i$ is given as
-$$p(\pi_i, w)=\prod_{j=1}^{\|\pi_i\|} p(d_{\pi_{i}(j)}^i\mid C_{i,j})\\
-p(d_e^i\mid C_{i,j}p(d))$$
+$$p(\pi_i, w)=\prod_{j=1}^{\|\pi_i\|} \underbrace{p(d_{\pi_{i}(j)}^i\mid C_{i,j})}_{???}\\
+p(d_e^i\mid C_{i,j})=p(d)$$
 
 where $C_{i,j}=D_i - \{d_{\pi_{i}(1)}^{i},\dots, d_{\pi_{i}(j-1)}^{i}\}$.
 
@@ -840,8 +848,12 @@ all queries and retrieved documents with corresponding ranks in the training dat
 $$L=\log\{\prod_{i}p(\pi_i, w)\}-\frac{1}{2} {\|w\|}_2^2.$$
 
 The gradient can be calculated as follows
-$$\frac{\partial L}{\partial w}=\sum_{i}\sum_{j}\{h(d_{\pi_{i}(j)}^{i})-\sum_{d\in C_{i, j}} - w\}$$
+$$\frac{\partial L}{\partial w}=\sum_{i}\sum_{j}\{h(d_{\pi_{i}(j)}^{i})-\sum_{d\in C_{i, j}} w\}$$
 
+* https://hturner.github.io/PlackettLuce/
+* https://blog.csdn.net/fx677588/article/details/52636170
+* [Bayesian inference for Plackett-Luce ranking models](https://www.shivani-agarwal.net/Teaching/E0371/Papers/icml09-bayesian-plackett-luce-ranking.pdf)
+* https://hturner.github.io/PlackettLuce/articles/Overview.html
 
 #### ListNet
 
@@ -972,9 +984,9 @@ that are most likely to be mis-ranked, thus severely hindering the quality of th
 - [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
 - [ ] https://maciejkula.github.io/spotlight/index.html#
 
-**QuickScorer and QuickRank**
+### QuickScorer
 
-Given a query-document pair \((q, d_i)\), represented by a feature vector $\mathrm{x}$,
+Given a query-document pair $(q, d_i)$, represented by a feature vector $\mathrm{x}$,
 a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents.
 Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
 Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
@@ -991,10 +1003,10 @@ The building block of this approach is an alternative method for tree traversal 
 
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 - [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
-- [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
-- http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf
-+ [Boosted Ranking Models: A Unifying
-Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
+- [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
+- [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
+
+
 
 ### Bayesian Personalized Ranking
 
@@ -1243,6 +1255,45 @@ $$L(\theta)=\log\prod_{i=1}^{m}P(\pi_i, \Sigma_I)=\sum_{i=1}^{m}\log\frac{\exp(\
 
 We can employ Gradient Descent to estimate the optimal parameters.
 
+### Probabilistic relevance model
+
+> One way to tackle this kind of data is by means of probabilistic modeling, i.e., to learn a probability distribution over the space of ranking, and then to carry out inference tasks in order to get the required information: find the consensus ranking, find the probability that movie A is ranked higher than movie B for a particular user, etc. Unfortunately dealing with ranking data from a probabilistic point of view is a daunting task as the number of permutations of the n objects grows exponentially with n. Furthermore, in many real scenarios the 1 number of possible objects (as the number of possible output web pages of a query in a search engine) can be considered as unlimited. Recently numerous proposals have been done in the machine learning as well as in the statistical communities to create models that can approach these kind of problems. These different approaches can be mainly classified as,
+(i) parametric-based approaches,
+(ii) low-order statistics approaches and
+(iii) non-parametric approaches.
+Parametric approaches to deal with permutation data have a long history in the field of statistics as they have been used for more than thirty years. These approaches assume a functional form of the probability distribution over the set of permutations that come defined by a set of parameters. The differences between the parametric models can be related with the kind of data that motivated its discovery.
+
+- http://www.sc.ehu.es/ccwbayes/members/ekhine/tutorial_ranking/info.html
+- https://nlp.stanford.edu/IR-book/html/htmledition/probabilistic-information-retrieval-1.html
+- https://www.wikiwand.com/en/Probabilistic_relevance_model
+- http://www.sc.ehu.es/ccwbayes/members/ekhine/tutorial_ranking/data/slides.pdf
+
+#### Mallows Ranking Models and Generalized Mallows models
+
+It is one of `probabilistic ranking models`.
+Mallows model  is defined as a parametric model
+$$\mathbb P_{\theta, \pi_0, d}(\pi)=\frac{1}{\Phi(\theta, d)}\exp(-\theta d(\pi, \pi_0))$$
+where
++ $\pi$ is a permutations of $\{1, 2, \cdots, N\}$.
++ $\theta > 0$ is the dispersion parameter.
++ $\pi_0$ is the central ranking.
++ $d(\cdot, \cdot)$ is a a discrepancy function of permutations, which is right invariant $d(\pi, d)=d(\pi\circ \sigma^{-1}, id)$ for $\pi, d$ in  permutations of $\{1, 2, \cdots, N\}$.
++ $\Phi(\theta, d)$ is the normalizing constant.
+
+Mallows primarily considered two special cases of this model:
+
+1. Spearman’s rho: $d(\pi, d)=\sum_{i=1}^{n}(\pi(i)-d(i))^2$,
+2. Kendall’s tau: $d(\pi, d)=inv(\pi\circ d^{-1})$,
+
+where $inv(\sigma)$ is the number of inversions of permutation $\sigma$, i.e., $inv(\sigma)$ is the number of the set $\{(i, j)\mid i<j , \sigma(i)>\sigma(j)\}$.
+
+It showed that if the central ranking $\pi_0$ is known, the MLE of $\theta$ (or $\vec \theta$) can be easily found by convex optimization. When the number of items $n$ is large, learning a complete
+ranking model becomes impracticable.
+
+- [Mallows Ranking Models: Maximum Likelihood Estimate and Regeneration](http://proceedings.mlr.press/v97/tang19a/tang19a.pdf)
+- [Consensus ranking under the exponential model](https://www.stat.washington.edu/sites/default/files/files/reports/2007/tr515.pdf)
+- [Probabilistic Preference Learning with the Mallows Rank Model](http://www.jmlr.org/papers/volume18/15-481/15-481.pdf)
+
 ### HodgeRank
 
 `HodgeRank` apply Hodge theory to the ranking problem. It is considered as an application of modern abstract mathemtics rather than as a technique in machine learning.
@@ -1329,38 +1380,14 @@ $${[{\Delta}_{0}]}_{(i,j)}=
 - [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
 - [ ] [Graph Helmholtzian and Rank Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/lekhenglim-nips.pdf)
 
-### Probabilistic relevance model
+### Online Learning to Rank
 
-- http://www.sc.ehu.es/ccwbayes/members/ekhine/tutorial_ranking/info.html
-- https://nlp.stanford.edu/IR-book/html/htmledition/probabilistic-information-retrieval-1.html
-- https://www.wikiwand.com/en/Probabilistic_relevance_model
-- http://www.sc.ehu.es/ccwbayes/members/ekhine/tutorial_ranking/data/slides.pdf
+During the past 10-15 years offline learning to rank has had a tremendous influence on information retrieval, both scientifically and in practice. Recently, as the limitations of offline learning to rank for information retrieval have become apparent, there is increased attention for online learning to rank methods for information retrieval in the community. Such methods learn from `user interactions` rather than from a set of labeled data that is fully available for training up front. The time is right for an intermediate-level tutorial on online learning to rank.
 
-#### Mallows Ranking Models and Generalized Mallows models
+- https://staff.fnwi.uva.nl/m.derijke/talks-etc/online-learning-to-rank-tutorial/
+- [Online Learning to Rank with Features](http://proceedings.mlr.press/v97/li19f.html)
+- https://www.cs.ox.ac.uk/people/shimon.whiteson/pubs/hofmannirj13.pdf
 
-It is one of `probabilistic ranking models`.
-Mallows model  is defined as a parametric model
-$$\mathbb P_{\theta, \pi_0, d}(\pi)=\frac{1}{\Phi(\theta, d)}\exp(-\theta d(\pi, \pi_0))$$
-where
-+ $\pi$ is a permutations of $\{1, 2, \cdots, N\}$.
-+ $\theta > 0$ is the dispersion parameter.
-+ $\pi_0$ is the central ranking.
-+ $d(\cdot, \cdot)$ is a a discrepancy function of permutations, which is right invariant $d(\pi, d)=d(\pi\circ \sigma^{-1}, id)$ for $\pi, d$ in  permutations of $\{1, 2, \cdots, N\}$.
-+ $\Phi(\theta, d)$ is the normalizing constant.
-
-Mallows primarily considered two special cases of this model:
-
-1. Spearman’s rho: $d(\pi, d)=\sum_{i=1}^{n}(\pi(i)-d(i))^2$,
-2. Kendall’s tau: $d(\pi, d)=inv(\pi\circ d^{-1})$,
-
-where $inv(\sigma)$ is the number of inversions of permutation $\sigma$, i.e., $inv(\sigma)$ is the number of the set $\{(i, j)\mid i<j , \sigma(i)>\sigma(j)\}$.
-
-It showed that if the central ranking $\pi_0$ is known, the MLE of $\theta$ (or $\vec \theta$) can be easily found by convex optimization. When the number of items $n$ is large, learning a complete
-ranking model becomes impracticable.
-
-- [Mallows Ranking Models: Maximum Likelihood Estimate and Regeneration](http://proceedings.mlr.press/v97/tang19a/tang19a.pdf)
-- [Consensus ranking under the exponential model](https://www.stat.washington.edu/sites/default/files/files/reports/2007/tr515.pdf)
-- [Probabilistic Preference Learning with the Mallows Rank Model](http://www.jmlr.org/papers/volume18/15-481/15-481.pdf)
 ----
 **Deep Online Ranking System**
 
@@ -1493,7 +1520,16 @@ $$L_{\beta}(f;\mathrm x, \mathcal L)=\min_{y\in Y_{\mathcal L}} L_{\beta}(f; \ma
 Denote the ranked list produced by $f$ as $\pi_f$ . Then it is easy to verify that
 $$L_{\beta}(f;\mathrm x, \mathcal L)= 0\iff \exists y\in Y_{\mathcal L}\quad satisfing \quad  L_{\beta}(f; \mathrm x, y)=0\iff \pi_f=y\in Y_{\mathcal L}.$$
 
+1) Many pairwise and listwise loss functions are upper bounds of the essential loss.
+2) Therefore, the pairwise and listwise loss functions are also upper bounds of (1-NDCG) and (1-MAP).
+
 - [ ] [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/publication/essential-loss-bridge-the-gap-between-ranking-measures-and-loss-functions-in-learning-to-rank/)
 - [ ] [RankExplorer: Visualization of Ranking Changes in Large Time Series Data](https://www.microsoft.com/en-us/research/publication/rankexplorer-visualization-ranking-changes-large-time-series-data/)
 - [ ] [Revisiting Approximate Metric Optimization in the Age of Deep Neural Networks](https://ai.google/research/pubs/pub48168)
 - [ ] [Revisiting Online Personal Search Metrics with the User in Mind](https://ai.google/research/pubs/pub48243)
+
+### QuickRank
+
+QuickRank is an efficient Learning to Rank toolkit providing multithreaded C++ implementation of several algorithms.
+
++ [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)

@@ -8,6 +8,8 @@
 - [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
+- [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
+- [ ] [Terrier IR Platform](http://terrier.org/)
 - [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
@@ -86,10 +88,14 @@ Search engine takes advantage of this idea: it is the best place to store  where
 - [Introduction to ](https://spark-public.s3.amazonaws.com/cs124/slides/ir-1.pdf)
 - [solr-vs-elasticsearch](https://solr-vs-elasticsearch.com/)
 - [CH. 4: QUERY SPECIFICATION](http://searchuserinterfaces.com/book/sui_ch4_query_specification.html)
+- https://homepages.dcc.ufmg.br/~rodrygo/rm-2019-2/
+
+
 
 #### Query Languages
 
 * [Query Languages](http://www.site.uottawa.ca/~diana/csi4107/L5.pdf)
+* http://www.odbms.org/
 
 ##### Boolean Queries
 
@@ -152,6 +158,7 @@ Response | Time|
 * https://nlpprogress.com/
 
 ##### Query Operations
+
 
 - Query Reformulation:
   * Query Expansion: Add new terms to query from relevant documents.
@@ -248,6 +255,10 @@ The basic idea is to enrich the query with additional terms (words or phrases) a
 + https://dev.mysql.com/doc/refman/5.5/en/fulltext-query-expansion.html
 + [Neural Query Expansion for Code Search](https://pldi19.sigplan.org/details/mapl-2019-papers/4/Neural-Query-Expansion-for-Code-Search)
 
+##### Query Relaxation
+
+- http://pike.psu.edu/publications/dongwon-dissertation.pdf
+
 ##### Query Segmentation
 
 Query segmentation is to separate the input query into multiple segments, roughly corresponding to natural language phrases, for improving search relevance.
@@ -256,7 +267,15 @@ Query segmentation is to separate the input query into multiple segments, roughl
 + http://ra.ethz.ch/CDstore/www2011/proceedings/p97.pdf
 + https://github.com/kchro/query-segmenter
 
+##### Query Scoping
+
+
+
 ##### Query Understanding
+
+
+Query understanding: query normalization (encoding, tokenization, spelling); query rewriting (expansion, relaxation, segmentation, scoping)
+
 
 [Levels of Query Understanding](https://ntent.com/technology/query-understanding/#levels):
 
@@ -282,6 +301,7 @@ NTENT’s Search platform choreographs the interpretation of singular query cons
 * https://www.wikiwand.com/en/Query_understanding
 * https://www.luigisbox.com/blog/query-understanding/
 * https://github.com/DataEngg/Query-Understanding
+* https://docs.microsoft.com/en-us/sharepoint/dev/general-development/customizing-ranking-models-to-improve-relevance-in-sharepoint
 
 ##### Intention Analysis
 
@@ -290,7 +310,7 @@ It uses Long Short Term Memory (LSTM) algorithms to classify a text into differe
 
 - https://www.paralleldots.com/intent-analysis
 - https://aiaioo.wordpress.com/tag/intention-analysis/
-
+-----
 #### Relevance and Rank
 
 Recall the definition of  `Discounted Cumulative Gain(DCG)`:
@@ -302,6 +322,21 @@ where ${rel}_{i}$ is the relevance of the document and query.
 However, it is discussed how to compute the relevance of the document and query. The document is always text such as html file so natural language processing plays a lead role in computing the relevances.
 For other types information retrieval system, it is different to compute the relevance. For example, imagine  search engine is to find and return the images similar on the internet  with the given image query, where the information is almost in pixel format rather than text/string.
 
+
+
+---|[A part of Ranking Model]( https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
+----|----
+Query-independent ranking| on-document evidence (retrievability, readability, maliciousness); off-document evidence (centrality, popularity, credibility)
+Query understanding| query normalization (encoding, tokenization, spelling); query rewriting (expansion, relaxation, segmentation, scoping)
+Query-dependent ranking| basic models (algebraic models, probabilistic models, information-theoretic models); proximity models (Markov random fields models); structural models (field-based models); semantic models (latent semantics, explicit semantics)
+ Contextual ranking| personalization; diversification; interactivity
+Machine-learned ranking| query-document representation; loss functions (pointwise, pairwise, listwise loss); optimization strategies; adaptation strategies (intent-awareness, exploration-exploitation)
+Ranking evaluation| behavioral models; evaluation design; evaluation metrics; offline evaluation; online evaluation
+
+The `Machine-learned ranking` and `Ranking evaluation` is discussed in `Rating and Ranking`.
+
++ https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/
+
 |Features/Attributes for ranking|
 |---|
 |Average Absolute Query Frequency|
@@ -310,6 +345,18 @@ For other types information retrieval system, it is different to compute the rel
 |Document Length|
 |Average Inverse Document Frequency|
 |Number of Terms in common between query and document|
+
+#### Query-dependent ranking
+
+Query-dependent ranking:
+* basic models (algebraic models, probabilistic models, information-theoretic models);
+* proximity models (Markov random fields models); structural models (field-based models);
+* semantic models (latent semantics, explicit semantics).
+
+- https://en.wikipedia.org/wiki/Ranking
+- https://andrewoarnold.com/fp025-geng.pdf
+- https://sites.google.com/site/kimducthanh/publication/lrt-queryindependent.pdf
+- [Query-Independent Ranking for Large-Scale Persistent Search Systems](https://www.cs.princeton.edu/research/techreps/TR-837-08)
 
 ##### TF-IDF
 
@@ -359,6 +406,7 @@ where $TF(t, d)$ is the term frequency of the $t$ th in the document $d$, $LEN(d
 of documents containing term $t$ .
 
 * [BM25 The Next Generation of Lucene Relevance](https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/)
+* [Probabilistic IR](http://sifaka.cs.uiuc.edu/czhai/pub/lmir2003-probir.pdf)
 
 ##### The language model for information retrieval (LMIR)
 
@@ -590,7 +638,7 @@ A novel deep relevance matching model (DRMM) for ad-hoc retrieval employs a join
 - https://zhuanlan.zhihu.com/p/38344505
 - https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/
 
-##### DeepRank
+##### DeepRank: Text Matching as Image Recognition
 
 Calculate relevance by mimicking the human relevance judgement process
 
@@ -600,8 +648,6 @@ Calculate relevance by mimicking the human relevance judgement process
 
 - [Deep Relevance Ranking Using Enhanced Document-Query Interactions](http://nlp.cs.aueb.gr/pubs/EMNLP2018Preso.pdf)
 - [DeepRank: A New Deep Architecture for Relevance Ranking in Information Retrieval](https://arxiv.org/pdf/1710.05649.pdf)
-
-#### Text Matching as Image Recognition
 
 Challenges
 
@@ -640,7 +686,7 @@ $$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the sema
 * http://www2003.org/cdrom/papers/refereed/p779/ess.html
 * https://blog.alexa.com/semantic-search/
 
-#### PageRank for Web Search
+#### Query-independent Ranking
 
 `Centrality of network` assigns an importance score based purely on the number of links held by each node.
 
@@ -961,4 +1007,5 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [CSc 7481 / LIS 7610 Information Retrieval Spring 2008](http://www.csc.lsu.edu/~kraft/courses/csc7481.html)
 + [Winter 2016 CSI4107: Information Retrieval and the Internet](http://www.site.uottawa.ca/~diana/csi4107/)
 + [Information Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
++ [Ranking Model](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
 + https://searchpatterns.org/
