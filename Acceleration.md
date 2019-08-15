@@ -11,6 +11,7 @@
 * https://arxiv.org/abs/1904.00938
 * https://github.com/ChanChiChoi/awesome-model-compression
 * https://github.com/fengbintu/Neural-Networks-on-Silicon
+* https://vast.cs.ucla.edu/
 
 [To revolutionize deep learning with real-time AI solutions that scale from the edge to the datacenter](https://wavecomp.ai/).
 
@@ -50,33 +51,27 @@ can we deploy deep learning models? Definitely yes.
 
 
 
-|DNN Acceleratation Framework|
-|---|
-|[NVIDIA cuDNN GPU Accelerated Deep Learning](https://developer.nvidia.com/cudnn)|
-|[Distiller](https://nervanasystems.github.io/distiller/index.html)|
-|[PocketFlow](https://pocketflow.github.io/)|
-|[TensorFlow Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite), [tensorflow-compression](https://tensorflow.github.io/compression/)|
-|[cupy](https://cupy.chainer.org/), [ideep](https://github.com/intel/ideep)|
-|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
-|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
-|[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
-|[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
-|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
-
 ## Sys for Deep Learning
 
 Over the past few years, deep learning has become an important technique to successfully solve problems in many different fields, such as vision, NLP, robotics. An important ingredient that is driving this success is the development of deep learning systems that efficiently support the task of learning and inference of complicated models using many devices and possibly using distributed resources. The study of how to build and optimize these deep learning systems is now an active area of research and commercialization.
 
+Matrix computation dense application like deep neural network would take the advantages of specific architecture design. Thus it is really close to `high performance computational science` when sloving some computation dense problems.
+
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
 
-* [Hanlab: ACCELERATED DEEP LEARNING COMPUTING Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
-* [Bingsheng He's publication on GPU](https://www.comp.nus.edu.sg/~hebs/publication.html)
+
+* [Workshop on AI Systems](http://learningsys.org/sosp19/)
+* http://learningsys.org/nips18/
+* http://learningsys.org/sosp17/
+* https://sites.google.com/site/mlsys2016/
 * [Programmable Hardware Accelerators (Winter 2019)](https://cmpe293-winter19-01.courses.soe.ucsc.edu/home)
 * [Hardware Accelerators for Machine Learning (CS 217)](https://cs217.stanford.edu/)
 * [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
 * [Illinois Microarchitecture Project using Algorithms and Compiler Technology](http://impact.crhc.illinois.edu/default.aspx)
 * [Deep Learning for Computer Architects](https://www.morganclaypool.com/doi/abs/10.2200/S00783ED1V01Y201706CAC041)
 * [System for Machine Learning @.washington.edu/](https://dlsys.cs.washington.edu/)
+* [Hanlab: ACCELERATED DEEP LEARNING COMPUTING Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
+* [Bingsheng He's publication on GPU](https://www.comp.nus.edu.sg/~hebs/publication.html)
 * [Workshop on Systems for ML and Open Source Software at NeurIPS 2018](http://learningsys.org/nips18/schedule.html)
 * [Papers Reading List of *Embedded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
 * [Computer Systems Colloquium (EE380) Schedule](https://web.stanford.edu/class/ee380/)
@@ -85,7 +80,6 @@ Over the past few years, deep learning has become an important technique to succ
 * [The fastest path to machine learning integration](https://intel.github.io/dffml/)
 * https://www.sigarch.org/call-participation/ml-benchmarking-tutorial/
 * [DNNBuilder: an Automated Tool for Building High-Performance DNN Hardware Accelerators for FPGAs](https://www.c3sr.com/publication/2018/iccad_dnnbuilder/)
-* [SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)
 * [ISCA 2016 in Seoul](http://isca2016.eecs.umich.edu/)
 * [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
 * [Acceleration of Deep Learning for Cloud and Edge Computing@UCLA](https://vast.cs.ucla.edu/projects/acceleration-deep-learning-cloud-and-edge-computing)
@@ -111,10 +105,9 @@ Over the past few years, deep learning has become an important technique to succ
 * [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
 * [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
 
-### Numerical algorithms for high-performance computational science
+## Numerical algorithms for high-performance computational science
 
-
-Several key themes emerged across multiple talks, all in the context of today’s high performance computing landscape in which processor clock speeds have stagnated (with the end of Moore’s law) and exascale machine are just two or three years away.
+Several key themes emerged across multiple talks in [Royal Society Discussion Meeting](https://constantinides.net/2019/04/23/royal-society-discussion-meeting/), all in the context of today’s high performance computing landscape in which processor clock speeds have stagnated (with the end of Moore’s law) and exascale machine are just two or three years away.
 
 * An important way of accelerating computations is through the use of `low precision floating-point arithmetic`—in particular by exploiting a hierarchy of precisions.
 * We must exploit `low rank matrix structure` where it exists, for example in hierarchical (H-matrix) form, combining it with randomized approximations.
@@ -123,66 +116,46 @@ Several key themes emerged across multiple talks, all in the context of today’
 
 + [Numerical Algorithms for High-Performance Computational Science: Highlights of the Meeting](https://nickhigham.wordpress.com/2019/05/07/numerical-algorithms-for-high-performance-computational-science-highlights/)
 + [Numerical algorithms for high-performance computational science](https://royalsociety.org/science-events-and-lectures/2019/04/high-performance-computing/)
-+ [Royal Society Discussion Meeting](https://constantinides.net/2019/04/23/royal-society-discussion-meeting/)
 + [Reflections on the Royal Society’s “Numerical Algorithms for High-performance Computational Science” Discussion Meeting](https://sinews.siam.org/Details-Page/reflections-on-the-royal-societys-numerical-algorithms-for-high-performance-computational-science-discussion-meeting)
++ [Overview of Microsoft HPC Pack 2016](https://docs.microsoft.com/zh-cn/powershell/high-performance-computing/overview?view=hpc16-ps)
++ [Document Library: High Performance Computing Fabrics](https://www.intel.com/content/www/us/en/high-performance-computing-fabrics/library.html)
++ https://researchcomputing.lehigh.edu/
++ https://library.columbia.edu/libraries/dsc/hpc.html
++ [Open MPI: Open Source High Performance Computing](https://www.open-mpi.org/)
++ https://ltsnews.lehigh.edu/node/115
++ https://developer.nvidia.com/cuda-zone
++ [NumFOCUS](https://numfocus.org/sponsored-projects)
++ http://www.mit.edu/~kepner/D4M/
+
+### Automatic Differentiation
 
 
-## Compilers for Deep Learning
 
-* [Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)
-* https://github.com/intel/ideep
-* https://github.com/intel/mkl-dnn
-* https://intel.github.io/dffml/
-* https://github.com/pfnet-research/menoh
-* https://arxiv.org/pdf/1602.01528.pdf
+Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities.Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
 
+Practitioners across many fields have built a wide set of automatic differentiation tools, using different programming languages, computational primitives and intermediate compiler representations. Each of these choices comes with positive and negative trade-offs, in terms of their usability, flexibility and performance in specific domains.
 
-### TVM and Versatile Tensor Accelerator (VTA)
+In the ideal case, automatically generated derivatives should be competitive with manually generated ones and run at near-peak performance on modern hardware, but the most expressive systems for autodiff which can handle arbitrary, Turing-complete programs, are unsuited for performance-critical applications, such as large-scale machine learning or physical simulation. Alternatively, the most performant systems are not designed for use outside of their designated application space, e.g. graphics or neural networks.
 
-> TVM is an open deep learning compiler stack for CPUs, GPUs, and specialized accelerators. It aims to close the gap between the productivity-focused deep learning frameworks, and the performance- or efficiency-oriented hardware backends. TVM provides the following main features:
-
-> Compilation of deep learning models in Keras, MXNet, PyTorch, Tensorflow, CoreML, DarkNet into minimum deployable modules on diverse hardware backends.
-Infrastructure to automatic generate and optimize tensor operators on more backend with better performance.
-
-<img src="https://raw.githubusercontent.com/uwsampl/web-data/master/vta/blogpost/vta_stack.png" width="70%" />
+All numerical gradient-based optimization methods benifits from faster computation of gradients specially `backprop`. 
 
 
-Matrix computation dense application like deep neural network would take the advantages of specific architecture design.
-
-<img src="https://raw.githubusercontent.com/tvmai/tvmai.github.io/master/images/main/stack_tvmlang.png" width= "100%" />
-
-* https://sampl.cs.washington.edu/
-* https://homes.cs.washington.edu/~haichen/
-* https://tqchen.com/
-* https://www.cs.washington.edu/people/faculty/arvind
-* [TVM: End to End Deep Learning Compiler Stack](https://tvm.ai/)
-* [TVM and Deep Learning Compiler Conference](https://sampl.cs.washington.edu/tvmconf/)
-* [VTA Deep Learning Accelerator](https://sampl.cs.washington.edu/projects/vta.html)
-* [如何利用TVM快速实现超越Numpy(MKL)的GEMM蓝色](https://zhuanlan.zhihu.com/p/75203171)
-* [使用TVM支持TFLite（下)](https://zhuanlan.zhihu.com/p/57147430)
-
-#### nGraph
-
-`nGraph` is an end to end deep learning compiler for inference and training with extensive framework and hardware support.
-
-<img src="https://www.ngraph.ai/sites/default/files/2019-08/main_diagram_fw_hw.png" width="70%" />
-
-+ https://www.ngraph.ai/
-+ https://github.com/NervanaSystems/ngraph
-- https://en.wikipedia.org/wiki/Zeroth_(software)
-
-#### XLA
-
-- https://www.tensorflow.org/versions/master/experimental/xla/
-- https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
-- https://www.tensorflow.org/xla/overview
-- https://autodiff-workshop.github.io/slides/JeffDean.pdf
-
-##### Glow
-
-- https://arxiv.org/pdf/1805.00907.pdf
-- https://ai.facebook.com/tools/glow/
-- https://github.com/pytorch/glow
++ https://autodiff-workshop.github.io/
++ https://autodiff-workshop.github.io/2016.html
++ http://www.autodiff.org/
++ https://autodiff.github.io/
++ https://github.com/google/jax
++ https://github.com/google/tangent
++ https://en.wikipedia.org/wiki/Automatic_differentiation
++ http://www.admb-project.org/
++ https://github.com/rjhogan/Adept
++ http://www.met.reading.ac.uk/clouds/adept/
++ [AD computation with Template Model Builder (TMB)](https://github.com/kaskr/adcomp)
++ https://non-contradiction.github.io/autodiffr/
++ https://srijithr.gitlab.io/post/autodiff/
++ https://fl.readthedocs.io/en/latest/autograd.html
++ https://pymanopt.github.io/
++ https://yiduai.sg/tensorflow-workshop/
 
 ### Generalized Matrix Multiplication Optimization
 
@@ -276,7 +249,8 @@ $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}
 
 * [Powers of Tensors and Fast Matrix Multiplication](https://simons.berkeley.edu/sites/default/files/docs/2438/slideslegall.pdf)
 * https://www.kkhaydarov.com/matrix-multiplication-algorithms/
-* https://github.com/flame/blislab
+* [BLISlab: A Sandbox for Optimizing GEMM](https://github.com/flame/blislab)
+* http://apfel.mathematik.uni-ulm.de/~lehn/sghpc/gemm/
 * [通用矩阵乘和卷积优化](https://jackwish.net/gemm-optimization-and-convolution.html)
 * [Fast Matrix Multiplication Algorithms](https://www.ics.uci.edu/~fastmm/)
 * [Anatomy of high-performance matrix multiplication](https://dl.acm.org/citation.cfm?id=1356053)
@@ -315,6 +289,97 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 * http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf
 * https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
 
+
+## Compilers for Deep Learning
+
+|DNN Acceleratation Framework|
+|---|
+|[NVIDIA cuDNN GPU Accelerated Deep Learning](https://developer.nvidia.com/cudnn)|
+|[cupy](https://cupy.chainer.org/), [ideep](https://github.com/intel/ideep)|
+|[Menoh](https://github.com/pfnet-research/menoh)|
+|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
+|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
+|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
+|[Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)|
+|[SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)|
+
+* https://arxiv.org/pdf/1602.01528.pdf
+
+
+### TVM and Versatile Tensor Accelerator (VTA)
+
+> TVM is an open deep learning compiler stack for CPUs, GPUs, and specialized accelerators. It aims to close the gap between the productivity-focused deep learning frameworks, and the performance- or efficiency-oriented hardware backends. TVM provides the following main features:
+
+> Compilation of deep learning models in Keras, MXNet, PyTorch, Tensorflow, CoreML, DarkNet into minimum deployable modules on diverse hardware backends.
+Infrastructure to automatic generate and optimize tensor operators on more backend with better performance.
+
+<img src="https://raw.githubusercontent.com/tvmai/tvmai.github.io/master/images/main/stack_tvmlang.png" width= "80%" />
+
+
+The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework designed to advance deep learning and hardware innovation. VTA is a programmable accelerator that exposes a RISC-like programming abstraction to describe compute and memory operations at the tensor level. We designed VTA to expose the most salient and common characteristics of mainstream deep learning accelerators, such as tensor operations, DMA load/stores, and explicit compute/memory arbitration.
+
+
+<img src="https://raw.githubusercontent.com/uwsampl/web-data/master/vta/blogpost/vta_stack.png" width="70%" />
+
+
+
+* https://sampl.cs.washington.edu/
+* https://homes.cs.washington.edu/~haichen/
+* https://tqchen.com/
+* https://www.cs.washington.edu/people/faculty/arvind
+* [TVM: End to End Deep Learning Compiler Stack](https://tvm.ai/)
+* [TVM and Deep Learning Compiler Conference](https://sampl.cs.washington.edu/tvmconf/)
+* [VTA Deep Learning Accelerator](https://sampl.cs.washington.edu/projects/vta.html)
+* https://sampl.cs.washington.edu/
+* https://docs.tvm.ai/vta/index.html
+* [如何利用TVM快速实现超越Numpy(MKL)的GEMM蓝色](https://zhuanlan.zhihu.com/p/75203171)
+* [使用TVM支持TFLite（下)](https://zhuanlan.zhihu.com/p/57147430)
+
+#### nGraph
+
+`nGraph` is an end to end deep learning compiler for inference and training with extensive framework and hardware support.
+
+<img src="https://www.ngraph.ai/sites/default/files/2019-08/main_diagram_fw_hw.png" width="70%" />
+
++ https://www.ngraph.ai/
++ https://github.com/NervanaSystems/ngraph
+- https://en.wikipedia.org/wiki/Zeroth_(software)
+
+#### XLA
+
+The XLA compilation framework is invoked on subgraphs of TensorFlow computations. The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes. 
+
+- https://www.tensorflow.org/versions/master/experimental/xla/
+- https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
+- https://www.tensorflow.org/xla/overview
+- https://autodiff-workshop.github.io/slides/JeffDean.pdf
+- [XLA: The TensorFlow compiler framework](https://haosdent.gitbooks.io/tensorflow-document/content/resources/xla_prerelease.html)
+
+#### JAX: Autograd and XLA
+
+With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions. It can differentiate through loops, branches, recursion, and closures, and it can take derivatives of derivatives of derivatives. It supports reverse-mode differentiation (a.k.a. backpropagation) via grad as well as forward-mode differentiation, and the two can be composed arbitrarily to any order.
+<img src="https://raw.githubusercontent.com/google/jax/master/images/lifecycle.png" width="60%" />
+
+- https://github.com/google/jax
+
+#### Multi-Level Intermediate Representation
+
+The Multi-Level Intermediate Representation (MLIR) is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. It is thus well-suited to deep learning computations in particular. Yet it is general enough to also represent arbitrary sequential computation. The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
+
+- https://github.com/tensorflow/mlir
+- https://llvm.org/devmtg/2019-04/slides/Keynote-ShpeismanLattner-MLIR.pdf
+
+#### Glow
+
+Glow is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development. 
+
+- https://arxiv.org/pdf/1805.00907.pdf
+- https://ai.facebook.com/tools/glow/
+- https://github.com/pytorch/glow
+
+
+----
+
 ### Compression and Acceleration of CNN
 
 Theme Name | Description | Application | More Details
@@ -327,6 +392,9 @@ Knowledge distillation |Training a compact neural network with distilled knowled
 * https://jackwish.net/convolution-neural-networks-optimization.html
 * [Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks ](http://eyeriss.mit.edu/)
 * [深度学习如何进行模型压缩？](https://www.zhihu.com/question/64987081/answer/684375500)
+* [Caffeine: Towards Uniformed Representation and Acceleration for Deep Convolutional Neural Networks](https://vast.cs.ucla.edu/publications/caffeine-towards-uniformed-representation-and-acceleration-deep-convolutional-neural)
+* [Optimizing FPGA-based Accelerator Design for Deep Convolutional Neural Networks](https://vast.cs.ucla.edu/publications/optimizing-fpga-based-accelerator-design-deep-convolutional-neural-networks)
+* [Automated Systolic Array Architecture Synthesis for High Throughput CNN Inference on FPGAs](https://vast.cs.ucla.edu/publications/automated-systolic-array-architecture-synthesis-high-throughput-cnn-inference-fpgas)
 
 #### Parameter Pruning and Sharing
 
@@ -372,8 +440,6 @@ where $x$ is the scalar input, $b_a$ is the bit-width, and $k$ is the quantizati
 * [Neural Network Quantization Resources](https://jackwish.net/neural-network-quantization-resources.html)
 * [Low Precision Arithmetic Simulation in PyTorch](https://github.com/Tiiiger/QPyTorch)
 * [Training Quantized Deep Neural Networks and Applications with Blended Coarse Gradient Descent](https://sinews.siam.org/Details-Page/training-quantized-deep-neural-networks-and-applications-with-blended-coarse-gradient-descent)
-
-
 
 ##### Binarized Neural Network, Ternary Weight Networks, XOR-Net
 
@@ -423,7 +489,7 @@ With distillation, knowledge can be transferred from the teacher model to the st
 
 Note that the deep learning models are composite of linear and non-linear maps. And linear maps are based on matrices.
 
-**Singular value decompsoition**
+**Singular value decomposition**
 
 The matrix $A_{m\times n}$ can be decomposed as the multiplication of two matrices such as $A_{m\times n}= Q_{m\times r}R_{r\times n}$, so that the storage is from $O(m\times n)$ to $O(m+n)\times O(r)$.
 
@@ -450,17 +516,24 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * [On Compressing Deep Models by Low Rank and Sparse Decomposition](http://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf)
 * [ESPNets for Computer Vision Efficient CNNs for Edge Devices](https://prior.allenai.org/projects/espnet)
 * https://www.cnblogs.com/zhonghuasong/p/7821170.html
+* https://github.com/chester256/Model-Compression-Papers
 
-
+|Model Compression|
+|---|
+|[Distiller](https://nervanasystems.github.io/distiller/index.html)|
+|[PocketFlow](https://pocketflow.github.io/)|
+|[模型压缩 | PocketFlow中的模型压缩算法-](https://zhuanlan.zhihu.com/c_1041626714043949056)|
+|[PERMDNN: Efficient Compressed DNN Architecture with Permuted Diagonal Matrices](http://alchem.usc.edu/portal/static/download/permdnn.pdf)|
+|[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
+|[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
+|[TensorFlow Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite), [tensorflow-compression](https://tensorflow.github.io/compression/)|
 
 ***
 
 * https://srdas.github.io/DLBook/intro.html#effective
-* [模型压缩 | PocketFlow中的模型压缩算法-](https://zhuanlan.zhihu.com/c_1041626714043949056)
 * https://cognitiveclass.ai/courses/accelerating-deep-learning-gpu/
 * https://github.com/songhan/Deep-Compression-AlexNet
 * [awesome-model-compression-and-acceleration](https://github.com/sun254/awesome-model-compression-and-acceleration)
-* https://github.com/chester256/Model-Compression-Papers
 * [gab41.lab41.org](https://gab41.lab41.org/lab41-reading-group-deep-compression-9c36064fb209)
 * [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
 * http://slazebni.cs.illinois.edu/spring17/lec06_compression.pdf
@@ -468,7 +541,6 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning
 * [CS236605: Deep Learning](https://vistalab-technion.github.io/cs236605/lectures/)
 * https://mlperf.org/
-* [PERMDNN: Efficient Compressed DNN Architecture with Permuted Diagonal Matrices](http://alchem.usc.edu/portal/static/download/permdnn.pdf)
 
 
 
@@ -488,6 +560,7 @@ RNN is feedback network where there is rings in its computational graph.
 - [LSTM compression for language modeling](https://aspirantura.hse.ru/data/2017/05/06/1171468475/2017-04-27-grachev.pdf)
 - https://arxiv.org/ftp/arxiv/papers/1612/1612.00891.pdf
 - https://ai.google/research/pubs/pub44632
+- https://vast.cs.ucla.edu/sites/default/files/publications/CLINK_ISLPED%202018%20publication.pdf
 
 
 https://github.com/kedartatwawadi/NN_compression

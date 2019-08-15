@@ -10,7 +10,7 @@
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
 - [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
 - [ ] [Terrier IR Platform](http://terrier.org/)
-- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/
+- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
@@ -329,13 +329,50 @@ For other types information retrieval system, it is different to compute the rel
 Query-independent ranking| on-document evidence (retrievability, readability, maliciousness); off-document evidence (centrality, popularity, credibility)
 Query understanding| query normalization (encoding, tokenization, spelling); query rewriting (expansion, relaxation, segmentation, scoping)
 Query-dependent ranking| basic models (algebraic models, probabilistic models, information-theoretic models); proximity models (Markov random fields models); structural models (field-based models); semantic models (latent semantics, explicit semantics)
- Contextual ranking| personalization; diversification; interactivity
+Contextual ranking| personalization; diversification; interactivity
 Machine-learned ranking| query-document representation; loss functions (pointwise, pairwise, listwise loss); optimization strategies; adaptation strategies (intent-awareness, exploration-exploitation)
 Ranking evaluation| behavioral models; evaluation design; evaluation metrics; offline evaluation; online evaluation
 
-The `Machine-learned ranking` and `Ranking evaluation` is discussed in `Rating and Ranking`.
+The `Machine-learned ranking` and `Ranking evaluation` is discussed in `Rating and Ranking` partially.
+`Contextual ranking` does not discuss until now.
 
 + https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/
++ https://phys.org/news/2011-05-ranking-research.html
+
+
+#### Query-independent Ranking
+
+- on-document evidence (retrievability, readability, maliciousness); 
+- off-document evidence (centrality, popularity, credibility)
+
++ [Microsoft’s UserRank – Query Independent Ranking Based Upon User Logs](http://www.seobythesea.com/2007/05/microsofts-userrank-query-independent-ranking-based-upon-user-logs/)
++ http://www.patentsencyclopedia.com/app/20130054582
++ https://hurenjun.github.io/pubs/icde2018.pdf
++ https://hurenjun.github.io/pubs/icde2018-slides.pdf
+
+`Centrality of network` assigns an importance score based purely on the number of links held by each node.
+`PageRank` is introduced in `Graph Algorithms`.
+HITS algorithm is in the same spirit as PageRank. They both make use of the link structure of the Weg graph in order to decide the relevance of the pages. The difference is that unlike the PageRank algorithm, HITS only operates on a small subgraph (the seed SQ) from the web graph. This subgraph is query dependent; whenever we search with a different query phrase, the seed changes as well. HITS ranks the seed nodes according to their authority and hub weights. The highest ranking pages are displayed to the user by the query engine.
+
+`Search Engine Optimization(SEO)` is a business type to boost the website higher.
+
+
+* [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
+* [MGT 780/MGT 795 Social Network Analysis](http://www.analytictech.com/mgt780/)
+* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page](http://infolab.stanford.edu/~backrub/google.html)
+* [The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/)
+* [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
+* http://langvillea.people.cofc.edu/
+* [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
+* [How Google Finds Your Needle in the Web's Haysta](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
+* [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
+
+#### Query-dependent ranking
+
+Query-dependent ranking:
+* basic models (algebraic models, probabilistic models, information-theoretic models);
+* proximity models (Markov random fields models); structural models (field-based models);
+* semantic models (latent semantics, explicit semantics).
 
 |Features/Attributes for ranking|
 |---|
@@ -345,13 +382,6 @@ The `Machine-learned ranking` and `Ranking evaluation` is discussed in `Rating a
 |Document Length|
 |Average Inverse Document Frequency|
 |Number of Terms in common between query and document|
-
-#### Query-dependent ranking
-
-Query-dependent ranking:
-* basic models (algebraic models, probabilistic models, information-theoretic models);
-* proximity models (Markov random fields models); structural models (field-based models);
-* semantic models (latent semantics, explicit semantics).
 
 - https://en.wikipedia.org/wiki/Ranking
 - https://andrewoarnold.com/fp025-geng.pdf
@@ -686,22 +716,7 @@ $$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the sema
 * http://www2003.org/cdrom/papers/refereed/p779/ess.html
 * https://blog.alexa.com/semantic-search/
 
-#### Query-independent Ranking
 
-`Centrality of network` assigns an importance score based purely on the number of links held by each node.
-
-`Search Engine Optimization(SEO)` is a business type to boost the website higher.
-`PageRank` is introduced in `Graph Algorithms`.
-
-* http://ryanrossi.com/search.php
-* [MGT 780/MGT 795 Social Network Analysis](http://www.analytictech.com/mgt780/)
-* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page](http://infolab.stanford.edu/~backrub/google.html)
-* [The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/)
-* [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
-* http://langvillea.people.cofc.edu/
-* [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
-* [How Google Finds Your Needle in the Web's Haysta](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
-* [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
 
 ### Information Distribution: Search Engine Results Page
 
@@ -718,6 +733,8 @@ $$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the sema
 - https://doc.nuxeo.com/nxdoc/elasticsearch-highlights/
 
 #### Webpage Snapshot
+
+----
 
 ### Neural Information Retrieval
 
@@ -799,6 +816,8 @@ And here search engine and recommender system coincide except the recommender sy
 * [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
 * [CH. 9: PERSONALIZATION IN SEARCH](https://searchuserinterfaces.com/book/sui_ch9_personalization.html)
 
+
+----
 ### Vertical Domain Search: Beyond String and Texts
 
 As we have learned how to handle text, information retrieval is moving on, to projects in sound and image retrieval, along with electronic provision of much of what is now in libraries.
@@ -901,11 +920,29 @@ It is becasue medical information is really professional while critical.
 ### Knowledge Graphs
 
 Search is not only on string but also things.
+Knowledge graphs are large networks of entities and their semantic relationships. They are a powerful tool that changes the way we do data integration, search, analytics, and context-sensitive recommendations. Knowledge graphs have been successfully utilized by the large Internet tech companies, with prominent examples such as the Google Knowledge Graph. Open knowledge graphs such as Wikidata make community-created knowledge freely accessible. 
 
+<img src="https://metaphacts.com/images/metaphacts_images/metaphactory-knowledge-graphs-lifecycle.png" width="50%"/>
+
++ [The First Workshop on Knowledge Graphs and Semantics for Text Retrieval and Analysis](https://kg4ir.github.io/previous/KG4IR-SIGIR17/)
 + [The Second Workshop on Knowledge Graphs and Semantics for Text Retrieval, Analysis, and Understanding](https://kg4ir.github.io/)
++ [Open Knowledge Network.](http://bakarinstitute.ucsf.edu/open-knowledge-network/)
 + https://twiggle.com/
 + https://www.clearquery.io/how
 + [The Entity & Language Series: Translation and Language APIs Impact on Query Understanding & Entity Understanding (4 of 5)](https://mobilemoxie.com/blog/the-entity-language-series-translation-and-language-apis-impact-on-query-understanding-entity-understanding-4-of-5/)
++ https://etymo.io/
++ https://scholar.etymo.io/
++ https://cayley.io/
++ https://grakn.ai/
++ [TUTORIAL: GETTING STARTED WITH KNOWLEDGE GRAPHS](http://knowledgegraph.info/)
++ [Mining Knowledge Graphs from Text](https://kgtutorial.github.io/)
++ [Open knowledge mining and graph builder](https://github.com/starcolon/vor-knowledge-graph)
++ [WordAtlas — the next-generation multilingual knowledge graph based on BabelNet](http://babelscape.com/wordatlas)
++ https://www.openacademic.ai/
++ [ConceptNet An open, multilingual knowledge graph](http://conceptnet.io/)
++ [Knowledge Graphs and Knowledge Networks: The Story in Brief](http://wiki.knoesis.org/index.php/Knowledge_Graphs_and_Knowledge_Networks:_The_Story_in_Brief)
+
+<img src="http://wiki.knoesis.org/images/c/c0/KG_OKN.jpeg" width="60%"/>
 
 ### Labs and Resources  
 
