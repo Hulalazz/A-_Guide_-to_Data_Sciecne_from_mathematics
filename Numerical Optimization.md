@@ -1,6 +1,6 @@
 # Numerical Optimization
 
-![http://art.ifeng.com/2015/1116/2606232.shtml](http://upload.art.ifeng.com/2015/1116/1447668349594.jpg)
+<img title="http://art.ifeng.com/2015/1116/2606232.shtml" src="http://upload.art.ifeng.com/2015/1116/1447668349594.jpg" width="70%"/>
 
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
 $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{blue}{EVALUATION}$ + $\color{red}{OPTIMIZATION}$.
@@ -112,25 +112,26 @@ ${v}$, it can be made as negative as we like by taking ${v}$ large (provided ${v
 direction, i.e., $\nabla_x f(x)^T v< 0$). To make the question sensible we have to limit the
 size of ${v}$, or normalize by the length of ${v}$.
 
-We define a normalized steepest descent direction
-(with respect to the norm $\|\cdot \|$ in $\mathbb{R}^n$) as
+We define a normalized steepest descent direction (with respect to the norm $\|\cdot \|$ in $\mathbb{R}^n$) as
+
 $$\Delta x_{nsd}=\arg\min_{v}\{f(x)^T v\mid \|v\|=1\}.$$
 
-(We say ‘a’ steepest descent direction because there can be multiple minimizers.)
 It is also convenient to consider a steepest descent step $\Delta x_{sd}$ that is unnormalized,
 by scaling the normalized steepest descent direction in a particular way:
+
 $$\Delta x_{sd}={\|\nabla f(x)\|}_{\ast}\Delta x_{nsd}$$
 
 where ${\| \cdot \|}_{\ast}$ denotes the dual norm.
 
+(We say ‘a’ steepest descent direction because there can be multiple minimizers.)
+
 ***
 > Algorithm  Steepest descent method.
 given a starting point $x \in domf$.
-> * repeat
->   1. Compute steepest descent direction $\Delta x_{sd}$.
->   2. Line search. Choose ${t}$ via backtracking or exact line search.
->   3. Update. $x := x + t \Delta x_{sd}$.
-> * until stopping criterion is satisfied.
+* repeat
+   1. Compute steepest descent direction $\Delta x_{sd}$.
+   2. Line search. Choose ${t}$ via backtracking or exact line search.   3. Update. $x := x + t \Delta x_{sd}$.
+* until stopping criterion is satisfied.
 
 If the variable ${x}$ is restricted in some bounded domain, i.e., $x\in D$, the steepest gradient descemt methods can be modified to `conditional gradient descent method` or `Frank-Wolfe algorithm`.
 ***
@@ -500,11 +501,11 @@ See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey M
 + [AN ASSEMBLY AND DECOMPOSITION APPROACH FOR CONSTRUCTING SEPARABLE MINORIZING FUNCTIONS IN A CLASS OF MM ALGORITHMS](https://www.semanticscholar.org/paper/AN-ASSEMBLY-AND-DECOMPOSITION-APPROACH-FOR-IN-A-OF-Tian-Huang/fdffff8c1bf5cdd258f287136e0bbcd8ab0b7529)
 
 
-**Quadratic Lower Bound**
+**Quadratic Lowwer Bound**
 
-<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
 
 - http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
+- [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
 
 ## Projected Gradient Method and More
 
@@ -1227,7 +1228,7 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 - https://calculus.subwiki.org/wiki/Additively_separable_function
 - https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
 - http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
-
+- http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
 
 ## Surrogate Optimization
 
@@ -1443,9 +1444,18 @@ A ubiquitous prior in modern statistical signal processing asserts that an obser
 
 As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
 
+**Convex Relaxations**
+
 [Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
 Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
 integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
+
+**Quadratic Majorization**
+
+A quadratic  $g$  majorizes  $f$  at  $y$  on  $\mathbb{R}^n$  if  $g(y)=f(y)$  and  $g(x)\geq f(x)$  for all  $x$. If we write it in the form
+$$g(x)=f(y)+(x-y)'b+\frac12 (x-y)'A(x-y)$$
+
+<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
 
 ***
 
@@ -1785,7 +1795,7 @@ https://eta.impa.br/dl/028.pdf
 |$x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$|?|
 |$\nabla h(x^{k+1})-\nabla h(x^1) =- \sum_{n=1}^{k}\alpha_i \nabla f(x^i) , x\in \mathbb{S}$|?|
 
-![PID Optimizer](http://5b0988e595225.cdn.sohucs.com/images/20180720/904ace2258564f6b98e91ad71de6ff91.jpeg)
+<img title="PID Optimizer" src="http://5b0988e595225.cdn.sohucs.com/images/20180720/904ace2258564f6b98e91ad71de6ff91.jpeg" width="60%" />
 
 * http://www.sohu.com/a/242354509_297288
 * [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
@@ -1856,7 +1866,7 @@ There is fluctuations in the total objective function as gradient steps with res
 
 |The fluctuations in the objective function as gradient steps with respect to mini-batches are taken|
 |:------------------------------------:|
-|![](https://upload.wikimedia.org/wikipedia/commons/f/f3/Stogra.png)|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Stogra.png" width="60%" />|
 
 ***
 
@@ -1950,7 +1960,7 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 
-#### Distributed Optimization Methods
+## Distributed Optimization Methods
 
 [Beginning around ten years ago, the single-threaded CPU performance stopped improving significantly, due to physical limitations; it is the numbers of cores in each machine that continue to arise. Today we can buy 8-core phones, 64-core workstations, and 2.5k-core GPUs at affordable prices. On the other hand, most of our algorithms are still single-threaded, and because so, their running time is about the same as it was to ten years ago and will stay so in the future, say, ten or twenty years. To develop faster algorithms, especially for those large-scale problems that arise in signal processing, medical imaging, and machine learning, it is inevitable to consider parallel computing.](http://www.math.ucla.edu/~wotaoyin/research.html)
 Machine learning especially deep learning requires more powerful `distributed and decentralized` optimization methods.
@@ -1982,19 +1992,104 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - http://shivaram.org/publications/hemingway-mlsys-2016.pdf
 - http://principlesofoptimaldesign.org/
 - [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
-
+- [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
 
 <img src="http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png" width = "50%" />
 
-##### Parallelizing Stochastic Gradient Descent
+### Parallelizing Stochastic Gradient Descent
 
+#### Elastic Stochastic Gradient Descent
+
+It is based on an elastic force which links the parameters they compute with a center variable stored by the parameter server (master). The algorithm enables the local workers to perform more exploration, i.e. the algorithm allows the local variables to fluctuate further from the center variable by reducing the amount of communication between local workers and the master.
+
+The loss function of `Elastic-SGD`
+$$x^{\ast}=\arg\min_{x, x^1, x^N}\frac{1}{N}\sum_{n=1}^{N} f(x^n)+\frac{1}{2\rho N}\|x-x^n\|^2.$$
+
+- [Deep learning with Elastic Averaging SGD](http://www.columbia.edu/~aec2163/NonFlash/Papers/EASGD_NIPS2015.pdf)
+
+#### Parle
+
+Parle exploits the phenomenon of wide minima that has been shown to improve generalization performance of deep networks and trains multiple “replicas” of a network that are coupled to each other using attractive potentials. It requires infrequent communication with the parameter server and is well-suited to singlemachine-multi-GPU as well as distributed settings.
+
+The method replace the loss function by a smoother loss called local entropy
+$$f_{\gamma}^{\beta}(x)=-\frac{1}{\beta}\log(G_{\gamma/\beta}\times \exp(-\beta f(x)))$$
+where $G_{\gamma/\beta}$ is the Gaussian kernel with variance $\gamma/\beta$.
+
+Parle solves for
+$$x^{\ast}=\arg\min_{x, x^1, x^N}\sum_{n=1}^{N} f_{\gamma}^{\beta}(x^n)+\frac{1}{2\rho N}\| x - x^n\|^2.$$
+
+- [Parle: parallelizing stochastic gradient descent](https://www.sysml.cc/doc/2018/174.pdf)
+
+#### Asynchronous Stochastic Gradient Descent
+
+[Asynchronous Stochastic Gradient (shared memory)](http://www.stat.ucdavis.edu/~chohsieh/teaching/ECS289G_Fall2015/lecture4.pdf):
+* Each thread repeatedly performs the following updates:
+  * For $t = 1, 2, \cdots$
+    * Randomly pick an index $i$
+    * $x\leftarrow x - \nabla f_i(x)$.
+
+Main trick: in shared memory systems, every threads can access the same parameter $x$.
+
+- [Asynchronous Stochastic Gradient Descent with Delay Compensation](https://arxiv.org/abs/1609.08326)
 - [Hogwild: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent](http://papers.nips.cc/paper/4390-hogwild-a-lock-free-approach-to-parallelizing-stochastic-gradient-descent)
 - [Asynchronous Decentralized Parallel Stochastic Gradient Descent](http://proceedings.mlr.press/v80/lian18a/lian18a.pdf)
-- https://arxiv.org/abs/1905.05920v1
-- https://ray.readthedocs.io/en/latest/distributed_sgd.html
-- https://www.podc.org/data/podc2018/podc2018-tutorial-alistarh.pdf
+- [Stochastic Proximal Langevin Algorithm: Potential Splitting and Nonasymptotic Rates](http://bicmr.pku.edu.cn/conference/opt-2014/)
+- [Stochastic Proximal Langevin Algorithm: Potential Splitting and Nonasymptotic Rates](https://arxiv.org/abs/1905.11768)
+- [Hybrid Stochastic Gradient Descent Algorithms for Stochastic Nonconvex Optimization](https://arxiv.org/abs/1905.05920v1)
 
-##### Stochastic ADMM
+***
+
+- https://www.podc.org/data/podc2018/podc2018-tutorial-alistarh.pdf
+- https://www.math.ucla.edu/~wotaoyin/math285j.18
+- http://seba1511.net/dist_blog/
+- [Asynchronous Accelerated Stochastic Gradient Descent](https://www.microsoft.com/en-us/research/publication/asynchronous-accelerated-stochastic-gradient-descent/)
+- https://github.com/AbduElturki/Asynchronous-Stochastic-Gradient-Descent
+
+###  Parallel Coordinate Methods
+
+- [Synchronized Parallel Coordinate Descent](http://www.stat.ucdavis.edu/~chohsieh/teaching/ECS289G_Fall2015/lecture4.pdf)
+
+#### Stochastic coordinate fixed-point iteration
+
+There are examples such as Forward-Backward, Douglas-Rachford,... for finding a zero of a sum of maximally monotone operators or for minimizing a sum of convex functions.
+
+**Random block-coordinate Krasnoselskiı–Mann iteration**
++ for $n=0,\cdots$
+    + for $i=1, \cdots, m$
+        + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_i(x_{1,n},\cdots, x_{m, n})+a_{i, n}-x_{i, n})$
+
+where
+* $x_0, a_n\in \mathbb H$ and $\mathbb H$ is separable real Hilbert space,
+* $\epsilon_{n}$ is random variable in $\{0,1\}^m\setminus \mathbf{0}$,
+* $\lambda_n\in (0, 1)$ and $\liminf \lambda_n>0$ and $\limsup \lambda_n<1$,
+* the mapping $\mathrm T:\mathbb H\to \mathbb H$ i.e. $x\mapsto (T_1x, \cdots, T_i x, \cdots, T_m x)$ is  nonexpansive operator.
+
+
+**Double-layer random block-coordinate algorithms**
++ for $n=0, 1, \cdots$
+    + $y_n =\mathrm R_n x_n + b_n$
+    + for $i=1, \cdots, m$
+        + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_{i, n}(y_n)+a_{i, n}-x_{i, n})$
+
+**Random block-coordinate Douglas-Rachford splitting**
+
+* https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf
+
+**Random block-coordinate forward-backward splitting**
+
+- [Stochastic Block-Coordinate Fixed Point Iterations with Applications to Splitting](https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf)
+- [Stochastic Quasi-Fej´er Block-Coordinate Fixed Point Iterations with Random Sweeping](https://core.ac.uk/download/pdf/47081501.pdf)
+- [LINEAR CONVERGENCE OF STOCHASTIC BLOCK-COORDINATE FIXED POINT ALGORITHMS](https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570436777.pdf)
+
+#### Asynchronous coordinate fixed-point iteration
+
+
+- http://www.mit.edu/people/dimitrib/Distr_Comp_Fixed.pdf
+- https://arxiv.org/abs/1706.00088
+
+
+
+### Stochastic ADMM
 
 Linearly constrained stochastic convex optimization is given by
 $$
@@ -2024,7 +2119,7 @@ where $g_k$ is  a stochastic (sub)gradient of ${f}$.
 - [V-Cycle or Double Sweep ADMM](http://cermics.enpc.fr/~parmenta/frejus/2018Summer04.pdf)
 - https://arxiv.org/abs/1903.01786
 
-##### Distributed ADMM
+### Distributed ADMM
 
 Let us assume that the function $F$ has the following decomposition where each $x_i$ has its own dimension.
 $$
@@ -2067,11 +2162,12 @@ independently.
 * [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.pdf)
 * [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
 
-****
+### Monotone Operator Splitting Methods for Optimization
 
-**Monotone Operator Splitting Methods for Optimization**
+Monotone operator splitting methods, which originated in the late 1970’s in the context of partial differential equations, have started to be highly effective for modeling and solving a wide range of data analysis and processing problems, in particular high-dimensional statistical data analysis.
 
-Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures). For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
+Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures).
+For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
 $$
 \arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda)
 $$
@@ -2082,7 +2178,7 @@ $$
 \arg\max_{\lambda} L_{\beta}(x,y,\mid \lambda).
 $$
 
-![conference](https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90)
+<img src="https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90" width="70%" />
 
 They are really some block relaxation techniques.
 
@@ -2093,13 +2189,15 @@ They are really some block relaxation techniques.
 + [Operator Splitting Methods for Fast MPC](http://www.syscop.de/files/2015ss/numopt/splitting.pdf)
 + https://staffportal.curtin.edu.au/staff/profile/view/Jie.Sun/
 + [Operator Splitting Methods in Data Analysis](https://www.simonsfoundation.org/event/operator-splitting-methods-in-data-analysis/)
-
++ https://www.samsi.info/programs-and-activities/research-workshops/operator-splitting-methods-data-analysis/
++ http://idda.cuhk.edu.cn/zh-hans/page/10297
++ [Random monotone operators and application to Stochastic Optimization](https://pastel.archives-ouvertes.fr/tel-01960496/document)
 
 ## Gradient Free Optimization Methods
 
-As shown in `Principle of Optimal Design`, `nongradient methods` are classified into 3 classes:
+As shown in `Principle of Optimal Design`, `non-gradient methods` are classified into 3 classes:
 
-[We organize the discussion of nongradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
+[We organize the discussion of non-gradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
 
 > Derivative-free optimization (DFO) algorithms differ in the way they use the sampled function values to determine the new iterate. One class of methods constructs a linear
 or quadratic model of the objective function and defines the next iterate by seeking to minimize this model inside a trust region. We pay particular attention to these model-based
