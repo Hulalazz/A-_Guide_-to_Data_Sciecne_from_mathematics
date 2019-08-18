@@ -1230,6 +1230,21 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 - http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
 - http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
 
+## Linear Programming
+
+A linear program (LP) is an optimization problem in which the objective function is linear in the unknowns and the constraints consist of linear equalities and linear inequalities.
+
+The  standard problem is
+$$\min_{x}\mathbf{c^Tx} \\ s.t.\quad \mathbf{Ax=b, x\geq 0}.$$
+
+Here $\mathbf x$ is an n-dimensional column vector, $\mathbf{c^T}$ is an n-dimensional row vector, $\mathbf{A}$ is an $m \times n$ matrix, and $\mathbf b$ is an m-dimensional column vector. The vector inequality $\mathbf{x\geq 0}$ means that each component of $\mathbf x$ is nonnegative.
+
+> Fundamental Theorem of Linear Programming. Given a linear program in standard form where $\mathbf A$ is an $m × n$ matrix of rank $m$,
+> 1) if there is a feasible solution, there is a basic feasible solution;
+> 2) if there is an optimal feasible solution, there is an optimal basic feasible solution.
+
+
+
 ## Surrogate Optimization
 
 It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
@@ -2031,29 +2046,38 @@ $$x^{\ast}=\arg\min_{x, x^1, x^N}\sum_{n=1}^{N} f_{\gamma}^{\beta}(x^n)+\frac{1}
 Main trick: in shared memory systems, every threads can access the same parameter $x$.
 
 - [Asynchronous Stochastic Gradient Descent with Delay Compensation](https://arxiv.org/abs/1609.08326)
-- [Hogwild: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent](http://papers.nips.cc/paper/4390-hogwild-a-lock-free-approach-to-parallelizing-stochastic-gradient-descent)
 - [Asynchronous Decentralized Parallel Stochastic Gradient Descent](http://proceedings.mlr.press/v80/lian18a/lian18a.pdf)
+- [Asynchronous Accelerated Stochastic Gradient Descent](https://www.microsoft.com/en-us/research/publication/asynchronous-accelerated-stochastic-gradient-descent/)
+- https://github.com/AbduElturki/Asynchronous-Stochastic-Gradient-Descent
 - [Stochastic Proximal Langevin Algorithm: Potential Splitting and Nonasymptotic Rates](http://bicmr.pku.edu.cn/conference/opt-2014/)
 - [Stochastic Proximal Langevin Algorithm: Potential Splitting and Nonasymptotic Rates](https://arxiv.org/abs/1905.11768)
 - [Hybrid Stochastic Gradient Descent Algorithms for Stochastic Nonconvex Optimization](https://arxiv.org/abs/1905.05920v1)
 
+#### Hogwild
+
+Hogwild allows processors access to shared memory with the possibility of overwriting each other's work.
+
+- [Hogwild: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent](http://papers.nips.cc/paper/4390-hogwild-a-lock-free-approach-to-parallelizing-stochastic-gradient-descent)
 ***
 
 - https://www.podc.org/data/podc2018/podc2018-tutorial-alistarh.pdf
 - https://www.math.ucla.edu/~wotaoyin/math285j.18
 - http://seba1511.net/dist_blog/
-- [Asynchronous Accelerated Stochastic Gradient Descent](https://www.microsoft.com/en-us/research/publication/asynchronous-accelerated-stochastic-gradient-descent/)
-- https://github.com/AbduElturki/Asynchronous-Stochastic-Gradient-Descent
+
 
 ###  Parallel Coordinate Methods
 
 - [Synchronized Parallel Coordinate Descent](http://www.stat.ucdavis.edu/~chohsieh/teaching/ECS289G_Fall2015/lecture4.pdf)
+- [DISTRIBUTED ASYNCHRONOUS COMPUTATION OF FIXED POINTS](http://www.mit.edu/people/dimitrib/Distr_Comp_Fixed.pdf)
+- [An Inertial Parallel and Asynchronous Fixed-Point Iteration for Convex Optimization](https://arxiv.org/abs/1706.00088)
+
 
 #### Stochastic coordinate fixed-point iteration
 
 There are examples such as Forward-Backward, Douglas-Rachford,... for finding a zero of a sum of maximally monotone operators or for minimizing a sum of convex functions.
 
-**Random block-coordinate Krasnoselskiı–Mann iteration**
+##### Random block-coordinate Krasnoselskiı–Mann iteration
+
 + for $n=0,\cdots$
     + for $i=1, \cdots, m$
         + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_i(x_{1,n},\cdots, x_{m, n})+a_{i, n}-x_{i, n})$
@@ -2065,29 +2089,31 @@ where
 * the mapping $\mathrm T:\mathbb H\to \mathbb H$ i.e. $x\mapsto (T_1x, \cdots, T_i x, \cdots, T_m x)$ is  nonexpansive operator.
 
 
-**Double-layer random block-coordinate algorithms**
+##### Double-layer random block-coordinate algorithms
 + for $n=0, 1, \cdots$
     + $y_n =\mathrm R_n x_n + b_n$
     + for $i=1, \cdots, m$
         + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_{i, n}(y_n)+a_{i, n}-x_{i, n})$
 
-**Random block-coordinate Douglas-Rachford splitting**
+##### Random block-coordinate Douglas-Rachford splitting
 
 * https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf
+* https://arxiv.org/abs/1404.7536
+* https://arxiv.org/abs/1406.6404
+* https://arxiv.org/abs/1406.5429
 
-**Random block-coordinate forward-backward splitting**
+##### Random block-coordinate forward-backward splitting
 
 - [Stochastic Block-Coordinate Fixed Point Iterations with Applications to Splitting](https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf)
-- [Stochastic Quasi-Fej´er Block-Coordinate Fixed Point Iterations with Random Sweeping](https://core.ac.uk/download/pdf/47081501.pdf)
+- [Stochastic Quasi-Fejer Block-Coordinate Fixed Point Iterations with Random Sweeping](https://core.ac.uk/download/pdf/47081501.pdf)
 - [LINEAR CONVERGENCE OF STOCHASTIC BLOCK-COORDINATE FIXED POINT ALGORITHMS](https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570436777.pdf)
 
-#### Asynchronous coordinate fixed-point iteration
+##### Asynchronous coordinate fixed-point iteration
 
 
-- http://www.mit.edu/people/dimitrib/Distr_Comp_Fixed.pdf
-- https://arxiv.org/abs/1706.00088
 
 
+<img src="https://www.msra.cn/wp-content/uploads/2018/11/book-recommendation-distributed-machine-learning-5.jpg" width="80%">
 
 ### Stochastic ADMM
 

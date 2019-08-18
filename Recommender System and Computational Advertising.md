@@ -23,6 +23,7 @@
 * https://developers.google.com/machine-learning/recommendation/
 * https://sites.google.com/view/lianghu/home/tutorials/ijcai2019
 * https://acmrecsys.github.io/rsss2019/
+* https://github.com/alibaba/x-deeplearning/wiki
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -263,6 +264,14 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 * [Regression-based Latent Factor Models @CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 * [Probabilistic Matrix Factorization](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf)
 
+### Coupled Poisson Factorization
+
+
+
++ [Coupled Poisson Factorization Integrated with User/Item Metadata for Modeling Popular and Sparse Ratings in Scalable Recommendation](http://www.datasciences.org/)
++ [Coupled Compound Poisson Factorization](https://arxiv.org/pdf/1701.02058.pdf)
++ https://github.com/mehmetbasbug/ccpf
+
 ### Collaborative Less-is-More Filtering(CliMF)
 
 Sometimes, the information of user we could collect is implicit such as the clicking at some item.
@@ -274,7 +283,7 @@ $$
 F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))] \\-\frac{\lambda}{2}({\|U\|}^2 + {\|V\|}^2)
 $$
 
-where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e.,$Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$.
+where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e., $Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$.
 The vector $U_i$ denotes a d-dimensional latent factor vector for
 user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.
 
@@ -290,6 +299,8 @@ We use stochastic gradient ascent to maximize the objective function.
 * https://dl.acm.org/citation.cfm?id=2540581
 * [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
 * [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
+
+
 
 ### BellKor's Progamatic Chaos
 
@@ -729,6 +740,7 @@ It is not easy to prove that it converges.
 * [Deep Learning for Recommender Systems](https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf)
 * https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
 * [推荐系统中基于深度学习的混合协同过滤模型](http://www.10tiao.com/html/236/201701/2650688117/2.html)
+* [CoupledCF: Learning Explicit and Implicit User-item Couplings in Recommendation for Deep Collaborative Filtering](http://203.170.84.89/~idawis33/DataScienceLab/publication/nonIID-RS-final.pdf)
 - [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
 - [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
 - [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)

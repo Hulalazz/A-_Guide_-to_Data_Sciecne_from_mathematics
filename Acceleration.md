@@ -17,7 +17,7 @@
 
 The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
 The optimization methods are used to train the deep neural network.
-To boost the training of deep learning, we would like to design faster optimization methods such as `ADAM` and delicate architure of neural network such as `ResNet`.
+To boost the training of deep learning, we would like to design faster optimization methods such as `ADAM` and delicate architectures of neural network such as `ResNet`.
 After training, the parameters of the deep neural network are fixed and used for inference, we would do much matrix multiplication via the saved fixed parameters of deep neural network.  
 From [What’s the Difference Between Deep Learning Training and Inference?](https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/)
 
@@ -126,22 +126,24 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 + https://developer.nvidia.com/cuda-zone
 + [NumFOCUS](https://numfocus.org/sponsored-projects)
 + http://www.mit.edu/~kepner/D4M/
++ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
 
 ### Automatic Differentiation
 
 
 
-Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities.Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
+Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities. Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
 
 Practitioners across many fields have built a wide set of automatic differentiation tools, using different programming languages, computational primitives and intermediate compiler representations. Each of these choices comes with positive and negative trade-offs, in terms of their usability, flexibility and performance in specific domains.
 
 In the ideal case, automatically generated derivatives should be competitive with manually generated ones and run at near-peak performance on modern hardware, but the most expressive systems for autodiff which can handle arbitrary, Turing-complete programs, are unsuited for performance-critical applications, such as large-scale machine learning or physical simulation. Alternatively, the most performant systems are not designed for use outside of their designated application space, e.g. graphics or neural networks.
 
-All numerical gradient-based optimization methods benifits from faster computation of gradients specially `backprop`. 
+All numerical gradient-based optimization methods benifits from faster computation of gradients specially `backprop`.
 
 
 + https://autodiff-workshop.github.io/
 + https://autodiff-workshop.github.io/2016.html
++ https://program-transformations.github.io/
 + http://www.autodiff.org/
 + https://autodiff.github.io/
 + https://github.com/google/jax
@@ -241,7 +243,6 @@ Consider three vector spaces $U$, $V$ and $W$ over the field $\mathbb F$ and
 
 A tensor over $(U, V, W)$ is an element of $U\otimes V\otimes W$ i.e., a formal sum
 $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}}_{\in\mathbb F} x_{u}\otimes y_{v}\otimes z_{w}.$$
-
 
 
 <img src="https://jackwish.net/images/2019/qnnpack/qnnpack-gemm-reduce.jpg" width="70%" />
@@ -347,7 +348,7 @@ The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework desi
 
 #### XLA
 
-The XLA compilation framework is invoked on subgraphs of TensorFlow computations. The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes. 
+The XLA compilation framework is invoked on subgraphs of TensorFlow computations. The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes.
 
 - https://www.tensorflow.org/versions/master/experimental/xla/
 - https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
@@ -358,6 +359,7 @@ The XLA compilation framework is invoked on subgraphs of TensorFlow computations
 #### JAX: Autograd and XLA
 
 With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions. It can differentiate through loops, branches, recursion, and closures, and it can take derivatives of derivatives of derivatives. It supports reverse-mode differentiation (a.k.a. backpropagation) via grad as well as forward-mode differentiation, and the two can be composed arbitrarily to any order.
+
 <img src="https://raw.githubusercontent.com/google/jax/master/images/lifecycle.png" width="60%" />
 
 - https://github.com/google/jax
@@ -371,7 +373,7 @@ The Multi-Level Intermediate Representation (MLIR) is intended for easy expressi
 
 #### Glow
 
-Glow is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development. 
+Glow is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development.
 
 - https://arxiv.org/pdf/1805.00907.pdf
 - https://ai.facebook.com/tools/glow/
@@ -480,9 +482,13 @@ With distillation, knowledge can be transferred from the teacher model to the st
 
 <img src=https://pocketflow.github.io/pics/framework_design.png width=80% />
 
-#### Transferred/compact convolutional filters
+#### Transferred/Compact Convolutional Filters
+
+Transfer learning methods have demonstrated state-of-the-art performance on various small-scale image classification tasks. This is generally achieved by exploiting the information from an ImageNet convolution neural network (ImageNet CNN). However, the transferred CNN model is generally with high computational complexity and storage requirement. It raises the issue for real-world applications, especially for some portable devices like phones and tablets without high-performance GPUs. Several approximation methods have been proposed to reduce the complexity by reconstructing the linear or non-linear filters (responses) in convolutional layers with a series of small ones.
 
 + https://arxiv.org/pdf/1905.11946v1.pdf
++ [MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
++ [Compact Convolutional Neural Network Transfer Learning For Small-Scale Image Classification](https://kar.kent.ac.uk/55053/)
 
 #### Low-rank Approximation
 
@@ -522,7 +528,7 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 |---|
 |[Distiller](https://nervanasystems.github.io/distiller/index.html)|
 |[PocketFlow](https://pocketflow.github.io/)|
-|[模型压缩 | PocketFlow中的模型压缩算法-](https://zhuanlan.zhihu.com/c_1041626714043949056)|
+|[PocketFlow中的模型压缩算法](https://zhuanlan.zhihu.com/c_1041626714043949056)|
 |[PERMDNN: Efficient Compressed DNN Architecture with Permuted Diagonal Matrices](http://alchem.usc.edu/portal/static/download/permdnn.pdf)|
 |[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
 |[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
