@@ -9,7 +9,6 @@
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
 - [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
-- [ ] [Terrier IR Platform](http://terrier.org/)
 - [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
@@ -70,13 +69,75 @@ First, let us consider the case where we do not remember some key terms as readi
 
 Search engine takes advantage of this idea: it is the best place to store  where the terms/words appear in key-value format where the key, values is the terms and their places, respectively.
 
+- [Search engine indexing](https://www.wikiwand.com/en/Search_engine_indexing)
+- [Inverted Index versus Forward Index](http://www.darwinbiler.com/inverted-index-vs-forward-index/)
+- https://www.wikiwand.com/en/Inverted_index
+
 #### Index Creation
+
+
+- [ ] [MG4J is a free full-text search engine for large document collections written in Java](http://mg4j.di.unimi.it/)
+- [ ] http://www.lemurproject.org/
+- [ ] http://sphinxsearch.com/
+- [ ] http://lucene.apache.org/core/
+- [ ] [Terrier IR Platform](http://terrier.org/)
+- [ ] [Trinity IR Infrastructure](https://github.com/phaistos-networks/Trinity)
+- [ ] [Lemur Beginner's Guide, getting started using Lemur](http://www.cs.cmu.edu/~lemur/LemurGuide.html)
+- [ ] [fast library for ANN search and KNN graph constructio](https://github.com/ZJULearning/efanna)
+
+##### SPTAG
+
+It explains how `SPTAG` works:
+
+> SPTAG is inspired by the NGS approach [WangL12]. It contains two basic modules: `index builder` and `searcher`. The RNG is built on the k-nearest neighborhood graph [WangWZTG12, WangWJLZZH14] for boosting the connectivity. Balanced k-means trees are used to replace kd-trees to avoid the inaccurate distance bound estimation in kd-trees for very high-dimensional vectors. The search begins with the search in the space partition trees for finding several seeds to start the search in the RNG. The searches in the trees and the graph are iteratively conducted.
+
+<img src="https://raw.githubusercontent.com/microsoft/SPTAG/master/docs/img/sptag.png" width="50%" />
+
+- [SPTAG: A library for fast approximate nearest neighbor search](https://github.com/microsoft/SPTAG)
+- [Query-Driven Iterated Neighborhood Graph Search for Large Scale Indexing](https://jingdongwang2017.github.io/Pubs/ACMMM12-GraphSearch.pdf)
+- https://jingdongwang2017.github.io/
+
+##### QuickScorer
+
+`QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
+
+It adopts a novel bitvector representation of the tree-based ranking model, and performs an interleaved traversal of the ensemble by means of simple logical bitwise operations. The performance of the proposed algorithm are unprecedented, due to its cache-aware approach, both in terms of data layout and access patterns, and to a control ﬂow that entails very low branch mis-prediction rates.
+
+Given a query-document pair $(q, d_i)$, represented by a feature vector $\mathrm{x}$,
+a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(\mathrm x)$ used for ranking a set of documents.
+Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
+Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
+Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the `left branch` is taken iff the test succeeds.
+Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
+The scoring of $\mathrm{x}$ requires the traversal of all the ensemble’s trees and it is computed as a _weighted sum_ of all the tree predictions.
+
+All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.
+The scoring of a document represented by a feature vector $\mathrm{x}$  requires the traversing of all the trees in the ensemble, starting at their root nodes.
+If a visited node in N is a false one, then the right branch is taken, and the left branch otherwise.
+The visit continues recursively until a leaf node is reached, where the value of the prediction is returned.
+
+The building block of this approach is an alternative method for tree traversal based on bit-vector computations.
+
+
+
+
+- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
+- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
+- [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
+- [ ] [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2017/04/TOIS16.pdf)
+
+##### Tree-based Deep Match
+
+- http://www.6aiq.com/article/1565927125584
+- https://tianchi.alibabacloud.com/course/video?liveId=41072
+- https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM)
+- [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
+- [Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1803.02349)
 
 #### Index Compression
 
 * [Elasticsearch from the Bottom Up, Part 1](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up)
 * [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
-* [Inverted Index versus Forward Index](http://www.darwinbiler.com/inverted-index-vs-forward-index/)
 * http://planet.botany.uwc.ac.za/nisl/GIS/GIS_primer/index.htm
 
 
@@ -269,7 +330,9 @@ Query segmentation is to separate the input query into multiple segments, roughl
 
 ##### Query Scoping
 
+> We propose Voronoi scoping, a distributed algorithm to constrain the dissemination of messages from different sinks. It has the property that a query originated by a given sink is forwarded only to the nodes for which that sink is the closest (under the chosen metric). Thus each query is forwarded to the smallest possible number of nodes, and per-node dissemination overhead does not grow with network size or with number of sinks. The algorithm has a simple distributed implementation and requires only a few bytes of state at each node. Experiments over a network of 54 motes confirm the algorithm's effectiveness.
 
+- https://ieeexplore.ieee.org/document/1392209
 
 ##### Query Understanding
 
@@ -305,7 +368,7 @@ NTENT’s Search platform choreographs the interpretation of singular query cons
 
 ##### Intention Analysis
 
-[Intent Analysis goes a level deeper than sentiment analysis and gives an idea of whether a string of text is a complaint, a suggestion or a query.Gauging the intent of messages on social media opens a lot of new possibilities.
+[Intent Analysis goes a level deeper than sentiment analysis and gives an idea of whether a string of text is a complaint, a suggestion or a query. Gauging the intent of messages on social media opens a lot of new possibilities.
 It uses Long Short Term Memory (LSTM) algorithms to classify a text into different. LSTMs model sentences as chain of forget-remember decisions based on context. It is trained on social media data and news data differently for handling casual and formal language. We also have trained this algorithm for various custom datasets for different clients.](https://www.paralleldots.com/intent-analysis)
 
 - https://www.paralleldots.com/intent-analysis
@@ -342,7 +405,7 @@ The `Machine-learned ranking` and `Ranking evaluation` is discussed in `Rating a
 
 #### Query-independent Ranking
 
-- on-document evidence (retrievability, readability, maliciousness); 
+- on-document evidence (retrievability, readability, maliciousness);
 - off-document evidence (centrality, popularity, credibility)
 
 + [Microsoft’s UserRank – Query Independent Ranking Based Upon User Logs](http://www.seobythesea.com/2007/05/microsofts-userrank-query-independent-ranking-based-upon-user-logs/)
@@ -760,16 +823,16 @@ Key points:
 -  Mimic user top-down browsing behaviors
 -  Model dynamic information needs with MDP state
 
-Staets $𝑠_𝑡=[\it Z_𝑡,\it X_𝑡,\mathrm h_𝑡]$ consists of
-* sequence of 𝑡 preceding documents, $\it Z_t$ and $\it Z_0=\emptyset$;
+States $s_t =[\it{Z}_𝑡,\it{X}_𝑡,\mathrm{h}_𝑡 ]$ consists of
+* sequence of $t$ preceding documents, $\it Z_t$ and $\it Z_0=\emptyset$;
 * set of candidate documents, $\it X_t$ and $\it X_0 = \it X$
 * latent vector $\mathrm h_𝑡$, encodes user perceived utility from preceding documents, initialized with the information needs form the query: $\mathrm h_0=\sigma(V_qq)$
 
 MDP factors | Corresponding diverse ranking factors
 ---|---
 Timesteps | The ranking positions
-States | $𝑠_𝑡=[\it Z_𝑡,\it X_𝑡,\mathrm h_𝑡]$
-Policy | $\pi(a_t\mid s_t=[\it Z_t, \it X_t,\mathrm h_t])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
+States | $𝑠_𝑡=[\it Z_𝑡,\it X_𝑡,\mathrm h_t ]$
+Policy | $\pi(a_t\mid s_t=[\it Z_t, \it X_t,\mathrm h_t ])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
 Action | Selecting a doc and placing it to rank $\it t+1$
 Reward | Based on evaluation measure αDCG, SRecall etc.
 State Transition | $s_{t+1}=T(s_t, a_t)=[Z_t\oplus \{\mathrm x_{m(a_t)}\}, \it X_t\setminus \{\mathrm x_{m(a_t)} \}, \sigma(V\mathrm  x_{m(a_t)}+W\mathrm h_t)]$
@@ -920,7 +983,7 @@ It is becasue medical information is really professional while critical.
 ### Knowledge Graphs
 
 Search is not only on string but also things.
-Knowledge graphs are large networks of entities and their semantic relationships. They are a powerful tool that changes the way we do data integration, search, analytics, and context-sensitive recommendations. Knowledge graphs have been successfully utilized by the large Internet tech companies, with prominent examples such as the Google Knowledge Graph. Open knowledge graphs such as Wikidata make community-created knowledge freely accessible. 
+Knowledge graphs are large networks of entities and their semantic relationships. They are a powerful tool that changes the way we do data integration, search, analytics, and context-sensitive recommendations. Knowledge graphs have been successfully utilized by the large Internet tech companies, with prominent examples such as the Google Knowledge Graph. Open knowledge graphs such as Wikidata make community-created knowledge freely accessible.
 
 <img src="https://metaphacts.com/images/metaphacts_images/metaphactory-knowledge-graphs-lifecycle.png" width="50%"/>
 
@@ -931,6 +994,7 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + https://www.clearquery.io/how
 + [The Entity & Language Series: Translation and Language APIs Impact on Query Understanding & Entity Understanding (4 of 5)](https://mobilemoxie.com/blog/the-entity-language-series-translation-and-language-apis-impact-on-query-understanding-entity-understanding-4-of-5/)
 + https://etymo.io/
++ https://www.omnity.io/
 + https://scholar.etymo.io/
 + https://cayley.io/
 + https://grakn.ai/
@@ -941,6 +1005,7 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + https://www.openacademic.ai/
 + [ConceptNet An open, multilingual knowledge graph](http://conceptnet.io/)
 + [Knowledge Graphs and Knowledge Networks: The Story in Brief](http://wiki.knoesis.org/index.php/Knowledge_Graphs_and_Knowledge_Networks:_The_Story_in_Brief)
++ [Renlifang/EntityCube](https://www.microsoft.com/en-us/research/project/renlifangentitycube/)
 
 <img src="http://wiki.knoesis.org/images/c/c0/KG_OKN.jpeg" width="60%"/>
 
@@ -988,6 +1053,7 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + [INternational Medical INformatics Association](https://imia-medinfo.org/wp/)
 + [Association of Directors of Information System](https://amdis.org/)
 
+
 #### Conferences on Information Retrieval
 
 + https://datanatives.io/conference/
@@ -1018,6 +1084,7 @@ Knowledge graphs are large networks of entities and their semantic relationships
 FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 + [DYNAMIC SEARCH: Develop algorithms and evaluation methodologies with the user in the search loop](https://ekanou.github.io/dynamicsearch/)
 + [European Summer School in Information Retrieval ’15](http://www.rybak.io/european-summer-school-in-information-retrieval-15/)
++ [SEA: Search Engines Amsterdam](https://www.meetup.com/SEA-Search-Engines-Amsterdam/)
 
 #### Courses on Information Retrieval and Search
 
@@ -1046,3 +1113,5 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [Information Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
 + [Ranking Model](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
 + https://searchpatterns.org/
++ http://widodo.com/lecturer/IR/
++ https://www.cl.cam.ac.uk/teaching/1516/InfoRtrv/materials.html
