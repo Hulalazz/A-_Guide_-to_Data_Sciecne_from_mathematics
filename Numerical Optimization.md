@@ -24,6 +24,7 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
 * [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)
+* [Northwestern University Open Text Book on Process Optimization](https://optimization.mccormick.northwestern.edu/index.php/Main_Page)
 
 The proof of convergence  or complexity is often based  on the convex cases where the objective function as well as the constrained set is convex, i.e.,
 $$t x+(1-t)y\in\Theta,\\
@@ -1572,7 +1573,7 @@ of fixed-point in nonlinear equations solution](http://www.scielo.org.co/pdf/tec
 * [Books on Fixed Point Theory](http://www.drkhamsi.com/fpt/books.html)
 
 
-**ISTA and FASTA**
+### ISTA and FASTA
 
 The $\ell_1$ regularization is to solve the ill-conditioned equations such as
 $$\min_{x}{\|Ax-b\|}_2^2+\lambda{\|x\|}_1.$$
@@ -1599,7 +1600,7 @@ where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
 * https://pylops.readthedocs.io/en/latest/gallery/plot_ista.html
 * [ORF523: ISTA and FISTA](https://blogs.princeton.edu/imabandit/2013/04/11/orf523-ista-and-fista/)
 
-This will lead to the operator splitting methods analysed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
+This will lead to the operator splitting methods analysesed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
 
 
 * [ORIE 6326: Convex Optimization Operator Splitting](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
@@ -1607,6 +1608,8 @@ This will lead to the operator splitting methods analysed by [Wotao Yin](http://
 * [A Course on First-Order, Operator Splitting, and Coordinate Update Methods for Optimization](http://www.math.ucla.edu/~wotaoyin/summer2016/)
 * [Operator Splitting Methods for Convex Optimization Analysis and Implementation](http://people.ee.ethz.ch/~gbanjac/pdfs/banjac_thesis.pdf)
 * [Some Operator Splitting Methods for Convex Optimization](https://repository.hkbu.edu.hk/cgi/viewcontent.cgi?article=1042&context=etd_oa)
+
+### Anderson Acceleration
 
 `Krasnosel'skii-Mann(KM, or averaged) iterations` update $x^k$
 in iteration ${k}$ to
@@ -1680,7 +1683,7 @@ $$\alpha^{k}=\arg\min_{\alpha^k}\{D_{f}(F_k \alpha^k)\mid \sum_{i=0}^{m_k}\alpha
 * [Comments on "Anderson Acceleration, Mixing and Extrapolation"](https://dash.harvard.edu/handle/1/34773632)
 
 [The Baillon-Haddad Theorem provides an important link between convex
-optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf) which proves that if the gradient of a convex and continuously differentiable function is nonexpansive, then it is actually `firmly nonexpansive`.
+optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf) which proves that if the gradient of a convex and continuously differentiable function is non-expansive, then it is actually `firmly non-expansive`.
 
 * [The Baillon-Haddad Theorem Revisited](https://people.ok.ubc.ca/bauschke/Research/60.pdf)
 * [Recent Advances in Convex Optimization and Fixed Point Algorithms by Jean-Christophe Pesquet](https://www.i2m.univ-amu.fr/seminaires_signal_apprentissage/Slides/2015_04_28_Pesquet_course_main.pdf)
@@ -1693,6 +1696,26 @@ optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSemina
 
 However, it is best to think from  the necessary condition of optima  in non-convex optimization in my opinion.
 Another question is to generalize the fixed point iteration to stochastic gradient methods.
+
+###  Gaussian-Seidel Method and Component Solution Methods
+
+The mapping $\hat T_i :X\mapsto X$, corresponding to an update of the ith block-component only, is given by
+$$\hat T_i(x)=\hat T_i(x_1, \dots, x_m)=(x_1,\dots, x_{i-1}, T_i(x), x_{i+1}, \dots, x_m).$$
+
+Updating all block-components of $x$, one at a time in increasing order, is equivalent to applying the mapping $S: X\mapsto X$, defining by
+$$S=\hat{T}_m\circ \hat{T}_{m-1}\circ\cdots \circ \hat{T}_1,$$
+where $\circ$ denotes composition.  
+An equivalent definition of $S$ is given by the equation
+$$S_i=T_{i}(S_1(x), \dots, S_{i-1}(x), x_i, \dots, x_m)$$
+where $S_i:X\mapsto X_i$ is the $i$th block-component of $S$.
+The mapping $S$ will be called the `Gaussian-Seidel mapping` based on the mapping $T$ and the iteration $x(t+1)=S(x(t))$ will be called `Gaussian-Seidel algorithm` based on the mapping $T$.
+
+The system $x=T(x)$ can be decomposed into m smaller system of equations of the form
+$$x_i=T_i(x_1,\dots, x_m), \quad i=1,\dots,m,$$
+which have to be solved simultaneously. We will consider an algorithm that solves at iteration the $i$th equation in the system for $x_i$, while keeping the other component fixed.
+
+Given a vector $x(t)\in X$, the $i$th block-component $x_i(t+1)$ of the next vector is chosen to be a solution of the $i$th equation in the system, that is,
+$$x_i(t+1)\in\{y_i\in X_i\mid y_i=T_i(x_1,\dots,x_{i-1}, y_i, x_{i+1},\dots, x_m)\}.$$
 
 
 ## Dynamical Systems
@@ -1958,6 +1981,8 @@ Dynamical Systems
 
 ### ADAM and More
 
+`ADAM` composes of adaptive step stratagies and momentum menthods in some sense. It is widely used in deep learning training.
+
 - [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
 - [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
 - http://ruder.io/deep-learning-optimization-2017/
@@ -1974,6 +1999,8 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 + [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
++ https://github.com/tdozat/Optimization
++ https://zhuanlan.zhihu.com/p/25473305
 
 ## Distributed Optimization Methods
 
@@ -2004,7 +2031,7 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - [Projects: Structure Exploitation in Large-Scale Non-Convex Optimisation](https://optimisation.doc.ic.ac.uk/project/structure-exploitation-in-large-scale-non-convex-optimisation/)
 - [A Distributed Flexible Delay-tolerant Proximal Gradient Algorithm](https://arxiv.org/abs/1806.09429)
 - http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
-- http://shivaram.org/publications/hemingway-mlsys-2016.pdf
+- [Hemingway: Modeling Distributed Optimization Algorithms](http://shivaram.org/publications/hemingway-mlsys-2016.pdf)
 - http://principlesofoptimaldesign.org/
 - [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
 - [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
@@ -2045,9 +2072,12 @@ $$x^{\ast}=\arg\min_{x, x^1, x^N}\sum_{n=1}^{N} f_{\gamma}^{\beta}(x^n)+\frac{1}
 
 Main trick: in shared memory systems, every threads can access the same parameter $x$.
 
+[Asynchronous Accelerated Stochastic Gradient Descent](https://www.microsoft.com/en-us/research/publication/asynchronous-accelerated-stochastic-gradient-descent/):
+
+![AASGD](I:\A Guide to Data Science\AASGD.png)
+
 - [Asynchronous Stochastic Gradient Descent with Delay Compensation](https://arxiv.org/abs/1609.08326)
 - [Asynchronous Decentralized Parallel Stochastic Gradient Descent](http://proceedings.mlr.press/v80/lian18a/lian18a.pdf)
-- [Asynchronous Accelerated Stochastic Gradient Descent](https://www.microsoft.com/en-us/research/publication/asynchronous-accelerated-stochastic-gradient-descent/)
 - https://github.com/AbduElturki/Asynchronous-Stochastic-Gradient-Descent
 - [Stochastic Proximal Langevin Algorithm: Potential Splitting and Nonasymptotic Rates](http://bicmr.pku.edu.cn/conference/opt-2014/)
 - [Stochastic Proximal Langevin Algorithm: Potential Splitting and Nonasymptotic Rates](https://arxiv.org/abs/1905.11768)
@@ -2064,6 +2094,13 @@ Hogwild allows processors access to shared memory with the possibility of overwr
 - https://www.math.ucla.edu/~wotaoyin/math285j.18
 - http://seba1511.net/dist_blog/
 
+#### Distributed Nesterov-like gradient methods
+
+- [Distributed Nesterov-like Gradient Algorithms](http://users.isr.ist.utl.pt/~jxavier/cdc2012c.pdf)
+- [Convergence Rates of Distributed Nesterov-Like Gradient Methods on Random Networks](https://ieeexplore.ieee.org/document/6665045/)
+- [Accelerated Distributed Nesterov Gradient Descent for Convex and Smooth Functions](https://nali.seas.harvard.edu/files/nali/files/2017cdc_accelerated_distributed_nesterov_gradient_descent.pdf)
+- https://nali.seas.harvard.edu/
+- http://users.isr.ist.utl.pt/~jxavier/
 
 ###  Parallel Coordinate Methods
 
@@ -2101,6 +2138,7 @@ where
 * https://arxiv.org/abs/1404.7536
 * https://arxiv.org/abs/1406.6404
 * https://arxiv.org/abs/1406.5429
+* https://arxiv.org/abs/1706.00088
 
 ##### Random block-coordinate forward-backward splitting
 
@@ -2111,9 +2149,12 @@ where
 ##### Asynchronous coordinate fixed-point iteration
 
 
-
+- [ARock: An Algorithmic Framework for Asynchronous Parallel Coordinate Update](https://epubs.siam.org/doi/10.1137/15M1024950)
+- [Asynchronous Stochastic Coordinate Descent: Parallelism and Convergence Properties](https://epubs.siam.org/doi/abs/10.1137/140961134)
 
 <img src="https://www.msra.cn/wp-content/uploads/2018/11/book-recommendation-distributed-machine-learning-5.jpg" width="80%">
+
+- [Asynchronous Parallel Greedy Coordinate Descent](https://bigdata.oden.utexas.edu/publication/asynchronous-parallel-greedy-coordinate-descent/)
 
 ### Stochastic ADMM
 

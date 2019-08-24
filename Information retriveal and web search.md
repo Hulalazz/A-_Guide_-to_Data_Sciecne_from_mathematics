@@ -1,6 +1,8 @@
 ## IR and Search
 
 - [ ] [RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
+- [ ] [Information on Information Retrieval (IR) books, courses, conferences and other resources.](https://nlp.stanford.edu/IR-book/information-retrieval.html)
+- [ ] [Recommended Reading for IR Research Students](https://people.eng.unimelb.edu.au/ammoffat/swirl2004/homework-forum.pdf)
 - [ ] [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
 - [ ] [Topics in Natural Language Processing (202-2-5381) Fall 2018](https://www.cs.bgu.ac.il/~elhadad/nlp18.html)
 - [ ] [CS 124: From Languages to Information Winter 2019 Dan Jurafsky](https://web.stanford.edu/class/cs124/)
@@ -9,7 +11,10 @@
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
 - [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
-- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/
+- [ ] [State_of_the_art](https://aclweb.org/aclwiki/State_of_the_art)
+- [ ] [Providing Relevant and Timely Results: Real-Time Search Architectures and Relevance Algorithms](http://lintool.github.io/NSF-projects/IIS-1218043/)
+- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/, https://searcheo.io/, http://seeknshop.io/, https://constructor.io/, https://www.searchtap.io/
+
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
@@ -84,8 +89,13 @@ Search engine takes advantage of this idea: it is the best place to store  where
 - [ ] [Trinity IR Infrastructure](https://github.com/phaistos-networks/Trinity)
 - [ ] [Lemur Beginner's Guide, getting started using Lemur](http://www.cs.cmu.edu/~lemur/LemurGuide.html)
 - [ ] [fast library for ANN search and KNN graph constructio](https://github.com/ZJULearning/efanna)
+- [ ] https://nlp.stanford.edu/IR-book/html/htmledition/index-construction-1.html
 
 ##### SPTAG
+
+`SPTAG` assumes that the samples are represented as vectors and that the vectors can be compared by L2 distances or cosine distances. Vectors returned for a query vector are the vectors that have smallest L2 distance or cosine distances with the query vector.
+
+SPTAG provides two methods: kd-tree and relative neighborhood graph (SPTAG-KDT) and balanced k-means tree and relative neighborhood graph (SPTAG-BKT). SPTAG-KDT is advantageous in index building cost, and SPTAG-BKT is advantageous in search accuracy in very high-dimensional data.
 
 It explains how `SPTAG` works:
 
@@ -97,51 +107,30 @@ It explains how `SPTAG` works:
 - [Query-Driven Iterated Neighborhood Graph Search for Large Scale Indexing](https://jingdongwang2017.github.io/Pubs/ACMMM12-GraphSearch.pdf)
 - https://jingdongwang2017.github.io/
 
-##### QuickScorer
 
-`QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
+##### Faiss
 
-It adopts a novel bitvector representation of the tree-based ranking model, and performs an interleaved traversal of the ensemble by means of simple logical bitwise operations. The performance of the proposed algorithm are unprecedented, due to its cache-aware approach, both in terms of data layout and access patterns, and to a control ﬂow that entails very low branch mis-prediction rates.
+Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.
 
-Given a query-document pair $(q, d_i)$, represented by a feature vector $\mathrm{x}$,
-a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(\mathrm x)$ used for ranking a set of documents.
-Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
-Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
-Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the `left branch` is taken iff the test succeeds.
-Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
-The scoring of $\mathrm{x}$ requires the traversal of all the ensemble’s trees and it is computed as a _weighted sum_ of all the tree predictions.
+Most of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server.
 
-All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.
-The scoring of a document represented by a feature vector $\mathrm{x}$  requires the traversing of all the trees in the ensemble, starting at their root nodes.
-If a visited node in N is a false one, then the right branch is taken, and the left branch otherwise.
-The visit continues recursively until a leaf node is reached, where the value of the prediction is returned.
+The GPU implementation can accept input from either CPU or GPU memory. On a server with GPUs, the GPU indexes can be used a drop-in replacement for the CPU indexes (e.g., replace IndexFlatL2 with GpuIndexFlatL2) and copies to/from GPU memory are handled automatically. Results will be faster however if both input and output remain resident on the GPU. Both single and multi-GPU usage is supported.
 
-The building block of this approach is an alternative method for tree traversal based on bit-vector computations.
-
-
-
-
-- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
-- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
-- [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
-- [ ] [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2017/04/TOIS16.pdf)
-
-##### Tree-based Deep Match
-
-- http://www.6aiq.com/article/1565927125584
-- https://tianchi.alibabacloud.com/course/video?liveId=41072
-- https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM)
-- [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
-- [Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1803.02349)
+- https://github.com/facebookresearch/faiss
+- https://waltyou.github.io/Faiss-Introduce/
 
 #### Index Compression
 
 * [Elasticsearch from the Bottom Up, Part 1](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up)
 * [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
 * http://planet.botany.uwc.ac.za/nisl/GIS/GIS_primer/index.htm
-
+* https://nlp.stanford.edu/IR-book/html/htmledition/index-compression-1.html
+* https://richardfoote.wordpress.com/category/advanced-index-compression/
+* http://www.ir.uwaterloo.ca/book/06-index-compression.pdf
+* http://idc.hust.edu.cn/~rxli/teaching/ir/3.2%20Index%20compression.pdf
 
 ### Information Retrieval
+
 
 <img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
 
@@ -150,7 +139,7 @@ The building block of this approach is an alternative method for tree traversal 
 - [solr-vs-elasticsearch](https://solr-vs-elasticsearch.com/)
 - [CH. 4: QUERY SPECIFICATION](http://searchuserinterfaces.com/book/sui_ch4_query_specification.html)
 - https://homepages.dcc.ufmg.br/~rodrygo/rm-2019-2/
-
+- https://nlp.stanford.edu/IR-book/html/htmledition/computing-scores-in-a-complete-search-system-1.html
 
 
 #### Query Languages
@@ -315,6 +304,8 @@ The basic idea is to enrich the query with additional terms (words or phrases) a
 + https://nlp.stanford.edu/IR-book/html/htmledition/query-expansion-1.html
 + https://dev.mysql.com/doc/refman/5.5/en/fulltext-query-expansion.html
 + [Neural Query Expansion for Code Search](https://pldi19.sigplan.org/details/mapl-2019-papers/4/Neural-Query-Expansion-for-Code-Search)
++ [Efficient and Effective Query Expansion for Web Search](https://dl.acm.org/citation.cfm?id=3269305)
+
 
 ##### Query Relaxation
 
@@ -603,15 +594,15 @@ Let $\delta:X\times X\to \mathbb R$ be a distance function. $\delta$ is called a
 In a similarity-based retrieval model, it is assumed that the relevance status of a document with respect to a query is correlated with the similarity between the query and the document at some level of representation; the more similar to a query, the more relevant the document is assumed to be.
 $\color{red}{Similarity \not= Relevance}$
 
-Similarity matching|Relevance matching
+Similarity matching | Relevance matching
 ---|---
-Whether two sentences are semantically similar|Whether a document is relevant to a query
+Whether two sentences are semantically similar| Whether a document is relevant to a query
 Homogeneous texts with comparable lengths| Heterogeneous texts (keywords query, document) and very different in lengths
 Matches at all positions of both sentences|  Matches in different parts of documents
 Symmetric matching function| Asymmetric matching function
-Representative task: Paraphrase Identification|Representative task: ad-hoc retrieval
+Representative task: Paraphrase Identification| Representative task: ad-hoc retrieval
 
-Each search is made up of $\color{red}{Match + Rank}$.
+Each search is made up of $\color{red}{\fbox{Match + Rank}}$. It means the that results of each search match the keywords/what the user want and more   
 
 * [Deep Semantic Similarity Model](https://www.microsoft.com/en-us/research/project/dssm/)
 * [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
@@ -619,11 +610,13 @@ Each search is made up of $\color{red}{Match + Rank}$.
 * [A Deep Relevance Matching Model for Ad-hoc Retrieval](https://arxiv.org/abs/1711.08611)
 * [Relevance Matching](https://zhuanlan.zhihu.com/p/39946041)
 * [DeepMatching: Deep Convolutional Matching](http://lear.inrialpes.fr/src/deepmatching/)
-* [阿里自主创新的下一代匹配&推荐技术：任意深度学习+树状全库检索](https://zhuanlan.zhihu.com/p/35030348)
+----
 * https://www.cnblogs.com/yaoyaohust/p/10642103.html
 * https://ekanou.github.io/dynamicsearch/
 * http://mlwiki.org/index.php/NLP_Pipeline
-
+* http://www.bigdatalab.ac.cn/tutorial/
+* http://lear.inrialpes.fr/src/deepmatching/
+* https://github.com/CansenJIANG/deepMatchingGUI
 
 
 ##### Learning to Match
@@ -651,17 +644,6 @@ Methods of Representation Learning for Matching:
 *  CA-RNN: Representing one sentence with the other sentence as its
 context (Chen et al., AAAI ’18)
 
-DSSM: Brief Summary
-+  Inputs: Bag of letter-trigrams as input for improving the scalability and generalizability
-+  Representations: mapping sentences to vectors with DNN:
-semantically similar sentences are close to each other
-+  Matching: cosine similarity as the matching function
-+  Problem: the order information of words is missing (bag of
-letter-trigrams cannot keep the word order information)
-
-Matching Function Learning:
-* Step 1: construct basic low-level matching signals
-* Step 2: aggregate matching patterns
 
 
 - http://staff.ustc.edu.cn/~hexn/papers/www18-tutorial-deep-matching-paper.pdf
@@ -698,6 +680,7 @@ Topic Modeling](http://www.hangli-hl.com/uploads/3/1/6/8/3168008/rlsi-tois-revis
 
 The input training data set is $\{(x_i, y_i, r_i)\mid i=1, 2,\cdots, N\}$ where $r_i \in \{+1, -1\}$.
 
+
 It is to optimize the following cost function
 $$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
 `Regularized Mapping to Latent Space` will change the constraints
@@ -711,8 +694,22 @@ $$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\le
 
 DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic Similarity Model. DSSM, developed by the MSR Deep Learning Technology Center(DLTC), is a deep neural network (DNN) modeling technique for representing text strings (sentences, queries, predicates, entity mentions, etc.) in a continuous semantic space and modeling semantic similarity between two text strings (e.g., Sent2Vec).
 
+DSSM: Brief Summary
++  Inputs: Bag of letter-trigrams as input for improving the scalability and generalizability
++  Representations: mapping sentences to vectors with DNN:
+semantically similar sentences are close to each other
++  Matching: cosine similarity as the matching function
++  Problem: the order information of words is missing (bag of
+letter-trigrams cannot keep the word order information)
+
+Matching Function Learning:
+* Step 1: construct basic low-level matching signals
+* Step 2: aggregate matching patterns
+
+
 - https://www.microsoft.com/en-us/research/project/dssm/
 - https://arxiv.org/pdf/1610.08136.pdf
+- [Tensorflow implementations of various Deep Semantic Matching Models](https://github.com/ChenglongChen/tensorflow-DSMM)
 
 ##### Deep Relevance Matching Model
 
@@ -744,8 +741,8 @@ Calculate relevance by mimicking the human relevance judgement process
 
 Challenges
 
-- [ ] Representation: representing the word level matching signalsas well as the matching positions
-- [ ] Modeling: discovering the matching patternsbetween two texts
+- [ ] Representation: representing the word level matching signals as well as the matching positions
+- [ ] Modeling: discovering the matching patterns between two texts
 - [ ] Our solutions
   - [ ] Step 1: representing as matching matrix
   - [ ] Step 2: matching as image recognition
@@ -757,6 +754,34 @@ $$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the sema
 
 - http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_CNNTextMatch.pdf
 - http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_BiLSTMTextMatch.pdf
+- https://github.com/pl8787/MatchPyramid-TensorFlow
+
+##### Tree-based Deep Match(TDM)
+
+
+The idea  of  `TDM` is to predict user interests from coarse to fine by traversing tree nodes in a top-down fashion and making decisions for each user-node pair.
+
+A recommendation tree consists of a set of nodes N, where $N = \{n_1, n_2, \dots, n_{|N |}\}$ represents $|N |$ individual non-leaf or leaf nodes.
+Each node in $N$ except the root node has one parent and an arbitrary number of children. Specifically, each item $c_i$
+in the corpus $C$ corresponds to one and only one leaf node in the tree,
+and those non-leaf nodes are coarse-grained concepts. Without loss of generality, we suppose that node n1 is always the root node.
+An example
+tree is illustrated in the right bottom corner of the following figure , in which
+each circle represents a node and the number of node is its index in
+tree. The tree has 8 leaf nodes in total, each of which corresponds to an item in the corpus. It’s worth mentioning that though the given
+example is a complete binary tree, we don’t impose complete and
+binary as restrictions on the type of the tree in our model.
+
+<img title="TDM" src="https://pic2.zhimg.com/80/v2-92c403ef6fbb9e0616440bdefc67622d_hd.jpg" width="80%" />
+<img src="https://pic3.zhimg.com/80/v2-2b8eaa092b24668488b4bcab45f4bbce_hd.jpg" width="70%" />
+
+- http://www.6aiq.com/article/1565927125584
+- https://tianchi.alibabacloud.com/course/video?liveId=41072
+- https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM)
+- https://www.jianshu.com/p/149467a29b64
+- [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
+- [Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1803.02349)
+- [阿里自主创新的下一代匹配&推荐技术：任意深度学习+树状全库检索](https://zhuanlan.zhihu.com/p/35030348)
 
 #### Semantic Search
 
@@ -778,7 +803,7 @@ $$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the sema
 * https://daiwk.github.io/posts/nlp.html
 * http://www2003.org/cdrom/papers/refereed/p779/ess.html
 * https://blog.alexa.com/semantic-search/
-
+* https://wsdm2019-dapa.github.io/slides/05-YiweiSong.pdf
 
 
 ### Information Distribution: Search Engine Results Page
@@ -823,7 +848,7 @@ Key points:
 -  Mimic user top-down browsing behaviors
 -  Model dynamic information needs with MDP state
 
-States $s_t =[\it{Z}_𝑡,\it{X}_𝑡,\mathrm{h}_𝑡 ]$ consists of
+States $s_t=[Z_t, X_t, {}]$ $s_t =[\it{Z}_t,\it{X}_t,\mathrm{h}_t ]$ consists of
 * sequence of $t$ preceding documents, $\it Z_t$ and $\it Z_0=\emptyset$;
 * set of candidate documents, $\it X_t$ and $\it X_0 = \it X$
 * latent vector $\mathrm h_𝑡$, encodes user perceived utility from preceding documents, initialized with the information needs form the query: $\mathrm h_0=\sigma(V_qq)$
@@ -831,11 +856,11 @@ States $s_t =[\it{Z}_𝑡,\it{X}_𝑡,\mathrm{h}_𝑡 ]$ consists of
 MDP factors | Corresponding diverse ranking factors
 ---|---
 Timesteps | The ranking positions
-States | $𝑠_𝑡=[\it Z_𝑡,\it X_𝑡,\mathrm h_t ]$
-Policy | $\pi(a_t\mid s_t=[\it Z_t, \it X_t,\mathrm h_t ])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
+States | $s_t=[Z_t, X_t, h_t]$
+Policy | $\pi(a_t\mid s_t=[Z_t, X_t, h_t])=\frac{\exp\{\mathrm x^T_{m(a_t)}\mathrm U \mathrm h_t\}}{Z}$
 Action | Selecting a doc and placing it to rank $\it t+1$
-Reward | Based on evaluation measure αDCG, SRecall etc.
-State Transition | $s_{t+1}=T(s_t, a_t)=[Z_t\oplus \{\mathrm x_{m(a_t)}\}, \it X_t\setminus \{\mathrm x_{m(a_t)} \}, \sigma(V\mathrm  x_{m(a_t)}+W\mathrm h_t)]$
+Reward | Based on evaluation measure nDCG, SRecall etc.
+State Transition | $s_{t+1}=T(s_t, a_t)=[Z_t\oplus \{\mathrm{x}_{m(a_t)}\}, {X}_t\setminus \{\mathrm {x}_{m(a_t)} \}, \sigma(V\mathrm{x}_{m(a_t)}+W\mathrm {h}_t)]$
 
 Here $\mathrm x_{m(a_t)}$ is document embedding.
 Model parameters $\Theta=(V_q, U, V, W)$ is to optimize the expected reward.
@@ -975,6 +1000,24 @@ It is becasue medical information is really professional while critical.
 * [Building a Content-Based Multimedia Search Engine V: Signature Quadratic Form Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-signature-quadratic-form-distance/)
 * [Building a Content-Based Multimedia Search Engine VI: Efficient Query Processing](http://www.deepideas.net/building-content-based-multimedia-search-engine-efficient-query-processing/)
 
+#### Ecommerce Search
+
+- https://www.nngroup.com/articles/state-ecommerce-search/
+- https://www.nngroup.com/articles/ecommerce-expectations/
+- https://sigir-ecom.github.io/
+- https://sigir-ecom.github.io/ecom2018/index.html
+- http://sigir-ecom.weebly.com/
+- [NLP for eCommerce Search – Current Challenges and Future Potential](https://emerj.com/ai-podcast-interviews/nlp-for-ecommerce-search-current-challenges-and-future-potential/)
+- [The Leader in Visual AI for Retail](https://www.syte.ai/)
+- https://tooso.ai/
+- https://www.904labs.com/en/index.html
+- https://choice.ai/
+- https://markable.ai/
+- https://www.sli-systems.com/blog/putting-ai-work-e-commerce.html
+- https://www.nosto.com/
+- https://adeptmind.ai/
+- https://adeptmind.ai/
+
 #### Multimodal Search
 
 * http://www.khresmoi.eu/overview/
@@ -1052,7 +1095,8 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + [AMIA](https://www.amia.org/)
 + [INternational Medical INformatics Association](https://imia-medinfo.org/wp/)
 + [Association of Directors of Information System](https://amdis.org/)
-
++ [ ] [Ivory: A Hadoop Toolkit for Distributed Text Retrieval](http://lintool.github.io/NSF-projects/IIS-0916043/)
++ https://cs.uwaterloo.ca/~jimmylin/index.html
 
 #### Conferences on Information Retrieval
 
@@ -1085,6 +1129,8 @@ FOR INFORMATION RETRIEVAL](https://lnd4ir.github.io/)
 + [DYNAMIC SEARCH: Develop algorithms and evaluation methodologies with the user in the search loop](https://ekanou.github.io/dynamicsearch/)
 + [European Summer School in Information Retrieval ’15](http://www.rybak.io/european-summer-school-in-information-retrieval-15/)
 + [SEA: Search Engines Amsterdam](https://www.meetup.com/SEA-Search-Engines-Amsterdam/)
++ [HE 3RD STRATEGIC WORKSHOP ON INFORMATION RETRIEVAL IN LORNE (SWIRL)](https://sites.google.com/view/swirl3/)
++ [2nd International Workshop on Conversational Approaches to Information Retrieval (CAIR'18)](https://sites.google.com/view/cair-ws/cair-2018)
 
 #### Courses on Information Retrieval and Search
 
@@ -1112,6 +1158,8 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [Winter 2016 CSI4107: Information Retrieval and the Internet](http://www.site.uottawa.ca/~diana/csi4107/)
 + [Information Retrieval 2017 Spring](http://berlin.csie.ntnu.edu.tw/Courses/Information%20Retrieval%20and%20Extraction/2020S_IR_Main.htm)
 + [Ranking Model](https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/)
++ [TEXT TECHNOLOGIES FOR DATA SCIENCE](https://www.inf.ed.ac.uk/teaching/courses/tts/)
++ [EPL 660 - Information Retrieval and Search Engines](https://www.cs.ucy.ac.cy/courses/EPL660/index.html)
 + https://searchpatterns.org/
 + http://widodo.com/lecturer/IR/
 + https://www.cl.cam.ac.uk/teaching/1516/InfoRtrv/materials.html

@@ -43,6 +43,7 @@ They share some techniques such as the logistic regression although their purpos
 In some sense, rating is to evaluate in a quantity approach, i.e. how much the item is popular; ranking is to evaluate in a quality approach. i.e., whether it is popular or preferred; recommendation is to rate or rank the items if the information is undirected or implicit.
 
 - [ ] [Who’s #1? The Science of Rating and Ranking](http://www.ams.org/notices/201301/rnoti-p81.pdf)
+- [ ] [Who Is the Best Player Ever? A Complex Network Analysis of the History of Professional Tennis](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0017249)
 - [ ] [WhoScored Ratings Explained](https://www.whoscored.com/Explanations)
 - [ ] [Who are the best MMA fighters of all time. A Bayesian study](https://blog.datadive.net/who-are-the-best-mma-fighters-of-all-time-a-bayesian-study/)
 - [ ] [Ranking Algorithm Definition](http://www.meteorsite.com/ranking-algorithm)
@@ -245,7 +246,7 @@ There are some links on the  collective decision-making theory:
 
 * https://www.wikiwand.com/Arrow%27s_impossibility_theorem
 * https://plato.stanford.edu/entries/arrows-theorem/
-* [Arrow's THeorem by Terence Tao](https://www.math.ucla.edu/~tao/arrow.pdf)
+* [Arrow's Theorem by Terence Tao](https://www.math.ucla.edu/~tao/arrow.pdf)
 * [Gibbard–Satterthwaite theorem @ wikiwand](https://www.wikiwand.com/en/Gibbard%E2%80%93Satterthwaite_theorem)
 * [Do the Math: Why No Ranking System Is No. 1](https://www.scientificamerican.com/article/why-ranking-systems-are-flawed/)
 
@@ -309,6 +310,7 @@ The representation of the `l2r` is the core and focus.
 + [On the Consistency of Ranking Algorithms](https://www.shivani-agarwal.net/Teaching/E0371/Papers/icml10-ranking-consistency.pdf)
 + [Catarina Moreira's master thesis](http://web.ist.utl.pt/~catarina.p.moreira/coursera.html)
 + [Ranking in Information Retrieval](https://www.cse.iitb.ac.in/internal/techreports/reports/TR-CSE-2010-31.pdf)
++ [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
 - [ ] [Learning Groupwise Scoring Functions Using Deep Neural Networks](https://arxiv.org/abs/1811.04415)
 - [ ] https://github.com/tensorflow/ranking
 
@@ -319,7 +321,7 @@ In a narrow sense, learning to rank refers to machine learning techniques for bu
 
 
 
-### Training Setup
+### Training Setting
 
 A training set for ranking  is denoted as $R=\{(\mathrm{X_i}, y_i)\mid i=1, \dots, m.\}$ where $y_i$ is the ranking of $x_i$, that is, $y_i < y_j$ if $x_i ≻ x_j$, i.e., $x_i$ is preferred to $x_j$ or in the reverse order. In other word, the label $y_i$ is ordinal. By the way, the labels are categorical or  nominal  in most classification tasks.
 
@@ -447,6 +449,8 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [Rank and Relevance in Novelty and Diversity Metrics for Recommender Systems](http://ir.ii.uam.es/predict/pubs/recsys11-vargas.pdf)
 - [Implementing Triplet Losses for Implicit Feedback Recommender Systems with R and Keras](https://nanx.me/blog/post/triplet-loss-r-keras/)
 - [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
+- [RankEval: An Evaluation and Analysis Framework for Learning-to-Rank Solutions](https://github.com/hpclab/rankeval)
+- [rankeval package](http://rankeval.isti.cnr.it/docs/rankeval.html)
 
 #### Ranking Creation
 
@@ -499,6 +503,7 @@ and the ground truth labels $y = \{y_j \}^m_{j=1}$ of these documents in terms o
 suppose a scoring function $f$ is used to rank these documents.
 The loss function is defined as the following square loss,
 $$L(f;x_i, y_i)=(y_i-f(x_i))^2$$
+when the query $q$ is given.
 ***
 The basic conclusion is that the square loss can upper bound the NDCG-based ranking error.
 However, according to the above discussions, even if there is a large regression loss,
@@ -610,6 +615,27 @@ Output Space | Preference $y_{u, v}\in \{+1,-1\}$
 Hypothesis Space | Preference function $h$
 Loss Function | $L(h; x_u, x_v, y_{u,v})$
 
+#### Margin-based Ranking
+
+The algorithm is a modification of RankBoost, analogous to “approximate coordinate ascent boosting.”
+
+The margin of ranking function $f$, is defined to be the minimum margin over all crucial pairs,
+$$\min_{\{i,k\mid \pi(x_i, x_k)=1\}} f(x_i)-f(x_k)$$
+
+where The values of the truth function $\pi : X \times X \to \{0,1\}$, which is defined over pairs of instances, are
+analogous to the “labels” in classification. If $\pi(X_1, X_2)=1$, this means that the pair $X_1, X_2$ is a crucial pair: $X_1$ should be ranked more highly than $X_2$.
+
+Intuitively, the margin tells us how much the ranking function can change before one of the crucial pairs is mis-ranked.
+
+- https://www.shivani-agarwal.net/Teaching/E0371/
+- http://rob.schapire.net/
+- [Margin-based Ranking and an Equivalence between AdaBoost and RankBoost](http://rob.schapire.net/papers/marginranking.pdf)
+- https://www.cs.princeton.edu/~schapire/papers/rankboostmiddle.pdf
+- [Efficient Margin-Based Rank Learning Algorithms for Information Retrieval](https://link.springer.com/chapter/10.1007/11788034_12)
+- [Ranking with Large Margin Principle: Two Approaches](https://papers.nips.cc/paper/2269-ranking-with-large-margin-principle-two-approaches)
+
+
+
 #### RankNet
 
 > RankNet is a feed-forward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
@@ -698,6 +724,7 @@ Then it can trained in the same way as a classifer.
 * [Support Vector Machine for Ranking Author: Thorsten Joachims](https://www.cs.cornell.edu/people/tj/svm_light/svm_rank.html)
 * [Ranking SVM for Learning from Partial-Information Feedback](http://www.cs.cornell.edu/people/tj/svm_light/svm_proprank.html)
 * [SVM-based Modelling with Pairwise Transformation for Learning to Re-Rank](http://alt.qcri.org/ecml2016/unocanda_cameraready.pdf)
+* [svmlight](http://svmlight.joachims.org/)
 
 ### LambdaRank
 
@@ -784,6 +811,7 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 Unbiased LambdaMART can jointly estimate the biases at click positions and the biases at unclick positions, and learn an unbiased ranker.
 
 - http://www.hangli-hl.com/uploads/3/4/4/6/34465961/unbiased_lambdamart.pdf
+- [Learning to Rank with Selection Bias in Personal Search](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45286.pdf)
 
 ### The Listwise Approach
 
@@ -938,13 +966,16 @@ Here $M(f, x, y)$ represents the evaluation measure.
 Due to the analogy to AdaBoost, AdaRank can focus on those hard queries and progressively minimize $1 −M(f, x, y)$.
 
 
+----
 
-### Margin-based Ranking
-
-The algorithm is a modification of RankBoost, analogous to “approximate coordinate ascent boosting.”
-
-- http://rob.schapire.net/
-- [Margin-based Ranking and an Equivalence between AdaBoost and RankBoost](http://rob.schapire.net/papers/marginranking.pdf)
+Given a query-document pair $(q, d_i)$, represented by a feature vector $\mathrm{x}$,
+a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(\mathrm x)$ used for ranking a set of documents.
+Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
+Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
+Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, **the `left branch` is taken iff the test `succeeds`.**
+Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
+The scoring of $\mathrm{x}$ requires the traversal of all the ensemble’s trees and it is computed as a _weighted sum_ of all the tree predictions.
+Such leaf node is named exit leaf and denoted by $e(x)$.
 
 ### YetiRank and MatrixNet
 
@@ -983,30 +1014,92 @@ that are most likely to be mis-ranked, thus severely hindering the quality of th
 - [ ] http://quickrank.isti.cnr.it/research-papers/
 - [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
 - [ ] https://maciejkula.github.io/spotlight/index.html#
+- [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
 
 ### QuickScorer
 
-Given a query-document pair $(q, d_i)$, represented by a feature vector $\mathrm{x}$,
-a LtR model based on an additive ensemble of regression trees predicts a relevance score $s(x)$ used for ranking a set of documents.
-Typically, a tree ensemble encompasses several binary decision trees, denoted by $T = {T_0, T_1, \dots}$.
-Each internal (or branching) node in $T_h$ is associated with a Boolean test over a specific feature $f_{\phi}\in \mathcal{F}$, and a constant threshold $\gamma\in\mathbb{R}$.
-Tests are of the form $x[\phi] \leq \gamma$, and, during the visit, the left branch is taken iff the test succeeds.
-Each leaf node stores the tree prediction, representing the potential contribution of the tree to the final document score.
-The scoring of ${x}$ requires the traversal of all the ensemble’s trees and it is computed as a weighted sum of all the tree predictions.
+`QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
 
-All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.
-The scoring of a document represented by a feature vector x requires the traversing of all the trees in the ensemble, starting at their root nodes.
+It adopts a novel bitvector representation of the tree-based ranking model, and performs an interleaved traversal of the ensemble by means of simple logical bitwise operations. The performance of the proposed algorithm are unprecedented, due to its cache-aware approach, both in terms of data layout and access patterns, and to a control ﬂow that entails very low branch mis-prediction rates.
+
+
+
+**All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.**
+The scoring of a document represented by a feature vector $\mathrm{x}$  requires the traversing of all the trees in the ensemble, starting at their root nodes.
 If a visited node in N is a false one, then the right branch is taken, and the left branch otherwise.
 The visit continues recursively until a leaf node is reached, where the value of the prediction is returned.
 
-The building block of this approach is an alternative method for tree traversal based on bit-vector computations.
+The building block of this approach is an alternative method for tree traversal based on `bit-vector computations`.
+Given a tree and a vector of document features,
+this traversal processes all its nodes and produces a bitvector
+which encodes the exit leaf for the given document.
+
+Given an input feature vector $\mathrm x$ and a tree $T_h = (N_h;L_h)$, where $N_h$ is a set of  internal nodes and $L_h$ is a set
+of leaves,
+our tree traversal algorithm processes the internal nodes of
+Th with the goal of identifying a set of candidate exit leaves, denoted by $C_h$ with $C_h \subset L_h$,
+which includes the actual exit leaf $e_h$.
+Initially $C_h$ contains all the leaves in $L_h$, i.e., $C_h = L_h$.
+Then, the algorithm evaluates one after the other in an arbitrary order the test conditions of all the internal nodes of $T_h$.
+Considering the result of the test for a certain internal node $n \in N_h$,
+the algorithm is able to infer that some leaves cannot be the exit leaf and, thus, it can safely remove them from $C_h$.
+**Indeed, if $n$ is a false node (i.e., its test condition is false), the leaves in the left subtree of $n$ cannot be the exit leaf and they can be safely removed from $C_h$.
+Similarly, if n is a true node, the leaves in the right subtree of n can be removed from $C_h$.**
+
+One important result is that `Quick Scorer` computes
+$s(x)$ by only identifying the branching nodes whose test evaluates to false, called false nodes.
+For each false node detected in $T_h \in T$ , `Quick Scorer` updates a bitvector associated with $T_h$, which stores information that is eventually exploited to identify
+the exit leaf of $T_h$ that contributes to the final score $s(x)$.
+To this end, `Quick Scorer` maintains for each tree $T_h \in T$ a bitvector *leafidx[h]*, made of $\land$ bits, one per leaf.
+Initially, every bit in *leafidx[h]* is set to $\mathrm 1$. Moreover, each branching node is
+associated with a bitvector mask, still of $\land$ bits, identifying the set of unreachable
+leaves of $T_h$ in case the corresponding test evaluates to false.
+Whenever a false node is visited, the set of unreachable leaves *leafidx[h]* is updated through a logical $AND (\land)$ with mask.
+Eventually, the leftmost bit set in *leafidx[h]* identifies the leaf corresponding to the score contribution of $T_h$, stored in the lookup table *leafvalues*.
+____
+ALGORITHM 1: Scoring a feature vector $x$ using a binary decision tree $T_h$
+
+* **Input**:
+  * $x$: input feature vector
+  * $T_h = (N_h, L_h)$: binary decision tree, with
+    *  $N_h = \{n_0, n_1, \cdots\}$: internal nodes of $T_h$
+    *  $L_h = \{l_0, l_1, \cdots\}$: leaves of $T_h$
+    *  $n.mask$: node bit mask associated with $n\in N_h$
+    *  $l_j.val$: score contribution associated with leaf $l_j\in L_h$
+* **Output**:
+  * tree traversal output value
+* **$score(x, T_h)$**:
+  *  $\text{leaf_index}_h\leftarrow (1,1,\dots, 1)$
+  *  $U\leftarrow FindFalse(x, T_h)$
+  *  **foreach node** $n \in U$ **do**
+     *  $\text{leaf_index}_h\leftarrow \text{leaf_index}_h\land n.mask$
+  *  $j \leftarrow\text{index of leftmost bit set to 1 of leaf_index}_h$
+  * **return** $l_j.val$
+
 
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 - [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
 - [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
-- [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
+- [ ] [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2017/04/TOIS16.pdf)
+- [Tree traversal](https://venus.cs.qc.cuny.edu/~mfried/cs313/tree_traversal.html)
+- https://github.com/hpclab/gpu-quickscorer
+- https://github.com/hpclab/multithread-quickscorer
+- https://github.com/hpclab/vectorized-quickscorer
 
+<img src="https://ercim-news.ercim.eu/images/stories/EN107/perego.png" width="60%" />
 
+#### vQS
+
+[Considering that in most application scenarios the same tree-based model is applied to a multitude of items, we recently introduced further optimisations in QS. In particular, we introduced vQS [3], a parallelised version of QS that exploits the SIMD capabilities of mainstream CPUs to score multiple items in parallel. Streaming SIMD Extensions (SSE) and Advanced Vector Extensions (AVX) are sets of instructions exploiting wide registers of 128 and 256 bits that allow parallel operations to be performed on simple data types. Using SSE and AVX, vQS can process up to eight items in parallel, resulting in a further performance improvement up to a factor of 2.4x over QS. In the same line of research we are finalising the porting of QS to GPUs, which, preliminary tests indicate, allows impressive speedups to be achieved.](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
+
+- [Exploiting CPU SIMD Extensions to Speed-up Document Scoring with Tree Ensembles](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2016/07/SIGIR16a.pdf)
+
+#### AdaQS
+
+<img src="https://pic1.zhimg.com/80/v2-a911464197f0eb281ca742c0ea954e98_hd.jpg" width="80%" />
+
+- https://zhuanlan.zhihu.com/p/54932438
+- https://github.com/qf6101/adaqs
 
 ### Bayesian Personalized Ranking
 
@@ -1456,7 +1549,7 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 * https://arxiv.org/abs/1808.04957v1
 * http://ceur-ws.org/Vol-1127/paper4.pdf
 
-### Loss Function in Ranking
+### Loss Functions in Ranking
 
 #### LambdaLoss
 

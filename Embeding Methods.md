@@ -340,7 +340,7 @@ realize the weight $w(v_i v_j )$ on each edge $v_i v_j$ as the length ${|\phi_i 
 
 - [A randomized embedding algorithm for trees](https://theory.stanford.edu/~jvondrak/data/tree-embedding.pdf)
 - [Tree Preserving Embedding](http://www.icml-2011.org/papers/421_icmlpaper.pdf)
-- https://pair-code.github.io/interpretability/bert-tree/
+- [Language, trees, and geometry in neural networks](https://pair-code.github.io/interpretability/bert-tree/)
 
 #### Poincaré Embeddings
 
@@ -351,7 +351,7 @@ realize the weight $w(v_i v_j )$ on each edge $v_i v_j$ as the length ${|\phi_i 
 
 - [Poincaré Embeddings for Learning Hierarchical Representations](https://papers.nips.cc/paper/7213-poincare-embeddings-for-learning-hierarchical-representations.pdf)
 - [Implementing Poincaré Embeddings](https://rare-technologies.com/implementing-poincare-embeddings/)
-- http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/
+- [Hyperbolic Geometry and Poincaré Embeddings](http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/)
 
 #### Embedding Networks in Hyperbolic Spaces
 

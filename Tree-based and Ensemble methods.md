@@ -154,6 +154,10 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
 * [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
 * [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+* [Runtime Optimizations for Tree-based Machine Learning Models](https://cs.uwaterloo.ca/~jimmylin/publications/Asadi_etal_TKDE2014.pdf)
+* [Extremely Fast Decision Tree](https://arxiv.org/abs/1802.08780)
+* [Optimized very fast decision tree with balanced classification accuracy and compact tree size](https://ieeexplore.ieee.org/abstract/document/6108399)
+* [Very Fast Decision Tree (VFDT) classifier](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
 
 ### Random Forest
 
@@ -270,6 +274,7 @@ if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
 * http://rob.schapire.net/papers
 * https://cseweb.ucsd.edu/~yfreund/papers
 * http://www.boosting.org/
+* [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
 
 The term boosting refers to a family of algorithms that are able to convert weak learners to strong learners.
 It is kind of similar to the "trial and error" scheme: if we know that the learners perform worse at some given data set $S$,
@@ -547,7 +552,7 @@ where $i\in \{1,\cdots, n\}$ and $(y_i - \hat{y}^{(t-1)}_i)=-\frac{1}{2} {[\frac
    +  Fit a regression tree to the targets $r_{i,t}$   giving **terminal regions**
    $$R_{j,m}, j = 1, 2,\dots , J_m. $$
    +  For $j = 1, 2,\dots , J_m$ compute
-      $$\gamma_{j,t}=\arg\min_{\gamma}\sum_{x_i\in R_{j,m}}{L(\mathrm{d}_i, f_{t-1}(x_i)+\gamma)}. $$
+      $$\fbox{$\gamma_{j,t}=\arg\min_{\gamma}\sum_{x_i\in R_{j,m}}{L(\mathrm{d}_i, f_{t-1}(x_i)+\gamma)} $}. $$
   +  Update $f_t = f_{t-1}+ \nu{\sum}_{j=1}^{J_m}{\gamma}_{j, t} \mathbb{I}(x\in R_{j, m}),\nu\in(0, 1)$.
 * Output $f_T(x)$.
 
@@ -598,6 +603,14 @@ where $J_m$ is the number of the terminal regions and ${n}$ is the number of tra
 * https://github.com/parrt/dtreeviz
 
 <img src="https://raw.githubusercontent.com/benedekrozemberczki/awesome-gradient-boosting-papers/master/boosting.gif">
+
+Ensemble Methods| Training Data |Decision Tree Construction |Update Formula
+---|---|---|---
+AdaBoost| $(x_i, y_i, w_{i, t})$ | Fit a classifier $G_t(x)$ to the training data using weights $w_i$| $f_t=f_{t-1}+\alpha_t G_t$
+Gradient  Boost | $(x_i, y_i, r_{i, t})$|Fit a regression tree $G_t(x)$ to the targets $r_{i,t}$| $f_t=f_{t-1}+\nu G_t$
+
+Note that $\alpha_t$ is computed as $\alpha_t=\log(\frac{1-err_t}{err_t})$ while the shrinkage parameter $\nu$ is choosen in $(0, 1)$.
+
 
 #### Stochastic Gradient Boost
 
@@ -831,8 +844,10 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 - [从结构到性能，一文概述XGBoost、Light GBM和CatBoost的同与不同](https://zhuanlan.zhihu.com/p/34698733)
 - [从决策树、GBDT到XGBoost/lightGBM/CatBoost](https://zhuanlan.zhihu.com/p/59419786)
 - [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
-- [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
-- [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
+* [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
+* [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
+* [Fast Traversal of Large Ensembles of Regression Trees](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
+* [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
 
 ### Accelerated Gradient Boosting
 
