@@ -138,7 +138,7 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 
 
 ***
-* [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
+
 * [Tutorial on Regression Tree Methods for Precision Medicine and Tutorial on Medical Product Safety: Biological Models and Statistical Methods](http://ims.nus.edu.sg/events/2017/quan/tut.php)
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
@@ -329,6 +329,9 @@ Note that the weight updating $w_i\leftarrow w_i\exp[\alpha_t\mathbb{I}(G_t(x_i)
 * [BrownBoost at Wikipedia](https://www.wikiwand.com/en/BrownBoost)
 * [CoBoosting at Wikipedia ](https://www.wikiwand.com/en/CoBoosting)
 * [CSDN blog: Adaboost 算法的原理与推导](https://blog.csdn.net/v_july_v/article/details/40718799)
+* [On the Convergence Properties of Optimal AdaBoost](https://arxiv.org/abs/1212.1108)
+* [Some Open Problems in Optimal AdaBoost and Decision Stumps](https://arxiv.org/abs/1505.06999)
+* [Parallelizing AdaBoost by weights dynamics](https://www.sciencedirect.com/science/article/pii/S0167947306003239)
 
 <img src ="https://cseweb.ucsd.edu/~yfreund/portraitsmall.jpg" width="30%" />
 <img src=https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/avatar_user_33549_1504711750-180x180.jpg width=40% />
@@ -450,32 +453,9 @@ where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
 
 |Properties of AdaBoost|
 |---|
+|AdaBoost is inherently sequential.|
+|The training classification error has to go down exponentially fast if the weighted errors of the component classifiers are strictly better than chance.|
 |A crucial property of AdaBoost is that it almost never overfits the data no matter how many iterations it is run.|
-
-****
-
-`AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
-And the weight is update via the following formula:
-$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
-
-
-The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
-When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
-general expression of the AdaBoost criteria
-$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
-
-where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
-the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
-e.g., consider the sparse matrix $A_{knn}$ given by
-$$a_{ij}^{knn}=
-\begin{cases}
-1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
-0, & \text{otherwise}.
-\end{cases}$$
-
-
-* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
-* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
 
 
 ### Bonsai Boosted Decision Tree
@@ -500,6 +480,7 @@ where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
 * [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
 * [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
+* [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
 
 ### Gradient Boosting Decision Tree
 
@@ -613,9 +594,8 @@ where $J_m$ is the number of the terminal regions and ${n}$ is the number of tra
 * https://explained.ai/gradient-boosting/faq.html
 * [GBDT算法原理 - 飞奔的猫熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/50176849)
 * https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
-* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
-* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
-* https://bradleyboehmke.github.io/HOML/gbm.html
+* https://github.com/benedekrozemberczki/awesome-gradient-boosting-papers
+* https://github.com/parrt/dtreeviz
 
 <img src="https://raw.githubusercontent.com/benedekrozemberczki/awesome-gradient-boosting-papers/master/boosting.gif">
 
@@ -643,26 +623,6 @@ Specially, at each iteration a subsample of the training data is drawn at random
 - https://statweb.stanford.edu/~jhf/
 - [Stochastic gradient boosted distributed decision trees](https://dl.acm.org/citation.cfm?id=1646301)
 
-### Accelerated Gradient Boosting
-
-The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
-
-* Initialize $f_0(x)=g_0(x)=0$;
-* For $m = 1, 2, \dots, M$:
-   +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
-   +  For $i = 1, 2,\dots , n$ compute
-    $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
-   +  Find the best weak-learner for pseudo residual:
-   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
-  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
-  +  Update the corrected residual:
-  $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
-  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
-  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
-* Output $f^{M}(x)$.
-____________
-
-* [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
 
 ### xGBoost
 
@@ -734,7 +694,8 @@ This formula can be decomposed as 1) the score on the new left leaf 2) the score
 
 <img src="https://pic3.zhimg.com/80/v2-46792243acd6570c3416df14a8d0bb1e_hd.jpg" width="80%" />
 <img src="https://pic3.zhimg.com/80/v2-6cd871031772e6ab3005b3166731bae2_hd.jpg" width="80%" />
- Other features include:
+
+Other features include:
 
  * row sample;
  * column sample;
@@ -871,6 +832,67 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 - [从决策树、GBDT到XGBoost/lightGBM/CatBoost](https://zhuanlan.zhihu.com/p/59419786)
 - [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
 - [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
+- [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
+
+### Accelerated Gradient Boosting
+
+The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
+
+* Initialize $f_0(x)=g_0(x)=0$;
+* For $m = 1, 2, \dots, M$:
+   +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
+   +  For $i = 1, 2,\dots , n$ compute
+    $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
+   +  Find the best weak-learner for pseudo residual:
+   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
+  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
+  +  Update the corrected residual:
+  $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
+  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
+  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
+* Output $f^{M}(x)$.
+____________
+
+* [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
+
+
+### Gradient Boosting  Machine: Beyond Boost Tree
+
+A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
+
+* [Gradient Boosting Machines](http://uc-r.github.io/gbm_regression)
+* [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
+* [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
+----
+* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
+* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
+* https://bradleyboehmke.github.io/HOML/gbm.html
+* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
+* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
+****
+
+`AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+And the weight is update via the following formula:
+$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
+
+
+The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
+When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
+general expression of the AdaBoost criteria
+$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
+
+where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
+the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
+e.g., consider the sparse matrix $A_{knn}$ given by
+$$a_{ij}^{knn}=
+\begin{cases}
+1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
+0, & \text{otherwise}.
+\end{cases}$$
+
+
+* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
+* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
 
 ### Deep Gradient Boosting
 
@@ -884,27 +906,28 @@ regular regression would, when calculating the weight updates while SGD does not
 makes sense to ignore the correlations between training samples considering that the most difficult
 test samples would be the ones that show low correlations with the training set.
 
+This work suggests an alternative explanation for why SGD generalizes so well when training neural
+networks. We show that each iteration of the backpropagation algorithm can be viewed as fitting a
+weak linear regressor to the gradients at the output of each layer, before non-linearity is applied.
+
 
 - https://arxiv.org/pdf/1907.12608.pdf
-- https://github.com/benedekrozemberczki/awesome-gradient-boosting-papers
+
 
 ### Optimization and Boosting
 
-What is the alternative of gradient descent  in order to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
-Can we do leaves splitting and optimization in the same stage?
+Gradient descent methods, as `numerical optimization methods`, update the values of the parameters at each iteration while the size of parameter is fixed  so that the complexity of the model is limited.
+In the end, these methods output some optimal or sub-optimal parameters of the model $\theta_T$ where
+$$\theta_T=\theta_0-\sum_{t=1}^{T-1}\rho_t\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}, \quad\theta_{t}=\theta_{t-1}-\rho_t\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}.$$
+The basic idea of gradient descent methods is to find
+$$\theta_t=\arg\min_{\alpha\in\mathbb R}L(f(\theta_{t-1} + \alpha\Delta)),\Delta\in span(\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}).$$
+So that $L(f(\theta_t))\leq L(f(\theta_{t-1}))$. In some sense, it requires the model is expressive enough to solve the problems or the size of the parameter is large.
 
-The core transfer is how to change the original optimization to one linearly constrained  convex optimization  so that it adjusts to ADMM:  
-
-$$
-\arg\min_{f_{t}\in\mathcal F}\sum_{i=1}^{n} L[y_i,\hat{y}^{(t-1)}_i + f_t(x_i)] + \gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2 \iff \fbox{???} \quad ?
-$$
-where $f_t(x)={\sum}_{i=1}^{T}w_i\mathbb{I}(q(x)=i)$.
-
-It seems attractive to me to understand the analogy between
-$\fbox{operator splitting in ADMM}$ and $\fbox{leaves splitting in Decision Tree}$.
-
-To be more general, how to connect the numerical optimization methods such as fixed pointed iteration methods and the boosting algorithms?
-Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boosting}$ ?  
+Gradient boost methods, as `boost methods`, are in the additive training form and the size of the models increases after each iteration so that the model complexity grows. In the end, these methods output some optimal or sub-optimal models $F_T$ where
+$$F_T=f_0+\sum_{t=1}^T \rho_t f_t,\quad f_t\approx - \nabla_{F} L\mid_{F=F_{t-1}}, F_{t-1}=\sum_{i=0}^{t-1}f_i.$$
+The basic idea of gradient boosts methods is to find
+$$f_t=\arg\min_{f\in\mathcal F}L(F_{t-1}+f).$$
+so that $L(F_t)\leq L(F_{t-1})$. In some sense, it requires the model $f$ is easy to construct.
 
 
 * [OPTIMIZATION BY GRADIENT BOOSTING](http://www.lsta.upmc.fr/BIAU/bc2.pdf)
@@ -913,11 +936,15 @@ Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boo
 * [Generalized Boosting Algorithms for Convex Optimization](https://www.ri.cmu.edu/publications/generalized-boosting-algorithms-for-convex-optimization/)
 * [Survey of Boosting from an Optimization Perspective](https://users.soe.ucsc.edu/~manfred/pubs/tut/icml2009/ws.pdf)
 
+Method | Hypothesis space| Update formulea | Loss function
+---|---|---|---|---
+Gradient Descent | parameter space $\Theta$  | $\theta_t=\theta_{t-1}-\rho_t\underbrace{\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}}_{\text{Computed by Back-Propagation}}$ |$L(f)=\sum_{i}\ell(y_i, f(x_i\mid \theta))$
+Gradient Boost   | function space $\mathcal F$ | $F_{t}= F_{t-1}- \rho_t\underbrace{\nabla_{F} L\mid_{F=F_{t-1}}}_{\text{Approximated by Decision Tree}}$ | $L(F)=\sum_{i}\ell(y_i, F(x_i))$
 
 ______________
-Boosting | Optimziation
+Boosting | Optimization
 ---|---
-Decision Tree | Coordinate-wise Optimiztion
+Decision Tree | Coordinate-wise Optimization
 AdaBoost | ???
 [Stochastic Gradient Boost](https://statweb.stanford.edu/~jhf/ftp/stobst.pdf) | Stochastic Gradient Descent
 Gradient Boost |  Gradient Descent
@@ -937,20 +964,43 @@ $$w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{y}_i G_t(x_i))]>0,  i=1,2,\dots, N, \s
 
 $\color{red}{Note}$: given the input feature  $x_i$, the label $\mathrm y_i$ is a fixed constant and the model is modified  with the training data set and the distribution $(D, w)$ i.e., $\{(x_i, y_i, w_i)\mid i=1,2,\cdots, N\}$.
 
-* [Boost: Theory and Application](https://mitpress.mit.edu/sites/default/files/titles/content/boosting_foundations_algorithms/toc.html)
+* [Boost: Foundations and Algorithms](https://mitpress.mit.edu/sites/default/files/titles/content/boosting_foundations_algorithms/toc.html)
 * [机器学习算法中GBDT与Adaboost的区别与联系是什么？](https://www.zhihu.com/question/54626685)
 * [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/article/10.1023/A:1013912006537)
 
+#### Translation Optimization Methods to Boost Algorithm
+
+What is the alternative of gradient descent  in order to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
+Can we do leaves splitting and optimization in the same stage?
+
+The core transfer is how to change the original optimization to one linearly constrained  convex optimization  so that it adjusts to ADMM:  
+
+$$
+\arg\min_{f_{t}\in\mathcal F}\sum_{i=1}^{n} \ell[y_i,\hat{y}^{(t-1)}_i + f_t(x_i)] + \gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2 \iff \fbox{???} \quad ?
+$$
+where $f_t(x)={\sum}_{i=1}^{T}w_i\mathbb{I}(q(x)=i)$ is a decision tree.
+
+In a compact form, we rewrite the above problem as
+$$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t) + Regularier(f_t)$$
+where $Regularier(f_t)=\gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2$.
+
+It is similar to some regularized cost function to minimize:
+
+$$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t)+Regularier(f_t)\approx \\
+\arg\min_{f_t\in\mathcal F} L(F_{t-1}+f_t), s.t. Regularier(f_t)\leq c.$$
+
+$\color{red}{Note}$ that $F_t=F_{t-1}+f_t=\left<(1,\dots,1),(f_0,\dots, f_t)\right>$,i.e.,it is a linear combination.
+
+If we want to use ADMM, the regularier must be written in `linear constraints`.
+
+It seems attractive to me to understand the analogy between
+$\fbox{operator splitting in ADMM}$ and $\fbox{leaves splitting in Decision Tree}$.
+
+To be more general, how to connect the numerical optimization methods such as fixed pointed iteration methods and the boosting algorithms?
+Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boosting}$ ?  
+
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
 
-_______________
-
-A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
-
-* [Gradient Boosting Machines](http://uc-r.github.io/gbm_regression)
-* [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
-* [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
-* [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
 
 ### Bayesian MARS
 A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (Friedman, 1991) is proposed. This takes the form of a probability distribution over the space of possible MARS models which is explored using reversible jump Markov chain Monte Carlo methods (Green, 1995). The generated sample of MARS models produced is shown to have good predictive power when averaged and allows easy interpretation of the relative importance of predictors to the overall fit.
@@ -967,6 +1017,9 @@ $$G(f, D)=\sum_{n=1}^{N} g(f(x_n), y_n),$$
 and we would like to solve the optimization problem
 $$\min_{f\in\mathcal F}G(f, D)=\min_{w}\sum_{n=1}^{N} g(f_w(x_n), y_n).$$
 And $g^{\prime}(f_w(x_n), y_n))=\frac{\partial g(f_w(x_n), y_n)}{\partial f_w(x_n)}$ for $n=1,2,\cdots, N$.
+
+$\fbox{Leveraging = Boosting without PAC Boosting property}.$
+
 ***
 * Input  $D=\{ (x_i, y_i)\}_{i=1}^{N}$;Loss function $G:\mathbb{R}^n\to\mathbb{R}$ .
 * Initialize the observation weights $f_o=0, d_n^1=g^{\prime}(f_0(x_n), y_n), n=1, 2, \dots, N$.
@@ -978,7 +1031,7 @@ And $g^{\prime}(f_w(x_n), y_n))=\frac{\partial g(f_w(x_n), y_n)}{\partial f_w(x_
 
 Here $\mathbf d^t=(d^t_1, d^t_2, \cdots, d^t_N)$ for $t=1,2,\cdots, T$.
 ______
-$\fbox{Leveraging = Boosting without PAC Boosting property}$
+
 * [An Introduction to Boosting and Leveraging](http://face-rec.org/algorithms/Boosting-Ensemble/8574x0tm63nvjbem.pdf)
 * [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
 * [FACE RECOGNITION HOMEPAGE](http://face-rec.org/algorithms/)
@@ -1024,6 +1077,12 @@ $$
 + [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](http://inspirehep.net/record/1193348)
 + [CERN boosts its search for antimatter with Yandex’s MatrixNet search engine tech](https://www.extremetech.com/extreme/147320-cern-boosts-its-search-for-antimatter-with-yandexs-matrixnet-search-engine-tech)
 + [MatrixNet as a specific Boosted Decision Tree algorithm which is available as a service](https://github.com/yandex/rep/blob/master/rep/estimators/matrixnet.py)
++ [Bagging and Boosting statistical machine translation systems](http://www.nlplab.com/papers/AI2013-Xiao-Zhu-Liu.pdf)
++ [A Novel, Gradient Boosting Framework for Sentiment Analysis in Languages where NLP Resources Are Not Plentiful: A Case Study for Modern Greek ](https://www.mdpi.com/1999-4893/10/1/34/htm)
++ [EGBMMDA: Extreme Gradient Boosting
+Machine for MiRNA-Disease Association
+prediction](https://www.nature.com/articles/s41419-017-0003-x.pdf?origin=ppub)
+
 
 ### Stacking
 

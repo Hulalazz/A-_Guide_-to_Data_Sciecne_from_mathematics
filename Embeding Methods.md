@@ -1,15 +1,38 @@
 # Representation Learning
 
-`Representation Learning`, `Manifold Learning` and `Metric Learning`
+`Representation Learning`, `Manifold Learning` and `Metric Learning` are about how to learn the intrinsic structure of data.
+[The objective of representation and metric learning is to build new spaces of representations to improve the performance of a classification, regression or clustering algorithm either from distance constraints or by making use of fine decomposition of instances in complete samples. ](https://laboratoirehubertcurien.univ-st-etienne.fr/en/teams/data-intelligence/recherch-areas/metric-and-representation-learning.html)
+
+[A model’s quality depends completely on the data representation used to train it. For this reason, methods that can transform input data such that it better suits a given machine learning method can improve that method’s predictive capacity.](http://williamlacava.com/research/)
+
+[Unsupervised learning of useful features, or representations, is one of the most basic challenges of machine learning. Too often the success of a data science project depends on the choice of features used. Machine learning has made great progress in training classification, regression and recognition systems when “good” representations, or features, of input data are available. However, much human effort is spent on designing good features which are usually knowledge-based and engineered by domain-experts over years of trial and error. A natural question to ask then is “Can we automate the learning of useful features from raw data?”. Unsupervised representation learning techniques capitalize on unlabeled data which is often cheap and abundant and sometimes virtually unlimited. The goal of these ubiquitous techniques is to learn a representation that reveals intrinsic low-dimensional structure in data, disentangles underlying factors of variation by incorporating universal AI priors such as smoothness and sparsity, and is useful across multiple tasks and domains. This course will focus on theory and methods for representation learning that can easily scale to large amounts of unlabeled, multi-modal, and heterogeneous data.](http://www.cs.jhu.edu/~raman/Courses/CS479f16.html)
 
 Manifold learning and finding low-dimensional structure in data is an important task.
 
+<img src="https://ars.els-cdn.com/content/image/1-s2.0-S2405918816300459-gr1_lrg.jpg" width="70%" />
+
+- [ ] [Representation Learning: A Review and New Perspectives](https://arxiv.org/abs/1206.5538)
+- [ ] [Symbolic Representation Learning](http://williamlacava.com/research/symbolic-representation-learning)
 - [ ] [Representation Learning on Networks](http://snap.stanford.edu/proj/embeddings-www/)
 - [ ] [Representation learning in graph and manifold](https://rlgm.github.io/)
 - [ ] [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/)
-- [Representation Learning on Graphs: Methods and Applications](https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf)
-- [DOOCN-XII: Network Representation Learning
+- [ ] [An Overview on Data Representation Learning: From Traditional Feature Learning to Recent Deep Learning](https://arxiv.org/abs/1611.08331)
+- [ ] [4th Workshop on Representation Learning for NLP](https://sites.google.com/view/repl4nlp2019)
+- [ ] [Workshop on Representation Learning for Complex ](http://mediamining.univ-lyon2.fr/workshop2019/)
+- [ ] [Representation Learning :600.479/679 Fall 2014](http://www.cs.jhu.edu/~raman/Courses/CS679f14.html)
+- [ ] [Representation Learning  600.479 Fall 2016](http://www.cs.jhu.edu/~raman/Courses/CS479f16.html)
+- [ ] [Representation Learning on Graphs: Methods and Applications](https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf)
+- [ ] [DOOCN-XII: Network Representation Learning
 Dynamics On and Of Complex Networks 2019](http://doocn.org/)
+- [ ] [Representation learning: a unified deep learning framework for automatic prostate MR segmentation](https://www.ncbi.nlm.nih.gov/pubmed/24579148)
+- [ ] [Representation Learning Mar. 27 – Mar. 31, 2017@simons.berkeley.edu](https://simons.berkeley.edu/workshops/schedule/3750)
+- [ ] [Deep Learning and Representation Learning](https://www.microsoft.com/en-us/research/project/deep-learning-and-representation-learning/)
+- [ ] [Robustness beyond Security: Representation Learning](http://gradientscience.org/robust_reps/)
+- [ ] [ACL Special Interest Group on Representation Learning](http://www.sigrep.org/)
+- [CSC 2414H: Metric Embeddings](http://www.cs.toronto.edu/~avner/teaching/S6-2414/)
+- [CS294-158 Deep Unsupervised Learning Spring 2019](https://sites.google.com/view/berkeley-cs294-158-sp19/home)
+- [Deep Unsupervised Learning NUS SoC, 2019/2020, Semester I](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1910/)
+- https://www.cs.cmu.edu/~anupamg/adv-approx/lecture20.pdf
 
 ## Embedding Methods
 
@@ -46,8 +69,28 @@ METRIC SPACES](http://www.csun.edu/~ctoth/Handbook/chap8.pdf)
 + [Semantic Embedding for Sketch-Based 3D Shape Retrieval](http://bmvc2018.org/contents/papers/0040.pdf)
 + [A Dual Attention Network with Semantic Embedding for Few-shot Learning](https://xmhe.bitbucket.io/papers/stanet_aaai19.pdf)
 + [Semantic AI: Bringing Machine Learning and Knowledge Graphs Together](https://www.brighttalk.com/webcast/9059/315735/semantic-ai-bringing-machine-learning-and-knowledge-graphs-together)
++ https://2018.eswc-conferences.org/
 
-#### Word Embedding
+#### Deep Semantic Embedding
+
+- [Deep Semantic Embedding](http://ceur-ws.org/Vol-1204/papers/paper_4.pdf)
+- [Learning Deep Structured Semantic Models for Web Search using Clickthrough Data ](https://posenhuang.github.io/papers/cikm2013_DSSM_fullversion.pdf)
+- [Siamese LSTM for Semantic Similarity Analysis](https://amitojdeep.github.io/amitoj-blogs/2017/12/31/semantic-similarity.html)
+- [Deep Learning Embedding/](https://weimin17.github.io/2017/10/Deep-Learning-Embedding/)
+- [Deep Structural Network Embedding (KDD 2016) in Keras Dec. 16th 2017](http://xiaohan2012.github.io/2017/deep-structral-network-embedding-keras/)
+- [Deep Learning of Knowledge Graph Embeddings for Semantic Parsing of Twitter Dialogs](https://www.microsoft.com/en-us/research/wp-content/uploads/2014/12/1569992497.pdf)
+
+### Knowledge Graph Embeddings
+
+[Knowledge graphs represent information via entities and their relationships. This form of relational knowledge representation has a long history in logic and artificial intelligence. More recently, it has also been the basis of the Semantic Web to create a “web of data” that is readable by machines.](https://mnick.github.io/project/knowledge-graph-embeddings/)
+
+- [Knowledge Graph Embeddings](https://mnick.github.io/project/knowledge-graph-embeddings/)
+- [Knowledge Graph Embedding: A Survey of Approaches and Applications](https://persagen.com/files/misc/Wang2017Knowledge.pdf)
+- [Must-read papers on knowledge representation learning (KRL) / knowledge embedding (KE)](https://github.com/thunlp/KRLPapers)
+- [Probabilistic Knowledge Graph Embeddings](http://approximateinference.org/2018/accepted/SalehiEtAl2018.pdf)
+- [Knowledge Graph Embeddings with node2vec for Item Recommendation](https://2018.eswc-conferences.org/files/posters-demos/paper_265.pdf)
+
+### Word Embedding
 
 - https://www.cntk.ai/pythondocs/index.html
 - https://allenai.github.io/allennlp-docs/index.html
@@ -64,7 +107,7 @@ METRIC SPACES](http://www.csun.edu/~ctoth/Handbook/chap8.pdf)
 
 <img src="https://lilianweng.github.io/lil-log/assets/images/word2vec-cbow.png" width="50%" />
 
-##### word2vec
+#### word2vec
 
 In natural language processing, the word can be regarded as the node in a graph, which only takes the relation of locality or context.
 It is difficult to learn the concepts or the meaning of words. The word embedding technique `word2vec` maps the words to fixed length real vectors:
@@ -151,7 +194,7 @@ $$
 - [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
 - [ ] [word vector and semantic similarity](https://spacy.io/usage/vectors-similarity)
 
-#### Transformers, BERT and Beyond
+#### Transformers, BERT, XLNet and Beyond
 
 Since 2018, pre-training has without a doubt become one of the hottest research topics in Natural Language Processing (NLP). By leveraging generalized language models like the BERT, GPT and XLNet, great breakthroughs have been achieved in natural language understanding. However, in sequence to sequence based language generation tasks, the popular pre-training methods have not achieved significant improvements. Now, researchers from Microsoft Research Asia have introduced MASS—a new pre-training method that achieves better results than BERT and GPT.
 
@@ -171,15 +214,8 @@ https://zhuanlan.zhihu.com/p/51413773
 * [Visualizing and Measuring the Geometry of BERT](https://arxiv.org/abs/1906.02715)
 * [MASS: Masked Sequence to Sequence Pre-training for Language Generation](https://arxiv.org/abs/1905.02450)
 * https://pair-code.github.io/interpretability/bert-tree/
+* https://www.cs.cmu.edu/~rsalakhu/
 
-#### Deep Semantic Embedding
-
-- [Deep Semantic Embedding](http://ceur-ws.org/Vol-1204/papers/paper_4.pdf)
-- [Learning Deep Structured Semantic Models for Web Search using Clickthrough Data ](https://posenhuang.github.io/papers/cikm2013_DSSM_fullversion.pdf)
-- [Siamese LSTM for Semantic Similarity Analysis](https://amitojdeep.github.io/amitoj-blogs/2017/12/31/semantic-similarity.html)
-- [Deep Learning Embedding/](https://weimin17.github.io/2017/10/Deep-Learning-Embedding/)
-- [Deep Structural Network Embedding (KDD 2016) in Keras Dec. 16th 2017](http://xiaohan2012.github.io/2017/deep-structral-network-embedding-keras/)
-- [Deep Learning of Knowledge Graph Embeddings for Semantic Parsing of Twitter Dialogs](https://www.microsoft.com/en-us/research/wp-content/uploads/2014/12/1569992497.pdf)
 
 ### Entity Embedding
 
@@ -227,14 +263,29 @@ The big goal when embedding a space into another is to **preserve distances and 
 
 The motivation is to embed structured, discrete objects such as knowledge graphs into a continuous representation that can be used with modern machine learning methods. Hyperbolic embeddings can preserve graph distances and complex relationships in very few dimensions, particularly for hierarchical graphs.
 
+**Hyperbolic Axiom**: There is a line
+$l$ and point $P$ not on $l$, such that there are at least 2 different lines through $P$
+parallel to $l$.
+
+This leads to the general property that given a line, there are an `infinite number` of different lines parallel to it through an outside point.
+Parallel lines can be of different types. A pair of parallel lines are said to be limiting parallel if
+they approach each-other asymptotically `without intersecting`.
+Such a pair does not admit a common line perpendicular to both, and the distance between the two does not have a minimum.
+A pair of parallel lines are called divergent parallel
+if they move away from each-other in both directions.
+
 > Let $X$ be a geodesic space and $\triangle\subset X$ a geodesic triangle; that is, a set of three
 geodesic segments in $X$ such that any pair of segments shares precisely one endpoint. Then $\triangle$ is $\delta$-slim if any side of $\triangle$  is contained in the $\delta$-neighbourhood
 of the other two. The metric space X is $\delta$-hyperbolic if every triangle is $\delta$-slim,
 and $X$ is called hyperbolic if it is $\delta$-hyperbolic for some $\delta\geq 0$.
 
+
 ---
 - [Characterizing the analogy between hyperbolic embedding and community structure of complex networks ](http://doocn.org/2018/files/radicchi-slides.pdf)
 - [Hyperbolic Embedding search result @Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Hyperbolic+Embeddings)
+- [Geometric Representation Learning](https://mnick.github.io/project/geometric-representation-learning/)
+
+<img title="Embedding of the WordNet noun hierarchy into a 2-dimensional hyperbolic space" src="https://mnick.github.io/img/wn-nouns.jpg" width="70%" />
 
 #### Spherical and Hyperbolic Embeddings of Data
 
@@ -266,11 +317,29 @@ Here $\lambda_2[Z(r)]$ is the second smallest eigenvalues of  the matrix $Z(r)$,
 
 #### Embedding of Trees in Hyperbolic Plane
 
+##### Delaunay Embedding of Trees
+
+**Delaunay Graph**: Given a set of vertices in the hyperbolic plane $\mathbb H$ their `Delaunay
+graph` is one where a pair of vertices are neighbors if their Voronoi cells intersect.
+
+Here the `Voronoi cell` of $v_i\in\{v_0, v_1,\dots, v_n \}\subset \mathbb H$ is defined as the set of points whose distance to $v_i$ is not larger than the distance to $v_j$ for $j\not=i$, denoted as $\mathcal V(v_i)$.
+
+<img src="http://www.ae.metu.edu.tr/tuncer/ae546/prj/delaunay/dt.gif" width="50%" />
+
+Suppose $T = (V, E, w)$ is a weighted tree,
+where $w : E \to \mathbb R$ is the weight or length function on the edges. The goal is to
+realize the weight $w(v_i v_j )$ on each edge $v_i v_j$ as the length ${|\phi_i \phi_j |}_{\mathbb H}$ of the edge in the Delaunay embedding of the tree.
+
+- http://www.ae.metu.edu.tr/tuncer/ae546/prj/delaunay/
+- [Low Distortion Delaunay Embedding of Trees in Hyperbolic Plane](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf)
+
 |A simple Pythagorean embedding into the vertices of a unit cube|
 |:---:|
 |<img src="https://pair-code.github.io/interpretability/bert-tree/tree-cube.png" width="80%" />|
 
-- [Low Distortion Delaunay Embedding of Trees in Hyperbolic Plane](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf)
+
+- [A randomized embedding algorithm for trees](https://theory.stanford.edu/~jvondrak/data/tree-embedding.pdf)
+- [Tree Preserving Embedding](http://www.icml-2011.org/papers/421_icmlpaper.pdf)
 - https://pair-code.github.io/interpretability/bert-tree/
 
 #### Poincaré Embeddings
@@ -346,6 +415,7 @@ MINING AND LEARNING WITH GRAPHS](http://www.mlgworkshop.org/2019/)
 - [Network Embedding as Matrix Factorization: Unifying DeepWalk, LINE, PTE, and node2vec](https://arxiv.org/abs/1710.02971)
 - [Spatially Embedded Networks](http://www2.eng.ox.ac.uk/sen/)
 - [DOOCN-XII: Network Representation Learning](http://doocn.org/)
+- [Representation Learning on Graphs: Methods and Applications](http://sites.computer.org/debull/A17sept/p52.pdf)
 
 #### DeepWalk
 
@@ -496,3 +566,19 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - [Graph Embeddings — The Summary](http://sungsoo.github.io/2019/05/26/graph-embedding.html)
 - [Graph Embeddings search result @ Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
 - [Semantic Annotation for Places in LBSN through Graph Embedding](https://yangzhangalmo.github.io/papers/CIKM17.pdf)
+
+##  Hierarchical Representation Learning
+
+- [Hierarchical Representations with Poincaré Variational Auto-Encoders](https://deepmind.com/research/publications/hierarchical-representations-poincare-variational-auto-encoders)
+- [Nonparametric Variational Auto-encoders for Hierarchical Representation Learnings](https://arxiv.org/abs/1703.07027)
+- [Poincaré Embeddings for Learning Hierarchical Representations](https://mnick.github.io/talk/cern2018/)
+
+<img src="https://ask.qcloudimg.com/http-save/yehe-1908973/ih2p67xh4x.jpeg?imageView2/2/w/1620" />
+
+### HARP
+
+- https://so-link.org/seminar/2018-06/harp.pdf
+- https://github.com/GTmac/HARP
+- [HARP: Hierarchical Representation Learning for Networks](https://arxiv.org/abs/1706.07845)
+- http://www.mlgworkshop.org/2017/paper/MLG2017_paper_10.pdf
+- https://gtmac.github.io/publication/harp/
