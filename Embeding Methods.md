@@ -16,9 +16,13 @@ Manifold learning and finding low-dimensional structure in data is an important 
 - [ ] [Representation Learning on Networks](http://snap.stanford.edu/proj/embeddings-www/)
 - [ ] [Representation learning in graph and manifold](https://rlgm.github.io/)
 - [ ] [Learning and Reasoning with Graph-Structured Representations, ICML 2019 Workshop](https://graphreason.github.io/)
+- [ ] [Relational Representation Learning](https://r2learning.github.io/)
+- [ ] [Scene Graph Representation and Learning](https://cs.stanford.edu/people/ranjaykrishna/sgrl/index.html)
+- [ ] [MINE — Mutual Information Neural Estimation](https://xlnwel.github.io/blog/representation%20learning/MINE/)
 - [ ] [An Overview on Data Representation Learning: From Traditional Feature Learning to Recent Deep Learning](https://arxiv.org/abs/1611.08331)
 - [ ] [4th Workshop on Representation Learning for NLP](https://sites.google.com/view/repl4nlp2019)
 - [ ] [Workshop on Representation Learning for Complex ](http://mediamining.univ-lyon2.fr/workshop2019/)
+- [ ] [1st International Workshop on Graph Representation Learning and its Applications](https://cikm-grla.github.io/)
 - [ ] [Representation Learning :600.479/679 Fall 2014](http://www.cs.jhu.edu/~raman/Courses/CS679f14.html)
 - [ ] [Representation Learning  600.479 Fall 2016](http://www.cs.jhu.edu/~raman/Courses/CS479f16.html)
 - [ ] [Representation Learning on Graphs: Methods and Applications](https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf)
@@ -29,10 +33,38 @@ Dynamics On and Of Complex Networks 2019](http://doocn.org/)
 - [ ] [Deep Learning and Representation Learning](https://www.microsoft.com/en-us/research/project/deep-learning-and-representation-learning/)
 - [ ] [Robustness beyond Security: Representation Learning](http://gradientscience.org/robust_reps/)
 - [ ] [ACL Special Interest Group on Representation Learning](http://www.sigrep.org/)
-- [CSC 2414H: Metric Embeddings](http://www.cs.toronto.edu/~avner/teaching/S6-2414/)
-- [CS294-158 Deep Unsupervised Learning Spring 2019](https://sites.google.com/view/berkeley-cs294-158-sp19/home)
-- [Deep Unsupervised Learning NUS SoC, 2019/2020, Semester I](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1910/)
+- [ ] [CSC 2414H: Metric Embeddings](http://www.cs.toronto.edu/~avner/teaching/S6-2414/)
+- [ ] [CS294-158 Deep Unsupervised Learning Spring 2019](https://sites.google.com/view/berkeley-cs294-158-sp19/home)
+- [ ] [Deep Unsupervised Learning NUS SoC, 2019/2020, Semester I](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1910/)
+- [ ] [Neural Discrete Representation Learning](https://avdnoord.github.io/homepage/vqvae/)
+- [ ] [Representation Learning](https://sstober.github.io/rl2016/)
+- [ ] [BIGDATA: Collaborative Research: F: Stochastic Approximation for Subspace and Multiview Representation Learning](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546482)
+- [ ] [ CRII: III: Scaling up Distance Metric Learning for Large-scale Ultrahigh-dimensional Data](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1463988&HistoricalAwards=false)
 - https://www.cs.cmu.edu/~anupamg/adv-approx/lecture20.pdf
+
+## Knowledge Representation and Reasoning
+
+-  [CS 227: Knowledge Representation and Reasoning](https://web.stanford.edu/class/cs227/)
+-  [What is a Knowledge Representation?](http://groups.csail.mit.edu/medg/ftp/psz/k-rep.html)
+-  [Why Knowledge Representation Matters](https://cacm.acm.org/magazines/2016/1/195730-why-knowledge-representation-matters/fulltext)
+-  [CSE 4/563: Knowledge Representation: Stuart C. Shapiro](https://cse.buffalo.edu/~shapiro/Courses/CSE563/)
+-  http://binaryanalysisplatform.github.io/
+-  http://frankchu.tech/2018/10/08/kr-summary/
+-  https://github.com/shaoxiongji/awesome-knowledge-graph
+-  https://kgtutorial.github.io/
+-  https://kg4ir.github.io/
+-  https://scientific-knowledge.github.io
+-  http://geneontology.org/search.html
+-  [KGMA 2019](https://kgma2019.github.io/)
+-  [COIN: COmmonsense INference in Natural Language Processing](https://coinnlp.github.io/)
+-  [Vampire: Automatic theorem proving](https://vprover.github.io/index.html)
+-  https://52paper.github.io/
+-  https://adityasomak.github.io/
+-  https://uniformal.github.io/doc/
+-  https://tyliupku.github.io/
+-  https://ermongroup.github.io/cs323-notes/logic/representation/
+-  [Second International Workshop on Capturing Scientific Knowledge](https://sciknow.github.io/sciknow2017/)
+-  https://xmhe.bitbucket.io/
 
 ## Embedding Methods
 
@@ -50,18 +82,18 @@ Dynamics On and Of Complex Networks 2019](http://doocn.org/)
 METRIC SPACES](http://www.csun.edu/~ctoth/Handbook/chap8.pdf)
 * [On Certain Metric Spaces Arising From Euclidean Spaces by a Change of Metric and Their Imbedding in Hilbert Space](https://www.jstor.org/stable/1968835?seq=1#page_scan_tab_contents)
 
-### Semantic Embedding
+### Semantic Representation and Embedding
 
 <img src="https://carl-allen.github.io/assets/analogy_embeddings.png" width="50%">
 
-
++ http://www.glottopedia.org/index.php/Semantic_representation
 + [semantic matching in information retrieval](http://smir2014.noahlab.com.hk/SMIR2014.htm)
 + [Semantic Web](https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki)
 + [visual semantic embedding](https://github.com/ryankiros/visual-semantic-embedding)
 + [SEMBED: Semantic Embedding of Egocentric Action Videos](https://dimadamen.github.io/SEMBED/ECCVW2016SEMBED.pdf)
-+ http://smir2014.noahlab.com.hk/paper%204.pdf
-+ https://joeybose.github.io/assets/vse--.pdf
-+ https://blog.lateral.io/2017/09/semantic-trees-hierarchical-softmax/
++ [Latent Semantic Representation Learning for Scene Classification](http://proceedings.mlr.press/v32/lid14.pdf)
++ [Improving Visual Semantic Embedding By Adversarial Contrastive Estimation](https://joeybose.github.io/assets/vse--.pdf)
++ [Semantic trees for training word embeddings with hierarchical softmax](https://blog.lateral.io/2017/09/semantic-trees-hierarchical-softmax/)
 + [''Analogies Explained'' ... Explained](https://carl-allen.github.io/nlp/2019/07/01/explaining-analogies-explained.html)
 + [Deep Embedding Logistic Regression](https://www.cse.wustl.edu/~z.cui/papers/DELR_ICBK.pdf)
 + [DeViSE: A Deep Visual-Semantic Embedding Model](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/41473.pdf)
@@ -70,6 +102,8 @@ METRIC SPACES](http://www.csun.edu/~ctoth/Handbook/chap8.pdf)
 + [A Dual Attention Network with Semantic Embedding for Few-shot Learning](https://xmhe.bitbucket.io/papers/stanet_aaai19.pdf)
 + [Semantic AI: Bringing Machine Learning and Knowledge Graphs Together](https://www.brighttalk.com/webcast/9059/315735/semantic-ai-bringing-machine-learning-and-knowledge-graphs-together)
 + https://2018.eswc-conferences.org/
++ [The State of the Art in Semantic Representation](http://www.cs.huji.ac.il/~arir/semantic-reps.pdf)
++ https://cs.nyu.edu/courses/spring10/G22.2590-001/Lecture11.html
 
 #### Deep Semantic Embedding
 
@@ -219,12 +253,16 @@ https://zhuanlan.zhihu.com/p/51413773
 
 ### Entity Embedding
 
+[We map categorical variables in a function approximation problem into Euclidean spaces, which are the entity embeddings of the categorical variables. The mapping is learned by a neural network during the standard supervised training process. Entity embedding not only reduces memory usage and speeds up neural networks compared with one-hot encoding, but more importantly by mapping similar values close to each other in the embedding space it reveals the intrinsic properties of the categorical variables.](https://arxiv.org/abs/1604.06737)
+
 * [Entity Embeddings of Categorical Variables](https://arxiv.org/abs/1604.06737)
 * https://mc.ai/entity-embedding/
 * https://github.com/dkn22/embedder
 * https://tidymodels.github.io/embed/index.html
 
 #### Item2Vec
+
+[ecently, several works in the field of Natural Language Processing (NLP) suggested to learn a latent representation of words using neural embedding algorithms. Among them, the Skip-gram with Negative Sampling (SGNS), also known as word2vec, was shown to provide state-of-the-art results on various linguistics tasks. In this paper, we show that item-based CF can be cast in the same framework of neural word embedding. Inspired by SGNS, we describe a method we name item2vec for item-based CF that produces embedding for items in a latent space. The method is capable of inferring item-item relations even when user information is not available. ](https://arxiv.org/abs/1603.04259)
 
 - https://arxiv.org/abs/1603.04259
 - https://blog.csdn.net/chris_xy/article/details/78168586
@@ -271,8 +309,31 @@ This leads to the general property that given a line, there are an `infinite num
 Parallel lines can be of different types. A pair of parallel lines are said to be limiting parallel if
 they approach each-other asymptotically `without intersecting`.
 Such a pair does not admit a common line perpendicular to both, and the distance between the two does not have a minimum.
-A pair of parallel lines are called divergent parallel
+A pair of parallel lines are called `divergent parallel`
 if they move away from each-other in both directions.
+They have a common segment perpendicular to both. This segment achieves the minimum distance between the two lines.
+
+<img src="http://bjlkeng.github.io/images/Angles-and-Curvature.png" width="80%">
+
+Given a line $l$ and a point $P$ outside, there is always a point $Q$ on $l$ such that $P Q \perp l$. Through $P$, there are always rays $m_{+\alpha}$ and $m_{-\alpha}$ that are limiting parallel to $l$ in the two directions.
+The angle between $P Q$ and $m_{+\alpha}$ (or symmetrically, the angle between $P Q$ and $m_{-\alpha}$) is called the angle of parallelism and
+represented by $\Pi(P Q)$. The `Bolyai and Lobachevsky formula` gives its value in
+terms of the length ${|PQ|}_{\mathbb{H}}$:
+$$\tan\frac{\Pi(P Q)}{2}=\exp(-{|PQ|}_{\mathbb{H}}/k) \tag{1}$$
+
+where $k$ is a constant for the hyperbolic plane in consideration.
+
+<img src="http://bjlkeng.github.io/images/hyperbolic_geometry.png">
+
+Reorganizing equation 1,
+$${|PQ|}_{\mathbb{H}}=k\ln\tan(\frac{\alpha}{2})$$
+where $\alpha=\Pi(PQ)$ is always less than $\frac{\pi}{2}$.
+${|PQ|}_{\mathbb{H}}$ is positive and monotone decreasing in $\alpha$.
+
+The hyperbolic distance between two points  $x$ and $y$ has a particularly nice form:
+$$d_{\mathbb{H}}(x,y) = \mathsf{acosh}\left(1+2\frac{\|x-y\|^2}{(1-\|x\|^2)(1-\|y\|^2)} \right).$$
+
+<img src="https://dawn.cs.stanford.edu/assets/img/2018-03-19-hyperbolics/poincare3.png" width="60%" />
 
 > Let $X$ be a geodesic space and $\triangle\subset X$ a geodesic triangle; that is, a set of three
 geodesic segments in $X$ such that any pair of segments shares precisely one endpoint. Then $\triangle$ is $\delta$-slim if any side of $\triangle$  is contained in the $\delta$-neighbourhood
@@ -284,6 +345,7 @@ and $X$ is called hyperbolic if it is $\delta$-hyperbolic for some $\delta\geq 0
 - [Characterizing the analogy between hyperbolic embedding and community structure of complex networks ](http://doocn.org/2018/files/radicchi-slides.pdf)
 - [Hyperbolic Embedding search result @Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Hyperbolic+Embeddings)
 - [Geometric Representation Learning](https://mnick.github.io/project/geometric-representation-learning/)
+- [Scalable Hyperbolic Recommender Systems](https://arxiv.org/abs/1902.08648v1)
 
 <img title="Embedding of the WordNet noun hierarchy into a 2-dimensional hyperbolic space" src="https://mnick.github.io/img/wn-nouns.jpg" width="70%" />
 
@@ -326,6 +388,21 @@ Here the `Voronoi cell` of $v_i\in\{v_0, v_1,\dots, v_n \}\subset \mathbb H$ is 
 
 <img src="http://www.ae.metu.edu.tr/tuncer/ae546/prj/delaunay/dt.gif" width="50%" />
 
+We construct a function $\Phi$ that embeds the vertices of a tree $T$ into $\mathbb{H}$. Function $\Phi$ is designed such that $T$ is the Delaunay graph of the embedded vertices.
+
+**Edge embedding function $\Phi$.** Given an edge $v_iv_j$ and an angle $\alpha$, we select a cone $C(m, \alpha)$ at point $P$, and embed as follows. Vertex $v_i$ is embedded at $\Phi_i = P$.
+We select a point $R$ on the ray $m$ such that ${|PR|}_{\mathbb{H}}\geq -2k\ln(\tan\frac{\alpha}{2})$,
+and embed $v_j$ as $\Phi_j = R$. We call this a Delaunay embedding of the edge for angle $\alpha$.
+
+Here $C(m, \alpha)$ refers to the region bounded by rays $m_{-\alpha}$ and $m_{+\alpha}$  containing the ray $m$ except the point $P$. And we call it a cone of angle $\alpha$ at $P$ (or rooted at P).
+
+**Algorithm: Construction of  $\Phi$  for $T$.**
+Embed the root $v_{0}$ to an arbitrary point  $\varphi_{0}$. If $v_{0}$ has d children,  they are Delaunay embedded individually into d disjoint cones at $\varphi_0$.
+We embed all other vertices inductively as follows. Suppose $v_j$ is a child of $v_i$, and has been embedded in a cone of angle $\alpha$ at $\varphi_i$.
+The children of $v_j$ are Delaunay embedded in mutually disjoint cones that are also disjoint
+from the cone $C(\vec{\varphi_i\varphi_j},\alpha)$.
+
+
 Suppose $T = (V, E, w)$ is a weighted tree,
 where $w : E \to \mathbb R$ is the weight or length function on the edges. The goal is to
 realize the weight $w(v_i v_j )$ on each edge $v_i v_j$ as the length ${|\phi_i \phi_j |}_{\mathbb H}$ of the edge in the Delaunay embedding of the tree.
@@ -344,6 +421,13 @@ realize the weight $w(v_i v_j )$ on each edge $v_i v_j$ as the length ${|\phi_i 
 
 #### Poincaré Embeddings
 
+The Poincaré ball model is a model of n-dimensional hyperbolic geometry in which all points are embedded in an n-dimensional sphere (or in a circle in the 2D case which is called the Poincaré disk model). This is being presented second because it is much less intuitive but can be derived directly from the hyperboloid model.
+
+The distance between two points $u,v$ on the Poincaré ball is given by:
+$$
+d(u,v) = arcosh\big(1 + 2\frac{\lVert u-v \rVert^2}{(1-\lVert u\rVert^2)(1-\lVert v\rVert^2)}\big) \tag{1}
+$$
+where the double bars represent the Euclidean distance. 
 
 |An attempt at embedding a tree with branching factor 4 into the Euclidean plane | Embedding a hierarchical tree with branching factor two into a 2D hyperbolic plane |
 :---|---:
@@ -361,8 +445,9 @@ It is shown that [how to extend this technique to arbitrary graphs, a problem wi
 1. Embed a graph $G = (V, E)$ into a tree $T$.
 2. Embed $T$ into the Poincaré ball.
 
-<img src="https://dawn.cs.stanford.edu/assets/img/2018-03-19-hyperbolics/poincare3.png" width="60%" />
+There are two factors to good embeddings: local and global. Locally, the children of each node should be spread out on the sphere around the parent. Globally, subtrees should be separated from each other; in hyperbolic space, the separation is determined by the sphere radius.
 
+<img src="https://dawn.cs.stanford.edu/assets/img/2018-03-19-hyperbolics/v7123caption.png" width="70%" />
 
 - [Hyperbolic Embeddings with a Hopefully Right Amount of Hyperbole](https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/)
 - [Hyperbolic Function Embedding: Learning Hierarchical Representation for Functions of Source Code in Hyperbolic Spaces](https://www.mdpi.com/2073-8994/11/2/254/htm)
@@ -525,6 +610,13 @@ Struc2vec has four main steps:
 - [Struc2vec: learning node representations from structural identity](https://blog.acolyer.org/2017/09/15/struc2vec-learning-node-representations-from-structural-identity/)
 
 
+#### metapath2vec
+
+- [metapath2vec: Scalable Representation Learning for Heterogeneous Networks ](https://ericdongyx.github.io/metapath2vec/m2v.html)
+- https://ericdongyx.github.io/
+- [Representation Learning on Networks](https://www.aminer.cn/nrl_www2019)
+- [International Workshop on Deep Learning for Graphs and Structured Data Embedding](https://www.aminer.cn/dl4g-sde)
+
 #### Gaussian Auto Embeddings
 
 http://koaning.io/gaussian-auto-embeddings.html
@@ -566,6 +658,7 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - [Graph Embeddings — The Summary](http://sungsoo.github.io/2019/05/26/graph-embedding.html)
 - [Graph Embeddings search result @ Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
 - [Semantic Annotation for Places in LBSN through Graph Embedding](https://yangzhangalmo.github.io/papers/CIKM17.pdf)
+- https://ai.googleblog.com/2019/06/innovations-in-graph-representation.html
 
 ##  Hierarchical Representation Learning
 

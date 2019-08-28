@@ -2,6 +2,13 @@
 
 <img title="https://www.artsky.com/read/524" src="https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg" width="60%" />
 
+* https://www.samsi.info/programs-and-activities/semester-long-programs/2019-fall-semester-program-on-deep-learning/
+* https://www.mis.mpg.de/montufar/index.html
+* https://www.mis.mpg.de/calendar/conferences/2019/kickoff.html
+* [PIMS CRG Summer School: Deep Learning for Computational Mathematics](https://www.pims.math.ca/scientific-event/190722-pcssdlcm)
+* https://www.deeplearningmathematics.com/
+* http://grammars.grlmc.com/DeepLearn2017/
+* https://deeplearn2019.irdta.eu/
 * https://aifiddle.io/
 * https://www.wikiwand.com/en/Universal_approximation_theorem
 * https://www.scienceofintelligence.de/
@@ -11,6 +18,10 @@
 * [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
 * [Large Scale Distributed Deep Networks 中译文](http://blog.sina.com.cn/s/blog_81f72ca70101kuk9.html)
 * [深度树匹配模型(TDM)](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
+* [Internet-Scale Deep Learning for Bing Image Search](https://blogs.bing.com/search-quality-insights/May-2018/Internet-Scale-Deep-Learning-for-Bing-Image-Search)
+* [What can deep learning do for you?](https://machinethink.net/)
+* https://missinglink.ai/blog/
+* [Deep Learning and Representation Learning](https://www.microsoft.com/en-us/research/project/deep-learning-and-representation-learning/)
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
 In mathematics, it is nonlinear non-convex and composite of many functions.
@@ -158,6 +169,11 @@ It is the first time to model cognition.
 * https://stats385.github.io/blogs
 * https://explained.ai/matrix-calculus/index.html
 * http://fourier.eng.hmc.edu/e161/lectures/nn/node3.html
+* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
+* [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
+* [BRAIN INSPIRED](https://braininspired.co/about/)
+* [http://www.timkietzmann.de](http://www.timkietzmann.de/)
+* http://www.brain-ai.jp/organization/
 
 #### Activation functions
 
@@ -1958,6 +1974,8 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 ## DeepRL
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/375px-Reinforcement_learning_diagram.svg.png)
+
++ https://srdas.github.io/DLBook/ReinforcementLearning.html
 + https://spinningup.openai.com/en/latest/
 + http://rll.berkeley.edu/deeprlcoursesp17/
 + https://simoninithomas.github.io/Deep_reinforcement_learning_Course/

@@ -10,6 +10,7 @@
 - [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
 - [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
+- [ ] [HanLP：面向生产环境的自然语言处理工具包](http://www.hanlp.com/)
 - [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
 - [ ] [State_of_the_art](https://aclweb.org/aclwiki/State_of_the_art)
 - [ ] [Providing Relevant and Timely Results: Real-Time Search Architectures and Relevance Algorithms](http://lintool.github.io/NSF-projects/IIS-1218043/)
@@ -913,11 +914,24 @@ As we have learned how to handle text, information retrieval is moving on, to pr
 
 * [Vertical search](https://en.wikipedia.org/wiki/Vertical_search)
 
+#### Web Table Extraction, Retrieval and Augmentation
+
+[Tables on the web, referred to as web tables henceforth, differ from traditional tables (that is, tables in relational databases and tables created in spreadsheet programs) in a number of ways. First, web tables are embedded in webpages. There is a lot of contextual information, such as the embedding page’s title and link structure, the surrounding text, etc. that can be utilized. Second, web tables are rather heterogeneous regarding their quality, organization, and content. For example, tables on the Web are often used for layout and navigation purposes.](https://iai-group.github.io/webtables-tutorial/)
+
+[Among the different table types, relational tables (also referred to as genuine tables) are of special interest. These describe a set of entities (such as people, organizations, locations, etc.) along with their attributes. Relational tables are considered to be of high-quality, because of the relational knowledge contained in them. However, unlike from tables in relational databases, these relationships are not made explicit in web tables; uncovering them is one of the main research challenges. The uncovered semantics can be leveraged in various applications, including table search, question answering, knowledge base augmentation, and table completion. For each of these tasks we identify seminal work, describe the key ideas behind the proposed approaches, discuss relevant resources, and point out interdependencies among the different tasks.](https://iai-group.github.io/webtables-tutorial/)
+
+- https://iai-group.github.io/webtables-tutorial/
+- https://github.com/iai-group/webtables-tutorial
 
 #### Medical Information Retrieval
 
 ChartRequest claims that:
 > Requesting medical records is vital to your operations as a health insurance company. From workers’ compensation claims to chronic-condition care, insurance companies require numerous medical records—daily. Obtain records quickly and accurately with our medical information retrieval software. ChartRequest offers a complete enterprise solution for health insurance companies—facilitating swift fulfillment and secure, HIPAA-compliant records release.
+
+- http://web.cs.ucla.edu/~wwc/course/cs245a/
+- http://web.cs.ucla.edu/~wwc/
+- http://www.kmed.cs.ucla.edu/
+- [KMeX: A Knowledge-Based Approach for Scenario-Specific Medical Free Text Retrieval](http://www.cobase.cs.ucla.edu/projects/kmex/index.html)
 
 ##### What is Biomedical and Health Informatics?
 
@@ -1049,6 +1063,7 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + [ConceptNet An open, multilingual knowledge graph](http://conceptnet.io/)
 + [Knowledge Graphs and Knowledge Networks: The Story in Brief](http://wiki.knoesis.org/index.php/Knowledge_Graphs_and_Knowledge_Networks:_The_Story_in_Brief)
 + [Renlifang/EntityCube](https://www.microsoft.com/en-us/research/project/renlifangentitycube/)
++ http://www.ecmlpkdd2018.org
 
 <img src="http://wiki.knoesis.org/images/c/c0/KG_OKN.jpeg" width="60%"/>
 
@@ -1101,6 +1116,7 @@ Knowledge graphs are large networks of entities and their semantic relationships
 #### Conferences on Information Retrieval
 
 + https://datanatives.io/conference/
++ [sigir2019](https://sigir.org/sigir2019/program/tutorials/)
 + [Natural Language Processing in Information Retrieval](http://nlpir.net/)
 + [HE 3RD STRATEGIC WORKSHOP ON INFORMATION RETRIEVAL IN LORNE (SWIRL)](https://sites.google.com/view/swirl3/home)
 + [Text Retrieval COnference(TREC)](https://trec.nist.gov/)

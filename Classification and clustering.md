@@ -7,6 +7,19 @@ There is another trichotomy in statistics
 
 <img title="great painting" src="http://pic.syd.com.cn/0/101/88/22/101882266_0000000049d72af6.jpg" width="80%" />
 
+* https://www.upstreamml.com/
+* https://wid.wisc.edu/
+* https://machinelearning.wisc.edu/
+* https://www.merantix.com/
+* https://www.l3s.de/en
+* https://lucid.wisc.edu/
+* https://amueller.github.io/COMS4995-s18/
+* https://www.ml.uni-saarland.de/index.htm
+* https://mathinvestor.org/
+* https://idalab.de/
+* [IIS: RI: Small: Nonlinear Dynamical System Theory for Machine Learning](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1018433&HistoricalAwards=false)
+* [ Acceleration Techniques for Lower-Order Algorithms in Nonlinear Optimization](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1522654)
+
 ## Unsupervised Learning
 
 ### Clustering
@@ -26,16 +39,10 @@ The external representation of dissimilarity will be discussed in **Graph Algori
 * https://github.com/hankcs/HanLP/wiki/%E6%96%87%E6%9C%AC%E8%81%9A%E7%B1%BB
 * http://www.charuaggarwal.net/text-cluster.pdf
 * https://www.tutorialspoint.com/data_mining/dm_cluster_analysis.htm
+* [Influential features PCA for high dimensional clustering](https://projecteuclid.org/euclid.aos/1479891617)
+* http://www.andrew.cmu.edu/user/davidch/
 
 #### K-means cluster
-
-
-The hard clustering problem consists of partitioning the entities ${D}$ into ${k}$ disjoint
-subsets $C = \{C_1, \cdots, C_k\}$ to reach the following objectives:
-
-- Minimization of the average intra-cluster dissimilarities;
-- Maximization of inter-cluster distance.
-
 
 K-means is also called  **Lloyd algorithm**. It is a prototype-based clustering method.
 
@@ -84,7 +91,7 @@ The second procedure, it is supposed to minimize the intra-cluster distance.
 The loss function of K-means can be any sum of inter-cluster distance
 $$D_K=\sum_{k=1}^K \text{inter-cluster distance of $C_k$}.$$
 
-`Gap Statistic` is defined as 
+`Gap Statistic` is defined as
 $$Gap(K)=\mathbb E(\log D_K)-\log D_K,$$
 where $\mathbb E(\log D_k)$ is the expectation of $\log D_k$ and $D_k$ is the loss with respect to $K$-cluster.
 
@@ -193,10 +200,10 @@ member of a data set whose average dissimilarity to all the other members of the
 Let $x_{1},x_{2},\cdots ,x_{n}$ be a set of ${\textstyle n}$ points in a space with a distance function ${d}$. `Medoid` is defined as
 
 $$
-x_{\text{medoid}} = {\arg\min}_{y\in \{x_{1},x_{2},\cdots ,x_{n}\}} \sum _{i=1}^{n} d(y,x_{i}).
+x_{\text{medoid}} = {\arg\min}_{y\in \{x_{1},x_{2},\cdots ,x_{n}\}} \sum_{i=1}^{n} d(y,x_{i}).
 $$
 
-The simplified version is to compute the `median` of each attribute to approximate medoid instead of the optimization in the definition, where the dissimilarity function $d(y, x)=\| y-x\|_{1}$.
+The simplified version is to compute the `median` of each attribute to approximate medoid instead of the optimization in the definition, where the dissimilarity function $d(y, x)={\| y-x\|}_{1}$.
 
 It also begins with randomly selecting k data items as initial medoids to represent the k clusters. All
 the other remaining items are included in a cluster which has its medoid closest to them.
@@ -211,6 +218,28 @@ members are placed in the appropriate cluster based on nearest medoid.
 * http://www.math.le.ac.uk/people/ag153/homepage/KmeansKmedoids/Kmeans_Kmedoids.html
 * http://blog.pluskid.org/?p=40
 * https://wireilla.com/ns/maths/Papers/3314ijscmc01.pdf
+
+#### Distance Metric Learning
+
+The hard clustering problem consists of partitioning the entities ${D}$ into ${k}$ disjoint
+subsets $C = \{C_1, \cdots, C_k\}$ to reach the following objectives:
+
+- Minimization of the average intra-cluster dissimilarities;
+- Maximization of inter-cluster distance.
+
+How can we do to choose the dissimilarities and distance?
+
+$\min\sum_{x_i, x_j\in C_n}f_1(x_i ,x_j), \max \sum_{s_n\in C_n, s_m\in C_m} f_2(s_n-s_m)$.
+
+ `intra-cluster dissimilarities` | `inter-cluster distance`
+ ---|---
+ variance | differences of summary statistics
+ $\sum_{x_i, x_j\in C_n}f_1(x_i ,x_j)$| $\sum_{s_n\in C_n, s_m\in C_m} f_2(s_n-s_m)$ where $C_n\cap C_m=\emptyset$
+ proximality/similarity | speratabilty/dissimilarity
+ ?|?
+
+- https://ai.stanford.edu/~ang/papers/nips02-metric.pdf
+- https://github.com/bnu-wangxun/Deep_metric
 
 #### Iterative Self-Organizing Data Analysis Technique Algorithm
 
@@ -342,10 +371,20 @@ A bicluster is defined as a submatrix spanned by a set of genes and a set of sam
 - https://www.cs.tau.ac.il/~roded/articles/bicrev.pdf
 
 
+
+#### Evaluating Clustering
+
+- https://amueller.github.io/COMS4995-s18/slides/aml-17-032818-clustering-evaluation/#1
+
+
 #### Ensemble methods of Clusterings
 
 * [Combining Multiple Clusterings Using Evidence Accumulation](https://ieeexplore.ieee.org/document/1432715/)
 * [A CLUE for Cluster Ensembles](https://www.jstatsoft.org/article/view/v014i12)
+
+## Supervised Learning
+
++ [Impossibility of successful classification when useful features are rare and weak](http://www.stat.cmu.edu/~jiashun/Research/Year/LB-PNAS.pdf)
 
 ### Classification
 
@@ -399,7 +438,7 @@ Creating a binary decision tree is actually a process of dividing up the input s
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
 The regularization techniques in regression may not suit the tree algorithms such as LASSO.
 
-**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees) 
+**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees)
 
 <img title = "pruning" src="https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="40%" />
 
@@ -440,9 +479,6 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
 * https://www.ncbi.nlm.nih.gov/pubmed/16149128
 * http://www.cnblogs.com/en-heng/p/5035945.html
-* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
-* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
-* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
 * https://www.wikiwand.com/en/Recursive_partitioning
 * [Model-Based Recursive Partitioning for Subgroup Analyses, Heidi Seibold, Achim Zeileis, Torsten Hothorn](https://www.degruyter.com/view/j/ijb.2016.12.issue-1/ijb-2015-0032/ijb-2015-0032.xml)
@@ -496,11 +532,11 @@ It is better to solve the following problem:
 $$
 \arg\max_{w, b} \overline{\gamma}\\
    s.t.\quad d_i\cdot f(x_i) \geq \overline{\gamma} \\
-      \|w\|_2 \leq c
+      {\|w\|}_2 \leq c
 $$
 
 The `geometric margins` of the point $(x, d)$ to the hyper-line $\left< w, x \right> + b$ is defined as
-$$\frac{|\left< w, x \right> + b|}{\|w\|_2} .$$
+$$\frac{|\left< w, x \right> + b|}{ {\|w\|}_2 } .$$
 In fact, it is the distance from the point ${x}$ to the hyper-line.
 
 One natural alternative is to compute the distance from data point to the hyper-line:
@@ -562,16 +598,15 @@ It is data-dependent i.e., if we add a new data point the hyper-line may change.
 And it is not suitable to apply incremental or stochastic gradient method to learn the hyper-line.
 
 
-
+* http://svmlight.joachims.org/
 * http://www.svms.org/history.html
+* https://www.svm-tutorial.com/
 * [机器学习之支持向量机（SVM）算法 - 付千山的文章 - 知乎](https://zhuanlan.zhihu.com/p/45959826)
 * http://www.svms.org/
 * https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/svmintro.pdf
-* https://www.svm-tutorial.com/
 * https://x-algo.cn/index.php/2016/08/09/ranksvm/
 * http://web.stanford.edu/~hastie/TALKS/svm.pdf
 * http://bytesizebio.net/2014/02/05/support-vector-machines-explained-well/
-* https://www.svm-tutorial.com/2017/02/svms-overview-support-vector-machines/
 * https://www.math.arizona.edu/~hzhang/math574m/2017Lect18_msvm.pdf
 * http://scikit-learn.org/stable/modules/svm.html
 

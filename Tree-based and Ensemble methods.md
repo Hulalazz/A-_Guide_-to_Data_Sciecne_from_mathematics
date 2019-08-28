@@ -18,27 +18,31 @@ The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and the re
 
 ### Decision Tree
 
+A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
+It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
+the data space and fitting a simple prediction model within each partition. As a
+result, the partitioning can be represented graphically as a decision tree.
+[Visual introduction to machine learning](https://explained.ai/decision-tree-viz/index.html) show an visual introduction to decision tree.
 In brief, A decision tree is a classifier expressed as a recursive partition of the instance space.
 
 > A decision tree is the function $T :\mathbb{R}^d \to \mathbb{R}$ resulting from a learning algorithm applied on training data lying in input space $\mathbb{R}^d$ , which always has the following form:
-> $$
-> T(x) = \sum_{i\in\text{leaves}} g_i(x)\mathbb{I}(x\in R_i) = \sum_{i\in \,\text{leaves}} g_i(x) \prod_{a\in\,\text{ancestors(i)}} \mathbb{I}(S_{a (x)}=c_{a,i})
-> $$
+ $$
+ T(x) = \sum_{i\in\text{leaves}} g_i(x)\mathbb{I}(x\in R_i) = \sum_{i\in \,\text{leaves}} g_i(x) \prod_{a\in\,\text{ancestors(i)}} \mathbb{I}(S_{a (x)}=c_{a,i})
+ $$
 > where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node i, $c_{a,i}$ is the child of node a on the path from a to leaf i, and $S_a$ is the n-array split function at node a.
 > $g_i(\cdot)$ is the decision function associated with leaf i and
 > is learned only from training examples in $R_i$.
 
 The $g_{i}(x)$ can be a constant in $\mathbb{R}$ or some mathematical expression such as logistic regression. When $g_i(x)$ is constant, the decision tree is actually piecewise constant, a concrete example of simple function.
 
+The interpretation is simple: Starting from the root node, you go to the next nodes and the edges tell you which subsets you are looking at. Once you reach the leaf node, the node tells you the predicted outcome. All the edges are connected by ‘AND’.
+
+`Template: If feature x is [smaller/bigger] than threshold c AND … then the predicted outcome is the mean value of y of the instances in that node.`
+
 * [Decision Trees (for Classification) by Willkommen auf meinen Webseiten.](http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php)
 * [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
 * [On the Boosting Ability of Top-Down Decision Tree Learning Algorithms](http://www.columbia.edu/~aec2163/NonFlash/Papers/Boosting2016.pdf)
 
-A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
-It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
-the data space and fitting a simple prediction model within each partition. As a
-result, the partitioning can be represented graphically as a decision tree.
-[Visual introduction to machine learning](https://explained.ai/decision-tree-viz/index.html) show an visual introduction to decision tree.
 
 ***
 **Algorithm**  Pseudocode for tree construction by exhaustive search
@@ -66,9 +70,9 @@ $$
 where $Ent(D)$, the entropy of $D$, is defined as
 
 $$
-Ent(D)=\sum_{y \in Y} P(y|D)\log(\frac{1}{P(y | D)}).
+Ent(D)=\sum_{y \in Y} P(y|D)\log(\frac{1}{P(y | D)}),
 $$
-
+where $y\in Y$ is the class index.
 
 The information gain ratio of features $A$ with respect of data set $D$  is defined as
 
@@ -81,29 +85,9 @@ $$
 Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
 $$
 
-Algorithm | Impurity/Splitting Criteria
----|---
-[ID3](https://www.wikiwand.com/en/ID3_algorithm)| Information Gain
-[C4.5](https://www.wikiwand.com/en/C4.5_algorithm)| Normalized information gain ratio
-CART|Gini Index
-CHAID(Chi-squared-Automatic-Interaction-Detection)|?
-QUEST|?
-Oblivious Decision Trees|?
-Online Adaptive Decision Trees|?
-Lazy Tree|?
-Option Tree|?
-Oblique Decision Trees|?
-MARS|?
-
 $\color{red}{\text{PS: all above impurities}}$  are based on the probability $\fbox{distribuion}$  of data.
-***
+So that it is necessary to estimate the probability distribution of each attribute.
 
-* [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
-* [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
-* https://www.wikiwand.com/en/Decision_tree_learning
-* https://www.wikiwand.com/en/Decision_tree
-* https://www.wikiwand.com/en/Recursive_partitioning
-* [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
 ***
 
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
@@ -139,9 +123,8 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 
 ***
 
-* [Tutorial on Regression Tree Methods for Precision Medicine and Tutorial on Medical Product Safety: Biological Models and Statistical Methods](http://ims.nus.edu.sg/events/2017/quan/tut.php)
+
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
-* [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
 * [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
 * [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
 * [CART](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
@@ -151,13 +134,128 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
 * https://www.ncbi.nlm.nih.gov/pubmed/16149128
 * http://www.cnblogs.com/en-heng/p/5035945.html
-* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
-* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
-* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+* http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf
+
+#### Regression Trees
+
+Starting with all of the data, consider a splitting variable $j$ and
+split point $s$, and define the pair of half-planes
+$$R_1(j, s)=\{X\mid X_j\leq s\}, R_2(j, s)=\{X\mid X_j> s\}.$$
+
+Then we seek the splitting variable $j$ and split point $s$ that solve
+$$\min_{j, s}[\min_{c_1}\sum_{x_i\in R_1}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2}(y_i-c_2)^2].$$
+
+For any choice $j$ and $s$, the inner minimization is solved by
+$$\hat{c}_{1}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{1}(j, s)\right) \text { and } \hat{c}_{2}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{2}(j, s)\right).$$
+For each splitting variable, the determination of the split point $s$ can
+be done very quickly and hence by scanning through all of the inputs, determination of the best pair $\left(j, s\right)$ is feasible.
+Having found the best split, we partition the data into the two resulting regions and repeat the splitting process on each of the two regions. 
+Then this process is repeated on all of the resulting regions.
+
+Tree size is a tuning parameter governing the model’s complexity, and the optimal tree size should be adaptively chosen from the data. 
+One approach would be to split tree nodes only if the decrease in sum-of-squares due to the split exceeds some threshold.
+This strategy is too short-sighted, however, since a seemingly worthless split might lead to a very good split below it.
+
+The preferred strategy is to grow a large tree $T_0$ , stopping the splitting process only when some minimum node size (say 5) is reached. 
+Then this large tree is pruned using cost-complexity pruning.
+
+we define the cost complexity criterion
+$$C_{\alpha}(T)=\sum_{m=1}^{|T|}N_m Q_m (T) + \alpha |T|.$$
+
+The idea is to find, for each $\alpha$, the subtree $T_{\alpha}\subset T_0$ to minimize $C_{\alpha}(T)$.
+The tuning parameter $\alpha \geq 0$ governs the tradeoff between tree size and its goodness of fit to the data.
+Large values of $\alpha$ result in smaller trees $T_{\alpha}$, and conversely for smaller values of $\alpha$.
+As the notation suggests, with $\alpha = 0$ the
+solution is the full tree $T_0$.
+
+* [Tutorial on Regression Tree Methods for Precision Medicine and Tutorial on Medical Product Safety: Biological Models and Statistical Methods](http://ims.nus.edu.sg/events/2017/quan/tut.php)
+* [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
+
+#### Classification Trees
+
+If the target is a classification outcome taking values $1,2,\dots,K$, the only
+changes needed in the tree algorithm pertain to `the criteria for splitting` nodes and pruning the tree.
+
+[It turns out that most popular splitting criteria can be derived from thinking of decision trees as greedily learning a **piecewise-constant, expected-loss-minimizing approximation** to the function $f(X)=P(Y=1|X)$. For instance, the split that maximizes information gain is also the split that produces the piecewise-constant model that maximizes the expected log-likelihood of the data. Similarly, the split that minimizes the Gini node impurity criterion is the one that minimizes the Brier score of the resulting model. Variance reduction corresponds to the model that minimizes mean squared error.](https://www.benkuhn.net/tree-imp)
+
+Algorithm | Splitting Criteria | Loss Function
+---|---|---
+ID3| Information Gain
+C4.5| Normalized information gain ratio
+CART| Gini Index
+
+If your splitting criterion is information gain, this corresponds to a log-likelihood loss function. This works as follows.
+
+If you have a constant approximation $\hat{f}$ to $f$ on some regions $S$, then the approximation that maximizes the expected log-likelihood of the data (that is, the probability of seeing the data if your approximation is correct)is
+$$L(\hat f) = E(\log P(Y=Y_{observed} | X, f = \hat f)) = \sum_{X_i} Y_i \log \hat f(X_i) + (1 - Y_i) \log (1 - \hat f(X_i))$$
+for a binary classification problem where $Y_i \in \{0, 1\}$ is  its classification.
+Here Suppose $Y$ is determined from $X$ by some function $f(X)=P(Y=1|X)$.
+First we need to find the constant value $\hat f(X)=f$ that maximizes this value.
+
+Suppose that you have $n$ total instances, $p$ of them positive ($Y=1$) and the rest negative. Suppose that you predict some arbitrary probability $f$ – we’ll solve for the one that maximizes expected log-likelihood. So we take the expected log-likelihood $\mathbb E_X(logP(Y=Y_{observed}|X))$, and break up the expectation by the value of $Y_{observed}$:
+
+$$L(\hat f)
+= (\log P(Y=Y_{observed} | X, Y_{observed}=1)) P(Y_{observed} = 1) \\
++ (\log P(Y=Y_{observed} | X, Y_{observed}=0)) P(Y_{observed} = 0)$$
+
+Substituting in some variables gives
+$$L(\hat f)
+= \frac{p}{n} \log f
++ \frac{n - p}{n} \log (1 - f).$$
+
+And  $\arg\max_{f}L(\hat f)=\frac{p}{n}$ by setting its derivative 0.
+Let’s substitute this back into the likelihood formula and shuffle some variables around:
+$$L(\hat f) = \left(f \log f + (1 - f) \log (1 - f) \right).$$
+***
+A similar derivation shows that Gini impurity corresponds to a Brier score loss function. The Brier score for a candidate model
+$$B(\hat f) = E((Y - \hat f(X))^2).$$
+
+Like log-likelihood, the predictions that f^ should make to minimize the Brier score are simply $f=p/n$.
+
+Now let’s take the expected Brier score and break up by $Y$, like we did before:
+$$B(\hat f)
+= (1 - \hat f(X))^2 P(Y_{observed} = 1)
++ \hat f(X)^2 P(Y_{observed} = 0)$$
+Plugging in some values:
+$$B(\hat f) = (1 - f)^2 f + f^2(1 - f) = f(1-f)$$
+which is exactly (proportional to) the Gini impurity in the 2-class setting. (A similar result holds for multiclass learning as well.)
+***
+---|---
+---|---
+QUEST|?
+Oblivious Decision Trees|?
+Online Adaptive Decision Trees|?
+Lazy Tree|?
+Option Tree|?
+Oblique Decision Trees|?
+MARS|?
+
+
+* [Building Classification Models: id3-c45](https://cis.temple.edu/~giorgio/cis587/readings/id3-c45.html)
+* [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
+* [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
+* https://www.wikiwand.com/en/Decision_tree_learning
+* https://www.wikiwand.com/en/Decision_tree
+* https://www.wikiwand.com/en/Recursive_partitioning
+* [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
+
+
+### VFDT and Beyond
+
+[`Hoeffding Tree` or `VFDT` is the standard decision tree algorithm for data stream classification. VFDT uses the Hoeffding bound to decide the minimum number of arriving instances to achieve certain level of confidence in splitting the node. This confidence level determines how close the statistics between the attribute chosen by VFDT and the attribute chosen by decision tree for batch learning.](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
+
+[`Hoeffding Anytime Tree` produces the asymptotic batch tree in the limit, is naturally resilient to concept drift, and can be used as a higher accuracy replacement for Hoeffding Tree in most scenarios, at a small additional computational cost.](https://arxiv.org/pdf/1802.08780.pdf)
+
+[Although exceedingly simple conceptually, most implementations of tree-based models do not efficiently utilize `modern superscalar processors`. By laying out data structures in memory in a more cache-conscious fashion, removing branches from the execution flow using a technique called predication, and micro-batching predictions using a technique called vectorization, we are able to better exploit modern processor architectures. ](https://cs.uwaterloo.ca/~jimmylin/publications/Asadi_etal_TKDE2014.pdf)
+
+* [Very Fast Decision Tree (VFDT) classifier](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
 * [Runtime Optimizations for Tree-based Machine Learning Models](https://cs.uwaterloo.ca/~jimmylin/publications/Asadi_etal_TKDE2014.pdf)
 * [Extremely Fast Decision Tree](https://arxiv.org/abs/1802.08780)
 * [Optimized very fast decision tree with balanced classification accuracy and compact tree size](https://ieeexplore.ieee.org/abstract/document/6108399)
-* [Very Fast Decision Tree (VFDT) classifier](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
+* [Distributed Decision Trees with Heterogeneous Parallelism](https://raypeng.github.io/DGBDT/)
+* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
+* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
+* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
 
 ### Random Forest
 
@@ -210,20 +308,30 @@ There are many competing techniques for solving the problem, and each technique 
 by choices and meta-parameters: when this flexibility is taken into account, one easily
 ends up with a very large number of possible models for a given task.
 
+[Ensemble methods are meta-algorithms that combine several machine learning techniques into one predictive model in order to decrease variance (bagging), bias (boosting), or improve predictions (stacking).](https://blog.statsbot.co/ensemble-learning-d1dcd548e936)
+
 * [Computer Science 598A: Boosting: Foundations & Algorithms](http://www.cs.princeton.edu/courses/archive/spring12/cos598A/)
 * [4th Workshop on Ensemble Methods](http://www.raetschlab.org/ensembleWS)
 * [Zhou Zhihua's publication on ensemble methods](http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Ensemble%20Learning)
+* [Online Ensemble Learning: An Empirical Study](https://engineering.purdue.edu/~givan/papers/online-mlj.pdf)
 * [Ensemble Learning  literature review](http://www.machine-learning.martinsewell.com/ensembles/)
 * [KAGGLE ENSEMBLING GUIDE](https://mlwave.com/kaggle-ensembling-guide/)
 * [Ensemble Machine Learning: Methods and Applications](https://www.springer.com/us/book/9781441993250)
 * [MAJORITY VOTE CLASSIFIERS: THEORY AND APPLICATION](https://web.stanford.edu/~hastie/THESES/gareth_james.pdf)
 * [Neural Random Forests](https://arxiv.org/abs/1604.07143)
 * [Generalized Random Forests](https://arxiv.org/abs/1610.01271)
-* [Additive Models, Boosting, and Inference for Generalized Divergences ](https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf)
-* [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
-* [Weak Learning, Boosting, and the AdaBoost algorithm](https://jeremykun.com/2015/05/18/boosting-census/)
-* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
-* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
+* [Selective Ensemble of Decision Trees](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/rsfdgrc03.pdf)
+* [An Empirical Comparison of Voting Classification Algorithms: Bagging, Boosting, and Variants](http://ai.stanford.edu/~ronnyk/vote.pdf)
+* [DIFFERENT TYPES OF ENSEMBLE METHODS](https://www.datavedas.com/ensemble-methods/)
+
+Bagging |Boosting |Stacking
+---|---|----
+<img src="https://datavedas.com/wp-content/uploads/2018/04/image015.jpg" /> | <img src="https://www.datavedas.com/wp-content/uploads/2018/05/3.1.1.1.6-ENSEMBLE-METHODS.jpg" /> | <img src="https://datavedas.com/wp-content/uploads/2018/04/image045-2.jpg" />
+
+* [ML-Ensemble: High performance ensemble learning in Python](http://ml-ensemble.com/)
+* https://github.com/flennerhag/mlens
+* https://mlbox.readthedocs.io/en/latest/
+* [Ensemble Systems & Learn++ by Robi Polikar](http://users.rowan.edu/~polikar/ensemble.html)
 
 ### Bagging
 
@@ -243,17 +351,6 @@ the base learners, that is, voting for classification and averaging for regressi
 
 It is a sample-based ensemble method.
 
-There is an alternative of bagging called combining ensemble method. It trains a linear combination of learner:
-$$F = \sum_{i=1}^{n} w_i F_i$$
-where the weights $w_i\geq 0, \sum_{i=1}^{n} w_i =1$. The weights $w=\{w_i\}_{i=1}^{n}$ are solved by minimizing the ensemble error
-$$
-w = \arg\min_{w}\sum_{k}^{K}(F(x_k)-y_k)^{2}
-$$
-if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
-
-
-<img title = weighted-unweighted src=https://blogs.sas.com/content/subconsciousmusings/files/2017/05/weighted-unweighted.png width=80%/>
-
 ***
 
 * http://www.machine-learning.martinsewell.com/ensembles/bagging/
@@ -264,7 +361,7 @@ if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
 
 #### Random Subspace Methods
 
-[Abstract: "Much of previous attention on decision trees focuses on the splitting criteria and optimization of tree sizes. The dilemma between overfitting and achieving maximum accuracy is seldom resolved. A method to construct a decision tree based classifier is proposed that maintains highest accuracy on training data and improves on generalization accuracy as it grows in complexity. The classifier consists of multiple trees constructed systematically by pseudorandomly selecting subsets of components of the feature vector, that is, trees constructed in randomly chosen subspaces. The subspace method is compared to single-tree classifiers and other forest construction methods by experiments on publicly available datasets, where the method's superiority is demonstrated. We also discuss independence between trees in a forest and relate that to the combined classification accuracy."](http://www.machine-learning.martinsewell.com/ensembles/rsm/Ho1998.pdf)
+[Abstract: "Much of previous attention on decision trees focuses on the splitting criteria and optimization of tree sizes. The dilemma between overfitting and achieving maximum accuracy is seldom resolved. A method to construct a decision tree based classifier is proposed that maintains highest accuracy on training data and improves on generalization accuracy as it grows in complexity. The classifier consists of multiple trees constructed systematically by pseudo-randomly selecting subsets of components of the feature vector, that is, trees constructed in randomly chosen subspaces. The subspace method is compared to single-tree classifiers and other forest construction methods by experiments on publicly available datasets, where the method's superiority is demonstrated. We also discuss independence between trees in a forest and relate that to the combined classification accuracy."](http://www.machine-learning.martinsewell.com/ensembles/rsm/Ho1998.pdf)
 
 + http://www.machine-learning.martinsewell.com/ensembles/rsm/
 
@@ -275,6 +372,10 @@ if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
 * https://cseweb.ucsd.edu/~yfreund/papers
 * http://www.boosting.org/
 * [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
+* [Additive Models, Boosting, and Inference for Generalized Divergences ](https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf)
+* [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
+* [Weak Learning, Boosting, and the AdaBoost algorithm](https://jeremykun.com/2015/05/18/boosting-census/)
+
 
 The term boosting refers to a family of algorithms that are able to convert weak learners to strong learners.
 It is kind of similar to the "trial and error" scheme: if we know that the learners perform worse at some given data set $S$,
@@ -293,6 +394,11 @@ In another word, we will reduce the error at each iteration.
 * [Boosting](http://www.machine-learning.martinsewell.com/ensembles/boosting/) and [Ensemble Learning](http://www.machine-learning.martinsewell.com/ensembles/)
 * [Boosting at Wikipedia](https://www.wikiwand.com/en/Boosting_(machine_learning))
 * [Tree, Forest and Ensemble](https://amueller.github.io/COMS4995-s18/slides/aml-10-021918-trees-forests/#45)
+
+Methods | Overfit-underfitting | Training Type
+---|---|---
+Bagging | avoid over-fitting | parallel
+Boosting | avoid under-fitting| sequential
 
 ### AdaBoost
 
@@ -382,7 +488,7 @@ where $w(x, y) = \exp(−yF(x)),$ and $\mathbb E$ represents expectation.
 
 In `AdaBoost`, the error is binary- it is 0 if the classification is right otherwise it is 1. It is not precise for some setting. The output of decision trees is a class probability estimate $p(x) = P(y=1 | x)$, the probability that ${x}$ is in the positive class
 
-#### Real AdaBoost
+**Real AdaBoost**
 
 * Input  $D=\{ (x_i, \mathrm{y}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $y\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$;
@@ -451,10 +557,13 @@ where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
 - [ ] [几种Boost算法的比较](https://www.cnblogs.com/jcchen1987/p/4581651.html)
 - [ ] [Robust LogitBoost and Adaptive Base Class (ABC) LogitBoost](https://arxiv.org/ftp/arxiv/papers/1203/1203.3491.pdf)
 
-***
-- https://arxiv.org/abs/1901.04055
-- https://arxiv.org/abs/1901.04065
-- [Open machine learning course. Theme 10. Gradient boosting](https://weekly-geekly.github.io/articles/327250/index.html)
+#### arc-x4 Algorithm
+
+Breiman proposes a boosting algorithm called
+arc-x4 to investigate whether the success of AdaBoost roots in its technical details or in the resampling scheme it uses. The difference between AdaBoost and arc-x4 is twofold. First, the weight for object $z_j$ at step $k$ is calculated as the proportion of
+times $z_j$ has been misclassified by the $k - 1$ classifiers built so far. Second, the final decision is made by plurality voting rather than weighted majority voting.
+
+- [Combining Pattern Classifiers: Methods and Algorithms](https://b-ok.cc/book/448487/057f55)
 
 |Properties of AdaBoost|
 |---|
@@ -462,6 +571,31 @@ where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
 |The training classification error has to go down exponentially fast if the weighted errors of the component classifiers are strictly better than chance.|
 |A crucial property of AdaBoost is that it almost never overfits the data no matter how many iterations it is run.|
 
+### multiBoost
+
+[Similar to AdaBoost in the two class case, this new algorithm combines weak classifiers and only requires the performance of each weak classifier be better than random guessing (rather than 1/2).](https://www.intlpress.com/site/pub/pages/journals/items/sii/content/vols/0002/0003/a008/)
+
+
+____
+* Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$.
+* For $t = 1, 2, \dots, T$:
+  +  Fit a classifier $G_t(x)$ to the training data using weights $w_i$.
+  +  Compute
+     $$err_{t}=\frac{\sum_{i=1}^{N}w_i \mathbb{I}(G_t(x_i) \not= \mathrm{y}_i)}{\sum_{i=1}^{N} w_i}.$$
+  +  Compute $\alpha_t = \log(\frac{1-err_t}{err_t})+\log(K-1)$.
+  +  Set $w_i\leftarrow w_i\exp[\alpha_t\mathbb{I}(G_t(x_i) \not= \mathrm{y}_i)], i=1,2,\dots, N$ and renormalize so that  $\sum_{i}w_i=1$.
+* Output $G(x)=\arg\max_{k}[\sum_{t=1}^{T}\alpha_{t}\mathbb{I}_{G_t(x)=k}]$.
+
+- http://www.multiboost.org/
+- https://www.lri.fr/~kegl/research/publications.html
+- https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf
+- https://web.stanford.edu/~hastie/Papers/samme.pdf
+- [A theory of multiclass boosting](http://rob.schapire.net/papers/multiboost-journal.pdf)
+- [The return of AdaBoost.MH: multi-class Hamming trees](https://arxiv.org/abs/1312.6086)
+- [Multi-class AdaBoost](http://users.stat.umn.edu/~zouxx019/Papers/samme.pdf)
+- https://github.com/tizfa/sparkboost
+- [multiclass boosting: theory and algorithms](https://papers.nips.cc/paper/4450-multiclass-boosting-theory-and-algorithms.pdf)
+- [LDA-AdaBoost.MH: Accelerated AdaBoost.MH based on latent Dirichlet allocation for text categorization](https://journals.sagepub.com/doi/abs/10.1177/0165551514551496?journalCode=jisb)
 
 ### Bonsai Boosted Decision Tree
 
@@ -478,16 +612,21 @@ The discretization works by enforcing that the smallest keep interval that can b
 $$\Delta x_{min} > \delta_x \forall x\,\,\text{on all leaves}$$
 where $\delta_x=\min \{|x_i-x_j|: x_i, x_j\in x_{discrete}\}$.
 
+Discretization means that the data can be thought of as being binned, even though many of the possible bins may not form leaves in the BBDT; thus, there are a finite number, $n^{max}_{keep}$, of possible keep regions that can be defined. If the $n^{max}_{keep}$ BBDT response values can be stored in memory, then the extremely large number of if/else statements that make up a BDT can be converted into a one-dimensional array of response values. One-dimensional array look-up speeds are extremely fast; they take, in essense, zero time.
+If there is not enough memory available to store all of the response values, there are a number of simple alternatives that can be used. For example, if the cut value is known then just the list of indices for keep regions could be stored.  
+
 ***
 * [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](https://arxiv.org/abs/1210.6861)
 * [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
 * [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
-* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
-* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
-* [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
+
 
 ### Gradient Boosting Decision Tree
+
+- [Gradient Boosted Feature Selection](https://arxiv.org/abs/1901.04055)
+- [Gradient Regularized Budgeted Boosting](https://arxiv.org/abs/1901.04065)
+- [Open machine learning course. Theme 10. Gradient boosting](https://weekly-geekly.github.io/articles/327250/index.html)
 
 One of the frequently asked questions is `What's the basic idea behind gradient boosting?` and the answer from [https://explained.ai/gradient-boosting/faq.html] is the best one I know:
 > Instead of creating a single powerful model, boosting combines multiple simple models into a single **composite model**. The idea is that, as we introduce more and more simple models, the overall model becomes stronger and stronger. In boosting terminology, the simple models are called weak models or weak learners.
@@ -606,11 +745,11 @@ where $J_m$ is the number of the terminal regions and ${n}$ is the number of tra
 
 Ensemble Methods| Training Data |Decision Tree Construction |Update Formula
 ---|---|---|---
-AdaBoost| $(x_i, y_i, w_{i, t})$ | Fit a classifier $G_t(x)$ to the training data using weights $w_i$| $f_t=f_{t-1}+\alpha_t G_t$
-Gradient  Boost | $(x_i, y_i, r_{i, t})$|Fit a regression tree $G_t(x)$ to the targets $r_{i,t}$| $f_t=f_{t-1}+\nu G_t$
+AdaBoost| $(x_i, y_i, w_{i, t})$ | Fit a `classifier` $G_t(x)$ to the training data using weights $w_i$| $f_t=f_{t-1}+\alpha_t G_t$
+Gradient  Boost | $(x_i, y_i, r_{i, t})$|Fit a `tree` $G_t(x)$ to the targets $r_{i,t}$| $f_t=f_{t-1}+\nu G_t$.
 
-Note that $\alpha_t$ is computed as $\alpha_t=\log(\frac{1-err_t}{err_t})$ while the shrinkage parameter $\nu$ is choosen in $(0, 1)$.
-
+Note that $\alpha_t$ is computed as $\alpha_t=\log(\frac{1-err_t}{err_t})$ while the shrinkage parameter $\nu$ is chosen in $(0, 1)$.
+AdaBoost is desined for any classifier while Gradient Boost methods is usually applied to decision tree.
 
 #### Stochastic Gradient Boost
 
@@ -765,8 +904,7 @@ And it limits the depth of the tree in order to avoid over-fitting.
 
 **Optimization in parallel learning**
 
-[A Communication-Efficient Parallel Algorithm for Decision Tree](https://arxiv.org/abs/1611.01276)
-
+- [A Communication-Efficient Parallel Algorithm for Decision Tree](https://arxiv.org/abs/1611.01276)
 - [LightGBM, Light Gradient Boosting Machine](https://github.com/Microsoft/LightGBM/)
 - [LightGBM: A Highly Efficient Gradient Boosting Decision Tree](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)
 - [Python3机器学习实践：集成学习之LightGBM - AnFany的文章 - 知乎](https://zhuanlan.zhihu.com/p/53583034)
@@ -831,11 +969,20 @@ where we also add a prior value ${P}$ and a parameter $a > 0$, which is the weig
 - [CatBoost：比XGBoost更优秀的GBDT算法](http://ai.51cto.com/art/201808/582487.htm)
 
 
-#### More: TencentBoost, ThunderGBM and Beyond
+#### More: TencentBoost, ThunderGBM, LightGBM and Beyond
 
 There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, GBDT on angle and H2o.
 
 [Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely TencentBoost, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
+
+Methods | Tree Construction | Update Formula
+---|---|---
+XGBoost|
+CatBoost|
+TencentBoost|
+ThunderGBM|
+LightGBM |
+
 
 - [ThunderGBM: Fast GBDTs and Random Forests on GPUs](https://github.com/Xtra-Computing/thundergbm)
 - [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
@@ -847,7 +994,150 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 * [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
 * [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
 * [Fast Traversal of Large Ensembles of Regression Trees](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
-* [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
+* [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
+* [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
+* [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
+* [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
+* [Parallelizing the Traversal of Large Ensembles of Decision Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2019/03/ITPDS19.pdf)
+* [Block-distributed Gradient Boosted Trees](https://arxiv.org/abs/1904.10522)
+* [Distributed decision tree ensemble learning in Scala](https://github.com/stripe/brushfire)
+* [Yggdrasil: An Optimized System for Training Deep
+Decision Trees at Scale](https://cs.stanford.edu/~matei/papers/2016/nips_yggdrasil.pdf)
+* [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
+
+### QuickScorer
+
+`QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
+
+It adopts a novel bitvector representation of the tree-based ranking model, and performs an interleaved traversal of the ensemble by means of simple logical bitwise operations. The performance of the proposed algorithm are unprecedented, due to its cache-aware approach, both in terms of data layout and access patterns, and to a control ﬂow that entails very low branch mis-prediction rates.
+
+
+
+**All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.**
+The scoring of a document represented by a feature vector $\mathrm{x}$  requires the traversing of all the trees in the ensemble, starting at their root nodes.
+If a visited node in N is a false one, then the right branch is taken, and the left branch otherwise.
+The visit continues recursively until a leaf node is reached, where the value of the prediction is returned.
+
+The building block of this approach is an alternative method for tree traversal based on `bit-vector computations`.
+Given a tree and a vector of document features,
+this traversal processes all its nodes and produces a bitvector
+which encodes the exit leaf for the given document.
+
+Given an input feature vector $\mathrm x$ and a tree $T_h = (N_h;L_h)$, where $N_h$ is a set of  internal nodes and $L_h$ is a set
+of leaves,
+our tree traversal algorithm processes the internal nodes of
+Th with the goal of identifying a set of candidate exit leaves, denoted by $C_h$ with $C_h \subset L_h$,
+which includes the actual exit leaf $e_h$.
+Initially $C_h$ contains all the leaves in $L_h$, i.e., $C_h = L_h$.
+Then, the algorithm evaluates one after the other in an arbitrary order the test conditions of all the internal nodes of $T_h$.
+Considering the result of the test for a certain internal node $n \in N_h$,
+the algorithm is able to infer that some leaves cannot be the exit leaf and, thus, it can safely remove them from $C_h$.
+**Indeed, if $n$ is a false node (i.e., its test condition is false), the leaves in the left subtree of $n$ cannot be the exit leaf and they can be safely removed from $C_h$.
+Similarly, if $n$ is a true node, the leaves in the right subtree of n can be removed from $C_h$.**
+
+The second refinement implements the operations on $C_h$ with fast bit-wise operations.
+The idea is to represent $C_h$ with a bitvector ${\text{leaf_index}}_h$, where each bit corresponds to a distinct leaf in $L_h$, i.e., $\text{leaf_index}_h$ is the characteristic vector of $C_h$.
+Moreover, every internal node $n$ is associated with a bit mask of the same length encoding
+(with 0’s) the set of leaves to be removed from $C_h$ whenever $n$ turns to be a false node.
+**In this way, the bitwise `logical AND` between $\text{leaf_index}_h$ and the bit mask of a false
+node $n$ corresponds to the removal of the leaves in the left subtree of $n$ from $C_h$.**
+Once identified all the false nodes in a tree and performed the associated AND operations over $\text{leaf_index}_h$, the exit leaf of the tree corresponds to the leftmost bit set to 1 in $\text{leaf_index}_h$.
+
+One important result is that `Quick Scorer` computes
+$s(x)$ by only identifying the branching nodes whose test evaluates to false, called false nodes.
+For each false node detected in $T_h \in T$ , `Quick Scorer` updates a bitvector associated with $T_h$, which stores information that is eventually exploited to identify
+the exit leaf of $T_h$ that contributes to the final score $s(x)$.
+To this end, `Quick Scorer` maintains for each tree $T_h \in T$ a bitvector *leafidx[h]*, made of $\land$ bits, one per leaf.
+Initially, every bit in *leafidx[h]* is set to $\mathrm 1$. Moreover, each branching node is
+associated with a bitvector mask, still of $\land$ bits, identifying the set of unreachable
+leaves of $T_h$ in case the corresponding test evaluates to false.
+Whenever a false node is visited, the set of unreachable leaves *leafidx[h]* is updated through a logical $AND (\land)$ with mask.
+Eventually, the leftmost bit set in *leafidx[h]* identifies the leaf corresponding to the score contribution of $T_h$, stored in the lookup table *leafvalues*.
+____
+ALGORITHM 1: Scoring a feature vector $x$ using a binary decision tree $T_h$
+
+* **Input**:
+  * $x$: input feature vector
+  * $T_h = (N_h, L_h)$: binary decision tree, with
+    *  $N_h = \{n_0, n_1, \cdots\}$: internal nodes of $T_h$
+    *  $L_h = \{l_0, l_1, \cdots\}$: leaves of $T_h$
+    *  $n.mask$: node bit mask associated with $n\in N_h$
+    *  $l_j.val$: score contribution associated with leaf $l_j\in L_h$
+* **Output**:
+  * tree traversal output value
+* **$score(x, T_h)$**:
+  *  $\text{leaf_index}_h\leftarrow (1,1,\dots, 1)$
+  *  $U\leftarrow FindFalse(x, T_h)$
+  *  **foreach node** $n \in U$ **do**
+     *  $\text{leaf_index}_h\leftarrow \text{leaf_index}_h\land n.mask$
+  *  $j \leftarrow\text{index of leftmost bit set to 1 of leaf_index}_h$
+  * **return** $l_j.val$
+
+____
+ALGORITHM 2: : The QUICKSCORER Algorithm
+
+* **Input**:
+  * $x$: input feature vector
+  * $\mathcal T$: ensemble of binary decision trees, with
+    *  $\{w_0, w_1, \cdots, w_{|\mathcal{T}|-1}\}$:  weights, one per tree
+    *  $thresholds$: sorted sublists of thresholds, one sublist per feature
+    *  $treeids$: tree’s ids, one per node/threshold
+    *  $nodemasks$: node bit masks, one per node/threshold
+    *  $offsets$: offsets of the blocks of triples
+    *  $leafindexes$: result bitvectors, one per each tree
+    *  $leafvalues$: score contributions, one per each tree leaf
+* **Output**:
+  * final score of $x$
+* **$\text{QUICKSCORER}(x, T_h)$**:
+   *  **foreach node** $h \in \{0,1\cdots, |T|-1\}$ **do**
+      *  $\text{leaf_index}_h\leftarrow (1,1,\dots, 1)$
+   *  **foreach node** $k \in \{0,1\cdots, |\mathcal{F}|-1\}$ **do**
+      *  $i\leftarrow offsets[k]$
+      *  $end\leftarrow offsetsets[k+1]$
+      *  **while** $x[k] > thresholds[i]$ do
+         * $h \leftarrow treeids[i]$
+         * $\text { leafindexes }[h] \leftarrow \text { leafindexes }[h] \wedge \text { nodemasks }[i]$
+         * $i\leftarrow i+1$
+         * **if** $i\geq end$ **then**
+           * **break**
+     *  $score \leftarrow 0$
+     * **foreach node** $h \in \{0,1\cdots, |T|-1\}$ **do**
+       * $j \leftarrow \text { index of leftmost bit set to 1 of}\,\, {leafindexes }[h]$
+       * $l \leftarrow h \cdot| L_{h} |+j$
+       * $\text { score } \leftarrow \text { score }+w_{h} \cdot \text { leafvalues }[l]$
+  * **return** $score$
+
+
+- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
+- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
+- [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
+- [ ] [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2017/04/TOIS16.pdf)
+- [Tree traversal](https://venus.cs.qc.cuny.edu/~mfried/cs313/tree_traversal.html)
+- https://github.com/hpclab/gpu-quickscorer
+- https://github.com/hpclab/multithread-quickscorer
+- https://github.com/hpclab/vectorized-quickscorer
+- https://patents.google.com/patent/WO2016203501A1/en
+
+<img src="https://ercim-news.ercim.eu/images/stories/EN107/perego.png" width="60%" />
+
+#### vQS
+
+[Considering that in most application scenarios the same tree-based model is applied to a multitude of items, we recently introduced further optimisations in QS. In particular, we introduced vQS [3], a parallelised version of QS that exploits the SIMD capabilities of mainstream CPUs to score multiple items in parallel. Streaming SIMD Extensions (SSE) and Advanced Vector Extensions (AVX) are sets of instructions exploiting wide registers of 128 and 256 bits that allow parallel operations to be performed on simple data types. Using SSE and AVX, vQS can process up to eight items in parallel, resulting in a further performance improvement up to a factor of 2.4x over QS. In the same line of research we are finalising the porting of QS to GPUs, which, preliminary tests indicate, allows impressive speedups to be achieved.](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
+
+- [Exploiting CPU SIMD Extensions to Speed-up Document Scoring with Tree Ensembles](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2016/07/SIGIR16a.pdf)
+
+#### RapidScorer
+
+- http://ai.stanford.edu/~wzou/kdd_rapidscorer.pdf
+
+#### AdaQS
+
+This article extends the work of quickscorer by proposing a novel adaptive algorithm (i.e., AdaQS) for sparse data and regression trees with default directions as trained by XGBoost.
+
+<img src="https://pic1.zhimg.com/80/v2-a911464197f0eb281ca742c0ea954e98_hd.jpg" width="80%" />
+
+- https://zhuanlan.zhihu.com/p/54932438
+- https://github.com/qf6101/adaqs
 
 ### Accelerated Gradient Boosting
 
@@ -878,9 +1168,9 @@ A general gradient descent “boosting” paradigm is developed for additive exp
 * [Gradient Boosting Machines](http://uc-r.github.io/gbm_regression)
 * [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
 * [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
+* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
 ----
 * [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
-* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
 * https://bradleyboehmke.github.io/HOML/gbm.html
 * [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
 * [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
@@ -908,25 +1198,6 @@ $$a_{ij}^{knn}=
 
 * [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
 * [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
-
-### Deep Gradient Boosting
-
-[It](https://arxiv.org/pdf/1907.12608.pdf) shows that each iteration of the backpropagation algorithm can be viewed as fitting a
-weak linear regressor to the gradients at the output of each layer, before non-linearity is applied. We
-call this approach `deep gradient boosting (DGB)`, since it’s effectively a layer-wise boosting approach
-where the typical decision trees are replaced by linear regressors. Under this model, SGD naturally
-emerges as an extreme case where the network weights are highly regularized, in the L2 norm sense.
-In addition, DGB takes into account the correlations between training samples (features), just like
-regular regression would, when calculating the weight updates while SGD does not. Intuitively, it
-makes sense to ignore the correlations between training samples considering that the most difficult
-test samples would be the ones that show low correlations with the training set.
-
-This work suggests an alternative explanation for why SGD generalizes so well when training neural
-networks. We show that each iteration of the backpropagation algorithm can be viewed as fitting a
-weak linear regressor to the gradients at the output of each layer, before non-linearity is applied.
-
-
-- https://arxiv.org/pdf/1907.12608.pdf
 
 
 ### Optimization and Boosting
@@ -1016,14 +1287,93 @@ Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boo
 
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
 
+### Deep Gradient Boosting
 
-### Bayesian MARS
+[It](https://arxiv.org/pdf/1907.12608.pdf) shows that each iteration of the backpropagation algorithm can be viewed as fitting a
+weak linear regressor to the gradients at the output of each layer, before non-linearity is applied. 
+We call this approach `deep gradient boosting (DGB)`, since it’s effectively a layer-wise boosting approach
+where the typical decision trees are replaced by linear regressors. Under this model, SGD naturally emerges as an extreme case where the network weights are highly regularized, in the L2 norm sense.
+In addition, DGB takes into account the correlations between training samples (features), just like regular regression would, when calculating the weight updates while SGD does not. 
+Intuitively, it makes sense to ignore the correlations between training samples considering that the most difficult
+test samples would be the ones that show low correlations with the training set.
+
+This work suggests an alternative explanation for why SGD generalizes so well when training neural networks. 
+We show that each iteration of the backpropagation algorithm can be viewed as fitting a weak linear regressor to the gradients at the output of each layer, before non-linearity is applied.
+
+The classic backpropagation algorithm minimizes an error function $E$ of a multi-layer neural network using gradient descent and the chain rule. 
+The resulting weight updates at a given layer are 
+$$\Delta w_{ij}=x_i y_j$$
+
+where $x_i$ is the output from the previous layer at node $i$ while $y_j=\frac{\partial E}{\partial \text{net}_j}$ is the derivative with respect to the input at node $j$ calculated using the chain rule from the last layer to the current one.
+We can interpret $y_i$ as a pseudo-residual and infer the weight updates  $\Delta w_{ij}=v_{ij}$ such that $\sum_{i} x_{i} v_{i, j}=y_{j},\forall j$.
+
+- https://arxiv.org/pdf/1907.12608.pdf
+
+### MARS and Bayesian MARS
+
+#### MARS
+
+[Multivariate adaptive regression splines (MARS) provide a convenient approach to capture the nonlinearity aspect of polynomial regression by assessing cutpoints (knots) similar to step functions. The procedure assesses each data point for each predictor as a knot and creates a linear regression model with the candidate feature(s).](http://uc-r.github.io/mars)
+
+[Multivariate Adaptive Regression Splines (MARS) is a non-parametric regression method that builds multiple linear regression models across the range of predictor values. It does this by `partitioning the data`, and run a `linear regression model` on each different partition.](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
+
+Whereas polynomial functions impose a global non-linear relationship, step functions break the range of x into bins, and fit a different constant for each bin. This amounts to converting a continuous variable into an ordered categorical variable such that our linear regression function is converted to Equation 1：
+$$y_i = \beta_0 + \beta_1 C_1(x_i) + \beta_2 C_2(x_i) + \beta_3 C_3(x_i) \dots + \beta_d C_d(x_i) + \epsilon_i, \tag{1}$$
+
+where $C_n(x)$ represents $x$ values ranging from $% <![CDATA[
+c_n \leq x < c_{n+1} %]]>$ for $n=1,2,\dots, d$.
+
+The MARS algorithm builds a model in two steps. First, it creates a collection of so-called basis functions (BF). In this procedure, the range of predictor values is partitioned in several groups. For each group, a separate linear regression is modeled, each with its own slope. The connections between the separate regression lines are called knots. The MARS algorithm automatically searches for the best spots to place the knots. Each knot has a pair of basis functions. These basis functions describe the relationship between the environmental variable and the response. The first basis function is ‘max(0, env var - knot), which means that it takes the maximum value out of two options: 0 or the result of the equation ‘environmental variable value – value of the knot’. The second basis function has the opposite form: max(0, knot - env var).
+
+<img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/6018214220/original/MARS.png" width="70%" />
+
+To highlight the progression from recursive partition regression to MARS we start by giving the partition regression model,
+$$\hat{f}(x)=\sum_{i=1}^{k}a_iB_i(x)\tag{2}$$
+where $x\in D$ and $a_i(i=1,2,\dots, k)$ are the suitably chosen coefficients of the basis functions $B_i$ and $k$ is the number of basis functions in the model.
+These basis functions are such that $B_i(x)=\mathbb{I}(x\in R_i)$ where $\mathbb I$ is the indicator function
+which is one where the argument is true, zero elsewhere and
+the $R_i(i=1, \dots, k)$ form a partition of $D$.
+
+[The usual MARS model is the same as that given in (2) except that the basis functions are different.](https://astro.temple.edu/~msobel/courses_files/mars.pdf) Instead the $B_i$ are given by
+$$B_i(X)=\begin{cases} 1, &\text{$i=1$}\\
+\Pi_{j=1}^{J_i}[s_{ji}(x_{\nu(ji)}-t_{ji})]_{+}, &\text{$i=2,3,\dots$}
+\end{cases}$$
+where ${[\cdot]}_{+}=\max(0, \cdot)$; $J_i$ is the degree of the interaction of basis $B_i$, the $s_{ji}$, which we shall call the sign indicators,
+equal $\pm 1$, $\nu(ji)$ give the index of the predictor variable
+which is being split on the $t_{ji}$ (known as knot points) give
+the position of the splits.
+
+* http://uc-r.github.io/mars
+* [OVERVIEW OF SDM METHODS IN BCCVL](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
+* https://projecteuclid.org/download/pdf_1/euclid.aos/1176347963
+* [Using multivariate adaptive regression splines to predict the distributions of New Zealand’s freshwater diadromous fish](https://web.stanford.edu/~hastie/Papers/Ecology/fwb_1448.pdf)
+* http://www.stat.ucla.edu/~cocteau/stat204/readings/mars.pdf
+* [Multivariate Adaptive Regression Splines (MARS)](https://asbates.rbind.io/2019/03/02/multivariate-adaptive-regression-splines/)
+* https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines
+* https://github.com/cesar-rojas/mars
+* http://www.milbo.users.sonic.net/earth/
+* https://github.com/scikit-learn-contrib/py-earth
+* https://bradleyboehmke.github.io/HOML/mars.html
+* http://www.cs.rtu.lv/jekabsons/Files/ARESLab.pdf
+
+#### Bayesian MARS
+
 A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (Friedman, 1991) is proposed. This takes the form of a probability distribution over the space of possible MARS models which is explored using reversible jump Markov chain Monte Carlo methods (Green, 1995). The generated sample of MARS models produced is shown to have good predictive power when averaged and allows easy interpretation of the relative importance of predictors to the overall fit.
+
+The BMARS basis function can be written as
+$$B(\vec{x})=\beta_{0}+\sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}\left(x_{l}-t_{k, l}\right)_{+}^{o_{k, l}}\tag{1}$$
+where $\vec x$ is a vector of input, $t_{k,l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component, the function ${(y)}_{+}$ evalutes to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, and $I$ is the maximum allowed number of interactions between
+the $L$ dimensions of the input space.
+
+<img src="http://www.milbo.users.sonic.net/gallery/plotmo-example1.png" width="70%" />
 
 - [Bayesian MARS](https://dl.acm.org/citation.cfm?id=599231.599292)
 - [An Implementation of Bayesian Adaptive Regression Splines (BARS) in C with S and R Wrappers](http://www.stat.cmu.edu/~kass/papers/jss.pdf)
 - [Classification with Bayesian MARS](https://www.bdi.ox.ac.uk/publications/104765)
 - http://www.drryanmc.com/presentations/BMARS.pdf
+- [Bayesian methods for nonlinear classification and regression. (2002). Denison, Holmes, Mallick and Smith: Wiley.](http://www.stat.tamu.edu/~bmallick/wileybook/book_code.html)
+- [Gradient Enhanced Bayesian MARS for Regression and Uncertainty Quantification](http://www.drryanmc.com/presentations/ANS2011_striplingMcClarren_gBMARS_pres.pdf)
+- http://www.drryanmc.com/
 
 ### The Generic Leveraging Algorithm
 
@@ -1032,6 +1382,8 @@ $$G(f, D)=\sum_{n=1}^{N} g(f(x_n), y_n),$$
 and we would like to solve the optimization problem
 $$\min_{f\in\mathcal F}G(f, D)=\min_{w}\sum_{n=1}^{N} g(f_w(x_n), y_n).$$
 And $g^{\prime}(f_w(x_n), y_n))=\frac{\partial g(f_w(x_n), y_n)}{\partial f_w(x_n)}$ for $n=1,2,\cdots, N$.
+
+[`Leveraging methods` are designed under a subsampling framework, in which one samples a small proportion of the data (subsample) from the full sample, and then performs intended computations for the full sample using the small subsample as a surrogate. The key of the success of the leveraging methods is to construct nonuniform sampling probabilities so that influential data points are sampled with high probabilities](http://homepages.math.uic.edu/~minyang/Big%20Data%20Discussion%20Group/Leveraging%20for%20big%20data%20regression.pdf)
 
 $\fbox{Leveraging = Boosting without PAC Boosting property}.$
 
@@ -1045,11 +1397,14 @@ $\fbox{Leveraging = Boosting without PAC Boosting property}.$
 * Output $f_T$.
 
 Here $\mathbf d^t=(d^t_1, d^t_2, \cdots, d^t_N)$ for $t=1,2,\cdots, T$.
+
 ______
 
 * [An Introduction to Boosting and Leveraging](http://face-rec.org/algorithms/Boosting-Ensemble/8574x0tm63nvjbem.pdf)
-* [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
 * [FACE RECOGNITION HOMEPAGE](http://face-rec.org/algorithms/)
+* [Leveraging for big data regression](http://homepages.math.uic.edu/~minyang/Big%20Data%20Discussion%20Group/Leveraging%20for%20big%20data%20regression.pdf)
+* [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
+* http://homepages.math.uic.edu/~minyang/BD.htm
 
 
 ### Matrix Multiplicative Weight Algorithms
@@ -1070,6 +1425,7 @@ $$
 
 **Theorem (from [Arora et al](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)):** The cumulative reward of the MWUA algorithm is, up to constant multiplicative factors, at least the cumulative reward of the best object minus $\log(n)$, where $n$ is the number of objects.
 
++ [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
 + [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
 + [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
 + [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
@@ -1079,10 +1435,12 @@ $$
 + [A Combinatorial, Primal-Dual approach to Semidefinite Programs](http://www.satyenkale.com/papers/mmw.pdf)
 + [Milosh Drezgich, Shankar Sastry. "Matrix Multiplicative Weights and Non-Zero Sum Games".](https://ptolemy.berkeley.edu/projects/chess/pubs/780.html)
 + [The Matrix Multiplicative Weights Algorithm for Domain Adaptation by David Alvarez Melis](https://people.csail.mit.edu/davidam/assets/publications/MS_thesis/MSThesis.pdf)
-+ [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
-
++ https://lcbb.epfl.ch/algs16/notes/notes-04-14.pdf
 
 #### Application
+
+[News](https://catboost.ai/news) lists some news on CatBoost.
+
 
 * [拍拍贷教你如何用GBDT做评分卡](http://www.sfinst.com/?p=1389)
 * [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
@@ -1094,10 +1452,20 @@ $$
 + [MatrixNet as a specific Boosted Decision Tree algorithm which is available as a service](https://github.com/yandex/rep/blob/master/rep/estimators/matrixnet.py)
 + [Bagging and Boosting statistical machine translation systems](http://www.nlplab.com/papers/AI2013-Xiao-Zhu-Liu.pdf)
 + [A Novel, Gradient Boosting Framework for Sentiment Analysis in Languages where NLP Resources Are Not Plentiful: A Case Study for Modern Greek ](https://www.mdpi.com/1999-4893/10/1/34/htm)
-+ [EGBMMDA: Extreme Gradient Boosting
-Machine for MiRNA-Disease Association
-prediction](https://www.nature.com/articles/s41419-017-0003-x.pdf?origin=ppub)
++ [EGBMMDA: Extreme Gradient Boosting Machine for MiRNA-Disease Association prediction](https://www.nature.com/articles/s41419-017-0003-x.pdf?origin=ppub)
++ [Awesome gradient boosting](https://github.com/talperetz/awesome-gradient-boosting)
 
+### Selective Ensemble 
+
+[An ensemble is generated by training multiple component learners for a same task and then combining their predictions. In most ensemble algorithms, all the trained component learners are employed in constituting an ensemble. But recently, it has been shown that when the learners are neural networks, `it may be better to ensemble some instead of all of the learners`. In this paper, this claim is generalized to situations where the component learners are decision trees. Experiments show that ensembles generated by a selective ensemble algorithm, which selects some of the trained C4.5 decision trees to make up an ensemble, may be not only smaller in the size but also stronger in the generalization than ensembles generated by non-selective algorithms.](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/rsfdgrc03.pdf)
+
+[Selective ensemble naturally bears two goals simultaneously, i.e., maximizing the generalization performance and minimizing the number of learners. When pushing to the limit, the two goals are conflicting, as overly fewer individual learners lead to poor performance. To achieve both good performance and a small ensemble size, previous selective ensemble approaches solve some objectives that mix the two goals.](https://link.springer.com/chapter/10.1007/978-981-13-5956-9_13)
+
+- [Selective Ensemble of Decision Trees](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/rsfdgrc03.pdf)
+- [Growing and Pruning Selective Ensemble Regression over Drifting Data Stream](http://www.auto.shu.edu.cn/info/1125/7181.htm)
+- [Selective Ensemble](https://link.springer.com/chapter/10.1007/978-981-13-5956-9_13)
+- [Selective Ensemble under Regularization Framework](https://link.springer.com/chapter/10.1007/978-3-642-02326-2_30)
+- [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
 
 ### Stacking
 
@@ -1116,6 +1484,8 @@ The procedure is as follows:
 
 [Stacking, Blending and and Stacked Generalization are all the same thing with different names. It is a kind of ensemble learning.](http://www.chioka.in/stacking-blending-and-stacked-generalization/)
 
+[When a lot of different models are applied to a data simultaneously then such a method of meta-ensemble modeling is known as Stacking. Here, there is no single function, rather we have meta-level where a function is used to combine the outputs of different functions. Thus the information from various models is combined to come up with a unique model. This is among the most advanced form of data modeling used commonly in data hackathons and other online competitions where maximum accuracy is required. Stacking models can have multiple levels and can be made very complex by using various combinations of features and algorithms. There are many forms of Stacking method and in this blog post, a stacking method known as blending has been explored.](https://www.datavedas.com/ensemble-methods/)
+
 * http://www.machine-learning.martinsewell.com/ensembles/stacking/
 * https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier/
 * [Stacked Generalization (Stacking)](http://www.machine-learning.martinsewell.com/ensembles/stacking/)
@@ -1124,10 +1494,40 @@ The procedure is as follows:
 * https://blog.csdn.net/willduan1/article/details/73618677
 * [今我来思，堆栈泛化(Stacked Generalization)](https://www.jianshu.com/p/46ccf40222d6)
 * [我爱机器学习:集成学习（一）模型融合与Bagging](https://www.hrwhisper.me/machine-learning-model-ensemble-and-bagging/)
+* https://github.com/ikki407/stacking
+* [Spatial Pyramids and Two-layer Stacking SVM Classifiers for Image Categorization: A Comparative Study](https://www.ai.rug.nl/~mwiering/GROUP/ARTICLES/spatial-pyramid-two-layer.pdf)
+* [Cascaded classifiers and stacking methods for classification of pulmonary nodule characteristics](https://www.sciencedirect.com/science/article/pii/S0169260718304413)
+* [Python package for stacking (machine learning technique)](https://github.com/vecxoz/vecstack)
+* [Signal Processing and Pattern Recognition Laboratory](http://users.rowan.edu/~polikar/spprl.html)
+
+**Issues in Stacked Generalization**
+
+[Stacked generalization is a general method of using a high-level model to combine lower-level models to achieve greater predictive accuracy. In this paper we address two crucial issues which have been considered to be a `black art' in classification tasks ever since the introduction of stacked generalization in 1992 by Wolpert: the type of generalizer that is suitable to derive the higher-level model, and the kind of attributes that should be used as its input. We find that best results are obtained when the higher-level model combines the confidence (and not just the predictions) of the lower-level ones. We demonstrate the effectiveness of stacked generalization for combining three different types of learning algorithms for classification tasks. We also compare the performance of stacked generalization with majority vote and published results of arcing and bagging.](https://arxiv.org/abs/1105.5466)
+
+####  Linear Blending
+
+There is an alternative of bagging called `combining ensemble method`. It trains a linear combination of learner:
+$$F = \sum_{i=1}^{n} w_i F_i$$
+where the weights $w_i\geq 0, \sum_{i=1}^{n} w_i =1$. The weights $w=\{w_i\}_{i=1}^{n}$ are solved by minimizing the ensemble error
+$$
+w = \arg\min_{w}\sum_{k}^{K}(F(x_k)-y_k)^{2}
+$$
+if the training data set $\{x_k, y_k\}_{k=1}^{K}$ is given.
+
+
+<img title = weighted-unweighted src=https://blogs.sas.com/content/subconsciousmusings/files/2017/05/weighted-unweighted.png width=80%/>
+
+
 
 In the sense of stacking, deep neural network is thought as the stacked `logistic regression`. And `Boltzman machine` can be stacked in order to construct more expressive model for discrete random variables.
 
-**Deep Forest**
+<img src="http://www.chioka.in/wp-content/uploads/2013/09/stacking.png" width="80%" />
+
+- [Mixture of Experts](http://www.scholarpedia.org/article/Ensemble_learning)
+
+#### Deep Forest
+
+[In this paper, we propose gcForest, a decision tree ensemble approach with performance highly competitive to deep neural networks.](https://arxiv.org/abs/1702.08835v2)
 
 <img title="Deep Forest" src="https://raw.githubusercontent.com/DataXujing/Cos_pic/master/pic2.png" width="80%" />
 
@@ -1149,3 +1549,5 @@ Other ensemble methods include clustering methods ensemble, dimensionality reduc
 * https://blog.csdn.net/willduan1/article/details/73618677#
 * http://www.scholarpedia.org/article/Ensemble_learning
 * https://arxiv.org/abs/1505.01866
+* http://users.rowan.edu/~polikar/publications.html
+* [CAREER: An Ensemble of Classifiers Based Approach for Incremental Learning](https://www.nsf.gov/awardsearch/showAward?AWD_ID=0239090)

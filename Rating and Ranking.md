@@ -1044,7 +1044,15 @@ Then, the algorithm evaluates one after the other in an arbitrary order the test
 Considering the result of the test for a certain internal node $n \in N_h$,
 the algorithm is able to infer that some leaves cannot be the exit leaf and, thus, it can safely remove them from $C_h$.
 **Indeed, if $n$ is a false node (i.e., its test condition is false), the leaves in the left subtree of $n$ cannot be the exit leaf and they can be safely removed from $C_h$.
-Similarly, if n is a true node, the leaves in the right subtree of n can be removed from $C_h$.**
+Similarly, if $n$ is a true node, the leaves in the right subtree of n can be removed from $C_h$.**
+
+The second refinement implements the operations on $C_h$ with fast bit-wise operations.
+The idea is to represent $C_h$ with a bitvector ${\text{leaf_index}}_h$, where each bit corresponds to a distinct leaf in $L_h$, i.e., $\text{leaf_index}_h$ is the characteristic vector of $C_h$.
+Moreover, every internal node $n$ is associated with a bit mask of the same length encoding
+(with 0’s) the set of leaves to be removed from $C_h$ whenever $n$ turns to be a false node.
+**In this way, the bitwise `logical AND` between $\text{leaf_index}_h$ and the bit mask of a false
+node $n$ corresponds to the removal of the leaves in the left subtree of $n$ from $C_h$.**
+Once identified all the false nodes in a tree and performed the associated AND operations over $\text{leaf_index}_h$, the exit leaf of the tree corresponds to the leftmost bit set to 1 in $\text{leaf_index}_h$.
 
 One important result is that `Quick Scorer` computes
 $s(x)$ by only identifying the branching nodes whose test evaluates to false, called false nodes.
@@ -1076,6 +1084,40 @@ ALGORITHM 1: Scoring a feature vector $x$ using a binary decision tree $T_h$
   *  $j \leftarrow\text{index of leftmost bit set to 1 of leaf_index}_h$
   * **return** $l_j.val$
 
+____
+ALGORITHM 2: : The QUICKSCORER Algorithm
+
+* **Input**:
+  * $x$: input feature vector
+  * $\mathcal T$: ensemble of binary decision trees, with
+    *  $\{w_0, w_1, \cdots, w_{|\mathcal{T}|-1}\}$:  weights, one per tree
+    *  $thresholds$: sorted sublists of thresholds, one sublist per feature
+    *  $treeids$: tree’s ids, one per node/threshold
+    *  $nodemasks$: node bit masks, one per node/threshold
+    *  $offsets$: offsets of the blocks of triples
+    *  $leafindexes$: result bitvectors, one per each tree
+    *  $leafvalues$: score contributions, one per each tree leaf
+* **Output**:
+  * final score of $x$
+* **$\text{QUICKSCORER}(x, T_h)$**:
+   *  **foreach node** $h \in \{0,1\cdots, |T|-1\}$ **do**
+      *  $\text{leaf_index}_h\leftarrow (1,1,\dots, 1)$
+   *  **foreach node** $k \in \{0,1\cdots, |\mathcal{F}|-1\}$ **do**
+      *  $i\leftarrow offsets[k]$
+      *  $end\leftarrow offsetsets[k+1]$
+      *  **while** $x[k] > thresholds[i]$ do
+         * $h \leftarrow treeids[i]$
+         * $\text { leafindexes }[h] \leftarrow \text { leafindexes }[h] \wedge \text { nodemasks }[i]$
+         * $i\leftarrow i+1$
+         * **if** $i\geq end$ **then**
+           * **break**
+     *  $score \leftarrow 0$
+     * **foreach node** $h \in \{0,1\cdots, |T|-1\}$ **do**
+       * $j \leftarrow \text { index of leftmost bit set to 1 of}\,\, {leafindexes }[h]$
+       * $l \leftarrow h \cdot| L_{h} |+j$
+       * $\text { score } \leftarrow \text { score }+w_{h} \cdot \text { leafvalues }[l]$
+  * **return** $score$
+
 
 - [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
 - [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
@@ -1085,6 +1127,7 @@ ALGORITHM 1: Scoring a feature vector $x$ using a binary decision tree $T_h$
 - https://github.com/hpclab/gpu-quickscorer
 - https://github.com/hpclab/multithread-quickscorer
 - https://github.com/hpclab/vectorized-quickscorer
+- https://patents.google.com/patent/WO2016203501A1/en
 
 <img src="https://ercim-news.ercim.eu/images/stories/EN107/perego.png" width="60%" />
 
@@ -1093,6 +1136,10 @@ ALGORITHM 1: Scoring a feature vector $x$ using a binary decision tree $T_h$
 [Considering that in most application scenarios the same tree-based model is applied to a multitude of items, we recently introduced further optimisations in QS. In particular, we introduced vQS [3], a parallelised version of QS that exploits the SIMD capabilities of mainstream CPUs to score multiple items in parallel. Streaming SIMD Extensions (SSE) and Advanced Vector Extensions (AVX) are sets of instructions exploiting wide registers of 128 and 256 bits that allow parallel operations to be performed on simple data types. Using SSE and AVX, vQS can process up to eight items in parallel, resulting in a further performance improvement up to a factor of 2.4x over QS. In the same line of research we are finalising the porting of QS to GPUs, which, preliminary tests indicate, allows impressive speedups to be achieved.](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
 
 - [Exploiting CPU SIMD Extensions to Speed-up Document Scoring with Tree Ensembles](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2016/07/SIGIR16a.pdf)
+
+#### RapidScorer
+
+- http://ai.stanford.edu/~wzou/kdd_rapidscorer.pdf
 
 #### AdaQS
 
@@ -1314,6 +1361,7 @@ where the notations are listed as follows:
 - [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
 
 
+
 ### Borda Count
 
 `Borda Count` is an unsupervised method for ranking aggregation.  Aslam & Montague propose employing Borda Count in meta search.
@@ -1479,10 +1527,10 @@ During the past 10-15 years offline learning to rank has had a tremendous influe
 
 - https://staff.fnwi.uva.nl/m.derijke/talks-etc/online-learning-to-rank-tutorial/
 - [Online Learning to Rank with Features](http://proceedings.mlr.press/v97/li19f.html)
-- https://www.cs.ox.ac.uk/people/shimon.whiteson/pubs/hofmannirj13.pdf
+- [Balancing Exploration and Exploitation in Listwise and Pairwise Online Learning to Rank for Information Retrieval](https://www.cs.ox.ac.uk/people/shimon.whiteson/pubs/hofmannirj13.pdf)
+- [Optimizing Ranking Models in an Online Setting](https://arxiv.org/abs/1901.10262)
 
-----
-**Deep Online Ranking System**
+#### Deep Online Ranking System
 
 DORS is designed and implemented in a three-level novel architecture, which includes (1) candidate retrieval; (2) learning-to-rank deep neural network (DNN) ranking; and (3) online re-ranking via multi-arm bandits (MAB).
 
@@ -1494,6 +1542,14 @@ DORS is designed and implemented in a three-level novel architecture, which incl
 - [ ] [International Conference on Web Search and Data Mining](http://www.wsdm-conference.org/2019/acm-proceedings.php)
 - [ ] [Learning to Rank with Deep Neural Networks](https://github.com/Isminoula/DL-to-Rank)
 
+#### Unbiased Learning to Rank
+
+- [Learning to Rank in theory and practice: FROM GRADIENT BOOSTING TO NEURAL NETWORKS AND UNBIASED LEARNING](http://ltr-tutorial-sigir19.isti.cnr.it/)
+- https://dl.acm.org/citation.cfm?id=3334824
+- http://ltr-tutorial-sigir19.isti.cnr.it/program-overview/
+- [Unbiased Learning to Rank: Counterfactual and Online Approaches](https://arxiv.org/abs/1907.07260)
+
+____
 + [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
 + [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
