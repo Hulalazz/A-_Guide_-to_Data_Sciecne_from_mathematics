@@ -1,6 +1,12 @@
 # Network Compression and Acceleration
 
+It is about how to accelerate the training and inference of deep learning(generally machine learning) except numerical optimization methods including the following topics:
+* compiler optimization for computation intensive programs;
+* system architecture design for computation intensive programs;
+* network model compression.
+
 <img src="https://cs217.stanford.edu/assets/img/4___JET.gif" width="50%" />
+
 
 * https://github.com/1duo/awesome-ai-infrastructures
 * [FairNAS: Rethinking Evaluation Fairness of Weight Sharing Neural Architecture Search](https://github.com/fairnas/FairNAS)
@@ -22,6 +28,12 @@ After training, the parameters of the deep neural network are fixed and used for
 From [What’s the Difference Between Deep Learning Training and Inference?](https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/)
 
 <img src="https://blogs.nvidia.com/wp-content/uploads/2016/08/ai_difference_between_deep_learning_training_inference.jpg" width="80%">
+
+Training | Inerence
+---|---
+Acceleration | Compresion
+https://web.stanford.edu/~perdavan/DNNTrain/|https://www.intel.ai/accelerating-tensorflow-inference-with-intel-deep-learning-boost-on-2nd-gen-intel-xeon-scalable-processors/
+[Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)|[Accelerating Large Scale Deep Learning Inference through DeepCPU at Microsoft](https://www.usenix.org/system/files/opml19papers-zhang.pdf)
 
 |Evolution of Model Compression and Acceleration|
 |:-----:|
@@ -59,7 +71,7 @@ Matrix computation dense application like deep neural network would take the adv
 
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
 
-
+* [Hardware Accelerators for Training Deep Neural Networks ](https://web.stanford.edu/~perdavan/DNNTrain/)
 * [Workshop on AI Systems](http://learningsys.org/sosp19/)
 * http://learningsys.org/nips18/
 * http://learningsys.org/sosp17/
@@ -105,6 +117,17 @@ Matrix computation dense application like deep neural network would take the adv
 * [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
 * [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
 
+### Parallel Architectures
+
+<img src="https://vistalab-technion.github.io/cs236605/assets/images/lec10/lec10-2.png" width="80%" />
+
+- https://vistalab-technion.github.io/cs236605/lectures/lecture_8/
+- https://vistalab-technion.github.io/cs236605/lectures/lecture_9/
+- https://vistalab-technion.github.io/cs236605/lectures/lecture_10/
+- [Introduction to Parallel Computing Author: Blaise Barney, Lawrence Livermore National Laboratory](https://computing.llnl.gov/tutorials/parallel_comp/)
+- [Parallel Architectures for Artificial Neural Networks: Paradigms and Implementations N. Sundararajan, P. Saratchandran](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0818683996,miniSiteCd-IEEE_CS2.html)
+- [Parallel Computer Architecture and Programming (CMU 15-418/618)](http://www.math-cs.gordon.edu/courses/cps343/)
+
 ## Numerical algorithms for high-performance computational science
 
 Several key themes emerged across multiple talks in [Royal Society Discussion Meeting](https://constantinides.net/2019/04/23/royal-society-discussion-meeting/), all in the context of today’s high performance computing landscape in which processor clock speeds have stagnated (with the end of Moore’s law) and exascale machine are just two or three years away.
@@ -126,11 +149,10 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 + https://developer.nvidia.com/cuda-zone
 + [NumFOCUS](https://numfocus.org/sponsored-projects)
 + http://www.mit.edu/~kepner/D4M/
-+ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
+
+
 
 ### Automatic Differentiation
-
-
 
 Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities. Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
 
@@ -159,6 +181,19 @@ All numerical gradient-based optimization methods benifits from faster computati
 + https://pymanopt.github.io/
 + https://yiduai.sg/tensorflow-workshop/
 
+### Computation of Matrix Chain Products
+
+Generations of students have learned that the product $xy^Tz$, where $x, y,$ and $z$ are n-vectors, should be written and evaluated as $x(y^Tz)$ ($O(n)$ flops) rather than $(xy^T)z$ ($O(n^2)$) flops). More generally, deciding where to put the parentheses in a matrix product $A_1A_2\dots A_k$ to minimize the number of operations in the evaluation is a nontrivial problem, known as the `matrix chain multiplication problem`.
+
+- [The World’s Most Fundamental Matrix Equation](https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation)
+- [Computation of Matrix Chain Products, PART I, PART II](http://i.stanford.edu/pub/cstr/reports/cs/tr/81/875/CS-TR-81-875.pdf)
+- [CS3343/3341 Analysis of Algorithms  Matrix-chain  Multiplications](http://www.cs.utsa.edu/~wagner/CS3343/dp/mat.html)
+- [rosettacode: Matrix chain multiplication](https://rosettacode.org/wiki/Matrix_chain_multiplication)
+- http://www.columbia.edu/~cs2035/courses/csor4231.F11/matrix-chain.pdf
+- https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
+- https://www.geeksforgeeks.org/matrix-chain-multiplication-a-on2-solution/
+- https://home.cse.ust.hk/~dekai/271/notes/L12/L12.pdf
+
 ### Generalized Matrix Multiplication Optimization
 
 If the computation speed  of matrix operation is boosted, the inference of deep learning model is accelerated.
@@ -178,6 +213,7 @@ for (int m = 0; m < M; m++) {
 ```
 
 It  needs $O(MKN)$ multiplication.
+
 
 ##### Strassen Algorithms
 
@@ -224,6 +260,8 @@ $$
 \mathbf{C}_{2,1} =\mathbf{M}_{2}+\mathbf{M}_{4} \\
 \mathbf{C}_{2,2} =\mathbf{M}_{1}-\mathbf{M}_{2}+\mathbf{M}_{3}+\mathbf{M}_{6}
 $$
+
+- [Strassen’s Matrix Multiplication Algorithm | Implementation](https://www.geeksforgeeks.org/strassens-matrix-multiplication-algorithm-implementation/)
 
 #### Coppersmith–Winograd Algorithms
 
@@ -287,8 +325,10 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 * [Quantized Neural Network PACKage - mobile-optimized implementation of quantized neural network operators ](https://github.com/pytorch/QNNPACK)
 * http://proceedings.mlr.press/v37/gupta15.pdf
 * [Making Neural Nets Work With Low Precision](https://sahnimanas.github.io/2018/06/24/quantization-in-tf-lite.html)
-* http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf
+* [8-bit Inference with TensorRT](http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf)
+* [Paulius Micikevicius's talk "Training Neural Networks with Mixed Precision: Theory and Practice" (GTC 2018, S8923).](http://on-demand.gputechconf.com/gtc-cn/2018/pdf/CH8302.pdf)
 * https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
+* https://nvidia.github.io/apex/
 
 
 ## Compilers for Deep Learning
@@ -363,22 +403,44 @@ With its updated version of Autograd, JAX can automatically differentiate native
 <img src="https://raw.githubusercontent.com/google/jax/master/images/lifecycle.png" width="60%" />
 
 - https://github.com/google/jax
+- https://github.com/hips/autograd
 
 #### Multi-Level Intermediate Representation
 
-The Multi-Level Intermediate Representation (MLIR) is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. It is thus well-suited to deep learning computations in particular. Yet it is general enough to also represent arbitrary sequential computation. The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
+The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. It is thus well-suited to deep learning computations in particular. Yet it is general enough to also represent arbitrary sequential computation. The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
 
 - https://github.com/tensorflow/mlir
 - https://llvm.org/devmtg/2019-04/slides/Keynote-ShpeismanLattner-MLIR.pdf
 
 #### Glow
 
-Glow is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development.
+`Glow` is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development.
 
 - https://arxiv.org/pdf/1805.00907.pdf
 - https://ai.facebook.com/tools/glow/
 - https://github.com/pytorch/glow
 
+#### Butterflies: A Universal Building Block for Structured Linear Maps
+
+[Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, and other structured transformations such as convolutions. All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. This generic formulation can automatically learn an efficient algorithm for many important transforms; for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines to learn efficient and compressible transformations. On a standard task of compressing a single hidden-layer network, our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
+
++ [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
++ [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
++ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
+
+## Distributed Training of Neural Networks
+
+* http://mvapich.cse.ohio-state.edu/
+* http://eyeriss.mit.edu/tutorial.html
+* https://stanford.edu/~rezab/
+* [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
+* [Distributed Deep Learning with DL4J and Spark](https://deeplearning4j.org/docs/latest/deeplearning4j-scaleout-intro)
+* [A Hitchhiker’s Guide On Distributed Training of Deep Neural Networks](https://www.groundai.com/project/a-hitchhikers-guide-on-distributed-training-of-deep-neural-networks/1)
+* [Distributed training of neural networks](https://www.beyondthelines.net/machine-learning/distributed-training-of-neural-networks/)
+* [A Network-Centric Hardware/Algorithm Co-Design to Accelerate Distributed Training of Deep Neural Networks](https://www.cc.gatech.edu/~hadi/doc/paper/2018-micro-inceptionn.pdf)
+* [Parallel and Distributed Deep Learning](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/hedge_usmani.pdf)
+* [Network Design Projects: Parallel and Distributed Deep Learning Harvard CS 144r/244r Spring 2019 ](http://www.eecs.harvard.edu/htk/courses/)
+* [DIANNE is a modular software framework for designing, training and evaluating artificial neural networks](http://dianne.intec.ugent.be/)
 
 ----
 
@@ -533,6 +595,9 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 |[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
 |[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
 |[TensorFlow Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite), [tensorflow-compression](https://tensorflow.github.io/compression/)|
+|[TensorRT](https://github.com/NVIDIA/TensorRT)|
+|https://github.com/Tencent/ncnn|
+|[Introduction to Intel® Deep Learning Deployment Toolkit](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html)|
 
 ***
 

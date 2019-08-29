@@ -2,15 +2,14 @@
 
 <img title="https://www.artsky.com/read/524" src="https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg" width="60%" />
 
-* https://www.samsi.info/programs-and-activities/semester-long-programs/2019-fall-semester-program-on-deep-learning/
+* [2019 Fall Semester: Program on Deep Learning](https://www.samsi.info/programs-and-activities/semester-long-programs/2019-fall-semester-program-on-deep-learning/)
 * https://www.mis.mpg.de/montufar/index.html
-* https://www.mis.mpg.de/calendar/conferences/2019/kickoff.html
+* [Deep Learning Theory Kickoff Meeting](https://www.mis.mpg.de/calendar/conferences/2019/kickoff.html)
 * [PIMS CRG Summer School: Deep Learning for Computational Mathematics](https://www.pims.math.ca/scientific-event/190722-pcssdlcm)
-* https://www.deeplearningmathematics.com/
-* http://grammars.grlmc.com/DeepLearn2017/
-* https://deeplearn2019.irdta.eu/
-* https://aifiddle.io/
-* https://www.wikiwand.com/en/Universal_approximation_theorem
+* [Imperial College Mathematics department Deep Learning course](https://www.deeplearningmathematics.com/)
+* [International Summer School on Deep Learning 2017 ](http://grammars.grlmc.com/DeepLearn2017/)
+* [3rd International Summer School on Deep Learning](https://deeplearn2019.irdta.eu/)
+* [Open Source Innovation in Artificial Intelligence, Machine Learning, and Deep Learning](https://aifiddle.io/)
 * https://www.scienceofintelligence.de/
 * https://lilianweng.github.io/lil-log/
 * https://lfai.foundation/
@@ -18,10 +17,7 @@
 * [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
 * [Large Scale Distributed Deep Networks 中译文](http://blog.sina.com.cn/s/blog_81f72ca70101kuk9.html)
 * [深度树匹配模型(TDM)](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
-* [Internet-Scale Deep Learning for Bing Image Search](https://blogs.bing.com/search-quality-insights/May-2018/Internet-Scale-Deep-Learning-for-Bing-Image-Search)
-* [What can deep learning do for you?](https://machinethink.net/)
-* https://missinglink.ai/blog/
-* [Deep Learning and Representation Learning](https://www.microsoft.com/en-us/research/project/deep-learning-and-representation-learning/)
+
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
 In mathematics, it is nonlinear non-convex and composite of many functions.
@@ -152,28 +148,7 @@ $\color{lime}{Note}$: the perceptron model is linear classifier, i.e. the traini
 More in [Wikipedia page](https://www.wikiwand.com/en/Perceptron).
 
 It is the first time to model cognition.
-- [Deep Learning and Brain](https://elsc.huji.ac.il/events/elsc-conference-10)
-- [Deep Learning for Cognitive Computing, Theory (Course code: TIES4910) 5 ECTS, Autumn Semester](http://www.cs.jyu.fi/ai/vagan/DL4CC.html)
-- [Theoretical Neuroscience and Deep Learning Theory](http://videolectures.net/deeplearning2017_ganguli_deep_learning_theory/)
-- [Bridging Neuroscience and Deep Machine Learning, by building theories that work in the Real World.](https://ankitlab.co/)
-- https://ankitlab.co/talks/
 
-<img src="http://www.cs.jyu.fi/ai/vagan/DL4CC_files/image003.gif" width="50%" />
-
-* [Courses of Vagan Terziyan](http://www.cs.jyu.fi/ai/vagan/courses.html)
-* [Neural Networks, Types, and Functional Programming](http://colah.github.io/posts/2015-09-NN-Types-FP/)
-* [AI and Neuroscience: A virtuous circle](https://deepmind.com/blog/ai-and-neuroscience-virtuous-circle/)
-* [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
-* [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
-* Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
-* https://stats385.github.io/blogs
-* https://explained.ai/matrix-calculus/index.html
-* http://fourier.eng.hmc.edu/e161/lectures/nn/node3.html
-* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
-* [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
-* [BRAIN INSPIRED](https://braininspired.co/about/)
-* [http://www.timkietzmann.de](http://www.timkietzmann.de/)
-* http://www.brain-ai.jp/organization/
 
 #### Activation functions
 
@@ -307,6 +282,9 @@ We will solve it in the next section *Backpropagation, Optimization and Regulari
 * https://www.wikiwand.com/en/Multilayer_perceptron
 * https://www.wikiwand.com/en/Feedforward_neural_network
 * https://www.wikiwand.com/en/Radial_basis_function_network
+* https://www.cse.unsw.edu.au/~cs9417ml/MLP2/
+
+<img src="https://www.cse.unsw.edu.au/~cs9417ml/MLP2/MainPage.gif" width="70%">
 
 ##### Evaluation for different tasks
 
@@ -641,6 +619,16 @@ See more information on backpropagation in the following list
 * [The World’s Most Fundamental Matrix Equation](https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation)
 
 <img src=http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg width=50% />
+
+##### Beyond AutoDifferent
+
+- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
+- [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
+- [Beyond Backprop: Online Alternating Minimization with Auxiliary Variables](https://www.ibm.com/blogs/research/2019/06/beyond-backprop/)
+- [Beyond Backpropagation: Uncertainty Propagation](http://videolectures.net/iclr2016_lawrence_beyond_backpropagation/)
+- [Beyond Feedforward Models Trained by Backpropagation: a Practical Training Tool for a More Efficient Universal Approximator](https://www.memphis.edu/clion/pdf-papers/0710.4182.pdf)
+- [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
+- [Capsule Networks Explained](https://kndrck.co/posts/capsule_networks_explained/)
 
 #### Fundamental Problem of Deep Learning and Activation Functions
 
@@ -1973,19 +1961,21 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 
 ## DeepRL
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/375px-Reinforcement_learning_diagram.svg.png)
+![DeepRL](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/375px-Reinforcement_learning_diagram.svg.png)
 
 + https://srdas.github.io/DLBook/ReinforcementLearning.html
++ https://katefvision.github.io/
 + https://spinningup.openai.com/en/latest/
 + http://rll.berkeley.edu/deeprlcoursesp17/
-+ https://simoninithomas.github.io/Deep_reinforcement_learning_Course/
++ [A Free course in Deep Reinforcement Learning from beginner to expert.](https://simoninithomas.github.io/Deep_reinforcement_learning_Course/)
 + https://fullstackdeeplearning.com/march2019
 https://sites.ualberta.ca/~szepesva/RLBook.html
 + https://nervanasystems.github.io/coach/
-+ http://primo.ai/index.php?title=Deep_Reinforcement_Learning_(DRL)
++ [Deep Reinforcement Learning (DRL)](http://primo.ai/index.php?title=Deep_Reinforcement_Learning_(DRL))
 + https://deeplearning4j.org/deepreinforcementlearning.html
 + https://openai.com/blog/spinning-up-in-deep-rl/
-
++ [Deep Reinforcement Learning NUS SoC, 2018/2019, Semester II](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1820/)
++ [CS 285 at UC Berkeley: Deep Reinforcement Learning](http://rail.eecs.berkeley.edu/deeprlcourse/)
 
 ## Deep Learning Ensemble
 
@@ -2159,12 +2149,11 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * [**Deep Learning: Do-It-Yourself!**](https://www.di.ens.fr/~lelarge/dldiy/)
 * [**Deep Learning course: lecture slides and lab notebooks**](https://m2dsupsdlclass.github.io/lectures-labs/)
 * [EE-559 – DEEP LEARNING (SPRING 2018)](https://fleuret.org/ee559/)
-* [The Functions of Deep Learning](https://sinews.siam.org/Details-Page/the-functions-of-deep-learning)
-* [Deep learning and visualization infrastructure (EVL)](https://cs.uic.edu/news-stories/997k-nsf-grant-deep-learning-and-visualization-infrastructure-evl/)
 * [NSF Center for Big Learning Creating INtelligence](http://nsfcbl.org/)
 * [National Academy of Sicence Colloquia: The Science of Deep Learning](http://www.nasonline.org/programs/nas-colloquia/completed_colloquia/science-of-deep-learning.html)
 * [MRI: Development of an Instrument for Deep Learning Research](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1725729&HistoricalAwards=false)
 * [National Center for Supercomputing Application](http://www.ncsa.illinois.edu/)
+* [Deep Learning and Representation Learning](https://www.microsoft.com/en-us/research/project/deep-learning-and-representation-learning/)
 * https://nsfcbl.cs.uoregon.edu/
 * http://www.andyli.ece.ufl.edu/
 * https://deeplearninganalytics.org/
@@ -2175,6 +2164,85 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * https://mchromiak.github.io/articles/2017/Sep/01/Primer-NN/#.XBXb42h3hPY
 * https://www.european-big-data-value-forum.eu/program/explainable-artificial-intelligence/
 * http://staff.ustc.edu.cn/~lgliu/Resources/DL/What_is_DeepLearning.html
+
+## Application
+
+IN fact, deep learning is applied widely in prediction and classification in diverse domain from image recognition to drug discovery even scientific computation though there is no first principle to guide how to apply deep learning to these domain.
+The history of deep learning begins with its performance in image recognition and spoken language recogintion over human being. Current breakthough is in naturla language processing with BERT, XLNET and more.
+
+Even deep learning is young and cut-edge, some pioneers contribute to its development. 
+
+* [The Functions of Deep Learning](https://sinews.siam.org/Details-Page/the-functions-of-deep-learning)
+* [Internet-Scale Deep Learning for Bing Image Search](https://blogs.bing.com/search-quality-insights/May-2018/Internet-Scale-Deep-Learning-for-Bing-Image-Search)
+* [What can deep learning do for you?](https://machinethink.net/)
+* https://www.microsoft.com/en-us/research/group/deep-learning-group/
+* https://www.interspeech2019.org/program/schedule/
+* https://courses.engr.illinois.edu/ie534/fa2019/
+* https://jasirign.github.io/
+* https://xbpeng.github.io/
+* https://delug.github.io/
+
+### Computer Vision
+
+- [Deep learning and visualization infrastructure (EVL)](https://cs.uic.edu/news-stories/997k-nsf-grant-deep-learning-and-visualization-infrastructure-evl/)
+- http://llcao.net/cu-deeplearning17/
+- https://missinglink.ai/blog/
+- [deep learning for computer vision](https://cvhci.anthropomatik.kit.edu/600_1682.php)
+- [deep learning for vision](https://sif-dlv.github.io/)
+- [SOD - An Embedded Computer Vision & Machine Learning Library](https://sod.pixlab.io/)
+- [VisualData: Discover Computer Vision Datasets](https://www.visualdata.io)
+- https://xueyangfu.github.io/
+- https://njuhaozhang.github.io/
+- https://matbc.github.io/
+
+### Spoken Language Processing
+
+- https://www.interspeech2019.org/program/schedule/
+- https://irasl.gitlab.io/
+- [CS224S / LINGUIST285 - Spoken Language Processing](http://web.stanford.edu/class/cs224s/)
+- https://pairlabs.ai/
+
+
+### Natural Language Processing
+
+- https://www.comp.nus.edu.sg/~kanmy/courses/6101_1810/
+- https://web.stanford.edu/class/cs224n/
+- https://deep-spin.github.io/tutorial/
+- [flavor with NLP](https://chokkan.github.io/deeplearning/)
+- https://yscacaca.github.io/
+
+
+### Finance
+
+- https://rohitghosh.github.io/deep_learning_in_finance/
+
+### Brain and Cognition Science
+
+- [Exploring Computational Creativity with Neural Networks](https://blog.floydhub.com/humans-of-ml-kalai-ramea/)
+- [Deep Learning and Brain](https://elsc.huji.ac.il/events/elsc-conference-10)
+- [Deep Learning for Cognitive Computing, Theory (Course code: TIES4910) 5 ECTS, Autumn Semester](http://www.cs.jyu.fi/ai/vagan/DL4CC.html)
+- [Theoretical Neuroscience and Deep Learning Theory](http://videolectures.net/deeplearning2017_ganguli_deep_learning_theory/)
+- [Bridging Neuroscience and Deep Machine Learning, by building theories that work in the Real World.](https://ankitlab.co/)
+- https://ankitlab.co/talks/
+- https://lynnsunxmu.github.io/
+
+<img src="http://www.cs.jyu.fi/ai/vagan/DL4CC_files/image003.gif" width="50%" />
+
+* [Program 2019 - Deep Learning for Human Brain Mapping](https://brainhack101.github.io/IntroDL/)
+* [Courses of Vagan Terziyan](http://www.cs.jyu.fi/ai/vagan/courses.html)
+* [Neural Networks, Types, and Functional Programming](http://colah.github.io/posts/2015-09-NN-Types-FP/)
+* [AI and Neuroscience: A virtuous circle](https://deepmind.com/blog/ai-and-neuroscience-virtuous-circle/)
+* [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
+* [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
+* Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
+* https://stats385.github.io/blogs
+* https://explained.ai/matrix-calculus/index.html
+* http://fourier.eng.hmc.edu/e161/lectures/nn/node3.html
+* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
+* [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
+* [BRAIN INSPIRED](https://braininspired.co/about/)
+* [http://www.timkietzmann.de](http://www.timkietzmann.de/)
+* http://www.brain-ai.jp/organization/
 
 ## The Future
 
@@ -2201,3 +2269,5 @@ The ultimate goal is general artificial intelligence.
 * http://primo.ai/index.php?title=PRIMO.ai
 * https://vistalab-technion.github.io/cs236605/
 * http://www.cs.jyu.fi/ai/vagan/DL4CC.html
+* [The Deep Learning on Supercomputers Workshop](https://dlonsc19.github.io/)
+* https://deep-learning-security.github.io/

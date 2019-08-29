@@ -29,7 +29,7 @@ In brief, A decision tree is a classifier expressed as a recursive partition of 
  $$
  T(x) = \sum_{i\in\text{leaves}} g_i(x)\mathbb{I}(x\in R_i) = \sum_{i\in \,\text{leaves}} g_i(x) \prod_{a\in\,\text{ancestors(i)}} \mathbb{I}(S_{a (x)}=c_{a,i})
  $$
-> where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node i, $c_{a,i}$ is the child of node a on the path from a to leaf i, and $S_a$ is the n-array split function at node a.
+> where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node $i$, $c_{a,i}$ is the child of node a on the path from $a$ to leaf $i$, and **$S_a$ is the n-array split function at node $a$**.
 > $g_i(\cdot)$ is the decision function associated with leaf i and
 > is learned only from training examples in $R_i$.
 
@@ -149,14 +149,14 @@ For any choice $j$ and $s$, the inner minimization is solved by
 $$\hat{c}_{1}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{1}(j, s)\right) \text { and } \hat{c}_{2}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{2}(j, s)\right).$$
 For each splitting variable, the determination of the split point $s$ can
 be done very quickly and hence by scanning through all of the inputs, determination of the best pair $\left(j, s\right)$ is feasible.
-Having found the best split, we partition the data into the two resulting regions and repeat the splitting process on each of the two regions. 
+Having found the best split, we partition the data into the two resulting regions and repeat the splitting process on each of the two regions.
 Then this process is repeated on all of the resulting regions.
 
-Tree size is a tuning parameter governing the model’s complexity, and the optimal tree size should be adaptively chosen from the data. 
+Tree size is a tuning parameter governing the model’s complexity, and the optimal tree size should be adaptively chosen from the data.
 One approach would be to split tree nodes only if the decrease in sum-of-squares due to the split exceeds some threshold.
 This strategy is too short-sighted, however, since a seemingly worthless split might lead to a very good split below it.
 
-The preferred strategy is to grow a large tree $T_0$ , stopping the splitting process only when some minimum node size (say 5) is reached. 
+The preferred strategy is to grow a large tree $T_0$ , stopping the splitting process only when some minimum node size (say 5) is reached.
 Then this large tree is pruned using cost-complexity pruning.
 
 we define the cost complexity criterion
@@ -256,6 +256,12 @@ MARS|?
 * [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
 * [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
 * [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+
+### Decision Stream
+
+[Decision stream is a statistic-based supervised learning technique that generates a deep directed acyclic graph of decision rules to solve classification and regression tasks. This decision tree based method avoids the problem of data exhaustion in terminal nodes by merging of leaves from the same/different levels of predictive model.](https://metacademy.org/roadmaps/Prof.Kee/Decision_Stream)
+
+- https://metacademy.org/roadmaps/Prof.Kee/Decision_Stream
 
 ### Random Forest
 
@@ -812,7 +818,8 @@ f_t(x)= w_{q(x)}={\sum}_{i=1}^{T} w_{i}\mathbb{I} ({q(x)=i}),\\
  w\in\mathbb{R}^{T}, q:\mathbb{R}^d\Rightarrow \{1,2,\dots, T\}.
 $$
 
-Here ${w}$ is the vector of scores on leaves, ${q}$ is a function assigning each data point to the corresponding leaf, and ${T}$ is the number of leaves. In XGBoost, we define the complexity as
+Here ${w}$ is the vector of scores on leaves, **${q}$ is a function assigning each data point to the corresponding leaf**, and ${T}$ is the number of leaves. 
+In XGBoost, we define the complexity as
 $$
 \Omega(f)=\gamma T + \frac{1}{2}\lambda \sum_{i=1}^{T} {w}_i^2.
 $$
@@ -975,8 +982,22 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 
 [Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely TencentBoost, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
 
-Methods | Tree Construction | Update Formula
----|---|---
+[LightGBM is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:](https://github.com/microsoft/LightGBM)
+* Faster training speed and higher efficiency.
+* Lower memory usage.
+* Better accuracy.
+* Support of parallel and GPU learning.
+* Capable of handling large-scale data.
+
+[ThunderGBM is dedicated to helping users apply GBDTs and Random Forests to solve problems efficiently and easily using GPUs. Key features of ThunderGBM are as follows.](https://github.com/Xtra-Computing/thundergbm/blob/master/docs/index.md)
+
+* Support regression, classification and ranking.
+* Use same command line options as XGBoost, and support Python (scikit-learn) interface.
+* Supported Operating Systems: Linux and Windows.
+* ThunderGBM is often 10 times faster than XGBoost, LightGBM and CatBoost. It has excellent performance on handling high dimensional and sparse problems.
+
+Methods | Tree Construction | Update Formula | Training Methods
+---|---|---|---
 XGBoost|
 CatBoost|
 TencentBoost|
@@ -1128,6 +1149,8 @@ ALGORITHM 2: : The QUICKSCORER Algorithm
 
 #### RapidScorer
 
+![RapidScorer](https://cdn.mathpix.com/snip/images/vLj1OrPKymNq_nWn3xY0TLijGP-8K1e3eYtQG_Wm-Cw.original.fullsize.png)
+
 - http://ai.stanford.edu/~wzou/kdd_rapidscorer.pdf
 
 #### AdaQS
@@ -1199,6 +1222,7 @@ $$a_{ij}^{knn}=
 * [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
 * [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
 
+Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
 
 ### Optimization and Boosting
 
@@ -1256,10 +1280,29 @@ $\color{red}{Note}$: given the input feature  $x_i$, the label $\mathrm y_i$ is 
 
 #### Translation Optimization Methods to Boost Algorithm
 
+The  following steps are the keys to a constructed a decision tree in gardient boost methods:
++   For $i = 1, 2,\dots , n$ compute
+    $$r_{i,t}=-{[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}.$$
++  Fit a regression tree to the targets $r_{i,t}$   giving **terminal regions**
+   $$R_{j,m}, j = 1, 2,\dots , J_m. $$
+
+Here we compute the gradient of loss funtion with respective to each predicction $f(x_i)$ and it is why we call it `gradient boost`.
+If we  fit a regression tree to a subsample of  the targets $r_{i,t}$ randommly, it is `stochastic gradient boost`.
+All variants of gradient boost methods mianly modify $\fbox{the steps to construct a new decision tree}$. And it is trained in additive way.
+
+Mirror gradient descent update formule can be transferred to be
+
+$$
+r_{i,t} = f(x_i)\exp(-\alpha [\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}])\mid_{f=f_{t-1}}.
+$$
+
+then fit a regression tree to the targets $r_{i,t}$.
+
+----
 What is the alternative of gradient descent  in order to combine `ADMM` as an operator splitting methods for numerical optimization and `Boosting` such as gradient boosting/extreme gradient boosting?
 Can we do leaves splitting and optimization in the same stage?
 
-The core transfer is how to change the original optimization to one linearly constrained  convex optimization  so that it adjusts to ADMM:  
+The core transfer from ADMM to Boost is how to change the original optimization to one linearly constrained  convex optimization  so that it adjusts to ADMM:  
 
 $$
 \arg\min_{f_{t}\in\mathcal F}\sum_{i=1}^{n} \ell[y_i,\hat{y}^{(t-1)}_i + f_t(x_i)] + \gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2 \iff \fbox{???} \quad ?
@@ -1290,22 +1333,29 @@ Another interesting question is how to boost the composite/multiplicative models
 ### Deep Gradient Boosting
 
 [It](https://arxiv.org/pdf/1907.12608.pdf) shows that each iteration of the backpropagation algorithm can be viewed as fitting a
-weak linear regressor to the gradients at the output of each layer, before non-linearity is applied. 
-We call this approach `deep gradient boosting (DGB)`, since it’s effectively a layer-wise boosting approach
+weak linear regressor to the gradients at the output of each layer, before non-linearity is applied.
+We call this approach `deep gradient boosting (DGB)`, since it’s effectively a `layer-wise boosting approach`
 where the typical decision trees are replaced by linear regressors. Under this model, SGD naturally emerges as an extreme case where the network weights are highly regularized, in the L2 norm sense.
-In addition, DGB takes into account the correlations between training samples (features), just like regular regression would, when calculating the weight updates while SGD does not. 
+In addition, DGB takes into account the correlations between training samples (features), just like regular regression would, when calculating the weight updates while SGD does not.
 Intuitively, it makes sense to ignore the correlations between training samples considering that the most difficult
 test samples would be the ones that show low correlations with the training set.
 
-This work suggests an alternative explanation for why SGD generalizes so well when training neural networks. 
+This work suggests an alternative explanation for why SGD generalizes so well when training neural networks.
 We show that each iteration of the backpropagation algorithm can be viewed as fitting a weak linear regressor to the gradients at the output of each layer, before non-linearity is applied.
 
-The classic backpropagation algorithm minimizes an error function $E$ of a multi-layer neural network using gradient descent and the chain rule. 
-The resulting weight updates at a given layer are 
+The classic backpropagation algorithm minimizes an error function $E$ of a multi-layer neural network using gradient descent and the chain rule.
+The resulting weight updates at a given layer are
 $$\Delta w_{ij}=x_i y_j$$
 
 where $x_i$ is the output from the previous layer at node $i$ while $y_j=\frac{\partial E}{\partial \text{net}_j}$ is the derivative with respect to the input at node $j$ calculated using the chain rule from the last layer to the current one.
 We can interpret $y_i$ as a pseudo-residual and infer the weight updates  $\Delta w_{ij}=v_{ij}$ such that $\sum_{i} x_{i} v_{i, j}=y_{j},\forall j$.
+
+For the extreme case of a single sample update we need to use L2 regularization which leads to the following optimization problem:
+
+$$\begin{array}{ll}{\underset{v_{i, j}}{\operatorname{minimize}}} & {\frac{1}{2} \sum_{i} v_{i, j}^{2}} \\
+{\text { subject to }} & {\sum_{i} x_{i} v_{i, j}=y_{j}, \quad \forall j}\end{array}
+$$
+
 
 - https://arxiv.org/pdf/1907.12608.pdf
 
@@ -1455,7 +1505,7 @@ $$
 + [EGBMMDA: Extreme Gradient Boosting Machine for MiRNA-Disease Association prediction](https://www.nature.com/articles/s41419-017-0003-x.pdf?origin=ppub)
 + [Awesome gradient boosting](https://github.com/talperetz/awesome-gradient-boosting)
 
-### Selective Ensemble 
+### Selective Ensemble
 
 [An ensemble is generated by training multiple component learners for a same task and then combining their predictions. In most ensemble algorithms, all the trained component learners are employed in constituting an ensemble. But recently, it has been shown that when the learners are neural networks, `it may be better to ensemble some instead of all of the learners`. In this paper, this claim is generalized to situations where the component learners are decision trees. Experiments show that ensembles generated by a selective ensemble algorithm, which selects some of the trained C4.5 decision trees to make up an ensemble, may be not only smaller in the size but also stronger in the generalization than ensembles generated by non-selective algorithms.](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/rsfdgrc03.pdf)
 
@@ -1466,6 +1516,8 @@ $$
 - [Selective Ensemble](https://link.springer.com/chapter/10.1007/978-981-13-5956-9_13)
 - [Selective Ensemble under Regularization Framework](https://link.springer.com/chapter/10.1007/978-3-642-02326-2_30)
 - [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
+  
+<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs40537-019-0186-3/MediaObjects/40537_2019_186_Figa_HTML.png" width="70%"/>
 
 ### Stacking
 
@@ -1499,6 +1551,7 @@ The procedure is as follows:
 * [Cascaded classifiers and stacking methods for classification of pulmonary nodule characteristics](https://www.sciencedirect.com/science/article/pii/S0169260718304413)
 * [Python package for stacking (machine learning technique)](https://github.com/vecxoz/vecstack)
 * [Signal Processing and Pattern Recognition Laboratory](http://users.rowan.edu/~polikar/spprl.html)
+* https://blog.csdn.net/mrlevo520/article/details/78161590
 
 **Issues in Stacked Generalization**
 
@@ -1537,10 +1590,6 @@ In the sense of stacking, deep neural network is thought as the stacked `logisti
 * [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
 * [Deep Boosting: Layered Feature Mining for General Image Classification](https://arxiv.org/abs/1502.00712)
 * [gcForest 算法原理及 Python 与 R 实现](https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/)
-
-****
-
-Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
 
 *****
 * https://www.wikiwand.com/en/Ensemble_learning

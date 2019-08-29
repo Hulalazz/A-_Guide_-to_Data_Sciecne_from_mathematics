@@ -640,10 +640,10 @@ $$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\
 * [CS 294 / Stat 260, Fall 2014: Learning in Sequential Decision Problems](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/mirror-descent-notes.pdf)
 * [ELE522: Large-Scale Optimization for Data Science , Yuxin Chen, Princeton University, Fall 2019](http://www.princeton.edu/~yc5/ele522_optimization/lectures/mirror_descent.pdf)
 * [Mirror Descent and the Multiplicative Weight Update Method, CS 435, 201, Nisheeth Vishnoi](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
-* https://zhuanlan.zhihu.com/p/34299990
-* https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/
-* https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/
-* https://tlienart.github.io/pub/csml/cvxopt/mda.html
+* [Mirror descent: 统一框架下的first order methods](https://zhuanlan.zhihu.com/p/34299990)
+* [ORF523: Mirror Descent, part I/II](https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/)
+* [ORF523: Mirror Descent, part II/II](https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/)
+* [Thibaut Lienart: MIrror Descent](https://tlienart.github.io/pub/csml/cvxopt/mda.html)
 * https://web.stanford.edu/class/cs229t/2017/Lectures/mirror-descent.pdf
 * https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf
 
@@ -935,6 +935,8 @@ multiplier method for convex programming ](https://web.mit.edu/dimitrib/www/Expm
 
 ### Splitting Methods
 
+#### ADMM
+
 Alternating direction method of multipliers is called **ADMM** shortly.
 It is aimed to solve the following convex optimization problem:
 $$
@@ -1165,6 +1167,14 @@ is the Lagrangian rather than  augmented Lagrangian.
 - https://arxiv.org/abs/1503.06387
 - [Multi-Block ADMM and its Convergence Random Permutation Helps-A talk by Ye](https://community.apan.org/cfs-file/__key/docpreview-s/00-00-01-07-11/Ye.pdf)
 
+****
+
+**dlADMM**
+
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20190829/b0776073d50048fabfdc89d90bb65258.png" width="70%" />
+
+- [dlADMM: Deep Learning Optimization via Alternating Direction Method of Multipliers](https://github.com/xianggebenben/dlADMM)
+- [Deep Learning Optimization via Alternating Direction Method of Multiplier](https://arxiv.org/abs/1905.13611)
 
 ***
 * http://maths.nju.edu.cn/~hebma/
@@ -1189,7 +1199,8 @@ is the Lagrangian rather than  augmented Lagrangian.
 * [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
 * [PDHG](https://www.cs.umd.edu/~tomg/projects/pdhg/)
 
-****
+#### Block Coordinate Descent
+
 The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
 For example, we want to minimize the following cost function
 $$
@@ -1230,6 +1241,10 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 - https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
 - http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
 - http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
+
+#### Block Spliiting Methods
+
+- [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)
 
 ## Linear Programming
 
