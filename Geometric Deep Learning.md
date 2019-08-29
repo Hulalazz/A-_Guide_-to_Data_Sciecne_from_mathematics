@@ -3,15 +3,17 @@
 <img src="https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg" width="50%" />
 
 * https://qdata.github.io/deep2Read/
-* [Geometric Deep Learning](https://qdata.github.io/deep2Read//2graphs/2architecture/2019/02/22/gnn-Geom/)
+* [Geometric Deep Learning @qdata](https://qdata.github.io/deep2Read//2graphs/2architecture/2019/02/22/gnn-Geom/)
 * https://qdata.github.io/deep2Read//aReadingsIndexByCategory/#2Graphs
 * [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
-* http://www.ai3sd.org/
-* https://heidelberg.ai/2019/07/09/graph-neural-networks.html
+* [http://geometricdeeplearning.com/](http://geometricdeeplearning.com/)
+* [Artificial Intelligence and Augmented Intelligence for Automated Investigations for Scientific Discovery](http://www.ai3sd.org/)
+* [Learning the Structure of Graph Neural Networks Mathias Niepert, NEC Labs Europe July 09, 2019](https://heidelberg.ai/2019/07/09/graph-neural-networks.html)
 * https://sites.google.com/site/rdftestxyz/home
 * [Lecture 11: Learning on Non-Euclidean Domains](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
 * [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
 * [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
+* https://pytorch-geometric.readthedocs.io/en/latest/
 
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
@@ -54,9 +56,18 @@ Let’s make deep learning possible in hyperbolic space.](http://hyperbolicdeepl
 
 <img src="https://hazyresearch.github.io/hyperE/pc.svg"  width="40%" />
 
+Recall the recursive formula of forward neural network:
+$$
+X\to \underbrace{\sigma}_{nonlinerality}\circ \underbrace{(\underbrace{W_1X}_{\text{Matrix-vector multiplication}}+b_1)}_{\text{Bias translation}}=H_1\to \cdots \sigma(WH+b)=y.
+$$
+
+It consists of `matrix-vector multiplication`, `vector addition`, `nonlinear transformation` and `function composition`.
+
 - [Hyperbolic Neural Networks](https://arxiv.org/abs/1805.09112)
 - http://hyperbolicdeeplearning.com/papers/
 - http://hyperbolicdeeplearning.com/
+- http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
+- https://github.com/ferrine/hyrnn
 - https://cla2019.github.io/
 ***
 - http://shichuan.org/
@@ -64,6 +75,99 @@ Let’s make deep learning possible in hyperbolic space.](http://hyperbolicdeepl
 - [Hyperbolic Attention Networks ](https://openreview.net/forum?id=rJxHsjRqFQ)
 - [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
 - [Hyperbolic Heterogeneous Information Network Embedding](http://shichuan.org/doc/65.pdf)
+
+#### Bias translation
+
+The Möbius addition of $y$  to $x$  is defined by
+$$
+x \oplus y :=\frac{\left(1+2(x, y)+{\|y\|}_{2}^{2}\right) x+\left(1-{\|x\|}_{2}^{2}\right) y}{1+2\langle x, y\rangle+{\|x\|}_{2}^{2}{\|y\|}_{2}}
+$$
+
+$$\mathbf{x} \oplus \mathbf{y} =\frac{\left(1+2 c\langle\mathbf{x}, \mathbf{y}\rangle+ c\|\mathbf{y}\|^{2}\right) \mathbf{x}+\left(1-c\|\mathbf{x}\|^{2}\right) \mathbf{y}}{1+2 c\langle\mathbf{x}, \mathbf{y}\rangle+ c^{2}\|\mathbf{x}\|^{2}\|\mathbf{y}\|^{2} |}
+$$
+
+
+#### Scalar multiplication
+
+The Möbius scalar multiplication of $x$ by $r \in \mathbb{R}$ is defined by
+$$
+r \otimes x=\tanh \left(r \tanh ^{-1}\left({\|x\|}_{2}\right)\right) \frac{x}{\|x\|}
+$$
+
+Likewise, this operation satisfies a few properties:
+* Associativity:  
+$$r \otimes(s \otimes x) = (r \otimes s) \otimes x$$
+* additions:
+$$ n \otimes x=x \oplus \cdots \oplus x(n \text { times })$$
+* Scalar distributivity:
+$$(r+s) \otimes x=(r \otimes x) \oplus(s \otimes x)$$
+* Scaling property:
+$$r \otimes x /\|r \otimes x\|=x /\|x\|.$$
+
+The geodesic between two points $x,y\in\mathbb{D}^n$ is the shortest path connecting them, and is given by
+$$
+\forall t \in[0,1], \gamma_{x \rightarrow y}(t)=x \oplus(t \otimes((-x) \oplus y)).
+$$
+Similarly, in Euclidean space, the shortest path between two points $x,y\in\mathbb{R}^n$ is given by
+$$
+\forall t \in[0,1], \gamma_{x \rightarrow y}(t)=x + (t \times((-x) + y)) =(1-t)x+ty.
+$$
+
+#### Matrix-vector multiplication in hyperbolic space
+
+A manifold $\mathcal M$ of dimension n is a sort of n-dimensional surface. At each point $x\in\mathcal M$, we can define its tangent space $T_x\mathcal M$, an n-dimensional vector space, which is a local, first order approximation of the manifold around $x$.
+
+Then, if you take a vector $v$, tangent to $\mathcal M$ at $x$, and want to move inside the manifold in the direction of $v$, you have to use a map called the exponential map at $x$:
+$$
+\exp_{x} : T_{x} \mathcal{M} \rightarrow \mathcal{M}.
+$$
+Now the log map is just its inverse:
+$$\log_x\ :\quad\mathcal{M}\to T_x\mathcal M.$$
+We get the following formula:
+
+$$r\otimes x = \exp_0(r\log_0(x)).$$
+This means that the Möbius scalar multiplication of x by r corresponds to
+
+* Moving $x$ to the tangent space at $0$ of the Poincaré ball using $\log_0$,
+* Multiplying this vector by $r$, since $\log_0(x)$ is now in the vector space $T_x\mathbb{D}^n=\mathbb{R}^n$,
+* Projecting it back on the manifold using the exp map at $0$.
+
+<img src="https://i1.wp.com/hyperbolicdeeplearning.com/wp-content/uploads/2018/06/exp.png" width="70%"/>
+
+We propose to define matrix-vector multiplications in the Poincaré ball in a similar manner:
+
+$$M\otimes x\ := \exp_0(M\log_0(x)).$$
+
+$$M^{\otimes} \mathbf{x} =\frac{1}{\sqrt{c}} \tanh \left(\frac{\|M \mathbf{x}\|}{\|x\|} \operatorname{arctanh}(\sqrt{c}\|\mathbf{x}\|)\right) \frac{M \mathbf{x}}{\|M \mathbf{x}\|} $$
+
+* Matrix associativity: $M\otimes (N\otimes x)\ = (MN)\otimes x$
+* Compatibility with scalar multiplication: $M\otimes (r\otimes x)\ = (rM)\otimes x = r\otimes(M\otimes x)$
+* Directions are preserved: $M\otimes x/\parallel M\otimes x\parallel = Mx/\parallel Mx\parallel$ for $Mx\neq 0$
+* Rotations are preserved: $M\otimes x= Mx$ for $M\in\mathcal{O}_n(\mathbb{R})$
+
+- http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
+
+#### Hyperbolic softmax
+
+In order to generalize multinomial logistic regression (MLR, also called softmax regression), we proceed in 3 steps:
+
+We first reformulate softmax probabilities with a distance to a margin hyperplane
+Second, we define hyperbolic hyperplanes
+Finally, by finding the closed-form formula of the distance between a point and a hyperbolic hyperplane, we derive the final formula.
+
+
+Similarly as for the hyperbolic GRU, we show that when the Poincaré ball in continuously flattened to Euclidean space (sending its radius to infinity), hyperbolic softmax converges to Euclidean softmax.
+
+-http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
+
+### hGRU
+
+$$
+\begin{array}{l}{\cdot r_{t}=\sigma \log_{0}\left(\left(\left(W^{r} \otimes h_{t-1}\right) \oplus\left(U^{r} \otimes x_{t}\right)\right) \oplus b^{r}\right)} \\
+{\cdot z_{t}=\sigma \log_{0}\left(\left(\left(W^{z} \otimes h_{t-1}\right) \oplus\left(U^{z} \otimes x_{t}\right)\right) \oplus b^{z}\right)} \\
+ {\left.\cdot \tilde{h}_{t}=\varphi^{\otimes}\left(\left(\left(W \operatorname{diag}\left(r_{t}\right)\right] \otimes h_{t-1}\right) \oplus\left(U \otimes x_{t}\right)\right) \oplus b\right)} \\
+ {\cdot h_{t}=h_{t-1} \oplus\left(\operatorname{diag}\left(z_{t}\right) \otimes\left(\left(-h_{t-1}\right) \oplus \widetilde{h_{t}}\right)\right)}\end{array}
+$$
 
 ### Graph Convolutional Network
 
@@ -126,8 +230,11 @@ $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning
 GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
 
 * [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
-* [GRAPH CONVOLUTIONAL NETWORKS](https://tkipf.github.io/graph-convolutional-networks/)
+* [GRAPH CONVOLUTIONAL NETWORKS THOMAS KIPF, 30 SEPTEMBER 2016](https://tkipf.github.io/graph-convolutional-networks/)
 * https://benevolent.ai/publications
+* [GCN @primo](http://primo.ai/index.php?title=Graph_Convolutional_Network_(GCN),_Graph_Neural_Networks_(Graph_Nets),_Geometric_Deep_Learning)
+* https://missinglink.ai/guides/convolutional-neural-networks/graph-convolutional-networks/
+* [Lecture 11: Learning on Non-Euclidean Domains: Prof. Alex Bronstein](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
 
 ### Spectral ConvNets
 
