@@ -1,6 +1,10 @@
 # Bayesian Learning and Probabilistic Programming
 
-- https://users.cs.duke.edu/~cynthia/
+- [MaxEnt 2006  Twenty sixth International Workshop on  Bayesian Inference and Maximum Entropy Methods in Science and Engineering  CNRS, Paris, France, July 8-13, 2006](http://djafari.free.fr/maxent2006/)
+- [Cynthia Rudin](https://users.cs.duke.edu/~cynthia/)
+- [Probabilistic Artificial Intelligence (2018)](https://las.inf.ethz.ch/teaching/pai-f18)
+- [INTELLIGENT PROBABILISTIC APPROACHES TO NATURAL LANGUAGE](https://aaai.org/Library/Symposia/Fall/fs92-04.php)
+- [Probabilistic Numerics Group](https://pn.is.tuebingen.mpg.de/)
 - http://wilkeraziz.github.io/pages/landscape
 - https://probcomp.github.io/Gen/
 - https://m-clark.github.io/workshops.html
@@ -311,16 +315,16 @@ Bayesian model combination (BMC) is an algorithmic correction to Bayesian model 
 
 + https://www.wikiwand.com/en/Ensemble_learning
 
-### Bayesian Committe Machine 
+### Bayesian Committe Machine
 
 The Bayesian committee machine (BCM) is a novel approach to combining estimators
-which were trained on different data sets. 
-Although the BCM can be applied to the combination of any kind of estimators the main foci are Gaussian process regression and related systems such as regularization networks and smoothing splines for which the degrees of freedom increase with the number of training data. 
-Somewhat surprisingly, we find that the performance of the BCM improves 
-if several test points are queried at the same time and is optimal 
-if the number of test points is at least as large as the degrees of freedom of the estimator. 
-The BCM also provides a new solution for online learning with potential applications to data mining. 
-We apply the BCM to systems with fixed basis functions and discuss its relationship to Gaussian process regression. 
+which were trained on different data sets.
+Although the BCM can be applied to the combination of any kind of estimators the main foci are Gaussian process regression and related systems such as regularization networks and smoothing splines for which the degrees of freedom increase with the number of training data.
+Somewhat surprisingly, we find that the performance of the BCM improves
+if several test points are queried at the same time and is optimal
+if the number of test points is at least as large as the degrees of freedom of the estimator.
+The BCM also provides a new solution for online learning with potential applications to data mining.
+We apply the BCM to systems with fixed basis functions and discuss its relationship to Gaussian process regression.
 Finally, we also show how the ideas behind the BCM can be applied in a non-Bayesian setting to extend the input dependent combination of estimators.
 
 + http://www.kernel-machines.org/publications/Tresp00
@@ -493,8 +497,10 @@ Bayesian Inference, Hamiltonian Monte Carlo and the No U-Turn Sampler, Variation
 
 ***
 
-* [Graph Nets library](https://github.com/deepmind/graph_nets)
-* [Hakaru a simply-typed probabilistic programming language](https://hakaru-dev.github.io/intro/probprog/)
+* https://uncertainties-python-package.readthedocs.io/en/latest/
+* [Program Transformations for Machine Learning](https://program-transformations.github.io/)
+* [LAFI 2019 : Languages for Inference (formerly PPS)](https://popl19.sigplan.org/track/lafi-2019#event-overview)
+* [PPS 2018 Probabilistic Programming Languages, Semantics, and Systems (PPS 2018)](https://conf.researchr.org/track/POPL-2018/pps-2018)
 * [PROBPROG 2018 -- The International Conference on Probabilistic Programming](https://probprog.cc/)
 * [PyMC: Probabilistic Programming in Python](http://pymc-devs.github.io/pymc3/)
 * [Stan: a platform for statistical modeling and high-performance statistical computation.](http://mc-stan.org/)
@@ -509,7 +515,9 @@ Bayesian Inference, Hamiltonian Monte Carlo and the No U-Turn Sampler, Variation
 * [A modern model checker for probabilistic systems](https://www.stormchecker.org/)
 * [emcee: Seriously Kick-Ass MCMC](https://emcee.readthedocs.io/en/v2.2.1/)
 * [Gen: MIT probabilistic programming language](http://probcomp.csail.mit.edu/software/gen/)
-
+* [Graph Nets library](https://github.com/deepmind/graph_nets)
+* [Hakaru a simply-typed probabilistic programming language](https://hakaru-dev.github.io/intro/probprog/)
+  
 <img title = "factorie" src = http://factorie.cs.umass.edu/assets/images/factorie-logo-small.png />
 
 _______

@@ -151,36 +151,6 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 + http://www.mit.edu/~kepner/D4M/
 
 
-
-### Automatic Differentiation
-
-Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities. Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
-
-Practitioners across many fields have built a wide set of automatic differentiation tools, using different programming languages, computational primitives and intermediate compiler representations. Each of these choices comes with positive and negative trade-offs, in terms of their usability, flexibility and performance in specific domains.
-
-In the ideal case, automatically generated derivatives should be competitive with manually generated ones and run at near-peak performance on modern hardware, but the most expressive systems for autodiff which can handle arbitrary, Turing-complete programs, are unsuited for performance-critical applications, such as large-scale machine learning or physical simulation. Alternatively, the most performant systems are not designed for use outside of their designated application space, e.g. graphics or neural networks.
-
-All numerical gradient-based optimization methods benifits from faster computation of gradients specially `backprop`.
-
-
-+ https://autodiff-workshop.github.io/
-+ https://autodiff-workshop.github.io/2016.html
-+ https://program-transformations.github.io/
-+ http://www.autodiff.org/
-+ https://autodiff.github.io/
-+ https://github.com/google/jax
-+ https://github.com/google/tangent
-+ https://en.wikipedia.org/wiki/Automatic_differentiation
-+ http://www.admb-project.org/
-+ https://github.com/rjhogan/Adept
-+ http://www.met.reading.ac.uk/clouds/adept/
-+ [AD computation with Template Model Builder (TMB)](https://github.com/kaskr/adcomp)
-+ https://non-contradiction.github.io/autodiffr/
-+ https://srijithr.gitlab.io/post/autodiff/
-+ https://fl.readthedocs.io/en/latest/autograd.html
-+ https://pymanopt.github.io/
-+ https://yiduai.sg/tensorflow-workshop/
-
 ### Computation of Matrix Chain Products
 
 Generations of students have learned that the product $xy^Tz$, where $x, y,$ and $z$ are n-vectors, should be written and evaluated as $x(y^Tz)$ ($O(n)$ flops) rather than $(xy^T)z$ ($O(n^2)$) flops). More generally, deciding where to put the parentheses in a matrix product $A_1A_2\dots A_k$ to minimize the number of operations in the evaluation is a nontrivial problem, known as the `matrix chain multiplication problem`.
@@ -306,7 +276,83 @@ $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}
 * https://www.wikiwand.com/en/Matrix_multiplication_algorithm
 * [Limits on All Known (and Some Unknown) Approaches to Matrix Multiplication](https://simons.berkeley.edu/talks/virginia)
 
-#### Fixed-point arithmetic and Approximate Computing
+
+
+### Automatic Differentiation, Differentiable Programming and Program Transformations
+
+#### Automatic Differentiation
+
+All numerical gradient-based optimization methods benifits from faster computation of gradients specially `backprop`.
+
+> Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities. Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
+
+> Practitioners across many fields have built a wide set of automatic differentiation tools, using different programming languages, computational primitives and intermediate compiler representations. Each of these choices comes with positive and negative trade-offs, in terms of their usability, flexibility and performance in specific domains.
+
+> [In the ideal case, automatically generated derivatives should be competitive with manually generated ones and run at near-peak performance on modern hardware, but the most expressive systems for autodiff which can handle arbitrary, Turing-complete programs, are unsuited for performance-critical applications, such as large-scale machine learning or physical simulation. Alternatively, the most performant systems are not designed for use outside of their designated application space, e.g. graphics or neural networks.](https://autodiff-workshop.github.io/)
+
++ https://autodiff-workshop.github.io/
++ https://autodiff-workshop.github.io/2016.html
++ http://www.autodiff.org/
++ [Tools for Automatic Differentiation](http://www.autodiff.org/?module=Tools)
++ [autodiff is a C++17 library that uses modern and advanced programming techniques to enable automatic computation of derivatives in an efficient and easy way.](https://autodiff.github.io/)
++ [DiffSharp: Differentiable Functional Programming](http://diffsharp.github.io/DiffSharp/)
++ https://www.mcs.anl.gov/OpenAD/
++ https://github.com/google/tangent
++ https://en.wikipedia.org/wiki/Automatic_differentiation
++ http://www.admb-project.org/
++ https://github.com/rjhogan/Adept
++ http://www.met.reading.ac.uk/clouds/adept/
++ [AD computation with Template Model Builder (TMB)](https://github.com/kaskr/adcomp)
++ [autodiffr for Automatic Differentiation in R through Julia](https://non-contradiction.github.io/autodiffr/)
++ https://srijithr.gitlab.io/post/autodiff/
++ https://fl.readthedocs.io/en/latest/autograd.html
++ https://pymanopt.github.io/
++ https://yiduai.sg/tensorflow-workshop/
++ [Swift](https://github.com/tensorflow/swift/blob/master/docs/AutomaticDifferentiation.md)
++ https://github.com/Functional-AutoDiff/STALINGRAD
++ [The simple essence of automatic differentiation](http://conal.net/papers/essence-of-ad/)
+
+#### Differentiable Programming
+
++ [What Is Differentiable Programming?](https://fluxml.ai/2019/02/07/what-is-differentiable-programming.html)
++ https://www.lokad.com/differentiable-programming
+
+
+---|Deep Learning |Differentiable Programming
+---|---|---
+Primary purpose|Learning|Learning+Optimization
+Typical usage|Learn-once, Eval-many|Learn-once, Eval-once
+Input granularity|Fat objects (images, voice sequences, lidar scans, full text pages)|Thin objects (products, clients, SKUs, prices)
+Input variety|Homogeneous objects (e.g. images all having the same height/width ratio)|Heterogeneous objects (relational tables, graphs, time-series)
+
++ [ Probabilistic & Differentiable Programming Summit](https://probabilisticdifferentiablepro.splashthat.com/)
++ [Differentiable Programming for Image Processing and Deep Learning in Halide](https://people.csail.mit.edu/tzumao/gradient_halide/)
++ https://github.com/sunze1/Differential-Programming
++ [Differentiable Programming: A Semantics Perspective](https://barghouthi.github.io/2018/05/01/differentiable-programming/)
++ https://fixpointsandcoffee.com/computer-science/169/
++ [Zygote: A Differentiable Programming System to Bridge Machine Learning and Scientific Computing](https://www.groundai.com/project/zygote-a-differentiable-programming-system-to-bridge-machine-learning-and-scientific-computing/)
+
+#### Program Transformations
+
+[Program Transformations for Machine Learning](https://program-transformations.github.io/)- Workshop at NeurIPS 2019 – December 13 or 14 2019, Vancouver, Canada - claims that
+> Machine learning researchers often express complex models as a program, relying on program transformations to add functionality. New languages and transformations (e.g., TorchScript and TensorFlow AutoGraph) are becoming core capabilities of ML libraries. However, existing transformations, such as `automatic differentiation` (AD or autodiff), inference in `probabilistic programming languages` (PPLs), and `optimizing compilers` are often built in isolation, and limited in scope. This workshop aims at viewing program transformations in ML in a unified light, making these capabilities more accessible, and building entirely new ones.
+
+> Program transformations are an area of active study. AD transforms a program performing numerical computation into one computing the gradient of those computations. In probabilistic programming, a program describing a sampling procedure can be modified to perform inference on model parameters given observations. Other examples are vectorizing a program expressed on one data point, and learned transformations where ML models use programs as inputs or outputs.
+
+> This workshop will bring together researchers in the fields of `AD, probabilistic programming, programming languages, compilers, and ML` with the goal of understanding the commonalities between disparate approaches and views, and sharing ways to make these techniques broadly available. It would enable ML practitioners to iterate faster on novel models and architectures (e.g., those naturally expressed through high-level constructs like recursion).
+
++ https://popl19.sigplan.org/track/lafi-2019#About
++ https://program-transformations.github.io/
++ https://uncertainties-python-package.readthedocs.io/en/latest/
++ https://conf.researchr.org/track/POPL-2017/pps-2017
++ https://gustavoasoares.github.io/
++ https://kedar-namjoshi.github.io/
++ [Learning Syntactic Program Transformations from Examples](https://alexpolozov.com/papers/icse2017-refactoring.pdf)
++ https://alexpolozov.com/
++ https://kedar-namjoshi.github.io/
++ https://vega.github.io/vega/
+
+### Fixed-point arithmetic and Approximate Computing
 
 Today’s computing systems are designed to deliver only exact solutions at high energy cost, while many of the algorithms that are run on data are at their heart statistical, and thus do not require exact answers.
 
@@ -329,7 +375,7 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 * [Paulius Micikevicius's talk "Training Neural Networks with Mixed Precision: Theory and Practice" (GTC 2018, S8923).](http://on-demand.gputechconf.com/gtc-cn/2018/pdf/CH8302.pdf)
 * https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
 * https://nvidia.github.io/apex/
-
+* [A Multiprecision World](https://sinews.siam.org/Details-Page/a-multiprecision-world)
 
 ## Compilers for Deep Learning
 
@@ -384,6 +430,7 @@ The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework desi
 
 + https://www.ngraph.ai/
 + https://github.com/NervanaSystems/ngraph
++ https://github.com/plaidml/plaidml
 - https://en.wikipedia.org/wiki/Zeroth_(software)
 
 #### XLA
@@ -441,6 +488,8 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 * [Parallel and Distributed Deep Learning](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/hedge_usmani.pdf)
 * [Network Design Projects: Parallel and Distributed Deep Learning Harvard CS 144r/244r Spring 2019 ](http://www.eecs.harvard.edu/htk/courses/)
 * [DIANNE is a modular software framework for designing, training and evaluating artificial neural networks](http://dianne.intec.ugent.be/)
+* [BytePS : a high performance and general distributed training framework.](https://github.com/bytedance/byteps)
+* [[GBDT] The purposes of using parameter server in GBDT](https://github.com/Angel-ML/angel/issues/7)
 
 ----
 

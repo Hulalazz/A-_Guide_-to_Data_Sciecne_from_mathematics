@@ -30,7 +30,7 @@ In brief, A decision tree is a classifier expressed as a recursive partition of 
  T(x) = \sum_{i\in\text{leaves}} g_i(x)\mathbb{I}(x\in R_i) = \sum_{i\in \,\text{leaves}} g_i(x) \prod_{a\in\,\text{ancestors(i)}} \mathbb{I}(S_{a (x)}=c_{a,i})
  $$
 > where $R_i \subset \mathbb{R}^d$ is the region associated with leaf ${i}$ of the tree, $\text{ancestors(i)}$ is the set of ancestors of leaf node $i$, $c_{a,i}$ is the child of node a on the path from $a$ to leaf $i$, and **$S_a$ is the n-array split function at node $a$**.
-> $g_i(\cdot)$ is the decision function associated with leaf i and
+> $g_i(\cdot)$ is the decision function associated with leaf $i$ and
 > is learned only from training examples in $R_i$.
 
 The $g_{i}(x)$ can be a constant in $\mathbb{R}$ or some mathematical expression such as logistic regression. When $g_i(x)$ is constant, the decision tree is actually piecewise constant, a concrete example of simple function.
@@ -42,7 +42,12 @@ The interpretation is simple: Starting from the root node, you go to the next no
 * [Decision Trees (for Classification) by Willkommen auf meinen Webseiten.](http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php)
 * [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
 * [On the Boosting Ability of Top-Down Decision Tree Learning Algorithms](http://www.columbia.edu/~aec2163/NonFlash/Papers/Boosting2016.pdf)
+* [Improving Stability of Decision Trees ](http://www.cs.cmu.edu/~einat/Stability.pdf)
+* [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
 
+What is the parameters to learn when constructing a decision tree?
+The value of leaves $g_i(\cdot)$ and the spliiting function $S_i(\cdot)$.
+Another approach to depict a decsion tree $T_h = (N_h;L_h)$ is given the set of  internal nodes, $N_h$, and  the set of leaves, $L_h$.
 
 ***
 **Algorithm**  Pseudocode for tree construction by exhaustive search
@@ -53,11 +58,10 @@ The interpretation is simple: Starting from the root node, you go to the next no
 
 ***
 
-Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**.
+Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**, which is different from other learning mthods such as support vector machine.
 
 This learning process is to minimize the impurities.
-C4.5 and CART6 are two later classification
-tree algorithms that follow this approach. C4.5 uses `entropy` for its impurity function,
+C4.5 and CART6 are two later classification tree algorithms that follow this approach. C4.5 uses `entropy` for its impurity function,
 whereas CART uses a generalization of the binomial variance called the `Gini index`.
 
 If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
@@ -111,8 +115,8 @@ In machine learning, it is to avoid the overfitting, to make a balance between o
 ***
 
 When the height of a decision tree is limited to 1, i.e., it takes only one
-test to make every prediction, the tree is called a decision stump. While decision trees are nonlinear classifiers in general, decision stumps are a kind
-of linear classifiers.
+test to make every prediction, the tree is called a decision stump.
+While decision trees are nonlinear classifiers in general, decision stumps are a kind of linear classifiers.
 
 [Fifty Years of Classification and
 Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
@@ -127,14 +131,15 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
 * [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
 * [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
-* [CART](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
 * [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 * [Interpretable Machine Learning: Decision Tree](https://christophm.github.io/interpretable-ml-book/tree.html)
 * [Tree-based Models](https://dinh-hung-tu.github.io/tree-based-models/)
-* http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
-* https://www.ncbi.nlm.nih.gov/pubmed/16149128
+* [Decision Trees and Evolutionary Programming](http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html)
+* [Repeated split sample validation to assess logistic regression and recursive partitioning: an application to the prediction of cognitive impairment.](https://www.ncbi.nlm.nih.gov/pubmed/16149128)
+* [A comparison of regression trees, logistic regression, generalized additive models, and multivariate adaptive regression splines for predicting AMI mortality.](https://www.ncbi.nlm.nih.gov/pubmed/17186501)
 * http://www.cnblogs.com/en-heng/p/5035945.html
 * http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf
+
 
 #### Regression Trees
 
@@ -170,6 +175,18 @@ solution is the full tree $T_0$.
 
 * [Tutorial on Regression Tree Methods for Precision Medicine and Tutorial on Medical Product Safety: Biological Models and Statistical Methods](http://ims.nus.edu.sg/events/2017/quan/tut.php)
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
+* [REGRESSION TREES FOR LONGITUDINAL AND MULTIRESPONSE DATA](http://pages.stat.wisc.edu/~loh/treeprogs/guide/AOAS596.pdf)
+* [REGRESSION TREE MODELS FOR DESIGNED EXPERIMENTS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/dox.pdf)
+
+##### CART
+
+
+* [Classification and Regression Tree Methods(In Encyclopedia of Statistics in Quality and Reliability)](http://pages.stat.wisc.edu/~loh/treeprogs/guide/eqr.pdf)
+* [Classification And Regression Trees for Machine Learning](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
+* [Classification and regression trees](http://pages.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf)
+* http://homepages.uc.edu/~lis6/Teaching/ML19Spring/Lab/lab8_tree.html
+* [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
+* [Classification and Regression Tree Approach for Prediction of Potential Hazards of Urban Airborne Bacteria during Asian Dust Events](https://www.nature.com/articles/s41598-018-29796-7)
 
 #### Classification Trees
 
@@ -231,6 +248,8 @@ Oblique Decision Trees|?
 MARS|?
 
 
+<img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
+
 * [Building Classification Models: id3-c45](https://cis.temple.edu/~giorgio/cis587/readings/id3-c45.html)
 * [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
 * [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
@@ -239,6 +258,24 @@ MARS|?
 * https://www.wikiwand.com/en/Recursive_partitioning
 * [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
 
+##### Oblique Decision Trees
+
+In this paper, we consider that the instances take the form $(x_1, x_2, \cdots, x_d, c_j)$ , where the $x_i$ are real-valued attributes, and the $c_j$ is a discrete value that represents the class label of the instance. Most tree inducers consider tests of the form $x_i > k$ that are equivalent to axis-parallel hyperplanes in the attribute space. The task of the inducer is to find appropriate values for $i$ and $k$. Oblique decision trees consider more general tests of the form
+$$\sum_{i=1}^d \alpha_i x_i +\alpha_{d+1}>0$$
+where the $\alpha_{d+1}$ are real-valued coefficients
+
+In a compact way, the general linear test can be rewriiten as
+$$\left<\alpha, x\right>+b>0$$
+where $\alpha=(\alpha_1,\cdots, \alpha_d)^T$ and $x=(x_1, x_2, \cdots, x_d)$.
+
+<img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.o.gif" width="50%"/>
+
+- https://computing.llnl.gov/projects/sapphire/dtrees/oc1.html
+- [Decision Forests with Oblique Decision Trees](http://users.monash.edu/~dld/Publications/2006/TanDoweMICAI2006_final.pdf)
+- [Global Induction of Oblique Decision Trees: An Evolutionary Approach](https://www.cs.kent.ac.uk/people/staff/mg483/documents/kr05iis.pdf)
+- [On Oblique Random Forests](http://people.csail.mit.edu/menze/papers/menze_11_oblique.pdf)
+
+It is natural to genralized to nonlinear test, which can be seen as feature enginner of the input data.
 
 ### VFDT and Beyond
 
@@ -261,7 +298,19 @@ MARS|?
 
 [Decision stream is a statistic-based supervised learning technique that generates a deep directed acyclic graph of decision rules to solve classification and regression tasks. This decision tree based method avoids the problem of data exhaustion in terminal nodes by merging of leaves from the same/different levels of predictive model.](https://metacademy.org/roadmaps/Prof.Kee/Decision_Stream)
 
+Unlike the classical decision tree approach, this method builds a predictive model with high degree of connectivity by merging statistically indistinguishable nodes at each iteration. The key advantage of decision stream is an efficient usage of every node, taking into account all fruitful feature splits. With the same quantity of nodes, it provides higher depth than decision tree, splitting and merging the data multiple times with different features. The predictive model is growing till no improvements are achievable, considering different data recombinations, and resulting in deep directed acyclic graph, where decision branches are loosely split and merged like natural streams of a waterfall. Decision stream supports generation of extremely deep graph that can consist of hundreds of levels.
+
 - https://metacademy.org/roadmaps/Prof.Kee/Decision_Stream
+- https://arxiv.org/pdf/1704.07657.pdf
+
+##### Oblivious Decision Trees
+
+- https://www.ijcai.org/Proceedings/95-2/Papers/008.pdf
+- http://www.aaai.org/Papers/Workshops/1994/WS-94-01/WS94-01-020.pdf
+
+#### Decision Graph
+
+- [Decision Graphs : An Extension of Decision Trees](https://pdfs.semanticscholar.org/73f1/d17df0e1232da9e2331878a802a941f351c6.pdf)
 
 ### Random Forest
 
@@ -304,9 +353,77 @@ On many problems the performance of random forests is very similar to boosting, 
 * https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
 * https://dimensionless.in/introduction-to-random-forest/
 * https://www.elderresearch.com/blog/modeling-with-random-forests
+* [Complete Analysis of a Random Forest Model](https://pdfs.semanticscholar.org/82ac/827885f0941723878aff5df27a3207748983.pdf?_ga=2.167570878.1288016698.1567172049-21308644.1555689715)
+* [Analysis of a Random Forests Model](https://arxiv.org/abs/1005.0208)
+* [Narrowing the Gap: Random Forests In Theory and In Practice](https://arxiv.org/abs/1310.1415)
+* [Random Forest:  A Classification and Regression Tool for Compound Classification and QSAR Modeling](https://pubs.acs.org/doi/10.1021/ci034160g)
 
 <img title="Data Mining with Decision Tree" src="https://www.worldscientific.com/na101/home/literatum/publisher/wspc/books/content/smpai/2014/9097/9097/20140827-01/9097.cover.jpg" width= "30%" />
 
+### MARS and Bayesian MARS
+
+#### MARS
+
+[Multivariate adaptive regression splines (MARS) provide a convenient approach to capture the nonlinearity aspect of polynomial regression by assessing cutpoints (knots) similar to step functions. The procedure assesses each data point for each predictor as a knot and creates a linear regression model with the candidate feature(s).](http://uc-r.github.io/mars)
+
+[Multivariate Adaptive Regression Splines (MARS) is a non-parametric regression method that builds multiple linear regression models across the range of predictor values. It does this by `partitioning the data`, and run a `linear regression model` on each different partition.](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
+
+Whereas polynomial functions impose a global non-linear relationship, step functions break the range of x into bins, and fit a different constant for each bin. This amounts to converting a continuous variable into an ordered categorical variable such that our linear regression function is converted to Equation 1：
+$$y_i = \beta_0 + \beta_1 C_1(x_i) + \beta_2 C_2(x_i) + \beta_3 C_3(x_i) \dots + \beta_d C_d(x_i) + \epsilon_i, \tag{1}$$
+
+where $C_n(x)$ represents $x$ values ranging from $% <![CDATA[
+c_n \leq x < c_{n+1} %]]>$ for $n=1,2,\dots, d$.
+
+The MARS algorithm builds a model in two steps. First, it creates a collection of so-called basis functions (BF). In this procedure, the range of predictor values is partitioned in several groups. For each group, a separate linear regression is modeled, each with its own slope. The connections between the separate regression lines are called knots. The MARS algorithm automatically searches for the best spots to place the knots. Each knot has a pair of basis functions. These basis functions describe the relationship between the environmental variable and the response. The first basis function is ‘max(0, env var - knot), which means that it takes the maximum value out of two options: 0 or the result of the equation ‘environmental variable value – value of the knot’. The second basis function has the opposite form: max(0, knot - env var).
+
+<img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/6018214220/original/MARS.png" width="70%" />
+
+To highlight the progression from recursive partition regression to MARS we start by giving the partition regression model,
+$$\hat{f}(x)=\sum_{i=1}^{k}a_iB_i(x)\tag{2}$$
+where $x\in D$ and $a_i(i=1,2,\dots, k)$ are the suitably chosen coefficients of the basis functions $B_i$ and $k$ is the number of basis functions in the model.
+These basis functions are such that $B_i(x)=\mathbb{I}(x\in R_i)$ where $\mathbb I$ is the indicator function
+which is one where the argument is true, zero elsewhere and
+the $R_i(i=1, \dots, k)$ form a partition of $D$.
+
+[The usual MARS model is the same as that given in (2) except that the basis functions are different.](https://astro.temple.edu/~msobel/courses_files/mars.pdf) Instead the $B_i$ are given by
+$$B_i(X)=\begin{cases} 1, &\text{$i=1$}\\
+\Pi_{j=1}^{J_i}[s_{ji}(x_{\nu(ji)}-t_{ji})]_{+}, &\text{$i=2,3,\dots$}
+\end{cases}$$
+where ${[\cdot]}_{+}=\max(0, \cdot)$; $J_i$ is the degree of the interaction of basis $B_i$, the $s_{ji}$, which we shall call the sign indicators,
+equal $\pm 1$, $\nu(ji)$ give the index of the predictor variable
+which is being split on the $t_{ji}$ (known as knot points) give
+the position of the splits.
+
+* http://uc-r.github.io/mars
+* [OVERVIEW OF SDM METHODS IN BCCVL](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
+* https://projecteuclid.org/download/pdf_1/euclid.aos/1176347963
+* [Using multivariate adaptive regression splines to predict the distributions of New Zealand’s freshwater diadromous fish](https://web.stanford.edu/~hastie/Papers/Ecology/fwb_1448.pdf)
+* http://www.stat.ucla.edu/~cocteau/stat204/readings/mars.pdf
+* [Multivariate Adaptive Regression Splines (MARS)](https://asbates.rbind.io/2019/03/02/multivariate-adaptive-regression-splines/)
+* https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines
+* https://github.com/cesar-rojas/mars
+* http://www.milbo.users.sonic.net/earth/
+* https://github.com/scikit-learn-contrib/py-earth
+* https://bradleyboehmke.github.io/HOML/mars.html
+* http://www.cs.rtu.lv/jekabsons/Files/ARESLab.pdf
+
+#### Bayesian MARS
+
+A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (Friedman, 1991) is proposed. This takes the form of a probability distribution over the space of possible MARS models which is explored using reversible jump Markov chain Monte Carlo methods (Green, 1995). The generated sample of MARS models produced is shown to have good predictive power when averaged and allows easy interpretation of the relative importance of predictors to the overall fit.
+
+The BMARS basis function can be written as
+$$B(\vec{x})=\beta_{0}+\sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}\left(x_{l}-t_{k, l}\right)_{+}^{o_{k, l}}\tag{1}$$
+where $\vec x$ is a vector of input, $t_{k,l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component, the function ${(y)}_{+}$ evalutes to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, and $I$ is the maximum allowed number of interactions between
+the $L$ dimensions of the input space.
+
+<img src="http://www.milbo.users.sonic.net/gallery/plotmo-example1.png" width="70%" />
+
+- [Bayesian MARS](https://dl.acm.org/citation.cfm?id=599231.599292)
+- [An Implementation of Bayesian Adaptive Regression Splines (BARS) in C with S and R Wrappers](http://www.stat.cmu.edu/~kass/papers/jss.pdf)
+- [Classification with Bayesian MARS](https://www.bdi.ox.ac.uk/publications/104765)
+- http://www.drryanmc.com/presentations/BMARS.pdf
+- [Bayesian methods for nonlinear classification and regression. (2002). Denison, Holmes, Mallick and Smith: Wiley.](http://www.stat.tamu.edu/~bmallick/wileybook/book_code.html)
+- [Gradient Enhanced Bayesian MARS for Regression and Uncertainty Quantification](http://www.drryanmc.com/presentations/ANS2011_striplingMcClarren_gBMARS_pres.pdf)
 
 ## Ensemble methods
 
@@ -465,20 +582,23 @@ $$\arg\min_{F(x)}\mathbb{E}[\exp(-yF(x))]\iff F(x)=\frac{1}{2}\log\frac{P(y=1\mi
 > The Discrete AdaBoost algorithm (population version) builds an additive logistic regression model via Newton-like updates for minimizing $\mathbb{E}[\exp(-yF(x))]$.
 
 $$
-\mathbb E[w(x, y)|x]= \mathbb E(\exp[−yF(x)]| x)= \\
-\exp[−F(x)] P(y=1\mid x)+\exp[F(x)] P(y=-1\mid x)\\
-\mathbb E[w(x, y)yf(x)|x]= \mathbb E[\exp(−yF(x)]yf(x)| x)= \\
-\exp[−F(x)]f(x) P(y=1\mid x)-\exp(F(x))f(x) P(y=-1\mid x)
+\mathbb{E}[\exp(-yF(x))]=\exp(F(x))P(y=-1\mid x)+\exp(-F(x))P(y=+1\mid x)
 $$
 
 so that
-$$\mathbb E_w(yf(x))
-=\frac{\mathbb E[w(x, y)yf(x)|x]}{\mathbb E[w(x, y)|x]}=\\
-\frac{\exp[−F(x)]f(x) P(y=1\mid x)-\exp(F(x))f(x) P(y=-1\mid x)}{\exp[−F(x)] P(y=1\mid x)+\exp[F(x)] P(y=-1\mid x)} \\
-=\frac{f(x)(\exp[−F(x)] P(y=1\mid x)-\exp(F(x)) P(y=-1\mid x))}{\exp[−F(x)] P(y=1\mid x)+\exp[F(x)] P(y=-1\mid x)} \\
-\approx f(x)(\exp[−F(x)] P(y=1\mid x)-\exp(F(x)) P(y=-1\mid x))
 $$
-where $w(x, y) = \exp(−yF(x)),$ and $\mathbb E$ represents expectation.
+\frac{\partial \mathbb{E}[\exp(-yF(x))]}{\partial F(x)} = - \exp(-F(x))P(y=+1\mid x) + \exp(F(x))P(y=-1\mid x)\tag{1}
+$$
+where and $\mathbb E$ represents expectation.
+Setting the equation (1) to 0, we get
+$$F(x)=\frac{1}{2}\log\frac{P(y=1\mid x)}{P(y=-1\mid x)}.$$
+
+So that
+$$\operatorname{sign}(H(x))=\operatorname{sign}(\frac{1}{2}\log\frac{P(y=1\mid x)}{P(y=-1\mid x)})
+\\=\begin{cases}1,&\text{if $\frac{P(y=1\mid x)}{P(y=-1\mid x)}>1$}\\
+-1, &\text{if $\frac{P(y=1\mid x)}{P(y=-1\mid x)}< 1$}
+\end{cases}=\arg\max_{x\in\{+1, -1\}}P(f(x)=y\mid x).$$
+
 ***
 * Input  $D=\{ (x_i, \mathrm{y}_i)\}_{i=1}^{N}$ where $x\in \mathcal X$ and $\mathrm{y}\in \{+1, -1\}$.
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$.
@@ -818,7 +938,7 @@ f_t(x)= w_{q(x)}={\sum}_{i=1}^{T} w_{i}\mathbb{I} ({q(x)=i}),\\
  w\in\mathbb{R}^{T}, q:\mathbb{R}^d\Rightarrow \{1,2,\dots, T\}.
 $$
 
-Here ${w}$ is the vector of scores on leaves, **${q}$ is a function assigning each data point to the corresponding leaf**, and ${T}$ is the number of leaves. 
+Here ${w}$ is the vector of scores on leaves, **${q}$ is a function assigning each data point to the corresponding leaf**, and ${T}$ is the number of leaves.
 In XGBoost, we define the complexity as
 $$
 \Omega(f)=\gamma T + \frac{1}{2}\lambda \sum_{i=1}^{T} {w}_i^2.
@@ -934,11 +1054,9 @@ Before learning, the possible values of objects are divided into disjoint ranges
 
 Quantization is also used to split the label values when working with categorical features. А random subset of the dataset is used for this purpose on large datasets.
 
-Two critical algorithmic advances introduced in CatBoost are the implementation
-of `ordered boosting`, a permutation-driven alternative to the classic algorithm, and
-an innovative algorithm for processing `categorical features`. Both techniques were
-created to fight a prediction shift caused by a special kind of target leakage present
-in all currently existing implementations of gradient boosting algorithms.
+Two critical algorithmic advances introduced in CatBoost are the implementation of `ordered boosting`, a permutation-driven alternative to the classic algorithm, and
+an innovative algorithm for processing `categorical features`.
+Both techniques were created to fight a prediction shift caused by a special kind of target leakage present in all currently existing implementations of gradient boosting algorithms.
 
 The most widely used technique which is usually applied to low-cardinality categorical features
 is one-hot encoding; another way to deal with categorical features is to compute some statistics using the label values of the examples.
@@ -948,8 +1066,7 @@ The simplest way is to substitute the category with the _average_ label value on
 brackets, i.e., $[x_{j;k} = x_{i;k}]$ equals 1 if $x_{j;k} = x_{i;k}$ and 0 otherwise.
 This procedure, obviously, leads to overfitting.
 
-CatBoost uses a more efficient strategy which reduces overfitting and allows to use the whole dataset
-for training.
+CatBoost uses a more efficient strategy which reduces overfitting and allows to use the whole dataset for training.
 Namely, we perform a random permutation of the dataset and
 for each example we compute average label value for the example with the same category value placed before the given one in the permutation.
 Let $\sigma=(\sigma_1, \cdots, \sigma_n)$ be the permutation, then $x_{\sigma_p;k}$ is substituted with
@@ -980,16 +1097,16 @@ where we also add a prior value ${P}$ and a parameter $a > 0$, which is the weig
 
 There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, GBDT on angle and H2o.
 
-[Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely TencentBoost, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
+[Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely `TencentBoost`, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
 
-[LightGBM is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:](https://github.com/microsoft/LightGBM)
+[`LightGBM` is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:](https://github.com/microsoft/LightGBM)
 * Faster training speed and higher efficiency.
 * Lower memory usage.
 * Better accuracy.
 * Support of parallel and GPU learning.
 * Capable of handling large-scale data.
 
-[ThunderGBM is dedicated to helping users apply GBDTs and Random Forests to solve problems efficiently and easily using GPUs. Key features of ThunderGBM are as follows.](https://github.com/Xtra-Computing/thundergbm/blob/master/docs/index.md)
+[`ThunderGBM` is dedicated to helping users apply GBDTs and Random Forests to solve problems efficiently and easily using GPUs. Key features of ThunderGBM are as follows.](https://github.com/Xtra-Computing/thundergbm/blob/master/docs/index.md)
 
 * Support regression, classification and ranking.
 * Use same command line options as XGBoost, and support Python (scikit-learn) interface.
@@ -1022,11 +1139,12 @@ LightGBM |
 * [Parallelizing the Traversal of Large Ensembles of Decision Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2019/03/ITPDS19.pdf)
 * [Block-distributed Gradient Boosted Trees](https://arxiv.org/abs/1904.10522)
 * [Distributed decision tree ensemble learning in Scala](https://github.com/stripe/brushfire)
-* [Yggdrasil: An Optimized System for Training Deep
-Decision Trees at Scale](https://cs.stanford.edu/~matei/papers/2016/nips_yggdrasil.pdf)
+* [Yggdrasil: An Optimized System for Training Deep Decision Trees at Scale](https://cs.stanford.edu/~matei/papers/2016/nips_yggdrasil.pdf)
 * [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
 
-### QuickScorer
+### Fast Traversal of Large Ensembles of Regression Trees
+
+#### QuickScorer
 
 `QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
 
@@ -1047,7 +1165,7 @@ which encodes the exit leaf for the given document.
 Given an input feature vector $\mathrm x$ and a tree $T_h = (N_h;L_h)$, where $N_h$ is a set of  internal nodes and $L_h$ is a set
 of leaves,
 our tree traversal algorithm processes the internal nodes of
-Th with the goal of identifying a set of candidate exit leaves, denoted by $C_h$ with $C_h \subset L_h$,
+$T_h$ with the goal of identifying a set of candidate exit leaves, denoted by $C_h$ with $C_h \subset L_h$,
 which includes the actual exit leaf $e_h$.
 Initially $C_h$ contains all the leaves in $L_h$, i.e., $C_h = L_h$.
 Then, the algorithm evaluates one after the other in an arbitrary order the test conditions of all the internal nodes of $T_h$.
@@ -1156,6 +1274,10 @@ ALGORITHM 2: : The QUICKSCORER Algorithm
 #### AdaQS
 
 This article extends the work of quickscorer by proposing a novel adaptive algorithm (i.e., AdaQS) for sparse data and regression trees with default directions as trained by XGBoost.
+
+For each tree node with default direction going right, we adaptively swap its left child and right child. The swap operation is to ensure every default direction going left, thus the absent features of sparse data lead to no false node.
+
+However, the swap has a side effect that changes the Boolean condition from '<' (less than) operation to '>=' (more than or equal to) operation. To preserve the efficiency of quickscorer's search strategy we transform the regression trees into two separate suites of flat structures. One corresponds to the tree nodes with '>' operation and the other corresponds to the tree nodes with '<=' operation. When a sparse instance queries the score, we search in both the two suites and integrate the results.
 
 <img src="https://pic1.zhimg.com/80/v2-a911464197f0eb281ca742c0ea954e98_hd.jpg" width="80%" />
 
@@ -1359,70 +1481,7 @@ $$
 
 - https://arxiv.org/pdf/1907.12608.pdf
 
-### MARS and Bayesian MARS
 
-#### MARS
-
-[Multivariate adaptive regression splines (MARS) provide a convenient approach to capture the nonlinearity aspect of polynomial regression by assessing cutpoints (knots) similar to step functions. The procedure assesses each data point for each predictor as a knot and creates a linear regression model with the candidate feature(s).](http://uc-r.github.io/mars)
-
-[Multivariate Adaptive Regression Splines (MARS) is a non-parametric regression method that builds multiple linear regression models across the range of predictor values. It does this by `partitioning the data`, and run a `linear regression model` on each different partition.](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
-
-Whereas polynomial functions impose a global non-linear relationship, step functions break the range of x into bins, and fit a different constant for each bin. This amounts to converting a continuous variable into an ordered categorical variable such that our linear regression function is converted to Equation 1：
-$$y_i = \beta_0 + \beta_1 C_1(x_i) + \beta_2 C_2(x_i) + \beta_3 C_3(x_i) \dots + \beta_d C_d(x_i) + \epsilon_i, \tag{1}$$
-
-where $C_n(x)$ represents $x$ values ranging from $% <![CDATA[
-c_n \leq x < c_{n+1} %]]>$ for $n=1,2,\dots, d$.
-
-The MARS algorithm builds a model in two steps. First, it creates a collection of so-called basis functions (BF). In this procedure, the range of predictor values is partitioned in several groups. For each group, a separate linear regression is modeled, each with its own slope. The connections between the separate regression lines are called knots. The MARS algorithm automatically searches for the best spots to place the knots. Each knot has a pair of basis functions. These basis functions describe the relationship between the environmental variable and the response. The first basis function is ‘max(0, env var - knot), which means that it takes the maximum value out of two options: 0 or the result of the equation ‘environmental variable value – value of the knot’. The second basis function has the opposite form: max(0, knot - env var).
-
-<img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/6018214220/original/MARS.png" width="70%" />
-
-To highlight the progression from recursive partition regression to MARS we start by giving the partition regression model,
-$$\hat{f}(x)=\sum_{i=1}^{k}a_iB_i(x)\tag{2}$$
-where $x\in D$ and $a_i(i=1,2,\dots, k)$ are the suitably chosen coefficients of the basis functions $B_i$ and $k$ is the number of basis functions in the model.
-These basis functions are such that $B_i(x)=\mathbb{I}(x\in R_i)$ where $\mathbb I$ is the indicator function
-which is one where the argument is true, zero elsewhere and
-the $R_i(i=1, \dots, k)$ form a partition of $D$.
-
-[The usual MARS model is the same as that given in (2) except that the basis functions are different.](https://astro.temple.edu/~msobel/courses_files/mars.pdf) Instead the $B_i$ are given by
-$$B_i(X)=\begin{cases} 1, &\text{$i=1$}\\
-\Pi_{j=1}^{J_i}[s_{ji}(x_{\nu(ji)}-t_{ji})]_{+}, &\text{$i=2,3,\dots$}
-\end{cases}$$
-where ${[\cdot]}_{+}=\max(0, \cdot)$; $J_i$ is the degree of the interaction of basis $B_i$, the $s_{ji}$, which we shall call the sign indicators,
-equal $\pm 1$, $\nu(ji)$ give the index of the predictor variable
-which is being split on the $t_{ji}$ (known as knot points) give
-the position of the splits.
-
-* http://uc-r.github.io/mars
-* [OVERVIEW OF SDM METHODS IN BCCVL](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
-* https://projecteuclid.org/download/pdf_1/euclid.aos/1176347963
-* [Using multivariate adaptive regression splines to predict the distributions of New Zealand’s freshwater diadromous fish](https://web.stanford.edu/~hastie/Papers/Ecology/fwb_1448.pdf)
-* http://www.stat.ucla.edu/~cocteau/stat204/readings/mars.pdf
-* [Multivariate Adaptive Regression Splines (MARS)](https://asbates.rbind.io/2019/03/02/multivariate-adaptive-regression-splines/)
-* https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines
-* https://github.com/cesar-rojas/mars
-* http://www.milbo.users.sonic.net/earth/
-* https://github.com/scikit-learn-contrib/py-earth
-* https://bradleyboehmke.github.io/HOML/mars.html
-* http://www.cs.rtu.lv/jekabsons/Files/ARESLab.pdf
-
-#### Bayesian MARS
-
-A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (Friedman, 1991) is proposed. This takes the form of a probability distribution over the space of possible MARS models which is explored using reversible jump Markov chain Monte Carlo methods (Green, 1995). The generated sample of MARS models produced is shown to have good predictive power when averaged and allows easy interpretation of the relative importance of predictors to the overall fit.
-
-The BMARS basis function can be written as
-$$B(\vec{x})=\beta_{0}+\sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}\left(x_{l}-t_{k, l}\right)_{+}^{o_{k, l}}\tag{1}$$
-where $\vec x$ is a vector of input, $t_{k,l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component, the function ${(y)}_{+}$ evalutes to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, and $I$ is the maximum allowed number of interactions between
-the $L$ dimensions of the input space.
-
-<img src="http://www.milbo.users.sonic.net/gallery/plotmo-example1.png" width="70%" />
-
-- [Bayesian MARS](https://dl.acm.org/citation.cfm?id=599231.599292)
-- [An Implementation of Bayesian Adaptive Regression Splines (BARS) in C with S and R Wrappers](http://www.stat.cmu.edu/~kass/papers/jss.pdf)
-- [Classification with Bayesian MARS](https://www.bdi.ox.ac.uk/publications/104765)
-- http://www.drryanmc.com/presentations/BMARS.pdf
-- [Bayesian methods for nonlinear classification and regression. (2002). Denison, Holmes, Mallick and Smith: Wiley.](http://www.stat.tamu.edu/~bmallick/wileybook/book_code.html)
-- [Gradient Enhanced Bayesian MARS for Regression and Uncertainty Quantification](http://www.drryanmc.com/presentations/ANS2011_striplingMcClarren_gBMARS_pres.pdf)
 - http://www.drryanmc.com/
 
 ### The Generic Leveraging Algorithm
@@ -1516,7 +1575,7 @@ $$
 - [Selective Ensemble](https://link.springer.com/chapter/10.1007/978-981-13-5956-9_13)
 - [Selective Ensemble under Regularization Framework](https://link.springer.com/chapter/10.1007/978-3-642-02326-2_30)
 - [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
-  
+
 <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs40537-019-0186-3/MediaObjects/40537_2019_186_Figa_HTML.png" width="70%"/>
 
 ### Stacking
@@ -1577,6 +1636,7 @@ In the sense of stacking, deep neural network is thought as the stacked `logisti
 <img src="http://www.chioka.in/wp-content/uploads/2013/09/stacking.png" width="80%" />
 
 - [Mixture of Experts](http://www.scholarpedia.org/article/Ensemble_learning)
+- [Hierarchical Mixture of Experts and the EM Algorithms](https://cs.nyu.edu/~roweis/csc2515-2006/readings/hme.pdf)
 
 #### Deep Forest
 

@@ -1171,6 +1171,31 @@ is the Lagrangian rather than  augmented Lagrangian.
 
 **dlADMM**
 
+
+$$
+\begin{array}{l}{\mathrm{ Problem 1. }} \\ 
+{\min _{W_{l}, b_{l}, z_{l}, a_{l}} R\left(z_{L} ; y\right)+\sum_{l=1}^{L} \Omega_{l}\left(W_{l}\right)} \\
+{\text { s.t. } z_{l}=W_{l} a_{l-1}+b_{l}(l=1, \cdots, L), a_{l}=f_{l}\left(z_{l}\right)(l=1, \cdots, L-1)}\end{array}
+$$
+where $a_0\in\mathbb R^d$ is the input of the deep neural network where $n_0$ is the number of feature dimensions, and $y$ is a predefined label vector. $R\left(z_{L} ; y\right)$ is a risk function for the L-th layer, which is convex, continuous and proper, and $\Omega_{l}\left(W_{l}\right)$ is a regularization term for the l-th layer, which is also convex, continuous,
+and proper.
+
+Rather than solving Problem 1 directly, we can relax Problem 1 by adding an $\ell_2$ penalty to address Problem 2 as follows:
+
+$$
+\begin{array}{l}{\mathrm{ Problem 2 }} \\
+ {\begin{aligned} \min _{W_{l}, b_{l}, z_{l}, a_{l}} F(\boldsymbol{W}, \boldsymbol{b}, z, \boldsymbol{a})=& R\left(z_{L} ; y\right)+\sum_{l=1}^{L} \Omega_{l}\left(W_{l}\right) \\
+ +\underbrace{(v / 2) \sum_{l=1}^{L-1}\left(\left\|z_{l}-W_{l} a_{l-1}-b_{l}\right\|_{2}^{2}+\left\|a_{l}-f_{l}\left(z_{l}\right)\right\|_{2}^{2}\right)}_{\text{$\ell_2$ penalty} } \\
+  \text { s.t. } z_{L}=W_{L} a_{L-1}+b_{L} 
+ \end{aligned}}\end{array}
+$$
+
+where $\mathbf{W}=\left\{W_{l}\right\}_{l=1}^{L}, \mathbf{b}=\left\{b_{l}\right\}_{l=1}^{L}, \mathbf{z}=\left\{z_{l}\right\}_{l=1}^{L}, \mathbf{a}=\left\{a_{l}\right\}_{l=1}^{L-1}$ and $\nu >0$
+is a tuning parameter. 
+
+Compared with Problem 1, Problem 2 has only a linear constraint $z_L = W_La_L−1 + b_L$ and hence is easier
+to solve
+
 <img src="http://5b0988e595225.cdn.sohucs.com/images/20190829/b0776073d50048fabfdc89d90bb65258.png" width="70%" />
 
 - [dlADMM: Deep Learning Optimization via Alternating Direction Method of Multipliers](https://github.com/xianggebenben/dlADMM)
