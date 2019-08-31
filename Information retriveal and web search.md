@@ -243,6 +243,7 @@ that in some way match the input. In the normal case matching means that the sug
 - [Design and Implementation of an Auto Complete Algorithm for E-Commerce](https://www.eit.lth.se/sprapport.php?uid=454)
 - https://www.jianshu.com/p/c7bc74d3657d
 - https://blog.floydhub.com/gpt2/
+- [Is Prefix Of String In Table?](https://trent.me/is-prefix-of-string-in-table/)
 
 ##### Spelling Correction
 
@@ -1179,3 +1180,4 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + https://searchpatterns.org/
 + http://widodo.com/lecturer/IR/
 + https://www.cl.cam.ac.uk/teaching/1516/InfoRtrv/materials.html
++ [Information Retrieval](https://www.comp.nus.edu.sg/~kanmy/courses/3245_2017/)

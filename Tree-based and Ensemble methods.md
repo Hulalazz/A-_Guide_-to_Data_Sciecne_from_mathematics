@@ -1,7 +1,5 @@
 ## Tree-based Learning Algorithms
 
-[高效决策树算法系列笔记](https://github.com/wepe/efficient-decision-tree-notes)
-
 The [simple function](https://proofwiki.org/wiki/Definition:Simple_Function) is a real-valued  function $f: \mathrm{X}\to \mathbb{R}$ if and only if it is a finite linear combination of characteristic functions:
 $$f=\sum_{i=1}^{n}a_k {\chi}_{S_{k}}$$
 where $a_k\in\mathbb{R}$ and the characteristic function is defined as follow
@@ -20,10 +18,42 @@ The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and the re
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
-the data space and fitting a simple prediction model within each partition. As a
-result, the partitioning can be represented graphically as a decision tree.
-[Visual introduction to machine learning](https://explained.ai/decision-tree-viz/index.html) show an visual introduction to decision tree.
+the data space and fitting a simple prediction model within each partition. As a result, the partitioning can be represented graphically as a decision tree.
+[Visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) show an visual introduction to decision tree.
 In brief, A decision tree is a classifier expressed as a recursive partition of the instance space.
+
+[Fifty Years of Classification and Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
+Multivariate Adaptive Regression
+Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
+`Recursive partition` is a recursive  way to construct decision tree.
+
+
+***
+
+* [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
+* [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
+* [Interpretable Machine Learning: Decision Tree](https://christophm.github.io/interpretable-ml-book/tree.html)
+* [Tree-based Models](https://dinh-hung-tu.github.io/tree-based-models/)
+* [Decision Trees and Evolutionary Programming](http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html)
+* [Repeated split sample validation to assess logistic regression and recursive partitioning: an application to the prediction of cognitive impairment.](https://www.ncbi.nlm.nih.gov/pubmed/16149128)
+* [A comparison of regression trees, logistic regression, generalized additive models, and multivariate adaptive regression splines for predicting AMI mortality.](https://www.ncbi.nlm.nih.gov/pubmed/17186501)
+* http://www.cnblogs.com/en-heng/p/5035945.html
+* http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf
+* [高效决策树算法系列笔记](https://github.com/wepe/efficient-decision-tree-notes)
+
+#### A Visual and Interactive Guide
+
+<img src="https://www.dataversity.net/wp-content/uploads/2015/07/3049155-inline-i-1-machine-learning-is-just-a-big-game-of-plinko.gif" width="60%" />
+
+* https://flowingdata.com/
+* https://github.com/parrt/dtreeviz
+* https://narrative-flow.github.io/exploratory-study-2/
+* [A Visual Introduction to Machine Learning](https://www.dataversity.net/a-visual-introduction-to-machine-learning/)
+* [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
+* [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+* [Interactive demonstrations for ML courses, Apr 28, 2016 by  Alex Rogozhnikov](https://arogozhnikov.github.io/2016/04/28/demonstrations-for-ml-courses.html)
+
+#### Tree Construction
 
 > A decision tree is the function $T :\mathbb{R}^d \to \mathbb{R}$ resulting from a learning algorithm applied on training data lying in input space $\mathbb{R}^d$ , which always has the following form:
  $$
@@ -92,7 +122,7 @@ $$
 $\color{red}{\text{PS: all above impurities}}$  are based on the probability $\fbox{distribuion}$  of data.
 So that it is necessary to estimate the probability distribution of each attribute.
 
-***
+#### Pruning and Regularization
 
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
 The regularization techniques in regression may not suit the tree algorithms such as LASSO.
@@ -117,28 +147,6 @@ In machine learning, it is to avoid the overfitting, to make a balance between o
 When the height of a decision tree is limited to 1, i.e., it takes only one
 test to make every prediction, the tree is called a decision stump.
 While decision trees are nonlinear classifiers in general, decision stumps are a kind of linear classifiers.
-
-[Fifty Years of Classification and
-Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
-Multivariate Adaptive Regression
-Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
-`Recursive partition` is a recursive  way to construct decision tree.
-
-
-***
-
-
-* [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
-* [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
-* [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
-* [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
-* [Interpretable Machine Learning: Decision Tree](https://christophm.github.io/interpretable-ml-book/tree.html)
-* [Tree-based Models](https://dinh-hung-tu.github.io/tree-based-models/)
-* [Decision Trees and Evolutionary Programming](http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html)
-* [Repeated split sample validation to assess logistic regression and recursive partitioning: an application to the prediction of cognitive impairment.](https://www.ncbi.nlm.nih.gov/pubmed/16149128)
-* [A comparison of regression trees, logistic regression, generalized additive models, and multivariate adaptive regression splines for predicting AMI mortality.](https://www.ncbi.nlm.nih.gov/pubmed/17186501)
-* http://www.cnblogs.com/en-heng/p/5035945.html
-* http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf
 
 
 #### Regression Trees
@@ -315,18 +323,18 @@ Unlike the classical decision tree approach, this method builds a predictive mod
 ### Random Forest
 
 [Decision Trees do not generalize to new variations](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf) demonstrates some theoretical limitations of decision trees. And they can be seriously hurt by the curse of dimensionality in a sense that is a bit different
-from other nonparametric statistical methods, but most importantly, that they cannot generalize to variations not
-seen in the training set. This is because a decision tree creates a partition of the input space and needs at least
-one example in each of the regions associated with a leaf to make a sensible prediction in that region. A better
-understanding of the fundamental reasons for this limitation suggests that one should use forests or even deeper
-architectures instead of trees, which provide a form of distributed representation and can generalize to variations
-not encountered in the training data.
+from other nonparametric statistical methods, but most importantly, that they cannot generalize to variations not seen in the training set.
+This is because a decision tree creates a partition of the input space and needs at least one example in each of the regions associated with a leaf to make a sensible prediction in that region.
+A better understanding of the fundamental reasons for this limitation suggests that one should use forests or even deeper architectures instead of trees,
+which provide a form of distributed representation and can generalize to variations not encountered in the training data.
 
-Random forests (Breiman, 2001) is a substantial modification of bagging
+[Random forests (Breiman, 2001)](https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf) is a substantial modification of bagging
 that builds a large collection of de-correlated trees, and then averages them.
 
 
 On many problems the performance of random forests is very similar to boosting, and they are simpler to train and tune.
+
+- [ RANDOM FORESTS by Leo Breiman](https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf)
 
 ***
 
@@ -347,12 +355,11 @@ On many problems the performance of random forests is very similar to boosting, 
 * [Interpreting random forests](https://blog.datadive.net/interpreting-random-forests/)
 * [Random Forests by Leo Breiman and Adele Cutler](https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm)
 * https://dimensionless.in/author/raghav/
-* http://www.rhaensch.de/vrf.html
+* [Viusal Random Forest, Ronny Hänsch, Technische Universität Berlin, Germany](http://www.rhaensch.de/vrf.html)
 * https://www.wikiwand.com/en/Random_forest
 * https://sktbrain.github.io/awesome-recruit-en.v2/
-* https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
-* https://dimensionless.in/introduction-to-random-forest/
-* https://www.elderresearch.com/blog/modeling-with-random-forests
+* [Introduction to Random forest by Raghav Aggiwal](https://dimensionless.in/introduction-to-random-forest/)
+* [Jump Start your Modeling with Random Forests by Evan Elg](https://www.elderresearch.com/blog/modeling-with-random-forests)
 * [Complete Analysis of a Random Forest Model](https://pdfs.semanticscholar.org/82ac/827885f0941723878aff5df27a3207748983.pdf?_ga=2.167570878.1288016698.1567172049-21308644.1555689715)
 * [Analysis of a Random Forests Model](https://arxiv.org/abs/1005.0208)
 * [Narrowing the Gap: Random Forests In Theory and In Practice](https://arxiv.org/abs/1310.1415)
@@ -455,6 +462,10 @@ Bagging |Boosting |Stacking
 * https://github.com/flennerhag/mlens
 * https://mlbox.readthedocs.io/en/latest/
 * [Ensemble Systems & Learn++ by Robi Polikar](http://users.rowan.edu/~polikar/ensemble.html)
+- [Applications of Supervised and Unsupervised Ensemble Methods](https://b-ok.cc/book/2096655/6dac48)
+- [Boosting-Based Face Detection and Adaptation (Synthesis Lectures on Computer Vision #2)](https://b-ok.cc/book/1270766/3ad0b3)
+- [Feature Selection and Ensemble Methods for Bioinformatics: Algorithmic Classification and Implementations](https://b-ok.cc/book/1190611/35413c)
+- [Outlier Ensembles: An Introduction](https://b-ok.cc/book/2941709/cec2d0)
 
 ### Bagging
 
@@ -517,6 +528,8 @@ In another word, we will reduce the error at each iteration.
 * [Boosting](http://www.machine-learning.martinsewell.com/ensembles/boosting/) and [Ensemble Learning](http://www.machine-learning.martinsewell.com/ensembles/)
 * [Boosting at Wikipedia](https://www.wikiwand.com/en/Boosting_(machine_learning))
 * [Tree, Forest and Ensemble](https://amueller.github.io/COMS4995-s18/slides/aml-10-021918-trees-forests/#45)
+* [An Empirical Comparison of Voting Classification Algorithms: Bagging, Boosting, and Variants](http://ai.stanford.edu/~ronnyk/vote.pdf)
+* [Online Parallel Boosting ](https://www.aaai.org/Papers/AAAI/2004/AAAI04-059.pdf)
 
 Methods | Overfit-underfitting | Training Type
 ---|---|---
@@ -683,13 +696,25 @@ where $r_{i, k}=1$ if $y_i =k$ otherwise 0.
 - [ ] [几种Boost算法的比较](https://www.cnblogs.com/jcchen1987/p/4581651.html)
 - [ ] [Robust LogitBoost and Adaptive Base Class (ABC) LogitBoost](https://arxiv.org/ftp/arxiv/papers/1203/1203.3491.pdf)
 
+
 #### arc-x4 Algorithm
 
-Breiman proposes a boosting algorithm called
-arc-x4 to investigate whether the success of AdaBoost roots in its technical details or in the resampling scheme it uses. The difference between AdaBoost and arc-x4 is twofold. First, the weight for object $z_j$ at step $k$ is calculated as the proportion of
-times $z_j$ has been misclassified by the $k - 1$ classifiers built so far. Second, the final decision is made by plurality voting rather than weighted majority voting.
+[Recent work has shown that combining multiple versions of unstable classifiers such as trees or neural nets results in reduced test set error. One of the more effective is bagging (Breiman [1996a]) Here, modified training sets are formed by resampling from the original training set, classifiers constructed using these training sets and then combined by voting. Freund and Schapire [1995,1996] propose an algorithm the basis of which is to adaptively resample and combine (hence the acronym--arcing) so that the weights in the resampling are increased for those cases most often misclassified and the combining is done by weighted voting. Arcing is more successful than bagging in test set error reduction. We explore two arcing algorithms, compare them to each other and to bagging, and try to understand how arcing works. We introduce the definitions of bias and variance for a classifier as components of the test set error. Unstable classifiers can have low bias on a large range of data sets. Their problem is high variance. Combining multiple versions either through bagging or arcing reduces variance significantly.](https://statistics.berkeley.edu/tech-reports/460)
+
+Breiman proposes a boosting algorithm called `arc-x4` to investigate whether the success of AdaBoost roots in its technical details or in the resampling scheme it uses.
+The difference between AdaBoost and arc-x4 is twofold.
+First, the weight for object $z_j$ at step $k$ is calculated as the proportion of times $z_j$ has been misclassified by the $k - 1$ classifiers built so far.
+Second, the final decision is made by plurality voting rather than weighted majority voting.
+
+arc represents `adaptively resample and combine`.
+
+<img src="https://cdn.mathpix.com/snip/images/-OxsjINF-1pNoCPvQ-z1OJwSyJ2ref2JyCdqtBD_D0M.original.fullsize.png" width="70%">
 
 - [Combining Pattern Classifiers: Methods and Algorithms](https://b-ok.cc/book/448487/057f55)
+- http://docs.salford-systems.com/BIAS_VARIANCE_ARCING.pdf
+- https://engineering.purdue.edu/~givan/papers/bp.pdf
+- [Arcing Classifiers](https://statistics.berkeley.edu/tech-reports/460)
+
 
 |Properties of AdaBoost|
 |---|
@@ -697,11 +722,13 @@ times $z_j$ has been misclassified by the $k - 1$ classifiers built so far. Seco
 |The training classification error has to go down exponentially fast if the weighted errors of the component classifiers are strictly better than chance.|
 |A crucial property of AdaBoost is that it almost never overfits the data no matter how many iterations it is run.|
 
+
+
 ### multiBoost
 
 [Similar to AdaBoost in the two class case, this new algorithm combines weak classifiers and only requires the performance of each weak classifier be better than random guessing (rather than 1/2).](https://www.intlpress.com/site/pub/pages/journals/items/sii/content/vols/0002/0003/a008/)
 
-
+[SAMME](https://web.stanford.edu/~hastie/Papers/samme.pdf)
 ____
 * Initialize the observation weights ${w}_i=\frac{1}{N}, i=1, 2, \dots, N$.
 * For $t = 1, 2, \dots, T$:
@@ -712,9 +739,11 @@ ____
   +  Set $w_i\leftarrow w_i\exp[\alpha_t\mathbb{I}(G_t(x_i) \not= \mathrm{y}_i)], i=1,2,\dots, N$ and renormalize so that  $\sum_{i}w_i=1$.
 * Output $G(x)=\arg\max_{k}[\sum_{t=1}^{T}\alpha_{t}\mathbb{I}_{G_t(x)=k}]$.
 
+<img src="https://cdn.mathpix.com/snip/images/aoxWmzifAs8sfUHfXVHlUDeDB_C3XDh6i-P5OtAitCA.original.fullsize.png">
+
 - http://www.multiboost.org/
 - https://www.lri.fr/~kegl/research/publications.html
-- https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf
+- [MultiBoost: A Multi-purpose Boosting Package](https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf)
 - https://web.stanford.edu/~hastie/Papers/samme.pdf
 - [A theory of multiclass boosting](http://rob.schapire.net/papers/multiboost-journal.pdf)
 - [The return of AdaBoost.MH: multi-class Hamming trees](https://arxiv.org/abs/1312.6086)
@@ -1093,18 +1122,18 @@ where we also add a prior value ${P}$ and a parameter $a > 0$, which is the weig
 - [CatBoost：比XGBoost更优秀的GBDT算法](http://ai.51cto.com/art/201808/582487.htm)
 
 
-#### More: TencentBoost, ThunderGBM, LightGBM and Beyond
+#### More: TencentBoost, ThunderGBM and Beyond
 
 There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, GBDT on angle and H2o.
 
+##### TencentBoost
+
 [Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely `TencentBoost`, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
 
-[`LightGBM` is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:](https://github.com/microsoft/LightGBM)
-* Faster training speed and higher efficiency.
-* Lower memory usage.
-* Better accuracy.
-* Support of parallel and GPU learning.
-* Capable of handling large-scale data.
+- [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
+- [GBDT on Angel](https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md)
+
+##### ThunderGBM
 
 [`ThunderGBM` is dedicated to helping users apply GBDTs and Random Forests to solve problems efficiently and easily using GPUs. Key features of ThunderGBM are as follows.](https://github.com/Xtra-Computing/thundergbm/blob/master/docs/index.md)
 
@@ -1113,9 +1142,10 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 * Supported Operating Systems: Linux and Windows.
 * ThunderGBM is often 10 times faster than XGBoost, LightGBM and CatBoost. It has excellent performance on handling high dimensional and sparse problems.
 
+----
 Methods | Tree Construction | Update Formula | Training Methods
 ---|---|---|---
-XGBoost|
+XGBoost| $w_j^{\ast} =-(H_j+\lambda )^{-1}G_j$
 CatBoost|
 TencentBoost|
 ThunderGBM|
@@ -1123,27 +1153,27 @@ LightGBM |
 
 
 - [ThunderGBM: Fast GBDTs and Random Forests on GPUs](https://github.com/Xtra-Computing/thundergbm)
-- [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
-- [GBDT on Angel](https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md)
+- [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
 - [Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
 - [从结构到性能，一文概述XGBoost、Light GBM和CatBoost的同与不同](https://zhuanlan.zhihu.com/p/34698733)
 - [从决策树、GBDT到XGBoost/lightGBM/CatBoost](https://zhuanlan.zhihu.com/p/59419786)
-- [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
+
 * [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
 * [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
-* [Fast Traversal of Large Ensembles of Regression Trees](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
 * [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
 * [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
 * [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
 * [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
-* [Parallelizing the Traversal of Large Ensembles of Decision Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2019/03/ITPDS19.pdf)
 * [Block-distributed Gradient Boosted Trees](https://arxiv.org/abs/1904.10522)
 * [Distributed decision tree ensemble learning in Scala](https://github.com/stripe/brushfire)
 * [Yggdrasil: An Optimized System for Training Deep Decision Trees at Scale](https://cs.stanford.edu/~matei/papers/2016/nips_yggdrasil.pdf)
 * [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
+* [TF Boosted Trees: A scalable TensorFlow based framework for gradient boosting](https://arxiv.org/abs/1710.11555)
 
 ### Fast Traversal of Large Ensembles of Regression Trees
 
+* [Fast Traversal of Large Ensembles of Regression Trees](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
+* [Parallelizing the Traversal of Large Ensembles of Decision Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2019/03/ITPDS19.pdf)
 #### QuickScorer
 
 `QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
@@ -1408,11 +1438,11 @@ The  following steps are the keys to a constructed a decision tree in gardient b
 +  Fit a regression tree to the targets $r_{i,t}$   giving **terminal regions**
    $$R_{j,m}, j = 1, 2,\dots , J_m. $$
 
-Here we compute the gradient of loss funtion with respective to each predicction $f(x_i)$ and it is why we call it `gradient boost`.
-If we  fit a regression tree to a subsample of  the targets $r_{i,t}$ randommly, it is `stochastic gradient boost`.
-All variants of gradient boost methods mianly modify $\fbox{the steps to construct a new decision tree}$. And it is trained in additive way.
+Here we compute the gradient of loss function with respective to each prediction $f(x_i)$ and it is why we call it `gradient boost`.
+If we  fit a regression tree to a subsample of  the targets $r_{i,t}$ randomly, it is `stochastic gradient boost`.
+All variants of gradient boost methods mainly modify $\fbox{the steps to construct a new decision tree}$. And it is trained in additive way.
 
-Mirror gradient descent update formule can be transferred to be
+Mirror gradient descent update formulea can be transferred to be
 
 $$
 r_{i,t} = f(x_i)\exp(-\alpha [\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}])\mid_{f=f_{t-1}}.
@@ -1437,12 +1467,12 @@ where $Regularier(f_t)=\gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2$.
 
 It is similar to some regularized cost function to minimize:
 
-$$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t)+Regularier(f_t)\approx \\
-\arg\min_{f_t\in\mathcal F} L(F_{t-1}+f_t), s.t. Regularier(f_t)\leq c.$$
+$$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t)+ \mathcal R(f_t)\approx \\
+\arg\min_{f_t\in\mathcal F} L(F_{t-1}+f_t), s.t. \mathcal R(f_t)\leq c.$$
 
-$\color{red}{Note}$ that $F_t=F_{t-1}+f_t=\left<(1,\dots,1),(f_0,\dots, f_t)\right>$,i.e.,it is a linear combination.
+$\color{red}{Note}$ that $F_t=F_{t-1} + f_t=\left<(1,\dots,1),(f_0,\dots, f_t)\right>$,i.e.,it is a linear combination.
 
-If we want to use ADMM, the regularier must be written in `linear constraints`.
+If we want to use ADMM, the regular term $\mathcal R(f_t)$ must be written in `linear constraints`.
 
 It seems attractive to me to understand the analogy between
 $\fbox{operator splitting in ADMM}$ and $\fbox{leaves splitting in Decision Tree}$.
@@ -1467,7 +1497,7 @@ We show that each iteration of the backpropagation algorithm can be viewed as fi
 
 The classic backpropagation algorithm minimizes an error function $E$ of a multi-layer neural network using gradient descent and the chain rule.
 The resulting weight updates at a given layer are
-$$\Delta w_{ij}=x_i y_j$$
+$$\Delta w_{ij} = x_i y_j$$
 
 where $x_i$ is the output from the previous layer at node $i$ while $y_j=\frac{\partial E}{\partial \text{net}_j}$ is the derivative with respect to the input at node $j$ calculated using the chain rule from the last layer to the current one.
 We can interpret $y_i$ as a pseudo-residual and infer the weight updates  $\Delta w_{ij}=v_{ij}$ such that $\sum_{i} x_{i} v_{i, j}=y_{j},\forall j$.
@@ -1549,7 +1579,7 @@ $$
 #### Application
 
 [News](https://catboost.ai/news) lists some news on CatBoost.
-
+See [XGBoost Resources Page](https://github.com/dmlc/xgboost/blob/master/demo/README.md) for a complete list of usecases of XGBoost, including machine learning challenge winning solutions, data science tutorials and industry adoptions.
 
 * [拍拍贷教你如何用GBDT做评分卡](http://www.sfinst.com/?p=1389)
 * [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
