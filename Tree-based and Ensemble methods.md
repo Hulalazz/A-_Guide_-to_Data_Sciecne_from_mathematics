@@ -52,6 +52,7 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
 * [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 * [Interactive demonstrations for ML courses, Apr 28, 2016 by  Alex Rogozhnikov](https://arogozhnikov.github.io/2016/04/28/demonstrations-for-ml-courses.html)
+* [Can Gradient Boosting Learn Simple Arithmetic?](http://mariofilho.com/can-gradient-boosting-learn-simple-arithmetic/)
 
 #### Tree Construction
 
@@ -148,6 +149,9 @@ When the height of a decision tree is limited to 1, i.e., it takes only one
 test to make every prediction, the tree is called a decision stump.
 While decision trees are nonlinear classifiers in general, decision stumps are a kind of linear classifiers.
 
+#### Missing values processing
+
+- https://catboost.ai/docs/concepts/algorithm-missing-values-processing.html
 
 #### Regression Trees
 
@@ -185,6 +189,8 @@ solution is the full tree $T_0$.
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
 * [REGRESSION TREES FOR LONGITUDINAL AND MULTIRESPONSE DATA](http://pages.stat.wisc.edu/~loh/treeprogs/guide/AOAS596.pdf)
 * [REGRESSION TREE MODELS FOR DESIGNED EXPERIMENTS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/dox.pdf)
+
+
 
 ##### CART
 
@@ -832,7 +838,7 @@ where $C^{\prime}=\sum_{i=1}^{n} (y_i - \hat{y}^{(t-1)}_i)^2 + \sum_{k=1}^{t-1} 
 
 If there is no regular term $\sum_{k=1}^{t} \Omega(f_k)$, the problem is simplified to
 $$\arg\min_{f_{t}}\sum_{i=1}^{n} [-2(y_i - \hat{y}^{(t-1)}_i) f_t(x_i) +  f_t^2(x_i) ]\implies f_t(x_i) = (y_i - \hat{y}^{(t-1)}_i) $$
-where $i\in \{1,\cdots, n\}$ and $(y_i - \hat{y}^{(t-1)}_i)=-\frac{1}{2} {[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
+where $i\in \{1,\cdots, n\}$ and $(y_i - \hat{y}^{(t-1)}_i)=- \frac{1}{2}{[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$.
 
 ***
 
@@ -880,6 +886,11 @@ $$
 Note that the incremental tree is approximate to the negative gradient of the loss function, i.e.,
 $$\fbox{ $\sum_{j=1}^{J_m} \gamma_{j, t} \mathbb{I}(x\in R_{j, m}) \approx {\sum}_{i=1}^{n} -{[\frac{\partial L(\mathrm{y}_i, f(x_i))}{\partial f(x_i)}]}_{f=f_{t-1}}$ }$$
 where $J_m$ is the number of the terminal regions and ${n}$ is the number of training samples/data.
+
+Method | Hypothesis space| Update formulea | Loss function
+---|---|---|---|---
+Gradient Descent | parameter space $\Theta$  | $\theta_t=\theta_{t-1}-\rho_t\underbrace{\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}}_{\text{Computed by Back-Propagation}}$ |$L(f)=\sum_{i}\ell(y_i, f(x_i\mid \theta))$
+Gradient Boost   | function space $\mathcal F$ | $F_{t}= F_{t-1}- \rho_t\underbrace{\nabla_{F} L\mid_{F=F_{t-1}}}_{\text{Approximated by Decision Tree}}$ | $L(F)=\sum_{i}\ell(y_i, F(x_i))$
 
 * [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
 * [Gradient Boosting at Wikipedia](https://www.wikiwand.com/en/Gradient_boosting)
@@ -938,8 +949,9 @@ $$
 r_{i,t}=-{ [\frac{\partial L(\mathrm{d}_i, f(x_i))}{\partial f(x_i)}] }_{f=f_{t-1}}.
 $$
 Why not the error $L(\mathrm{d}_i, f(x_i))$ itself?
-Recall the Taylor expansion
-$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$ so that the non-convex error function can be expressed as a polynomial in terms of $h$,
+Recall the Taylor expansion as following
+$$f(x+h) = f(x)+f^{\prime}(x)h + f^{(2)}(x)h^{2}/2!+ \cdots +f^{(n)}(x)h^{(n)}/n!+\cdots$$
+so that the non-convex error function can be expressed as a polynomial in terms of $h$,
 which is easier to fit than a general common non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
@@ -979,6 +991,7 @@ obj^{(t)} = \sum_{i=1}^{n}[g_i w_{q(x_i)}+\frac{1}{2} h_i w_{q(x_i)}^2 + \gamma 
 \\=\sum_{j=1}^{T}[(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2]+\gamma T
 $$
 where $I_j=\{i\mid q(x_i)=j\}$ is the set of indices of data points assigned to the $j$-th leaf.
+The equation hold because only the leaves or terminal nodes output the results.
 We could further compress the expression by defining $G_j=\sum_{i\in I_j} g_i$ and $H_j=\sum_{i\in I_j} h_i$:
 $$
 obj^{(t)} = \sum_{j=1}^{T}[(G_j w_j+\frac{1}{2}(H_j +\lambda)w_j^2]+\gamma T.
@@ -987,18 +1000,26 @@ $$
 In this equation, $w_j$ are independent with respect to each other, the form $G_j w_j + \frac{1}{2}(H_j+\lambda)w^2_j$ is quadratic and the best $w_j$ for a given structure $q(x)$ and the best objective reduction we can get is:
 
 $$
-w_j^{\ast} =-(H_j+\lambda )^{-1}G_j,\\
+w_j^{\ast} =-\underbrace{(\overbrace{H_j+\lambda}^{\text{Hessian of objective function}} )^{-1}}_{\text{learning rate}}\underbrace{G_j}_{\text{gradient}},\\
 obj^{\ast} =\frac{1}{2}\sum_{j=1}^{T}
 -(H_j+\lambda )^{-1}G_j^2+\gamma T.
 $$
 
+
+Method | Hypothesis space| Update formulea
+---|---|---|---
+Newton's Method  | parameter space $\Theta$  | $\theta_t=\theta_{t-1}-\rho_t(\overbrace{\nabla_{\theta}^2 L\mid_{\theta=\theta_{t-1}}}^{\text{Hessian Matrix}})^{\color{purple}{-1}}\underbrace{\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}}_{\text{Gradient}}$
+xGBoost   | function space $\mathcal F$ | $F_{t}= F_{t-1}- \rho_t\underbrace{(\overbrace{\nabla_{F}^2 L\mid_{F=F_{t-1}}}^{\text{Hessian}})^{\color{red}{-1}} \overbrace{\nabla_{F} L\mid_{F=F_{t-1}}}^{\text{Gradient}}}_{\text{Approximated by Decision Tree}}$
+____
 Another key of  xGBoost is how to a construct a tree fast and painlessly.
 We will try to optimize _`one level`_ of the tree at a time. Specifically we try to split a leaf into two leaves, and the score it gains is
 $$
 Gain = \frac{1}{2} \left[\underbrace{\frac{G_L^2}{H_L+\lambda}}_{\text{from left leaf}} + \underbrace{\frac{G_R^2}{H_R+\lambda}}_{\text{from the right leaf}}-\underbrace{\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}}_{\text{from the original leaf} } \right] - \gamma
 $$
 
-This formula can be decomposed as 1) the score on the new left leaf 2) the score on the new right leaf 3) The score on the original leaf 4) regularization on the additional leaf. We can see an important fact here: if the gain is smaller than $\gamma$, we would do better not to add that branch. This is exactly the **pruning techniques** in tree based models! By using the principles of supervised learning, we can naturally come up with the reason these techniques work.
+This formula can be decomposed as 1) the score on the new left leaf 2) the score on the new right leaf 3) The score on the original leaf 4) regularization on the additional leaf.
+We can see an important fact here: if the gain is smaller than $\gamma$, we would do better not to add that branch. This is exactly the **pruning techniques** in tree based models! By using the principles of supervised learning, we can naturally come up with the reason these techniques work.
+<img src="https://raw.githubusercontent.com/dmlc/web-data/master/xgboost/model/struct_score.png" width="70%">
 
 <img src="https://pic3.zhimg.com/80/v2-46792243acd6570c3416df14a8d0bb1e_hd.jpg" width="80%" />
 <img src="https://pic3.zhimg.com/80/v2-6cd871031772e6ab3005b3166731bae2_hd.jpg" width="80%" />
@@ -1018,7 +1039,6 @@ Other features include:
 * [Extreme Gradient Boosting with R](https://datascienceplus.com/extreme-gradient-boosting-with-r/)
 * [XGBoost: A Scalable Tree Boosting System](https://arxiv.org/abs/1603.02754)
 * [xgboost的原理没你想像的那么难](https://www.jianshu.com/p/7467e616f227)
-* [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html)
 * [How to Visualize Gradient Boosting Decision Trees With XGBoost in Python](https://machinelearningmastery.com/visualize-gradient-boosting-decision-trees-xgboost-python/)
 * [Awesome XGBoost](https://github.com/dmlc/xgboost/blob/master/demo/README.md#machine-learning-challenge-winning-solutions)
 * [Story and lessons from xGBoost](https://homes.cs.washington.edu/~tqchen/2016/03/10/story-and-lessons-behind-the-evolution-of-xgboost.html)
@@ -1054,11 +1074,18 @@ And it limits the depth of the tree in order to avoid over-fitting.
 
 <img src=http://zhoutao822.coding.me/2019/01/13/LightGBM/7.png width=80% />
 
+Instead of one-hot encoding, the optimal solution is to split on a `categorical feature` by partitioning its categories into 2 subsets. If the feature has $k$ categories, there are $2^{(k-1)} - 1$ possible partitions. But there is an efficient solution for regression trees[8]. It needs about $O(k \times log(k))$ to find the optimal partition.
+
+The basic idea is to sort the categories according to the training objective at each split. More specifically, LightGBM sorts the `histogram` (for a categorical feature) according to its `accumulated values` (sum_gradient / sum_hessian) and then finds the best split on the sorted histogram.
+
 `Histogram` is an un-normalized empirical cumulative distribution function, where the continuous features (in flow point data structure) is split into ${k}$ buckets by threahold values such as if $x\in [0, 2)$ then ${x}$ will be split into bucket 1. It really reduces the complexity to store the data and compute the impurities based on the distribution of features.
 
-<img src="http://zhoutao822.coding.me/2019/01/13/LightGBM/5.png" width="100%" />
+<img src="http://zhoutao822.coding.me/2019/01/13/LightGBM/5.png" width="80%" />
 
 **Optimization in parallel learning**
+
+[Feature Parallel in LightGBM, Data Parallel in LightGBM](https://lightgbm.readthedocs.io/en/latest/Features.html#optimization-in-network-communication)
+<img src="https://zhoutao822.coding.me/2019/01/13/LightGBM/6.png" width="80%">
 
 - [A Communication-Efficient Parallel Algorithm for Decision Tree](https://arxiv.org/abs/1611.01276)
 - [LightGBM, Light Gradient Boosting Machine](https://github.com/Microsoft/LightGBM/)
@@ -1069,13 +1096,11 @@ And it limits the depth of the tree in order to avoid over-fitting.
 - [LightGBM](http://zhoutao822.coding.me/2019/01/13/LightGBM/)
 - [Reference papers of lightGBM](https://lightgbm.readthedocs.io/en/latest/Features.html#references)
 - https://lightgbm.readthedocs.io/en/latest/Features.html
-
+- https://aichamp.wordpress.com/tag/lightgbm/
 
 #### CatBoost
 
 `CatBoost` is an algorithm for gradient boosting on decision trees. [Developed by Yandex researchers and engineers, it is the successor of the `MatrixNet` algorithm that is widely used within the company for ranking tasks, forecasting and making recommendations. It is universal and can be applied across a wide range of areas and to a variety of problems](https://betapage.co/startup/catboost) such as search, recommendation systems, personal assistant, self-driving cars, weather prediction and many other tasks. It is in open-source and can be used by anyone now.
-
-`CatBoost` is based on gradient boosted decision trees. During training, a set of decision trees is built consecutively. Each successive tree is built with reduced loss compared to the previous trees.
 
 The number of trees is controlled by the starting parameters. To prevent over-fitting, use the over-fitting detector. When it is triggered, trees stop being built.
 
@@ -1096,12 +1121,35 @@ brackets, i.e., $[x_{j;k} = x_{i;k}]$ equals 1 if $x_{j;k} = x_{i;k}$ and 0 othe
 This procedure, obviously, leads to overfitting.
 
 CatBoost uses a more efficient strategy which reduces overfitting and allows to use the whole dataset for training.
+
+[Before each split is selected in the tree (see Choosing the tree structure), `categorical features are transformed to numerical`. This is done using various statistics on combinations of categorical features and combinations of categorical and numerical features.](https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html)
+
+The method of transforming categorical features to numerical generally includes the following stages:
+* Permutating the set of input objects in a random order.
+* Converting the label value from a floating point to an integer.
+
 Namely, we perform a random permutation of the dataset and
 for each example we compute average label value for the example with the same category value placed before the given one in the permutation.
 Let $\sigma=(\sigma_1, \cdots, \sigma_n)$ be the permutation, then $x_{\sigma_p;k}$ is substituted with
 $$\frac{\sum_{j=1}^{p-1} [x_{\sigma_j; k}=x_{\sigma_p;k}]\cdot \mathrm{Y}_{\sigma_j} + a\cdot P}{\sum_{j=1}^{p-1} [x_{\sigma_j; k}=x_{\sigma_p;k}]}$$
 
 where we also add a prior value ${P}$ and a parameter $a > 0$, which is the weight of the prior.
+
+
+The method depends on the machine learning problem being solved (which is determined by the selected loss function).
+
+The tree depth and other rules for choosing the structure are set in the starting parameters.
+
+How a “feature-split” pair is chosen for a leaf:
+* A list is formed of possible candidates (“feature-split pairs”) to be assigned to a leaf as the split.
+* A number of penalty functions are calculated for each object (on the condition that all of the candidates obtained from step 1 have been assigned to the leaf).
+* The split with the smallest penalty is selected.
+
+The resulting value is assigned to the leaf.
+
+This procedure is repeated for all following leaves (the number of leaves needs to match the depth of the tree).
+
+[Before building each new tree, a random permutation of classification objects is performed. A metric, which determines the direction for further improving the function, is used to select the structure of the next tree. The value is calculated sequentially for each object. The permutation obtained before building the tree is used in the calculation – the data for the objects are used in the order in which they were placed before the procedure.](https://catboost.ai/docs/concepts/algorithm-main-stages_choose-tree-structure.html)
 
 |THREE|
 |:---:|
@@ -1145,16 +1193,18 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 ----
 Methods | Tree Construction | Update Formula | Training Methods
 ---|---|---|---
-XGBoost| $w_j^{\ast} =-(H_j+\lambda )^{-1}G_j$
+XGBoost| Newton-like
+LightGBM | leaf-wise
 CatBoost|
 TencentBoost|
 ThunderGBM|
-LightGBM |
+
 
 
 - [ThunderGBM: Fast GBDTs and Random Forests on GPUs](https://github.com/Xtra-Computing/thundergbm)
 - [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
 - [Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
+- [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html)
 - [从结构到性能，一文概述XGBoost、Light GBM和CatBoost的同与不同](https://zhuanlan.zhihu.com/p/34698733)
 - [从决策树、GBDT到XGBoost/lightGBM/CatBoost](https://zhuanlan.zhihu.com/p/59419786)
 
@@ -1398,10 +1448,7 @@ so that $L(F_t)\leq L(F_{t-1})$. In some sense, it requires the model $f$ is eas
 * [Generalized Boosting Algorithms for Convex Optimization](https://www.ri.cmu.edu/publications/generalized-boosting-algorithms-for-convex-optimization/)
 * [Survey of Boosting from an Optimization Perspective](https://users.soe.ucsc.edu/~manfred/pubs/tut/icml2009/ws.pdf)
 
-Method | Hypothesis space| Update formulea | Loss function
----|---|---|---|---
-Gradient Descent | parameter space $\Theta$  | $\theta_t=\theta_{t-1}-\rho_t\underbrace{\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}}_{\text{Computed by Back-Propagation}}$ |$L(f)=\sum_{i}\ell(y_i, f(x_i\mid \theta))$
-Gradient Boost   | function space $\mathcal F$ | $F_{t}= F_{t-1}- \rho_t\underbrace{\nabla_{F} L\mid_{F=F_{t-1}}}_{\text{Approximated by Decision Tree}}$ | $L(F)=\sum_{i}\ell(y_i, F(x_i))$
+
 
 ______________
 Boosting | Optimization
@@ -1596,13 +1643,11 @@ See [XGBoost Resources Page](https://github.com/dmlc/xgboost/blob/master/demo/RE
 
 ### Selective Ensemble
 
-[An ensemble is generated by training multiple component learners for a same task and then combining their predictions. In most ensemble algorithms, all the trained component learners are employed in constituting an ensemble. But recently, it has been shown that when the learners are neural networks, `it may be better to ensemble some instead of all of the learners`. In this paper, this claim is generalized to situations where the component learners are decision trees. Experiments show that ensembles generated by a selective ensemble algorithm, which selects some of the trained C4.5 decision trees to make up an ensemble, may be not only smaller in the size but also stronger in the generalization than ensembles generated by non-selective algorithms.](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/rsfdgrc03.pdf)
 
 [Selective ensemble naturally bears two goals simultaneously, i.e., maximizing the generalization performance and minimizing the number of learners. When pushing to the limit, the two goals are conflicting, as overly fewer individual learners lead to poor performance. To achieve both good performance and a small ensemble size, previous selective ensemble approaches solve some objectives that mix the two goals.](https://link.springer.com/chapter/10.1007/978-981-13-5956-9_13)
 
 - [Selective Ensemble of Decision Trees](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/rsfdgrc03.pdf)
 - [Growing and Pruning Selective Ensemble Regression over Drifting Data Stream](http://www.auto.shu.edu.cn/info/1125/7181.htm)
-- [Selective Ensemble](https://link.springer.com/chapter/10.1007/978-981-13-5956-9_13)
 - [Selective Ensemble under Regularization Framework](https://link.springer.com/chapter/10.1007/978-3-642-02326-2_30)
 - [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
 
@@ -1631,6 +1676,7 @@ The procedure is as follows:
 * https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier/
 * [Stacked Generalization (Stacking)](http://www.machine-learning.martinsewell.com/ensembles/stacking/)
 * [Stacking与神经网络 - 微调的文章 - 知乎](https://zhuanlan.zhihu.com/p/32896968)
+* [Blending and deep learning](http://jtleek.com/advdatasci/17-blending.html)
 * http://www.chioka.in/stacking-blending-and-stacked-generalization/
 * https://blog.csdn.net/willduan1/article/details/73618677
 * [今我来思，堆栈泛化(Stacked Generalization)](https://www.jianshu.com/p/46ccf40222d6)
@@ -1667,6 +1713,8 @@ In the sense of stacking, deep neural network is thought as the stacked `logisti
 
 - [Mixture of Experts](http://www.scholarpedia.org/article/Ensemble_learning)
 - [Hierarchical Mixture of Experts and the EM Algorithms](https://cs.nyu.edu/~roweis/csc2515-2006/readings/hme.pdf)
+
+$\fbox{partition + stacking}$: Different data activates different algorithms.
 
 #### Deep Forest
 

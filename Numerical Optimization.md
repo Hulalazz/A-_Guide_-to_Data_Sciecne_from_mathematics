@@ -243,6 +243,12 @@ x^{k+1}=x^{k}-\alpha_{k+1}H^{-1}(x^{k})\nabla_{x}\,{f(x^{k})}\\
 =x^{1}-\sum_{n=1}^{k} \alpha_{n+1}H^{-1}(x^{n})\nabla_{x}\,{f(x^{n})}
 $$
 
+- https://brilliant.org/wiki/newton-raphson-method/
+- https://www.shodor.org/unchem/math/newton/
+- http://fourier.eng.hmc.edu/e176/lectures/NM/node21.html
+- https://www.cup.uni-muenchen.de/ch/compchem/geom/nr.html
+- http://web.stanford.edu/class/cme304/docs/newton-type-methods.pdfs
+
 ### The Fisher Scoring Algorithm
 
 In maximum likelihood estimation, the objective function is the log-likelihood function, i.e.
@@ -1173,7 +1179,7 @@ is the Lagrangian rather than  augmented Lagrangian.
 
 
 $$
-\begin{array}{l}{\mathrm{ Problem 1. }} \\ 
+\begin{array}{l}{\mathrm{ Problem 1. }} \\
 {\min _{W_{l}, b_{l}, z_{l}, a_{l}} R\left(z_{L} ; y\right)+\sum_{l=1}^{L} \Omega_{l}\left(W_{l}\right)} \\
 {\text { s.t. } z_{l}=W_{l} a_{l-1}+b_{l}(l=1, \cdots, L), a_{l}=f_{l}\left(z_{l}\right)(l=1, \cdots, L-1)}\end{array}
 $$
@@ -1186,12 +1192,12 @@ $$
 \begin{array}{l}{\mathrm{ Problem 2 }} \\
  {\begin{aligned} \min _{W_{l}, b_{l}, z_{l}, a_{l}} F(\boldsymbol{W}, \boldsymbol{b}, z, \boldsymbol{a})=& R\left(z_{L} ; y\right)+\sum_{l=1}^{L} \Omega_{l}\left(W_{l}\right) \\
  +\underbrace{(v / 2) \sum_{l=1}^{L-1}\left(\left\|z_{l}-W_{l} a_{l-1}-b_{l}\right\|_{2}^{2}+\left\|a_{l}-f_{l}\left(z_{l}\right)\right\|_{2}^{2}\right)}_{\text{$\ell_2$ penalty} } \\
-  \text { s.t. } z_{L}=W_{L} a_{L-1}+b_{L} 
+  \text { s.t. } z_{L}=W_{L} a_{L-1}+b_{L}
  \end{aligned}}\end{array}
 $$
 
 where $\mathbf{W}=\left\{W_{l}\right\}_{l=1}^{L}, \mathbf{b}=\left\{b_{l}\right\}_{l=1}^{L}, \mathbf{z}=\left\{z_{l}\right\}_{l=1}^{L}, \mathbf{a}=\left\{a_{l}\right\}_{l=1}^{L-1}$ and $\nu >0$
-is a tuning parameter. 
+is a tuning parameter.
 
 Compared with Problem 1, Problem 2 has only a linear constraint $z_L = W_La_L−1 + b_L$ and hence is easier
 to solve
