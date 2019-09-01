@@ -6,7 +6,7 @@ where $a_k\in\mathbb{R}$ and the characteristic function is defined as follow
 $${\chi}_{S_{k}}=\begin{cases}1, &\text{if $x \in S_{k}$}\\
 0, &\text{otherwise}\end{cases}.$$
 
-* http://mathonline.wikidot.com/the-simple-function-approximation-lemma
+* [The Simple Function Approximation Lemma](http://mathonline.wikidot.com/the-simple-function-approximation-lemma)
 
 The tree-based learning algorithms take advantages of these [universal approximators](http://mathonline.wikidot.com/the-simple-function-approximation-theorem) to fit the decision function.
 
@@ -17,12 +17,13 @@ The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and the re
 ### Decision Tree
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
-It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
+It use `divide-and-conquer` strategy recursively as similar as the `binary search` in the sorting problem. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
 the data space and fitting a simple prediction model within each partition. As a result, the partitioning can be represented graphically as a decision tree.
 [Visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/) show an visual introduction to decision tree.
-In brief, A decision tree is a classifier expressed as a recursive partition of the instance space.
 
-[Fifty Years of Classification and Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the decision tree.
+In brief, A decision tree is a classifier expressed as a recursive partition of the instance space as a nonparametric statistical method.
+
+[Fifty Years of Classification and Regression Trees](http://www.stat.wisc.edu/~loh/treeprogs/guide/LohISI14.pdf) and [the website of Wei-Yin Loh](http://www.stat.wisc.edu/~loh/guide.html) helps much understand the development of  decision tree methods.
 Multivariate Adaptive Regression
 Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 `Recursive partition` is a recursive  way to construct decision tree.
@@ -38,21 +39,37 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * [Repeated split sample validation to assess logistic regression and recursive partitioning: an application to the prediction of cognitive impairment.](https://www.ncbi.nlm.nih.gov/pubmed/16149128)
 * [A comparison of regression trees, logistic regression, generalized additive models, and multivariate adaptive regression splines for predicting AMI mortality.](https://www.ncbi.nlm.nih.gov/pubmed/17186501)
 * http://www.cnblogs.com/en-heng/p/5035945.html
-* http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf
 * [高效决策树算法系列笔记](https://github.com/wepe/efficient-decision-tree-notes)
+* https://scikit-learn.org/stable/modules/tree.html
+* https://github.com/SilverDecisions/SilverDecisions
 
 #### A Visual and Interactive Guide
 
+Decision tree is represented graphically as a tree as the following.
+
 <img src="https://www.dataversity.net/wp-content/uploads/2015/07/3049155-inline-i-1-machine-learning-is-just-a-big-game-of-plinko.gif" width="60%" />
+
+As shown above, there are differences between the length from root to  the terminal nodes, which the inputs arrive at. In another  word, some inputs take  more tests(pass more nodes) than others.
+
+<img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
+
+Divisive Hierarchical Clustering | Decision Tree
+----|----
+Unsupervised | Supervised
+Clustering | Classification and Regression
+
+
 
 * https://flowingdata.com/
 * https://github.com/parrt/dtreeviz
 * https://narrative-flow.github.io/exploratory-study-2/
+* https://modeloriented.github.io/randomForestExplainer/
 * [A Visual Introduction to Machine Learning](https://www.dataversity.net/a-visual-introduction-to-machine-learning/)
 * [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
 * [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 * [Interactive demonstrations for ML courses, Apr 28, 2016 by  Alex Rogozhnikov](https://arogozhnikov.github.io/2016/04/28/demonstrations-for-ml-courses.html)
 * [Can Gradient Boosting Learn Simple Arithmetic?](http://mariofilho.com/can-gradient-boosting-learn-simple-arithmetic/)
+* [Viusal Random Forest](http://www.rhaensch.de/vrf.html)
 
 #### Tree Construction
 
@@ -149,9 +166,28 @@ When the height of a decision tree is limited to 1, i.e., it takes only one
 test to make every prediction, the tree is called a decision stump.
 While decision trees are nonlinear classifiers in general, decision stumps are a kind of linear classifiers.
 
+It is also useful to restrict the number of terminal nodes, the height/depth of the decision tree in order to avoid overfitting.
+
+
+
 #### Missing values processing
 
-- https://catboost.ai/docs/concepts/algorithm-missing-values-processing.html
+[Assuming the features are missing completely at random, there are a number of ways of handling missing data](https://koalaverse.github.io/machine-learning-in-R/):
+
+1. Discard observations with any missing values.
+2. Rely on the learning algorithm to deal with missing values in its training phase.
+3. Impute all missing values before training.
+
+For most learning methods, the imputation approach (3) is necessary. The simplest tactic is to impute the missing value with the mean or median of the nonmissing values for that feature. If the features have at least some moderate degree of dependence, one can do better by estimating a predictive model for each feature given the other features and then imputing each missing value by its prediction from the model.
+
+Some software packages handle missing data automatically, although many don’t, so it’s important to be aware if any pre-processing is required by the user.
+
+- [Missing values processing in CatBoost Packages](https://catboost.ai/docs/concepts/algorithm-missing-values-processing.html)
+- [Decision Tree: Review of Techniques for Missing Values at Training, Testing and Compatibility](http://uksim.info/aims2015/CD/data/8675a122.pdf)
+- http://oro.open.ac.uk/22531/1/decision_trees.pdf
+- https://courses.cs.washington.edu/courses/cse416/18sp/slides/S6_missing-data-annotated.pdf
+- [Handling Missing Values when Applying Classification Models](http://pages.stern.nyu.edu/~fprovost/Papers/missing.pdf)
+- [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
 
 #### Regression Trees
 
@@ -190,17 +226,6 @@ solution is the full tree $T_0$.
 * [REGRESSION TREES FOR LONGITUDINAL AND MULTIRESPONSE DATA](http://pages.stat.wisc.edu/~loh/treeprogs/guide/AOAS596.pdf)
 * [REGRESSION TREE MODELS FOR DESIGNED EXPERIMENTS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/dox.pdf)
 
-
-
-##### CART
-
-
-* [Classification and Regression Tree Methods(In Encyclopedia of Statistics in Quality and Reliability)](http://pages.stat.wisc.edu/~loh/treeprogs/guide/eqr.pdf)
-* [Classification And Regression Trees for Machine Learning](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
-* [Classification and regression trees](http://pages.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf)
-* http://homepages.uc.edu/~lis6/Teaching/ML19Spring/Lab/lab8_tree.html
-* [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
-* [Classification and Regression Tree Approach for Prediction of Potential Hazards of Urban Airborne Bacteria during Asian Dust Events](https://www.nature.com/articles/s41598-018-29796-7)
 
 #### Classification Trees
 
@@ -262,8 +287,6 @@ Oblique Decision Trees|?
 MARS|?
 
 
-<img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
-
 * [Building Classification Models: id3-c45](https://cis.temple.edu/~giorgio/cis587/readings/id3-c45.html)
 * [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
 * [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
@@ -289,7 +312,19 @@ where $\alpha=(\alpha_1,\cdots, \alpha_d)^T$ and $x=(x_1, x_2, \cdots, x_d)$.
 - [Global Induction of Oblique Decision Trees: An Evolutionary Approach](https://www.cs.kent.ac.uk/people/staff/mg483/documents/kr05iis.pdf)
 - [On Oblique Random Forests](http://people.csail.mit.edu/menze/papers/menze_11_oblique.pdf)
 
-It is natural to genralized to nonlinear test, which can be seen as feature enginner of the input data.
+It is natural to generalized to nonlinear test, which can be seen as feature engineering of the input data.
+
+
+#### Classification and Regression Tree
+
+[Classification and regression trees (CART) are a non-parametric decision tree learning technique that produces either classification or regression trees, depending on whether the dependent variable is categorical or numeric, respectively. CART is both a generic term to describe tree algorithms and also a specific name for Breiman’s original algorithm for constructing classification and regression trees.](https://koalaverse.github.io/machine-learning-in-R/decision-trees.html)
+
+* [Classification and Regression Tree Methods(In Encyclopedia of Statistics in Quality and Reliability)](http://pages.stat.wisc.edu/~loh/treeprogs/guide/eqr.pdf)
+* [Classification And Regression Trees for Machine Learning](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
+* [Classification and regression trees](http://pages.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf)
+* http://homepages.uc.edu/~lis6/Teaching/ML19Spring/Lab/lab8_tree.html
+* [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
+* [Classification and Regression Tree Approach for Prediction of Potential Hazards of Urban Airborne Bacteria during Asian Dust Events](https://www.nature.com/articles/s41598-018-29796-7)
 
 ### VFDT and Beyond
 
@@ -354,14 +389,23 @@ On many problems the performance of random forests is very similar to boosting, 
 
 <img src="https://dimensionless.in/wp-content/uploads/RandomForest_blog_files/figure-html/voting.png" width="80%" />
 
+|[properties of random forest](https://www.elderresearch.com/blog/modeling-with-random-forests)|
+|:-------:|
+|Robustness to Outliers|
+|Scale Tolerance|
+|Ability to Handle Missing Data |
+|Ability to Select Features|
+|Ability to Rank Features|
+
 ***
 
-* [randomForestExplainer](https://mi2datalab.github.io/randomForestExplainer/index.html)
+* [randomForestExplainer](https://github.com/ModelOriented/randomForestExplainer)
+* https://modeloriented.github.io/randomForestExplainer/
 * [Awesome Random Forest](https://github.com/kjw0612/awesome-random-forest)
 * [Interpreting random forests](https://blog.datadive.net/interpreting-random-forests/)
 * [Random Forests by Leo Breiman and Adele Cutler](https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm)
 * https://dimensionless.in/author/raghav/
-* [Viusal Random Forest, Ronny Hänsch, Technische Universität Berlin, Germany](http://www.rhaensch.de/vrf.html)
+* https://koalaverse.github.io/machine-learning-in-R/random-forest.html
 * https://www.wikiwand.com/en/Random_forest
 * https://sktbrain.github.io/awesome-recruit-en.v2/
 * [Introduction to Random forest by Raghav Aggiwal](https://dimensionless.in/introduction-to-random-forest/)
@@ -498,6 +542,7 @@ It is a sample-based ensemble method.
 * https://www.wikiwand.com/en/Bootstrap_aggregating
 * [Bagging Regularizes](http://dspace.mit.edu/bitstream/handle/1721.1/7268/AIM-2002-003.pdf?sequence=2)
 * [Bootstrap Inspired Techniques in Computational Intelligence](http://users.rowan.edu/~polikar/RESEARCH/PUBLICATIONS/spm2007.pdf)
+* [ranger: A Fast Implementation of Random Forests for High Dimensional Data in C++ and R](https://arxiv.org/pdf/1508.04409.pdf)
 
 #### Random Subspace Methods
 
@@ -712,13 +757,13 @@ The difference between AdaBoost and arc-x4 is twofold.
 First, the weight for object $z_j$ at step $k$ is calculated as the proportion of times $z_j$ has been misclassified by the $k - 1$ classifiers built so far.
 Second, the final decision is made by plurality voting rather than weighted majority voting.
 
-arc represents `adaptively resample and combine`.
+`arc` represents `adaptively resample and combine`.
 
 <img src="https://cdn.mathpix.com/snip/images/-OxsjINF-1pNoCPvQ-z1OJwSyJ2ref2JyCdqtBD_D0M.original.fullsize.png" width="70%">
 
 - [Combining Pattern Classifiers: Methods and Algorithms](https://b-ok.cc/book/448487/057f55)
-- http://docs.salford-systems.com/BIAS_VARIANCE_ARCING.pdf
-- https://engineering.purdue.edu/~givan/papers/bp.pdf
+- [BIAS, VARIANCE , AND ARCING CLASSIFIERS](http://docs.salford-systems.com/BIAS_VARIANCE_ARCING.pdf)
+- [Online Ensemble Learning: An Empirical Study](https://engineering.purdue.edu/~givan/papers/bp.pdf)
 - [Arcing Classifiers](https://statistics.berkeley.edu/tech-reports/460)
 
 
@@ -788,6 +833,7 @@ If there is not enough memory available to store all of the response values, the
 - [Gradient Boosted Feature Selection](https://arxiv.org/abs/1901.04055)
 - [Gradient Regularized Budgeted Boosting](https://arxiv.org/abs/1901.04065)
 - [Open machine learning course. Theme 10. Gradient boosting](https://weekly-geekly.github.io/articles/327250/index.html)
+- [GBM in Machine Learning in R](https://koalaverse.github.io/machine-learning-in-R/gradient-boosting-machines.html)
 
 One of the frequently asked questions is `What's the basic idea behind gradient boosting?` and the answer from [https://explained.ai/gradient-boosting/faq.html] is the best one I know:
 > Instead of creating a single powerful model, boosting combines multiple simple models into a single **composite model**. The idea is that, as we introduce more and more simple models, the overall model becomes stronger and stronger. In boosting terminology, the simple models are called weak models or weak learners.
@@ -1102,15 +1148,17 @@ The basic idea is to sort the categories according to the training objective at 
 
 `CatBoost` is an algorithm for gradient boosting on decision trees. [Developed by Yandex researchers and engineers, it is the successor of the `MatrixNet` algorithm that is widely used within the company for ranking tasks, forecasting and making recommendations. It is universal and can be applied across a wide range of areas and to a variety of problems](https://betapage.co/startup/catboost) such as search, recommendation systems, personal assistant, self-driving cars, weather prediction and many other tasks. It is in open-source and can be used by anyone now.
 
-The number of trees is controlled by the starting parameters. To prevent over-fitting, use the over-fitting detector. When it is triggered, trees stop being built.
+Two critical algorithmic advances introduced in CatBoost are the implementation of `ordered boosting`, a permutation-driven alternative to the classic algorithm, and
+an innovative algorithm for processing `categorical features`.
+Both techniques were created to fight a prediction shift caused by a special kind of target leakage present in all currently existing implementations of gradient boosting algorithms.
 
+The number of trees is controlled by the starting parameters. To prevent over-fitting, use the over-fitting detector. When it is triggered, trees stop being built.
+***
 Before learning, the possible values of objects are divided into disjoint ranges ($\color{red}{\fbox{buckets}}$) delimited by the threshold values ($\color{red}{\fbox{splits}}$). The size of the quantization (the number of splits) is determined by the starting parameters (separately for numerical features and numbers obtained as a result of converting categorical features into numerical features).
 
 Quantization is also used to split the label values when working with categorical features. А random subset of the dataset is used for this purpose on large datasets.
 
-Two critical algorithmic advances introduced in CatBoost are the implementation of `ordered boosting`, a permutation-driven alternative to the classic algorithm, and
-an innovative algorithm for processing `categorical features`.
-Both techniques were created to fight a prediction shift caused by a special kind of target leakage present in all currently existing implementations of gradient boosting algorithms.
+
 
 The most widely used technique which is usually applied to low-cardinality categorical features
 is one-hot encoding; another way to deal with categorical features is to compute some statistics using the label values of the examples.
@@ -1139,7 +1187,7 @@ where we also add a prior value ${P}$ and a parameter $a > 0$, which is the weig
 The method depends on the machine learning problem being solved (which is determined by the selected loss function).
 
 The tree depth and other rules for choosing the structure are set in the starting parameters.
-
+****
 How a “feature-split” pair is chosen for a leaf:
 * A list is formed of possible candidates (“feature-split pairs”) to be assigned to a leaf as the split.
 * A number of penalty functions are calculated for each object (on the condition that all of the candidates obtained from step 1 have been assigned to the leaf).
@@ -1147,11 +1195,16 @@ How a “feature-split” pair is chosen for a leaf:
 
 The resulting value is assigned to the leaf.
 
-This procedure is repeated for all following leaves (the number of leaves needs to match the depth of the tree).
+[This procedure is repeated for all following leaves (the number of leaves needs to match the depth of the tree).](https://catboost.ai/docs/concepts/algorithm-main-stages_choose-tree-structure.html)
 
-[Before building each new tree, a random permutation of classification objects is performed. A metric, which determines the direction for further improving the function, is used to select the structure of the next tree. The value is calculated sequentially for each object. The permutation obtained before building the tree is used in the calculation – the data for the objects are used in the order in which they were placed before the procedure.](https://catboost.ai/docs/concepts/algorithm-main-stages_choose-tree-structure.html)
+[CatBoost implements an algorithm that allows to fight usual gradient boosting biases.](https://catboost.ai/docs/concepts/algorithm-main-stages_choose-tree-structure.html)
 
-|THREE|
+Assume that we take one random permutation $\sigma$ of the training examples and maintain n different supporting models $M_1, \cdots , M_n$ such that the model $M_i$ is learned using only the `first i examples in the permutation`.
+At each step, in order to obtain the residual for $j$-th sample, we use the model $M_{j−1}$.
+
+<img src="https://cdn.mathpix.com/snip/images/kVsAOTih7qFTcp3z-BPJIH8cKdrq5GpvkYivu0XRg-o.original.fullsize.png" witdh= "80%"/>
+
+|Three Steps|
 |:---:|
 |<img src = "https://s2.51cto.com/oss/201808/30/108338cbd6df1a13dd9ed6d14c9da35d.png" width="100%" />|
 |<img src = "https://s1.51cto.com/oss/201808/30/e0ac1ddc9b9c0e513e2669f56151edc7.png" width="100%" />|
@@ -1176,10 +1229,11 @@ There are more gradient boost tree algorithms such as ThubderGBM, TencentBoost, 
 
 ##### TencentBoost
 
-[Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely `TencentBoost`, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](https://ieeexplore.ieee.org/abstract/document/7929984)
+[Gradient boosting tree (GBT), a widely used machine learning algorithm, achieves state-of-the-art performance in academia, industry, and data analytics competitions. Although existing scalable systems which implement GBT, such as XGBoost and MLlib, perform well for data sets with medium-dimensional features, they can suffer performance degradation for many industrial applications where the trained data sets contain high dimensional features. The performance degradation derives from their inefficient mechanisms for model aggregation-either map-reduce or all-reduce. To address this high-dimensional problem, we propose a scalable execution plan using the parameter server architecture to facilitate the model aggregation. Further, we introduce a sparse-pull method and an efficient index structure to increase the processing speed. We implement a GBT system, namely `TencentBoost`, in the production cluster of Tencent Inc. The empirical results show that our system is 2-20× faster than existing platforms.](http://net.pku.edu.cn/~cuibin/Papers/2017%20ICDE%20boost.pdf)
 
 - [TencentBoost: A Gradient Boosting Tree System with Parameter Server](https://ieeexplore.ieee.org/abstract/document/7929984)
 - [GBDT on Angel](https://github.com/Angel-ML/angel/blob/master/docs/algo/gbdt_on_angel.md)
+- [The purposes of using parameter server in GBDT](https://github.com/Angel-ML/angel/issues/7)
 
 ##### ThunderGBM
 
@@ -1195,7 +1249,7 @@ Methods | Tree Construction | Update Formula | Training Methods
 ---|---|---|---
 XGBoost| Newton-like
 LightGBM | leaf-wise
-CatBoost|
+CatBoost| ordered boosting
 TencentBoost|
 ThunderGBM|
 
@@ -1229,7 +1283,6 @@ ThunderGBM|
 `QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
 
 It adopts a novel bitvector representation of the tree-based ranking model, and performs an interleaved traversal of the ensemble by means of simple logical bitwise operations. The performance of the proposed algorithm are unprecedented, due to its cache-aware approach, both in terms of data layout and access patterns, and to a control ﬂow that entails very low branch mis-prediction rates.
-
 
 
 **All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.**
@@ -1346,6 +1399,12 @@ ALGORITHM 2: : The QUICKSCORER Algorithm
 - [Exploiting CPU SIMD Extensions to Speed-up Document Scoring with Tree Ensembles](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2016/07/SIGIR16a.pdf)
 
 #### RapidScorer
+
+[`RapidScorer`](http://ai.stanford.edu/~wzou/kdd_rapidscorer.pdf) is a novel framework
+for speeding up the scoring process of industry-scale tree ensemble models, without hurting the quality of scoring results.
+`RapidScorer` introduces a modified run length encoding called `epitome` to the bitvector representation of the tree nodes.
+Epitome can greatly reduce the computation cost to traverse the tree ensemble, and work with several other proposed strategies to maximize the compactness of data units in memory.
+The achieved compactness makes it possible to fully utilize data parallelization to improve model scalability.
 
 ![RapidScorer](https://cdn.mathpix.com/snip/images/vLj1OrPKymNq_nWn3xY0TLijGP-8K1e3eYtQG_Wm-Cw.original.fullsize.png)
 
@@ -1626,7 +1685,7 @@ $$
 #### Application
 
 [News](https://catboost.ai/news) lists some news on CatBoost.
-See [XGBoost Resources Page](https://github.com/dmlc/xgboost/blob/master/demo/README.md) for a complete list of usecases of XGBoost, including machine learning challenge winning solutions, data science tutorials and industry adoptions.
+See [XGBoost Resources Page](https://github.com/dmlc/xgboost/blob/master/demo/README.md) for a complete list of use cases of XGBoost, including machine learning challenge winning solutions, data science tutorials and industry adoptions.
 
 * [拍拍贷教你如何用GBDT做评分卡](http://www.sfinst.com/?p=1389)
 * [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)

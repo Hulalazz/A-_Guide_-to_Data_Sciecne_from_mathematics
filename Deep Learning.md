@@ -2,6 +2,9 @@
 
 <img title="https://www.artsky.com/read/524" src="https://www.artsky.com/r/s/pic/info/2015/12/1451038754807.jpg" width="60%" />
 
+https://jsideas.net/snapshot_ensemble/
+https://www.deeplearningpatterns.com/doku.php?id=ensembles
+
 * [2019 Fall Semester: Program on Deep Learning](https://www.samsi.info/programs-and-activities/semester-long-programs/2019-fall-semester-program-on-deep-learning/)
 * https://www.mis.mpg.de/montufar/index.html
 * [Deep Learning Theory Kickoff Meeting](https://www.mis.mpg.de/calendar/conferences/2019/kickoff.html)
@@ -1961,8 +1964,15 @@ Tuning ${h}$ makes one find the best zoom that spread the top eigenvalues. ${c}$
 
 ## DeepRL
 
+Reinforcement Learning (RL) has achieved many successes over the years in training autonomous agents to perform simple tasks. However, one of the major remaining challenges in RL is scaling it to high-dimensional, real-world applications.
+
+Although many works have already focused on strategies to scale-up RL techniques and to find solutions for more complex problems with reasonable successes, many issues still exist. This workshop encourages to discuss diverse approaches to accelerate and generalize RL, such as the use of approximations, abstractions, hierarchical approaches, and Transfer Learning.
+
+Scaling-up RL methods has major implications on the research and practice of complex learning problems and will eventually lead to successful implementations in real-world applications.
+
 ![DeepRL](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/375px-Reinforcement_learning_diagram.svg.png)
 
++ http://surl.tirl.info/
 + https://srdas.github.io/DLBook/ReinforcementLearning.html
 + https://katefvision.github.io/
 + https://spinningup.openai.com/en/latest/
@@ -1976,6 +1986,7 @@ https://sites.ualberta.ca/~szepesva/RLBook.html
 + https://openai.com/blog/spinning-up-in-deep-rl/
 + [Deep Reinforcement Learning NUS SoC, 2018/2019, Semester II](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1820/)
 + [CS 285 at UC Berkeley: Deep Reinforcement Learning](http://rail.eecs.berkeley.edu/deeprlcourse/)
++ https://theintelligenceofinformation.wordpress.com/
 
 ## Deep Learning Ensemble
 
@@ -1985,11 +1996,15 @@ Deep learning and ensemble learning share some similar guide line.
 - [ ] [A selective neural network ensemble classification for incomplete data](https://link.springer.com/article/10.1007/s13042-016-0524-0)
 - [ ] [Deep Neural Network Ensembles](https://arxiv.org/abs/1904.05488)
 - [ ] [Ensemble Learning Methods for Deep Learning Neural Networks](https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/)
+- [ ] [Stochastic Weight Averaging — a New Way to Get State of the Art Results in Deep Learning](https://pechyonkin.me/stochastic-weight-averaging/)
 - [ ] [Ensemble Deep Learning for Speech Recognition](https://www.isca-speech.org/archive/archive_papers/interspeech_2014/i14_1915.pdf)
 - [ ] http://ruder.io/deep-learning-optimization-2017/
 - [ ] https://arxiv.org/abs/1704.00109v1
 - [ ] [Blending and deep learning](http://jtleek.com/advdatasci/17-blending.html)
 - [ ] https://arxiv.org/abs/1708.03704
+- [ ] [Better Deep Learning: Train Faster, Reduce Overfitting, and Make Better Predictions](https://machinelearningmastery.com/better-deep-learning/)
+- https://machinelearningmastery.com/framework-for-better-deep-learning/
+- https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/
 
 ### Selective Ensemble
 
@@ -2010,6 +2025,19 @@ In contrast to traditional ensembles (produce an ensemble of multiple neural net
 - [Snapshot Ensemble in Keras](https://github.com/titu1994/Snapshot-Ensembles)
 - [Snapshot Ensembles: Train 1, get M for free Reviewed on Mar 8, 2018 by Faezeh Amjad](https://vitalab.github.io/article/2018/03/08/snapshot-distillation.html)
 
+### Fast Geometric Ensembling (FGE)
+
+- [Loss Surfaces, Mode Connectivity, and Fast Ensembling of DNNs](https://arxiv.org/abs/1802.10026)
+- https://github.com/timgaripov/dnn-mode-connectivity
+- https://izmailovpavel.github.io/files/curves/nips_poster.pdf
+- https://bayesgroup.github.io/bmml_sem/2018/Garipov_Loss%20Surfaces.pdf
+
+### Stochastic Weight Averaging (SWA)
+
+- https://github.com/timgaripov/swa
+- [Averaging Weights Leads to Wider Optima and Better Generalization](https://arxiv.org/abs/1803.05407)
+- https://pytorch.org/blog/stochastic-weight-averaging-in-pytorch/
+- https://izmailovpavel.github.io/
 
 ## Bayesian Deep Learning
 

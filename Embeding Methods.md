@@ -427,7 +427,7 @@ The distance between two points $u,v$ on the Poincaré ball is given by:
 $$
 d(u,v) = arcosh\big(1 + 2\frac{\lVert u-v \rVert^2}{(1-\lVert u\rVert^2)(1-\lVert v\rVert^2)}\big) \tag{1}
 $$
-where the double bars represent the Euclidean distance. 
+where the double bars represent the Euclidean distance.
 
 |An attempt at embedding a tree with branching factor 4 into the Euclidean plane | Embedding a hierarchical tree with branching factor two into a 2D hyperbolic plane |
 :---|---:
@@ -436,6 +436,7 @@ where the double bars represent the Euclidean distance.
 - [Poincaré Embeddings for Learning Hierarchical Representations](https://papers.nips.cc/paper/7213-poincare-embeddings-for-learning-hierarchical-representations.pdf)
 - [Implementing Poincaré Embeddings](https://rare-technologies.com/implementing-poincare-embeddings/)
 - [Hyperbolic Geometry and Poincaré Embeddings](http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/)
+- http://hyperbolicdeeplearning.com/poincare-glove/
 
 #### Embedding Networks in Hyperbolic Spaces
 
