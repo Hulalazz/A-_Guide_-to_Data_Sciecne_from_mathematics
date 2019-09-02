@@ -14,6 +14,7 @@ It is about how to accelerate the training and inference of deep learning(genera
 * https://zhuanlan.zhihu.com/jackwish
 * https://machinethink.net/blog/compressing-deep-neural-nets/
 * [Rethinking Deep Learning: Architectures and Algorithms](https://nickhigham.files.wordpress.com/2019/05/talk12-constantinides.pdf)
+* https://girishvarma.in/teaching/efficient-cnns/
 * https://arxiv.org/abs/1904.00938
 * https://github.com/ChanChiChoi/awesome-model-compression
 * https://github.com/fengbintu/Neural-Networks-on-Silicon
@@ -29,9 +30,9 @@ From [What’s the Difference Between Deep Learning Training and Inference?](htt
 
 <img src="https://blogs.nvidia.com/wp-content/uploads/2016/08/ai_difference_between_deep_learning_training_inference.jpg" width="80%">
 
-Training | Inerence
+Training | Inference
 ---|---
-Acceleration | Compresion
+Acceleration | Compression
 https://web.stanford.edu/~perdavan/DNNTrain/|https://www.intel.ai/accelerating-tensorflow-inference-with-intel-deep-learning-boost-on-2nd-gen-intel-xeon-scalable-processors/
 [Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)|[Accelerating Large Scale Deep Learning Inference through DeepCPU at Microsoft](https://www.usenix.org/system/files/opml19papers-zhang.pdf)
 
@@ -78,9 +79,6 @@ Matrix computation dense application like deep neural network would take the adv
 * https://sites.google.com/site/mlsys2016/
 * [Programmable Hardware Accelerators (Winter 2019)](https://cmpe293-winter19-01.courses.soe.ucsc.edu/home)
 * [Hardware Accelerators for Training Deep Neural Networks ](https://web.stanford.edu/~perdavan/DNNTrain/)
-* [Hardware Accelerators for Machine Learning (CS 217) Stanford University, Fall 2018](https://cs217.stanford.edu/readings)
-* [Hardware Accelerators for Machine Learning (CS 217)](https://cs217.stanford.edu/)
-* [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
 * [Illinois Microarchitecture Project using Algorithms and Compiler Technology](http://impact.crhc.illinois.edu/default.aspx)
 * [Deep Learning for Computer Architects](https://www.morganclaypool.com/doi/abs/10.2200/S00783ED1V01Y201706CAC041)
 * [System for Machine Learning @.washington.edu/](https://dlsys.cs.washington.edu/)
@@ -101,7 +99,6 @@ Matrix computation dense application like deep neural network would take the adv
 * https://paco-cpu.github.io/paco-cpu/
 * [Programmable Inference Accelerator](https://developer.nvidia.com/tensorrt)
 * [Fair and useful benchmarks for measuring training and inference performance of ML hardware, software, and services.](https://mlperf.org/)
-* https://hanlab.mit.edu/
 * http://yanjoy.win/
 * https://www.nextplatform.com/
 
@@ -128,14 +125,17 @@ Parallel Architectures for Parallel Processing as codesign is a subfield of syss
 
 * [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
 * https://developer.nvidia.com/cuda-zone
+* https://arxiv.org/pdf/1410.0759.pdf
 
 #### TPU
 
 * [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
 * [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu)
 
-#### NPU 
+#### NPU
 
+* [Hardware Accelerators for Machine Learning (CS 217) Stanford University, Fall 2018](https://cs217.stanford.edu/readings)
+* [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
 * https://www.alphaics.ai/
 * http://www.cambricon.com/
 * https://www.sigarch.org/
@@ -172,6 +172,15 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 + [Distributed Machine Learning and Matrix Computations: A NIPS 2014 Workshop](https://stanford.edu/~rezab/nips2014workshop/index.html)
 + [Large Scale Matrix Analysis and Inference: A NIPS 2013 Workshop](http://stanford.edu/~rezab/nips2013workshop/)
 + https://eigen.tuxfamily.org/dox/index.html
++ https://www.cs.utexas.edu/~flame/web/
++ [A high-level language for programming accelerators](https://spatial-lang.org/)
++ https://spatial-lang.readthedocs.io/en/latest/
+
+[Why GEMM is at the heart of deep learning](https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/)
+
+<img src="https://yongyuan.name/imgs/posts/gemm_cup_gpu.png" width="70%">
+
+[General Matrix Multiply (GEMM) is a common algorithm in linear algebra, machine learning, statistics, and many other domains.](https://spatial-lang.org/gemm)
 
 ###  Fast Matrix-vector Multiplication
 
@@ -191,6 +200,7 @@ where $m\in\mathbb R^{m\times n}, u\in\mathbb R^n$.
 - [Fast Implementation of General Matrix-Vector Multiplication (GEMV) on Kepler GPUs](https://ieeexplore.ieee.org/document/7092787)
 - [The Mailman algorithm for matrix vector multiplication](http://www.cs.yale.edu/homes/el327/papers/matrixVectorApp.pdf)
 - http://people.ece.umn.edu/users/parhi/
+- https://www.cs.utexas.edu/~flame/web/publications.html
 
 ### Computation of Matrix Chain Products
 
@@ -208,7 +218,7 @@ A special case is when $A_1=A_2=\dots =A_k$.
 - https://home.cse.ust.hk/~dekai/271/notes/L12/L12.pdf
 
 
-### Generalized Matrix Multiplication Optimization
+### Generalized Matrix to Matrix Multiplication
 
 If the computation speed  of matrix operation is boosted, the inference of deep learning model is accelerated.
 Matrix multiplication  $C_{M\times N}=A_{M\times K}B_{K\times N}$ via dot product is defined as
@@ -232,13 +242,16 @@ The picture below visualizes the computation of a single element in the result m
 
 <img src="https://gist.githubusercontent.com/nadavrot/5b35d44e8ba3dd718e595e40184d03f0/raw/23dc2fdf78e88ef7fa2f00028bb735ee70429d6d/zsimple.png" width="60%">
 
-Our program is memory bound, which means that the multipliers are not active most of the time because they are waiting for memory. 
+Our program is memory bound, which means that the multipliers are not active most of the time because they are waiting for memory.
 
+
+* [Geometry and the complexity of matrix multiplication](https://www.ams.org/journals/bull/2008-45-02/S0273-0979-08-01176-2/home.html)
 * [High-Performance Matrix Multiplication](https://gist.github.com/nadavrot/5b35d44e8ba3dd718e595e40184d03f0)
 * [Fast Matrix Multiplication @mathoverflow](https://mathoverflow.net/questions/34173/fast-matrix-multiplication)
 * [Powers of Tensors and Fast Matrix Multiplication](https://simons.berkeley.edu/sites/default/files/docs/2438/slideslegall.pdf)
 * https://www.kkhaydarov.com/matrix-multiplication-algorithms/
 * [BLISlab: A Sandbox for Optimizing GEMM](https://github.com/flame/blislab)
+* [MAGMA: Matrix Algebra for GPU and Multicore Architectures](https://icl.cs.utk.edu/projectsfiles/magma/doxygen/index.html)
 * http://apfel.mathematik.uni-ulm.de/~lehn/sghpc/gemm/
 * [通用矩阵乘和卷积优化](https://jackwish.net/gemm-optimization-and-convolution.html)
 * [Fast Matrix Multiplication Algorithms](https://www.ics.uci.edu/~fastmm/)
@@ -252,6 +265,9 @@ Our program is memory bound, which means that the multipliers are not active mos
 * [Part II: The Strassen algorithm in Python, Java and C++](https://martin-thoma.com/strassen-algorithm-in-python-java-cpp/)
 * [Part III: Matrix multiplication on multiple cores in Python, Java and C++](https://martin-thoma.com/part-iii-matrix-multiplication-on-multiple-cores-in-python-java-and-c/)
 * https://github.com/MartinThoma/matrix-multiplication
+* http://jianyuhuang.com/
+* https://terrytao.wordpress.com/tag/fast-matrix-multiplication/
+* https://spatial-lang.org/gemm
 
 ##### Strassen Algorithms
 
@@ -551,6 +567,7 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 + [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
 + [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
 + [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
+https://github.com/stanford-futuredata/Willump
 
 ## Distributed Training of Neural Networks
 
@@ -586,6 +603,7 @@ Knowledge distillation |Training a compact neural network with distilled knowled
 * [Caffeine: Towards Uniformed Representation and Acceleration for Deep Convolutional Neural Networks](https://vast.cs.ucla.edu/publications/caffeine-towards-uniformed-representation-and-acceleration-deep-convolutional-neural)
 * [Optimizing FPGA-based Accelerator Design for Deep Convolutional Neural Networks](https://vast.cs.ucla.edu/publications/optimizing-fpga-based-accelerator-design-deep-convolutional-neural-networks)
 * [Automated Systolic Array Architecture Synthesis for High Throughput CNN Inference on FPGAs](https://vast.cs.ucla.edu/publications/automated-systolic-array-architecture-synthesis-high-throughput-cnn-inference-fpgas)
+* [Efficient Deep Learning for Computer Vision CVPR 2019](https://sites.google.com/view/ecv2019/home)
 
 #### Parameter Pruning and Sharing
 

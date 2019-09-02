@@ -2,6 +2,7 @@
 
 - [MaxEnt 2006  Twenty sixth International Workshop on  Bayesian Inference and Maximum Entropy Methods in Science and Engineering  CNRS, Paris, France, July 8-13, 2006](http://djafari.free.fr/maxent2006/)
 - [Cynthia Rudin](https://users.cs.duke.edu/~cynthia/)
+- https://bayesgroup.github.io/
 - [Probabilistic Artificial Intelligence (2018)](https://las.inf.ethz.ch/teaching/pai-f18)
 - [INTELLIGENT PROBABILISTIC APPROACHES TO NATURAL LANGUAGE](https://aaai.org/Library/Symposia/Fall/fs92-04.php)
 - [Probabilistic Numerics Group](https://pn.is.tuebingen.mpg.de/)
@@ -517,7 +518,7 @@ Bayesian Inference, Hamiltonian Monte Carlo and the No U-Turn Sampler, Variation
 * [Gen: MIT probabilistic programming language](http://probcomp.csail.mit.edu/software/gen/)
 * [Graph Nets library](https://github.com/deepmind/graph_nets)
 * [Hakaru a simply-typed probabilistic programming language](https://hakaru-dev.github.io/intro/probprog/)
-  
+
 <img title = "factorie" src = http://factorie.cs.umass.edu/assets/images/factorie-logo-small.png />
 
 _______

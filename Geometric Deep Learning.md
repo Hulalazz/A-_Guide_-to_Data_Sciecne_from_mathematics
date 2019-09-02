@@ -54,14 +54,23 @@ Think of a binary tree: the number of nodes grows exponentially with depth.
 Hyperbolic geometry is better suited to embed data with an underlying hierarchical/heterogeneous structure.
 Let’s make deep learning possible in hyperbolic space.](http://hyperbolicdeeplearning.com/)
 
-<img src="https://hazyresearch.github.io/hyperE/pc.svg"  width="40%" />
-
-Recall the recursive formula of forward neural network:
+Recall the recursive form of forward neural network:
 $$
 X\to \underbrace{\sigma}_{nonlinerality}\circ \underbrace{(\underbrace{W_1X}_{\text{Matrix-vector multiplication}}+b_1)}_{\text{Bias translation}}=H_1\to \cdots \sigma(WH+b)=y.
 $$
 
 It consists of `matrix-vector multiplication`, `vector addition`, `nonlinear transformation` and `function composition`.
+
+The hyperbolic hyperplane centered at $p\in\mathbb{D}^n$, with normal direction $a\in T_p\mathbb{D}^n$ is given by
+
+$$\lbrace x\in\mathbb{D}^n,\ \langle (-p)\oplus x, a\rangle=0\rbrace.$$
+
+<img src="https://i0.wp.com/hyperbolicdeeplearning.com/wp-content/uploads/2018/06/hyp-hyp.png?w=564">
+
+The `hyperbolic softmax` probabilities are given by
+
+$$p(y=k\mid x) \propto \exp\left(\lambda_{p_k}\parallel a_k\parallel \sinh^{-1}\left(\frac{2\langle (-p_k)\oplus x,a_k\rangle}{(1-\parallel (-p_k)\oplus x,a_k\parallel^2)\parallel a_k\parallel}\right)\right)$$
+with $p_k\in\mathbb{D}^n and a_k\in T_{p_k}\mathbb{D}^n$.
 
 - [Hyperbolic Neural Networks](https://arxiv.org/abs/1805.09112)
 - http://hyperbolicdeeplearning.com/papers/
@@ -75,6 +84,8 @@ It consists of `matrix-vector multiplication`, `vector addition`, `nonlinear tra
 - [Hyperbolic Attention Networks ](https://openreview.net/forum?id=rJxHsjRqFQ)
 - [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
 - [Hyperbolic Heterogeneous Information Network Embedding](http://shichuan.org/doc/65.pdf)
+
+<img src="https://hazyresearch.github.io/hyperE/pc.svg"  width="40%" />
 
 #### Bias translation
 
@@ -160,14 +171,24 @@ Similarly as for the hyperbolic GRU, we show that when the Poincaré ball in con
 
 -http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
 
-### hGRU
+#### hRNN
+
+A natural adaptation of RNN using our formulas yields:
+
+$$h_{t+1} = \varphi^{\otimes}\left(((W\otimes h_t)\oplus(U\otimes x_t))\oplus b\right).$$
+
+#### hGRU
 
 $$
-\begin{array}{l}{\cdot r_{t}=\sigma \log_{0}\left(\left(\left(W^{r} \otimes h_{t-1}\right) \oplus\left(U^{r} \otimes x_{t}\right)\right) \oplus b^{r}\right)} \\
-{\cdot z_{t}=\sigma \log_{0}\left(\left(\left(W^{z} \otimes h_{t-1}\right) \oplus\left(U^{z} \otimes x_{t}\right)\right) \oplus b^{z}\right)} \\
- {\left.\cdot \tilde{h}_{t}=\varphi^{\otimes}\left(\left(\left(W \operatorname{diag}\left(r_{t}\right)\right] \otimes h_{t-1}\right) \oplus\left(U \otimes x_{t}\right)\right) \oplus b\right)} \\
- {\cdot h_{t}=h_{t-1} \oplus\left(\operatorname{diag}\left(z_{t}\right) \otimes\left(\left(-h_{t-1}\right) \oplus \widetilde{h_{t}}\right)\right)}\end{array}
+\begin{array}{l}{r_{t}=\sigma \log_{0}\left(\left(\left(W^{r} \otimes h_{t-1}\right) \oplus\left(U^{r} \otimes x_{t}\right)\right) \oplus b^{r}\right)} \\
+{ z_{t}=\sigma \log_{0}\left(\left(\left(W^{z} \otimes h_{t-1}\right) \oplus\left(U^{z} \otimes x_{t}\right)\right) \oplus b^{z}\right)} \\
+ {\left.\tilde{h}_{t}=\varphi^{\otimes}\left(\left(\left(W \operatorname{diag}\left(r_{t}\right)\right] \otimes h_{t-1}\right) \oplus\left(U \otimes x_{t}\right)\right) \oplus b\right)} \\
+ {h_{t}=h_{t-1} \oplus\left(\operatorname{diag}\left(z_{t}\right) \otimes\left(\left(-h_{t-1}\right) \oplus \widetilde{h_{t}}\right)\right)}\end{array}
 $$
+
+#### Hyperbolic Attention Networks
+
+- https://openreview.net/forum?id=rJxHsjRqFQ
 
 ### Graph Convolutional Network
 
@@ -286,7 +307,7 @@ $$\Delta = {\Phi}^{T} {\Lambda} {\Phi}$$
 where ${\Phi}$ is the matrix consisting of eigenvectors and ${\Lambda}= diag({\lambda}_1，\dots, {\lambda}_n )$.
 In matrix-vector notation, with the $n\times n$ Fourier matrix and a n-dimensional vector $f\in\mathbb{R}^{n}$, it is proven that if $\hat{f}={\Phi}^{T}f$ as the projection of $f$ into the column space  of  $\Phi$, where $\hat{f}_{i}$ the inner product of ${f, \phi_i}$, then $f={\Phi}\hat{f}$ the inverse Fourier transform.
 
-Convolution of two vectors $f=(f_1, \cdots, f_n )^{T}$ and $g=(g_1, \cdots, g_n )^{T}$ is defined as $(f\star g)_i = \sum_{m} g_{(i-m) \,\,\, mod \,\,\,n } \,\cdot f_m$ or in matrix notation
+`Convolution` of two vectors $f=(f_1, \cdots, f_n )^{T}$ and $g=(g_1, \cdots, g_n )^{T}$ is defined as $(f\star g)_i = \sum_{m} g_{(i-m) \,\,\, mod \,\,\,n } \,\cdot f_m$ or in matrix notation
 $$ (f\star g)=
 \underbrace{\begin{pmatrix}
 & g_1, & g_2, & \cdots, & g_{n-1}, & g_n &\\
@@ -309,6 +330,15 @@ What is more,
 $${\Phi}({\Phi}^Tg\circ {\Phi}^{T} f)={\Phi}\hat{g}(\Lambda){\Phi}^{T} f=\hat{g}({\Phi}(\Lambda){\Phi}^{T})f=\hat{g}(\Delta)f$$
 where $\Delta$ is the Laplacian of the graph; $\hat{g}(\Lambda)$ is the polynomial of matrix.
 
+The `spectral definition of a convolution-like operation` on a non-Euclidean domain allows to parametrize the action of a filter as
+$$\mathcal{W} \mathbb{f} = \mathbb{\Phi} \hat{\mathbb{W}} \mathbb{\Phi}^{T}\mathbb{f},$$
+
+where $\hat{\mathbb{W}}$ is a diagonal weight matrix containing the filter’s frequency response on the diagonal.
+In the space domain, it amounts to applying the operator $\mathcal W = \mathbb{\Phi} \hat{\mathbb{W}} \mathbb{\Phi}^{T}$ to $\mathbb f$ by computing the inner products of $\mathbb{f}$ with every row of $\mathcal{W}$ and stacking the resulting numbers into a vertex field. Different weight matrices $\hat{\mathbb W}$ realize different such operators.
+
+To mimick the construction of a regular CNN, we construct a spectral convolutional layer accepting an m-dimensional vertex field $x=(x^1,\dots,x^m)$ and outputting an m′-dimensional vertex field $y=(y^1,\dots,y^{m′})$, whose i-the dimension is defined according to
+$$\mathbb{y}_j = \varphi\left( \sum_{i=1}^m \mathbb{\Phi} \hat{\mathbb{W}}^{ij} \mathbb{\Phi}^{T} \mathbb{x}^i \right),$$
+where $\varphi$ is an element-wise non-linearity such as ReLU, and $\hat{\mathbb{W}}^{ij}$, are diagonal matrices parametrizing the filters of the layer.
 ****
 
 Graph Convolution: Recursive Computation with Shared Parameters:
@@ -317,6 +347,10 @@ Graph Convolution: Recursive Computation with Shared Parameters:
 * Recursively compute the state of each node by propagating previous
 states using relation specific transformations
 * Backpropagation through Structure
+
+- [Spectral CNN](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
+
+We would like to impose spatial localization onto the weights $\hat{\mathbb{W}}^{ij}$, that is, ensure that the vertex fields defined by every row of the operator ${W} = {\Phi} \hat{{W}} {\Phi}^{T}$ are spatially localized.
 
 #### Vanilla spectral graph ConvNets
 
@@ -334,6 +368,9 @@ where $\sigma$ is some activation function such as **rectified linear unit (ReLU
 Parametrize the smooth spectral filter function
 
 - [SplineNets: Continuous Neural Decision Graphs](https://arxiv.org/abs/1810.13118)
+
+- [Spatial CNN](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
+- [](https://blog.acolyer.org/2019/02/06/a-comprehensive-survey-on-graph-neural-networks/)
 
 #### Spectral graph ConvNets with polynomial filters
 
