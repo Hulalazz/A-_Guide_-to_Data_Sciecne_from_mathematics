@@ -12,7 +12,7 @@ The tree-based learning algorithms take advantages of these [universal approxima
 
 <img title="https://cdn.stocksnap.io/" src="https://cdn.stocksnap.io/img-thumbs/960w/TIHPAM0QFG.jpg" width="80%" />
 
-The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and the region $S_k\in\mathbb{R}^p$  when only some finite sample or training data $\{(\mathrm{x}_i, y_i)\mid i=1, 2, \dots, n\}$ is accessible or available where $\mathrm{x}_i\in\mathbb{R}^p$ and $y_i\in\mathbb{R}$ or some categorical domain and the number of regions also depends on the training data set.
+The core problem is to find the optimal parameters $a_k\in\mathbb{R}$ and the region $S_k\in\mathbb{R}^p$  when only some finite sample or training data $\{(\mathrm{x}^i, y_i)\mid i=1, 2, \dots, n\}$ is accessible or available where $\mathrm{x}^i\in\mathbb{R}^p$ and $y_i\in\mathbb{R}$ or some categorical domain and the number of regions also depends on the training data set.
 
 ### Decision Tree
 
@@ -50,6 +50,8 @@ Decision tree is represented graphically as a tree as the following.
 <img src="https://www.dataversity.net/wp-content/uploads/2015/07/3049155-inline-i-1-machine-learning-is-just-a-big-game-of-plinko.gif" width="60%" />
 
 As shown above, there are differences between the length from root to  the terminal nodes, which the inputs arrive at. In another  word, some inputs take  more tests(pass more nodes) than others.
+For a given data $(\mathrm x^i, y_i)$ where $\mathrm x^i=(x^i_1, x^i_2, \dots, x^i_p)$. 
+It is obvious that $x^i_1-1<x^i_1< x^i_1+1$ and as binary search, each attribute of the sample can be partioned into some region.
 
 <img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
 
@@ -140,6 +142,10 @@ $$
 $\color{red}{\text{PS: all above impurities}}$  are based on the probability $\fbox{distribuion}$  of data.
 So that it is necessary to estimate the probability distribution of each attribute.
 
+* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
+* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
+* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+
 #### Pruning and Regularization
 
 Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
@@ -189,7 +195,7 @@ Some software packages handle missing data automatically, although many don’t,
 - [Handling Missing Values when Applying Classification Models](http://pages.stern.nyu.edu/~fprovost/Papers/missing.pdf)
 - [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
 
-#### Regression Trees
+### Regression Trees
 
 Starting with all of the data, consider a splitting variable $j$ and
 split point $s$, and define the pair of half-planes
@@ -227,7 +233,7 @@ solution is the full tree $T_0$.
 * [REGRESSION TREE MODELS FOR DESIGNED EXPERIMENTS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/dox.pdf)
 
 
-#### Classification Trees
+### Classification Trees
 
 If the target is a classification outcome taking values $1,2,\dots,K$, the only
 changes needed in the tree algorithm pertain to `the criteria for splitting` nodes and pruning the tree.
@@ -295,7 +301,7 @@ MARS|?
 * https://www.wikiwand.com/en/Recursive_partitioning
 * [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
 
-##### Oblique Decision Trees
+#### Oblique Decision Trees
 
 In this paper, we consider that the instances take the form $(x_1, x_2, \cdots, x_d, c_j)$ , where the $x_i$ are real-valued attributes, and the $c_j$ is a discrete value that represents the class label of the instance. Most tree inducers consider tests of the form $x_i > k$ that are equivalent to axis-parallel hyperplanes in the attribute space. The task of the inducer is to find appropriate values for $i$ and $k$. Oblique decision trees consider more general tests of the form
 $$\sum_{i=1}^d \alpha_i x_i +\alpha_{d+1}>0$$
@@ -326,22 +332,38 @@ It is natural to generalized to nonlinear test, which can be seen as feature eng
 * [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
 * [Classification and Regression Tree Approach for Prediction of Potential Hazards of Urban Airborne Bacteria during Asian Dust Events](https://www.nature.com/articles/s41598-018-29796-7)
 
-### VFDT and Beyond
+### Incremental Decision Tree
+
+- https://github.com/doubleplusplus/incremental_decision_tree-CART-Random_Forest_python
+- https://people.cs.umass.edu/~utgoff/papers/mlj-id5r.pdf
+- https://people.cs.umass.edu/~lrn/iti/index.html
+
+#### Very Fast Decision Tree
 
 [`Hoeffding Tree` or `VFDT` is the standard decision tree algorithm for data stream classification. VFDT uses the Hoeffding bound to decide the minimum number of arriving instances to achieve certain level of confidence in splitting the node. This confidence level determines how close the statistics between the attribute chosen by VFDT and the attribute chosen by decision tree for batch learning.](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
 
+<img src="https://cdn.mathpix.com/snip/images/ljyeLweXgJeZdukPq98Sswt5cz3q87X5uozthZSJWr4.original.fullsize.png">
+
+* [Very Fast Decision Tree (VFDT) classifier](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
+* [Mining High-Speed Data Streams](https://homes.cs.washington.edu/~pedrod/papers/kdd00.pdf)
+* http://huawei-noah.github.io/streamDM/docs/HDT.html
+* http://www.cs.washington.edu/dm/vfml/vfdt.html
+* [VFDT Algorithm for Decision Tree Generation](http://www.ijdcst.com/pdf/VFDT%20Algorithm%20for%20Decision%20Tree%20Generation.Pdf)
+
+#### Extremely Fast Decision Tree
+
 [`Hoeffding Anytime Tree` produces the asymptotic batch tree in the limit, is naturally resilient to concept drift, and can be used as a higher accuracy replacement for Hoeffding Tree in most scenarios, at a small additional computational cost.](https://arxiv.org/pdf/1802.08780.pdf)
+
+* [Extremely Fast Decision Tree](https://arxiv.org/abs/1802.08780)
 
 [Although exceedingly simple conceptually, most implementations of tree-based models do not efficiently utilize `modern superscalar processors`. By laying out data structures in memory in a more cache-conscious fashion, removing branches from the execution flow using a technique called predication, and micro-batching predictions using a technique called vectorization, we are able to better exploit modern processor architectures. ](https://cs.uwaterloo.ca/~jimmylin/publications/Asadi_etal_TKDE2014.pdf)
 
-* [Very Fast Decision Tree (VFDT) classifier](https://samoa.incubator.apache.org/documentation/Vertical-Hoeffding-Tree-Classifier.html)
+* https://www.cs.upc.edu/~gavalda/DataStreamSeminar/files/Lecture7.pdf
 * [Runtime Optimizations for Tree-based Machine Learning Models](https://cs.uwaterloo.ca/~jimmylin/publications/Asadi_etal_TKDE2014.pdf)
-* [Extremely Fast Decision Tree](https://arxiv.org/abs/1802.08780)
 * [Optimized very fast decision tree with balanced classification accuracy and compact tree size](https://ieeexplore.ieee.org/abstract/document/6108399)
 * [Distributed Decision Trees with Heterogeneous Parallelism](https://raypeng.github.io/DGBDT/)
-* [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
-* [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
-* [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+* [Runtime Optimizations for Tree-based Machine Learning Models](http://lintool.github.io/NSF-projects/IIS-1144034/publications/Asadi_etal_TKDE2014.pdf)
+
 
 ### Decision Stream
 
@@ -1449,16 +1471,21 @@ ____________
 
 A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
 
-* [Gradient Boosting Machines](http://uc-r.github.io/gbm_regression)
+<img src="https://cdn.mathpix.com/snip/images/gHJzRtK3cCxjIpKHDepZs7KqKIFe9_y_x7E2042UOrA.original.fullsize.png">
+
+Note that any fitting criterion that estimates conditional expectation (given } $\mathbf{x})$ could in principle be used to estimate the (smoothed) negative gradient $(7)$ at line 4 of Algorithm $1$, i.e.,
+$$\mathbf{a}_{m}=\arg\min_{\mathbf{a}, \beta} \sum_{i=1}^{N} \left[\tilde{y}_{i}-\beta h\left(\mathbf{x}_{i} ; \mathbf{a}\right)\right]^{2}$$
+where the model $h(\cdot; \cdot)$ is parameterized by $\mathbf{a}$.
+Technically, $h(\cdot; \cdot)$ can be any function - smooth or non-smooth, differentiable or non-differentiable, convex or non-convex- not only the decision tree.
+
+Another improvment of this framework is to find the `profitable diretion` instead of  the negative gradients $\tilde{y}_{i}$.
+
+* [Gradient Boosting Machines by ](http://uc-r.github.io/gbm_regression)
 * [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
 * [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
 * [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
 ----
-* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
-* https://bradleyboehmke.github.io/HOML/gbm.html
-* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
-* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
-****
+
 
 `AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
 And the weight is update via the following formula:
@@ -1485,6 +1512,12 @@ $$a_{ij}^{knn}=
 
 Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
 
+* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
+* https://bradleyboehmke.github.io/HOML/gbm.html
+* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
+* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
+
+
 ### Optimization and Boosting
 
 Gradient descent methods, as `numerical optimization methods`, update the values of the parameters at each iteration while the size of parameter is fixed  so that the complexity of the model is limited.
@@ -1500,7 +1533,7 @@ The basic idea of gradient boosts methods is to find
 $$f_t=\arg\min_{f\in\mathcal F}L(F_{t-1}+f).$$
 so that $L(F_t)\leq L(F_{t-1})$. In some sense, it requires the model $f$ is easy to construct.
 
-
+* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
 * [OPTIMIZATION BY GRADIENT BOOSTING](http://www.lsta.upmc.fr/BIAU/bc2.pdf)
 * [boosting as optimization](https://metacademy.org/graphs/concepts/boosting_as_optimization)
 * [Boosting, Convex Optimization, and Information Geometry](https://ieeexplore.ieee.org/document/6282239?arnumber=6282239)
@@ -1616,9 +1649,7 @@ $$
 
 
 - https://arxiv.org/pdf/1907.12608.pdf
-
-
-- http://www.drryanmc.com/
+- [The Nuclear Engineering, Statistical Forecasting, Data Science, and Oxford Commas of Ryan McClarren](http://www.drryanmc.com/)
 
 ### The Generic Leveraging Algorithm
 
@@ -1731,25 +1762,46 @@ The procedure is as follows:
 
 [When a lot of different models are applied to a data simultaneously then such a method of meta-ensemble modeling is known as Stacking. Here, there is no single function, rather we have meta-level where a function is used to combine the outputs of different functions. Thus the information from various models is combined to come up with a unique model. This is among the most advanced form of data modeling used commonly in data hackathons and other online competitions where maximum accuracy is required. Stacking models can have multiple levels and can be made very complex by using various combinations of features and algorithms. There are many forms of Stacking method and in this blog post, a stacking method known as blending has been explored.](https://www.datavedas.com/ensemble-methods/)
 
-* http://www.machine-learning.martinsewell.com/ensembles/stacking/
+* [Stacked Regression](http://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf)
+* [Stacked Ensemble Models for Improved Prediction Accuracy](http://support.sas.com/resources/papers/proceedings17/SAS0437-2017.pdf)
 * https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier/
 * [Stacked Generalization (Stacking)](http://www.machine-learning.martinsewell.com/ensembles/stacking/)
-* [Stacking与神经网络 - 微调的文章 - 知乎](https://zhuanlan.zhihu.com/p/32896968)
-* [Blending and deep learning](http://jtleek.com/advdatasci/17-blending.html)
+
+<img src="https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier_files/stacking_algorithm.png" width="80%"/>
+
+
 * http://www.chioka.in/stacking-blending-and-stacked-generalization/
 * https://blog.csdn.net/willduan1/article/details/73618677
 * [今我来思，堆栈泛化(Stacked Generalization)](https://www.jianshu.com/p/46ccf40222d6)
 * [我爱机器学习:集成学习（一）模型融合与Bagging](https://www.hrwhisper.me/machine-learning-model-ensemble-and-bagging/)
 * https://github.com/ikki407/stacking
-* [Spatial Pyramids and Two-layer Stacking SVM Classifiers for Image Categorization: A Comparative Study](https://www.ai.rug.nl/~mwiering/GROUP/ARTICLES/spatial-pyramid-two-layer.pdf)
-* [Cascaded classifiers and stacking methods for classification of pulmonary nodule characteristics](https://www.sciencedirect.com/science/article/pii/S0169260718304413)
 * [Python package for stacking (machine learning technique)](https://github.com/vecxoz/vecstack)
 * [Signal Processing and Pattern Recognition Laboratory](http://users.rowan.edu/~polikar/spprl.html)
 * https://blog.csdn.net/mrlevo520/article/details/78161590
+* http://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/stacked-ensembles.html#id3
+* https://web.njit.edu/~avp38/projects/multi_projects/ensemble.html
+* http://ml-ensemble.com/
+* https://rasbt.github.io/mlxtend/
+* https://shodhganga.inflibnet.ac.in/bitstream/10603/7989/15/15_chapter%206.pdf
 
 **Issues in Stacked Generalization**
 
 [Stacked generalization is a general method of using a high-level model to combine lower-level models to achieve greater predictive accuracy. In this paper we address two crucial issues which have been considered to be a `black art' in classification tasks ever since the introduction of stacked generalization in 1992 by Wolpert: the type of generalizer that is suitable to derive the higher-level model, and the kind of attributes that should be used as its input. We find that best results are obtained when the higher-level model combines the confidence (and not just the predictions) of the lower-level ones. We demonstrate the effectiveness of stacked generalization for combining three different types of learning algorithms for classification tasks. We also compare the performance of stacked generalization with majority vote and published results of arcing and bagging.](https://arxiv.org/abs/1105.5466)
+
+- [Issues in Stacked Generalization](https://arxiv.org/abs/1105.5466)
+
+**Learning to Efficiently Rank with Cascades**
+
+Our core idea is to consider the ranking problem as a "cascade", where ranking is broken into a finite number of distinct stages. Each stage considers successively richer and more complex features, but over successively smaller candidate document sets. The intuition is that although complex features are more time-consuming to compute, the additional overhead is offset by examining fewer documents. In other words, the cascade model views retrieval as a multi-stage progressive refinement problem, where each stage balances the cost of exploiting various features with the potential gain in terms of better results. We have explored this notion in the context of linear models and tree-based models.
+
+* [Learning to Efficiently Rank with Cascades, University of Maryland](http://lintool.github.io/NSF-projects/IIS-1144034/)
+
+**Theory**
+
+* [Spatial Pyramids and Two-layer Stacking SVM Classifiers for Image Categorization: A Comparative Study](https://www.ai.rug.nl/~mwiering/GROUP/ARTICLES/spatial-pyramid-two-layer.pdf)
+* [Cascaded classifiers and stacking methods for classification of pulmonary nodule characteristics](https://www.sciencedirect.com/science/article/pii/S0169260718304413)
+* [Stacking与神经网络 - 微调的文章 - 知乎](https://zhuanlan.zhihu.com/p/32896968)
+* [Blending and deep learning](http://jtleek.com/advdatasci/17-blending.html)
 
 ####  Linear Blending
 

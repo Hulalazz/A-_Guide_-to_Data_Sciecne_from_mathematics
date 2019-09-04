@@ -1,7 +1,10 @@
 ## IR and Search
 
+- https://www.cs.princeton.edu/cass/
+- http://www.wsdm-conference.org/
 - [ ] [RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
 - [ ] [Information on Information Retrieval (IR) books, courses, conferences and other resources.](https://nlp.stanford.edu/IR-book/information-retrieval.html)
+- https://monkeylearn.com/text-analysis/
 - [ ] [Recommended Reading for IR Research Students](https://people.eng.unimelb.edu.au/ammoffat/swirl2004/homework-forum.pdf)
 - [ ] [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
 - [ ] [Topics in Natural Language Processing (202-2-5381) Fall 2018](https://www.cs.bgu.ac.il/~elhadad/nlp18.html)
@@ -14,7 +17,10 @@
 - [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
 - [ ] [State_of_the_art](https://aclweb.org/aclwiki/State_of_the_art)
 - [ ] [Providing Relevant and Timely Results: Real-Time Search Architectures and Relevance Algorithms](http://lintool.github.io/NSF-projects/IIS-1218043/)
-- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/, https://searcheo.io/, http://seeknshop.io/, https://constructor.io/, https://www.searchtap.io/
+- [ ] [TREC-2019-Deep-Learning](https://microsoft.github.io/TREC-2019-Deep-Learning/)
+- [ ] [The Activate Conference is the world's largest gathering of Solr developers](https://www.activate-conf.com/)
+- [Information Retrieval Systems](http://bit.csc.lsu.edu/~kraft/retrieval.html)
+- [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/, https://searcheo.io/, http://seeknshop.io/, https://constructor.io/, https://www.searchtap.io/, https://lucidworks.com/
 
 
 If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
@@ -47,7 +53,7 @@ and that can learn form the feedback information over time, which will be talked
 * [Notes on Music Information Retrieval](https://musicinformationretrieval.com/index.html)
 * https://ntent.com/
 * http://www.somaproject.eu/
-* http://bit.csc.lsu.edu/~kraft/retrieval.html
+* [How Search Engines Work: Crawling, Indexing, and Ranking](https://moz.com/beginners-guide-to-seo/how-search-engines-operate)
 
 ### Information Acquisition: Web Crawling
 
@@ -182,7 +188,7 @@ Language for composing complex patterns from simpler ones: `Union, Concatenation
 Assumes documents have structure that can be exploited in search, allow queries for text appearing in specific fields.
 
 
-#### Query Parser: Query Understanding
+#### Query Parser and Understanding
 
 Query is often some keywords in natural language such as English or Chinese. We use the search engine when we would like to find some information related with the keywords on the web/internet, which means  we do not completely know what the result is. Additionally, all information is digitalized in computer and the computers do not understand the natural language natively.
 For example, `synonyms` are different as character or string data structure in computer.
@@ -311,6 +317,13 @@ The basic idea is to enrich the query with additional terms (words or phrases) a
 
 ##### Query Relaxation
 
+Unlike relational databases where the
+schema is relatively small and fixed, XML model allows varied/missing structures
+and values, which make it difficult for users to ask questions precisely and completely. To address such problems, `query relaxation` technique enables systems
+to automatically weaken, when not satisfactory, the given user query to a less
+restricted form to permit approximate answers as well.
+
+
 - http://pike.psu.edu/publications/dongwon-dissertation.pdf
 
 ##### Query Segmentation
@@ -394,21 +407,36 @@ The `Machine-learned ranking` and `Ranking evaluation` is discussed in `Rating a
 
 + https://homepages.dcc.ufmg.br/~rodrygo/rm-2018-2/
 + https://phys.org/news/2011-05-ranking-research.html
-
++ [New tools for fair ranking available](http://chato.cl/blog/en)
+- https://github.com/fair-search/fairsearch-deltr-python
+- https://github.com/fair-search/fairsearch-deltr-for-elasticsearch
+- https://github.com/fair-search
+- https://arxiv.org/abs/1805.08716
+- https://fair-search.github.io/
 
 #### Query-independent Ranking
+
+[Query independent scores are prepared and applied to search results. Search results applying query term relevance criteria are combined with query independent scores to form a combined score. The combined score may alter the original ranking using only the query scores. The query independent scores can be used to increase the combined scores of important objects, where importance measurements include frequently accessed objects, objects with more connections and/or objects that are the subject of discussion.](http://www.patentsencyclopedia.com/app/20130054582#ixzz5yZAhvAK4)
+
+Query-independent ranking includes :
 
 - on-document evidence (retrievability, readability, maliciousness);
 - off-document evidence (centrality, popularity, credibility)
 
+And it is computed before the query given.
+
 + [Microsoft’s UserRank – Query Independent Ranking Based Upon User Logs](http://www.seobythesea.com/2007/05/microsofts-userrank-query-independent-ranking-based-upon-user-logs/)
-+ http://www.patentsencyclopedia.com/app/20130054582
-+ https://hurenjun.github.io/pubs/icde2018.pdf
++ [Patent application title: APPLYING QUERY INDEPENDENT RANKING TO SEARCH](http://www.patentsencyclopedia.com/app/20130054582)
 + https://hurenjun.github.io/pubs/icde2018-slides.pdf
++ [Ranking with Query-Dependent Loss for Web Search](http://www.wsdm-conference.org/2010/proceedings/docs/p141.pdf)
++ [Link Analysis Ranking](https://pdfs.semanticscholar.org/6ad8/9842403f083ae189f0d5b9cdeaea213535f9.pdf)
++ [Query-Independent Ranking for Large-Scale Persistent Search Systems](https://www.cs.princeton.edu/research/techreps/TR-837-08)
++ http://www.seobythesea.com/
++ [Query independent evidence (QIE)](https://docs.funnelback.com/customise/advanced-options/ranking/query_independent_evidence.html)
 
 `Centrality of network` assigns an importance score based purely on the number of links held by each node.
 `PageRank` is introduced in `Graph Algorithms`.
-HITS algorithm is in the same spirit as PageRank. They both make use of the link structure of the Weg graph in order to decide the relevance of the pages. The difference is that unlike the PageRank algorithm, HITS only operates on a small subgraph (the seed SQ) from the web graph. This subgraph is query dependent; whenever we search with a different query phrase, the seed changes as well. HITS ranks the seed nodes according to their authority and hub weights. The highest ranking pages are displayed to the user by the query engine.
+HITS algorithm is in the same spirit as PageRank. They both make use of the link structure of the Web graph in order to decide the relevance of the pages. The difference is that unlike the PageRank algorithm, HITS only operates on a small subgraph (the seed SQ) from the web graph. This subgraph is query dependent; whenever we search with a different query phrase, the seed changes as well. HITS ranks the seed nodes according to their authority and hub weights. The highest ranking pages are displayed to the user by the query engine.
 
 `Search Engine Optimization(SEO)` is a business type to boost the website higher.
 
@@ -422,6 +450,10 @@ HITS algorithm is in the same spirit as PageRank. They both make use of the link
 * [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
 * [How Google Finds Your Needle in the Web's Haysta](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
 * [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
+* [A Replacement for PageRank?](http://www.seobythesea.com/2014/12/replacement-pagerank/)
+* [Beyond PageRank: Machine Learning for Static Ranking ](http://www2006.org/programme/files/pdf/3101.pdf)
+* http://infolab.stanford.edu/~taherh/papers/topic-sensitive-pagerank-tkde.pdf
+* [CSCE 470 :: Information Storage and Retrieval :: Fall 2017](http://courses.cse.tamu.edu/caverlee/csce470/)
 
 #### Query-dependent ranking
 
@@ -443,6 +475,7 @@ Query-dependent ranking:
 - https://andrewoarnold.com/fp025-geng.pdf
 - https://sites.google.com/site/kimducthanh/publication/lrt-queryindependent.pdf
 - [Query-Independent Ranking for Large-Scale Persistent Search Systems](https://www.cs.princeton.edu/research/techreps/TR-837-08)
+- [Document vector representations for feature extraction in multi-stage document ranking](http://lintool.github.io/NSF-projects/IIS-1144034/publications/Asadi_Lin_IRJ2013.pdf)
 
 ##### TF-IDF
 
@@ -524,7 +557,7 @@ where $p(t_i\mid C)$ is the background language model for term $t_i$, and $\lamb
 > 5. We take the top lexical words.
 > 6. Adjacent keywords are collapsed into a multi-word keyword.
 
-TextRank model is graph-based derived from Google’s PageRank. It constructs a weighted graph $G$:
+`TextRank` model is graph-based derived from Google’s PageRank. It constructs a weighted graph $G$:
 
 * the node set $V$ consists of all sentences in the document;
 * the weight is the similarity of each sentence pair, i.e., $w_{i,j}=Similarity (V_i, V_j)$.
@@ -568,6 +601,35 @@ Document similarity (or distance between documents) is a one of the central them
 - [ ] https://www.wikiwand.com/en/Semantic_similarity
 - [ ] https://spacy.io/
 - [ ] https://fasttext.cc/
+
+
+### Personalized Search
+
+[Personalized Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommenders.
+
+And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
+
+* http://ryanrossi.com/search.php
+* https://a9.com/what-we-do/product-search.html
+* https://www.algolia.com/
+* https://www.cognik.net/
+* http://www.collarity.com/
+* https://www.wikiwand.com/en/Personalized_search
+* [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html)
+* [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
+* [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
+* [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
+* [Personalized Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
+* [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
+* [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
+* [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
+* [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
+* [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
+* [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
+* [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
+* [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
+* [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
+* [CH. 9: PERSONALIZATION IN SEARCH](https://searchuserinterfaces.com/book/sui_ch9_personalization.html)
 
 #### Comparison and Matching
 
@@ -824,6 +886,12 @@ binary as restrictions on the type of the tree in our model.
 
 #### Webpage Snapshot
 
+### Information Retrieval Evaluation
+
+
+- http://fire.irsi.res.in/fire/2016/tutorials
+- http://informationr.net/ir/18-2/paper582.html#.XW03vih3hPY
+
 ----
 
 ### Neural Information Retrieval
@@ -839,6 +907,7 @@ our explorations with neural models should also provide new insights about IR it
 In return, we should also look for opportunities to apply IR intuitions into improving these neural models, and their application to non-IR tasks.
 
 - http://nn4ir.com/
+- https://microsoft.github.io/TREC-2019-Deep-Learning/
 - [Neu-IR: Workshop on Neural Information Retrieval](https://neu-ir.weebly.com/)
 - [Topics in Neural Information Retrieval](https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/teaching/ss19/topics-in-neural-information-retrieval/)
 - https://frankblood.github.io/
@@ -878,33 +947,6 @@ $$\nabla_{\Theta}\hat{v}(q)=\gamma^t G_t\nabla_{\Theta}\log(\pi(a_t\mid S_t;\The
 + [Improving Session Search Performance with a Multi-MDP Model](http://www.thuir.cn/group/~YQLiu/publications/AIRS18Chen.pdf)
 + https://github.com/ICT-BDA/EasyML
 
-### Personalized Search
-
-[Personalized Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommenders.
-
-And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
-
-* http://ryanrossi.com/search.php
-* https://a9.com/what-we-do/product-search.html
-* https://www.algolia.com/
-* https://www.cognik.net/
-* http://www.collarity.com/
-* https://www.wikiwand.com/en/Personalized_search
-* [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html)
-* [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
-* [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
-* [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
-* [Personalized Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
-* [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
-* [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
-* [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
-* [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
-* [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
-* [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
-* [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
-* [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
-* [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
-* [CH. 9: PERSONALIZATION IN SEARCH](https://searchuserinterfaces.com/book/sui_ch9_personalization.html)
 
 
 ----
@@ -993,11 +1035,21 @@ It is becasue medical information is really professional while critical.
 
 ####  Music Information Retrieval
 
+[Music information retrieval (MIR) is an exciting and challenging area of research. Music not only connects people but also relates to many different research disciplines including signal processing, information retrieval, machine learning, musicology, and psychoacoustics. In its beginnings, research in MIR has borrowed many ideas and concepts from more established disciplines such as speech processing or computer linguistics. After twenty years, the MIR field has matured to an independent research area that has many things to offer to signal processing and other research disciplines](https://www.audiolabs-erlangen.de/resources/MIR/FMP/data/C0/2019_MuellerZalkow_FMP_ISMIR.pdf)
+
+* [International Audio Laboratories Erlangen](https://www.audiolabs-erlangen.de/home)
+* [Center for Computer Research in Music and Acoustics](https://ccrma.stanford.edu/)
+* [Exploring deep learning based methods for information retrieval in Indian classical music](https://www.ideals.illinois.edu/handle/2142/104915)
+* https://keunwoochoi.wordpress.com/
 * https://www.music-ir.org/mirex/wiki/MIREX_HOME
+* [Deep Learning for Music](https://karenullrich.info/pub_music.html)
 * https://www.ismir.net/
+* [Women in Music Information Retrieval](https://wimir.wordpress.com/)
 * https://github.com/mozilla/DeepSpeech
 * https://github.com/mkanwal/Deep-Music
-* http://www.nyu.edu/classes/bello/MIR.html
+* https://magenta.tensorflow.org/
+* [MPATE-GE 2623 Music Information Retrieval](http://www.nyu.edu/classes/bello/MIR.html)
+* https://sites.google.com/view/twidale
 * [Introduction to Mozilla Deep Speech](https://www.simonwenkel.com/2018/09/24/Introduction-to-Mozilla-Deep-Speech.html)
 * [The MusArt Music-Retrieval System: An Overview](http://www.dlib.org/dlib/february02/birmingham/02birmingham.html)
 * [SGN-24006 Analysis of Audio, Speech and Music Signals Spring 2017 ](http://www.cs.tut.fi/~sgn24006/)
@@ -1005,6 +1057,9 @@ It is becasue medical information is really professional while critical.
 
 #### Multimedia Search Engine
 
+[Indexing multimedia is much more complex than indexing text. In some cases the media can be converted to text: broadcast television often includes digital text as closed-captions for the hearing impaired, and scene titles and captions within a video can be converted to text using OCR. Speech-recognition technology can digitize words spoken on audio tracks. Continuous media, such as video, also can be broken up into chunks by transitional effects, for better precision in results. Some groups are also working on form and shape recognition, which could allow searchers to draw a shape, such as a bridge or a tumor; or select an example picture and find others like it.](http://www.searchtools.com/info/multimedia-search.html)
+
+* [Search Tools Reports: Search Engines for Multimedia: Images, Audio and Video Files](http://www.searchtools.com/info/multimedia-search.html)
 * [自制AI图像搜索引擎](https://blog.csdn.net/baidu_40840693/article/details/88230418)
 * [深度学习表征的不合理有效性——从头开始构建图像搜索服务（一）](https://segmentfault.com/a/1190000015570726)
 * [深度学习表征的不合理有效性——从头开始构建图像搜索服务（二）](https://yq.aliyun.com/articles/607384)
@@ -1014,8 +1069,12 @@ It is becasue medical information is really professional while critical.
 * [Building a Content-Based Multimedia Search Engine IV: Earth Mover’s Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-earth-movers-distance/)
 * [Building a Content-Based Multimedia Search Engine V: Signature Quadratic Form Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-signature-quadratic-form-distance/)
 * [Building a Content-Based Multimedia Search Engine VI: Efficient Query Processing](http://www.deepideas.net/building-content-based-multimedia-search-engine-efficient-query-processing/)
+* http://www.sonic.net/~rteeter/multimedia.html
+* [WebMARS: A Multimedia Search Engine](https://www.microsoft.com/en-us/research/publication/webmars-a-multimedia-search-engine/)
 
 #### Ecommerce Search
+
+[According to a recent survey, over 55% of online customers begin their online shopping journey by searching on an E-Commerce website like Amazon as opposed to a generic web search engine like Google. While information retrieval research to date has been primarily focused on optimizing generic search experiences, and search engines in the past decade have improved significantly, not too much attention has been paid to search for E-Commerce. In this talk, I will explore some intrinsic differences between web search and E-Commerce search that makes the direct application of traditional search ranking algorithms to E-Commerce search difficult. In addition, I will present some recent attempts at Etsy to tackle challenges in E-Commerce search.](https://sigir-ecom.github.io/ecom2018/program.html)
 
 - https://www.nngroup.com/articles/state-ecommerce-search/
 - https://www.nngroup.com/articles/ecommerce-expectations/
@@ -1035,9 +1094,23 @@ It is becasue medical information is really professional while critical.
 
 #### Multimodal Search
 
+[A multilingual, multimodal search and access system for biomedical information and documents.](http://www.khresmoi.eu/overview/) The system allows access to biomedical data:
+
+* from many sources,
+* analyzing and indexing multi-dimensional (2D, 3D) medical images,
+with improved search capabilities due to the integration of technologies to link the texts and images to facts in a knowledge base,
+* in a multilingual environment,
+* providing trustable results at a level of understandability adapted to the users.
+----
+* [DeepStyle: Multimodal Search Engine for Fashion and Interior Design](https://ieeexplore.ieee.org/document/8737943)
 * http://www.khresmoi.eu/overview/
 * [Multi-Task Learning with Neural Networks for Voice Query Understanding on an Entertainment Platform](https://www.kdd.org/kdd2018/accepted-papers/view/multi-task-learning-with-neural-networks-for-voice-query-understanding-on-a)
 
+#### Princeton CASS: Content-Aware Search Systems
+
+The Content-Aware Similarity Search (CASS) project investigates research issues in searching, clustering, and classification, and management for feature-rich, non-text data types.
+
+- https://www.cs.princeton.edu/cass/
 ### Knowledge Graphs
 
 Search is not only on string but also things.
@@ -1067,6 +1140,13 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + http://www.ecmlpkdd2018.org
 
 <img src="http://wiki.knoesis.org/images/c/c0/KG_OKN.jpeg" width="60%"/>
+
+#### WordNet
+
+Any opinions, findings, and conclusions or recommendations expressed in this material are those of the creators of `WordNet` and do not necessarily reflect the views of any funding agency or Princeton University.
+
+- https://wordnet.princeton.edu/
+- https://wordnet.princeton.edu/related-projects
 
 ### Labs and Resources  
 
@@ -1111,8 +1191,10 @@ Knowledge graphs are large networks of entities and their semantic relationships
 + [AMIA](https://www.amia.org/)
 + [INternational Medical INformatics Association](https://imia-medinfo.org/wp/)
 + [Association of Directors of Information System](https://amdis.org/)
-+ [ ] [Ivory: A Hadoop Toolkit for Distributed Text Retrieval](http://lintool.github.io/NSF-projects/IIS-0916043/)
++ [Ivory: A Hadoop Toolkit for Distributed Text Retrieval](http://lintool.github.io/NSF-projects/IIS-0916043/)
++ https://ciir.cs.umass.edu/
 + https://cs.uwaterloo.ca/~jimmylin/index.html
++ https://ischool.illinois.edu/research/areas/design-and-evaluation-information-systems-and-services
 
 #### Conferences on Information Retrieval
 
