@@ -50,8 +50,10 @@ Decision tree is represented graphically as a tree as the following.
 <img src="https://www.dataversity.net/wp-content/uploads/2015/07/3049155-inline-i-1-machine-learning-is-just-a-big-game-of-plinko.gif" width="60%" />
 
 As shown above, there are differences between the length from root to  the terminal nodes, which the inputs arrive at. In another  word, some inputs take  more tests(pass more nodes) than others.
-For a given data $(\mathrm x^i, y_i)$ where $\mathrm x^i=(x^i_1, x^i_2, \dots, x^i_p)$. 
+For a given data $(\mathrm x^i, y_i)$ where $\mathrm x^i=(x^i_1, x^i_2, \dots, x^i_p)$.
 It is obvious that $x^i_1-1<x^i_1< x^i_1+1$ and as binary search, each attribute of the sample can be partioned into some region.
+
+The  core idea of the leaf splitting in decsionn tree is to decrease the dissimarities of the samples in the same region.
 
 <img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
 
@@ -145,6 +147,7 @@ So that it is necessary to estimate the probability distribution of each attribu
 * [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
 * [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
 * [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
+* [Space-efficient online computation of quantile summaries](https://dl.acm.org/citation.cfm?id=375670)
 
 #### Pruning and Regularization
 
@@ -337,6 +340,7 @@ It is natural to generalized to nonlinear test, which can be seen as feature eng
 - https://github.com/doubleplusplus/incremental_decision_tree-CART-Random_Forest_python
 - https://people.cs.umass.edu/~utgoff/papers/mlj-id5r.pdf
 - https://people.cs.umass.edu/~lrn/iti/index.html
+- [A Streaming Parallel Decision Tree Algorithm](https://www.semanticscholar.org/paper/A-Streaming-Parallel-Decision-Tree-Algorithm-Ben-Haim-Tom-Tov/0217a43d49d80cc81af1211449147bb912e2bbfa)
 
 #### Very Fast Decision Tree
 
@@ -362,8 +366,6 @@ It is natural to generalized to nonlinear test, which can be seen as feature eng
 * [Runtime Optimizations for Tree-based Machine Learning Models](https://cs.uwaterloo.ca/~jimmylin/publications/Asadi_etal_TKDE2014.pdf)
 * [Optimized very fast decision tree with balanced classification accuracy and compact tree size](https://ieeexplore.ieee.org/abstract/document/6108399)
 * [Distributed Decision Trees with Heterogeneous Parallelism](https://raypeng.github.io/DGBDT/)
-* [Runtime Optimizations for Tree-based Machine Learning Models](http://lintool.github.io/NSF-projects/IIS-1144034/publications/Asadi_etal_TKDE2014.pdf)
-
 
 ### Decision Stream
 
@@ -376,6 +378,9 @@ Unlike the classical decision tree approach, this method builds a predictive mod
 
 ##### Oblivious Decision Trees
 
+
+
+- [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](https://www.semanticscholar.org/paper/Fast-Ranking-with-Additive-Ensembles-of-Oblivious-Dato-Lucchese/1fcd20daf49f4d5ef0265690693986461a09cc04)
 - https://www.ijcai.org/Proceedings/95-2/Papers/008.pdf
 - http://www.aaai.org/Papers/Workshops/1994/WS-94-01/WS94-01-020.pdf
 
@@ -580,9 +585,8 @@ It is a sample-based ensemble method.
 * http://www.boosting.org/
 * [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
 * [Additive Models, Boosting, and Inference for Generalized Divergences ](https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf)
-* [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
 * [Weak Learning, Boosting, and the AdaBoost algorithm](https://jeremykun.com/2015/05/18/boosting-census/)
-
+* http://jboost.sourceforge.net/
 
 The term boosting refers to a family of algorithms that are able to convert weak learners to strong learners.
 It is kind of similar to the "trial and error" scheme: if we know that the learners perform worse at some given data set $S$,
@@ -814,7 +818,10 @@ ____
 
 <img src="https://cdn.mathpix.com/snip/images/aoxWmzifAs8sfUHfXVHlUDeDB_C3XDh6i-P5OtAitCA.original.fullsize.png">
 
+<img src="http://www.svcl.ucsd.edu/projects/mcboost/figs/simplex_codes.png" />
+
 - http://www.multiboost.org/
+- http://www.svcl.ucsd.edu/projects/mcboost/
 - https://www.lri.fr/~kegl/research/publications.html
 - [MultiBoost: A Multi-purpose Boosting Package](https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf)
 - https://web.stanford.edu/~hastie/Papers/samme.pdf
@@ -824,6 +831,7 @@ ____
 - https://github.com/tizfa/sparkboost
 - [multiclass boosting: theory and algorithms](https://papers.nips.cc/paper/4450-multiclass-boosting-theory-and-algorithms.pdf)
 - [LDA-AdaBoost.MH: Accelerated AdaBoost.MH based on latent Dirichlet allocation for text categorization](https://journals.sagepub.com/doi/abs/10.1177/0165551514551496?journalCode=jisb)
+- http://www.svcl.ucsd.edu/projects/sop_boost/
 
 ### Bonsai Boosted Decision Tree
 
@@ -848,6 +856,7 @@ If there is not enough memory available to store all of the response values, the
 * [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
 * [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
+* [BDT: Gradient Boosted Decision Tables for High Accuracy and Scoring Efficiency](https://www.semanticscholar.org/paper/BDT%3A-Gradient-Boosted-Decision-Tables-for-High-and-Lou-Obukhov/865d016a2b5eb29f80b069811caf17ab1b34afdb)
 
 
 ### Gradient Boosting Decision Tree
@@ -973,6 +982,7 @@ Gradient Boost   | function space $\mathcal F$ | $F_{t}= F_{t-1}- \rho_t\underbr
 * [GBDT算法原理 - 飞奔的猫熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/50176849)
 * https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 * https://github.com/benedekrozemberczki/awesome-gradient-boosting-papers
+* https://github.com/talperetz/awesome-gradient-boosting
 * https://github.com/parrt/dtreeviz
 
 <img src="https://raw.githubusercontent.com/benedekrozemberczki/awesome-gradient-boosting-papers/master/boosting.gif">
@@ -1279,27 +1289,51 @@ ThunderGBM|
 
 - [ThunderGBM: Fast GBDTs and Random Forests on GPUs](https://github.com/Xtra-Computing/thundergbm)
 - [ThunderGBM：快成一道闪电的梯度提升决策树](https://zhuanlan.zhihu.com/p/58626955)
+- [Efficient Gradient Boosted Decision Tree Training on GPUs](https://www.comp.nus.edu.sg/~hebs/pub/IPDPS18-GPUGBDT.pdf)
 - [Gradient Boosted Categorical Embedding and Numerical Trees](http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf)
 - [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html)
 - [从结构到性能，一文概述XGBoost、Light GBM和CatBoost的同与不同](https://zhuanlan.zhihu.com/p/34698733)
 - [从决策树、GBDT到XGBoost/lightGBM/CatBoost](https://zhuanlan.zhihu.com/p/59419786)
 
+#### Parallel Gradient Boosting Decision Trees
+
+* [Parallel Gradient Boosting Decision Trees](http://zhanpengfang.github.io/418home.html)
+* https://zeyiwen.github.io/papers.html
 * [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
-* [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
 * [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
+* [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
+
+<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs40537-019-0186-3/MediaObjects/40537_2019_186_Fig1_HTML.png" width="70%" />
+
+##### Parallelize Node Building at Each Level
+
+<img src="http://zhanpengfang.github.io/fig_418/sequential_alg.jpg" />
+
+#####  Parallelize Split Finding on Each Node
+
+
+##### Parallelize Split Finding at Each Level by Features
+
+<img src="http://zhanpengfang.github.io/fig_418/feature_parallel_alg.jpg" />
+
+* [Tiny Gradient Boosting Tree](https://github.com/wepe/tgboost)
 * [Programmable Decision Tree Framework](https://github.com/yubin-park/bonsai-dt)
 * [bonsai-dt: Programmable Decision Tree Framework](https://yubin-park.github.io/bonsai-dt/)
 * [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
 * [Block-distributed Gradient Boosted Trees](https://arxiv.org/abs/1904.10522)
 * [Distributed decision tree ensemble learning in Scala](https://github.com/stripe/brushfire)
 * [Yggdrasil: An Optimized System for Training Deep Decision Trees at Scale](https://cs.stanford.edu/~matei/papers/2016/nips_yggdrasil.pdf)
-* [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
 * [TF Boosted Trees: A scalable TensorFlow based framework for gradient boosting](https://arxiv.org/abs/1710.11555)
+* [Runtime Optimizations for Tree-based Machine Learning Models](http://lintool.github.io/NSF-projects/IIS-1144034/publications/Asadi_etal_TKDE2014.pdf)
+
 
 ### Fast Traversal of Large Ensembles of Regression Trees
 
+
 * [Fast Traversal of Large Ensembles of Regression Trees](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
 * [Parallelizing the Traversal of Large Ensembles of Decision Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2019/03/ITPDS19.pdf)
+
+
 #### QuickScorer
 
 `QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
@@ -1407,6 +1441,7 @@ ALGORITHM 2: : The QUICKSCORER Algorithm
 - [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
 - [ ] [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2017/04/TOIS16.pdf)
 - [Tree traversal](https://venus.cs.qc.cuny.edu/~mfried/cs313/tree_traversal.html)
+- [ ] [GPU-based Parallelization of QuickScorer to Speed-up Document Ranking with Tree Ensembles](https://www.semanticscholar.org/paper/GPU-based-Parallelization-of-QuickScorer-to-Ranking-Lettich-Lucchese/9b22f24dafa52ae02c5f4ae9cd96ba1166166ba1)
 - https://github.com/hpclab/gpu-quickscorer
 - https://github.com/hpclab/multithread-quickscorer
 - https://github.com/hpclab/vectorized-quickscorer
@@ -1431,6 +1466,7 @@ The achieved compactness makes it possible to fully utilize data parallelization
 ![RapidScorer](https://cdn.mathpix.com/snip/images/vLj1OrPKymNq_nWn3xY0TLijGP-8K1e3eYtQG_Wm-Cw.original.fullsize.png)
 
 - http://ai.stanford.edu/~wzou/kdd_rapidscorer.pdf
+- [RapidScorer: Fast Tree Ensemble Evaluation by Maximizing Compactness in Data Level Parallelization](https://www.semanticscholar.org/paper/RapidScorer%3A-Fast-Tree-Ensemble-Evaluation-by-in-Ye-Zhou/03ccc4b934f849a911f1177c6919a63b9690cb00)
 
 #### AdaQS
 
@@ -1445,28 +1481,6 @@ However, the swap has a side effect that changes the Boolean condition from '<' 
 - https://zhuanlan.zhihu.com/p/54932438
 - https://github.com/qf6101/adaqs
 
-### Accelerated Gradient Boosting
-
-The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
-
-* Initialize $f_0(x)=g_0(x)=0$;
-* For $m = 1, 2, \dots, M$:
-   +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
-   +  For $i = 1, 2,\dots , n$ compute
-    $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
-   +  Find the best weak-learner for pseudo residual:
-   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
-  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
-  +  Update the corrected residual:
-  $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
-  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
-  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
-* Output $f^{M}(x)$.
-____________
-
-* [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
-
-
 ### Gradient Boosting  Machine: Beyond Boost Tree
 
 A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
@@ -1478,12 +1492,22 @@ $$\mathbf{a}_{m}=\arg\min_{\mathbf{a}, \beta} \sum_{i=1}^{N} \left[\tilde{y}_{i}
 where the model $h(\cdot; \cdot)$ is parameterized by $\mathbf{a}$.
 Technically, $h(\cdot; \cdot)$ can be any function - smooth or non-smooth, differentiable or non-differentiable, convex or non-convex- not only the decision tree.
 
+|Least-square Regression|M-regression|
+|---|---|
+<img src="https://cdn.mathpix.com/snip/images/ufROD3iCdX_-wh7MhVgdKsdB6tdb4lLcukdAirZzmiY.original.fullsize.png">|<img src="https://cdn.mathpix.com/snip/images/BPg0lCcHQNq9HIFP8qGYX131gSbtcgk4ZTd7bDmLDgs.original.fullsize.png">|
+
+<img src="https://cdn.mathpix.com/snip/images/lpBjBOiYuKK_kq22TO-HXiDjd2jm_cocCM_snzz-hf4.original.fullsize.png">
+<img src="https://cdn.mathpix.com/snip/images/EkdmqKT9xvrdi5whxIBSd7rMTYuUVp9TwmmCOxPA2Ak.original.fullsize.png">
+
 Another improvment of this framework is to find the `profitable diretion` instead of  the negative gradients $\tilde{y}_{i}$.
 
-* [Gradient Boosting Machines by ](http://uc-r.github.io/gbm_regression)
+
+* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
+* [Gradient Boosting Machines in UC Business Analytics R Programming Guide ](http://uc-r.github.io/gbm_regression)
 * [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
 * [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
 * [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
+* [BOOSTING ALGORITHMS: REGULARIZATION, PREDICTION AND MODEL FITTING](https://web.stanford.edu/~hastie/Papers/buehlmann.pdf)
 ----
 
 
@@ -1517,6 +1541,10 @@ Other ensemble methods include clustering methods ensemble, dimensionality reduc
 * [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
 * [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
 
+<img src="https://cdn.mathpix.com/snip/images/nroGBasdD7HoKNgfFquOqY2U5D006PoqfS699AGw_zA.original.fullsize.png">
+<img src="https://cdn.mathpix.com/snip/images/c2HBE74ZdlTSjMZHToap4mv82cKTqZpTWZch-LL4DAc.original.fullsize.png">
+
+- [Boosting algorithms as gradient descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf)
 
 ### Optimization and Boosting
 
@@ -1535,12 +1563,27 @@ so that $L(F_t)\leq L(F_{t-1})$. In some sense, it requires the model $f$ is eas
 
 * [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
 * [OPTIMIZATION BY GRADIENT BOOSTING](http://www.lsta.upmc.fr/BIAU/bc2.pdf)
-* [boosting as optimization](https://metacademy.org/graphs/concepts/boosting_as_optimization)
+* [boosting as optimization@metacademy](https://metacademy.org/graphs/concepts/boosting_as_optimization)
 * [Boosting, Convex Optimization, and Information Geometry](https://ieeexplore.ieee.org/document/6282239?arnumber=6282239)
 * [Generalized Boosting Algorithms for Convex Optimization](https://www.ri.cmu.edu/publications/generalized-boosting-algorithms-for-convex-optimization/)
 * [Survey of Boosting from an Optimization Perspective](https://users.soe.ucsc.edu/~manfred/pubs/tut/icml2009/ws.pdf)
 
+However, there are 2 drawbacks:
 
+- The loss function $L(\cdot, \cdot)$ may be non-smooth as in numercial optimization problems, whcih requires the non-smooth methods extend to be boost methods.
+- The nengative gradient diretions may not the steepest direction. `xGBoost` takes the advantages of the Newton's methods. It may bring some superise when ocnsidering more fast or accelerated methods.
+
++ [CGBoost: Conjugate Gradient in Function Space](http://www.work.caltech.edu/pub/Li2003CGBoost.pdf)
++ [TaylorBoost: First and Second Order Boosting Algorithms](http://www.svcl.ucsd.edu/projects/taylor_boost/)
++ [Historical GBM – Momentum](https://easychair.org/publications/open/pCtK)
++ [BrownBoost](http://www.thefullwiki.org/BrownBoost)
++ [Fully Corrective Boosting with Arbitrary Loss and Regularization](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/78929/1/hdl_78929.pdf)
++ http://www.work.caltech.edu/
++ http://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote19.html
+
+<img src="https://cdn.mathpix.com/snip/images/x2SuuD7mVNaXTVizaQ6l7IY6yrQpVuj1TeZCqOriwqk.original.fullsize.png">
+
+<img src="https://cdn.mathpix.com/snip/images/wwnWSNc1Dz8Z2s58qGidk3BNN_SRAZXYhmAyiMmOrh4.original.fullsize.png">
 
 ______________
 Boosting | Optimization
@@ -1549,9 +1592,9 @@ Decision Tree | Coordinate-wise Optimization
 AdaBoost | ???
 [Stochastic Gradient Boost](https://statweb.stanford.edu/~jhf/ftp/stobst.pdf) | Stochastic Gradient Descent
 Gradient Boost |  Gradient Descent
-Accelerated Gradient Boosting | Accelerated Gradient Descent
-xGBoost | Newton's Methods
-??? | Mirror Gradient Descent
+??? | Accelerated Gradient Methods
+??? | Mirror Gradient Methods
+??? | Proximal Gradient Methods
 ??? | ADMM
 
 
@@ -1565,9 +1608,47 @@ $$w_i\leftarrow w_i\exp[-\alpha_t(\mathrm{y}_i G_t(x_i))]>0,  i=1,2,\dots, N, \s
 
 $\color{red}{Note}$: given the input feature  $x_i$, the label $\mathrm y_i$ is a fixed constant and the model is modified  with the training data set and the distribution $(D, w)$ i.e., $\{(x_i, y_i, w_i)\mid i=1,2,\cdots, N\}$.
 
+[We give a unified account of boosting and logistic regression in which each learning problem is cast in terms of optimization of Bregman distances. The striking similarity of the two problems in this framework allows us to design and analyze algorithms for both simultaneously, and to easily adapt algorithms designed for one problem to the other. For both problems, we give new algorithms and explain their potential advantages over existing methods. These algorithms are iterative and can be divided into two types based on whether the parameters are updated sequentially (one at a time) or in parallel (all at once). We also describe a parameterized family of algorithms that includes both a sequential- and a parallel-update algorithm as special cases, thus showing how the sequential and parallel approaches can themselves be unified. For all of the algorithms, we give convergence proofs using a general formalization of the auxiliary-function proof technique. As one of our sequential-update algorithms is equivalent to AdaBoost, this provides the first general proof of convergence for AdaBoost. We show that all of our algorithms generalize easily to the multiclass case, and we contrast the new algorithms with the iterative scaling algorithm. We conclude with a few experimental results with synthetic data that highlight the behavior of the old and newly proposed algorithms in different settings.](https://link.springer.com/article/10.1023/A:1013912006537)
+
 * [Boost: Foundations and Algorithms](https://mitpress.mit.edu/sites/default/files/titles/content/boosting_foundations_algorithms/toc.html)
 * [机器学习算法中GBDT与Adaboost的区别与联系是什么？](https://www.zhihu.com/question/54626685)
+* [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
 * [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/article/10.1023/A:1013912006537)
+
+#### Accelerated Gradient Boosting
+
+The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
+
+* Initialize $f_0(x)=g_0(x)=0$;
+* For $m = 1, 2, \dots, M$:
+   +  Compute a linear combination of ${f}$ and ${h}$: $g^{m}(x)=(1-{\theta}_m) f^m(x) + {\theta}_m h^m(x)$ and ${\theta}_m=\frac{2}{m+2}$
+   +  For $i = 1, 2,\dots , n$ compute
+    $$r_{i, m}=-{[\frac{\partial L(\mathrm{y}_i, g^m(x_i))}{\partial g^m(x_i)}]}.$$
+   +  Find the best weak-learner for pseudo residual:
+   $${\tau}_{m,1}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(r_{i,m}-b_{\tau}(x_i))^2$$
+  +  Update the model: $f^{m+1}(x)= g^{m}(x) + \eta b_{\tau_{m,1}}$.
+  +  Update the corrected residual:
+  $$c_{i,m}=\begin{cases} r_{i, m} & \text{if m=0},\\ r_{i, m}+\frac{m+1}{m+2}(c_{i, m-1}-b_{\tau_{m,2}}) & \text{otherwise}.\end{cases}$$
+  +  Find the best weak-learner for the corrected residual: $b_{\tau_{m,2}}=\arg\min_{\tau\in \mathcal T}{\sum}_{i=1}^{n}(c_{i,m}-b_{\tau}(x_i))^2$.
+  +  Update the momentum model: $h^{m+1} = h^{m} + \frac{\gamma\eta}{\theta_m} b_{\tau_{m,2}}(x)$.
+* Output $f^{M}(x)$.
+____________
+
+* [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
+* [Accelerating Gradient Boosting Machine](https://arxiv.org/abs/1903.08708)
+* [Historical Gradient Boosting Machine](https://easychair.org/publications/open/pCtK)
+
+<img src="https://cdn.mathpix.com/snip/images/K2A8aE0RgnOsjuJSyVmwIHcMEwP9gi6NVZGR6-czP20.original.fullsize.png">
+
+<img src="https://cdn.mathpix.com/snip/images/o3JoaeBZKpduHXV72sQJ45OKo4ZftCArb_AAy_FTwHQ.original.fullsize.png">
+
+#### Accelerated proximal boosting
+
+[Gradient boosting is a prediction method that iteratively combines weak learners to produce a complex and accurate model. From an optimization point of view, the learning procedure of gradient boosting mimics a gradient descent on a functional variable. This paper proposes to build upon the proximal point algorithm when the empirical risk to minimize is not differentiable. In addition, the novel boosting approach, called accelerated proximal boosting, benefits from Nesterov's acceleration in the same way as gradient boosting [Biau et al., 2018]. Advantages of leveraging proximal methods for boosting are illustrated by numerical experiments on simulated and real-world data. In particular, we exhibit a favorable comparison over gradient boosting regarding convergence rate and prediction accuracy.](https://arxiv.org/abs/1808.09670)
+
+<img src="https://cdn.mathpix.com/snip/images/YTfPvnaxJMcdXpBbgdRjwRHC0tdHdxeb4nuqBf_MrHY.original.fullsize.png">
+
+- [Accelerated proximal boosting](https://arxiv.org/abs/1808.09670)
 
 #### Translation Optimization Methods to Boost Algorithm
 
@@ -1579,6 +1660,7 @@ The  following steps are the keys to a constructed a decision tree in gardient b
 
 Here we compute the gradient of loss function with respective to each prediction $f(x_i)$ and it is why we call it `gradient boost`.
 If we  fit a regression tree to a subsample of  the targets $r_{i,t}$ randomly, it is `stochastic gradient boost`.
+
 All variants of gradient boost methods mainly modify $\fbox{the steps to construct a new decision tree}$. And it is trained in additive way.
 
 Mirror gradient descent update formulea can be transferred to be
@@ -1600,9 +1682,17 @@ $$
 $$
 where $f_t(x)={\sum}_{i=1}^{T}w_i\mathbb{I}(q(x)=i)$ is a decision tree.
 
+As in `xGboost`, we can write the objective value with the ${t}$-th tree as:
+$$
+obj^{(t)} = \sum_{i=1}^{n}[g_i w_{q(x_i)}+\frac{1}{2} h_i w_{q(x_i)}^2 + \gamma T+\frac{1}{2}\lambda \sum_{i=1}^{n}w_i^2]
+\\=\sum_{j=1}^{T}[(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2]+\gamma T
+$$
+where $I_j=\{i\mid q(x_i)=j\}$ is the set of indices of data points assigned to the $j$-th leaf. So that it is natural to $\fbox{split the leaves as operators}$.
+
 In a compact form, we rewrite the above problem as
 $$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t) + Regularier(f_t)$$
 where $Regularier(f_t)=\gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2$.
+
 
 It is similar to some regularized cost function to minimize:
 
@@ -1620,6 +1710,10 @@ To be more general, how to connect the numerical optimization methods such as fi
 Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boosting}$ ?  
 
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
+
++ [A Duality View of Boosting Algorithms](https://core.ac.uk/display/22025268)
++ [New understanding of boosting methods
+Chunhua Shen, School of Computer Science, University of Adelaide](http://parnec.nuaa.edu.cn/seminar/2013_Spring/20130416/slides-NJU-CS.pdf)
 
 ### Deep Gradient Boosting
 
@@ -1681,7 +1775,7 @@ ______
 * [Leveraging for big data regression](http://homepages.math.uic.edu/~minyang/Big%20Data%20Discussion%20Group/Leveraging%20for%20big%20data%20regression.pdf)
 * [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
 * http://homepages.math.uic.edu/~minyang/BD.htm
-
+* [Some Theory for Generalized Boosting Algorithms](https://www.stat.berkeley.edu/~bickel/BickelRitovZakai2006JMLR.pdf)
 
 ### Matrix Multiplicative Weight Algorithms
 
