@@ -51,9 +51,22 @@ Decision tree is represented graphically as a tree as the following.
 
 As shown above, there are differences between the length from root to  the terminal nodes, which the inputs arrive at. In another  word, some inputs take  more tests(pass more nodes) than others.
 For a given data $(\mathrm x^i, y_i)$ where $\mathrm x^i=(x^i_1, x^i_2, \dots, x^i_p)$.
-It is obvious that $x^i_1-1<x^i_1< x^i_1+1$ and as binary search, each attribute of the sample can be partioned into some region.
+It is obvious that $x^i_1-1<x^i_1< x^i_1+1$ and as binary search, each attribute of the sample can be sorted into some region.
 
-The  core idea of the leaf splitting in decsionn tree is to decrease the dissimarities of the samples in the same region.
+To understand the construction of decision tree, we need to answer three
+basic questions:
+* What are the contents of the nodes?
+* Why and how is a parent node split into two daughter nodes?
+* When do we declare a terminal node?
+
+The root node contains a sample of subjects from which the tree is grown.
+Those subjects constitute the so-called learning sample, and the learning sample can be the entire study sample or a subset of it.
+For our example, the root node contains all 3,861 pregnant women who were the study subjects of the Yale Pregnancy Outcome Study.
+All nodes in the same layer constitute a partition of the root node.
+The partition becomes finer and finer as the layer gets deeper and deeper.
+Therefore, every node in a tree is merely a subset of the learning sample.
+
+The  core idea of the leaf splitting in decision tree is to decrease the dissimilarities of the samples in the same region.
 
 <img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
 
@@ -61,8 +74,9 @@ Divisive Hierarchical Clustering | Decision Tree
 ----|----
 Unsupervised | Supervised
 Clustering | Classification and Regression
-
-
+Splitting by maximizing the inter-cluster distance | Splitting by minimizing the impurities of samples
+Distance-based | Distribution-based
+[Evaluation of clustering](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html)|Accuracy
 
 * https://flowingdata.com/
 * https://github.com/parrt/dtreeviz
@@ -496,8 +510,8 @@ the position of the splits.
 A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (Friedman, 1991) is proposed. This takes the form of a probability distribution over the space of possible MARS models which is explored using reversible jump Markov chain Monte Carlo methods (Green, 1995). The generated sample of MARS models produced is shown to have good predictive power when averaged and allows easy interpretation of the relative importance of predictors to the overall fit.
 
 The BMARS basis function can be written as
-$$B(\vec{x})=\beta_{0}+\sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}\left(x_{l}-t_{k, l}\right)_{+}^{o_{k, l}}\tag{1}$$
-where $\vec x$ is a vector of input, $t_{k,l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component, the function ${(y)}_{+}$ evalutes to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, and $I$ is the maximum allowed number of interactions between
+$$B(\vec{x}) = \beta_{0} + \sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}{\left(x_{l} - t_{k, l}\right)}_{+}^{o_{k, l}}\tag{1}$$
+where $\vec x$ is a vector of input, $t_{k, l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component, the function ${(y)}_{+}$ evaluates to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, and $I$ is the maximum allowed number of interactions between
 the $L$ dimensions of the input space.
 
 <img src="http://www.milbo.users.sonic.net/gallery/plotmo-example1.png" width="70%" />
@@ -800,8 +814,19 @@ Second, the final decision is made by plurality voting rather than weighted majo
 |A crucial property of AdaBoost is that it almost never overfits the data no matter how many iterations it is run.|
 
 
+### Multiclass Boosting
 
-### multiBoost
+In binary classification we learn a function $f(x)$ which is positive for one class and negative for the other class. This means that $f(x)$ is a transformation that pushes example of the first class toward direction of vector +1 and examples of the other class toward direction of vector -1.
+
+<img src="http://www.svcl.ucsd.edu/projects/mcboost/figs/binary_pushing.png">
+
+Using this observation, for multiclass boosting, e.g. 3 classes, we need to push examples in three different directions.
+
+<img src="http://www.svcl.ucsd.edu/projects/mcboost/figs/3_class_pushing.png" width="60%"/>
+
+- http://www.multiboost.org/
+
+#### multiBoost
 
 [Similar to AdaBoost in the two class case, this new algorithm combines weak classifiers and only requires the performance of each weak classifier be better than random guessing (rather than 1/2).](https://www.intlpress.com/site/pub/pages/journals/items/sii/content/vols/0002/0003/a008/)
 
@@ -816,15 +841,19 @@ ____
   +  Set $w_i\leftarrow w_i\exp[\alpha_t\mathbb{I}(G_t(x_i) \not= \mathrm{y}_i)], i=1,2,\dots, N$ and renormalize so that  $\sum_{i}w_i=1$.
 * Output $G(x)=\arg\max_{k}[\sum_{t=1}^{T}\alpha_{t}\mathbb{I}_{G_t(x)=k}]$.
 
+- https://web.stanford.edu/~hastie/Papers/samme.pdf
+
 <img src="https://cdn.mathpix.com/snip/images/aoxWmzifAs8sfUHfXVHlUDeDB_C3XDh6i-P5OtAitCA.original.fullsize.png">
+
+#### MCBoost
+
+[In our paper we showed that for a M-class classification problem, the optimal set of directions will form a simplex in M-1 dimensions. Below you can see examples of those directions for $M = 2, 3, 4$.](http://www.svcl.ucsd.edu/projects/mcboost/)
 
 <img src="http://www.svcl.ucsd.edu/projects/mcboost/figs/simplex_codes.png" />
 
-- http://www.multiboost.org/
 - http://www.svcl.ucsd.edu/projects/mcboost/
 - https://www.lri.fr/~kegl/research/publications.html
 - [MultiBoost: A Multi-purpose Boosting Package](https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf)
-- https://web.stanford.edu/~hastie/Papers/samme.pdf
 - [A theory of multiclass boosting](http://rob.schapire.net/papers/multiboost-journal.pdf)
 - [The return of AdaBoost.MH: multi-class Hamming trees](https://arxiv.org/abs/1312.6086)
 - [Multi-class AdaBoost](http://users.stat.umn.edu/~zouxx019/Papers/samme.pdf)
@@ -832,6 +861,7 @@ ____
 - [multiclass boosting: theory and algorithms](https://papers.nips.cc/paper/4450-multiclass-boosting-theory-and-algorithms.pdf)
 - [LDA-AdaBoost.MH: Accelerated AdaBoost.MH based on latent Dirichlet allocation for text categorization](https://journals.sagepub.com/doi/abs/10.1177/0165551514551496?journalCode=jisb)
 - http://www.svcl.ucsd.edu/projects/sop_boost/
+- [Multiclass Boosting: MCBoost](http://www.svcl.ucsd.edu/projects/mcboost/)
 
 ### Bonsai Boosted Decision Tree
 
@@ -856,8 +886,9 @@ If there is not enough memory available to store all of the response values, the
 * [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
 * [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
-* [BDT: Gradient Boosted Decision Tables for High Accuracy and Scoring Efficiency](https://www.semanticscholar.org/paper/BDT%3A-Gradient-Boosted-Decision-Tables-for-High-and-Lou-Obukhov/865d016a2b5eb29f80b069811caf17ab1b34afdb)
+* [BDT: Gradient Boosted Decision Tables for High Accuracy and Scoring Efficiency](https://yinlou.github.io/papers/lou-kdd17.pdf)
 
+<img src="http://www.arvinzyy.cn/2017/10/03/Gradient-Boosted-Decision-Tables/3.png" />
 
 ### Gradient Boosting Decision Tree
 
@@ -1126,7 +1157,7 @@ Other features include:
 
 #### LightGBM
 
-LightGBM is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:
+`LightGBM` is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:
 
 * Faster training speed and higher efficiency.
 * Lower memory usage.
@@ -1302,6 +1333,8 @@ ThunderGBM|
 * [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
 * [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
 * [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
+* [Communication and Memory Efficient Parallel Decision Tree Construction ](http://www.cs.kent.edu/~jin/Papers/siam03.pdf)
+* https://www3.nd.edu/~nchawla/papers/ECML06c.pdf
 
 <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs40537-019-0186-3/MediaObjects/40537_2019_186_Fig1_HTML.png" width="70%" />
 
@@ -1311,6 +1344,7 @@ ThunderGBM|
 
 #####  Parallelize Split Finding on Each Node
 
+<img src="http://zhanpengfang.github.io/fig_418/split_parallel_alg.jpg" width="80%"/>
 
 ##### Parallelize Split Finding at Each Level by Features
 
@@ -1635,12 +1669,36 @@ The difficulty in accelerating GBM lies in the fact that weak (inexact) learners
 ____________
 
 * [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
-* [Accelerating Gradient Boosting Machine](https://arxiv.org/abs/1903.08708)
-* [Historical Gradient Boosting Machine](https://easychair.org/publications/open/pCtK)
+
+##### Accelerating Gradient Boosting Machine
+
+[Gradient Boosting Machine (GBM) is an extremely powerful supervised learning algorithm that is widely used in practice. GBM routinely features as a leading algorithm in machine learning competitions such as Kaggle and the KDDCup. In this work, we propose Accelerated Gradient Boosting Machine (AGBM) by incorporating Nesterov's acceleration techniques into the design of GBM. The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate. Finally we demonstrate with a number of numerical experiments the effectiveness of AGBM over conventional GBM in obtaining a model with good training and/or testing data fidelity.](https://arxiv.org/abs/1903.08708)
 
 <img src="https://cdn.mathpix.com/snip/images/K2A8aE0RgnOsjuJSyVmwIHcMEwP9gi6NVZGR6-czP20.original.fullsize.png">
 
+* [Accelerating Gradient Boosting Machine](https://arxiv.org/abs/1903.08708)
+
+##### Historical Gradient Boosting Machine
+
+
+[We introduce the Historical Gradient Boosting Machine with the objective of improving
+the convergence speed of gradient boosting. Our approach is analyzed from the perspective
+of numerical optimization in function space and considers gradients in previous steps, which
+have rarely been appreciated by traditional methods. To better exploit the guiding effect
+of historical gradient information, we incorporate both the accumulated previous gradients and the current gradient into the computation of descent direction in the function space. By fitting to the descent direction given by our algorithm, the weak learner could enjoy
+the advantages of historical gradients that mitigate the greediness of the steepest descent direction. Experimental results show that our approach improves the convergence speed of gradient boosting without significant decrease in accuracy.](https://easychair.org/publications/open/pCtK)
+
 <img src="https://cdn.mathpix.com/snip/images/o3JoaeBZKpduHXV72sQJ45OKo4ZftCArb_AAy_FTwHQ.original.fullsize.png">
+
+* [Historical Gradient Boosting Machine](https://easychair.org/publications/open/pCtK)
+
+##### Parallel Boosting with Momentum
+
+[We describe a new, simpliﬁed, and general analysis of a fusion of Nesterov’s accelerated gradient with parallel coordinate descent. The resulting algorithm, which we call BOOM, for boosting with momentum, enjoys the merits of both techniques. Namely, BOOM retains the momentum and convergence properties of the accelerated gradient method while taking into account the curvature of the objective function. We describe a distributed implementation of BOOM which is suitable for massive high dimensional datasets. We show experimentally that BOOM is especially eﬀective in large scale learning problems with rare yet informative features.](https://ai.google/research/pubs/pub41341)
+
+<img src="https://cdn.mathpix.com/snip/images/exGkrKTVJNhntO3IrjRSqhZY0gLyXPKcHhCUksHsEHc.original.fullsize.png">
+
+* https://ai.google/research/pubs/pub41341
 
 #### Accelerated proximal boosting
 
@@ -1687,7 +1745,9 @@ $$
 obj^{(t)} = \sum_{i=1}^{n}[g_i w_{q(x_i)}+\frac{1}{2} h_i w_{q(x_i)}^2 + \gamma T+\frac{1}{2}\lambda \sum_{i=1}^{n}w_i^2]
 \\=\sum_{j=1}^{T}[(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2]+\gamma T
 $$
-where $I_j=\{i\mid q(x_i)=j\}$ is the set of indices of data points assigned to the $j$-th leaf. So that it is natural to $\fbox{split the leaves as operators}$.
+where $I_j=\{i\mid q(x_i)=j\}$ is the set of indices of data points assigned to the $j$-th leaf.
+Note that the samples output in the same leaf has the same output result, so they share the same gradients and Hessian.
+And it is natural to $\fbox{split the leaves as operators}$.
 
 In a compact form, we rewrite the above problem as
 $$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t) + Regularier(f_t)$$
