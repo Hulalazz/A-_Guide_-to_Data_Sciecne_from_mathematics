@@ -19,7 +19,7 @@ https://www.deeplearningpatterns.com/doku.php?id=ensembles
 * [Framework for Better Deep Learning](https://machinelearningmastery.com/framework-for-better-deep-learning/)
 * [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
 * [Large Scale Distributed Deep Networks 中译文](http://blog.sina.com.cn/s/blog_81f72ca70101kuk9.html)
-* [深度树匹配模型(TDM)](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
+* http://static.ijcai.org/2019-Program.html#paper-1606
 
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.
@@ -257,6 +257,8 @@ if we take some proper activation functions such as sigmoid function.
 * http://mcneela.github.io/machine_learning/2017/03/21/Universal-Approximation-Theorem.html
 * http://neuralnetworksanddeeplearning.com/chap4.html
 
+<img src="https://www.cse.unsw.edu.au/~cs9417ml/MLP2/MainPage.gif" width="70%">
+
 #### Evaluation and Optimization in Multilayer Perceptron
 
 The problem is how to find the optimal parameters $W_1, b_1, W_2, b_2,\cdots, W, b$ ?
@@ -287,7 +289,6 @@ We will solve it in the next section *Backpropagation, Optimization and Regulari
 * https://www.wikiwand.com/en/Radial_basis_function_network
 * https://www.cse.unsw.edu.au/~cs9417ml/MLP2/
 
-<img src="https://www.cse.unsw.edu.au/~cs9417ml/MLP2/MainPage.gif" width="70%">
 
 ##### Evaluation for different tasks
 
@@ -450,6 +451,7 @@ For more on **loss function** see:
 * <https://arxiv.org/abs/1811.03962>
 * https://arxiv.org/pdf/1901.03909.pdf
 * <https://www.cs.umd.edu/~tomg/projects/landscapes/>.
+* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
 
 ### Backpropagation, Training and Regularization
 
@@ -459,13 +461,22 @@ Automatic differentiation is the generic name for techniques that use the comput
 Automatic differentiation techniques are founded on the observation that any function, no matter how complicated, is evaluated by performing a sequence of simple elementary operations involving just one or two arguments at a time.
 Backpropagation is one special case of automatic differentiation, i.e. *reverse-mode automatic differentiation*.
 
-The backpropagation procedure to compute the gradient of an objective function with respect to the weights of a multilayer stack of modules is nothing more than a practical application of the **chain rule for derivatives**.
+The backpropagation procedure to compute the gradient of an objective function with respect to the weights of a multilayer stack of modules is nothing more than a practical application of the **chain rule in terms of partial derivatives**.
+Suppose $g:\mathbb{R}^{p}\to\mathbb{R}^n$ and $f:\mathbb{R}^{n}\to\mathbb{R}^{m}$, and let $b=g(a)$, $c=f(b)$, `Chain rule` says that
+$$\frac{\partial c_i}{\partial a_j}=\sum_{k}\frac{\partial c_i}{\partial b_k}\frac{\partial b_k}{\partial a_j}.$$
+
 The key insight is that the derivative (or gradient) of the objective with respect to the input of a module can be computed by working backwards from the gradient with respect to the output of that module (or the input of the subsequent module).
 The backpropagation equation can be applied repeatedly to
 propagate gradients through all modules, starting from the output at the top (where the network produces its prediction) all the way to the bottom (where the external input is fed).
-Once these gradients have been computed, it is straightforward to compute the gradients with respect to the weights of each module.[^10]
+Once these gradients have been computed, it is straightforward to compute the gradients with respect to the weights of each module.
+
 ***
-Suppose that $f(x)={\sigma}\circ(WH + b)$,where $H=\sigma\circ(W_4H_3 + b_4)$, $H_3=\sigma\circ(W_3H_2 + b_3)$,$H_2=\sigma\circ(W_2H_1 + b_2),$ $H_1=\sigma\circ(W_1x + b_1)$,
+Suppose that $f(x)={\sigma}\circ(WH + b)$,where
+* $H  =\sigma\circ(W_4H_3 + b_4)$,
+* $H_3=\sigma\circ(W_3H_2 + b_3)$,
+* $H_2=\sigma\circ(W_2H_1 + b_2)$,
+* $H_1=\sigma\circ(W_1x + b_1)$,
+
 we want to compute the gradient $L(x_0,d_0)=\|f(x_0)-d_0\|^{2}_2$ with respect to all weights $W_1,W_2,W_3,W$:
 
 $$
@@ -533,75 +544,69 @@ $$
 $$
 
 In general, the gradient of any weight can be computed by *backpropagation* algorithm.
-The first step is to compute the gradient of loss function with respect to the output $f(x_0)=y\in\mathbb{R}^{o}$, i.e.
+
+The first step is to compute the gradient of squared loss function with respect to the output $f(x_0)=y\in\mathbb{R}^{o}$, i.e.
 $\frac{\partial L(x_0, d_0)}{\partial f(x_0)}=2(f(x_0)-d_0)=2(\sigma\circ(WH+b)-d_0)$
 , of which the $i$th element is $2(y^{i}-d_0^i)=2(\sigma(W^{i}H+b^{i})-d_0^{i})\,\forall i\{1,2,\dots,o\}$.
 Thus
-$$\frac{\partial L(x_0, d_0)}{\partial W^{i}}=\frac{\partial L(x_0, d_0)}{\partial y^{i}}\frac{\partial y^{i}}{\partial W^{i}}=2(y^{i}-d_0^i)\sigma^{\prime}(W^iH+b^i)[H]^T.$$
+$$\frac{\partial L(x_0, d_0)}{\partial W^{i}}=\frac{\partial L(x_0, d_0)}{\partial y^{i}}\frac{\partial y^{i}}{\partial W^{i}}=2(y^{i} -d_0^i)\sigma^{\prime}(W^iH+b^i)[H]^T,\\
+\frac{\partial L(x_0, d_0)}{\partial b^{i}}=\frac{\partial L(x_0, d_0)}{\partial y^{i}}\frac{\partial y^{i}}{\partial b^{i}}=2(y^{i}-d_0^i)\sigma^{\prime}(W^iH + b^i) b^i.$$
 Thus we can compute all the gradients of $W$ columns. Note that $H$ has been computed through forwards propagation in that layer.
 
-And $H=\sigma\circ(W_4H_3+b_3)$, of which the $i$th element is $H^{i}=\sigma(W_4 H_3 +b_4)^{i}=\sigma(W_4^{i} H_3+b_4^{i})$.
+And $H=\sigma\circ(W_4H_3+b_3)$, of which the $i$ th element is
+$$H^{i}=\sigma(W_4 H_3 +b_4)^{i}=\sigma(W_4^{i} H_3+b_4^{i}).$$
 
 And we can compute the gradient of columns of $W_4$:
-$$
-\frac{\partial L(x_0,y_0)}{\partial W_4^i}= \sum_{j=1}^{o}
-\frac{\partial L(x_0,y_0)}{\partial f^j (x_0)}
-\frac{\partial f^j (x_0)}{\partial z}
-\frac{\partial z}{\partial W_4^i}
-=\sum_{j=1}^{o}\frac{\partial L(x_0,y_0)}{\partial y^j}
-\frac{\partial y^j}{\partial H^i}
-\frac{\partial H^i}{\partial W_4^i} \\
-= \color{aqua}{
-\sum_{j=1}^{o} \frac{\partial L}{\partial y^j}
-\frac{\partial\, y^j}{\partial (W^jH+b^j)}
-\frac{\partial (W^jH+b^j)}{\partial H^{i}}
-\frac{\partial (H^{i})}{\partial W_4^i} } \\
-   = \sum_{j=1}^{l}\frac{\partial L}{\partial y^j}\,\sigma^{\prime}(W^j H+b^j)\,W^{j,i}\,\sigma^{\prime}(W^i_4 H_3+b^i_4)[H_3]^T,
-$$
-where $W^{j,i}$ is the $i$th element of $j$th column in matrix $W$.
+
+$$\frac{\partial L(x_0,y_0)}{\partial W_4^i}$$
+where $y_0=f(x_0)=\sigma\circ[W\underbrace{\sigma\circ(W_4H_3+b_4)}_{H}+b]$.
+
+and by the `chain rule`  we obtain
+$$\frac{\partial L(x_0,y_0)}{\partial W_4^i}
+=\sum_{j=1}^{o}\underbrace{\frac{\partial L(x_0,y_0)}{\partial y^j}}_{\text{computed in last layer} }
+\sum_{n}(\overbrace{\frac{\partial y^j}{\partial H^n}}^{\text{the hidden layer}}
+\frac{\partial H^n}{\partial W_4^i})$$
 
 $$
-\frac{\partial L(x_0,y_0)}{\partial W_3^i}=\sum_{j=1}^{o}
-\frac{\partial L(x_0,y_0)}{\partial f^j (x_0)}
-[\frac{\partial f^j (x_0)}{\partial z}]
-\frac{\partial z}{\partial W_3^i}
-=\sum_{j=1}^{o}
-\frac{\partial L}{\partial y^j }
-[\frac{\partial y^j}{\partial H_3^i}]
-\frac{\partial H_3^i}{\partial W_3^i}\\
-=\sum_{j=1}^{o}
-\frac{\partial L}{\partial y^j }
-[\sum_{k=1}\frac{\partial y^j}{\partial H^k} \frac{\partial H^k}{\partial H_3^i}]
-\frac{\partial H_3^i}{\partial W_3^i}
+= \color{aqua}{
+\sum_{j=1}^{o} \frac{\partial L}{\partial y^j}}\color{blue}{
+\sum_{n}(\underbrace{\frac{\partial\, y^j}{\partial (W^jH+b^j)}
+\frac{\partial (W^jH + b^j)}{\partial H^{n}}}_{\color{purple}{\frac{\partial y^j}{ \partial H^i}} }
+\frac{\partial (H^{n})}{\partial W_4^i}) } \\
+= \sum_{j=1}^{o} \frac{\partial L}{\partial y^j}
+\sum_{n}(\frac{\partial\, y^j}{\partial (W^jH+b^j)}
+\frac{\partial (W^jH + b^j)}{\partial H^{n}}
+\color{green}{\underbrace{\sigma^{\prime}(W^i_4 H_3+b^i_4)[H_3]^T}_{\text{computed after forward computation}} })
+,
+$$
+
+where $W^{j,i}$ is the $i$th element of $j$th row in matrix $W$.
+
+$$
+\frac{\partial L(x_0,y_0)}{\partial W_3^i}=
+\sum_{j=1}^{o}
+\frac{\partial L}{\partial y^j}
+\{\sum_m[\sum_{n}(\frac{\partial y^j}{\partial H^n}
+\overbrace{\frac{\partial H^n}{\partial H_3^m} }^{\triangle})]
+\underbrace{\frac{\partial H_3^m}{\partial W_3^i} }_{\triangle} \}
 $$
 where all the partial derivatives or gradients have been computed or accessible. It is nothing except to add or multiply these values in the order when we compute the weights of hidden layer.
 
 $$
-\frac{\partial L(x_0,y_0)}{\partial W_2^i}=\sum_{j=1}^{o}
-\frac{\partial L(x_0,y_0)}{\partial f^j (x_0)}
-[\frac{\partial f^j (x_0)}{\partial z}]
-\frac{\partial z}{\partial W_2^i}
-=\sum_{j=1}^{l}
-\frac{\partial L}{\partial y^j }
-[\frac{\partial y^j}{\partial H_2^i}]
-\frac{\partial H_2^i}{\partial W_2^i}\\
-=\sum_{j=1}^{o}
-\frac{\partial L}{\partial y^j }
-\{\sum_{k=1}\frac{\partial y^j}{\partial H^k}
-[\sum_{m}\frac{\partial H^k}{\partial H_3^m}\frac{\partial H_3^m}{\partial H_2^i}]\}
-\frac{\partial H_2^i}{\partial W_2^i}
+\frac{\partial L(x_0,y_0)}{\partial W_2^i}=
+\sum_{j=1}^{o}\frac{\partial L}{\partial y^j}
+\fbox{$\sum_{l}\underbrace{\{\sum_m[\sum_{n}(\frac{\partial y^j}{\partial H^n}
+\frac{\partial H^n}{\partial H_3^m} )]
+\frac{\partial H_3^m}{\partial H_2^l} \} }_{\text{computed} }\frac{\partial H_2^l}{\partial W_2^i}$}
 $$
 
 And the gradient of the first layer is computed by
 $$
 \frac{\partial L(x_0,y_0)}{\partial W_1^i}
-=\sum_{j}\frac{\partial L(x_0,y_0)}{\partial y^j}\frac{\partial y^j}{\partial z}\frac{\partial z}{\partial W_1^i}       \\
-=\sum_{j}\underbrace{\frac{\partial L}{\partial y^j}
-\underbrace{[\sum_{k}\frac{\partial y^j}{\partial H^k}
-\sum_{m}\frac{\partial H^k}{\partial H_3^m}
-\sum_{n}\frac{\partial H_3^k}{\partial H_2^n}
-\sum_{r}\frac{\partial H_2^n}{\partial H_1^r}]}_{\text{Chian Rule}}
-\frac{\partial H_1^i}{\partial W_1^i} }_{\text{BackPropagation}}.
+=\sum_{j=1}^{o}\frac{\partial L}{\partial y^j}
+\big(  \sum_{p}\left(\sum_{l}\{\sum_m[\sum_{n}(\frac{\partial y^j}{\partial H^n}
+\frac{\partial H^n}{\partial H_3^m} )]
+\frac{\partial H_3^m}{\partial H_2^l} \} \frac{\partial H_2^l}{\partial H_1^p} \right)\frac{\partial H_1^p}{\partial W_1^i} \big)
 $$
 
 See more information on backpropagation in the following list
@@ -618,12 +623,14 @@ See more information on backpropagation in the following list
 * [如何直观地解释 backpropagation 算法？ - 景略集智的回答 - 知乎](https://www.zhihu.com/question/27239198/answer/537357910)
 * The chapter 2 *How the backpropagation algorithm works* at the online book <http://neuralnetworksanddeeplearning.com/chap2.html>
 * For more information on automatic differentiation see the book *Evaluating Derivatives: Principles and Techniques of Algorithmic Differentiation, Second Edition* by Andreas Griewank and Andrea Walther_ at <https://epubs.siam.org/doi/book/10.1137/1.9780898717761>.
-* [Building   autodifferentiatio n library](https://maciejkula.github.io/2018/07/18/building-an-autodifferentiation-library/)
+* [Building auto differentiation library](https://maciejkula.github.io/2018/07/18/building-an-autodifferentiation-library/)
 * [The World’s Most Fundamental Matrix Equation](https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation)
 
 <img src=http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg width=50% />
 
-##### Beyond AutoDifferent
+
+
+##### Beyond Back-propagation
 
 - [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
 - [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
@@ -632,6 +639,7 @@ See more information on backpropagation in the following list
 - [Beyond Feedforward Models Trained by Backpropagation: a Practical Training Tool for a More Efficient Universal Approximator](https://www.memphis.edu/clion/pdf-papers/0710.4182.pdf)
 - [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
 - [Capsule Networks Explained](https://kndrck.co/posts/capsule_networks_explained/)
+- http://people.missouristate.edu/RandallSexton/sabp.pdf
 
 #### Fundamental Problem of Deep Learning and Activation Functions
 
@@ -856,7 +864,7 @@ The functions in the right column are  approximate to the identity function in $
 - [A Review of Activation Functions in SharpNEAT](http://sharpneat.sourceforge.net/research/activation-fn-review/activation-fn-review.html)
 - [Activation Functions](https://rpubs.com/shailesh/activation-functions)
 - [第一十三章 优化算法](https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md)
-- [ReLU and Softmax Activation Functions] (https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions).
+- [ReLU and Softmax Activation Functions](https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions).
 
 ****
 * http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
@@ -874,6 +882,7 @@ The functions in the right column are  approximate to the identity function in $
 * https://isaacchanghau.github.io/post/activation_functions/
 * https://dashee87.github.io/deep%20learning/visualising-activation-functions-in-neural-networks
 * <http://laid.delanover.com/activation-functions-in-deep-learning-sigmoid-relu-lrelu-prelu-rrelu-elu-softmax/>;
+* https://explained.ai/matrix-calculus/index.html
 
 #### Training Methods
 
@@ -912,15 +921,19 @@ Given machine learning models, optimization methods are used to minimize the cos
 
 ##### Initialization and More
 
+As any optimization methods, initial values affect the convergence.
+Some methods require that the initial values must locate at the convergence region, which means it is close to the optimal values in some sense.
+
+
 <img title = "SGD" src="https://image.jiqizhixin.com/uploads/editor/5aa8c27f-c832-4105-83de-954be7420763/1535523576187.png" width="80%" />
 
 **Initialization**
 
 * https://srdas.github.io/DLBook/GradientDescentTechniques.html#InitializingWeights
+* [A Mean-Field Optimal Control Formulation of Deep Learning](https://arxiv.org/abs/1807.01083)
 * [An Empirical Model of Large-Batch Training Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieva](http://www.princeton.edu/~congm/Publication/RandomInit/main.pdf)
 * [Gradient descent and variants](http://www.cnblogs.com/yymn/articles/4995755.html)
-* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
-* [graphcore.ai](https://www.graphcore.ai/posts/revisiting-small-batch-training-for-deep-neural-networks)
+* [REVISITING SMALL BATCH TRAINING FOR DEEP NEURAL NETWORKS@graphcore.ai](https://www.graphcore.ai/posts/revisiting-small-batch-training-for-deep-neural-networks)
 * [可视化超参数作用机制：二、权重初始化](https://zhuanlan.zhihu.com/p/38315135)
 * [第6章 网络优化与正则化](https://nndl.github.io/chap-%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96.pdf)
 * [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/pdf/1812.01187.pdf)
@@ -941,6 +954,29 @@ Given machine learning models, optimization methods are used to minimize the cos
 - https://supercomputersfordl2017.github.io/Presentations/DLSC_talk.pdf
 - https://openreview.net/pdf?id=B1Yy1BxCZ
 - https://arxiv.org/abs/1711.00489
+
+##### Distributed Training of Neural Networks
+
+Data
+
+Model
+
+
+* https://github.com/wenwei202/terngrad
+* [MVAPICH: MPI over InfiniBand, Omni-Path, Ethernet/iWARP, and RoCE](http://mvapich.cse.ohio-state.edu/)
+* [Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)
+* https://stanford.edu/~rezab/
+* [CME 323: Distributed Algorithms and Optimization](https://stanford.edu/~rezab/dao/)
+* [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
+* [Distributed Deep Learning with DL4J and Spark](https://deeplearning4j.org/docs/latest/deeplearning4j-scaleout-intro)
+* [A Hitchhiker’s Guide On Distributed Training of Deep Neural Networks](https://www.groundai.com/project/a-hitchhikers-guide-on-distributed-training-of-deep-neural-networks/1)
+* [Distributed training of neural networks](https://www.beyondthelines.net/machine-learning/distributed-training-of-neural-networks/)
+* [A Network-Centric Hardware/Algorithm Co-Design to Accelerate Distributed Training of Deep Neural Networks](https://www.cc.gatech.edu/~hadi/doc/paper/2018-micro-inceptionn.pdf)
+* [Parallel and Distributed Deep Learning](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/hedge_usmani.pdf)
+* [Network Design Projects: Parallel and Distributed Deep Learning Harvard CS 144r/244r Spring 2019 ](http://www.eecs.harvard.edu/htk/courses/)
+* [DIANNE is a modular software framework for designing, training and evaluating artificial neural networks](http://dianne.intec.ugent.be/)
+* [BytePS : a high performance and general distributed training framework.](https://github.com/bytedance/byteps)
+* [[GBDT] The purposes of using parameter server in GBDT](https://github.com/Angel-ML/angel/issues/7)
 
 #### Regularization
 
@@ -1373,7 +1409,8 @@ where ${n}$ is the number of units in the given hidden layer.
 * https://machinelearningmastery.com/batch-normalization-for-training-of-deep-neural-networks/
 * [An Overview of Normalization Methods in Deep Learning](http://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/)
 * [Batch Normalization](https://srdas.github.io/DLBook/GradientDescentTechniques.html#BatchNormalization)
-
+* https://arxiv.org/abs/1902.08129
+* [Normalization in Deep Learning](https://calculatedcontent.com/2017/06/16/normalization-in-deep-learning/)
 
 **Backward Propagation of the Activation Layers**
 
@@ -1835,7 +1872,7 @@ More generative models include GLOW, variational autoencoder and energy-based mo
 
 - http://computationalcreativity.net/home/
 
-## Gepometric Deep Learning
+## Geometric Deep Learning
 
 ### Graph Convolution Network
 
@@ -2101,20 +2138,14 @@ The information theory or code theory helps to accelerate the deep neural networ
 The limitation and extension of deep learning methods is also discussed such as F-principle, capsule-net, biological plausible methods.
 The deep learning method is more engineer. The computational evolutionary adaptive  cognitive intelligence does not occur until now.
 
-* http://dalimeeting.org/dali2018/workshopTheoryDL.html
+* [DALI 2018 - Data, Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
 * https://www.msra.cn/zh-cn/news/people-stories/wei-chen
 * https://www.microsoft.com/en-us/research/people/tyliu/
+* [On Theory@http://www.deeplearningpatterns.com ](http://www.deeplearningpatterns.com/doku.php?id=theory)
 * https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/85815724
-* https://uvadlc.github.io/
+* [UVA DEEP LEARNING COURSE](https://uvadlc.github.io/)
 * [Understanding Neural Networks by embedding hidden representations](https://rakeshchada.github.io/Neural-Embedding-Animation.html)
-
-***
-
-* [Open Source Deep Learning Curriculum, 2016](https://www.deeplearningweekly.com/blog/open-source-deep-learning-curriculum/)
-* [Short Course of Deep Learning 2016 Autumn, PKU](http://www.xn--vjq503akpco3w.top/)
-* [Website for UVA Qdata Group's Deep Learning Reading Group](https://qdata.github.io/deep2Read/)
-* [Foundation of deep learning](https://github.com/soumyadsanyal/foundations_for_deep_learning)
-* [深度学习名校课程大全 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/31988246)
+* [Tractable Deep Learning](https://www.cs.washington.edu/research/tractable-deep-learning)
 * [Theories of Deep Learning (STATS 385)](https://stats385.github.io/)
 * [Topics Course on Deep Learning for Spring 2016 by Joan Bruna, UC Berkeley, Statistics Department](https://github.com/joanbruna/stat212b)
 * [Mathematical aspects of Deep Learning](http://elmos.scripts.mit.edu/mathofdeeplearning/)
@@ -2123,7 +2154,6 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * [Deep Learning Theory: Approximation, Optimization, Generalization](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html)
 * [Theory of Deep Learning, ICML'2018](https://sites.google.com/site/deeplearningtheory/)
 * [Deep Neural Networks: Approximation Theory and Compositionality](http://www.mit.edu/~9.520/fall16/Classes/deep_approx.html)
-* [Neural Networks, Manifolds, and Topology](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/)
 * [Theory of Deep Learning, project in researchgate](https://www.researchgate.net/project/Theory-of-Deep-Learning)
 * [THE THEORY OF DEEP LEARNING - PART I](https://physicsml.github.io/blog/DL-theory.html)
 * [Magic paper](http://cognitivemedium.com/magic_paper/index.html)
@@ -2135,24 +2165,30 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * [Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
 * [DALI 2018, Data Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
 * [Deep unrolling](https://zhuanlan.zhihu.com/p/44003318)
-* [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
 * [WHY DOES DEEP LEARNING WORK?](https://calculatedcontent.com/2015/03/25/why-does-deep-learning-work/)
+* [Deep Learning and the Demand for Interpretability](http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/)
+* https://beenkim.github.io/
+* [Integrated and detailed image understanding](https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html)
+* http://networkinterpretability.org/
+* https://interpretablevision.github.io/
+****
+* [Open Source Deep Learning Curriculum, 2016](https://www.deeplearningweekly.com/blog/open-source-deep-learning-curriculum/)
+* [Short Course of Deep Learning 2016 Autumn, PKU](http://www.xn--vjq503akpco3w.top/)
+* [Website for UVA Qdata Group's Deep Learning Reading Group](https://qdata.github.io/deep2Read/)
+* [Foundation of deep learning](https://github.com/soumyadsanyal/foundations_for_deep_learning)
+* [深度学习名校课程大全 - 史博的文章 - 知乎](https://zhuanlan.zhihu.com/p/31988246)
+* [Neural Networks, Manifolds, and Topology](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/)
+* [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
 * [Hugo Larochelle’s class on Neural Networks](https://sites.google.com/site/deeplearningsummerschool2016/)
 * [Deep Learning Group @microsoft](https://www.microsoft.com/en-us/research/group/deep-learning-group/)
 * [Silicon Valley Deep Learning Group](http://www.svdlg.com/)
 * http://blog.qure.ai/notes/visualizing_deep_learning
 * http://blog.qure.ai/notes/deep-learning-visualization-gradient-based-methods
-* http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/
-* https://beenkim.github.io/
-* https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html
-* http://networkinterpretability.org/
-* https://interpretablevision.github.io/
 * https://zhuanlan.zhihu.com/p/45695998
 * https://www.zhihu.com/question/265917569
 * https://www.ias.edu/ideas/2017/manning-deep-learning
 * https://www.jiqizhixin.com/articles/2018-08-03-10
 * https://cloud.tencent.com/developer/article/1345239
-* http://www.deeplearningpatterns.com/doku.php?id=theory
 * http://cbmm.mit.edu/publications
 * https://stanford.edu/~shervine/l/zh/teaching/cs-229/cheatsheet-deep-learning
 * https://stanford.edu/~shervine/teaching/cs-230.html
@@ -2213,7 +2249,7 @@ The deep learning method is more engineer. The computational evolutionary adapti
 ## Application
 
 IN fact, deep learning is applied widely in prediction and classification in diverse domain from image recognition to drug discovery even scientific computation though there is no first principle to guide how to apply deep learning to these domain.
-The history of deep learning begins with its performance in image recognition and spoken language recogintion over human being. Current breakthough is in naturla language processing with BERT, XLNET and more.
+The history of deep learning begins with its performance in image recognition and spoken language recognition over human being. Current progress is in natural language processing with BERT, XLNET and more.
 
 Even deep learning is young and cut-edge, some pioneers contribute to its development.
 
@@ -2226,6 +2262,7 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 * https://jasirign.github.io/
 * https://xbpeng.github.io/
 * https://delug.github.io/
+* https://github.com/Honlan/DeepInterests
 
 ### Computer Vision
 
@@ -2260,6 +2297,10 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 ### Finance
 
 - https://rohitghosh.github.io/deep_learning_in_finance/
+- https://iknowfirst.com/
+- https://algorithmxlab.com/
+- https://github.com/firmai/financial-machine-learning
+- https://www.firmai.org
 
 ### Brain and Cognition Science
 
@@ -2280,8 +2321,6 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 * [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
 * [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
 * Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
-* https://stats385.github.io/blogs
-* https://explained.ai/matrix-calculus/index.html
 * http://fourier.eng.hmc.edu/e161/lectures/nn/node3.html
 * [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
 * [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
@@ -2316,3 +2355,6 @@ The ultimate goal is general artificial intelligence.
 * http://www.cs.jyu.fi/ai/vagan/DL4CC.html
 * [The Deep Learning on Supercomputers Workshop](https://dlonsc19.github.io/)
 * https://deep-learning-security.github.io/
+* https://www.surrey.ac.uk/events/20190723-ai-summer-school
+* https://smartech.gatech.edu/handle/1853/56665
+* http://alchemy.cs.washington.edu/

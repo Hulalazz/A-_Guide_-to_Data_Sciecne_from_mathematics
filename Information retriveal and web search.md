@@ -1,7 +1,9 @@
 ## IR and Search
 
-- https://www.cs.princeton.edu/cass/
+- [Princeton CASS: Content-Aware Search Systems](https://www.cs.princeton.edu/cass/)
 - http://www.wsdm-conference.org/
+- http://www.svcl.ucsd.edu/projects/regularization/
+- http://www.svcl.ucsd.edu/projects/crossmodal/
 - [ ] [RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
 - [ ] [Information on Information Retrieval (IR) books, courses, conferences and other resources.](https://nlp.stanford.edu/IR-book/information-retrieval.html)
 - https://monkeylearn.com/text-analysis/
@@ -152,7 +154,8 @@ The GPU implementation can accept input from either CPU or GPU memory. On a serv
 #### Query Languages
 
 * [Query Languages](http://www.site.uottawa.ca/~diana/csi4107/L5.pdf)
-* http://www.odbms.org/
+* [Operational Database Management Systems](http://www.odbms.org/)
+* http://web.stanford.edu/class/cs245/
 
 ##### Boolean Queries
 
@@ -299,6 +302,7 @@ and the opacity of their functioning raises concerns of transparency and account
 - https://www.cnblogs.com/wangzhuxing/p/9574630.html
 - https://elasticsearch-py.readthedocs.io/en/master/api.html
 - https://elasticsearch.cn/article/142
+- [CONQUER: A System for Efficient Context-aware Query Suggestions](http://ra.ethz.ch/CDstore/www2011/companion/p265.pdf)
 
 ##### Query Expansion
 
@@ -965,6 +969,23 @@ As we have learned how to handle text, information retrieval is moving on, to pr
 
 - https://iai-group.github.io/webtables-tutorial/
 - https://github.com/iai-group/webtables-tutorial
+
+#### Scholar Search
+
+- https://scholar.google.com/
+- https://academic.microsoft.com/home
+- https://www.base-search.net/
+- https://www.semanticscholar.org/
+- https://xueshu.baidu.com/
+- https://www.refseek.com/
+- https://dblp.uni-trier.de/
+- http://www.jurn.org/
+- https://www.plos.org/
+- https://www.shortscience.org/
+- https://app.dimensions.ai/discover/publication
+- https://deepai.org/researchers
+- https://scinapse.io/
+- http://citeseerx.ist.psu.edu/index
 
 #### Medical Information Retrieval
 
