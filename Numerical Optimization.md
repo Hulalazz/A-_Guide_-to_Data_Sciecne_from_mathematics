@@ -25,6 +25,7 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
 * [Patrick Louis' RECENT CONFERENCE TALKS  on optimization](https://pcombet.math.ncsu.edu/confab.html)
 * [Northwestern University Open Text Book on Process Optimization](https://optimization.mccormick.northwestern.edu/index.php/Main_Page)
+* [Introductory course on non-smooth optimisation](https://jliang993.github.io/nsopt.html)
 
 The proof of convergence  or complexity is often based  on the convex cases where the objective function as well as the constrained set is convex, i.e.,
 $$t x+(1-t)y\in\Theta,\\
@@ -211,10 +212,20 @@ They are called as **inertial gradient methods** or **accelerated gradient metho
 * [Deep Learning From Scratch IV: Gradient Descent and Backpropagation](http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/)
 * https://ee227c.github.io/notes/ee227c-lecture08.pdf
 
+## Conjugate Gradient Methods
+
+It is from the methods to solve the linear system $Ax=b, A\in\mathbb{R}^{n\times n}$.
+
+The gradient  descent  methods transforms the multiply optimization to univariate optimzitaion.
+
+
++ https://wiki.seg.org/wiki/The_conjugate_gradient_method
++ https://stanford.edu/class/ee364b/lectures/conj_grad_slides.pdf
++ [An Introduction to the Conjugate Gradient Method Without the Agonizing Pain](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf)
 
 ## Variable Metric Methods
 
-### Newton's Method
+### Newton's Methods
 
 NEWTON’S METHOD and QUASI-NEWTON METHODS are classified to variable metric methods.
 
@@ -2014,16 +2025,23 @@ See the following links for more information on *stochastic gradient descent*.
 |<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
 
 + [Convergence Analysis of Gradient Descent Stochastic Algorithms](https://www2.isye.gatech.edu/~ashapiro/JOTA96[1].pdf)
-+ [Stochastic Approximations, Diffusion Limit
-and Small Random Perturbations of
-Dynamical Systems
-](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
++ [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
 
 ![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
+
+[Progress in machine learning (ML) is happening so rapidly, that it can sometimes feel like any idea or algorithm more than 2 years old is already outdated or superseded by something better. However, old ideas sometimes remain relevant even when a large fraction of the scientific community has turned away from them. This is often a question of context: an idea which may seem to be a dead end in a particular context may become wildly successful in a different one. In the specific case of deep learning (DL), the growth of both the availability of data and computing power renewed interest in the area and significantly influenced research directions.](https://ai.googleblog.com/2018/12/the-neurips-2018-test-of-time-award.html)
+
+
 * http://blavatnikawards.org/honorees/profile/leon-bottou/
 * https://leon.bottou.org/projects/sgd
 * https://leon.bottou.org/research/stochastic
 * https://leon.bottou.org/papers/bottou-bousquet-2008
+* [Large-Scale Machine Learning with Stochastic Gradient Descent](https://datajobs.com/data-science-repo/Stochastic-Gradient-Descent-[Leon-Bottou].pdf)
+* [Trade off of Machine Learning](https://ai.googleblog.com/2018/12/the-neurips-2018-test-of-time-award.html)
+* https://sites.google.com/view/panos-toulis/implicit-sgd
+* http://dustintran.com/blog/on-asymptotic-convergence-of-averaged-sgd
+* https://github.com/ptoulis/implicit-sgd
+
 
 ### ADAM and More
 

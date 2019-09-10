@@ -595,9 +595,9 @@ where all the partial derivatives or gradients have been computed or accessible.
 $$
 \frac{\partial L(x_0,y_0)}{\partial W_2^i}=
 \sum_{j=1}^{o}\frac{\partial L}{\partial y^j}
-\fbox{$\sum_{l}\underbrace{\{\sum_m[\sum_{n}(\frac{\partial y^j}{\partial H^n}
-\frac{\partial H^n}{\partial H_3^m} )]
-\frac{\partial H_3^m}{\partial H_2^l} \} }_{\text{computed} }\frac{\partial H_2^l}{\partial W_2^i}$}
+\fbox{$\sum_{l}\{\underbrace{\sum_m[\sum_{n}(\frac{\partial y^j}{\partial H^n}
+\frac{\partial H^n}{\partial H_3^m} )] }_{\text{computed in last layer}}
+\frac{\partial H_3^m}{\partial H_2^l} \}  \frac{\partial H_2^l}{\partial W_2^i}$}
 $$
 
 And the gradient of the first layer is computed by
@@ -606,7 +606,7 @@ $$
 =\sum_{j=1}^{o}\frac{\partial L}{\partial y^j}
 \big(  \sum_{p}\left(\sum_{l}\{\sum_m[\sum_{n}(\frac{\partial y^j}{\partial H^n}
 \frac{\partial H^n}{\partial H_3^m} )]
-\frac{\partial H_3^m}{\partial H_2^l} \} \frac{\partial H_2^l}{\partial H_1^p} \right)\frac{\partial H_1^p}{\partial W_1^i} \big)
+\frac{\partial H_3^m}{\partial H_2^l} \} \frac{\partial H_2^l}{\partial H_1^p} \right)\frac{\partial H_1^p}{\partial W_1^i} \big).
 $$
 
 See more information on backpropagation in the following list
@@ -644,7 +644,9 @@ See more information on backpropagation in the following list
 #### Fundamental Problem of Deep Learning and Activation Functions
 
 `Gradients vanishing` is the fundamental problem of deep neural networks according to [Juergen](http://people.idsia.ch/~juergen/).
-The the 1991 diploma thesis of [Sepp Hochreiter](http://www.bioinf.jku.at/people/hochreiter/) formally showed that deep neural networks are hard to train, because they suffer from the now famous problem of vanishing or exploding gradients: in typical deep or recurrent networks, back-propagated error signals either shrink rapidly, or grow out of bounds. In fact, they decay exponentially in the number of layers, or they explode.
+The the 1991 diploma thesis of [Sepp Hochreiter](http://www.bioinf.jku.at/people/hochreiter/) formally showed that [deep neural networks are hard to train, because they suffer from the now famous problem of vanishing or exploding gradients: in typical deep or recurrent networks, back-propagated error signals either shrink rapidly, or grow out of bounds. In fact, they decay exponentially in the number of layers, or they explode.](http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html)
+
+<img src="http://people.idsia.ch/~juergen/seppdeep754x466.jpg" width="70%" />
 
 This fundamental problem makes it impossible to decrease the total loss function via gradient-based optimization problems.
 One direction solution is to replace the sigmoid functions in order to take the advantages of gradient-based methods.
@@ -652,26 +654,25 @@ Another approach is to minimize the cost function via gradient-free optimization
 
 The sigmoid function as the first function to replace the step function actually is a cumulative density function (CDF), which satisfy the following conditions:
 
-- The function, $\sigma(x)=\frac{1}{1+exp(-x)}$,  is left  continuous;
-- $0\leq \sigma(x) \leq 1, \forall x\in\mathbb{R}$;
-- $\lim_{x\to -\infty}\sigma(x)=0, \lim_{x\to\infty}\sigma(x)=1$.
+-  The function, $\sigma(x) = \frac{1}{1+exp(-x)}$,  is left  continuous;
+-  $0 \leq \sigma(x) \leq 1, \forall x\in\mathbb{R}$;
+-  $\lim_{x \to - \infty}\sigma(x)=0, \lim_{x\to\infty}\sigma(x)=1$.
 
 It is called *logistic function* in statistics. This function is easy to explain as a continuous alternative to the step function. And it is much easier to evaluate than the common normal distribution.
 
 And the derivative function of this function is simple to compute if we know the function itself:
 
-$$
-\sigma^{\prime}(x) = \sigma(x)(1 - \sigma(x)).
-$$
+$$\sigma^{\prime}(x) = \sigma(x)(1 -  \sigma(x)).$$
 
-It is clear that $\arg\max_{x}\sigma^{\prime}(x)=\frac{1}{4}< 1$, which can makes the `gradients vanish` during the back-propagation.
+It is clear that $\arg\max_{x} \sigma^{\prime}(x) = \frac{1}{4}< 1$, which can make the `gradients vanish` during the back-propagation.
 
 <img src=https://blog.paperspace.com/content/images/2018/06/sigmoid700.png width=50% />
 
+By `Back-Propagation`, we obtain that
 $$
-\frac{\partial (\sigma(\omega^Tx + b))}{\partial \omega}
-=\frac{\partial (\sigma(\omega^Tx + b))}{\partial (\omega^Tx + b)}\cdot\frac{\partial (\omega^Tx + b)}{\partial \omega}
-\\= [\sigma(\omega^Tx + b)\cdot(1-\sigma(\omega^Tx + b))] x
+\frac{\partial (\sigma(\omega^T x + b))}{\partial \omega}
+=\frac{\partial (\sigma(\omega^T x + b))}{\partial (\omega^Tx + b)}\cdot\frac{\partial (\omega^T x + b)}{\partial \omega}
+\\= [\sigma(\omega^Tx + b)\cdot(1-\sigma(\omega^T x + b))] x.
 $$
 
 The problems of `Vanishing gradients` can be worsened by saturated neurons. Suppose, that pre-activation ${\omega}^T x + b$ that is fed to a neuron with a Sigmoid activation is either very high or very low. The gradient of sigmoid at very high or low values is almost 0. Any gradient update would hardly produce a change in the weights $\omega$ and the bias $b$, and it would take a lot of steps for the neuron to get modify weights so that the pre-activation falls in an area where the gradient has a substantial value.
@@ -924,6 +925,7 @@ Given machine learning models, optimization methods are used to minimize the cos
 As any optimization methods, initial values affect the convergence.
 Some methods require that the initial values must locate at the convergence region, which means it is close to the optimal values in some sense.
 
+[Initialization can have a significant impact on convergence in training deep neural networks. Simple initialization schemes have been found to accelerate training, but they require some care to avoid common pitfalls. In this post, we'll explain how to initialize neural network parameters effectively.](http://www.deeplearning.ai/ai-notes/initialization/)
 
 <img title = "SGD" src="https://image.jiqizhixin.com/uploads/editor/5aa8c27f-c832-4105-83de-954be7420763/1535523576187.png" width="80%" />
 
@@ -939,6 +941,7 @@ Some methods require that the initial values must locate at the convergence regi
 * [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/pdf/1812.01187.pdf)
 * [Choosing Weights: Small Changes, Big Differences](https://intoli.com/blog/neural-network-initialization/)
 * [Weight initialization tutorial in TensorFlow](https://adventuresinmachinelearning.com/weight-initialization-tutorial-tensorflow/)
+* http://www.deeplearning.ai/ai-notes/initialization/
 
 **Learning Rate**
 

@@ -40,8 +40,12 @@ Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 * [A comparison of regression trees, logistic regression, generalized additive models, and multivariate adaptive regression splines for predicting AMI mortality.](https://www.ncbi.nlm.nih.gov/pubmed/17186501)
 * http://www.cnblogs.com/en-heng/p/5035945.html
 * [高效决策树算法系列笔记](https://github.com/wepe/efficient-decision-tree-notes)
+* [A Brief History of Classification and Regression Trees](http://washstat.org/presentations/20150604/loh_slides.pdf)
 * https://scikit-learn.org/stable/modules/tree.html
 * https://github.com/SilverDecisions/SilverDecisions
+* https://publichealth.yale.edu/c2s2/publications/
+* https://publichealth.yale.edu/c2s2/15_209298_5_v1.pdf
+* [Applications of GUIDE, CRUISE, LOTUS and QUEST classification and regression trees](http://pages.stat.wisc.edu/~loh/apps.html)
 
 #### A Visual and Interactive Guide
 
@@ -53,30 +57,47 @@ As shown above, there are differences between the length from root to  the termi
 For a given data $(\mathrm x^i, y_i)$ where $\mathrm x^i=(x^i_1, x^i_2, \dots, x^i_p)$.
 It is obvious that $x^i_1-1<x^i_1< x^i_1+1$ and as binary search, each attribute of the sample can be sorted into some region.
 
+![RP](https://cdn.mathpix.com/snip/images/rX89DhhiZaKwJPqDLXH3PDYtFV4rN06D3tHDwRHd1pw.original.fullsize.png)
+
 To understand the construction of decision tree, we need to answer three
 basic questions:
 * What are the contents of the nodes?
 * Why and how is a parent node split into two daughter nodes?
 * When do we declare a terminal node?
 
-The root node contains a sample of subjects from which the tree is grown.
-Those subjects constitute the so-called learning sample, and the learning sample can be the entire study sample or a subset of it.
-For our example, the root node contains all 3,861 pregnant women who were the study subjects of the Yale Pregnancy Outcome Study.
+[The root node contains a sample of subjects from which the tree is grown.
+Those subjects constitute the so-called learning sample, and the learning sample can be the entire study sample or a subset of it.](https://publichealth.yale.edu/c2s2/)
+For example, the root node contains all 3,861 pregnant women who were the study subjects of the Yale Pregnancy Outcome Study.
 All nodes in the same layer constitute a partition of the root node.
 The partition becomes finer and finer as the layer gets deeper and deeper.
 Therefore, every node in a tree is merely a subset of the learning sample.
 
-The  core idea of the leaf splitting in decision tree is to decrease the dissimilarities of the samples in the same region.
+The  core idea of the leaf splitting in decision tree is to decrease the dissimilarities of the samples in the same region, i.e., to produce the terminal nodes that are homogeneous.
+[The goodness of a split must weigh the homogeneities (or the impurities) in the two daughter nodes.](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
 
 <img src="https://computing.llnl.gov/projects/sapphire/dtrees/pol.a.gif" width="40%"/>
 
-Divisive Hierarchical Clustering | Decision Tree
-----|----
-Unsupervised | Supervised
-Clustering | Classification and Regression
-Splitting by maximizing the inter-cluster distance | Splitting by minimizing the impurities of samples
-Distance-based | Distribution-based
-[Evaluation of clustering](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html)|Accuracy
+[The recursive partitioning process may proceed until the tree is saturated in the sense that the offspring nodes subject to further division cannot be split.](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
+* there is only one subject in a node.
+* the total number of allowable splits for a node drops as we move from one layer to the next.
+* the number of allowable splits eventually reduces to zero
+* the nodes are terminal when they are not divided further.
+
+The saturated tree is usually too large to be useful.
+- the terminal nodes are so small that we cannot make sensible statistical inference.
+- this level of detail is rarely scientifically interpretable. 
+- a minimum size of a node is set a priori.
+- stopping rules
+  - Automatic Interaction Detection(AID) (Morgan and Sonquist 1963)
+declares a terminal node based on the relative merit of its best split
+to the quality of the root node
+- Breiman et al. (1984, p. 37) argued that depending on the
+stopping threshold, the partitioning tends to end too soon or too
+late.
+
+`These always bring the side effect - overfitting.`
+
+****
 
 * https://flowingdata.com/
 * https://github.com/parrt/dtreeviz
@@ -124,44 +145,25 @@ Another approach to depict a decsion tree $T_h = (N_h;L_h)$ is given the set of 
 
 ***
 
-Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**, which is different from other learning mthods such as support vector machine.
-
-This learning process is to minimize the impurities.
-C4.5 and CART6 are two later classification tree algorithms that follow this approach. C4.5 uses `entropy` for its impurity function,
-whereas CART uses a generalization of the binomial variance called the `Gini index`.
-
-If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
-reduced, and the amount of the reduction is the information gain,
-
-$$
-G(D; D_1, \dots, D_k)=Ent(D)-\sum_{i=1}^{k}\frac{|D_k|}{|D|}Ent(D_k)
-$$
-
-where $Ent(D)$, the entropy of $D$, is defined as
-
-$$
-Ent(D)=\sum_{y \in Y} P(y|D)\log(\frac{1}{P(y | D)}),
-$$
-where $y\in Y$ is the class index.
-
-The information gain ratio of features $A$ with respect of data set $D$  is defined as
-
-$$
-g_{R}(D,A)=\frac{G(D,A)}{Ent(D)}.
-$$
-And another option of impurity is Gini index of probability $p$:
-
-$$
-Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
-$$
-
-$\color{red}{\text{PS: all above impurities}}$  are based on the probability $\fbox{distribuion}$  of data.
-So that it is necessary to estimate the probability distribution of each attribute.
-
 * [基于特征预排序的算法SLIQ](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SLIQ.md)
 * [基于特征预排序的算法SPRINT](https://github.com/wepe/efficient-decision-tree-notes/blob/master/SPRINT.md)
 * [基于特征离散化的算法ClOUDS](https://github.com/wepe/efficient-decision-tree-notes/blob/master/ClOUDS.md)
 * [Space-efficient online computation of quantile summaries](https://dl.acm.org/citation.cfm?id=375670)
+
+----
+
+Divisive Hierarchical Clustering | Decision Tree
+----|----
+From Top to Down | From Top to Down
+Unsupervised | Supervised
+Clustering | Classification and Regression
+Splitting by maximizing the inter-cluster distance | Splitting by minimizing the impurities of samples
+Distance-based | Distribution-based
+[Evaluation of clustering](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html)|Accuracy
+No Regularization | Regularization
+No Explicit Optimization| Optimal Splitting
+
+
 
 #### Pruning and Regularization
 
@@ -172,7 +174,21 @@ The regularization techniques in regression may not suit the tree algorithms suc
 
 <img title = "pruning" src="https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="40%" />
 
-In machine learning, it is to avoid the overfitting, to make a balance between over-fitting and under-fitting and boost the generalization ability. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
+In machine learning, it is to avoid the overfitting, to make a balance between over-fitting and under-fitting and boost the generalization ability.
+[Pruning is to find a subtree of the saturated tree that is most “predictive" of the outcome and least vulnerable to the noise in the data](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
+
+For a tree $T$ we define 
+$$
+R(\mathcal{T})=\sum_{\tau \in \overline{\mathcal{T}}} \boldsymbol{P}\{\tau\} r(\tau)
+$$
+where $\overline{\mathcal{T}}$ is the set of terminal nodes of $\mathcal T$.
+$r(\tau)$ measures a certain quality of node $\tau$.
+It is similar to the sum of the squared residuals in the linear regression.
+The purpose of pruning is to select the best subtree, $\mathcal T^{\ast}$, of an
+initially saturated tree, $\mathcal T_0$, such that $R(T )$ is minimized.
+
+
+The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
 
 1. Use a distinct dataset from the training set (called validation set), to evaluate the effect of post-pruning nodes from the tree.
 2. Build the tree by using the training set, then apply a statistical test to estimate whether pruning or expanding a particular node is likely to produce an improvement beyond the training set.
@@ -191,9 +207,49 @@ While decision trees are nonlinear classifiers in general, decision stumps are a
 
 It is also useful to restrict the number of terminal nodes, the height/depth of the decision tree in order to avoid overfitting.
 
+[Cost–Complexity](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
 
+$$R_{\alpha}(\mathcal{T})=R(\mathcal{T})+\alpha|\tilde{\mathcal{T}}|$$
+
+where $\alpha (\geq 0)$ is the complexity parameter and $|\tilde{\mathcal{T}}|$ is the `number of terminal nodes` in $T$.
+
+The use of tree cost-complexity allows us to construct a sequence of nested “essential” subtrees from any given tree T so that we can examine the properties of these subtrees and make a selection from them.
+
+> (Breiman et al. 1984, Section 3.3) For any value of the complexity
+parameter $\alpha$, there is a unique smallest subtree of $T_0$ that minimizes
+the cost-complexity.
+
+[Nested Optimal Subtrees](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
+
+After pruning the tree using the first threshold, we seek the
+second threshold complexity parameter, $\alpha_2$.
+We knew from our previous discussion that $\alpha_2=0.018$ and its
+optimal subtree is the root-node tree. No more thresholds need to
+be found from here, because the root-node tree is the smallest
+one.
+In general, suppose that we end up with $m$ thresholds, $0<\alpha_1 < \alpha_2\cdots <\alpha_m$.
+
+> If $\alpha_1 > \alpha_2$, the optimal subtree corresponding to $\alpha_1$ is a subtree of the optimal subtree corresponding to $\alpha_2$.
+
+
+We need a good estimate of the misclassification costs of the subtrees.
+We will select the one with the smallest misclassification cost.
+
+- [Nearest Embedded and Embedding Self-Nested Trees](https://www.mdpi.com/1999-4893/12/9/180/htm)
+- [The use of classification trees for bioinformatics](http://moult.ibbr.umd.edu/JournalClubPresentations/Maya/Maya-04Feb2011-paper.pdf)
+- [Classification and regression trees](http://pages.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf)
+
+
+http://support.sas.com/documentation/cdl/en/statug/68162/HTML/default/viewer.htm#statug_hpsplit_details06.htm
 
 #### Missing values processing
+
+[Impact of Missing Data](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
+
+* Missing data may lead to serious loss of information.
+* We may end up with imprecise or even false conclusions.
+* Variables change in the selected models.
+* The estimated coefficients can be notably different.
 
 [Assuming the features are missing completely at random, there are a number of ways of handling missing data](https://koalaverse.github.io/machine-learning-in-R/):
 
@@ -204,6 +260,26 @@ It is also useful to restrict the number of terminal nodes, the height/depth of 
 For most learning methods, the imputation approach (3) is necessary. The simplest tactic is to impute the missing value with the mean or median of the nonmissing values for that feature. If the features have at least some moderate degree of dependence, one can do better by estimating a predictive model for each feature given the other features and then imputing each missing value by its prediction from the model.
 
 Some software packages handle missing data automatically, although many don’t, so it’s important to be aware if any pre-processing is required by the user.
+
+[Surrogate Splits](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
+
+* Surrogate splits attempt to utilize the information in other predictors to assist us in splitting when the splitting variable, say, race, is missing.
+* The idea to look for a predictor that is most similar to race in classifying the subjects.
+* One measure of similarity between two splits suggested by Breiman et al. (1984) is the coincidence probability that the two splits send a subject to the same node.
+
+In general, prior information should be incorporated in estimating
+the coincidence probability when the subjects are not randomly
+drawn from a general population, such as in case–control studies.
+
+There is no guarantee that surrogate splits improve the predictive
+power of a particular split as compared to a random split. In such
+cases, the surrogate splits should be discarded.
+If surrogate splits are used, the user should take full advantage of
+them. They may provide alternative tree structures that in principle
+can have a lower misclassification cost than the final tree,
+because the final tree is selected in a stepwise manner and is not
+necessarily a local optimizer in any sense.
+
 
 - [Missing values processing in CatBoost Packages](https://catboost.ai/docs/concepts/algorithm-missing-values-processing.html)
 - [Decision Tree: Review of Techniques for Missing Values at Training, Testing and Compatibility](http://uksim.info/aims2015/CD/data/8675a122.pdf)
@@ -256,6 +332,51 @@ If the target is a classification outcome taking values $1,2,\dots,K$, the only
 changes needed in the tree algorithm pertain to `the criteria for splitting` nodes and pruning the tree.
 
 [It turns out that most popular splitting criteria can be derived from thinking of decision trees as greedily learning a **piecewise-constant, expected-loss-minimizing approximation** to the function $f(X)=P(Y=1|X)$. For instance, the split that maximizes information gain is also the split that produces the piecewise-constant model that maximizes the expected log-likelihood of the data. Similarly, the split that minimizes the Gini node impurity criterion is the one that minimizes the Brier score of the resulting model. Variance reduction corresponds to the model that minimizes mean squared error.](https://www.benkuhn.net/tree-imp)
+
+
+
+Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**, which is different from other learning mthods such as support vector machine.
+
++ Intuitively, the least impure node should have only one class of outcome (i.e., $P{Y = 1 | \tau} = 0 \text{ or }1$), and its impurity is zero. 
++ Node $\tau$ is most impure when $P\{Y = 1 | \tau\} =\frac{1}{2}$.
++ The impurity function has a concave shape and can be formally defined as
+$$i(\tau)=\phi(P(Y=1\mid \tau))$$
+where the function $\phi$ has the properties (i) $\phi \geq 0$ and (ii) for any
+$p \in (0, 1)$, $\phi(p) = \phi(1 − p)$ and $\phi(0) = \phi(1) < \phi(p)$.
+
+
+C4.5 uses `entropy` for its impurity function,
+whereas CART uses a generalization of the binomial variance called the `Gini index`.
+
+If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
+reduced, and the amount of the reduction is the information gain,
+
+$$
+G(D; D_1, \dots, D_k)=Ent(D)-\sum_{i=1}^{k}\frac{|D_k|}{|D|}Ent(D_k)
+$$
+
+where $Ent(D)$, the entropy of $D$, is defined as
+
+$$
+Ent(D)=\sum_{y \in Y} P(y|D)\log(\frac{1}{P(y | D)}),
+$$
+where $y\in Y$ is the class index.
+
+The information gain ratio of features $A$ with respect of data set $D$  is defined as
+
+$$
+g_{R}(D,A)=\frac{G(D,A)}{Ent(D)}.
+$$
+And another option of impurity is Gini index of probability $p$:
+
+$$
+Gini(p)=\sum_{y}p_y (1-p_y)=1-\sum_{y}p_y^2.
+$$
+
+$\color{red}{\text{PS: all above impurities}}$  are based on the probability $\fbox{distribuion}$  of data.
+So that it is necessary to estimate the probability distribution of each attribute.
+
+<img src="https://www.projectrhea.org/rhea/images/5/52/Impurity_Old_Kiwi.jpg">
 
 Algorithm | Splitting Criteria | Loss Function
 ---|---|---
@@ -349,6 +470,9 @@ It is natural to generalized to nonlinear test, which can be seen as feature eng
 * [CLASSIFICATION AND REGRESSION TREES AND FORESTS FOR INCOMPLETE DATA FROM SAMPLE SURVEYS](http://pages.stat.wisc.edu/~loh/treeprogs/guide/LECL19.pdf)
 * [Classification and Regression Tree Approach for Prediction of Potential Hazards of Urban Airborne Bacteria during Asian Dust Events](https://www.nature.com/articles/s41598-018-29796-7)
 
+
+https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf
+
 ### Incremental Decision Tree
 
 - https://github.com/doubleplusplus/incremental_decision_tree-CART-Random_Forest_python
@@ -401,10 +525,21 @@ Unlike the classical decision tree approach, this method builds a predictive mod
 #### Decision Graph
 
 - [Decision Graphs : An Extension of Decision Trees](https://pdfs.semanticscholar.org/73f1/d17df0e1232da9e2331878a802a941f351c6.pdf)
+- https://www.projectrhea.org/rhea/index.php/ECE662:Glossary_Old_Kiwi
+
+
+|Properties of Decision Tree|
+|:---:|
+|Linearly separable data points. |
+|[Classification and Regression Decision Trees Explained](http://www.learnbymarketing.com/methods/classification-and-regression-decision-trees-explained/)|
+|[Limitations of Trees](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)|
+|Tree structure is prone to instability even with minor data perturbations.|
+|To leverage the richness of a data set of massive size, we need to broaden the classic statistical view of “one parsimonious model" for a given data set.|
+|Due to the adaptive nature of the tree construction, theoretical inference based on a tree is usually not feasible. Generating more trees may provide an empirical solution to statistical inference. |
 
 ### Random Forest
 
-[Decision Trees do not generalize to new variations](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf) demonstrates some theoretical limitations of decision trees. And they can be seriously hurt by the curse of dimensionality in a sense that is a bit different
+[YOSHUA BENGIO, OLIVIER DELALLEAU, AND CLARENCE SIMARD](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf) demonstrates some theoretical limitations of decision trees. And they can be seriously hurt by the curse of dimensionality in a sense that is a bit different
 from other nonparametric statistical methods, but most importantly, that they cannot generalize to variations not seen in the training set.
 This is because a decision tree creates a partition of the input space and needs at least one example in each of the regions associated with a leaf to make a sensible prediction in that region.
 A better understanding of the fundamental reasons for this limitation suggests that one should use forests or even deeper architectures instead of trees,
@@ -417,6 +552,7 @@ that builds a large collection of de-correlated trees, and then averages them.
 On many problems the performance of random forests is very similar to boosting, and they are simpler to train and tune.
 
 - [ RANDOM FORESTS by Leo Breiman](https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf)
+- [Decision Trees do not generalize to new variations](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
 
 ***
 
@@ -430,6 +566,24 @@ On many problems the performance of random forests is very similar to boosting, 
 
 <img src="https://dimensionless.in/wp-content/uploads/RandomForest_blog_files/figure-html/voting.png" width="80%" />
 
+#### Forest Size
+
+Because of so many trees in a forest, it is impractical to present a forest or interpret a forest.
+[Zhang and Wang (2009)](ttps://www.ncbi.nlm.nih.gov/pmc/articles/PMC2822360/): a tree is removed if its removal from the
+forest has the minimal impact on the overall prediction accuracy
+* Calculate the prediction accuracy of forest $F$, denoted by $p_F$. For every tree, denoted by $T$, in forest $F$, calculate the prediction accuracy of forest $F_{−T}$ that excludes $T$, denoted by $p_{F_{−T}}$.
+* Let $\Delta_{−T}$ be the difference in prediction accuracy between $F$ and
+$F_{−T} :\Delta_{−T} = p_F − p_{F_{−T}}$.
+* The tree $T^p$ with the smallest $\Delta_{−T}$ is the least important one and hence subject to removal: $T^p = \arg\min_{T\in F}( \Delta_{−T})$.
+
+**Optimal Size Subforest**
+
+![](https://cdn.mathpix.com/snip/images/IMVJ5Y05WKeqETCsTj6Tw8jcMQwmroBXZt2iH1M1u2g.original.fullsize.png)
+![](https://cdn.mathpix.com/snip/images/90kwXsL6L_PFcqA1wB7rg5YAPE5MThxMx5doHD8NEJw.original.fullsize.png)
+
+- [Search for the smallest random forest](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2822360/)
+- https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf
+
 |[properties of random forest](https://www.elderresearch.com/blog/modeling-with-random-forests)|
 |:-------:|
 |Robustness to Outliers|
@@ -437,6 +591,7 @@ On many problems the performance of random forests is very similar to boosting, 
 |Ability to Handle Missing Data |
 |Ability to Select Features|
 |Ability to Rank Features|
+
 
 ***
 
@@ -511,8 +666,9 @@ A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (F
 
 The BMARS basis function can be written as
 $$B(\vec{x}) = \beta_{0} + \sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}{\left(x_{l} - t_{k, l}\right)}_{+}^{o_{k, l}}\tag{1}$$
-where $\vec x$ is a vector of input, $t_{k, l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component, the function ${(y)}_{+}$ evaluates to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, and $I$ is the maximum allowed number of interactions between
-the $L$ dimensions of the input space.
+where $\vec x$ is a vector of input, $t_{k, l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component,
+the function ${(y)}_{+}$ evaluates to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, 
+and $I$ is the maximum allowed number of interactions between the $L$ dimensions of the input space.
 
 <img src="http://www.milbo.users.sonic.net/gallery/plotmo-example1.png" width="70%" />
 
@@ -1515,70 +1671,7 @@ However, the swap has a side effect that changes the Boolean condition from '<' 
 - https://zhuanlan.zhihu.com/p/54932438
 - https://github.com/qf6101/adaqs
 
-### Gradient Boosting  Machine: Beyond Boost Tree
 
-A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
-
-<img src="https://cdn.mathpix.com/snip/images/gHJzRtK3cCxjIpKHDepZs7KqKIFe9_y_x7E2042UOrA.original.fullsize.png">
-
-Note that any fitting criterion that estimates conditional expectation (given } $\mathbf{x})$ could in principle be used to estimate the (smoothed) negative gradient $(7)$ at line 4 of Algorithm $1$, i.e.,
-$$\mathbf{a}_{m}=\arg\min_{\mathbf{a}, \beta} \sum_{i=1}^{N} \left[\tilde{y}_{i}-\beta h\left(\mathbf{x}_{i} ; \mathbf{a}\right)\right]^{2}$$
-where the model $h(\cdot; \cdot)$ is parameterized by $\mathbf{a}$.
-Technically, $h(\cdot; \cdot)$ can be any function - smooth or non-smooth, differentiable or non-differentiable, convex or non-convex- not only the decision tree.
-
-|Least-square Regression|M-regression|
-|---|---|
-<img src="https://cdn.mathpix.com/snip/images/ufROD3iCdX_-wh7MhVgdKsdB6tdb4lLcukdAirZzmiY.original.fullsize.png">|<img src="https://cdn.mathpix.com/snip/images/BPg0lCcHQNq9HIFP8qGYX131gSbtcgk4ZTd7bDmLDgs.original.fullsize.png">|
-
-<img src="https://cdn.mathpix.com/snip/images/lpBjBOiYuKK_kq22TO-HXiDjd2jm_cocCM_snzz-hf4.original.fullsize.png">
-<img src="https://cdn.mathpix.com/snip/images/EkdmqKT9xvrdi5whxIBSd7rMTYuUVp9TwmmCOxPA2Ak.original.fullsize.png">
-
-Another improvment of this framework is to find the `profitable diretion` instead of  the negative gradients $\tilde{y}_{i}$.
-
-
-* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
-* [Gradient Boosting Machines in UC Business Analytics R Programming Guide ](http://uc-r.github.io/gbm_regression)
-* [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
-* [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
-* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
-* [BOOSTING ALGORITHMS: REGULARIZATION, PREDICTION AND MODEL FITTING](https://web.stanford.edu/~hastie/Papers/buehlmann.pdf)
-----
-
-
-`AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
-And the weight is update via the following formula:
-$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
-
-
-The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
-When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
-general expression of the AdaBoost criteria
-$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
-
-where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
-the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
-e.g., consider the sparse matrix $A_{knn}$ given by
-$$a_{ij}^{knn}=
-\begin{cases}
-1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
-0, & \text{otherwise}.
-\end{cases}$$
-
-
-* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
-* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
-
-Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
-
-* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
-* https://bradleyboehmke.github.io/HOML/gbm.html
-* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
-* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
-
-<img src="https://cdn.mathpix.com/snip/images/nroGBasdD7HoKNgfFquOqY2U5D006PoqfS699AGw_zA.original.fullsize.png">
-<img src="https://cdn.mathpix.com/snip/images/c2HBE74ZdlTSjMZHToap4mv82cKTqZpTWZch-LL4DAc.original.fullsize.png">
-
-- [Boosting algorithms as gradient descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf)
 
 ### Optimization and Boosting
 
@@ -1614,6 +1707,10 @@ However, there are 2 drawbacks:
 + [Fully Corrective Boosting with Arbitrary Loss and Regularization](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/78929/1/hdl_78929.pdf)
 + http://www.work.caltech.edu/
 + http://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote19.html
+
+To be more general, how to connect the numerical optimization methods such as fixed pointed iteration methods and the boosting algorithms?
+Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boosting}$ ?  
+
 
 <img src="https://cdn.mathpix.com/snip/images/x2SuuD7mVNaXTVizaQ6l7IY6yrQpVuj1TeZCqOriwqk.original.fullsize.png">
 
@@ -1761,19 +1858,26 @@ $$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t)+ \mathcal R(f_t)\approx \\
 
 $\color{red}{Note}$ that $F_t=F_{t-1} + f_t=\left<(1,\dots,1),(f_0,\dots, f_t)\right>$,i.e.,it is a linear combination.
 
-If we want to use ADMM, the regular term $\mathcal R(f_t)$ must be written in `linear constraints`.
-
 It seems attractive to me to understand the analogy between
 $\fbox{operator splitting in ADMM}$ and $\fbox{leaves splitting in Decision Tree}$.
 
-To be more general, how to connect the numerical optimization methods such as fixed pointed iteration methods and the boosting algorithms?
-Is it possible to combine $\fbox{Anderson Acceleration}$ and $\fbox{Gradinet Boosting}$ ?  
+To be simple, we do not take the number of leaves into consideration.
+And the objective function is simplied to be 
+$$\sum_{j=1}^{T}f_j(w_j)$$
+where $f_j(w_j)=(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2$.
+Note that the gradients and Hessian are constant as well as $\lambda$. 
+Obviously, it is `concensus optimziation problem`.
 
-Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
+More generally, if the objective function is `not differebtiable`, we can also regard  the samples in the same leaf as one operator.
+Addtionally, $\ell_1$ regularization may take the role as sparse regularization. 
 
 + [A Duality View of Boosting Algorithms](https://core.ac.uk/display/22025268)
-+ [New understanding of boosting methods
-Chunhua Shen, School of Computer Science, University of Adelaide](http://parnec.nuaa.edu.cn/seminar/2013_Spring/20130416/slides-NJU-CS.pdf)
++ [New understanding of boosting methods, Chunhua Shen, School of Computer Science, University of Adelaide](http://parnec.nuaa.edu.cn/seminar/2013_Spring/20130416/slides-NJU-CS.pdf)
++ [Consensus optimization](https://www.cvxpy.org/examples/applications/consensus_opt.html)
+
+Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
+Is it necessary to approxiamte the negative gradient using decision tree?
+
 
 ### Deep Gradient Boosting
 
@@ -1836,6 +1940,71 @@ ______
 * [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
 * http://homepages.math.uic.edu/~minyang/BD.htm
 * [Some Theory for Generalized Boosting Algorithms](https://www.stat.berkeley.edu/~bickel/BickelRitovZakai2006JMLR.pdf)
+
+### Gradient Boosting  Machine: Beyond Boost Tree
+
+A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
+
+<img src="https://cdn.mathpix.com/snip/images/gHJzRtK3cCxjIpKHDepZs7KqKIFe9_y_x7E2042UOrA.original.fullsize.png">
+
+Note that any fitting criterion that estimates conditional expectation (given } $\mathbf{x})$ could in principle be used to estimate the (smoothed) negative gradient $(7)$ at line 4 of Algorithm $1$, i.e.,
+$$\mathbf{a}_{m}=\arg\min_{\mathbf{a}, \beta} \sum_{i=1}^{N} \left[\tilde{y}_{i}-\beta h\left(\mathbf{x}_{i} ; \mathbf{a}\right)\right]^{2}$$
+where the model $h(\cdot; \cdot)$ is parameterized by $\mathbf{a}$.
+Technically, $h(\cdot; \cdot)$ can be any function - smooth or non-smooth, differentiable or non-differentiable, convex or non-convex- not only the decision tree.
+
+|Least-square Regression|M-regression|
+|---|---|
+<img src="https://cdn.mathpix.com/snip/images/ufROD3iCdX_-wh7MhVgdKsdB6tdb4lLcukdAirZzmiY.original.fullsize.png">|<img src="https://cdn.mathpix.com/snip/images/BPg0lCcHQNq9HIFP8qGYX131gSbtcgk4ZTd7bDmLDgs.original.fullsize.png">|
+
+<img src="https://cdn.mathpix.com/snip/images/lpBjBOiYuKK_kq22TO-HXiDjd2jm_cocCM_snzz-hf4.original.fullsize.png">
+<img src="https://cdn.mathpix.com/snip/images/EkdmqKT9xvrdi5whxIBSd7rMTYuUVp9TwmmCOxPA2Ak.original.fullsize.png">
+
+Another improvment of this framework is to find the `profitable diretion` instead of  the negative gradients $\tilde{y}_{i}$.
+
+
+* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
+* [Gradient Boosting Machines in UC Business Analytics R Programming Guide ](http://uc-r.github.io/gbm_regression)
+* [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
+* [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
+* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
+* [BOOSTING ALGORITHMS: REGULARIZATION, PREDICTION AND MODEL FITTING](https://web.stanford.edu/~hastie/Papers/buehlmann.pdf)
+----
+
+
+`AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+And the weight is update via the following formula:
+$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
+
+
+The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
+When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
+general expression of the AdaBoost criteria
+$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
+
+where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
+the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
+e.g., consider the sparse matrix $A_{knn}$ given by
+$$a_{ij}^{knn}=
+\begin{cases}
+1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
+0, & \text{otherwise}.
+\end{cases}$$
+
+
+* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
+* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
+
+Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
+
+* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
+* https://bradleyboehmke.github.io/HOML/gbm.html
+* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
+* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
+
+<img src="https://cdn.mathpix.com/snip/images/nroGBasdD7HoKNgfFquOqY2U5D006PoqfS699AGw_zA.original.fullsize.png">
+<img src="https://cdn.mathpix.com/snip/images/c2HBE74ZdlTSjMZHToap4mv82cKTqZpTWZch-LL4DAc.original.fullsize.png">
+
+- [Boosting algorithms as gradient descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf)
 
 ### Matrix Multiplicative Weight Algorithms
 

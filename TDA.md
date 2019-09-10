@@ -1,5 +1,7 @@
 # Topological Data Analysis
 
+<img src="https://pic3.zhimg.com/v2-fc5ce3dd30b9f253913b833f4a3d6ccb_b.jpg" width="70%" />
+
 Topological data analysis(TDA) is potential to find better representation of the data specially the shape of data.
 TDA can visualize the high dimensional data and characterize the intrinsic invariants of the data.
 It is close to computational geometry, manifold learning and computational topology.
@@ -113,7 +115,7 @@ These VR complexes have been used as a way of associating a simplicial complex t
 2. **Banner Complexes**:
 3. **Nerve Complexes**: Let $U = \{U_{\alpha}\}$ be a collection of open subsets of a topological space $X$. The
 nerve of $U$, $N(U)$, is the simplicial complex defined by the intersection lattice of $U$.
-4.  **Dowker Complexes**: For simplicity, let $X$ and $Y$ be finite sets with #R \subset X\times Y$ representing
+4. **Dowker Complexes**: For simplicity, let $X$ and $Y$ be finite sets with #R \subset X\times Y$ representing
 the ones in a binary matrix (also denoted R) whose columns are indexed by $X$
 and whose rows are indexed by $Y$. The `Dowker complex` of $R$ on $X$ is the simplicial
 complex on the vertex set $X$ defined by the rows of the matrix $R$. That is, each
@@ -209,6 +211,7 @@ TDA can be applied to manifold estimation, nonlinear dimension reduction, mode e
 #### TDA Mapper
 
 + [Data Visualization with TDA Mapper](http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html)
++ https://zhuanlan.zhihu.com/p/72831199
 
 ##### Density Cluster with TDA
 
@@ -244,8 +247,8 @@ TDA can be applied to manifold estimation, nonlinear dimension reduction, mode e
 Computational topology is the mathematical theoretic foundation of topological data analysis. It is different from the deep neural network that origins from the engineering or the simulation to biological neural network.
 Topological data analysis is principle-driven and application-inspired in some sense.
 
-[CS 598: Computational Topology Spring 2013](http://jeffe.cs.illinois.edu/teaching/comptop/) put that
-> Potential mathematical topics include the topology of ++cell complexes, topological graph theory, homotopy, covering spaces, simplicial homology, persistent homology, discrete Morse theory, discrete differential geometry, and normal surface theory. Potential computing topics include algorithms for computing topological invariants, graphics and geometry processing, mesh generation, curve and surface reconstruction, VLSI routing, motion planning, manifold learning, clustering, image processing, and combinatorial optimization++.
+[CS 598: Computational Topology Spring 2013](http://jeffe.cs.illinois.edu/teaching/comptop/) covers the following topics: 
+> Potential mathematical topics include the topology of **cell complexes, topological graph theory, homotopy, covering spaces, simplicial homology, persistent homology, discrete Morse theory, discrete differential geometry, and normal surface theory. Potential computing topics include algorithms for computing topological invariants, graphics and geometry processing, mesh generation, curve and surface reconstruction, VLSI routing, motion planning, manifold learning, clustering, image processing, and combinatorial optimization**.
 
 <img src = "http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png" width = 40% />
 
@@ -272,6 +275,10 @@ G22.3033.007 & G63.2400, Fall 2006 @NYU](https://cs.nyu.edu/~yap/classes/modelin
 
 https://shapeofdata.wordpress.com/
 
+`Computational geometry` uses some information of samples or local information of the geometrical objects to reconstruct/describe  the whole object.
+In computer vision, the task `3D reconstruction` is  a typical example of computational geometry.
+
+
 + [Probabilistic Approach to Geometry](https://www.mathsoc.jp/meeting/msjsi08/)
 + [Applied Geometry Lab @Caltech](http://www.geometry.caltech.edu/)
 + [Titane: Geometric Modeling of 3D Environments](https://team.inria.fr/titane/)
@@ -290,6 +297,12 @@ https://shapeofdata.wordpress.com/
 ![discrete differential geomety](http://brickisland.net/DDGSpring2019/wp-content/uploads/2019/01/cropped-cropped-header.png)
 
 #### Geometric Data Analysis
+
+http://cs233.stanford.ed
+https://tgda.osu.edu/
+
+`Geometric Data Analysis` and topological data analysis are out of the mainstream of quantitative statistics while the quantity also matters in geometric data analysis.
+In conventional statistics, the core concepts are distribution (count in brief) and in/dependence, which is regarded as the reverse engineer of the probability theory. It is supposed that the  data is embedded in some "flat" subspace in $\mathbb{R}^n$ in the past. [Statistics on Manifold](http://bactra.org/notebooks/statistics-on-manifolds.html) and geometry information extends statistics into higher geometrical level.
 
 + [GEOMETRIC DATA ANALYSIS, U CHICAGO, MAY 20-23 2019](http://appliedtopology.org/geometric-data-analysis-u-chicago-may-20-23-2019/)
 + [Geometric Data Analysis Reading Group](https://www.stat.washington.edu/mmp/geometry/reading-group17/html/gda-home.html)
