@@ -27,10 +27,9 @@ Topological Data Analysis as its name shown takes the advantages of topological 
 _____
 
 + <https://www.wikiwand.com/en/Topological_data_analysis>
++ [Centre for Topological Data Analysis](https://www.maths.ox.ac.uk/groups/topological-data-analysis)
 + [TDA overview](https://perfectial.com/blog/topological-data-analysis-overview/)
-+ [Studying the Shape of Data Using Topology](https://www.ias.edu/ideas/2013/lesnick-topological-data-analysis)
 + [Topological Data Analysis](https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1)
-+ [Why TDA works?](https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/)
 + [Topology-Based Active Learning](http://www.sci.utah.edu/publications/Mal2014a/UUSCI-2014-001.pdf)
 + [The NIPS 2012 workshop on Algebraic Topology and Machine Learning.](https://sites.google.com/site/nips2012topology/)
 + [Topological Data Analysis - Part 4 - Persistent Homology](http://outlace.com/TDApart1.html)
@@ -47,14 +46,42 @@ _____
 + [Computational Topology and Geometry (CompTaG)](https://www.cs.montana.edu/tda/)
 + [Topological Methods for Machine Learning: An ICML 2014 Workshop in Beijing, China](http://topology.cs.wisc.edu/references.html)
 + [Towards topological machine learning](http://bastian.rieck.me/blog/posts/2019/towards_topological_machine_learning/)
-+ https://icerm.brown.edu/tripods/tri17-1-gtd/
-+ https://www.ipam.ucla.edu/programs/long-programs/geometry-and-learning-from-data-in-3d-and-beyond/
-+ http://kurlin.org/index.php#group
++ [Geometry and Topology of Data @ICERM](https://icerm.brown.edu/tripods/tri17-1-gtd/)
++ [Geometry and Learning from Data in 3D and Beyond @IPAM](https://www.ipam.ucla.edu/programs/long-programs/geometry-and-learning-from-data-in-3d-and-beyond/)
++ [Topological Data Analysis: theory, examples, applications](http://kurlin.org/blog/)
 + http://chomp.rutgers.edu/
 + http://chomp.rutgers.edu/Projects/Topological_Data_Analysis.html
 + https://www.jstage.jst.go.jp/article/tjsai/32/3/32_D-G72/_pdf
++ https://scikit-tda.org/
++ https://people.maths.ox.ac.uk/tillmann/TDA2019.html
 
-### Topology Basics
+## Why TDA?
+
+[One of the key messages around topological data analysis is that data has `shape` and the shape matters.](https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/)
+The shape is always not in the term of probability distribution function or cumulant distribution function. 
+[The basic goal of TDA is to apply topology, one of the major branches of mathematics, to develop tools for studying `geometric features of data`.](https://www.ias.edu/ideas/2013/lesnick-topological-data-analysis)
+
+
+Perhaps the most elegant demonstration of the dangers of `summary statistics` is `Anscombe’s Quartet`. It’s a group of four datasets that appear to be similar when using typical summary statistics, yet tell four different stories when graphed. Each dataset consists of eleven $(x,y)$ pairs as follows:
+
+![](https://heap-analytics.stamp51.com/wp-content/uploads/2014/04/anscombe_quartet.png)
+
+As shown above, the shape matters. And the distribution can not tell us all the information the datasets encode.
+
++ [Anscombe’s Quartet, and Why Summary Statistics Don’t Tell the Whole Story](https://heap.io/blog/data-stories/anscombes-quartet-and-why-summary-statistics-dont-tell-the-whole-story)
++ https://zhuanlan.zhihu.com/p/25547263
++ http://www.matrix67.com/blog/archives/2308
++ [Why TDA works?](https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/)
++ [Studying the Shape of Data Using Topology](https://www.ias.edu/ideas/2013/lesnick-topological-data-analysis)
+
+
+|[Property](https://web.stanford.edu/class/archive/ee/ee392n/ee392n.1134/lecture/apr9/ayasdi.pdf)|
+|---|
+|Coordinate Freeness |
+|Deformation Invariance|
+|Compressed Representation|
+
+## Topology Basics
 
 Topology focuses on the invariants with respect to continuous mapping.
 It pays more attention to the geometrical or discrete properties of the objects such as the number of circles or holes.
@@ -80,9 +107,13 @@ Mathematics texts are almostly written in logic order and for the ideal cases. A
 
 > **Definition** A topological space $(X, \tau)$ is said to be connected if $X$ is not the union of two disjoint nonempty open sets. Consequently, a topological space is disconnected if the union of any two disjoint nonempty subsets in $\tau$ produces $X$.
 
-**Simplices and Simplicial Complexes**
+### Simplices and Simplicial Complexes
 
 Topological data analysis employs the use of simplicial complexes, which are complexes of geometric structures called simplices (singular: simplex). TDA uses simplicial complexes because they can approximate more complicated shapes and are much more mathematically and computationally tractable than the original shapes that they approximate.
+
+[Simplices are discrete building blocks for topological spaces.](https://jsseely.github.io/notes/TDA/)
+
+[A simplicial complex is a generalization of a graph, with a few special features. The most particular feature is that simplicial complexes can contain higher order analogs of vertices and edges, referred to as simplices. Simplices can be the familiar vertices and edges of a graph, or triangles drawn between 3 vertices, tetrahedron between 4 vertices, and higher still.](https://sauln.github.io/blog/tda_explanations/)
 
 For example, the probability simplex in $\mathbb{R}^n$ is defined as
 $$\sum_{i=1}^{n}x_i=1,\quad x_i\geq 0\quad \forall i\in\{1, 2,  \dots, n\}.$$
@@ -92,6 +123,8 @@ In fact, each component in probability simplex is in the interval $[0, 1]$.
 > **Definition** A k-simplex in $X$ is an unordered collection of $k + 1$ distinct elements of $X$.
 
 ![simplex](http://outlace.com/images/TDAimages/simplices2.svg)
+
+[Most often, simplicial complexes are built from the `nerve of a cover`. Intuitively named, a cover of a data set is a collection of subsets of the data such that every data point is in at least one of the subsets. Formally, we say a cover $\{U_i\}$ of a data set X is satisfies the condition that for any $x \in X$, there exists at least on $U_i \in \{U_i\}$ such that $x \in U_i$. In practice, we often have that each point is contained in multiple cover elements. `The nerve is a simplicial complex created from a cover by collapsing each cover element into vertices and connecting vertices when the cover elements had points in common.` If a point was included in two cover elements $U_i$ and $U_j$, then the vertices $\sigma_i, \sigma_j$ would have an edge drawn between them, denoted $\sigma_{ij}$. We continue this process to higher order intersections to create higher order simplices.](https://sauln.github.io/blog/tda_explanations/)
 
 The faces of a simplex are its boundaries.
 > **Definition** An `abstract simplex` is any finite set of vertices.
@@ -125,6 +158,7 @@ Dowker complex on $Y$ whose simplices on the vertex set $Y$ are determined by th
 ones in columns of $R$.
 5. **Cell Complexes**:        
 
+<img src="https://jsseely.github.io/notes/assets/toruscomplex.jpg" />
 
 ******
 
@@ -137,9 +171,11 @@ $$\partial(X)=\sum_{i=0}^{n}(−1)^i[v_0, v_1, v_2,...v_n],$$
 > where the i-th vertex is removed from the sequence.
 
 
-#### Persistent Homology
+### Persistent Homology
 
 Persistent homology (henceforth just PH) gives us a way to find interesting patterns in data without having to "downgrade" the data in anyway so we can see it.
+
+[Perhaps the most important idea in applied algebraic topology is persistence. It is a response to the first difficulty that one encounters in attempting to assign topological invariants to statistical data sets: that the topology is not robust and has a sensitive dependence on the length scale at which the data set is being considered. The solution is to calculate the topology (specifically the homology) at all scales simultaneously, and to encode the relationship between the different scales in an algebraic invariant called the persistence diagram.](https://www.birs.ca/workshops/2012/12w5081/report12w5081.pdf)
 
 <img src = "https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg" width = "50%" />
 
@@ -210,10 +246,22 @@ TDA can be applied to manifold estimation, nonlinear dimension reduction, mode e
 
 #### TDA Mapper
 
-+ [Data Visualization with TDA Mapper](http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html)
-+ https://zhuanlan.zhihu.com/p/72831199
+[The key insight offered by this technique is that many interesting “clusters” in real data are not clusters in the classical sense (as disconnected components), but are the branches of some single connected component. Think about the three “clusters” in the shape $Y$. As simple as this sounds, this insight has been driving real progress in cancer genomics (where the “clusters” are rarely true clusters), and I suspect this method (or some reinvention of it) will find its ways into more fields in due time.](https://jsseely.github.io/notes/TDA/)
 
-##### Density Cluster with TDA
+<img scr="https://pic4.zhimg.com/80/v2-285bd03f800512b2bbe450e940496a8f_hd.png" width="80%" />
+
++ [Data Visualization with TDA Mapper](http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html)
++ https://zhuanlan.zhihu.com/p/31734839
++ http://tdaphenomics.eecs.wsu.edu/
++ [Interesting Paths in the Mapper](https://arxiv.org/abs/1712.10197)
++ [A header only software library helps to visually discover the insights of high dimensional complex data set.](https://xperthut.github.io/HYPPO-X/)
++ https://www.biorxiv.org/content/10.1101/159954v2
+
+#### Density Cluster with TDA
+
+
+[**Dr Vitaliy Kurlin**](http://kurlin.org/index.php)
+[Applied Algebraic Topology (AAT) network in the UK](http://kurlin.org/applied-algebraic-topology.html)
 
 ***
 [Wang Bei](http://www.sci.utah.edu/~beiwang/) was a PI of [DBI: ABI Innovation: A Scalable Framework for Visual Exploration and Hypotheses Extraction of Phenomics Data using Topological Analytics](http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html).
@@ -242,7 +290,7 @@ TDA can be applied to manifold estimation, nonlinear dimension reduction, mode e
 * https://github.com/stephenhky/PyTDA
 * [Topology ToolKit: Efficient, generic and easy Topological data analysis and visualization](https://topology-tool-kit.github.io/)
 
-### Computational Topology
+## Computational Topology
 
 Computational topology is the mathematical theoretic foundation of topological data analysis. It is different from the deep neural network that origins from the engineering or the simulation to biological neural network.
 Topological data analysis is principle-driven and application-inspired in some sense.
@@ -252,7 +300,10 @@ Topological data analysis is principle-driven and application-inspired in some s
 
 <img src = "http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png" width = 40% />
 
++ [Computational Algebraic Topology](http://people.maths.ox.ac.uk/nanda/cat/index.html)
 + https://datawarrior.wordpress.com/
++ http://people.maths.ox.ac.uk/tillmann/CAT.html
++ [Theory and Algorithms in Data Science](https://turing-seminar.github.io/)
 + http://graphics.stanford.edu/courses/cs468-09-fall/
 + [CS 468 - Fall 2002: Introduction to  Computational  Topology](https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html)
 + http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf
@@ -260,18 +311,19 @@ Topological data analysis is principle-driven and application-inspired in some s
 + [CS 598: Computational Topology , Spring 2013, Jeff Erickson](http://jeffe.cs.illinois.edu/teaching/comptop/)
 + [INF556 -- Topological Data Analysis (2018-19) Steve Oudot](http://www.enseignement.polytechnique.fr/informatique/INF556/)
 + [SF2956 Topological Data Analysis 7.5 credits](https://www.kth.se/student/kurser/kurs/SF2956?l=en)
-+ [Computational Topology and Geometry
-G22.3033.007 & G63.2400, Fall 2006 @NYU](https://cs.nyu.edu/~yap/classes/modeling/06f/)
++ [Computational Topology and Geometry G22.3033.007 & G63.2400, Fall 2006 @NYU](https://cs.nyu.edu/~yap/classes/modeling/06f/)
 + [C3.9 Computational Algebraic Topology (2016-2017)](https://courses.maths.ox.ac.uk/node/161)
 + [CPS296.1: COMPUTATIONAL TOPOLOGY @Duke](https://www2.cs.duke.edu/courses/fall06/cps296.1/)
 + [Math 574--Introduction to Computational Topology (Spring 2016)](http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html)
 + [NSF-CBMS Conference and Software Day on Topological Methods in Machine Learning and Artificial Intelligence: May 13–17 and May 18, 2019. Department of Mathematics, College of Charleston, South Carolina](https://blogs.cofc.edu/cbms-tda2019/)
 + [Data science and applied topology](http://cunygc.appliedtopology.nyc/)
++ [Machine Learning Explanations with Topological Data Analysis](https://sauln.github.io/blog/tda_explanations/)
++ [Topological Data Analysis and Machine Learning Theory](https://www.birs.ca/workshops/2012/12w5081/report12w5081.pdf)
 
 <img src = "http://www.math.wsu.edu/faculty/bkrishna/pics/MultipleTunnels.png" width= "20%" />
+<img src="http://kurlin.org/images/topdatanalysis.png">
 
-
-### Computational Geometry
+## Computational Geometry
 
 https://shapeofdata.wordpress.com/
 
@@ -296,7 +348,7 @@ In computer vision, the task `3D reconstruction` is  a typical example of comput
 
 ![discrete differential geomety](http://brickisland.net/DDGSpring2019/wp-content/uploads/2019/01/cropped-cropped-header.png)
 
-#### Geometric Data Analysis
+## Geometric Data Analysis
 
 http://cs233.stanford.ed
 https://tgda.osu.edu/
@@ -313,8 +365,9 @@ In conventional statistics, the core concepts are distribution (count in brief) 
 + [Workshop - Statistics for geometric data and applications to anthropology](https://www.frias.uni-freiburg.de/en/events/conferences/workshop-statistics-for-geometric-data-title)
 + [CSIC 5011: Topological and Geometric Data Reduction and Visualization](https://yao-lab.github.io/2019_csic5011/)
 + [4th conference on Geometric Science of Information](https://www.see.asso.fr/en/GSI2019)
++ [Geometric Image Processing @ Department of Computer Science Technion - Israel Institute of Technology](http://gip.cs.technion.ac.il/)
 
-#### Optimal Transport
+# Optimal Transport
 
 ![](https://cedricvillani.org/wp-content/themes/SF-Blueprint-WP/img/Cedric-Villani-Sebastien-Godefroy.jpg)
 + [The geometry of optimal transportation](https://projecteuclid.org/download/pdf_1/euclid.acta/1485890981)

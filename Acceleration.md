@@ -106,22 +106,31 @@ Matrix computation dense application like deep neural network would take the adv
 
 
 * [BENCHMARKING DEEP LEARNING SYSTEMS](https://sites.google.com/g.harvard.edu/mlperf-bench/home)
-
+* [Facebook AI Performance Evaluation Platform](https://github.com/facebook/FAI-PEP)
+* [Hardware Accelerators for Machine Learning (CS 217) Stanford University, Fall 2018](https://cs217.stanford.edu/readings)
+* [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
 
 ### Parallel Architectures
 
-Parallel Architectures for Parallel Processing as codesign is a subfield of sysstem for machine learning.
+Parallel Architectures for Parallel Processing as co-design is a subfield of system for machine learning.
 
 <img src="https://vistalab-technion.github.io/cs236605/assets/images/lec10/lec10-2.png" width="80%" />
 
 - https://vistalab-technion.github.io/cs236605/lectures/lecture_8/
 - https://vistalab-technion.github.io/cs236605/lectures/lecture_9/
 - https://vistalab-technion.github.io/cs236605/lectures/lecture_10/
+- https://iq.opengenus.org/gpu-vs-tpu-vs-fpga/
 - [Introduction to Parallel Computing Author: Blaise Barney, Lawrence Livermore National Laboratory](https://computing.llnl.gov/tutorials/parallel_comp/)
 - [Parallel Architectures for Artificial Neural Networks: Paradigms and Implementations N. Sundararajan, P. Saratchandran](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0818683996,miniSiteCd-IEEE_CS2.html)
 - [Parallel Computer Architecture and Programming (CMU 15-418/618)](http://www.math-cs.gordon.edu/courses/cps343/)
 
 #### GPU
+
+This GPU architecture works well on applications with massive parallelism, such as matrix multiplication in a neural network. Actually, you would see order of magnitude higher throughput than CPU on typical training workload for deep learning. This is why the GPU is the most popular processor architecture used in deep learning at time of writing.
+
+[But, the GPU is still a general purpose processor that has to support millions of different applications and software. This leads back to our fundamental problem, the von Neumann bottleneck. For every single calculation in the thousands of ALUs, GPU need to access registers or shared memory to read and store the intermediate calculation results. Because the GPU performs more parallel calculations on its thousands of ALUs, it also spends proportionally more energy accessing memory and also increases footprint of GPU for complex wiring.](https://cloud.google.com/blog/products/ai-machine-learning/what-makes-tpus-fine-tuned-for-deep-learning)
+
+<img src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/image2.gif" >
 
 * [GPU，CUDA，cuDNN的理解](https://blog.csdn.net/u014380165/article/details/77340765)
 * https://developer.nvidia.com/cuda-zone
@@ -129,13 +138,32 @@ Parallel Architectures for Parallel Processing as codesign is a subfield of syss
 
 #### TPU
 
+TPUs can't run word processors, control rocket engines, or execute bank transactions, but they can handle the massive multiplications and additions for neural networks, at blazingly fast speeds while consuming much less power and inside a smaller physical footprint.
+
+The key enabler is a major reduction of the von Neumann bottleneck. Because the primary task for this processor is matrix processing, hardware designer of the TPU knew every calculation step to perform that operation. So they were able to place thousands of multipliers and adders and connect them to each other directly to form a large physical matrix of those operators. This is called systolic array architecture.
+
+<img src="https://deliveryimages.acm.org/10.1145/3160000/3154484/f2.jpg" width="70%"/>
+
+<img src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/image4_5PFB45w.gif">
+<img src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/image1_2PdcvlE.gif">
+
+* [In-Datacenter Performance Analysis of a Tensor Processing Unit](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8192463)
+* https://www.mlq.ai/tpu-machine-learning/
 * [EfficientNet-EdgeTPU: Creating Accelerator-Optimized Neural Networks with AutoML](https://ai.googleblog.com/2019/08/efficientnet-edgetpu-creating.html)
 * [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu)
+* [A Domain-Specific Architecture for Deep Neural Networks](https://cacm.acm.org/magazines/2018/9/230571-a-domain-specific-architecture-for-deep-neural-networks/fulltext)
 
 #### NPU
 
-* [Hardware Accelerators for Machine Learning (CS 217) Stanford University, Fall 2018](https://cs217.stanford.edu/readings)
-* [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
+[A neural processing unit (NPU) is a microprocessor that specializes in the acceleration of machine learning algorithms, typically by operating on predictive models such as artificial neural networks (ANNs) or random forests (RFs). It is, also, known as neural processor.](https://iq.opengenus.org/neural-processing-unit-npu/)
+
+NPU are required for the following purpose:
+
+1. Accelerate the computation of Machine Learning tasks by several folds (nearly 10K times) as compared to GPUs
+2. Consume low power and improve resource utilization for Machine Learning tasks as compared to GPUs and CPUs
+
+* https://iq.opengenus.org/neural-processing-unit-npu/
+* https://www.csail.mit.edu/event/domain-specific-accelerators
 * https://www.alphaics.ai/
 * http://www.cambricon.com/
 * https://www.sigarch.org/
@@ -182,6 +210,9 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 
 [General Matrix Multiply (GEMM) is a common algorithm in linear algebra, machine learning, statistics, and many other domains.](https://spatial-lang.org/gemm)
 
+- https://github.com/pytorch/QNNPACK
+- https://github.com/XiaoMi/mace
+
 ###  Fast Matrix-vector Multiplication
 
 Matrix-vector multiplication is a special matrix multiplication:
@@ -196,11 +227,12 @@ where $m\in\mathbb R^{m\times n}, u\in\mathbb R^n$.
 - http://math.mit.edu/icg/resources/teaching/18.085-spring2015/toeplitz.pdf
 - [FAST ALGORITHMS TO COMPUTE MATRIX-VECTOR PRODUCTS FOR PASCAL MATRICES](http://users.umiacs.umd.edu/~ramani/pubs/tang_pascal_updated.pdf)
 - [Fast algorithms to compute matrix-vector products for Toeplitz and Hankel matrices](http://pe.org.pl/articles/2012/8/47.pdf)
-- [Fast High Dimensional Vector Multiplication Face Recognition ](http://openaccess.thecvf.com/content_iccv_2013/papers/Barkan_Fast_High_Dimensional_2013_ICCV_paper.pdf)
+- [Fast High Dimensional Vector Multiplication Face Recognition](http://openaccess.thecvf.com/content_iccv_2013/papers/Barkan_Fast_High_Dimensional_2013_ICCV_paper.pdf)
 - [Fast Implementation of General Matrix-Vector Multiplication (GEMV) on Kepler GPUs](https://ieeexplore.ieee.org/document/7092787)
 - [The Mailman algorithm for matrix vector multiplication](http://www.cs.yale.edu/homes/el327/papers/matrixVectorApp.pdf)
 - http://people.ece.umn.edu/users/parhi/
 - https://www.cs.utexas.edu/~flame/web/publications.html
+
 
 ### Computation of Matrix Chain Products
 
@@ -235,6 +267,7 @@ for (int m = 0; m < M; m++) {
   }
 }
 ```
+<img src="https://jackwish.net/images/2019/gemm-opt/gemm-1x4.svg" width="60%" />
 
 It  needs $O(MKN)$ multiplication.
 
@@ -268,6 +301,7 @@ Our program is memory bound, which means that the multipliers are not active mos
 * http://jianyuhuang.com/
 * https://terrytao.wordpress.com/tag/fast-matrix-multiplication/
 * https://spatial-lang.org/gemm
+* https://github.com/OAID/Tengine
 
 ##### Strassen Algorithms
 
@@ -338,7 +372,6 @@ $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}
 
 
 <img src="https://jackwish.net/images/2019/qnnpack/qnnpack-gemm-reduce.jpg" width="70%" />
-<img src="https://jackwish.net/images/2019/gemm-opt/gemm-1x4.svg" width="60%" />
 
 
 * [Coppersmith-Winograd Algorithm](https://www.gabormelli.com/RKB/Coppersmith-Winograd_Algorithm)
@@ -349,8 +382,9 @@ $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}
 * https://www.wikiwand.com/en/Coppersmith%E2%80%93Winograd_algorithm
 * https://www.wikiwand.com/en/Matrix_multiplication_algorithm
 * [Limits on All Known (and Some Unknown) Approaches to Matrix Multiplication](https://simons.berkeley.edu/talks/virginia)
+* https://jackwish.net/reveal-qnnpack-implementation.html
 
-
+<img src="https://oscimg.oschina.net/oscnet/0338ded39791cc2a4a5702c65e0c91f5533.jpg" width="70%"/>
 
 ### Automatic Differentiation, Differentiable Programming and Program Transformations
 
@@ -568,23 +602,6 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 + [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
 + [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
 https://github.com/stanford-futuredata/Willump
-
-## Distributed Training of Neural Networks
-
-* [MVAPICH: MPI over InfiniBand, Omni-Path, Ethernet/iWARP, and RoCE](http://mvapich.cse.ohio-state.edu/)
-* [Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)
-* https://stanford.edu/~rezab/
-* [CME 323: Distributed Algorithms and Optimization](https://stanford.edu/~rezab/dao/)
-* [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
-* [Distributed Deep Learning with DL4J and Spark](https://deeplearning4j.org/docs/latest/deeplearning4j-scaleout-intro)
-* [A Hitchhiker’s Guide On Distributed Training of Deep Neural Networks](https://www.groundai.com/project/a-hitchhikers-guide-on-distributed-training-of-deep-neural-networks/1)
-* [Distributed training of neural networks](https://www.beyondthelines.net/machine-learning/distributed-training-of-neural-networks/)
-* [A Network-Centric Hardware/Algorithm Co-Design to Accelerate Distributed Training of Deep Neural Networks](https://www.cc.gatech.edu/~hadi/doc/paper/2018-micro-inceptionn.pdf)
-* [Parallel and Distributed Deep Learning](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/hedge_usmani.pdf)
-* [Network Design Projects: Parallel and Distributed Deep Learning Harvard CS 144r/244r Spring 2019 ](http://www.eecs.harvard.edu/htk/courses/)
-* [DIANNE is a modular software framework for designing, training and evaluating artificial neural networks](http://dianne.intec.ugent.be/)
-* [BytePS : a high performance and general distributed training framework.](https://github.com/bytedance/byteps)
-* [[GBDT] The purposes of using parameter server in GBDT](https://github.com/Angel-ML/angel/issues/7)
 
 ----
 

@@ -915,6 +915,7 @@ In return, we should also look for opportunities to apply IR intuitions into imp
 - [Neu-IR: Workshop on Neural Information Retrieval](https://neu-ir.weebly.com/)
 - [Topics in Neural Information Retrieval](https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/teaching/ss19/topics-in-neural-information-retrieval/)
 - https://frankblood.github.io/
+- [5th Workshop on Semantic Deep Learning (SemDeep-5)](http://www.dfki.de/~declerck/semdeep-5/)
 
 ### Modeling Diverse Ranking with MDP
 
@@ -986,6 +987,8 @@ As we have learned how to handle text, information retrieval is moving on, to pr
 - https://deepai.org/researchers
 - https://scinapse.io/
 - http://citeseerx.ist.psu.edu/index
+- https://www.semion.io/Home/About
+- https://scite.ai/
 
 #### Medical Information Retrieval
 

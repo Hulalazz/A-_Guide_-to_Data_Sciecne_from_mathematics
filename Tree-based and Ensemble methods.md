@@ -57,7 +57,7 @@ As shown above, there are differences between the length from root to  the termi
 For a given data $(\mathrm x^i, y_i)$ where $\mathrm x^i=(x^i_1, x^i_2, \dots, x^i_p)$.
 It is obvious that $x^i_1-1<x^i_1< x^i_1+1$ and as binary search, each attribute of the sample can be sorted into some region.
 
-![RP](https://cdn.mathpix.com/snip/images/rX89DhhiZaKwJPqDLXH3PDYtFV4rN06D3tHDwRHd1pw.original.fullsize.png)
+<img src="https://cdn.mathpix.com/snip/images/rX89DhhiZaKwJPqDLXH3PDYtFV4rN06D3tHDwRHd1pw.original.fullsize.png" width="70%" />
 
 To understand the construction of decision tree, we need to answer three
 basic questions:
@@ -85,7 +85,7 @@ The  core idea of the leaf splitting in decision tree is to decrease the dissimi
 
 The saturated tree is usually too large to be useful.
 - the terminal nodes are so small that we cannot make sensible statistical inference.
-- this level of detail is rarely scientifically interpretable. 
+- this level of detail is rarely scientifically interpretable.
 - a minimum size of a node is set a priori.
 - stopping rules
   - Automatic Interaction Detection(AID) (Morgan and Sonquist 1963)
@@ -122,9 +122,9 @@ late.
 
 The $g_{i}(x)$ can be a constant in $\mathbb{R}$ or some mathematical expression such as logistic regression. When $g_i(x)$ is constant, the decision tree is actually piecewise constant, a concrete example of simple function.
 
-The interpretation is simple: Starting from the root node, you go to the next nodes and the edges tell you which subsets you are looking at. Once you reach the leaf node, the node tells you the predicted outcome. All the edges are connected by ‘AND’.
+The interpretation is simple: Starting from the root node, you go to the next nodes and the edges tell you which subsets you are looking at. Once you reach the leaf node, the node tells you the predicted outcome. All the edges are connected by ‘AND???.
 
-`Template: If feature x is [smaller/bigger] than threshold c AND … then the predicted outcome is the mean value of y of the instances in that node.`
+`Template: If feature x is [smaller/bigger] than threshold c AND ??? then the predicted outcome is the mean value of y of the instances in that node.`
 
 * [Decision Trees (for Classification) by Willkommen auf meinen Webseiten.](http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php)
 * [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
@@ -177,7 +177,7 @@ The regularization techniques in regression may not suit the tree algorithms suc
 In machine learning, it is to avoid the overfitting, to make a balance between over-fitting and under-fitting and boost the generalization ability.
 [Pruning is to find a subtree of the saturated tree that is most “predictive" of the outcome and least vulnerable to the noise in the data](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
 
-For a tree $T$ we define 
+For a tree $T$ we define
 $$
 R(\mathcal{T})=\sum_{\tau \in \overline{\mathcal{T}}} \boldsymbol{P}\{\tau\} r(\tau)
 $$
@@ -213,7 +213,7 @@ $$R_{\alpha}(\mathcal{T})=R(\mathcal{T})+\alpha|\tilde{\mathcal{T}}|$$
 
 where $\alpha (\geq 0)$ is the complexity parameter and $|\tilde{\mathcal{T}}|$ is the `number of terminal nodes` in $T$.
 
-The use of tree cost-complexity allows us to construct a sequence of nested “essential” subtrees from any given tree T so that we can examine the properties of these subtrees and make a selection from them.
+The use of tree cost-complexity allows us to construct a sequence of nested “essential??? subtrees from any given tree T so that we can examine the properties of these subtrees and make a selection from them.
 
 > (Breiman et al. 1984, Section 3.3) For any value of the complexity
 parameter $\alpha$, there is a unique smallest subtree of $T_0$ that minimizes
@@ -299,6 +299,8 @@ $$\min_{j, s}[\min_{c_1}\sum_{x_i\in R_1}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2}
 
 For any choice $j$ and $s$, the inner minimization is solved by
 $$\hat{c}_{1}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{1}(j, s)\right) \text { and } \hat{c}_{2}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{2}(j, s)\right).$$
+
+
 For each splitting variable, the determination of the split point $s$ can
 be done very quickly and hence by scanning through all of the inputs, determination of the best pair $\left(j, s\right)$ is feasible.
 Having found the best split, we partition the data into the two resulting regions and repeat the splitting process on each of the two regions.
@@ -337,12 +339,12 @@ changes needed in the tree algorithm pertain to `the criteria for splitting` nod
 
 Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**, which is different from other learning mthods such as support vector machine.
 
-+ Intuitively, the least impure node should have only one class of outcome (i.e., $P{Y = 1 | \tau} = 0 \text{ or }1$), and its impurity is zero. 
++ Intuitively, the least impure node should have only one class of outcome (i.e., $P{Y = 1 | \tau} = 0 \text{ or }1$), and its impurity is zero.
 + Node $\tau$ is most impure when $P\{Y = 1 | \tau\} =\frac{1}{2}$.
 + The impurity function has a concave shape and can be formally defined as
 $$i(\tau)=\phi(P(Y=1\mid \tau))$$
 where the function $\phi$ has the properties (i) $\phi \geq 0$ and (ii) for any
-$p \in (0, 1)$, $\phi(p) = \phi(1 − p)$ and $\phi(0) = \phi(1) < \phi(p)$.
+$p \in (0, 1)$, $\phi(p) = \phi(1 ??? p)$ and $\phi(0) = \phi(1) < \phi(p)$.
 
 
 C4.5 uses `entropy` for its impurity function,
@@ -392,7 +394,7 @@ for a binary classification problem where $Y_i \in \{0, 1\}$ is  its classificat
 Here Suppose $Y$ is determined from $X$ by some function $f(X)=P(Y=1|X)$.
 First we need to find the constant value $\hat f(X)=f$ that maximizes this value.
 
-Suppose that you have $n$ total instances, $p$ of them positive ($Y=1$) and the rest negative. Suppose that you predict some arbitrary probability $f$ – we’ll solve for the one that maximizes expected log-likelihood. So we take the expected log-likelihood $\mathbb E_X(logP(Y=Y_{observed}|X))$, and break up the expectation by the value of $Y_{observed}$:
+Suppose that you have $n$ total instances, $p$ of them positive ($Y=1$) and the rest negative. Suppose that you predict some arbitrary probability $f$ ??? we’ll solve for the one that maximizes expected log-likelihood. So we take the expected log-likelihood $\mathbb E_X(logP(Y=Y_{observed}|X))$, and break up the expectation by the value of $Y_{observed}$:
 
 $$L(\hat f)
 = (\log P(Y=Y_{observed} | X, Y_{observed}=1)) P(Y_{observed} = 1) \\
@@ -532,6 +534,7 @@ Unlike the classical decision tree approach, this method builds a predictive mod
 |:---:|
 |Linearly separable data points. |
 |[Classification and Regression Decision Trees Explained](http://www.learnbymarketing.com/methods/classification-and-regression-decision-trees-explained/)|
+| linearly separable data points.|
 |[Limitations of Trees](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)|
 |Tree structure is prone to instability even with minor data perturbations.|
 |To leverage the richness of a data set of massive size, we need to broaden the classic statistical view of “one parsimonious model" for a given data set.|
@@ -573,7 +576,7 @@ Because of so many trees in a forest, it is impractical to present a forest or i
 forest has the minimal impact on the overall prediction accuracy
 * Calculate the prediction accuracy of forest $F$, denoted by $p_F$. For every tree, denoted by $T$, in forest $F$, calculate the prediction accuracy of forest $F_{−T}$ that excludes $T$, denoted by $p_{F_{−T}}$.
 * Let $\Delta_{−T}$ be the difference in prediction accuracy between $F$ and
-$F_{−T} :\Delta_{−T} = p_F − p_{F_{−T}}$.
+$F_{−T} :\Delta_{−T} = p_F ??? p_{F_{−T}}$.
 * The tree $T^p$ with the smallest $\Delta_{−T}$ is the least important one and hence subject to removal: $T^p = \arg\min_{T\in F}( \Delta_{−T})$.
 
 **Optimal Size Subforest**
@@ -609,7 +612,7 @@ $F_{−T} :\Delta_{−T} = p_F − p_{F_{−T}}$.
 * [Complete Analysis of a Random Forest Model](https://pdfs.semanticscholar.org/82ac/827885f0941723878aff5df27a3207748983.pdf?_ga=2.167570878.1288016698.1567172049-21308644.1555689715)
 * [Analysis of a Random Forests Model](https://arxiv.org/abs/1005.0208)
 * [Narrowing the Gap: Random Forests In Theory and In Practice](https://arxiv.org/abs/1310.1415)
-* [Random Forest:  A Classification and Regression Tool for Compound Classification and QSAR Modeling](https://pubs.acs.org/doi/10.1021/ci034160g)
+* [Random Forest:??? A Classification and Regression Tool for Compound Classification and QSAR Modeling](https://pubs.acs.org/doi/10.1021/ci034160g)
 
 <img title="Data Mining with Decision Tree" src="https://www.worldscientific.com/na101/home/literatum/publisher/wspc/books/content/smpai/2014/9097/9097/20140827-01/9097.cover.jpg" width= "30%" />
 
@@ -621,13 +624,13 @@ $F_{−T} :\Delta_{−T} = p_F − p_{F_{−T}}$.
 
 [Multivariate Adaptive Regression Splines (MARS) is a non-parametric regression method that builds multiple linear regression models across the range of predictor values. It does this by `partitioning the data`, and run a `linear regression model` on each different partition.](https://support.bccvl.org.au/support/solutions/articles/6000118097-multivariate-adaptive-regression-splines)
 
-Whereas polynomial functions impose a global non-linear relationship, step functions break the range of x into bins, and fit a different constant for each bin. This amounts to converting a continuous variable into an ordered categorical variable such that our linear regression function is converted to Equation 1：
+Whereas polynomial functions impose a global non-linear relationship, step functions break the range of x into bins, and fit a different constant for each bin. This amounts to converting a continuous variable into an ordered categorical variable such that our linear regression function is converted to Equation 1???
 $$y_i = \beta_0 + \beta_1 C_1(x_i) + \beta_2 C_2(x_i) + \beta_3 C_3(x_i) \dots + \beta_d C_d(x_i) + \epsilon_i, \tag{1}$$
 
 where $C_n(x)$ represents $x$ values ranging from $% <![CDATA[
 c_n \leq x < c_{n+1} %]]>$ for $n=1,2,\dots, d$.
 
-The MARS algorithm builds a model in two steps. First, it creates a collection of so-called basis functions (BF). In this procedure, the range of predictor values is partitioned in several groups. For each group, a separate linear regression is modeled, each with its own slope. The connections between the separate regression lines are called knots. The MARS algorithm automatically searches for the best spots to place the knots. Each knot has a pair of basis functions. These basis functions describe the relationship between the environmental variable and the response. The first basis function is ‘max(0, env var - knot), which means that it takes the maximum value out of two options: 0 or the result of the equation ‘environmental variable value – value of the knot’. The second basis function has the opposite form: max(0, knot - env var).
+The MARS algorithm builds a model in two steps. First, it creates a collection of so-called basis functions (BF). In this procedure, the range of predictor values is partitioned in several groups. For each group, a separate linear regression is modeled, each with its own slope. The connections between the separate regression lines are called knots. The MARS algorithm automatically searches for the best spots to place the knots. Each knot has a pair of basis functions. These basis functions describe the relationship between the environmental variable and the response. The first basis function is ‘max(0, env var - knot), which means that it takes the maximum value out of two options: 0 or the result of the equation ‘environmental variable value ??? value of the knot???. The second basis function has the opposite form: max(0, knot - env var).
 
 <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/6018214220/original/MARS.png" width="70%" />
 
@@ -655,10 +658,11 @@ the position of the splits.
 * [Multivariate Adaptive Regression Splines (MARS)](https://asbates.rbind.io/2019/03/02/multivariate-adaptive-regression-splines/)
 * https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines
 * https://github.com/cesar-rojas/mars
-* http://www.milbo.users.sonic.net/earth/
-* https://github.com/scikit-learn-contrib/py-earth
+* [Earth: Multivariate Adaptive Regression Splines (MARS)](http://www.milbo.users.sonic.net/earth/)
+* [A Python implementation of Jerome Friedman's Multivariate Adaptive Regression Splines ](https://github.com/scikit-learn-contrib/py-earth)
 * https://bradleyboehmke.github.io/HOML/mars.html
 * http://www.cs.rtu.lv/jekabsons/Files/ARESLab.pdf
+* https://asbates.rbind.io/2019/03/02/multivariate-adaptive-regression-splines/
 
 #### Bayesian MARS
 
@@ -667,7 +671,7 @@ A Bayesian approach to multivariate adaptive regression spline (MARS) fitting (F
 The BMARS basis function can be written as
 $$B(\vec{x}) = \beta_{0} + \sum_{k=1}^{\mathrm{K}} \beta_{k} \prod_{l=0}^{\mathrm{I}}{\left(x_{l} - t_{k, l}\right)}_{+}^{o_{k, l}}\tag{1}$$
 where $\vec x$ is a vector of input, $t_{k, l}$ is the knot point in the $l^{th}$ dimension of the $k^{th}$ component,
-the function ${(y)}_{+}$ evaluates to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function, 
+the function ${(y)}_{+}$ evaluates to $y$ if $y>0$, else it is 0, $o$ is the polynomial degree in the $l^{th}$ dimension of the $k^{th}$ component, $\beta_k$ is the coefficient of the $k^{th}$ component, $K$ is the maximum number of components of the basis function,
 and $I$ is the maximum allowed number of interactions between the $L$ dimensions of the input space.
 
 <img src="http://www.milbo.users.sonic.net/gallery/plotmo-example1.png" width="70%" />
@@ -1220,6 +1224,7 @@ so that the non-convex error function can be expressed as a polynomial in terms 
 which is easier to fit than a general common non-convex function.
 So that we can implement additive training to boost the supervised algorithm.
 
+<img src="http://zhanpengfang.github.io/fig_418/gbt_example.jpg" width="80%" />
 
 In general, we can expand the objective function at $x^{t-1}$ up to  the second order
 
@@ -1236,7 +1241,7 @@ $$
 obj^{(t)}\approx \sum_{i=1}^{n} [L(y_i,\hat{y}^{(t-1)}_i) + g_i f_t(x_i) + \frac{h_i f_t^2(x_i)}{2}] + \Omega(f_t)
 $$
 
-One important advantage of this definition is that the value of the objective function only depends on $g_i$ and $h_i$. This is how XGBoost supports custom loss functions.
+[One important advantage of this definition is that the value of the objective function only depends on $g_i$ and $h_i$. This is how XGBoost supports custom loss functions. We can optimize every loss function, including logistic regression and pairwise ranking, using exactly the same solver that takes $g_i$ and $h_i$ as input!](https://xgboost.readthedocs.io/en/latest/tutorials/model.html)
 
  In order to define the complexity of the tree $\Omega(f)$, let us first refine the definition of the tree $f(x)$ as
 $$
@@ -1284,18 +1289,28 @@ $$
 
 This formula can be decomposed as 1) the score on the new left leaf 2) the score on the new right leaf 3) The score on the original leaf 4) regularization on the additional leaf.
 We can see an important fact here: if the gain is smaller than $\gamma$, we would do better not to add that branch. This is exactly the **pruning techniques** in tree based models! By using the principles of supervised learning, we can naturally come up with the reason these techniques work.
+
 <img src="https://raw.githubusercontent.com/dmlc/web-data/master/xgboost/model/struct_score.png" width="70%">
 
 <img src="https://pic3.zhimg.com/80/v2-46792243acd6570c3416df14a8d0bb1e_hd.jpg" width="80%" />
+
+For real valued data, we usually want to search for an optimal split. To efficiently do so, we place all the instances in sorted order, like the following picture.
+
+<img src="https://raw.githubusercontent.com/dmlc/web-data/master/xgboost/model/split_find.png" width="80%"/>
+
 <img src="https://pic3.zhimg.com/80/v2-6cd871031772e6ab3005b3166731bae2_hd.jpg" width="80%" />
 
 Other features include:
 
- * row sample;
- * column sample;
- * shrinkages.
+ * shrinkages: Shrinkage scales newly added weights by a factor $\eta$ after each step of tree boosting. Similar to a learning rate in stochastic optimization, shrinkage reduces the influence of each individual tree and leaves space for future trees to improve the model.
+ * column (feature) subsampling: This technique is used in `Random Forest`.
+ * row sub-sampling: speeds up computations of the parallel algorithm.
 
-***
+**SYSTEM DESIGN**
++ Column Block for Parallel Learning
++ Cache-aware Access
++  Blocks for Out-of-core Computation
+
 <img title = "Tianqi Chen" src="https://tqchen.com/data/img/tqchen-new.jpg" width="30%" />
 
 * https://xgboost.readthedocs.io/en/latest/tutorials/model.html
@@ -1308,6 +1323,7 @@ Other features include:
 * [Awesome XGBoost](https://github.com/dmlc/xgboost/blob/master/demo/README.md#machine-learning-challenge-winning-solutions)
 * [Story and lessons from xGBoost](https://homes.cs.washington.edu/~tqchen/2016/03/10/story-and-lessons-behind-the-evolution-of-xgboost.html)
 * [Awesome XGBoost](https://github.com/dmlc/xgboost/tree/master/demo)
+* https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 
 <img src=https://pic2.zhimg.com/50/v2-d8191a1191979eadbd4df191b391f917_hd.jpg />
 
@@ -1350,12 +1366,17 @@ The basic idea is to sort the categories according to the training objective at 
 **Optimization in parallel learning**
 
 [Feature Parallel in LightGBM, Data Parallel in LightGBM](https://lightgbm.readthedocs.io/en/latest/Features.html#optimization-in-network-communication)
+
+<img src="https://www.msra.cn/wp-content/uploads/2017/06/4caedc7agw1fbfnmnhh0qj20fh071q3e.jpg" width="80%" />
+<img src="https://www.msra.cn/wp-content/uploads/2017/06/4caedc7agw1fbfnp8a5suj20q20hs41i.jpg" width="80%" />
+<img src="https://www.msra.cn/wp-content/uploads/2017/06/4caedc7agw1fbfnp8c1jjj20wy0dd41o.jpg" width="80%"/>
+<img src="https://www.msra.cn/wp-content/uploads/2017/06/4caedc7agw1fbfnp86gk4j20xq0hlwjo.jpg" width="80%" />
 <img src="https://zhoutao822.coding.me/2019/01/13/LightGBM/6.png" width="80%">
 
 - [A Communication-Efficient Parallel Algorithm for Decision Tree](https://arxiv.org/abs/1611.01276)
 - [LightGBM, Light Gradient Boosting Machine](https://github.com/Microsoft/LightGBM/)
 - [LightGBM: A Highly Efficient Gradient Boosting Decision Tree](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)
-- [Python3机器学习实践：集成学习之LightGBM - AnFany的文章 - 知乎](https://zhuanlan.zhihu.com/p/53583034)
+- [Python3机器学习实践：集成学习之LightGBM - AnFany的文??? - 知乎](https://zhuanlan.zhihu.com/p/53583034)
 - https://lightgbm.readthedocs.io/en/latest/
 - https://www.msra.cn/zh-cn/news/features/lightgbm-20170105
 - [LightGBM](http://zhoutao822.coding.me/2019/01/13/LightGBM/)
@@ -1407,8 +1428,8 @@ The method depends on the machine learning problem being solved (which is determ
 
 The tree depth and other rules for choosing the structure are set in the starting parameters.
 ****
-How a “feature-split” pair is chosen for a leaf:
-* A list is formed of possible candidates (“feature-split pairs”) to be assigned to a leaf as the split.
+How a "feature-split" pair is chosen for a leaf:
+* A list is formed of possible candidates ("feature-split pairs") to be assigned to a leaf as the split.
 * A number of penalty functions are calculated for each object (on the condition that all of the candidates obtained from step 1 have been assigned to the leaf).
 * The split with the smallest penalty is selected.
 
@@ -1419,7 +1440,7 @@ The resulting value is assigned to the leaf.
 [CatBoost implements an algorithm that allows to fight usual gradient boosting biases.](https://catboost.ai/docs/concepts/algorithm-main-stages_choose-tree-structure.html)
 
 Assume that we take one random permutation $\sigma$ of the training examples and maintain n different supporting models $M_1, \cdots , M_n$ such that the model $M_i$ is learned using only the `first i examples in the permutation`.
-At each step, in order to obtain the residual for $j$-th sample, we use the model $M_{j−1}$.
+At each step, in order to obtain the residual for $j$-th sample, we use the model $M_{j - 1}$.
 
 <img src="https://cdn.mathpix.com/snip/images/kVsAOTih7qFTcp3z-BPJIH8cKdrq5GpvkYivu0XRg-o.original.fullsize.png" witdh= "80%"/>
 
@@ -1484,13 +1505,26 @@ ThunderGBM|
 
 #### Parallel Gradient Boosting Decision Trees
 
+[Distributed implementations of GBT generally follow the following procedures.](http://net.pku.edu.cn/~cuibin/Papers/2017%20ICDE%20boost.pdf)
+1. The training instances are partitioned onto a set of workers.
+2. To split one tree node, each worker computes the gradient statistics of the instances. For each feature, an individual gradient histogram needs to be built.
+3. A coordinator aggregates the gradient histograms of all workers, and finds the best split feature and split value.
+4. The coordinator broadcasts the split result. Each worker splits the current tree node, and proceeds to new tree nodes
+
+Since more features generally yield higher predictive accuracy in practice, many datasets used in industrial applications
+often contain hundreds of thousands or even millions of
+features. Considering that GBT requires merging of gradient
+histograms for all the features during each iteration, when the
+dimension of features increases, the communication cost of
+model aggregation proportionally increases meanwhile.
+
 * [Parallel Gradient Boosting Decision Trees](http://zhanpengfang.github.io/418home.html)
 * https://zeyiwen.github.io/papers.html
 * [PLANET: Massively Parallel Learning of Tree Ensembles with MapReduce](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36296.pdf)
 * [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/index.html)
 * [Efficient Distributed Decision Trees for Robust Regression](https://infoscience.epfl.ch/record/218970)
 * [Communication and Memory Efficient Parallel Decision Tree Construction ](http://www.cs.kent.edu/~jin/Papers/siam03.pdf)
-* https://www3.nd.edu/~nchawla/papers/ECML06c.pdf
+
 
 <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs40537-019-0186-3/MediaObjects/40537_2019_186_Fig1_HTML.png" width="70%" />
 
@@ -1515,6 +1549,7 @@ ThunderGBM|
 * [Yggdrasil: An Optimized System for Training Deep Decision Trees at Scale](https://cs.stanford.edu/~matei/papers/2016/nips_yggdrasil.pdf)
 * [TF Boosted Trees: A scalable TensorFlow based framework for gradient boosting](https://arxiv.org/abs/1710.11555)
 * [Runtime Optimizations for Tree-based Machine Learning Models](http://lintool.github.io/NSF-projects/IIS-1144034/publications/Asadi_etal_TKDE2014.pdf)
+* [Exploiting Thread-Level Parallelism to Build Decision Trees](https://www3.nd.edu/~nchawla/papers/ECML06c.pdf)
 
 
 ### Fast Traversal of Large Ensembles of Regression Trees
@@ -1671,7 +1706,73 @@ However, the swap has a side effect that changes the Boolean condition from '<' 
 - https://zhuanlan.zhihu.com/p/54932438
 - https://github.com/qf6101/adaqs
 
+### Gradient Boosting  Machine: Beyond Boost Tree
 
+A general gradient descent "boosting" paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
+
+<img src="https://cdn.mathpix.com/snip/images/gHJzRtK3cCxjIpKHDepZs7KqKIFe9_y_x7E2042UOrA.original.fullsize.png">
+
+Note that any fitting criterion that estimates conditional expectation (given  $\mathbf{x})$ could in principle be used to estimate the (smoothed) negative gradient $(7)$ at line 4 of Algorithm $1$, i.e.,
+$$\mathbf{a}_{m}=\arg\min_{\mathbf{a}, \beta} \sum_{i=1}^{N} \left[\tilde{y}_{i}-\beta h\left(\mathbf{x}_{i} ; \mathbf{a}\right)\right]^{2}$$
+where the model $h(\cdot; \cdot)$ is parameterized by $\mathbf{a}$.
+Technically, $h(\cdot; \cdot)$ can be any function - smooth or non-smooth, differentiable or non-differentiable, convex or non-convex- not only the decision tree.
+
+|Least-square Regression|M-regression|
+|---|---|
+<img src="https://cdn.mathpix.com/snip/images/ufROD3iCdX_-wh7MhVgdKsdB6tdb4lLcukdAirZzmiY.original.fullsize.png">|<img src="https://cdn.mathpix.com/snip/images/BPg0lCcHQNq9HIFP8qGYX131gSbtcgk4ZTd7bDmLDgs.original.fullsize.png">|
+
+<img src="https://cdn.mathpix.com/snip/images/lpBjBOiYuKK_kq22TO-HXiDjd2jm_cocCM_snzz-hf4.original.fullsize.png">
+<img src="https://cdn.mathpix.com/snip/images/EkdmqKT9xvrdi5whxIBSd7rMTYuUVp9TwmmCOxPA2Ak.original.fullsize.png">
+
+Another improvment of this framework is to find the `profitable diretion` instead of  the negative gradients $\tilde{y}_{i}$.
+
+
+* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
+* [Gradient Boosting Machines in UC Business Analytics R Programming Guide ](http://uc-r.github.io/gbm_regression)
+* [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
+* [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
+* [Gradient Boosting Algorithm  Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
+* [BOOSTING ALGORITHMS: REGULARIZATION, PREDICTION AND MODEL FITTING](https://web.stanford.edu/~hastie/Papers/buehlmann.pdf)
+* http://web.mit.edu/haihao/www/papers.html
+----
+
+
+`AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
+And the weight is update via the following formula:
+$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
+
+
+The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
+When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
+general expression of the AdaBoost criteria
+$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
+
+where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
+the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
+e.g., consider the sparse matrix $A_{knn}$ given by
+$$a_{ij}^{knn}=
+\begin{cases}
+1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
+0, & \text{otherwise}.
+\end{cases}$$
+
+
+* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
+* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
+
+Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
+
+* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
+* https://bradleyboehmke.github.io/HOML/gbm.html
+* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
+* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
+
+<img src="https://cdn.mathpix.com/snip/images/nroGBasdD7HoKNgfFquOqY2U5D006PoqfS699AGw_zA.original.fullsize.png">
+<img src="https://cdn.mathpix.com/snip/images/c2HBE74ZdlTSjMZHToap4mv82cKTqZpTWZch-LL4DAc.original.fullsize.png">
+
+- [Boosting algorithms as gradient descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf)
+- [Gradient Boosting as Gradient Descent in Functional Space](https://pdfs.semanticscholar.org/ba2e/a6a9783bb1590c15d3e85b84062d3b22d4a5.pdf)
+- [Boosting: Gradient Descent in Function Space](http://www.cs.cmu.edu/~16831-f12/notes/F11/16831_lecture15_shorvath.pdf)
 
 ### Optimization and Boosting
 
@@ -1702,7 +1803,7 @@ However, there are 2 drawbacks:
 
 + [CGBoost: Conjugate Gradient in Function Space](http://www.work.caltech.edu/pub/Li2003CGBoost.pdf)
 + [TaylorBoost: First and Second Order Boosting Algorithms](http://www.svcl.ucsd.edu/projects/taylor_boost/)
-+ [Historical GBM – Momentum](https://easychair.org/publications/open/pCtK)
++ [Historical GBM  Momentum](https://easychair.org/publications/open/pCtK)
 + [BrownBoost](http://www.thefullwiki.org/BrownBoost)
 + [Fully Corrective Boosting with Arbitrary Loss and Regularization](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/78929/1/hdl_78929.pdf)
 + http://www.work.caltech.edu/
@@ -1774,6 +1875,7 @@ ____________
 <img src="https://cdn.mathpix.com/snip/images/K2A8aE0RgnOsjuJSyVmwIHcMEwP9gi6NVZGR6-czP20.original.fullsize.png">
 
 * [Accelerating Gradient Boosting Machine](https://arxiv.org/abs/1903.08708)
+* http://web.mit.edu/haihao/www/papers/AGBM.pdf
 
 ##### Historical Gradient Boosting Machine
 
@@ -1846,34 +1948,46 @@ where $I_j=\{i\mid q(x_i)=j\}$ is the set of indices of data points assigned to 
 Note that the samples output in the same leaf has the same output result, so they share the same gradients and Hessian.
 And it is natural to $\fbox{split the leaves as operators}$.
 
-In a compact form, we rewrite the above problem as
-$$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t) + Regularier(f_t)$$
-where $Regularier(f_t)=\gamma T +\frac{\lambda}{2}{\sum}_{i=1}^{T}w_i^2$.
-
-
-It is similar to some regularized cost function to minimize:
-
-$$\arg\min_{f_t\in\mathcal F}L(F_{t-1}+f_t)+ \mathcal R(f_t)\approx \\
-\arg\min_{f_t\in\mathcal F} L(F_{t-1}+f_t), s.t. \mathcal R(f_t)\leq c.$$
-
-$\color{red}{Note}$ that $F_t=F_{t-1} + f_t=\left<(1,\dots,1),(f_0,\dots, f_t)\right>$,i.e.,it is a linear combination.
-
 It seems attractive to me to understand the analogy between
 $\fbox{operator splitting in ADMM}$ and $\fbox{leaves splitting in Decision Tree}$.
 
 To be simple, we do not take the number of leaves into consideration.
-And the objective function is simplied to be 
-$$\sum_{j=1}^{T}f_j(w_j)$$
-where $f_j(w_j)=(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2$.
-Note that the gradients and Hessian are constant as well as $\lambda$. 
-Obviously, it is `concensus optimziation problem`.
+And the objective function is simplied to be
+$$f(w)=\sum_{j=1}^{T}f_j(w_j)$$
+where $f_j(w_j)=(\sum_{i\in I_{j}}g_i)w_j+\frac{1}{2}(\sum_{i\in I_{j}}h_i + \lambda)w_j^2=G_jw_j+\frac{1}{2}(H_j+\lambda) w_j^2$.
+Note that the gradients and Hessian are constant as well as $\lambda$.
+Obviously, it is a `concensus optimziation problem`.
+
+$\fbox{ADMM for  consensus optimization}$
+<img src="https://image.slidesharecdn.com/admmslides-110829200511-phpapp02/95/alternating-direction-36-728.jpg?cb=1314648375" width="80%"/>
+<img src="https://image.slidesharecdn.com/admmslides-110829200511-phpapp02/95/alternating-direction-37-728.jpg?cb=1314648375" width="80%"/>
+
+The objective function can be regualrized as
+$$\sum_{j=1}^{T}f_j(w_j)+{\|\theta\|}_{\ell_1}, \\ \text{ s.t. } \theta - w=0$$
+which is the convex structure optimization problem with linear constraints.
+The augmented Langrage is
+$$L_{\beta}(w,\theta,\lambda) = f(w) + {\|\theta\|}_{\ell_1} - \lambda^T(\theta-w) + \frac{\beta}{2}{\|\theta-w\|}_2^2. $$
 
 More generally, if the objective function is `not differebtiable`, we can also regard  the samples in the same leaf as one operator.
-Addtionally, $\ell_1$ regularization may take the role as sparse regularization. 
+Addtionally, $\ell_1$ regularization may take the role as sparse regularization.
 
+Suppose that we obtain the optimal solution of the objective function $f$ via ADMM, i.e., $w^{\ast}=\arg\min_{w}f$, then we can update the tree.
+
+$\fbox{ADMM-Boost}$
+
+* $w^{t}=\arg\min_{w}L_{\beta}(w,\theta^{t-1},\lambda^{t-1})$;
+* Construct a decision tree with the parameter $w^t$;
+* $\theta^{t}=\arg\min_{\theta}L_{\beta}(w^{t},\theta,\lambda^{t-1})$;
+* Construct a decision tree with the parameter $\theta^t$;
+* $\lambda^{t}=\lambda^{t-1}-\beta (\theta^t - w^t)$.
+
+Leveraging `distributed ADMM`, it is easy to extend to distributed version.
+
+***
 + [A Duality View of Boosting Algorithms](https://core.ac.uk/display/22025268)
 + [New understanding of boosting methods, Chunhua Shen, School of Computer Science, University of Adelaide](http://parnec.nuaa.edu.cn/seminar/2013_Spring/20130416/slides-NJU-CS.pdf)
 + [Consensus optimization](https://www.cvxpy.org/examples/applications/consensus_opt.html)
++ [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.html)
 
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
 Is it necessary to approxiamte the negative gradient using decision tree?
@@ -1941,75 +2055,12 @@ ______
 * http://homepages.math.uic.edu/~minyang/BD.htm
 * [Some Theory for Generalized Boosting Algorithms](https://www.stat.berkeley.edu/~bickel/BickelRitovZakai2006JMLR.pdf)
 
-### Gradient Boosting  Machine: Beyond Boost Tree
 
-A general gradient descent “boosting” paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
-
-<img src="https://cdn.mathpix.com/snip/images/gHJzRtK3cCxjIpKHDepZs7KqKIFe9_y_x7E2042UOrA.original.fullsize.png">
-
-Note that any fitting criterion that estimates conditional expectation (given } $\mathbf{x})$ could in principle be used to estimate the (smoothed) negative gradient $(7)$ at line 4 of Algorithm $1$, i.e.,
-$$\mathbf{a}_{m}=\arg\min_{\mathbf{a}, \beta} \sum_{i=1}^{N} \left[\tilde{y}_{i}-\beta h\left(\mathbf{x}_{i} ; \mathbf{a}\right)\right]^{2}$$
-where the model $h(\cdot; \cdot)$ is parameterized by $\mathbf{a}$.
-Technically, $h(\cdot; \cdot)$ can be any function - smooth or non-smooth, differentiable or non-differentiable, convex or non-convex- not only the decision tree.
-
-|Least-square Regression|M-regression|
-|---|---|
-<img src="https://cdn.mathpix.com/snip/images/ufROD3iCdX_-wh7MhVgdKsdB6tdb4lLcukdAirZzmiY.original.fullsize.png">|<img src="https://cdn.mathpix.com/snip/images/BPg0lCcHQNq9HIFP8qGYX131gSbtcgk4ZTd7bDmLDgs.original.fullsize.png">|
-
-<img src="https://cdn.mathpix.com/snip/images/lpBjBOiYuKK_kq22TO-HXiDjd2jm_cocCM_snzz-hf4.original.fullsize.png">
-<img src="https://cdn.mathpix.com/snip/images/EkdmqKT9xvrdi5whxIBSd7rMTYuUVp9TwmmCOxPA2Ak.original.fullsize.png">
-
-Another improvment of this framework is to find the `profitable diretion` instead of  the negative gradients $\tilde{y}_{i}$.
-
-
-* [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
-* [Gradient Boosting Machines in UC Business Analytics R Programming Guide ](http://uc-r.github.io/gbm_regression)
-* [Start With Gradient Boosting, Results from Comparing 13 Algorithms on 165 Datasets](https://machinelearningmastery.com/start-with-gradient-boosting/)
-* [A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning](https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/)
-* [Gradient Boosting Algorithm – Working and Improvements](https://data-flair.training/blogs/gradient-boosting-algorithm/)
-* [BOOSTING ALGORITHMS: REGULARIZATION, PREDICTION AND MODEL FITTING](https://web.stanford.edu/~hastie/Papers/buehlmann.pdf)
-----
-
-
-`AdaBoost` is related with so-called exponential loss $\exp(-{y_i}p(x_i))$ where $x_i\in\mathbb{R}^p, y_i\in\{-1, +1\}, p(\cdot)$ is the input features, labels and prediction function, respectively.
-And the weight is update via the following formula:
-$$w_i\leftarrow w_i\exp[-y_ip(x_i)], i=1,2,\dots, N.$$
-
-
-The gradient-boosting algorithm is general in that it only requires the analyst specify a `loss function` and its `gradient`.
-When the labels are multivariate, [Alex Rogozhnikova et al](https://arxiv.org/abs/1410.4140) define a more
-general expression of the AdaBoost criteria
-$$w_i\leftarrow w_i\exp[-y_i\sum_{j}a_{ij}p(x_j)], i=1,2,\dots, N,$$
-
-where $a_{ij}$ are the elements of some square matrix ${A}$. For the case where A is the identity matrix,
-the AdaBoost weighting procedure is recovered. Other choices of ${A}$ will induce `non-local effects`,
-e.g., consider the sparse matrix $A_{knn}$ given by
-$$a_{ij}^{knn}=
-\begin{cases}
-1, & \text{$j \in knn(i)$; events ${i}$ and ${j}$ belong to the same class} \\
-0, & \text{otherwise}.
-\end{cases}$$
-
-
-* [New approaches for boosting to uniformity](https://arxiv.org/abs/1410.4140)
-* [uBoost: A boosting method for producing uniform selection efficiencies from multivariate classifiers](https://arxiv.org/abs/1305.7248)
-
-Other ensemble methods include clustering methods ensemble, dimensionality reduction ensemble, regression ensemble, ranking ensemble.
-
-* [Complete Machine Learning Guide to Parameter Tuning in Gradient Boosting (GBM) in Python](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)
-* https://bradleyboehmke.github.io/HOML/gbm.html
-* [Leveraging k-NN for generic classification boosting](https://hal.inria.fr/hal-00664462)
-* [Constructing Boosting Algorithms from SVMs: an Application to One-Class Classification](https://pdfs.semanticscholar.org/a724/bb040771307571f3ae1233a115cd62bb52be.pdf)
-
-<img src="https://cdn.mathpix.com/snip/images/nroGBasdD7HoKNgfFquOqY2U5D006PoqfS699AGw_zA.original.fullsize.png">
-<img src="https://cdn.mathpix.com/snip/images/c2HBE74ZdlTSjMZHToap4mv82cKTqZpTWZch-LL4DAc.original.fullsize.png">
-
-- [Boosting algorithms as gradient descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf)
 
 ### Matrix Multiplicative Weight Algorithms
 
 `Matrix Multiplicative Weight` can be considered as an ensemble method of optimization methods.
-The name “multiplicative weights” comes from how we implement the last step: if the weight of the chosen object at step $t$ is $w_t$ before the event, and $G$ represents how well the object did in the event, then we’ll update the weight according to the rule:
+The name “multiplicative weights??? comes from how we implement the last step: if the weight of the chosen object at step $t$ is $w_t$ before the event, and $G$ represents how well the object did in the event, then we’ll update the weight according to the rule:
 $$
 w_{t+1}=w_{t}(1+G).
 $$
@@ -2018,16 +2069,16 @@ $$
 
 [Jeremy](https://jeremykun.com/) wrote a blog on this topic:
 
-> In general we have some set $X$ of objects and some set $Y$ of “event outcomes” which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
+> In general we have some set $X$ of objects and some set $Y$ of “event outcomes??? which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
 
 > The `MWUA` algorithm randomly chooses an object $x \in X$ in every round, observing the outcome $y \in Y$, and collecting the reward $M(x,y)$ (or losing it as a penalty). The guarantee of the MWUA theorem is that the expected sum of rewards/penalties of MWUA is not much worse than if one had picked the best object (in hindsight) every single round.
 
 **Theorem (from [Arora et al](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)):** The cumulative reward of the MWUA algorithm is, up to constant multiplicative factors, at least the cumulative reward of the best object minus $\log(n)$, where $n$ is the number of objects.
 
 + [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
-+ [Matrix Multiplicative Weight （1）](https://zhuanlan.zhihu.com/p/47423225)
-+ [Matrix Multiplicative Weight （2）](https://zhuanlan.zhihu.com/p/47891504)
-+ [Matrix Multiplicative Weight （3）](https://zhuanlan.zhihu.com/p/48084069)
++ [Matrix Multiplicative Weight ???1）](https://zhuanlan.zhihu.com/p/47423225)
++ [Matrix Multiplicative Weight ???2）](https://zhuanlan.zhihu.com/p/47891504)
++ [Matrix Multiplicative Weight ???3）](https://zhuanlan.zhihu.com/p/48084069)
 + [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
 + [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
 + [Nonnegative matrix factorization with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
@@ -2123,7 +2174,7 @@ Our core idea is to consider the ranking problem as a "cascade", where ranking i
 
 * [Spatial Pyramids and Two-layer Stacking SVM Classifiers for Image Categorization: A Comparative Study](https://www.ai.rug.nl/~mwiering/GROUP/ARTICLES/spatial-pyramid-two-layer.pdf)
 * [Cascaded classifiers and stacking methods for classification of pulmonary nodule characteristics](https://www.sciencedirect.com/science/article/pii/S0169260718304413)
-* [Stacking与神经网络 - 微调的文章 - 知乎](https://zhuanlan.zhihu.com/p/32896968)
+* [Stacking与神经网 - 知乎](https://zhuanlan.zhihu.com/p/32896968)
 * [Blending and deep learning](http://jtleek.com/advdatasci/17-blending.html)
 
 ####  Linear Blending
@@ -2150,18 +2201,35 @@ In the sense of stacking, deep neural network is thought as the stacked `logisti
 
 $\fbox{partition + stacking}$: Different data activates different algorithms.
 
+#### Stacked AutoEncoder
+
+<img scr="https://uploads.toptal.io/blog/image/335/toptal-blog-image-1395721542588.png" width="80%"/>
+
+- http://deeplearning.net/tutorial/SdA.html
+- http://ufldl.stanford.edu/wiki/index.php/Stacked_Autoencoders
+- http://akosiorek.github.io/ml/2019/06/23/stacked_capsule_autoencoders.html
+- https://github.com/cazala/synaptic
+
+#### Stacked GAN
+
+https://khanrc.tistory.com/entry/Deep-Learning-Tutorial
+- https://github.com/hanzhanggit/StackGAN
+- https://arxiv.org/abs/1612.03242
+- https://arxiv.org/abs/1710.10916
+
 #### Deep Forest
 
 [In this paper, we propose gcForest, a decision tree ensemble approach with performance highly competitive to deep neural networks.](https://arxiv.org/abs/1702.08835v2)
 
 <img title="Deep Forest" src="https://raw.githubusercontent.com/DataXujing/Cos_pic/master/pic2.png" width="80%" />
+<img src="https://raw.githubusercontent.com/DataXujing/Cos_pic/master/pic3.png" width="80%" />
 
 * [Deep forest](http://lamda.nju.edu.cn/code_gcForest.ashx?AspxAutoDetectCookieSupport=1)
 * https://github.com/kingfengji/gcForest
 * [周志华团队和蚂蚁金服合作：用分布式深度森林算法检测套现欺诈](https://zhuanlan.zhihu.com/p/37492203)
 * [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
 * [Deep Boosting: Layered Feature Mining for General Image Classification](https://arxiv.org/abs/1502.00712)
-* [gcForest 算法原理及 Python 与 R 实现](https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/)
+* [gcForest 算法原理??? Python ??? R 实现](https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/)
 
 *****
 * https://www.wikiwand.com/en/Ensemble_learning
