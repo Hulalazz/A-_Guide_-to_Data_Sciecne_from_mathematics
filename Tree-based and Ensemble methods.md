@@ -109,6 +109,7 @@ late.
 * [Interactive demonstrations for ML courses, Apr 28, 2016 by  Alex Rogozhnikov](https://arogozhnikov.github.io/2016/04/28/demonstrations-for-ml-courses.html)
 * [Can Gradient Boosting Learn Simple Arithmetic?](http://mariofilho.com/can-gradient-boosting-learn-simple-arithmetic/)
 * [Viusal Random Forest](http://www.rhaensch.de/vrf.html)
+* https://github.com/andosa/treeinterpreter
 
 #### Tree Construction
 
@@ -122,7 +123,7 @@ late.
 
 The $g_{i}(x)$ can be a constant in $\mathbb{R}$ or some mathematical expression such as logistic regression. When $g_i(x)$ is constant, the decision tree is actually piecewise constant, a concrete example of simple function.
 
-The interpretation is simple: Starting from the root node, you go to the next nodes and the edges tell you which subsets you are looking at. Once you reach the leaf node, the node tells you the predicted outcome. All the edges are connected by ‘AND???.
+The interpretation is simple: Starting from the root node, you go to the next nodes and the edges tell you which subsets you are looking at. Once you reach the leaf node, the node tells you the predicted outcome. All the edges are connected by 'AND'.
 
 `Template: If feature x is [smaller/bigger] than threshold c AND ??? then the predicted outcome is the mean value of y of the instances in that node.`
 
@@ -297,6 +298,8 @@ $$R_1(j, s)=\{X\mid X_j\leq s\}, R_2(j, s)=\{X\mid X_j> s\}.$$
 Then we seek the splitting variable $j$ and split point $s$ that solve
 $$\min_{j, s}[\min_{c_1}\sum_{x_i\in R_1}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2}(y_i-c_2)^2].$$
 
+Why the objective function is in squared error rather than others? Maybe it is because of its simplicity to solve.
+
 For any choice $j$ and $s$, the inner minimization is solved by
 $$\hat{c}_{1}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{1}(j, s)\right) \text { and } \hat{c}_{2}=\operatorname{ave}\left(y_{i} | x_{i} \in R_{2}(j, s)\right).$$
 
@@ -305,6 +308,10 @@ For each splitting variable, the determination of the split point $s$ can
 be done very quickly and hence by scanning through all of the inputs, determination of the best pair $\left(j, s\right)$ is feasible.
 Having found the best split, we partition the data into the two resulting regions and repeat the splitting process on each of the two regions.
 Then this process is repeated on all of the resulting regions.
+
+[If you want them to be more robust to outliers, you can try to predict the median of Y|X rather than the mean. But what impurity criterion to use?
+
+[Since the median is just the estimator for $Y$ that minimizes the absolute value of the difference: $E(|Y−m|)$, you should choose the split which minimizes the absolute deviation rather than variance. You’ll also want to predict the median, rather than the mean, in each leaf node.](https://www.benkuhn.net/tree-imp)
 
 Tree size is a tuning parameter governing the model’s complexity, and the optimal tree size should be adaptively chosen from the data.
 One approach would be to split tree nodes only if the decrease in sum-of-squares due to the split exceeds some threshold.
@@ -337,20 +344,20 @@ changes needed in the tree algorithm pertain to `the criteria for splitting` nod
 
 
 
-Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**, which is different from other learning mthods such as support vector machine.
+Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**, which is different from other learning methods such as support vector machine.
 
-+ Intuitively, the least impure node should have only one class of outcome (i.e., $P{Y = 1 | \tau} = 0 \text{ or }1$), and its impurity is zero.
++ Intuitively, the least impure node should have only one class of outcome (i.e., $P\{Y = 1 | \tau\} = 0 \text{ or }1$), and its impurity is zero.
 + Node $\tau$ is most impure when $P\{Y = 1 | \tau\} =\frac{1}{2}$.
 + The impurity function has a concave shape and can be formally defined as
 $$i(\tau)=\phi(P(Y=1\mid \tau))$$
 where the function $\phi$ has the properties (i) $\phi \geq 0$ and (ii) for any
-$p \in (0, 1)$, $\phi(p) = \phi(1 ??? p)$ and $\phi(0) = \phi(1) < \phi(p)$.
+$p \in (0, 1)$, $\phi(p) = \phi(1 - p)$ and $\phi(0) = \phi(1) < \phi(p)$.
 
 
 C4.5 uses `entropy` for its impurity function,
 whereas CART uses a generalization of the binomial variance called the `Gini index`.
 
-If the training set $D$ is divided into subsets $D_1,\dots,D_k$, the entropy may be
+If the training set $D$ is divided into subsets $D_1,\dots, D_k$, the entropy may be
 reduced, and the amount of the reduction is the information gain,
 
 $$
@@ -386,7 +393,7 @@ ID3| Information Gain
 C4.5| Normalized information gain ratio
 CART| Gini Index
 
-If your splitting criterion is information gain, this corresponds to a log-likelihood loss function. This works as follows.
+[If your splitting criterion is information gain, this corresponds to a log-likelihood loss function. This works as follows.](https://www.benkuhn.net/tree-imp)
 
 If you have a constant approximation $\hat{f}$ to $f$ on some regions $S$, then the approximation that maximizes the expected log-likelihood of the data (that is, the probability of seeing the data if your approximation is correct)is
 $$L(\hat f) = E(\log P(Y=Y_{observed} | X, f = \hat f)) = \sum_{X_i} Y_i \log \hat f(X_i) + (1 - Y_i) \log (1 - \hat f(X_i))$$
@@ -532,7 +539,6 @@ Unlike the classical decision tree approach, this method builds a predictive mod
 
 |Properties of Decision Tree|
 |:---:|
-|Linearly separable data points. |
 |[Classification and Regression Decision Trees Explained](http://www.learnbymarketing.com/methods/classification-and-regression-decision-trees-explained/)|
 | linearly separable data points.|
 |[Limitations of Trees](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)|
@@ -615,6 +621,7 @@ $F_{−T} :\Delta_{−T} = p_F ??? p_{F_{−T}}$.
 * [Random Forest:??? A Classification and Regression Tool for Compound Classification and QSAR Modeling](https://pubs.acs.org/doi/10.1021/ci034160g)
 
 <img title="Data Mining with Decision Tree" src="https://www.worldscientific.com/na101/home/literatum/publisher/wspc/books/content/smpai/2014/9097/9097/20140827-01/9097.cover.jpg" width= "30%" />
+<img src="" width="30"/>
 
 ### MARS and Bayesian MARS
 
@@ -761,6 +768,8 @@ It is a sample-based ensemble method.
 * [Additive Models, Boosting, and Inference for Generalized Divergences ](https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf)
 * [Weak Learning, Boosting, and the AdaBoost algorithm](https://jeremykun.com/2015/05/18/boosting-census/)
 * http://jboost.sourceforge.net/
+* [The Boosting Margin, or Why Boosting Doesn’t Overfit](https://jeremykun.com/2015/09/21/the-boosting-margin-or-why-boosting-doesnt-overfit/)
+* [Boosting Resources by Liangliang Cao](http://www.ifp.illinois.edu/~cao4/reading/boostingbib.htm)
 
 The term boosting refers to a family of algorithms that are able to convert weak learners to strong learners.
 It is kind of similar to the "trial and error" scheme: if we know that the learners perform worse at some given data set $S$,
@@ -1706,6 +1715,12 @@ However, the swap has a side effect that changes the Boolean condition from '<' 
 - https://zhuanlan.zhihu.com/p/54932438
 - https://github.com/qf6101/adaqs
 
+### Bayesian additive regression trees
+
+[We develop a Bayesian “sum-of-trees” model where each tree is constrained by a regularization prior to be a weak learner, and fitting and inference are accomplished via an iterative Bayesian backfitting MCMC algorithm that generates samples from a posterior. Effectively, BART is a nonparametric Bayesian regression approach which uses dimensionally adaptive random basis elements. Motivated by ensemble methods in general, and boosting algorithms in particular, BART is defined by a statistical model: a prior and a likelihood. This approach enables full posterior inference including point and interval estimates of the unknown regression function as well as the marginal effects of potential predictors. By keeping track of predictor inclusion frequencies, BART can also be used for model-free variable selection. BART’s many features are illustrated with a bake-off against competing methods on 42 different data sets, with a simulation experiment and on a drug discovery classification problem.](https://projecteuclid.org/euclid.aoas/1273584455)
+
+- [BART: Bayesian additive regression trees](https://projecteuclid.org/euclid.aoas/1273584455)
+
 ### Gradient Boosting  Machine: Beyond Boost Tree
 
 A general gradient descent "boosting" paradigm is developed for additive expansions based on any fitting criterion. It is not only for the decision tree.
@@ -1771,8 +1786,9 @@ Other ensemble methods include clustering methods ensemble, dimensionality reduc
 <img src="https://cdn.mathpix.com/snip/images/c2HBE74ZdlTSjMZHToap4mv82cKTqZpTWZch-LL4DAc.original.fullsize.png">
 
 - [Boosting algorithms as gradient descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf)
-- [Gradient Boosting as Gradient Descent in Functional Space](https://pdfs.semanticscholar.org/ba2e/a6a9783bb1590c15d3e85b84062d3b22d4a5.pdf)
+- [Boosting Algorithms as Gradient Descent in Function Space](https://pdfs.semanticscholar.org/ba2e/a6a9783bb1590c15d3e85b84062d3b22d4a5.pdf)
 - [Boosting: Gradient Descent in Function Space](http://www.cs.cmu.edu/~16831-f12/notes/F11/16831_lecture15_shorvath.pdf)
+- [Boosting Neural Network](http://www.iro.umontreal.ca/~lisa/pointeurs/ada-nc.pdf)
 
 ### Optimization and Boosting
 
@@ -1781,7 +1797,7 @@ In the end, these methods output some optimal or sub-optimal parameters of the m
 $$\theta_T=\theta_0-\sum_{t=1}^{T-1}\rho_t\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}, \quad\theta_{t}=\theta_{t-1}-\rho_t\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}.$$
 The basic idea of gradient descent methods is to find
 $$\theta_t=\arg\min_{\alpha\in\mathbb R}L(f(\theta_{t-1} + \alpha\Delta)),\Delta\in span(\nabla_{\theta} L\mid_{\theta=\theta_{t-1}}).$$
-So that $L(f(\theta_t))\leq L(f(\theta_{t-1}))$. In some sense, it requires the model is expressive enough to solve the problems or the size of the parameter is large.
+So that $L(f(\theta_t))\leq L(f(\theta_{t-1}))$. In some sense, it requires the model is expressive enough to fit the decision boundary or the size of the parameter is large enough.
 
 Gradient boost methods, as `boost methods`, are in the additive training form and the size of the models increases after each iteration so that the model complexity grows. In the end, these methods output some optimal or sub-optimal models $F_T$ where
 $$F_T=f_0+\sum_{t=1}^T \rho_t f_t,\quad f_t\approx - \nabla_{F} L\mid_{F=F_{t-1}}, F_{t-1}=\sum_{i=0}^{t-1}f_i.$$
@@ -1801,7 +1817,7 @@ However, there are 2 drawbacks:
 - The loss function $L(\cdot, \cdot)$ may be non-smooth as in numercial optimization problems, whcih requires the non-smooth methods extend to be boost methods.
 - The nengative gradient diretions may not the steepest direction. `xGBoost` takes the advantages of the Newton's methods. It may bring some superise when ocnsidering more fast or accelerated methods.
 
-+ [CGBoost: Conjugate Gradient in Function Space](http://www.work.caltech.edu/pub/Li2003CGBoost.pdf)
+
 + [TaylorBoost: First and Second Order Boosting Algorithms](http://www.svcl.ucsd.edu/projects/taylor_boost/)
 + [Historical GBM  Momentum](https://easychair.org/publications/open/pCtK)
 + [BrownBoost](http://www.thefullwiki.org/BrownBoost)
@@ -1824,6 +1840,7 @@ Decision Tree | Coordinate-wise Optimization
 AdaBoost | ???
 [Stochastic Gradient Boost](https://statweb.stanford.edu/~jhf/ftp/stobst.pdf) | Stochastic Gradient Descent
 Gradient Boost |  Gradient Descent
+??? |Conjugate Gradient Methods
 ??? | Accelerated Gradient Methods
 ??? | Mirror Gradient Methods
 ??? | Proximal Gradient Methods
@@ -1847,6 +1864,13 @@ $\color{red}{Note}$: given the input feature  $x_i$, the label $\mathrm y_i$ is 
 * [Boosting as Entropy Projection](https://users.soe.ucsc.edu/~manfred/pubs/C51.pdf)
 * [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/article/10.1023/A:1013912006537)
 
+#### CGBoost
+
+When the AdaBoost exponential cost function is optimized, CGBoost generally yields much lower cost and training error but higher test error, which implies that the exponential cost is vulnerable to overfitting. With the optimization power of CGBoost, we can adopt more "regularized" cost functions that have better out-of-sample performance but are difficult to optimize. Our experiments demonstrate that CGBoost generally outperforms AnyBoost in cost reduction. With suitable cost functions, CGBoost can have better out-of-sample performance.
+
++ [CGBoost: Conjugate Gradient in Function Space](http://www.work.caltech.edu/pub/Li2003CGBoost.pdf)
++ https://www.researchgate.net/publication/2887612_CGBoost_Conjugate_Gradient_in_Function_Space
+
 #### Accelerated Gradient Boosting
 
 The difficulty in accelerating GBM lies in the fact that weak (inexact) learners are commonly used, and therefore the errors can accumulate in the momentum term. To overcome it, we design a "corrected pseudo residual" and fit best weak learner to this corrected pseudo residual, in order to perform the z-update. Thus, we are able to derive novel computational guarantees for AGBM. This is the first GBM type of algorithm with theoretically-justified accelerated convergence rate.
@@ -1867,6 +1891,8 @@ The difficulty in accelerating GBM lies in the fact that weak (inexact) learners
 ____________
 
 * [Accelerated Gradient Boosting](https://arxiv.org/abs/1803.02042)
+* https://github.com/msangnier/optboosting
+* http://www.lsta.upmc.fr/BIAU/bcr2.pdf
 
 ##### Accelerating Gradient Boosting Machine
 
@@ -1906,6 +1932,13 @@ the advantages of historical gradients that mitigate the greediness of the steep
 <img src="https://cdn.mathpix.com/snip/images/YTfPvnaxJMcdXpBbgdRjwRHC0tdHdxeb4nuqBf_MrHY.original.fullsize.png">
 
 - [Accelerated proximal boosting](https://arxiv.org/abs/1808.09670)
+- https://hal.archives-ouvertes.fr/hal-01853244
+
+####  Functional Frank-Wolfe Boosting for General Loss Functions
+
+[By using exponential loss, the FWBoost algorithm can be rewritten as a variant of AdaBoost for binary classification. FWBoost algorithms have exactly the same form as existing boosting methods, in terms of making calls to a base learning algorithm with different weights update. This direct connection between boosting and Frank-Wolfe yields a new algorithm that is as practical as existing boosting methods but with new guarantees and rates of convergence. Experimental results show that the test performance of FWBoost is not degraded with larger rounds in boosting, which is consistent with the theoretical analysis.](https://arxiv.org/abs/1510.02558)
+
+- https://arxiv.org/abs/1510.02558
 
 #### Translation Optimization Methods to Boost Algorithm
 
@@ -1959,6 +1992,7 @@ Note that the gradients and Hessian are constant as well as $\lambda$.
 Obviously, it is a `concensus optimziation problem`.
 
 $\fbox{ADMM for  consensus optimization}$
+
 <img src="https://image.slidesharecdn.com/admmslides-110829200511-phpapp02/95/alternating-direction-36-728.jpg?cb=1314648375" width="80%"/>
 <img src="https://image.slidesharecdn.com/admmslides-110829200511-phpapp02/95/alternating-direction-37-728.jpg?cb=1314648375" width="80%"/>
 
@@ -1976,7 +2010,6 @@ Suppose that we obtain the optimal solution of the objective function $f$ via AD
 $\fbox{ADMM-Boost}$
 
 * $w^{t}=\arg\min_{w}L_{\beta}(w,\theta^{t-1},\lambda^{t-1})$;
-* Construct a decision tree with the parameter $w^t$;
 * $\theta^{t}=\arg\min_{\theta}L_{\beta}(w^{t},\theta,\lambda^{t-1})$;
 * Construct a decision tree with the parameter $\theta^t$;
 * $\lambda^{t}=\lambda^{t-1}-\beta (\theta^t - w^t)$.
@@ -1992,6 +2025,18 @@ Leveraging `distributed ADMM`, it is easy to extend to distributed version.
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
 Is it necessary to approxiamte the negative gradient using decision tree?
 
+#### Multi-Layered Gradient Boosting Decision Trees
+
+[Multi-layered representation is believed to be the key ingredient of deep neural networks especially in cognitive tasks like computer vision. While non-differentiable models such as gradient boosting decision trees (GBDTs) are the dominant methods for modeling discrete or tabular data, they are hard to incorporate with such representation learning ability. In this work, we propose the multi-layered GBDT forest (mGBDTs), with an explicit emphasis on exploring the ability to learn hierarchical representations by stacking several layers of regression GBDTs as its building block. The model can be jointly trained by a variant of target propagation across layers, without the need to derive back-propagation nor differentiability. Experiments and visualizations confirmed the effectiveness of the model in terms of performance and representation learning ability.](https://arxiv.org/abs/1806.00007)
+
+Consider a multi-layered feed-forward structure with $M − 1$ intermediate layers and one final output layer. Denote oi where $i \in \{0, 1, 2, . . . , M\}$ as the output for each layer including the input layer and the output layer $o_M$. For a particular input data $x$, the corresponding output at each layer is in $R^{d_i}$,
+where $i \in \{0, 1, 2, \cdots , M\}$. The learning task is therefore to learn the mappings $F_i: R^{d_i−1} \to R^{d_i}$
+for each layer $i > 0$, such that the final output $o_M$ minimize the empirical loss $L$ on training set.
+Mean squared errors or cross-entropy with extra regularization terms are some common choices for the loss $L$. In an unsupervised setting, the desired output $Y$ can be the training data itself, which
+leads to an auto-encoder and the loss function is the reconstruction errors between the output and the original input.
+
+* [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
+* http://papers.nips.cc/paper/7614-multi-layered-gradient-boosting-decision-trees.pdf
 
 ### Deep Gradient Boosting
 
@@ -2114,6 +2159,7 @@ See [XGBoost Resources Page](https://github.com/dmlc/xgboost/blob/master/demo/RE
 - [Growing and Pruning Selective Ensemble Regression over Drifting Data Stream](http://www.auto.shu.edu.cn/info/1125/7181.htm)
 - [Selective Ensemble under Regularization Framework](https://link.springer.com/chapter/10.1007/978-3-642-02326-2_30)
 - [Selecting a representative decision tree from an ensemble of decision-tree models for fast big data classification](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0186-3)
+- [Pareto Ensemble Pruning](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/aaai15prun.pdf)
 
 <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs40537-019-0186-3/MediaObjects/40537_2019_186_Figa_HTML.png" width="70%"/>
 
@@ -2226,10 +2272,11 @@ https://khanrc.tistory.com/entry/Deep-Learning-Tutorial
 
 * [Deep forest](http://lamda.nju.edu.cn/code_gcForest.ashx?AspxAutoDetectCookieSupport=1)
 * https://github.com/kingfengji/gcForest
+* [Distributed Deep Forest and its Application to Automatic Detection of Cash-out Fraud](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tist19.pdf)
 * [周志华团队和蚂蚁金服合作：用分布式深度森林算法检测套现欺诈](https://zhuanlan.zhihu.com/p/37492203)
-* [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
+* [Improving Deep Forest by Confidence Screening](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm18.pdf)
 * [Deep Boosting: Layered Feature Mining for General Image Classification](https://arxiv.org/abs/1502.00712)
-* [gcForest 算法原理??? Python ??? R 实现](https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/)
+* [gcForest 算法原理: Python 与 R 实现](https://cosx.org/2018/10/python-and-r-implementation-of-gcforest/)
 
 *****
 * https://www.wikiwand.com/en/Ensemble_learning

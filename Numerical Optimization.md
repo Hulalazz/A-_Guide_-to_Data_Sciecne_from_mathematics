@@ -128,8 +128,8 @@ where ${\| \cdot \|}_{\ast}$ denotes the dual norm.
 (We say ‘a’ steepest descent direction because there can be multiple minimizers.)
 
 ***
-> Algorithm  Steepest descent method.
-given a starting point $x \in domf$.
+**Algorithm  Steepest descent method**
+* given a starting point $x \in domf$.
 * repeat
    1. Compute steepest descent direction $\Delta x_{sd}$.
    2. Line search. Choose ${t}$ via backtracking or exact line search.   3. Update. $x := x + t \Delta x_{sd}$.
@@ -137,7 +137,7 @@ given a starting point $x \in domf$.
 
 If the variable ${x}$ is restricted in some bounded domain, i.e., $x\in D$, the steepest gradient descemt methods can be modified to `conditional gradient descent method` or `Frank-Wolfe algorithm`.
 ***
-> Algorithm  Frank–Wolfe algorithm.
+**Algorithm  Frank–Wolfe algorithm**
 > * given a starting point $x \in domf$.
 > * repeat
 >   1. Find $s^k$: $s^k =\arg\min_{v}\{f(x^{k})^T v\mid v\in D \}$.
@@ -145,9 +145,14 @@ If the variable ${x}$ is restricted in some bounded domain, i.e., $x\in D$, the 
 >   3. Update. $x^{k+1}= x^k + t(s^k-x^k), k\leftarrow k+1$.
 > * until stopping criterion is satisfied.
 
+<img src="http://m8j.net/data/Website-Images/3d-FW-blue-small.jpg" width="40%"/>
+
 * [梯度下降法和最速下降法的细微差别](https://blog.csdn.net/Timingspace/article/details/50963564)
 * [An Introduction to Conditional Gradient](http://www.cs.cmu.edu/~yaoliang/mytalks/condgrad.pdf)
 * [Frank–Wolfe algorithm ](https://www.wikiwand.com/en/Frank%E2%80%93Wolfe_algorithm)
+* [Greedy Algorithms, Frank-Wolfe and Friends - A modern perspective](http://www.cmap.polytechnique.fr/~jaggi/NIPS-workshop-FW-greedy/)
+* https://sites.google.com/site/nips13greedyfrankwolfe/
+* [Revisiting Frank-Wolfe](http://m8j.net/(All)Revisiting%20Frank-Wolfe)
 
 ***
 
