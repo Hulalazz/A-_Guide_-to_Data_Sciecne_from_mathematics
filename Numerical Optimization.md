@@ -1,6 +1,5 @@
 # Numerical Optimization
 
-
 IN [A Few Useful Things to Know about Machine Learning](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf), Pedro Domingos put up a relation:
 $\color{aqua}{LEARNING}$ = $\color{green}{REPRESENTATION}$ + $\color{blue}{EVALUATION}$ + $\color{red}{OPTIMIZATION}$.
 
@@ -842,6 +841,7 @@ $\|x^{k+1}-x^{\ast}\|^2\leq \|x^{k}-x^{\ast}\|^2-\|x^{k+1}-x^{k}\|^2$.
 
 - http://maths.nju.edu.cn/~hebma/Talk/VI-PPA.pdf
 - https://lostella.github.io/software/
+- [The proximal point method revisited](https://arxiv.org/pdf/1712.06038.pdf)
 
 $\color{quad}{Note}$: the materials in this section is taken from the lectures of [Bingshneg He](http://maths.nju.edu.cn/~hebma/Talk/VI-PPA.pdf).
 
@@ -1079,24 +1079,7 @@ $$
 $$
 x^{k+1}\in \arg\min_{x}\{f(x)+\frac{1}{c_k} \sum_{i=1}^{n} x^{i}(\ln(\frac{x_i}{x^{k}_{i}})-1)\}.
 $$
-A special case for the convex problem
-$$
-\text{minimize}\quad f(x),
-\\ s.t.  g_1(x) \leq 0, g_2(x) \leq 0, \cdots, g_r(x) \leq 0, x\in X
-$$
 
-is the [**exponential augmented Lagrangean method**](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-253-convex-analysis-and-optimization-spring-2012/lecture-notes/MIT6_253S12_lec24.pdf).
-
-It Consists of unconstrained minimizations:
-$$
-x^{k}\in \arg\min_{x\in X}\{f(x)+\frac{1}{c_k} \sum_{j=1}^{r} {\mu}^{k}_{j}\exp(c_k g_j(x))
-$$
-followed by the multiplier iterations
-$$
-{\mu}^{k+1}_{j} = {\mu}^{k}_{j}\exp(c_k g_j(x^k)).
-$$
-
-If the constraints are more complex, **KKT theorem** may be necessary.
 
 - [Duality](http://www.ece.ust.hk/~palomar/ELEC5470_lectures/07/slides_Lagrange_duality.pdf)
 - https://cs.stanford.edu/people/davidknowles/lagrangian_duality.pdf
@@ -1107,11 +1090,46 @@ If the constraints are more complex, **KKT theorem** may be necessary.
 - https://zhuanlan.zhihu.com/p/50823110
 - [ ] [The proximal augmented Lagrangian method for nonsmooth composite optimization](https://arxiv.org/abs/1610.04514)
 
-*exponential augmented Lagrangian method*
+**Exponential Augmented Lagrangian Method**
+
+A special case for the convex problem
+$$
+\text{minimize}\quad f(x),\\
+s.t.  g_1(x) \leq 0, g_2(x) \leq 0, \cdots, g_r(x) \leq 0, x\in X
+$$
+
+is the [**exponential augmented Lagrangean method**](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-253-convex-analysis-and-optimization-spring-2012/lecture-notes/MIT6_253S12_lec24.pdf).
+
+It consists of unconstrained minimizations:
+
+$$
+x^{k}\in \arg\min_{x\in X}\{f(x)+\frac{1}{c_k} \sum_{j=1}^{r} {\mu}^{k}_{j}\exp(c_k g_j(x))
+$$
+followed by the multiplier iterations
+$$
+{\mu}^{k+1}_{j} = {\mu}^{k}_{j}\exp(c_k g_j(x^k)).
+$$
+
+If the constraints are more complex, **KKT theorem** may be necessary.
 
 * [An exponential augmented Lagrangian method with second order convergence](https://impa.br/wp-content/uploads/2016/12/maria_daniela_abstract.pdf)
 * [On the convergence of the exponential
 multiplier method for convex programming ](https://web.mit.edu/dimitrib/www/Expmult.pdf)
+
+**Generalized Lagrangian function**
+
+Minimize $f(x)$, subject to $g_i(x) \ge 0, i = 1,\cdots, m$.
+Here, $x \in\Omega$, and $\Omega$ is a subset of the Euclidean space $E$. We assume that $f(x)$ and $g_i(x)$ are twice continuously differentiable.
+A generalized Lagrangian function is defined  as
+$$L(x, \sigma) = f(x) - G[g(x), \sigma]. $$
+
+- [A generalized Lagrangian function and multiplier method](https://link.springer.com/article/10.1007%2FBF00933876)
+- [Generalized Lagrange Function and Generalized Weak Saddle Points for a Class of Multiobjective Fractional Optimal Control Problems](https://link.springer.com/article/10.1007/s10957-012-0007-8)
+- https://blog.csdn.net/shayashi/article/details/82529816
+- https://suzyahyah.github.io/calculus/optimization/2018/04/07/Lagrange-Multiplier.html
+- [Lagrange Multipliers without Permanent Scarring](https://people.eecs.berkeley.edu/~klein/papers/lagrange-multipliers.pdf)
+
+**KKT condition**
 
 ### Splitting Methods
 
@@ -1936,6 +1954,22 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * [Algorithms, Nature, and Society](https://nisheethvishnoi.wordpress.com/)
 * https://damienscieur.com/sections/paper.html
 * [Generalized Framework for Nonlinear Acceleration](https://arxiv.org/abs/1903.08764v1)
+* https://papers.nips.cc/paper/6987-nonlinear-acceleration-of-stochastic-algorithms.pdf
+
+### Approximate Minimal Polynomial Extrapolation
+
+$$f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
+Given $A\in\mathbb{R}^{n\times n}$ such that 1 is not an eigenvalue of $A$ and $v\in\mathbb{R}^n$, the `minimal polynomial`
+of $A$ with respect to the vector $v$ is the lowest degree polynomial $p(x)$ such that $p(A)v = 0, p(1) = 1$.
+
+- [Efficient implementation of minimal polynomial and reduced rank extrapolation methods ](https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19900017300.pdf)
+- https://core.ac.uk/download/pdf/82614502.pdf
+- [Minimal polynomial and reduced rank extrapolation
+methods are related](http://www.cs.technion.ac.il/~asidi/Sidi_Journal_Papers/P128_AdvCompMath_MPERRE.pdf)
+- http://www.cs.technion.ac.il/~asidi/
+- https://www.di.ens.fr/~aspremon/PDF/FOCM17.pdf
+- https://simons.berkeley.edu/sites/default/files/docs/8821/alexsimons17.pdf
+- https://www.math.temple.edu/~szyld/reports/RRE.Schwarz.report.pdf
 
 ### Anderson Acceleration
 
@@ -2063,20 +2097,6 @@ As shown before, the acceleration schemes are based on the linear combination of
 The question is why it is linear combination?
 Why not other `extrapolation` of the last updated values?
 
-#### Approximate Minimal Polynomial Extrapolation
-
-$$f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
-Given $A\in\mathbb{R}^{n\times n}$ such that 1 is not an eigenvalue of $A$ and $v\in\mathbb{R}^n$, the `minimal polynomial`
-of $A$ with respect to the vector $v$ is the lowest degree polynomial $p(x)$ such that $p(A)v = 0, p(1) = 1$.
-
-- [Efficient implementation of minimal polynomial and reduced rank extrapolation methods ](https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19900017300.pdf)
-- https://core.ac.uk/download/pdf/82614502.pdf
-- [Minimal polynomial and reduced rank extrapolation
-methods are related](http://www.cs.technion.ac.il/~asidi/Sidi_Journal_Papers/P128_AdvCompMath_MPERRE.pdf)
-- http://www.cs.technion.ac.il/~asidi/
-- https://www.di.ens.fr/~aspremon/PDF/FOCM17.pdf
-- https://simons.berkeley.edu/sites/default/files/docs/8821/alexsimons17.pdf
-- https://www.math.temple.edu/~szyld/reports/RRE.Schwarz.report.pdf
 
 
 #### Regularized Nonlinear Acceleration
@@ -2118,7 +2138,12 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 - [PyUNLocBoX: Optimization by Proximal Splitting](https://pyunlocbox.readthedocs.io/en/stable/index.html)
 - https://lts2.epfl.ch/
 
+#### Direct Nonlinear Acceleration
 
+[Optimization acceleration techniques such as momentum play a key role in state-of-the-art machine learning algorithms. Recently, generic vector sequence extrapolation techniques, such as regularized nonlinear acceleration (RNA) of Scieur et al. (Scieur et al., 2016), were proposed and shown to accelerate fixed point iterations. In contrast to RNA which computes extrapolation coefficients by (approximately) setting the gradient of the objective function to zero at the extrapolated point, we propose a more direct approach, which we call direct nonlinear acceleration (DNA). In DNA, we aim to minimize (an approximation of) the function value at the extrapolated point instead. We adopt a regularized approach with regularizers designed to prevent the model from entering a region in which the functional approximation is less precise. While the computational cost of DNA is comparable to that of RNA, our direct approach significantly outperforms RNA on both synthetic and real-world datasets. While the focus of this paper is on convex problems, we obtain very encouraging results in accelerating the training of neural networks.](https://arxiv.org/abs/1905.11692)
+
+- https://arxiv.org/abs/1905.11692
+- https://www.aritradutta.com/
 
 ## Dynamical Systems
 
@@ -2216,6 +2241,16 @@ $$
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
 - [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
+***
+
+- [A Dynamical Systems Perspective on Nonsmooth Constrained Optimization](https://arxiv.org/abs/1808.04048)
+- https://kgatsis.github.io/learning_for_control_workshop_CDC2018/assets/slides/Vidal_CDC18.pdf
+- [ADMM and Accelerated ADMM as Continuous Dynamical Systems](http://proceedings.mlr.press/v80/franca18a/franca18a.pdf)
+- [ADMM, Accelerated-ADMM, and Continuous Dynamical Systems, Talk @DIMACS](http://dimacs.rutgers.edu/events/details?eID=591)
+- [Relax, and Accelerate: A Continuous Perspective on ADMM](https://pdfs.semanticscholar.org/0814/423300a6d7e69ed61f10060de5f3b84d7527.pdf)
+- http://people.ee.duke.edu/~lcarin/Xuejun12.11.2015.pdf
+
+
 ***
 * [ESAIM: Control, Optimization and Calculus of Variations (ESAIM: COCV)](https://www.esaim-cocv.org/)
 * [MCT'03  Louisiana Conference on Mathematical Control Theory](https://www.math.lsu.edu/~malisoff/LCMCT/)
