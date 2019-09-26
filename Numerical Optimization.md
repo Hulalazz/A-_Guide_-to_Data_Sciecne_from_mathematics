@@ -27,6 +27,7 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * [Introductory course on non-smooth optimisation](https://jliang993.github.io/nsopt.html)
 * [CS4540: Simple Algorithms](https://algorithms2017.wordpress.com/)
 * [CS 798: Convexity and Optimization](https://cs.uwaterloo.ca/~lapchi/cs798/index.html)
+* https://nlopt.readthedocs.io/en/latest/
 
 The proof of convergence  or complexity is often based  on the convex cases where the objective function as well as the constrained set is convex, i.e.,
 $$t x+(1-t)y\in\Theta,\\
@@ -1028,12 +1029,6 @@ where the penalty function $\Omega(x) = {\|x\|}_2^2$, $\lambda\in\mathbb{R}^{+}$
 We can regard it as a surrogate loss technique.
 Although the penalty function is convex and differentiable, it is more difficult than directly optimizing $f(x)$ when the constrain is complicated.
 
-What is the simplest additional term when the constraint is linear? In following context we will talk the optimization problem with linear constraints:
-$$
-\arg\min_{x} f(x) \\
-  s.t. Ax = b
-$$
-
 ### Lagrange Multipliers and Generalized Lagrange Function
 
 The penalty function methods do not take the optimal conditions into consideration although it works.
@@ -1131,7 +1126,36 @@ $$L(x, \sigma) = f(x) - G[g(x), \sigma]. $$
 
 **KKT condition**
 
+Given general problem
+$$
+\begin{aligned}
+\min_{x \in \mathbb{R}^{n}} f(x) & \\
+\text { subject to } & h_{i}(x) \leq 0, \quad i=1, \ldots m \\
+& \ell_{j}(x)=0, \quad j=1, \ldots r \end{aligned}
+$$
+
+The Karush-Kuhn-Tucker conditions or KKT conditions are:
+$$\begin{aligned}
+&\bullet\quad 0 \in \partial f(x)+\sum_{i=1}^{m} u_{i} \partial h_{i}(x)+\sum_{j=1}^{T} v_{j} \partial \ell_{j}(x) &\text{(stationarity)} \\
+&\bullet\quad u_{i} \cdot h_{i}(x)=0 \text { for all } i  &\text{ (complementary slackness) } \\
+&\bullet\quad h_{i}(x) \leq 0, \ell_{j}(x)=0 \text { for all } i, j  &\text{(primal feasibility) } \\
+&\bullet\quad u_{i} \geq 0 \forall i &\text{ (dual feasibility) }
+\end{aligned}$$
+
+I learnt this theorem in functional analysis at graduate level course.
+
+- https://mitmgmtfaculty.mit.edu/rfreund/educationalactivities/
+- https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/lecture-notes/
+- https://www.cs.cmu.edu/~ggordon/10725-F12/slides/16-kkt.pdf
+
 ### Splitting Methods
+
+In following context we will talk the optimization problem with linear constraints:
+$$
+\arg\min_{x} f(x) \\
+  s.t. Ax = b
+$$
+where $f(x)$ is always convex.
 
 #### ADMM
 
@@ -1643,12 +1667,10 @@ $$f_1(x) + f_2(x)$$
  where both functions
 are convex and $f_2(x)$ is differentiable with its gradient L-Lipschitz continuous in the Euclidean norm.  The iterative step of the FBS algorithm is
 $$
-x^{k} = prox_{\gamma f_1}(x^{k-1}-\gamma \nabla f_2(x^{k-1})).
+x^{k} = \operatorname{prox}_{\gamma f_1}(x^{k-1}-\gamma \nabla f_2(x^{k-1})).
 $$
 
 It is equivalent to minimize
-
-
 $$
 G_k(x) = f(x) + \frac{1}{2\gamma} {\|x-x^{k-1}\|}_2^2-B(x, x^{k-1}),
 $$
@@ -1814,7 +1836,7 @@ not require the derivative of the function
 - http://mathcs.holycross.edu/~groberts/Papers/nwt-hly.pdf
 - https://ijpam.eu/contents/2016-111-1/6/6.pdf
 - http://benisrael.net/NEWTON-MONTHLY.pdf
-- https://www.mi.sanu.ac.rs/vismath/stewart/index.html 
+- https://www.mi.sanu.ac.rs/vismath/stewart/index.html
 
 **Aitken’s $\Delta^2$ method**
 
@@ -2862,6 +2884,7 @@ Machine Learning 10-725](http://www.stat.cmu.edu/~ryantibs/convexopt/)
 + [Optimization by Vector Space Methods](https://courses.engr.illinois.edu/ECE580/sp2019/)
 + [Algorithms for Convex Optimization](https://nisheethvishnoi.wordpress.com/convex-optimization/)
 + [EE 227C (Spring 2018), Convex Optimization and Approximation](https://ee227c.github.io/)
++ https://ocw.mit.edu/courses/sloan-school-of-management/15-093j-optimization-methods-fall-2009/
 
 ***
 * http://niaohe.ise.illinois.edu/IE598_2016/index.html

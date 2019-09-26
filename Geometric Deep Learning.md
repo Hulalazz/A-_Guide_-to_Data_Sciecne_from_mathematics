@@ -344,8 +344,7 @@ where $\varphi$ is an element-wise non-linearity such as ReLU, and $\hat{\mathbb
 Graph Convolution: Recursive Computation with Shared Parameters:
 
 * Represent each node based on its neighborhood
-* Recursively compute the state of each node by propagating previous
-states using relation specific transformations
+* Recursively compute the state of each node by propagating previous states using relation specific transformations
 * Backpropagation through Structure
 
 - [Spectral CNN](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
@@ -368,7 +367,6 @@ where $\sigma$ is some activation function such as **rectified linear unit (ReLU
 Parametrize the smooth spectral filter function
 
 - [SplineNets: Continuous Neural Decision Graphs](https://arxiv.org/abs/1810.13118)
-
 - [Spatial CNN](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
 - [](https://blog.acolyer.org/2019/02/06/a-comprehensive-survey-on-graph-neural-networks/)
 
