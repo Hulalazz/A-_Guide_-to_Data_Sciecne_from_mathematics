@@ -27,6 +27,7 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * [Introductory course on non-smooth optimisation](https://jliang993.github.io/nsopt.html)
 * [CS4540: Simple Algorithms](https://algorithms2017.wordpress.com/)
 * [CS 798: Convexity and Optimization](https://cs.uwaterloo.ca/~lapchi/cs798/index.html)
+* [Survival Guide for Students of Optimization, Dianne P. O'Leary, September 2017](http://www.cs.umd.edu/users/oleary/survivalo.html)
 * https://nlopt.readthedocs.io/en/latest/
 
 The proof of convergence  or complexity is often based  on the convex cases where the objective function as well as the constrained set is convex, i.e.,
@@ -176,9 +177,8 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}\underbrace{(x^k-x^{k-1})}_{\text{denoted as  $\Delta_{k}$ }}\\
 \Delta_{k+1}= -\alpha_k\nabla_{x}f(x^k)+ \rho_{k}\Delta_{k}\\
 \\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{red}{x}^{k-i}}_{\triangle})+\rho_1\Delta_1
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{red}{x}^{k-i}}_{\triangle})+\rho_1\Delta_1.
 $$
-And $\rho=\exp(\rho_k M_b)$.
 
 **Nesterov accelerated gradient method** at the $k$th step is given by:
 
@@ -277,12 +277,22 @@ $$
 $$
 
 
-The gradient  descent  methods transforms the multiply optimization to univariate optimzitaion.
+The gradient  descent  methods transforms the multiply optimization to univariate optimization.
+
+Here is an outline of the nonlinear CG method:
+* $d^{0}=r^{0}=-f^{\prime}(x^0)$
+* Find $\alpha^{i}$ that minimizes $f(x^{i}+\alpha^{i} d^{i})$,
+* $x^{i+1}=x^{i} + \alpha_{i} d^{i}$
+* $r^{i+1}=-f^{\prime}(x^{i+1})$
+* $\beta_{i+1}=\frac{\left<r^{i+1}, r^{i+1}\right>}{\left<r^{i}, r^{i}\right>}$ or $\beta_{i+1}=\max\{\frac{\left<r^{i+1}, r^{i+1}-r^{i}\right>}{\left<r^{i}, r^{i}\right>}, 0\}$
+* $d^{i+1}=r^{i+1}+\beta_{i+1}d^{i}$
 
 
 + https://wiki.seg.org/wiki/The_conjugate_gradient_method
 + https://stanford.edu/class/ee364b/lectures/conj_grad_slides.pdf
 + [An Introduction to the Conjugate Gradient Method Without the Agonizing Pain](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf)
++ http://www.cs.umd.edu/users/oleary/cggg/historyindex.html
++ [A BRIEF INTRODUCTION TO THE  CONJUGATE GRADIENT METHOD](http://www.math.ust.hk/~mamu/courses/531/cg.pdf)
 
 ## Variable Metric Methods
 
@@ -445,6 +455,13 @@ The BFGS quasi-newton approximation has the benefit of not requiring us to be ab
 * https://www.wikiwand.com/en/Limited-memory_BFGS
 * [On the limited memory BFGS method for large scale optimization](https://link.springer.com/article/10.1007%2FBF01589116)
 * [Numerical Optimization: Understanding L-BFGS](http://aria42.com/blog/2014/12/understanding-lbfgs)
+* [Unconstrained optimization: L-BFGS and CG](http://www.alglib.net/optimization/lbfgsandcg.php)
+
+[L-BFGS algorithm builds and refines quadratic model of a function being optimized. Algorithm stores last M value/gradient pairs and uses them to build positive definite Hessian approximation. This approximate Hessian matrix is used to make quasi-Newton step. If quasi-Newton step does not lead to sufficient decrease of the value/gradient, we make line search along direction of this step.](http://www.alglib.net/optimization/lbfgsandcg.php)
+
+[Essential feature of the algorithm is positive definiteness of the approximate Hessian. Independently of function curvature (positive or negative) we will always get SPD matrix and quasi-Newton direction will always be descent direction.](http://www.alglib.net/optimization/lbfgsandcg.php)
+
+[Another essential property is that only last $M$ function/gradient pairs are used, where M is moderate number smaller than problem size N, often as small as 3-10. It gives us very cheap iterations, which cost just O(N·M) operations.](http://www.alglib.net/optimization/lbfgsandcg.php)
 
 ***
 * [Wikipedia page on Newton Method](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
@@ -463,7 +480,9 @@ $$
 where $F^{-1}(\theta^{(t)})$ is the inverse of `Remiann metric` at the point $\theta^{(t)}$.
 And **Fisher scoring** algorithm is a typical application of **Natural Gradient Descent** to statistics.  
 **Natural gradient descent** for manifolds corresponding to
-exponential families can be implemented as a first-order method through **mirror descent** (https://www.stat.wisc.edu/~raskutti/publication/MirrorDescent.pdf).
+exponential families can be implemented as a first-order method through [**mirror descent**](https://www.stat.wisc.edu/~raskutti/publication/MirrorDescent.pdf).
+
+
 
 | Originator of Information Geometry: Shunichi Amari |
 |:----:|
@@ -728,9 +747,10 @@ $$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\
 * [ORF523: Mirror Descent, part I/II](https://blogs.princeton.edu/imabandit/2013/04/16/orf523-mirror-descent-part-iii/)
 * [ORF523: Mirror Descent, part II/II](https://blogs.princeton.edu/imabandit/2013/04/18/orf523-mirror-descent-part-iiii/)
 * [Thibaut Lienart: MIrror Descent](https://tlienart.github.io/pub/csml/cvxopt/mda.html)
+* [Sinkhorn Algorithm as a Special Case of Stochastic Mirror Descent](https://konstmish.github.io/publication/19_sinkhorn/)
 * https://web.stanford.edu/class/cs229t/2017/Lectures/mirror-descent.pdf
 * https://www.cs.ubc.ca/labs/lci/mlrg/slides/mirrorMultiLevel.pdf
-
+* https://konstmish.github.io/
 
 ### Proximal Gradient Method
 
@@ -1010,7 +1030,9 @@ where $\mu>0$ is the `penalty parameter`. By driving $\mu\to\infty$, we penalize
 
 ## Path Following Methods
 
+The main ideas of path following by predictor–corrector and piecewise-linear methods, and their application in the direction of homotopy methods and nonlinear eigenvalue problems are reviewed. Further new applications to areas such as polynomial systems of equations, linear eigenvalue problems, interior methods for linear programming, parametric programming and complex bifurcation are surveyed. Complexity issues and available software are also discussed.
 
+- [Continuation and path following](https://www.cambridge.org/core/journals/acta-numerica/article/continuation-and-path-following/4368C662C0FA6F729FA4B2A5C1B60085)
 - https://nisheethvishnoi.files.wordpress.com/2018/05/lecture71.pdf
 - http://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/16-primal-dual.pdf
 - [L. Vandenberghe EE236C (Spring 2016): 17. Path-following methods](http://www.seas.ucla.edu/~vandenbe/236C/lectures/pf.pdf)
@@ -1134,6 +1156,9 @@ $$
 & \ell_{j}(x)=0, \quad j=1, \ldots r \end{aligned}
 $$
 
+We defined the Lagrangian:
+$$L(x, u, v) = f(x) +\sum_{i=1}^{m}u_ih_i(x)+\sum_{j=1}^r v_j \ell_j.$$
+
 The Karush-Kuhn-Tucker conditions or KKT conditions are:
 $$\begin{aligned}
 &\bullet\quad 0 \in \partial f(x)+\sum_{i=1}^{m} u_{i} \partial h_{i}(x)+\sum_{j=1}^{T} v_{j} \partial \ell_{j}(x) &\text{(stationarity)} \\
@@ -1145,8 +1170,24 @@ $$\begin{aligned}
 I learnt this theorem in functional analysis at graduate level course.
 
 - https://mitmgmtfaculty.mit.edu/rfreund/educationalactivities/
-- https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/lecture-notes/
+- [Nonlinear Programming by Robert M. Freund](https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/lecture-notes/)
 - https://www.cs.cmu.edu/~ggordon/10725-F12/slides/16-kkt.pdf
+
+**Conjugate Duality**
+
+Dual problem transform the original primary problem into a new optimization problems.
+
+* [Primary-dual hybrid gradient](https://www.cs.umd.edu/~tomg/projects/pdhg/),
+* [The Complexity of Primal-Dual Fixed Point Methods for Ridge Regression ](https://www.maths.ed.ac.uk/~prichtar/papers/pdfixedpoint.pdf),
+* [A primal–dual fixed point algorithm for convex separable minimization with applications to image restoration](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
+
+- https://web.maths.unsw.edu.au/~gyli/papers/ljl-conjugate-revised-final-18-11-10.pdf
+- [Conjugate Duality and Optimization](https://sites.math.washington.edu/~rtr/papers/rtr054-ConjugateDuality.pdf)
+- [LECTURE 5: CONJUGATE DUALITY](https://www.ise.ncsu.edu/fuzzy-neural/wp-content/uploads/sites/9/2015/07/Lecture5-1.pdf)
+- [Duality Theory of Constrained Optimization by Robert M. Freund](https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/lecture-notes/lec18_duality_thy.pdf)
+- [Gauge optimization, duality, and applications](https://www.researchgate.net/publication/257592332_Gauge_optimization_duality_and_applications)
+- https://mitmgmtfaculty.mit.edu/rfreund/educationalactivities/
+- http://www.mit.edu/~mitter/publications/6_conjugate_convex_IS.pdf
 
 ### Splitting Methods
 
@@ -1814,29 +1855,94 @@ Then consider the following algorithm.
 
 So that finally we obtain an sequence $\{x^0, x^1, \cdots, x^{n},\cdots\}$. There are many methods to test whether this sequence is convergent or not as learnt in calculus.
 
+>  The order of convergence is defined as the constant $p$ such that $\lim_{n\to \infty}\frac{\| x^{n+1}-x^{\ast}\|}{\| x^{n}-x^{\ast}\|^p}=C$ if $\lim_{n\to\infty}x^{n}=x^{\ast}$.
+
+name| the order of convergence
+---|----
+sublinear | $p<1$
+linear | $p = 1$ and $C < 1,$
+superlinear | $p >1$
+quadratic| $p = 2$
+
+### Solving nonlinear equations
+
+- [Numerical methods: Solving nonlinear equations](http://www.fyzikazeme.sk/mainpage/stud_mat/nm/lecture2.pdf)
+- [Newton, Chebyshev, and Halley Basins of Attraction; A Complete Geometric Approach by Bart D. Stewart, Department of Mathematics, United States Military Academy](https://www.mi.sanu.ac.rs/vismath/stewart/index.html)
+- [Solutions of Equations in One Variable
+Fixed-Point Iteration II](http://www.math.ust.hk/~mamu/courses/231/Slides/ch02_2b.pdf)
+
+
+**Bisection method**
+
+Find a midpoint of interval $(a^k, b^k )$ and designate it $x^{k+1}=\frac{a^k+b^k}{2}$.
+
+$$
+\left(a_{k+1}, b_{k+1}\right)
+=\left\{\begin{array}{ll}{\left(a_{k}, x_{k+1}\right),} & {\text { if } \quad f\left(a_{k}\right) f\left(x_{k+1}\right)<0} \\ {\left(x_{k+1}, b_{k}\right),} & {\text { if } \quad f\left(a_{k}\right) f\left(x_{k+1}\right)>0}\end{array}\right.
+$$
+
+**Regula falsi (false position) method**
+
+$$f(x^{k+1})=f(x^k)-\alpha \frac{b^k -a^{k}}{f(b^k) - f(a^{k})}f(x^k)$$
+
+and
+
+$$
+\left(a_{k+1}, b_{k+1}\right)
+=\left\{\begin{array}{ll}{\left(a_{k}, x_{k+1}\right),} & {\text { if } \quad f\left(a_{k}\right) f\left(x_{k+1}\right)<0} \\ {\left(x_{k+1}, b_{k}\right),} & {\text { if } \quad f\left(a_{k}\right) f\left(x_{k+1}\right)>0}\end{array}\right.
+$$
+
+**Secant method**
+
+The $k$-th approximation of root is obtained by
+$$f(x^{k+1})=f(x^k)-\alpha \frac{x^k -x^{k-1}}{f(x^k) - f(x^{k-1})}f(x^k)$$
+
+- [Solutions of Equations in One Variable Secant & Regula Falsi Methods](http://www.math.ust.hk/~mamu/courses/231/Slides/ch02_3b.pdf)
+
+**Newton’s method**
+
+$$f(x^{k+1})=f(x^k)-\alpha {(f^{\prime})}^{-1}f(x^k)$$
+
+![](https://www.mi.sanu.ac.rs/vismath/stewart/fig8.gif)
+
 **Steffensen’s Method**
 
 Steffensen’s method is modified Newton’s method
 
+$$f(x^{k+1})=f(x^k)-\alpha {(\frac{f(x^k+f(x^k))-f(x^k)}{f(x^k)})}^{-1}f(x^k)$$
+
 - http://www.fyzikazeme.sk/mainpage/stud_mat/nm/lecture2.pdf
-- http://ceur-ws.org/Vol-1894/num3.pdf
-- https://www.ripublication.com/gjpam16/gjpamv12n1_80.pdf
+- [On the development of Steffensen’s method and applications to Hammerstein equations](http://ceur-ws.org/Vol-1894/num3.pdf)
+- [An improvement of Steffensen's method for solving nonlinear equations by N. Gattal1, and A. S. Chibi](https://www.ripublication.com/gjpam16/gjpamv12n1_80.pdf)
 
 **Muller's Method**
 
 Muller’s method is a generalization of the secant method, in the sense that it does
-not require the derivative of the function
+not require the derivative of the function.
+
+It is an iterative method that requires three starting points $(p_0, f (p_0)), (p_1, f (p_1)),$ and $(p_2, f (p_2))$.
+A parabola is constructed that passes through the three points; then the quadratic formula is used to find a root of the quadratic for the next approximation.
+
+![](https://vignette.wikia.nocookie.net/mullersmethod/images/9/94/Mullers.jpg/)
 
 - http://mathworld.wolfram.com/MullersMethod.html
 - http://mathfaculty.fullerton.edu/mathews/n2003/mullersmethod/MullersMethodProof.pdf
-- https://mullersmethod.fandom.com/wiki/Muller%27s_Method
+- [Muller's Method Wiki](https://mullersmethod.fandom.com/wiki/Muller%27s_Method)
+
+**Chebyshev Method**
+
+![](https://www.mi.sanu.ac.rs/vismath/stewart/fig9.gif)
+
+- http://mathworld.wolfram.com/ChebyshevIteration.html
+- http://www.sam.math.ethz.ch/~mhg/pub/Cheby-02ParComp.pdf
 
 **Halley's Methods**
 
-- http://mathcs.holycross.edu/~groberts/Papers/nwt-hly.pdf
-- https://ijpam.eu/contents/2016-111-1/6/6.pdf
+![](https://www.mi.sanu.ac.rs/vismath/stewart/fig10.gif)
+
+- [Newton's versus Halley's Method： A Dynamical Systems Approach](http://mathcs.holycross.edu/~groberts/Papers/nwt-hly.pdf)
+- [MODIFIED HALLEY’S METHOD FOR SOLVING NONLINEAR FUNCTIONS WITH CONVERGENCE OF ORDER SIX AND EFFICIENCY INDEX 1.8171](https://ijpam.eu/contents/2016-111-1/6/6.pdf)
 - http://benisrael.net/NEWTON-MONTHLY.pdf
-- https://www.mi.sanu.ac.rs/vismath/stewart/index.html
 
 **Aitken’s $\Delta^2$ method**
 
@@ -1847,7 +1953,6 @@ not require the derivative of the function
   3. the algorithm terminates $p \approx \hat{p}_{n}$ if $\left|\hat{p}_{n}-\hat{p}_{n-1}\right|<\epsilon$.
 
 
-* http://www.fyzikazeme.sk/mainpage/stud_mat/nm/lecture2.pdf
 * http://mathfaculty.fullerton.edu/mathews/n2003/AitkenSteffensenMod.html
 * [2.6 - Accelerating Convergence Aitken’s Delta squared Method](http://macs.citadel.edu/chenm/343.dir/11.dir/lect2_6.pdf)
 * [Aitken’s $\Delta^2$ method extended](https://www.tandfonline.com/doi/pdf/10.1080/23311835.2017.1308622)
@@ -1859,6 +1964,38 @@ Converging and Diverging Gauss-Seidel Iterations
 * [Fixed-Point Iteration](https://www.csm.ornl.gov/workshops/applmath11/documents/posters/Walker_poster.pdf)
 * [Lecture 8 : Fixed Point Iteration Method, Newton’s Method](http://home.iitk.ac.in/~psraj/mth101/lecture_notes/lecture8.pdf)
 * [2.2 Fixed-Point Iteration](https://www3.nd.edu/~zxu2/acms40390F12/Lec-2.2.pdf)
+
+**Homotopy Continuation Methods**
+
+`Homotopy Methods` transform a hard problem into a simpler one whit easily calculated zeros and then gradually deform this simpler problem into the original one computing the zeros of the intervening problems and eventually ending with a zero of the original problem.
+
+The homotopy method (continuation method, successive loading method) can be used to generate a good `starting value`.
+
+Suppose one wishes to obtain a solution to a system of $N$ nonlinear equations in $N$ variables, say
+$$F(x)=0$$
+where $F : \mathbb R^N \to \mathbb R^N$ is a mapping which, for purposes of beginning our discussion we will assume is smooth.
+
+Since we assume that such a priori knowledge is not available, the iteration will often fail, because poor starting values are likely to be chosen.
+
+We construct a parameter depending function
+$$H(x, s) = sF(x) + (1 − s)F_0(x), s\in [0,1]$$
+and note, that $H(x, 0) = 0$ is the problem with known solution and
+$H(x, 1) = 0$ is the original problem $F(x) = 0$.
+As the solution of $H(x, s) = 0$ depends on s we denote it by $x^{\ast}(s)$.
+We discretize now the intervall into $0 = s_0 < s_1 < \cdots < s_n = 1$ and solve a sequence of nonlinear systems with Newton’s method
+$$H(x, s_i) = 0$$
+
+- http://homepages.math.uic.edu/~jan/
+- http://people.bu.edu/fdc/H-topy.pdf
+- [3.10: Homotopy Method](http://www.maths.lth.se/na/courses/FMN081/FMN081-06/lecture8.pdf)
+- [CHAPTER 2: Numerical homotopy continuation](http://people.math.gatech.edu/~aleykin3/math4803spr13/BOOK/chapter2.pdf)
+- https://blog.csdn.net/jbb0523/article/details/52460408
+- [Homotopy Continuation, Max Buot (CMU)&Donald Richards (PSU)](https://astrostatistics.psu.edu/su05/max_homotopy061605.pdf)
+- [On the Link Between Gaussian Homotopy Continuation and Convex Envelopes](http://people.csail.mit.edu/hmobahi/pubs/gaussian_convenv_2015.pdf)
+- [HOPE: A Homotopy Optimization Method for Protein Structure Prediction](http://www.cs.umd.edu/~oleary/reprints/j73.pdf)
+- [Solving inequality Constrained Optimization Problems by Differential Homotopy Continuation Methods ](https://core.ac.uk/download/pdf/82350656.pdf)
+- [PHCpack: a general-purpose solver
+for polynomial systems by homotopy continuation](http://homepages.math.uic.edu/~jan/PHCpack/phcpack.html)
 
 ---
 
@@ -1968,6 +2105,7 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * [Some Operator Splitting Methods for Convex Optimization](https://repository.hkbu.edu.hk/cgi/viewcontent.cgi?article=1042&context=etd_oa)
 * [FAST ALTERNATING DIRECTION OPTIMIZATION METHODS](https://www.mia.uni-saarland.de/Publications/goldstein-cam12-35.pdf)
 * https://www.math.ucla.edu/~wotaoyin/math285j.18f/
+* [Fixed-Point Continuation for $\ell_1$-Minimization: Methodology and Convergence@https://epubs.siam.org/doi/abs/10.1137/070698920](https://epubs.siam.org/doi/abs/10.1137/070698920)
 
 ### Generic Acceleration Framework
 
@@ -2093,6 +2231,7 @@ optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSemina
 * [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIOn](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
 * [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
 * [Iterative Convex Optimization Algorithms; Part One: Using the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
+* [Recent Advances in Convex Optimization and Fixed Point Algorithms by Jean-Christophe Pesquet](https://www.i2m.univ-amu.fr/seminaires_signal_apprentissage/Slides/2015_04_28_Pesquet_course_main.pdf)
 
 #### Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix
 
@@ -2126,7 +2265,10 @@ As shown before, the acceleration schemes are based on the linear combination of
 The question is why it is linear combination?
 Why not other `extrapolation` of the last updated values?
 
+#### Alternating Anderson-Richardson method
 
+- [Alternating Anderson-Richardson method: An efficient alternative to preconditioned Krylov methods for large, sparse linear systems](https://arxiv.org/pdf/1606.08740.pdf)
+- [Anderson acceleration of the Jacobi iterative method: An efficient alternative to Krylov methods for large, sparse linear systems](https://www.sciencedirect.com/science/article/pii/S0021999115007585)
 
 #### Regularized Nonlinear Acceleration
 
@@ -2173,6 +2315,40 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 
 - https://arxiv.org/abs/1905.11692
 - https://www.aritradutta.com/
+
+### Proportional–Integral–Derivative
+
+Methods| Recursion | Integration|
+----|:---:|:----:|
+Gradient Descent|$x^{k+1} = x^k -\alpha_k g(x^k)$ |?|
+Momentum Methods|$x^{k+1} = x^k -\alpha_k  g(x^k) + \rho_k(x^k-x^{k-1})$|?|
+Nesterov's Gradient Methods|$x^{k+1} =y^k-\alpha_k g(y^k), y^k= x^k + \rho_k(x^k-x^{k-1})$|?|
+Newton's Methods|$x^{k+1} = x^k - \alpha_i H_k^{-1}g(x^k)$ |?|
+Mirror Gradient Methods |$\nabla h(x^{k+1})-\nabla h(x^k) = x^k - \alpha_k \nabla f(x^k) , x\in \mathbb{S}$|?|
+
+The principle of feedback is simple  an input, $x^n$, is given, processed through some function, $f$, and then the output, $y^n$, becomes the next input, $x^{n+1}$, repeatedly. When allowing the ouput to equal the next input, an identity exists so that $x^{n+1}=y^n$. Cobweb diagrams exploit the relationship, map the iterations, and reveal the behaviors of fixed points.
+
+<img src="https://www.mi.sanu.ac.rs/vismath/stewart/image022.gif" />
+<img src="https://www.mi.sanu.ac.rs/vismath/stewart/image017.gif" />
+
+A PID controller continuously calculates an error $e(t)$, which is the difference between the desired optimal
+output and a measured system output, and applies a correction $u(t)$ to the system based on the proportional $(P)$, integral $(I)$, and derivative $(D)$ terms of $e(t)$. Mathematically, there is:
+$$u(t)= K_p e(t) + K_i\int_{0}^{t}e(x)\mathrm d x + K_d\frac{\mathrm d}{\mathrm dt}e(t) $$
+
+<img title="PID Optimizer" src="http://5b0988e595225.cdn.sohucs.com/images/20180720/904ace2258564f6b98e91ad71de6ff91.jpeg" width="60%" />
+
+Sample Recurrence Relation | Idea of Successive Approximations
+----|----
+$x^{k+1}=M(x^k)$|$x^k=\underbrace{M(M(\cdots M(x^0)))}_{\text{k times}}$
+
+* [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
+* [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
+* [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
+* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
+* [PID Theory Explained](https://www.ni.com/en-ie/innovations/white-papers/06/pid-theory-explained.html)
+* [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
+* http://www.scholarpedia.org/article/Optimal_control
+* https://web.stanford.edu/class/ee365/
 
 ## Dynamical Systems
 
@@ -2271,6 +2447,8 @@ $$
 - [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
 - [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
 ***
+**ADMM and Dynamics**
+
 
 - [A Dynamical Systems Perspective on Nonsmooth Constrained Optimization](https://arxiv.org/abs/1808.04048)
 - https://kgatsis.github.io/learning_for_control_workshop_CDC2018/assets/slides/Vidal_CDC18.pdf
@@ -2291,24 +2469,7 @@ $$
 
 [GRADIENTS AND FLOWS: CONTINUOUS OPTIMIZATION APPROACHES TO THE MAXIMUM FLOW PROBLEM](https://eta.impa.br/dl/028.pdf)
 
-### Proportional–Integral–Derivative
 
-| Recursion | Integration|
-|:---:|:----:|
-|$x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_ig(x^i)$|?|
-|$x^{k+1}-x^{0}=-\sum_{i=1}^{k}\alpha_i H_k^{-1}g(x^i)$|?|
-|$\nabla h(x^{k+1})-\nabla h(x^1) =- \sum_{n=1}^{k}\alpha_i \nabla f(x^i) , x\in \mathbb{S}$|?|
-
-<img title="PID Optimizer" src="http://5b0988e595225.cdn.sohucs.com/images/20180720/904ace2258564f6b98e91ad71de6ff91.jpeg" width="60%" />
-
-* http://www.sohu.com/a/242354509_297288
-* [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
-* [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
-* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
-* [PID Theory Explained](https://www.ni.com/en-ie/innovations/white-papers/06/pid-theory-explained.html)
-* [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
-* http://www.scholarpedia.org/article/Optimal_control
-* https://web.stanford.edu/class/ee365/
 
 ## Stochastic Approximation
 
