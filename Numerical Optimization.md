@@ -1164,7 +1164,7 @@ $$\begin{aligned}
 &\bullet\quad 0 \in \partial f(x)+\sum_{i=1}^{m} u_{i} \partial h_{i}(x)+\sum_{j=1}^{T} v_{j} \partial \ell_{j}(x) &\text{(stationarity)} \\
 &\bullet\quad u_{i} \cdot h_{i}(x)=0 \text { for all } i  &\text{ (complementary slackness) } \\
 &\bullet\quad h_{i}(x) \leq 0, \ell_{j}(x)=0 \text { for all } i, j  &\text{(primal feasibility) } \\
-&\bullet\quad u_{i} \geq 0 \forall i &\text{ (dual feasibility) }
+&\bullet\quad u_{i} \geq 0 \text{for all} i &\text{ (dual feasibility) }
 \end{aligned}$$
 
 I learnt this theorem in functional analysis at graduate level course.
@@ -1538,6 +1538,7 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 - https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
 - http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
 - http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
+- [MS72: Recent Progress in Coordinate-wise Descent Methods](https://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=66077)
 
 #### Block Spliiting Methods
 
@@ -2121,7 +2122,7 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * [Algorithms, Nature, and Society](https://nisheethvishnoi.wordpress.com/)
 * https://damienscieur.com/sections/paper.html
 * [Generalized Framework for Nonlinear Acceleration](https://arxiv.org/abs/1903.08764v1)
-* https://papers.nips.cc/paper/6987-nonlinear-acceleration-of-stochastic-algorithms.pdf
+* [Nonlinear Acceleration of Stochastic Algorithms](https://papers.nips.cc/paper/6987-nonlinear-acceleration-of-stochastic-algorithms.pdf)
 
 ### Approximate Minimal Polynomial Extrapolation
 
@@ -2136,7 +2137,9 @@ methods are related](http://www.cs.technion.ac.il/~asidi/Sidi_Journal_Papers/P12
 - http://www.cs.technion.ac.il/~asidi/
 - https://www.di.ens.fr/~aspremon/PDF/FOCM17.pdf
 - https://simons.berkeley.edu/sites/default/files/docs/8821/alexsimons17.pdf
-- https://www.math.temple.edu/~szyld/reports/RRE.Schwarz.report.pdf
+- [Nonlinear Schwarz iterations with
+Reduced Rank Extrapolation](https://www.math.temple.edu/~szyld/reports/RRE.Schwarz.report.pdf)
+- [A BLOCK RECYCLED GMRES METHOD WITH INVESTIGATIONS INTO ASPECTS OF SOLVER PERFORMANCE](https://www.math.temple.edu/~szyld/reports/block-gcrodr.rev.report.pdf)
 
 ### Anderson Acceleration
 
@@ -2193,7 +2196,7 @@ $$
 
 where ${\alpha}_k + {\beta}_k + {\gamma}_k = 1, {\alpha}_k, {\beta}_k, {\gamma}_k \in [0,1)$ for all $k\geq 1$, $\sum_{k}^{\infty}(1-\alpha_k)=\infty$, $\sum_{k=1}^{\infty}\gamma_k < \infty$.
 
-If the Mann type iteration $\{x^k\}$ converges strongly to a point $p$, then $p$ is afixed point of $T$.
+If the Mann type iteration $\{x^k\}$ converges strongly to a point $p$, then $p$ is a fixed point of $T$.
 
 * [Krasnoselskii-Mann method for non-self mappings](https://fixedpointtheoryandapplications.springeropen.com/track/pdf/10.1186/s13663-015-0287-4)
 * http://www.krasnoselskii.iitp.ru/papereng.pdf
@@ -2289,7 +2292,7 @@ $$
 * [Regularized nonlinear acceleration, Mathematical Programming](https://link.springer.com/article/10.1007%2Fs10107-018-1319-8)
 * http://spars2017.lx.it.pt/index_files/papers/SPARS2017_Paper_16.pdf
 * https://github.com/windows7lover/RegularizedNonlinearAcceleration
-
+* https://damienscieur.com/
 
 ####  Objective Acceleration
 
@@ -2318,37 +2321,80 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 
 ### Proportional–Integral–Derivative
 
-Methods| Recursion | Integration|
-----|:---:|:----:|
-Gradient Descent|$x^{k+1} = x^k -\alpha_k g(x^k)$ |?|
-Momentum Methods|$x^{k+1} = x^k -\alpha_k  g(x^k) + \rho_k(x^k-x^{k-1})$|?|
-Nesterov's Gradient Methods|$x^{k+1} =y^k-\alpha_k g(y^k), y^k= x^k + \rho_k(x^k-x^{k-1})$|?|
-Newton's Methods|$x^{k+1} = x^k - \alpha_i H_k^{-1}g(x^k)$ |?|
-Mirror Gradient Methods |$\nabla h(x^{k+1})-\nabla h(x^k) = x^k - \alpha_k \nabla f(x^k) , x\in \mathbb{S}$|?|
-
 The principle of feedback is simple  an input, $x^n$, is given, processed through some function, $f$, and then the output, $y^n$, becomes the next input, $x^{n+1}$, repeatedly. When allowing the ouput to equal the next input, an identity exists so that $x^{n+1}=y^n$. Cobweb diagrams exploit the relationship, map the iterations, and reveal the behaviors of fixed points.
 
 <img src="https://www.mi.sanu.ac.rs/vismath/stewart/image022.gif" />
 <img src="https://www.mi.sanu.ac.rs/vismath/stewart/image017.gif" />
 
+- https://www.mi.sanu.ac.rs/vismath/stewart/index.html
+
 A PID controller continuously calculates an error $e(t)$, which is the difference between the desired optimal
 output and a measured system output, and applies a correction $u(t)$ to the system based on the proportional $(P)$, integral $(I)$, and derivative $(D)$ terms of $e(t)$. Mathematically, there is:
 $$u(t)= K_p e(t) + K_i\int_{0}^{t}e(x)\mathrm d x + K_d\frac{\mathrm d}{\mathrm dt}e(t) $$
 
+where $u$ is the control signal and $e$ is the control error.
+The control signal is thus a sum of three terms:
+1. the P-term (which is proportional to the error);
+2. the I-term (which is proportional to the integral of the error);
+3. and the D-term (which is proportional to the derivative of the error).
+
+The controller can also be parameterized as
+$$u(t)= K_p \{e(t) + \frac{1}{T_i}\int_{0}^{t}e(x)\mathrm d x + T_d\frac{\mathrm d}{\mathrm dt}e(t)\},\tag{PID}$$
+
+where $T_i$ is called integral time and $T_d$ derivative time.
+
+The proportional part acts on the present value of the error, the integral represent and average of past errors and the derivative can be interpreted as a prediction of future errors based on linear extrapolation.
+
+
+* http://www.scholarpedia.org/article/Optimal_control
+* [EE365: Stochastic Control Spring Quarter 2014](https://web.stanford.edu/class/ee365/)
+* [PID Theory Explained](https://www.ni.com/en-ie/innovations/white-papers/06/pid-theory-explained.html)
+* [Chapter 8: PID Control](https://www.cds.caltech.edu/~murray/courses/cds101/fa04/caltech/am04_ch8-3nov04.pdf)
+* [CDS 101/110 -- Fall 2004 Analysis and Design of Feedback Systems](https://www.cds.caltech.edu/~murray/courses/cds101/fa04/)
+
+Methods| Recursion | Integration|
+----|:---:|:----:|
+Gradient Descent|$x^{t+1} = x^t -\alpha_t g(x^t)$ |?|
+Momentum Methods|$x^{t+1} = x^t -\alpha_t  g(x^t) + \rho_t(x^t - x^{t-1})$|?|
+Nesterov's Gradient Methods|$x^{t+1} =y^t -\alpha_t g(y^t), y^t = x^t + \rho_t(x^t -x^{t -1})$|?|
+Newton's Methods|$x^{t+1} = x^t - \alpha_i H_t^{-1}g(x^t)$ |?|
+Mirror Gradient Methods |$\nabla h(x^{t+1})-\nabla h(x^t) = x^t - \alpha_t \nabla f(x^t) , x\in \mathbb{S}$|?|
+
+By viewing the gradient $g(x^t)$ as error $e(t)$, and comparing it to PID
+controller, one can see that gradient descent only uses the present gradient to update the weights.
+
+We rewrite the fomula $x^{t+1} = x^t -\alpha_t  g(x^t) + \rho_t(x^t - x^{t-1})$ as
+$$x^{t+1} = x^t -\alpha_t  g(x^t) + \rho_t\underbrace{(x^t - x^{t-1})}_{-\alpha_{t-1}g(x^{t-1})+\rho_{t-1}(x^{t-1}-x^{t-2})}\\
+= x^t -\alpha_t  g(x^t) + \sum_{i=1}^{t-1}[\prod_{j=0}^{i-1}\rho_{t-j}]\alpha_{t-i}g(x^{t-i})+ \rho_1(x^1-x^0)
+.$$
+
+One can see that the update of parameters relies on both the present gradient  and the integral of past gradients.
+The only difference is that there
+is a decay $\prod_{j=0}^{i-1}\rho_{t-j}$ term  in the I term.
+
+
 <img title="PID Optimizer" src="http://5b0988e595225.cdn.sohucs.com/images/20180720/904ace2258564f6b98e91ad71de6ff91.jpeg" width="60%" />
+
+**PID optimizer**
+
+The proposed PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
+* $V^{t+1}=\alpha V^t -r g(x^t)$
+* $D^{t+1}=\alpha D^t +(1-\alpha)(g(x^t)-g(x^{t-1}))$
+* $x^{t+1}=x^t+V^{t+1}+K_d D^{t+1}$
+
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20180720/5250d32155024e079438d7484d082a03.jpeg" width="60%"/>
 
 Sample Recurrence Relation | Idea of Successive Approximations
 ----|----
-$x^{k+1}=M(x^k)$|$x^k=\underbrace{M(M(\cdots M(x^0)))}_{\text{k times}}$
+$x^{k+1}=M(x^k)$ | $x^k=\underbrace{M(M(\cdots M(x^0)))}_{\text{k times}}$
 
 * [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
-* [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
-* [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
-* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
-* [PID Theory Explained](https://www.ni.com/en-ie/innovations/white-papers/06/pid-theory-explained.html)
 * [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
-* http://www.scholarpedia.org/article/Optimal_control
-* https://web.stanford.edu/class/ee365/
+* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
+* [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
+****
+* [Accelerated Optimization in the PDE Framework: Formulations for the Manifold of Diffeomorphism](https://repository.kaust.edu.sa/bitstream/handle/10754/627489/1804.02307v1.pdf?sequence=1&isAllowed=y)
+* [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
 
 ## Dynamical Systems
 
@@ -2446,6 +2492,7 @@ $$
 - [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
 - [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
 - [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
+- [Integration Methods and Optimization Algorithms](https://papers.nips.cc/paper/6711-integration-methods-and-optimization-algorithms.pdf)
 ***
 **ADMM and Dynamics**
 
@@ -2707,8 +2754,6 @@ $$x^{\ast}=\arg\min_{x, x^1, x^N}\sum_{n=1}^{N} f_{\gamma}^{\beta}(x^n)+\frac{1}
 Main trick: in shared memory systems, every threads can access the same parameter $x$.
 
 [Asynchronous Accelerated Stochastic Gradient Descent](https://www.microsoft.com/en-us/research/publication/asynchronous-accelerated-stochastic-gradient-descent/):
-
-![AASGD](I:\A Guide to Data Science\AASGD.png)
 
 - [Asynchronous Stochastic Gradient Descent with Delay Compensation](https://arxiv.org/abs/1609.08326)
 - [Asynchronous Decentralized Parallel Stochastic Gradient Descent](http://proceedings.mlr.press/v80/lian18a/lian18a.pdf)
