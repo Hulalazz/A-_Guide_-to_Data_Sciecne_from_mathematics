@@ -1,4 +1,4 @@
-#### Graph as Data  Structure
+#### Graph as Data Structure
 
 <img title="http://davidhall.io/visualising-music-graphic-scores/" src="http://davidhall.io/wp-content/uploads/2017/08/graphic-notation-Roman-Haubenstock-Ramati-2.jpg" width="80%"/>
 
@@ -10,6 +10,9 @@
 * http://www.columbia.edu/~mc2775/
 * http://web.eecs.umich.edu/~dkoutra/tut/sdm17.html
 * http://web.eecs.umich.edu/~dkoutra/tut/icdm18.html
+* http://www.mlgworkshop.org/2019/
+* https://www.computationalnetworkscience.org/
+* http://ccni.hrl.com/
 
 [Learn about graph, graph representations, graph traversals and their running time.](https://kobiso.github.io//data%20structure/coding-DS_graph/)
 
@@ -66,7 +69,7 @@ See *Graph representations using set and hash* at <https://www.geeksforgeeks.org
 See more representation of graph in computer in <https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/>.
 Although the adjacency-list representation is asymptotically at least as efficient as the adjacency-matrix representation, the simplicity of an adjacency matrix may make it preferable when graphs are reasonably small. Moreover, if the graph is unweighted, there is an additional advantage in storage for the adjacency-matrix representation.
 
-![list](https://kobiso.github.io//assets/images/graph/list.png)
+<img title="list" src="https://kobiso.github.io//assets/images/graph/list.png" width = "80%"/>
 
 ***
 |Cayley graph of F2 in Wikimedia | Moreno Sociogram 1st Grade|
@@ -117,6 +120,36 @@ $$
 > For any two vertices $u$ and $v$ in a graph $G$, we say that $v$ is reachable from $u$ if $G$ contains a walk (and therefore a path) between $u$ and $v$.
 >An undirected graph is connected if every vertex is reachable from every other vertex.
 > A **cycle** is a path that starts and ends at the same vertex and has at least one edge.
+
+#### Operators on Graph
+
+We will limit our attention to undirected graphs and view them as a discrete analog of manifolds. We define the vertex set $V={1,\dots,n}$ (it can be any set containing n objects, which we canonically map to the above set of natural numbers from 1 to n); the edge set and the edge set $E\subset V\times V$. An undirected graph has $(i,j)\in E⇔(j,i)\in E$. We further define the `vertex weights` as the function $a:V\to (0,\infty)$ and the `edge weights` as $w:E\to \mathbb R_+$ (in fact, w can be defined on the entire $V×V$ with $w_{ij}=0$ meaning $(i,j)\not\in E$). We refer to the tuple $G=(V,E,a,w)$ as to a `weighted undirected graph`.
+
+If $G(V, E)$ is undirected graph. $V$ are vertices, $E$ are edges, T are triangles/3-cliques, i.e., if $(i, j, k)\in T\iff \{i , j\}, \{j , k\}, \{k, i\}\in E.$
+
+* Function on vertices(vertex field): $s : V \to \mathbb R$;
+* Edge flows(edge field ): $X:V\times V\to \mathbb R$, where  $X(i, j)=0,$ if $(i, j)\not\in E$ and $X(i, j)=-X(j,i)$ for all $(i, j)$.
+* Triangular flows: $\Phi: V\times V\times V\to\mathbb R$ where $\Phi(i, j ,k)=0$ if $(i, j, k)\not\in T$ and $\Phi(i, j, k)=\Phi(k, i, j)=\Phi(j, k, i)=-\Phi(j, i, k)=-\Phi(i, k, j)=-\Phi(k,j,i)$ for all $i, j, k$.
+
+Operators | Definition
+---|----
+Graph gradient: grad| $\text{(grad s)(i, j)}=s_j - s_i$
+Graph curl: curl|$\text{(curl X)(i, j, k)}=X_{ij}+X_{jk}+X_{ik}$
+Graph divergence: div|$\text{(div X)(i)}= \sum_{j}w_{ij}X_{ij}$
+Graph Laplacian|$\Delta_0=div\circ grad$
+Graph Helmholtzian|$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
+
+> (Helmholtz decomposition)：$G = (V; E)$ is undirected, unweighted graph. $\Delta_1$ is its Helmholtzian. The space of edge flows admits orthogonal decomposition:
+> $$L^2(E)=im(grad)\oplus ker(\Delta_1)\oplus im(curl^{\ast}).$$
+> Furthermore, $ker(\Delta_1) = ker(curl) \cap ker(div)$.
+
+* http://www.mit.edu/~parrilo/
+* https://www.stat.uchicago.edu/~lekheng/
+* https://en.wikipedia.org/wiki/Graph_operations
+* https://igraph.org/
+* https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/
+* https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/
+* https://math.stackexchange.com/questions/1960191/function-and-divergence-on-a-graph
 
 #### Shortest Paths
 
@@ -248,8 +281,7 @@ Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of ver
 
 
 
-* [拓扑排序（Topological Sorting）
-](https://songlee24.github.io/2015/05/07/topological-sorting/)
+* [拓扑排序(Topological Sorting)](https://songlee24.github.io/2015/05/07/topological-sorting/)
 * https://www.geeksforgeeks.org/topological-sorting/
 
 
@@ -282,6 +314,79 @@ $$
 $$
 where $d_{ij}$, the topological distance between $i$ and $j$.
 
+M. V. Diudea, I. Gutman and L. Jantschi in [Molecular Topology](http://lori.academicdirect.org/books/pdf/2001_moltop.pdf) claims that
+> A single number, representing a chemical structure, in graph-theoretical terms, is called a `topological descriptor`. Being a structural invariant it does not depend on the labeling or the pictorial representation of a graph. Despite the considerable loss of information by the projection in a single number of a structure, such descriptors found broad applications in the correlation and prediction of several molecular properties1,2 and also in tests of similarity and isomorphism.
+
+The simplest TI is the half sum of entries in the adjacency matrix $A$:
+$$A=\frac{1}{2}\sum_{ij}{[A]}_{ij}.$$
+
+**The Indices of Platt, F, Gordon-Scantlebury, N2, and Bertz, B1**：
+$$F={\sum}_{i}\sum_{j}{[EA]}_{ij}=2\sum_{i}C_{2}^{\delta_i}=2 N2=2 B1$$
+where $EA$ is the Edge Adjacency matrix. This index is twice the Gordon - Scantlebury
+index, N2 , defined as the number of modes in which the acyclic fragment C-C-C may be
+superposed on a molecular graph
+$$N2=\sum_{i}{(P_2)}_i.$$
+This index equals the number of all paths of length 2, P2 , in graph.
+The last one can be calculated combinatorially from the vertex degree, $\delta_i$ .
+
+***
+First TIs based on adjacency matrix (i.e., based on connectivity) were introduced
+by the Group from Zagreb:
+$$
+M_1=\sum_{i}\delta_i^2, \\
+M_2=\sum_{(i,j)\in E(G)}\delta_i\delta_j
+$$
+where $\delta_i, \delta_j$ are the vertex degrees for any two adjacent vertices.
+
+**The Randic Index, $\chi$**
+$$\chi=\sum_{(i,j)\in E(G)}(\delta_i\delta_j)^{-\frac{1}{2}}
+$$
+$\chi$ - called the connectivity index, is calculated on edge, by using the vertex degrees of its endpoints.
+The $\chi$ values decrease as the branching increases within a set of alkane isomers.
+They increase by the number of atoms in the molecular graph.
+
+It can extended the summation over all paths of
+length $e$:
+$$\chi^{e}=\sum_{p_e}(\delta_i\delta_j\cdots \delta_{e+1})^{-\frac{1}{2}}
+$$
+where $(\delta_i, \delta_j, \cdots, \delta_{e+1}$ are the vertex degrees along the path $p_e$.
+
+****
+**Wiener-Type Indices**
+In `acyclic structures`, the Wiener index, W and its extension, the hyper-Wiener
+index, WW can be defined as
+$$
+W=W(G)={\sum}_e N_{i,e}N_{e,j} \\
+WW=WW(G)={\sum}_e N_{i,p}N_{p, j}
+$$
+
+where $N_i$ and $N_j$ denote the number of vertices lying on the two sides of the edge $e$ or
+path $p$, respectively, having the endpoints $i$ and $j$.
+Other main definitions38,39 of the Wiener-type indices are based on the distance matrices,
+$$
+W=\frac{1}{2}\sum_{i}\sum_{j}{[D_e]}_{ij},\\
+WW=\frac{1}{2}\sum_{i}\sum_{j}{[D_p]}_{ij}.
+$$
+***
+
+**INDICES BASED ON RECIPROCAL MATRICES**
+
+**INDICES BASED ON COMBINATION OF MATRICES**
+
+**INDICES BASED ON EIGENVALUES AND EIGENVECTORS**
+
+[Topological descriptors](http://www.vcclab.org/lab/indexhlp/topodes.html)
+[Topological index](https://en.wikipedia.org/wiki/Topological_index)
+
+* [Virtual Computational Chemistry Laboratory](http://www.vcclab.org/lab/)
+* [Molecular Topology File](http://chem.ubbcluj.ro/~diudea/lucraripublicate/gabi_mtfile.html)
+* [MATHEMATICAL CHALLENGES FROM THEORETICAL/COMPUTATIONAL CHEMISTRY](https://www.nap.edu/read/4886/chapter/1)
+* [The Universe of Chemical Mathematics and the Worlds of Mathematical Chemistry](http://www.chem.msu.ru/eng/misc/babaev/match/welcome.html)
+* http://www.estradalab.org/research-description-three/
+* [Mathematical Issues for Chemists](https://nrich.maths.org/5904)
+* https://www.wikiwand.com/en/Mathematical_chemistry
+* http://match.pmf.kg.ac.rs/
+* https://crystalmathlabs.com/tracker/
 
 #### Graph Partitioning
 
@@ -372,15 +477,18 @@ Notice now that G is stochastic as it is a combination of stochastic matrices. F
 
 * [Page rank@wikiwand](https://www.wikiwand.com/en/PageRank)
 * [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page ](http://infolab.stanford.edu/pub/papers/google.pdf)
+* [Learning Supervised PageRank with Gradient-Based and Gradient-Free Optimization Methods](https://research.yandex.com/publications/140)
 * [Lecture #3: PageRank Algorithm - The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
 * [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
 * http://langvillea.people.cofc.edu/
 * [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
 * [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
 * [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
-* [Learning Supervised PageRank with Gradient-Based and Gradient-Free Optimization Methods](https://research.yandex.com/publications/140)
 
+#### TrustRank
 
+- https://www.cnblogs.com/chenying99/archive/2012/06/07/2540013.html
+- https://blog.csdn.net/aspirinvagrant/article/details/40924539
 
 #### Spectral Clustering Algorithm
 
@@ -441,6 +549,13 @@ $$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A
 + [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 + [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
 
+### Semi-supervised Learning based Graph
+
+`Dirichlet energy functional` is defined as
+$$\mathbb{E}(f)=\frac{1}{2}\int_{U}{\|\nabla f\|}^2\mathrm d x$$
+$$\mathbb{E}(f)=\frac{1}{2}\sum_{i, j}w_{i,j}{\|f_i -f_j\|}^2\implies f(h)=\frac{\sum_{i}w_{i,h}f(i)}{\sum_i w_{i,h}}$$
+
+
 ### Link Prediction
 
 The above algorithms are unsupervised algorithms so what is the supervised algorithms in graph data sets? Do prediction algorithms such as classification and regression matter?
@@ -464,6 +579,21 @@ Two of the basic questions concerning symmetric random walk are:
 1. Under what conditions is the walk recurrent, in that it returns (almost surely) to its starting point?
 2. How does the distance between S0 and Sn behave as $n\to\infty$?
 
+## Dynamic Graphs
+
+[In many applications of graph algorithms, including communication networks, graphics, assembly planning, and VLSI design, graphs are subject to discrete changes, such as additions or deletions of edges or vertices. In the last decades there has been a growing interest in such dynamically changing graphs, and a whole body of algorithms and data structures for dynamic graphs has been discovered. In a typical dynamic graph problem one would like to answer queries on graphs that are undergoing a sequence of updates, for instance, insertions and deletions of edges and vertices. The goal of a dynamic graph algorithm is to update efficiently the solution of a problem after dynamic changes, rather than having to recompute it from scratch each time. Given their powerful versatility, it is not surprising that dynamic algorithms and dynamic data structures are often more difficult to design and analyze than their static counterparts.](http://cs.ioc.ee/ewscs/2012/index.php?page=italiano)
+
+- https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/lectures/17/Small17.pdf
+- http://cs.ioc.ee/ewscs/2012/italiano/dynamic1.pdf
+- https://github.com/stack-of-tasks/dynamic-graph
+- http://www.cs.ust.hk/mjg_lib/bibs/qzhang_lib/Dynamic/p669-eppstein.pdf
+- http://graphstream-project.org/
+- http://hackage.haskell.org/package/dynamic-graphs
+- https://docs.instana.io/core_concepts/dynamic_graph/
+- http://cs.ioc.ee/ewscs/2012/index.php?page=italiano
+- https://www.cs.princeton.edu/courses/archive/spr10/cos423/lectures.php
+- https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/
+
 ### Computational Graph
 
 Computational graphs are a nice way to think about mathematical expressions, where the mathematical expression will be in the decomposed form and in topological order.
@@ -484,6 +614,17 @@ Decision tree looks like simple graph without loops, where only the leaf nodes s
 * [Efficiently performs automatic differentiation on arbitrary functions. ](https://github.com/lobachevzky/computational-graph)
 * [计算图反向传播的原理及实现](https://zhuanlan.zhihu.com/p/69175484)
 * [运用计算图搭建 LR、NN、Wide & Deep、FM、FFM 和 DeepFM](https://zhuanlan.zhihu.com/p/70075944)
+* [A Computational Network](https://www.microsoft.com/en-us/research/publication/a-computational-network/)
+* http://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf
+* http://mt-class.org/jhu/slides/lecture-nn-computation-graphs.pdf
+* http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture06.pdf
+
+#### Dynamic Computational Graphs
+
+[A Dynamic Computational Graph is a mutable system represented as a directed graph of data flow between operations. It can be visualized as shapes containing text connected by arrows, whereby the vertices (shapes) represent operations on the data flowing along the edges (arrows).](https://ai.stackexchange.com/questions/3801/what-is-a-dynamic-computational-graph)
+
+* https://courses.cs.washington.edu/courses/cse547/18sp/slides/computation_graphs.pdf
+* https://courses.cs.washington.edu/courses/cse547/18sp/
 __________________________________
 
 * http://ww3.algorithmdesign.net/sample/ch07-weights.pdf

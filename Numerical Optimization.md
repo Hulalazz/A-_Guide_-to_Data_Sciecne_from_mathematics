@@ -2384,14 +2384,23 @@ The proposed PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
 
 <img src="http://5b0988e595225.cdn.sohucs.com/images/20180720/5250d32155024e079438d7484d082a03.jpeg" width="60%"/>
 
+* [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
+* [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
+* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
+
+[To overcome the oscillation problem in the classical momentum-based optimizer, recent work associates it with the proportional-integral (PI) controller, and artificially adds D term producing a PID controller. It suppresses oscillation with the sacrifice of introducing extra hyper-parameter.](https://arxiv.org/abs/1812.11305)
+
+- [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
+
+[By further analyzing the underlying constrained optimization problem, we have found that the two camps of distributed optimization can actually be related through the framework of proportional-integral control.  It turns out that consensus methods with constant step-sizes are akin to proportional control and dual-decomposition is akin to integral control.  In much the same way that proportional and integral control can be combined to create a control method with damped response and zero steady state error, the two methods of distributed optimization can be combined to produce a damped response with zero error.](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
+
+- [Proportional Integral Distributed Optimization for Dynamic Network Topologies](https://smartech.gatech.edu/handle/1853/52389)
+- [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
+
 Sample Recurrence Relation | Idea of Successive Approximations
 ----|----
 $x^{k+1}=M(x^k)$ | $x^k=\underbrace{M(M(\cdots M(x^0)))}_{\text{k times}}$
 
-* [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
-* [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
-* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
-* [SPI-Optimizer: an integral-Separated PI Controller for Stochastic Optimization](https://arxiv.org/abs/1812.11305)
 ****
 * [Accelerated Optimization in the PDE Framework: Formulations for the Manifold of Diffeomorphism](https://repository.kaust.edu.sa/bitstream/handle/10754/627489/1804.02307v1.pdf?sequence=1&isAllowed=y)
 * [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
@@ -2707,15 +2716,13 @@ Large scale supervised machine learning methods, which are based on gradient to 
 - [Foundations of Distributed and Large Scale Computing Optimization](http://www-syscom.univ-mlv.fr/~chouzeno/ECP/index.htm)
 - [Distributed Optimization of Large-Scale Complex Networks](https://sites.google.com/site/paolodilorenzohp/research/adaptation-and-learning-over-complex-networks)
 - [Walkman: A Communication-Efﬁcient Random-Walk Algorithm for Decentralized Optimization](http://www.math.ucla.edu/~wotaoyin/papers/decentralized_random_walk.html)
-- [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
 - [NOVEL GRADIENT-TYPE OPTIMIZATION ALGORITHMS FOR EXTREMELY LARGE-SCALE NONSMOOTH CONVEX OPTIMIZATION](https://www2.isye.gatech.edu/~nemirovs/Lena.pdf)
 - [Projects: Structure Exploitation in Large-Scale Non-Convex Optimisation](https://optimisation.doc.ic.ac.uk/project/structure-exploitation-in-large-scale-non-convex-optimisation/)
 - [A Distributed Flexible Delay-tolerant Proximal Gradient Algorithm](https://arxiv.org/abs/1806.09429)
 - http://ecee.colorado.edu/marden/files/dist-opt-journal.pdf
 - [Hemingway: Modeling Distributed Optimization Algorithms](http://shivaram.org/publications/hemingway-mlsys-2016.pdf)
 - http://principlesofoptimaldesign.org/
-- [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
-- [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
+
 
 <img src="http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png" width = "50%" />
 
@@ -2938,6 +2945,11 @@ They are really some block relaxation techniques.
 + https://www.samsi.info/programs-and-activities/research-workshops/operator-splitting-methods-data-analysis/
 + http://idda.cuhk.edu.cn/zh-hans/page/10297
 + [Random monotone operators and application to Stochastic Optimization](https://pastel.archives-ouvertes.fr/tel-01960496/document)
+
+- [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
+- [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
+- [CoCoA: A General Framework for Communication-Efficient Distributed Optimization](https://arxiv.org/abs/1611.02189)
+- [Federated Optimization: Distributed Machine Learning for On-Device Intelligence](https://arxiv.org/pdf/1610.02527.pdf)
 
 ## Gradient Free Optimization Methods
 

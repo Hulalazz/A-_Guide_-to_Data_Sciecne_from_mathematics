@@ -2037,6 +2037,7 @@ leads to an auto-encoder and the loss function is the reconstruction errors betw
 
 * [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
 * http://papers.nips.cc/paper/7614-multi-layered-gradient-boosting-decision-trees.pdf
+* https://zhuanlan.zhihu.com/p/40809981
 
 ### Deep Gradient Boosting
 
