@@ -2106,7 +2106,7 @@ where $x_i$ is the $i$ th component of $x\in\mathbb{R}^{n}$.
 
 This will lead to the operator splitting methods analysesed by [Wotao Yin](http://www.math.ucla.edu/~wotaoyin/index.html) and others.
 
-* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIONS](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
+
 * [ORIE 6326: Convex Optimization Operator Splitting](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
 * [Monotone Operator Splitting Methods](https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf)
 * [A Course on First-Order, Operator Splitting, and Coordinate Update Methods for Optimization](http://www.math.ucla.edu/~wotaoyin/summer2016/)
@@ -2131,6 +2131,18 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * https://damienscieur.com/sections/paper.html
 * [Generalized Framework for Nonlinear Acceleration](https://arxiv.org/abs/1903.08764v1)
 * [Nonlinear Acceleration of Stochastic Algorithms](https://papers.nips.cc/paper/6987-nonlinear-acceleration-of-stochastic-algorithms.pdf)
+
+**Relaxation and inertia**
+
+* [A Generic online acceleration scheme for Optimization algorithms via Relaxation and Inertia](https://arxiv.org/abs/1603.05398)
+* [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIONS](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
+* [Weak Convergence of a Relaxed and Inertial Hybrid Projection-Proximal Point Algorithm for Maximal Monotone Operators in Hilbert Space](https://epubs.siam.org/doi/10.1137/S1052623403427859?mobileUi=0)
+* [FIRE: Fast Inertial Relaxation Engine for Optimization on All Scales](http://users.jyu.fi/~pekkosk/resources/pdf/FIRE.pdf)
+* [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
+* [Online Relaxation Method for Improving
+Linear Convergence Rates of the ADMM]()
+- http://www.iutzeler.org/
+- https://www.math.uni-bielefeld.de/~gaehler/
 
 ### Approximate Minimal Polynomial Extrapolation
 
@@ -2212,6 +2224,7 @@ If the Mann type iteration $\{x^k\}$ converges strongly to a point $p$, then $p$
 * [Some results on a modified Mann iterative scheme in a reflexive Banach space](https://fixedpointtheoryandapplications.springeropen.com/articles/10.1186/1687-1812-2013-227)
 * [Some results about Krasnosel'skiĭ-Mann iteration process](https://www.isr-publications.com/jnsa/articles-2534-some-results-about-krasnoselskii-mann-iteration-process)
 * [Convergence theorems for inertial KM-type algorithms](https://www.sciencedirect.com/science/article/pii/S0377042707003901)
+* [Modified inertial Mann algorithm and inertial CQ-algorithm for nonexpansive mappings](https://scinapse.io/papers/2562808805)
 
 There is an acceleration framework of fixed point iterations for the problem (2) called `Anderson Acceleration` or `regularized nonlinear acceleration`：
 
@@ -2555,9 +2568,9 @@ $$
 
 Assume that we have a function ${\textstyle M(\theta )}:\mathbb{R}\mapsto\mathbb{R}$, and a constant ${\textstyle \alpha \in\mathbb R}$, such that the equation ${\textstyle M(\theta )=\alpha }$ has a unique root at ${\textstyle \theta ^{\ast}}$.
 
-It is assumed that while we cannot directly observe the function ${\textstyle M(\theta )}$, we can instead obtain measurements of the random variable ${\textstyle N(\theta )}$ where ${\textstyle \operatorname {E} [N(\theta )]=M(\theta )}$. The structure of the algorithm is to then generate iterates of the form:
+It is assumed that while we cannot directly observe the function ${\textstyle M(\theta )}$, we can instead obtain measurements of the random variable ${\textstyle N(\theta )}$ where ${\textstyle \mathbb{E} [N(\theta )]=M(\theta )}$. The structure of the algorithm is to then generate iterates of the form:
 $${\displaystyle {\theta}_{n+1}= {\theta}_{n} - a_{n}(N({\theta}_{n})-\alpha )}$$
-Here, $a_{1},a_{2},\dots$  is a sequence of positive step sizes. `Robbins and Monro` proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
+where $a_{1},a_{2},\dots$  is a sequence of positive step sizes. `Robbins and Monro` proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
 
 ${\textstyle N(\theta )}$ is uniformly bounded,
 ${\textstyle M(\theta )}$ is nondecreasing,
@@ -2571,7 +2584,7 @@ can be readily modified to provide successive approximations for the minimum
 (or maximum) of a unimodal regression function, as was shown by `Kiefer and
 Wolfowitz (1952)` who introduced a recursive scheme of the form
 
-$$\theta_{n+1}= {\theta}_{n} - a_{n}(\Delta(x_{n}))\tag{KW}$$
+$$\theta_{n+1}= {\theta}_{n} - a_{n}\Delta(x_{n})\tag{KW}$$
 
 to find the minimum $\theta$ of $M$ (or, equivalently, the solution of $dM/dx = 0$).
 
@@ -2585,6 +2598,8 @@ During the nth stage of the Kiefer–Wolfowitz scheme, observations $y_n^{(1)}$ 
 - [A Multivariate Stochastic Approximation Procedure](https://statistics.stanford.edu/research/multivariate-stochastic-approximation-procedure)
 - [The Robbins–Monro Stochastic Approximation Approach to a Discrimination Problem](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/JOH%20PHS%2008.pdf)
 - [Stochastic approximation: invited paper](https://projecteuclid.org/download/pdf_1/euclid.aos/1051027873)
+- [Stochastic Approximation and Recursive Algorithms and Applications](https://link.springer.com/book/10.1007/b97441)
+- [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
 
 ### Stochastic Gradient Descent
 
@@ -2734,7 +2749,16 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 
 - https://arxiv.org/pdf/1811.03962.pdf
 - http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
+
+#### Variance Reduction Stochastic Gradient Methods
+
 + [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
++ http://ranger.uta.edu/~heng/CSE6389_15_slides/SGD2.pdf
++ [Variance reduction techniques for stochastic optimization](http://cbl.eng.cam.ac.uk/pub/Intranet/MLG/ReadingGroup/VarianceReductionTechniquesForStochasticOptimization.pdf)
++ [Stochastic Variance-Reduced Optimization
+for Machine Learning Part I](https://www.di.ens.fr/~fbach/fbach_tutorial_siopt_2017.pdf)
++ [Stochastic Variance-Reduced Optimization
+for Machine Learning Part II](https://www.di.ens.fr/~fbach/2017_SIOPT_NonX.pdf)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 + https://github.com/tdozat/Optimization
