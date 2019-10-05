@@ -1715,11 +1715,34 @@ However, the swap has a side effect that changes the Boolean condition from '<' 
 - https://zhuanlan.zhihu.com/p/54932438
 - https://github.com/qf6101/adaqs
 
+* [Gradient Boosting With Piece-Wise Linear Trees](https://github.com/GBDT-PL/GBDT-PL)
+* http://pages.stat.wisc.edu/~loh/treeprogs/guide/smooth.pdf
+* http://yarotsky.info/gtapprox.pdf
+
+#### AugBoost
+
+Gradient Boosted Decision Trees (GBDT) is a widely used machine learning algorithm, which obtains state-of-the-art results on many machine learning tasks. In this paper we introduce a method for obtaining better results, by augmenting the features in the dataset between the iterations of GBDT. We explore a number of augmentation methods: training an Artificial Neural Network (ANN) and extracting features from it's last hidden layer (supervised), and rotating the feature-space using unsupervised methods such as PCA or Random Projection (RP). These variations on GBDT were tested on 20 classification tasks, on which all of them outperformed GBDT and previous related work.
+
+
+- https://www.ijcai.org/proceedings/2019/493
+- https://github.com/augboost-anon/augboost
+
+#### Explainable Boosting Machine
+
+Explainable Boosting Machine (EBM) is an improvement over generalized additive models
+
+- https://github.com/microsoft/interpret
+- https://github.com/slundberg/shap
+- https://arxiv.org/abs/1905.04610
+- https://hal.archives-ouvertes.fr/hal-01897642/file/Bagalouri.pdf
+- https://www.ashrafabdul.com/
+
 ### Bayesian additive regression trees
 
 [We develop a Bayesian “sum-of-trees” model where each tree is constrained by a regularization prior to be a weak learner, and fitting and inference are accomplished via an iterative Bayesian backfitting MCMC algorithm that generates samples from a posterior. Effectively, BART is a nonparametric Bayesian regression approach which uses dimensionally adaptive random basis elements. Motivated by ensemble methods in general, and boosting algorithms in particular, BART is defined by a statistical model: a prior and a likelihood. This approach enables full posterior inference including point and interval estimates of the unknown regression function as well as the marginal effects of potential predictors. By keeping track of predictor inclusion frequencies, BART can also be used for model-free variable selection. BART’s many features are illustrated with a bake-off against competing methods on 42 different data sets, with a simulation experiment and on a drug discovery classification problem.](https://projecteuclid.org/euclid.aoas/1273584455)
 
 - [BART: Bayesian additive regression trees](https://projecteuclid.org/euclid.aoas/1273584455)
+- [A gentle introduction to GA2Ms, a white box model](https://blog.fiddler.ai/2019/06/a-gentle-introduction-to-ga2ms-a-white-box-model/)
 
 ### Gradient Boosting  Machine: Beyond Boost Tree
 
@@ -2029,6 +2052,8 @@ Is it necessary to approxiamte the negative gradient using decision tree?
 
 [Multi-layered representation is believed to be the key ingredient of deep neural networks especially in cognitive tasks like computer vision. While non-differentiable models such as gradient boosting decision trees (GBDTs) are the dominant methods for modeling discrete or tabular data, they are hard to incorporate with such representation learning ability. In this work, we propose the multi-layered GBDT forest (mGBDTs), with an explicit emphasis on exploring the ability to learn hierarchical representations by stacking several layers of regression GBDTs as its building block. The model can be jointly trained by a variant of target propagation across layers, without the need to derive back-propagation nor differentiability. Experiments and visualizations confirmed the effectiveness of the model in terms of performance and representation learning ability.](https://arxiv.org/abs/1806.00007)
 
+<img src="https://pic4.zhimg.com/80/v2-76f0120de4acda6739b9f48a342d6bdf_hd.jpg">
+
 Consider a multi-layered feed-forward structure with $M − 1$ intermediate layers and one final output layer. Denote oi where $i \in \{0, 1, 2, . . . , M\}$ as the output for each layer including the input layer and the output layer $o_M$. For a particular input data $x$, the corresponding output at each layer is in $R^{d_i}$,
 where $i \in \{0, 1, 2, \cdots , M\}$. The learning task is therefore to learn the mappings $F_i: R^{d_i−1} \to R^{d_i}$
 for each layer $i > 0$, such that the final output $o_M$ minimize the empirical loss $L$ on training set.
@@ -2115,16 +2140,16 @@ $$
 
 [Jeremy](https://jeremykun.com/) wrote a blog on this topic:
 
-> In general we have some set $X$ of objects and some set $Y$ of “event outcomes??? which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
+> In general we have some set $X$ of objects and some set $Y$ of “event outcomes  which can be completely independent. If these sets are finite, we can write down a table M whose rows are objects, whose columns are outcomes, and whose $i,j$ entry $M(i,j)$ is the reward produced by object $x_i$ when the outcome is $y_j$. We will also write this as $M(x, y)$ for object $x$ and outcome $y$. The only assumption we’ll make on the rewards is that the values $M(x, y)$ are bounded by some small constant $B$ (by small I mean $B$ should not require exponentially many bits to write down as compared to the size of $X$). In symbols, $M(x,y) \in [0,B]$. There are minor modifications you can make to the algorithm if you want negative rewards, but for simplicity we will leave that out. Note the table $M$ just exists for analysis, and the algorithm does not know its values. Moreover, while the values in $M$ are static, the choice of outcome $y$ for a given round may be nondeterministic.
 
 > The `MWUA` algorithm randomly chooses an object $x \in X$ in every round, observing the outcome $y \in Y$, and collecting the reward $M(x,y)$ (or losing it as a penalty). The guarantee of the MWUA theorem is that the expected sum of rewards/penalties of MWUA is not much worse than if one had picked the best object (in hindsight) every single round.
 
 **Theorem (from [Arora et al](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)):** The cumulative reward of the MWUA algorithm is, up to constant multiplicative factors, at least the cumulative reward of the best object minus $\log(n)$, where $n$ is the number of objects.
 
 + [The Reasonable Effectiveness of the Multiplicative Weights Update Algorithm](https://jeremykun.com/tag/multiplicative-weights-update-algorithm/)
-+ [Matrix Multiplicative Weight ???1）](https://zhuanlan.zhihu.com/p/47423225)
-+ [Matrix Multiplicative Weight ???2）](https://zhuanlan.zhihu.com/p/47891504)
-+ [Matrix Multiplicative Weight ???3）](https://zhuanlan.zhihu.com/p/48084069)
++ [Matrix Multiplicative Weight 1）](https://zhuanlan.zhihu.com/p/47423225)
++ [Matrix Multiplicative Weight 2）](https://zhuanlan.zhihu.com/p/47891504)
++ [Matrix Multiplicative Weight 3）](https://zhuanlan.zhihu.com/p/48084069)
 + [The Multiplicative Weights Update framework](https://nisheethvishnoi.files.wordpress.com/2018/05/lecture42.pdf)
 + [The Multiplicative Weights Update Method: a Meta Algorithm and Applications](https://www.cs.princeton.edu/~arora/pubs/MWsurvey.pdf)
 + [Nonnegative matrix factorization with Lee and Seung's multiplicative update rule](https://www.wikiwand.com/en/Non-negative_matrix_factorization)
