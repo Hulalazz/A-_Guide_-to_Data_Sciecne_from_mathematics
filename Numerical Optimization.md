@@ -177,7 +177,7 @@ $$
 x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}\underbrace{(x^k-x^{k-1})}_{\text{denoted as  $\Delta_{k}$ }}\\
 \Delta_{k+1}= -\alpha_k\nabla_{x}f(x^k)+ \rho_{k}\Delta_{k}\\
 \\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{red}{x}^{k-i}}_{\triangle})+\rho_1\Delta_1.
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\sum_{i=1}^{k-1}\{ - \prod_{j=0}^{i}\rho_{k-j}  \}\alpha_{k-j-1}\nabla f(\underbrace{\color{red}{x}^{k-i}}_{\triangle})+\rho_1\Delta_1.
 $$
 
 **Nesterov accelerated gradient method** at the $k$th step is given by:
@@ -192,7 +192,7 @@ where the momentum coefficient $\rho_k\in[0,1]$ generally.
 $$
 x^{k}=y^{k}-\alpha_{k+1}\nabla_{x}f(y^k) \\
 y^{k}=x^{k-1}+\rho_{k-1}(x^{k-1}-x^{k-2})\\
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ -\prod_{j=0}^{i}\rho_{k-j} \alpha_{k-j-1} \}\nabla f(\underbrace{\color{green}{y}^{k-i}}_{\triangle})+\rho_1\Delta_1.
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(y^k)+\sum_{i=1}^{k-1}\{ -\prod_{j=0}^{i}\rho_{k-j} \}\alpha_{k-j-1}\nabla f(\underbrace{\color{green}{y}^{k-i}}_{\triangle})+\rho_1\Delta_1.
 $$
 
 They are called as **inertial gradient methods** or **accelerated gradient methods**. [And there are some different forms.](https://jlmelville.github.io/mize/nesterov.html)
@@ -734,7 +734,7 @@ $$
 $$
 it is obvious that entropic decscent methods are in the coordinate-wise update formula.
 Whast is more , it can be rewritten as
-$$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\left<x^n, -\alpha \nabla f(x^n)\right>}\propto x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n)).$$  
+$$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\left<x^n, \exp(-\alpha \nabla f(x^n))\right>}\propto x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n)).$$  
 
 `Multiplicative Weights Update` is closely related with entropic descent method. See more on the following link list.
 
@@ -1189,6 +1189,17 @@ Dual problem transform the original primary problem into a new optimization prob
 - https://mitmgmtfaculty.mit.edu/rfreund/educationalactivities/
 - http://www.mit.edu/~mitter/publications/6_conjugate_convex_IS.pdf
 
+****
+**Primal-dual fixed point algorithm** and **Primary Dual Hybrid Gradient**
+
+[We demonstrate how different algorithms can be obtained by splitting the problems in different ways through the classic example of sparsity regularized least square model with constraint. In particular, for a class of linearly constrained problems, which are of great interest in the context of multi-block ADMM, can be also solved by PDFP with a guarantee of convergence. Finally, some experiments are provided to illustrate the performance of several schemes derived by the PDFP algorithm.](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
+
+* [A primal-dual fixed point algorithm for multi-block convex minimization](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
+* [A primal–dual fixed point algorithm for convex separable minimization](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
+* [A Unified Primal-Dual Algorithm Framework Based on Bregman Iteration](https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf)
+* [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
+* [PDHG](https://www.cs.umd.edu/~tomg/projects/pdhg/)
+
 ### Splitting Methods
 
 In following context we will talk the optimization problem with linear constraints:
@@ -1484,17 +1495,6 @@ to solve
 * [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
 * [17w5030 Workshop on Splitting Algorithms, Modern Operator Theory, and Applications](https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf)
 
-
-****
-**Primal-dual fixed point algorithm** and **Primary Dual Hybrid Gradient**
-
-[We demonstrate how different algorithms can be obtained by splitting the problems in different ways through the classic example of sparsity regularized least square model with constraint. In particular, for a class of linearly constrained problems, which are of great interest in the context of multi-block ADMM, can be also solved by PDFP with a guarantee of convergence. Finally, some experiments are provided to illustrate the performance of several schemes derived by the PDFP algorithm.](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
-
-* [A primal-dual fixed point algorithm for multi-block convex minimization](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
-* [A primal–dual fixed point algorithm for convex separable minimization](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
-* [A Unified Primal-Dual Algorithm Framework Based on Bregman Iteration](https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf)
-* [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
-* [PDHG](https://www.cs.umd.edu/~tomg/projects/pdhg/)
 
 #### Block Coordinate Descent
 
@@ -2365,7 +2365,7 @@ controller, one can see that gradient descent only uses the present gradient to 
 
 We rewrite the fomula $x^{t+1} = x^t -\alpha_t  g(x^t) + \rho_t(x^t - x^{t-1})$ as
 $$x^{t+1} = x^t -\alpha_t  g(x^t) + \rho_t\underbrace{(x^t - x^{t-1})}_{-\alpha_{t-1}g(x^{t-1})+\rho_{t-1}(x^{t-1}-x^{t-2})}\\
-= x^t -\alpha_t  g(x^t) + \sum_{i=1}^{t-1}[\prod_{j=0}^{i-1}\rho_{t-j}]\alpha_{t-i}g(x^{t-i})+ \rho_1(x^1-x^0)
+= x^t -\alpha_t  g(x^t) - \sum_{i=1}^{t-1}[\prod_{j=0}^{i-1}\rho_{t-j}]\alpha_{t-i}g(x^{t-i})+ \rho_1(x^1-x^0)
 .$$
 
 One can see that the update of parameters relies on both the present gradient  and the integral of past gradients.
@@ -2396,6 +2396,12 @@ The proposed PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
 
 - [Proportional Integral Distributed Optimization for Dynamic Network Topologies](https://smartech.gatech.edu/handle/1853/52389)
 - [Proportional-Integral Distributed Optimization](http://gritslab.gatech.edu/home/2013/09/proportional-integral-distributed-optimization/)
+- [Continuous-time Proportional-Integral Distributed Optimization for Networked Systems](https://arxiv.org/abs/1309.6613)
+- [Continuous-time Proportional-Integral Distributed Optimization for
+Networked Systems](https://vision.kuee.kyoto-u.ac.jp/~hiroaki/publication/Droge_2015_JCD.pdf)
+- [A Control Perspective for Centralized and Distributed Convex Optimization](http://folk.ntnu.no/skoge/prost/proceedings/cdc-ecc-2011/data/papers/2298.pdf)
+- https://arxiv.org/pdf/1905.03468
+- [Feedback-Feedforward Control Approach to Distributed Optimization](https://ieeexplore.ieee.org/document/8815008)
 
 Sample Recurrence Relation | Idea of Successive Approximations
 ----|----
@@ -2552,11 +2558,17 @@ The sequence ${\textstyle a_{n}}$ satisfies the following requirements:
 $$\sum_{n=0}^{\infty} a_{n}=\infty \quad \fbox{ and }\quad \sum_{n=0}^{\infty} a_{n}^{2} < \infty \quad$$
 A particular sequence of steps which satisfy these conditions, and was suggested by Robbins–Monro, have the form: ${\textstyle a_{n}=a/n}$, for ${\textstyle a>0}$. Other series are possible but in order to average out the noise in ${\textstyle N(\theta )}$, the above condition must be met.
 
+- [5 The Stochastic Approximation Algorithm](http://webee.technion.ac.il/people/shimkin/LCS11/ch5_SA.pdf)
+- [Chapter 15: Introduction to Stochastic Approximation Algorithms](http://www.professeurs.polymtl.ca/jerome.le-ny/teaching/DP_fall09/notes/lec11_SA.pdf)
+- [Dynamics of Stochastic Approximation](http://members.unine.ch/michel.benaim/perso/SPS99.pdf)
+- [Stochastic Approximation by Tze Leung Lai](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/2002-31.pdf)
+- [A Multivariate Stochastic Approximation Procedure](https://statistics.stanford.edu/research/multivariate-stochastic-approximation-procedure)
+- [The Robbins–Monro Stochastic Approximation Approach to a Discrimination Problem](https://statistics.stanford.edu/sites/g/files/sbiybj6031/f/JOH%20PHS%2008.pdf)
+- https://projecteuclid.org/download/pdf_1/euclid.aos/1051027873
+
 ### Stochastic Gradient Descent
 
 `Stochastic gradient descent` is classified to stochastic optimization which is considered as the generalization of `gradient descent`.
-
-[Convex Relaxations of Convolutional Neural Nets](https://arxiv.org/abs/1901.00035)
 
 Stochastic gradient descent takes advantages of stochastic or estimated gradient to replace the true gradient in gradient descent.
 It is **stochastic gradient** but may not be **descent**.
@@ -2580,7 +2592,8 @@ $$
 $$
 where $x_{j}^{\prime}$ is draw from $\{x_i\}_{i=1}^{n}$ and $m\ll n$ is on random.
 
-It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent.
+It is the fact $m\ll n$ that makes it possible to compute the gradient of finite sum objective function and its side effect is that the objective function is not always descent. Thus it is also called as `mini-batch` gradient descent.
+
 There is fluctuations in the total objective function as gradient steps with respect to mini-batches are taken.
 
 ******************************************************************
@@ -2606,6 +2619,8 @@ where $\rho$ is close to 1 such as $\rho=1.1$  in order to avoid frequent “acc
 objective function computation is wasted in these cases, $\eta$ is chosen to provide a rapid reduction
 ($\eta = 0.5$), and $n$ is the minimum integer such that the reduced rate $\eta^n$ succeeds in diminishing the objective function.[^13]
 
+Except the `learning rate or step length`, there is yet another hyperparameter - the batch size $m$  in each iteration.
+
 ******
 
 The fact that the sample size is far larger than the dimension of parameter, $n\gg p$,  that makes it expensive to compute total objective function $f(\theta)=\sum_{i=1}^{n}f(\theta|{x}_i)$.
@@ -2618,6 +2633,10 @@ The variants of gradient descent such as momentum methods or mirror gradient met
 * And another strategy is to tune the step length adaptively such as *AdaGrad, ADAM*.
 
 $\color{lime}{PS}$: the step length  $\alpha_k$ is called **learning rate** in machine learning. Additionally, stochastic gradient descent is also named as [increment gradient methods](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf) in some case.
+
+|The Differences of Gradient Descent and Stochastic Gradient Descent|
+|:-----------------------------------------------------------------:|
+|<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
 
 We can see some examples to see the advantages of incremental method such as the estimation of mean.
 Given $x_1, x_2, \dots, x_n$ the mean is estimated as $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$. If now we observed more data $y_1, y_2, \dots, y_m$ from the population, the mean could be estimated by $\frac{n\bar{x}}{m+n} + \frac{\sum_{j=1}^{m} y_j }{m+n} =\frac{n\bar{x}+\sum_{j=1}^{m} y_j}{m+n}$. It is not necessary to summarize ${x_1, \dots, x_n}$.
@@ -2645,17 +2664,23 @@ See the following links for more information on *stochastic gradient descent*.
 * [A look at SGD from a physicists's perspective - Part 2, Bayesian Deep Learning](https://henripal.github.io/blog/nealbayesian)
 * [A look at SGD from a physicists's perspective - Part 3, Langevin Dynamics and Applications](https://henripal.github.io/blog/langevin)
 
-
-|The Differences of Gradient Descent and Stochastic Gradient Descent|
-|:-----------------------------------------------------------------:|
-|<img src="https://wikidocs.net/images/page/3413/sgd.png" width = "60%" />|
+#### Convergence Analysis
 
 + [Convergence Analysis of Gradient Descent Stochastic Algorithms](https://www2.isye.gatech.edu/~ashapiro/JOTA96[1].pdf)
++ [Stochastic Gradient Descent with Exponential Convergence Rates of Expected Classification Errors](http://proceedings.mlr.press/v89/nitanda19a/nitanda19a.pdf)
 + [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
++ [Incremental Gradient, Subgradient, and Proximal Methods for Convex Optimization: A Survey ](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf)
++ [Convex Relaxations of Convolutional Neural Nets](https://arxiv.org/abs/1901.00035)
++ [The Impact of Neural Network Overparameterization on
+Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.06963v2.pdf)
++ [Quasi-potential as an implicit regularizer for the loss function in the stochastic gradient descent](https://arxiv.org/abs/1901.06054)
++ [The Multiplicative Noise in Stochastic Gradient Descent: Data-Dependent Regularization, Continuous and Discrete Approximation](https://arxiv.org/abs/1906.07405)
+
 
 ![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 
 [Progress in machine learning (ML) is happening so rapidly, that it can sometimes feel like any idea or algorithm more than 2 years old is already outdated or superseded by something better. However, old ideas sometimes remain relevant even when a large fraction of the scientific community has turned away from them. This is often a question of context: an idea which may seem to be a dead end in a particular context may become wildly successful in a different one. In the specific case of deep learning (DL), the growth of both the availability of data and computing power renewed interest in the area and significantly influenced research directions.](https://ai.googleblog.com/2018/12/the-neurips-2018-test-of-time-award.html)
+
 
 
 * http://blavatnikawards.org/honorees/profile/leon-bottou/
@@ -2671,7 +2696,9 @@ See the following links for more information on *stochastic gradient descent*.
 
 ### ADAM and More
 
-`ADAM` composes of adaptive step stratagies and momentum menthods in some sense. It is widely used in deep learning training.
+`ADAM` composes of adaptive step stratagies and momentum methods in some sense. It is widely used in deep learning training.
+
+
 
 - [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
 - [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
@@ -2749,6 +2776,7 @@ Parle solves for
 $$x^{\ast}=\arg\min_{x, x^1, x^N}\sum_{n=1}^{N} f_{\gamma}^{\beta}(x^n)+\frac{1}{2\rho N}\| x - x^n\|^2.$$
 
 - [Parle: parallelizing stochastic gradient descent](https://www.sysml.cc/doc/2018/174.pdf)
+- [Unraveling the mysteries of stochastic gradient descent on deep neural networks](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14553.pdf)
 
 #### Asynchronous Stochastic Gradient Descent
 
