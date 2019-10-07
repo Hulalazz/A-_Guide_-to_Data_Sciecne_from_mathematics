@@ -506,6 +506,23 @@ exponential families can be implemented as a first-order method through [**mirro
 * [谈谈优化算法 - 郑思座的文章 - 知乎](https://zhuanlan.zhihu.com/p/60088231)
 * [Accelerating Natural Gradient with Higher-Order Invariance](https://ermongroup.github.io/blog/geo/)
 
+## Higher-Order Derivatives Methods
+
+[The key observation, which underlies all results of this paper, is that an appropriately regularized Taylor approximation of convex function is a convex multivariate polynomial. This is indeed a very natural property since this regularized approximation usually belongs to the epigraph of convex function. Thus, the auxiliary optimization problem in the high-order (or tensor) methods becomes generally solvable by many powerful methods of Convex Optimization.](https://ideas.repec.org/p/cor/louvco/2018005.html)
+
+- [Higher-Order Derivatives in Computational Systems Engineering
+Problem Solving](http://www.autodiff.org/ad08/talks/ad08_marquardt.pdf)
+- [On the use of higher order derivatives in optimization using Lagrange's expansion](https://www.sciencedirect.com/science/article/abs/pii/0362546X8390024X)
+- [Sparsity in Higher Order Methods in Optimization*](https://cerfacs.fr/wp-content/uploads/2016/04/gundersen.pdf)
+- https://akyrillidis.github.io/2019/08/05/WorkshopNeurIPS.html
+- ftp://file.viasm.org/Web/TienAnPham-16/Preprint_1669.pdf
+- [Implementable Tensor Methods in
+Unconstrained Convex Optimization](https://alfresco.uclouvain.be/alfresco/service/guest/streamDownload/workspace/SpacesStore/aabc2323-0bc1-40d4-9653-1c29971e7bd8/coredp2018_05web.pdf?guest=true)
+- [Reachability of optimal convergence rate estimates for high-order numerical convex optimization methods](https://journals.eco-vector.com/0869-5652/article/view/12813)
+- [The global rate of convergence for optimal tensor methods in smooth convex optimization](https://arxiv.org/abs/1809.00382)
+- [Optimization for Tensor Models](https://www.math.ucla.edu/sites/default/files/dls/posters/UCLA_Lecture_3_Final.compressed.pdf)
+- [Tensor Methods for Large, Sparse Unconstrained Optimization](https://www.semanticscholar.org/paper/Tensor-Methods-for-Large%2C-Sparse-Unconstrained-Bouaricha/88de96f75204e6d49849eaa69321b906b3675393)
+
 ## Trust Region Methods
 
 Trust-region methods define a region around
@@ -607,6 +624,8 @@ See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey M
 
 - http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
 - [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
+
+
 
 ## Projected Gradient Method and More
 
@@ -1164,7 +1183,7 @@ $$\begin{aligned}
 &\bullet\quad 0 \in \partial f(x)+\sum_{i=1}^{m} u_{i} \partial h_{i}(x)+\sum_{j=1}^{T} v_{j} \partial \ell_{j}(x) &\text{(stationarity)} \\
 &\bullet\quad u_{i} \cdot h_{i}(x)=0 \text { for all } i  &\text{ (complementary slackness) } \\
 &\bullet\quad h_{i}(x) \leq 0, \ell_{j}(x)=0 \text { for all } i, j  &\text{(primal feasibility) } \\
-&\bullet\quad u_{i} \geq 0 \text{for all} i &\text{ (dual feasibility) }
+&\bullet\quad u_{i} \geq 0 \text{  for all  } i &\text{ (dual feasibility) }
 \end{aligned}$$
 
 I learnt this theorem in functional analysis at graduate level course.
@@ -1175,17 +1194,23 @@ I learnt this theorem in functional analysis at graduate level course.
 
 **Conjugate Duality**
 
-Dual problem transform the original primary problem into a new optimization problems.
+Consider the standard form convex optimization problem in the absence of data uncertainty
+$$\min_{x} f(x)\tag{P}$$
 
-* [Primary-dual hybrid gradient](https://www.cs.umd.edu/~tomg/projects/pdhg/),
-* [The Complexity of Primal-Dual Fixed Point Methods for Ridge Regression ](https://www.maths.ed.ac.uk/~prichtar/papers/pdfixedpoint.pdf),
-* [A primal–dual fixed point algorithm for convex separable minimization with applications to image restoration](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
+where $f$ is a proper lower semi-continuous convex functions.
 
-- https://web.maths.unsw.edu.au/~gyli/papers/ljl-conjugate-revised-final-18-11-10.pdf
+This problem can be embedded into a family of parameterized problems
+$$\min_{x} g(x, y)\tag{$P_y$}$$
+where the function $g(x, y)$ satisfies $g(x, 0) = f(x)$.
+
+
+
+* https://www.zhihu.com/question/58584814/answer/823769937
 - [Conjugate Duality and Optimization](https://sites.math.washington.edu/~rtr/papers/rtr054-ConjugateDuality.pdf)
 - [LECTURE 5: CONJUGATE DUALITY](https://www.ise.ncsu.edu/fuzzy-neural/wp-content/uploads/sites/9/2015/07/Lecture5-1.pdf)
 - [Duality Theory of Constrained Optimization by Robert M. Freund](https://ocw.mit.edu/courses/sloan-school-of-management/15-084j-nonlinear-programming-spring-2004/lecture-notes/lec18_duality_thy.pdf)
 - [Gauge optimization, duality, and applications](https://www.researchgate.net/publication/257592332_Gauge_optimization_duality_and_applications)
+- [Robust Conjugate Duality for Convex Optimization under Uncertainty with Application to Data Classification](https://web.maths.unsw.edu.au/~gyli/papers/ljl-conjugate-revised-final-18-11-10.pdf)
 - https://mitmgmtfaculty.mit.edu/rfreund/educationalactivities/
 - http://www.mit.edu/~mitter/publications/6_conjugate_convex_IS.pdf
 
@@ -1198,7 +1223,9 @@ Dual problem transform the original primary problem into a new optimization prob
 * [A primal–dual fixed point algorithm for convex separable minimization](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
 * [A Unified Primal-Dual Algorithm Framework Based on Bregman Iteration](https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf)
 * [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
-* [PDHG](https://www.cs.umd.edu/~tomg/projects/pdhg/)
+* [Primary-dual hybrid gradient](https://www.cs.umd.edu/~tomg/projects/pdhg/),
+* [The Complexity of Primal-Dual Fixed Point Methods for Ridge Regression ](https://www.maths.ed.ac.uk/~prichtar/papers/pdfixedpoint.pdf),
+* [A primal–dual fixed point algorithm for convex separable minimization with applications to image restoration](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
 
 ### Splitting Methods
 
@@ -1220,12 +1247,12 @@ $$
 where $f(x)$ and $g(y)$ is convex; ${A}$ and ${B}$ are matrices.
 
 Define the augmented Lagrangian:
+
 $$
 L_{\beta}(x, y)=f(x)+g(y) - \lambda^{T}(Ax + By -b)+ \frac{\beta}{2}{\|Ax + By - b\|}_{2}^{2}.
 $$
 
-* [
-Augmented Lagrangian method](https://www.semanticscholar.org/topic/Augmented-Lagrangian-method/11373)
+* [Augmented Lagrangian method](https://www.semanticscholar.org/topic/Augmented-Lagrangian-method/11373)
 ***
 
 Augmented Lagrange Method at step $k$ is described as following:
@@ -1261,11 +1288,11 @@ $$\frac{\beta}{2}{\|Ax+By^{k}-b-\frac{1}{\beta}\lambda^k\|}_{2}^{2}$$
 
 at $x^k$ and add a proximal term $\frac{r}{2}{\|x-x^k\|}_2^2$ to the objective function.
 In another word, we solve the following ${x}$ subproblem if ignoring the constant term of the objective function:
-$$\min_{x}f(x)+\beta(Ax)^T(A x^k + B y^k - b-\frac{1}{\lambda^k}) + \frac{r}{2}{\|x - x^k\|}_2^2.$$
+$$ \min_{x}f(x)+\beta(Ax)^T(A x^k + B y^k - b-\frac{1}{\lambda^k}) + \frac{r}{2}{\|x - x^k\|}_2^2. $$
 
-> 1. $x^{k+1}=\arg\min_{x\in\mathbf{X}} f(x) + \beta(A x)^T (A x^k + B y^k - b -\frac{1}{\lambda^k})+ \frac{r}{2}{\|x - x^k\|}_2^2$,
-> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}(x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}})$,
-> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}}-b).$
+> 1. $x^{k+1}=\arg\min_{x\in \mathbf{X}} f(x) + \beta(A x)^T (A x^k + B y^k - b -\frac{1}{\lambda^k})+ \frac{r}{2}{\|x - x^k\|}_2^2$,
+> 2. $y^{k+1}=\arg\min_{y\in\mathbf{Y}} L_{\beta}( x^{\color{red}{k+1}}, y, \lambda^{\color{aqua}{k}} )$,
+> 3. $\lambda^{k+1} = \lambda^{k} - \beta (Ax^{\color{red}{k+1}} + By^{\color{red}{k+1}} - b).$
 
 For given $\beta > 0$, choose ${r}$ such that
 the matrix $rI_{1}-\beta A^TA$ is definitely positive, i.e.,
@@ -1564,6 +1591,8 @@ Linear programming is constrainted convex optimization problem. It is the simple
 - [Applications of Linear Programming](https://homepages.rpi.edu/~mitchj/handouts/lp/lp.pdf)
 
 If there is no constraints, the linear objectve function is unbounded.
+
+- [EE236A - Linear Programming (Fall Quarter 2013-14)](http://www.seas.ucla.edu/~vandenbe/ee236a/ee236a.html)
 
 
 ## Surrogate Optimization
@@ -2134,13 +2163,32 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 
 **Relaxation and inertia**
 
+We will focus here on
+- unit memory,
+- accelerations using past operation outputs OR iterates.
+
+Given an fixed point iteration $x^{k+1}={T}(x^k)$, there are two simple acceleration schemes.
+
+$$\begin{aligned}
+x^{k+1}&=T_{1}\left(x^{k}+\nu^{k}\left(x^{k}-x^{k-1}\right)\right) \\
+x^{k+2}&=T_{2}\left(x^{k+1}+\nu^{k+1}\left(x^{k+1}-x^{k}\right)\right)
+\end{aligned}$$
+
+Relaxation | Inertia | Alternated Inertia
+---|---|---
+$T_1=T, T_2=I$|$T_1=T, T_2=T$|$T_1=T, T_2=I$
+$\nu^{k}=0, \nu^{k+1}=\eta^{k / 2}-1$ | $\nu^{k}=\gamma^{k}, \nu^{k+1}=\gamma^{k+1}$ | $\nu^{k}=0, \nu^{k+1}=\gamma^{k+1}$
+${x^{k+1}=T\left(x^{k}\right)}$|$x^{k+1}=T(x^{k}+\gamma^{k}\left(x^{k}-x^{k-1}\right))$|${x^{k+1}=T\left(x^{k}\right)}$
+$x^{k+2}=x^{k+1}+\nu^{k+1}\left(x^{k+1}-x^{k}\right)$|  $x^{k+2}=T(x^{k+1}+\gamma^{k+1}\left(x^{k+1}-x^{k-1}\right))$ | $x^{k+2}=T(x^{k+1}+\gamma^{k+1}\left(x^{k+1}-x^{k-1}\right))$
+
 * [A Generic online acceleration scheme for Optimization algorithms via Relaxation and Inertia](https://arxiv.org/abs/1603.05398)
 * [RELAXATION AND INERTIA IN FIXED-POINT ITERATIONS WITH APPLICATIONS](http://bipop.inrialpes.fr/people/malick/Docs/15-titan-iutzeler.pdf)
 * [Weak Convergence of a Relaxed and Inertial Hybrid Projection-Proximal Point Algorithm for Maximal Monotone Operators in Hilbert Space](https://epubs.siam.org/doi/10.1137/S1052623403427859?mobileUi=0)
 * [FIRE: Fast Inertial Relaxation Engine for Optimization on All Scales](http://users.jyu.fi/~pekkosk/resources/pdf/FIRE.pdf)
+* [Structural Relaxation Made Simple](https://www.math.uni-bielefeld.de/~gaehler/papers/fire.pdf)
 * [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
 * [Online Relaxation Method for Improving
-Linear Convergence Rates of the ADMM]()
+Linear Convergence Rates of the ADMM](http://beneluxmeeting.eu/2015/uploads/papers/bmsc15_final_478.pdf)
 - http://www.iutzeler.org/
 - https://www.math.uni-bielefeld.de/~gaehler/
 
@@ -2366,6 +2414,7 @@ where $T_i$ is called integral time and $T_d$ derivative time.
 
 The proportional part acts on the present value of the error, the integral represent and average of past errors and the derivative can be interpreted as a prediction of future errors based on linear extrapolation.
 
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20180720/2194ca12804944859e77b6f4fc5fd2ac.gif" />
 
 * http://www.scholarpedia.org/article/Optimal_control
 * [EE365: Stochastic Control Spring Quarter 2014](https://web.stanford.edu/class/ee365/)
@@ -2409,7 +2458,8 @@ The proposed PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
 
 * [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
 * [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
-* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://github.com/tensorboy/PIDOptimizer)
+* [PID Optimizer (Proportional–Integral–Derivative Optimizer)](https://github.com/tensorboy/PIDOptimizer)
+* [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://www4.comp.polyu.edu.hk/~cslzhang/paper/CVPR18_PID.pdf)
 
 [To overcome the oscillation problem in the classical momentum-based optimizer, recent work associates it with the proportional-integral (PI) controller, and artificially adds D term producing a PID controller. It suppresses oscillation with the sacrifice of introducing extra hyper-parameter.](https://arxiv.org/abs/1812.11305)
 
@@ -2425,6 +2475,7 @@ Networked Systems](https://vision.kuee.kyoto-u.ac.jp/~hiroaki/publication/Droge_
 - [A Control Perspective for Centralized and Distributed Convex Optimization](http://folk.ntnu.no/skoge/prost/proceedings/cdc-ecc-2011/data/papers/2298.pdf)
 - https://arxiv.org/pdf/1905.03468
 - [Feedback-Feedforward Control Approach to Distributed Optimization](https://ieeexplore.ieee.org/document/8815008)
+- [反馈控制理论在优化、机器学习等领域有哪些应用？](https://www.zhihu.com/question/276693700/answer/734826945)
 
 Sample Recurrence Relation | Idea of Successive Approximations
 ----|----
@@ -2700,6 +2751,8 @@ See the following links for more information on *stochastic gradient descent*.
 * [A look at SGD from a physicists's perspective - Part 3, Langevin Dynamics and Applications](https://henripal.github.io/blog/langevin)
 
 #### Convergence Analysis
+
+The stochastic gradient methods are so different from the classic methods.
 
 + [Convergence Analysis of Gradient Descent Stochastic Algorithms](https://www2.isye.gatech.edu/~ashapiro/JOTA96[1].pdf)
 + [Stochastic Gradient Descent with Exponential Convergence Rates of Expected Classification Errors](http://proceedings.mlr.press/v89/nitanda19a/nitanda19a.pdf)
@@ -3070,6 +3123,8 @@ And these two functions are two different kinds of non-convex functions.
 
 
 [Optimization and Assumptions @ Freemind](http://freemind.pluskid.org/misc/optimization-and-assumptions/)|[Test functions for optimization](https://www.wikiwand.com/en/Test_functions_for_optimization)
+
+- [Book: Introduction to Derivative-Free Optimization](http://www.mat.uc.pt/~lnv/idfo/)
 
 ### Graduated Optimization
 

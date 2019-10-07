@@ -1011,6 +1011,7 @@ ____
 * Output $G(x)=\arg\max_{k}[\sum_{t=1}^{T}\alpha_{t}\mathbb{I}_{G_t(x)=k}]$.
 
 - https://web.stanford.edu/~hastie/Papers/samme.pdf
+- [Multi-class AdaBoost](http://users.stat.umn.edu/~zouxx019/Papers/samme.pdf)
 
 <img src="https://cdn.mathpix.com/snip/images/aoxWmzifAs8sfUHfXVHlUDeDB_C3XDh6i-P5OtAitCA.original.fullsize.png">
 
@@ -1020,17 +1021,21 @@ ____
 
 <img src="http://www.svcl.ucsd.edu/projects/mcboost/figs/simplex_codes.png" />
 
-- http://www.svcl.ucsd.edu/projects/mcboost/
-- https://www.lri.fr/~kegl/research/publications.html
-- [MultiBoost: A Multi-purpose Boosting Package](https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf)
-- [A theory of multiclass boosting](http://rob.schapire.net/papers/multiboost-journal.pdf)
-- [The return of AdaBoost.MH: multi-class Hamming trees](https://arxiv.org/abs/1312.6086)
-- [Multi-class AdaBoost](http://users.stat.umn.edu/~zouxx019/Papers/samme.pdf)
-- https://github.com/tizfa/sparkboost
-- [multiclass boosting: theory and algorithms](https://papers.nips.cc/paper/4450-multiclass-boosting-theory-and-algorithms.pdf)
-- [LDA-AdaBoost.MH: Accelerated AdaBoost.MH based on latent Dirichlet allocation for text categorization](https://journals.sagepub.com/doi/abs/10.1177/0165551514551496?journalCode=jisb)
-- http://www.svcl.ucsd.edu/projects/sop_boost/
+![](https://cdn.mathpix.com/snip/images/tqy_oorlkcUadAJEN-3Ry1G5lueC5P_loyRPmBqh9sA.original.fullsize.png)
+
 - [Multiclass Boosting: MCBoost](http://www.svcl.ucsd.edu/projects/mcboost/)
+- [Multiclass Boosting: Theory and Algorithms](http://www.svcl.ucsd.edu/publications/conference/2011/MCBoost.pdf)
+- [multiclass boosting: theory and algorithms](https://papers.nips.cc/paper/4450-multiclass-boosting-theory-and-algorithms.pdf)
+
+---
+- [Boosting Algorithms for Simultaneous Feature Extraction and Selection](http://www.svcl.ucsd.edu/projects/sop_boost/)
+- [A theory of multiclass boosting](http://rob.schapire.net/papers/multiboost-journal.pdf)
+- https://www.lri.fr/~kegl/research/publications.html
+- [The return of AdaBoost.MH: multi-class Hamming trees](https://arxiv.org/abs/1312.6086)
+- https://github.com/tizfa/sparkboost
+- [LDA-AdaBoost.MH: Accelerated AdaBoost.MH based on latent Dirichlet allocation for text categorization](https://journals.sagepub.com/doi/abs/10.1177/0165551514551496?journalCode=jisb)
+- [MultiBoost: A Multi-purpose Boosting Package](https://www.lri.fr/~kegl/research/PDFs/BBCCK11.pdf)
+- http://www.multiboost.org/
 
 ### Bonsai Boosted Decision Tree
 
@@ -1052,7 +1057,8 @@ If there is not enough memory available to store all of the response values, the
 
 ***
 * [Efficient, reliable and fast high-level triggering using a bonsai boosted decision tree](https://arxiv.org/abs/1210.6861)
-* [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://www.researchgate.net/publication/278798264_Boosting_bonsai_trees_for_efficient_features_combination_Application_to_speaker_role_identification)
+* [bonzaiboost documentation](http://bonzaiboost.gforge.inria.fr/)
+* [Boosting bonsai trees for efficient features combination : Application to speaker role identification](https://hal.inria.fr/hal-01025171)
 * [Bonsai Trees in Your Head: How the Pavlovian System Sculpts Goal-Directed Choices by Pruning Decision Trees](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3297555/)
 * [HEM meets machine learning](https://higgsml.lal.in2p3.fr/prizes-and-award/award/)
 * [BDT: Gradient Boosted Decision Tables for High Accuracy and Scoring Efficiency](https://yinlou.github.io/papers/lou-kdd17.pdf)
@@ -1715,6 +1721,7 @@ However, the swap has a side effect that changes the Boolean condition from '<' 
 - https://zhuanlan.zhihu.com/p/54932438
 - https://github.com/qf6101/adaqs
 
+* [LinXGBoost: Extension of XGBoost to Generalized Local Linear Models](https://arxiv.org/abs/1710.03634)
 * [Gradient Boosting With Piece-Wise Linear Trees](https://github.com/GBDT-PL/GBDT-PL)
 * http://pages.stat.wisc.edu/~loh/treeprogs/guide/smooth.pdf
 * http://yarotsky.info/gtapprox.pdf
@@ -1823,7 +1830,7 @@ $$\theta_t=\arg\min_{\alpha\in\mathbb R}L(f(\theta_{t-1} + \alpha\Delta)),\Delta
 So that $L(f(\theta_t))\leq L(f(\theta_{t-1}))$. In some sense, it requires the model is expressive enough to fit the decision boundary or the size of the parameter is large enough.
 
 Gradient boost methods, as `boost methods`, are in the additive training form and the size of the models increases after each iteration so that the model complexity grows. In the end, these methods output some optimal or sub-optimal models $F_T$ where
-$$F_T=f_0+\sum_{t=1}^T \rho_t f_t,\quad f_t\approx - \nabla_{F} L\mid_{F=F_{t-1}}, F_{t-1}=\sum_{i=0}^{t-1}f_i.$$
+$$F_T=f_0+\sum_{t=1}^T \rho_t f_t,\quad f_t\approx - \nabla_{F} L\mid_{F=F_{t-1}}, F_{t-1}=\sum_{i=0}^{t-1}\rho_i f_i.$$
 The basic idea of gradient boosts methods is to find
 $$f_t=\arg\min_{f\in\mathcal F}L(F_{t-1}+f).$$
 so that $L(F_t)\leq L(F_{t-1})$. In some sense, it requires the model $f$ is easy to construct.
@@ -1890,6 +1897,8 @@ $\color{red}{Note}$: given the input feature  $x_i$, the label $\mathrm y_i$ is 
 #### CGBoost
 
 When the AdaBoost exponential cost function is optimized, CGBoost generally yields much lower cost and training error but higher test error, which implies that the exponential cost is vulnerable to overfitting. With the optimization power of CGBoost, we can adopt more "regularized" cost functions that have better out-of-sample performance but are difficult to optimize. Our experiments demonstrate that CGBoost generally outperforms AnyBoost in cost reduction. With suitable cost functions, CGBoost can have better out-of-sample performance.
+
+<img src="https://cdn.mathpix.com/snip/images/-6H-XdniaLh-AJG2n2_IbFX_WPJAbapYqk0Vxbh6CnI.original.fullsize.png">
 
 + [CGBoost: Conjugate Gradient in Function Space](http://www.work.caltech.edu/pub/Li2003CGBoost.pdf)
 + https://www.researchgate.net/publication/2887612_CGBoost_Conjugate_Gradient_in_Function_Space
@@ -2045,8 +2054,23 @@ Leveraging `distributed ADMM`, it is easy to extend to distributed version.
 + [Consensus optimization](https://www.cvxpy.org/examples/applications/consensus_opt.html)
 + [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.html)
 
+
+
+Note that the loss function is always related only with the output $o_M$ and the labels rather the models itself.
+As the reverse engineer of the feed-forward process, there is some scheme to update each layer according to its next layer's output.
+
+The empirical loss is defined as $L(f)=\sum_{i}\ell(f(x_i), y_i)$ instead of the expected loss function, where $\ell$ is called as loss function.
+In gradient boosting, the gradient is computed as following:
+$$\frac{\partial \ell(f(x_i), y_i)}{\partial f(x_i)}\mid_{f=f_{t-1}}$$
+where $f(x_i)$ is the output, and the gradients as another targets to fit a new regression tree so that $L(f_t)<L(f_{t-1})$.
+
+Slightly different, if we train a new tree $f_t$ to fit another target
+$$f_{t-1}(x_i)-\alpha_i \frac{\partial \ell(f(x_i), y_i)}{\partial f(x_i)}\mid_{f=f_{t-1}},$$
+
+i.e., to tune the outputs  rather than to generate a new model, the optimization methods such as gradient descent and boosting algorithms such as gradient boost are unified and leveraged in this fashion. 
+
 Another interesting question is how to boost the composite/multiplicative models rather than the additive model?
-Is it necessary to approxiamte the negative gradient using decision tree?
+Is it necessary to approximate the negative gradient using decision tree?
 
 #### Multi-Layered Gradient Boosting Decision Trees
 
@@ -2054,15 +2078,29 @@ Is it necessary to approxiamte the negative gradient using decision tree?
 
 <img src="https://pic4.zhimg.com/80/v2-76f0120de4acda6739b9f48a342d6bdf_hd.jpg">
 
-Consider a multi-layered feed-forward structure with $M − 1$ intermediate layers and one final output layer. Denote oi where $i \in \{0, 1, 2, . . . , M\}$ as the output for each layer including the input layer and the output layer $o_M$. For a particular input data $x$, the corresponding output at each layer is in $R^{d_i}$,
-where $i \in \{0, 1, 2, \cdots , M\}$. The learning task is therefore to learn the mappings $F_i: R^{d_i−1} \to R^{d_i}$
+Consider a multi-layered feed-forward structure with $M − 1$ intermediate layers and one final output layer. Denote $o_i$ where $i \in \{0, 1, 2, . . . , M\}$ as the output for each layer including the input layer and the output layer $o_M$. For a particular input data $x$, the corresponding output at each layer is in $\mathbb R^{d_i}$,
+where $i \in \{0, 1, 2, \cdots , M\}$.
+The learning task is therefore to learn the mappings $F_i: \mathbb R^{d_i−1} \to \mathbb R^{d_i}$
 for each layer $i > 0$, such that the final output $o_M$ minimize the empirical loss $L$ on training set.
+$$o_0\stackrel{F_1}\to o_1\stackrel{F_2}\to o_2\cdots \stackrel{F_M}\to o_M,\\
+\mathbb R^{d_0}\to \mathbb R^{d_1}\to \mathbb R^{d_2}\cdots \mathbb R^{d_M}.
+$$
+
 Mean squared errors or cross-entropy with extra regularization terms are some common choices for the loss $L$. In an unsupervised setting, the desired output $Y$ can be the training data itself, which
 leads to an auto-encoder and the loss function is the reconstruction errors between the output and the original input.
+
+However, when $F_i$ is non-differentiable or even non-parametric, back-prop is no longer applicable since calculating the derivative of loss function with respect to its parameters is impossible.
+
+
 
 * [Multi-Layered Gradient Boosting Decision Trees](https://arxiv.org/abs/1806.00007)
 * http://papers.nips.cc/paper/7614-multi-layered-gradient-boosting-decision-trees.pdf
 * https://zhuanlan.zhihu.com/p/40809981
+
+
+<img src="https://cdn.mathpix.com/snip/images/HP4DwwHOEi-e7hKdBUK3o6fZPQcbBn9qqgddRcvpaOs.original.fullsize.png">
+
+
 
 ### Deep Gradient Boosting
 
@@ -2099,7 +2137,8 @@ $$
 Let us assume the loss function $G(f, D)$ has the following additive form
 $$G(f, D)=\sum_{n=1}^{N} g(f(x_n), y_n),$$
 and we would like to solve the optimization problem
-$$\min_{f\in\mathcal F}G(f, D)=\min_{w}\sum_{n=1}^{N} g(f_w(x_n), y_n).$$
+$$ \min_{f\in\mathcal F}G(f, D)=\min_{w}\sum_{n=1}^{N} g(f_w(x_n), y_n). $$
+
 And $g^{\prime}(f_w(x_n), y_n))=\frac{\partial g(f_w(x_n), y_n)}{\partial f_w(x_n)}$ for $n=1,2,\cdots, N$.
 
 [`Leveraging methods` are designed under a subsampling framework, in which one samples a small proportion of the data (subsample) from the full sample, and then performs intended computations for the full sample using the small subsample as a surrogate. The key of the success of the leveraging methods is to construct nonuniform sampling probabilities so that influential data points are sampled with high probabilities](http://homepages.math.uic.edu/~minyang/Big%20Data%20Discussion%20Group/Leveraging%20for%20big%20data%20regression.pdf)
@@ -2125,8 +2164,6 @@ ______
 * [A Statistical Perspective on Algorithmic Leveraging](http://www.jmlr.org/papers/v16/ma15a.html)
 * http://homepages.math.uic.edu/~minyang/BD.htm
 * [Some Theory for Generalized Boosting Algorithms](https://www.stat.berkeley.edu/~bickel/BickelRitovZakai2006JMLR.pdf)
-
-
 
 ### Matrix Multiplicative Weight Algorithms
 
@@ -2174,6 +2211,7 @@ See [XGBoost Resources Page](https://github.com/dmlc/xgboost/blob/master/demo/RE
 + [Bagging and Boosting statistical machine translation systems](http://www.nlplab.com/papers/AI2013-Xiao-Zhu-Liu.pdf)
 + [A Novel, Gradient Boosting Framework for Sentiment Analysis in Languages where NLP Resources Are Not Plentiful: A Case Study for Modern Greek ](https://www.mdpi.com/1999-4893/10/1/34/htm)
 + [EGBMMDA: Extreme Gradient Boosting Machine for MiRNA-Disease Association prediction](https://www.nature.com/articles/s41419-017-0003-x.pdf?origin=ppub)
++ [BoosTexter: A Boosting-based System for Text Categorization](https://www.cis.upenn.edu/~mkearns/finread/boostexter.pdf)
 + [Awesome gradient boosting](https://github.com/talperetz/awesome-gradient-boosting)
 
 ### Selective Ensemble
