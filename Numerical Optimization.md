@@ -611,20 +611,8 @@ See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey M
 
 * [The MM Algorithm by Kenneth Lange](https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf)
 
-+ [Majorization Methods](https://bookdown.org/jandeleeuw6/bras/majorization-methods.html)
-+ [Tangential Majorization](https://bookdown.org/jandeleeuw6/bras/tangential-majorization.html)
-+ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
-+ [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
-+ [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
+
 + [AN ASSEMBLY AND DECOMPOSITION APPROACH FOR CONSTRUCTING SEPARABLE MINORIZING FUNCTIONS IN A CLASS OF MM ALGORITHMS](https://www.semanticscholar.org/paper/AN-ASSEMBLY-AND-DECOMPOSITION-APPROACH-FOR-IN-A-OF-Tian-Huang/fdffff8c1bf5cdd258f287136e0bbcd8ab0b7529)
-
-
-**Quadratic Lowwer Bound**
-
-
-- http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
-- [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
-
 
 
 ## Projected Gradient Method and More
@@ -1393,7 +1381,7 @@ $$
 We defined its augmented Lagrangian multipliers as
 
 $$
-L_{\beta}^{n}(x_1,x_2,\cdots, x_n\mid \lambda)=\sum_{i=1}^{n} f_i(x_i) -\lambda^T (\sum_{i=1}^{n} A_i x_i - b) + \frac{\beta}{2} ({\|\sum_{i=1}^{n} A_i x_i - b\|})_{2}^{2}.
+L_{\beta}^{n}(x_1,x_2,\cdots, x_n\mid \lambda)=\sum_{i=1}^{n} f_i(x_i) -\lambda^T (\sum_{i=1}^{n} A_i x_i - b) + \frac{\beta}{2} {({\|\sum_{i=1}^{n} A_i x_i - b\|})}_{2}^{2}.
 $$
 
 
@@ -1516,60 +1504,43 @@ to solve
 * [用ADMM实现统计学习问题的分布式计算](http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/)
 * https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * [凸优化：ADMM(Alternating Direction Method of Multipliers)交替方向乘子算法](https://blog.csdn.net/shanglianlm/article/details/45919679)
+
+### Monotone Operator Splitting Methods for Optimization
+
+Monotone operator splitting methods, which originated in the late 1970’s in the context of partial differential equations, have started to be highly effective for modeling and solving a wide range of data analysis and processing problems, in particular high-dimensional statistical data analysis.
+
+Operator splitting is to decompose one complicated operator(procedure) into some simple operators (procedures).
+For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
+$$
+\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda)
+$$
+to
+$$
+\arg\min_{x}L_{\beta}(x,y\mid \lambda) \circ
+\\ \,\arg\min_{y}L_{\beta}(x,y\mid \lambda) \circ
+\arg\max_{\lambda} L_{\beta}(x,y,\mid \lambda).
+$$
+
+<img src="https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90" width="70%" />
+
+They are really some block relaxation techniques.
+
++ https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf
++ [Operator Splitting by Professor Udell @ORIE 6326: Convex Optimization](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
++ [A note on the equivalence of operator splitting methods](https://arxiv.org/pdf/1806.03353.pdf)
++ [Splitting methods for monotone operators with applications to parallel optimization](https://dspace.mit.edu/handle/1721.1/14356)
++ [Operator Splitting Methods for Fast MPC](http://www.syscop.de/files/2015ss/numopt/splitting.pdf)
++ https://staffportal.curtin.edu.au/staff/profile/view/Jie.Sun/
++ [Operator Splitting Methods in Data Analysis](https://www.simonsfoundation.org/event/operator-splitting-methods-in-data-analysis/)
++ https://www.samsi.info/programs-and-activities/research-workshops/operator-splitting-methods-data-analysis/
++ http://idda.cuhk.edu.cn/zh-hans/page/10297
++ [Random monotone operators and application to Stochastic Optimization](https://pastel.archives-ouvertes.fr/tel-01960496/document)
 * [Splitting methods and ADMM, Thibaut Lienart](https://tlienart.github.io/pub/csml/cvxopt/split.html)
 * [Split Bregman](https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html)
 * [Accelerated Bregman operator splitting with backtracking](https://www.aimsciences.org/article/doi/10.3934/ipi.2017048)
 * [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
 * [17w5030 Workshop on Splitting Algorithms, Modern Operator Theory, and Applications](https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf)
 
-
-#### Block Coordinate Descent
-
-The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
-For example, we want to minimize the following cost function
-$$
-f(x,y) = g(x) + h(y)
-$$
-
-with or without constraints.
-Specially, if the cost function is additionally separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f_i(x_i), i=1,2,\cdots, n$ rather than the cost function itself
-
-$$
-\min_{x} \sum_{i} f_i(x_i) \leq \sum_{i}\min_{x_i}{f_i(x_i)}.
-$$
-
-And ADMM or proximal gradient methods are to split the cost function to 2 blocks, of which one is differentiable and smooth while the other may not be differentiable. In another word, we can use them to solve some non-smooth optimization problem.
-However, what if there is no constraints application to the optimization problem?
-
-**Coordinate descent** is aimed to minimize the following cost function
-$$
-f(x) = g(x) +\sum_{i}^{n} h_i(x_i)
-$$
-
-where $g(x)$ is convex, differentiable and each $h_i(x)$ is convex.
-We can use coordinate descent to find a minimizer: start with some initial guess $x^0$, and repeat for $k = 1, 2, 3, \dots$:
-
-***
-
-> 1. $x_{1}^{k} \in\arg\min_{x_1}f(x_1, x_2^{k-1}, x_3^{k-1}, \dots, x_n^{k-1});$
-> 2. $x_{2}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2,x_3^{k-1},\dots, x_n^{k-1});$
-> 3. $x_{3}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3,\dots, x_n^{k-1});$
-> 4. $\vdots$
-> 5. $x_{n}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3^{\color{red}{k}},\dots, x_n).$
-
-It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, \dots, x_n}$ are separable in some blocks.
-
-***
-- http://bicmr.pku.edu.cn/conference/opt-2014/index.html
-- https://calculus.subwiki.org/wiki/Additively_separable_function
-- https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
-- http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
-- http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
-- [MS72: Recent Progress in Coordinate-wise Descent Methods](https://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=66077)
-
-#### Block Spliiting Methods
-
-- [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)
 
 ## Linear Programming
 
@@ -1594,277 +1565,6 @@ If there is no constraints, the linear objectve function is unbounded.
 
 - [EE236A - Linear Programming (Fall Quarter 2013-14)](http://www.seas.ucla.edu/~vandenbe/ee236a/ee236a.html)
 
-
-## Surrogate Optimization
-
-It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
-
-It is obvious that the choice of optimization methods relies on the objective function. Surrogate loss transform the original problem $\min_{x} f(x)$ into successive  trackable subproblems:
-$$
-x^{k+1}=\arg\min_{x} Q_{k}(x).
-$$
-
-We will call $Q_k(x)$ surrogate function. Surrogate function is also known as `merit function`.
-
-A good surrogate function should:
-
-+ Approximate the objective function.
-+ Easy to optimize.
-
-This always leads to the `convexification technique` where the surrogate function is convex. For example, we can rewrite gradient descent in the following form
-$$
-x^{k+1}=\arg\min_{x} \{f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}{\|x-x^k\|}_2^2\}.
-$$
-
-In Newton’s method, we approximate the objective with a quadratic surrogate of the form:
-$$
-Q_k(x) = f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_k(x-x^k).
-$$
-
-Note that the Hessian matrix $H_k$ is supposed to be positive definite. The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. And they can rewrite in the principle of surrogate function, where the surrogate function is convex in the form of linear function + squared functions in some sense.  
-
-Note that momentum methods can be rewrite in the surrogate function form:
-$$
-x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1}) \\
-= \arg\min_{x}\{f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{2\alpha_k} {\|x-x^k-\rho_k(x^k-x^{k-1})\|}_2^2\}.
-$$
-
-$\color{aqua}{PS}$: How we can extend it to Nesterov gradient methods or stochastic gradient methods?
-
-* [Discover acceleration](https://ee227c.github.io/notes/ee227c-lecture06.pdf)
-
-It is natural to replace the squared function with some non-negative function
-such as mirror gradient methods
-$$
-x^{k+1} = \arg\min_{x} \{ f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}.
-$$
-
-More generally, auxiliary function $g_k(x)$ may replace the Bregman divergence $B(x, x^k)$, where the auxiliary functions $g_k(x)$ have the properties $g_k(x)\geq 0$ and $g_k(x^{k-1})=0$.
-
-+ http://fa.bianp.net/teaching/2018/eecs227at/
-+ http://fa.bianp.net/teaching/2018/eecs227at/newton.html
-+ http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf
-
-The parameters $\alpha_k$ is chosen so that the surrogate function is convex by observing that the condition number of  Hessian matrix is determined by the factor $\frac{1}{\alpha_k}$. And gradient are used in these methods to construct the surrogate function. There are still two problems in unconstrained optimization:
-
-1. If the cost function is not smooth or differential such as absolute value function, the gradient is not available so that it is a problem to construct a convex surrogate function without gradient;
-2. In another hand, there is no unified principle to construct a convex surrogate function if we know more information of higher order derivatives.
-
-*****
-
-Practically, we rarely meet pure black box models; rather, we know
-something about structure of underlying problems
-One possible strategy is:
-
-1. approximate nonsmooth objective function by a smooth function
-2. optimize smooth approximation instead (using, e.g., Nesterov’s accelerated method).
-
-A convex function $f$ is called $(\alpha, \beta)$-smoothable if, for any $\mu > 0, \exists$ convex function $f_{\mu}$ s.t.
-* $f_{\mu}(x) \leq f(x) \leq f_{\mu}(x) + \beta\mu, \forall x$
-* $f_{\mu}(x)$ is $\frac{\alpha}{\mu}$ smooth.
-
-`Moreau envelope (or Moreau-Yosida regularization)` of a convex
-function $f$ with parameter $\mu > 0$ is defined as
-$$
-M_{\mu f}(x)=\inf_{z}\{f(z) + \frac{1}{2\mu}{\|z-x\|}_2^2\}.
-$$
-
-Minimizing $f$ and $M_f$ are equivalent.
-$prox_{\mu f} (x)$ is unique point that achieves the infimum that defines
-$M_{\mu f}$ , i.e.
-
-$$
-M_{\mu f}(x)=f(prox_{\mu f} (x)) + \frac{1}{2}{\|prox_{\mu f} (x)-x\|}_2^2\}.
-$$
-
-`Moreau envelope` $M_f$ is continuously differentiable with gradients
-$$
-\nabla M_{\mu f} = \frac{1}{\mu}(prox_{\mu f} (x)-x).
-$$
-
-This means
-$$
-prox_{\mu f} (x)=x-\mu \nabla M_{\mu f}
-$$
-
-i.e., $prox_{\mu f} (x)$ is gradient step for minimizing $M_{\mu f}$.
-
-`Fenchel Conjugate` of a function ${h}$ is the function $h^{\star}$ defined by
-
-$$
-h^{\star}(x)=\sup_{z} \{\left<z, x\right>-h(z)\}.
-$$
-
-
-+ [Smoothing for non-smooth optimization, ELE522: Large-Scale Optimization for Data Science](http://www.princeton.edu/~yc5/ele522_optimization/lectures/smoothing.pdf)
-+ [Smoothing, EE236C (Spring 2013-14)](http://www.seas.ucla.edu/~vandenbe/236C/lectures/smoothing.pdf)
-+ [Smoothing and First Order Methods: A Unified Framework](https://epubs.siam.org/doi/abs/10.1137/100818327)
-
-****
-
-[Charles Byrne](http://faculty.uml.edu/cbyrne/cbyrne.html) gives a unified treatment of some iterative optimization algorithms such as auxiliary function methods.
-
-Young | Recent |Now
-------|--------|---
-<img src="http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg" width = "150%" />|<img src ="https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg" width = "400%" />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = "50%" />
-
-[He is a featured author of CRC press ](https://www.crcpress.com/authors/i11230-charles-byrne) and [professor in UML](https://www.uml.edu/umass-BMEBT/faculty/Byrne-Charles.aspx)
-
-`Auxiliary-Function Methods` minimize the function
-$$
-G_k(x) = f(x) + g_k(x)
-$$
-over $x\in \mathbb{S}$ for $k=1,2,\cdots$ if $f(x):\mathbb{S}\mapsto\mathbb{R}$ and $g_k(x)$ is auxiliary function.
-We do not linearize the cost function as the previous methods.
-
-Auxiliary-Function Methods(AF methods) include
-* Barrier- and Penalty-Function Algorithms such as sequential unconstrained minimization (SUM) methods, interior-point methods exterior-point methods;
-* Proximal Minimization Algorithms such as majorization minimization.
-
-And an AF method is said to be in the SUMMA class if the SUMMA Inequality holds:
-
-$$
-G_k(x) - G_k(x^k)\geq g_{k+1}(x), \forall x\in \mathbb{S}.
-$$
-
-Proximal minimization algorithms using Bregman distances, called here `PMAB`,  minimize the function
-
-$$
-G_k(x) = f(x) + B(x, x^{k-1}),\forall x\in \mathbb{S}.
-$$
-
-The `forward-backward splitting (FBS)` methods is to minimize the function
-$$f_1(x) + f_2(x)$$
- where both functions
-are convex and $f_2(x)$ is differentiable with its gradient L-Lipschitz continuous in the Euclidean norm.  The iterative step of the FBS algorithm is
-$$
-x^{k} = \operatorname{prox}_{\gamma f_1}(x^{k-1}-\gamma \nabla f_2(x^{k-1})).
-$$
-
-It is equivalent to minimize
-$$
-G_k(x) = f(x) + \frac{1}{2\gamma} {\|x-x^{k-1}\|}_2^2-B(x, x^{k-1}),
-$$
-
-where $B(x,x^{k-1})=f_1(x)-f_1(x^{k-1})-\left<\nabla f_1(x^{k-1}),x-x^{k-1}\right>,\, 0 < \gamma\leq \frac{1}{L}$.
-`Alternating Minimization (AM)` can be regarded as coordinate optimization methods with 2 blocks:
-
-> * $p^{n+1}=\arg\min_{p\in P} f(p,q^n)$,
-> * $q^{n+1}=\arg\min_{p\in Q} f(p^{n+1},q)$,
-
-where $f(p, q), p\in  P, q\in Q$ is the objective function. It is proved that the sequence $f(p^n, q^n)$ converge tothe minimizer  if the `Five-Point Property` hold:
-$$
-f(p, q) + f(p, q^{n-1}) \geq f(p, q^{n}) + f(p^n, q^{n-1}).
-$$
-
-For each p in the set P, define $q(p)$ in Q as a member of Q for which $f(p; q(p)) \leq f(p; q)$, for all $q \in P$. Let $\hat{f}(p) = f(p; q(p))$.
-At the nth step of AM we minimize
-$$G_n(p)=f(p; q(p))+[f(p; q^{n-1})-f(p; q(p))]$$
-to get $p^n$, where $g_n(p)=f(p; q^{n-1})-f(p; q(p))$ is the auxiliary function. So we can write that $G_n(p)= f(p;q(p))+g_n(p)$.
-
-See [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
-or [Alternating Minimization, Proximal Minimization and Optimization Transfer Are Equivalent](https://arxiv.org/abs/1512.03034) for more information on AF methods.
-
-Expectation-Maximization can be classified to AF method.
-
-> * $Q(\theta|\theta^{(t)})=\mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)})$;
-> * $\theta^{(t+1)}=\arg\min_{\theta} Q(\theta|\theta^{(t)})$.
-
-The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete data $(Y_{os}, Z)$ given $(Y_{obs}, \theta^{(t)})$.
-
-+ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
-+ [Alternating Minimization, Proximal Minimization and Optimization Transfer Are Equivalent](https://arxiv.org/abs/1512.03034)
-+ [A unified treatment of some iterative algorithms in signal processing and image reconstruction](http://adsabs.harvard.edu/abs/2004InvPr..20..103B)
-+ [Convergence Rate of Expectation-Maximization](http://opt-ml.org/papers/OPT2017_paper_42.pdf)
-
-*****
-
-[Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf) applied to Gaussian Process models (Kriging).
-
-
-
-+ [Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf)
-* [Surrogate loss function](http://www.cs.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf)
-* [Divergences, surrogate loss functions and experimental design](https://people.eecs.berkeley.edu/~jordan/papers/NguWaiJor_nips05.pdf)
-* [Surrogate Regret Bounds for Proper Losses](http://mark.reid.name/bits/pubs/icml09.pdf)
-* [Bregman Divergences and Surrogates for Learning](https://www.computer.org/csdl/trans/tp/2009/11/ttp2009112048-abs.html)
-* [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
-* [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
-* https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
-* http://fa.bianp.net/blog/2014/surrogate-loss-functions-in-machine-learning/
-
-### Relaxation and Convexification
-
-- https://www.di.ens.fr/~aspremon/PDF/Oxford14.pdf
-
-The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
-
-![block relaxation methods](https://bookdown.org/jandeleeuw6/bras/graphics/bookfig1.png)
-
-In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. We choose initial values for all blocks, and then minimize over one of the blocks, while keeping all other blocks fixed at their current values. We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. An iteration of the algorithm steps through all blocks in turn, each time keeping the non-active blocks fixed at current values, and each time replacing the active blocks by solving the minimization subproblems. If there are more than two blocks there are different ways to cycle through the blocks. If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
-
-In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
-
-**Augmentation Methods**
-
-[Augmentation and Decomposition Methods](https://bookdown.org/jandeleeuw6/bras/augmentation-and-decomposition-methods.html)
-Note: augmentation duality.
-$$ h(y)=\min_{x\in\mathcal{X}} g(x,y) $$
-then
-$$ \min_{x\in\mathcal{X}}f(x)=\min_{x\in\mathcal{X}}\min_{y\in\mathcal{Y}}g(x,y)=\min_{y\in\mathcal{Y}}\min_{x\in\mathcal{X}}g(x,y)=\min_{y\in\mathcal{Y}}h(y). $$
-
-**Alternating Conditional Expectations**
-
-[The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
-
-A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
-
-As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
-
-**Convex Relaxations**
-
-[Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
-Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
-integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
-
-**Quadratic Majorization**
-
-A quadratic  $g$  majorizes  $f$  at  $y$  on  $\mathbb{R}^n$  if  $g(y)=f(y)$  and  $g(x)\geq f(x)$  for all  $x$. If we write it in the form
-$$g(x)=f(y)+(x-y)'b+\frac12 (x-y)'A(x-y)$$
-
-<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
-
-***
-
-+ https://pratikac.github.io/
-+ [Block Relaxation Methods in Statistics by Jan de Leeuw](https://bookdown.org/jandeleeuw6/bras/)
-+ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
-+ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
-+ [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
-+ [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
-+ [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
-+ [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
-+ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
-+ [Relaxation and Decomposition Methods for Mixed Integer Nonlinear Programming](https://www.springer.com/gp/book/9783764372385)
-
-*****
-
-![nonconvex](https://www.math.hu-berlin.de/~stefan/B19/nonconvex.gif)
-
-In order for primal-dual methods to be applicable to a constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied.
-A nonconvex problem can be convexified and transformed into one which can be solved with the aid of primal-dual methods.
-
-+ [Convexification and Global Optimization in Continuous and Mixed-Integer Nonlinear Programming: Theory, Algorithms, Software, and Applications](https://b-ok.cc/book/2099773/6478de)
-+ [Convexification and Global Optimization of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
-+ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
-+ [Conic Optimization Theory: Convexification Techniques and Numerical Algorithms](https://arxiv.org/abs/1709.08841)
-+ [Convexification of polynomial optimization problems by means of monomial patterns](http://www.optimization-online.org/DB_FILE/2019/01/7034.pdf)
-+ [On convexification/optimization of functionals including an $\ell^2$-misfit term](http://www.maths.lth.se/matematiklu/personal/mc/On%20convexification%20MP%20version%202.pdf)
-+ [Lossless Convexification of Nonconvex Control Bound and Pointing Constraints of the Soft Landing Optimal Control Problem](http://larsblackmore.com/iee_tcst13.pdf)
-+ [A General Class of Convexification Transformation for the Noninferior Frontier of a Multiobjective Program](http://file.scirp.org/Html/8-1040011_31681.htm)
-+ [Implementation of a Convexification Technique for Signomial Functions](http://www.users.abo.fi/alundell/files/Escape19.pdf)
-+ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
-+ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 
 ## Fixed Point Iteration Methods
 
@@ -2193,6 +1893,8 @@ Linear Convergence Rates of the ADMM](http://beneluxmeeting.eu/2015/uploads/pape
 - https://www.math.uni-bielefeld.de/~gaehler/
 
 ### Approximate Minimal Polynomial Extrapolation
+
+[From linear to nonlinear iterative methods](http://www.dcs.bbk.ac.uk/~gmagoulas/APNUM.PDF)
 
 $$f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
 Given $A\in\mathbb{R}^{n\times n}$ such that 1 is not an eigenvalue of $A$ and $v\in\mathbb{R}^n$, the `minimal polynomial`
@@ -3053,41 +2755,219 @@ independently.
 * [Asynchronous Distributed ADMM for Consensus Optimization](http://proceedings.mlr.press/v32/zhange14.pdf)
 * [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
 
-### Monotone Operator Splitting Methods for Optimization
 
-Monotone operator splitting methods, which originated in the late 1970’s in the context of partial differential equations, have started to be highly effective for modeling and solving a wide range of data analysis and processing problems, in particular high-dimensional statistical data analysis.
-
-Operator splitting is to decompose one omplicated operator(procedure) into some simple operators (procedures).
-For example, ADMM splits the maxmin operator of the augmented Lagrangian into 3 opertors:
-$$
-\arg\min_{x,y}\max_{\lambda} L_{\beta}(x,y\mid \lambda)
-$$
-to
-$$
-\arg\min_{x}L_{\beta}(x,y\mid \lambda) \circ
-\\ \,\arg\min_{y}L_{\beta}(x,y\mid \lambda) \circ
-\arg\max_{\lambda} L_{\beta}(x,y,\mid \lambda).
-$$
-
-<img src="https://simonsfoundation.imgix.net/wp-content/uploads/2018/12/04120318/OSFigure2-e1543943390750.png?auto=format&w=695&q=90" width="70%" />
-
-They are really some block relaxation techniques.
-
-+ https://web.stanford.edu/class/ee364b/lectures/monotone_split_slides.pdf
-+ [Operator Splitting by Professor Udell @ORIE 6326: Convex Optimization](https://people.orie.cornell.edu/mru8/orie6326/lectures/splitting.pdf)
-+ [A note on the equivalence of operator splitting methods](https://arxiv.org/pdf/1806.03353.pdf)
-+ [Splitting methods for monotone operators with applications to parallel optimization](https://dspace.mit.edu/handle/1721.1/14356)
-+ [Operator Splitting Methods for Fast MPC](http://www.syscop.de/files/2015ss/numopt/splitting.pdf)
-+ https://staffportal.curtin.edu.au/staff/profile/view/Jie.Sun/
-+ [Operator Splitting Methods in Data Analysis](https://www.simonsfoundation.org/event/operator-splitting-methods-in-data-analysis/)
-+ https://www.samsi.info/programs-and-activities/research-workshops/operator-splitting-methods-data-analysis/
-+ http://idda.cuhk.edu.cn/zh-hans/page/10297
-+ [Random monotone operators and application to Stochastic Optimization](https://pastel.archives-ouvertes.fr/tel-01960496/document)
 
 - [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
 - [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
 - [CoCoA: A General Framework for Communication-Efficient Distributed Optimization](https://arxiv.org/abs/1611.02189)
 - [Federated Optimization: Distributed Machine Learning for On-Device Intelligence](https://arxiv.org/pdf/1610.02527.pdf)
+- http://web.stanford.edu/class/ee364b/lectures.html
+
+#### Distributed Optimization: Analysis and Synthesis via Circuits
+
++ [Distributed Optimization: Analysis and Synthesis via Circuits](http://web.stanford.edu/class/ee364b/lectures/decomp_ckt.pdf)
+
+General form:
+$$\sum_{i=1}^{n}f_i(x_i),\\
+s.t. x_i= E_i y$$
+
+## Surrogate Optimization
+
+It is a unified principle that we optimize an objective function via sequentially optimizing surrogate functions such as **EM, ADMM**.
+
+It is obvious that the choice of optimization methods relies on the objective function. Surrogate loss transform the original problem $\min_{x} f(x)$ into successive  trackable subproblems:
+$$
+x^{k+1}=\arg\min_{x} Q_{k}(x).
+$$
+
+We will call $Q_k(x)$ surrogate function. Surrogate function is also known as `merit function`.
+
+A good surrogate function should:
+
++ Approximate the objective function.
++ Easy to optimize.
+
+This always leads to the `convexification technique` where the surrogate function is convex. For example, we can rewrite gradient descent in the following form
+$$
+x^{k+1}=\arg\min_{x} \{f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}{\|x-x^k\|}_2^2\}.
+$$
+
+In Newton’s method, we approximate the objective with a quadratic surrogate of the form:
+$$
+Q_k(x) = f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_k(x-x^k).
+$$
+
+Note that the Hessian matrix $H_k$ is supposed to be positive definite. The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. And they can rewrite in the principle of surrogate function, where the surrogate function is convex in the form of linear function + squared functions in some sense.  
+
+Note that momentum methods can be rewrite in the surrogate function form:
+$$
+x^{k+1}=x^{k}-\alpha_{k}\nabla_{x}f(x^k)+\rho_{k}(x^k-x^{k-1}) \\
+= \arg\min_{x}\{f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{2\alpha_k} {\|x-x^k-\rho_k(x^k-x^{k-1})\|}_2^2\}.
+$$
+
+$\color{aqua}{PS}$: How we can extend it to Nesterov gradient methods or stochastic gradient methods?
+
+* [Discover acceleration](https://ee227c.github.io/notes/ee227c-lecture06.pdf)
+
+It is natural to replace the squared function with some non-negative function
+such as mirror gradient methods
+$$
+x^{k+1} = \arg\min_{x} \{ f(x^k) + \left<\nabla f(x^k), x-x^k\right> + \frac{1}{\alpha_k} B(x,x^k)\}.
+$$
+
+More generally, auxiliary function $g_k(x)$ may replace the Bregman divergence $B(x, x^k)$, where the auxiliary functions $g_k(x)$ have the properties $g_k(x)\geq 0$ and $g_k(x^{k-1})=0$.
+
++ http://fa.bianp.net/teaching/2018/eecs227at/
++ http://fa.bianp.net/teaching/2018/eecs227at/newton.html
++ http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf
+
+The parameters $\alpha_k$ is chosen so that the surrogate function is convex by observing that the condition number of  Hessian matrix is determined by the factor $\frac{1}{\alpha_k}$. And gradient are used in these methods to construct the surrogate function. There are still two problems in unconstrained optimization:
+
+1. If the cost function is not smooth or differential such as absolute value function, the gradient is not available so that it is a problem to construct a convex surrogate function without gradient;
+2. In another hand, there is no unified principle to construct a convex surrogate function if we know more information of higher order derivatives.
+
+*****
+
+Practically, we rarely meet pure black box models; rather, we know
+something about structure of underlying problems
+One possible strategy is:
+
+1. approximate nonsmooth objective function by a smooth function
+2. optimize smooth approximation instead (using, e.g., Nesterov’s accelerated method).
+
+A convex function $f$ is called $(\alpha, \beta)$-smoothable if, for any $\mu > 0, \exists$ convex function $f_{\mu}$ s.t.
+* $f_{\mu}(x) \leq f(x) \leq f_{\mu}(x) + \beta\mu, \forall x$
+* $f_{\mu}(x)$ is $\frac{\alpha}{\mu}$ smooth.
+
+`Moreau envelope (or Moreau-Yosida regularization)` of a convex
+function $f$ with parameter $\mu > 0$ is defined as
+$$
+M_{\mu f}(x)=\inf_{z}\{f(z) + \frac{1}{2\mu}{\|z-x\|}_2^2\}.
+$$
+
+Minimizing $f$ and $M_f$ are equivalent.
+$prox_{\mu f} (x)$ is unique point that achieves the infimum that defines
+$M_{\mu f}$ , i.e.
+
+$$
+M_{\mu f}(x)=f(prox_{\mu f} (x)) + \frac{1}{2}{\|prox_{\mu f} (x)-x\|}_2^2\}.
+$$
+
+`Moreau envelope` $M_f$ is continuously differentiable with gradients
+$$
+\nabla M_{\mu f} = \frac{1}{\mu}(prox_{\mu f} (x)-x).
+$$
+
+This means
+$$
+prox_{\mu f} (x)=x-\mu \nabla M_{\mu f}
+$$
+
+i.e., $prox_{\mu f} (x)$ is gradient step for minimizing $M_{\mu f}$.
+
+`Fenchel Conjugate` of a function ${h}$ is the function $h^{\star}$ defined by
+
+$$
+h^{\star}(x)=\sup_{z} \{\left<z, x\right>-h(z)\}.
+$$
+
+
++ [Smoothing for non-smooth optimization, ELE522: Large-Scale Optimization for Data Science](http://www.princeton.edu/~yc5/ele522_optimization/lectures/smoothing.pdf)
++ [Smoothing, EE236C (Spring 2013-14)](http://www.seas.ucla.edu/~vandenbe/236C/lectures/smoothing.pdf)
++ [Smoothing and First Order Methods: A Unified Framework](https://epubs.siam.org/doi/abs/10.1137/100818327)
+
+****
+
+[Charles Byrne](http://faculty.uml.edu/cbyrne/cbyrne.html) gives a unified treatment of some iterative optimization algorithms such as auxiliary function methods.
+
+Young | Recent |Now
+------|--------|---
+<img src="http://faculty.uml.edu/cbyrne/CharlieByrneBookImage.jpg" width = "150%" />|<img src ="https://i1.rgstatic.net/ii/profile.image/551299453919233-1508451440729_Q128/Charles_Byrne.jpg" width = "400%" />|<img src="https://www.crcpress.com/authors/images/profile/author/i11230v1-charles-byrne-557af86baa1a6.jpg" width = "50%" />
+
+[He is a featured author of CRC press ](https://www.crcpress.com/authors/i11230-charles-byrne) and [professor in UML](https://www.uml.edu/umass-BMEBT/faculty/Byrne-Charles.aspx)
+
+`Auxiliary-Function Methods` minimize the function
+$$
+G_k(x) = f(x) + g_k(x)
+$$
+over $x\in \mathbb{S}$ for $k=1,2,\cdots$ if $f(x):\mathbb{S}\mapsto\mathbb{R}$ and $g_k(x)$ is auxiliary function.
+We do not linearize the cost function as the previous methods.
+
+Auxiliary-Function Methods(AF methods) include
+* Barrier- and Penalty-Function Algorithms such as sequential unconstrained minimization (SUM) methods, interior-point methods exterior-point methods;
+* Proximal Minimization Algorithms such as majorization minimization.
+
+And an AF method is said to be in the SUMMA class if the SUMMA Inequality holds:
+
+$$
+G_k(x) - G_k(x^k)\geq g_{k+1}(x), \forall x\in \mathbb{S}.
+$$
+
+Proximal minimization algorithms using Bregman distances, called here `PMAB`,  minimize the function
+
+$$
+G_k(x) = f(x) + B(x, x^{k-1}),\forall x\in \mathbb{S}.
+$$
+
+The `forward-backward splitting (FBS)` methods is to minimize the function
+$$f_1(x) + f_2(x)$$
+ where both functions
+are convex and $f_2(x)$ is differentiable with its gradient L-Lipschitz continuous in the Euclidean norm.  The iterative step of the FBS algorithm is
+$$
+x^{k} = \operatorname{prox}_{\gamma f_1}(x^{k-1}-\gamma \nabla f_2(x^{k-1})).
+$$
+
+It is equivalent to minimize
+$$
+G_k(x) = f(x) + \frac{1}{2\gamma} {\|x-x^{k-1}\|}_2^2-B(x, x^{k-1}),
+$$
+
+where $B(x,x^{k-1})=f_1(x)-f_1(x^{k-1})-\left<\nabla f_1(x^{k-1}),x-x^{k-1}\right>,\, 0 < \gamma\leq \frac{1}{L}$.
+`Alternating Minimization (AM)` can be regarded as coordinate optimization methods with 2 blocks:
+
+> * $p^{n+1}=\arg\min_{p\in P} f(p,q^n)$,
+> * $q^{n+1}=\arg\min_{p\in Q} f(p^{n+1},q)$,
+
+where $f(p, q), p\in  P, q\in Q$ is the objective function. It is proved that the sequence $f(p^n, q^n)$ converge tothe minimizer  if the `Five-Point Property` hold:
+$$
+f(p, q) + f(p, q^{n-1}) \geq f(p, q^{n}) + f(p^n, q^{n-1}).
+$$
+
+For each p in the set P, define $q(p)$ in Q as a member of Q for which $f(p; q(p)) \leq f(p; q)$, for all $q \in P$. Let $\hat{f}(p) = f(p; q(p))$.
+At the nth step of AM we minimize
+$$G_n(p)=f(p; q(p))+[f(p; q^{n-1})-f(p; q(p))]$$
+to get $p^n$, where $g_n(p)=f(p; q^{n-1})-f(p; q(p))$ is the auxiliary function. So we can write that $G_n(p)= f(p;q(p))+g_n(p)$.
+
+See [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
+or [Alternating Minimization, Proximal Minimization and Optimization Transfer Are Equivalent](https://arxiv.org/abs/1512.03034) for more information on AF methods.
+
+Expectation-Maximization can be classified to AF method.
+
+> * $Q(\theta|\theta^{(t)})=\mathbb{E}(\ell(\theta|Y_{obs}, Z)|Y_{obs},\theta^{(t)})$;
+> * $\theta^{(t+1)}=\arg\min_{\theta} Q(\theta|\theta^{(t)})$.
+
+The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete data $(Y_{os}, Z)$ given $(Y_{obs}, \theta^{(t)})$.
+
++ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
++ [Alternating Minimization, Proximal Minimization and Optimization Transfer Are Equivalent](https://arxiv.org/abs/1512.03034)
++ [A unified treatment of some iterative algorithms in signal processing and image reconstruction](http://adsabs.harvard.edu/abs/2004InvPr..20..103B)
++ [Convergence Rate of Expectation-Maximization](http://opt-ml.org/papers/OPT2017_paper_42.pdf)
+
+*****
+
+[Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf) applied to Gaussian Process models (Kriging).
+
+
+
++ [Optimization using surrogate models](https://team.inria.fr/acumes/files/2015/05/cours_meta.pdf)
+* [Surrogate loss function](http://www.cs.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf)
+* [Divergences, surrogate loss functions and experimental design](https://people.eecs.berkeley.edu/~jordan/papers/NguWaiJor_nips05.pdf)
+* [Surrogate Regret Bounds for Proper Losses](http://mark.reid.name/bits/pubs/icml09.pdf)
+* [Bregman Divergences and Surrogates for Learning](https://www.computer.org/csdl/trans/tp/2009/11/ttp2009112048-abs.html)
+* [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
+* [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
+* https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
+* http://fa.bianp.net/blog/2014/surrogate-loss-functions-in-machine-learning/
 
 ## Gradient Free Optimization Methods
 
@@ -3125,6 +3005,149 @@ And these two functions are two different kinds of non-convex functions.
 [Optimization and Assumptions @ Freemind](http://freemind.pluskid.org/misc/optimization-and-assumptions/)|[Test functions for optimization](https://www.wikiwand.com/en/Test_functions_for_optimization)
 
 - [Book: Introduction to Derivative-Free Optimization](http://www.mat.uc.pt/~lnv/idfo/)
+
+### Relaxation and Convexification
+
+- https://www.di.ens.fr/~aspremon/PDF/Oxford14.pdf
+
+The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
+
+![block relaxation methods](https://bookdown.org/jandeleeuw6/bras/graphics/bookfig1.png)
+
+In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. We choose initial values for all blocks, and then minimize over one of the blocks, while keeping all other blocks fixed at their current values. We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. An iteration of the algorithm steps through all blocks in turn, each time keeping the non-active blocks fixed at current values, and each time replacing the active blocks by solving the minimization subproblems. If there are more than two blocks there are different ways to cycle through the blocks. If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
+
+In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
+
+**Augmentation Methods**
+
+[Augmentation and Decomposition Methods](https://bookdown.org/jandeleeuw6/bras/augmentation-and-decomposition-methods.html)
+Note: augmentation duality.
+$$ h(y)=\min_{x\in\mathcal{X}} g(x,y) $$
+then
+$$ \min_{x\in\mathcal{X}}f(x)=\min_{x\in\mathcal{X}}\min_{y\in\mathcal{Y}}g(x,y)=\min_{y\in\mathcal{Y}}\min_{x\in\mathcal{X}}g(x,y)=\min_{y\in\mathcal{Y}}h(y). $$
+
+**Alternating Conditional Expectations**
+
+[The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
+
+A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
+
+As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
+
+**Convex Relaxations**
+
+[Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
+Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
+integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
+
+**Quadratic Majorization**
+
+A quadratic  $g$  majorizes  $f$  at  $y$  on  $\mathbb{R}^n$  if  $g(y)=f(y)$  and  $g(x)\geq f(x)$  for all  $x$. If we write it in the form
+$$g(x)=f(y)+(x-y)'b+\frac12 (x-y)'A(x-y)$$
+
+<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
+
+#### Block Coordinate Descent
+
+The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
+For example, we want to minimize the following cost function
+$$
+f(x,y) = g(x) + h(y)
+$$
+
+with or without constraints.
+Specially, if the cost function is additionally separable, $f(x) = f_1(x_1) + f_2(x_2) + \cdots + f_n(x_n)$, we would like to minimize the sub-function or component function $f_i(x_i), i=1,2,\cdots, n$ rather than the cost function itself
+
+$$
+\min_{x} \sum_{i} f_i(x_i) \leq \sum_{i}\min_{x_i}{f_i(x_i)}.
+$$
+
+And ADMM or proximal gradient methods are to split the cost function to 2 blocks, of which one is differentiable and smooth while the other may not be differentiable. In another word, we can use them to solve some non-smooth optimization problem.
+However, what if there is no constraints application to the optimization problem?
+
+**Coordinate descent** is aimed to minimize the following cost function
+$$
+f(x) = g(x) +\sum_{i}^{n} h_i(x_i)
+$$
+
+where $g(x)$ is convex, differentiable and each $h_i(x)$ is convex.
+We can use coordinate descent to find a minimizer: start with some initial guess $x^0$, and repeat for $k = 1, 2, 3, \dots$:
+
+***
+
+> 1. $x_{1}^{k} \in\arg\min_{x_1}f(x_1, x_2^{k-1}, x_3^{k-1}, \dots, x_n^{k-1});$
+> 2. $x_{2}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2,x_3^{k-1},\dots, x_n^{k-1});$
+> 3. $x_{3}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3,\dots, x_n^{k-1});$
+> 4. $\vdots$
+> 5. $x_{n}^{k} \in\arg\min_{x_1}f(x_1^{\color{red}{k}}, x_2^{\color{red}{k}},x_3^{\color{red}{k}},\dots, x_n).$
+
+It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, \dots, x_n}$ are separable in some blocks.
+
+***
+- http://bicmr.pku.edu.cn/conference/opt-2014/index.html
+- https://calculus.subwiki.org/wiki/Additively_separable_function
+- https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf
+- http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
+- http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
+- [MS72: Recent Progress in Coordinate-wise Descent Methods](https://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=66077)
+
+#### Block Splitting Methods
+
+- [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)
+
+
+**Majorization**
+
++ http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
++ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
++ [Majorization Methods](https://bookdown.org/jandeleeuw6/bras/majorization-methods.html)
++ [Tangential Majorization](https://bookdown.org/jandeleeuw6/bras/tangential-majorization.html)
++ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
++ [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
++ [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
+
+***
+
++ https://pratikac.github.io/
++ [Block Relaxation Methods in Statistics by Jan de Leeuw](https://bookdown.org/jandeleeuw6/bras/)
++ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
++ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
++ [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
++ [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
++ [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
++ [Proofs, beliefs, and algorithms through the lens of sum-of-squares](https://www.sumofsquares.org/public/index.html)
++ [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
++ [Relaxation and Decomposition Methods for Mixed Integer Nonlinear Programming](https://www.springer.com/gp/book/9783764372385)
+
+*****
+
+![nonconvex](https://www.math.hu-berlin.de/~stefan/B19/nonconvex.gif)
+
+In order for primal-dual methods to be applicable to a constrained minimization problem, it is necessary that restrictive convexity conditions are satisfied.
+A nonconvex problem can be convexified and transformed into one which can be solved with the aid of primal-dual methods.
+
++ [Convexification and Global Optimization in Continuous and Mixed-Integer Nonlinear Programming: Theory, Algorithms, Software, and Applications](https://b-ok.cc/book/2099773/6478de)
++ [Convexification and Global Optimization of Nonlinear Programs](https://www-user.tu-chemnitz.de/~helmberg/workshop04/tawarmalani.pdf)
++ [Convexification Procedure and Decomposition Methods for Nonconvex Optimization Problem](http://59.80.44.100/web.mit.edu/dimitrib/www/Convexification_Mult.pdf)
++ [Conic Optimization Theory: Convexification Techniques and Numerical Algorithms](https://arxiv.org/abs/1709.08841)
++ [Convexification of polynomial optimization problems by means of monomial patterns](http://www.optimization-online.org/DB_FILE/2019/01/7034.pdf)
++ [On convexification/optimization of functionals including an $\ell^2$-misfit term](http://www.maths.lth.se/matematiklu/personal/mc/On%20convexification%20MP%20version%202.pdf)
++ [Lossless Convexification of Nonconvex Control Bound and Pointing Constraints of the Soft Landing Optimal Control Problem](http://larsblackmore.com/iee_tcst13.pdf)
++ [A General Class of Convexification Transformation for the Noninferior Frontier of a Multiobjective Program](http://file.scirp.org/Html/8-1040011_31681.htm)
++ [Implementation of a Convexification Technique for Signomial Functions](http://www.users.abo.fi/alundell/files/Escape19.pdf)
++ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
++ [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
+
+### Surrogate-based Optimization
+
+- [Surrogate-based methods for black-box optimization](https://www.lix.polytechnique.fr/~liberti/itor16.pdf)
+- https://rdrr.io/cran/suropt/
+- http://cdn.intechopen.com/pdfs/30305/InTech-Surrogate_based_optimization.pdf
+- https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20050186653.pdf
+- [Surrogate-Based Optimization](https://link.springer.com/chapter/10.1007/978-3-319-04367-8_3)
+- [Surrogate-based Optimization using Mutual Information for Computer Experiments (optim-MICE)](https://arxiv.org/abs/1909.04600)
+
+
 
 ### Graduated Optimization
 
