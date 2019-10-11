@@ -463,6 +463,15 @@ The BFGS quasi-newton approximation has the benefit of not requiring us to be ab
 
 [Another essential property is that only last $M$ function/gradient pairs are used, where M is moderate number smaller than problem size N, often as small as 3-10. It gives us very cheap iterations, which cost just O(N·M) operations.](http://www.alglib.net/optimization/lbfgsandcg.php)
 
+- [Optimizing Neural Networks with Kronecker-factored Approximate Curvature](https://arxiv.org/abs/1503.05671)
+
+#### Gauss–Newton Method
+
+- http://iacs-courses.seas.harvard.edu/courses/am205/fall14/slides/am205_lec06.pdf
+- https://ccrma.stanford.edu/~wherman/tulane/gauss_newton.pdf
+- http://ethaneade.com/optimization.pdf
+- https://www.math.lsu.edu/system/files/MunozGroup1%20-%20Presentation.pdf
+
 ***
 * [Wikipedia page on Newton Method](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
 * [Newton-Raphson Visualization (1D)](http://bl.ocks.org/dannyko/ffe9653768cb80dfc0da)
@@ -508,20 +517,26 @@ exponential families can be implemented as a first-order method through [**mirro
 
 ## Higher-Order Derivatives Methods
 
+[Higher-order methods, such as Newton, quasi-Newton and adaptive gradient descent methods, are extensively used in many scientific and engineering domains. At least in theory, these methods possess several nice features: they exploit local curvature information to mitigate the effects of ill-conditioning, they avoid or diminish the need for hyper-parameter tuning, and they have enough concurrency to take advantage of distributed computing environments. Researchers have even developed stochastic versions of  higher-order methods, that feature speed and scalability by incorporating curvature information in an economical and judicious manner. However, often higher-order methods are “undervalued.”](https://sites.google.com/site/optneurips19/)
+
 [The key observation, which underlies all results of this paper, is that an appropriately regularized Taylor approximation of convex function is a convex multivariate polynomial. This is indeed a very natural property since this regularized approximation usually belongs to the epigraph of convex function. Thus, the auxiliary optimization problem in the high-order (or tensor) methods becomes generally solvable by many powerful methods of Convex Optimization.](https://ideas.repec.org/p/cor/louvco/2018005.html)
 
 - [Higher-Order Derivatives in Computational Systems Engineering
 Problem Solving](http://www.autodiff.org/ad08/talks/ad08_marquardt.pdf)
+- [SECOND-ORDER OPTIMIZATION FOR NEURAL NETWORKS](http://www.cs.toronto.edu/~jmartens/docs/thesis_phd_martens.pdf)
 - [On the use of higher order derivatives in optimization using Lagrange's expansion](https://www.sciencedirect.com/science/article/abs/pii/0362546X8390024X)
 - [Sparsity in Higher Order Methods in Optimization*](https://cerfacs.fr/wp-content/uploads/2016/04/gundersen.pdf)
+- [HoORaYs: High-order Optimization of Rating Distance for Recommender Systems](https://dl.acm.org/citation.cfm?id=3098019)
 - https://akyrillidis.github.io/2019/08/05/WorkshopNeurIPS.html
 - ftp://file.viasm.org/Web/TienAnPham-16/Preprint_1669.pdf
-- [Implementable Tensor Methods in
-Unconstrained Convex Optimization](https://alfresco.uclouvain.be/alfresco/service/guest/streamDownload/workspace/SpacesStore/aabc2323-0bc1-40d4-9653-1c29971e7bd8/coredp2018_05web.pdf?guest=true)
+- [Implementable Tensor Methods in Unconstrained Convex Optimization](https://alfresco.uclouvain.be/alfresco/service/guest/streamDownload/workspace/SpacesStore/aabc2323-0bc1-40d4-9653-1c29971e7bd8/coredp2018_05web.pdf?guest=true)
 - [Reachability of optimal convergence rate estimates for high-order numerical convex optimization methods](https://journals.eco-vector.com/0869-5652/article/view/12813)
 - [The global rate of convergence for optimal tensor methods in smooth convex optimization](https://arxiv.org/abs/1809.00382)
 - [Optimization for Tensor Models](https://www.math.ucla.edu/sites/default/files/dls/posters/UCLA_Lecture_3_Final.compressed.pdf)
 - [Tensor Methods for Large, Sparse Unconstrained Optimization](https://www.semanticscholar.org/paper/Tensor-Methods-for-Large%2C-Sparse-Unconstrained-Bouaricha/88de96f75204e6d49849eaa69321b906b3675393)
+- [Beyond First Order Methods in ML](https://sites.google.com/site/optneurips19/)
+- [UNIFIED ACCELERATION OF HIGH-ORDER ALGORITHMS UNDER HOLDER CONTINUITY AND UNIFORM CONVEXITY](https://arxiv.org/pdf/1906.00582.pdf)
+- [Lower Bounds for Higher-Order Convex Optimization](https://pdfs.semanticscholar.org/d32d/682349b09b2d3767448cfd6fafd199ccf92a.pdf)
 
 ## Trust Region Methods
 
@@ -537,7 +552,7 @@ $$
 \min_{p\in\mathbb{R}^n} m_k(p)=f_k+ g_k^T p+\frac{1}{2}p^T B_k p, \, \, s.t. \|p\|\leq {\Delta}_k,
 $$
 where $f_k=f(x^k), g_k = \nabla f(x^k)$;$B_k$ is some symmetric matrix as an
-approximation to the Hessian $\nabla^2 f(x^k+tp)$; $\Delta_k>0$ is the trust-region radius.
+approximation to the Hessian $\nabla^2 f(x^k + tp)$; $\Delta_k>0$ is the trust-region radius.
 In most of our discussions, we define $\|\cdot\|$ to be the Euclidean norm.
 Thus, the trust-region approach requires us to solve a sequence of subproblems
 in which the objective function and constraint are both quadratic.
@@ -818,19 +833,34 @@ which is called as `Bregman proximal gradient` method.
 * [Proximal Algorithms, N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/prox_algs.html)
 * [For more (non exhaustive) informations regarding the proximity operator and the associated proximal algorithms](http://proximity-operator.net/bibliography.html)
 
-**Proximal and Projected Newton Methods**
+### Proximal and Projected Newton Methods
 
 A fundamental difference between gradient descent and Newton’s
 method was that the latter also iteratively minimized quadratic
 approximations, but these used the local Hessian of the function in
 question.
-Proximal Newton method can be also applied to such optimization problem:
+
+There are many such methods (`Ellipsoid method, AdaGrad`, ... ) with projection carried out in the $H_k$ metric to solve $\min_{x\in X}f(x)$:
+
+1. get subgradient $g^{k}\in\partial f(x^K)$
+2. update (diagonal) metric $H_k$
+3. update $x^{k+1}=\operatorname{Proj}_{X}^{H_K}{\|x^k - H_k^{-1}g^k\|}_2^2$
+
+where $\operatorname{Proj}_{X}^{H_K}(y)=\arg\min_{x\in X}{\|x-y\|}_{H_k}^2$ and ${\|x-y\|}_{H_K}^2=(x-y)^TH_k(x-y)$.
+
+- [PROJECTED NEWTON METHODS FOR OPTIMIZATION PROBLEMS WITH SIMPLE CONSTRAINTS*](http://www.mit.edu/~dimitrib/ProjectedNewton.pdf)
+- [Projected Newton Methods](http://www.mit.edu/~dimitrib/Gafni_Newton.pdf)
+- [Mirror Descent and Variable Metric Methods](http://web.stanford.edu/class/ee364b/lectures/mirror_descent_slides.pdf)
+
+
+`Proximal Newton method` can be also applied to such optimization problem:
 $$
 y^{k} = prox_{H_{k-1}}(x^{k-1}-H_{k-1}^{-1}\nabla g(x^{k-1}))\\
 x^{k} = x^{k-1}+t_{k}(y^{k}-x^{k-1}).
 $$
 
-- http://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/24-prox-newton.pdf
+- [Proximal and Projected Newton Methods, Ryan Tibshirani, Convex Optimization 10-725/36-725](http://www.stat.cmu.edu/~ryantibs/convexopt-S15/lectures/24-prox-newton.pdf)
+
 
 ### Douglas–Rachford method
 
@@ -1536,6 +1566,7 @@ They are really some block relaxation techniques.
 + http://idda.cuhk.edu.cn/zh-hans/page/10297
 + [Random monotone operators and application to Stochastic Optimization](https://pastel.archives-ouvertes.fr/tel-01960496/document)
 * [Splitting methods and ADMM, Thibaut Lienart](https://tlienart.github.io/pub/csml/cvxopt/split.html)
+* [Operator Splitting Performance Estimation: Tight contraction factors and optimal parameter selection](https://arxiv.org/pdf/1812.00146.pdf)
 * [Split Bregman](https://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html)
 * [Accelerated Bregman operator splitting with backtracking](https://www.aimsciences.org/article/doi/10.3934/ipi.2017048)
 * [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
@@ -1896,7 +1927,8 @@ Linear Convergence Rates of the ADMM](http://beneluxmeeting.eu/2015/uploads/pape
 
 [From linear to nonlinear iterative methods](http://www.dcs.bbk.ac.uk/~gmagoulas/APNUM.PDF)
 
-$$f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
+$$\min f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
+
 Given $A\in\mathbb{R}^{n\times n}$ such that 1 is not an eigenvalue of $A$ and $v\in\mathbb{R}^n$, the `minimal polynomial`
 of $A$ with respect to the vector $v$ is the lowest degree polynomial $p(x)$ such that $p(A)v = 0, p(1) = 1$.
 
@@ -2006,6 +2038,7 @@ optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSemina
 * [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
 * [Iterative Convex Optimization Algorithms; Part One: Using the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
 * [Recent Advances in Convex Optimization and Fixed Point Algorithms by Jean-Christophe Pesquet](https://www.i2m.univ-amu.fr/seminaires_signal_apprentissage/Slides/2015_04_28_Pesquet_course_main.pdf)
+* [Nemirovski’s acceleration](https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/)
 
 #### Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix
 
@@ -2507,17 +2540,28 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 
 #### Variance Reduction Stochastic Gradient Methods
 
+For general convex optimization, stochastic gradient descent methods can obtain an $O(1/\sqrt{T})$ convergence rate in expectation.
+
+Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very large, it will slow down the convergence.
+
++ [Stochastic Gradient Descent with Variance Reduction](http://ranger.uta.edu/~heng/CSE6389_15_slides/SGD2.pdf)
++ [Variance reduction for stochastic gradient methods](http://www.princeton.edu/~yc5/ele522_optimization/lectures/variance_reduction.pdf)
++ https://www.di.ens.fr/~fbach/fbach_tutorial_siopt_2017.pdf
++ [Variance-Reduced Stochastic Learning by Networked Agents under Random Reshuffling](https://arxiv.org/pdf/1708.01384.pdf)
++ [Variance Reduction in Stochastic Gradient Langevin Dynamics](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5508544/)
 + [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
 + http://ranger.uta.edu/~heng/CSE6389_15_slides/SGD2.pdf
 + [Variance reduction techniques for stochastic optimization](http://cbl.eng.cam.ac.uk/pub/Intranet/MLG/ReadingGroup/VarianceReductionTechniquesForStochasticOptimization.pdf)
-+ [Stochastic Variance-Reduced Optimization
-for Machine Learning Part I](https://www.di.ens.fr/~fbach/fbach_tutorial_siopt_2017.pdf)
-+ [Stochastic Variance-Reduced Optimization
-for Machine Learning Part II](https://www.di.ens.fr/~fbach/2017_SIOPT_NonX.pdf)
++ [Stochastic Variance-Reduced Optimization for Machine Learning Part I](https://www.di.ens.fr/~fbach/fbach_tutorial_siopt_2017.pdf)
++ [Fast Variance Reduction Method with Stochastic Batch Size](https://arxiv.org/abs/1808.02169)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
 + https://github.com/tdozat/Optimization
 + https://zhuanlan.zhihu.com/p/25473305
++ http://ranger.uta.edu/~heng/CSE6389_15_slides/
++ https://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/
++ https://json0071.gitbooks.io/svm/content/sag.html
++ http://www.cs.toronto.edu/~jmartens/research.html
 
 ### Stochastic Optimization
 
@@ -2566,6 +2610,8 @@ Large scale supervised machine learning methods, which are based on gradient to 
 <img src="http://www.math.ucla.edu/~wotaoyin/papers/images/walkman_randomwalk.png" width = "50%" />
 
 ### Parallelizing Stochastic Gradient Descent
+
+- [Parallel and Distributed Stochastic Learning -Towards Scalable Learning for Big Data Intelligence](https://cs.nju.edu.cn/lwj/slides/PDSL.pdf)
 
 #### Elastic Stochastic Gradient Descent
 
@@ -3090,7 +3136,9 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 - http://bicmr.pku.edu.cn/~wenzw/opt2015/multiconvex_BCD.pdf
 - http://pages.cs.wisc.edu/~swright/LPS/sjw-abcr-v3.pdf
 - [MS72: Recent Progress in Coordinate-wise Descent Methods](https://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=66077)
-
+* [On Nesterov’s Random Coordinate Descent Algorithms](http://ranger.uta.edu/~heng/CSE6389_15_slides/nesterov10efficiency.pdf)
+* [On Nesterov’s Random Coordinate Descent Algorithms - Continued](http://ranger.uta.edu/~heng/CSE6389_15_slides/nesterov10efficiency2.pdf)
+* [Fast Coordinate Descent Methods with Variable Selection for NMF](http://ranger.uta.edu/~heng/CSE6389_15_slides/Fast%20Coordinate%20Descent%20Methods%20with%20Variable%20Selection%20for.pdf)
 #### Block Splitting Methods
 
 - [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)

@@ -632,15 +632,28 @@ See more information on backpropagation in the following list
 
 ##### Beyond Back-propagation
 
+Training deep learning models does not require gradients such as `ADMM, simulated annealing`.
+
+- [Main Principles of the General Theory of Neural Network with Internal Feedback](http://worldcomp-proceedings.com/proc/p2015/ICA6229.pdf)
+- https://arxiv.org/pdf/1907.05200.pdf
+- [Layer-wise Relevance Propagation for Deep Neural Network Architectures](http://iphome.hhi.de/samek/pdf/BinICISA16.pdf)
+- https://github.com/gentaman/LRP
+- [Tutorial: Implementing Layer-Wise Relevance Propagation](http://www.heatmapping.org/tutorial/)
 - [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
-- [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
+- https://neuronaldynamics.epfl.ch/book.html
+- [Deep Learning as a Mixed Convex-Combinatorial Optimization Problem](https://arxiv.org/abs/1710.11573)
+- [Bidirectional Backpropagation](http://sipi.usc.edu/~kosko/B-BP-SMC-Revised-13January2018.pdf)
+- [Difference Target Propagation](https://arxiv.org/abs/1412.7525)
+- [Gradient target propagation](https://arxiv.org/abs/1810.09284)
 - [Beyond Backprop: Online Alternating Minimization with Auxiliary Variables](https://www.ibm.com/blogs/research/2019/06/beyond-backprop/)
 - [Beyond Backpropagation: Uncertainty Propagation](http://videolectures.net/iclr2016_lawrence_beyond_backpropagation/)
 - [Beyond Feedforward Models Trained by Backpropagation: a Practical Training Tool for a More Efficient Universal Approximator](https://www.memphis.edu/clion/pdf-papers/0710.4182.pdf)
 - [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
+- [Awesome Capsule Networks](https://github.com/sekwiatkowski/awesome-capsule-networks)
 - [Capsule Networks Explained](https://kndrck.co/posts/capsule_networks_explained/)
+- [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829)
 - http://people.missouristate.edu/RandallSexton/sabp.pdf
-
+- [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
 #### Fundamental Problem of Deep Learning and Activation Functions
 
 `Gradients vanishing` is the fundamental problem of deep neural networks according to [Juergen](http://people.idsia.ch/~juergen/).
@@ -1445,7 +1458,7 @@ $$\frac{\partial C}{\partial M}$$
 - https://grzegorzgwardys.wordpress.com/2016/04/22/8/
 - https://lanstonchu.wordpress.com/category/deep-learning/
 
-### Visualization or Interpretation of CNN
+### Visualization /Interpretation of CNN
 
 [It has shown](https://openreview.net/pdf?id=Bygh9j09KX) that
 > ImageNet trained CNNs are strongly biased towards recognising `textures` rather than `shapes`,
@@ -1454,6 +1467,11 @@ which is in stark contrast to human behavioural evidence and reveals fundamental
 * [Deep Visualization](http://yosinski.com/deepvis)
 * [Interpretable Representation Learning for Visual Intelligence](http://bzhou.ie.cuhk.edu.hk/publication/thesis.pdf)
 * [IMAGENET-TRAINED CNNS ARE BIASED TOWARDS TEXTURE; INCREASING SHAPE BIAS IMPROVES ACCURACY AND ROBUSTNESS](https://openreview.net/pdf?id=Bygh9j09KX)
+* [2017 Workshop on Visualization for Deep Learning](https://icmlviz.github.io/)
+* [Understanding Neural Networks Through Deep Visualization](http://yosinski.com/deepvis)
+* [vadl2017: Visual Analysis of Deep Learning](https://vadl2017.github.io/)
+* [Multifaceted feature visualization: Uncovering the different types of features learned by each neuron in deep neural networks](http://www.evolvingai.org/mfv)
+* [Interactive Visualizations for Deep Learning](http://predictive-workshop.github.io/papers/vpa2014_1.pdf)
 * https://www.zybuluo.com/lutingting/note/459569
 * https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf
 * [卷积网络的可视化与可解释性（资料整理） - 陈博的文章 - 知乎](https://zhuanlan.zhihu.com/p/36474488)
@@ -2172,7 +2190,9 @@ The deep learning method is more engineer. The computational evolutionary adapti
 * [Deep Learning and the Demand for Interpretability](http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/)
 * https://beenkim.github.io/
 * [Integrated and detailed image understanding](https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html)
-* http://networkinterpretability.org/
+* [Layer-wise Relevance Propagation (LRP)](http://www.heatmapping.org/)
+* [ICCV 2019 Tutorial on Interpretable Machine Learning for Computer Vision](http://networkinterpretability.org/)
+* [6.883 Science of Deep Learning: Bridging Theory and Practice -- Spring 2018](https://people.csail.mit.edu/madry/6.883/)
 * https://interpretablevision.github.io/
 ****
 * [Open Source Deep Learning Curriculum, 2016](https://www.deeplearningweekly.com/blog/open-source-deep-learning-curriculum/)
@@ -2256,6 +2276,7 @@ The history of deep learning begins with its performance in image recognition an
 
 Even deep learning is young and cut-edge, some pioneers contribute to its development.
 
+* [The Deep Learning for Science Workshop](https://dlonsc.github.io/)
 * [The Functions of Deep Learning](https://sinews.siam.org/Details-Page/the-functions-of-deep-learning)
 * [Internet-Scale Deep Learning for Bing Image Search](https://blogs.bing.com/search-quality-insights/May-2018/Internet-Scale-Deep-Learning-for-Bing-Image-Search)
 * [What can deep learning do for you?](https://machinethink.net/)
@@ -2266,6 +2287,7 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 * https://xbpeng.github.io/
 * https://delug.github.io/
 * https://github.com/Honlan/DeepInterests
+* [Deep Learning for Physical Sciences](https://dl4physicalsciences.github.io/)
 
 ### Computer Vision
 
@@ -2299,7 +2321,7 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 
 ### Finance
 
-- https://rohitghosh.github.io/deep_learning_in_finance/
+- [Deep Learning In Finance](https://rohitghosh.github.io/deep_learning_in_finance/)
 - https://iknowfirst.com/
 - https://algorithmxlab.com/
 - https://github.com/firmai/financial-machine-learning
