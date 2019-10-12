@@ -54,6 +54,8 @@ _____
 + https://scikit-tda.org/
 + https://people.maths.ox.ac.uk/tillmann/TDA2019.html
 + http://dauns.math.tulane.edu/~mathweb/clifford2012/
++ https://www.researchgate.net/profile/Genki_Kusano
++ https://www.researchgate.net/profile/Yasuaki_Hiraoka
 
 ## Why TDA?
 
@@ -71,7 +73,7 @@ As shown above, the shape matters. And the distribution can not tell us all the 
 Specially in high dimensional space, it is not easy to depict the shape of data sets in the term of probability distribution function and it is almost impossible to visualize or graph them without dimension reduction.
 ` Capturing all kinds of shape requires different method algebraically.`
 
-Shape of Data: 
+Shape of Data:
 * Normally defined in terms of a distance metric.
 * Euclidean distance, Hamming, correlation distance, etc.
 * Encodes similarity.
@@ -389,6 +391,7 @@ visualization.
 + [Two Applications of Topological Methods for Neuronal Morphology Analysis](http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/YusuWang.pdf)
 + [Utilizing Topological Data Analysis to Detect Periodicity](http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/ElizabethMunch.pdf)
 + [Topological Problems in Molecular Biology, American Mathematical Society Central Section](http://homepage.divms.uiowa.edu/~idarcy/2011workshop.html)
++ [A survey of Topological Data Analysis Methods for Big Data in Healthcare Intelligence](https://www.ripublication.com/ijaer19/ijaerv14n2_34.pdf)
 
 ## Computational Topology
 

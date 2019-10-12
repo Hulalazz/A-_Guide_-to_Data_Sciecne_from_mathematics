@@ -594,7 +594,7 @@ $$
 \theta^{(t+1)}=\arg\max_{\theta} Q(\theta|\theta^{(t)}).
 $$
 
-* https://www.wikiwand.com/en/Expectation%E2%80%93maximization_algorithm
+* [BIOS731: Advanced Statistical Computing](http://www.haowulab.org/teaching/statcomp/statcomp.html)
 * http://cs229.stanford.edu/notes/cs229-notes8.pdf
 * [EM算法存在的意义是什么？ - 史博的回答 - 知乎](https://www.zhihu.com/question/40797593/answer/275171156)
 
@@ -625,10 +625,11 @@ See more on the book [The EM Algorithm and Extensions, 2nd Edition by Geoffrey M
 <img title="projection " src="https://pic4.zhimg.com/80/v2-468b515b4d26ebc4765f82bf3ed1c3bf_hd.jpg" width="50%" />
 
 * [The MM Algorithm by Kenneth Lange](https://www.stat.berkeley.edu/~aldous/Colloq/lange-talk.pdf)
-
-
+* [MM Optimization Algorithms](https://epubs.siam.org/doi/book/10.1137/1.9781611974409)
+* [Examples of MM Algorithms](http://hua-zhou.github.io/teaching/biostatm280-2018spring/slides/20-mm/deLeeuw.pdf)
+* [Majorization-Minimization Algorithms in Signal Processing, Communications, and Machine Learning](https://palomar.home.ece.ust.hk/papers/2017/SunBabuPalomar-TSP2017%20-%20MM.pdf)
 + [AN ASSEMBLY AND DECOMPOSITION APPROACH FOR CONSTRUCTING SEPARABLE MINORIZING FUNCTIONS IN A CLASS OF MM ALGORITHMS](https://www.semanticscholar.org/paper/AN-ASSEMBLY-AND-DECOMPOSITION-APPROACH-FOR-IN-A-OF-Tian-Huang/fdffff8c1bf5cdd258f287136e0bbcd8ab0b7529)
-
++ [Generalized Majorization-Minimization](http://proceedings.mlr.press/v97/parizi19a/parizi19a.pdf)
 
 ## Projected Gradient Method and More
 
@@ -1616,7 +1617,9 @@ Then consider the following algorithm.
 
 So that finally we obtain an sequence $\{x^0, x^1, \cdots, x^{n},\cdots\}$. There are many methods to test whether this sequence is convergent or not as learnt in calculus.
 
->  The order of convergence is defined as the constant $p$ such that $\lim_{n\to \infty}\frac{\| x^{n+1}-x^{\ast}\|}{\| x^{n}-x^{\ast}\|^p}=C$ if $\lim_{n\to\infty}x^{n}=x^{\ast}$.
+To introduce the acceleration schemes, we define some order of convergence.
+
+>  The order of convergence is defined as the constant $p$ such that $\lim_{n\to \infty}\frac{\| x^{n+1}-x^{\ast}\|}{\| x^{n}-x^{\ast}\|^p}=C$ if $\lim_{n\to\infty}x^{n}=x^{\ast}$, denoted as $O(\frac{1}{n^p})$.
 
 name| the order of convergence
 ---|----
@@ -1891,6 +1894,7 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * https://damienscieur.com/sections/paper.html
 * [Generalized Framework for Nonlinear Acceleration](https://arxiv.org/abs/1903.08764v1)
 * [Nonlinear Acceleration of Stochastic Algorithms](https://papers.nips.cc/paper/6987-nonlinear-acceleration-of-stochastic-algorithms.pdf)
+* [Nonlinear Acceleration of Constrained Optimization Algorithms](https://ieeexplore.ieee.org/document/8682962)
 
 **Relaxation and inertia**
 
@@ -1918,10 +1922,10 @@ $x^{k+2}=x^{k+1}+\nu^{k+1}\left(x^{k+1}-x^{k}\right)$|  $x^{k+2}=T(x^{k+1}+\gamm
 * [FIRE: Fast Inertial Relaxation Engine for Optimization on All Scales](http://users.jyu.fi/~pekkosk/resources/pdf/FIRE.pdf)
 * [Structural Relaxation Made Simple](https://www.math.uni-bielefeld.de/~gaehler/papers/fire.pdf)
 * [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
-* [Online Relaxation Method for Improving
-Linear Convergence Rates of the ADMM](http://beneluxmeeting.eu/2015/uploads/papers/bmsc15_final_478.pdf)
+* [Online Relaxation Method for Improving Linear Convergence Rates of the ADMM](http://beneluxmeeting.eu/2015/uploads/papers/bmsc15_final_478.pdf)
 - http://www.iutzeler.org/
 - https://www.math.uni-bielefeld.de/~gaehler/
+- https://www.researchgate.net/profile/Damien_Scieur
 
 ### Approximate Minimal Polynomial Extrapolation
 
@@ -2272,13 +2276,16 @@ if possible where $x^{\star}$ optimizes the cost/objective function $f(x)$ speci
 - [Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha \leq 3$](https://arxiv.org/abs/1706.05671)
 - [A dynamic approach to a proximal-Newton method for monotone inclusions in Hilbert spaces, with complexity $O(\frac{1}{n^2})$](http://mtm.ufsc.br/~maicon/pdf/alv.att.sva-new.jca16.pdf)
 - [FAST CONVERGENCE OF INERTIAL DYNAMICS AND ALGORITHMS WITH ASYMPTOTIC VANISHING DAMPING](http://www.optimization-online.org/DB_FILE/2015/10/5179.pdf)
+
+<img src="http://awibisono.github.io/images/sqcomp.png" width="80%" />
+
 ***
 It is difficult to generalize these methods to stochastic cases.
 
 There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
 
 <img title = "jordan in ICM 2018" src = "http://www.icm2018.org/wp/wp-content/uploads/2018/08/43228449834_f63f8dc154_k-1280x640.jpg" width = 80% />
-<img src="http://awibisono.github.io/images/sqcomp.png" width="80%" />
+
 
 Some new connections between dynamical systems and optimization is found.
 
@@ -2355,8 +2362,19 @@ $$
 Assume that we have a function ${\textstyle M(\theta )}:\mathbb{R}\mapsto\mathbb{R}$, and a constant ${\textstyle \alpha \in\mathbb R}$, such that the equation ${\textstyle M(\theta )=\alpha }$ has a unique root at ${\textstyle \theta ^{\ast}}$.
 
 It is assumed that while we cannot directly observe the function ${\textstyle M(\theta )}$, we can instead obtain measurements of the random variable ${\textstyle N(\theta )}$ where ${\textstyle \mathbb{E} [N(\theta )]=M(\theta )}$. The structure of the algorithm is to then generate iterates of the form:
-$${\displaystyle {\theta}_{n+1}= {\theta}_{n} - a_{n}(N({\theta}_{n})-\alpha )}$$
-where $a_{1},a_{2},\dots$  is a sequence of positive step sizes. `Robbins and Monro` proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
+$${\displaystyle {\theta}_{n+1}= {\theta}_{n} - a_{n}(N({\theta}_{n})-\alpha )}\tag{R-M}$$
+where $a_{1},a_{2},\dots$  is a sequence of positive step sizes.
+
+This process can be considered as `fixed point iteration with random noise`.
+Different from the determinant methods, the sequences they generated are also on random.
+____
+
+- [Lecture Notes: Weak convergence of stochastic processes, Thomas Mikosch1
+(2005)](http://web.math.ku.dk/~erhansen/web/stat1/mikosch1.pdf)
+- [Convergence of Stochastic Processes](http://repository.upenn.edu/cgi/viewcontent.cgi?article=1487&context=cis_reports)
+
+
+`Robbins and Monro` proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
 
 ${\textstyle N(\theta )}$ is uniformly bounded,
 ${\textstyle M(\theta )}$ is nondecreasing,
@@ -2370,7 +2388,7 @@ can be readily modified to provide successive approximations for the minimum
 (or maximum) of a unimodal regression function, as was shown by `Kiefer and
 Wolfowitz (1952)` who introduced a recursive scheme of the form
 
-$$\theta_{n+1}= {\theta}_{n} - a_{n}\Delta(x_{n})\tag{KW}$$
+$$\theta_{n+1}= {\theta}_{n} - a_{n}\Delta(x_{n})\tag{K-W}$$
 
 to find the minimum $\theta$ of $M$ (or, equivalently, the solution of $dM/dx = 0$).
 
@@ -2386,6 +2404,7 @@ During the nth stage of the Kiefer–Wolfowitz scheme, observations $y_n^{(1)}$ 
 - [Stochastic approximation: invited paper](https://projecteuclid.org/download/pdf_1/euclid.aos/1051027873)
 - [Stochastic Approximation and Recursive Algorithms and Applications](https://link.springer.com/book/10.1007/b97441)
 - [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
+- [Regularized iterative stochastic approximation methods for stochastic variational inequality problems](https://ieeexplore.ieee.org/document/6286992/)
 
 ### Stochastic Gradient Descent
 
@@ -2526,6 +2545,8 @@ Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.0
 
 - [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
 - [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
+- [Katyusha: The First Direct Acceleration of Stochastic Gradient Methods](http://jmlr.csail.mit.edu/papers/volume18/16-410/16-410.pdf)
+- [Acceleration of SVRG and Katyusha X by Inexact Preconditioning](http://www.optimization-online.org/DB_HTML/2019/05/7225.html)
 - http://ruder.io/deep-learning-optimization-2017/
 
 |The Differences of Stochastic Gradient Descent and its Variants|
@@ -2549,6 +2570,9 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 + https://www.di.ens.fr/~fbach/fbach_tutorial_siopt_2017.pdf
 + [Variance-Reduced Stochastic Learning by Networked Agents under Random Reshuffling](https://arxiv.org/pdf/1708.01384.pdf)
 + [Variance Reduction in Stochastic Gradient Langevin Dynamics](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5508544/)
++ https://zhizeli.github.io/
++ http://bigml.cs.tsinghua.edu.cn/~jianfei/
++ https://richtarik.org/i_papers.html
 + [VR-SGD](https://arxiv.org/pdf/1802.09932.pdf)
 + http://ranger.uta.edu/~heng/CSE6389_15_slides/SGD2.pdf
 + [Variance reduction techniques for stochastic optimization](http://cbl.eng.cam.ac.uk/pub/Intranet/MLG/ReadingGroup/VarianceReductionTechniquesForStochasticOptimization.pdf)
@@ -2562,6 +2586,16 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 + https://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/
 + https://json0071.gitbooks.io/svm/content/sag.html
 + http://www.cs.toronto.edu/~jmartens/research.html
+
+#### Stochastic Proximal Point Methods
+
+- [Stochastic (Approximate) Proximal Point Methods: Convergence, Optimality, and Adaptivity](https://arxiv.org/abs/1810.05633)
+- [Nonasymptotic convergence of stochastic proximal point methods for constrained convex optimization](http://jmlr.csail.mit.edu/papers/volume18/17-347/17-347.pdf)
+- [A Stochastic Proximal Point Algorithm for Saddle-Point Problems](https://deepai.org/publication/a-stochastic-proximal-point-algorithm-for-saddle-point-problems)
+- [Stochastic Proximal Gradient Algorithm and it’s application to sum of least squares](http://www-personal.umich.edu/~aniketde/processed_md/Stats607_Aniketde.pdf)
+- https://emtiyaz.github.io/papers/uai2016.pdf
+- https://mwang.princeton.edu/
+- https://ajwagen.github.io/adsi_learning_and_control/
 
 ### Stochastic Optimization
 
