@@ -1972,6 +1972,15 @@ the advantages of historical gradients that mitigate the greediness of the steep
 
 - https://arxiv.org/abs/1510.02558
 
+#### NGBoost
+
+[Estimating the uncertainty in the predictions of a machine learning model is crucial for production deployments in the real world. Not only do we want our models to make accurate predictions, but we also want a correct estimate of uncertainty along with each prediction. When model predictions are part of an automated decision-making workflow or production line, predictive uncertainty estimates are important for determining manual fallback alternatives or for human inspection and intervenion.
+Probabilistic prediction (or probabilistic forecasting), which is the approach where the model outputs a full probability distribution over the entire outcome space, is a natural way to quantify those uncertainties.](https://stanfordmlgroup.github.io/projects/ngboost/)
+
+- [NGBoost: Natural Gradient Boosting for Probabilistic Prediction.](https://stanfordmlgroup.github.io/projects/ngboost/)
+- [NGBoost: Natural Gradient Boosting for Probabilistic Prediction](https://arxiv.org/abs/1910.03225)
+- https://arxiv.org/abs/1802.05640
+
 #### Translation Optimization Methods to Boost Algorithm
 
 The  following steps are the keys to a constructed a decision tree in gardient boost methods:
