@@ -501,6 +501,11 @@ The basic steps that the software will perform (note that the following steps ar
 
 ### Natural Gradient Descent
 
+The generalized natural gradient is the direction of steepest ascent in Riemannian space, which is invariant to parametrization, and is defined:
+$$\nabla S\propto\lim_{\epsilon\to 0} \arg\max_{d:B(P_{\theta}, P_{\theta+d})=\epsilon} S(\theta+d, y)$$
+
+where $B(P_{\theta}, P_{\theta+d})$ is the Bregman divergence of the probabilities $P_{\theta}, P_{\theta + d}$ and $S$ is a loss function on the probability $P_{\theta + d}$ and $y$ such as log-likelihood function.
+
 Natural gradient descent is to solve the optimization problem $\min_{\theta} L(\theta)$ by
 $$
 \theta^{(t+1)}=\theta^{(t+1)}-\alpha_{(t)}F^{-1}(\theta^{(t)})\nabla_{\theta}L(\theta^{(t)})
@@ -519,6 +524,7 @@ exponential families can be implemented as a first-order method through [**mirro
 
 * [Natural gradient descent and mirror descent](http://www.dianacai.com/blog/2018/02/16/natural-gradients-mirror-descent/)
 * [Online Natural Gradient as a Kalman Filter](http://www.yann-ollivier.org/rech/publs/natkal.pdf)
+* [New insights and perspectives on the natural gradient method](https://arxiv.org/pdf/1412.1193.pdf)
 * https://www.zhihu.com/question/266846405
 * [2016 PKU Mini-Course: Information Geometry](http://bicmr.pku.edu.cn/~dongbin/Conferences/Mini-Course-IG/index.html)
 * [Information Geometry and Natural Gradients](http://ipvs.informatik.uni-stuttgart.de/mlr/wp-content/uploads/2015/01/mathematics_for_intelligent_systems_lecture12_notes_I.pdf)
@@ -2363,6 +2369,7 @@ $$
 * [System dynamics & optimization](https://www.b-tu.de/en/fg-ingenieurmathematik-optimierung/forschung/projects/system-dynamics-optimization)
 * [Introduction to Dynamical Systems by John K. Hunter, Department of Mathematics, University of California at Davis](https://www.math.ucdavis.edu/~hunter/m207/m207.pdf)
 + [Special Focus on Bridging Continuous and Discrete Optimization](http://dimacs.rutgers.edu/programs/sf/sf-optimization/)
++ [Part 2 Dynamical Systems](http://www.staff.city.ac.uk/g.bowtell/X2DynSyst07/)
 
 [GRADIENTS AND FLOWS: CONTINUOUS OPTIMIZATION APPROACHES TO THE MAXIMUM FLOW PROBLEM](https://eta.impa.br/dl/028.pdf)
 
