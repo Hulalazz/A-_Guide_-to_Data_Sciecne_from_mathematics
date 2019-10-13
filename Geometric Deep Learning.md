@@ -2,7 +2,10 @@
 
 <img src="https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg" width="50%" />
 
+* https://olki.loria.fr/
 * https://qdata.github.io/deep2Read/
+* https://www.ee.iitb.ac.in/~eestudentrg/
+* [2019 Graph Signal Processing Workshop](http://www.gspworkshop.org/)
 * [Geometric Deep Learning @qdata](https://qdata.github.io/deep2Read//2graphs/2architecture/2019/02/22/gnn-Geom/)
 * https://qdata.github.io/deep2Read//aReadingsIndexByCategory/#2Graphs
 * [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
@@ -245,17 +248,24 @@ Like other neural network, GCN is also composite of linear and nonlinear mapping
 <img src = "http://tkipf.github.io/graph-convolutional-networks/images/gcn_web.png" width=50% />
 <img src = "https://research.preferred.jp/wp-content/uploads/2017/12/cnn-gcnn.png" width=50% />
 
+* [GRAPH CONVOLUTIONAL NETWORKS THOMAS KIPF, 30 SEPTEMBER 2016](https://tkipf.github.io/graph-convolutional-networks/)
+
+[That seems simple enough, but many graphs, like social network graphs with billions of nodes (where each member is a node and each connection to another member is an edge), are simply too large to be computed. Size is one problem that graphs present as a data structure. In other words, you can’t efficiently store a large social network in a tensor. They don’t compute.](https://skymind.ai/wiki/graph-analysis)
+
+Neural nets do well on vectors and tensors; data types like images (which have structure embedded in them via pixel proximity – they have fixed size and spatiality); and sequences such as text and time series (which display structure in one direction, forward in time).
+
+Graphs have an arbitrary structure: they are collections of things without a location in space, or with an arbitrary location. They have no proper beginning and no end, and two nodes connected to each other are not necessarily “close”.
 
 $\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
 
 GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
 
+* [A Beginner's Guide to Graph Analytics and Deep Learning](hhttps://skymind.ai/wiki/graph-analysis)
 * [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
-* [GRAPH CONVOLUTIONAL NETWORKS THOMAS KIPF, 30 SEPTEMBER 2016](https://tkipf.github.io/graph-convolutional-networks/)
 * https://benevolent.ai/publications
-* [GCN @primo](http://primo.ai/index.php?title=Graph_Convolutional_Network_(GCN),_Graph_Neural_Networks_(Graph_Nets),_Geometric_Deep_Learning)
 * https://missinglink.ai/guides/convolutional-neural-networks/graph-convolutional-networks/
 * [Lecture 11: Learning on Non-Euclidean Domains: Prof. Alex Bronstein](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
+* [FastGCN: Fast Learning with Graph Convolutional Networks via Importance Sampling](https://arxiv.org/abs/1801.10247)
 
 ### Spectral ConvNets
 
@@ -368,7 +378,7 @@ Parametrize the smooth spectral filter function
 
 - [SplineNets: Continuous Neural Decision Graphs](https://arxiv.org/abs/1810.13118)
 - [Spatial CNN](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
-- [](https://blog.acolyer.org/2019/02/06/a-comprehensive-survey-on-graph-neural-networks/)
+- [a-comprehensive-survey-on-graph-neural-networks](https://blog.acolyer.org/2019/02/06/a-comprehensive-survey-on-graph-neural-networks/)
 
 #### Spectral graph ConvNets with polynomial filters
 
@@ -511,6 +521,13 @@ $$
 #### Generative Models for Graphs
 
 * [Generative Models for Graphs by David White & Richard Wilson](http://david-white.net/generative.html)
+* [Generative Graph Convolutional Network for Growing Graphs](https://arxiv.org/abs/1903.02640)
+
+#### Bayesian GCN
+
+- [BAYESIAN GRAPH CONVOLUTIONAL NEURAL NETWORKS USING NON-PARAMETRIC GRAPH LEARNING](https://rlgm.github.io/papers/64.pdf)
+- https://rlgm.github.io/
+- https://www.octavian.ai/
 
 ### Application
 
@@ -541,7 +558,7 @@ their neighbors using neural networks.
 - [AlphaFold: Using AI for scientific discovery](https://deepmind.com/blog/alphafold/)
 - [A graph-convolutional neural network model for the prediction of chemical reactivity](https://pubs.rsc.org/en/content/articlepdf/2019/sc/c8sc04228d)
 - [Convolutional Networks on Graphs for Learning Molecular Fingerprints](http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints)
-
+- [A graph-convolutional neural network model for the prediction of chemical reactivity](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc04228d#!divAbstract)
 
 **GCN for NLP**
 
