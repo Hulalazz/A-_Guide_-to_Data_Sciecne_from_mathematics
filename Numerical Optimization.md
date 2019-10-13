@@ -467,10 +467,29 @@ The BFGS quasi-newton approximation has the benefit of not requiring us to be ab
 
 #### Gauss–Newton Method
 
+A form of regression where the objective function is the sum of squares of nonlinear functions:
+$$f(x)=\frac{1}{2}\sum_{j=1}^{m}(r_j(x))^2=\frac{1}{2}\sum_{j=1}^{m}{\|r(x)\|}^2$$
+where The j-th component of the m-vector $r(x)$ is the residual $r_j(x)=(\phi(x_j;t_j)-y_j)^2$.
+
+The Gauss-Newton Method generalizes Newton’s method for multiple dimensions with approximate Hessian matrix $\nabla^2 f_k \approx J_k^T J_k$.
+
+The basic steps that the software will perform (note that the following steps are for a single iteration):
+
++ Make an initial guess $x^0$ for $x$,
++ Make a guess for $k = 1$,
++ Create a vector $f^k$ with elements $f_i(x^k)$,
++ Create a Jacobian matrix for $J_k$
++ Solve ($J^T_k J_k p_k = -J^T_k f_k$). + This gives you the probabilities $p$ for all $k$.
++ Find $s$. $F(x^k + s p_k)$ should satisfy the `Wolfe conditions` (these prove that step-lengths exist).
++ Set $x^{k+1} = x^k + sp^k$.
++ Repeat Steps 1 to 7 until convergence.
+
+- https://www8.cs.umu.se/kurser/5DA001/
 - http://iacs-courses.seas.harvard.edu/courses/am205/fall14/slides/am205_lec06.pdf
-- https://ccrma.stanford.edu/~wherman/tulane/gauss_newton.pdf
-- http://ethaneade.com/optimization.pdf
-- https://www.math.lsu.edu/system/files/MunozGroup1%20-%20Presentation.pdf
+- [Applications of the Gauss-Newton Method](https://ccrma.stanford.edu/~wherman/tulane/gauss_newton.pdf)
+- [Gauss-Newton / Levenberg-Marquardt Optimization](http://ethaneade.com/optimization.pdf)
+- [Nonlinear Least-Squares Problems with the Gauss-Newton and Levenberg-Marquardt Methods](https://www.math.lsu.edu/system/files/MunozGroup1%20-%20Presentation.pdf)
+- [Gauss-Newton algorithm for nonlinear models](http://fourier.eng.hmc.edu/e176/lectures/NM/node36.html)
 
 ***
 * [Wikipedia page on Newton Method](https://www.wikiwand.com/en/Newton%27s_method_in_optimization)
