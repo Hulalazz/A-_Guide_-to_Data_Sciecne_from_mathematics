@@ -404,6 +404,8 @@ And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logisti
 - [Nonconvex Optimization Meets Low-Rank Matrix Factorization: An Overview](http://www.princeton.edu/~yc5/publications/NcxOverview_Arxiv.pdf)
 - [Taming Nonconvexity in Information Science, tutorial at ITW 2018.](https://www.princeton.edu/~yc5/slides/itw2018_tutorial.pdf)
 - [Nonnegative Matrix Factorization by Optimization on the Stiefel Manifold with SVD Initialization](https://user.eng.umd.edu/~smiran/Allerton16.pdf)
+- [Matrix and Tensor Completion Algorithms](http://swoh.web.engr.illinois.edu/software/optspace_v1/papers.html)
+- [Parallel matrix factorization for low-rank tensor completion](https://www.math.ucla.edu/~wotaoyin/papers/tmac_tensor_recovery.html)
 
 ----
 
@@ -987,6 +989,63 @@ where the notations are listed as follows:
 - [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
 
 
+## Tree-based Index and Deep Model for Recommender Systems
+
+[By indexing items in a tree hierarchy and training a user-node preference prediction model satisfying a max-heap like property in the tree, TDM provides logarithmic computational complexity w.r.t. the corpus size, enabling the use of arbitrary advanced models in candidate retrieval and recommendation.](https://arxiv.org/abs/1801.02294)
+
+Our purpose, in this paper, is to develop a method to jointly learn the `index structure and user preference prediction model`. 
+
+
+Recommendation problem is basically `to retrieve a set of most relevant or preferred items for each user request from the entire corpus`. In the practice of large-scale recommendation, the algorithm design should strike a balance between accuracy and efficiency.
+
+The above methods include 2 stages/models: (1) find the preference of the users based on history or other infoamtion; (2) retrive some items according to the predicted preferences.
+
+TDM uses a tree hierarchy to organize items, and each leaf node in the tree corresponds to an item. Like a max-heap, `TDM assumes that each user-node preference is the largest one among the node’s all children’s preferences`.
+The main idea is to predict user interests `from coarse to fine by traversing tree nodes in a top-down fashion and making decisions for each user-node pair`. 
+
+Each item in the corpus is firstly assigned to a leaf node of a tree
+hierarchy $\mathcal{T}$. 
+The non-leaf nodes can be seen as a coarser abstraction of their children. In retrieval, the user information combined with the node to score is firstly vectorized to a user preference representation as the input of a deep neural network $\mathcal{M}$ (e.g. fully connected networks). While retrieving
+for the top-k items (leaf nodes), a `top-down beam search strategy`
+is carried out level by level.
+
+<img src="https://yqfile.alicdn.com/c8fbcb9f1d76a3d5789aadc5fceb4914eb475c03.png" width="80%" />
+
+TDM uses a tree as index and creatively proposes a max-heap like probability formulation on the tree, where the user preference for each non-leaf node $n$ in level $l$ is derived as:
+$$p^{(l)}(u \mid n)=\frac{\max_{n_c\in\{\text{the children of the node $n$ in the $l+1$ level}\}} p^{(l)}(n_c \mid u)}{\alpha^{(l)}}$$
+
+where $p^{(l)}(u \mid n)$ is the ground truth probability that the user $u$ prefers the node $n$. 
+The above formulation means that the ground truth user-node probability on a node equals to the maximum user-node probability of its children divided by a normalization term. 
+Therefore, the top-k nodes in level $l$ must be contained in the children of top-k nodes in level $l −1$ and the retrieval for top-k leaf items can be restricted to top-k nodes in each layer without losing the accuracy. 
+Based on this, `TDM turns the recommendation task into a hierarchical retrieval problem`. 
+By a top-down retrieval process, the candidate items are selected gradually from coarse to detailed.
+
+According to the retrieval process, the recommendation accuracy of TDM is determined by the quality of the user preference model
+$\mathcal M$ and tree index $\mathcal T$. Given n pairs of positive training data $(u_i, c_i)$, which means the user $u_i$ is interested in the target item $c_i$, $\mathcal T$ determines which non-leaf nodes $\mathcal M$ should select to achieve $c_i$ for $u_i$.
+
+Denote $p (\pi(c_i)|u_i; \pi)$ as user u’s preference probability over
+leaf node $\pi(c_i)$ given a user-item pair $(u_i, c_i)$, where $\pi(·)$ is a projection function that projects an item to a leaf node in $\mathcal T$.
+Note that the projection function $\pi(\cdot)$ actually determines the item hierarchy in the tree. 
+The model $\mathcal M$ is used to estimate and output the user-node preference $\hat{p} (\pi(c_i)|u_i;\theta \pi)$ given $\theta$ as model parameters.
+If the pair $(u_i , c_i)$ is a positive sample, we have the ground truth preference $p (\pi(c_i)|u_i; \pi)=1$. According to the `max-heap property`,
+the user preference probability of all $π(c_i)$’s ancestor nodes, i.e.,
+$\{p(b_j (\pi(c_i))|u_i; \pi)\}^{l_{max}}_{j=0}$ should also be 1, in which $b_j(\cdot)$ is the projection from a node to its ancestor node in level $j$ and $l_{max}$ is the max level in $\mathcal T$.
+To fit such a user-node preference distribution, the
+global loss function is formulated as
+
+$$L(\theta, \mathcal T)= -\sum_{i=1}^n \sum_{j=1}^{l_{max}}\log(\hat{p}(b_j (\pi(c_i))|u_i; \pi) )$$
+
+where we sum up the negative logarithm of predicted user-node
+preference probability on all the positive training samples and their
+ancestor user-node pairs as the global empirical loss.
+
+- https://github.com/DeepGraphLearning/RecommenderSystems
+- https://github.com/DeepGraphLearning
+- https://jian-tang.com/
+- [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
+- [Joint Optimization of Tree-based Index and Deep Model for Recommender Systems](https://arxiv.org/pdf/1902.07565.pdf)
+- https://developer.aliyun.com/article/720309
+
 ## Explainable Recommendations
 
 Explainable recommendation and search attempt to develop models or methods that not only generate high-quality recommendation or search results, but also intuitive explanations of the results for users or system designers, which can help improve the system transparency, persuasiveness, trustworthiness, and effectiveness, etc.
@@ -1082,6 +1141,28 @@ _______
 - [ ] https://zhuanlan.zhihu.com/p/45097523
 - [ ] https://www.zhihu.com/question/20830906
 - [ ] https://www.zhihu.com/question/56806755/answer/150755503
+
+## Resource on RecSys
+
+
+### Labs
+
+- http://www.that-recsys-lab.net/
+- http://recsys.deib.polimi.it/
+- http://www.martijnwillemsen.nl/recommenderlab/
+- https://cseweb.ucsd.edu/~jmcauley/
+- https://github.com/mJackie/RecSys
+- https://piret.gitlab.io/fatrec/
+- https://ailab.criteo.com/publications/
+- https://layer6.ai/
+- https://cseweb.ucsd.edu/~jmcauley/career.html
+- [Recommender Systems](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/recommendation/index.html)
+- https://libraries.io/github/computational-class
+- http://www.52caml.com/
+
+
+### Workshop 
+
 + [DLRS 2018 : 3rd Workshop on Deep Learning for Recommender Systems](http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=76328&copyownerid=87252)
 + [Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/pdf/1707.07435.pdf)
 + [$5^{th}$ International Workshop on Machine Learning Methods for Recommender Systems](https://doogkong.github.io/2019/)
@@ -1091,10 +1172,13 @@ _______
 + [Interdisciplinary Workshop on Recommender Systems](http://www.digitaluses-congress.univ-paris8.fr/Interdisciplinary-Workshop-on-Recommender-Systems)
 + [2nd FATREC Workshop: Responsible Recommendation](https://piret.gitlab.io/fatrec2018/)
 - [ ] [Social Media Mining: An Introduction](http://dmml.asu.edu/smm/slides/)
+- [ ] [The 2nd International Workshop on ExplainAble Recommendation and Search (EARS 2019)](https://ears2019.github.io/)
+- [ ] [NLP meets RecSys](https://recnlp2019.github.io/)
 - [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
 - [ ] [PRS 2019](https://prs2018.splashthat.com/)
+- [ ] https://recsys.acm.org/blog/
 
-## Implementation
+### Implementation
 
 - [ ] https://github.com/gasevi/pyreclab
 - [ ] https://github.com/cheungdaven/DeepRec
@@ -1210,9 +1294,7 @@ ______________________________________________________
 
 ## Labs
 
-- [Recommender Systems](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/recommendation/index.html)
-- https://libraries.io/github/computational-class
-- http://www.52caml.com/
+
 - [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
 - [Data Mining Machine Learning @The University of Texas at Austin](http://www.ideal.ece.utexas.edu/)
 - [Center for Big Data Analytics @The University of Texas at Austin](https://bigdata.oden.utexas.edu/)
