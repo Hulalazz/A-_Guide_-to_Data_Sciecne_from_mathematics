@@ -479,7 +479,8 @@ The basic steps that the software will perform (note that the following steps ar
 + Make a guess for $k = 1$,
 + Create a vector $f^k$ with elements $f_i(x^k)$,
 + Create a Jacobian matrix for $J_k$
-+ Solve ($J^T_k J_k p_k = -J^T_k f_k$). + This gives you the probabilities $p$ for all $k$.
++ Solve ($J^T_k J_k p_k = -J^T_k f_k$).
++ This gives you the probabilities $p$ for all $k$.
 + Find $s$. $F(x^k + s p_k)$ should satisfy the `Wolfe conditions` (these prove that step-lengths exist).
 + Set $x^{k+1} = x^k + sp^k$.
 + Repeat Steps 1 to 7 until convergence.
@@ -1258,18 +1259,6 @@ where the function $g(x, y)$ satisfies $g(x, 0) = f(x)$.
 - https://mitmgmtfaculty.mit.edu/rfreund/educationalactivities/
 - http://www.mit.edu/~mitter/publications/6_conjugate_convex_IS.pdf
 
-****
-**Primal-dual fixed point algorithm** and **Primary Dual Hybrid Gradient**
-
-[We demonstrate how different algorithms can be obtained by splitting the problems in different ways through the classic example of sparsity regularized least square model with constraint. In particular, for a class of linearly constrained problems, which are of great interest in the context of multi-block ADMM, can be also solved by PDFP with a guarantee of convergence. Finally, some experiments are provided to illustrate the performance of several schemes derived by the PDFP algorithm.](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
-
-* [A primal-dual fixed point algorithm for multi-block convex minimization](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
-* [A primal–dual fixed point algorithm for convex separable minimization](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
-* [A Unified Primal-Dual Algorithm Framework Based on Bregman Iteration](https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf)
-* [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
-* [Primary-dual hybrid gradient](https://www.cs.umd.edu/~tomg/projects/pdhg/),
-* [The Complexity of Primal-Dual Fixed Point Methods for Ridge Regression ](https://www.maths.ed.ac.uk/~prichtar/papers/pdfixedpoint.pdf),
-* [A primal–dual fixed point algorithm for convex separable minimization with applications to image restoration](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
 
 ### Splitting Methods
 
@@ -1366,6 +1355,9 @@ Taking $\mu\in(0, 1)$ (usually $\mu=0.9$), the **Symmetric ADMM** is described a
 $\color{aqua}{\text{Thanks to Professor He Bingsheng who taught me those.}}$[^9]
 
 ![He Bingsheng](https://pic1.zhimg.com/v2-bc583f2c01d8ac2a346982b1133753f9_1200x500.jpg)
+
+- [Some recent advances in the linearized ALM, ADMM and Beyond Relax the crucial parameter requirements](http://maths.nju.edu.cn/~hebma/Talk/OptimalParameter.pdf)
+- [Bing-Sheng He](https://www.researchgate.net/profile/Bing-Sheng_He)
 ***
 
 One of the particular ADMM is also called `Split Bregman` methods. And `Bregman ADMM` replace the quadratic penalty function with Bregman divergence:
@@ -1598,6 +1590,47 @@ They are really some block relaxation techniques.
 * [Splitting Algorithms, Modern Operator Theory, and Applications (17w5030)](https://www.birs.ca/cmo-workshops/2017/17w5030/files/)
 * [17w5030 Workshop on Splitting Algorithms, Modern Operator Theory, and Applications](https://www.birs.ca/cmo-workshops/2017/17w5030/report17w5030.pdf)
 
+### PDFP and PDHG
+
+#### Primal-dual Fixed Point Algorithm
+
+[We demonstrate how different algorithms can be obtained by splitting the problems in different ways through the classic example of sparsity regularized least square model with constraint. In particular, for a class of linearly constrained problems, which are of great interest in the context of multi-block ADMM, can be also solved by PDFP with a guarantee of convergence. Finally, some experiments are provided to illustrate the performance of several schemes derived by the PDFP algorithm.](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
+
+
+* [A primal-dual fixed point algorithm for multi-block convex minimization](http://math.sjtu.edu.cn/faculty/xqzhang/Publications/PDFPM_JCM.pdf)
+* [A primal–dual fixed point algorithm for convex separable minimization](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
+* [A Unified Primal-Dual Algorithm Framework Based on Bregman Iteration](https://link.springer.com/content/pdf/10.1007%2Fs10915-010-9408-8.pdf)
+* [Proximal ADMM](https://www.birs.ca/cmo-workshops/2017/17w5030/files/ADMM%20for%20monotone%20operators%20convergence%20analysis%20and%20rates.pdf)
+* [The Complexity of Primal-Dual Fixed Point Methods for Ridge Regression ](https://www.maths.ed.ac.uk/~prichtar/papers/pdfixedpoint.pdf),
+* [A primal–dual fixed point algorithm for convex separable minimization with applications to image restoration](http://math.sjtu.edu.cn/faculty/xqzhang/publications/CHZ_IP.pdf)
+
+#### Primary Dual Hybrid Gradient
+
+The Primal-Dual Hybrid Gradient (PDHG) method, also known as the `Chambolle-Pock` method, is a powerful splitting method that can solve a wide range of constrained and non-differentiable optimization problems. Unlike the popular ADMM method, the PDHG approach usually does not require expensive minimization sub-steps.
+
+PDHG solves general saddle-point problems of the form
+$$\min_{x\in X}\max_{y\in Y} f(x)+\left<Ax, y\right>-g(y)$$
+where  $f$ and  $g$ are convex functions, and $A$ is a linear operator.
+
+___
+> * $\hat x^{k+1}=x^k -\tau_k A^Ty^k$;
+> * $x^{k+1}=\arg\min_{x\in X}f(x)+\frac{1}{2\tau_k}{\|x-\hat x^{k+1}\|}^2$;
+> * $\tilde x^{k+1}=x^{k+1}+(x^{k+1}-x^{k})$;
+> * $\hat y^{k+1}=y^k +\sigma_k A\tilde x^{k+1}$;
+> * $y^{k+1}=\arg\min_{y\in Y} g(x)+\frac{1}{2\sigma_k}{\|y-\hat y^{k+1}\|}^2$.
+
+
+* [Primary-dual hybrid gradient](https://www.cs.umd.edu/~tomg/projects/pdhg/)
+* [Adaptive Primal-Dual Hybrid Gradient Methods for Saddle-Point Problems](https://arxiv.org/abs/1305.0546)
+* [Convergence Analysis of Primal-Dual Algorithms for a Saddle-Point Problem: From Contraction Perspective](http://maths.nju.edu.cn/~hebma/paper/C-PPA/2012-SIAM-IM-HY.pdf)
+* [An Algorithmic Framework of Generalized Primal-Dual Hybrid Gradient Methods for Saddle Point Problems](http://www.optimization-online.org/DB_HTML/2016/02/5315.html)
+* [Stochastic Primal-Dual Hybrid Gradient Algorithm with Arbitrary Sampling and Imaging Applications](https://arxiv.org/abs/1706.04957)
+* [A prediction-correction primal-dual hybrid gradient method for convex programming with linear constraints](http://www.scienceasia.org/2018.44.n1/scias44_34.pdf)
+* [On the convergence of primal–dual hybrid gradient algorithms for total variation image restoration](http://www.unife.it/prin/pubblications/bonettini_JMIVrev_b.pdf)
+* [A primal-dual algorithm framework for convex saddle-point optimization](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5656743/)
+* http://www.cs.utah.edu/~ssingla/
+* http://maths.nju.edu.cn/~hebma/paper/C-PPA/VI-PPA.pdf
+* https://odlgroup.github.io/odl/index.html
 
 ## Linear Programming
 
@@ -1904,6 +1937,7 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * https://www.math.ucla.edu/~wotaoyin/math285j.18f/
 * [Fixed-Point Continuation for $\ell_1$-Minimization: Methodology and Convergence@https://epubs.siam.org/doi/abs/10.1137/070698920](https://epubs.siam.org/doi/abs/10.1137/070698920)
 
+
 ### Generic Acceleration Framework
 
 + Given
@@ -1951,26 +1985,6 @@ $x^{k+2}=x^{k+1}+\nu^{k+1}\left(x^{k+1}-x^{k}\right)$|  $x^{k+2}=T(x^{k+1}+\gamm
 - http://www.iutzeler.org/
 - https://www.math.uni-bielefeld.de/~gaehler/
 - https://www.researchgate.net/profile/Damien_Scieur
-
-### Approximate Minimal Polynomial Extrapolation
-
-[From linear to nonlinear iterative methods](http://www.dcs.bbk.ac.uk/~gmagoulas/APNUM.PDF)
-
-$$\min f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
-
-Given $A\in\mathbb{R}^{n\times n}$ such that 1 is not an eigenvalue of $A$ and $v\in\mathbb{R}^n$, the `minimal polynomial`
-of $A$ with respect to the vector $v$ is the lowest degree polynomial $p(x)$ such that $p(A)v = 0, p(1) = 1$.
-
-- [Efficient implementation of minimal polynomial and reduced rank extrapolation methods ](https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19900017300.pdf)
-- https://core.ac.uk/download/pdf/82614502.pdf
-- [Minimal polynomial and reduced rank extrapolation
-methods are related](http://www.cs.technion.ac.il/~asidi/Sidi_Journal_Papers/P128_AdvCompMath_MPERRE.pdf)
-- http://www.cs.technion.ac.il/~asidi/
-- https://www.di.ens.fr/~aspremon/PDF/FOCM17.pdf
-- https://simons.berkeley.edu/sites/default/files/docs/8821/alexsimons17.pdf
-- [Nonlinear Schwarz iterations with
-Reduced Rank Extrapolation](https://www.math.temple.edu/~szyld/reports/RRE.Schwarz.report.pdf)
-- [A BLOCK RECYCLED GMRES METHOD WITH INVESTIGATIONS INTO ASPECTS OF SOLVER PERFORMANCE](https://www.math.temple.edu/~szyld/reports/block-gcrodr.rev.report.pdf)
 
 ### Anderson Acceleration
 
@@ -2080,6 +2094,7 @@ where ${\|A\|}_F^2=\sum_{ij}a_{ij}^2$.
 * [The Nearest Correlation Matrix](https://nickhigham.wordpress.com/2013/02/13/the-nearest-correlation-matrix/)
 * [Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix](http://eprints.maths.manchester.ac.uk/2490/1/hist16.pdf)
 * https://github.com/higham/anderson-accel-ncm
+* [Preconditioned alternating projection algorithm for solving the penalized-likelihood SPECT reconstruction problem.](https://www.ncbi.nlm.nih.gov/pubmed/28610694)
 
 #### DAAREM
 
@@ -2095,11 +2110,59 @@ where ${\|A\|}_F^2=\sum_{ij}a_{ij}^2$.
 * https://ctk.math.ncsu.edu/TALKS/Anderson.pdf
 * [Using Anderson Acceleration to Accelerate the Convergence of Neutron Transport Calculations with Anisotropic Scattering](http://www.ans.org/pubs/journals/nse/a_37652)
 
-### Nonlinear Acceleration
+If the gradient equals to 0s, i.e., $\nabla f(x)=0$, it is possible to find some `saddle points`. It means that the fixed point iteration matters.
+It seems that ADMM (or generally Langragian multiplier method) is not the fixed point iteration.
+The fixed point iteration is in  the form $x^{k}=f(x^k)$ where $f$ is usually explicitly  expressed.
+
+However, this form is easy to generalize any mapping or operators such as in functional analysis.
+In this sense, `ADMM` is really fixed point iteration: $(x^{k+1}, y^{k+1}, \lambda^{k+1})=ADMM(x^k, y^k, \lambda^k)$.
+
+
+* [Plug-and-Play ADMM for Image Restoration: Fixed Point Convergence and Applications](https://arxiv.org/abs/1605.01710)
+* [A reconstruction algorithm for compressive quantum tomography using various measurement sets](https://www.nature.com/articles/srep38497)
+* [Accelerating ADMM for Efficient Simulation and Optimization](http://orca.cf.ac.uk/125193/14/AA-ADMM.pdf)
+* [A FIXED-POINT PROXIMITY APPROACH TO SOLVING THE SUPPORT VECTOR REGRESSION WITH THE GROUP LASSO REGULARIZATION](http://www.math.ualberta.ca/ijnam/Volume-15-2018/No-1-18/2018-01-09.pdf)
+* http://staff.ustc.edu.cn/~juyong/publications.html
+* [Optimal parameter selection for the alternating direction method of multipliers (ADMM): quadratic problems](https://arxiv.org/pdf/1306.2454.pdf)
+* https://www-users.cs.umn.edu/~baner029/
+* [Multiplicative noise removal in imaging: An exp-model and its fixed-point proximity algorithm](https://www.sciencedirect.com/science/article/abs/pii/S106352031500144X)
+* [A Proximal-Point Analysis of the Preconditioned Alternating Direction Method of Multipliers](https://imsc.uni-graz.at/mobis/publications/SFB-Report-2015-006_2.pdf)
+* [Fixed points of generalized approximate message passing with arbitrary matrices](https://nyuscholars.nyu.edu/en/publications/fixed-points-of-generalized-approximate-message-passing-with-arbi)
+* https://www.math.ucla.edu/~wotaoyin/summer2013/slides/
+* https://xu-yangyang.github.io/papers/AcceleratedLALM.pdf
+* https://engineering.purdue.edu/ChanGroup/project_restoration.html
+* https://github.com/KezhiLi/Quantum_FixedPoint
+* https://epubs.siam.org/doi/abs/10.1137/15M103580X
+* https://xu-yangyang.github.io/
+
+### Approximate Minimal Polynomial Extrapolation
+
+[From linear to nonlinear iterative methods](http://www.dcs.bbk.ac.uk/~gmagoulas/APNUM.PDF) is not always direct and correct.
+
+The following optimziation problem
+$$\min f(x)=\frac{1}{2}{\|Ax-b\|}_2^2$$
+is equals to solve the linear system $Ax=b$.
+
+Given $A\in\mathbb{R}^{n\times n}$ such that 1 is not an eigenvalue of $A$ and $v\in\mathbb{R}^n$, the `minimal polynomial`
+of $A$ with respect to the vector $v$ is the lowest degree polynomial $p(x)$ such that $p(A)v = 0, p(1) = 1$.
+
+- [Efficient implementation of minimal polynomial and reduced rank extrapolation methods ](https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19900017300.pdf)
+- https://core.ac.uk/download/pdf/82614502.pdf
+- [Minimal polynomial and reduced rank extrapolation methods are related](http://www.cs.technion.ac.il/~asidi/Sidi_Journal_Papers/P128_AdvCompMath_MPERRE.pdf)
+- http://www.cs.technion.ac.il/~asidi/
+- https://www.di.ens.fr/~aspremon/PDF/FOCM17.pdf
+- https://simons.berkeley.edu/sites/default/files/docs/8821/alexsimons17.pdf
+- [Nonlinear Schwarz iterations with Reduced Rank Extrapolation](https://www.math.temple.edu/~szyld/reports/RRE.Schwarz.report.pdf)
+- [A BLOCK RECYCLED GMRES METHOD WITH INVESTIGATIONS INTO ASPECTS OF SOLVER PERFORMANCE](https://www.math.temple.edu/~szyld/reports/block-gcrodr.rev.report.pdf)
+- http://dd23.kaist.ac.kr/slides/Martin_Gander_2.pdf
 
 As shown before, the acceleration schemes are based on the linear combination of last iterated sequence.
 The question is why it is linear combination?
 Why not other `extrapolation` of the last updated values?
+
+
+- [Steepest Descent Preconditioning for Nonlinear GMRES Optimization by Hans De Sterck](https://arxiv.org/abs/1106.4426)
+- [A Fast Anderson-Chebyshev Acceleration for Nonlinear Optimization](https://arxiv.org/abs/1809.02341)
 
 #### Alternating Anderson-Richardson method
 
@@ -2353,6 +2416,8 @@ $$
 **ADMM and Dynamics**
 
 
+
+
 - [A Dynamical Systems Perspective on Nonsmooth Constrained Optimization](https://arxiv.org/abs/1808.04048)
 - https://kgatsis.github.io/learning_for_control_workshop_CDC2018/assets/slides/Vidal_CDC18.pdf
 - [ADMM and Accelerated ADMM as Continuous Dynamical Systems](http://proceedings.mlr.press/v80/franca18a/franca18a.pdf)
@@ -2360,7 +2425,11 @@ $$
 - [Relax, and Accelerate: A Continuous Perspective on ADMM](https://pdfs.semanticscholar.org/0814/423300a6d7e69ed61f10060de5f3b84d7527.pdf)
 - http://people.ee.duke.edu/~lcarin/Xuejun12.11.2015.pdf
 
+The last but not least important question is how to rewrite the fixed point iteration as the discrete form of some differential equation. What is more, it is the interaction and connnetion between numerical solution to differential equations and  optimization methods in form of fixed ponit iteration that matters.
 
+- [Glossary of Dynamical Systems Terms](https://lbm.niddk.nih.gov/glossary/glossary.html)
+- [Bifurcations Involving Fixed Points and Limit Cycles in Biological Systems](http://www.medicine.mcgill.ca/physio/guevaralab/CNDSUM-bifurcations.pdf)
+- https://elmer.unibas.ch/pendulum/nldyn.htm
 ***
 * [ESAIM: Control, Optimization and Calculus of Variations (ESAIM: COCV)](https://www.esaim-cocv.org/)
 * [MCT'03  Louisiana Conference on Mathematical Control Theory](https://www.math.lsu.edu/~malisoff/LCMCT/)
@@ -2623,6 +2692,53 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 - https://mwang.princeton.edu/
 - https://ajwagen.github.io/adsi_learning_and_control/
 
+#### Stochastic Coordinate Fixed-point Iteration
+
+There are examples such as Forward-Backward, Douglas-Rachford,... for finding a zero of a sum of maximally monotone operators or for minimizing a sum of convex functions.
+
+##### Random block-coordinate Krasnoselskiı–Mann iteration
+
++ for $n=0,\cdots$
+    + for $i=1, \cdots, m$
+        + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_i(x_{1,n},\cdots, x_{m, n})+a_{i, n}-x_{i, n})$
+
+where
+* $x_0, a_n\in \mathbb H$ and $\mathbb H$ is separable real Hilbert space,
+* $\epsilon_{n}$ is random variable in $\{0,1\}^m\setminus \mathbf{0}$,
+* $\lambda_n\in (0, 1)$ and $\liminf \lambda_n>0$ and $\limsup \lambda_n<1$,
+* the mapping $\mathrm T:\mathbb H\to \mathbb H$ i.e. $x\mapsto (T_1x, \cdots, T_i x, \cdots, T_m x)$ is  nonexpansive operator.
+
+
+##### Double-layer random block-coordinate algorithms
++ for $n=0, 1, \cdots$
+    + $y_n =\mathrm R_n x_n + b_n$
+    + for $i=1, \cdots, m$
+        + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_{i, n}(y_n)+a_{i, n}-x_{i, n})$
+
+##### Random block-coordinate Douglas-Rachford splitting
+
+* https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf
+* https://arxiv.org/abs/1404.7536
+* https://arxiv.org/abs/1406.6404
+* https://arxiv.org/abs/1406.5429
+* https://arxiv.org/abs/1706.00088
+
+##### Random block-coordinate forward-backward splitting
+
+- [Stochastic Block-Coordinate Fixed Point Iterations with Applications to Splitting](https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf)
+- [Stochastic Quasi-Fejer Block-Coordinate Fixed Point Iterations with Random Sweeping](https://core.ac.uk/download/pdf/47081501.pdf)
+- [LINEAR CONVERGENCE OF STOCHASTIC BLOCK-COORDINATE FIXED POINT ALGORITHMS](https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570436777.pdf)
+
+##### Asynchronous coordinate fixed-point iteration
+
+
+- [ARock: An Algorithmic Framework for Asynchronous Parallel Coordinate Update](https://epubs.siam.org/doi/10.1137/15M1024950)
+- [Asynchronous Stochastic Coordinate Descent: Parallelism and Convergence Properties](https://epubs.siam.org/doi/abs/10.1137/140961134)
+
+<img src="https://www.msra.cn/wp-content/uploads/2018/11/book-recommendation-distributed-machine-learning-5.jpg" width="80%">
+
+- [Asynchronous Parallel Greedy Coordinate Descent](https://bigdata.oden.utexas.edu/publication/asynchronous-parallel-greedy-coordinate-descent/)
+
 ### Stochastic Optimization
 
 Stochastic optimization problems are so diverse that the field has become fragmented into a Balkanized set of communities with competing algorithmic strategies and modeling styles. It is easy to spend a significant part of a career mastering the subtleties of each perspective on stochastic optimization, without recognizing the common themes.
@@ -2739,54 +2855,6 @@ Hogwild allows processors access to shared memory with the possibility of overwr
 - [Synchronized Parallel Coordinate Descent](http://www.stat.ucdavis.edu/~chohsieh/teaching/ECS289G_Fall2015/lecture4.pdf)
 - [DISTRIBUTED ASYNCHRONOUS COMPUTATION OF FIXED POINTS](http://www.mit.edu/people/dimitrib/Distr_Comp_Fixed.pdf)
 - [An Inertial Parallel and Asynchronous Fixed-Point Iteration for Convex Optimization](https://arxiv.org/abs/1706.00088)
-
-
-#### Stochastic coordinate fixed-point iteration
-
-There are examples such as Forward-Backward, Douglas-Rachford,... for finding a zero of a sum of maximally monotone operators or for minimizing a sum of convex functions.
-
-##### Random block-coordinate Krasnoselskiı–Mann iteration
-
-+ for $n=0,\cdots$
-    + for $i=1, \cdots, m$
-        + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_i(x_{1,n},\cdots, x_{m, n})+a_{i, n}-x_{i, n})$
-
-where
-* $x_0, a_n\in \mathbb H$ and $\mathbb H$ is separable real Hilbert space,
-* $\epsilon_{n}$ is random variable in $\{0,1\}^m\setminus \mathbf{0}$,
-* $\lambda_n\in (0, 1)$ and $\liminf \lambda_n>0$ and $\limsup \lambda_n<1$,
-* the mapping $\mathrm T:\mathbb H\to \mathbb H$ i.e. $x\mapsto (T_1x, \cdots, T_i x, \cdots, T_m x)$ is  nonexpansive operator.
-
-
-##### Double-layer random block-coordinate algorithms
-+ for $n=0, 1, \cdots$
-    + $y_n =\mathrm R_n x_n + b_n$
-    + for $i=1, \cdots, m$
-        + $x_{i, n+1}=x_{i, n}+\epsilon_{i, n}\lambda_n(\mathrm T_{i, n}(y_n)+a_{i, n}-x_{i, n})$
-
-##### Random block-coordinate Douglas-Rachford splitting
-
-* https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf
-* https://arxiv.org/abs/1404.7536
-* https://arxiv.org/abs/1406.6404
-* https://arxiv.org/abs/1406.5429
-* https://arxiv.org/abs/1706.00088
-
-##### Random block-coordinate forward-backward splitting
-
-- [Stochastic Block-Coordinate Fixed Point Iterations with Applications to Splitting](https://www.ljll.math.upmc.fr/~plc/sestri/pesquet2014.pdf)
-- [Stochastic Quasi-Fejer Block-Coordinate Fixed Point Iterations with Random Sweeping](https://core.ac.uk/download/pdf/47081501.pdf)
-- [LINEAR CONVERGENCE OF STOCHASTIC BLOCK-COORDINATE FIXED POINT ALGORITHMS](https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570436777.pdf)
-
-##### Asynchronous coordinate fixed-point iteration
-
-
-- [ARock: An Algorithmic Framework for Asynchronous Parallel Coordinate Update](https://epubs.siam.org/doi/10.1137/15M1024950)
-- [Asynchronous Stochastic Coordinate Descent: Parallelism and Convergence Properties](https://epubs.siam.org/doi/abs/10.1137/140961134)
-
-<img src="https://www.msra.cn/wp-content/uploads/2018/11/book-recommendation-distributed-machine-learning-5.jpg" width="80%">
-
-- [Asynchronous Parallel Greedy Coordinate Descent](https://bigdata.oden.utexas.edu/publication/asynchronous-parallel-greedy-coordinate-descent/)
 
 ### Stochastic ADMM
 
