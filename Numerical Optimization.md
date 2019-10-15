@@ -56,6 +56,7 @@ Wotao Yin wrote a summary on [First-order methods and operator splitting for opt
 * [Stochastic gradient flow](http://awibisono.github.io/2016/09/05/stochastic-gradient-flow.html)
 * [Aristotle vs. Newton](http://awibisono.github.io/2016/07/04/aristotle-newton.html)
 * [Advanced non-smooth optimization](https://mathematical-coffees.github.io/mc12-advanced-optim/)
+* [The 2014 International Workshop on Signal Processing, Optimization, and Control (SPOC 2014)](http://spoc2014.nudt.edu.cn/index.html)
 
 ## Gradient Descent and More
 
@@ -2395,12 +2396,11 @@ $$
 \ddot{x}(t) + 2\sqrt{\mu}\dot{x}(t) + \sqrt{s}\nabla^2 f(x) \dot{x}(t) + (1+\sqrt{\mu s})\nabla f(x) = 0\, \tag{Su}
 $$
 
-- [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights
-](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
+- [A Differential Equation for Modeling Nesterov’s Accelerated Gradient Method: Theory and Insights](http://stat.wharton.upenn.edu/~suw/paper/Nesterov_ODE.pdf)
 - [Acceleration via Symplectic Discretization of High-Resolution Differential Equations](http://stat.wharton.upenn.edu/~suw/paper/symplectic_discretization.pdf)
-- [Understanding the Acceleration Phenomenon via High-Resolution Differential Equations
-](http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf)
+- [Understanding the Acceleration Phenomenon via High-Resolution Differential Equations](http://stat.wharton.upenn.edu/~suw/paper/highODE.pdf)
 - [Global Convergence of Langevin Dynamics Based Algorithms for Nonconvex Optimization](https://papers.nips.cc/paper/7575-global-convergence-of-langevin-dynamics-based-algorithms-for-nonconvex-optimization.pdf)
+- https://www.researchgate.net/profile/Weijie_Su
 
 ***
 - [ ] [Analysis of Hamilton-Jacobi Equation: Optimization, Dynamics and Control - Part II of II](https://www.pathlms.com/siam/courses/1825/sections/2464)
@@ -2930,13 +2930,6 @@ independently.
 * [Notes on Distributed ADMM](https://mojmirmutny.weebly.com/uploads/4/1/2/3/41232833/notes.pdf)
 
 
-
-- [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
-- [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
-- [CoCoA: A General Framework for Communication-Efficient Distributed Optimization](https://arxiv.org/abs/1611.02189)
-- [Federated Optimization: Distributed Machine Learning for On-Device Intelligence](https://arxiv.org/pdf/1610.02527.pdf)
-- http://web.stanford.edu/class/ee364b/lectures.html
-
 #### Distributed Optimization: Analysis and Synthesis via Circuits
 
 + [Distributed Optimization: Analysis and Synthesis via Circuits](http://web.stanford.edu/class/ee364b/lectures/decomp_ckt.pdf)
@@ -2944,6 +2937,24 @@ independently.
 General form:
 $$\sum_{i=1}^{n}f_i(x_i),\\
 s.t. x_i= E_i y$$
+
+
+#### Resource on Distributed OPtimization Methods
+
++ [DIMACS 2012-2017 Special Focus on Information Sharing and Dynamic Data Analysis](http://dimacs.rutgers.edu/archive/SpecialYears/2012_Data/)
++ [DIMACS Workshop on Distributed Optimization, Information Processing, and Learning](http://archive.dimacs.rutgers.edu/Workshops/Learning/)
++ https://mwang.princeton.edu/
++ https://hkumath.hku.hk/~zhengqu/
++ https://zhangzk.net/
++ http://www.lx.it.pt/~bioucas/
++ https://jliang993.github.io/index.html
++ http://sites.utexas.edu/mokhtari/
+- [ORQUESTRA - Distributed Optimization and Control of Large Scale Water Delivery Systems](http://is4.tecnico.ulisboa.pt/~is4.daemon/tasks/distributed-optimization/)
+- [Ray is a fast and simple framework for building and running distributed applications.](https://ray.readthedocs.io/en/latest/)
+- [CoCoA: A General Framework for Communication-Efficient Distributed Optimization](https://arxiv.org/abs/1611.02189)
+- [Federated Optimization: Distributed Machine Learning for On-Device Intelligence](https://arxiv.org/pdf/1610.02527.pdf)
+- http://web.stanford.edu/class/ee364b/lectures.html
+- http://mjiit.utm.my/bio-ist/optimal-control-optimization/
 
 ## Surrogate Optimization
 
