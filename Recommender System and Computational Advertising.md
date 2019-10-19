@@ -2,6 +2,8 @@
 
 <img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
+* https://zhuanlan.zhihu.com/p/87293483
+* https://www.zhihu.com/question/336304380/answer/784976195
 * [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
 * [深度学习在搜索和推荐系统中的应用](https://blog.csdn.net/malefactor/article/details/52040228)
 * [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
@@ -1201,7 +1203,11 @@ _______
 
 # Computational Advertising
 
-Online advertising has grown over the past decade to over $26 billion in recorded revenue in 2010. The revenues generated are based on different pricing models that can be fundamentally grouped into two types: cost per (thousand) impressions (CPM) and cost per action (CPA), where an action can be a click, signing up with the advertiser, a sale, or any other measurable outcome. A web publisher generating revenues by selling advertising space on its site can offer either a CPM or CPA contract. We analyze the conditions under which the two parties agree on each contract type, accounting for the relative risk experienced by each party.
+`Advertising, recommendation and search` is 3 fundation stone of e-economics.
+
+- https://www.ecommercefoundation.org/reports
+
+Online advertising has grown over the past decade to over 26 billion dollars in recorded revenue in 2010. The revenues generated are based on different pricing models that can be fundamentally grouped into two types: cost per (thousand) impressions (CPM) and cost per action (CPA), where an action can be a click, signing up with the advertiser, a sale, or any other measurable outcome. A web publisher generating revenues by selling advertising space on its site can offer either a CPM or CPA contract. We analyze the conditions under which the two parties agree on each contract type, accounting for the relative risk experienced by each party.
 
 The information technology industry relies heavily on the on-line advertising such as [Google，Facebook or Alibaba].
 Advertising is nothing except information, which is not usually accepted gladly. In fact, it is more difficult than recommendation because it is less known of the context where the advertisement is placed.
@@ -1215,14 +1221,18 @@ which will be the titles of the following subsections.
 * [广告为什么要计算](https://zhuanlan.zhihu.com/p/72092504)
 * [计算广告资料汇总](https://www.jianshu.com/p/8c591feb9fc4)
 * [ONLINE VIDEO ADVERTISING: All you need to know in 2019](https://strategico.io/video-advertising/)
-* [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
-* [Tutorial: Information Retrieval Challenges in Computational Advertising](http://www.cikm2011.org/tutorials/PM3.html)
 * [计算广告](https://dirtysalt.github.io/html/computational-advertising.html)
 * [计算广告和机器学习](http://www.52caml.com/)
 * https://headerbidding.co/category/adops/
 * [Deep Learning Based Modeling in Computational Advertising: A Winning Formula](https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf)
 * [Computational Marketing](https://www.marketing-schools.org/types-of-marketing/computational-marketing.html)
 * [Data Science and Analytics in Computational Advertising](https://gokulchittaranjan.wordpress.com/2016/06/22/datascienceinadvertising/)
+* [Counterfactual Reasoning and Learning Systems: The Example of Computational Advertising](https://www.microsoft.com/en-us/research/wp-content/uploads/2013/11/bottou13a.pdf)
+* [Text Mining in Computational Advertising](https://www.valassisdigital.com/us/wp-content/uploads/sites/7/2017/01/Whitepaper_TextMining.pdf)
+* https://stat.duke.edu/people/david-l-banks
+* http://wnzhang.net/teaching/ee448/
+* https://recsys.acm.org/recsys08/keynotes/
+* https://www.researchgate.net/profile/Andrei_Broder
 
 ## Click-Through Rate Modeling
 
@@ -1259,12 +1269,7 @@ Once we have the right features and the right model (decisions trees plus logist
 
 ****
 
-* [Papers on Computational Advertising](https://github.com/wzhe06/Ad-papers)
-* [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
-* [Computational Advertising Contract Preferences for Display Advertising](https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising)
-* [Machine Learning for Computational Advertising, UC Santa Cruz, April 22, 2009, Alex Smola, Yahoo Labs, Santa Clara, CA](http://alex.smola.org/teaching/ucsc2009/)
-* [Computational Advertising and Recommendation](https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf)
-* [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+
 * http://yelp.github.io/MOE/
 * http://www.hongliangjie.com/talks/AICon2018.pdf
 * https://sites.google.com/view/tsmo2018/invited-talks
@@ -1292,7 +1297,9 @@ ______________________________________________________
 - [WWW 2019 Tutorial on Online User Engagement](https://onlineuserengagement.github.io/)
 - https://www.nngroup.com/
 
-## Labs
+## Resource
+
+### Labs
 
 
 - [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
@@ -1319,3 +1326,21 @@ ______________________________________________________
 - https://sigopt.com/blog/
 - [Web Understanding, Modeling, and Evaluation Lab](http://wume.cse.lehigh.edu/)
 - https://knightlab.northwestern.edu/
+
+### Courese
+
+* [Papers on Computational Advertising](https://github.com/wzhe06/Ad-papers)
+* [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
+* [Computational Advertising Contract Preferences for Display Advertising](https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising)
+* [Machine Learning for Computational Advertising, UC Santa Cruz, April 22, 2009, Alex Smola, Yahoo Labs, Santa Clara, CA](http://alex.smola.org/teaching/ucsc2009/)
+* [Computational Advertising and Recommendation](https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf)
+* [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+* [advertising](https://web.njit.edu/~ychen/advertising.html)
+* http://people.stern.nyu.edu/ja1517/
+* [CS7792 - Counterfactual Machine Learning, Special Topics in Machine Learning](http://www.cs.cornell.edu/courses/cs7792/2018fa/)
+* https://github.com/computational-class/computational-advertising-2015
+* [Computational Advertising: Techniques for Targeting Relevant Ads](https://www.nowpublishers.com/article/Details/INR-045)
+* http://catalog.illinois.edu/courses-of-instruction/adv/
+* http://people.csail.mit.edu/morteza/
+* [CAP 6807: Computational Advertising and Real-Time Data Analytics](http://www.cse.fau.edu/~xqzhu/courses/cap6807.html)
+* [Tutorial: Information Retrieval Challenges in Computational Advertising](http://www.cikm2011.org/tutorials/PM3.html)

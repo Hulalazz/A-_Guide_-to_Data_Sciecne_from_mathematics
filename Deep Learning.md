@@ -20,6 +20,7 @@ https://www.deeplearningpatterns.com/doku.php?id=ensembles
 * [Distributed Deep Learning, Part 1: An Introduction to Distributed Training of Neural Networks](https://blog.skymind.ai/distributed-deep-learning-part-1-an-introduction-to-distributed-training-of-neural-networks/)
 * [Large Scale Distributed Deep Networks 中译文](http://blog.sina.com.cn/s/blog_81f72ca70101kuk9.html)
 * http://static.ijcai.org/2019-Program.html#paper-1606
+* [Neural Networks for Signal Processing](http://www.cnel.ufl.edu/courses/EEL6814/EEL6814.php)
 
 
 Deep learning is the modern version of artificial neural networks full of tricks and techniques.

@@ -6,6 +6,7 @@
 * https://qdata.github.io/deep2Read/
 * https://www.ee.iitb.ac.in/~eestudentrg/
 * [2019 Graph Signal Processing Workshop](http://www.gspworkshop.org/)
+* [Machine Learning for 3D Data](https://cse291-i.github.io/WI18/schedule.html)
 * [Geometric Deep Learning @qdata](https://qdata.github.io/deep2Read//2graphs/2architecture/2019/02/22/gnn-Geom/)
 * https://qdata.github.io/deep2Read//aReadingsIndexByCategory/#2Graphs
 * [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
@@ -17,6 +18,10 @@
 * [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
 * [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
 * https://pytorch-geometric.readthedocs.io/en/latest/
+* https://deeplearning-cmu-10707.github.io/
+* https://github.com/timzhang642/3D-Machine-Learning
+* https://nthu-datalab.github.io/ml/index.html
+* http://www.pmp-book.org/
 
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
@@ -412,6 +417,7 @@ $$X^{(j)}=T_j({\tilde{\mathbf{\Delta}}}) f=2\mathbf{\Delta} X^{(j-1)}-X^{(j-2)},
 
 
 * [Graph Convolutional Neural Network (Part I)](https://datawarrior.wordpress.com/2018/08/08/graph-convolutional-neural-network-part-i/)
+* [The Promise of Deep Learning on Graphs](https://insights.sei.cmu.edu/sei_blog/2019/07/the-promise-of-deep-learning-on-graphs.html)
 * https://www.ntu.edu.sg/home/xbresson/
 * https://github.com/xbresson
 
@@ -486,6 +492,7 @@ $$\color{green}{\fbox{${h_i} = f_{GCN}(h_j: j\to i)$} }$$
 - [Higher-order Graph Convolutional Networks](http://ryanrossi.com/pubs/Higher-order-GCNs.pdf)
 - [A Higher-Order Graph Convolutional Layer](http://sami.haija.org/papers/high-order-gc-layer.pdf)
 - [MixHop: Higher-Order Graph Convolutional Architectures via Sparsified Neighborhood Mixing](http://proceedings.mlr.press/v97/abu-el-haija19a/abu-el-haija19a.pdf)
+
 ***
 * https://zhuanlan.zhihu.com/p/62300527
 * https://zhuanlan.zhihu.com/p/64498484
