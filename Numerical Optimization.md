@@ -2284,10 +2284,22 @@ The proposed PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
 
 <img src="http://5b0988e595225.cdn.sohucs.com/images/20180720/5250d32155024e079438d7484d082a03.jpeg" width="60%"/>
 
+In a compact form, it is defined as following
+$$x^{t+1}=x^t+\alpha V^t -r g(x^t)+K_d [\alpha D^t +(1-\alpha)(g(x^t)-g(x^{t-1}))]\\
+= \alpha (V^t + K_d D^t) +x^t -r g(x^t)+ K_d(1-\alpha)[g(x^t)-g(x^{t-1})]
+$$
+
+which looks like an ensmeble of `inertia and relaxation techniques`. 
+[We, for the first time, connect classical control theory with deep network optimization, and improve up to 50% the efficiency over SGD-Momentum!)](http://www4.comp.polyu.edu.hk/~cslzhang/papers.htm)
+
+Now it is still a emprical method without any convergence proof.
+
+
 * [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
 * [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
 * [PID Optimizer (Proportional–Integral–Derivative Optimizer)](https://github.com/tensorboy/PIDOptimizer)
 * [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://www4.comp.polyu.edu.hk/~cslzhang/paper/CVPR18_PID.pdf)
+* [Supplemental Materials to “A PID Controller Approach for Stochastic Optimization of Deep Networks”](http://www4.comp.polyu.edu.hk/~cslzhang/papers.htm)
 
 [To overcome the oscillation problem in the classical momentum-based optimizer, recent work associates it with the proportional-integral (PI) controller, and artificially adds D term producing a PID controller. It suppresses oscillation with the sacrifice of introducing extra hyper-parameter.](https://arxiv.org/abs/1812.11305)
 
@@ -2301,7 +2313,7 @@ The proposed PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
 - [Continuous-time Proportional-Integral Distributed Optimization for
 Networked Systems](https://vision.kuee.kyoto-u.ac.jp/~hiroaki/publication/Droge_2015_JCD.pdf)
 - [A Control Perspective for Centralized and Distributed Convex Optimization](http://folk.ntnu.no/skoge/prost/proceedings/cdc-ecc-2011/data/papers/2298.pdf)
-- https://arxiv.org/pdf/1905.03468
+- [Input-Feedforward-Passivity-Based Distributed Optimization Over Jointly Connected Balanced Digraphs](https://arxiv.org/pdf/1905.03468)
 - [Feedback-Feedforward Control Approach to Distributed Optimization](https://ieeexplore.ieee.org/document/8815008)
 - [反馈控制理论在优化、机器学习等领域有哪些应用？](https://www.zhihu.com/question/276693700/answer/734826945)
 
@@ -2608,11 +2620,11 @@ The stochastic gradient methods are so different from the classic methods.
 + [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
 + [Incremental Gradient, Subgradient, and Proximal Methods for Convex Optimization: A Survey ](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf)
 + [Convex Relaxations of Convolutional Neural Nets](https://arxiv.org/abs/1901.00035)
-+ [The Impact of Neural Network Overparameterization on
-Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.06963v2.pdf)
++ [The Impact of Neural Network Overparameterization on Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.06963v2.pdf)
 + [Quasi-potential as an implicit regularizer for the loss function in the stochastic gradient descent](https://arxiv.org/abs/1901.06054)
 + [The Multiplicative Noise in Stochastic Gradient Descent: Data-Dependent Regularization, Continuous and Discrete Approximation](https://arxiv.org/abs/1906.07405)
-
++ [On the Convergence of Perturbed Distributed Asynchronous Stochastic Gradient Descent to Second Order Stationary Points in Non-convex Optimization](https://arxiv.org/abs/1910.06000v1)
++ [A Convergence Theory for Deep Learningvia Over-Parameterization](https://arxiv.org/pdf/1811.03962.pdf)
 
 ![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 
@@ -2640,8 +2652,6 @@ Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.0
 
 - [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
 - [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
-- [Katyusha: The First Direct Acceleration of Stochastic Gradient Methods](http://jmlr.csail.mit.edu/papers/volume18/16-410/16-410.pdf)
-- [Acceleration of SVRG and Katyusha X by Inexact Preconditioning](http://www.optimization-online.org/DB_HTML/2019/05/7225.html)
 - http://ruder.io/deep-learning-optimization-2017/
 
 |The Differences of Stochastic Gradient Descent and its Variants|
@@ -2651,8 +2661,13 @@ Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.0
 
 $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
 
-- https://arxiv.org/pdf/1811.03962.pdf
+
 - http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
+- [Natasha: Faster Non-Convex Stochastic Optimization Via Strongly Non-Convex Parameter](https://arxiv.org/abs/1702.00763v5)
+- [Natasha 2: Faster Non-Convex Optimization Than SGD](https://arxiv.org/abs/1708.08694v4)
+- [Katyusha: The First Direct Acceleration of Stochastic Gradient Methods](https://arxiv.org/abs/1603.05953v6)
+- [Katyusha X: Practical Momentum Method for Stochastic Sum-of-Nonconvex Optimization](https://arxiv.org/abs/1802.03866v1)
+
 
 #### Variance Reduction Stochastic Gradient Methods
 
@@ -2675,12 +2690,29 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 + [Fast Variance Reduction Method with Stochastic Batch Size](https://arxiv.org/abs/1808.02169)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
+- [Acceleration of SVRG and Katyusha X by Inexact Preconditioning](http://www.optimization-online.org/DB_HTML/2019/05/7225.html) 
 + https://github.com/tdozat/Optimization
 + https://zhuanlan.zhihu.com/p/25473305
 + http://ranger.uta.edu/~heng/CSE6389_15_slides/
 + https://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/
 + https://json0071.gitbooks.io/svm/content/sag.html
 + http://www.cs.toronto.edu/~jmartens/research.html
+
+#### Escape Saddle Points
+
+- http://opt-ml.org/papers/OPT2017_paper_44.pdf
+- [Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition](https://arxiv.org/abs/1503.02101)
+- [How to Escape Saddle Points Efficiently](http://www.offconvex.org/2017/07/19/saddle-efficiency/)
+- [Escaping from Saddle Points](http://www.offconvex.org/2016/03/22/saddlepoints/)
+- [First-order Methods Almost Always Avoid Saddle Points](https://arxiv.org/abs/1710.07406)
+- [Revisiting Normalized Gradient Descent: Fast Evasion of Saddle Points](https://export.arxiv.org/pdf/1711.05224)
+- [Escaping Saddle Points: from Agent-based Models to Stochastic Gradient Descent](http://www-personal.umich.edu/~fayu/papers/Voter-Model2.pdf)
+- [Heavy-ball Algorithms Always Escape Saddle Points](https://www.ijcai.org/proceedings/2019/488)
+- https://users.cs.duke.edu/~rongge/
+- http://sites.utexas.edu/mokhtari/
+- [On Nonconvex Optimization for Machine Learning: Gradients, Stochasticity, and Saddle Points](https://arxiv.org/pdf/1902.04811.pdf)
+- [Escaping Undesired Stationary Points in Local Saddle Point Optimization A Curvature Exploitation Approach](http://leox1v.com/poster/local_saddle_opt.pdf)
+
 
 #### Stochastic Proximal Point Methods
 
@@ -2691,6 +2723,7 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 - https://emtiyaz.github.io/papers/uai2016.pdf
 - https://mwang.princeton.edu/
 - https://ajwagen.github.io/adsi_learning_and_control/
+- https://homepage.cs.uiowa.edu/~yxu71/
 
 #### Stochastic Coordinate Fixed-point Iteration
 

@@ -166,10 +166,13 @@ $$
 <img src = http://www.indiana.edu/~kruschke/BMLR/HierarchicalDiagram.jpg width = 50%>
 
 We can take any factor into consideration in this hierarchical Bayesian model. And it is a graphical probability model, which consists of the connections and probability.
+The probability of the observed sample $y$ is
+$$y\sim \frac{Pr(\theta\mid\phi(x)) Pr(\phi(x)\mid \eta) Pr(\eta)}{P(\theta)}.$$
 
 - [ ] https://twiecki.io/
 - [ ] [The Best Of Both Worlds: Hierarchical Linear Regression in PyMC3](https://twiecki.io/blog/2014/03/17/bayesian-glms-3/)
 - [ ] [Hierarchical Bayesian Neural Networks with Informative Priors](https://twiecki.io/blog/2018/08/13/hierarchical_bayesian_neural_network/)
+- [ ] [HDDM: Hierarchical Bayesian estimation of the Drift-Diffusion Model in Python](http://ski.cog.brown.edu/hddm_docs/abstract.html)
 - [ ] https://www.cnblogs.com/huangxiao2015/p/5667941.html
 - [ ] https://www.cnblogs.com/huangxiao2015/p/5668140.html
 - [ ] [BAYESIAN HIERARCHICAL MODELS](https://www.stat.ubc.ca/~gavin/STEPIBookNewStyle/course_clapem.html)
@@ -518,6 +521,7 @@ Bayesian Inference, Hamiltonian Monte Carlo and the No U-Turn Sampler, Variation
 * [Gen: MIT probabilistic programming language](http://probcomp.csail.mit.edu/software/gen/)
 * [Graph Nets library](https://github.com/deepmind/graph_nets)
 * [Hakaru a simply-typed probabilistic programming language](https://hakaru-dev.github.io/intro/probprog/)
+* PLDI 2019 PLDI Tutorialshttps://pldi19.sigplan.org/track/pldi-2019-PLDI-Tutorials)
 
 <img title = "factorie" src = http://factorie.cs.umass.edu/assets/images/factorie-logo-small.png />
 
@@ -537,3 +541,23 @@ _______
 + [Probabilistic Model-Based Reinforcement Learning Using The Differentiable Neural Computer](http://blog.adeel.io/2018/09/10/probabilistic-model-based-reinforcement-learning-using-the-differentiable-neural-computer/)
 + [Probabilistic Modeling and Inference](https://las.inf.ethz.ch/research)
 + [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/)
+
+
+## Stein Method
+[Stein's method, due to Charles M. Stein, is a set of remarkably powerful theoretical techniques for proving approximation and limit theorems in probability theory. It has been mostly known to theoretical statisticians. Recently, however, it has been shown that some of the key ideas from Stein's method can be naturally adopted to solve computational and statistical challenges in practical machine learning.](https://www.cs.dartmouth.edu/~qliu/stein.html)
++ https://statweb.stanford.edu/~souravc/beam-icm-trans.pdf
++ http://www.math.nus.edu.sg/~lhychen/files/IMS4-pp-1-59.pdf
++ https://projecteuclid.org/euclid.ps/1319806862
++ https://sites.google.com/site/steinsmethod/applications
++ https://www.cs.dartmouth.edu/~qliu/stein.html
++ https://roma.stat.wisc.edu/courses/st992-newton/smmb/
++ http://www.cs.cmu.edu/~aarti/SMLRG/
++ [Workshop on Stein's Method in Machine Learning and Statistics](https://steinworkshop.github.io/)
++ [Stein's method and applications in high-dimensional statistics](https://aimath.org/workshops/upcoming/steinhd/)
++ [Math 605 - Introduction to Stein's Method](https://dornsife.usc.edu/larry-goldstein/steins-method-intro/)
++ [Progress in Stein’s Method (5 Jan – 6 Feb 2009)](http://www.ims.nus.edu.sg/Programs/stein09/index.htm)
++ [Stein’s Method and The Bootstrap in Low and High Dimensions: A Tutorial Larry Wasserman February 8 2014](http://www.cs.cmu.edu/~aarti/SMLRG/Stein.pdf)
++ [Stein's Method and Related Topics 8-11 December 2018, University of Macau](https://steinworkshop.site123.me/)
++ [Workshop on New Directions in Stein's Method (18 - 29 May 2015)](http://www2.ims.nus.edu.sg/Programs/015wstein/index.php)
++ [Workshop on Stein’s Method and it’s Applications](https://www.stats.ox.ac.uk/events/steins-method/)
++ http://junezhe.com/posts/2017/07/blog-post-1/

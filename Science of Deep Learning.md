@@ -9,6 +9,7 @@
 * [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
 * [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
 * [torbenkruegermath](https://sites.google.com/site/torbenkruegermath/home/graduate-seminar-random-matrices-spin-glasses-deep-learning)
+* [TBSI 2019 Retreat Conference](http://workshop.tbsi.edu.cn/index.html)
 * [6.883 Science of Deep Learning: Bridging Theory and Practice -- Spring 2018](https://people.csail.mit.edu/madry/6.883/)
 * [(Winter 2018) IFT 6085: Theoretical principles for deep learning](http://mitliagkas.github.io/ift6085-dl-theory-class/)
 * http://principlesofdeeplearning.com/
@@ -45,6 +46,7 @@
 * https://zhuanlan.zhihu.com/p/22353056
 * http://qszhang.com/index.php/team/
 * https://www.researchgate.net/profile/Hatef_Monajemi
+* [Symposium Artificial Intelligence for Science, Industry and Society](https://indico.cern.ch/event/781223/)
 
 ### Deep Learning Reading Group
 
@@ -72,11 +74,26 @@
 ## Physics and Deep Learning
 [Neuronal networks have enjoyed a resurgence both in the worlds of neuroscience, where they yield mathematical frameworks for thinking about complex neural datasets, and in machine learning, where they achieve state of the art results on a variety of tasks, including machine vision, speech recognition, and language translation.   Despite their empirical success, a mathematical theory of how deep neural circuits, with many layers of cascaded nonlinearities, learn and compute remains elusive.  We will discuss three recent vignettes in which ideas from statistical physics can shed light on this issue.  In particular, we show how dynamical criticality can help in neural learning, how the non-intuitive geometry of high dimensional error landscapes can be exploited to speed up learning, and how modern ideas from non-equilibrium statistical physics, like the Jarzynski equality, can be extended to yield powerful algorithms for modeling complex probability distributions.  Time permitting, we will also discuss the relationship between neural network learning dynamics and the developmental time course of semantic concepts in infants.](https://physics.berkeley.edu/news-events/events/20151005/the-statistical-physics-of-deep-learning-on-the-beneficial-roles-of)
 
+[In recent years, artificial intelligence has made remarkable advancements, impacting many industrial sectors dependent on complex decision-making and optimization. Physics-leaning disciplines also face hard inference problems in complex systems: climate prediction, density matrix estimation for many-body quantum systems, material phase detection, protein-fold quality prediction, parametrization of effective models of high-dimensional neural activity, energy landscapes of transcription factor-binding, etc. Methods using artificial intelligence have in fact already advanced progress on such problems. So, the question is not whether, but how AI serves as a powerful tool for data analysis in academic research, and physics-leaning disciplines in particular.](http://www.physics.mcgill.ca/ai2019/)
+
 <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2017/09/InfoBottleneck_2880x1620.jpg" width="80%"/>
 
+* [Physics Informed Neural Networks](https://github.com/maziarraissi/PINNs)
 * [Physics Based Vision meets Deep Learning (PBDL)](https://pbdl2019.github.io/)
-* [The thermodynamics of learning](https://phys.org/news/2017-02-thermodynamics.html)
 * [Physics-Based Deep Learning](https://github.com/thunil/Physics-Based-Deep-Learning)
+* [Physics Meets ML](https://www.microsoft.com/en-us/research/event/physics-ml-workshop/)
+* [Physics in Machine Learning Workshop](https://bids.berkeley.edu/events/physics-machine-learning-workshop)
+* [Physics in Machine Learning Workshop](https://www.ml4science.org/astrophysics-in-machine-learning-workshop)
+* [Physics Informed Machine Learning Workshop](http://www.databookuw.com/page-5/)
+* [physics forests](http://apagom.com/physicsforests/)
+* [Applied Machine Learning Days](https://www.appliedmldays.org/)
+* [Machine Learning in Physics School/Workshop](http://phys.cts.nthu.edu.tw/actnews/content.php?Sn=468)
+* [DEEP LEARNING FOR MULTIMESSENGER ASTROPHYSICS: REAL-TIME DISCOVERY AT SCALE](http://www.ncsa.illinois.edu/Conferences/DeepLearningLSST/)
+* [Workshop on Science of Data Science | (smr 3283)](http://indico.ictp.it/event/8722/)
+* [Physics & AI Workshop](http://www.physics.mcgill.ca/ai2019/)
+* https://www.icts.res.in/discussion-meeting/spmml2020
+* https://physicsml.github.io/pages/papers.html
+* http://super-ms.mit.edu/physics-ai.html
 * https://dl4physicalsciences.github.io/
 * https://maziarraissi.github.io/PINNs/
 * http://deeplearnphysics.org/
@@ -89,7 +106,6 @@ for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * https://physics-ai.com/
 * http://physics.usyd.edu.au/quantum/Coogee2015/Presentations/Svore.pdf
 * [Brains, Minds and Machines Summer Course](https://ocw.mit.edu/resources/res-9-003-brains-minds-and-machines-summer-course-summer-2015/index.htm)
-* [New Theory Cracks Open the Black Box of Deep Learning](https://www.quantamagazine.org/new-theory-cracks-open-the-black-box-of-deep-learning-20170921/)
 * [Physics-Based Deep Learning for Fluid Flow](http://phys2018.csail.mit.edu/papers/29.pdf)
 * [Lecture Note on Deep Learning
 and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
@@ -98,11 +114,61 @@ and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
 * [Deep Learning in High
 Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecorsa.pdf)
 * [MATH + X SYMPOSIUM ON INVERSE PROBLEMS AND DEEP LEARNING IN SPACE EXPLORATION](https://earthscience.rice.edu/mathx2019/)
+* [Machine Learning for Physics](https://machine-learning-for-physicists.org/)
+* https://sites.google.com/view/icml2019phys4dl/schedule
+* http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt
+* [Master-Seminar - Deep Learning in Physics (IN2107, IN0014)](https://www.in.tum.de/cg/teaching/winter-term-1819/deep-learning-in-physics/)
+* https://www.ml4science.org/agenda-physics-in-ml
+* [Theoretical Physics for Deep Learning](https://icml.cc/Conferences/2019/ScheduleMultitrack?event=3531)
+* http://www.physics.rutgers.edu/gso/SSPAR/
+* https://community.singularitynet.io/c/education/course-brains-minds-machines
+* [ARTIFICIAL INTELLIGENCE AND PHYSICS](https://physai.sciencesconf.org/)
+* http://inspirehep.net/record/1680302/references
+* https://www.pnnl.gov/computing/philms/Announcements.stm
+* https://tacocohen.wordpress.com/
+* https://cnls.lanl.gov/External/workshops.php
+* https://www.researchgate.net/profile/Jinlong_Wu3
+* http://djstrouse.com/
+* https://www.researchgate.net/scientific-contributions/2135376837_Maurice_Weiler
+
+### Statistical Mechanics and Deep Learning
+
+* [statistical mechanics // machine learning](http://smml.io/)
+* [A Theoretical Connection Between Statistical Physics and Reinforcement Learning](https://arxiv.org/abs/1906.10228)
+* [The thermodynamics of learning](https://phys.org/news/2017-02-thermodynamics.html)
 * [WHY DOES DEEP LEARNING WORK?](https://calculatedcontent.com/2015/03/25/why-does-deep-learning-work/)
+* [WHY DEEP LEARNING WORKS II: THE RENORMALIZATION GROUP](https://calculatedcontent.com/2015/04/01/why-deep-learning-works-ii-the-renormalization-group/)
+*  https://github.com/CalculatedContent/ImplicitSelfRegularization
+
+### Quantum Machine learning
+
+[Quantum Machine Learning: What Quantum Computing Means to Data Mining explains the most relevant concepts of machine learning, quantum mechanics, and quantum information theory, and contrasts classical learning algorithms to their quantum counterparts.](https://peterwittek.com/)
+
+- [Combining quantum information and machine learning](https://www.quantummachinelearning.org/events.html)
+- [machine learning for quantum technology/](https://www.mpl.mpg.de/divisions/marquardt-division/workshops/2019-machine-learning-for-quantum-technology/)
+- https://wangleiphy.github.io/
+- https://tacocohen.wordpress.com
+- https://peterwittek.com/qml-in-2015.html
+- https://github.com/krishnakumarsekar/awesome-quantum-machine-learning
+- https://peterwittek.com/
+
+#### Born Machine
+
+- [From Baltzman machine to Born Machine](https://wangleiphy.github.io/talks/BornMachine.pdf)
+- [Born Machines: A fresh approach to quantum machine learning](https://quantum.ustc.edu.cn/web/node/623)
+- [Gradient based training of Quantum Circuit Born Machine (QCBM)](https://github.com/GiggleLiu/QuantumCircuitBornMachine)
+
+____
+* https://scholar.harvard.edu/madvani/home
+* https://www.elen.ucl.ac.be/esann/index.php?pg=specsess#statistical
+* https://krzakala.github.io/cargese.io/program.html
+* [New Theory Cracks Open the Black Box of Deep Learning](https://www.quantamagazine.org/new-theory-cracks-open-the-black-box-of-deep-learning-20170921/)
+* [Unifying Physics and Deep Learning with TossingBot](https://ai.googleblog.com/2019/03/unifying-physics-and-deep-learning-with.html)
 
 
 ## Mathematics of Deep Learning
 
+- [Meeting on Mathematics of Deep Learning](https://www.4tu.nl/ami/en/Agenda-Events/)
 - [Probability in high dimensions](http://www.yanivplan.com/math-608d)
 - [Learning Deep Learning](http://rt.dgyblog.com/ref/ref-learning-deep-learning.html)
 - [Summer school on Deep Learning Theory by Weinan E](https://github.com/leiwu1990/course.math_theory_nn)
@@ -156,19 +222,42 @@ https://memento.epfl.ch/event/a-theoretical-analysis-of-machine-learning-and-par
 
 ### Numerical Analysis for Deep Learning
 
+Dynamics of deep learning is to  consider deep learning as a dynamic system. For example, the forward feedback network is expressed in the recurrent form:
+$$x^{t+1} = f_t(x^{t}),t\in [0,1,\cdots, T]$$
+where $f_t$ is some nonlinear function and $t$ is discrete.
+
+However, it is not easy to select a proper nonlinear function $f_t \,\,\forall t\in[0,1,\cdots, T]$ and the number $T$.
+In another word, there are no unified scientific principle or  guide to design the structure of deep neural network models.  
+
+Many recursive formula share the same `feedback` forms or hidden structure, where the next input is the output of previous or historical record or generated points.
+
+
+#### ResNets
+
+`Deep Residual Networks` won the 1st places in: ImageNet classification, ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.
+It inspired more efficient forward  convolutional networks.
+
+They take a standard feed-forward ConvNet and add skip connections that bypass (or shortcut) a few convolution layers at a time. Each bypass gives rise to a residual block in which the convolution layers predict a residual that is added to the block’s input tensor.
+
+<img src="https://raw.githubusercontent.com/torch/torch.github.io/master/blog/_posts/images/resnets_1.png" width="50%"/>
+
+- https://github.com/KaimingHe/deep-residual-networks
+- http://torch.ch/blog/2016/02/04/resnets.html
+- https://zh.gluon.ai/chapter_convolutional-neural-networks/resnet.html
+- https://www.jiqizhixin.com/articles/042201
 - http://www.smartchair.org/hp/MSML2020/Paper/
+- https://github.com/liuzhuang13/DenseNet
+- https://arxiv.org/abs/1810.11741
+- [Depth with nonlinearity creates no bad local minima in ResNets](https://www.sciencedirect.com/science/article/pii/S0893608019301820?via%3Dihub)
+
+#### Dynamics Motivated Deep Learning Methods
 
 This section is on insight from numerical analysis to inspire more effective deep learning architecture.
 
 [Many effective networks can be interpreted as different numerical discretizations of differential equations. This finding brings us a brand new perspective on the design of effective deep architectures.](https://web.stanford.edu/~yplu/proj/lm/)
 
- [We show that residual neural networks can be interpreted as discretizations of a nonlinear time-dependent ordinary differential equation that depends on unknown parameters, i.e., the network weights. We show how this insight has been used, e.g., to study the stability of neural networks, design new architectures, or use established methods from optimal control methods for training ResNets. Finally, we discuss open questions and opportunities for mathematical advances in this area.](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
+ [We show that residual neural networks can be interpreted as discretizations of a nonlinear time-dependent ordinary differential equation that depends on unknown parameters, i.e., the network weights. We show how this insight has been used, e.g., to study the `stability of neural networks, design new architectures, or use established methods from optimal control methods for training ResNets`. Finally, we discuss open questions and opportunities for mathematical advances in this area.](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
 
-
-
-Dynamics of deep learning is to  consider deep learning as a dynamic system. For example, the forward feedback network is expressed in the recurrent form:
-$$x^{t+1} = f_t(x^{t}),t\in [0, T]$$
-where $f_t$ is some proper function called as activation function and $t$ is discrete.
 
 - https://elsc.huji.ac.il/all-publications/1050
 - [NEURAL NETWORKS AS ORDINARY DIFFERENTIAL EQUATIONS](https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/)
@@ -178,6 +267,8 @@ where $f_t$ is some proper function called as activation function and $t$ is dis
 - https://web.stanford.edu/~yplu/
 - https://web.stanford.edu/~yplu/project.html
 - [Deep Neural Networks Motivated by Partial Differential Equations](https://arxiv.org/pdf/1804.04272.pdf)
+* https://www.researchgate.net/scientific-contributions/2107227289_Eldad_Haber
+
 
 Residual networks as discretizations of dynamic systems:
 $$
@@ -187,31 +278,46 @@ Y_N = Y_{N-1} +h \sigma(K_{N-1} Y_{N-1} + b_{N-1})
 $$
 
 This is nothing but a forward Euler discretization of the `Ordinary Differential Equation (ODE)`:
-$$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0.$$
+$$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
 
 The goal is to plan a path (via $K$ and $b$) such that the initial data can be linearly separated.
 
+<img src="http://www.mathcs.emory.edu/~lruthot/img/DeepLearning.png" width="80%" />
+
+Another idea is to ensure stability by design / constraints on $\sigma$ and $K(t), b(t)$.
+
+ResNet with antisymmetric transformation matrix:
+$$\partial Y(t)=\sigma([K(t)-K(t)^T] Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
+
+Hamiltonian-like ResNet
+$$\frac{\mathrm d}{\mathrm d t}(Y(t), Z(t))^T=\sigma[(K(t)Z(t), -K(t)^T Y(t))^T + b(t)], t\in[0, T].$$
+
 `Parabolic Residual Neural Networks`
+
+$$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
 
 `Hyperbolic Residual Neural Networks`
 
+$$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
+
 `Hamiltonian CNN`
 
+$$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
 
 
 - http://www.mathcs.emory.edu/~lruthot/talks/
 - [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
-- [Continuous Models: Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/3-NumDNNshort-ContinuousModels.pdf)
 - [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
 - [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
 - [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
 - [MA 721: Topics in Numerical Analysis: Deep Learning](http://www.ms.uky.edu/~qye/MA721/ma721F17.html)
 - [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
 - [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
+- [Deep Neural Networks Motivated By Ordinary Differential Equations](http://www.mathcs.emory.edu/~lruthot/talks/2019-LR-IPAM-ODE-handout.pdf)
+- [Continuous Models: Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/3-NumDNNshort-ContinuousModels.pdf)
+- [Fully Hyperbolic Convolutional Neural Networks](https://arxiv.org/abs/1905.10484)
 
-
-
-<img src="http://www.mathcs.emory.edu/~lruthot/img/DeepLearning.png" width="80%" />
+<img src="https://pic4.zhimg.com/80/v2-542db02f15d327ccc7558df7a8e6e137_hd.jpg" width="60%"/>
 
 `Numerical differential equation inspired networks`:
 $$Y_{t+1} = (1-k_t)Y_{t-1} + k_t Y_t + h \sigma(K_{t} Y_{t} + b_{t})\tag{Linear multi-step structure}.$$
@@ -224,15 +330,16 @@ $$Y_{t+1} = (1-k_t)Y_{t-1} + k_t Y_t + h \sigma(K_{t} Y_{t} + b_{t})\tag{Linear 
 - https://arxiv.org/pdf/1906.02762.pdf  
 
 
-$\mathcal H$ matrix and deep learning
-
-* [A multiscale neural network based on hierarchical matrices](https://web.stanford.edu/~lexing/mnnh.pdf)
-* [A multiscale neural network based on hierarchical nested bases](https://link.springer.com/article/10.1007%2Fs40687-019-0183-3)
 * [A Multiscale and Multidepth Convolutional Neural Network for Remote Sensing Imagery Pan-Sharpening](https://ieeexplore.ieee.org/document/8281501)
 * https://arxiv.org/abs/1808.02376
 * [Multimodal and Multiscale Deep Neural Networks for the Early Diagnosis of Alzheimer’s Disease using structural MR and FDG-PET images](https://www.nature.com/articles/s41598-018-22871-z)
 
 `MgNet`
+
+[As the solution space is often the dual of the data space in PDEs, the
+analogous concept of feature space and data space (which are dual to each other) is introduced
+in CNN. With such connections and new concept in the unified model, the function of various
+convolution operations and pooling used in CNN can be better understood.](https://arxiv.org/pdf/1901.10415.pdf)
 
 - [MgNet: A Unified Framework of Multigrid and Convolutional Neural Network](https://arxiv.org/pdf/1901.10415.pdf)
 - http://www.multigrid.org/img2019/img2019/Index/shortcourse.html
@@ -250,12 +357,32 @@ _____
 - [A Theoretical Analysis of Deep Neural Networks and Parametric PDEs.](https://www.math.tu-berlin.de/fachgebiete_ag_modnumdiff/angewandtefunktionalanalysis/v_menue/mitarbeiter/kutyniok/v_menue/kutyniok_publications/)
 - https://raoyongming.github.io/  
 
-### Optimal Control and Deep Learnig
+### Control Theory and Deep Learning
 
+[It arose out of control theory literature when people were trying to identify highly complex and nonlinear dynamical systems. Neural networks – artificial neural networks – were first used in a supervised learning scenario in control theory. Hornik, if I remember correctly, was the first to find that neural networks were universal approximators.](http://scriptedonachip.com/ml-control)
+
+> Supervised Deep Learning Problem
+Given training data, $Y_0$, and labels, $C$, find network parameters $\theta$ and
+classification weights $W, \mu$ such that the DNN predicts the data-label
+relationship (and generalizes to new data), i.e., solve
+$$\operatorname{minimize}_{ \theta,W,\mu} loss[g(W, \mu), C] + regularizer[\theta,W,\mu]$$
+
+This can rewrite in a compact form
+$$\operatorname{minimize}_{ \theta,W,\mu} loss[g(W(T)Y(T)+\mu), C] + regularizer[\theta,W,\mu]\\
+\text{subject to  }\partial_t Y(t) = f (Y(t), \theta(t)), Y(0) = Y_0.$$
+
+- [Deep Learning Theory Review: An Optimal Control and Dynamical Systems Perspective](https://arxiv.org/abs/1908.10920)
+- [An Optimal Control Approach to Deep Learning and Applications to Discrete-Weight Neural Networks](http://proceedings.mlr.press/v80/li18b/li18b.pdf)
 - [Dynamic System and Optimal Control Perspective of Deep Learning](https://web.stanford.edu/~yplu/DynamicOCNN.pdf)
 - [A Flexible Optimal Control Framework for Efficient Training of Deep Neural Networks](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1751636)
 - [Deep learning as optimal control problems: models and numerical methods](https://arxiv.org/pdf/1904.05657.pdf)
 - [A Mean-Field Optimal Control Formulation of Deep Learning](https://deepai.org/publication/a-mean-field-optimal-control-formulation-of-deep-learning)
+- [Control Theory and Machine Learning](http://scriptedonachip.com/ml-control)
+- [Advancing Systems and Control Research in the Era of ML and AI](https://faculty.sites.uci.edu/khargonekar/files/2018/04/Control_ML_AI_Final.pdf)
+- http://marcogallieri.micso.it/Home.html
+- [Deep Learning meets Control Theory: Research at NNAISENSE and Polimi](http://www.eventideib.polimi.it/events/deep-learning-meets-control-theory-research-at-nnaisense-and-polimi/)
+- [Machine Learning-based Control](https://github.com/lakehanne/awesome-neurocontrol)
+- [CAREER: A Flexible Optimal Control Framework for Efficient Training of Deep Neural Networks](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1751636)
 
 ### Neural Ordinary Differential Equations
 
@@ -274,6 +401,7 @@ _____
 
 ## Dynamics and Deep Learning
 
+- http://roseyu.com/
 - [A Proposal on Machine Learning via Dynamical Systems](https://link.springer.com/article/10.1007/s40304-017-0103-z)
 - http://www.scholarpedia.org/article/Attractor_network
 - [An Empirical Exploration of Recurrent Network Architectures](http://proceedings.mlr.press/v37/jozefowicz15.pdf)
@@ -290,12 +418,12 @@ _____
 
 Several recent studies build deep structures by unrolling a particular optimization model that involves task information, i.e., `learning to optime`.
 
-Like gradient boost decision tree, we can optimize a cost function with a machine learning algorithms to fit the gradients- that is so-called gradient boost machine. 
+Like gradient boost decision tree, we can optimize a cost function with a machine learning algorithms to fit the gradients- that is so-called gradient boost machine.
 In another hand, it is expected that machine learning could learn/approximate the ierative formula of any optimization algorithms.
 
 - [Learning to learn by gradient descent by gradient descent](https://arxiv.org/abs/1606.04474)
 
-[The move from hand-designed features to learned features in machine learning has been wildly successful. In spite of this, optimization algorithms are still designed by hand. In this paper we show how the design of an optimization algorithm can be cast as a learning problem, allowing the algorithm to learn to exploit structure in the problems of interest in an automatic way. Our learned algorithms, implemented by LSTMs, outperform generic, hand-designed competitors on the tasks for which they are trained, and also generalize well to new tasks with similar structure. We demonstrate this on a number of tasks, including simple convex problems, training neural networks, and styling images with neural art.](https://arxiv.org/abs/1606.04474) 
+[The move from hand-designed features to learned features in machine learning has been wildly successful. In spite of this, optimization algorithms are still designed by hand. In this paper we show how the design of an optimization algorithm can be cast as a learning problem, allowing the algorithm to learn to exploit structure in the problems of interest in an automatic way. Our learned algorithms, implemented by LSTMs, outperform generic, hand-designed competitors on the tasks for which they are trained, and also generalize well to new tasks with similar structure. We demonstrate this on a number of tasks, including simple convex problems, training neural networks, and styling images with neural art.](https://arxiv.org/abs/1606.04474)
 
 
 `learning-based iterative methods `
@@ -348,6 +476,13 @@ This section is on how to use deep learning or more general machine learning to 
 * https://rse-lab.cs.washington.edu/
 * http://www.ajentzen.de/
 * https://web.math.princeton.edu/~jiequnh/
+
+$\mathcal H$ matrix and deep learning
+
+[In this work we introduce a new multiscale artificial neural network based on the structure of H-matrices. This network generalizes the latter to the nonlinear case by introducing a local deep neural network at each spatial scale. Numerical results indicate that the network is able to efficiently approximate discrete nonlinear maps obtained from discretized nonlinear partial differential equations, such as those arising from nonlinear Schodinger equations and the KohnSham density functional theory.](https://web.stanford.edu/~lexing/mnnh.pdf)
+
+* [A multiscale neural network based on hierarchical matrices](https://web.stanford.edu/~lexing/mnnh.pdf)
+* [A multiscale neural network based on hierarchical nested bases](https://link.springer.com/article/10.1007%2Fs40687-019-0183-3)
 
 
 ## Approximation Theory for Deep Learning
@@ -410,6 +545,7 @@ However, the model is over-parametered and it is hard to verify the role of one 
 
 - https://project.inria.fr/paiss/
 - https://zhenyu-liao.github.io/activities/
+- [Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning](https://arxiv.org/abs/1810.01075)
 - [Recent Advances in Random Matrix Theory for Modern Machine Learning](https://zhenyu-liao.github.io/pdf/pre/Matrix_talk_liao_handout.pdf)
 - http://romaincouillet.hebfree.org/
 - https://zhenyu-liao.github.io/
@@ -463,12 +599,23 @@ CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
 - [A geometric view of optimal transportation and generative model](https://www.sciencedirect.com/science/article/pii/S0167839618301249)
 - [Optimal Transport Theory the New Math for Deep Learning](https://mc.ai/optimal-transport-theory-the-new-math-for-deep-learning/)
 - [GeoNet: Deep Geodesic Networks for Point Cloud Analysis](http://openaccess.thecvf.com/content_CVPR_2019/papers/He_GeoNet_Deep_Geodesic_Networks_for_Point_Cloud_Analysis_CVPR_2019_paper.pdf)
-- [Tropical Geometry of Deep Neural Networks](https://arxiv.org/pdf/1805.07091.pdf)
 - http://www.stat.uchicago.edu/~lekheng/
 - https://www.nsf.gov/awardsearch/showAward?AWD_ID=1418255
 - https://nsf-tripods.org/institutes/
 - https://users.math.msu.edu/users/wei/
 - https://www.darpa.mil/program/hierarchical-identify-verify-exploit
+- [The Loss Surface Of Deep Linear Networks Viewed
+Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/deep-linear.pdf)
+
+### Tropical Geometry of Deep Neural Networks
+
+- [Tropical Geometry of Deep Neural Networks](https://arxiv.org/pdf/1805.07091.pdf)
+- https://opendatagroup.github.io/data%20science/2019/04/11/tropical-geometry.html
+- https://www.stat.uchicago.edu/~lekheng/
+- https://mathsites.unibe.ch/siamag19/
+- https://www.math.ubc.ca/~erobeva/seminar.html
+- https://sites.google.com/view/maag2019/home
+- https://sites.google.com/site/feliper84/
 
 ## Topology and Deep Learning
 
@@ -489,6 +636,7 @@ CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
 
 Except the matrix and tensor decomposotion for accelerating the deep neural network, `Tensor network` is close to deep learning model.
 
+### Tensor network
 
 - [Linear Algebra and Learning from Data](http://math.mit.edu/~gs/learningfromdata/)
 - [Accelerating deep neural networks with tensor decompositions](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
@@ -501,6 +649,17 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - http://itensor.org/
 - http://users.cecs.anu.edu.au/~koniusz/
 - https://deep-learning-tensorflow.readthedocs.io/en/latest/
+
+### Group Equivariant Convolutional Networks
+
+- https://github.com/tscohen/gconv_experiments
+- http://dalimeeting.org/dali2019b/workshop-05-02.html
+- https://erikbekkers.bitbucket.io/
+- https://staff.fnwi.uva.nl/m.welling/
+- https://www.ics.uci.edu/~welling/
+- http://ibis.t.u-tokyo.ac.jp/suzuki/
+- http://www.mit.edu/~kawaguch/
+- https://www.4tu.nl/ami/en/Agenda-Events/
 
 ## Probabilistic Theory and Deep Learning
 
@@ -525,15 +684,20 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 [A History of Deep Learning](https://www.import.io/post/history-of-deep-learning/)
 
 ```
-Mathematician Ivakhnenko and associates including Lapa arguably created the first working deep learning networks in 1965, applying what had been only theories and ideas up to that point.
+Mathematician Ivakhnenko and associates including Lapa arguably created the first working deep learning networks in 1965,
+applying what had been only theories and ideas up to that point.
 
-Ivakhnenko developed the Group Method of Data Handling (GMDH) – defined as a “family of inductive algorithms for computer-based mathematical modeling of multi-parametric datasets that features fully automatic structural and parametric optimization of models” – and applied it to neural networks.
+Ivakhnenko developed the Group Method of Data Handling (GMDH) –
+defined as a “family of inductive algorithms for computer-based mathematical modeling of multi-parametric datasets
+that features fully automatic structural and parametric optimization of models” –
+and applied it to neural networks.
 
 For that reason alone, many consider Ivakhnenko the father of modern deep learning.
 
 His learning algorithms used deep feedforward multilayer perceptrons using statistical methods at each layer to find the best features and forward them through the system.
 
-Using GMDH, Ivakhnenko was able to create an 8-layer deep network in 1971, and he successfully demonstrated the learning process in a computer identification system called Alpha.
+Using GMDH, Ivakhnenko was able to create an 8-layer deep network in 1971,
+and he successfully demonstrated the learning process in a computer identification system called Alpha.
 ```
 
 - https://zhuanlan.zhihu.com/p/36519666
@@ -545,12 +709,14 @@ Using GMDH, Ivakhnenko was able to create an 8-layer deep network in 1971, and h
 
 [In short, Neural Networks extract from the data the most relevant part of the information that describes the statistical dependence between the features and the labels. In other words, the size of a Neural Networks specifies a data structure that we can compute and store, and the result of training the network is the best approximation of the statistical relationship between the features and the labels that can be represented by this data structure.](https://lizhongresearch.miraheze.org/wiki/Understanding_the_Power_of_Neural_Networks)
 
+* http://naftali-tishby.mystrikingly.com/
 * [Information Theory of Deep Learning](https://adityashrm21.github.io/Information-Theory-In-Deep-Learning/)
 * [Anatomize Deep Learning with Information Theory](https://lilianweng.github.io/lil-log/2017/09/28/anatomize-deep-learning-with-information-theory.html)
 * [“Deep learning - Information theory & Maximum likelihood.”](https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/)
 * [On the information bottleneck theory of deep learning](https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning)
 * [Deep Learning and the Information Bottleneck Principle](https://arxiv.org/pdf/1503.02406.pdf)
 * [Information Theoretic Interpretation of Deep Neural Networks](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks)
+- http://pirsa.org/18040050
 - https://lizhongresearch.miraheze.org/wiki/Main_Page
 - https://lizhongzheng.mit.edu/
 - https://lizhongresearch.m.miraheze.org/wiki/Main_Page
