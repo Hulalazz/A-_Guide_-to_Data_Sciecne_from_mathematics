@@ -154,6 +154,10 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 
 #### Born Machine
 
+- [Unsupervised Generative Modeling Using Matrix Product States](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012#fulltext)
+- https://github.com/congzlwag/UnsupGenModbyMPS
+- https://congzlwag.github.io/UnsupGenModbyMPS/
+- https://github.com/congzlwag/BornMachineTomo
 - [From Baltzman machine to Born Machine](https://wangleiphy.github.io/talks/BornMachine.pdf)
 - [Born Machines: A fresh approach to quantum machine learning](https://quantum.ustc.edu.cn/web/node/623)
 - [Gradient based training of Quantum Circuit Born Machine (QCBM)](https://github.com/GiggleLiu/QuantumCircuitBornMachine)
@@ -726,3 +730,16 @@ and he successfully demonstrated the learning process in a computer identificati
 - http://ai.stanford.edu/
 - https://www.math.ias.edu/wtdl
 - http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf
+
+
+## Brain Science and Deep Learning  
+
+* https://neuroscience.stanford.edu/mbct/home
+* https://braininspired.co/about/
+* https://elsc.huji.ac.il/events/elsc-conference-10
+* http://www.brain-ai.jp/organization/
+* https://brendenlake.github.io/AAI-site/
+* https://github.com/brendenlake/AAI-site
+* https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5818638/
+* https://www.cogneurosociety.org/dissecting-artificial-intelligence-to-better-understand-the-human-brain/
+* https://quest.mit.edu/projects/

@@ -630,31 +630,6 @@ See more information on backpropagation in the following list
 <img src=http://ai.stanford.edu/~tengyuma/forblog/weight5.jpg width=50% />
 
 
-
-##### Beyond Back-propagation
-
-Training deep learning models does not require gradients such as `ADMM, simulated annealing`.
-
-- [Main Principles of the General Theory of Neural Network with Internal Feedback](http://worldcomp-proceedings.com/proc/p2015/ICA6229.pdf)
-- https://arxiv.org/pdf/1907.05200.pdf
-- [Layer-wise Relevance Propagation for Deep Neural Network Architectures](http://iphome.hhi.de/samek/pdf/BinICISA16.pdf)
-- https://github.com/gentaman/LRP
-- [Tutorial: Implementing Layer-Wise Relevance Propagation](http://www.heatmapping.org/tutorial/)
-- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
-- https://neuronaldynamics.epfl.ch/book.html
-- [Deep Learning as a Mixed Convex-Combinatorial Optimization Problem](https://arxiv.org/abs/1710.11573)
-- [Bidirectional Backpropagation](http://sipi.usc.edu/~kosko/B-BP-SMC-Revised-13January2018.pdf)
-- [Difference Target Propagation](https://arxiv.org/abs/1412.7525)
-- [Gradient target propagation](https://arxiv.org/abs/1810.09284)
-- [Beyond Backprop: Online Alternating Minimization with Auxiliary Variables](https://www.ibm.com/blogs/research/2019/06/beyond-backprop/)
-- [Beyond Backpropagation: Uncertainty Propagation](http://videolectures.net/iclr2016_lawrence_beyond_backpropagation/)
-- [Beyond Feedforward Models Trained by Backpropagation: a Practical Training Tool for a More Efficient Universal Approximator](https://www.memphis.edu/clion/pdf-papers/0710.4182.pdf)
-- [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
-- [Awesome Capsule Networks](https://github.com/sekwiatkowski/awesome-capsule-networks)
-- [Capsule Networks Explained](https://kndrck.co/posts/capsule_networks_explained/)
-- [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829)
-- http://people.missouristate.edu/RandallSexton/sabp.pdf
-- [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
 #### Fundamental Problem of Deep Learning and Activation Functions
 
 `Gradients vanishing` is the fundamental problem of deep neural networks according to [Juergen](http://people.idsia.ch/~juergen/).
@@ -2302,6 +2277,8 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 - https://xueyangfu.github.io/
 - https://njuhaozhang.github.io/
 - https://matbc.github.io/
+- [CreativeAI: Deep Learning for Graphics](https://geometry.cs.ucl.ac.uk/creativeai_sa19/)
+- https://github.com/smartgeometry-ucl/dl4g
 
 ### Spoken Language Processing
 
@@ -2358,6 +2335,8 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 
 The ultimate goal is general artificial intelligence.
 
+* https://ai.stanford.edu/~tengyuma/
+* https://alexgkendall.com/
 * http://www.iro.umontreal.ca/~bengioy/papers/ftml_book.pdf
 * https://cbmm.mit.edu/publications
 * https://www.ctolib.com/pauli-space-foundations_for_deep_learning.html
@@ -2384,3 +2363,49 @@ The ultimate goal is general artificial intelligence.
 * https://www.surrey.ac.uk/events/20190723-ai-summer-school
 * https://smartech.gatech.edu/handle/1853/56665
 * http://alchemy.cs.washington.edu/
+* https://www.microsoft.com/en-us/research/event/ai-institute-2019/
+* http://cseweb.ucsd.edu/~haosu/
+* https://spearced.com/resm-thesis/
+* http://webdocs.cs.ualberta.ca/~mennatul/
+* https://edouardoyallon.github.io/
+* https://deff.ch/
+
+### Beyond Back-propagation
+
+Training deep learning models does not require gradients such as `ADMM, simulated annealing`.
+
+- [Bidirectional Backpropagation](http://sipi.usc.edu/~kosko/B-BP-SMC-Revised-13January2018.pdf)
+- [Difference Target Propagation](https://arxiv.org/abs/1412.7525)
+- [Gradient target propagation](https://arxiv.org/abs/1810.09284)
+- [Beyond Backprop: Online Alternating Minimization with Auxiliary Variables](https://www.ibm.com/blogs/research/2019/06/beyond-backprop/)
+- [Beyond Backpropagation: Uncertainty Propagation](http://videolectures.net/iclr2016_lawrence_beyond_backpropagation/)
+- [Beyond Feedforward Models Trained by Backpropagation: a Practical Training Tool for a More Efficient Universal Approximator](https://www.memphis.edu/clion/pdf-papers/0710.4182.pdf)
+- [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
+- [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
+- [Main Principles of the General Theory of Neural Network with Internal Feedback](http://worldcomp-proceedings.com/proc/p2015/ICA6229.pdf)
+- [Eigen Artificial Neural Networks](https://arxiv.org/pdf/1907.05200.pdf)
+- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
+- [Deep Learning as a Mixed Convex-Combinatorial Optimization Problem](https://arxiv.org/abs/1710.11573)
+
+### Layer-wise Relevance Propagation
+
+[Layer-wise Relevance Propagation (LRP) is a method that identifies important pixels by running a backward pass in the neural network. The backward pass is a conservative relevance redistribution procedure, where neurons that contribute the most to the higher-layer receive most relevance from it. The LRP procedure is shown graphically in the figure below.](http://www.heatmapping.org/)
+
+- [Layer-wise Relevance Propagation for Deep Neural Network Architectures](http://iphome.hhi.de/samek/pdf/BinICISA16.pdf)
+- https://github.com/gentaman/LRP
+- [Tutorial: Implementing Layer-Wise Relevance Propagation](http://www.heatmapping.org/tutorial/)
+- http://www.heatmapping.org/
+
+### Capsule Networks and More
+
+Capsule Networks provide a way to detect parts of objects in an image and represent spatial relationships between those parts. This means that capsule networks are able to recognize the same object in a variety of different poses even if they have not seen that pose in training data. 
+
+- https://www.edureka.co/blog/capsule-networks/
+- https://cezannec.github.io/Capsule_Networks/
+- https://jhui.github.io/2017/11/03/Dynamic-Routing-Between-Capsules/
+- [Awesome Capsule Networks](https://github.com/sekwiatkowski/awesome-capsule-networks)
+- [Capsule Networks Explained](https://kndrck.co/posts/capsule_networks_explained/)
+- [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829)
+- http://people.missouristate.edu/RandallSexton/sabp.pdf
+- [Neuronal Dynamics: From single neurons to networks and models of cognition](https://neuronaldynamics.epfl.ch/book.html)
+
