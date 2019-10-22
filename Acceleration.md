@@ -7,10 +7,17 @@ It is about how to accelerate the training and inference of deep learning(genera
 
 <img src="https://cs217.stanford.edu/assets/img/4___JET.gif" width="50%" />
 
+|The World of Neural Network Acceleration|
+|:----:|
+|Choice of Algorithm|
+|Parallelism|
+|Distributed Computing|
+|Hardware Architectures|
 
 * https://github.com/1duo/awesome-ai-infrastructures
 * [FairNAS: Rethinking Evaluation Fairness of Weight Sharing Neural Architecture Search](https://github.com/fairnas/FairNAS)
 * [VISUAL COMPUTING SYSTEMS](http://graphics.cs.cmu.edu/courses/15769/fall2016/lectures)
+* [Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)
 * https://zhuanlan.zhihu.com/jackwish
 * https://machinethink.net/blog/compressing-deep-neural-nets/
 * [Rethinking Deep Learning: Architectures and Algorithms](https://nickhigham.files.wordpress.com/2019/05/talk12-constantinides.pdf)
@@ -59,6 +66,7 @@ can we deploy deep learning models? Definitely yes.
 * [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
 * [AutoML 的十大开源库](https://www.52cs.com/archives/3138)
 * [TensorFlow模型压缩和Inference加速](https://zhuanlan.zhihu.com/p/31023153)
+* https://zhuanlan.zhihu.com/DNN-on-Chip 
 + https://github.com/BlueWinters/research
 + [Reference workloads for modern deep learning methods](https://github.com/rdadolf/fathom)
 
@@ -195,14 +203,11 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 + [NumFOCUS](https://numfocus.org/sponsored-projects)
 + http://www.mit.edu/~kepner/D4M/
 + [CSCS-ICS-DADSi Summer School: Accelerating Data Science with HPC, September 4 – 6, 2017 ](https://github.com/probprog/CSCS-summer-school-2017)
-+ [Matrix Computations and Optimization in Apache Spark](https://stanford.edu/~rezab/papers/linalg.pdf)
 + [MS&E 317: Algorithms for Modern Data Models: Spring 2014, Stanford University ](https://stanford.edu/~rezab/amdm/)
 + [Distributed Machine Learning and Matrix Computations: A NIPS 2014 Workshop](https://stanford.edu/~rezab/nips2014workshop/index.html)
 + [Large Scale Matrix Analysis and Inference: A NIPS 2013 Workshop](http://stanford.edu/~rezab/nips2013workshop/)
-+ https://eigen.tuxfamily.org/dox/index.html
-+ https://www.cs.utexas.edu/~flame/web/
-+ [A high-level language for programming accelerators](https://spatial-lang.org/)
-+ https://spatial-lang.readthedocs.io/en/latest/
++ [Breakthrough! Faster Matrix Multiply](https://www.i-programmer.info/news/112-theory/3453-breakthrough-faster-matrix-multiply.html)
+
 
 [Why GEMM is at the heart of deep learning](https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/)
 
@@ -212,33 +217,44 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 
 - https://github.com/pytorch/QNNPACK
 - https://github.com/XiaoMi/mace
++ https://eigen.tuxfamily.org/dox/index.html
++ https://www.cs.utexas.edu/~flame/web/
++ [A high-level language for programming accelerators](https://spatial-lang.org/)
++ https://spatial-lang.readthedocs.io/en/latest/
++ [Matrix Computations and Optimization in Apache Spark](https://stanford.edu/~rezab/papers/linalg.pdf)
++ [Cusp is a library for sparse linear algebra and graph computations based on Thrust.](https://cusplibrary.github.io/index.html)
++ [The Hierarchical Computations on Manycore Architectures (HiCMA) library aims to redesign existing dense linear algebra libraries to exploit the data sparsity of the matrix operator. ](https://ecrc.github.io/hicma/)
 
 ###  Fast Matrix-vector Multiplication
 
 Matrix-vector multiplication is a special matrix multiplication:
-$$\mathbb R^m\mapsto \mathbb R^n: Mv\to u$$
-where $m\in\mathbb R^{m\times n}, u\in\mathbb R^n$.
+$$\mathbb R^m\mapsto \mathbb R^n: Mv\to u \\
+u=Mv=\sum_{i=1}A^{(i)}v_i$$
+where $M\in\mathbb R^{m\times n}, u\in\mathbb R^n$; each column $M^{(i)}$
+can, metaphorically, indicate one address or house and each $v(i)$ a letter addressed to it.
 
-
-- [A fast matrix–vector multiplication method for solving the radiosity equation](http://homepage.math.uiowa.edu/~atkinson/ftp/atkchien_fast.pdf)
-- [Faster Online Matrix-Vector Multiplication](https://cs.au.dk/~larsen/papers/omv.pdf)
+- https://people.csail.mit.edu/rrw/
+- [Matrix-Vector Multiplication in Sub-Quadratic Time (Some Preprocessing Required)](https://people.csail.mit.edu/rrw/mat-vec3.pdf)
+- [The Mailman algorithm for matrix vector multiplication](http://www.cs.yale.edu/homes/el327/papers/matrixVectorApp.pdf)
+- [Matrix-vector multiplication using the FFT](http://math.mit.edu/icg/resources/teaching/18.085-spring2015/toeplitz.pdf)
 - [On fast matrix-vector multiplication with a Hankel matrix in multiprecision arithmetics](https://arxiv.org/pdf/1402.5287.pdf)
-- https://www.nvidia.com/docs/IO/47905/fujimoto_lspp2008.pdf
-- http://math.mit.edu/icg/resources/teaching/18.085-spring2015/toeplitz.pdf
+- [Optimizing Large Matrix-Vector Multiplications](https://simulationcorner.net/index.php?page=fastmatrixvector)
+- [Faster Matrix vector multiplication ON GeForce](https://www.nvidia.com/docs/IO/47905/fujimoto_lspp2008.pdf)
+- [Fast Implementation of General Matrix-Vector Multiplication (GEMV) on Kepler GPUs](https://ieeexplore.ieee.org/document/7092787)
 - [FAST ALGORITHMS TO COMPUTE MATRIX-VECTOR PRODUCTS FOR PASCAL MATRICES](http://users.umiacs.umd.edu/~ramani/pubs/tang_pascal_updated.pdf)
 - [Fast algorithms to compute matrix-vector products for Toeplitz and Hankel matrices](http://pe.org.pl/articles/2012/8/47.pdf)
 - [Fast High Dimensional Vector Multiplication Face Recognition](http://openaccess.thecvf.com/content_iccv_2013/papers/Barkan_Fast_High_Dimensional_2013_ICCV_paper.pdf)
-- [Fast Implementation of General Matrix-Vector Multiplication (GEMV) on Kepler GPUs](https://ieeexplore.ieee.org/document/7092787)
-- [The Mailman algorithm for matrix vector multiplication](http://www.cs.yale.edu/homes/el327/papers/matrixVectorApp.pdf)
+- [Faster Online Matrix-Vector Multiplication](https://cs.au.dk/~larsen/papers/omv.pdf)
 - http://people.ece.umn.edu/users/parhi/
 - https://www.cs.utexas.edu/~flame/web/publications.html
-
+- [A fast matrix–vector multiplication method for solving the radiosity equation](http://homepage.math.uiowa.edu/~atkinson/ftp/atkchien_fast.pdf)
+- [Computational Science and Engineering Spring 2015 syllabus](http://math.mit.edu/icg/resources/teaching/18.085-spring2015/)
 
 ### Computation of Matrix Chain Products
 
 Generations of students have learned that the product $xy^Tz$, where $x, y,$ and $z$ are n-vectors, should be written and evaluated as $x(y^Tz)$ ($O(n)$ flops) rather than $(xy^T)z$ ($O(n^2)$) flops). More generally, deciding where to put the parentheses in a matrix product $A_1A_2\dots A_k$ to minimize the number of operations in the evaluation is a nontrivial problem, known as the `matrix chain multiplication problem`.
 
-A special case is when $A_1=A_2=\dots =A_k$.
+A special case is when $A_1=A_2=\dots =A_k$ the problem is to compute the $A^k=\underbrace{A\cdots A}_{k}$.
 
 - [The World’s Most Fundamental Matrix Equation](https://sinews.siam.org/Details-Page/the-worlds-most-fundamental-matrix-equation)
 - [Computation of Matrix Chain Products, PART I, PART II](http://i.stanford.edu/pub/cstr/reports/cs/tr/81/875/CS-TR-81-875.pdf)
@@ -277,7 +293,7 @@ The picture below visualizes the computation of a single element in the result m
 
 Our program is memory bound, which means that the multipliers are not active most of the time because they are waiting for memory.
 
-
+* [Anatomy of High-Performance Matrix Multiplication](https://www.cs.utexas.edu/users/pingali/CS378/2008sp/papers/gotoPaper.pdf)
 * [Geometry and the complexity of matrix multiplication](https://www.ams.org/journals/bull/2008-45-02/S0273-0979-08-01176-2/home.html)
 * [High-Performance Matrix Multiplication](https://gist.github.com/nadavrot/5b35d44e8ba3dd718e595e40184d03f0)
 * [Fast Matrix Multiplication @mathoverflow](https://mathoverflow.net/questions/34173/fast-matrix-multiplication)
@@ -295,13 +311,12 @@ Our program is memory bound, which means that the multipliers are not active mos
 * [Matrix multiplication via arithmetic progressions](https://www.sciencedirect.com/science/article/pii/S0747717108800132)
 * [Fast sparse matrix multiplication](http://www.cs.tau.ac.il/~zwick/papers/sparse.pdf)
 * [Part I: Performance of Matrix multiplication in Python, Java and C++](https://martin-thoma.com/matrix-multiplication-python-java-cpp/)
-* [Part II: The Strassen algorithm in Python, Java and C++](https://martin-thoma.com/strassen-algorithm-in-python-java-cpp/)
 * [Part III: Matrix multiplication on multiple cores in Python, Java and C++](https://martin-thoma.com/part-iii-matrix-multiplication-on-multiple-cores-in-python-java-and-c/)
 * https://github.com/MartinThoma/matrix-multiplication
 * http://jianyuhuang.com/
-* https://terrytao.wordpress.com/tag/fast-matrix-multiplication/
 * https://spatial-lang.org/gemm
 * https://github.com/OAID/Tengine
+
 
 ##### Strassen Algorithms
 
@@ -350,6 +365,12 @@ $$
 $$
 
 - [Strassen’s Matrix Multiplication Algorithm | Implementation](https://www.geeksforgeeks.org/strassens-matrix-multiplication-algorithm-implementation/)
+- [Part II: The Strassen algorithm in Python, Java and C++](https://martin-thoma.com/strassen-algorithm-in-python-java-cpp/)
+- [Using Strassen’s Algorithm to Accelerate the Solution of Linear System](https://www.davidhbailey.com/dhbpapers/strassen.pdf)
+- https://shivathudi.github.io/jekyll/update/2017/06/15/matr-mult.html
+- http://jianyuhuang.com/papers/sc16.pdf
+- [Comparative Study of Strassen’s Matrix Multiplication Algorithm](http://www.ijcst.com/vol31/4/juby.pdf)
+- http://andrew.gibiansky.com/blog/mathematics/matrix-multiplication/
 
 #### Coppersmith–Winograd Algorithms
 
@@ -370,21 +391,52 @@ Consider three vector spaces $U$, $V$ and $W$ over the field $\mathbb F$ and
 A tensor over $(U, V, W)$ is an element of $U\otimes V\otimes W$ i.e., a formal sum
 $$T=\sum_{u=1}^{dim(U)}\sum_{v=1}^{dim(V)}\sum_{w=1}^{dim(W)}\underbrace{d_{uvw}}_{\in\mathbb F} x_{u}\otimes y_{v}\otimes z_{w}.$$
 
+[We use tensors (and their low-rank decompositions) to multiply matrices faster than $O(n^3)$.](https://dustingmixon.wordpress.com/2014/07/17/introduction-to-fast-matrix-multiplication/)
+Define the matrix multiplication tensor as follows:
+$$
+M_{(a, b), (c, d), (e, f)}^{(n)}
+=\begin{cases}
+1, &\text{if $b=c, d=e, f=a$}, \\
+0, &\text{otherwise}.
+\end{cases}
+$$
+Suppose $\mathrm{rank}(M^{(n)})\leq r$, i.e.,
+
+$$\displaystyle{M_{(a,b),(c,d),(e,f)}^{(n)}=\sum_{\ell=1}^r x_{ab}^\ell y_{cd}^\ell z_{ef}^\ell.}$$
+
+Then we can use this decomposition to re-express matrix multiplication:
+$$
+{(AB)}_{ik}=\sum_{j}A_{ij}B_{jk}\\
+=\sum_{j}M_{(i, j), (j, k), (k, i)}^{(n)}A_{ij}B_{jk}\\
+= \sum_{a=1}^n\sum_{b=1}^n\sum_{c=1}^n\sum_{d=1}^n M_{(a, b), (c, d), (k, i)}^{(n)}A_{ab}B_{cd}\\
+= \sum_{a=1}^n\sum_{b=1}^n\sum_{c=1}^n\sum_{d=1}^n (\sum_{l=1}^{r} x_{ab}^l y_{cd}^l z_{ki}^l)A_{ab}B_{cd}\\
+= \sum_{l=1}^r z_{ki}^l(\sum_{a=1}^n\sum_{b=1}^n x_{ab}^l A_{ab})(\sum_{c=1}^n\sum_{d=1}^n y_{cd}^l B_{cd})
+$$
 
 <img src="https://jackwish.net/images/2019/qnnpack/qnnpack-gemm-reduce.jpg" width="70%" />
 
-
+* [Fast Matrix Multiplication = Calculating Tensor Rank, Caltech Math 10 Presentation](https://people.eecs.berkeley.edu/~nirkhe/talks/ma10presentation2.pdf)
+* http://users.wfu.edu/ballard/pdfs/CSE17.pdf
+* https://jackwish.net/reveal-qnnpack-implementation.html
 * [Coppersmith-Winograd Algorithm](https://www.gabormelli.com/RKB/Coppersmith-Winograd_Algorithm)
 * [On the Coppersmith–Winograd method](http://www.cs.toronto.edu/~yuvalf/Limitations.pdf)
-* [Breaking the Coppersmith-Winograd barrier](https://www.cs.rit.edu/~rlc/Courses/Algorithms/Papers/matrixMult.pdf)
 * [Adaptive Winograd’s Matrix Multiplications](https://www.ics.uci.edu/~fastmm/FMM-Reference/dalberto-nicolau.winograd.TOMS.pdf)
-* [Multiplying matrices faster than Coppersmith-Winograd](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.2680&rep=rep1&type=pdf)
-* https://www.wikiwand.com/en/Coppersmith%E2%80%93Winograd_algorithm
 * https://www.wikiwand.com/en/Matrix_multiplication_algorithm
-* [Limits on All Known (and Some Unknown) Approaches to Matrix Multiplication](https://simons.berkeley.edu/talks/virginia)
-* https://jackwish.net/reveal-qnnpack-implementation.html
+* [Introduction to fast matrix multiplication](https://dustingmixon.wordpress.com/2014/07/17/introduction-to-fast-matrix-multiplication/)
+* [Practical Fast Matrix Multiplication Algorithms](http://jianyuhuang.com/papers/thesis.pdf)
 
 <img src="https://oscimg.oschina.net/oscnet/0338ded39791cc2a4a5702c65e0c91f5533.jpg" width="70%"/>
+
+* [Breaking the Coppersmith-Winograd barrier](https://www.cs.rit.edu/~rlc/Courses/Algorithms/Papers/matrixMult.pdf)
+* [Multiplying matrices faster than Coppersmith-Winograd](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.2680&rep=rep1&type=pdf)
+* [Limits on All Known (and Some Unknown) Approaches to Matrix Multiplication](https://simons.berkeley.edu/talks/virginia)
+* [A New Fast Recursive Matrix Multiplication Algorithm](https://link.springer.com/article/10.1007/s10559-019-00163-2)
+
+- http://tamivox.org/redbear/gen_matrix_mult/index.html
+- https://cqa.institute/2015/08/07/accelerating-matrix-multiplication/
+- [Distinguished Lecture Series III: Avi Wigderson, “Algebraic computation”](https://terrytao.wordpress.com/tag/fast-matrix-multiplication/)
+
+
 
 ### Automatic Differentiation, Differentiable Programming and Program Transformations
 
@@ -402,6 +454,11 @@ All numerical gradient-based optimization methods benifits from faster computati
 + https://autodiff-workshop.github.io/2016.html
 + http://www.autodiff.org/
 + [Tools for Automatic Differentiation](http://www.autodiff.org/?module=Tools)
++ https://arxiv.org/abs/1611.01652
++ [The simple essence of automatic differentiation](http://conal.net/papers/essence-of-ad/)
+
+[“What does AD mean, independently of implementation?” An answer arises in the form of naturality of sampling a function and its derivative. Automatic differentiation flows out of this naturality condition, together with the chain rule. Graduating from first-order to higher-order AD corresponds to sampling all derivatives instead of just one. Next, the setting is expanded to arbitrary vector spaces, in which derivative values are linear maps. The specification of AD adapts to this elegant and very general setting, which even simplifies the development.](http://conal.net/papers/beautiful-differentiation/)
+
 + [autodiff is a C++17 library that uses modern and advanced programming techniques to enable automatic computation of derivatives in an efficient and easy way.](https://autodiff.github.io/)
 + [DiffSharp: Differentiable Functional Programming](http://diffsharp.github.io/DiffSharp/)
 + https://www.mcs.anl.gov/OpenAD/
@@ -409,8 +466,10 @@ All numerical gradient-based optimization methods benifits from faster computati
 + https://en.wikipedia.org/wiki/Automatic_differentiation
 + http://www.admb-project.org/
 + https://github.com/rjhogan/Adept
++ https://fluxml.ai/Zygote.jl/latest/
 + http://www.met.reading.ac.uk/clouds/adept/
 + [AD computation with Template Model Builder (TMB)](https://github.com/kaskr/adcomp)
++ https://www.juliadiff.org/
 + [autodiffr for Automatic Differentiation in R through Julia](https://non-contradiction.github.io/autodiffr/)
 + https://srijithr.gitlab.io/post/autodiff/
 + https://fl.readthedocs.io/en/latest/autograd.html
@@ -418,8 +477,9 @@ All numerical gradient-based optimization methods benifits from faster computati
 + https://yiduai.sg/tensorflow-workshop/
 + [Swift](https://github.com/tensorflow/swift/blob/master/docs/AutomaticDifferentiation.md)
 + https://github.com/Functional-AutoDiff/STALINGRAD
-+ [The simple essence of automatic differentiation](http://conal.net/papers/essence-of-ad/)
-+ https://arxiv.org/abs/1611.01652
++ https://coin-or.github.io/CppAD/doc/cppad.htm
++ http://simweb.iwr.uni-heidelberg.de/~darndt/files/doxygen/deal.II/index.html
++ [AD-Suite: A Test Suite for Algorithmic Differentiation](http://www.autodiff.org/ad16/Oral/Narayanamurthi_ADSuite.pdf)
 
 #### Differentiable Programming
 
@@ -506,19 +566,8 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 
 ## Compilers for Deep Learning
 
-|DNN Acceleratation Framework|
-|---|
-|[NVIDIA cuDNN GPU Accelerated Deep Learning](https://developer.nvidia.com/cudnn)|
-|[cupy](https://cupy.chainer.org/), [ideep](https://github.com/intel/ideep)|
-|[Menoh](https://github.com/pfnet-research/menoh)|
-|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
-|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
-|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
-|[Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)|
-|[SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)|
 
-* https://arxiv.org/pdf/1602.01528.pdf
-
+* [EIE: Efficient Inference Engine on Compressed Deep Neural Network](https://arxiv.org/pdf/1602.01528.pdf)
 
 ### TVM and Versatile Tensor Accelerator (VTA)
 
@@ -603,6 +652,35 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 + [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
 https://github.com/stanford-futuredata/Willump
 
+#### Cilk
+
+[Cilk aims to make parallel programming a simple extension of ordinary serial programming. Other concurrency platforms, such as Intel’s Threading Building Blocks (TBB) and OpenMP, share similar goals of making parallel programming easier. But Cilk sets itself apart from other concurrency platforms through its simple design and implementation and its powerful suite of provably effective tools. These properties make Cilk well suited as a platform for next-generation multicore research.](http://cilk.mit.edu/)
+
+[Tapir enables effective compiler optimization of parallel programs with only minor changes to existing compiler analyses and code transformations. Tapir uses the serial-projection property to order logically parallel fine-grained tasks in the program's control-flow graph. This ordered representation of parallel tasks allows the compiler to optimize parallel codes effectively with only minor modifications.](https://www.csail.mit.edu/event/tapir-embedding-recursive-fork-join-parallelism-llvms-intermediate-representation)
+
+- http://cilk.mit.edu/tapir/
+- https://llvm.org/
+- https://zhuanlan.zhihu.com/p/64903359
+
+|DNN Acceleratation Framewore|
+|---|
+|NVIDIA|
+|https://developer.nvidia.com/cudnn)|
+|http://nvdla.org/|
+|https://docs.nvidia.com/cuda/|
+|https://developer.nvidia.com/tensorrt|
+|[cupy](https://cupy.chainer.org/)|
+|intel|
+|[ideep](https://github.com/intel/ideep)
+|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
+|https://github.com/intel/onnxruntime|
+|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
+|https://intel.github.io/mkl-dnn/|
+|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
+|[Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)|
+|[SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)|
+|[Menoh](https://github.com/pfnet-research/menoh)|
+
 ----
 
 ### Compression and Acceleration of CNN
@@ -633,6 +711,7 @@ Pruning is to prune the connections in deep neural network in order to reduce th
 <img src=https://littletomatodonkey.github.io/img/post/20181010-DC-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E6%B5%81%E7%A8%8B%E5%9B%BE.png width=80% />
 
 ----
+* [Pruning deep neural networks to make them fast and small](https://jacobgil.github.io/deeplearning/pruning-deep-learning)
 * https://nervanasystems.github.io/distiller/pruning/index.html
 * https://github.com/yihui-he/channel-pruning
 * https://pocketflow.github.io/cp_learner/
@@ -667,6 +746,7 @@ where $x$ is the scalar input, $b_a$ is the bit-width, and $k$ is the quantizati
 * [Low Precision Arithmetic Simulation in PyTorch](https://github.com/Tiiiger/QPyTorch)
 * [Training Quantized Deep Neural Networks and Applications with Blended Coarse Gradient Descent](https://sinews.siam.org/Details-Page/training-quantized-deep-neural-networks-and-applications-with-blended-coarse-gradient-descent)
 * [FINN-R: An End-to-End Deep-Learning Framework for Fast Exploration of Quantized Neural Networks](https://arxiv.org/abs/1809.04570v1)
+* [Model Compression and Acceleration for Deep Neural Networks: The Principles, Progress, and Challenges](https://ieeexplore.ieee.org/document/8253600)
 
 ##### Binarized Neural Network, Ternary Weight Networks, XOR-Net
 
@@ -715,10 +795,21 @@ Transfer learning methods have demonstrated state-of-the-art performance on vari
 + [MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
 + [Compact Convolutional Neural Network Transfer Learning For Small-Scale Image Classification](https://kar.kent.ac.uk/55053/)
 
-#### Low-rank Approximation
-
+#### Tensor Methods
 
 Note that the deep learning models are composite of linear and non-linear maps. And linear maps are based on matrices.
+
+[These methods take a layer and decompose it into several smaller layers. Although there will be more layers after the decomposition, the total number of floating point operations and weights will be smaller. Some reported results are on the order of x8 for entire networks (not aimed at large tasks like imagenet, though), or x4 for specific layers inside imagenet. My experience was that with these decompositions I was able to get a speedup of between x2 to x4, depending on the accuracy drop I was willing to take.](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
+
+- http://www.tensorlet.com/
+- [Optimal Low Rank Tensor Factorization for Deep Learning](https://link.springer.com/chapter/10.1007%2F978-981-13-2372-0_42)
+- https://github.com/jacobgil/pytorch-tensor-decompositions
+- [Accelerating deep neural networks with tensor decompositions](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
+- [Workshop: “Deep Learning and Tensor/Matrix Decomposition for Applications in Neuroscience”, November 17th, Singapore](https://crei.skoltech.ru/cdise/icdm-2018-workshop/)
+- http://www.deeptensor.ml/index.html
+- http://tensorly.org/stable/home.html
+- http://www.vision.jhu.edu/
+- https://wabyking.github.io/talks/DL_tensor.pdf
 
 **Singular value decomposition**
 
@@ -772,7 +863,6 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * [CS 598 LAZ: Cutting-Edge Trends in Deep Learning and Recognition](http://slazebni.cs.illinois.edu/spring17/)
 * http://slazebni.cs.illinois.edu/spring17/lec06_compression.pdf
 * http://slazebni.cs.illinois.edu/spring17/reading_lists.html#lec06
-* https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning
 * [CS236605: Deep Learning](https://vistalab-technion.github.io/cs236605/lectures/)
 * https://mlperf.org/
 
@@ -796,5 +886,10 @@ RNN is feedback network where there is rings in its computational graph.
 - https://ai.google/research/pubs/pub44632
 - https://vast.cs.ucla.edu/sites/default/files/publications/CLINK_ISLPED%202018%20publication.pdf
 
+### Compressing GANs
+
+- https://arxiv.org/abs/1902.00159
+- https://github.com/amitadate/gan-compression
+- [Adversarial Network Compression](http://openaccess.thecvf.com/content_ECCVW_2018/papers/11132/Belagiannis_Adversarial_Network_Compression_ECCVW_2018_paper.pdf)
 
 https://github.com/kedartatwawadi/NN_compression
