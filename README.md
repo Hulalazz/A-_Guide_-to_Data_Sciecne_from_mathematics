@@ -20,7 +20,8 @@ I hope that it is on the [ADEPT way](https://betterexplained.com/articles/adept-
 It is expected a part of **A Guide to Data Science**, where the overview of data science is roughly presented.
 It is used to attract the people to the world of data.
 
-It includes the architure, optimization methods and regularization, acceleration and compression of deep neural network.
+It includes the archicture, optimization methods and regularization, acceleration and compression of deep neural network.
+The state of the art is not discussed.
 
 It includes not limited the following content:
 - [X] basic introduction to probability and statistics;
