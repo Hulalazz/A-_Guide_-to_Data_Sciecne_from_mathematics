@@ -1955,6 +1955,7 @@ This will lead to the operator splitting methods analysesed by [Wotao Yin](http:
 * [Generalized Framework for Nonlinear Acceleration](https://arxiv.org/abs/1903.08764v1)
 * [Nonlinear Acceleration of Stochastic Algorithms](https://papers.nips.cc/paper/6987-nonlinear-acceleration-of-stochastic-algorithms.pdf)
 * [Nonlinear Acceleration of Constrained Optimization Algorithms](https://ieeexplore.ieee.org/document/8682962)
+* [Cheat Sheet: Acceleration from First Principles](http://www.pokutta.com/blog/research/2019/06/10/cheatsheet-acceleration-first-principles.html)
 
 **Relaxation and inertia**
 
@@ -2082,7 +2083,7 @@ optimization and fixed-point iteration,](http://faculty.uml.edu/cbyrne/BHSemina
 * [Monotonicity, Acceleration, Inertia, and the Proximal Gradient algorithm](http://www.iutzeler.org/pres/osl2017.pdf)
 * [Iterative Convex Optimization Algorithms; Part One: Using the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/BHSeminar2015.pdf)
 * [Recent Advances in Convex Optimization and Fixed Point Algorithms by Jean-Christophe Pesquet](https://www.i2m.univ-amu.fr/seminaires_signal_apprentissage/Slides/2015_04_28_Pesquet_course_main.pdf)
-* [Nemirovski’s acceleration](https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/)
+* [A FIXED-POINT OF VIEW ON GRADIENT METHODS FOR BIG DATA](https://arxiv.org/pdf/1706.09880.pdf)
 
 #### Anderson Acceleration of the Alternating Projections Method for Computing the Nearest Correlation Matrix
 
@@ -2165,12 +2166,30 @@ Why not other `extrapolation` of the last updated values?
 - [Steepest Descent Preconditioning for Nonlinear GMRES Optimization by Hans De Sterck](https://arxiv.org/abs/1106.4426)
 - [A Fast Anderson-Chebyshev Acceleration for Nonlinear Optimization](https://arxiv.org/abs/1809.02341)
 
-#### Alternating Anderson-Richardson method
+
+### Nemirovski’s Acceleration
+
+Let $f$ be a 1-smooth function. Denote $x^{+} = x - \nabla f(x)$.
+The algorithm simply returns the optimal combination of the conjugate point and the gradient descent point, that is:
+
+$$x_{t+1}=\arg\min_{x\in P_t} f(x)$$
+where $P_t=\operatorname{span}\{x_t^{+},\sum_{s=1}^t \lambda_s\nabla f(x^s)\}$.
+
+It seems like a trust region methods where one region is given.
+
+* [Fields CQAM Focus Program on Data Science and Optimization](http://www.fields.utoronto.ca/activities/19-20/data)
+* http://www.pokutta.com/
+* https://github.com/pokutta/lacg
+* [Conditional Gradients and Acceleration](http://www.pokutta.com/blog/research/2019/07/04/LaCG-abstract.html)
+* [Nemirovski’s acceleration](https://blogs.princeton.edu/imabandit/2019/01/09/nemirovskis-acceleration/)
+* https://sunjackson.github.io/page9/
+
+### Alternating Anderson-Richardson method
 
 - [Alternating Anderson-Richardson method: An efficient alternative to preconditioned Krylov methods for large, sparse linear systems](https://arxiv.org/pdf/1606.08740.pdf)
 - [Anderson acceleration of the Jacobi iterative method: An efficient alternative to Krylov methods for large, sparse linear systems](https://www.sciencedirect.com/science/article/pii/S0021999115007585)
 
-#### Regularized Nonlinear Acceleration
+### Regularized Nonlinear Acceleration
 
 [We describe a convergence acceleration technique for generic optimization problems. Our scheme computes estimates of the optimum from a nonlinear average of the iterates produced by any optimization method. The weights in this average are computed via a simple linear system, whose solution can be updated online. This acceleration scheme runs in parallel to the base algorithm, providing improved estimates of the solution on the fly, while the original optimization method is running. Numerical experiments are detailed on classical classification problems.](http://www.optimization-online.org/DB_HTML/2016/09/5630.html)
 
@@ -2191,7 +2210,7 @@ $$
 * https://github.com/windows7lover/RegularizedNonlinearAcceleration
 * https://damienscieur.com/
 
-####  Objective Acceleration
+###  Objective Acceleration
 
 [O-ACCEL (objective acceleration), is novel in that it minimizes an approximation to the objective function on subspaces of $\mathbb{R}^n$. We prove that O-ACCEL reduces to the full orthogonalization method for linear systems when the objective is quadratic, which differentiates our proposed approach from existing acceleration methods. Comparisons with the limited-memory Broyden–Fletcher–Goldfarb–Shanno and nonlinear conjugate gradient methods indicate the competitiveness of O-ACCEL.](https://onlinelibrary.wiley.com/doi/pdf/10.1002/nla.2216)
 
@@ -2209,14 +2228,14 @@ Another question is to generalize the fixed point iteration to stochastic gradie
 - [PyUNLocBoX: Optimization by Proximal Splitting](https://pyunlocbox.readthedocs.io/en/stable/index.html)
 - https://lts2.epfl.ch/
 
-#### Direct Nonlinear Acceleration
+### Direct Nonlinear Acceleration
 
 [Optimization acceleration techniques such as momentum play a key role in state-of-the-art machine learning algorithms. Recently, generic vector sequence extrapolation techniques, such as regularized nonlinear acceleration (RNA) of Scieur et al. (Scieur et al., 2016), were proposed and shown to accelerate fixed point iterations. In contrast to RNA which computes extrapolation coefficients by (approximately) setting the gradient of the objective function to zero at the extrapolated point, we propose a more direct approach, which we call direct nonlinear acceleration (DNA). In DNA, we aim to minimize (an approximation of) the function value at the extrapolated point instead. We adopt a regularized approach with regularizers designed to prevent the model from entering a region in which the functional approximation is less precise. While the computational cost of DNA is comparable to that of RNA, our direct approach significantly outperforms RNA on both synthetic and real-world datasets. While the focus of this paper is on convex problems, we obtain very encouraging results in accelerating the training of neural networks.](https://arxiv.org/abs/1905.11692)
 
 - https://arxiv.org/abs/1905.11692
 - https://www.aritradutta.com/
 
-### Proportional–Integral–Derivative
+### Proportional–Integral–Derivative Optimizer
 
 The principle of feedback is simple  an input, $x^n$, is given, processed through some function, $f$, and then the output, $y^n$, becomes the next input, $x^{n+1}$, repeatedly. When allowing the ouput to equal the next input, an identity exists so that $x^{n+1}=y^n$. Cobweb diagrams exploit the relationship, map the iterations, and reveal the behaviors of fixed points.
 
@@ -2249,6 +2268,8 @@ The proportional part acts on the present value of the error, the integral repre
 * [PID Theory Explained](https://www.ni.com/en-ie/innovations/white-papers/06/pid-theory-explained.html)
 * [Chapter 8: PID Control](https://www.cds.caltech.edu/~murray/courses/cds101/fa04/caltech/am04_ch8-3nov04.pdf)
 * [CDS 101/110 -- Fall 2004 Analysis and Design of Feedback Systems](https://www.cds.caltech.edu/~murray/courses/cds101/fa04/)
+* [PID Control Theory ](http://cdn.intechopen.com/pdfs/29826/InTech-Pid_control_theory.pdf)
+* [Control system theory](http://students.iitk.ac.in/roboclub/lectures/PID.pdf)
 
 Methods| Recursion | Integration|
 ----|:---:|:----:|
@@ -2289,17 +2310,29 @@ $$x^{t+1}=x^t+\alpha V^t -r g(x^t)+K_d [\alpha D^t +(1-\alpha)(g(x^t)-g(x^{t-1})
 = \alpha (V^t + K_d D^t) +x^t -r g(x^t)+ K_d(1-\alpha)[g(x^t)-g(x^{t-1})]
 $$
 
-which looks like an ensmeble of `inertia and relaxation techniques`. 
+which looks like an ensmeble of `inertia and relaxation techniques`.
 [We, for the first time, connect classical control theory with deep network optimization, and improve up to 50% the efficiency over SGD-Momentum!)](http://www4.comp.polyu.edu.hk/~cslzhang/papers.htm)
 
 Now it is still a emprical method without any convergence proof.
 
+As [Linear Coupling: An Ultimate Unification of Gradient and Mirror Descent](https://arxiv.org/pdf/1407.1537.pdf), it is supposed to be converegnt in convex cases with some tuned parameters.
+
+And it is simple to generalize Newton's methods where the gradients are replaced by rescaled gradients.
+In another word, the Newton type PID optimizer updates parameter $x$ at iteration $(t +1)$ by:
+
+- $V^{t+1}=\alpha V^t -r H^{-1}(x^t)g(x^t)$
+- $D^{t+1}=\alpha D^t +(1-\alpha)(H^{-1}(x^t)g(x^t)-H^{-1}(x^{t-1})g(x^{t-1}))$
+- $x^{t+1}=x^t+V^{t+1}+K_d D^{t+1}$.
+
+The problem is that we have no theoretical proof while it inspired us how to ensemlble different ptimization methods or scehemes to accelerate the convergence procedure.
 
 * [CVPR 2018 | 加速模型收敛的新思路（控制理论+深度学习）](http://www.sohu.com/a/242354509_297288)
 * [一种用于深度网络随机优化的PID控制器方法](https://blog.csdn.net/weixin_39506322/article/details/82498701)
 * [PID Optimizer (Proportional–Integral–Derivative Optimizer)](https://github.com/tensorboy/PIDOptimizer)
 * [A PID Controller Approach for Stochastic Optimization of Deep Networks](https://www4.comp.polyu.edu.hk/~cslzhang/paper/CVPR18_PID.pdf)
 * [Supplemental Materials to “A PID Controller Approach for Stochastic Optimization of Deep Networks”](http://www4.comp.polyu.edu.hk/~cslzhang/papers.htm)
+* [Adaptive Restarting for First Order Optimization Methods](https://statweb.stanford.edu/~candes/math301/Lectures/adap_restart_nesterov.pdf)
+
 
 [To overcome the oscillation problem in the classical momentum-based optimizer, recent work associates it with the proportional-integral (PI) controller, and artificially adds D term producing a PID controller. It suppresses oscillation with the sacrifice of introducing extra hyper-parameter.](https://arxiv.org/abs/1812.11305)
 
@@ -2324,6 +2357,7 @@ $x^{k+1}=M(x^k)$ | $x^k=\underbrace{M(M(\cdots M(x^0)))}_{\text{k times}}$
 ****
 * [Accelerated Optimization in the PDE Framework: Formulations for the Manifold of Diffeomorphism](https://repository.kaust.edu.sa/bitstream/handle/10754/627489/1804.02307v1.pdf?sequence=1&isAllowed=y)
 * [Integration Methods and Accelerated Optimization Algorithms](https://arxiv.org/abs/1702.06751)
+* https://statweb.stanford.edu/~candes/math301/hand.html
 
 ## Dynamical Systems
 
@@ -2474,11 +2508,7 @@ where $a_{1},a_{2},\dots$  is a sequence of positive step sizes.
 
 This process can be considered as `fixed point iteration with random noise`.
 Different from the determinant methods, the sequences they generated are also on random.
-____
 
-- [Lecture Notes: Weak convergence of stochastic processes, Thomas Mikosch1
-(2005)](http://web.math.ku.dk/~erhansen/web/stat1/mikosch1.pdf)
-- [Convergence of Stochastic Processes](http://repository.upenn.edu/cgi/viewcontent.cgi?article=1487&context=cis_reports)
 
 
 `Robbins and Monro` proved , Theorem 2 that $\theta_n$ converges in $L^{2}$ (and hence also in probability) to $\theta$ , and Blum later proved the convergence is actually with probability one, provided that:
@@ -2611,26 +2641,13 @@ See the following links for more information on *stochastic gradient descent*.
 * [A look at SGD from a physicists's perspective - Part 2, Bayesian Deep Learning](https://henripal.github.io/blog/nealbayesian)
 * [A look at SGD from a physicists's perspective - Part 3, Langevin Dynamics and Applications](https://henripal.github.io/blog/langevin)
 
-#### Convergence Analysis
-
-The stochastic gradient methods are so different from the classic methods.
-
-+ [Convergence Analysis of Gradient Descent Stochastic Algorithms](https://www2.isye.gatech.edu/~ashapiro/JOTA96[1].pdf)
-+ [Stochastic Gradient Descent with Exponential Convergence Rates of Expected Classification Errors](http://proceedings.mlr.press/v89/nitanda19a/nitanda19a.pdf)
-+ [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
-+ [Incremental Gradient, Subgradient, and Proximal Methods for Convex Optimization: A Survey ](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf)
-+ [Convex Relaxations of Convolutional Neural Nets](https://arxiv.org/abs/1901.00035)
-+ [The Impact of Neural Network Overparameterization on Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.06963v2.pdf)
-+ [Quasi-potential as an implicit regularizer for the loss function in the stochastic gradient descent](https://arxiv.org/abs/1901.06054)
-+ [The Multiplicative Noise in Stochastic Gradient Descent: Data-Dependent Regularization, Continuous and Discrete Approximation](https://arxiv.org/abs/1906.07405)
-+ [On the Convergence of Perturbed Distributed Asynchronous Stochastic Gradient Descent to Second Order Stationary Points in Non-convex Optimization](https://arxiv.org/abs/1910.06000v1)
-+ [A Convergence Theory for Deep Learningvia Over-Parameterization](https://arxiv.org/pdf/1811.03962.pdf)
-
-![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
+#### Convergence Analysis of Stochastic Gradient Methods
 
 [Progress in machine learning (ML) is happening so rapidly, that it can sometimes feel like any idea or algorithm more than 2 years old is already outdated or superseded by something better. However, old ideas sometimes remain relevant even when a large fraction of the scientific community has turned away from them. This is often a question of context: an idea which may seem to be a dead end in a particular context may become wildly successful in a different one. In the specific case of deep learning (DL), the growth of both the availability of data and computing power renewed interest in the area and significantly influenced research directions.](https://ai.googleblog.com/2018/12/the-neurips-2018-test-of-time-award.html)
 
 
+
+![Leon Bottou](https://istcolloq.gsfc.nasa.gov/sites/isat/files/bottou.jpg)
 
 * http://blavatnikawards.org/honorees/profile/leon-bottou/
 * https://leon.bottou.org/projects/sgd
@@ -2643,6 +2660,38 @@ The stochastic gradient methods are so different from the classic methods.
 * http://dustintran.com/blog/on-asymptotic-convergence-of-averaged-sgd
 * https://github.com/ptoulis/implicit-sgd
 
+The stochastic gradient methohds generates  random/stochastic sequences, which are so different from the classic methods. The convergence of stochastic methods will bring another probelm whether the random sequence is converegent to a optimal point  in some sense.
+
+> Converegence in probability/measure
+>
+> Converegence in expectation
+>
+> Convergence with probability 1
+
+____
+- [Lecture Notes: Weak convergence of stochastic processes, Thomas Mikosch1
+(2005)](http://web.math.ku.dk/~erhansen/web/stat1/mikosch1.pdf)
+- [Convergence of Stochastic Processes](http://repository.upenn.edu/cgi/viewcontent.cgi?article=1487&context=cis_reports)
+
+
+
+
++ [Convergence Analysis of Gradient Descent Stochastic Algorithms](https://www2.isye.gatech.edu/~ashapiro/JOTA96[1].pdf)
++ [Stochastic Gradient Descent with Exponential Convergence Rates of Expected Classification Errors](http://proceedings.mlr.press/v89/nitanda19a/nitanda19a.pdf)
++ [Stochastic Approximations, Diffusion Limit and Small Random Perturbations of Dynamical Systems](http://web.mst.edu/~huwen/slides_stochastic_approximation_perturbation.pdf)
++ [Incremental Gradient, Subgradient, and Proximal Methods for Convex Optimization: A Survey ](http://www.mit.edu/~dimitrib/Incremental_Survey_LIDS.pdf)
++ [Convex Relaxations of Convolutional Neural Nets](https://arxiv.org/abs/1901.00035)
++ [The Impact of Neural Network Overparameterization on Gradient Confusion and Stochastic Gradient Descent](https://arxiv.org/pdf/1904.06963v2.pdf)
++ [Quasi-potential as an implicit regularizer for the loss function in the stochastic gradient descent](https://arxiv.org/abs/1901.06054)
++ [The Multiplicative Noise in Stochastic Gradient Descent: Data-Dependent Regularization, Continuous and Discrete Approximation](https://arxiv.org/abs/1906.07405)
++ [On the Convergence of Perturbed Distributed Asynchronous Stochastic Gradient Descent to Second Order Stationary Points in Non-convex Optimization](https://arxiv.org/abs/1910.06000v1)
++ [A Convergence Theory for Deep Learningvia Over-Parameterization](https://arxiv.org/pdf/1811.03962.pdf)
++ [Analysis of the Gradient Descent Algorithm for a Deep Neural Network Model with Skip-connections](https://arxiv.org/abs/1904.05263)
++ [Gradient Descent Finds Global Minima of Deep Neural Networks](https://arxiv.org/abs/1811.03804)
++ https://zhuanlan.zhihu.com/p/28819506
++ https://zhuanlan.zhihu.com/p/73441350
++ [The Loss Surfaces of Multilayer Networks](https://arxiv.org/abs/1412.0233)
++ [为什么说随机最速下降法(SGD)是一个很好的方法？](https://zhuanlan.zhihu.com/p/27609238)
 
 ### ADAM and More
 
@@ -2652,6 +2701,8 @@ The stochastic gradient methods are so different from the classic methods.
 
 - [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
 - [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
+- https://github.com/LiyuanLucasLiu/RAdam
+- https://github.com/CyberZHG/keras-radam
 - http://ruder.io/deep-learning-optimization-2017/
 
 |The Differences of Stochastic Gradient Descent and its Variants|
@@ -2669,12 +2720,34 @@ $\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zey
 - [Katyusha X: Practical Momentum Method for Stochastic Sum-of-Nonconvex Optimization](https://arxiv.org/abs/1802.03866v1)
 
 
+
 #### Variance Reduction Stochastic Gradient Methods
 
 For general convex optimization, stochastic gradient descent methods can obtain an $O(1/\sqrt{T})$ convergence rate in expectation.
 
-Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very large, it will slow down the convergence.
+A more general version of SGD is the following
+$$\omega^{(t)}=\omega^{(t−1)}- g_t(\omega(t−1), \epsilon_t)$$
 
+where $\epsilon_t$ is a random variable that may depend on $\omega^{(t−1)}$. And it is usually assumed that $\mathbb E(g_t(\omega^{(t−1)}, \epsilon_t)\mid \omega^{(t−1)} = \nabla f(\omega^{(t−1)})$.
+
+Randomness introduces large variance if $g_t(\omega^{(t−1)}, \epsilon_t)$ is very large, it will slow down the convergence.
+
+___
+
+Procedure SVRG
++ input: update frequency $m$ and learning rate $\eta$
++ initialization: $\tilde{\omega}_0$
++ **for $s=1,2,\cdots$ do**
+  + $\tilde w=\tilde w_{s-1}$
+  + $\tilde{ \mu}=\nabla f(\tilde w)=\frac{1}{n}\sum_{i=1}^{n}\nabla f_i(\tilde{w})$
+  + $\omega_0=\tilde{\omega}$
+  + Randomly pick $i_t \in \{1, ..., n\}$ and update weight, repeat $m$ times $\omega^{(t)}=\omega^{(t−1)}- \eta_t [g_t(\omega(t−1), \epsilon_t)-g_t(\tilde\omega, \epsilon_t) - \tilde{ \mu}]$
+  + option I: set $\tilde{\omega}_s={\omega}_m$
+  + option II: set $\tilde{\omega}_s={\omega}_t$ for randomly chosen $t \in \{1, ..., n-1\}
++ **end for**
+
+
+***
 + [Stochastic Gradient Descent with Variance Reduction](http://ranger.uta.edu/~heng/CSE6389_15_slides/SGD2.pdf)
 + [Variance reduction for stochastic gradient methods](http://www.princeton.edu/~yc5/ele522_optimization/lectures/variance_reduction.pdf)
 + https://www.di.ens.fr/~fbach/fbach_tutorial_siopt_2017.pdf
@@ -2690,13 +2763,16 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 + [Fast Variance Reduction Method with Stochastic Batch Size](https://arxiv.org/abs/1808.02169)
 + [Laplacian Smoothing Gradient Descent](https://www.simai.eu/wp-content/uploads/2018/07/Slides_WNLL_LSGD.pdf)
 + [Entropy SGD](http://59.80.44.48/www.columbia.edu/~aec2163/NonFlash/Papers/Entropy-SGD.pdf)
-- [Acceleration of SVRG and Katyusha X by Inexact Preconditioning](http://www.optimization-online.org/DB_HTML/2019/05/7225.html) 
+- [Acceleration of SVRG and Katyusha X by Inexact Preconditioning](http://www.optimization-online.org/DB_HTML/2019/05/7225.html)
 + https://github.com/tdozat/Optimization
 + https://zhuanlan.zhihu.com/p/25473305
 + http://ranger.uta.edu/~heng/CSE6389_15_slides/
 + https://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/
 + https://json0071.gitbooks.io/svm/content/sag.html
 + http://www.cs.toronto.edu/~jmartens/research.html
+* https://homepage.cs.uiowa.edu/~tyng/
+* http://tongzhang-ml.org/publication.html
+
 
 #### Escape Saddle Points
 
@@ -2720,6 +2796,8 @@ Randomness introduces large variance if $g_t(\omega(t−1), \epsilon_t)$ is very
 - [Nonasymptotic convergence of stochastic proximal point methods for constrained convex optimization](http://jmlr.csail.mit.edu/papers/volume18/17-347/17-347.pdf)
 - [A Stochastic Proximal Point Algorithm for Saddle-Point Problems](https://deepai.org/publication/a-stochastic-proximal-point-algorithm-for-saddle-point-problems)
 - [Stochastic Proximal Gradient Algorithm and it’s application to sum of least squares](http://www-personal.umich.edu/~aniketde/processed_md/Stats607_Aniketde.pdf)
+- [Proximal Stochastic Gradient Method with
+Variance Reduction](http://helper.ipam.ucla.edu/publications/sgm2014/sgm2014_11808.pdf)  
 - https://emtiyaz.github.io/papers/uai2016.pdf
 - https://mwang.princeton.edu/
 - https://ajwagen.github.io/adsi_learning_and_control/
@@ -2972,7 +3050,7 @@ $$\sum_{i=1}^{n}f_i(x_i),\\
 s.t. x_i= E_i y$$
 
 
-#### Resource on Distributed OPtimization Methods
+#### Resource on Distributed Optimization Methods
 
 + [DIMACS 2012-2017 Special Focus on Information Sharing and Dynamic Data Analysis](http://dimacs.rutgers.edu/archive/SpecialYears/2012_Data/)
 + [DIMACS Workshop on Distributed Optimization, Information Processing, and Learning](http://archive.dimacs.rutgers.edu/Workshops/Learning/)

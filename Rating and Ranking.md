@@ -2,6 +2,7 @@
 
 <img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
 
++ http://lintool.github.io/NSF-projects/IIS-1144034/
 + https://cs.uwaterloo.ca/~jimmylin/projects/index.html
 + [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
 + [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
@@ -115,17 +116,12 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 
 > 1. Determine RD
 >  The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
-> $$
->  RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}
-> $$
+> $$RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}$$
 >  where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
 >
 > 2. Determine New Rating
 >   The new ratings, after a series of m games, are determined by the following equation:
-> $$
->   r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s |r,r_i,RD_i))
-> $$
->
+> $$r=r_0+\frac{q}{RD^{-2}+d^{-2}}\sum_{i=1}^{m}g(RD_i)(s_i - E(s |r,r_i,RD_i))$$
 > where
 >  * $g(RD_i)=\{1+\frac{3q^2(RD_i)^2}{\pi^2}\}^{-1/2}$, $E(s | r, r_ i, RD_i))=\{1 + 10^{(\frac{g(RD_i)(r-r_i)}{-400})}\}$,
 >  * $q=\frac{\ln(10)}{400}\approx 0.00575646273$,
@@ -148,7 +144,14 @@ If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 As shown in the rule to update the score in Elo, it only take the differences of score into consideration.
 The TrueSkill system will assume that the distribution of the skill is **location-scale** distribution. In fact, the prior distribution in Elo is **Gaussian distribution**.
 The expected performance of the player is his mean of the distribution. The variance is the uncertainty  of the system.
-[For a new player, this distribution will represent our (significant) uncertainty in their skill value. Again, we make this modelling assumption precise through the choice of a Gaussian distribution. Once a new player has played a game, we aim to use the outcome of the game to infer the updated skill distribution for the player (and also for any other players in the game). This involves solving a probabilistic inference problem to calculate the posterior distribution of each player’s skill, taking account of the new information provided by the result of the game. Although the prior distribution is Gaussian, the corresponding posterior distribution may not be Gaussian. However, we shall see that there is considerable benefit in approximating the exact posterior distribution by a Gaussian. ](http://www.mbmlbook.com/TrueSkill_Inferring_the_players_skills.html)
+[We have already noted that skill is an uncertain quantity, and should therefore be included in the model as a random variable. We need to define a suitable prior distribution for this variable. This distribution captures our prior knowledge about a player’s skill before they have played any games. Since we know very little about a player before they play any games, this distribution needs to be broad and cover the full range of skills that a new player might have. Because skill is a continuous variable we can once again use a Gaussian distribution to define this prior.](http://www.mbmlbook.com/TrueSkill_Inferring_the_players_skills.html)
+
+The three assumptions encoded in our model are: 
+
++ Each player has a skill value, represented by a continuous variable with a broad prior distribution.
++ Each player has a performance value for each game, which varies from game to game such that the average value is equal to the skill of that player. The variation in performance, which is the same for all players, is symmetrically distributed around the mean value and is more likely to be close to the mean than to be far from the mean.
++ The player with the higher performance value wins the game.
+
 The update rule will update the mean and variance:
 ***
 $$
@@ -174,10 +177,27 @@ $\color{red}{PS}$: $TrueSkill^{TM}$ is a commercial trademark.
 - [ ] [Herbrich, R., Minka, T., and Graepel, T. (2007). TrueSkill(TM): A Bayesian Skill Rating System. In Advances in Neural Information Processing Systems 20, pages 569–576. MIT Press.](https://ieeexplore.ieee.org/document/6287323/)
 - [ ] https://pypi.org/project/trueskill/
 
+### Edo Historical Chess Rating 
+In summary, the Edo system is done by
+- Obtaining maximum-likelihood estimates of ratings based on tournament and match results by applying a single large Bradley-Terry algorithm using each player in each year of their career as a separate entity, the comparisons between them being:
+  - results of real games, and
+  - 50% scores in hypothetical games between adjacent years for the same player (30 games),
+- Calculating rating deviations - standard errors of the rating estimates from the Bradley-Terry results, and
+- Adjusting the ratings by calculating a combined maximum likelihood estimate of the score-based rating and the rating based on the underlying 'prior' rating distribution.
+
++ [Rating historical chess players](http://www.edochess.ca/Edo.explanation.html)
++ http://www.edochess.ca/
+
 
 ### Whole-History Rating
 
 Incremental Rating Systems or dynamical rating systems such as TrueSkill  do not make optimal use of data.
+This idea may be refined by giving a decaying weight to games, either
+exponential or linear. With this decay, old games are progressively forgotten,
+which allows to measure the progress of players.
+The main problem is that the decay of game weights generates a very fast increase in the uncertainty of player ratings.
+
+The weakness of algorithms like `Glicko` and `TrueSkill` lies in the inaccuracies of representing the probability distribution with just one value and one variance for every player, ignoring covariance.
 The principle of Bayesian Inference consists in computing a probability distribution
 over player ratings ($r$) from the observation of game results ($G$) by inverting the model thanks to Bayes formula:
 
@@ -194,11 +214,21 @@ $$
 
 as shown in Elo rating system.
 
-In the dynamic Bradley-Terry model, the prior has two roles. First, a prior
+In the `dynamic Bradley-Terry model`, the prior has two roles. First, a prior
 probability distribution over the range of ratings is applied. This way, the rating
-of a player with $100\%$ wins does not go to infinity. Also, a prior controls the
-variation of the ratings in time, to avoid huge jumps in ratings.
-In the dynamic Bradley-Terry model, the prior that controls the variation of
+of a player with $100\%$ wins does not go to infinity. Also, a prior controls the variation of the ratings in time, to avoid huge jumps in ratings.
+The Bradley-Terry model for paired comparisons gives the probability of winning a game as a function of ratings:
+$$P(\text{player i beats player j at time t}) =\frac{\gamma_i(t)}{\gamma_i(t)+\gamma_j(t)}$$
+
+where 
+
++ Player number: $i \in \{1, \dots , N\}$, integer index.
++ Elo rating of player $i$ at time $t$: $R_i(t)$, real number.
++ $\gamma$ rating of player $i$ at time $t$: $\gamma_i(t)$, defined by  $\gamma_i(t)=10^{\frac{R_i(t)}{400}}$
++ Natural rating of player i at time t: $r_i(t) = \ln gamma_i(t) = R_i(t)\frac{\ln 10}{400}$.
+
+
+In the `dynamic Bradley-Terry model`, the prior that controls the variation of
 ratings in time is a Wiener process:
 
 $$
@@ -208,7 +238,7 @@ $$
 where $w$ is a parameter of the model, that indicates the variability of ratings in time.
 The extreme case of $w = 0$ would mean static ratings.
 
-The WHR algorithm consists in computing, for each player, the $r(t)$ function
+The `WHR algorithm` consists in computing, for each player, the $r(t)$ function
 that maximizes $P(r|G)$. Once this maximum a posteriori (**MAP**) has been computed,
 the variance around this maximum is also estimated, which is a way to estimate rating uncertainty.
 
@@ -224,6 +254,7 @@ $$
 ](https://www.remi-coulom.fr/WHR/WHR.pdf)
 * [X] [Scientific Ranking Methods: is risk-free betting possible?](https://www.inria.fr/en/news/news-from-inria/scientific-ranking-methods)
 
+_____
 **How to Build a Popularity Algorithm You can be Proud of**
 
 It is  a way to score the posts, articles or something else based on the users' inputs. It is a simple voting system to determine the popularity. It is interesting to select the most popular articles in social media to the subscribers. If all the people in the community likes the same article or item in the same conditions, it is not necessary to build a popularity algorithm. However, our tastes are diverse and dynamical. Not all people like the best apple.
@@ -451,11 +482,12 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
 - [RankEval: An Evaluation and Analysis Framework for Learning-to-Rank Solutions](https://github.com/hpclab/rankeval)
 - [rankeval package](http://rankeval.isti.cnr.it/docs/rankeval.html)
+- [	SIGIR 2016 Tutorial on Counterfactual Evaluation and Learning for Search, Recommendation and Ad Placement](http://www.cs.cornell.edu/~adith/CfactSIGIR2016/)
 
 #### Ranking Creation
 
 We can generalize the ranking creation problems already described as a more general task.
-Suppose that there are two sets. For simplicity, we refer to them as a set of requests $Q = {q_1, q_2, \cdots , q_i, \cdots , q_M}$ and a set of offerings (or objects) $\mathcal O = {o_1, o_2, \cdots , o_j , \cdots , o_N }$, respetively.
+Suppose that there are two sets. For simplicity, we refer to them as a set of requests $Q = {q_1, q_2, \cdots , q_i, \cdots , q_M}$ and a set of offerings (or objects) $\mathcal O = {o_1, o_2, \cdots , o_j , \cdots , o_N }$, respectively.
 $Q$ can be a set of queries, a set of users, and a set of source sentences in document retrieval,
 collaborative filtering, and machine translation, respectively.
 $O$ can be a set of documents, a set of items, and a set of target sentences, respectively. Note that $Q$ and $O$ can be infinite sets.
@@ -467,10 +499,10 @@ S_O=F(q, O), \\ \pi=sort_{O}(O),
 $$
 
 where $n=|O|$, $q$ denotes an element of $Q$, $O$ denotes a subset of $\mathcal O$, $S_O=$ denotes a set of scores of elements in $O$, and $\pi$ denotes a ranking list (permutation) on $O$ sorted by $S_O$.
-Nte that even for the same $O$, $F$ can give two different ranking lists with two different q’s.
+Note that even for the same $O$, $F$ can give two different ranking lists with two different q’s.
 That is to say, we are concerned with ranking on $O$, with respect to a specific $q$.
 
-#### Ranking Aggreagtion
+#### Ranking Aggregation
 
 We can also define the general ranking aggregation task. Again, suppose that $Q = {q_1, q_2, \cdots , q_i, \cdots , q_M}$ and $\mathcal O = {o_1, o_2, \cdots , o_j , \cdots , o_N }$ are a set of requests and a set of offerings, respectively.
 For an element $q$ of $Q and a subset of $O$ of $\mathcal O$, there are $k$ ranking list on $O:\Sigma=\{\pi_i\mid \pi\in\Pi, i=1,\cdots,k\}$, where $\Pi$ is the set of all ranking lists on $O$.
@@ -535,10 +567,11 @@ different ordered categories.
 The goal of `PRanking` is to find a direction defined by a parameter vector $w$, after projecting the documents
 onto which one can easily use thresholds to distinguish the documents into different ordered categories.
 
-On iteration t ,
-the learning algorithm gets an instance $x_j$ associated with query $q$. Given $x_j$, the
-algorithm predicts $\hat y_j = \arg\min_{k}\{w^T x_j − b_k < 0\}$. It then receives the ground truth
-label $y_j$ . If the algorithm makes a mistake (i.e., $\hat y_j \not= y_j$ ) then there is at least one threshold, indexed by $k$,
+On iteration t , the learning algorithm gets an instance $x_j$ associated with query $q$.
+Given $x_j$, the algorithm predicts $\hat y_j = \arg\min_{k}\{w^T x_j − b_k < 0\}$.
+It then receives the ground truth label $y_j$ .
+If the algorithm makes a mistake (i.e., $\hat y_j \not= y_j$ )
+then there is at least one threshold, indexed by $k$,
 for which the value of $w^T x_j$ is on the wrong side of $b_k$.
 To correct the mistake, we need to move the values of $w^T x_j$ and $b_k$ toward each other.
 After that, the model parameter $w$ is adjusted by
@@ -584,7 +617,7 @@ Another strategy is called the sum-of-margins strategy.
  In this strategy, some
 additional thresholds $a_k$ are introduced, such that for category k, $b_{k-1}$ is its lower-bound threshold and $a_k$ is its upper-bound threshold.
 
-Accordingly, the constraints become that for documents in category k,$w^T x_{j}^{(i)}$ should exceed threadhold  $b_{k-1}$ but be smaller than threshold $a_k$, with certainn soft margins (i.e., $\epsilon_{j,k}^{(i)\ast}$ and $\epsilon_{j,k}^{(i)}$) respectively.
+Accordingly, the constraints become that for documents in category k,$w^T x_{j}^{(i)}$ should exceed threadhold  $b_{k-1}$ but be smaller than threshold $a_k$, with certain soft margins (i.e., $\epsilon_{j,k}^{(i)\ast}$ and $\epsilon_{j,k}^{(i)}$) respectively.
 
 The corresponding learning process can be expressed as follows,
 from which we can see that the margin term $\sum_{k=1}^{K}(a_k -b_k)$ really has the meaning of `margin`.
@@ -617,7 +650,7 @@ Loss Function | $L(h; x_u, x_v, y_{u,v})$
 
 #### Margin-based Ranking
 
-The algorithm is a modification of RankBoost, analogous to “approximate coordinate ascent boosting.”
+The algorithm is a modification of `RankBoost`, analogous to “approximate coordinate ascent boosting.”
 
 The margin of ranking function $f$, is defined to be the minimum margin over all crucial pairs,
 $$\min_{\{i,k\mid \pi(x_i, x_k)=1\}} f(x_i)-f(x_k)$$
@@ -638,9 +671,9 @@ Intuitively, the margin tells us how much the ranking function can change before
 
 #### RankNet
 
-> RankNet is a feed-forward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
+> `RankNet` is a feed-forward neural network model. Before it can be used its parameters must be learned using a large amount of labeled data, called the training set. The training set consists of a large number of query/document pairs, where for each pair, a number assessing the quality of the relevance of the document to that query is assigned by human experts. Although the labeling of the data is a slow and human-intensive task, training the net, given the labeled data, is fully automatic and quite fast. The system used by Microsoft in 2004 for training the ranker was called The Flying Dutchman. from  [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
 
-RankNet takes the ranking  as **regression** task.
+`RankNet` takes the ranking  as **regression** task.
 
 <img title="RankNet" src="http://web.ist.utl.pt/~catarina.p.moreira/images/ranknet.png"  width="80%" />
 
@@ -805,6 +838,7 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [ ] [Learning From Weights: A Cost-Sensitive Approach For Ad Retrieval](https://arxiv.org/abs/1811.12776)
 - [X] https://www.jianshu.com/p/96173f2c2fb4
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
+- [ ] https://www.cnblogs.com/genyuan/p/9788294.html
 
 ### Unbiased LambdaMART
 
@@ -917,6 +951,18 @@ It is clear that in this way the training complexity has been greatly reduced as
 since one only needs to compute the probability of a single permutation $\pi_y$ but not all the permutations.
 Once again, it can be proven that this loss function is convex, and therefore one can safely use a gradient descent method to optimize the loss.
 
+### Cascade Ranking Models
+
+In the information retrieval community, explorations in effectiveness and efficiency have been largely disjoint. This is problematic in that a piecemeal approach may yield ranking models that are impractically slow on web-scale collections or algorithmic optimizations that sacrifice quality to an unacceptable degree. The aim of our work is to develop an integrated framework to building search systems that are both effective and efficient. To this end, we have been exploring a research program, dubbed "learning to efficiently rank", that allows algorithm designers to capture, model, and reason about tradeoffs between effectiveness and efficiency in a unified machine-learning framework.
+
+[Our core idea is to consider the ranking problem as a "cascade", where ranking is broken into a finite number of distinct stages. Each stage considers successively richer and more complex features, but over successively smaller candidate document sets. The intuition is that although complex features are more time-consuming to compute, the additional overhead is offset by examining fewer documents. In other words, the cascade model views retrieval as a multi-stage progressive refinement problem, where each stage balances the cost of exploiting various features with the potential gain in terms of better results. We have explored this notion in the context of linear models and tree-based models.](http://lintool.github.io/NSF-projects/IIS-1144034/)
+
+- https://culpepper.io/publications/gcbc19-wsdm.pdf
+- http://zheng-wen.com/Cascading_Bandit_Paper.pdf
+- http://lintool.github.io/NSF-projects/IIS-1144034/
+- https://www.nsf.gov/awardsearch/showAward?AWD_ID=1144034
+- [Ivory: A Hadoop toolkit for web-scale information retrieval research](http://lintool.github.io/Ivory/)
+
 ### Relevance Feedback
 
 * After initial retrieval results are presented, allow the user to provide feedback on the relevance of one or more of the retrieved documents.
@@ -1016,137 +1062,11 @@ that are most likely to be mis-ranked, thus severely hindering the quality of th
 - [ ] https://maciejkula.github.io/spotlight/index.html#
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
 
-### QuickScorer
+### X-CLEaVER
 
-`QuickScorer` was designed by Lucchese, C., Nardini, F. M., Orlando, S., Perego, R., Tonellotto, N., and Venturini, R. with the support of Tiscali S.p.A.
+[X-CLEaVER interleaves the iterations of a given gradient boosting learning algorithm with pruning and re-weighting phases. First, redundant trees are removed from the given ensemble, then the weights of the remaining trees are fine-tuned by optimizing the desired ranking quality metric. We propose and analyze several pruning strategies and we assess their benefits showing that interleaving pruning and re-weighting phases during learning is more effective than applying a single post-learning optimization step.](https://dl.acm.org/citation.cfm?doid=3289398.3205453)
 
-It adopts a novel bitvector representation of the tree-based ranking model, and performs an interleaved traversal of the ensemble by means of simple logical bitwise operations. The performance of the proposed algorithm are unprecedented, due to its cache-aware approach, both in terms of data layout and access patterns, and to a control ﬂow that entails very low branch mis-prediction rates.
-
-
-
-**All the nodes whose Boolean conditions evaluate to _False_ are called false nodes, and true nodes otherwise.**
-The scoring of a document represented by a feature vector $\mathrm{x}$  requires the traversing of all the trees in the ensemble, starting at their root nodes.
-If a visited node in N is a false one, then the right branch is taken, and the left branch otherwise.
-The visit continues recursively until a leaf node is reached, where the value of the prediction is returned.
-
-The building block of this approach is an alternative method for tree traversal based on `bit-vector computations`.
-Given a tree and a vector of document features,
-this traversal processes all its nodes and produces a bitvector
-which encodes the exit leaf for the given document.
-
-Given an input feature vector $\mathrm x$ and a tree $T_h = (N_h;L_h)$, where $N_h$ is a set of  internal nodes and $L_h$ is a set
-of leaves,
-our tree traversal algorithm processes the internal nodes of
-Th with the goal of identifying a set of candidate exit leaves, denoted by $C_h$ with $C_h \subset L_h$,
-which includes the actual exit leaf $e_h$.
-Initially $C_h$ contains all the leaves in $L_h$, i.e., $C_h = L_h$.
-Then, the algorithm evaluates one after the other in an arbitrary order the test conditions of all the internal nodes of $T_h$.
-Considering the result of the test for a certain internal node $n \in N_h$,
-the algorithm is able to infer that some leaves cannot be the exit leaf and, thus, it can safely remove them from $C_h$.
-**Indeed, if $n$ is a false node (i.e., its test condition is false), the leaves in the left subtree of $n$ cannot be the exit leaf and they can be safely removed from $C_h$.
-Similarly, if $n$ is a true node, the leaves in the right subtree of n can be removed from $C_h$.**
-
-The second refinement implements the operations on $C_h$ with fast bit-wise operations.
-The idea is to represent $C_h$ with a bitvector ${\text{leaf_index}}_h$, where each bit corresponds to a distinct leaf in $L_h$, i.e., $\text{leaf_index}_h$ is the characteristic vector of $C_h$.
-Moreover, every internal node $n$ is associated with a bit mask of the same length encoding
-(with 0’s) the set of leaves to be removed from $C_h$ whenever $n$ turns to be a false node.
-**In this way, the bitwise `logical AND` between $\text{leaf_index}_h$ and the bit mask of a false
-node $n$ corresponds to the removal of the leaves in the left subtree of $n$ from $C_h$.**
-Once identified all the false nodes in a tree and performed the associated AND operations over $\text{leaf_index}_h$, the exit leaf of the tree corresponds to the leftmost bit set to 1 in $\text{leaf_index}_h$.
-
-One important result is that `Quick Scorer` computes
-$s(x)$ by only identifying the branching nodes whose test evaluates to false, called false nodes.
-For each false node detected in $T_h \in T$ , `Quick Scorer` updates a bitvector associated with $T_h$, which stores information that is eventually exploited to identify
-the exit leaf of $T_h$ that contributes to the final score $s(x)$.
-To this end, `Quick Scorer` maintains for each tree $T_h \in T$ a bitvector *leafidx[h]*, made of $\land$ bits, one per leaf.
-Initially, every bit in *leafidx[h]* is set to $\mathrm 1$. Moreover, each branching node is
-associated with a bitvector mask, still of $\land$ bits, identifying the set of unreachable
-leaves of $T_h$ in case the corresponding test evaluates to false.
-Whenever a false node is visited, the set of unreachable leaves *leafidx[h]* is updated through a logical $AND (\land)$ with mask.
-Eventually, the leftmost bit set in *leafidx[h]* identifies the leaf corresponding to the score contribution of $T_h$, stored in the lookup table *leafvalues*.
-____
-ALGORITHM 1: Scoring a feature vector $x$ using a binary decision tree $T_h$
-
-* **Input**:
-  * $x$: input feature vector
-  * $T_h = (N_h, L_h)$: binary decision tree, with
-    *  $N_h = \{n_0, n_1, \cdots\}$: internal nodes of $T_h$
-    *  $L_h = \{l_0, l_1, \cdots\}$: leaves of $T_h$
-    *  $n.mask$: node bit mask associated with $n\in N_h$
-    *  $l_j.val$: score contribution associated with leaf $l_j\in L_h$
-* **Output**:
-  * tree traversal output value
-* **$score(x, T_h)$**:
-  *  $\text{leaf_index}_h\leftarrow (1,1,\dots, 1)$
-  *  $U\leftarrow FindFalse(x, T_h)$
-  *  **foreach node** $n \in U$ **do**
-     *  $\text{leaf_index}_h\leftarrow \text{leaf_index}_h\land n.mask$
-  *  $j \leftarrow\text{index of leftmost bit set to 1 of leaf_index}_h$
-  * **return** $l_j.val$
-
-____
-ALGORITHM 2: : The QUICKSCORER Algorithm
-
-* **Input**:
-  * $x$: input feature vector
-  * $\mathcal T$: ensemble of binary decision trees, with
-    *  $\{w_0, w_1, \cdots, w_{|\mathcal{T}|-1}\}$:  weights, one per tree
-    *  $thresholds$: sorted sublists of thresholds, one sublist per feature
-    *  $treeids$: tree’s ids, one per node/threshold
-    *  $nodemasks$: node bit masks, one per node/threshold
-    *  $offsets$: offsets of the blocks of triples
-    *  $leafindexes$: result bitvectors, one per each tree
-    *  $leafvalues$: score contributions, one per each tree leaf
-* **Output**:
-  * final score of $x$
-* **$\text{QUICKSCORER}(x, T_h)$**:
-   *  **foreach node** $h \in \{0,1\cdots, |T|-1\}$ **do**
-      *  $\text{leaf_index}_h\leftarrow (1,1,\dots, 1)$
-   *  **foreach node** $k \in \{0,1\cdots, |\mathcal{F}|-1\}$ **do**
-      *  $i\leftarrow offsets[k]$
-      *  $end\leftarrow offsetsets[k+1]$
-      *  **while** $x[k] > thresholds[i]$ do
-         * $h \leftarrow treeids[i]$
-         * $\text { leafindexes }[h] \leftarrow \text { leafindexes }[h] \wedge \text { nodemasks }[i]$
-         * $i\leftarrow i+1$
-         * **if** $i\geq end$ **then**
-           * **break**
-     *  $score \leftarrow 0$
-     * **foreach node** $h \in \{0,1\cdots, |T|-1\}$ **do**
-       * $j \leftarrow \text { index of leftmost bit set to 1 of}\,\, {leafindexes }[h]$
-       * $l \leftarrow h \cdot| L_{h} |+j$
-       * $\text { score } \leftarrow \text { score }+w_{h} \cdot \text { leafvalues }[l]$
-  * **return** $score$
-
-
-- [ ] [QuickScorer: a fast algorithm to rank documents with additive ensembles of regression trees](https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf)
-- [ ] [Official repository of Quickscorer](https://github.com/hpclab/quickscorer)
-- [ ] [QuickScorer: Efficient Traversal of Large Ensembles of Decision Trees](http://ecmlpkdd2017.ijs.si/papers/paperID718.pdf)
-- [ ] [Fast Ranking with Additive Ensembles of Oblivious and Non-Oblivious Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2017/04/TOIS16.pdf)
-- [Tree traversal](https://venus.cs.qc.cuny.edu/~mfried/cs313/tree_traversal.html)
-- https://github.com/hpclab/gpu-quickscorer
-- https://github.com/hpclab/multithread-quickscorer
-- https://github.com/hpclab/vectorized-quickscorer
-- https://patents.google.com/patent/WO2016203501A1/en
-
-<img src="https://ercim-news.ercim.eu/images/stories/EN107/perego.png" width="60%" />
-
-#### vQS
-
-[Considering that in most application scenarios the same tree-based model is applied to a multitude of items, we recently introduced further optimisations in QS. In particular, we introduced vQS [3], a parallelised version of QS that exploits the SIMD capabilities of mainstream CPUs to score multiple items in parallel. Streaming SIMD Extensions (SSE) and Advanced Vector Extensions (AVX) are sets of instructions exploiting wide registers of 128 and 256 bits that allow parallel operations to be performed on simple data types. Using SSE and AVX, vQS can process up to eight items in parallel, resulting in a further performance improvement up to a factor of 2.4x over QS. In the same line of research we are finalising the porting of QS to GPUs, which, preliminary tests indicate, allows impressive speedups to be achieved.](https://ercim-news.ercim.eu/en107/special/fast-traversal-of-large-ensembles-of-regression-trees)
-
-- [Exploiting CPU SIMD Extensions to Speed-up Document Scoring with Tree Ensembles](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2016/07/SIGIR16a.pdf)
-
-#### RapidScorer
-
-- http://ai.stanford.edu/~wzou/kdd_rapidscorer.pdf
-
-#### AdaQS
-
-<img src="https://pic1.zhimg.com/80/v2-a911464197f0eb281ca742c0ea954e98_hd.jpg" width="80%" />
-
-- https://zhuanlan.zhihu.com/p/54932438
-- https://github.com/qf6101/adaqs
+- https://dl.acm.org/citation.cfm?doid=3289398.3205453
 
 ### Bayesian Personalized Ranking
 
@@ -1371,8 +1291,8 @@ If a document is ranked high in many basic rankings, then it will be ranked high
 
 The ranking scores of documents in the final ranking $S_D$ are calculated as
 $$S_D=F(\Sigma)=\sum_{i=1}^{K}S_i$$
-$$S_i=(s_{i, 1},\cdots, s_{i,j},\cdots, S_{i, n})^T,//
-s_{i,j}=n-\sigma_{i}(j)$$
+$$S_i=(s_{i, 1},\cdots, s_{i,j},\cdots, S_{i, n})^T,
+\\ s_{i,j}=n-\sigma_{i}(j)$$
 
 where $s_{i,j}$ denotes the number of documents ranked behind $j$ in basic ranking $\sigma_i, \sigma_i(j)$ denotes the rank of document $j$ in basic ranking $\sigma_i$ and $n$ denotes the number of documents.
 
@@ -1544,9 +1464,12 @@ DORS is designed and implemented in a three-level novel architecture, which incl
 
 #### Unbiased Learning to Rank
 
+[Implicit feedback (e.g., user clicks) is an important source of data for modern search engines. While heavily biased, it is cheap to collect and particularly useful for user-centric retrieval applications such as search ranking. To develop an unbiased learning-to-rank system with biased feedback, previous studies have focused on constructing probabilistic graphical models (e.g., click models) with user behavior hypothesis to extract and train ranking systems with unbiased relevance signals. Recently, a novel counter- factual learning framework that estimates and adopts examination propensity for unbiased learning to rank has attracted much attention. Despite its popularity, there is no systematic comparison of the unbiased learning-to-rank frameworks based on counterfactual learning and graphical models. In this tutorial, we aim to provide an overview of the fundamental mechanism for unbiased learning to rank. We will describe the theory behind existing frameworks, and give detailed instructions on how to conduct unbiased learning to rank in practice.](https://www.cikm2018.units.it/tutorial8.html)
+
 - [Learning to Rank in theory and practice: FROM GRADIENT BOOSTING TO NEURAL NETWORKS AND UNBIASED LEARNING](http://ltr-tutorial-sigir19.isti.cnr.it/)
 - https://dl.acm.org/citation.cfm?id=3334824
 - http://ltr-tutorial-sigir19.isti.cnr.it/program-overview/
+- [Unbiased Learning to Rank: Theory and Practice Half-day tutorial](https://www.cikm2018.units.it/tutorial8.html)
 - [Unbiased Learning to Rank: Counterfactual and Online Approaches](https://arxiv.org/abs/1907.07260)
 
 ____
@@ -1563,7 +1486,8 @@ ____
 - https://x-algo.cn/index.php/2018/04/09/rankgan/
 - [IRGAN: A Minimax Game for Unifying Generative and Discriminative Information Retrieval](https://arxiv.org/pdf/1705.10513.pdf)
 - [Adversarial Ranking for Language Generation](http://papers.nips.cc/paper/6908-adversarial-ranking-for-language-generation)
-
+- https://zhuanlan.zhihu.com/p/53691459
+- https://zhuanlan.zhihu.com/p/55036597
 ***
 
 * https://www.wikiwand.com/en/Learning_to_rank

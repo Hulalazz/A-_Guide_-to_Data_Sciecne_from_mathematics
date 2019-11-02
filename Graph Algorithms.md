@@ -604,10 +604,12 @@ Computational graphs are a nice way to think about mathematical expressions, whe
 Computational graph is an convenient representation of the work flow or process pipeline, which describes the dependence/composite relationship of every variable.
 Additionally, each composite relationship is specified.
 
-<img src="https://www.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png" width="40%" />
-<img src="https://www.geeksforgeeks.org/wp-content/uploads/undirectedgraph.png" width="50%" />
 
-Decision tree looks like simple graph without loops, where only the leaf nodes specify the output values and the middle nodes specify their test or computation.
+[A computational graph is a directed graph where the nodes correspond to `operations or variables`. Variables can feed their value into operations, and operations can feed their output into other operations. ](http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/)
+
+[The basic idea in a computational graph is to express some model—for example a feedforward neural network—as a `directed graph` expressing a sequence of computational steps. Each step in the sequence corresponds to a vertex in the computational graph; each step corresponds to a simple operation that takes some inputs and produces some output as a function of its inputs. Directed edges in the graph are used to specify the inputs to each vertex.](http://www.cs.columbia.edu/~mcollins/ff2.pdf)
+
+
 
 * https://colah.github.io/posts/2015-08-Backprop/
 * [Visualization of Computational Graph@chainer.org](https://docs.chainer.org/en/stable/reference/graph.html)
@@ -615,9 +617,122 @@ Decision tree looks like simple graph without loops, where only the leaf nodes s
 * [计算图反向传播的原理及实现](https://zhuanlan.zhihu.com/p/69175484)
 * [运用计算图搭建 LR、NN、Wide & Deep、FM、FFM 和 DeepFM](https://zhuanlan.zhihu.com/p/70075944)
 * [A Computational Network](https://www.microsoft.com/en-us/research/publication/a-computational-network/)
+* [Chapter 1 Computational Graphs, and Backpropagation](http://www.cs.columbia.edu/~mcollins/ff2.pdf)
 * http://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf
 * http://mt-class.org/jhu/slides/lecture-nn-computation-graphs.pdf
 * http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture06.pdf
+* https://docs.microsoft.com/zh-cn/cognitive-toolkit/
+* http://www.cs.columbia.edu/~mcollins/
+
+#### Computaional Graph of Decision Tree
+
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png" width="40%" />
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/undirectedgraph.png" width="50%" />
+
+Decision tree looks like simple graph without loops, where only the leaf nodes specify the output values and the middle nodes specify their test or computation.
+The differences of computational graph of deep neural network focus on two parts: `the operation of each node` and automatic differentiation.
+
+In deep neural network, the operation of middle node is a smooth activation function such as $\sigma(x)=\frac{1}{1+\exp(-x)}$ or `ReLU` and it maps every input in the elementwise sense. All input of the deep neural network share  the same `depth` and `activation` function in computational graph. More complex architecture can include some `feedback structure`.
+
+In decision tree, the operation of middle node is a `test function` such as typical `statistical test` and it determines the input next state - for example terminated or not. Different inputs have `different depth` and `test function` in  computational graph. The `test function` depends on the `splitting cretiera` when buiding a decision tree. 
+In vanilia deciison tree, the test function does not change the inputs and the final outputs of a leaf depend its instances labels.  
+
+We select a feature and find the optimal splitting point recursively and then the outputs are as some summary of the instances of the leaf nodes.
+
+[`QuickScorer` establishes tree traversal by applying bitwise AND to boolean representations of FALSE nodes, i.e., nodemask.](https://www.kdd.org/kdd2018/accepted-papers/view/rapidscorer-fast-tree-ensemble-evaluation-by-maximizing-compactness-in-data)
+`Bitvector representation of the tree nodes` makes it possible express the building procedure of decision tree in the language of computational graph.
+
+
+Suppose $X\in\mathbb{R}^p$ is the input of the decision tree, categorical feature will consider later.
+The first thing is to rewrite the test as one function, i.e., transforming the `if-then` sentence to number/bit computation.
+The second thing is to represent a decision tree as some tabular data frame.
+
+There are 4 steps of `tree traversal  of QuickScorer`:
+
+* build the `nodemasks` of each middle node in decision tree with the length equal to the number of leaf nodes $B=(B_1,B_2,\cdots, B_{|T|})$;
+* find the `FALSE` nodes with respect to an input $x$;
+* apply `bitwise AND` to boolean representations of FALSE nodes and return the results $v_h$;
+* the leftmost bit equal to 1 in $v_h$ corresponds to the exit leaf $e_h$.
+
+See more details of this procedure in the following links.
+
+* [QuickScorer: a Fast Algorithm to Rank Documents with Additive Ensembles of Regression Trees](http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2015/11/sigir15.pdf)
+* [Vectorized Quickscorer](https://github.com/hpclab/vectorized-quickscorer)
+* https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf
+
+
+The following is to translate the procedure to the language of computational graph.
+We suppose that the deciison tree is built by a greedy way.
+
+
+____
+
+Differetn from building the tree, prediction of decision tree is a tree traversal in nature.
+Inspired by `QuickScorer`, we split such predition to the following stages.
+
+The first satge is to  find the false nodes in the decision tree with respect to the input $x$: 
+   $$h=\frac{-(Sign[Sx-t])+1}{2}$$
+  where so-called `selection matrix` $S\in\mathbb{R}^{n_L\times p}$ consisits of one-hot row vector in $\mathbb{R}^p$ representing which feature is tested in a node; the bias vector $t\in\mathbb{R}^{n_L}$ is the optimal point of each node associated with one feature; $Sign(\cdot)$ is the element-wise sign function. Here $n_L$ is the number of the middle nodes.
+If the feature of $x$ is greater than the splitting point, the corresponding node is a true node. Otherwise, the node is `False` node. 
+
+
+The second stage is to apply bitwise `AND` to false nodes 
+$$H=(B \, \,\operatorname{Diag}(h))^{\otimes}$$
+
+where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a diagonal matrix; $B\in\mathbb{B}^{L\times n_L}$ is the bitvector matrix of the decision tree. Every columon of $B$ is a bit-vector of node; $B \, \,\operatorname{Diag}(h)$ is the matrix multiplication of matrix $B$ and $\operatorname{Diag}(h)$. Here $L$ is the numer of exit leaf nodes.
+
+
+The final stage is to determine the output
+$$v[i]\\
+i=min(HP)^+
+$$ 
+where $P=(1,2, \cdots, L)^T\in\mathbb{R}^L$ and $L$ is the number of the exist leaves; $v[i]$ are the $i$th elements of vector $v$; $(HP)^+$ are the positive elements of vector $HP$; $min(v)$ outputs the minimum values in the vector $v$.
+
+____
+
+In a compact form, a decision tree is expressed as follows:
+ 
+$$T(x)=v[\min((B\,\,\operatorname{Diag}[\frac{-(Sign[Sx-t])+1}{2}] )^{\oplus} P)^+]$$
+where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a matrix; $B$ is the bitvector matrix of the decision tree.
+
+
+The hierarchical  structure of decision tree is clear:
+$$x\to h\to H\to v[i]\\
+\mathbb{R}^p \to\mathbb{B}^{n_L}\to\mathbb{B}^{L}\to\mathbb{R}
+$$
+
+It is really a shallow model.
+And its hidden layers are sparse binary.
+
+Now there is nothing rather than expressing the decision tree in the language of computational graph.
+It looks  far from a step function. However, note that 
++ the $Sign$ function is a step function.
++ the matrix $S$ and $B$ are binary, i.e., their elements are 0 or 1.
++ $min()$ only select one element.
+
+All `if-then` tests transform to numerical computation.
+
+
+
+* [RapidScorer: Fast Tree Ensemble Evaluation by Maximizing Compactness in Data Level Parallelization](https://www.kdd.org/kdd2018/accepted-papers/view/rapidscorer-fast-tree-ensemble-evaluation-by-maximizing-compactness-in-data)
+* https://www.researchgate.net/publication/300031474_QuickScorer
+* [Learning to Rank in theory and practice](http://ltr-tutorial-sigir19.isti.cnr.it/)
+* [SIGIR 2019 Recap](http://www.eggie5.com/147-sigir-2019-recap)
+* [awesome-decision-tree-papers](https://github.com/benedekrozemberczki/awesome-decision-tree-papers)
+* [Probabilistic Characterization of Random Decision Trees](https://researcher.watson.ibm.com/researcher/files/us-adhuran/dec_tree_ic.pdf)
+* [Probabilistic decision trees using SVM for multi-class classification](https://ieeexplore.ieee.org/document/6693840)
+* [Decision Trees and Forests: A Probabilistic Perspective](http://www.gatsby.ucl.ac.uk/~balaji/balaji-phd-thesis.pdf)
+* http://ai.stanford.edu/~wzou/
+
+
+From mathematical consideration, can we replace the $Sign$ function with some smooth function? Can we generalize the $S, B$ to real matrices?
+Can we apply gradient-based methods to train a decision tree?
+
+In the language of computtaional graph, how can we describe the (gradient) boosting deciosn tree?
+The structure information of the decision tree transforms to the bitvector matrix $B$.
+The splitting points information transforms to the pair $(S, t)$.
+Given triple(tuple) $(S, t, B)$, we can traverse a tree to each leaf.
+The question is if it is a ono-one mapping from a decision tree to $(S, t, B, v)$?
 
 #### Dynamic Computational Graphs
 
