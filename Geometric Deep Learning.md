@@ -19,9 +19,13 @@
 * [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
 * https://pytorch-geometric.readthedocs.io/en/latest/
 * https://deeplearning-cmu-10707.github.io/
-* https://github.com/timzhang642/3D-Machine-Learning
+* [3D Machine Learning](https://github.com/timzhang642/3D-Machine-Learning)
 * https://nthu-datalab.github.io/ml/index.html
 * http://www.pmp-book.org/
+* https://github.com/rubenwiersma/cgthesis
+* http://deeplearning.lipingyang.org/
+* http://vgl.ict.usc.edu/Research/GeometricDeepLearning/
+* https://idl.cs.washington.edu/
 
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
@@ -53,6 +57,20 @@ The text or symbol, strings in computer, is designed for natural people to commu
 What if we generalize these methods to connected data?
 
 
+- [Geometric deep learning on graphs and manifolds using mixture model CNNs](http://openaccess.thecvf.com/content_cvpr_2017/papers/Monti_Geometric_Deep_Learning_CVPR_2017_paper.pdf)
+
+
+<img src="http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/img/topology_2D-2D_train.gif" width="30%">
+
+- [Why Deep Learning Works: A Manifold Disentanglement Perspective](https://ieeexplore.ieee.org/document/7348689)
+- [Manifold Learning of Brain MRIs by Deep Learning](https://link.springer.com/chapter/10.1007/978-3-642-40763-5_78)
+- http://www.cs.cornell.edu/~kilian/index.html
+
+### Spherical CNN
+
+- https://www.researchgate.net/profile/Taco_Cohen2
+- https://github.com/tscohen
+- https://zhuanlan.zhihu.com/p/34042888
 
 ### Hyperbolic Deep Learning
 
@@ -86,12 +104,12 @@ with $p_k\in\mathbb{D}^n and a_k\in T_{p_k}\mathbb{D}^n$.
 - http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
 - https://github.com/ferrine/hyrnn
 - https://cla2019.github.io/
+- https://github.com/alex-tifrea
 ***
 - http://shichuan.org/
+- https://www.cgal.org/project.html
 - [Learning Mixed-Curvature Representations in Product Spaces](https://openreview.net/forum?id=HJxeWnCcF7)
-- [Hyperbolic Attention Networks ](https://openreview.net/forum?id=rJxHsjRqFQ)
-- [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
-- [Hyperbolic Heterogeneous Information Network Embedding](http://shichuan.org/doc/65.pdf)
+
 
 <img src="https://hazyresearch.github.io/hyperE/pc.svg"  width="40%" />
 
@@ -177,15 +195,19 @@ Finally, by finding the closed-form formula of the distance between a point and 
 
 Similarly as for the hyperbolic GRU, we show that when the Poincaré ball in continuously flattened to Euclidean space (sending its radius to infinity), hyperbolic softmax converges to Euclidean softmax.
 
--http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
+- http://hyperbolicdeeplearning.com/hyperbolic-neural-networks/
+- https://github.com/dalab/hyperbolic_nn
 
-#### hRNN
+### Hyperbolic RNN
 
 A natural adaptation of RNN using our formulas yields:
 
 $$h_{t+1} = \varphi^{\otimes}\left(((W\otimes h_t)\oplus(U\otimes x_t))\oplus b\right).$$
 
-#### hGRU
+- https://github.com/ferrine/hyrnn
+- https://ferrine.github.io/
+
+### hGRU
 
 $$
 \begin{array}{l}{r_{t}=\sigma \log_{0}\left(\left(\left(W^{r} \otimes h_{t-1}\right) \oplus\left(U^{r} \otimes x_{t}\right)\right) \oplus b^{r}\right)} \\
@@ -194,9 +216,20 @@ $$
  {h_{t}=h_{t-1} \oplus\left(\operatorname{diag}\left(z_{t}\right) \otimes\left(\left(-h_{t-1}\right) \oplus \widetilde{h_{t}}\right)\right)}\end{array}
 $$
 
-#### Hyperbolic Attention Networks
+### Hyperbolic Attention Networks
 
+[Recent approaches have successfully demonstrated the benefits of learning the parameters of shallow networks in hyperbolic space. We extend this line of work by imposing hyperbolic geometry on the embeddings used to compute the ubiquitous attention mechanisms for different neural networks architectures. By only changing the geometry of embedding of object representations, we can use the embedding space more efficiently without increasing the number of parameters of the model. Mainly as the number of objects grows exponentially for any semantic distance from the query, hyperbolic geometry  --as opposed to Euclidean geometry-- can encode those objects without having any interference. Our method shows improvements in generalization on neural machine translation on WMT'14 (English to German), learning on graphs (both on synthetic and real-world graph tasks) and visual question answering (CLEVR) tasks while keeping the neural representations compact.](https://openreview.net/forum?id=rJxHsjRqFQ)
+
+- [Hyperbolic Attention Networks ](https://openreview.net/forum?id=rJxHsjRqFQ)
 - https://openreview.net/forum?id=rJxHsjRqFQ
+- https://sites.google.com/site/eccvgdl/
+
+
+
+#### Hyperbolic Recommender Systems
+
+- [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
+
 
 ### Graph Convolutional Network
 
@@ -261,7 +294,7 @@ Neural nets do well on vectors and tensors; data types like images (which have s
 
 Graphs have an arbitrary structure: they are collections of things without a location in space, or with an arbitrary location. They have no proper beginning and no end, and two nodes connected to each other are not necessarily “close”.
 
-$\color{navy}{\text{Graph convolution network is potential to}}\, \cal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mit{\text{deep learning}}$.
+$\color{navy}{\text{Graph convolution network is potential to}}\, \mathcal{reasoning}$ as the blend of $\frak{\text{probabilistic graph model}}$ and $\mathcal{\text{deep learning}}$.
 
 GCN can be regarded as the counterpart of CNN for graphs so that the optimization techniques such as normalization, attention mechanism and even the adversarial version can be extended to the graph structure.
 
@@ -532,11 +565,16 @@ $$
 
 #### Bayesian GCN
 
+[Bayesian-GCNN views the observed graph as a realization from a parametric family of random graphs. We then target inference of the joint posterior of the random graph parameters and the node (or graph) labels using Bayes' theorem. We use a Monte Carlo approximation to achieve this process. In this approximation, three steps of sampling process are involved. First, V samples λv are drawn from the posterior of a family of graph generative model, as shown in Figure 2 (the precise method for generating these samples from the posterior varies depending on the nature of the graph model). Secondly, the NG number of graphs are sampled from the graph generative model using the adopted random graph model, as shown in Figure 3. Thirdly, S weight matrices are sampled from the Bayesian GCNNs using the dropout approximation [4], as shown in Figure 4. The final prediction result is an average of all the predictions coming from different samples, as shown in Figure 5. Comparing to previous graph convolutional neural networks (GCNNs), the main difference is that when we do node label prediction, we will simultaneously learn a graph generation model based on the observed underlying topology, and we learn the parameters of this graph generation model. We can sample a number of similar distributions but diverse topology based on the posterior of the graph generation model. Thus, in the aggregation step of the GCNNs, we are able to learn more general node embedding by incorporating information from different potential neighbors.](https://github.com/huawei-noah/BGCN)
+
 - [BAYESIAN GRAPH CONVOLUTIONAL NEURAL NETWORKS USING NON-PARAMETRIC GRAPH LEARNING](https://rlgm.github.io/papers/64.pdf)
 - https://rlgm.github.io/
 - https://www.octavian.ai/
+- https://github.com/huawei-noah/BGCN
 
 ### Application
+
+
 
 - [ ] [graph convolution network 有什么比较好的应用task? - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 - [ ] [Use of graph network in machine learning](https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/)
@@ -589,7 +627,7 @@ their neighbors using neural networks.
 - https://zhuanlan.zhihu.com/p/51990489
 - https://www.cs.toronto.edu/~yujiali/
 
-*****
+## Resource
 
 * [Python for NLP](https://synalp.loria.fr/python4nlp/)
 * [Deep Learning on Graphs: A Survey](https://arxiv.org/abs/1812.04202)

@@ -12,7 +12,15 @@ As a result, CNNs now form the crux of deep learning algorithms in computer visi
 
 <img title="cvcl" src="http://cvcl.mit.edu/imagesAude/triangle2.png" width="80%" />
 
+In this section, we will focus on more technological details of CNN architecures, training and the motivation.
+
+See [CV](https://neurohive.io/en/state-of-the-art/), [NLP](https://aclweb.org/aclwiki/State_of_the_art) for the state-of-the-art methods.
+
+- https://www.openml.org/
+- https://www.jiqizhixin.com/sota
+
 * https://sites.google.com/visipedia.org/index
+* https://github.com/Ewenwan/MVision/tree/master/CNN
 * [Computational Vision at Caltech](http://www.vision.caltech.edu/)
 * [SE(3) COMPUTER VISION GROUP AT CORNELL TECH](https://vision.cornell.edu/se3/publications/)
 * https://vcla.stat.ucla.edu/index.html
@@ -62,7 +70,7 @@ The predicted labels is always supposed to be attached to some specific features
 * https://www.jeremyjordan.me/convnet-architectures/
 * http://www.tamaraberg.com/teaching/Spring_16/
 
-**LeNet**
+#### LeNet
 
 `LeNet` learns the parameters using error back-propagation. In another word, the optimization procedure of  CNNs are based on gradient methods. This CNN
 model was successfully applied to recognize handwritten digits.
@@ -72,7 +80,7 @@ model was successfully applied to recognize handwritten digits.
 As shown in the above figure, it consists of convolution, subsampling, full connection and Gaussian connections.
 It is a typical historical architecture.
 
-**AlexNet**
+#### AlexNet
 
 `AlexNet` was the winning entry in [ILSVRC](http://www.image-net.org/challenges/LSVRC/) 2012. It solves the problem of image classification where the input is an image of one of 1000 different classes (e.g. cats, dogs etc.) and the output is a vector of 1000 numbers.
 
@@ -88,7 +96,7 @@ An important feature of the AlexNet is the use of `ReLU(Rectified Linear Unit)` 
 * [Understanding AlexNet](https://www.learnopencv.com/understanding-alexnet/)
 * [ImageNet Classification with Deep Convolutional Neural Networks](http://vision.stanford.edu/teaching/cs231b_spring1415/slides/alexnet_tugce_kyunghee.pdf)
 
-**VGG**
+##### VGG
 
 [The very deep ConvNets were the basis of our ImageNet ILSVRC-2014 submission, where our team (VGG) secured the first and the second places in the localisation and classification tasks respectively.](http://www.robots.ox.ac.uk/~vgg/research/very_deep/)
 
@@ -98,7 +106,7 @@ An important feature of the AlexNet is the use of `ReLU(Rectified Linear Unit)` 
 * http://www.robots.ox.ac.uk/~vgg/research/very_deep/
 * [VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION](https://arxiv.org/pdf/1409.1556.pdf)
 
-**Inception**
+##### Inception
 
 <img title="Inception" src="https://srdas.github.io/DLBook/DL_images/Inception1.jpg" width="50%"/>
 
@@ -106,7 +114,7 @@ An important feature of the AlexNet is the use of `ReLU(Rectified Linear Unit)` 
 * http://www.csc.kth.se/~roelof/deepdream/bvlc_googlenet.html
 * https://zh.d2l.ai/chapter_convolutional-neural-networks/googlenet.html
 
-**ResNet**
+##### ResNet
 
 `ResNet` is to solve the degeneration of deep neural  network when the depth of layers of deep neural network increase.
 It is guessed that the nonlinearity of activation function makes it tough to learn (linear) identity transformation \(Id(x)=x\).
@@ -116,6 +124,22 @@ It is guessed that the nonlinearity of activation function makes it tough to lea
 * https://neurohive.io/en/popular-networks/resnet/
 * http://teleported.in/posts/decoding-resnet-architecture/
 * https://zh.d2l.ai/chapter_convolutional-neural-networks/resnet.html
+* [Layer-Parallel Training of Deep Residual Neural Networks](https://cfwebprod.sandia.gov/cfdocs/CompResearch/docs/2018-ParallelInTimeDNN.pdf)
+* [Fast deep parallel residual network for accurate super resolution image processing](https://www.sciencedirect.com/science/article/pii/S0957417419301940)
+* [What Can ResNet Learn Efficiently, Going Beyond Kernels?](https://arxiv.org/abs/1905.10337)
+* https://github.com/tomgoldstein/loss-landscape
+* [CNN meets PDEs](https://deqefw538d79t.cloudfront.net/api/file/jSBt1r2nTeP0ItVIVY9o?cache=true)
+* [Deep Neural Network motivated by PDEs](https://gateway.newton.ac.uk/sites/default/files/asset/doc/1805/2018-DeepLearning-beamer_0.pdf)
+* https://www.semanticscholar.org/author/Lars-Ruthotto/2557699
+* https://www.robots.ox.ac.uk/~vedaldi//research/visualization/visualization.html
+* https://www.graphcore.ai/posts/what-does-machine-learning-look-like
+* https://srdas.github.io/DLBook/ConvNets.html#visualizing-convnets
+
+****
+|graphcore.ai|
+|:----------:|
+| <img title="DL Approach" src="https://www.graphcore.ai/hubfs/images/alexnet_label%20logo.jpg?t=1541693113453" width="60%" /> |
+****
 
 **DenseNet**
 
@@ -124,7 +148,15 @@ It is guessed that the nonlinearity of activation function makes it tough to lea
 * [Densely Connected Convolutional Networks](http://openaccess.thecvf.com/content_cvpr_2017/papers/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.pdf)
 * [Dive to Deep Learning](https://zh.d2l.ai/chapter_convolutional-neural-networks/densenet.html)
 
+**HRNet**
 
+The high-resolution network (HRNet) maintains high-resolution representations by connecting high-to-low resolution convolutions in parallel and strengthens high-resolution representations by repeatedly performing multi-scale fusions across parallel convolutions. We demonstrate the effectives on pixel-level classification, region-level classification, and image-level classification.
+
+The HRNet turns out to be a strong repalcement of classification networks (e.g., ResNets, VGGNets) for visual recognition. We believe that the HRNet will become the new standard backbone.
+
+<img src="https://jingdongwang2017.github.io/Projects/HRNet/images/HRNet.jpg" width="80%" />
+
+- [Deep High-Resolution Representation Learning (HRNet)](https://jingdongwang2017.github.io/Projects/HRNet/index.html)
 
 #### Semantic Segmentation
 
@@ -135,18 +167,29 @@ It is guessed that the nonlinearity of activation function makes it tough to lea
 * [A 2017 Guide to Semantic Segmentation with Deep Learning](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review)
 * [Semantic Image Segmentation Live Demo](http://www.robots.ox.ac.uk/~szheng/crfasrnndemo)
 * [Awesome Semantic Segmentation](https://github.com/mrgloom/awesome-semantic-segmentation)
+* https://arxiv.org/pdf/1711.05847.pdf
 
 #### Object Detection
 
 <img title ="Objection Detection" src="https://img-blog.csdn.net/20180502184736909" width="50%"/>
 
-**RCNN**
+#### RCNN
 
 <img src="https://img-blog.csdn.net/20170324121024882" width="50%"/>
 
 * [RCNN, Fast RCNN, Faster RCNN 总结](http://shartoo.github.io/RCNN-series/)
 * https://www.cnblogs.com/skyfsm/p/6806246.html
+
+##### YOLO
+
+[ou only look once (YOLO) is a state-of-the-art, real-time object detection system.](https://pjreddie.com/darknet/yolo/)
+
 * [YOLO 1 到 YOLO 3](http://shartoo.github.io/yolo-v123/)
+* https://github.com/jwchoi384/Gaussian_YOLOv3
+* https://pjreddie.com/darknet/yolo/
+* https://pjreddie.com/darknet/
+* https://github.com/qqwweee/keras-yolo3
+* https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/
 
 ***
 * https://www.jeremyjordan.me/object-detection-one-stage/
@@ -154,25 +197,6 @@ It is guessed that the nonlinearity of activation function makes it tough to lea
 * [Object Detection 2015](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 * https://blog.csdn.net/v_JULY_v/article/details/80170182
 
-#### Optical Character Recognition
-
-<img src="https://pic1.zhimg.com/80/v2-a8fe4dc5455d692d273f06be2bb24d30_hd.jpg" width="50%" />
-
-* https://indic-ocr.github.io/
-* https://github.com/kba/awesome-ocr
-* https://github.com/pannous/tensorflow-ocr
-* https://zhuanlan.zhihu.com/p/65707543
-* https://github.com/tesseract-ocr/tesseract
-* https://github.com/Swift-AI/Swift-AI
-* https://github.com/wanghaisheng/awesome-ocr
-* https://github.com/chineseocr
-* http://tesseract-ocr.github.io/4.0.0/index.html
-* https://anyline.com/
-* https://github.com/vinayakkailas/Deeplearning-OCR
-* https://github.com/hs105/Deep-Learning-for-OCR
-* http://cs231n.stanford.edu/reports/2017/pdfs/810.pdf
-* https://handong1587.github.io/deep_learning/2015/10/09/ocr.html
-* [STN-OCR: A single Neural Network for Text Detection and Text Recognition](https://arxiv.org/abs/1707.08831)
 
 #### Object Tracking
 
@@ -212,6 +236,26 @@ CVPR 2019 Workshop, Long Beach, CA](http://www.scan-net.org/cvpr2019workshop/)
 - [BlitzNet: A Real-Time Deep Network for Scene Understanding](http://thoth.inrialpes.fr/research/blitznet/)
 - [L3ViSU: Lifelong Learning of Visual Scene Understanding](http://cvml.ist.ac.at/erc/)
 
+#### Optical Character Recognition
+
+<img src="https://pic1.zhimg.com/80/v2-a8fe4dc5455d692d273f06be2bb24d30_hd.jpg" width="50%" />
+
+* https://indic-ocr.github.io/
+* https://github.com/kba/awesome-ocr
+* https://github.com/pannous/tensorflow-ocr
+* https://zhuanlan.zhihu.com/p/65707543
+* https://github.com/tesseract-ocr/tesseract
+* https://github.com/Swift-AI/Swift-AI
+* https://github.com/wanghaisheng/awesome-ocr
+* https://github.com/chineseocr
+* http://tesseract-ocr.github.io/4.0.0/index.html
+* https://anyline.com/
+* https://github.com/vinayakkailas/Deeplearning-OCR
+* https://github.com/hs105/Deep-Learning-for-OCR
+* http://cs231n.stanford.edu/reports/2017/pdfs/810.pdf
+* https://handong1587.github.io/deep_learning/2015/10/09/ocr.html
+* [STN-OCR: A single Neural Network for Text Detection and Text Recognition](https://arxiv.org/abs/1707.08831)
+
 #### Image Search
 
 - [ ] [Modeling visual knowledge from large-scale data](http://lear.inrialpes.fr/research.php)
@@ -230,13 +274,53 @@ CVPR 2019 Workshop, Long Beach, CA](http://www.scan-net.org/cvpr2019workshop/)
 * https://www.andrewszot.com/blog/machine_learning/deep_learning/style_transfer
 * [Convolutional Neural Network – Exploring the Effect of Hyperparameters and Structural Settings for Neural Style Transfe](https://lanstonchu.wordpress.com/2018/09/03/convolutional-neural-network-exploring-the-effect-of-hyperparameters-and-structural-settings-for-neural-style-transfer/)
 
+#### Visualization /Interpretation of CNN
 
-#### Computer Graphics
+[It has shown](https://openreview.net/pdf?id=Bygh9j09KX) that
+> ImageNet trained CNNs are strongly biased towards recognising `textures` rather than `shapes`,
+which is in stark contrast to human behavioural evidence and reveals fundamentally different classification strategies.
+
+* [Deep Visualization](http://yosinski.com/deepvis)
+* [Interpretable Representation Learning for Visual Intelligence](http://bzhou.ie.cuhk.edu.hk/publication/thesis.pdf)
+* [IMAGENET-TRAINED CNNS ARE BIASED TOWARDS TEXTURE; INCREASING SHAPE BIAS IMPROVES ACCURACY AND ROBUSTNESS](https://openreview.net/pdf?id=Bygh9j09KX)
+* [2017 Workshop on Visualization for Deep Learning](https://icmlviz.github.io/)
+* [Understanding Neural Networks Through Deep Visualization](http://yosinski.com/deepvis)
+* [vadl2017: Visual Analysis of Deep Learning](https://vadl2017.github.io/)
+* [Multifaceted feature visualization: Uncovering the different types of features learned by each neuron in deep neural networks](http://www.evolvingai.org/mfv)
+* [Interactive Visualizations for Deep Learning](http://predictive-workshop.github.io/papers/vpa2014_1.pdf)
+* https://www.zybuluo.com/lutingting/note/459569
+* https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf
+* [卷积网络的可视化与可解释性（资料整理） - 陈博的文章 - 知乎](https://zhuanlan.zhihu.com/p/36474488)
+* https://zhuanlan.zhihu.com/p/24833574
+* https://zhuanlan.zhihu.com/p/30403766
+* https://zhuanlan.zhihu.com/p/28054589
+* https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+* http://people.csail.mit.edu/bzhou/ppt/presentation_ICML_workshop.pdf
+* https://www.robots.ox.ac.uk/~vedaldi//research/visualization/visualization.html
+* https://www.graphcore.ai/posts/what-does-machine-learning-look-like
+* https://srdas.github.io/DLBook/ConvNets.html#visualizing-convnets
+* [CNN meets PDEs](https://deqefw538d79t.cloudfront.net/api/file/jSBt1r2nTeP0ItVIVY9o?cache=true)
+* [Deep Neural Network motivated by PDEs](https://gateway.newton.ac.uk/sites/default/files/asset/doc/1805/2018-DeepLearning-beamer_0.pdf)
+* https://www.semanticscholar.org/author/Lars-Ruthotto/2557699
+****
+|graphcore.ai|
+|:----------:|
+| <img title="DL Approach" src="https://www.graphcore.ai/hubfs/images/alexnet_label%20logo.jpg?t=1541693113453" width="60%" /> |
+****
+
+### Computer Graphics
 
 * https://github.com/alecjacobson/computer-graphics-csc418
 * http://graphics.cs.cmu.edu/courses/15-463/
 * https://github.com/ivansafrin/CS6533s
 * https://github.com/ericjang/awesome-graphics
+* [CreativeAI: Deep Learning for Computer Graphics](http://geometry.cs.ucl.ac.uk/creativeai/)
+* https://github.com/smartgeometry-ucl/dl4g
+* https://graphics.stanford.edu/
+* https://github.com/arrayfire/arrayfire-python
+* https://ge.in.tum.de/research/
+* [An extensible framework for fluid simulation](http://mantaflow.com/)
+* https://people.csail.mit.edu/tzumao/
 
 ***
 * http://kvfrans.com/coloring-and-shading-line-art-automatically-through-conditional-gans/
@@ -246,4 +330,5 @@ CVPR 2019 Workshop, Long Beach, CA](http://www.scan-net.org/cvpr2019workshop/)
 |![Deep Dream](http://grayarea.org/wp-content/uploads/2016/03/3057368-inline-i-1-inside-the-first-deep-dream-art-show.jpg)|
 ****
 
-[Deep Learning for Computer Vision, Speech, and Language](https://columbia6894.github.io/)
+- [Deep Learning for Computer Vision, Speech, and Language](https://columbia6894.github.io/)
+- [Deep Learning Vision for Non-Vision Tasks](https://mc.ai/deep-learning-vision-for-non-vision-tasks/)

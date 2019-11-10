@@ -854,7 +854,8 @@ The functions in the right column are  approximate to the identity function in $
 - [A Review of Activation Functions in SharpNEAT](http://sharpneat.sourceforge.net/research/activation-fn-review/activation-fn-review.html)
 - [Activation Functions](https://rpubs.com/shailesh/activation-functions)
 - [第一十三章 优化算法](https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md)
-- [ReLU and Softmax Activation Functions](https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions).
+- [ReLU and Softmax Activation Functions](https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions)
+- [Mish Deep Learning Activation Function for PyTorch / FastAI](https://github.com/lessw2020/mish)
 
 ****
 * http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
@@ -1434,39 +1435,22 @@ $$\frac{\partial C}{\partial M}$$
 - https://grzegorzgwardys.wordpress.com/2016/04/22/8/
 - https://lanstonchu.wordpress.com/category/deep-learning/
 
-### Visualization /Interpretation of CNN
+### Interpretation of CNN
 
 [It has shown](https://openreview.net/pdf?id=Bygh9j09KX) that
 > ImageNet trained CNNs are strongly biased towards recognising `textures` rather than `shapes`,
 which is in stark contrast to human behavioural evidence and reveals fundamentally different classification strategies.
 
-* [Deep Visualization](http://yosinski.com/deepvis)
 * [Interpretable Representation Learning for Visual Intelligence](http://bzhou.ie.cuhk.edu.hk/publication/thesis.pdf)
 * [IMAGENET-TRAINED CNNS ARE BIASED TOWARDS TEXTURE; INCREASING SHAPE BIAS IMPROVES ACCURACY AND ROBUSTNESS](https://openreview.net/pdf?id=Bygh9j09KX)
 * [2017 Workshop on Visualization for Deep Learning](https://icmlviz.github.io/)
 * [Understanding Neural Networks Through Deep Visualization](http://yosinski.com/deepvis)
 * [vadl2017: Visual Analysis of Deep Learning](https://vadl2017.github.io/)
-* [Multifaceted feature visualization: Uncovering the different types of features learned by each neuron in deep neural networks](http://www.evolvingai.org/mfv)
-* [Interactive Visualizations for Deep Learning](http://predictive-workshop.github.io/papers/vpa2014_1.pdf)
 * https://www.zybuluo.com/lutingting/note/459569
 * https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf
 * [卷积网络的可视化与可解释性（资料整理） - 陈博的文章 - 知乎](https://zhuanlan.zhihu.com/p/36474488)
-* https://zhuanlan.zhihu.com/p/24833574
-* https://zhuanlan.zhihu.com/p/30403766
-* https://zhuanlan.zhihu.com/p/28054589
-* https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
 * http://people.csail.mit.edu/bzhou/ppt/presentation_ICML_workshop.pdf
-* https://www.robots.ox.ac.uk/~vedaldi//research/visualization/visualization.html
-* https://www.graphcore.ai/posts/what-does-machine-learning-look-like
-* https://srdas.github.io/DLBook/ConvNets.html#visualizing-convnets
-* [CNN meets PDEs](https://deqefw538d79t.cloudfront.net/api/file/jSBt1r2nTeP0ItVIVY9o?cache=true)
-* [Deep Neural Network motivated by PDEs](https://gateway.newton.ac.uk/sites/default/files/asset/doc/1805/2018-DeepLearning-beamer_0.pdf)
-* https://www.semanticscholar.org/author/Lars-Ruthotto/2557699
-****
-|graphcore.ai|
-|:----------:|
-| <img title="DL Approach" src="https://www.graphcore.ai/hubfs/images/alexnet_label%20logo.jpg?t=1541693113453" width="60%" /> |
-****
+
 
 ## Recurrent Neural Networks and Long Short-Time Memory
 
@@ -1606,7 +1590,7 @@ $$
 
 * memory cell
 
-$$C_{t} = f_t \odot c_{t-1}+i_{t} \otimes {\tilde{C}_{t}}.\tag{memory cell}$$
+$$C_{t} = f_t \odot C_{t-1}+i_{t} \otimes {\tilde{C}_{t}}.\tag{memory cell}$$
 
 |memory cell|
 |:---:|
@@ -2039,6 +2023,7 @@ Deep learning and ensemble learning share some similar guide line.
 - [ ] [Better Deep Learning: Train Faster, Reduce Overfitting, and Make Better Predictions](https://machinelearningmastery.com/better-deep-learning/)
 - https://machinelearningmastery.com/framework-for-better-deep-learning/
 - https://machinelearningmastery.com/ensemble-methods-for-deep-learning-neural-networks/
+- [SelfieBoost: A Boosting Algorithm for Deep Learning](https://arxiv.org/pdf/1411.3436.pdf)
 
 ### Selective Ensemble
 
@@ -2072,6 +2057,10 @@ In contrast to traditional ensembles (produce an ensemble of multiple neural net
 - [Averaging Weights Leads to Wider Optima and Better Generalization](https://arxiv.org/abs/1803.05407)
 - https://pytorch.org/blog/stochastic-weight-averaging-in-pytorch/
 - https://izmailovpavel.github.io/
+
+### SelfieBoost
+
+- [SelfieBoost: A Boosting Algorithm for Deep Learning](https://arxiv.org/pdf/1411.3436.pdf)
 
 ## Bayesian Deep Learning
 
@@ -2264,6 +2253,7 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 * https://delug.github.io/
 * https://github.com/Honlan/DeepInterests
 * [Deep Learning for Physical Sciences](https://dl4physicalsciences.github.io/)
+* [关注 AI+X 交叉学科应用](https://zhuanlan.zhihu.com/c_1094551755387457536)
 
 ### Computer Vision
 
@@ -2310,8 +2300,6 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 - [Exploring Computational Creativity with Neural Networks](https://blog.floydhub.com/humans-of-ml-kalai-ramea/)
 - [Deep Learning and Brain](https://elsc.huji.ac.il/events/elsc-conference-10)
 - [Deep Learning for Cognitive Computing, Theory (Course code: TIES4910) 5 ECTS, Autumn Semester](http://www.cs.jyu.fi/ai/vagan/DL4CC.html)
-- [Theoretical Neuroscience and Deep Learning Theory](http://videolectures.net/deeplearning2017_ganguli_deep_learning_theory/)
-- [Bridging Neuroscience and Deep Machine Learning, by building theories that work in the Real World.](https://ankitlab.co/)
 - https://ankitlab.co/talks/
 - https://lynnsunxmu.github.io/
 
@@ -2320,13 +2308,8 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 * [Program 2019 - Deep Learning for Human Brain Mapping](https://brainhack101.github.io/IntroDL/)
 * [Courses of Vagan Terziyan](http://www.cs.jyu.fi/ai/vagan/courses.html)
 * [Neural Networks, Types, and Functional Programming](http://colah.github.io/posts/2015-09-NN-Types-FP/)
-* [AI and Neuroscience: A virtuous circle](https://deepmind.com/blog/ai-and-neuroscience-virtuous-circle/)
-* [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
-* [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
 * Connectionist models of cognition <https://stanford.edu/~jlmcc/papers/ThomasMcCIPCambEncy.pdf>
 * http://fourier.eng.hmc.edu/e161/lectures/nn/node3.html
-* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
-* [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
 * [BRAIN INSPIRED](https://braininspired.co/about/)
 * [http://www.timkietzmann.de](http://www.timkietzmann.de/)
 * http://www.brain-ai.jp/organization/
@@ -2374,6 +2357,7 @@ The ultimate goal is general artificial intelligence.
 
 Training deep learning models does not require gradients such as `ADMM, simulated annealing`.
 
+- [BinaryConnect: Training Deep Neural Networks with binary weights during propagations](https://arxiv.org/abs/1511.00363)
 - [Bidirectional Backpropagation](http://sipi.usc.edu/~kosko/B-BP-SMC-Revised-13January2018.pdf)
 - [Difference Target Propagation](https://arxiv.org/abs/1412.7525)
 - [Gradient target propagation](https://arxiv.org/abs/1810.09284)

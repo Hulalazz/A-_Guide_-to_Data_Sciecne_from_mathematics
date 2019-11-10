@@ -26,8 +26,7 @@ Manifold learning and finding low-dimensional structure in data is an important 
 - [ ] [Representation Learning :600.479/679 Fall 2014](http://www.cs.jhu.edu/~raman/Courses/CS679f14.html)
 - [ ] [Representation Learning  600.479 Fall 2016](http://www.cs.jhu.edu/~raman/Courses/CS479f16.html)
 - [ ] [Representation Learning on Graphs: Methods and Applications](https://www-cs.stanford.edu/people/jure/pubs/graphrepresentation-ieee17.pdf)
-- [ ] [DOOCN-XII: Network Representation Learning
-Dynamics On and Of Complex Networks 2019](http://doocn.org/)
+- [ ] [DOOCN-XII: Network Representation Learning Dynamics On and Of Complex Networks 2019](http://doocn.org/)
 - [ ] [Representation learning: a unified deep learning framework for automatic prostate MR segmentation](https://www.ncbi.nlm.nih.gov/pubmed/24579148)
 - [ ] [Representation Learning Mar. 27 – Mar. 31, 2017@simons.berkeley.edu](https://simons.berkeley.edu/workshops/schedule/3750)
 - [ ] [Deep Learning and Representation Learning](https://www.microsoft.com/en-us/research/project/deep-learning-and-representation-learning/)
@@ -249,7 +248,7 @@ https://zhuanlan.zhihu.com/p/51413773
 * [MASS: Masked Sequence to Sequence Pre-training for Language Generation](https://arxiv.org/abs/1905.02450)
 * https://pair-code.github.io/interpretability/bert-tree/
 * https://www.cs.cmu.edu/~rsalakhu/
-
+* https://nlpoverview.com/
 
 ### Entity Embedding
 
@@ -348,6 +347,13 @@ and $X$ is called hyperbolic if it is $\delta$-hyperbolic for some $\delta\geq 0
 - [Scalable Hyperbolic Recommender Systems](https://arxiv.org/abs/1902.08648v1)
 
 <img title="Embedding of the WordNet noun hierarchy into a 2-dimensional hyperbolic space" src="https://mnick.github.io/img/wn-nouns.jpg" width="70%" />
+
+- [Hyperbolic Heterogeneous Information Network Embedding](http://shichuan.org/doc/65.pdf)
+- http://hyperbolicdeeplearning.com/poincare-glove/
+- https://dawn.cs.stanford.edu/2018/03/19/hyperbolics/
+- http://bjlkeng.github.io/posts/hyperbolic-geometry-and-poincare-embeddings/
+- https://github.com/HazyResearch/hyperbolics
+
 
 #### Spherical and Hyperbolic Embeddings of Data
 
@@ -494,15 +500,25 @@ The goal when embedding a graph $G$ into a space  $V$ is to preserve the graph d
 - https://arxiv.org/abs/1709.05584
 - http://cazabetremy.fr/Teaching/EmbeddingClass.html
 - https://posenhuang.github.io/
+- https://jangunmp1.github.io/
+- http://rischanlab.github.io/
+- https://shiruipan.github.io/
+- https://tksaha.github.io/
+- https://fajieyuan.github.io/
+- https://frostliu.github.io/
+- https://papislatam2018.sched.com/
 - [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 - [A Beginner's Guide to Graph Analytics and Deep Learning](https://skymind.ai/wiki/graph-analysis)
-- [15TH INTERNATIONAL WORKSHOP ON
-MINING AND LEARNING WITH GRAPHS](http://www.mlgworkshop.org/2019/)
+- [15TH INTERNATIONAL WORKSHOP ON MINING AND LEARNING WITH GRAPHS](http://www.mlgworkshop.org/2019/)
 - [Network Embedding as Matrix Factorization: Unifying DeepWalk, LINE, PTE, and node2vec](https://arxiv.org/abs/1710.02971)
 - [Spatially Embedded Networks](http://www2.eng.ox.ac.uk/sen/)
 - [DOOCN-XII: Network Representation Learning](http://doocn.org/)
 - [Representation Learning on Graphs: Methods and Applications](http://sites.computer.org/debull/A17sept/p52.pdf)
-
+- [ ] [GEM: Graph Embedding and Mining](https://gem-ecmlpkdd.github.io/)
+- [ ] [Graph Exploration and Mining at Scale (GEMS) lab](https://gemslab.github.io/)
+- [ ] [Beyond Graph Mining - Higher-Order Data Analytics for Temporal Network Data](https://ingoscholtes.github.io/kdd2018-tutorial/setup)
+- [ ] [Scalable. Interactive. Interpretable.](https://poloclub.github.io/)
+- [ ] https://sites.google.com/site/mingnus/algorithms/graph-mining
 #### DeepWalk
 
 `DeepWalk` is an approach for learning latent representations of vertices in a network, which maps the nodes in the graph into real vectors:
