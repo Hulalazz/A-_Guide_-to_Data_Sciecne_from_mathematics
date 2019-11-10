@@ -30,7 +30,7 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 * [Awesome-AutoML-Papers](https://github.com/hibayesian/awesome-automl-papers)
 * [AutoML总结](https://www.jianshu.com/p/8178bb4d2ec3)
 
-**Meta-Learning: Learning to Learn**
+## Meta-Learning: Learning to Learn
 
 * [Workshop on Meta-Learning (MetaLearn 2019)](http://metalearning.ml/2019/)
 * [awesome-meta-learning](https://github.com/dragen1860/awesome-meta-learning)
@@ -38,7 +38,9 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 * [Learning to Learn by Chelsea Finn, Jul 18, 2017](https://bair.berkeley.edu/blog/2017/07/18/learning-to-learn/)
 * [Learning to Learn with Probabilistic Task Embeddingsby Kate Rakelly, Jun 10, 2019](https://bair.berkeley.edu/blog/2019/06/10/pearl/)
 
-**Transfer Learning**
+### Learning to Optimize
+
+## Transfer Learning
 
 * [迁移学习 Transfer Learning](http://transferlearning.xyz/)
 * [NVIDIA Transfer Learning Toolkit: High level SDK for tuning of domain specific DNNs](https://developer.nvidia.com/transfer-learning-toolkit)
@@ -51,6 +53,18 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 * http://imarkserve.iws.in/blog/
 * https://zhuanlan.zhihu.com/p/82192726
 * [Discovering the best neural architectures in the continuous space](https://www.microsoft.com/en-us/research/blog/discovering-the-best-neural-architectures-in-the-continuous-space/?OCID=msr_blog_neuralarchitecture_neurips_hero)
+
+### NAS
+
+- [DARTS: Differentiable Architecture Search](https://arxiv.org/abs/1806.09055)
+- [Progressive Neural Architecture Search](http://openaccess.thecvf.com/content_ECCV_2018/papers/Chenxi_Liu_Progressive_Neural_Architecture_ECCV_2018_paper.pdf)
+- https://www.bbsmax.com/A/QW5Y4a1eJm/
+
+#### AOGNet
+
+- http://bbs.cvmart.net/topics/959
+- http://www.stat.ucla.edu/~tfwu/project_posts/AOGNets/
+- https://github.com/tfwu
 
 ## Automated Feature Engineer
 
@@ -88,6 +102,7 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 * [Sequential Learning Using Incremental Import Vector Machines for Semantic Segmentation](https://d-nb.info/1043056424/34)
 * [Continuous Online Sequence Learning with an Unsupervised Neural Network Model](https://numenta.com/neuroscience-research/research-publications/papers/continuous-online-sequence-learning-with-an-unsupervised-neural-network-model/)
 * [SEQUENTIAL LEARNING: Iterative machine learning helps you reach your experimental design goals faster](https://citrine.io/platform/sequential-learning/)
-![](https://1hrkl410nh36441q7v2112ft-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/SEQ_LEARNING_FLOW_CHART_R5-768x689.jpg)
+  
+<img src="https://1hrkl410nh36441q7v2112ft-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/SEQ_LEARNING_FLOW_CHART_R5-768x689.jpg" width=80%/>
 
 [A Python implementation of Online Sequential Extreme Machine Learning (OS-ELM) for online machine learning](https://github.com/leferrad/pyoselm)

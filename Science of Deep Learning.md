@@ -5,6 +5,7 @@
 [Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
 
 * [Explainable AI: Interpreting, Explaining and Visualizing Deep Learning](https://link.springer.com/book/10.1007/978-3-030-28954-6)
+* [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
 * [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
 * [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
 * [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
@@ -107,8 +108,7 @@ for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * http://physics.usyd.edu.au/quantum/Coogee2015/Presentations/Svore.pdf
 * [Brains, Minds and Machines Summer Course](https://ocw.mit.edu/resources/res-9-003-brains-minds-and-machines-summer-course-summer-2015/index.htm)
 * [Physics-Based Deep Learning for Fluid Flow](http://phys2018.csail.mit.edu/papers/29.pdf)
-* [Lecture Note on Deep Learning
-and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
+* [Lecture Note on Deep Learning and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
 * [deep medcine](http://amos3.aapm.org/abstracts/pdf/127-36916-419554-130797.pdf)
 * http://www.dam.brown.edu/people/mraissi/publications/
 * [Deep Learning in High
@@ -130,6 +130,7 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * https://www.researchgate.net/profile/Jinlong_Wu3
 * http://djstrouse.com/
 * https://www.researchgate.net/scientific-contributions/2135376837_Maurice_Weiler
+* [Spontaneous Symmetry Breaking in Neural Networks](https://arxiv.org/abs/1710.06096)
 
 ### Statistical Mechanics and Deep Learning
 
@@ -332,6 +333,7 @@ $$Y_{t+1} = (1-k_t)Y_{t-1} + k_t Y_t + h \sigma(K_{t} Y_{t} + b_{t})\tag{Linear 
 - [Beyond Finite Layer Neural Networks: Bridging Deep Architectures and Numerical Differential Equations](https://arxiv.org/abs/1710.10121)
 - http://bicmr.pku.edu.cn/~dongbin/
 - https://arxiv.org/pdf/1906.02762.pdf  
+- [Neural ODE Paper List](https://zhuanlan.zhihu.com/p/87999707)
 
 
 * [A Multiscale and Multidepth Convolutional Neural Network for Remote Sensing Imagery Pan-Sharpening](https://ieeexplore.ieee.org/document/8281501)
@@ -518,9 +520,12 @@ The section will extend the approximation to the deep neural network.
 
 - [Deep learning in Fourier domain](https://www.researchgate.net/project/Deep-learning-in-Fourier-domain)
 - [Deep Learning Theory: The F-Principle and An Optimization Framework](http://ins.sjtu.edu.cn:3300/conferences/7/talks/319)
+- [Frequency Principle: Fourier Analysis Sheds Light on Deep Neural Networks](https://arxiv.org/abs/1901.06523)
+- [Nonlinear Collaborative Scheme for Deep Neural Networks](https://arxiv.org/abs/1811.01316)
+- [The Convergence Rate of Neural Networks for Learned Functions of Different Frequencies](https://arxiv.org/abs/1906.00425)
 - [Frequency Principle in Deep Learning with General Loss Functions and Its Potential Application](https://arxiv.org/abs/1811.10146)
 - [Theory of the Frequency Principle for General Deep Neural Networks](https://arxiv.org/pdf/1906.09235v1.pdf)
-- https://arxiv.org/pdf/1905.10264.pdf
+- [Explicitizing an Implicit Bias of the Frequency Principle in Two-layer Neural Networks](https://arxiv.org/pdf/1905.10264.pdf)
 - https://www.researchgate.net/profile/Zhiqin_Xu
 
 ## Inverse Problem and Deep Learning
@@ -586,9 +591,9 @@ However, the model is over-parametered and it is hard to verify the role of one 
 
 [Why and how that deep learning works well on different tasks remains a mystery from a theoretical perspective. In this paper we draw a geometric picture of the deep learning system by finding its analogies with two existing geometric structures, the geometry of quantum computations and the geometry of the diffeomorphic template matching. In this framework, we give the geometric structures of different deep learning systems including convolutional neural networks, residual networks, recursive neural networks, recurrent neural networks and the equilibrium prapagation framework. We can also analysis the relationship between the geometrical structures and their performance of different networks in an algorithmic level so that the geometric framework may guide the design of the structures and algorithms of deep learning systems.](https://arxiv.org/pdf/1710.10784.pdf)
 
-- [Machine Learning on Geometrical Data
-CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
+- [Machine Learning on Geometrical DataCSE291-C00 - Winter 2019](https://cse291-i.github.io/)
 - [ABC Dataset A Big CAD Model Dataset For Geometric Deep Learning](https://deep-geometry.github.io/abc-dataset/)
+- [Into the Wild: Machine Learning In Non-Euclidean Spaces](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/)
 - [How deep learning works — The geometry of deep learning](https://arxiv.org/pdf/1710.10784.pdf)
 - http://cmsa.fas.harvard.edu/geometric-analysis-ai/
 - http://inspirehep.net/record/1697651
@@ -671,6 +676,7 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 
 [Probabilistic Deep Learning with Python teaches the increasingly popular probabilistic approach to deep learning that allows you to tune and refine your results more quickly and accurately without as much trial-and-error testing. Emphasizing practical techniques that use the Python-based Tensorflow Probability Framework, you’ll learn to build highly-performant deep learning applications that can reliably handle the noise and uncertainty of real-world data.](https://www.manning.com/books/probabilistic-deep-learning-with-python)
 
+- [Probabilistic Framework for Deep Learning](https://ankitlab.co/projects/)
 - [A Probabilistic Theory of Deep Learning](https://arxiv.org/abs/1504.00641)
 - [A Probabilistic Framework for Deep Learning](https://papers.nips.cc/paper/6231-a-probabilistic-framework-for-deep-learning.pdf)
 - [Lightweight Probabilistic Deep Networks](https://zpascal.net/cvpr2018/Gast_Lightweight_Probabilistic_Deep_CVPR_2018_paper.pdf)
@@ -732,14 +738,40 @@ and he successfully demonstrated the learning process in a computer identificati
 - http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf
 
 
-## Brain Science and Deep Learning  
+## Brain Science and AI 
 
-* https://neuroscience.stanford.edu/mbct/home
-* https://braininspired.co/about/
+[Artificial intelligence and brain science have had a swinging relationship of convergence and divergence. In the early days of pattern recognition, multi-layer neural networks based on the anatomy and physiology of the visual cortex played a key role, but subsequent sophistication of machine learning promoted methods that are little related to the brain. Recently, however, the remarkable success of deep neural networks in learning from big data has re-evoked the interests in brain-like artificial intelligence.](http://www.brain-ai.jp/project-outline/)
+
+<img src="http://www.brain-ai.jp/wp-content/uploads/2017/01/brain.png" width="70%" />
+
+- [Theoretical Neuroscience and Deep Learning Theory](http://videolectures.net/deeplearning2017_ganguli_deep_learning_theory/)
+- [Bridging Neuroscience and Deep Machine Learning, by building theories that work in the Real World.](https://ankitlab.co/)
+* [Center for Mind, Brain, Computation and Technology](https://neuroscience.stanford.edu/mbct/home)
+* [Where neuroscience and artificial intelligence converge.](https://braininspired.co/about/)
 * https://elsc.huji.ac.il/events/elsc-conference-10
 * http://www.brain-ai.jp/organization/
-* https://brendenlake.github.io/AAI-site/
-* https://github.com/brendenlake/AAI-site
-* https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5818638/
-* https://www.cogneurosociety.org/dissecting-artificial-intelligence-to-better-understand-the-human-brain/
-* https://quest.mit.edu/projects/
+* [Advancing AI through cognitive science - Spring 2019](https://brendenlake.github.io/AAI-site/)
+* [NYU PSYCH-GA 3405.001 / DS-GA 3001.014 : Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
+* [Artificial Intelligence and brain](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5818638/)
+* [Dissecting Artificial Intelligence to Better Understand the Human Brain](https://www.cogneurosociety.org/dissecting-artificial-intelligence-to-better-understand-the-human-brain/)
+* [Deep Learning and the Brain](https://quest.mit.edu/projects/)
+* [AI and Neuroscience: A virtuous circle](https://deepmind.com/blog/ai-and-neuroscience-virtuous-circle/)
+* [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
+* [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
+* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
+* [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
+
+## AOGNet
+
+[An AOGNet consists of a number of stages each of which is composed of a number of AOG building blocks. An AOG building block splits its input feature map into $N$ groups along feature channels and then treat it as a sentence of $N$ words. It then jointly realizes a phrase structure grammar and a dependency grammar in bottom-up parsing the “sentence” for better feature exploration and reuse. It provides a unified framework for the best practices developed in state-of-the-art DNNs.](https://arxiv.org/pdf/1711.05847.pdf)
+
+`We first need to understand the underlying wisdom in designing better network
+architectures: It usually lies in finding network structures
+which can support flexible and diverse information flows for
+exploring new features, reusing existing features in previous layers and back-propagating learning signals (e.g., gradients).`
+
+- [AOGNets: Compositional Grammatical Architectures for Deep Learning](https://arxiv.org/pdf/1711.05847.pdf)
+- https://github.com/xilaili/AOGNet
+- https://github.com/iVMCL/AOGNets
+- http://www.stat.ucla.edu/~tfwu/project_posts/AOGNets/
+- [New Framework Improves Performance of Deep Neural Networks](https://research.ece.ncsu.edu/ivmcl/2019/05/29/new-framework-improves-performance-of-deep-neural-networks/)
