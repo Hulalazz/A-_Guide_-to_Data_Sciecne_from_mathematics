@@ -188,6 +188,7 @@ NPU are required for the following purpose:
 
 ##### Courses and Labs
 
+* [Modern Numerical Computing](https://courses.csail.mit.edu/18.337/2018/)
 * [Papers Reading List of *Embedded Neural Network*](https://github.com/ZhishengWang/Embedded-Neural-Network)
 * [Deep Compression and EIE](https://web.stanford.edu/class/ee380/Abstracts/160106-slides.pdf)
 * [Programmable Hardware Accelerators (Winter 2019)](https://cmpe293-winter19-01.courses.soe.ucsc.edu/home)
@@ -726,6 +727,7 @@ Low-rank factorization| Using matrix/tensor decomposition to estimate the inform
 Transferred/compact convolutional filters | Designing special structural convolutional filter to save parameters | Convolutional layer  only | Algorithms are dependent on applications, usually achieve good performance, only support train from scratch
 Knowledge distillation |Training a compact neural network with distilled knowledge of a large model |Convolutional layer and fully connected layer| Model performances are sensitive to applications and network structure only support train from scratch
 
+* [Stanford Compression Forum](https://compression.stanford.edu/2019-stanford-compression-workshop)
 * https://jackwish.net/convolution-neural-networks-optimization.html
 * [Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks ](http://eyeriss.mit.edu/)
 * [深度学习如何进行模型压缩？](https://www.zhihu.com/question/64987081/answer/684375500)
@@ -761,14 +763,6 @@ Pruning is to prune the connections in deep neural network in order to reduce th
 `Network quantization compresses the original network by
 reducing the number of bits required to represent each weight.`
 
-`Fixed-point Arithmetic`
-
-[The precision of a fixed-point number is the number of digits to the right of the decimal point, and it normally stays the same when computations are performed on the number.](http://www.efgh.com/software/fixed.htm)
-
-- [A Fixed-Point Arithmetic Package](http://www.efgh.com/software/fixed.htm)
-- [http://hackage.haskell.org/package/fixed-point](http://hackage.haskell.org/package/fixed-point)
-- https://courses.cs.washington.edu/courses/cse467/08au/labs/l5/fp.pdf
-- [Fixed Point Arithmetic and Tricks](http://x86asm.net/articles/fixed-point-arithmetic-and-tricks/)
 
 [`Uniform quantization` is widely used for model compression and acceleration. Originally the weights in the network are represented by 32-bit floating-point numbers. With uniform quantization, low-precision (e.g. 4-bit or 8-bit) fixed-point numbers are used to approximate the full-precision network. For k-bit quantization, the memory saving can be up to $32/k$​. For example, 8-bit quantization can reduce the network size by 4 folds with negligible drop of performance.
 The lth quantized ReLU $\sigma(x_l, \alpha_l)$ acts element-wise on vector $x_l$ from a previous layer and is parameterized by trainable scalar $\alpha_l>0$. ](https://pocketflow.github.io/uq_learner/)
@@ -804,6 +798,15 @@ In the training phase, both full-precision and quantized weights are kept. In th
 * [Lower Numerical Precision Deep Learning Inference and Training](https://software.intel.com/en-us/articles/lower-numerical-precision-deep-learning-inference-and-training)
 
 <img src="https://jackwish.net/images/2019/quantization/fp-distribution.png" width="50%"/>
+
+`Fixed-point Arithmetic`
+
+[The precision of a fixed-point number is the number of digits to the right of the decimal point, and it normally stays the same when computations are performed on the number.](http://www.efgh.com/software/fixed.htm)
+
+- [A Fixed-Point Arithmetic Package](http://www.efgh.com/software/fixed.htm)
+- [http://hackage.haskell.org/package/fixed-point](http://hackage.haskell.org/package/fixed-point)
+- https://courses.cs.washington.edu/courses/cse467/08au/labs/l5/fp.pdf
+- [Fixed Point Arithmetic and Tricks](http://x86asm.net/articles/fixed-point-arithmetic-and-tricks/)
 
 #### Binarized Neural Network, Ternary Weight Networks, XOR-Net
 
@@ -852,7 +855,9 @@ This network has the following layers:
 
 ##### Ternary Weight Networks
 
-`+1,-1,0`
+Ternary weight networks (TWNs) is the  neural networks with weights
+constrained to `+1, 0 and -1`.
+This network can date up to the paper [Learning algorithms with neural network with ternary weights](http://id3490.securedata.net/rod/pdf/RG.Paper.CP24.pdf) in 1988.
 
 - [Learning algorithms with neural network with ternary weights](http://id3490.securedata.net/rod/pdf/RG.Paper.CP24.pdf)
 - [Ternary Weight Networks](https://arxiv.org/abs/1605.04711)
