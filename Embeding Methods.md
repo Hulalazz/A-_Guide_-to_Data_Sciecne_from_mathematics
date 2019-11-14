@@ -227,28 +227,6 @@ $$
 - [ ] [The Expressive Power of Word Embeddings](https://arxiv.org/abs/1301.3226)
 - [ ] [word vector and semantic similarity](https://spacy.io/usage/vectors-similarity)
 
-#### Transformers, BERT, XLNet and Beyond
-
-Since 2018, pre-training has without a doubt become one of the hottest research topics in Natural Language Processing (NLP). By leveraging generalized language models like the BERT, GPT and XLNet, great breakthroughs have been achieved in natural language understanding. However, in sequence to sequence based language generation tasks, the popular pre-training methods have not achieved significant improvements. Now, researchers from Microsoft Research Asia have introduced MASS—a new pre-training method that achieves better results than BERT and GPT.
-
-<img title="The Encoder-Attention-Decoder framework" src="https://www.microsoft.com/en-us/research/uploads/prod/2019/06/MASS-Fig-1.png" width="60%" />
-<img title="MASS framework" src="https://www.microsoft.com/en-us/research/uploads/prod/2019/06/MASS-Fig-4.png" width="60%" />
-
-https://zhuanlan.zhihu.com/p/70257427
-https://zhuanlan.zhihu.com/p/51413773
-* [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
-* [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) ](http://jalammar.github.io/illustrated-bert/)
-* [BERT-is-All-You-Need](https://github.com/Eurus-Holmes/BERT-is-All-You-Need)
-* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
-* [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
-* [Universal Transformers](https://mostafadehghani.com/2019/05/05/universal-transformers/)
-* [BertEmbedding](https://bert-embedding.readthedocs.io/en/latest/api_reference/bert_embedding.html)
-* http://nlp.seas.harvard.edu/2018/04/03/attention.html
-* [Visualizing and Measuring the Geometry of BERT](https://arxiv.org/abs/1906.02715)
-* [MASS: Masked Sequence to Sequence Pre-training for Language Generation](https://arxiv.org/abs/1905.02450)
-* https://pair-code.github.io/interpretability/bert-tree/
-* https://www.cs.cmu.edu/~rsalakhu/
-* https://nlpoverview.com/
 
 ### Entity Embedding
 
@@ -686,6 +664,8 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 <img src="https://ask.qcloudimg.com/http-save/yehe-1908973/ih2p67xh4x.jpeg?imageView2/2/w/1620" />
 
 ### HARP
+
+[We present HARP, a novel method for learning low dimensional embeddings of a graph's nodes which preserves higher-order structural features. Our proposed method achieves this by compressing the input graph prior to embedding it, effectively avoiding troublesome embedding configurations (i.e. local minima) which can pose problems to non-convex optimization. HARP works by finding a smaller graph which approximates the global structure of its input. This simplified graph is used to learn a set of initial representations, which serve as good initializations for learning representations in the original, detailed graph. We inductively extend this idea, by decomposing a graph in a series of levels, and then embed the hierarchy of graphs from the coarsest one to the original graph. HARP is a general meta-strategy to improve all of the state-of-the-art neural algorithms for embedding graphs, including DeepWalk, LINE, and Node2vec. Indeed, we demonstrate that applying HARP's hierarchical paradigm yields improved implementations for all three of these methods, as evaluated on both classification tasks on real-world graphs such as DBLP, BlogCatalog, CiteSeer, and Arxiv, where we achieve a performance gain over the original implementations by up to 14% Macro F1.](https://arxiv.org/abs/1706.07845)
 
 - https://so-link.org/seminar/2018-06/harp.pdf
 - https://github.com/GTmac/HARP

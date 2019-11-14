@@ -1,41 +1,13 @@
 ## Geometric Deep Learning
 
-<img src="https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg" width="50%" />
 
-* https://olki.loria.fr/
-* https://qdata.github.io/deep2Read/
-* https://www.ee.iitb.ac.in/~eestudentrg/
-* [2019 Graph Signal Processing Workshop](http://www.gspworkshop.org/)
-* [Machine Learning for 3D Data](https://cse291-i.github.io/WI18/schedule.html)
-* [Geometric Deep Learning @qdata](https://qdata.github.io/deep2Read//2graphs/2architecture/2019/02/22/gnn-Geom/)
-* https://qdata.github.io/deep2Read//aReadingsIndexByCategory/#2Graphs
-* [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
-* [http://geometricdeeplearning.com/](http://geometricdeeplearning.com/)
-* [Artificial Intelligence and Augmented Intelligence for Automated Investigations for Scientific Discovery](http://www.ai3sd.org/)
-* [Learning the Structure of Graph Neural Networks Mathias Niepert, NEC Labs Europe July 09, 2019](https://heidelberg.ai/2019/07/09/graph-neural-networks.html)
-* https://sites.google.com/site/rdftestxyz/home
-* [Lecture 11: Learning on Non-Euclidean Domains](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
-* [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
-* [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
-* https://pytorch-geometric.readthedocs.io/en/latest/
-* https://deeplearning-cmu-10707.github.io/
-* [3D Machine Learning](https://github.com/timzhang642/3D-Machine-Learning)
-* https://nthu-datalab.github.io/ml/index.html
-* http://www.pmp-book.org/
-* https://github.com/rubenwiersma/cgthesis
-* http://deeplearning.lipingyang.org/
-* http://vgl.ict.usc.edu/Research/GeometricDeepLearning/
-* https://idl.cs.washington.edu/
+
+<img src="https://pic3.zhimg.com/80/fd40dd2ef26a591b5cd0e9d798cd5a67_hd.jpg" width="50%" />
 
 
 [In the last decade, Deep Learning approaches (e.g. Convolutional Neural Networks and Recurrent Neural Networks) allowed to achieve unprecedented performance on a broad range of problems coming from a variety of different fields (e.g. Computer Vision and Speech Recognition). Despite the results obtained, research on DL techniques has mainly focused so far on data defined on Euclidean domains (i.e. grids). Nonetheless, in a multitude of different fields, such as: Biology, Physics, Network Science, Recommender Systems and Computer Graphics; one may have to deal with data defined on non-Euclidean domains (i.e. graphs and manifolds). The adoption of Deep Learning in these particular fields has been lagging behind until very recently, primarily since the non-Euclidean nature of data makes the definition of basic operations (such as convolution) rather elusive. Geometric Deep Learning deals in this sense with the extension of Deep Learning techniques to graph/manifold structured data.](http://geometricdeeplearning.com/)
 
-* [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
-* [Beyond deep learning](http://beyond-deep-nets.clps.brown.edu/)
-* [Cognitive Computation Group @ U. Penn.](https://cogcomp.org/)
-* [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
-* [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
-* [Computational Cognitive Science Lab](http://cocosci.princeton.edu/research.php)
+* [Into the Wild: Machine Learning In Non-Euclidean Spaces](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/)
 * https://jian-tang.com/teaching/graph2019
 * [Introducing Grakn & Knowledge Graph Convolutional Networks: Dec 4, 2018 · Paris, France](https://eventil.com/events/introducing-grakn-ai-to-paris)
 * [International Workshop on Deep Learning for Graphs and Structured Data Embedding](https://www.aminer.cn/dl4g-sde)
@@ -66,6 +38,9 @@ What if we generalize these methods to connected data?
 - [Manifold Learning of Brain MRIs by Deep Learning](https://link.springer.com/chapter/10.1007/978-3-642-40763-5_78)
 - http://www.cs.cornell.edu/~kilian/index.html
 
+
+
+
 ### Spherical CNN
 
 - https://www.researchgate.net/profile/Taco_Cohen2
@@ -91,7 +66,7 @@ The hyperbolic hyperplane centered at $p\in\mathbb{D}^n$, with normal direction 
 
 $$\lbrace x\in\mathbb{D}^n,\ \langle (-p)\oplus x, a\rangle=0\rbrace.$$
 
-<img src="https://i0.wp.com/hyperbolicdeeplearning.com/wp-content/uploads/2018/06/hyp-hyp.png?w=564">
+<img src="https://i0.wp.com/hyperbolicdeeplearning.com/wp-content/uploads/2018/06/hyp-hyp.png?w=564" width="50%"/>
 
 The `hyperbolic softmax` probabilities are given by
 
@@ -169,7 +144,7 @@ This means that the Möbius scalar multiplication of x by r corresponds to
 * Multiplying this vector by $r$, since $\log_0(x)$ is now in the vector space $T_x\mathbb{D}^n=\mathbb{R}^n$,
 * Projecting it back on the manifold using the exp map at $0$.
 
-<img src="https://i1.wp.com/hyperbolicdeeplearning.com/wp-content/uploads/2018/06/exp.png" width="70%"/>
+<img src="https://i1.wp.com/hyperbolicdeeplearning.com/wp-content/uploads/2018/06/exp.png" width="60%"/>
 
 We propose to define matrix-vector multiplications in the Poincaré ball in a similar manner:
 
@@ -575,7 +550,7 @@ $$
 ### Application
 
 
-
+- https://github.com/thunlp/GNNPapers
 - [ ] [graph convolution network 有什么比较好的应用task? - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
 - [ ] [Use of graph network in machine learning](https://datawarrior.wordpress.com/2018/09/16/use-of-graph-networks-in-machine-learning/)
 - [ ] [Node Classification by Graph Convolutional Network](https://www.experoinc.com/post/node-classification-by-graph-convolutional-network)
@@ -627,7 +602,33 @@ their neighbors using neural networks.
 - https://zhuanlan.zhihu.com/p/51990489
 - https://www.cs.toronto.edu/~yujiali/
 
-## Resource
+### Resource on Geometric Learning
+
+* https://olki.loria.fr/
+* https://qdata.github.io/deep2Read/
+* https://www.ee.iitb.ac.in/~eestudentrg/
+* [2019 Graph Signal Processing Workshop](http://www.gspworkshop.org/)
+* [Machine Learning for 3D Data](https://cse291-i.github.io/WI18/schedule.html)
+* [Geometric Deep Learning @qdata](https://qdata.github.io/deep2Read//2graphs/2architecture/2019/02/22/gnn-Geom/)
+* https://qdata.github.io/deep2Read//aReadingsIndexByCategory/#2Graphs
+* [The Power of Graphs in Machine Learning and Sequential Decision-Making ](https://graphpower.inria.fr/)
+* [http://geometricdeeplearning.com/](http://geometricdeeplearning.com/)
+* [Artificial Intelligence and Augmented Intelligence for Automated Investigations for Scientific Discovery](http://www.ai3sd.org/)
+* [Learning the Structure of Graph Neural Networks Mathias Niepert, NEC Labs Europe July 09, 2019](https://heidelberg.ai/2019/07/09/graph-neural-networks.html)
+* https://sites.google.com/site/rdftestxyz/home
+* [Lecture 11: Learning on Non-Euclidean Domains](https://vistalab-technion.github.io/cs236605/lecture_notes/lecture_11/)
+* [What Can Neural Networks Reason About?](https://arxiv.org/abs/1905.13211)
+* [Deep Geometric Matrix Completion by Federico Monti](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
+* https://pytorch-geometric.readthedocs.io/en/latest/
+* https://deeplearning-cmu-10707.github.io/
+* [3D Machine Learning](https://github.com/timzhang642/3D-Machine-Learning)
+* https://nthu-datalab.github.io/ml/index.html
+* http://www.pmp-book.org/
+* https://github.com/rubenwiersma/cgthesis
+* http://deeplearning.lipingyang.org/
+* http://vgl.ict.usc.edu/Research/GeometricDeepLearning/
+* https://idl.cs.washington.edu/
+----
 
 * [Python for NLP](https://synalp.loria.fr/python4nlp/)
 * [Deep Learning on Graphs: A Survey](https://arxiv.org/abs/1812.04202)

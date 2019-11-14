@@ -750,16 +750,38 @@ and he successfully demonstrated the learning process in a computer identificati
 * [Where neuroscience and artificial intelligence converge.](https://braininspired.co/about/)
 * https://elsc.huji.ac.il/events/elsc-conference-10
 * http://www.brain-ai.jp/organization/
-* [Advancing AI through cognitive science - Spring 2019](https://brendenlake.github.io/AAI-site/)
-* [NYU PSYCH-GA 3405.001 / DS-GA 3001.014 : Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
 * [Artificial Intelligence and brain](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5818638/)
 * [Dissecting Artificial Intelligence to Better Understand the Human Brain](https://www.cogneurosociety.org/dissecting-artificial-intelligence-to-better-understand-the-human-brain/)
 * [Deep Learning and the Brain](https://quest.mit.edu/projects/)
 * [AI and Neuroscience: A virtuous circle](https://deepmind.com/blog/ai-and-neuroscience-virtuous-circle/)
 * [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
 * [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
-* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
 * [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
+
+## Cognition Science and Deep Learning
+
+Brain science is the physological theorey of cognitive science, which focus on the physical principle of brain function.
+The core problem of cognition science is how to learn in my eyes.
+
+* [Advancing AI through cognitive science - Spring 2019](https://brendenlake.github.io/AAI-site/)
+* [NYU PSYCH-GA 3405.001 / DS-GA 3001.014 : Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
+* [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
+* [Computational Learning and Memory Group](http://cbl.eng.cam.ac.uk/Public/Lengyel/News)
+* [Computational cognitive Science Group @MIT](http://cocosci.mit.edu/)
+* [Beyond deep learning](http://beyond-deep-nets.clps.brown.edu/)
+* [Cognitive Computation Group @ U. Penn.](https://cogcomp.org/)
+* [Computational cognitive modeling](https://brendenlake.github.io/CCM-site/)
+* [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
+* [Computational Cognitive Science Lab](http://cocosci.princeton.edu/research.php)
+* [Deep Learning for Cognitive Computing, Theory](http://www.cs.jyu.fi/ai/vagan/DL4CC.html)
+* https://www.dcsc.es/
+* [Deep Neural Networks as Scientific Models](https://www.cell.com/action/showPdf?pii=S1364-6613%2819%2930034-8)
+* http://vca.ele.tue.nl/
+* https://deepmind.com/research/publications/psychlab-psychology-laboratory-deep-reinforcement-learning-agents
+* https://www.uni-potsdam.de/en/mlcog/index.html
+* https://csai.nl/home/
+* https://hadrienj.github.io/about/
+* https://iccs2019.github.io/
 
 ## AOGNet
 

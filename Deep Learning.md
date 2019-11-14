@@ -1055,6 +1055,7 @@ Early stopping is to stop the procedure before finding the minima of cost in tra
 ##### Dropout
 
 It is to cripple the connections stochastically, which  is often used in visual tasks. See the original paper [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf).
+
 <img src="https://srdas.github.io/DLBook/DL_images/dropoutRegularization.png" width="80%" />
 
 * https://www.zhihu.com/question/24529483
@@ -2318,6 +2319,7 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 
 The ultimate goal is general artificial intelligence.
 
+* https://shoumik.xyz/
 * https://ai.stanford.edu/~tengyuma/
 * https://alexgkendall.com/
 * http://www.iro.umontreal.ca/~bengioy/papers/ftml_book.pdf

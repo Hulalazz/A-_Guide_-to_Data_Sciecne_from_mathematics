@@ -48,6 +48,10 @@ A related top is data compression, a branch of information theory, a more  usefu
 * [Dimensionality reduction](http://faculty.ucmerced.edu/mcarreira-perpinan/papers/phd-ch04.pdf)
 * [Surprises in high dimensions](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180lecture1.pdf)
 * [Linear dimension reduction via Johnson-Lindenstrauss](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180lecture_jl.pdf)
+* [manifold learning with applications to object recognition](https://people.eecs.berkeley.edu/~efros/courses/AP06/presentations/ThompsonDimensionalityReduction.pdf)
+* http://bactra.org/notebooks/manifold-learning.html
+* http://www.cs.columbia.edu/~jebara/papers/BlakeShawFinalThesis.pdf
+* https://www.zhihu.com/question/41106133
 
 ### PCA and MDS
 
@@ -378,6 +382,20 @@ https://www.wikiwand.com/en/Diffusion_map
 * [pydiffmap: an open-source project to develop a robust and accessible diffusion map code for public use.](https://pydiffmap.readthedocs.io/en/master/index.html)
 * [MAT 585: Diffusion Maps by Amit Singer](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/Singer_diffusionmaps.pdf)
 
+### Uniform Manifold Approximation and Projection 
+
+`Uniform Manifold Approximation and Projection (UMAP)` is a dimension reduction technique that can be used for visualisation similarly to t-SNE, but also for general non-linear dimension reduction. The algorithm is founded on three assumptions about the data
+
++ The data is uniformly distributed on Riemannian manifold;
++ The Riemannian metric is locally constant (or can be approximated as such);
++ The manifold is locally connected.
+
+[From these assumptions it is possible to model the manifold with a fuzzy topological structure. The embedding is found by searching for a low dimensional projection of the data that has the closest possible equivalent fuzzy topological structure.](https://umap-learn.readthedocs.io/en/latest/)
+
+- https://github.com/lmcinnes/umap
+- https://umap-learn.readthedocs.io/en/latest/
+- https://arxiv.org/abs/1802.03426
+
 ### Intrinsic Dimension
 
 In [Description Of Intrinsic Dimension 2019](https://yoavfreund.miraheze.org/wiki/Description_Of_Intrinsic_Dimension_2019), Yoav Freund pointed out that:
@@ -404,3 +422,5 @@ It helps with extreme classification settings with huge number classes, not many
 
 - [ ] [Siamese Neural Networks for One-shot Image Recognition](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf)
 - https://en.wikipedia.org/wiki/Siamese_network
+
+https://people.eecs.berkeley.edu/~efros/courses/AP06/
