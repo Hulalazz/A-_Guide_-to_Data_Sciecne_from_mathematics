@@ -2,8 +2,11 @@
 
 <img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
 
++ https://papers.nips.cc/paper/8288-contrastive-learning-from-pairwise-measurements.pdf
 + http://lintool.github.io/NSF-projects/IIS-1144034/
 + https://cs.uwaterloo.ca/~jimmylin/projects/index.html
++ [Spectral method and regularized MLE are both optimal for top-K ranking](https://projecteuclid.org/euclid.aos/1558425643)
++ https://europepmc.org/articles/pmc6785035
 + [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
 + [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
@@ -146,7 +149,7 @@ The TrueSkill system will assume that the distribution of the skill is **locatio
 The expected performance of the player is his mean of the distribution. The variance is the uncertainty  of the system.
 [We have already noted that skill is an uncertain quantity, and should therefore be included in the model as a random variable. We need to define a suitable prior distribution for this variable. This distribution captures our prior knowledge about a player’s skill before they have played any games. Since we know very little about a player before they play any games, this distribution needs to be broad and cover the full range of skills that a new player might have. Because skill is a continuous variable we can once again use a Gaussian distribution to define this prior.](http://www.mbmlbook.com/TrueSkill_Inferring_the_players_skills.html)
 
-The three assumptions encoded in our model are: 
+The three assumptions encoded in our model are:
 
 + Each player has a skill value, represented by a continuous variable with a broad prior distribution.
 + Each player has a performance value for each game, which varies from game to game such that the average value is equal to the skill of that player. The variation in performance, which is the same for all players, is symmetrically distributed around the mean value and is more likely to be close to the mean than to be far from the mean.
@@ -177,7 +180,7 @@ $\color{red}{PS}$: $TrueSkill^{TM}$ is a commercial trademark.
 - [ ] [Herbrich, R., Minka, T., and Graepel, T. (2007). TrueSkill(TM): A Bayesian Skill Rating System. In Advances in Neural Information Processing Systems 20, pages 569–576. MIT Press.](https://ieeexplore.ieee.org/document/6287323/)
 - [ ] https://pypi.org/project/trueskill/
 
-### Edo Historical Chess Rating 
+### Edo Historical Chess Rating
 In summary, the Edo system is done by
 - Obtaining maximum-likelihood estimates of ratings based on tournament and match results by applying a single large Bradley-Terry algorithm using each player in each year of their career as a separate entity, the comparisons between them being:
   - results of real games, and
@@ -220,7 +223,7 @@ of a player with $100\%$ wins does not go to infinity. Also, a prior controls th
 The Bradley-Terry model for paired comparisons gives the probability of winning a game as a function of ratings:
 $$P(\text{player i beats player j at time t}) =\frac{\gamma_i(t)}{\gamma_i(t)+\gamma_j(t)}$$
 
-where 
+where
 
 + Player number: $i \in \{1, \dots , N\}$, integer index.
 + Elo rating of player $i$ at time $t$: $R_i(t)$, real number.
