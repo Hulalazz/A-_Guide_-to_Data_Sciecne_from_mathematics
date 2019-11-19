@@ -36,8 +36,20 @@ Instructor: James B. Orlin](http://web.mit.edu/15.053/www/)
 - http://www.cs.cmu.edu/~pradeepr/
 - http://www.cs.cmu.edu/~aarti/
 - https://www.polyu.edu.hk/ama/events/conference/op20/en/
+- https://theory.stanford.edu/~jvondrak/
+- http://www.st.ewi.tudelft.nl/roos/
 - https://iccopt2019.berlin/
+- [The 13th Workshop on Models and Algorithms for Planning and Scheduling Problems (MAPSP 2017) ](http://www.mapsp2017.ma.tum.de/)
+- [](http://people.cs.pitt.edu/~kirk/MAPSP/)
+- https://www.ise.ncsu.edu/fuzzy-neural/
 - https://ifors.org/6th-international-conference-on-engineering-optimization-engopt-2018/
+- https://sites.math.washington.edu/~rothvoss/lecturenotes.html
+- https://sites.math.washington.edu/~rothvoss/409-spring-2017.html
+- http://www.stern.nyu.edu/ioms/
+- http://people.stern.nyu.edu/rcaldent/
+- https://apps.dtic.mil/dtic/tr/fulltext/u2/a247397.pdf
+- https://www.ise.ncsu.edu/people/fang/
+- https://adler.ieor.berkeley.edu/
 
 ## Integer Optimization
 
@@ -47,7 +59,8 @@ Integer-programming models arise in practically every area of application of mat
 - http://www.wsu.edu/~kbala/Math567.html
 - http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartIII.htm
 - [The Branch-and-Cut Algorithm for Solving Mixed-Integer Optimization Problems](https://www.ima.umn.edu/2015-2016/ND8.1-12.16/25397)
-- https://sites.math.washington.edu/~rothvoss/583D-spring-2016/IntOpt-and-Lattices.pdf
+- [Integer Optimziation and Lattices](https://sites.math.washington.edu/~rothvoss/583D-spring-2016/IntOpt-and-Lattices.pdf)
+- [Integer Programming](https://www.lix.polytechnique.fr/~liberti/teaching/xct/integer_programming.pdf)
 
 #### Branch and Bound Algorithms
 
@@ -58,7 +71,8 @@ Integer-programming models arise in practically every area of application of mat
 
 [Mathematical programming relaxations of integer programming formulations are a popular way to apply convex optimization techniques to hard combinatorial optimization problems. Such relaxations can be made closer to their integer programming counterparts by adding constraints; a systematic way to achieve this is via hierarchies of relaxations. Several such hierarchies are well-studied in the literature: Lovasz-Schrijver, Sherali-Adams and the Parrilo-Lasserre sum-of-squares (SoS) hierarchy.](https://web.stanford.edu/class/cs369h/)
 - https://web.stanford.edu/class/cs369h/
-- https://sites.math.washington.edu/~rothvoss/lecturenotes/lasserresurvey.pdf
+- [The Lasserre hierarchy in Approximation algorithms](https://sites.math.washington.edu/~rothvoss/lecturenotes/lasserresurvey.pdf)
+- https://sites.math.washington.edu/~rothvoss/lecturenotes/LasserreSurveySlides.pdf
 - https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf
 - http://www.samuelbhopkins.com/
 - https://www.cs.princeton.edu/~kothari/
@@ -75,6 +89,11 @@ Robert Weismantel, Head of the Mixed Integer Optimization team at ETHZ, said:
 - https://ryancorywright.github.io/pdf/UnifiedFrameworkforMIO.pdf
 - https://www.sce.carleton.ca/faculty/chinneck/po/Chapter13.pdf
 - https://mit-drl.github.io/goop/
+- [MINLP: Mixed-Integer Nonlinear Programming](http://minlp.cheme.cmu.edu/)
+- [IMUS-MSRI2016](https://www.imus.us.es/IMUS-MSRI2016/en/)
+- [Mirror-Descent Methods in Mixed-Integer Convex Optimization](https://arxiv.org/abs/1209.0686)
+- https://www.zib.de/groetschel/
+- http://www.zib.de/groetschel/pubnew/blossom.pdf
 
 ### Combinatorial Optimization
 
@@ -86,5 +105,11 @@ Rico Zenklusen, Head of the Combinatorial Optimization team at ETHZ, said:
 
 - https://math.ethz.ch/ifor/research/combinatorial-optimization.html
 - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/learn-43/lib/photoz/.g/web/glossary/comb.html
-
+- [18.438: Advanced Combinatorial Optimization, Fall 2009](http://math.mit.edu/~goemans/18438F09/18438.html)
+- [MATH 233B: Polyhedral techniques in combinatorial optimization, Stanford University, Winter 2017](https://theory.stanford.edu/~jvondrak/MATH233B-2017/MATH233B.html)
+- [514 - Networks and Combinatorial Optimization](https://sites.math.washington.edu/~rothvoss/514-winter-2018.html)
+- https://www.lix.polytechnique.fr/~liberti/teaching/xct/
 - https://web.stanford.edu/class/ee364b/lectures/dikin_slides.pdf
+- http://www.math.ust.hk/~mabfchen/Math4821B/
+
+#### Optimziation over Graph

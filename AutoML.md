@@ -21,6 +21,7 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 * https://www.automl.org/
 * https://www.automl.org/automl/auto-sklearn/
 * https://www.automl.org/wp-content/uploads/2019/05/AutoML_Book.pdf
+* https://mlbox.readthedocs.io/en/latest/
 * [Introduction to Auto-Keras](https://www.simonwenkel.com/2018/08/29/introduction-to-autokeras.html)
 * [EasyDL定制化训练和服务平台](http://ai.baidu.com/easydl/)
 * [HyperparameterHunter 3.0](https://zhuanlan.zhihu.com/p/80038497)
@@ -29,6 +30,13 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 * [automlk: Automated and distributed machine learning toolkit](https://github.com/pierre-chaville/automlk)
 * [Awesome-AutoML-Papers](https://github.com/hibayesian/awesome-automl-papers)
 * [AutoML总结](https://www.jianshu.com/p/8178bb4d2ec3)
+* https://github.com/kevinzakka/hypersearch
+* https://github.com/skorch-dev/skorch
+* https://github.com/automl/Auto-PyTorch
+* https://github.com/microsoft/nni
+* https://www.simonwenkel.com/2018/08/28/automated-machine-learning.html
+* [Introduction to Automated Machine Learning Frameworks](https://www.simonwenkel.com/projects/introduction-to-automated-machine-learning-frameworks.html)
+* [Does AutoML (Automated Machine Learning) lead to better models and fulfill legal requirements?](https://www.simonwenkel.com/2018/09/06/does-automl-lead-to-better-models-and-fulfill-legal-requirements.html)
 
 ## Meta-Learning: Learning to Learn
 
@@ -65,6 +73,10 @@ Evolutionary or genetic algorithms are applied to solve some unstructured proble
 - http://bbs.cvmart.net/topics/959
 - http://www.stat.ucla.edu/~tfwu/project_posts/AOGNets/
 - https://github.com/tfwu
+
+## AutoTree
+
+
 
 ## Automated Feature Engineer
 

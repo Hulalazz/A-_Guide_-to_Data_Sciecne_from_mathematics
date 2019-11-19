@@ -15,6 +15,8 @@ It is about how to accelerate the training and inference of deep learning(genera
 |Hardware Architectures|
 
 * https://github.com/1duo/awesome-ai-infrastructures
+* http://www.eecs.harvard.edu/htk/publications/
+* http://www.eecs.harvard.edu/htk/courses/
 * [FairNAS: Rethinking Evaluation Fairness of Weight Sharing Neural Architecture Search](https://github.com/fairnas/FairNAS)
 * [VISUAL COMPUTING SYSTEMS](http://graphics.cs.cmu.edu/courses/15769/fall2016/lectures)
 * [Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)
@@ -67,17 +69,17 @@ can we deploy deep learning models? Definitely yes.
 * [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
 * [AutoML 的十大开源库](https://www.52cs.com/archives/3138)
 * [TensorFlow模型压缩和Inference加速](https://zhuanlan.zhihu.com/p/31023153)
-* https://zhuanlan.zhihu.com/DNN-on-Chip 
+* https://zhuanlan.zhihu.com/DNN-on-Chip
 + https://github.com/BlueWinters/research
 + [Reference workloads for modern deep learning methods](https://github.com/rdadolf/fathom)
-
++ [How to Train for and Run Machine Learning Models on Edge Devices](https://www.simonwenkel.com/2018/12/08/How-to-run-Deep-Learning-Models-on-Edge-devices.html)
 
 
 ## Sys for Deep Learning
 
 Over the past few years, deep learning has become an important technique to successfully solve problems in many different fields, such as vision, NLP, robotics. An important ingredient that is driving this success is the development of deep learning systems that efficiently support the task of learning and inference of complicated models using many devices and possibly using distributed resources. The study of how to build and optimize these deep learning systems is now an active area of research and commercialization.
 
-Matrix computation dense application like deep neural network would take the advantages of specific architecture design. Thus it is really close to `high performance computational science` when sloving some computation dense problems.
+Matrix computation dense application like deep neural network would take the advantages of specific architecture design. Thus it is really close to `high performance computational science` when solving some computation dense problems.
 
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
 
@@ -149,6 +151,7 @@ NPU are required for the following purpose:
 ##### Workshop and Conference
 
 * http://www.sysml.cc/
+* https://mlperf.org/
 * [Workshop on AI Systems](http://learningsys.org/sosp19/)
 * [Systems for ML](http://learningsys.org/neurips19/)
 * [Workshop on ML for Systems at NeurIPS 2019](http://mlforsystems.org/)
@@ -171,7 +174,7 @@ NPU are required for the following purpose:
 * http://yanjoy.win/
 
 
-##### Commerical Patents and Products
+##### Patents and Products
 
 * https://www.nextplatform.com/
 * https://iq.opengenus.org/neural-processing-unit-npu/
@@ -185,6 +188,9 @@ NPU are required for the following purpose:
 * https://www.wikiwand.com/en/Hardware_acceleration
 * https://en.wikichip.org/wiki/WikiChip
 * https://patents.google.com/patent/US8655815B2/en
+* https://www.intel.ai/blog/
+* https://www.arm.com/solutions/artificial-intelligence
+* https://mlperf.org/index.html#companies
 
 ##### Courses and Labs
 
@@ -587,6 +593,7 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 
 
 * [EIE: Efficient Inference Engine on Compressed Deep Neural Network](https://arxiv.org/pdf/1602.01528.pdf)
+* http://dowobeha.github.io/papers/autodiff17.pdf
 
 ### TVM and Versatile Tensor Accelerator (VTA)
 
@@ -617,7 +624,7 @@ The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework desi
 * [如何利用TVM快速实现超越Numpy(MKL)的GEMM蓝色](https://zhuanlan.zhihu.com/p/75203171)
 * [使用TVM支持TFLite（下)](https://zhuanlan.zhihu.com/p/57147430)
 
-#### nGraph
+### nGraph
 
 `nGraph` is an end to end deep learning compiler for inference and training with extensive framework and hardware support.
 
@@ -628,7 +635,7 @@ The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework desi
 + https://github.com/plaidml/plaidml
 - https://en.wikipedia.org/wiki/Zeroth_(software)
 
-#### XLA
+### XLA
 
 The XLA compilation framework is invoked on subgraphs of TensorFlow computations. The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes.
 
@@ -638,7 +645,7 @@ The XLA compilation framework is invoked on subgraphs of TensorFlow computations
 - https://autodiff-workshop.github.io/slides/JeffDean.pdf
 - [XLA: The TensorFlow compiler framework](https://haosdent.gitbooks.io/tensorflow-document/content/resources/xla_prerelease.html)
 
-#### JAX: Autograd and XLA
+### JAX: Autograd and XLA
 
 With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions. It can differentiate through loops, branches, recursion, and closures, and it can take derivatives of derivatives of derivatives. It supports reverse-mode differentiation (a.k.a. backpropagation) via grad as well as forward-mode differentiation, and the two can be composed arbitrarily to any order.
 
@@ -647,14 +654,14 @@ With its updated version of Autograd, JAX can automatically differentiate native
 - https://github.com/google/jax
 - https://github.com/hips/autograd
 
-#### Multi-Level Intermediate Representation
+### Multi-Level Intermediate Representation
 
 The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. It is thus well-suited to deep learning computations in particular. Yet it is general enough to also represent arbitrary sequential computation. The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
 
 - https://github.com/tensorflow/mlir
 - https://llvm.org/devmtg/2019-04/slides/Keynote-ShpeismanLattner-MLIR.pdf
 
-#### Glow
+### Glow
 
 `Glow` is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development.
 
@@ -662,7 +669,7 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 - https://ai.facebook.com/tools/glow/
 - https://github.com/pytorch/glow
 
-#### Butterflies: A Universal Building Block for Structured Linear Maps
+### Butterflies: A Universal Building Block for Structured Linear Maps
 
 [Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, and other structured transformations such as convolutions. All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. This generic formulation can automatically learn an efficient algorithm for many important transforms; for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines to learn efficient and compressible transformations. On a standard task of compressing a single hidden-layer network, our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
 
@@ -671,7 +678,7 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 + [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
 https://github.com/stanford-futuredata/Willump
 
-#### Cilk
+### Cilk
 
 [Cilk aims to make parallel programming a simple extension of ordinary serial programming. Other concurrency platforms, such as Intel’s Threading Building Blocks (TBB) and OpenMP, share similar goals of making parallel programming easier. But Cilk sets itself apart from other concurrency platforms through its simple design and implementation and its powerful suite of provably effective tools. These properties make Cilk well suited as a platform for next-generation multicore research.](http://cilk.mit.edu/)
 
@@ -681,8 +688,38 @@ https://github.com/stanford-futuredata/Willump
 - https://llvm.org/
 - https://zhuanlan.zhihu.com/p/64903359
 
+### Triton
+
+- [Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations](http://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf)
+
+### DLVM
+
+- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR
+DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
+- http://dowobeha.github.io/papers/autodiff17.pdf
+- http://dowobeha.github.io/
+- https://roshandathathri.github.io/
+- https://www.clsp.jhu.edu/workshops/19-workshop/
+
+### CHET
+
+- https://www.cs.utexas.edu/~roshan/CHET.pdf
+- https://www.cs.utexas.edu/~pingali/
+- https://roshandathathri.github.io/
+- https://iss.oden.utexas.edu/
+
+### Neo-AI-DLR
+
+- https://github.com/neo-ai/neo-ai-dlr
+- https://github.com/dmlc/treelite
+- http://treelite.io/
+- https://aws.amazon.com/cn/sagemaker/neo/
+
+****
+
 |DNN Acceleratation Framewore|
 |---|
+|https://hgpu.org/|
 |NVIDIA|
 |https://developer.nvidia.com/cudnn)|
 |http://nvdla.org/|
@@ -699,6 +736,7 @@ https://github.com/stanford-futuredata/Willump
 |[Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)|
 |[SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)|
 |[Menoh: fast DNN inference library with multiple programming language support](https://github.com/pfnet-research/menoh)|
+|[trillium](https://www.arm.com/products/silicon-ip-cpu/machine-learning/project-trillium)|
 
 
 *****
@@ -820,13 +858,32 @@ In the training phase, both full-precision and quantized weights are kept. In th
 For forward propagation, we need two binary matrices; we thus binarize the weight matrix and the incoming activation from the previous layer.
 
 <img src="https://software.intel.com/sites/default/files/managed/c0/e0/webops10048-fig1-binarization-procedure.png" width="80%"/>
+<img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-forward-propagation.png?w=414&h=382"/>
 
+[A key to the success of BNNs it the binary activation function, which clamps
+all negatives inputs to −1 and all positive inputs to 1.](http://www.eecs.harvard.edu/~htk/publication/2017-ewsn-mcdanel-teerapittayanon-kung.pdf)
+There  are two binarized functions:
 
-`Gradient Propagation Through Discretization` 
+deterministic| stochastic
+---|---
+<img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-sign-function.png?w=206&h=44">|<img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-stochastic-binarization-function.png?w=213&h=44">
+
+Here $\sigma(x)$ is is the “hard sigmoid” function: $\sigma(x)=\max(0, min(1, \frac{x+1}{2}))$.
+The stochastic binarization is better than the Sign function but is harder to implement. As a result, the deterministic Sign function is used more often.
+
+- https://mohitjain.me/2018/07/14/bnn/
+
+`Gradient Propagation Through Discretization`
 
 The derivative of the sign function is zero almost everywhere, making it incompatible with backpropagation. Thus, a straight-through estimator is used. This preserves the gradient's information and cancels large gradients.
 
 <img src="https://software.intel.com/sites/default/files/managed/c0/e0/webops10048-fig2-gradientPropagationProcedure.png" width="80%" />
+<img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-backward-propagation.png?w=312&h=216" />
+
+While updating the weights, the following is done:
+
+Each real valued weight, $w^r$, is constrained to remain between -1 and +1. If a weight update brings $w^r$ outside $[-1, 1]$, it is clipped. This is done because otherwise, the real-valued weights will grow very large without having any impact on the binary weights, $w^b$.
+The new updated binary weights are then calculated as $w^b = Sign(w^r)$.
 
 This network has the following layers:
 
@@ -844,13 +901,18 @@ This network has the following layers:
 
 - https://blog.csdn.net/stdcoutzyx/article/details/50926174
 - https://duanyzhi.github.io/Binary-Network/
+- [BinaryConnect： Training Deep Neural Networks with binary weights during propagations](https://github.com/MatthieuCourbariaux/BinaryConnect)
+- [Neural Networks with Few Multiplications](https://arxiv.org/abs/1510.03009)
 - [Binary Neural Networks](https://software.intel.com/en-us/articles/binary-neural-networks)
+- [Code: Training Deep Neural Networks with Weights and Activations Constrained to +1 or -1](https://github.com/MatthieuCourbariaux/BinaryNet)
 - [Code Sample: Optimizing Binarized Neural Networks on Intel® Xeon® Scalable Processors](https://software.intel.com/en-us/articles/optimizing-binarized-neural-networks-on-intel-xeon-scalable-processors)
-- https://github.com/MatthieuCourbariaux/BinaryConnect
+- [Accelerating Neural Networks with Binary Arithmetic](https://www.intel.ai/accelerating-neural-networks-binary-arithmetic/)
 - [ ] [The High-Dimensional Geometry of Binary Neural Networks](https://arxiv.org/abs/1705.07199)
 - [ ] [Binarized Neural Networks: Training Deep Neural Networks with Weights and Activations Constrained to +1 or -1](https://arxiv.org/abs/1602.02830)
 - [ ] [Boolean Circuits are Neural Networks](https://constantinides.net/2019/04/26/boolean-circuits-are-neural-networks/)
 - [ ] [FP-BNN: Binarized neural network on FPGA](https://www.sciencedirect.com/science/article/pii/S0925231217315655)
+- [ ] [Embedded Binarized Neural Networks](http://www.eecs.harvard.edu/~htk/publication/2017-ewsn-mcdanel-teerapittayanon-kung.pdf)
+- [ ] [Deep Learning for Real-Time Crime Forecasting and Its Ternarization](https://arxiv.org/pdf/1711.08833.pdf)
 
 
 ##### Ternary Weight Networks
@@ -892,6 +954,21 @@ _____
 + Decrease the required amount of memory. Half-precision floating point format (FP16) uses 16 bits, compared to 32 bits for single precision (FP32). Lowering the required memory enables training of larger models or training with larger minibatches.
 + Shorten the training or inference time. Execution time can be sensitive to memory or arithmetic bandwidth. Half-precision halves the number of bytes accessed, thus reducing the time spent in memory-limited layers.
 
+<img src="https://devblogs.nvidia.com/wp-content/uploads/2017/10/ssd_ag_log_histo_coarse.png" width="70%"/>
+
+The Y-axis is the percentage of all values on a log scale. The X-axis is the log scale of absolute values, as well as a special entry for zeros. For example, in this training session 66.8% of values were zero, whereas 4% of values were between $2^{-32}$ and $2^{-30}$.
+[A very efficient way to ensure that gradients fall into the range representable by half precision is to multiply the training loss with the scale factor. This adds just a single multiplication and by the chain rule it ensures that all the gradients are scaled up (or shifted up) at no additional cost. Loss scaling ensures that relevant gradient values lost to zeros are recovered. Weight gradients need to be scaled down by the same factor S before the weight update. The scale-down operation could be fused with the weight update itself (resulting in no extra memory accesses) or carried out separately.](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/)
+
+Additions to the traditional iteration procedure are in bold.
+
+1. **Make an FP16 copy of the weights**
+2. Forward propagate using FP16 weights and activations
+3. **Multiply the resulting loss by the scale factor S**
+4. Backward propagate using FP16 weights, activations, and their gradients
+5. **Multiply the weight gradients by 1/S**
+6. Optionally process the weight gradients (gradient clipping, weight decay, etc.)
+7. Update the master copy of weights in FP32
+
 * https://nnabla.readthedocs.io/en/latest/python/tutorial/mixed_precision_training.html
 * https://nvidia.github.io/OpenSeq2Seq/html/mixed-precision.html
 * https://pdc.one/2019/05/14/Mixed-precision-training/
@@ -904,6 +981,7 @@ _____
 * [User Guide](https://docs.nvidia.com/deeplearning/sdk/mixed-precision-training/index.html)
 * [TRAINING WITH MIXED PRECISION](http://on-demand.gputechconf.com/gtc/2017/presentation/s7218-training-with-mixed-precision-boris-ginsburg.pdf)
 * [NVIDIA Apex: Tools for Easy Mixed-Precision Training in PyTorch](https://devblogs.nvidia.com/apex-pytorch-easy-mixed-precision-training/)
+* https://developer.nvidia.com/vulkan-driver
 
 #### Blended Coarse Gradient Descent
 
@@ -919,7 +997,7 @@ _____
 * [BinaryConnect: Training Deep Neural Networks with binary weights during propagations](https://arxiv.org/abs/1511.00363)
 * [Binary Relax: A Relaxation Approach For Training Deep Neural Networks With Quantized Weights](https://www.math.uci.edu/~jxin/binaryrelax_final.pdf)
 * [Quantization and Training of Low Bit-Width Convolutional Neural Networks for Object Detectio](https://www.math.uci.edu/~jxin/LBW-JCM.pdf)
-- https://www.math.uci.edu/~jxin/signals.html 
+- https://www.math.uci.edu/~jxin/signals.html
 - https://www.researchgate.net/scientific-contributions/43925792_Dimitris_S_Papailiopoulos
 
 
@@ -966,7 +1044,7 @@ As in other entropy encoding methods, more common symbols are represented with f
 
 Gradient code and compression is to accelerate the distributed training of deep learning models by reducing the communication cost.
 
-
+- [Compressing Gradient Optimizers via Count-Sketches](https://arxiv.org/abs/1902.00179)
 #### Gradient Code and Approximate Gradient Coding
 
 Some nodes may be much slower than others parallelized or distributed computation enviroment.
@@ -1159,7 +1237,7 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * [CS236605: Deep Learning](https://vistalab-technion.github.io/cs236605/lectures/)
 * https://mlperf.org/
 
-  
+
 ##  Compressing Recurrent Neural Network
 
 All techniques above can be used to fully-connected networks or generally feed-forward network.
