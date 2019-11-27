@@ -1,5 +1,12 @@
 ## IR and Search
 
+Web search engine is the first big data system in order to collect and organize the data in world wide web.
+Information retrieval is the extension of the search engine.
+
+
+- http://net.pku.edu.cn/~yangtong/pages/SummerForm18.html
+- http://yongyuan.name/project/
+- https://textprocessing.github.io/ch5.pdf
 - [Princeton CASS: Content-Aware Search Systems](https://www.cs.princeton.edu/cass/)
 - http://www.wsdm-conference.org/
 - http://www.svcl.ucsd.edu/projects/regularization/
@@ -25,12 +32,13 @@
 - [ ] https://ntent.com/, https://www.clearquery.io/how, https://www.searchhub.io/, https://etymo.io/, https://searcheo.io/, http://seeknshop.io/, https://constructor.io/, https://www.searchtap.io/, https://lucidworks.com/
 
 
-If the recommender system is to solve the information overload problem personally, information retrieval and search technology  is to solve that problem generally at the web-scale.
+If the recommender system is to solve the information overload problem personally, 
+modern information retrieval and search technology  is to solve that problem generally at the web-scale.
 [Technically, IR studies the acquisition, organization, storage, retrieval, and distribution of information.](http://www.dsi.unive.it/~dm/Slides/5_info-retrieval.pdf)
 Information is in diverse format or form, such as character strings(texts), images, voices and videos so that information retrieval has diverse subfields such as [multimedia information retrieval](http://press.liacs.nl/mlew/mir2019.html) and [music information retrival](https://musicinformationretrieval.com/index.html). Search engine is considered as a practical application of information retrieval.  
 
 Critical to all search engines is the problem of designing an effective retrieval model that can rank documents accurately for a given query.
-A main goal of any IR system is to rank documents optimally given a query so that a highly relevant documents would be ranked above less relevant ones and nonrelevant ones.
+A main goal of any IR system is to rank documents optimally given a query so that a highly relevant documents would be ranked above less relevant ones and non-relevant ones.
 `Relevance`, `Ranking`  and `Context`  are three foundation stones of web search. In this section, we focus on relevance more than rank.
 
 If interested in the history of information retrieval, Mark Sanderson and W. Bruce Croft wrote a paper for [The History of Information Retrieval Research](https://ciir-publications.cs.umass.edu/pub/web/getpdf.php?id=1066).
@@ -89,6 +97,10 @@ Search engine takes advantage of this idea: it is the best place to store  where
 
 #### Index Creation
 
+Here we introduce some data structure which can speed up the search procedure given a query.
+Note that index technology is also used in database performance optimization.
+Index is used to organize and manage the documents.
+It is the core function of information retrieval system.
 
 - [ ] [MG4J is a free full-text search engine for large document collections written in Java](http://mg4j.di.unimi.it/)
 - [ ] http://www.lemurproject.org/
@@ -100,35 +112,12 @@ Search engine takes advantage of this idea: it is the best place to store  where
 - [ ] [fast library for ANN search and KNN graph constructio](https://github.com/ZJULearning/efanna)
 - [ ] https://nlp.stanford.edu/IR-book/html/htmledition/index-construction-1.html
 
-##### SPTAG
 
-`SPTAG` assumes that the samples are represented as vectors and that the vectors can be compared by L2 distances or cosine distances. Vectors returned for a query vector are the vectors that have smallest L2 distance or cosine distances with the query vector.
-
-SPTAG provides two methods: kd-tree and relative neighborhood graph (SPTAG-KDT) and balanced k-means tree and relative neighborhood graph (SPTAG-BKT). SPTAG-KDT is advantageous in index building cost, and SPTAG-BKT is advantageous in search accuracy in very high-dimensional data.
-
-It explains how `SPTAG` works:
-
-> SPTAG is inspired by the NGS approach [WangL12]. It contains two basic modules: `index builder` and `searcher`. The RNG is built on the k-nearest neighborhood graph [WangWZTG12, WangWJLZZH14] for boosting the connectivity. Balanced k-means trees are used to replace kd-trees to avoid the inaccurate distance bound estimation in kd-trees for very high-dimensional vectors. The search begins with the search in the space partition trees for finding several seeds to start the search in the RNG. The searches in the trees and the graph are iteratively conducted.
-
-<img src="https://raw.githubusercontent.com/microsoft/SPTAG/master/docs/img/sptag.png" width="50%" />
-
-- [SPTAG: A library for fast approximate nearest neighbor search](https://github.com/microsoft/SPTAG)
-- [Query-Driven Iterated Neighborhood Graph Search for Large Scale Indexing](https://jingdongwang2017.github.io/Pubs/ACMMM12-GraphSearch.pdf)
-- https://jingdongwang2017.github.io/
-
-
-##### Faiss
-
-Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.
-
-Most of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server.
-
-The GPU implementation can accept input from either CPU or GPU memory. On a server with GPUs, the GPU indexes can be used a drop-in replacement for the CPU indexes (e.g., replace IndexFlatL2 with GpuIndexFlatL2) and copies to/from GPU memory are handled automatically. Results will be faster however if both input and output remain resident on the GPU. Both single and multi-GPU usage is supported.
-
-- https://github.com/facebookresearch/faiss
-- https://waltyou.github.io/Faiss-Introduce/
 
 #### Index Compression
+
+Index compression is one special data compression technology in order to save the storage space.
+It is necessary to compress the index at the web scale.
 
 * [Elasticsearch from the Bottom Up, Part 1](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up)
 * [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
@@ -139,6 +128,7 @@ The GPU implementation can accept input from either CPU or GPU memory. On a serv
 * http://idc.hust.edu.cn/~rxli/teaching/ir/3.2%20Index%20compression.pdf
 
 ### Information Retrieval
+
 
 
 <img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
@@ -670,7 +660,9 @@ Matches at all positions of both sentences|  Matches in different parts of docum
 Symmetric matching function| Asymmetric matching function
 Representative task: Paraphrase Identification| Representative task: ad-hoc retrieval
 
-Each search is made up of $\color{red}{\fbox{Match + Rank}}$. It means the that results of each search match the keywords/what the user want and more   
+Each search is made up of $\color{red}{\fbox{Match + Rank}}$. 
+`Matching Problem` is to describe the tasks in IR that:
+> [We focus on the problem of identifying those documents in a corpus that match a conjunctive query of keywords.](https://www.microsoft.com/en-us/research/publication/bitfunnel-revisiting-signatures-search/)
 
 * [Deep Semantic Similarity Model](https://www.microsoft.com/en-us/research/project/dssm/)
 * [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
@@ -678,6 +670,7 @@ Each search is made up of $\color{red}{\fbox{Match + Rank}}$. It means the that 
 * [A Deep Relevance Matching Model for Ad-hoc Retrieval](https://arxiv.org/abs/1711.08611)
 * [Relevance Matching](https://zhuanlan.zhihu.com/p/39946041)
 * [DeepMatching: Deep Convolutional Matching](http://lear.inrialpes.fr/src/deepmatching/)
+* [Quantifying Similarity between Relations with Fact Distribution](https://arxiv.org/abs/1907.08937)
 ----
 * https://www.cnblogs.com/yaoyaohust/p/10642103.html
 * https://ekanou.github.io/dynamicsearch/
@@ -781,7 +774,7 @@ Matching Function Learning:
 
 ##### Deep Relevance Matching Model
 
-It is argumented that
+It is asserted that
 > the ad-hoc retrieval task is mainly about relevance matching while most NLP matching tasks concern semantic matching, and there are some fundamental differences between these two matching tasks. Successful relevance matching requires proper handling of the exact matching signals, query term importance, and diverse matching requirements.
 
 A novel deep relevance matching model (DRMM) for ad-hoc retrieval employs a joint deep architecture at the query term level for relevance matching. By using matching histogram mapping, a feed forward matching network, and a term gating network, we can effectively deal with the three relevance matching factors mentioned above.
@@ -845,18 +838,128 @@ binary as restrictions on the type of the tree in our model.
 
 - http://www.6aiq.com/article/1565927125584
 - https://tianchi.alibabacloud.com/course/video?liveId=41072
-- https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM)
+- [深度树匹配模型(TDM)@x-deeplearning](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
 - https://www.jianshu.com/p/149467a29b64
 - [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
 - [Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1803.02349)
+- [Joint Optimization of Tree-based Index and Deep Model for Recommender Systems](https://arxiv.org/pdf/1902.07565.pdf)
 - [阿里自主创新的下一代匹配&推荐技术：任意深度学习+树状全库检索](https://zhuanlan.zhihu.com/p/35030348)
+- https://dzone.com/articles/breakthroughs-in-matching-and-recommendation-algor
+
+##### SPTAG
+
+`SPTAG` assumes that the samples are represented as vectors and that the vectors can be compared by L2 distances or cosine distances. Vectors returned for a query vector are the vectors that have smallest L2 distance or cosine distances with the query vector.
+
+SPTAG provides two methods: kd-tree and relative neighborhood graph (SPTAG-KDT) and balanced k-means tree and relative neighborhood graph (SPTAG-BKT). SPTAG-KDT is advantageous in index building cost, and SPTAG-BKT is advantageous in search accuracy in very high-dimensional data.
+
+It explains how `SPTAG` works:
+
+> SPTAG is inspired by the NGS approach [WangL12]. It contains two basic modules: `index builder` and `searcher`. The RNG is built on the k-nearest neighborhood graph [WangWZTG12, WangWJLZZH14] for boosting the connectivity. Balanced k-means trees are used to replace kd-trees to avoid the inaccurate distance bound estimation in kd-trees for very high-dimensional vectors. The search begins with the search in the space partition trees for finding several seeds to start the search in the RNG. The searches in the trees and the graph are iteratively conducted.
+
+<img src="https://raw.githubusercontent.com/microsoft/SPTAG/master/docs/img/sptag.png" width="50%" />
+
+- [SPTAG: A library for fast approximate nearest neighbor search](https://github.com/microsoft/SPTAG)
+- [Query-Driven Iterated Neighborhood Graph Search for Large Scale Indexing](https://jingdongwang2017.github.io/Pubs/ACMMM12-GraphSearch.pdf)
+- https://jingdongwang2017.github.io/
+
+
+##### Faiss
+
+Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.
+
+Most of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server.
+
+The GPU implementation can accept input from either CPU or GPU memory. On a server with GPUs, the GPU indexes can be used a drop-in replacement for the CPU indexes (e.g., replace IndexFlatL2 with GpuIndexFlatL2) and copies to/from GPU memory are handled automatically. Results will be faster however if both input and output remain resident on the GPU. Both single and multi-GPU usage is supported.
+
+- https://github.com/facebookresearch/faiss
+- https://waltyou.github.io/Faiss-Introduce/
+
+##### Locality-Sensitive Hashing
+
+Locality-Sensitive Hashing (LSH) is a class of methods for the nearest neighbor search problem, which is defined as follows: given a dataset of points in a metric space (e.g., Rd with the Euclidean distance), our goal is to preprocess the data set so that we can quickly answer nearest neighbor queries: given a previously unseen query point, we want to find one or several points in our dataset that are closest to the query point. 
+
+- https://github.com/FALCONN-LIB/FALCONN/wiki/LSH-Primer
+- https://github.com/FALCONN-LIB/FALCONN
+- https://falconn-lib.org/
+- http://web.mit.edu/andoni/www/LSH/index.html
+- http://yongyuan.name/blog/vector-ann-search.html
+- https://github.com/arbabenko/GNOIMI
+- https://github.com/willard-yuan/hashing-baseline-for-image-retrieval
+- http://yongyuan.name/habir/
+
+##### HNSW: Hierarchical  Navigable Small World
+
+[We present a new approach for the approximate K-nearest neighbor search based on navigable small world graphs with controllable hierarchy (Hierarchical NSW, HNSW). The proposed solution is fully graph-based, without any need for additional search structures, which are typically used at the coarse search stage of the most proximity graph techniques. Hierarchical NSW incrementally builds a multi-layer structure consisting from hierarchical set of proximity graphs (layers) for nested subsets of the stored elements. The maximum layer in which an element is present is selected randomly with an exponentially decaying probability distribution. This allows producing graphs similar to the previously studied Navigable Small World (NSW) structures while additionally having the links separated by their characteristic distance scales. Starting search from the upper layer together with utilizing the scale separation boosts the performance compared to NSW and allows a logarithmic complexity scaling. Additional employment of a heuristic for selecting proximity graph neighbors significantly increases performance at high recall and in case of highly clustered data. Performance evaluation has demonstrated that the proposed general metric space search index is able to strongly outperform previous opensource state-of-the-art vector-only approaches. Similarity of the algorithm to the skip list structure allows straightforward balanced distributed implementation.](https://arxiv.org/abs/1603.09320)
+
+- https://www.itu.dk/people/pagh/
+- https://blog.csdn.net/chieryu/article/details/81989920
+- http://yongyuan.name/blog/opq-and-hnsw.html
+- https://www.ryanligod.com/2018/11/27/2018-11-27%20HNSW%20%E4%BB%8B%E7%BB%8D/
+- https://arxiv.org/abs/1707.00143
+- https://arxiv.org/abs/1804.09996
+- https://arxiv.org/abs/1804.09996
+- https://github.com/willard-yuan/cvtk/tree/master/hnsw_sifts_retrieval
+- https://github.com/erikbern
+- https://github.com/yurymalkov
+- https://arxiv.org/abs/1603.09320
+
+##### BitFunnel
+
+In recent years the Bing search engine has developed and deployed an index based on bit-sliced signatures. 
+This index, known as BitFunnel, replaced an existing production system based on an inverted index.
+
+The key idea of `bit-string signatures` is that each document in the corpus is represented by
+its signature. In `BitFunnel`, the signature is essentially the sequence
+of bits that make up a Bloom filter representing the set of terms in
+the document.
+
+[Hash function](https://www.jianshu.com/p/bba9b61b80e7)
+
+<imgf src="https://image.jiqizhixin.com/uploads/editor/81d4b399-6399-44c8-9521-46dbd1f50f6f/640.png" width="40%"/>
+<img src="https://image.jiqizhixin.com/uploads/editor/917bf540-04c5-4681-b4e6-46ab0dacee19/640.png" width="40%"/> 
+
+
+- http://bitfunnel.org/blog-archive/
+- https://www.jiqizhixin.com/articles/2019-11-20-15
+- https://www.jianshu.com/p/624ac9173d96
+- https://www.microsoft.com/en-us/research/publication/bitfunnel-revisiting-signatures-search/
+- https://github.com/BitFunnel/BitFunnel
+- https://github.com/BitFunnel/sigir2017-bitfunnel
+- https://github.com/BitFunnelComp/dicComp
+- https://github.com/jondgoodwin/bitfunnel-play
+- https://www.researchgate.net/publication/333060335_A_Hybrid_BitFunnel_and_Partitioned_Elias-Fano_Inverted_Index
+- https://www.researchgate.net/publication/326134053_Index_Compression_for_BitFunnel_Query_Processing
+- https://dblp.uni-trier.de/pers/hd/z/Zhang:Zhaohua
+- https://nbjl.nankai.edu.cn/12126/list.htm
+- http://bitfunnel.org/strangeloop/
+- http://db.ucsd.edu/wp-content/uploads/2017/03/sidm338-wangA.pdf
+
+##### FGCrossNet
+
+- https://zhuanlan.zhihu.com/p/93083455
+- https://arxiv.org/abs/1907.04476
+- http://59.108.48.34/tiki/FGCrossNet/
+- https://github.com/PKU-ICST-MIPL/FGCrossNet_ACMMM2019
+- https://www.researchgate.net/publication/221368756_NUS-WIDE_A_real-world_web_image_database_from_National_University_of_Singapore
+
+#### Scalable Similarity Search
+
+[ The aim of the project is to improve theory and practice of algorithms for high-dimensional similarity search on big data, and to extend similarity search algorithms to work in settings where data is distributed (using a communication complexity perspective) or uncertain (using a statistical perspective).](http://sss.projects.itu.dk/)
+- http://sss.projects.itu.dk/
+- http://sss.projects.itu.dk/proximity-workshop.html
+- http://www.itu.dk/people/jovt/
+- http://www.itu.dk/people/rikj/
+- http://www.itu.dk/people/maau/
+- http://itu.dk/people/pagh/thesis-topics.html
+- http://www.itu.dk/people/pagh/
+- http://ann-benchmarks.com/
 
 #### Semantic Search
 
 [Alexis Sanders  as an SEO Account Manager at MERKLE | IMPAQT wrote a blog on `semantic search`](https://moz.com/blog/what-is-semantic-search):
 > The word "semantic" refers to the meaning or essence of something. Applied to search, "semantics" essentially relates to the study of words and their logic. Semantic search seeks to improve search accuracy by understanding a searcher’s intent through contextual meaning. Through concept matching, synonyms, and natural language algorithms, semantic search provides more interactive search results through transforming structured and unstructured data into an intuitive and responsive database. Semantic search brings about an enhanced understanding of searcher intent, the ability to extract answers, and delivers more personalized results. Google’s Knowledge Graph is a paradigm of proficiency in semantic search.
 
-<img src="https://blog.alexa.com/wp-content/uploads/2019/03/semantic-search-intent.png" width="80%"/>
+<img src="https://blog.alexa.com/wp-content/uploads/2019/03/semantic-search-intent.png" width="60%"/>
 
 * [relevant search](http://manning.com/books/relevant-search)
 * [Learning to rank plugin of Elasticsearch](https://github.com/o19s/elasticsearch-learning-to-rank)
@@ -892,11 +995,12 @@ binary as restrictions on the type of the tree in our model.
 
 ### Information Retrieval Evaluation
 
+Evaluation is used to enhance the performance of the result of the information retrieval.
 
 - http://fire.irsi.res.in/fire/2016/tutorials
 - http://informationr.net/ir/18-2/paper582.html#.XW03vih3hPY
+- http://sigir.org/awards/best-paper-awards/
 
-----
 
 ### Neural Information Retrieval
 
@@ -971,7 +1075,13 @@ As we have learned how to handle text, information retrieval is moving on, to pr
 - https://iai-group.github.io/webtables-tutorial/
 - https://github.com/iai-group/webtables-tutorial
 
-#### Scholar Search
+#### Scholar Search Engine
+
+`Scholar Search Engine` helps to find the digital scholar publication.
+
+For example, [`Semantic Scholar` helps researchers find better academic publications faster. Our engine analyzes publications and extracts important features using machine learning techniques. The resulting influential citations, images and key phrases allow our engine to “cut through the clutter” and give you results that are more relevant and impactful to your work.](https://www.semanticscholar.org/faq#paper-sources)
+
+Different from general web search engine, scholar search engine does rank the web-page. The citation network is used to evaluate the importance of one scholar article.
 
 - https://scholar.google.com/
 - https://academic.microsoft.com/home
@@ -990,7 +1100,7 @@ As we have learned how to handle text, information retrieval is moving on, to pr
 - https://www.semion.io/Home/About
 - https://scite.ai/
 
-#### Medical Information Retrieval
+#### Medical Information Retrieval: Biomedical and Health Informatics
 
 ChartRequest claims that:
 > Requesting medical records is vital to your operations as a health insurance company. From workers’ compensation claims to chronic-condition care, insurance companies require numerous medical records—daily. Obtain records quickly and accurately with our medical information retrieval software. ChartRequest offers a complete enterprise solution for health insurance companies—facilitating swift fulfillment and secure, HIPAA-compliant records release.
@@ -1025,6 +1135,8 @@ To consumers, health information is available through different services and wit
 Lately, the control over and access to health information by consumers has been a hot topic, with plenty government initiatives all over the world that aim to improve consumer health giving consumers more information and making easier the sharing of patient records.
 
 - http://carlalopes.com/pubs/Lopes_SOA_2008.pdf
+- https://www.ncbi.nlm.nih.gov/pubmed/26152963
+- https://www.ncbi.nlm.nih.gov/pubmed/25991092
 
 ##### Why is medical information retrieval difficult?
 
@@ -1057,7 +1169,33 @@ It is becasue medical information is really professional while critical.
 * https://clefehealth.imag.fr/
 * http://www.bilegaldoc.com/
 
-####  Music Information Retrieval
+
+#### Multimedia Search Engine
+
+[Indexing multimedia is much more complex than indexing text. In some cases the media can be converted to text: broadcast television often includes digital text as closed-captions for the hearing impaired, and scene titles and captions within a video can be converted to text using OCR. Speech-recognition technology can digitize words spoken on audio tracks. Continuous media, such as video, also can be broken up into chunks by transitional effects, for better precision in results. Some groups are also working on form and shape recognition, which could allow searchers to draw a shape, such as a bridge or a tumor; or select an example picture and find others like it.](http://www.searchtools.com/info/multimedia-search.html)
+
+* [Search Tools Reports: Search Engines for Multimedia: Images, Audio and Video Files](http://www.searchtools.com/info/multimedia-search.html)
+* [Building a Content-Based Multimedia Search Engine I: Quantifying Similarity](http://www.deepideas.net/building-content-based-multimedia-search-engine-quantifying-similarity/)
+* [Building a Content-Based Multimedia Search Engine II: Extracting Feature Vectors](http://www.deepideas.net/building-content-based-multimedia-search-engine-feature-extraction/)
+* [Building a Content-Based Multimedia Search Engine III: Feature Signatures](http://www.deepideas.net/building-content-based-multimedia-search-engine-feature-signatures/)
+* [Building a Content-Based Multimedia Search Engine IV: Earth Mover’s Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-earth-movers-distance/)
+* [Building a Content-Based Multimedia Search Engine V: Signature Quadratic Form Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-signature-quadratic-form-distance/)
+* [Building a Content-Based Multimedia Search Engine VI: Efficient Query Processing](http://www.deepideas.net/building-content-based-multimedia-search-engine-efficient-query-processing/)
+* http://www.sonic.net/~rteeter/multimedia.html
+* [WebMARS: A Multimedia Search Engine](https://www.microsoft.com/en-us/research/publication/webmars-a-multimedia-search-engine/)
+
+##### Image Search Engine
+
+[Milvus is the world's fastest similarity search engine for massive-scale feature vectors. Built with heterogeneous computing architecture for the best cost efficiency. Searches over billion-scale vectors take only milliseconds with minimum computing resources.](https://github.com/milvus-io/milvus)
+
+- https://github.com/milvus-io/milvus
+- [关于 Milvus 在线训练营](https://github.com/milvus-io/bootcamp)
+- https://milvus.io/
+- [自制AI图像搜索引擎](https://blog.csdn.net/baidu_40840693/article/details/88230418)
+- [深度学习表征的不合理有效性——从头开始构建图像搜索服务（一）](https://segmentfault.com/a/1190000015570726)
+- [深度学习表征的不合理有效性——从头开始构建图像搜索服务（二）](https://yq.aliyun.com/articles/607384)
+
+#####  Music Information Retrieval
 
 [Music information retrieval (MIR) is an exciting and challenging area of research. Music not only connects people but also relates to many different research disciplines including signal processing, information retrieval, machine learning, musicology, and psychoacoustics. In its beginnings, research in MIR has borrowed many ideas and concepts from more established disciplines such as speech processing or computer linguistics. After twenty years, the MIR field has matured to an independent research area that has many things to offer to signal processing and other research disciplines](https://www.audiolabs-erlangen.de/resources/MIR/FMP/data/C0/2019_MuellerZalkow_FMP_ISMIR.pdf)
 
@@ -1079,22 +1217,6 @@ It is becasue medical information is really professional while critical.
 * [SGN-24006 Analysis of Audio, Speech and Music Signals Spring 2017 ](http://www.cs.tut.fi/~sgn24006/)
 * [Notes on Music Information Retrieval](https://musicinformationretrieval.com/index.html)
 
-#### Multimedia Search Engine
-
-[Indexing multimedia is much more complex than indexing text. In some cases the media can be converted to text: broadcast television often includes digital text as closed-captions for the hearing impaired, and scene titles and captions within a video can be converted to text using OCR. Speech-recognition technology can digitize words spoken on audio tracks. Continuous media, such as video, also can be broken up into chunks by transitional effects, for better precision in results. Some groups are also working on form and shape recognition, which could allow searchers to draw a shape, such as a bridge or a tumor; or select an example picture and find others like it.](http://www.searchtools.com/info/multimedia-search.html)
-
-* [Search Tools Reports: Search Engines for Multimedia: Images, Audio and Video Files](http://www.searchtools.com/info/multimedia-search.html)
-* [自制AI图像搜索引擎](https://blog.csdn.net/baidu_40840693/article/details/88230418)
-* [深度学习表征的不合理有效性——从头开始构建图像搜索服务（一）](https://segmentfault.com/a/1190000015570726)
-* [深度学习表征的不合理有效性——从头开始构建图像搜索服务（二）](https://yq.aliyun.com/articles/607384)
-* [Building a Content-Based Multimedia Search Engine I: Quantifying Similarity](http://www.deepideas.net/building-content-based-multimedia-search-engine-quantifying-similarity/)
-* [Building a Content-Based Multimedia Search Engine II: Extracting Feature Vectors](http://www.deepideas.net/building-content-based-multimedia-search-engine-feature-extraction/)
-* [Building a Content-Based Multimedia Search Engine III: Feature Signatures](http://www.deepideas.net/building-content-based-multimedia-search-engine-feature-signatures/)
-* [Building a Content-Based Multimedia Search Engine IV: Earth Mover’s Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-earth-movers-distance/)
-* [Building a Content-Based Multimedia Search Engine V: Signature Quadratic Form Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-signature-quadratic-form-distance/)
-* [Building a Content-Based Multimedia Search Engine VI: Efficient Query Processing](http://www.deepideas.net/building-content-based-multimedia-search-engine-efficient-query-processing/)
-* http://www.sonic.net/~rteeter/multimedia.html
-* [WebMARS: A Multimedia Search Engine](https://www.microsoft.com/en-us/research/publication/webmars-a-multimedia-search-engine/)
 
 #### Ecommerce Search
 
@@ -1114,7 +1236,7 @@ It is becasue medical information is really professional while critical.
 - https://www.sli-systems.com/blog/putting-ai-work-e-commerce.html
 - https://www.nosto.com/
 - https://adeptmind.ai/
-- https://adeptmind.ai/
+
 
 #### Multimodal Search
 
@@ -1127,6 +1249,7 @@ with improved search capabilities due to the integration of technologies to link
 * providing trustable results at a level of understandability adapted to the users.
 ----
 * [DeepStyle: Multimodal Search Engine for Fashion and Interior Design](https://ieeexplore.ieee.org/document/8737943)
+* [What Looks Good with my Sofa: Ensemble Multimodal Search for Interior Design](https://annals-csis.org/proceedings/2017/drp/56.html)
 * http://www.khresmoi.eu/overview/
 * [Multi-Task Learning with Neural Networks for Voice Query Understanding on an Entertainment Platform](https://www.kdd.org/kdd2018/accepted-papers/view/multi-task-learning-with-neural-networks-for-voice-query-understanding-on-a)
 
@@ -1171,6 +1294,17 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 - https://wordnet.princeton.edu/
 - https://wordnet.princeton.edu/related-projects
+
+#### Mag[i]
+
+[MagiBot (project name Matarael, hereinafter referred to as MagiBot) is Magi’s web crawling program (also known as “spider”). Crawling may be used to refer to MagiBot’s extracting and/or updating process of webpages.](https://www.peak-labs.com/docs/en/magi/about-magibot)
+
+[`Magi` is a machine-learning-based information extraction and retrieval system developed by Peak Labs. Magi can summarize knowledge from natural language texts in any field into structured data, and provide human users as well as other AI an **interpretable, retrievable, and traceable** knowledge system that can automatically gather and amend the information through lifelong learning.](https://www.peak-labs.com/docs/en/magi/intro)
+
+- https://www.peak-labs.com/
+- https://www.peak-labs.com/docs/zh/magi/intro
+- https://magi.com/
+- https://www.peak-labs.com/#technology
 
 ### Labs and Resources  
 
@@ -1266,6 +1400,7 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + [Winter 2017 CS293S: Information Retrieval and Web Search](https://sites.cs.ucsb.edu/~tyang/class/293S17/)
 + [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)
 + [Information Retrieval and Web Search 2015](http://web.eecs.umich.edu/~mihalcea/498IR/)
++ [信息检索与数据挖掘 2019 USTC](http://staff.ustc.edu.cn/~network/ir/)
 + [Data and Web Mining](http://www.dsi.unive.it/~dm/)
 + [Neural Networks for Information Retrieval](http://www.nn4ir.com)
 + [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
@@ -1287,3 +1422,4 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + http://widodo.com/lecturer/IR/
 + https://www.cl.cam.ac.uk/teaching/1516/InfoRtrv/materials.html
 + [Information Retrieval](https://www.comp.nus.edu.sg/~kanmy/courses/3245_2017/)
++ https://www.jianshu.com/p/a133f54222cb

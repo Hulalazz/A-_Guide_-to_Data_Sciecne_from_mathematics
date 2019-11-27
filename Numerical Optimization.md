@@ -2771,7 +2771,12 @@ ____
 + [The Loss Surfaces of Multilayer Networks](https://arxiv.org/abs/1412.0233)
 + [为什么说随机最速下降法(SGD)是一个很好的方法？](https://zhuanlan.zhihu.com/p/27609238)
 + [Gradient Descent with Random Initialization: Fast Global Convergence for Nonconvex Phase Retrieval](https://arxiv.org/pdf/1803.07726.pdf)
+
+<img src="http://web.cs.ucla.edu/~qgu/image/qgu.jpg" width="40%"/>
+
 + https://arxiv.org/abs/1806.06763v1
++ http://web.cs.ucla.edu/~qgu/research.html
++ https://users.ece.cmu.edu/~yuejiec/publications.html
 
 ### ADAM and More
 

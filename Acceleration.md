@@ -15,6 +15,7 @@ It is about how to accelerate the training and inference of deep learning(genera
 |Hardware Architectures|
 
 * https://github.com/1duo/awesome-ai-infrastructures
+* https://duvenaud.github.io/learning-to-search/
 * http://www.eecs.harvard.edu/htk/publications/
 * http://www.eecs.harvard.edu/htk/courses/
 * [FairNAS: Rethinking Evaluation Fairness of Weight Sharing Neural Architecture Search](https://github.com/fairnas/FairNAS)
@@ -669,14 +670,6 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 - https://ai.facebook.com/tools/glow/
 - https://github.com/pytorch/glow
 
-### Butterflies: A Universal Building Block for Structured Linear Maps
-
-[Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, and other structured transformations such as convolutions. All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. This generic formulation can automatically learn an efficient algorithm for many important transforms; for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines to learn efficient and compressible transformations. On a standard task of compressing a single hidden-layer network, our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
-
-+ [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
-+ [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
-+ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
-https://github.com/stanford-futuredata/Willump
 
 ### Cilk
 
@@ -714,45 +707,27 @@ DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
 - https://github.com/dmlc/treelite
 - http://treelite.io/
 - https://aws.amazon.com/cn/sagemaker/neo/
+### Butterflies: A Universal Building Block for Structured Linear Maps
 
-****
+[Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, and other structured transformations such as convolutions. All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. This generic formulation can automatically learn an efficient algorithm for many important transforms; for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines to learn efficient and compressible transformations. On a standard task of compressing a single hidden-layer network, our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
 
-|DNN Acceleratation Framewore|
-|---|
-|https://hgpu.org/|
-|NVIDIA|
-|https://developer.nvidia.com/cudnn)|
-|http://nvdla.org/|
-|https://docs.nvidia.com/cuda/|
-|https://developer.nvidia.com/tensorrt|
-|[cupy](https://cupy.chainer.org/)|
-|intel|
-|[ideep](https://github.com/intel/ideep)
-|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
-|https://github.com/intel/onnxruntime|
-|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
-|https://intel.github.io/mkl-dnn/|
-|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
-|[Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)|
-|[SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)|
-|[Menoh: fast DNN inference library with multiple programming language support](https://github.com/pfnet-research/menoh)|
-|[trillium](https://www.arm.com/products/silicon-ip-cpu/machine-learning/project-trillium)|
++ [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
++ [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
++ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
+- https://github.com/stanford-futuredata/Willump
+- [A Two Pronged Progress in Structured Dense Matrix Multiplication](https://arxiv.org/abs/1611.01569)
 
+### halide
 
-*****
+- https://halide-lang.org/
+- https://halide-lang.org/#publications
+- https://people.csail.mit.edu/tzumao/
 
-|Model Compression Packages|
-|---|
-|[Distiller is an open-source Python package for neural network compression research.](https://nervanasystems.github.io/distiller/index.html)|
-|[PocketFlow](https://pocketflow.github.io/)|
-|[PocketFlow中的模型压缩算法](https://zhuanlan.zhihu.com/c_1041626714043949056)|
-|[PERMDNN: Efficient Compressed DNN Architecture with Permuted Diagonal Matrices](http://alchem.usc.edu/portal/static/download/permdnn.pdf)|
-|[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
-|[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
-|[TensorFlow Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite), [tensorflow-compression](https://tensorflow.github.io/compression/)|
-|[TensorRT](https://github.com/NVIDIA/TensorRT)|
-|https://github.com/Tencent/ncnn|
-|[Introduction to Intel® Deep Learning Deployment Toolkit](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html)|
+### taichi
+
+- http://taichi.graphics/
+- https://github.com/yuanming-hu/taichi
+- http://taichi.graphics/wp-content/uploads/2019/09/taichi_lang.pdf
 
 ## Compression and Acceleration of Convolutional Neural Networks
 
@@ -887,7 +862,7 @@ The new updated binary weights are then calculated as $w^b = Sign(w^r)$.
 
 This network has the following layers:
 
-![Layer map](https://software.intel.com/sites/default/files/managed/c0/e0/webops10048-fig4-network-layers.png)
+<img title="Layer map" src="https://software.intel.com/sites/default/files/managed/c0/e0/webops10048-fig4-network-layers.png"/>
 
 
 * Fully connected (128)
@@ -1040,93 +1015,7 @@ As in other entropy encoding methods, more common symbols are represented with f
 
 * [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
 
-### Gradient Code and Compression
 
-Gradient code and compression is to accelerate the distributed training of deep learning models by reducing the communication cost.
-
-- [Compressing Gradient Optimizers via Count-Sketches](https://arxiv.org/abs/1902.00179)
-#### Gradient Code and Approximate Gradient Coding
-
-Some nodes may be much slower than others parallelized or distributed computation enviroment.
-With redundancy, we may not need every node to finish.
-See [prior articles](https://zachcharles.com/files/Presentations/sbc_slides.pdf) for more areticles on this topic.
-
-`Approximate gradient coding` allows us to tolerate more stragglers with less work.
-
-- [Gradient Coding](https://arxiv.org/abs/1612.03301)
-- [Reducing the Average Delay in Gradient Coding](https://www.ntu.edu.sg/home/hmkiah/docs/papers/averageDelayGradientCoding.pdf)
-- [Tree Gradient Coding](https://www.ece.ucsb.edu/~ramtin/Tree_Gradient_Coding_final.pdf)
-- [Communication-computation efficient gradient coding](https://www.researchwithnj.com/en/publications/communication-computation-efficient-gradient-coding)
-- [Approximate Gradient Coding via Sparse Random Graphs](https://arxiv.org/abs/1711.06771)
-- [ErasureHead: Distributed Gradient Descent without Delays Using Approximate Gradient Coding](https://hwang595.github.io/publications/erasurehead_2019/)
-- https://users.oden.utexas.edu/~leiqi/stragglers_nips.pdf
-- https://zachcharles.com/files/Presentations/sbc_slides.pdf
-- [Ternary Gradients to Reduce Communication in Distributed Deep Learning (TensorFlow)](https://github.com/wenwei202/terngrad)
-***
-* https://hwang595.github.io/publications/
-* http://papail.io/
-* http://kangwooklee.com/
-* https://www.ntu.edu.sg/home/hmkiah/
-* https://users.oden.utexas.edu/~leiqi/
-* https://zachcharles.com/
-
-#### Gradient Compression
-
-[In `distributed training` of machine learning models with stochastic optimization, the exchange of parameter updates between workers often is a bottleneck that limits the scalability of distributed training. This is especially true for models with a large parameter space, such as neural networks. Several techniques have been proposed to enhance scalability by `compressing gradients`, e.g. by sending a sparse set of coordinates only, or by quantization. We study the gradient compression literature from both sides: on the one hand, we study properties of these algorithms in a distributed setting, and their effectiveness for speed and scalability. On the other hand, we explore properties of the minima found by these algorithms, such as robustness or generalisation.](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
-
-
-
-##### Deep Gradient Compression @ MIT
-
-- [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
-- https://blog.csdn.net/a609640147/article/details/90054754
-- https://songhan.mit.edu/
-- [Deep Leakage from Gradients](https://arxiv.org/pdf/1906.08935.pdf)
-- https://littleorange.site/2019/02/deep-gradient-compression.html
-- [Training Kinetics in 15 Minutes: Large-scale Distributed Training on Videos](https://arxiv.org/abs/1910.00932)
-
-##### Gradient Compression @ epfl
-
-[We study gradient compression methods to alleviate the communication bottleneck in data-parallel distributed optimization. Despite the significant attention received, current compression schemes either do not scale well or fail to achieve the target test accuracy. We propose a new low-rank gradient compressor based on power iteration that can i) compress gradients rapidly, ii) efficiently aggregate the compressed gradients using all-reduce, and iii) achieve test performance on par with SGD. The proposed algorithm is the only method evaluated that achieves consistent wall-clock speedups when benchmarked against regular SGD with an optimized communication backend. We demonstrate reduced training times for convolutional networks as well as LSTMs on common datasets.](https://github.com/epfml/powersgd)
-
-
-- [Gradient Compression Techniques to Accelerate Distributed Training of Neural Networks](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
-- [QSGD: Communication-Efficient SGD via Gradient Quantization and Encoding](https://arxiv.org/pdf/1610.02132.pdf)
-- [Sparse Binary Compression: Towards Distributed Deep Learning with minimal Communication](https://arxiv.org/abs/1805.08768)
-- [ATOMO: Communication-efficient Learning via Atomic Sparsification](https://arxiv.org/abs/1806.04090)
-- [Error Feedback Fixes SignSGD and other Gradient Compression Schemes](https://arxiv.org/abs/1901.09847)
-- https://github.com/epfml/error-feedback-SGD
-- [PowerSGD: Practical Low-Rank Gradient Compression for Distributed Optimization](https://arxiv.org/pdf/1905.13727.pdf)
-- https://github.com/epfml/powersgd
-- [Decentralized SGD and Consensus with Communication Compression](https://github.com/epfml/ChocoSGD)
-
-----
-
-- https://sstich.ch/
-- https://tvogels.nl/
-- https://parsa.epfl.ch/~falsafi/
-- https://lts4.epfl.ch/people/people-current/frossard-2/
-- http://www.martinjaggi.ch/
-- http://www.sysml.cc/
-- https://sstich.ch/
-- https://www.epfl.ch/labs/mlo/
-
-##### Gradient Compression @ Edinburgh
-
-* [Sparse Communication for Distributed Gradient Descent](https://aclweb.org/anthology/D17-1045/)
-* https://www.kheafield.com/
-* https://www.kheafield.com/papers/
-* http://fusharblog.com/archive/
-
-##### Gradient Compression @ kaust
-
-- [Gradient compression for distributed training of machine learning models](https://vsrp.kaust.edu.sa/Pages/Gradient%20compression%20for%20distributed%20training%20of%20machine%20learning%20models.aspx)
-- https://www.maths.ed.ac.uk/~prichtar/i_papers.html
-* https://richtarik.org/i_papers.html
-* https://richtarik.org/i_team.html
-* https://www.maths.ed.ac.uk/~prichtar/i_seminar.html
-* [Better Communication Complexity for Local SGD](https://arxiv.org/abs/1909.04746)
-* [Gradient Descent with Compressed Iterates](https://arxiv.org/abs/1909.04716)
 
 ### Knowledge Distillation
 
@@ -1201,10 +1090,10 @@ The matrix $A_{m\times n}$ can be decomposed as the multiplication of two matric
 To explore a low-rank subspace combined with a sparse structure for the weight matrix $W$, we assume that $W \approx L+S$,
 where $L$ is a low-rank component and $S$ is a sparse matrix. Then, to
 compress the weight matrix, we have the following model:
-$$\min_{L, S}\frac{1}{2}{\|W-L-S\|}_F^2,\\
-s.t.\quad rnak(L) \leq r,\\
-card(S)\leq c,
 $$
+\min_{L, S}\frac{1}{2}{\|W-L-S\|}_F^2,\\
+s.t.\quad rnak(L) \leq r,\\
+card(S)\leq c,$$
 where $rank(L)$ denotes the rank of $L$ and $card(S)$ denotes the cardinality of matrix $S$.
 
 And `Toeplitz Matrix` can be applied to approximate  the  weight matrix
@@ -1237,6 +1126,156 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * [CS236605: Deep Learning](https://vistalab-technion.github.io/cs236605/lectures/)
 * https://mlperf.org/
 
+### The lottery ticket hypothesis
+
+[The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
+- https://ai.facebook.com/blog/understanding-the-generalization-of-lottery-tickets-in-neural-networks
+- https://arxiv.org/pdf/1905.13405.pdf
+- https://arxiv.org/abs/1903.01611
+- https://arxiv.org/abs/1905.13405
+- https://arxiv.org/abs/1906.02768
+- https://arxiv.org/abs/1906.02773
+- https://arxiv.org/abs/1909.13458
+
+## Distributed Training
+
+Distributed training of deep learnig models is a branch of distributed computation.
+
+It is really important to reduce the cost of communication in distributed computation
+including the communication time, communication frequency, communication content and latency.
+
+[Existing security mechanisms for high-performance and distributed computing infrastructure are complex and difficult to deploy. As a result, many high-performance and distributed computing facilities do no deploy sufficient security mechanisms. This has prevented privacy-sensitive applications, such as those in the medical fields, and security-sensitive applications from using such facilities. In this project, we will develop and deploy DICE, Data Insurance in the Cluster Environment, to enhance the security in HPC and distributed computing clusters. DICE will consist of three major components: a container-based virtual cluster, a component to defend against side-channel attacks, and a secure execution ledger for auditing. The container-based virtual cluster will be developed based on the Docker Linux container. The Docker security mechanism will be enhanced by deploying an effective key management scheme for groups and by reducing the attack surface exposed to containers. Novel defense mechanisms will be developed and deployed to defend against side-channel attacks in the cluster environment by exploiting new security features in the recent processors. The secure execution ledger will provide a global holistic view of program execution in the whole system, enabling auditing the behavior of individual user as well as user groups. DICE essentially creates a two-level security model: on the (physical) cluster level, a group of (mostly) mutually trusted users share a single virtual cluster for their jobs; and inside the virtual cluster, the group may use existing security mechanisms of their software-of-choice to further refine security.](http://explorer.cs.fsu.edu/research/)
+
+<img src="- https://www.microsoft.com/en-us/research/uploads/prod/2019/10/Figure3_pipedream.png" width="80%"/>
+
+- https://github.com/bytedance/byteps
+- [A Generic Communication Scheduler for Distributed DNN Training Acceleration](https://i.cs.hku.hk/~cwu/papers/yhpeng-sosp19.pdf)
+- [Characterizing Deep Learning Training Workloads on Alibaba-PAI](https://arxiv.org/abs/1910.05930)
+- https://arxiv.org/pdf/1806.03377.pdf
+- [PipeDream: Generalized Pipeline Parallelism for DNN Training](https://www.microsoft.com/en-us/research/blog/pipedream-a-more-effective-way-to-train-deep-neural-networks-using-pipeline-parallelism/)
+- http://www.iiswc.org/iiswc2019/index.html
+- https://cs.stanford.edu/~matei/
+- https://www.microsoft.com/en-us/research/project/fiddle/
+- https://github.com/msr-fiddle/pipedream
+- https://github.com/msr-fiddle/philly-traces
+- [PipeMare: Asynchronous Pipeline Parallel DNN Training](https://arxiv.org/abs/1910.05124)
+- [GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism](https://arxiv.org/abs/1811.06965)
+- https://arxiv.org/pdf/1806.03377.pdf
+- https://www.microsoft.com/en-us/research/project/fiddle/
+- [Bandwidth Optimal All-reduce Algorithms for Clusters of Workstations](http://www.cs.fsu.edu/~xyuan/paper/09jpdc.pdf)
+- https://zhuanlan.zhihu.com/p/87515411
+- https://zhuanlan.zhihu.com/p/84862107
+- https://github.com/NVIDIA/nccl
+- https://github.com/horovod/horovod
+- http://explorer.cs.fsu.edu/
+- https://www.cs.rice.edu/~as143/COMP640_Fall16/
+- https://www.cs.rice.edu/~as143/
+
+
+### Count-Sketches
+
+Sketch is a class of algorithms using a probabilistic data structure to approximate the distribution of input data.
+
+[The count-sketches streaming algorithm instantiates the following framework](https://stackoverflow.com/questions/6811351/explaining-the-count-sketch-algorithm):
+
+1. Find a randomized streaming algorithm whose output (as a random variable) has the desired expectation but usually high variance (i.e., noise).
+2. To reduce the variance/noise, run many independent copies in parallel and combine their outputs.
+
+- [Compressing Gradient Optimizers via Count-Sketches](https://arxiv.org/abs/1902.00179)
+- [MISSION: Ultra Large-Scale Feature Selection using Count-Sketches](https://arxiv.org/abs/1806.04310)
+- https://arxiv.org/abs/1804.10673
+- https://github.com/rdspring1/Count-Sketch-Optimizers
+- http://net.pku.edu.cn/~yangtong/
+- https://papers.nips.cc/paper/9168-memory-efficient-adaptive-optimization.pdf
+- https://dblp.org/pers/hd/k/Kyrillidis:Anastasios
+- https://www.csauthors.net/vijai-mohan/
+- [SketchML: Accelerating Distributed Machine Learning with Data Sketches](http://net.pku.edu.cn/~yangtong/uploads/SketchML.pdf)
+
+### Gradient Code and Compression
+
+Gradient code and compression is to accelerate the distributed training of deep learning models by reducing the communication cost.
+
+
+#### Gradient Code and Approximate Gradient Coding
+
+Some nodes may be much slower than others parallelized or distributed computation enviroment.
+With redundancy, we may not need every node to finish.
+See [prior articles](https://zachcharles.com/files/Presentations/sbc_slides.pdf) for more areticles on this topic.
+
+`Approximate gradient coding` allows us to tolerate more stragglers with less work.
+
+- [Gradient Coding](https://arxiv.org/abs/1612.03301)
+- [Reducing the Average Delay in Gradient Coding](https://www.ntu.edu.sg/home/hmkiah/docs/papers/averageDelayGradientCoding.pdf)
+- [Tree Gradient Coding](https://www.ece.ucsb.edu/~ramtin/Tree_Gradient_Coding_final.pdf)
+- [Communication-computation efficient gradient coding](https://www.researchwithnj.com/en/publications/communication-computation-efficient-gradient-coding)
+- [Approximate Gradient Coding via Sparse Random Graphs](https://arxiv.org/abs/1711.06771)
+- [ErasureHead: Distributed Gradient Descent without Delays Using Approximate Gradient Coding](https://hwang595.github.io/publications/erasurehead_2019/)
+- https://users.oden.utexas.edu/~leiqi/stragglers_nips.pdf
+- https://zachcharles.com/files/Presentations/sbc_slides.pdf
+- [Ternary Gradients to Reduce Communication in Distributed Deep Learning (TensorFlow)](https://github.com/wenwei202/terngrad)
+***
+* https://hwang595.github.io/publications/
+* http://papail.io/
+* http://kangwooklee.com/
+* https://www.ntu.edu.sg/home/hmkiah/
+* https://users.oden.utexas.edu/~leiqi/
+* https://zachcharles.com/
+
+#### Gradient Compression
+
+[In `distributed training` of machine learning models with stochastic optimization, the exchange of parameter updates between workers often is a bottleneck that limits the scalability of distributed training. This is especially true for models with a large parameter space, such as neural networks. Several techniques have been proposed to enhance scalability by `compressing gradients`, e.g. by sending a sparse set of coordinates only, or by quantization. We study the gradient compression literature from both sides: on the one hand, we study properties of these algorithms in a distributed setting, and their effectiveness for speed and scalability. On the other hand, we explore properties of the minima found by these algorithms, such as robustness or generalisation.](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
+
+##### Deep Gradient Compression @ MIT
+
+- [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
+- https://blog.csdn.net/a609640147/article/details/90054754
+- https://songhan.mit.edu/
+- [Deep Leakage from Gradients](https://arxiv.org/pdf/1906.08935.pdf)
+- https://littleorange.site/2019/02/deep-gradient-compression.html
+- [Training Kinetics in 15 Minutes: Large-scale Distributed Training on Videos](https://arxiv.org/abs/1910.00932)
+
+##### Gradient Compression @ epfl
+
+[We study gradient compression methods to alleviate the communication bottleneck in data-parallel distributed optimization. Despite the significant attention received, current compression schemes either do not scale well or fail to achieve the target test accuracy. We propose a new low-rank gradient compressor based on power iteration that can i) compress gradients rapidly, ii) efficiently aggregate the compressed gradients using all-reduce, and iii) achieve test performance on par with SGD. The proposed algorithm is the only method evaluated that achieves consistent wall-clock speedups when benchmarked against regular SGD with an optimized communication backend. We demonstrate reduced training times for convolutional networks as well as LSTMs on common datasets.](https://github.com/epfml/powersgd)
+
+
+- [Gradient Compression Techniques to Accelerate Distributed Training of Neural Networks](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
+- [QSGD: Communication-Efficient SGD via Gradient Quantization and Encoding](https://arxiv.org/pdf/1610.02132.pdf)
+- [Sparse Binary Compression: Towards Distributed Deep Learning with minimal Communication](https://arxiv.org/abs/1805.08768)
+- [ATOMO: Communication-efficient Learning via Atomic Sparsification](https://arxiv.org/abs/1806.04090)
+- [Error Feedback Fixes SignSGD and other Gradient Compression Schemes](https://arxiv.org/abs/1901.09847)
+- https://github.com/epfml/error-feedback-SGD
+- [PowerSGD: Practical Low-Rank Gradient Compression for Distributed Optimization](https://arxiv.org/pdf/1905.13727.pdf)
+- https://github.com/epfml/powersgd
+- [Decentralized SGD and Consensus with Communication Compression](https://github.com/epfml/ChocoSGD)
+
+----
+
+- https://sstich.ch/
+- https://tvogels.nl/
+- https://parsa.epfl.ch/~falsafi/
+- https://lts4.epfl.ch/people/people-current/frossard-2/
+- http://www.martinjaggi.ch/
+- http://www.sysml.cc/
+- https://sstich.ch/
+- https://www.epfl.ch/labs/mlo/
+
+##### Gradient Compression @ Edinburgh
+
+* [Sparse Communication for Distributed Gradient Descent](https://aclweb.org/anthology/D17-1045/)
+* https://www.kheafield.com/
+* https://www.kheafield.com/papers/
+* http://fusharblog.com/archive/
+
+##### Gradient Compression @ kaust
+
+- [Gradient compression for distributed training of machine learning models](https://vsrp.kaust.edu.sa/Pages/Gradient%20compression%20for%20distributed%20training%20of%20machine%20learning%20models.aspx)
+- https://www.maths.ed.ac.uk/~prichtar/i_papers.html
+* https://richtarik.org/i_papers.html
+* https://richtarik.org/i_team.html
+* https://www.maths.ed.ac.uk/~prichtar/i_seminar.html
+* [Better Communication Complexity for Local SGD](https://arxiv.org/abs/1909.04746)
+* [Gradient Descent with Compressed Iterates](https://arxiv.org/abs/1909.04716)
 
 ##  Compressing Recurrent Neural Network
 
@@ -1266,3 +1305,52 @@ RNN is feedback network where there is rings in its computational graph.
 
 - [ ]  https://github.com/kedartatwawadi/NN_compression
 - [ ]  [Optimizing Data-Intensive Computations in Existing Libraries with Split Annotations](https://dawn.cs.stanford.edu/2019/10/22/split-annotations/)
+
+## Products and Packages
+
+- [开源背后 | 面对端侧推理引擎的挑战，阿里工程师如何应对？ - 阿里技术的文章 - 知乎](https://zhuanlan.zhihu.com/p/71816894)
+- https://zhuanlan.zhihu.com/p/87392811
+- https://zhuanlan.zhihu.com/p/87458316
+- https://lutzroeder.github.io/netron/
+- https://github.com/daquexian/onnx-simplifier
+
+
+****
+
+|DNN Acceleratation Framewore|
+|---|
+|https://hgpu.org/|
+|NVIDIA|
+|https://developer.nvidia.com/cudnn)|
+|http://nvdla.org/|
+|https://docs.nvidia.com/cuda/|
+|https://developer.nvidia.com/tensorrt|
+|[cupy](https://cupy.chainer.org/)|
+|intel|
+|[ideep](https://github.com/intel/ideep)
+|[Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN)](https://github.com/intel/mkl-dnn)|
+|https://github.com/intel/onnxruntime|
+|[nGraph](https://www.ngraph.ai/),[PlaidML](https://www.intel.ai/plaidml/)|
+|https://intel.github.io/mkl-dnn/|
+|[Reference workloads for modern deep learning methods.](https://rdadolf.github.io/fathom/)|
+|[Minerva: a fast and flexible tool for deep learning on multi-GPU.](https://github.com/dmlc/minerva)|
+|[SigDL -- Deep Learning for IoT Device and Edge Computing Embedded Targets](https://github.com/signalogic/SigDL#DeepLearningModelCompression)|
+|[Menoh: fast DNN inference library with multiple programming language support](https://github.com/pfnet-research/menoh)|
+|[trillium](https://www.arm.com/products/silicon-ip-cpu/machine-learning/project-trillium)|
+|https://github.com/alibaba/MNN|
+
+
+*****
+
+|Model Compression Packages|
+|---|
+|[Distiller is an open-source Python package for neural network compression research.](https://nervanasystems.github.io/distiller/index.html)|
+|[PocketFlow](https://pocketflow.github.io/)|
+|[PocketFlow中的模型压缩算法](https://zhuanlan.zhihu.com/c_1041626714043949056)|
+|[PERMDNN: Efficient Compressed DNN Architecture with Permuted Diagonal Matrices](http://alchem.usc.edu/portal/static/download/permdnn.pdf)|
+|[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
+|[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|
+|[TensorFlow Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite), [tensorflow-compression](https://tensorflow.github.io/compression/)|
+|[TensorRT](https://github.com/NVIDIA/TensorRT)|
+|https://github.com/Tencent/ncnn|
+|[Introduction to Intel® Deep Learning Deployment Toolkit](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html)|

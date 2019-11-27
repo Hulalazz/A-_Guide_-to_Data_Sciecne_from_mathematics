@@ -310,38 +310,51 @@ From [ALPAYDIN, Ethem, 2004. Introduction to Machine Learning. Cambridge, MA: Th
 * https://developers.google.com/machine-learning/guides/rules-of-ml/
 * https://lilianweng.github.io/lil-log/2017/08/01/how-to-explain-the-prediction-of-a-machine-learning-model.html
 
+[Unsupervised learning is a form of descriptive analytics. Predictive analytics aims to estimate outcomes from current data. Supervised learning is a kind of predictive analytics. Finally, prescriptive analytics guides actions to take in order to guarantee outcomes.](http://www.argmin.net/2018/01/29/taxonomy/)
 
+There is another trichotomy in statistics
+ `descriptive analysis`, `exploratory analysis`, `inferential analysis`
 
 ![Road To Data Scientist](http://nirvacana.com/thoughts/wp-content/uploads/2013/07/RoadToDataScientist1.png)
 
 **The unsupervised and supervised learning**
 
 [Unsupervised learning is a form of descriptive analytics. Predictive analytics aims to estimate outcomes from current data. Supervised learning is a kind of predictive analytics. Finally, prescriptive analytics guides actions to take in order to guarantee outcomes.](http://www.argmin.net/2018/01/29/taxonomy/)
+[Anomaly Detection Learning Resources](https://github.com/yzhao062/anomaly-detection-resources)
 
 ### Density Estimation
 
-[Density estimation](https://www.wikiwand.com/en/Density_estimation)
+The most popular methods in statistics is maximum likelihood estimation. [Density estimation](https://www.wikiwand.com/en/Density_estimation) can be classified to the parameter estimation in parametric setting.
+
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/KernelDensityGaussianAnimated.gif/700px-KernelDensityGaussianAnimated.gif)
 
 
 It seems simple and easy while in fact it is not completely solved because of the diverse distributions.
 For example, what is the probability density function of the pixels in the given size pictures?
-Not all distribution function of interest are clear to us in high dimensional space although Gaussian mixture is a universal approximation of distribution function in $\mathbb{R}$.
+Not all distribution function of interest are clear for us in high dimensional space although Gaussian mixture is a universal approximation of distribution function in $\mathbb{R}$.
 
 * stable distributions such as [generalized Laplacian distribution](https://krys.neocities.org/Research/LaplaceDistribution/LaplaceDistribution.html) in finance;
 * [semi-circle distribution](https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/) of the random matrix eigenvalues in physics;
 * [sub-Gaussian distribution](https://sites.ualberta.ca/~omarr/publications/subgaussians.pdf) in high dimensional space.
 
-And it is one of the core problem in statistical estimation. It is more difficult if we can not observe the samples directly such as the probability of root of polynomials given some properties. Like other tasks, the `dimension curse` makes it more complicated than in low dimensional space. Density estimation is related with sampling on random.
- 
+![Tracy–Widom_distribution](https://d2r55xnwy6nx47.cloudfront.net/uploads/2014/10/TWGraph300.jpg)
 
+And it is one of the core problems in statistical estimation. It is more difficult if we can not observe the samples directly such as the probability of root of polynomials given some properties. Like other tasks, the `dimension curse` makes it more complicated than in low dimensional space. Density estimation is related with sampling on random.
+
+**Parzen window** is a non-parametric density estimation technique.
+We firstly think the simple kernel function $K_{\gamma}(x,x_i,\gamma)=\frac{1}{\gamma}K(\frac{x-x_i}{\gamma})$, where ${K}$ is unimodal and symmetrical kernel function like Gaussian density function.
+Then we can estimate the probability $p(x) = \frac{1}{n}\sum_{i=1}^{n}K_{\gamma}(x,x_i,\gamma)$.
+
+[Kernel density estimates are closely related to histograms, but can be endowed with properties such as smoothness or continuity by using a suitable kernel.](https://www.wikiwand.com/en/Kernel_density_estimation).
 
 ***
 
 * http://www.stat.cmu.edu/~larry/=sml/densityestimation.pdf
 * https://cs.dartmouth.edu/wjarosz/publications/dissertation/appendixC.pdf
 * http://assets.press.princeton.edu/chapters/s8355.pdf
+* https://www.wikiwand.com/en/Tracy%E2%80%93Widom_distribution
+* https://www.quantamagazine.org/beyond-the-bell-curve-a-new-universal-law-20141015/
 
 
 ### Dimension Reduction

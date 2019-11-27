@@ -37,7 +37,6 @@
 * [A Convergence Theory for Deep Learning via Over-Parameterization](https://arxiv.org/pdf/1811.03962.pdf)
 * [Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
 * [Deep Learning and the Demand for Interpretability](http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/)
-* https://beenkim.github.io/
 * [Integrated and detailed image understanding](https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html)
 * [NeuroIP 2018 workshop on Deep Learning Theory](http://nips2018dltheory.rice.edu/)
 * http://networkinterpretability.org/
@@ -72,7 +71,40 @@
 * https://project.inria.fr/deeplearning/
 * https://hustcv.github.io/reading-list.html
 
+## Interpretability of Neural Networks
+
+[ Although deep neural networks have exhibited superior performance in various tasks, interpretability is always Achilles’ heel of deep neural networks.](http://academic.hep.com.cn/fitee/CN/10.1631/FITEE.1700808#1) 
+At present, deep neural networks obtain high discrimination power at the cost of a low interpretability of their black-box representations.
+We believe that high model interpretability may help people break several bottlenecks of deep learning,
+e.g., learning from a few annotations, learning via human–computer communications at the semantic level, 
+and semantically debugging network representations.
+We focus on convolutional neural networks (CNNs), and revisit the visualization of CNN representations, 
+methods of diagnosing representations of pre-trained CNNs, approaches for disentangling pre-trained CNN representations, learning of CNNs 
+with disentangled representations, and middle-to-end learning based on model interpretability.
+Finally, we discuss prospective trends in explainable artificial intelligence.
+
+- http://games-cn.org/games-webinar-20190509-93/
+- http://games-cn.org/games-webinar-20190516-94/
+- http://qszhang.com/index.php/publications/
+- https://www.jiqizhixin.com/articles/0211
+- https://www.jiqizhixin.com/articles/030205
+- https://mp.weixin.qq.com/s/xY7Cpe6idbOTJuyD3vwD3w
+- http://academic.hep.com.cn/fitee/CN/10.1631/FITEE.1700808#1
+- https://arxiv.org/pdf/1905.11833.pdf
+- http://www.cs.sjtu.edu.cn/~leng-jw/
+- https://lemondan.github.io
+- http://ise.sysu.edu.cn/teacher/teacher02/1136886.htm
+- http://www.cs.cmu.edu/~zhitingh/data/hu18texar.pdf
+- http://www.cs.cmu.edu/~zhitingh/
+- https://graphreason.github.io/
+* https://beenkim.github.io/
+
+
+Not all one can understand the relative theory or quantum theory.
+ 
+
 ## Physics and Deep Learning
+
 [Neuronal networks have enjoyed a resurgence both in the worlds of neuroscience, where they yield mathematical frameworks for thinking about complex neural datasets, and in machine learning, where they achieve state of the art results on a variety of tasks, including machine vision, speech recognition, and language translation.   Despite their empirical success, a mathematical theory of how deep neural circuits, with many layers of cascaded nonlinearities, learn and compute remains elusive.  We will discuss three recent vignettes in which ideas from statistical physics can shed light on this issue.  In particular, we show how dynamical criticality can help in neural learning, how the non-intuitive geometry of high dimensional error landscapes can be exploited to speed up learning, and how modern ideas from non-equilibrium statistical physics, like the Jarzynski equality, can be extended to yield powerful algorithms for modeling complex probability distributions.  Time permitting, we will also discuss the relationship between neural network learning dynamics and the developmental time course of semantic concepts in infants.](https://physics.berkeley.edu/news-events/events/20151005/the-statistical-physics-of-deep-learning-on-the-beneficial-roles-of)
 
 [In recent years, artificial intelligence has made remarkable advancements, impacting many industrial sectors dependent on complex decision-making and optimization. Physics-leaning disciplines also face hard inference problems in complex systems: climate prediction, density matrix estimation for many-body quantum systems, material phase detection, protein-fold quality prediction, parametrization of effective models of high-dimensional neural activity, energy landscapes of transcription factor-binding, etc. Methods using artificial intelligence have in fact already advanced progress on such problems. So, the question is not whether, but how AI serves as a powerful tool for data analysis in academic research, and physics-leaning disciplines in particular.](http://www.physics.mcgill.ca/ai2019/)
@@ -103,6 +135,7 @@
 * [A Differentiable Physics Engine
 for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * https://gogul.dev/software/deep-learning-meets-physics
+* https://github.com/2prime/ODE-DL/blob/master/DL_Phy.md
 * [Quantum Deep Learning and Renormalization](http://www.math.chalmers.se/~stig/project4.pdf)
 * https://physics-ai.com/
 * http://physics.usyd.edu.au/quantum/Coogee2015/Presentations/Svore.pdf
@@ -244,7 +277,7 @@ It inspired more efficient forward  convolutional networks.
 
 They take a standard feed-forward ConvNet and add skip connections that bypass (or shortcut) a few convolution layers at a time. Each bypass gives rise to a residual block in which the convolution layers predict a residual that is added to the block’s input tensor.
 
-<img src="https://raw.githubusercontent.com/torch/torch.github.io/master/blog/_posts/images/resnets_1.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/torch/torch.github.io/master/blog/_posts/images/resnets_1.png" width="40%"/>
 
 - https://github.com/KaimingHe/deep-residual-networks
 - http://torch.ch/blog/2016/02/04/resnets.html
@@ -255,7 +288,7 @@ They take a standard feed-forward ConvNet and add skip connections that bypass (
 - https://arxiv.org/abs/1810.11741
 - [Depth with nonlinearity creates no bad local minima in ResNets](https://www.sciencedirect.com/science/article/pii/S0893608019301820?via%3Dihub)
 
-#### Dynamics Motivated Deep Learning Methods
+#### Differential Equations Motivated Deep Learning Methods
 
 This section is on insight from numerical analysis to inspire more effective deep learning architecture.
 
@@ -271,6 +304,7 @@ This section is on insight from numerical analysis to inspire more effective dee
 - https://zhuanlan.zhihu.com/p/71747175
 - https://web.stanford.edu/~yplu/
 - https://web.stanford.edu/~yplu/project.html
+- https://github.com/2prime/ODE-DL/
 - [Deep Neural Networks Motivated by Partial Differential Equations](https://arxiv.org/pdf/1804.04272.pdf)
 * https://www.researchgate.net/scientific-contributions/2107227289_Eldad_Haber
 
@@ -389,6 +423,8 @@ $$\operatorname{minimize}_{ \theta,W,\mu} loss[g(W(T)Y(T)+\mu), C] + regularizer
 - [Deep Learning meets Control Theory: Research at NNAISENSE and Polimi](http://www.eventideib.polimi.it/events/deep-learning-meets-control-theory-research-at-nnaisense-and-polimi/)
 - [Machine Learning-based Control](https://github.com/lakehanne/awesome-neurocontrol)
 - [CAREER: A Flexible Optimal Control Framework for Efficient Training of Deep Neural Networks](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1751636)
+- https://www.zhihu.com/question/315809187/answer/623687046
+
 
 ### Neural Ordinary Differential Equations
 
@@ -670,6 +706,12 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - http://www.mit.edu/~kawaguch/
 - https://www.4tu.nl/ami/en/Agenda-Events/
 
+### Quaternion Neural Networks
+
+- https://arxiv.org/abs/1903.08478
+- [Introduction to Quaternion Neural Networks](https://www.simonwenkel.com/projects/introduction-to-quaternion-neural-networks.html)
+- [Capsule Networks and other neural architectures that are less known](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+
 ## Probabilistic Theory and Deep Learning
 
 `Bayesian deep learning`
@@ -688,6 +730,11 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - https://fcai.fi/agile-probabilistic
 - http://bayesiandeeplearning.org/2017/papers/59.pdf
 - [GluonTS: Probabilistic Time Series Models in Python](https://arxiv.org/abs/1906.05264v2)
+- [CS 731: Advanced methods in artificial intelligence, with biomedical applications (Fall 2009)](http://pages.cs.wisc.edu/~dpage/cs731/)
+- [CS 838 (Spring 2004): Statistical Relational Learning](https://www.biostat.wisc.edu/~page/838.html)
+- https://www.ida.liu.se/~ulfni53/lpp/bok/bok.pdf
+- https://www.biostat.wisc.edu/bmi576/
+- http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_2248.html
 
 ## Statistics and Deep Learning
 
@@ -738,7 +785,7 @@ and he successfully demonstrated the learning process in a computer identificati
 - http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf
 
 
-## Brain Science and AI 
+## Brain Science and AI
 
 [Artificial intelligence and brain science have had a swinging relationship of convergence and divergence. In the early days of pattern recognition, multi-layer neural networks based on the anatomy and physiology of the visual cortex played a key role, but subsequent sophistication of machine learning promoted methods that are little related to the brain. Recently, however, the remarkable success of deep neural networks in learning from big data has re-evoked the interests in brain-like artificial intelligence.](http://www.brain-ai.jp/project-outline/)
 
@@ -763,6 +810,8 @@ and he successfully demonstrated the learning process in a computer identificati
 Brain science is the physological theorey of cognitive science, which focus on the physical principle of brain function.
 The core problem of cognition science is how to learn in my eyes.
 
+* https://wiki.opencog.org/w/Language_learning
+* https://github.com/opencog/learn
 * [Advancing AI through cognitive science - Spring 2019](https://brendenlake.github.io/AAI-site/)
 * [NYU PSYCH-GA 3405.001 / DS-GA 3001.014 : Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
 * [PSYCH 209: Neural Network Models of Cognition: Principles and Applications](https://web.stanford.edu/class/psych209/)
@@ -774,6 +823,7 @@ The core problem of cognition science is how to learn in my eyes.
 * [Mechanisms of geometric cognition](http://hohol.pl/granty/geometry/)
 * [Computational Cognitive Science Lab](http://cocosci.princeton.edu/research.php)
 * [Deep Learning for Cognitive Computing, Theory](http://www.cs.jyu.fi/ai/vagan/DL4CC.html)
+* [TOPIC: FROM ARISTOTLE TO WILLIAM JAMES TO DEEP LEARNING : EVERYTHING OLD IS NEW AGAIN.](https://iccs2019.github.io/#James-Anderson)
 * https://www.dcsc.es/
 * [Deep Neural Networks as Scientific Models](https://www.cell.com/action/showPdf?pii=S1364-6613%2819%2930034-8)
 * http://vca.ele.tue.nl/
@@ -782,6 +832,7 @@ The core problem of cognition science is how to learn in my eyes.
 * https://csai.nl/home/
 * https://hadrienj.github.io/about/
 * https://iccs2019.github.io/
+* https://human-memory.net/
 
 ## AOGNet
 

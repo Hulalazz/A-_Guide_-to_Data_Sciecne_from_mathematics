@@ -205,6 +205,7 @@ There are some activation functions in history.
 * http://www.cnblogs.com/neopenx/p/4453161.html
 * https://blog.paperspace.com/vanishing-gradients-activation-function/
 * https://machinelearningmastery.com/exploding-gradients-in-neural-networks/
+* https://locuslab.github.io/2019-10-28-cvxpylayers/
 
 ### Feed-forward Neural Network
 
@@ -1992,6 +1993,7 @@ Scaling-up RL methods has major implications on the research and practice of com
 ![DeepRL](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/375px-Reinforcement_learning_diagram.svg.png)
 
 + http://surl.tirl.info/
++ https://duvenaud.github.io/learning-to-search/
 + https://srdas.github.io/DLBook/ReinforcementLearning.html
 + https://katefvision.github.io/
 + https://spinningup.openai.com/en/latest/
@@ -2384,7 +2386,7 @@ Training deep learning models does not require gradients such as `ADMM, simulate
 
 ### Capsule Networks and More
 
-Capsule Networks provide a way to detect parts of objects in an image and represent spatial relationships between those parts. This means that capsule networks are able to recognize the same object in a variety of different poses even if they have not seen that pose in training data. 
+Capsule Networks provide a way to detect parts of objects in an image and represent spatial relationships between those parts. This means that capsule networks are able to recognize the same object in a variety of different poses even if they have not seen that pose in training data.
 
 - https://www.edureka.co/blog/capsule-networks/
 - https://cezannec.github.io/Capsule_Networks/
@@ -2394,4 +2396,3 @@ Capsule Networks provide a way to detect parts of objects in an image and repres
 - [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829)
 - http://people.missouristate.edu/RandallSexton/sabp.pdf
 - [Neuronal Dynamics: From single neurons to networks and models of cognition](https://neuronaldynamics.epfl.ch/book.html)
-

@@ -1,5 +1,7 @@
 # Recommender System
 
+https://typewind.github.io/2017/04/05/rsbmc-notes/
+
 <img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
 * https://zhuanlan.zhihu.com/p/87293483
@@ -26,6 +28,7 @@
 * https://sites.google.com/view/lianghu/home/tutorials/ijcai2019
 * https://acmrecsys.github.io/rsss2019/
 * https://github.com/alibaba/x-deeplearning/wiki
+* https://apple.github.io/turicreate/docs/userguide/recommender/
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -361,7 +364,7 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
 * [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
 
-
+- [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 
 ***
 
@@ -470,8 +473,18 @@ Deep learning models for recommender system may come from the restricted Boltzma
 And deep learning models are powerful information extractors.
 Deep learning is really popular in recommender system such as [spotlight](https://github.com/maciejkula/spotlight).
 
-* [A review on deep learning for recommender systems:
-challenges and remedies](https://daiwk.github.io/assets/Batmaz2018_Article_AReviewOnDeepLearningForRecomm.pdf)
+What is the role deep learning plays in recommender system? At one hand, deep learning helps to match the user and items based on the history of their interactions such as `deep matching` and `deep collaborative learning`. 
+In mathematics, it is a function that evaluates the how likely the user would interact with the items in some context: $f(X_U, X_I, X_C)$ where $X_U, X_I, X_C$ is the features of user, item and context, respectively.
+At another hand, deep learning leads a role as one represenation methods to embbed high diemensional sparse data into semantics space.
+
+* [A review on deep learning for recommender systems: challenges and remedies](https://daiwk.github.io/assets/Batmaz2018_Article_AReviewOnDeepLearningForRecomm.pdf)
+* [Deep Learning Recommendation Model for Personalization and Recommendation Systems](https://github.com/facebookresearch/dlrm)
+* http://tw991.github.io/
+* https://dlp-kdd.github.io/
+* https://recsys.acm.org/recsys17/workshops/
+* https://recsys.acm.org/recsys17/dlrs/
+* https://dl.acm.org/citation.cfm?id=3125486
+* [The 1st International Workshop on Deep Learning Practice for High-Dimensional Sparse Data with KDD 2019 (DLP-KDD 2019）](https://dlp-kdd.github.io/)
 
 ### Restricted Boltzmann Machines for Collaborative Filtering(RBM)
 
@@ -830,9 +843,6 @@ The parameters of our model are learned by using [`RSGD`](https://arxiv.org/abs/
 * [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
 * [Scalable Hyperbolic Recommender Systems](https://arxiv.org/abs/1902.08648v1)
 
-
-----
-
 ## Ensemble Methods for Recommender System
 
 The RecSys can be considered as some regression or classification tasks, so that we can apply the ensemble methods to these methods as  `BellKor's Progamatic Chaos` used the blended solution to win the prize.
@@ -1047,6 +1057,7 @@ ancestor user-node pairs as the global empirical loss.
 - [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
 - [Joint Optimization of Tree-based Index and Deep Model for Recommender Systems](https://arxiv.org/pdf/1902.07565.pdf)
 - https://developer.aliyun.com/article/720309
+- [学习基于树的推荐系统深度模型](https://blog.csdn.net/XindiOntheWay/article/details/85220342)
 
 ## Explainable Recommendations
 
@@ -1113,6 +1124,175 @@ Therefore, we are to fill in the gap between `item recommendation` and `KG compl
 - [ ] [Unifying Knowledge Graph Learning and Recommendation: Towards a Better Understanding of User Preferences](http://staff.ustc.edu.cn/~hexn/papers/www19-KGRec.pdf)
 - [ ] [Explainable Reasoning over Knowledge Graphs for Recommendation](https://arxiv.org/pdf/1811.04540.pdf)
 
+## Health Recommender Systems
+
+[Recommendations are becoming evermore important in health settings with the aim being to assist people live healthier lives. Three previous workshops on Health Recommender Systems (HRS) have incorporated diverse research fields and problems in which recommender systems can improve our awareness, understanding and behaviour regarding our own, and the general public's health. At the same time, these application areas bring new challenges into the recommender community. Recommendations that influence the health status of a patient need to be legally sound and, as such, today, they often involve a human in the loop to make sure the recommendations are appropriate. To make the recommender infallible, complex domain-specific user models need to be created, which creates privacy issues. While trust in a recommendation needs to be explicitly earned through, for example, transparency, explanations and empowerment, other systems might want to persuade users into taking beneficial actions that would not be willingly chosen otherwise.](https://healthrecsys.github.io/2019/)
+Multiple and diverse stakeholders in health systems produce further challenges. 
+
+* Taking the patient's perspective, simple interaction and safety against harmful recommendations might be the prioritized concern. 
+* For clinicians and experts, on the other hand, what matters is precise and accurate content. 
+* Healthcare and insurance providers and clinics all have other priorities. 
+
+This workshop will deepen the discussions started at the three prior workshops and will work towards further development of the research topics in Health Recommender Systems.
+
+- http://132.199.138.79/healthrecsys/papers/index.html
+- http://ceur-ws.org/Vol-1953/
+- https://recsys.acm.org/recsys18/healthrecsys/
+- https://healthrecsys.github.io/2019/
+- https://www.vis.uni-konstanz.de/en/members/schaefer/
+- https://www.christophtrattner.info/
+- [Towards Health (Aware) Recommender Systems](https://www.christophtrattner.info/pubs/DH2017.pdf)
+- [HealthRecSys 2018 Health Recommender Systems](http://ceur-ws.org/Vol-2216/)
+- [UMUAI: Special Issue on Recommender Systems for Health and Wellbeing](https://healthrecsys.github.io/umuai/)
+- [SeWeBMeDa 2019 Semantic Web Solutions for Large-Scale Biomedical Data Analytics](http://ceur-ws.org/Vol-2477/)
+- [2019 KDD Workshop on Applied Data Science for Healthcare](https://dshealthkdd.github.io/dshealth-2019/)
+- https://dshealthkdd.github.io/dshealth-2019/#papers
+* http://2013.digitalhealth.ws/
+* http://www.digitalhealth.ws/
+* [Digital Health 2015](https://wp.cs.ucl.ac.uk/acm-digitalhealth-2015/)
+* [DIGITAL HEALTH 2018](https://www.acm-digitalhealth.org/2018/index.html)
+- [Health Recommender Systems: Concepts, Requirements, Technical Basics and Challenges](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3968965/)
+- [Health Recommender System using Big data analytics](http://ibii-us.org/Journals/JMSBI/V2N2/Publish/V2N2_3.pdf)
+- [DeepReco: Deep Learning Based Health Recommender System Using Collaborative Filtering](https://www.mdpi.com/2079-3197/7/2/25/htm)
+- [Health Recommender System in Social Networks: A Case of Facebook](http://www.webology.org/2019/v16n1/a178.pdf)
+- [Health Recommender research project](https://healthrecommender.org/)
+- [Consumers’ intention to use health recommendation systems to receive personalized nutrition advice](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3623628/)
+- [Visual instance-based recommendation system for medical data mining](https://www.sciencedirect.com/science/article/pii/S1877050917316009)
+- [Health Recommender System design in the context of CAREGIVERSPRO-MMD Project](https://caregiversprommd-project.eu/wp-content/uploads/Olive-Felipe-et-al.pdf)
+- [Towards Health (Aware) Recommender Systems](https://dl.acm.org/citation.cfm?id=3079499)
+- [Personalized Recommendation System for Medical Assistance using Hybrid Filtering](https://www.ijcaonline.org/research/volume128/number9/salunke-2015-ijca-906626.pdf)
+- [Designing a Mobile Recommender System for Treatment Adherence Improvement among Hypertensives](https://fruct.org/publications/fruct22/files/Zav.pdf)
+- https://caregiversprommd-project.eu/
+- https://wiki.aalto.fi/display/~llahti@aalto.fi/Lauri+Lahti
+- https://fruct.org/
+- [A Systematic Literature Review on Health Recommender Systems](https://www.researchgate.net/publication/261488604_A_systematic_literature_review_on_Health_Recommender_Systems)
+
+
+
+
+
+### Recommdender System for Doctor 
+
+[Finding a primary care doctor is simpler than it used to be, thanks to on-demand services like ZocDoc, SimplyBook, and Doodle. 
+But matching up with a clinician who’s compatible with your (or your family’s) personality is another story.](https://venturebeat.com/2018/08/14/researchers-use-ai-to-match-patients-with-primary-care-doctors/)
+
+
+* [Which Doctor to Trust: A Recommender System for Identifying the Right Doctors](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4956912/?report=printable)
+* [Recommendation of Doctors and Medicines Using Review Mining](https://www.leadingindia.ai/downloads/projects/HC/hc_10.pdf)
+* [Which Doctor to Trust: A Recommender System for Identifying the Right Doctors](https://www.researchgate.net/publication/305036152_Which_Doctor_to_Trust_A_Recommender_System_for_Identifying_the_Right_Doctors)
+
+___
+
+
+The recommender system is the core component of the social network named HealthNet (HN).
+The recommendation algorithm first computes similarities among patients, and then generates a ranked list of doctors and hospitals suitable for a given patient profile, by exploiting health data shared by the community. 
+Accordingly, the HN user can find her most similar patients, look how they cured their diseases, and receive suggestions for solving her problem.
+
+HN is implemented as a standard social network where users are `patients`. 
+The first interaction with the system is the registration step. 
+Then, the patient can enter `personal health data`: conditions, treatments (e.g., drugs, dosages, side effects, surgeries), health indicators (e.g., blood pressure, body weight, laboratory analysis, etc.), consulted doctors, hospitalizations.
+In this way, HN centralizes individual health data and allows a simple and organized `access` to them.
+
+The Recommender System is the core component of HN. 
+It exploits patient profiles for suggesting other `similar` patients, doctors,hospitals (the list of suggested, patients, doctors and hospitals can be further filtered by position and disease). 
+The similarity between two patients $p,p^{\prime}$ is computed in terms of conditions and treatments. 
+The `semantic matching` between the conditions exploits the [HN disease hierarchy](http://www.www2015.it/documents/proceedings/companion/p81.pdf).
+More formally, the similarity score between two
+patients is computed as follows:
+$$s(p, p^{\prime}) =
+\alpha\frac{\sum_{i=1}^{k}\sum_{j=1}^{n}s_c(p_{c_i}, p^{\prime}_{c_j})}{kn}\\
++ (1-\alpha)\frac{\sum_{i=1}^{z}\sum_{j=1}^{r}s_t(p_{t_i}, p^{\prime}_{t_j})}{zr}
+$$
+where $k$ (respectively $n$) is the number of conditions $p$ (respectively $p^{\prime}$) is affected by, 
+$p_c$ is a condition of the patient $p$,
+$z$ (respectively $r$) is the number of treatments for $p$ (respectively $p^{\prime}$), 
+$p_t$ is a treatment for the patient $p$.
+They are computed as follows:
+$$s_c(p_{c_i}, p^{\prime}_{c_j}) =
+\begin{cases}
+\log\frac{p_{c_i}}{p^{\prime}_{c_j}}, &\text{if $c_i=c_j$}\\
+\frac{1}{sp(c_i, c_j)}, &\text{otherwise}
+\end{cases},
+s_t(p_{t_i}, p^{\prime}_{t_j}) =
+\begin{cases}
+1, &\text{if $t_i=t_j$}\\
+0, &\text{otherwise}
+\end{cases}.
+$$
+
+* [A Recommender System for Connecting Patients to the Right Doctors in the HealthNet Social Network](http://www.www2015.it/documents/proceedings/companion/p81.pdf)
+
+#### Patient-Doctor Matchmaking
+
+There are different perspectives of patient-doctor matchmaking system:
+
+- From patients’ perspectives, such systems should provide `explainable` recommendations and safeguard against poor recommendations in order to be
+trustworthy. 
+- From the perspective of healthcare professionals, these systems need to provide suitable recommendations based on their `domain knowledge and experience`. 
+- More generally, insurance companies and healthcare institutes are interested in improving recommendation rates through research and reaping the potential benefits of these recommendation systems.
+
+The features include demographic data, behevioral data, ICD-9, interaction, the number of visits to the doctor.
+
+
+[A Hybrid Recommender System for Patient-Doctor Matchmaking in Primary Care](https://arxiv.org/abs/1808.03265) perform `hybrid matrix
+factorization (MF)` and recommend each patient a list of family doctors according to the level of information available about them.
+We achieve this by learning `latent representations` for patients and doctors from their interactions and metadata
+
+
+Given the different level of information available to us about different patients,  five use cases are proposed to make doctor recommendations in different scenarios.
+
+The patient-doctor interaction matrix $Y \in \mathbb{R}^{M\times N}$ is defined as:
+$$y_{ij} =
+\begin{cases}
+1, &\text{if interaction (patient i, doctor j) exists}\\
+0, &\text{otherwise}
+\end{cases}
+$$
+
+MF learns $\mathbf{p}_i$ and $\mathbf{q}_j$, such that the predicted score for
+unobserved entries $\hat{y}_{ij}$ is given by the `inner product` of latent
+patient and doctor representations:
+$$\hat{y}_{ij}=g(i,j\mid \mathbf{p}_i, \mathbf{q}_j)=g(\mathbf{p}_i\cdot \mathbf{q}_j)=\frac{1}{1+\exp(\left<\mathbf{p}_i,\mathbf{q}_j)\right>}.$$
+
+Then formulate a learning-to-rank task by using
+Weighted Approximate-Rank Pairwise (WARP) loss.
+For each observed interaction $\hat{y}_{ij}$, WARP samples a negative doctor $d$ and computes the difference between predicted $\hat{y}_{ij}$ and $\hat{y}_{id}$, 
+and performs a gradient update to rank the positive doctor higher if the difference is negative,
+i.e., a rank violation is found.
+Otherwise, it continues sampling negative doctors until it identifies a violating example. 
+Thus, the rank of doctor j for patient i is minimized when taking a large number of sampled doctors d that need to be considered
+before finding a violating example.
+
+We can model the trust $T_{ij} (t)$ between a patient $i$ and a family doctor $j$ at time $t$, given both the frequency and recency of their consultation
+history as:
+$$T_{ij} (t)=\sum_{t}\sum_{k}\frac{C_{ij}(t)e^{-\lambda t}}{C_{ik}(t)}$$
+where $\lambda$ is annualized discount rate for the exponential
+decay function and treated as hyper-parameter during the
+model training, $C_{ij}(t)$ is the number of consultations between
+patient $i$ and doctor $j$ until year $t$, which is normalized by
+the total number of her consultations with $k$ doctors $C_{ik} (t)$
+thus far. 
+
+- [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
+* [AI Researchers use AI to match patients with primary care doctors](https://venturebeat.com/2018/08/14/researchers-use-ai-to-match-patients-with-primary-care-doctors/)
+* [A Hybrid Recommender System for Patient-Doctor Matchmaking in Primary Care](https://arxiv.org/abs/1808.03265)
+* http://www.suggestadoctor.com/
+* https://www.researchgate.net/profile/Bo_Jin16
+* https://orcid.org/0000-0002-4209-4637
+* https://nyulangone.org/doctors
+* https://destrin.smalldata.io/
+* https://smalldata.io/
+* http://www.www2015.it/industrial-track/
+* http://www.itu.dk/~bardram/pmwiki/
+* http://www.bardram.net/
+* http://www.cachet.dk/
+* https://www.researchgate.net/profile/Jakob_Bardram
+* https://wp.cs.ucl.ac.uk/acm-digitalhealth-2015/alberto-sanna/
+* https://www.acm-digitalhealth.org/2018/committee/alberto-sanna/index.html
+* https://research.hsr.it/en/index.html
+
+
+
 ## Reinforcement Learning and Recommender System
 
 Services that introduce stores to users on the Internet are increasing in recent years. Each service conducts thorough analyses in order to display stores matching each user's preferences. In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). It is practically impossible to learn everything when the number of items to be learned periodically increases. The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. In order to solve this problem, we propose a recommender system based on deep reinforcement learning. In deep reinforcement learning, a multilayer neural network is used to update the value function.
@@ -1120,6 +1300,7 @@ Services that introduce stores to users on the Internet are increasing in recent
 * [eep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
 * [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
 * [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
+* [TPGR: Large-scale Interactive Recommendation with Tree-structured Policy Gradient](http://www.noahlab.com.hk/#/news/new1811_1)
 + [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 + [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
@@ -1146,11 +1327,20 @@ _______
 
 ## Resource on RecSys
 
+- https://cseweb.ucsd.edu/~jmcauley/datasets.html
+
 
 ### Labs
 
+- http://www.christophtrattner.com/
+- http://elizabethchurchill.com/presentations/
 - http://www.that-recsys-lab.net/
+- https://www.christophtrattner.info/publications.html
+- https://www.ludovicoboratto.com/publications/
+- https://www.ucsm.info/publications
 - http://recsys.deib.polimi.it/
+- https://www.know-center.tugraz.at/en/publications/publications/
+- https://qcri.academia.edu/LuisLuque
 - http://www.martijnwillemsen.nl/recommenderlab/
 - https://cseweb.ucsd.edu/~jmcauley/
 - https://github.com/mJackie/RecSys
@@ -1246,8 +1436,10 @@ Once we have the right features and the right model (decisions trees plus logist
 
 <img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "40%" />
 
+* [Learning Piece-wise Linear Models from Large Scale Data for Ad Click Prediction](https://arxiv.org/abs/1704.05194)
 * [聊聊CTR预估的中的深度学习](http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/)
 * [Deep Models at DeepCTR](https://deepctr.readthedocs.io/en/latest/models/DeepModels.html)
+* [镶嵌在互联网技术上的明珠：漫谈深度学习时代点击率预估技术进展](https://zhuanlan.zhihu.com/p/54822778)
 * [CTR预估算法之FM, FFM, DeepFM及实践](https://blog.csdn.net/john_xyz/article/details/78933253)
 * [Turning Clicks into Purchases](https://www.hongliangjie.com/talks/SF_2018-05-09.pdf)
 * https://github.com/shenweichen/DeepCTR
