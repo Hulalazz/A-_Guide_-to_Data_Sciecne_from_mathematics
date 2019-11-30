@@ -4,7 +4,7 @@
 
 [Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
 
-* [Explainable AI: Interpreting, Explaining and Visualizing Deep Learning](https://link.springer.com/book/10.1007/978-3-030-28954-6)
+
 * [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
 * [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
 * [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
@@ -98,7 +98,8 @@ Finally, we discuss prospective trends in explainable artificial intelligence.
 - http://www.cs.cmu.edu/~zhitingh/
 - https://graphreason.github.io/
 * https://beenkim.github.io/
-
+* https://www.math.ucla.edu/~montufar/
+* [Explainable AI: Interpreting, Explaining and Visualizing Deep Learning](https://link.springer.com/book/10.1007/978-3-030-28954-6)
 
 Not all one can understand the relative theory or quantum theory.
 
@@ -150,7 +151,6 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * [MATH + X SYMPOSIUM ON INVERSE PROBLEMS AND DEEP LEARNING IN SPACE EXPLORATION](https://earthscience.rice.edu/mathx2019/)
 * [Machine Learning for Physics](https://machine-learning-for-physicists.org/)
 * https://sites.google.com/view/icml2019phys4dl/schedule
-* http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt
 * [Master-Seminar - Deep Learning in Physics (IN2107, IN0014)](https://www.in.tum.de/cg/teaching/winter-term-1819/deep-learning-in-physics/)
 * https://www.ml4science.org/agenda-physics-in-ml
 * [Theoretical Physics for Deep Learning](https://icml.cc/Conferences/2019/ScheduleMultitrack?event=3531)
@@ -165,6 +165,7 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * http://djstrouse.com/
 * https://www.researchgate.net/scientific-contributions/2135376837_Maurice_Weiler
 * [Spontaneous Symmetry Breaking in Neural Networks](https://arxiv.org/abs/1710.06096)
+* [2017 Machine Learning for Physicists, by Florian Marquardt](http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt)
 
 ### Statistical Mechanics and Deep Learning
 
@@ -398,6 +399,8 @@ _____
 - [A Theoretical Analysis of Deep Neural Networks and Parametric PDEs.](https://www.math.tu-berlin.de/fachgebiete_ag_modnumdiff/angewandtefunktionalanalysis/v_menue/mitarbeiter/kutyniok/v_menue/kutyniok_publications/)
 - https://raoyongming.github.io/  
 
+
+
 ### Control Theory and Deep Learning
 
 [It arose out of control theory literature when people were trying to identify highly complex and nonlinear dynamical systems. Neural networks – artificial neural networks – were first used in a supervised learning scenario in control theory. Hornik, if I remember correctly, was the first to find that neural networks were universal approximators.](http://scriptedonachip.com/ml-control)
@@ -527,6 +530,13 @@ $\mathcal H$ matrix and deep learning
 * [A multiscale neural network based on hierarchical matrices](https://web.stanford.edu/~lexing/mnnh.pdf)
 * [A multiscale neural network based on hierarchical nested bases](https://link.springer.com/article/10.1007%2Fs40687-019-0183-3)
 
+[We aim to build a theoretical foundation for the analysis of deep neural networks to answer questions such as "What are the correct approximation spaces for deep neural networks?", "What is the advantage of deep versus shallow networks?", or "To which extent are deep neural networks able to detect low dimensional structures in high dimensional data?".](https://www.researchgate.net/project/Mathematical-Theory-for-Deep-Neural-Networks)
+- https://www.researchgate.net/profile/Gitta_Kutyniok
+- https://www.researchgate.net/project/Mathematical-Theory-for-Deep-Neural-Networks
+- https://www.academia-net.org/profil/prof-dr-gitta-kutyniok/1133890
+- https://www.tu-berlin.de/index.php?id=168945
+- https://www.math.tu-berlin.de/?108957
+- [Deep Learning: An Introduction for Applied Mathematicians](https://arxiv.org/abs/1801.05894)
 
 ## Approximation Theory for Deep Learning
 
@@ -637,6 +647,8 @@ However, the model is over-parametered and it is hard to verify the role of one 
 - https://diglib.eg.org/handle/10.2312/2631996
 - http://ubee.enseeiht.fr/skelneton/
 - https://biomedicalimaging.org/2019/tutorials/
+- [Machine Learning on Geometrical Data
+CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
 - [Geometric View to Deep Learning](http://valser.org/article-269-1.html)
 - [GEOMETRIC IDEAS IN MACHINE LEARNING: FROM DEEP LEARNING TO INCREMENTAL OPTIMIZATION](https://www.isi.edu/events/calendar/12459/)
 - [Deep Learning Theory: Geometric Analysis of Capacity, Optimization, and Generalization for Improving Learning in Deep Neural Networks](https://cordis.europa.eu/project/rcn/214602/factsheet/en)
@@ -762,6 +774,7 @@ and he successfully demonstrated the learning process in a computer identificati
 - http://blog.shakirm.com/ml-series/a-statistical-view-of-deep-learning/
 - http://blog.shakirm.com/wp-content/uploads/2015/07/SVDL.pdf
 - [On Statistical Thinking in Deep Learning: A Blog Post](http://bulletin.imstat.org/wp-content/uploads/ml-LONG_On_Statistical_Thinking_in_Deep_Learning.pdf)
+- [Implementing Bayesian Inference with Neural Networks](http://ul.qucosa.de/api/qucosa%3A34703/attachment/ATT-0/)
 
 ## Information Theory and Deep Learning
 
@@ -783,7 +796,8 @@ and he successfully demonstrated the learning process in a computer identificati
 - [Large Margin Deep Neural Networks: Theory and Algorithms](https://arxiv.org/abs/1506.05232v1)
 - http://ai.stanford.edu/
 - https://www.math.ias.edu/wtdl
-- http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf
+- [DEEP 3D REPRESENTATION LEARNING](http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf)
+- https://www.mis.mpg.de/ay/index.html
 
 
 ## Brain Science and AI
@@ -811,6 +825,13 @@ and he successfully demonstrated the learning process in a computer identificati
 Brain science is the physological theorey of cognitive science, which focus on the physical principle of brain function.
 The core problem of cognition science is how to learn in my eyes.
 
+[Artificial deep neural networks (DNNs) initially inspired by the brain enable computers to solve cognitive tasks at which humans excel.
+In the absence of explanations for such cognitive phenomena, in turn cognitive scientists have started using DNNs as models to investigate biological cognition and its neural basis, creating heated debate.](https://www.sciencedirect.com/science/article/pii/S1364661319300348)
+
+<img src="https://ars.els-cdn.com/content/image/1-s2.0-S1364661319300348-gr2.jpg" width="69%"/>
+
+* https://www.mis.mpg.de/ay/
+* [Deep Neural Networks as Scientific Models](https://www.sciencedirect.com/science/article/pii/S1364661319300348)
 * https://wiki.opencog.org/w/Language_learning
 * https://github.com/opencog/learn
 * [Advancing AI through cognitive science - Spring 2019](https://brendenlake.github.io/AAI-site/)
@@ -834,6 +855,11 @@ The core problem of cognition science is how to learn in my eyes.
 * https://hadrienj.github.io/about/
 * https://iccs2019.github.io/
 * https://human-memory.net/
+* https://sites.google.com/view/goergen
+* https://engineering.purdue.edu/IE/people/ptProfile?resource_id=126302
+* https://engineering.columbia.edu/faculty/christos-papadimitriou
+* https://www.bio.purdue.edu/People/faculty_dm/directory.php?refID=1000000303
+* https://people.csail.mit.edu/mirrokni/Welcome.html
 
 ## AOGNet
 
