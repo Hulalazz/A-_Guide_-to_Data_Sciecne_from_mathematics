@@ -2738,18 +2738,30 @@ See the following links for more information on *stochastic gradient descent*.
 * https://github.com/ptoulis/implicit-sgd
 
 The stochastic gradient methods generates  random/stochastic sequences, which are so different from the classic methods. The convergence of stochastic methods will bring another problem whether the random sequence is convergent to a optimal point  in some sense.
-
-> Convergence in probability/measure
+> Let $\{X_1,\cdots, X_n,\cdots\}$ be a random sequence and $X$ be a random variable.
 >
-> Convergence in expectation
+> Convergence in probability/measure:
+$$\lim_{n\to\infty}P(|X_n-X|\leq \epsilon
+)=1\forall \epsilon>0$$
 >
-> Convergence with probability 1
+> Convergence in mean square:
+$$\lim_{n\to\infty}\mathbb{E}({\|X-X_n\|}_2^2)=0$$
+>
+> Convergence with probability 1(almost surely):
+$$P(\lim_{n\to\infty}X_n=X)=1$$
+> Convergence in distribution:
+$$\lim_{n\to\infty}F_{X_n}(x)=F_X(x)$$
+> for every $x$ at which $F_X(x)$ is continuous.
 
 ____
 - [Lecture Notes: Weak convergence of stochastic processes, Thomas Mikosch1
 (2005)](http://web.math.ku.dk/~erhansen/web/stat1/mikosch1.pdf)
+- [EE178: Probabilistic Systems Analysis](http://isl.stanford.edu/~abbas/aeglect178.php)
 - [Convergence of Stochastic Processes](http://repository.upenn.edu/cgi/viewcontent.cgi?article=1487&context=cis_reports)
-
+- https://www.eng.tau.ac.il/~liptser/lectures/lect_new2.pdf
+- http://isl.stanford.edu/~abbas/ee278/lect05.pdf
+- https://www2.math.ethz.ch/education/bachelor/lectures/fs2014/math/bmsc/weak-conv.pdf
+- [Convergence of Probability Measure](http://cermics.enpc.fr/~monneau/Billingsley-2eme-edition.pdf)
 
 
 
@@ -2814,6 +2826,7 @@ where $x$ is the optimization variable, gt is a stochastic gradient at step $t$,
 - [Will Adam Algorithms Work for Me?](https://www.ibm.com/blogs/research/2019/05/adam-algorithms/)
 - [On the Convergence of A Class of Adam-Type Algorithms for Non-Convex Optimization](https://openreview.net/forum?id=H1x-x309tm)
 - [Gentle Introduction to the Adam Optimization Algorithm for Deep Learning](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/)
+- [A Survey on Proposed Methods to Address Adam Optimizer Deficiencies](http://www.cs.toronto.edu/~sajadn/sajad_norouzi/ECE1505.pdf)
 - https://2018.ieeeglobalsip.org/sym/18/AML
 - https://github.com/LiyuanLucasLiu/RAdam
 - https://github.com/CyberZHG/keras-radam

@@ -73,13 +73,13 @@
 
 ## Interpretability of Neural Networks
 
-[ Although deep neural networks have exhibited superior performance in various tasks, interpretability is always Achilles’ heel of deep neural networks.](http://academic.hep.com.cn/fitee/CN/10.1631/FITEE.1700808#1) 
+[ Although deep neural networks have exhibited superior performance in various tasks, interpretability is always Achilles’ heel of deep neural networks.](http://academic.hep.com.cn/fitee/CN/10.1631/FITEE.1700808#1)
 At present, deep neural networks obtain high discrimination power at the cost of a low interpretability of their black-box representations.
 We believe that high model interpretability may help people break several bottlenecks of deep learning,
-e.g., learning from a few annotations, learning via human–computer communications at the semantic level, 
+e.g., learning from a few annotations, learning via human–computer communications at the semantic level,
 and semantically debugging network representations.
-We focus on convolutional neural networks (CNNs), and revisit the visualization of CNN representations, 
-methods of diagnosing representations of pre-trained CNNs, approaches for disentangling pre-trained CNN representations, learning of CNNs 
+We focus on convolutional neural networks (CNNs), and revisit the visualization of CNN representations,
+methods of diagnosing representations of pre-trained CNNs, approaches for disentangling pre-trained CNN representations, learning of CNNs
 with disentangled representations, and middle-to-end learning based on model interpretability.
 Finally, we discuss prospective trends in explainable artificial intelligence.
 
@@ -101,7 +101,7 @@ Finally, we discuss prospective trends in explainable artificial intelligence.
 
 
 Not all one can understand the relative theory or quantum theory.
- 
+
 
 ## Physics and Deep Learning
 
@@ -111,6 +111,7 @@ Not all one can understand the relative theory or quantum theory.
 
 <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2017/09/InfoBottleneck_2880x1620.jpg" width="80%"/>
 
+* https://zhuanlan.zhihu.com/p/94249675
 * [Physics Informed Neural Networks](https://github.com/maziarraissi/PINNs)
 * [Physics Based Vision meets Deep Learning (PBDL)](https://pbdl2019.github.io/)
 * [Physics-Based Deep Learning](https://github.com/thunil/Physics-Based-Deep-Learning)
