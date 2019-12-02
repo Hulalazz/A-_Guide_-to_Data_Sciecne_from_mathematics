@@ -9,7 +9,6 @@
 * [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
 * [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
 * [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
-* [torbenkruegermath](https://sites.google.com/site/torbenkruegermath/home/graduate-seminar-random-matrices-spin-glasses-deep-learning)
 * [TBSI 2019 Retreat Conference](http://workshop.tbsi.edu.cn/index.html)
 * [6.883 Science of Deep Learning: Bridging Theory and Practice -- Spring 2018](https://people.csail.mit.edu/madry/6.883/)
 * [(Winter 2018) IFT 6085: Theoretical principles for deep learning](http://mitliagkas.github.io/ift6085-dl-theory-class/)
@@ -83,9 +82,11 @@ methods of diagnosing representations of pre-trained CNNs, approaches for disent
 with disentangled representations, and middle-to-end learning based on model interpretability.
 Finally, we discuss prospective trends in explainable artificial intelligence.
 
-- http://games-cn.org/games-webinar-20190509-93/
-- http://games-cn.org/games-webinar-20190516-94/
+- https://www.transai.org/
+- [GAMES Webinar 2019 – 93期(深度学习可解释性专题课程) ](http://games-cn.org/games-webinar-20190509-93/)
+- [GAMES Webinar 2019 – 94期(深度学习可解释性专题课程) | 刘日升（大连理工大学），张拳石（上海交通大学）](http://games-cn.org/games-webinar-20190516-94/)
 - http://qszhang.com/index.php/publications/
+- [Explaining Neural Networks Semantically and Quantitatively](https://arxiv.org/abs/1812.07169)
 - https://www.jiqizhixin.com/articles/0211
 - https://www.jiqizhixin.com/articles/030205
 - https://mp.weixin.qq.com/s/xY7Cpe6idbOTJuyD3vwD3w
@@ -95,11 +96,19 @@ Finally, we discuss prospective trends in explainable artificial intelligence.
 - https://lemondan.github.io
 - http://ise.sysu.edu.cn/teacher/teacher02/1136886.htm
 - http://www.cs.cmu.edu/~zhitingh/data/hu18texar.pdf
+- https://datasciencephd.eu/DSSS19/slides/GiannottiPedreschi-ExplainableAI.pdf
 - http://www.cs.cmu.edu/~zhitingh/
 - https://graphreason.github.io/
 * https://beenkim.github.io/
 * https://www.math.ucla.edu/~montufar/
 * [Explainable AI: Interpreting, Explaining and Visualizing Deep Learning](https://link.springer.com/book/10.1007/978-3-030-28954-6)
+* http://www.prcv2019.com/en/index.html
+* http://gr.xjtu.edu.cn/web/jiansun
+* http://www.shixialiu.com/
+* http://irc.cs.sdu.edu.cn/
+* https://www.seas.upenn.edu/~minchenl/
+* https://cs.nyu.edu/~yixinhu/
+* http://www.cs.utexas.edu/~huangqx/
 
 Not all one can understand the relative theory or quantum theory.
 
@@ -138,12 +147,10 @@ Not all one can understand the relative theory or quantum theory.
 for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * https://gogul.dev/software/deep-learning-meets-physics
 * https://github.com/2prime/ODE-DL/blob/master/DL_Phy.md
-* [Quantum Deep Learning and Renormalization](http://www.math.chalmers.se/~stig/project4.pdf)
 * https://physics-ai.com/
 * http://physics.usyd.edu.au/quantum/Coogee2015/Presentations/Svore.pdf
 * [Brains, Minds and Machines Summer Course](https://ocw.mit.edu/resources/res-9-003-brains-minds-and-machines-summer-course-summer-2015/index.htm)
 * [Physics-Based Deep Learning for Fluid Flow](http://phys2018.csail.mit.edu/papers/29.pdf)
-* [Lecture Note on Deep Learning and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
 * [deep medcine](http://amos3.aapm.org/abstracts/pdf/127-36916-419554-130797.pdf)
 * http://www.dam.brown.edu/people/mraissi/publications/
 * [Deep Learning in High
@@ -167,6 +174,7 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * [Spontaneous Symmetry Breaking in Neural Networks](https://arxiv.org/abs/1710.06096)
 * [2017 Machine Learning for Physicists, by Florian Marquardt](http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt)
 
+
 ### Statistical Mechanics and Deep Learning
 
 * [statistical mechanics // machine learning](http://smml.io/)
@@ -175,6 +183,7 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * [WHY DOES DEEP LEARNING WORK?](https://calculatedcontent.com/2015/03/25/why-does-deep-learning-work/)
 * [WHY DEEP LEARNING WORKS II: THE RENORMALIZATION GROUP](https://calculatedcontent.com/2015/04/01/why-deep-learning-works-ii-the-renormalization-group/)
 *  https://github.com/CalculatedContent/ImplicitSelfRegularization
+* [torbenkruegermath](https://sites.google.com/site/torbenkruegermath/home/graduate-seminar-random-matrices-spin-glasses-deep-learning)
 
 ### Quantum Machine learning
 
@@ -187,6 +196,9 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 - https://peterwittek.com/qml-in-2015.html
 - https://github.com/krishnakumarsekar/awesome-quantum-machine-learning
 - https://peterwittek.com/
+* [Lecture Note on Deep Learning and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
+* [Quantum Deep Learning and Renormalization](http://www.math.chalmers.se/~stig/project4.pdf)
+
 
 #### Born Machine
 
@@ -721,13 +733,16 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 
 ### Quaternion Neural Networks
 
+[It looks like Deep (Convolutional) Neural Networks are really powerful. However, there are situations where they don’t deliver as expected. I assume that perhaps many are happy with pre-trained VGG, Resnet, YOLO, SqueezeNext, MobileNet, etc. models because they are “good enough”, even though they break quite easily on really realistic problems and require tons of training data. IMHO there are much smarter approaches out there, which are neglected/ignored. I don’t want to argue why they are ignored but I want to provide a list with other useful architectures.](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+
+[Instead of staying with real numbers, we should have a look at complex numbers as well. Let’s remember the single reason why we use complex numbers ($C$) or quaternions ($\mathcal H$). The most important reason why we use complex numbers is not to solve $x^2=−1$. The reason why we use complex numbers for everything that involves waves etc. is that we are lazy or efficient ;). Who wants to waste time writing down and solving a bunch of trignometric identities. The same is true for quaternions in robotics. Speaking in terms of computer science, we are using a much more efficient data structure/representation. It seems like complex valued neural networks as well as quaternion, which are a different kind of complex numbers for the mathematical correct reader of this post, seem to outperform real valued neural networks while using less parameters. This makes sense because we are using a different data structure that itself helps to represent certain things in a much more useful way.](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+
 - https://arxiv.org/abs/1903.08478
 - [Introduction to Quaternion Neural Networks](https://www.simonwenkel.com/projects/introduction-to-quaternion-neural-networks.html)
 - [Capsule Networks and other neural architectures that are less known](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
 
 ## Probabilistic Theory and Deep Learning
 
-`Bayesian deep learning`
 
 [Probabilistic Deep Learning with Python teaches the increasingly popular probabilistic approach to deep learning that allows you to tune and refine your results more quickly and accurately without as much trial-and-error testing. Emphasizing practical techniques that use the Python-based Tensorflow Probability Framework, you’ll learn to build highly-performant deep learning applications that can reliably handle the noise and uncertainty of real-world data.](https://www.manning.com/books/probabilistic-deep-learning-with-python)
 
@@ -748,6 +763,45 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - https://www.ida.liu.se/~ulfni53/lpp/bok/bok.pdf
 - https://www.biostat.wisc.edu/bmi576/
 - http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_2248.html
+
+### Bayesian Deep Learning
+
+[The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/) put that:
+
+> While deep learning has been revolutionary for machine learning, most modern deep learning models cannot represent their uncertainty nor take advantage of the well studied tools of probability theory. This has started to change following recent developments of tools and techniques combining Bayesian approaches with deep learning. The intersection of the two fields has received great interest from the community over the past few years, with the introduction of new deep learning models that take advantage of Bayesian techniques, as well as Bayesian models that incorporate deep learning elements [1-11]. In fact, the use of Bayesian techniques in deep learning can be traced back to the 1990s’, in seminal works by Radford Neal [12], David MacKay [13], and Dayan et al. [14]. These gave us tools to reason about deep models’ confidence, and achieved state-of-the-art performance on many tasks. However earlier tools did not adapt when new needs arose (such as scalability to big data), and were consequently forgotten. Such ideas are now being revisited in light of new advances in the field, yielding many exciting new results
+> Extending on last year’s workshop’s success, this workshop will again study the advantages and disadvantages of such ideas, and will be a platform to host the recent flourish of ideas using Bayesian approaches in deep learning and using deep learning tools in Bayesian modelling. The program includes a mix of invited talks, contributed talks, and contributed posters. It will be composed of five themes: deep generative models, variational inference using neural network recognition models, practical approximate inference techniques in Bayesian neural networks, applications of Bayesian neural networks, and information theory in deep learning. Future directions for the field will be debated in a panel discussion.
+> This year’s main theme will focus on applications of Bayesian deep learning within machine learning and outside of it.
+
+1. Kingma, DP and Welling, M, "Auto-encoding variational Bayes", 2013.
+2. Rezende, D, Mohamed, S, and Wierstra, D, "Stochastic backpropagation and approximate inference in deep generative models", 2014.
+3. Blundell, C, Cornebise, J, Kavukcuoglu, K, and Wierstra, D, "Weight uncertainty in neural network", 2015.
+4. Hernandez-Lobato, JM and Adams, R, "Probabilistic backpropagation for scalable learning of Bayesian neural networks", 2015.
+5. Gal, Y and Ghahramani, Z, "Dropout as a Bayesian approximation: Representing model uncertainty in deep learning", 2015.
+6. Gal, Y and Ghahramani, G, "Bayesian convolutional neural networks with Bernoulli approximate variational inference", 2015.
+7. Kingma, D, Salimans, T, and Welling, M. "Variational dropout and the local reparameterization trick", 2015.
+8. Balan, AK, Rathod, V, Murphy, KP, and Welling, M, "Bayesian dark knowledge", 2015.
+9. Louizos, C and Welling, M, “Structured and Efficient Variational Deep Learning with Matrix Gaussian Posteriors”, 2016.
+10. Lawrence, ND and Quinonero-Candela, J, “Local distance preservation in the GP-LVM through back constraints”, 2006.
+11. Tran, D, Ranganath, R, and Blei, DM, “Variational Gaussian Process”, 2015.
+12. Neal, R, "Bayesian Learning for Neural Networks", 1996.
+13. MacKay, D, "A practical Bayesian framework for backpropagation networks", 1992.
+14. Dayan, P, Hinton, G, Neal, R, and Zemel, S, "The Helmholtz machine", 1995.
+15. Wilson, AG, Hu, Z, Salakhutdinov, R, and Xing, EP, “Deep Kernel Learning”, 2016.
+16. Saatchi, Y and Wilson, AG, “Bayesian GAN”, 2017.
+17. MacKay, D.J.C. “Bayesian Methods for Adaptive Models”, PhD thesis, 1992.
+
+***
+
+* [Towards Bayesian Deep Learning: A Framework and Some Existing Methods](https://arxiv.org/abs/1608.06884)
+* http://www.wanghao.in/mis.html
+* https://github.com/junlulocky/bayesian-deep-learning-notes
+* https://github.com/robi56/awesome-bayesian-deep-learning
+* https://alexgkendall.com/computer_vision/phd_thesis/
+* http://bayesiandeeplearning.org/
+* http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
+* http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
+* https://uvadlc.github.io/lectures/apr2019/lecture9-bayesiandeeplearning.pdf
+
 
 ## Statistics and Deep Learning
 
@@ -860,6 +914,20 @@ In the absence of explanations for such cognitive phenomena, in turn cognitive s
 * https://engineering.columbia.edu/faculty/christos-papadimitriou
 * https://www.bio.purdue.edu/People/faculty_dm/directory.php?refID=1000000303
 * https://people.csail.mit.edu/mirrokni/Welcome.html
+* https://www.mindcogsci.net/
+
+## The lottery ticket hypothesis
+
+[The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
+- https://ai.facebook.com/blog/understanding-the-generalization-of-lottery-tickets-in-neural-networks
+- https://arxiv.org/pdf/1905.13405.pdf
+- https://arxiv.org/abs/1903.01611
+- https://arxiv.org/abs/1905.13405
+- https://arxiv.org/abs/1906.02768
+- https://arxiv.org/abs/1906.02773
+- https://arxiv.org/abs/1909.13458
+- https://zhuanlan.zhihu.com/p/84178021
+- https://zhuanlan.zhihu.com/p/67782029
 
 ## AOGNet
 

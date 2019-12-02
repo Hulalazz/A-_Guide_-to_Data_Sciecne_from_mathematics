@@ -18,6 +18,9 @@ See [CV](https://neurohive.io/en/state-of-the-art/), [NLP](https://aclweb.org/ac
 
 - https://www.openml.org/
 - https://www.jiqizhixin.com/sota
+- https://www.pyimagesearch.com/start-here/
+- https://deepai.org/
+- https://www.mlhub123.com/
 
 * https://sites.google.com/visipedia.org/index
 * https://github.com/Ewenwan/MVision/tree/master/CNN
@@ -182,7 +185,7 @@ The HRNet turns out to be a strong repalcement of classification networks (e.g.,
 
 ##### YOLO
 
-[ou only look once (YOLO) is a state-of-the-art, real-time object detection system.](https://pjreddie.com/darknet/yolo/)
+[ only look once (YOLO) is a state-of-the-art, real-time object detection system.](https://pjreddie.com/darknet/yolo/)
 
 * [YOLO 1 到 YOLO 3](http://shartoo.github.io/yolo-v123/)
 * https://github.com/jwchoi384/Gaussian_YOLOv3

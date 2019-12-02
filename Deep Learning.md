@@ -934,7 +934,7 @@ Some methods require that the initial values must locate at the convergence regi
 * [Weight initialization tutorial in TensorFlow](https://adventuresinmachinelearning.com/weight-initialization-tutorial-tensorflow/)
 * http://www.deeplearning.ai/ai-notes/initialization/
 
-**Learning Rate**
+##### Learning Rate
 
 * https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html
 * https://www.jeremyjordan.me/nn-learning-rate/
@@ -943,17 +943,16 @@ Some methods require that the initial values must locate at the convergence regi
 * https://arxiv.org/abs/1708.07120
 * https://arxiv.org/abs/1702.04283
 
-**Batch Size**
+##### Batch Size
 
 - https://supercomputersfordl2017.github.io/Presentations/DLSC_talk.pdf
 - https://openreview.net/pdf?id=B1Yy1BxCZ
 - https://arxiv.org/abs/1711.00489
 
+
+
+
 ##### Distributed Training of Neural Networks
-
-Data
-
-Model
 
 
 * https://github.com/wenwei202/terngrad
@@ -2065,43 +2064,6 @@ In contrast to traditional ensembles (produce an ensemble of multiple neural net
 
 - [SelfieBoost: A Boosting Algorithm for Deep Learning](https://arxiv.org/pdf/1411.3436.pdf)
 
-## Bayesian Deep Learning
-
-[The abstract of Bayesian Deep learning](http://bayesiandeeplearning.org/) put that:
-
-> While deep learning has been revolutionary for machine learning, most modern deep learning models cannot represent their uncertainty nor take advantage of the well studied tools of probability theory. This has started to change following recent developments of tools and techniques combining Bayesian approaches with deep learning. The intersection of the two fields has received great interest from the community over the past few years, with the introduction of new deep learning models that take advantage of Bayesian techniques, as well as Bayesian models that incorporate deep learning elements [1-11]. In fact, the use of Bayesian techniques in deep learning can be traced back to the 1990s’, in seminal works by Radford Neal [12], David MacKay [13], and Dayan et al. [14]. These gave us tools to reason about deep models’ confidence, and achieved state-of-the-art performance on many tasks. However earlier tools did not adapt when new needs arose (such as scalability to big data), and were consequently forgotten. Such ideas are now being revisited in light of new advances in the field, yielding many exciting new results
-> Extending on last year’s workshop’s success, this workshop will again study the advantages and disadvantages of such ideas, and will be a platform to host the recent flourish of ideas using Bayesian approaches in deep learning and using deep learning tools in Bayesian modelling. The program includes a mix of invited talks, contributed talks, and contributed posters. It will be composed of five themes: deep generative models, variational inference using neural network recognition models, practical approximate inference techniques in Bayesian neural networks, applications of Bayesian neural networks, and information theory in deep learning. Future directions for the field will be debated in a panel discussion.
-> This year’s main theme will focus on applications of Bayesian deep learning within machine learning and outside of it.
-
-1. Kingma, DP and Welling, M, "Auto-encoding variational Bayes", 2013.
-2. Rezende, D, Mohamed, S, and Wierstra, D, "Stochastic backpropagation and approximate inference in deep generative models", 2014.
-3. Blundell, C, Cornebise, J, Kavukcuoglu, K, and Wierstra, D, "Weight uncertainty in neural network", 2015.
-4. Hernandez-Lobato, JM and Adams, R, "Probabilistic backpropagation for scalable learning of Bayesian neural networks", 2015.
-5. Gal, Y and Ghahramani, Z, "Dropout as a Bayesian approximation: Representing model uncertainty in deep learning", 2015.
-6. Gal, Y and Ghahramani, G, "Bayesian convolutional neural networks with Bernoulli approximate variational inference", 2015.
-7. Kingma, D, Salimans, T, and Welling, M. "Variational dropout and the local reparameterization trick", 2015.
-8. Balan, AK, Rathod, V, Murphy, KP, and Welling, M, "Bayesian dark knowledge", 2015.
-9. Louizos, C and Welling, M, “Structured and Efficient Variational Deep Learning with Matrix Gaussian Posteriors”, 2016.
-10. Lawrence, ND and Quinonero-Candela, J, “Local distance preservation in the GP-LVM through back constraints”, 2006.
-11. Tran, D, Ranganath, R, and Blei, DM, “Variational Gaussian Process”, 2015.
-12. Neal, R, "Bayesian Learning for Neural Networks", 1996.
-13. MacKay, D, "A practical Bayesian framework for backpropagation networks", 1992.
-14. Dayan, P, Hinton, G, Neal, R, and Zemel, S, "The Helmholtz machine", 1995.
-15. Wilson, AG, Hu, Z, Salakhutdinov, R, and Xing, EP, “Deep Kernel Learning”, 2016.
-16. Saatchi, Y and Wilson, AG, “Bayesian GAN”, 2017.
-17. MacKay, D.J.C. “Bayesian Methods for Adaptive Models”, PhD thesis, 1992.
-
-***
-
-* [Towards Bayesian Deep Learning: A Framework and Some Existing Methods](https://arxiv.org/abs/1608.06884)
-* http://www.wanghao.in/mis.html
-* https://github.com/junlulocky/bayesian-deep-learning-notes
-* https://github.com/robi56/awesome-bayesian-deep-learning
-* https://alexgkendall.com/computer_vision/phd_thesis/
-* http://bayesiandeeplearning.org/
-* http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
-* http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
-* https://uvadlc.github.io/lectures/apr2019/lecture9-bayesiandeeplearning.pdf
 
 ## Theories of Deep Learning
 
@@ -2363,26 +2325,76 @@ Training deep learning models does not require gradients such as `ADMM, simulate
 
 - [BinaryConnect: Training Deep Neural Networks with binary weights during propagations](https://arxiv.org/abs/1511.00363)
 - [Bidirectional Backpropagation](http://sipi.usc.edu/~kosko/B-BP-SMC-Revised-13January2018.pdf)
-- [Difference Target Propagation](https://arxiv.org/abs/1412.7525)
-- [Gradient target propagation](https://arxiv.org/abs/1810.09284)
 - [Beyond Backprop: Online Alternating Minimization with Auxiliary Variables](https://www.ibm.com/blogs/research/2019/06/beyond-backprop/)
 - [Beyond Backpropagation: Uncertainty Propagation](http://videolectures.net/iclr2016_lawrence_beyond_backpropagation/)
 - [Beyond Feedforward Models Trained by Backpropagation: a Practical Training Tool for a More Efficient Universal Approximator](https://www.memphis.edu/clion/pdf-papers/0710.4182.pdf)
-- [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
 - [BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS](http://people.missouristate.edu/RandallSexton/sabp.pdf)
 - [Main Principles of the General Theory of Neural Network with Internal Feedback](http://worldcomp-proceedings.com/proc/p2015/ICA6229.pdf)
 - [Eigen Artificial Neural Networks](https://arxiv.org/pdf/1907.05200.pdf)
-- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
 - [Deep Learning as a Mixed Convex-Combinatorial Optimization Problem](https://arxiv.org/abs/1710.11573)
+- [Equilibrium Propagation: Bridging the Gap Between Energy-Based Models and Backpropagation](https://arxiv.org/abs/1602.05179)
+- https://www.ncbi.nlm.nih.gov/pubmed/28522969
+- https://www.computer.org/10.1109/CVPR.2016.165
+- [Efficient Training of Very Deep Neural Networks for Supervised Hashing](https://arxiv.org/abs/1511.04524)
+- https://zhuanlan.zhihu.com/p/67782029
+- [Biologically-Plausible Learning Algorithms Can Scale to Large Datasets](https://arxiv.org/pdf/1811.03567.pdf)
+- [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
 
-### Layer-wise Relevance Propagation
+#### Operator Splitting Methods For Training Deep Neural Network
+
+[By rewriting the activation function as an equivalent proximal operator, we approximate a feed-forward neural network by adding the proximal operators to the objective function as penalties, hence we call the lifted proximal operator machine (LPOM). LPOM is block multi-convex in all layer-wise weights and activations. This allows us to use block coordinate descent to update the layer-wise weights and activations in parallel. Most notably, we only use the mapping of the activation function itself, rather than its derivatives, thus avoiding the gradient vanishing or blow-up issues in gradient based training methods. So our method is applicable to various non-decreasing Lipschitz continuous activation functions, which can be saturating and non-differentiable. LPOM does not require more auxiliary variables than the layer-wise activations, thus using roughly the same amount of memory as stochastic gradient descent (SGD) does. We further prove the convergence of updating the layer-wise weights and activations. Experiments on MNIST and CIFAR-10 datasets testify to the advantages of LPOM.](https://arxiv.org/abs/1811.01501v1)
+
+
+- https://yq.aliyun.com/articles/230662
+- https://zhouchenlin.github.io/
+- [Lifted Proximal Operator Machines](https://arxiv.org/abs/1811.01501v1)
+- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
+- [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
+- [Extremely Low Bit Neural Network: Squeeze the Last Bit Out with ADMM](https://arxiv.org/abs/1707.09870)
+- [Toward Extremely Low Bit and Lossless Accuracy in DNNs with Progressive ADMM](https://arxiv.org/abs/1905.00789)
+
+
+#### Layer-wise Relevance Propagation
 
 [Layer-wise Relevance Propagation (LRP) is a method that identifies important pixels by running a backward pass in the neural network. The backward pass is a conservative relevance redistribution procedure, where neurons that contribute the most to the higher-layer receive most relevance from it. The LRP procedure is shown graphically in the figure below.](http://www.heatmapping.org/)
+
+<img src="http://www.heatmapping.org/lrpgraph.png" width="50%"/>
 
 - [Layer-wise Relevance Propagation for Deep Neural Network Architectures](http://iphome.hhi.de/samek/pdf/BinICISA16.pdf)
 - https://github.com/gentaman/LRP
 - [Tutorial: Implementing Layer-Wise Relevance Propagation](http://www.heatmapping.org/tutorial/)
 - http://www.heatmapping.org/
+- http://iphome.hhi.de/samek/
+
+
+####  Target Propagation
+
+[Back-propagation has been the workhorse of recent successes of deep learning
+but it relies on infinitesimal effects (partial derivatives) in order to perform credit
+assignment. This could become a serious issue as one considers deeper and more
+non-linear functions, e.g., consider the extreme case of non-linearity where the relation between parameters and cost is actually discrete. Inspired by the biological implausibility of back-propagation, a few approaches have been proposed in the past that could play a similar credit assignment role as backprop.
+In this spirit, we explore a novel approach to credit assignment in deep networks that we call target propagation.
+`The main idea is to compute targets rather than gradients, at each layer. Like gradients, they are propagated backwards.
+In a way that is related but different from previously proposed proxies for back-propagation which rely on a backwards network with symmetric weights, target propagation relies on auto-encoders at each layer`.
+Unlike back-propagation, it can be applied even when units exchange stochastic bits rather than real numbers.
+We show that a linear correction for the imperfectness of the auto-encoders is very effective to make target propagation actually work, along with adaptive learning rates.](http://www2.cs.uh.edu/~ceick/7362/T3-3.pdf)
+
+- [TARGET PROPAGATION](http://www2.cs.uh.edu/~ceick/7362/T3-3.pdf)
+- [Training Language Models Using Target-Propagation](https://arxiv.org/abs/1702.04770)
+- http://www2.cs.uh.edu/~ceick/
+- http://www2.cs.uh.edu/~ceick/7362/7362.html
+- [Difference Target Propagation](https://arxiv.org/abs/1412.7525)
+
+
+####  Gradient Target Propagation
+
+[We report a learning rule for neural networks that computes how much each neuron should contribute to minimize a giving cost function via the estimation of its target value.
+By theoretical analysis, we show that this learning rule contains backpropagation, Hebbian learning, and additional terms. We also give a general technique for weights initialization.
+Our results are at least as good as those obtained with backpropagation.](https://arxiv.org/pdf/1810.09284.pdf)
+
+- [Quantized Neural Networks: Training Neural Networks with Low Precision Weights and Activations](https://arxiv.org/pdf/1609.07061.pdf)
+- [Gradient target propagation](https://arxiv.org/abs/1810.09284)
+- https://github.com/tiago939/target
 
 ### Capsule Networks and More
 
@@ -2396,3 +2408,13 @@ Capsule Networks provide a way to detect parts of objects in an image and repres
 - [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829)
 - http://people.missouristate.edu/RandallSexton/sabp.pdf
 - [Neuronal Dynamics: From single neurons to networks and models of cognition](https://neuronaldynamics.epfl.ch/book.html)
+
+### MIND-Net
+
+- https://datasciencephd.eu/
+- https://ieeexplore.ieee.org/document/8682208
+- https://dblp.uni-trier.de/pers/hd/k/Kung:Sun=Yuan
+- http://www.zhejianglab.com/mien/active_info/75.html
+- https://ee.princeton.edu/people/sun-yuan-kung
+- https://ieeexplore.ieee.org/author/37273489000
+- [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
