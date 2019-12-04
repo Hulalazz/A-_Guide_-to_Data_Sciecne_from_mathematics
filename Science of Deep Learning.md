@@ -46,6 +46,7 @@
 * http://qszhang.com/index.php/team/
 * https://www.researchgate.net/profile/Hatef_Monajemi
 * [Symposium Artificial Intelligence for Science, Industry and Society](https://indico.cern.ch/event/781223/)
+* https://arxiv.org/abs/1909.13458
 
 ### Deep Learning Reading Group
 
@@ -143,8 +144,7 @@ Not all one can understand the relative theory or quantum theory.
 * http://deeplearnphysics.org/
 * [Machine Learning for Physics and the Physics of Learning](https://www.ipam.ucla.edu/programs/long-programs/machine-learning-for-physics-and-the-physics-of-learning/)
 * https://www.ias.edu/events/deep-learning-physics
-* [A Differentiable Physics Engine
-for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
+* [A Differentiable Physics Engine for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * https://gogul.dev/software/deep-learning-meets-physics
 * https://github.com/2prime/ODE-DL/blob/master/DL_Phy.md
 * https://physics-ai.com/
@@ -153,8 +153,7 @@ for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * [Physics-Based Deep Learning for Fluid Flow](http://phys2018.csail.mit.edu/papers/29.pdf)
 * [deep medcine](http://amos3.aapm.org/abstracts/pdf/127-36916-419554-130797.pdf)
 * http://www.dam.brown.edu/people/mraissi/publications/
-* [Deep Learning in High
-Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecorsa.pdf)
+* [Deep Learning in High Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecorsa.pdf)
 * [MATH + X SYMPOSIUM ON INVERSE PROBLEMS AND DEEP LEARNING IN SPACE EXPLORATION](https://earthscience.rice.edu/mathx2019/)
 * [Machine Learning for Physics](https://machine-learning-for-physicists.org/)
 * https://sites.google.com/view/icml2019phys4dl/schedule
@@ -184,6 +183,17 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * [WHY DEEP LEARNING WORKS II: THE RENORMALIZATION GROUP](https://calculatedcontent.com/2015/04/01/why-deep-learning-works-ii-the-renormalization-group/)
 *  https://github.com/CalculatedContent/ImplicitSelfRegularization
 * [torbenkruegermath](https://sites.google.com/site/torbenkruegermath/home/graduate-seminar-random-matrices-spin-glasses-deep-learning)
+* [TOWARDS A NEW THEORY OF LEARNING: STATISTICAL MECHANICS OF DEEP NEURAL NETWORKS](https://calculatedcontent.com/2019/12/03/towards-a-new-theory-of-learning-statistical-mechanics-of-deep-neural-networks/)
+
+### Born Machine
+
+- [Unsupervised Generative Modeling Using Matrix Product States](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012#fulltext)
+- https://github.com/congzlwag/UnsupGenModbyMPS
+- https://congzlwag.github.io/UnsupGenModbyMPS/
+- https://github.com/congzlwag/BornMachineTomo
+- [From Baltzman machine to Born Machine](https://wangleiphy.github.io/talks/BornMachine.pdf)
+- [Born Machines: A fresh approach to quantum machine learning](https://quantum.ustc.edu.cn/web/node/623)
+- [Gradient based training of Quantum Circuit Born Machine (QCBM)](https://github.com/GiggleLiu/QuantumCircuitBornMachine)
 
 ### Quantum Machine learning
 
@@ -200,15 +210,7 @@ Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecors
 * [Quantum Deep Learning and Renormalization](http://www.math.chalmers.se/~stig/project4.pdf)
 
 
-#### Born Machine
 
-- [Unsupervised Generative Modeling Using Matrix Product States](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012#fulltext)
-- https://github.com/congzlwag/UnsupGenModbyMPS
-- https://congzlwag.github.io/UnsupGenModbyMPS/
-- https://github.com/congzlwag/BornMachineTomo
-- [From Baltzman machine to Born Machine](https://wangleiphy.github.io/talks/BornMachine.pdf)
-- [Born Machines: A fresh approach to quantum machine learning](https://quantum.ustc.edu.cn/web/node/623)
-- [Gradient based training of Quantum Circuit Born Machine (QCBM)](https://github.com/GiggleLiu/QuantumCircuitBornMachine)
 
 ____
 * https://scholar.harvard.edu/madvani/home
@@ -754,6 +756,7 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - https://github.com/oxmlcs/ML_bazaar/wiki/Deep-Learning-and-Probabilistic-Inference
 - https://eng.uber.com/pyro/
 - [Probabilistic Deep Learning with Python](https://www.manning.com/books/probabilistic-deep-learning-with-python)
+- https://livebook.manning.com/book/probabilistic-deep-learning/
 - http://csml.stats.ox.ac.uk/
 - https://fcai.fi/agile-probabilistic
 - http://bayesiandeeplearning.org/2017/papers/59.pdf
@@ -806,23 +809,20 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 ## Statistics and Deep Learning
 
 [A History of Deep Learning](https://www.import.io/post/history-of-deep-learning/)
-
-```
-Mathematician Ivakhnenko and associates including Lapa arguably created the first working deep learning networks in 1965,
-applying what had been only theories and ideas up to that point.
-
-Ivakhnenko developed the Group Method of Data Handling (GMDH) –
-defined as a “family of inductive algorithms for computer-based mathematical modeling of multi-parametric datasets
-that features fully automatic structural and parametric optimization of models” –
-and applied it to neural networks.
-
-For that reason alone, many consider Ivakhnenko the father of modern deep learning.
-
-His learning algorithms used deep feedforward multilayer perceptrons using statistical methods at each layer to find the best features and forward them through the system.
-
-Using GMDH, Ivakhnenko was able to create an 8-layer deep network in 1971,
-and he successfully demonstrated the learning process in a computer identification system called Alpha.
-```
+>Mathematician Ivakhnenko and associates including Lapa arguably created the first working deep learning networks in 1965,
+>applying what had been only theories and ideas up to that point.
+>
+>Ivakhnenko developed the Group Method of Data Handling (GMDH) –
+>defined as a “family of inductive algorithms for computer-based mathematical modeling of multi-parametric datasets
+>that features fully automatic structural and parametric optimization of models” –
+>and applied it to neural networks.
+>
+>For that reason alone, many consider Ivakhnenko the father of modern deep learning.
+>
+>His learning algorithms used deep feedforward multilayer perceptrons using statistical methods at each layer to find the best features and forward them through the system.
+>
+>Using GMDH, Ivakhnenko was able to create an 8-layer deep network in 1971,
+>and he successfully demonstrated the learning process in a computer identification system called Alpha.
 
 - https://zhuanlan.zhihu.com/p/36519666
 - http://blog.shakirm.com/ml-series/a-statistical-view-of-deep-learning/
@@ -834,7 +834,10 @@ and he successfully demonstrated the learning process in a computer identificati
 
 [In short, Neural Networks extract from the data the most relevant part of the information that describes the statistical dependence between the features and the labels. In other words, the size of a Neural Networks specifies a data structure that we can compute and store, and the result of training the network is the best approximation of the statistical relationship between the features and the labels that can be represented by this data structure.](https://lizhongresearch.miraheze.org/wiki/Understanding_the_Power_of_Neural_Networks)
 
+[In this talk, we formulate a new problem called the "universal feature selection" problem, where we need to select from the high dimensional data a low dimensional feature that can be used to solve, not one, but a family of inference problems. We solve this problem by developing a new information metric that can be used to quantify the semantics of data, and by using a geometric analysis approach. We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks)
+
 * http://naftali-tishby.mystrikingly.com/
+* http://lizhongzheng.mit.edu/
 * [Information Theory of Deep Learning](https://adityashrm21.github.io/Information-Theory-In-Deep-Learning/)
 * [Anatomize Deep Learning with Information Theory](https://lilianweng.github.io/lil-log/2017/09/28/anatomize-deep-learning-with-information-theory.html)
 * [“Deep learning - Information theory & Maximum likelihood.”](https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/)
@@ -852,7 +855,7 @@ and he successfully demonstrated the learning process in a computer identificati
 - https://www.math.ias.edu/wtdl
 - [DEEP 3D REPRESENTATION LEARNING](http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf)
 - https://www.mis.mpg.de/ay/index.html
-
+- https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180BigData_info.html
 
 ## Brain Science and AI
 
@@ -933,12 +936,13 @@ In the absence of explanations for such cognitive phenomena, in turn cognitive s
 
 [An AOGNet consists of a number of stages each of which is composed of a number of AOG building blocks. An AOG building block splits its input feature map into $N$ groups along feature channels and then treat it as a sentence of $N$ words. It then jointly realizes a phrase structure grammar and a dependency grammar in bottom-up parsing the “sentence” for better feature exploration and reuse. It provides a unified framework for the best practices developed in state-of-the-art DNNs.](https://arxiv.org/pdf/1711.05847.pdf)
 
-`We first need to understand the underlying wisdom in designing better network
-architectures: It usually lies in finding network structures
-which can support flexible and diverse information flows for
-exploring new features, reusing existing features in previous layers and back-propagating learning signals (e.g., gradients).`
+`We first need to understand the underlying wisdom in designing better network architectures: It usually lies in finding network structures
+which can support flexible and diverse information flows for exploring new features, reusing existing features in previous layers 
+and back-propagating learning signals (e.g., gradients).`
 
 - [AOGNets: Compositional Grammatical Architectures for Deep Learning](https://arxiv.org/pdf/1711.05847.pdf)
+- http://www.stat.ucla.edu/~tfwu/
+- http://www.stat.ucla.edu/~tfwu//project_posts/iRCNN/
 - https://github.com/xilaili/AOGNet
 - https://github.com/iVMCL/AOGNets
 - http://www.stat.ucla.edu/~tfwu/project_posts/AOGNets/

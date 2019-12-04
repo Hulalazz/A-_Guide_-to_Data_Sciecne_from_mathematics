@@ -73,6 +73,21 @@ As shown above, the shape matters. And the distribution can not tell us all the 
 Specially in high dimensional space, it is not easy to depict the shape of data sets in the term of probability distribution function and it is almost impossible to visualize or graph them without dimension reduction.
 ` Capturing all kinds of shape requires different method algebraically.`
 
+[`Topology is and Effective Language to Describe Abstractions of Features from Raw Data`.](http://cscads.rice.edu/2012_CSCADS_pascucci_2.pdf)
+
+- http://cscads.rice.edu/2012_CSCADS_pascucci_2.pdf
+- http://cscads.rice.edu/index.htm
+- http://www.math.zju.edu.cn/redir.php?catalog_id=22&object_id=60501
+- http://xlim-sic.labo.univ-poitiers.fr/jerboa/
+- http://www.sfu.ca/siatclass/IAT355/Spring2014/
+- http://www.cs.columbia.edu/~xie/
+- http://www.csce.uark.edu/~xintaowu/
+- https://www.math.vu.nl/~sbhulai/
+- http://www.cedmav.org/
+- http://www.hpcc.unical.it/hpc2012/
+- http://knowescape.org/
+- https://tdai.osu.edu/tripods-workshop/
+
 Shape of Data:
 * Normally defined in terms of a distance metric.
 * Euclidean distance, Hamming, correlation distance, etc.
@@ -354,6 +369,10 @@ visualization.
 
 ![Wang Bei](http://www.sci.utah.edu/~beiwang/Bei3.jpg)
 
++ [	CSIC 5011: Topological and Geometric Data Reduction and Visualization Fall 2019](https://yao-lab.github.io/2019_csic5011/)
++ https://geometry.stanford.edu/member/guibas/
++ https://math.berkeley.edu/~smale/
++ https://yao-lab.github.io/
 + [A series of blogs on TDA](https://datawarrior.wordpress.com/2015/08/03/tda-1-starting-the-journey-of-topological-data-analysis-tda/)
 + [Topological Data Analysis @ Annual Review of Statistics and Its Application](https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045)
 + [Topological Data Analysis by peterbubenik](https://people.clas.ufl.edu/peterbubenik/intro-to-tda/)
@@ -378,6 +397,19 @@ visualization.
 * https://github.com/stephenhky/PyTDA
 * http://www.columbia.edu/~jss2219/tda/Resources.html
 * [Open Source Software for TDA](http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/SvetlanaLockwood.pdf)
+
+### giotto-learn
+
+[giotto-learn is a high performance topological machine learning toolbox in Python built on top of scikit-learn and is distributed under the Apache 2.0 license. It is part of the Giotto open-source project.](https://github.com/giotto-ai/giotto-learn)
+
+* https://www.giotto.ai/
+* https://pypi.org/project/giotto-learn/
+* https://heig-vd.ch/en/research/reds
+* https://www.l2f.ch/
+* https://www.epfl.ch/labs/hessbellwald-lab/
+* https://github.com/giotto-ai/giotto-learn
+* https://giotto.readthedocs.io/en/latest/index.html
+* https://docs.giotto.ai/
 
 ### Application
 

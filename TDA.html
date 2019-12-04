@@ -1,0 +1,1548 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body {
+  max-width: 980px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 45px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headerlink {
+  font: normal 400 16px fontawesome-mini;
+  vertical-align: middle;
+  margin-left: -16px;
+  float: left;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0;
+  color: #333;
+}
+
+.markdown-body .headerlink:focus {
+  outline: none;
+}
+
+.markdown-body h1 .headerlink {
+  margin-top: 0.8rem;
+}
+
+.markdown-body h2 .headerlink,
+.markdown-body h3 .headerlink {
+  margin-top: 0.6rem;
+}
+
+.markdown-body h4 .headerlink {
+  margin-top: 0.2rem;
+}
+
+.markdown-body h5 .headerlink,
+.markdown-body h6 .headerlink {
+  margin-top: 0;
+}
+
+.markdown-body .headerlink:hover,
+.markdown-body h1:hover .headerlink,
+.markdown-body h2:hover .headerlink,
+.markdown-body h3:hover .headerlink,
+.markdown-body h4:hover .headerlink,
+.markdown-body h5:hover .headerlink,
+.markdown-body h6:hover .headerlink {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* MultiMarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px fontawesome-mini;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\e157';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><style>/*GitHub*/
+.codehilite {background-color:#fff;color:#333333;}
+.codehilite .hll {background-color:#ffffcc;}
+.codehilite .c{color:#999988;font-style:italic}
+.codehilite .err{color:#a61717;background-color:#e3d2d2}
+.codehilite .k{font-weight:bold}
+.codehilite .o{font-weight:bold}
+.codehilite .cm{color:#999988;font-style:italic}
+.codehilite .cp{color:#999999;font-weight:bold}
+.codehilite .c1{color:#999988;font-style:italic}
+.codehilite .cs{color:#999999;font-weight:bold;font-style:italic}
+.codehilite .gd{color:#000000;background-color:#ffdddd}
+.codehilite .ge{font-style:italic}
+.codehilite .gr{color:#aa0000}
+.codehilite .gh{color:#999999}
+.codehilite .gi{color:#000000;background-color:#ddffdd}
+.codehilite .go{color:#888888}
+.codehilite .gp{color:#555555}
+.codehilite .gs{font-weight:bold}
+.codehilite .gu{color:#800080;font-weight:bold}
+.codehilite .gt{color:#aa0000}
+.codehilite .kc{font-weight:bold}
+.codehilite .kd{font-weight:bold}
+.codehilite .kn{font-weight:bold}
+.codehilite .kp{font-weight:bold}
+.codehilite .kr{font-weight:bold}
+.codehilite .kt{color:#445588;font-weight:bold}
+.codehilite .m{color:#009999}
+.codehilite .s{color:#dd1144}
+.codehilite .n{color:#333333}
+.codehilite .na{color:teal}
+.codehilite .nb{color:#0086b3}
+.codehilite .nc{color:#445588;font-weight:bold}
+.codehilite .no{color:teal}
+.codehilite .ni{color:purple}
+.codehilite .ne{color:#990000;font-weight:bold}
+.codehilite .nf{color:#990000;font-weight:bold}
+.codehilite .nn{color:#555555}
+.codehilite .nt{color:navy}
+.codehilite .nv{color:teal}
+.codehilite .ow{font-weight:bold}
+.codehilite .w{color:#bbbbbb}
+.codehilite .mf{color:#009999}
+.codehilite .mh{color:#009999}
+.codehilite .mi{color:#009999}
+.codehilite .mo{color:#009999}
+.codehilite .sb{color:#dd1144}
+.codehilite .sc{color:#dd1144}
+.codehilite .sd{color:#dd1144}
+.codehilite .s2{color:#dd1144}
+.codehilite .se{color:#dd1144}
+.codehilite .sh{color:#dd1144}
+.codehilite .si{color:#dd1144}
+.codehilite .sx{color:#dd1144}
+.codehilite .sr{color:#009926}
+.codehilite .s1{color:#dd1144}
+.codehilite .ss{color:#990073}
+.codehilite .bp{color:#999999}
+.codehilite .vc{color:teal}
+.codehilite .vg{color:teal}
+.codehilite .vi{color:teal}
+.codehilite .il{color:#009999}
+.codehilite .gc{color:#999;background-color:#EAF2F5}
+</style><title>TDA</title></head><body><article class="markdown-body"><h1 id="topological-data-analysis">Topological Data Analysis<a class="headerlink" href="#topological-data-analysis" title="Permanent link"></a></h1>
+<p><img src="https://pic3.zhimg.com/v2-fc5ce3dd30b9f253913b833f4a3d6ccb_b.jpg" width="70%" /></p>
+<p>Topological data analysis(TDA) is potential to find better representation of the data specially the shape of data.
+TDA can visualize the high dimensional data and characterize the intrinsic invariants of the data.
+It is close to computational geometry, manifold learning and computational topology.
+It is one kind of descriptive representation learning.</p>
+<blockquote>
+<p>Problems of data analysis share many features with these two fundamental integration tasks:
+(1) how does one infer high dimensional structure from low dimensional representations;
+and (2) how does one assemble discrete points into global structure.</p>
+</blockquote>
+<p>As <a href="https://sites.google.com/site/nips2012topology/">The NIPS 2012 workshop on Algebraic Topology and Machine Learning</a> puts:</p>
+<blockquote>
+<p>Topological methods and machine learning have long enjoyed fruitful interactions as evidenced by popular algorithms
+like <code>ISOMAP, LLE and Laplacian Eigenmaps</code> which have been borne out of studying point cloud data through the lens of geometry.
+More recently several researchers have been attempting to also understand the algebraic topological properties of data.
+Algebraic topology is a branch of mathematics which uses tools from abstract algebra to study and classify topological spaces.
+The machine learning community thus far has focused almost exclusively on clustering as the main tool for unsupervised data analysis.
+Clustering however only scratches the surface, and algebraic topological methods aim at extracting much richer topological information from data.</p>
+</blockquote>
+<p><img alt="TDA example" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Illustration_of_Typical_Workflow_in_TDA.jpeg/976px-Illustration_of_Typical_Workflow_in_TDA.jpeg" /></p>
+<hr />
+<p><img src = "https://www.ics.uci.edu/~eppstein/junkyard/nested-klein-bottles.jpg" width ="30%"></p>
+<p>Topological Data Analysis as its name shown takes the advantages of topological properties of data, which makes it different from manifold learning or computational geometry.</p>
+<hr />
+<ul>
+<li><a href="https://www.wikiwand.com/en/Topological_data_analysis">https://www.wikiwand.com/en/Topological_data_analysis</a></li>
+<li><a href="https://www.maths.ox.ac.uk/groups/topological-data-analysis">Centre for Topological Data Analysis</a></li>
+<li><a href="https://perfectial.com/blog/topological-data-analysis-overview/">TDA overview</a></li>
+<li><a href="https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1">Topological Data Analysis</a></li>
+<li><a href="http://www.sci.utah.edu/publications/Mal2014a/UUSCI-2014-001.pdf">Topology-Based Active Learning</a></li>
+<li><a href="https://sites.google.com/site/nips2012topology/">The NIPS 2012 workshop on Algebraic Topology and Machine Learning.</a></li>
+<li><a href="http://outlace.com/TDApart1.html">Topological Data Analysis - Part 4 - Persistent Homology</a></li>
+<li><a href="https://www.springer.com/cn/book/9783642150135">Topological Methods in Data Analysis and Visualization @springer</a></li>
+<li><a href="https://jsseely.github.io/notes/TDA/">https://jsseely.github.io/notes/TDA/</a></li>
+<li><a href="http://appliedtopology.org/">Applied topology</a></li>
+<li><a href="http://neurotop2018.org/">WORKSHOP ON TOPOLOGY AND NEUROSCIENCE</a></li>
+<li><a href="https://www.h-its.org/event/workshop-grg-2018/">https://www.h-its.org/event/workshop-grg-2018/</a></li>
+<li><a href="https://sites.google.com/view/dragon-applied-topology">Dragon Applied Topology Conference</a></li>
+<li><a href="http://www.maths.usyd.edu.au/u/tillmann/cats2017/">Computational &amp; Algorithmic Topology, Sydney </a></li>
+<li><a href="http://www.maths.ox.ac.uk/groups/topology/">Oxford Topology</a></li>
+<li><a href="https://cs.nyu.edu/~yap/classes/modeling/06f/">Computational Topology and Geometry: G22.3033.007 &amp; G63.2400, Fall 2006</a></li>
+<li><a href="https://www.cs.montana.edu/tda/">Computational Topology and Geometry (CompTaG)</a></li>
+<li><a href="http://topology.cs.wisc.edu/references.html">Topological Methods for Machine Learning: An ICML 2014 Workshop in Beijing, China</a></li>
+<li><a href="http://bastian.rieck.me/blog/posts/2019/towards_topological_machine_learning/">Towards topological machine learning</a></li>
+<li><a href="https://icerm.brown.edu/tripods/tri17-1-gtd/">Geometry and Topology of Data @ICERM</a></li>
+<li><a href="https://www.ipam.ucla.edu/programs/long-programs/geometry-and-learning-from-data-in-3d-and-beyond/">Geometry and Learning from Data in 3D and Beyond @IPAM</a></li>
+<li><a href="http://kurlin.org/blog/">Topological Data Analysis: theory, examples, applications</a></li>
+<li><a href="http://chomp.rutgers.edu/">http://chomp.rutgers.edu/</a></li>
+<li><a href="http://chomp.rutgers.edu/Projects/Topological_Data_Analysis.html">http://chomp.rutgers.edu/Projects/Topological_Data_Analysis.html</a></li>
+<li><a href="https://www.jstage.jst.go.jp/article/tjsai/32/3/32_D-G72/_pdf">https://www.jstage.jst.go.jp/article/tjsai/32/3/32_D-G72/_pdf</a></li>
+<li><a href="https://scikit-tda.org/">https://scikit-tda.org/</a></li>
+<li><a href="https://people.maths.ox.ac.uk/tillmann/TDA2019.html">https://people.maths.ox.ac.uk/tillmann/TDA2019.html</a></li>
+<li><a href="http://dauns.math.tulane.edu/~mathweb/clifford2012/">http://dauns.math.tulane.edu/~mathweb/clifford2012/</a></li>
+<li><a href="https://www.researchgate.net/profile/Genki_Kusano">https://www.researchgate.net/profile/Genki_Kusano</a></li>
+<li><a href="https://www.researchgate.net/profile/Yasuaki_Hiraoka">https://www.researchgate.net/profile/Yasuaki_Hiraoka</a></li>
+</ul>
+<h2 id="why-tda">Why TDA?<a class="headerlink" href="#why-tda" title="Permanent link"></a></h2>
+<p><a href="https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/">One of the key messages around topological data analysis is that data has <code>shape</code> and the shape matters.</a>
+The shape is always not in the term of probability distribution function or cumulant distribution function.
+<a href="https://www.ias.edu/ideas/2013/lesnick-topological-data-analysis">The basic goal of TDA is to apply topology, one of the major branches of mathematics, to develop tools for studying <code>geometric features of data</code>.</a></p>
+<p>Perhaps the most elegant demonstration of the dangers of <code>summary statistics</code> is <code>Anscombe’s Quartet</code>. It’s a group of four datasets that appear to be similar when using typical summary statistics, yet tell four different stories when graphed. Each dataset consists of eleven $(x,y)$ pairs as follows:</p>
+<p><img src="https://heap-analytics.stamp51.com/wp-content/uploads/2014/04/anscombe_quartet.png" width="70%" /></p>
+<p>As shown above, the shape matters. And the distribution can not tell us all the information the datasets encode.</p>
+<p>Specially in high dimensional space, it is not easy to depict the shape of data sets in the term of probability distribution function and it is almost impossible to visualize or graph them without dimension reduction.
+<code>Capturing all kinds of shape requires different method algebraically.</code></p>
+<p><a href="http://cscads.rice.edu/2012_CSCADS_pascucci_2.pdf"><code>Topology is and Effective Language to Describe Abstractions of Features from Raw Data</code>.</a></p>
+<ul>
+<li><a href="http://cscads.rice.edu/2012_CSCADS_pascucci_2.pdf">http://cscads.rice.edu/2012_CSCADS_pascucci_2.pdf</a></li>
+<li><a href="http://cscads.rice.edu/index.htm">http://cscads.rice.edu/index.htm</a></li>
+<li><a href="http://www.math.zju.edu.cn/redir.php?catalog_id=22&amp;object_id=60501">http://www.math.zju.edu.cn/redir.php?catalog_id=22&amp;object_id=60501</a></li>
+<li><a href="http://xlim-sic.labo.univ-poitiers.fr/jerboa/">http://xlim-sic.labo.univ-poitiers.fr/jerboa/</a></li>
+<li><a href="http://www.sfu.ca/siatclass/IAT355/Spring2014/">http://www.sfu.ca/siatclass/IAT355/Spring2014/</a></li>
+<li><a href="http://www.cs.columbia.edu/~xie/">http://www.cs.columbia.edu/~xie/</a></li>
+<li><a href="http://www.csce.uark.edu/~xintaowu/">http://www.csce.uark.edu/~xintaowu/</a></li>
+<li><a href="https://www.math.vu.nl/~sbhulai/">https://www.math.vu.nl/~sbhulai/</a></li>
+<li><a href="http://www.cedmav.org/">http://www.cedmav.org/</a></li>
+<li><a href="http://www.hpcc.unical.it/hpc2012/">http://www.hpcc.unical.it/hpc2012/</a></li>
+<li><a href="http://knowescape.org/">http://knowescape.org/</a></li>
+<li><a href="https://tdai.osu.edu/tripods-workshop/">https://tdai.osu.edu/tripods-workshop/</a></li>
+</ul>
+<p>Shape of Data:
+* Normally defined in terms of a distance metric.
+* Euclidean distance, Hamming, correlation distance, etc.
+* Encodes similarity.</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://web.stanford.edu/class/archive/ee/ee392n/ee392n.1134/lecture/apr9/ayasdi.pdf">Property</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coordinate Freeness</td>
+</tr>
+<tr>
+<td>Deformation Invariance</td>
+</tr>
+<tr>
+<td>Compressed Representation</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.nature.com/articles/srep01236">Many of the methods currently being used operate as mechanisms for verifying (or disproving) hypotheses generated by an investigator, and therefore rely on that investigator to formulate good models or hypotheses. For many complex data sets, however, the number of possible hypotheses is very large, and the task of generating useful ones becomes very difficult. In this paper, we will discuss a method that allows exploration of the data, without first having to formulate a query or hypothesis. While most approaches to mining big data focus on pairwise relationships as the fundamental building block1, here we demonstrate the importance of understanding the “shape” of data in order to extract meaningful insights.</a></p>
+<p><a href="https://www.nature.com/articles/srep01236">The fundamental idea is that topological methods act as a geometric approach to pattern or shape recognition within data. Recognizing shapes (patterns) in data is critical to discovering insights in the data and identifying meaningful sub-groups. Typical shapes which appear in these networks are “loops” (continuous circular segments) and “flares” (long linear segments). We typically use these template patterns in an informal way, then identify interesting groups using these shapes. For example, we might select groups to be the data points in the nodes concentrated at the end of a flare. </a></p>
+<ul>
+<li><a href="https://heap.io/blog/data-stories/anscombes-quartet-and-why-summary-statistics-dont-tell-the-whole-story">Anscombe’s Quartet, and Why Summary Statistics Don’t Tell the Whole Story</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25547263">https://zhuanlan.zhihu.com/p/25547263</a></li>
+<li><a href="http://www.matrix67.com/blog/archives/2308">http://www.matrix67.com/blog/archives/2308</a></li>
+<li><a href="https://www.ayasdi.com/blog/bigdata/why-topological-data-analysis-works/">Why TDA works?</a></li>
+<li><a href="https://www.ias.edu/ideas/2013/lesnick-topological-data-analysis">Studying the Shape of Data Using Topology</a></li>
+<li><a href="https://www.nature.com/articles/s42256-019-0087-3">Towards a topological–geometrical theory of group equivariant non-expansive operators for data analysis and machine learning</a></li>
+<li><a href="https://zenodo.org/record/3264851#.XYLmjDYzaM9">https://zenodo.org/record/3264851#.XYLmjDYzaM9</a></li>
+</ul>
+<h2 id="topology-basics">Topology Basics<a class="headerlink" href="#topology-basics" title="Permanent link"></a></h2>
+<p>Topology focuses on the invariants with respect to continuous mapping.
+It pays more attention to the geometrical or discrete properties of the objects such as the number of circles or holes.
+It is not distance-based as much as differential geometry.</p>
+<blockquote>
+<p><strong>Definition</strong>: Let $X$ be a non-empty set. A set $\tau$ of subsets of $X$ is said to be a <strong>topology</strong> if
+* $X$ and the empty set $\emptyset$  belong to $\tau$;
+* the union of any number of sets in $\tau$ belongs to $\tau$;
+* the intersection of any two sets in $\tau$ belongs to $\tau$.</p>
+<p>The pair $(X,\tau)$ is called a <strong>topological space</strong>.</p>
+</blockquote>
+<p>As the definition shows the topology may be really not based on the definition of distance or measure. The set can be countable or discountable.e3</p>
+<blockquote>
+<p><strong>Definition</strong>: Let $(X,\tau)$ be a topological space. Then the members of $\tau$ (the subsets of $X$) is said to be <strong>open set</strong>. If $X-S$ is open set, we call $S$ as <strong>closed set</strong>.</p>
+</blockquote>
+<p>From this definition, the open or close set is totally dependent on the set family $\tau$.</p>
+<p>Like others in mathematics, the definition of topology is really abstract and strange like the outer space from the eyes of the ordinary living in the earth.
+Mathematics texts are almostly written in logic order and for the ideal cases. A good piece of news is that topological data analysis does provide many vivid example and concrete application, which does not only consist of mathematical concepts or theorems.</p>
+<p><img alt="spaces" src="https://jsseely.github.io/notes/assets/spaces.jpg" /></p>
+<blockquote>
+<p><strong>Definition</strong> A topological space $(X, \tau)$ is said to be connected if $X$ is not the union of two disjoint nonempty open sets. Consequently, a topological space is disconnected if the union of any two disjoint nonempty subsets in $\tau$ produces $X$.</p>
+</blockquote>
+<h3 id="simplices-and-simplicial-complexes">Simplices and Simplicial Complexes<a class="headerlink" href="#simplices-and-simplicial-complexes" title="Permanent link"></a></h3>
+<p>Topological data analysis employs the use of simplicial complexes, which are complexes of geometric structures called simplices (singular: simplex). TDA uses simplicial complexes because they can approximate more complicated shapes and are much more mathematically and computationally tractable than the original shapes that they approximate.</p>
+<p><a href="https://jsseely.github.io/notes/TDA/">Simplices are discrete building blocks for topological spaces.</a></p>
+<p><a href="https://sauln.github.io/blog/tda_explanations/">A simplicial complex is a generalization of a graph, with a few special features. The most particular feature is that simplicial complexes can contain higher order analogs of vertices and edges, referred to as simplices. Simplices can be the familiar vertices and edges of a graph, or triangles drawn between 3 vertices, tetrahedron between 4 vertices, and higher still.</a></p>
+<p>For example, the probability simplex in $\mathbb{R}^n$ is defined as
+$$\sum_{i=1}^{n}x_i=1,\quad x_i\geq 0\quad \forall i\in{1, 2,  \dots, n}.$$</p>
+<p>In fact, each component in probability simplex is in the interval $[0, 1]$.</p>
+<blockquote>
+<p>An n-simplex $\sigma$ is the convex hull of $n + 1$ affinely ndependent vertices $S=$
+<strong>Definition</strong> A k-simplex in $X$ is an unordered collection of $k + 1$ distinct elements of $X$.</p>
+</blockquote>
+<ul>
+<li><a href="http://ibykus.sdf.org/website/lang/de/algtop/notes4.pdf?lang=de">Simplicial Complexes and Simplicial Homology</a></li>
+<li><a href="http://ibykus.sdf.org/website/lang/de/algtop/">http://ibykus.sdf.org/website/lang/de/algtop/</a></li>
+<li><a href="https://simplicial.readthedocs.io/en/latest/simplicialcomplex.html">https://simplicial.readthedocs.io/en/latest/simplicialcomplex.html</a></li>
+<li><a href="https://simplicial.readthedocs.io/en/latest/index.html">simplicial: Simplicial topology in Python</a></li>
+</ul>
+<p><img alt="simplex" src="http://outlace.com/images/TDAimages/simplices2.svg" /></p>
+<p><a href="https://sauln.github.io/blog/tda_explanations/">Most often, simplicial complexes are built from the <code>nerve of a cover</code>. Intuitively named, a cover of a data set is a collection of subsets of the data such that every data point is in at least one of the subsets. Formally, we say a cover ${U_i}$ of a data set X is satisfies the condition that for any $x \in X$, there exists at least on $U_i \in {U_i}$ such that $x \in U_i$. In practice, we often have that each point is contained in multiple cover elements. <code>The nerve is a simplicial complex created from a cover by collapsing each cover element into vertices and connecting vertices when the cover elements had points in common.</code> If a point was included in two cover elements $U_i$ and $U_j$, then the vertices $\sigma_i, \sigma_j$ would have an edge drawn between them, denoted $\sigma_{ij}$. We continue this process to higher order intersections to create higher order simplices.</a></p>
+<p>The faces of a simplex are its boundaries.</p>
+<blockquote>
+<p><strong>Definition</strong> An <code>abstract simplex</code> is any finite set of vertices.</p>
+<p><strong>Definition</strong>  A <code>complex</code> is a collection of multiple simplices.</p>
+<p><strong>Definition</strong> A <code>simplicial complex</code> $\mathcal {K}$ is a set of simplices that satisfies the following conditions:  </p>
+<ol>
+<li>Any face of a simplex in $\mathcal {K}$ is also in $\mathcal {K}$.</li>
+<li>The intersection of any two simplices $\sigma_{1}, \sigma_{2}\in \mathcal {K}$ is either $\emptyset$ or a face of both $\sigma_{1}$ and $\sigma_{2}$.</li>
+</ol>
+<p><strong>Definition (Vietoris-Rips Complex)</strong>
+If we have a set of points $P$ of dimension $d$, and $P$ is a subset of $R^d$, then the Vietoris-Rips (VR) complex $V_{\epsilon}(P)$ at scale $\epsilon$ (the VR complex over the point cloud $P$ with parameter $\epsilon$) is defined as:
+$$
+V_{\epsilon}(P) = {\sigma\subset P\mid d(u, v)\leq \epsilon,\forall u≠v\in\sigma}
+$$</p>
+</blockquote>
+<p>These VR complexes have been used as a way of associating a simplicial complex to point cloud data sets.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<ol>
+<li><strong>Flag/clique complexes</strong> : Given a graph (network) $X$, the flag complex or clique complex of $X$ is the maximal simplicial complex $X$ that has the graph as its 1-skeleton: $X^{(1)}=X$.</li>
+<li><strong>Banner Complexes</strong>: <a href="https://sites.math.washington.edu/~novik/publications/banner.pdf">From flag complexes to banner complexes</a></li>
+<li><strong>Nerve Complexes</strong>: <strong>Nerves</strong>
+Let $X$ be a topological space and $U = {U_{\alpha}}<em _alpha_0="\alpha_0">{\alpha\in A}$ a covering
+of $X$.
+The nerve of $U$, denoted $N(U)$, is the abstract simplicial complex with vertex set $A$ and where ${\alpha_0, \cdots , \alpha_k }$ spans a k-simplex if and only if
+$$U</em>\cap\cdots\cap U_{\alpha_k}\not=\emptyset.$$</li>
+</ol>
+</blockquote>
+</blockquote>
+</blockquote>
+<ol>
+<li><strong>Dowker Complexes</strong>: For simplicity, let $X$ and $Y$ be finite sets with #R \subset X\times Y$ representing
+the ones in a binary matrix (also denoted R) whose columns are indexed by $X$
+and whose rows are indexed by $Y$. The <code>Dowker complex</code> of $R$ on $X$ is the simplicial
+complex on the vertex set $X$ defined by the rows of the matrix $R$. That is, each
+row of $R$ determines a subset of $X$: use these to generate a simplex and all its
+faces. Doing so for all the rows gives the Dowker complex on $X$. There is a dual
+Dowker complex on $Y$ whose simplices on the vertex set $Y$ are determined by the
+ones in columns of $R$.</li>
+<li><strong>Cell Complexes</strong>: <a href="http://jeffe.cs.illinois.edu/teaching/comptop/2009/notes/cell-complexes.pdf">Cell Complexes: Definitions</a></li>
+</ol>
+<p><a href="https://ncatlab.org/nlab/show/CW+complex">https://ncatlab.org/nlab/show/CW+complex</a>   </p>
+<p><img src="https://jsseely.github.io/notes/assets/toruscomplex.jpg" /></p>
+<p><strong>Nerve Theorem</strong>
+$X$ and $U$ as above, $U$ a covering by open sets which is enumerable. Suppose further that for all $\emptyset \not= S \subset A$ we have that $\cap_{s\in S} U_s$
+is either empty or contractible. Then $N(U)$ is homotopy equivalent to $X$.</p>
+<hr />
+<blockquote>
+<p><strong>Definition</strong> A family $\Delta$ of non-empty finite subsets of a set $S$ is an <code>abstract simplicial complex</code> if, for every set $X$ in $\Delta$, and every non-empty subset $Y \subset X$, $Y$ also belongs to $\Delta$.</p>
+<p><strong>Definition</strong> The <code>n-chain</code>, denoted $C_n(S)$ is the subset of an oriented abstract simplicial complex $S$ of n-dimensional simplicies.</p>
+<p><strong>Definition</strong> The <code>boundary</code> of an n-simplex $X$ with vertex set $[v_0, v_1, v_2,&hellip;v_n]$, denoted $\partial(X)$, is:
+$$\partial(X)=\sum_{i=0}^{n}(−1)^i[v_0, v_1, v_2,&hellip;v_n],$$
+where the i-th vertex is removed from the sequence.</p>
+</blockquote>
+<h4 id="betti-numbers-and-persistence-diagram">Betti numbers and Persistence Diagram<a class="headerlink" href="#betti-numbers-and-persistence-diagram" title="Permanent link"></a></h4>
+<p><a href="https://math.duke.edu/events/78736-betti-numbers-persistence-diagrams-and-minimal-spanning-acycles-random-complexes">Betti numbers and Persistence Diagram (PD) are topological descriptors of a simplicial complex; while Betti numbers count holes of different dimensions, PD tracks the birth and death instances of distinct topological features as the complex is sequentially built piece by piece. Separately, a Minimal Spanning Acycle (MSA) generalizes the notion of a minimal spanning tree to weighted simplicial complexes. </a></p>
+<ul>
+<li><a href="https://topospaces.subwiki.org/wiki/Betti_number">https://topospaces.subwiki.org/wiki/Betti_number</a></li>
+<li><a href="http://www.math.jhu.edu/~jmb/note/">http://www.math.jhu.edu/~jmb/note/</a></li>
+</ul>
+<h3 id="persistent-homology">Persistent Homology<a class="headerlink" href="#persistent-homology" title="Permanent link"></a></h3>
+<p>Persistent homology (henceforth just PH) gives us a way to find interesting patterns in data without having to &ldquo;downgrade&rdquo; the data in anyway so we can see it.</p>
+<p><a href="https://www.birs.ca/workshops/2012/12w5081/report12w5081.pdf">Perhaps the most important idea in applied algebraic topology is persistence. It is a response to the first difficulty that one encounters in attempting to assign topological invariants to statistical data sets: that the topology is not robust and has a sensitive dependence on the length scale at which the data set is being considered. The solution is to calculate the topology (specifically the homology) at all scales simultaneously, and to encode the relationship between the different scales in an algebraic invariant called the persistence diagram.</a></p>
+<p><img src = "https://pic4.zhimg.com/v2-bca1bc948527745f786d80427fd816f1_1200x500.jpg" width = "50%" /></p>
+<hr />
+<p><a href="https://jsseely.github.io/notes/TDA/">Persistent homology “generalizes clustering” in two ways: first, that it includes higher-order homological features in addition to the 0th order feature (i.e. the clusters); second, that it includes a persistence parameter that tells us what homological features exist at which scales. One only has to look to the ubiquity of clustering to see that persistent homology is a sensible thing to do.</a></p>
+<p>Robert Ghrist said that</p>
+<blockquote>
+<p>Homology is the simplest, general, computable invariant of topological data. In its most primal manifestation, the homology of a space $X$ returns a sequence of vector spaces $H•(X)$, the dimensions of which count various types of linearly independent holes in $X$. Homology is inherently linear-algebraic, but transcends linear algebra, serving as the inspiration for homological algebra. It is this algebraic engine that powers the subject.</p>
+<p><strong>Definition</strong> A <code>homotopy</code> between maps, $f_0 \simeq f_1 : X \to Y$ is a continuous 1-parameter family of maps $f_t: X \to Y$.
+A <code>homotopy equivalence</code> is a map $f : X \to Y$ with a homotopy inverse, $g: Y \to X$ satisfying $f \circ g \simeq {Id}_Y$ and $g \circ f \simeq {Id}_X$.</p>
+</blockquote>
+<p><img alt="Greedy optimal homotopy and homology generators Written with Kim Whittlesey" src="http://jeffe.cs.illinois.edu/pubs/pix/gohog.gif" />
+<img alt="HomotopySmall" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/HomotopySmall.gif" /></p>
+<p><strong>Euler Characteristic</strong></p>
+<hr />
+<ul>
+<li><a href="http://outlace.com/TDApart1.html">http://outlace.com/TDApart1.html</a></li>
+<li><a href="http://outlace.com/TDApart2.html">http://outlace.com/TDApart2.html</a></li>
+<li><a href="http://outlace.com/TDApart3.html">http://outlace.com/TDApart3.html</a></li>
+<li><a href="http://outlace.com/TDApart4.html">http://outlace.com/TDApart4.html</a></li>
+<li><a href="http://outlace.com/TDApart5.html">http://outlace.com/TDApart5.html</a></li>
+<li><a href="https://www.math.upenn.edu/~ghrist/preprints/HAD.pdf">Homological Algebra and Data by Robert Ghrist</a></li>
+<li><a href="https://ncatlab.org/nlab/show/homotopy+theory">homotopy theory</a></li>
+<li><a href="https://github.com/henryadams/Leiden-PersistentHomology/wiki">Henry Adams: Persistent Homology</a></li>
+</ul>
+<hr />
+<ul>
+<li><a href="https://www.wikiwand.com/en/Topology">https://www.wikiwand.com/en/Topology</a></li>
+<li><a href="http://www.topologywithouttears.net/">Topology Without Tears by Sidney A. Morris</a></li>
+<li><a href="https://www.ics.uci.edu/~eppstein/junkyard/topo.html">Geometric Topology</a></li>
+<li><a href="https://www.ayasdi.com/blog/artificial-intelligence/relationships-geometry-artificial-intelligence/">Relationships, Geometry, and Artificial Intelligence</a></li>
+</ul>
+<h3 id="tda">TDA<a class="headerlink" href="#tda" title="Permanent link"></a></h3>
+<p>Topological data analysis as one data processing method is selected topic for some students on computer science and applied mathematics.
+It is not popular for the statisticians, where there is no estimation and test.</p>
+<p>Topological data analysis (TDA) refers to statistical methods that find structure in data. As the
+name suggests, these methods make use of topological ideas. Often, the term TDA is used narrowly
+to describe a particular method called <strong>persistent homology</strong>.</p>
+<p>TDA, which originates from mathematical topology, is a discipline that studies shape. It’s concerned with measuring the shape, by means applying math functions to data, and with representing it in forms of topological networks or combinatorial graphs.</p>
+<blockquote>
+<p>Topological data analysis is more fundamental than revolutionary: such methods are not intended to supplant analytic, probabilistic, or spectral techniques. They can however reveal a deeper basis for why some data sets and systems behave the way they do. It is unwise to wield topological techniques in isolation, assuming that the weapons of unfamiliar &ldquo;higher&rdquo; mathematics are clad in incorruptible silver</p>
+</blockquote>
+<p>There is another field that deals with the topological and geometric structure of data: computational geometry.
+The main difference is that in TDA we treat the data as random points,
+whereas in computational geometry the data are usually seen as fixed.</p>
+<p><img alt="tda" src="http://brickisland.net/DDGSpring2016/wp-content/uploads/2016/01/tda-300x208.png" /></p>
+<p>TDA can be applied to <code>manifold estimation, nonlinear dimension reduction, mode estimation, ridge estimation and persistent homology</code>.</p>
+<ul>
+<li><a href="https://radiology.ucsf.edu/events/idac-tda-workshop-topological-data-analysis-discovery-multi-scalar-biomedical-data-%E2%80%93">IDAC TDA Workshop: Topological Data Analysis for Discovery in Multi-scalar Biomedical Data – Applications in Musculoskeletal Imaging</a></li>
+<li><a href="http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/">International Workshop on Topological Data Analysis in Biomedicine (TDA-Bio)  Seattle, WA, October 2, 2016</a></li>
+<li><a href="http://machinelearning.math.rs/Jekic-TDA.pdf">Deep Learning with Topological Signatures - Persistent Homology and Machine Learning</a></li>
+<li><a href="http://math.ens-paris-saclay.fr/version-francaise/formations/master-mva/contenus-/topological-data-analysis-for-imaging-and-machine-learning--377025.kjsp?RH=1242430202531">Topological data analysis for imaging and machine learning</a></li>
+<li><a href="https://arxiv.org/abs/1812.02987">Time Series Featurization via Topological Data Analysis</a></li>
+<li><a href="http://www.cspaul.com/wordpress/publications_choudhury-2012-pv/">Topological Analysis and Visualization of Cyclical Behavior in Memory Reference Traces</a></li>
+<li><a href="http://tdaphenomics.eecs.wsu.edu/">http://tdaphenomics.eecs.wsu.edu/</a></li>
+<li><a href="https://wasp-sweden.org/topological-data-analysis/">https://wasp-sweden.org/topological-data-analysis/</a></li>
+<li><a href="http://unboxai.org/">http://unboxai.org/</a></li>
+<li><a href="https://donaldpinckney.com/machine%20learning/2019/05/02/tda.html">Topological Data Analysis and Persistent Homology</a></li>
+<li><a href="https://arxiv.org/pdf/1904.11044.pdf">An Introduction to Topological Data Analysis for Physicists: From LGM to FRBs</a></li>
+</ul>
+<h4 id="persistence-way">Persistence-Way<a class="headerlink" href="#persistence-way" title="Permanent link"></a></h4>
+<p><a href="http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/SvetlanaLockwood.pdf">Topological analysis using persistent homology</a>
+* Finds topological invariants in data (# of connected components, enclosed voids, etc.)
+* Input: a (density) function, $f$
+* Output: topological structures &amp; their <em>persistence</em>
+* Def: given threshold $t$, the superlevel set $f^{-1}(t)={x\mid f(x)\geq t}$.
+  * the true structures are hidden in superlevel sets
+  * consider the whole stack of superlevel sets
+  * identify structures that often appear (high persistence)
+  * Output: persistence diagram – dots representing all structures</p>
+<p><a href="https://www.math.upenn.edu/~ghrist/preprints/barcodes.pdf">It is beneficial to encode the persistent homology of a data set in the form
+of a parameterized version of a Betti number: a barcode.</a></p>
+<ul>
+<li><a href="http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/ChaoChen.pdf">http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/ChaoChen.pdf</a></li>
+<li><a href="https://www.math.upenn.edu/~ghrist/preprints/barcodes.pdf">BARCODES: THE PERSISTENT TOPOLOGY OF DATA</a></li>
+</ul>
+<h4 id="tda-mapper">TDA Mapper<a class="headerlink" href="#tda-mapper" title="Permanent link"></a></h4>
+<p><a href="https://jsseely.github.io/notes/TDA/">The key insight offered by this technique is that many interesting “clusters” in real data are not clusters in the classical sense (as disconnected components), but are the branches of some single connected component. Think about the three “clusters” in the shape $Y$. As simple as this sounds, this insight has been driving real progress in cancer genomics (where the “clusters” are rarely true clusters), and I suspect this method (or some reinvention of it) will find its ways into more fields in due time.</a></p>
+<p><img scr="https://pic4.zhimg.com/80/v2-285bd03f800512b2bbe450e940496a8f_hd.png" width="80%" /></p>
+<ul>
+<li>Apply a filter function to project data onto a lower dimensional space</li>
+<li>Performs partial clustering in the level sets</li>
+</ul>
+<p>Mapper is an important tool used in TDA for data
+visualization.
+* Input
+  * point cloud;
+  * “filter function;”
+  * covering of a metric space;
+  * clustering algorithm;
+  * various other parameters.
+* Output
+  * Graph (or higher simplicial complex) which is thought to capture aspects of the topology of the point cloud.</p>
+<p><a href="https://jdc.math.uwo.ca/TDA/Herring-Mapper.pdf">Mapper gives a multi-resolution, low dimensional picture of the point cloud. It’s highly customizable, and has a track record of revealing structure that clustering and (linear or nonlinear) “projection pursuit” methods miss.</a></p>
+<ul>
+<li><a href="https://jdc.math.uwo.ca/TDA/Herring-Mapper.pdf">The Mapper Algorithm Western TDA Learning Seminar</a></li>
+<li><a href="https://topology-tool-kit.github.io/">Topology ToolKit: Efficient, generic and easy Topological data analysis and visualization</a></li>
+<li><a href="http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html">Data Visualization with TDA Mapper, Spring 2018</a></li>
+<li><a href="http://danifold.net/mapper/">http://danifold.net/mapper/</a></li>
+<li><a href="https://github.com/scikit-tda/kepler-mapper">https://github.com/scikit-tda/kepler-mapper</a></li>
+<li><a href="https://www.ayasdi.com/">https://www.ayasdi.com/</a></li>
+<li><a href="https://www.nature.com/articles/srep01236">Extracting insights from the shape of complex data using topology</a>.</li>
+<li><a href="http://www.ayasdi.com/wp-content/uploads/2015/02/Topological_Methods_for_the_Analysis_of_High_Dimensional_Data_Sets_and_3D_Object_Recognition.pdf">Topological Methods for the Analysis of High Dimensional Data Sets and 3D Object Recognition</a></li>
+</ul>
+<hr />
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/31734839">https://zhuanlan.zhihu.com/p/31734839</a></li>
+<li><a href="https://arxiv.org/abs/1712.10197">Interesting Paths in the Mapper</a></li>
+<li><a href="https://xperthut.github.io/HYPPO-X/">A header only software library helps to visually discover the insights of high dimensional complex data set.</a></li>
+<li><a href="https://www.biorxiv.org/content/10.1101/159954v2">Toward A Scalable Exploratory Framework for Complex High-Dimensional Phenomics Data</a></li>
+<li><a href="https://sauln.github.io/blog/tda_explanations/">Machine Learning Explanations with Topological Data Analysis</a></li>
+</ul>
+<h4 id="density-cluster-with-tda">Density Cluster with TDA<a class="headerlink" href="#density-cluster-with-tda" title="Permanent link"></a></h4>
+<ul>
+<li><a href="https://umap-learn.readthedocs.io/en/latest/index.html">UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction</a></li>
+</ul>
+<h3 id="resource">Resource<a class="headerlink" href="#resource" title="Permanent link"></a></h3>
+<p><a href="http://kurlin.org/index.php"><strong>Dr Vitaliy Kurlin</strong></a>
+<a href="http://kurlin.org/applied-algebraic-topology.html">Applied Algebraic Topology (AAT) network in the UK</a></p>
+<hr />
+<p><a href="http://www.sci.utah.edu/~beiwang/">Wang Bei</a> was a PI of <a href="http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html">DBI: ABI Innovation: A Scalable Framework for Visual Exploration and Hypotheses Extraction of Phenomics Data using Topological Analytics</a>.</p>
+<p><img alt="Wang Bei" src="http://www.sci.utah.edu/~beiwang/Bei3.jpg" /></p>
+<ul>
+<li><a href="https://datawarrior.wordpress.com/2015/08/03/tda-1-starting-the-journey-of-topological-data-analysis-tda/">A series of blogs on TDA</a></li>
+<li><a href="https://www.annualreviews.org/doi/10.1146/annurev-statistics-031017-100045">Topological Data Analysis @ Annual Review of Statistics and Its Application</a></li>
+<li><a href="https://people.clas.ufl.edu/peterbubenik/intro-to-tda/">Topological Data Analysis by peterbubenik</a></li>
+<li><a href="https://topology.ima.umn.edu/"> Applied Algebraic Topology Research Network</a></li>
+<li><a href="https://www.math.colostate.edu//~adams/research/">Henry Adams interests in computational topology and geometry, combinatorial topology, and applied topology</a></li>
+<li><a href="https://www.math.upenn.edu/~ghrist/research.html">Robert Ghrist&rsquo;s research is in applied topology that is, applications of topology to engineering systems, data, dynamics, &amp; more</a></li>
+<li><a href="http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html">CSE 5559: Computational Topology and Data Analysis by Tamal K Dey </a></li>
+<li><a href="http://www.stat.cmu.edu/topstat/presentations.html">CMU TopStat</a></li>
+<li><a href="http://www.stat.cmu.edu/research/statistical-theory-methodology/252">Topological &amp; Functional Data Analysis @ CMU</a></li>
+<li><a href="https://perfectial.com/blog/topological-data-analysis-overview/">Topological Data Analysis: an Overview of the World’s Most Promising Data Mining Methodology</a></li>
+<li><a href="http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017/">Index of /~beiwang/teaching/cs6170-spring-2017</a></li>
+<li><a href="https://dsweb.siam.org/The-Magazine/Article/topological-data-analysis-1">Topological Data Analysis: One Applied Mathematician’s Heartwarming Story of Struggle, Triumph, and (Ultimately) More Struggle By Chad Topaz</a></li>
+<li><a href="https://www.turing.ac.uk/research/research-projects/scalable-topological-data-analysis">Scalable topological data analysis</a></li>
+<li><a href="https://www.dagstuhl.de/de/programm/kalender/semhp/?semnr=19212">Topology, Computation and Data Analysis</a></li>
+<li><a href="https://jdc.math.uwo.ca/TDA/">Topological Data Analysis Learning Seminar, Summer 2018</a></li>
+<li><a href="https://www-apr.lip6.fr/~tierny/topologicalDataAnalysisClass.html">https://www-apr.lip6.fr/~tierny/topologicalDataAnalysisClass.html</a></li>
+<li><a href="http://www.science.unitn.it/cirm/TDAPH2018.html">Topological Data Analysis and Persistent Homology</a></li>
+<li><a href="http://www.columbia.edu/~jss2219/tda/">http://www.columbia.edu/~jss2219/tda/</a></li>
+<li><a href="https://github.com/henryadams/Charleston-TDA-ML">https://github.com/henryadams/Charleston-TDA-ML</a></li>
+<li><a href="https://github.com/prokopevaleksey/TDAforCNN">https://github.com/prokopevaleksey/TDAforCNN</a></li>
+<li><a href="https://github.com/ognis1205/spark-tda">https://github.com/ognis1205/spark-tda</a></li>
+<li><a href="https://github.com/stephenhky/PyTDA">https://github.com/stephenhky/PyTDA</a></li>
+<li><a href="http://www.columbia.edu/~jss2219/tda/Resources.html">http://www.columbia.edu/~jss2219/tda/Resources.html</a></li>
+<li><a href="http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/SvetlanaLockwood.pdf">Open Source Software for TDA</a></li>
+</ul>
+<h3 id="giotto-learn">giotto-learn<a class="headerlink" href="#giotto-learn" title="Permanent link"></a></h3>
+<p><a href="https://github.com/giotto-ai/giotto-learn">giotto-learn is a high performance topological machine learning toolbox in Python built on top of scikit-learn and is distributed under the Apache 2.0 license. It is part of the Giotto open-source project.</a></p>
+<ul>
+<li><a href="https://www.giotto.ai/">https://www.giotto.ai/</a></li>
+<li><a href="https://pypi.org/project/giotto-learn/">https://pypi.org/project/giotto-learn/</a></li>
+<li><a href="https://heig-vd.ch/en/research/reds">https://heig-vd.ch/en/research/reds</a></li>
+<li><a href="https://www.l2f.ch/">https://www.l2f.ch/</a></li>
+<li><a href="https://www.epfl.ch/labs/hessbellwald-lab/">https://www.epfl.ch/labs/hessbellwald-lab/</a></li>
+<li><a href="https://github.com/giotto-ai/giotto-learn">https://github.com/giotto-ai/giotto-learn</a></li>
+<li><a href="https://giotto.readthedocs.io/en/latest/index.html">https://giotto.readthedocs.io/en/latest/index.html</a></li>
+</ul>
+<h3 id="application">Application<a class="headerlink" href="#application" title="Permanent link"></a></h3>
+<ul>
+<li><a href="http://tdaphenomics.eecs.wsu.edu/">http://tdaphenomics.eecs.wsu.edu/</a></li>
+<li><a href="https://web.stanford.edu/group/bdl/blog/tda-cme-paper/">Topological Data Analysis of fMRI data：11 Apr 2018 by Manish Saggar</a></li>
+<li><a href="https://rabadan.c2b2.columbia.edu/courses">Topological Data Analysis for Genomics and Applications to Cancer</a></li>
+<li><a href="https://meetingorganizer.copernicus.org/EGU2018/EGU2018-10825.pdf">Topological Data Analysis and Machine Learning for Classifying Atmospheric River Patterns in Large Climate Datasets</a></li>
+<li><a href="http://www.sci.utah.edu/~beiwang/tdaphenomics/tdaphenomics.html">DBI: ABI Innovation: A Scalable Framework for Visual Exploration and Hypotheses Extraction of Phenomics Data using Topological Analytics</a></li>
+<li><a href="http://www.chadgiusti.com/bib.html">Algebraic topology and neuroscience: a bibliography</a></li>
+<li><a href="https://www.cell.com/cell-reports/pdf/S2211-1247(17)31113-0.pdf">Mass Cytometry and Topological Data Analysis Reveal Immune Parameters Associated with Complications after Allogeneic Stem Cell Transplantation</a></li>
+<li><a href="http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/YusuWang.pdf">Two Applications of Topological Methods for Neuronal Morphology Analysis</a></li>
+<li><a href="http://www.sci.utah.edu/~beiwang/acmbcbworkshop2016/slides/ElizabethMunch.pdf">Utilizing Topological Data Analysis to Detect Periodicity</a></li>
+<li><a href="http://homepage.divms.uiowa.edu/~idarcy/2011workshop.html">Topological Problems in Molecular Biology, American Mathematical Society Central Section</a></li>
+<li><a href="https://www.ripublication.com/ijaer19/ijaerv14n2_34.pdf">A survey of Topological Data Analysis Methods for Big Data in Healthcare Intelligence</a></li>
+</ul>
+<h2 id="computational-topology">Computational Topology<a class="headerlink" href="#computational-topology" title="Permanent link"></a></h2>
+<p>Computational topology is the mathematical theoretic foundation of topological data analysis. It is different from the deep neural network that origins from the engineering or the simulation to biological neural network.
+Topological data analysis is principle-driven and application-inspired in some sense.</p>
+<p><a href="http://jeffe.cs.illinois.edu/teaching/comptop/">CS 598: Computational Topology Spring 2013</a> covers the following topics:</p>
+<blockquote>
+<p>Potential mathematical topics include the topology of <strong>cell complexes, topological graph theory, homotopy, covering spaces, simplicial homology, persistent homology, discrete Morse theory, discrete differential geometry, and normal surface theory. Potential computing topics include algorithms for computing topological invariants, graphics and geometry processing, mesh generation, curve and surface reconstruction, VLSI routing, motion planning, manifold learning, clustering, image processing, and combinatorial optimization</strong>.</p>
+</blockquote>
+<p><img src = "http://jeffe.cs.illinois.edu/teaching/comptop/Fig/codex-bugs.png" width = 40% /></p>
+<ul>
+<li><a href="http://people.maths.ox.ac.uk/nanda/cat/index.html">Computational Algebraic Topology</a></li>
+<li><a href="https://datawarrior.wordpress.com/">https://datawarrior.wordpress.com/</a></li>
+<li><a href="http://people.maths.ox.ac.uk/tillmann/CAT.html">http://people.maths.ox.ac.uk/tillmann/CAT.html</a></li>
+<li><a href="https://turing-seminar.github.io/">Theory and Algorithms in Data Science</a></li>
+<li><a href="http://graphics.stanford.edu/courses/cs468-09-fall/">http://graphics.stanford.edu/courses/cs468-09-fall/</a></li>
+<li><a href="https://graphics.stanford.edu/courses/cs468-02-fall/schedule.html">CS 468 - Fall 2002: Introduction to  Computational  Topology</a></li>
+<li><a href="http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf">http://people.maths.ox.ac.uk/nanda/source/RSVWeb.pdf</a></li>
+<li><a href="https://jeremykun.com/tag/computational-topology/">The Čech Complex and the Vietoris-Rips Complex</a></li>
+<li><a href="http://jeffe.cs.illinois.edu/teaching/comptop/">CS 598: Computational Topology , Spring 2013, Jeff Erickson</a></li>
+<li><a href="http://www.enseignement.polytechnique.fr/informatique/INF556/">INF556 &ndash; Topological Data Analysis (2018-19) Steve Oudot</a></li>
+<li><a href="https://www.kth.se/student/kurser/kurs/SF2956?l=en">SF2956 Topological Data Analysis 7.5 credits</a></li>
+<li><a href="https://cs.nyu.edu/~yap/classes/modeling/06f/">Computational Topology and Geometry G22.3033.007 &amp; G63.2400, Fall 2006 @NYU</a></li>
+<li><a href="https://courses.maths.ox.ac.uk/node/161">C3.9 Computational Algebraic Topology (2016-2017)</a></li>
+<li><a href="https://www2.cs.duke.edu/courses/fall06/cps296.1/">CPS296.1: COMPUTATIONAL TOPOLOGY @Duke</a></li>
+<li><a href="http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html">Math 574&ndash;Introduction to Computational Topology (Spring 2016)</a></li>
+<li><a href="https://blogs.cofc.edu/cbms-tda2019/">NSF-CBMS Conference and Software Day on Topological Methods in Machine Learning and Artificial Intelligence: May 13–17 and May 18, 2019. Department of Mathematics, College of Charleston, South Carolina</a></li>
+<li><a href="http://cunygc.appliedtopology.nyc/">Data science and applied topology</a></li>
+<li><a href="https://sauln.github.io/blog/tda_explanations/">Machine Learning Explanations with Topological Data Analysis</a></li>
+<li><a href="https://www.birs.ca/workshops/2012/12w5081/report12w5081.pdf">Topological Data Analysis and Machine Learning Theory</a></li>
+<li><a href="https://ima.umn.edu/2013-2014/">https://ima.umn.edu/2013-2014/</a></li>
+</ul>
+<p><img src = "http://www.math.wsu.edu/faculty/bkrishna/pics/MultipleTunnels.png" width= "20%" />
+<img src="http://kurlin.org/images/topdatanalysis.png"></p>
+<h2 id="computational-geometry">Computational Geometry<a class="headerlink" href="#computational-geometry" title="Permanent link"></a></h2>
+<p><a href="https://shapeofdata.wordpress.com/">https://shapeofdata.wordpress.com/</a></p>
+<p><code>Computational geometry</code> uses some information of samples or local information of the geometrical objects to reconstruct/describe  the whole object.
+In computer vision, the task <code>3D reconstruction</code> is  a typical example of computational geometry.</p>
+<ul>
+<li><a href="https://www.mathsoc.jp/meeting/msjsi08/">Probabilistic Approach to Geometry</a></li>
+<li><a href="http://www.geometry.caltech.edu/">Applied Geometry Lab @Caltech</a></li>
+<li><a href="https://team.inria.fr/titane/">Titane: Geometric Modeling of 3D Environments</a></li>
+<li><a href="https://cs.nyu.edu/~yap/classes/modeling/05s/">Computational Geometry and Modeling G22.3033.007 Spring 2005</a></li>
+<li><a href="http://www.multires.caltech.edu/research/research.htm">Multi-Res Modeling Group@Caltech</a></li>
+<li><a href="http://geometry.cse.msu.edu/">Geometry in Graphics Group in Computer Science and Engineering@Michigan State University</a></li>
+<li><a href="http://eecs.oregonstate.edu/socg19/">Computational Geometry Week (CG Week) 2019</a></li>
+<li><a href="https://drona.csa.iisc.ac.in/~gsat/Course/CGT/">Computational Geometry and Topology</a></li>
+<li><a href="http://www.computational-geometry.org/">http://www.computational-geometry.org/</a></li>
+<li><a href="https://www.csun.edu/~ctoth/Handbook/">Handbook of Discrete and Computational Geometry —Third Edition— edited by Jacob E. Goodman, Joseph O&rsquo;Rourke, and Csaba D. Tóth</a></li>
+<li><a href="http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/">http://brickisland.net/DDGSpring2016/2016/01/22/reading-3-topological-data-analysis/</a></li>
+<li><a href="http://graphics.stanford.edu/courses/cs468-14-winter/">http://graphics.stanford.edu/courses/cs468-14-winter/</a></li>
+<li><a href="https://drona.csa.iisc.ac.in/~gsat/Course/CGT/">https://drona.csa.iisc.ac.in/~gsat/Course/CGT/</a></li>
+<li><a href="http://www.computational-geometry.org/">http://www.computational-geometry.org/</a></li>
+<li><a href="https://project.inria.fr/gudhi/">https://project.inria.fr/gudhi/</a></li>
+<li><a href="http://web.cse.ohio-state.edu/~wang.1016/courses/788/">http://web.cse.ohio-state.edu/~wang.1016/courses/788/</a></li>
+<li><a href="http://gudhi.gforge.inria.fr/">Higher Dimensional Geometry Understanding</a></li>
+</ul>
+<p><img alt="discrete differential geomety" src="http://brickisland.net/DDGSpring2019/wp-content/uploads/2019/01/cropped-cropped-header.png" /></p>
+<ul>
+<li><a href="http://homepage.divms.uiowa.edu/~idarcy/AppliedTopology.html#home">MATH:7450 (22M:305) Topics in Topology: Scientific and Engineering Applications of Algebraic Topology</a></li>
+</ul>
+<h2 id="geometric-data-analysis">Geometric Data Analysis<a class="headerlink" href="#geometric-data-analysis" title="Permanent link"></a></h2>
+<p><a href="http://cs233.stanford.ed">http://cs233.stanford.ed</a>
+<a href="https://tgda.osu.edu/">https://tgda.osu.edu/</a></p>
+<p><code>Geometric Data Analysis</code> and topological data analysis are out of the mainstream of quantitative statistics while the quantity also matters in geometric data analysis.
+In conventional statistics, the core concepts are distribution (count in brief) and in/dependence, which is regarded as the reverse engineer of the probability theory. It is supposed that the  data is embedded in some &ldquo;flat&rdquo; subspace in $\mathbb{R}^n$ in the past. <a href="http://bactra.org/notebooks/statistics-on-manifolds.html">Statistics on Manifold</a> and geometry information extends statistics into higher geometrical level.</p>
+<ul>
+<li><a href="http://appliedtopology.org/geometric-data-analysis-u-chicago-may-20-23-2019/">GEOMETRIC DATA ANALYSIS, U CHICAGO, MAY 20-23 2019</a></li>
+<li><a href="https://www.stat.washington.edu/mmp/geometry/reading-group17/html/gda-home.html">Geometric Data Analysis Reading Group</a></li>
+<li><a href="http://www-sop.inria.fr/abs/teaching/centrale-FGMDA/centrale-FGMDA.html">Foundations of Geometric Methods in Data Analysis</a></li>
+<li><a href="http://cs233.stanford.edu/">CS233 Class Schedule for Spring Quarter &lsquo;17-&lsquo;18</a></li>
+<li><a href="http://www.maths.nuigalway.ie/~mstudies/MA500/">MA500 Geometric Foundations of Data Analysis</a></li>
+<li><a href="http://www.clrc.rhul.ac.uk/slds2015/SS_GDA.html">Special Session on Geometric Data Analysis</a></li>
+<li><a href="https://www.frias.uni-freiburg.de/en/events/conferences/workshop-statistics-for-geometric-data-title">Workshop - Statistics for geometric data and applications to anthropology</a></li>
+<li><a href="https://yao-lab.github.io/2019_csic5011/">CSIC 5011: Topological and Geometric Data Reduction and Visualization</a></li>
+<li><a href="https://www.see.asso.fr/en/GSI2019">4th conference on Geometric Science of Information</a></li>
+<li><a href="http://gip.cs.technion.ac.il/">Geometric Image Processing @ Department of Computer Science Technion - Israel Institute of Technology</a></li>
+</ul>
+<h1 id="optimal-transport">Optimal Transport<a class="headerlink" href="#optimal-transport" title="Permanent link"></a></h1>
+<p><img alt="" src="https://cedricvillani.org/wp-content/themes/SF-Blueprint-WP/img/Cedric-Villani-Sebastien-Godefroy.jpg" />
++ <a href="https://projecteuclid.org/download/pdf_1/euclid.acta/1485890981">The geometry of optimal transportation</a>
++ <a href="http://digitalassets.lib.berkeley.edu/etd/ucb/text/Cook_berkeley_0028E_15678.pdf">Transformations of PDEs: Optimal Transport and Conservation Laws by Woo-Hyun Cook</a>
++ <a href="https://cedricvillani.org/wp-content/uploads/2012/08/preprint-1.pdf">Optimal transport, old and new</a>
++ <a href="http://www.pitt.edu/~pakzad/optimaltransport.html">Math 3015 (Topics in Optimal Transport). Spring 2010</a>
++ <a href="https://optimaltransport.github.io/">https://optimaltransport.github.io/</a>
++ <a href="http://www.math.ucla.edu/~wgangbo/Cedric-Villani.pdf">http://www.math.ucla.edu/~wgangbo/Cedric-Villani.pdf</a>
++ <a href="https://pot.readthedocs.io/en/stable/">https://pot.readthedocs.io/en/stable/</a>
++ <a href="https://www.esi.ac.at/activities/events/2019/optimal-transport">Optimal Transport @ESI</a>
++ <a href="https://www.birs.ca/events/2019/5-day-workshops/19w5035">Optimal Transport Methods in Density Functional Theory (19w5035)</a>
++ <a href="https://remi.flamary.com/demos/transport.html">Discrete OT</a>
++ <a href="https://sites.google.com/site/nipsworkshopoptimaltransport/">Optimal Transport &amp; Machine Learning</a>
++ <a href="https://github.com/rflamary/OTML_DS3_2018">Optimal Transport and Machine learning course at DS3 2018</a>
++ <a href="https://www.msri.org/workshops/928">Hot Topics: Optimal transport and applications to machine learning and statistics</a>
++ <a href="https://www.mindcodec.com/an-intuitive-guide-to-optimal-transport-for-machine-learning/">An intuitive guide to optimal transport for machine learning</a>
++ <a href="http://faculty.virginia.edu/rohde/transport/">http://faculty.virginia.edu/rohde/transport/</a>
++ <a href="http://otml17.marcocuturi.net/">http://otml17.marcocuturi.net/</a>
++ <a href="https://anr.fr/Project-ANR-17-CE23-0012">https://anr.fr/Project-ANR-17-CE23-0012</a>
++ <a href="http://otnm.lakecomoschool.org/program/">http://otnm.lakecomoschool.org/program/</a>
++ <a href="https://sites.uclouvain.be/socn/drupal/socn/node/113">https://sites.uclouvain.be/socn/drupal/socn/node/113</a>
++ <a href="https://people.math.osu.edu/memoli.2/courses/cse-topics-2018/">Topics on Optimal Transport in Machine Learning and Shape Analysis(OT.ML.SA)</a>
++ <a href="http://imagedatascience.com/transport/tutorials_isbi18.html">Optimal Transport in Biomedical Imaging</a>
++ <a href="http://www.lumenai.fr/blog/optimal-transport-for-documents-classification">Optimal transport for documents classification: Classifying news with Word Mover Distance</a>
++ <a href="https://cnls.lanl.gov/MK/">Monge-Kantorovich Optimal Transport – Theory and Applications</a></p></article></body></html>
