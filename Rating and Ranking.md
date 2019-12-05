@@ -469,6 +469,12 @@ $$
 $$
 and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered by their relevance) in the corpus up to position _p_.
 
+[`Weighted Approximate-Rank Pairwise (WARP) loss`](http://lyst.github.io/lightfm/docs/examples/warp_loss.html)  directly optimizes the precision@n and is useful when only positive interactions are present (as opposed to e.g. negative ratings or below-average ratings after normalization).
+
+[`Weighted Margin-Rank Batch loss (WMRB)`](https://arxiv.org/pdf/1711.04015.pdf) extends the popular Weighted
+Approximate-Rank Pairwise loss (WARP). WMRB uses a new rank
+estimator and an efficient batch training algorithm
+
 - [信息检索中的评价指标MAP和NDCG](http://lixinzhang.github.io/xin-xi-jian-suo-zhong-de-ping-jie-zhi-biao-maphe-ndcg.html)
 - [Discounted cumulative gain@wikiwand](https://www.wikiwand.com/en/Discounted_cumulative_gain)
 - [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
@@ -486,6 +492,10 @@ and ${\displaystyle REL_{p}}$ represents the list of relevant documents (ordered
 - [RankEval: An Evaluation and Analysis Framework for Learning-to-Rank Solutions](https://github.com/hpclab/rankeval)
 - [rankeval package](http://rankeval.isti.cnr.it/docs/rankeval.html)
 - [	SIGIR 2016 Tutorial on Counterfactual Evaluation and Learning for Search, Recommendation and Ad Placement](http://www.cs.cornell.edu/~adith/CfactSIGIR2016/)
+- [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
+- [Deep Convolutional Ranking for Multilabel Image Annotation](https://arxiv.org/abs/1312.4894)
+- [WMRB: Learning to Rank in a Scalable Batch Training Approach](https://arxiv.org/pdf/1711.04015.pdf)
+
 
 #### Ranking Creation
 
@@ -1609,3 +1619,4 @@ $$L_{\beta}(f;\mathrm x, \mathcal L)= 0\iff \exists y\in Y_{\mathcal L}\quad sat
 QuickRank is an efficient Learning to Rank toolkit providing multithreaded C++ implementation of several algorithms.
 
 + [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
++ [ ] http://lyst.github.io/lightfm/docs/index.html

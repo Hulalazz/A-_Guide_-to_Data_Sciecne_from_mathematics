@@ -179,7 +179,7 @@ where $c$ is a trade-off constant.
 
 This technique is also called **nonnegative matrix factorization**.
 
-\(\color{red}{Note:}\) The data sets we more frequently encounter in collaborative prediction problem are of `ordinal ratings` $X_{ij} \in \{1, 2, \dots, R\}$ such as $\{1, 2, 3, 4, 5\}$.
+$\color{red}{Note:}$ The data sets we more frequently encounter in collaborative prediction problem are of `ordinal ratings` $X_{ij} \in \{1, 2, \dots, R\}$ such as $\{1, 2, 3, 4, 5\}$.
 To relate the real-valued $Z_{ij}$ to the
 discrete $X_{ij}$. we use $R − 1$ thresholds $\theta_{1}, \dots, \theta_{R-1}$.
 
@@ -363,8 +363,11 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * [Implicit Feedback and Collaborative Filtering](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/)
 * [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
 * [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
-
+- [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf)
 - [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
+- [Improving Pairwise Learning for Item Recommendation from Implicit Feedback](http://webia.lip6.fr/~gallinar/gallinari/uploads/Teaching/WSDM2014-rendle.pdf)
+- [A-RecSys : a Tensorflow Toolkit for Implicit Recommendation Tasks](https://github.com/skywaLKer518/A-Recsys)
+- http://lyst.github.io/lightfm/docs/examples/warp_loss.html
 
 ***
 
@@ -1166,9 +1169,18 @@ This workshop will deepen the discussions started at the three prior workshops a
 - https://wiki.aalto.fi/display/~llahti@aalto.fi/Lauri+Lahti
 - https://fruct.org/
 - [A Systematic Literature Review on Health Recommender Systems](https://www.researchgate.net/publication/261488604_A_systematic_literature_review_on_Health_Recommender_Systems)
-
-
-
+- http://people.dbmi.columbia.edu/noemie/
+- [MACHINE LEARNING FOR HEALTHCARE (MLHC)](http://www.mucmd.org/)
+- [Microsoft’s focus on transforming healthcare: Intelligent health through AI and the cloud](https://blogs.microsoft.com/blog/2018/02/28/microsofts-focus-transforming-healthcare-intelligent-health-ai-cloud/)
+- https://www.cs.ubc.ca/~rng/
+- http://homepages.inf.ed.ac.uk/ckiw/
+- http://groups.csail.mit.edu/medg/people/psz/home/Pete_MEDG_site/Home.html
+- [MIT CSAIL Clinical Decision Making Group](http://groups.csail.mit.edu/medg/)
+- http://www.cs.ucr.edu/~cshelton/
+- http://hst.mit.edu/users/rgmarkmitedu
+- http://erichorvitz.com/
+- https://www.hms.harvard.edu/dms/neuroscience/fac/Kohane.php
+- https://www.khoury.northeastern.edu/people/carla-brodley/
 
 
 ### Recommdender System for Doctor 
@@ -1351,7 +1363,7 @@ _______
 - [Recommender Systems](http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/recommendation/index.html)
 - https://libraries.io/github/computational-class
 - http://www.52caml.com/
-
+- http://www-scf.usc.edu/~kuanl/
 
 ### Workshop 
 
