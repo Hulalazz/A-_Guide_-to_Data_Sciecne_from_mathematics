@@ -2411,10 +2411,14 @@ Capsule Networks provide a way to detect parts of objects in an image and repres
 
 ### MIND-Net
 
+[From the  analytical perspective, the ad hoc nature of deep learning renders  its success  at the mercy of  trial-and-errors.  To rectify this problem, we advocate a methodic  learning paradigm, MIND-Net,  which is computationally efficient in  training the networks and yet mathematically feasible to  analyze.  MIND-Net hinges upon the use of an effective optimization metric, called Discriminant Information (DI).  It will be used   as a surrogate  of the popular metrics such as  0-1 loss or  prediction accuracy. Mathematically, DI is equivalent or closely related to Gauss’ LSE, Fisher’s FDR, and Shannon’s Mutual Information.  We shall explain why is that higher DI means higher linear separability, i.e. higher DI means that  the data are more discriminable.  In fact, it can be shown that, both theoretically and empirically,  a high DI score usually implies a high prediction accuracy. ](http://www.it.fudan.edu.cn/En/Data/View/2519)
+
 - https://datasciencephd.eu/
 - https://ieeexplore.ieee.org/document/8682208
+- https://www.researchgate.net/scientific-contributions/9628663_Sun-Yuan_Kung
 - https://dblp.uni-trier.de/pers/hd/k/Kung:Sun=Yuan
 - http://www.zhejianglab.com/mien/active_info/75.html
 - https://ee.princeton.edu/people/sun-yuan-kung
 - https://ieeexplore.ieee.org/author/37273489000
+- [Scalable Kernel Learning via the Discriminant Information](https://arxiv.org/abs/1909.10432)
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)

@@ -1,11 +1,26 @@
-#### Graph as Data Structure
+# Graph and Networks 
 
-<img title="http://davidhall.io/visualising-music-graphic-scores/" src="http://davidhall.io/wp-content/uploads/2017/08/graphic-notation-Roman-Haubenstock-Ramati-2.jpg" width="80%"/>
+[The world is driven by connections—from financial and communication systems to social and biological processes. 
+Revealing the meaning behind these connections drives breakthroughs across industries in areas such as identifying fraud rings and
+optimizing recommendations to evaluating the strength of a group and predicting cascading failures.](http://www.rlslog.net/graph-algorithms-practical-examples-in-apache-spark-and-neo4j-p2p/)
+Graph and networks are the language to describe the connected entities.
+They focus on the connections and consider the crowd as a network. They are close with topology. 
+
+Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
+And graph processing is widely applied in industry and science such as the `network analysis`, `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
+
+- [Learn about graph, graph representations, graph traversals and their running time.](https://kobiso.github.io//data%20structure/coding-DS_graph/)
+- [NETWORK CALCULUS](https://ica1www.epfl.ch/PS_files/netCalBookv4.pdf)
+- http://lca.epfl.ch/people/
+- http://shichuan.org/HENA2019.html
+
+
+## Resource On Graph Processing
 
 * https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html
-* http://mat.uab.cat/~alseda/MasterOpt/
-* http://ryanrossi.com/search.php
-* https://iss.oden.utexas.edu/
+* [Combinatorial Algorithms for graphs](http://mat.uab.cat/~alseda/MasterOpt/)
+* [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
+* [ Galois programming model](https://iss.oden.utexas.edu/)
 * http://michele-ackerer.fr/algorithmic-graph-theory.htm
 * http://www.columbia.edu/~mc2775/
 * http://web.eecs.umich.edu/~dkoutra/tut/sdm17.html
@@ -13,11 +28,31 @@
 * http://www.mlgworkshop.org/2019/
 * https://www.computationalnetworkscience.org/
 * http://ccni.hrl.com/
+* http://web.eecs.umich.edu/~pettie/
+* https://kam.mff.cuni.cz/~matej/
+* http://orion.math.iastate.edu/lhogben/
+* https://aimath.org/~hogben/
+* https://people.csail.mit.edu/jshun/
+* https://iiis.tsinghua.edu.cn/duanr/
+* https://www.renyi.hu/hu
+* http://dimacs.rutgers.edu/archive/Research/partnership/
+* http://dimacs.rutgers.edu/archive/index.html
+* [Combinatorial Learning of Robust Deep Graph Matching: an Embedding based Approach](http://thinklab.sjtu.edu.cn/IPCA_GM.html)
+* http://thinklab.sjtu.edu.cn/publication.html
+* http://www.cs.sjtu.edu.cn/~shen-lp/
+* http://yifanhu.net/
+* http://shichuan.org/
+* [The Perfect Graph Conjecture](https://aimath.org/ARCC/workshops/perfectgraph.html)
+* https://mitpress.mit.edu/books/mathematics-big-data
+* http://lkm.fri.uni-lj.si/rmarko/
+* http://web.cs.ucla.edu/~yzsun/
+* http://www.ifp.illinois.edu/~chang87/
+* http://people.csail.mit.edu/chang87/
 
-[Learn about graph, graph representations, graph traversals and their running time.](https://kobiso.github.io//data%20structure/coding-DS_graph/)
+## Graph as Data Structure
 
-Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
-And graph processing is widely applied in industry and science such as the `network analysis`, `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
+<img title="http://davidhall.io/visualising-music-graphic-scores/" src="http://davidhall.io/wp-content/uploads/2017/08/graphic-notation-Roman-Haubenstock-Ramati-2.jpg" width="80%"/>
+
 
 A graph ${G=(V,E)}$ consists of a finite set of vertices $V(G)$ and a set of edges $E(G)$ consisting of distinct, unordered pairs of vertices, where nodes stand for entities and edges stand for their connections.
 It is the foundation of **network science**.
@@ -53,14 +88,6 @@ See *Graph representations using set and hash* at <https://www.geeksforgeeks.org
 > **Definition**: In graph theory, the degree (or valency) of a vertex of a graph is the number of edges incident to the vertex, with loops counted twice. From the wikipedia page at <https://www.wikiwand.com/en/Degree_(graph_theory)>.
 > The degree of a vertex $v$ is denoted $\deg(v)$ or $\deg v$. `Degree matrix` $D$ is a diagonal matrix such that $D_{i,i}=\sum_{j} w_{i,j}$ for the `weighted graph` with $W=(w_{i,j})$.
 
-> **Definition**: Let $G$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$.The `Laplacian` matrix of $G$, denoted by $L(G)$, is the $n\times n$ matrix defined as follows. The rows and
-> the columns of $L(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $L(G)$ is
-> $0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{ −1}}$ for $i$ and $j$ adjacent. The
-> $(i,i)$-entry of $L(G)$ is $\color{red}{d_i}$, the degree of the vertex $i$, for $i = 1,\dots,n.$
-> In other words, the $(i,i)$-entry of $L(G)$, ${L(G)}_{i,j}$, is defined by
-> $${L(G)}_{i,j} = D - A = \begin{cases} \deg(V_i) & \text{if $i=j$,}\\ -1  & \text{if $i\not= j$ and $V_i$ and $V_j$ is adjacent,} \\ 0  & \text{otherwise.}\end{cases}$$
-> Laplacian matrix of  a  graph $G$ with `weighted matrix` $W$ is ${L^{W}=D-W}$, where $D$ is the degree matrix of $G$.
-> We often denote $L(G)$ simply by $L$.
 
 > **Definition**:  A *directed graph* (or `digraph`) is a set of vertices and a collection of directed edges that each connects an ordered pair of vertices. We say that a directed edge points from the first vertex in the pair and points to the second vertex in the pair. We use the names 0 through V-1 for the vertices in a V-vertex graph. Via <https://algs4.cs.princeton.edu/42digraph/>.
 
@@ -84,7 +111,8 @@ Although the adjacency-list representation is asymptotically at least as efficie
 * https://www.wikiwand.com/en/Network_science
 * https://www.wikiwand.com/en/Directed_graph
 * https://www.wikiwand.com/en/Directed_acyclic_graph
-****
+
+### Graph Theory and Linear Algebra
 
 It seems that graph theory is partially the application of nonnegative matrix theory.
 [Graph Algorithms in the Language of Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918?mobileUi=0) shows how to leverage existing parallel matrix computation techniques and the large amount of software infrastructure that exists for these computations to implement efficient and scalable parallel graph algorithms. The benefits of this approach are reduced algorithmic complexity, ease of implementation, and improved performance.
@@ -121,23 +149,129 @@ $$
 >An undirected graph is connected if every vertex is reachable from every other vertex.
 > A **cycle** is a path that starts and ends at the same vertex and has at least one edge.
 
+
 #### Operators on Graph
+
+Like linear algebra, we define the graph and then we would like to know their properties, their transformation and their invariants.
 
 We will limit our attention to undirected graphs and view them as a discrete analog of manifolds. We define the vertex set $V={1,\dots,n}$ (it can be any set containing n objects, which we canonically map to the above set of natural numbers from 1 to n); the edge set and the edge set $E\subset V\times V$. An undirected graph has $(i,j)\in E⇔(j,i)\in E$. We further define the `vertex weights` as the function $a:V\to (0,\infty)$ and the `edge weights` as $w:E\to \mathbb R_+$ (in fact, w can be defined on the entire $V×V$ with $w_{ij}=0$ meaning $(i,j)\not\in E$). We refer to the tuple $G=(V,E,a,w)$ as to a `weighted undirected graph`.
 
 If $G(V, E)$ is undirected graph. $V$ are vertices, $E$ are edges, T are triangles/3-cliques, i.e., if $(i, j, k)\in T\iff \{i , j\}, \{j , k\}, \{k, i\}\in E.$
 
-* Function on vertices(vertex field): $s : V \to \mathbb R$;
+* Function on vertices(vertex field): $s : V \to \mathbb R$. Such a function assigns a real number to each graph node.
 * Edge flows(edge field ): $X:V\times V\to \mathbb R$, where  $X(i, j)=0,$ if $(i, j)\not\in E$ and $X(i, j)=-X(j,i)$ for all $(i, j)$.
 * Triangular flows: $\Phi: V\times V\times V\to\mathbb R$ where $\Phi(i, j ,k)=0$ if $(i, j, k)\not\in T$ and $\Phi(i, j, k)=\Phi(k, i, j)=\Phi(j, k, i)=-\Phi(j, i, k)=-\Phi(i, k, j)=-\Phi(k,j,i)$ for all $i, j, k$.
 
 Operators | Definition
----|----
-Graph gradient: grad| $\text{(grad s)(i, j)}=s_j - s_i$
-Graph curl: curl|$\text{(curl X)(i, j, k)}=X_{ij}+X_{jk}+X_{ik}$
-Graph divergence: div|$\text{(div X)(i)}= \sum_{j}w_{ij}X_{ij}$
-Graph Laplacian|$\Delta_0=div\circ grad$
-Graph Helmholtzian|$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
+----------|--------------
+Graph gradient: grad | $\text{(grad s)(i, j)}=s_j - s_i$
+Graph curl: curl |$\text{(curl X)(i, j, k)}=X_{ij}+X_{jk}+X_{ik}$
+Graph divergence: div |$\text{(div X)(i)}= \sum_{j}w_{ij}X_{ij}$
+Graph Laplacian |$\Delta_0=div\circ grad$
+Graph Helmholtzian |$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
+
+- [On the Shift Operator, Graph Frequency and Optimal Filtering in Graph Signal Processing](https://export.arxiv.org/pdf/1511.03512v4)
+- [The Emerging Field of Signal Processing on Graphs: Extending High-Dimensional Data Analysis to Networks and Other Irregular Domains](https://arxiv.org/abs/1211.0053)
+- https://en.wikipedia.org/wiki/Graph_operations
+- https://sites.cs.ucsb.edu/~gilbert/talks/2018-05-21-GilbertGABB21May2018.pdf
+- https://sites.cs.ucsb.edu/~gilbert/talks/talks.htm
+
+
+##### Co-boundary Mapping
+
+We consider real-valued functions on the set of the graph’s vertices, $f : V \to \mathbb R$. Such a function assigns a real number
+to each graph node.
+$f$ is a vector indexed by the graph’s vertices, hence $f\in\mathbb{R}^{n}$.
+Notation: $f = (f(v_1), \cdots , f(v_n)) = (f(1), . . . , f(n))$.
+
+The adjacency matrix can be viewed as an operator:
+$$g=Af;g(i)=\sum_{i\sim j}f(j)$$
+which is the extension of degree function.
+
+Let each edge in the graph have an arbitrary but `fixed orientation`.
+> The `incidence matrix` of a graph is a  $|V|\times |E|$ matrix defined as follows:
+> $$\triangledown=
+>\begin{cases}
+>\triangledown_{ev}=-1, &\text{if $v$ is the initial vertex of edge $e$}\\
+>\triangledown_{ev}=1, &\text{if $v$ is the terminal vertex of edge $e$}\\
+>\triangledown_{ev}=0, &\text{if $v$ is not in the edge $e$}
+>\end{cases}
+>$$
+
+The mapping $f \to \nabla f$ is known as the `co-boundary mapping` of the graph defined by
+$$(\nabla f)(e_{ij})=f(v_j)-f(v_i)$$
+
+where $e_{ij}$ is the edge and $v_i$($v_j$) is the initial(terminal) node of the edge $e_{ij}$.
+
+And $\nabla f$ is the product of the incidence matrix $\triangledown$ and the function $f$.
+
+- https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf
+- https://zhuanlan.zhihu.com/p/67336297
+
+##### Graph Curl
+
+
+- [THE CURL OF GRAPHS AND NETWORKS ](https://deepblue.lib.umich.edu/bitstream/handle/2027.42/25853/0000416.pdf)
+- https://deepblue.lib.umich.edu/
+
+##### Graph Divergence
+
+* [Function and divergence on a graph](https://math.stackexchange.com/questions/1960191/function-and-divergence-on-a-graph)
+
+##### Graph Laplacians
+
+
+> **Definition**: Let $G$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$.The `Laplacian` matrix of $G$, denoted by $L(G)$, is the $n\times n$ matrix defined as follows. The rows and
+> the columns of $L(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $L(G)$ is
+> $0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{ −1}}$ for $i$ and $j$ adjacent. The
+> $(i,i)$-entry of $L(G)$ is $\color{red}{d_i}$, the degree of the vertex $i$, for $i = 1,\dots,n.$
+> In other words, the $(i,i)$-entry of $L(G)$, ${L(G)}_{i,j}$, is defined by
+> $${L(G)}_{i,j} = D - A = \begin{cases} \deg(V_i) & \text{if $i=j$,}\\ -1  & \text{if $i\not= j$ and $V_i$ and $V_j$ is adjacent,} \\ 0  & \text{otherwise.}\end{cases}$$
+> Laplacian matrix of  a  graph $G$ with `weighted matrix` $W$ is ${L^{W}=D-W}$, where $D$ is the degree matrix of $G$.
+> We often denote $L(G)$ simply by $L$ or $\triangle$.
+
+If $\triangledown$ is the incidence matrix of the graph, teh Laplacians is 
+$$L=\triangle =\triangledown^T\triangledown.$$
+So $(Lf)(v_i)=\sum_{i\sim j}f(v_i)-f(v_j)$.
+
+
+We consider `undirected weighted` graphs: Each edge $e_{ij}$ is weighted by $w_{ij} > 0$.
+The Laplacian as an operator:
+$$(\triangle  f)(v_i)=\sum_{v_j\sim v_i}w_{ij}(f(v_i)-f(v_j)).$$
+
+As a quadratic form:
+$$f^T\triangle f=\sum_{v_j\sim v_i}w_{ij}(f(v_i)-f(v_j))^2$$
+
+> The Laplacian of the graph $L=\triangle$ is symmetric and positive semi-definite.
+
+
+> Therefore, a graph with one `connected component` has the constant vector $u_1 = 1_n$ as the only eigenvector with eigenvalue 0.
+
+
+Each connected component has an associated Laplacian.
+Therefore, we can write matrix $L$ as a block diagonal matrix:
+$$L=\begin{pmatrix}
+L_1\quad \quad \quad\quad\\
+\\
+\quad\ddots \\
+\\
+\quad \quad \quad\quad\quad L_k
+\end{pmatrix}.$$
+
+* Each block corresponds to a connected component, hence each matrix $L_i$ has an eigenvalue 0 with multiplicity 1.
+* The spectrum of $L$ is given by the union of the spectra of $L_i$.
+* The eigenspace corresponding to $\lambda_1 = \cdots = \lambda_k = 0$ is spanned by the k mutually orthogonal vectors:
+* These vectors are the indicator vectors of the graph’s connected components.
+
+- http://cs-www.cs.yale.edu/homes/spielman/
+- [A Short Tutorial on Graph Laplacians, Laplacian Embedding, and Spectral Clustering](https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf)
+- https://team.inria.fr/perception/
+- https://csustan.csustan.edu/~tom/
+- https://github.com/epfl-lts2/pygsp
+- [Graph Signal Processing: Overview, Challenges and Applications](https://arxiv.org/abs/1712.00468)
+
+
+##### Graph Helmholtzian
 
 > (Helmholtz decomposition)：$G = (V; E)$ is undirected, unweighted graph. $\Delta_1$ is its Helmholtzian. The space of edge flows admits orthogonal decomposition:
 > $$L^2(E)=im(grad)\oplus ker(\Delta_1)\oplus im(curl^{\ast}).$$
@@ -145,13 +279,169 @@ Graph Helmholtzian|$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
 
 * http://www.mit.edu/~parrilo/
 * https://www.stat.uchicago.edu/~lekheng/
-* https://en.wikipedia.org/wiki/Graph_operations
 * https://igraph.org/
-* https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/
+* [Network Theory and Discrete Calculus – Graph Divergence and Graph Laplacian](https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/)
 * https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/
-* https://math.stackexchange.com/questions/1960191/function-and-divergence-on-a-graph
+* [https://www.stat.uchicago.edu/~lekheng/work/nips.pdf](https://www.stat.uchicago.edu/~lekheng/work/nips.pdf)
+* [Statistical ranking and combinatorial Hodge theory](http://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/ref/jiang-lim-yao-ye.pdf)
 
-#### Shortest Paths
+##### Graph Fourier Transform
+
+- [Graph Fourier Transform based on Directed Laplacian](https://arxiv.org/abs/1601.03204)
+- [Multi-dimensional Graph Fourier Transform](https://arxiv.org/abs/1712.07811v1)
+- [Graph Convolutional Neural Networks: from perspective of Graph Signal Processing](http://www.icst.pku.edu.cn/huwei/docs/20190929164109880131.pdf)
+- https://www.researchgate.net/profile/Wallace_Martins
+- https://gangwg.github.io/research.html
+- http://www.icst.pku.edu.cn/huwei/
+* https://arxiv.org/abs/1609.08642
+* http://techieme.in/graph-operations/
+
+
+#### Graph Kernel
+
+Like kernels in **kernel methods**, graph kernel is used as functions measuring the similarity of pairs of graphs.
+They allow kernelized learning algorithms such as support vector machines to work directly on graphs, without having to do feature extraction to transform them to fixed-length, real-valued feature vectors.
+
+**Definition** : Find a mapping $f$ of the vertices of $G_1$ to the vertices of $G_2$ such that $G_1$ and $G_2$ are identical;
+i.e. $(x, y)$ is an edge of $G_1$  if and only if $(f(x),f(y))$ is an edge of $G_2$.
+Then ${f}$ is an isomorphism, and $G_1$ and $G_2$ are called `isomorphic`.
+
+No polynomial-time algorithm is known for graph isomorphism.
+Graph kernel are convolution kernels on pairs of graphs. A graph kernel makes the whole family kernel methods applicable to graphs.
+
+`Von Neumann diffusion` is defined as
+ $$K_{VND}=\sum_{k=0}^{\infty}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}, \alpha\in[0,1].$$
+
+`Exponential diffusion` is defined as $K_{ED}=\sum_{k=0}^{\infty}\frac{1}{k!}{\alpha}^{k}{A}^{k}=\exp(\alpha A)$.
+`Katz method` is defined as the truncation of `Von Neumann diffusion`
+$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A}^K).$$
+
+
++ https://www.wikiwand.com/en/Graph_product
++ https://www.wikiwand.com/en/Graph_kernel
++ [Graph Kernels](http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf)
++ [GRAPH KERNELS by Karsten M. Borgwardt](https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf)
++ [List of graph kernels](https://github.com/BorgwardtLab/graph-kernels)
++ [Deep Graph Kernel](http://www.mit.edu/~pinary/kdd/YanVis15.pdf)
++ [Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/)
++ [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
++ [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
++ [DDGK: Learning Graph Representations for Deep Divergence Graph Kernels](https://arxiv.org/pdf/1904.09671.pdf)
+
+
+### Spectral Graph  Theory
+
+As the title suggests, `Spectral Graph  Theory` is about the eigenvalues and eigenvectors of matrices associated
+with graphs, and their applications.
+---|---
+---|---
+Adjacency matrix| ${A}$
+Degree matrix | ${D}$
+Laplacian matrix| ${L}$
+
+For the symmetric matrix $L = D - A$, we can obtain that $x^T Lx=\sum_{(u,v)\in E}(x_u-x_v)^2$. If the graph ${G}$ is directed, then $x^T Lx=\sum_{(u,v)\in E}w(u,v) (x_u-x_v)^2$.
+> Let $G = (V;E)$ be a graph, and let $\lambda=(\lambda_1, \cdots, \lambda_n)^T$ be the eigenvalues of
+its Laplacian matrix. Then, $\lambda_2>0$ if and only if G is connected.
+
+There are many iterative computational methods to approximate the eigenvalues of the graph-related matrices.
+
+#### Spectral Clustering Algorithm
+
+Spectral method is the kernel tricks applied to [locality preserving projections](http://papers.nips.cc/paper/2359-locality-preserving-projections.pdf) as to reduce the dimension, which is as the data preprocessing for clustering.
+
+In multivariate statistics and the clustering of data, spectral clustering techniques make use of the spectrum (eigenvalues) of the `similarity matrix` of the data to perform dimensionality reduction before clustering in fewer dimensions.
+The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the data set.
+
+**Similarity matrix** is to measure the similarity between the input features $\{\mathbf{x}_i\}_{i=1}^{n}\subset\mathbb{R}^{p}$.
+For example, we can use Gaussian kernel function
+$$ f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2}) $$
+to measure the *similarity* of inputs.
+The element of *similarity matrix* $S$ is $S_{i, j} = exp(-\frac{{\| \mathbf{x_i} -\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
+Thus $S$ is symmetrical, i.e. $S_{i, j}=S_{j, i}$ for $i,j\in\{1,2,\dots, n\}$.
+If the sample size $n\gg p$, the storage of **similarity matrix** is much larger than the original input $\{\mathbf{x}_i \}_{i=1}^{n}$, when we would only preserve the entries above some values.
+The **Laplacian matrix** is defined by $L=D-S$ where $D = Diag\{D_1, D_2, \dots, D_n\}$ and
+$D_{i} = \sum_{j=1}^{n} S_{i,j} = \sum_{j=1}^{n} exp(-\frac{{\|\mathbf{x_i} - \mathbf{x}_j\|}_2^2}{2\sigma^2})$.
+
+Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ to reduce the data dimension. After that we can perform $K-means$ or other clustering.
+
+* https://zhuanlan.zhihu.com/p/34848710
+* *On Spectral Clustering: Analysis and an algorithm* at <http://papers.nips.cc/paper/2092-on-spectral-clustering-analysis-and-an-algorithm.pdf>
+* *A Tutorial on Spectral Clustering* at <https://www.cs.cmu.edu/~aarti/Class/10701/readings/Luxburg06_TR.pdf>.
+* **谱聚类** <https://www.cnblogs.com/pinard/p/6221564.html>.
+* *Spectral Clustering* <http://www.datasciencelab.cn/clustering/spectral>.
+* https://en.wikipedia.org/wiki/Category:Graph_algorithms
+* The course *Spectral Graph Theory, Fall 2015* at <http://www.cs.yale.edu/homes/spielman/561/>.
+* [IE532. Analysis of Network Data, Sewoong Oh, University of Illinois Urbana-Champaign](http://swoh.web.engr.illinois.edu/courses/ie532/).
+* https://skymind.ai/wiki/graph-analysis
+
+
+#### PageRank
+
+Raluca Tanase and Remus Radu, in [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html), asserted that
+> The usefulness of a search engine depends on the relevance of the result set it gives back. 
+> There may of course be millions of web pages that include a particular word or phrase; 
+> however some of them will be more relevant, popular, or authoritative than others. 
+> A user does not have the ability or patience to scan through all pages that contain the given query words. 
+> One expects the relevant pages to be displayed within the top 20-30 pages returned by the search engine.
+>
+> Modern search engines employ methods of ranking the results to provide the "best" results first that are more elaborate than just plain text ranking. 
+> One of the most known and influential algorithms for computing the relevance of web pages is the Page Rank algorithm used by the Google search engine. 
+> It was invented by Larry Page and Sergey Brin while they were graduate students at Stanford, and it became a Google trademark in 1998. 
+> The idea that Page Rank brought up was that, _the importance of any web page can be judged by looking at the pages that link to it_. 
+> If we create a web page i and include a hyperlink to the web page j, this means that we consider j important and relevant for our topic. 
+> If there are a lot of pages that link to j, this means that the common belief is that page j is important. If on the other hand, j has only one backlink,
+> but that comes from an authoritative site k, (like www.google.com, www.cnn.com, www.cornell.edu) we say that k transfers its authority to j; 
+> in other words, k asserts that j is important. 
+> Whether we talk about popularity or authority, we can iteratively assign a rank to each web page, based on the ranks of the pages that point to it.
+
+PageRank is the first importance measure of webpage in large scale application. And this is content-free so that it does not  take the relevance of webpages into consideration.
+
+<img title = "page rank" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PageRanks-Example.jpg/800px-PageRanks-Example.jpg" width="47%"/>
+
+Here's how the PageRank is determined. Suppose that page $P_j$ has $l_j$ links. If one of those links is to page $P_i$, then $P_j$ will pass on $1/l_j$ of its importance to $P_i$. The importance ranking of $P_i$ is then the sum of all the contributions made by pages linking to it. That is, if we denote the set of pages linking to $P_i$ by $B_i$, then
+$$I(P_i)=\sum_{P_j\in B_i}\frac{I(P_j)}{l_j}.$$
+
+Note that the importance ranking of $P_i$ is the finite sum of 2 factors: the importance of its neighbors' importance $I(P_j)$ and the number of links $l_j$ when $P_j\in B_i$ thus it can be rewritten as
+$$I(P_i)=\sum_{j} [I(P_j)\cdot \frac{1}{l_j}] \mathbb{I}(ij)$$
+where the indicator function $\mathbb{I}(ij)$ is equal to 1 if the page $P_i$ is linked with the page $P_j$.
+If we define a matrix, called the hyper-link matrix, $\mathbf{H}=[\mathbf{H}_{ij}]$ in which the entry in the $i^{th}$ row and $j^{th}$ column is
+$$
+[\mathbf{H}_{ij}]=
+\begin{cases}
+\frac{1}{l_j}\quad &\text{if $P_j\in B_i$},\\
+0 \quad & \text{otherwise}.
+\end{cases}
+$$
+
+The condition above defining the PageRank $I$ may be expressed as
+
+$$ I = {\bf H}I  $$
+In other words, the vector I is an eigenvector of the matrix H with eigenvalue 1. We also call this a stationary vector of H.
+
+It is not very simple and easy to compute the eigenvalue vectors of large scale matrix.
+If we denote by $\bf 1$the  $n\times n$  matrix whose entries are all one, we obtain the _Google matrix_:
+
+$$ {\bf G}=\alpha{\bf S}+ (1-\alpha)\frac{1}{n}{\bf 1}  $$
+Notice now that G is stochastic as it is a combination of stochastic matrices. Furthermore, all the entries of G are positive, which implies that G is both primitive and irreducible. Therefore, G has a unique stationary vector I that may be found using the power method.
+
+* [Page rank@wikiwand](https://www.wikiwand.com/en/PageRank)
+* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page ](http://infolab.stanford.edu/pub/papers/google.pdf)
+* [Learning Supervised PageRank with Gradient-Based and Gradient-Free Optimization Methods](https://research.yandex.com/publications/140)
+* [Lecture #3: PageRank Algorithm - The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
+* [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
+* http://langvillea.people.cofc.edu/
+* [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
+* [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
+* [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
+
+#### TrustRank
+
+- https://www.cnblogs.com/chenying99/archive/2012/06/07/2540013.html
+- https://blog.csdn.net/aspirinvagrant/article/details/40924539
+- http://dm.uestc.edu.cn/wp-content/uploads/seminar/20150409Clustering%20in%20Heterogeneous%20Network.pdf
+
+
+### Shortest Paths
 
 In graph theory, the `shortest path` problem is the problem of finding a path between two vertices (or nodes) in a graph such that the sum of the weights of its constituent edges is minimized.
 
@@ -268,7 +558,7 @@ algebraic operations and fundamental graph operations
 - [Matrix techniques for strongly regular graphs and related geometries](http://cage.ugent.be/~fdc/intensivecourse2/haemers2.pdf)
 
 
-#### Directed Acyclic Graph
+### Directed Acyclic Graph
 
 `Directed acyclic graph (DAG)` is the directed graph without any cycles. It is used widely in scheduling, distributed computation.
 
@@ -285,7 +575,7 @@ Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of ver
 * https://www.geeksforgeeks.org/topological-sorting/
 
 
-#### Chemical Graph Theory
+### Chemical Graph Theory
 
 Graph theory applied in the study of molecular structures represents an interdisciplinary science, called `chemical graph theory` or `molecular topology`.
 
@@ -388,7 +678,7 @@ $$
 * http://match.pmf.kg.ac.rs/
 * https://crystalmathlabs.com/tracker/
 
-#### Graph Partitioning
+### Graph Partitioning
 
 **Definition**: `Separators` A subsect of vertices ${C}$ of a graph ${G}$ with ${n}$ vertices is an $f(n)$-separator that $\delta$-splits if $|C|<f(n)$ and vertices $G-C$ can be partitioned into two sets ${A}$ and ${B}$ such that $|A|, |B|<\delta n$ and there is no edge between ${A}$ and ${B}$, where $f$ is a positive function and $0<\delta < 1$.
 
@@ -419,135 +709,8 @@ $$ E = \{ (i, j) \mid p_i\in N_k(p_j)\quad \text{or}\quad p_j \in N_k(p_i) \}. $
 
 [A Spectral Analysis of Moore Graphs](https://jeremykun.com/2016/11/03/a-spectral-analysis-of-moore-graphs/)
 
-#### Spectral Graph  Theory
-
-As the title suggests, `Spectral Graph  Theory` is about the eigenvalues and eigenvectors of matrices associated
-with graphs, and their applications.
----|---
----|---
-Adjacency matrix| ${A}$
-Degree matrix | ${D}$
-Laplacian matrix| ${L}$
-
-For the symmetric matrix $L = D - A$, we can obtain that $x^T Lx=\sum_{(u,v)\in E}(x_u-x_v)^2$. If the graph ${G}$ is directed, then $x^T Lx=\sum_{(u,v)\in E}w(u,v) (x_u-x_v)^2$.
-> Let $G = (V;E)$ be a graph, and let $\lambda=(\lambda_1, \cdots, \lambda_n)^T$ be the eigenvalues of
-its Laplacian matrix. Then, $\lambda_2>0$ if and only if G is connected.
-
-There are many iterative computational methods to approximate the eigenvalues of the graph-related matrices.
 
 
-#### PageRank
-
-Raluca Tanase and Remus Radu, in [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html), asserted that
-> The usefulness of a search engine depends on the relevance of the result set it gives back. There may of course be millions of web pages that include a particular word or phrase; however some of them will be more relevant, popular, or authoritative than others. A user does not have the ability or patience to scan through all pages that contain the given query words. One expects the relevant pages to be displayed within the top 20-30 pages returned by the search engine.
->
-> Modern search engines employ methods of ranking the results to provide the "best" results first that are more elaborate than just plain text ranking. One of the most known and influential algorithms for computing the relevance of web pages is the Page Rank algorithm used by the Google search engine. It was invented by Larry Page and Sergey Brin while they were graduate students at Stanford, and it became a Google trademark in 1998. The idea that Page Rank brought up was that, _the importance of any web page can be judged by looking at the pages that link to it_. If we create a web page i and include a hyperlink to the web page j, this means that we consider j important and relevant for our topic. If there are a lot of pages that link to j, this means that the common belief is that page j is important. If on the other hand, j has only one backlink, but that comes from an authoritative site k, (like www.google.com, www.cnn.com, www.cornell.edu) we say that k transfers its authority to j; in other words, k asserts that j is important. Whether we talk about popularity or authority, we can iteratively assign a rank to each web page, based on the ranks of the pages that point to it.
-
-PageRank is the first importance measure of webpage in large scale application. And this is content-free so that it does not  take the relevance of webpages into consideration.
-
-<img title = "page rank" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PageRanks-Example.jpg/800px-PageRanks-Example.jpg" width="47%"/>
-
-Here's how the PageRank is determined. Suppose that page $P_j$ has $l_j$ links. If one of those links is to page $P_i$, then $P_j$ will pass on $1/l_j$ of its importance to $P_i$. The importance ranking of $P_i$ is then the sum of all the contributions made by pages linking to it. That is, if we denote the set of pages linking to $P_i$ by $B_i$, then
-$$I(P_i)=\sum_{P_j\in B_i}\frac{I(P_j)}{l_j}.$$
-
-Note that the importance ranking of $P_i$ is the finite sum of 2 factors: the importance of its neighbors' importance $I(P_j)$ and the number of links $l_j$ when $P_j\in B_i$ thus it can be rewritten as
-$$I(P_i)=\sum_{j} [I(P_j)\cdot \frac{1}{l_j}] \mathbb{I}(ij)$$
-where the indicator function $\mathbb{I}(ij)$ is equal to 1 if the page $P_i$ is linked with the page $P_j$.
-If we define a matrix, called the hyper-link matrix, $\mathbf{H}=[\mathbf{H}_{ij}]$ in which the entry in the $i^{th}$ row and $j^{th}$ column is
-$$
-[\mathbf{H}_{ij}]=
-\begin{cases}
-\frac{1}{l_j}\quad &\text{if $P_j\in B_i$},\\
-0 \quad & \text{otherwise}.
-\end{cases}
-$$
-
-
-
-The condition above defining the PageRank $I$ may be expressed as
-
-$$ I = {\bf H}I  $$
-In other words, the vector I is an eigenvector of the matrix H with eigenvalue 1. We also call this a stationary vector of H.
-
-It is not very simple and easy to compute the eigenvalue vectors of large scale matrix.
-If we denote by $\bf 1$the  $n\times n$  matrix whose entries are all one, we obtain the _Google matrix_:
-
-$$ {\bf G}=\alpha{\bf S}+ (1-\alpha)\frac{1}{n}{\bf 1}  $$
-Notice now that G is stochastic as it is a combination of stochastic matrices. Furthermore, all the entries of G are positive, which implies that G is both primitive and irreducible. Therefore, G has a unique stationary vector I that may be found using the power method.
-
-* [Page rank@wikiwand](https://www.wikiwand.com/en/PageRank)
-* [The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page ](http://infolab.stanford.edu/pub/papers/google.pdf)
-* [Learning Supervised PageRank with Gradient-Based and Gradient-Free Optimization Methods](https://research.yandex.com/publications/140)
-* [Lecture #3: PageRank Algorithm - The Mathematics of Google Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html)
-* [HITS Algorithm - Hubs and Authorities on the Internet](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html)
-* http://langvillea.people.cofc.edu/
-* [Google PageRank: The Mathematics of Google](http://www.whydomath.org/node/google/index.html)
-* [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
-* [Dynamic PageRank](http://ryanrossi.com/dynamic-pagerank.php)
-
-#### TrustRank
-
-- https://www.cnblogs.com/chenying99/archive/2012/06/07/2540013.html
-- https://blog.csdn.net/aspirinvagrant/article/details/40924539
-
-#### Spectral Clustering Algorithm
-
-Spectral method is the kernel tricks applied to [locality preserving projections](http://papers.nips.cc/paper/2359-locality-preserving-projections.pdf) as to reduce the dimension, which is as the data preprocessing for clustering.
-
-In multivariate statistics and the clustering of data, spectral clustering techniques make use of the spectrum (eigenvalues) of the `similarity matrix` of the data to perform dimensionality reduction before clustering in fewer dimensions.
-The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the data set.
-
-**Similarity matrix** is to measure the similarity between the input features $\{\mathbf{x}_i\}_{i=1}^{n}\subset\mathbb{R}^{p}$.
-For example, we can use Gaussian kernel function
-$$ f(\mathbf{x_i},\mathbf{x}_j)=exp(-\frac{{\|\mathbf{x_i}-\mathbf{x}_j\|}_2^2}{2\sigma^2}) $$
-to measure the *similarity* of inputs.
-The element of *similarity matrix* $S$ is $S_{i, j} = exp(-\frac{{\| \mathbf{x_i} -\mathbf{x}_j\|}_2^2}{2\sigma^2})$.
-Thus $S$ is symmetrical, i.e. $S_{i, j}=S_{j, i}$ for $i,j\in\{1,2,\dots, n\}$.
-If the sample size $n\gg p$, the storage of **similarity matrix** is much larger than the original input $\{\mathbf{x}_i \}_{i=1}^{n}$, when we would only preserve the entries above some values.
-The **Laplacian matrix** is defined by $L=D-S$ where $D = Diag\{D_1, D_2, \dots, D_n\}$ and
-$D_{i} = \sum_{j=1}^{n} S_{i,j} = \sum_{j=1}^{n} exp(-\frac{{\|\mathbf{x_i} - \mathbf{x}_j\|}_2^2}{2\sigma^2})$.
-
-Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ to reduce the data dimension. After that we can perform $K-means$ or other clustering.
-
-* https://zhuanlan.zhihu.com/p/34848710
-* *On Spectral Clustering: Analysis and an algorithm* at <http://papers.nips.cc/paper/2092-on-spectral-clustering-analysis-and-an-algorithm.pdf>
-* *A Tutorial on Spectral Clustering* at <https://www.cs.cmu.edu/~aarti/Class/10701/readings/Luxburg06_TR.pdf>.
-* **谱聚类** <https://www.cnblogs.com/pinard/p/6221564.html>.
-* *Spectral Clustering* <http://www.datasciencelab.cn/clustering/spectral>.
-* https://en.wikipedia.org/wiki/Category:Graph_algorithms
-* The course *Spectral Graph Theory, Fall 2015* at <http://www.cs.yale.edu/homes/spielman/561/>.
-* [IE532. Analysis of Network Data, Sewoong Oh, University of Illinois Urbana-Champaign](http://swoh.web.engr.illinois.edu/courses/ie532/).
-* https://skymind.ai/wiki/graph-analysis
-
-#### Graph Kernel
-
-Like kernels in **kernel methods**, graph kernel is used as functions measuring the similarity of pairs of graphs.
-They allow kernelized learning algorithms such as support vector machines to work directly on graphs, without having to do feature extraction to transform them to fixed-length, real-valued feature vectors.
-
-**Definition** : Find a mapping $f$ of the vertices of $G_1$ to the vertices of $G_2$ such that $G_1$ and $G_2$ are identical;
-i.e. $(x, y)$ is an edge of $G_1$  if and only if $(f(x),f(y))$ is an edge of $G_2$.
-Then ${f}$ is an isomorphism, and $G_1$ and $G_2$ are called `isomorphic`.
-
-No polynomial-time algorithm is known for graph isomorphism.
-Graph kernel are convolution kernels on pairs of graphs. A graph kernel makes the whole family kernel methods applicable to graphs.
-
-`Von Neumann diffusion` is defined as
- $$K_{VND}=\sum_{k=0}^{\infty}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}, \alpha\in[0,1].$$
-
-`Exponential diffusion` is defined as $K_{ED}=\sum_{k=0}^{\infty}\frac{1}{k!}{\alpha}^{k}{A}^{k}=\exp(\alpha A)$.
-`Katz method` is defined as the truncation of `Von Neumann diffusion`
-$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A}^K).$$
-
-
-+ https://www.wikiwand.com/en/Graph_product
-+ https://www.wikiwand.com/en/Graph_kernel
-+ [Graph Kernels](http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf)
-+ [GRAPH KERNELS by Karsten M. Borgwardt](https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf)
-+ [List of graph kernels](https://github.com/BorgwardtLab/graph-kernels)
-+ [Deep Graph Kernel](http://www.mit.edu/~pinary/kdd/YanVis15.pdf)
-+ [Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/)
-+ [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
-+ [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
 
 ### Semi-supervised Learning based Graph
 
@@ -623,19 +786,21 @@ Additionally, each composite relationship is specified.
 * http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture06.pdf
 * https://docs.microsoft.com/zh-cn/cognitive-toolkit/
 * http://www.cs.columbia.edu/~mcollins/
+* http://rll.berkeley.edu/cgt/
 
 #### Computaional Graph of Decision Tree
 
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png" width="40%" />
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/undirectedgraph.png" width="50%" />
 
-Decision tree looks like simple graph without loops, where only the leaf nodes specify the output values and the middle nodes specify their test or computation.
-The differences of computational graph of deep neural network focus on two parts: `the operation of each node` and automatic differentiation.
+Decision tree looks like a simple graph without loops, where only the leaf nodes specify the output values and the middle nodes specify their test or computation.
+Computational graph is regarded as an extension of deep neural network.
+The computational graph of deep neural network focus on two parts: `the operation of each node` and automatic differentiation.
 
-In deep neural network, the operation of middle node is a smooth activation function such as $\sigma(x)=\frac{1}{1+\exp(-x)}$ or `ReLU` and it maps every input in the elementwise sense. All input of the deep neural network share  the same `depth` and `activation` function in computational graph. More complex architecture can include some `feedback structure`.
+In deep neural network, the operation of middle node is a smooth activation function such as $\sigma(x)=\frac{1}{1+\exp(-x)}$ or `ReLU` and it maps every input in the element-wise sense. All input of the deep neural network share  the same `depth` and `activation` function in computational graph. More complex architecture can include some `feedback structure`.
 
-In decision tree, the operation of middle node is a `test function` such as typical `statistical test` and it determines the input next state - for example terminated or not. Different inputs have `different depth` and `test function` in  computational graph. The `test function` depends on the `splitting cretiera` when buiding a decision tree. 
-In vanilia deciison tree, the test function does not change the inputs and the final outputs of a leaf depend its instances labels.  
+In decision tree, the operation of middle node is a `test function` such as typical `statistical test` and it determines the input next state - for example terminated or not. Different inputs have `different depth` and `test function` in  computational graph. The `test function` depends on the `splitting criteria` when building a decision tree.
+In vanilla decision tree, the test function does not change the inputs and the final outputs of a leaf depend its instances labels.  
 
 We select a feature and find the optimal splitting point recursively and then the outputs are as some summary of the instances of the leaf nodes.
 
@@ -662,36 +827,36 @@ See more details of this procedure in the following links.
 
 
 The following is to translate the procedure to the language of computational graph.
-We suppose that the deciison tree is built by a greedy way.
+We suppose that the decision tree is built by a greedy way.
 
 
 ____
 
-Differetn from building the tree, prediction of decision tree is a tree traversal in nature.
-Inspired by `QuickScorer`, we split such predition to the following stages.
+Different from building the tree, prediction of decision tree is a tree traversal in nature.
+Inspired by `QuickScorer`, we split such prediction to the following stages.
 
-The first satge is to  find the false nodes in the decision tree with respect to the input $x$: 
+The first stage is to  find the false nodes in the decision tree with respect to the input $x$:
    $$h=\frac{-(Sign[Sx-t])+1}{2}$$
-  where so-called `selection matrix` $S\in\mathbb{R}^{n_L\times p}$ consisits of one-hot row vector in $\mathbb{R}^p$ representing which feature is tested in a node; the bias vector $t\in\mathbb{R}^{n_L}$ is the optimal point of each node associated with one feature; $Sign(\cdot)$ is the element-wise sign function. Here $n_L$ is the number of the middle nodes.
-If the feature of $x$ is greater than the splitting point, the corresponding node is a true node. Otherwise, the node is `False` node. 
+  where so-called `selection matrix` $S\in\mathbb{R}^{n_L\times p}$ consists of one-hot row vector in $\mathbb{R}^p$ representing which feature is tested in a node; the bias vector $t\in\mathbb{R}^{n_L}$ is the optimal point of each node associated with one feature; $Sign(\cdot)$ is the element-wise sign function. Here $n_L$ is the number of the middle nodes.
+If the feature of $x$ is greater than the splitting point, the corresponding node is a true node. Otherwise, the node is `False` node.
 
 
-The second stage is to apply bitwise `AND` to false nodes 
+The second stage is to apply bitwise `AND` to false nodes
 $$H=(B \, \,\operatorname{Diag}(h))^{\otimes}$$
 
-where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a diagonal matrix; $B\in\mathbb{B}^{L\times n_L}$ is the bitvector matrix of the decision tree. Every columon of $B$ is a bit-vector of node; $B \, \,\operatorname{Diag}(h)$ is the matrix multiplication of matrix $B$ and $\operatorname{Diag}(h)$. Here $L$ is the numer of exit leaf nodes.
+where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a diagonal matrix; $B\in\mathbb{B}^{L\times n_L}$ is the bitvector matrix of the decision tree. Every columns of $B$ is a bit-vector of node; $B \, \,\operatorname{Diag}(h)$ is the matrix multiplication of matrix $B$ and $\operatorname{Diag}(h)$. Here $L$ is the number of exit leaf nodes.
 
 
 The final stage is to determine the output
 $$v[i]\\
 i=min(HP)^+
-$$ 
+$$
 where $P=(1,2, \cdots, L)^T\in\mathbb{R}^L$ and $L$ is the number of the exist leaves; $v[i]$ are the $i$th elements of vector $v$; $(HP)^+$ are the positive elements of vector $HP$; $min(v)$ outputs the minimum values in the vector $v$.
 
 ____
 
 In a compact form, a decision tree is expressed as follows:
- 
+
 $$T(x)=v[\min((B\,\,\operatorname{Diag}[\frac{-(Sign[Sx-t])+1}{2}] )^{\oplus} P)^+]$$
 where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a matrix; $B$ is the bitvector matrix of the decision tree.
 
@@ -705,7 +870,7 @@ It is really a shallow model.
 And its hidden layers are sparse binary.
 
 Now there is nothing rather than expressing the decision tree in the language of computational graph.
-It looks  far from a step function. However, note that 
+It looks  far from a step function. However, note that
 + the $Sign$ function is a step function.
 + the matrix $S$ and $B$ are binary, i.e., their elements are 0 or 1.
 + $min()$ only select one element.
@@ -728,7 +893,7 @@ All `if-then` tests transform to numerical computation.
 From mathematical consideration, can we replace the $Sign$ function with some smooth function? Can we generalize the $S, B$ to real matrices?
 Can we apply gradient-based methods to train a decision tree?
 
-In the language of computtaional graph, how can we describe the (gradient) boosting deciosn tree?
+In the language of computational graph, how can we describe the (gradient) boosting decision tree?
 The structure information of the decision tree transforms to the bitvector matrix $B$.
 The splitting points information transforms to the pair $(S, t)$.
 Given triple(tuple) $(S, t, B)$, we can traverse a tree to each leaf.
@@ -737,6 +902,9 @@ The question is if it is a ono-one mapping from a decision tree to $(S, t, B, v)
 #### Dynamic Computational Graphs
 
 [A Dynamic Computational Graph is a mutable system represented as a directed graph of data flow between operations. It can be visualized as shapes containing text connected by arrows, whereby the vertices (shapes) represent operations on the data flowing along the edges (arrows).](https://ai.stackexchange.com/questions/3801/what-is-a-dynamic-computational-graph)
+
+[The main difference between frameworks that uses static computation graph like Tensor Flow, CNTK and frameworks that uses dynamic computation graph like Pytorch and DyNet is that the latter works as follows, a different computation graph is constructed from scratch for each training sample, forward and backward propagation are then take place so in another words the user is free to use different networks for each input sample but this of course will cost you a little overhead but don’t worry frameworks like DyNet has an optimized C++ backend and lightweight graph representation. Experiments show that DyNet’s speeds are faster than or comparable with static declaration toolkits while the static graph frameworks the graph is defined once and then the optimization graph compiler then produced optimization graph and all the training samples are then feed to this graph .On the one hand, once compiled, large graphs can be run efficiently
+on either the CPU or a GPU, making it ideal for large graphs with a fixed structure, where only the inputs change between instances. However, the compilation step itself can be costly, and it makes the interface more cumbersome to work with.](https://mc.ai/dynamic-vs-static-computation-graph/)
 
 * https://courses.cs.washington.edu/courses/cse547/18sp/slides/computation_graphs.pdf
 * https://courses.cs.washington.edu/courses/cse547/18sp/
@@ -755,7 +923,13 @@ __________________________________
 * The book [Graph Signal Processing: Overview, Challenges and Application](https://arxiv.org/pdf/1712.00468.pdf)
 * http://www.andres.sc/graph.html
 * https://github.com/sungyongs/graph-based-nn
-* [Probabilistische Graphische Modelle](https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html)
+
++ [Stanford Network Analysis Project](http://snap.stanford.edu/)
+
+###  Toolkits
+
++ [Abelian: A Compiler for Graph Analytics on Distributed, Heterogeneous Platforms](https://link.springer.com/chapter/10.1007/978-3-319-96983-1_18)
++ [Probabilistische Graphische Modelle](https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html)
 + [NetworkX : a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks](https://networkx.github.io/documentation/stable/index.html)
 + [The Neo4j Graph Algorithms User Guide v3.5](https://github.com/neo4j-contrib/neo4j-graph-algorithms)
 + [Matlab tools for working with simple graphs](https://github.com/scheinerman/matgraph)
@@ -763,4 +937,15 @@ __________________________________
 + [Graph theory (network) library for visualization and analysis](http://js.cytoscape.org/)
 + [graph-tool | Efficient network analysis](https://graph-tool.skewed.de/)
 + [JGraphT: a Java library of graph theory data structures and algorithms](https://jgrapht.org/)
-+ [Stanford Network Analysis Project](http://snap.stanford.edu/)
++ https://iss.oden.utexas.edu/?p=projects/galois
++ https://github.com/alibaba/euler
++ https://github.com/tencent/plato
++ https://fma-ai.cn/
++ https://people.csail.mit.edu/jshun/ligra.shtml
++ https://people.csail.mit.edu/jshun/graphit.pdf
++ https://graphit-lang.org/
++ https://arxiv.org/abs/1905.01294
++ https://arxiv.org/search/cs?searchtype=author&query=Kepner%2C+J
++ https://people.eecs.berkeley.edu/~aydin/CombBLAS/html/index.html
++ http://graphblas.org/index.php?title=Graph_BLAS_Forum
++ https://www.boost.org/doc/libs/1_42_0/libs/graph/doc/index.html

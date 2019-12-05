@@ -21,6 +21,7 @@ It is about how to accelerate the training and inference of deep learning(genera
 * [FairNAS: Rethinking Evaluation Fairness of Weight Sharing Neural Architecture Search](https://github.com/fairnas/FairNAS)
 * [VISUAL COMPUTING SYSTEMS](http://graphics.cs.cmu.edu/courses/15769/fall2016/lectures)
 * [Tutorial on Hardware Accelerators for Deep Neural Networks](http://eyeriss.mit.edu/tutorial.html)
+* [Survey and Benchmarking of Machine Learning Accelerators](https://arxiv.org/abs/1908.11348)
 * https://zhuanlan.zhihu.com/jackwish
 * https://machinethink.net/blog/compressing-deep-neural-nets/
 * [Rethinking Deep Learning: Architectures and Algorithms](https://nickhigham.files.wordpress.com/2019/05/talk12-constantinides.pdf)
@@ -149,10 +150,15 @@ NPU are required for the following purpose:
 
 #### Resource on ML Sys
 
+- https://www.microsoft.com/en-us/research/project/astra-custom-wired-dnns/
+
 ##### Workshop and Conference
 
 * http://www.sysml.cc/
 * https://mlperf.org/
+* https://sosp19.rcs.uwaterloo.ca/program.html
+* http://learningsys.org/sosp19/schedule.html
+* https://cs.stanford.edu/people/zhihao/
 * [Workshop on AI Systems](http://learningsys.org/sosp19/)
 * [Systems for ML](http://learningsys.org/neurips19/)
 * [Workshop on ML for Systems at NeurIPS 2019](http://mlforsystems.org/)
@@ -232,7 +238,8 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 + [Distributed Machine Learning and Matrix Computations: A NIPS 2014 Workshop](https://stanford.edu/~rezab/nips2014workshop/index.html)
 + [Large Scale Matrix Analysis and Inference: A NIPS 2013 Workshop](http://stanford.edu/~rezab/nips2013workshop/)
 + [Breakthrough! Faster Matrix Multiply](https://www.i-programmer.info/news/112-theory/3453-breakthrough-faster-matrix-multiply.html)
-
++ [Performance Engineering of Software Systems](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2018/)
++ https://zhuanlan.zhihu.com/p/94653447
 
 [Why GEMM is at the heart of deep learning](https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/)
 
@@ -592,9 +599,11 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 
 ## Compilers for Deep Learning
 
-
+* [Compilers by SOE-YCSCS1 STANFORD SCHOOL OF ENGINEERING](https://online.stanford.edu/courses/soe-ycscs1-compilers)
 * [EIE: Efficient Inference Engine on Compressed Deep Neural Network](https://arxiv.org/pdf/1602.01528.pdf)
-* http://dowobeha.github.io/papers/autodiff17.pdf
+* [A modern compiler infrastructure for deep learning systems with adjoint code generation in a domain-specific IR](http://dowobeha.github.io/papers/autodiff17.pdf)
+* [TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems](https://arxiv.org/abs/1603.04467)
+* [PyTorch: An Imperative Style, High-Performance Deep Learning Library](https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf)
 
 ### TVM and Versatile Tensor Accelerator (VTA)
 
@@ -727,7 +736,13 @@ DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
 
 - http://taichi.graphics/
 - https://github.com/yuanming-hu/taichi
-- http://taichi.graphics/wp-content/uploads/2019/09/taichi_lang.pdf
+- http://taichi.graphics/wp-content/uploads/2019/09/taichi_lang.pdf\
+
+### TASO
+
+* https://cs.stanford.edu/people/zhihao/
+* https://github.com/jiazhihao/TASO
+* http://theory.stanford.edu/~aiken/
 
 ## Compression and Acceleration of Convolutional Neural Networks
 
@@ -980,6 +995,10 @@ Additions to the traditional iteration procedure are in bold.
 
 [It turns out that DNNs can work with smaller datatypes, with less precision, such as 8-bit integers. Roughly speaking, we’re trying to work with a number line looking closer to the sparse one on the bottom. The numbers are quantized, i.e. discretized to some specific values, which we can then represent using integers instead of floating-point numbers.](https://sahnimanas.github.io/post/quantization-in-tflite/)
 
+- https://arxiv.org/abs/1906.03193
+- https://arxiv.org/abs/1903.05662
+- https://arxiv.org/pdf/1609.07061.pdf
+
 ##### High-accuracy Low Precision
 
 High-accuracy low precision (HALP) is our algorithm which runs SVRG and uses bit centering with a full gradient at every epoch to update the low-precision representation.
@@ -1160,6 +1179,8 @@ including the communication time, communication frequency, communication content
 - https://github.com/msr-fiddle/philly-traces
 - [PipeMare: Asynchronous Pipeline Parallel DNN Training](https://arxiv.org/abs/1910.05124)
 - [GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism](https://arxiv.org/abs/1811.06965)
+- [XPipe: Efficient Pipeline Model Parallelism for
+Multi-GPU DNN Training](https://arxiv.org/pdf/1911.04610.pdf)
 - https://arxiv.org/pdf/1806.03377.pdf
 - https://www.microsoft.com/en-us/research/project/fiddle/
 - [Bandwidth Optimal All-reduce Algorithms for Clusters of Workstations](http://www.cs.fsu.edu/~xyuan/paper/09jpdc.pdf)
