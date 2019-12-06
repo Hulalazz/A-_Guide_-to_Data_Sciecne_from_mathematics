@@ -1,28 +1,41 @@
-# Graph and Networks 
+# Graph and Networks
 
-[The world is driven by connections—from financial and communication systems to social and biological processes. 
+[The world is driven by connections—from financial and communication systems to social and biological processes.
 Revealing the meaning behind these connections drives breakthroughs across industries in areas such as identifying fraud rings and
 optimizing recommendations to evaluating the strength of a group and predicting cascading failures.](http://www.rlslog.net/graph-algorithms-practical-examples-in-apache-spark-and-neo4j-p2p/)
 Graph and networks are the language to describe the connected entities.
-They focus on the connections and consider the crowd as a network. They are close with topology. 
+They focus on the connections and consider the crowd as a network. They are close with topology.
 
 Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics -- graph theory.
 And graph processing is widely applied in industry and science such as the `network analysis`, `graph convolutional network (GCN)`,  `probabilistic graph model(PGM)` and `knowledge graph`, which are introduced in other chapters.
 
 - [Learn about graph, graph representations, graph traversals and their running time.](https://kobiso.github.io//data%20structure/coding-DS_graph/)
 - [NETWORK CALCULUS](https://ica1www.epfl.ch/PS_files/netCalBookv4.pdf)
+- [Graph Signal Processing: An Introductory Overview](https://www.seas.upenn.edu/~gsp16/ortega.pdf)
 - http://lca.epfl.ch/people/
 - http://shichuan.org/HENA2019.html
+- https://www.eecs.yorku.ca/~genec/
 
 
 ## Resource On Graph Processing
 
+* [International Conference on Graph Theory and its Applications - ICGTA19](https://www.amrita.edu/event/international-conference-graph-theory-and-its-applications-icgta19)
 * https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html
 * [Combinatorial Algorithms for graphs](http://mat.uab.cat/~alseda/MasterOpt/)
 * [Introduction to Search Engine Theory](http://ryanrossi.com/search.php)
-* [ Galois programming model](https://iss.oden.utexas.edu/)
+* [Galois programming model](https://iss.oden.utexas.edu/)
+* [Symposium on Graph Signal Processing](http://2019.ieeeglobalsip.org/pages/symposium-graph-signal-processing)
+* http://2019.ieeeglobalsip.org/
+* [IEEE Signal Processing Society](https://signalprocessingsociety.org/)
+* [High Performance Graph Data Management and Processing workshop](http://hpgdmp.bsc.es/)
+* https://www.ntu.edu.sg/home/arijit.khan/
+* http://www.cs.cmu.edu/~wcohen/
+* http://math.bit.edu.cn/szdw/azcpl/js/xlm/index.htm
+* https://sites.google.com/view/textgraphs2018/
+* https://ipads.se.sjtu.edu.cn/start
 * http://michele-ackerer.fr/algorithmic-graph-theory.htm
 * http://www.columbia.edu/~mc2775/
+* http://dbgroup.cs.tsinghua.edu.cn/ligl/
 * http://web.eecs.umich.edu/~dkoutra/tut/sdm17.html
 * http://web.eecs.umich.edu/~dkoutra/tut/icdm18.html
 * http://www.mlgworkshop.org/2019/
@@ -48,6 +61,44 @@ And graph processing is widely applied in industry and science such as the `netw
 * http://web.cs.ucla.edu/~yzsun/
 * http://www.ifp.illinois.edu/~chang87/
 * http://people.csail.mit.edu/chang87/
+* [Large Scale Graph Processing - GraphX, Giraph++, and Pegasus](https://id2221kth.github.io/slides/2018/12_graph_processing_part2.pdf)
+* https://www.usenix.org/conference/atc17/technical-sessions/presentation/malicevic
+* https://alliance.seas.upenn.edu/~gsp16/wiki/index.php
+* https://warrencenter.upenn.edu/
+* http://kw.fudan.edu.cn/publications
+* https://lts2.epfl.ch/
+* [Graph processing platforms at scale: practices and experiences](https://www.osti.gov/biblio/1185842)
+* https://web.cs.ucla.edu/~chiyuze/
+
+###  Toolkits
+
+* https://dirtysalt.github.io/html/pregel.html
+* http://gdm.fudan.edu.cn/GDMWiki/Wiki.jsp?page=Graph%20Code%20Library
+* https://igraph.org/
++ [Abelian: A Compiler for Graph Analytics on Distributed, Heterogeneous Platforms](https://link.springer.com/chapter/10.1007/978-3-319-96983-1_18)
++ [Probabilistische Graphische Modelle](https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html)
++ [NetworkX : a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks](https://networkx.github.io/documentation/stable/index.html)
++ [The Neo4j Graph Algorithms User Guide v3.5](https://github.com/neo4j-contrib/neo4j-graph-algorithms)
++ [Matlab tools for working with simple graphs](https://github.com/scheinerman/matgraph)
++ [GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms](https://julialang.org/blog/2019/02/light-graphs)
++ [Graph theory (network) library for visualization and analysis](http://js.cytoscape.org/)
++ [graph-tool | Efficient network analysis](https://graph-tool.skewed.de/)
++ [JGraphT: a Java library of graph theory data structures and algorithms](https://jgrapht.org/)
++ https://iss.oden.utexas.edu/?p=projects/galois
++ https://github.com/alibaba/euler
++ https://github.com/tencent/plato
++ https://fma-ai.cn/
++ https://people.csail.mit.edu/jshun/ligra.shtml
++ https://people.csail.mit.edu/jshun/graphit.pdf
++ https://graphit-lang.org/
++ https://arxiv.org/abs/1905.01294
++ https://arxiv.org/search/cs?searchtype=author&query=Kepner%2C+J
++ https://people.eecs.berkeley.edu/~aydin/CombBLAS/html/index.html
++ http://graphblas.org/index.php?title=Graph_BLAS_Forum
++ https://www.boost.org/doc/libs/1_42_0/libs/graph/doc/index.html
++ https://ibm.github.io/lagraph/index.html
++ [The Graph Signal Processing Toolbox](https://epfl-lts2.github.io/gspbox-html/)
++ http://giraph.apache.org/
 
 ## Graph as Data Structure
 
@@ -175,6 +226,7 @@ Graph Helmholtzian |$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
 - https://en.wikipedia.org/wiki/Graph_operations
 - https://sites.cs.ucsb.edu/~gilbert/talks/2018-05-21-GilbertGABB21May2018.pdf
 - https://sites.cs.ucsb.edu/~gilbert/talks/talks.htm
+- [ Calculus on Graphs](http://www.cs.columbia.edu/~verma/classes/uml/lec/uml_lec4_spectral_graph_theory_and_clustering.pdf)
 
 
 ##### Co-boundary Mapping
@@ -230,7 +282,7 @@ And $\nabla f$ is the product of the incidence matrix $\triangledown$ and the fu
 > Laplacian matrix of  a  graph $G$ with `weighted matrix` $W$ is ${L^{W}=D-W}$, where $D$ is the degree matrix of $G$.
 > We often denote $L(G)$ simply by $L$ or $\triangle$.
 
-If $\triangledown$ is the incidence matrix of the graph, teh Laplacians is 
+If $\triangledown$ is the incidence matrix of the graph, teh Laplacians is
 $$L=\triangle =\triangledown^T\triangledown.$$
 So $(Lf)(v_i)=\sum_{i\sim j}f(v_i)-f(v_j)$.
 
@@ -279,23 +331,44 @@ L_1\quad \quad \quad\quad\\
 
 * http://www.mit.edu/~parrilo/
 * https://www.stat.uchicago.edu/~lekheng/
-* https://igraph.org/
 * [Network Theory and Discrete Calculus – Graph Divergence and Graph Laplacian](https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/)
 * https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/
 * [https://www.stat.uchicago.edu/~lekheng/work/nips.pdf](https://www.stat.uchicago.edu/~lekheng/work/nips.pdf)
 * [Statistical ranking and combinatorial Hodge theory](http://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/ref/jiang-lim-yao-ye.pdf)
+
+
+##### Graph Convolution 
+
+- [Convolution on Graph: A High-Order and Adaptive Approach](https://arxiv.org/pdf/1706.09916.pdf)
+- [Molecular graph convolutions: moving beyond fingerprints](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5028207/)
+- [Graph Convolutional Matrix Completion](https://arxiv.org/abs/1706.02263)
 
 ##### Graph Fourier Transform
 
 - [Graph Fourier Transform based on Directed Laplacian](https://arxiv.org/abs/1601.03204)
 - [Multi-dimensional Graph Fourier Transform](https://arxiv.org/abs/1712.07811v1)
 - [Graph Convolutional Neural Networks: from perspective of Graph Signal Processing](http://www.icst.pku.edu.cn/huwei/docs/20190929164109880131.pdf)
+- [Graph Spectral Image Processing](https://arxiv.org/abs/1801.04749)
 - https://www.researchgate.net/profile/Wallace_Martins
 - https://gangwg.github.io/research.html
 - http://www.icst.pku.edu.cn/huwei/
 * https://arxiv.org/abs/1609.08642
 * http://techieme.in/graph-operations/
 
+
+Transform Name |Transform Representation|Transform Description
+---|---|---
+Karhunen-Loeve Transform (KLT) | “Sparsest” signal representation given available statistical model| Can be expensive (if poorly structured)
+Discrete Cosine Transform (DCT) | non-sparse signal representation across sharp boundaries | little (fixed transform)
+Graph Fourier Transform (GFT)|  minimizes the total rate of signal’s transform representation & transform description
+
+* https://www.eecs.yorku.ca/~genec/
+* [Recent Advances in Graph Spectral Image Processing](https://www.eecs.yorku.ca/~genec/2018/epfl_gsip_june2018.pdf)
+* [Multiresolution graph Fourier transform for compression of piecewise smooth images.](https://www.ncbi.nlm.nih.gov/pubmed/25494508)
+* [Graph Transform Optimization with Application to Image Compression.](https://www.ncbi.nlm.nih.gov/pubmed/31403414)
+* [Intra-Prediction and Generalized Graph Fourier Transform for Image Coding](https://www.eecs.yorku.ca/~genec/2015/spletter2015_hkust.pdf)
+* [GRAPH FOURIER TRANSFORM WITH NEGATIVE EDGES FOR DEPTH IMAGE CODING](https://www.eecs.yorku.ca/~genec/2017/icip2017_nthu.pdf)
+* [Graph Signal Processing for Image Coding & Restoration](http://materials.dagstuhl.de/files/16/16462/16462.GeneCheung.Slides.pdf)
 
 #### Graph Kernel
 
@@ -324,9 +397,11 @@ $$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A
 + [List of graph kernels](https://github.com/BorgwardtLab/graph-kernels)
 + [Deep Graph Kernel](http://www.mit.edu/~pinary/kdd/YanVis15.pdf)
 + [Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/)
++ [Diffusion Kernels on Graphs and Other Discrete Structures](http://people.cs.uchicago.edu/~risi/papers/diffusion-kernels.pdf)
 + [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
 + [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
 + [DDGK: Learning Graph Representations for Deep Divergence Graph Kernels](https://arxiv.org/pdf/1904.09671.pdf)
++ https://britishmachinevisionassociation.github.io/
 
 
 ### Spectral Graph  Theory
@@ -378,20 +453,20 @@ Then we can apply *principal component analysis* to the *Laplacian matrix* $L$ t
 #### PageRank
 
 Raluca Tanase and Remus Radu, in [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html), asserted that
-> The usefulness of a search engine depends on the relevance of the result set it gives back. 
-> There may of course be millions of web pages that include a particular word or phrase; 
-> however some of them will be more relevant, popular, or authoritative than others. 
-> A user does not have the ability or patience to scan through all pages that contain the given query words. 
+> The usefulness of a search engine depends on the relevance of the result set it gives back.
+> There may of course be millions of web pages that include a particular word or phrase;
+> however some of them will be more relevant, popular, or authoritative than others.
+> A user does not have the ability or patience to scan through all pages that contain the given query words.
 > One expects the relevant pages to be displayed within the top 20-30 pages returned by the search engine.
 >
-> Modern search engines employ methods of ranking the results to provide the "best" results first that are more elaborate than just plain text ranking. 
-> One of the most known and influential algorithms for computing the relevance of web pages is the Page Rank algorithm used by the Google search engine. 
-> It was invented by Larry Page and Sergey Brin while they were graduate students at Stanford, and it became a Google trademark in 1998. 
-> The idea that Page Rank brought up was that, _the importance of any web page can be judged by looking at the pages that link to it_. 
-> If we create a web page i and include a hyperlink to the web page j, this means that we consider j important and relevant for our topic. 
+> Modern search engines employ methods of ranking the results to provide the "best" results first that are more elaborate than just plain text ranking.
+> One of the most known and influential algorithms for computing the relevance of web pages is the Page Rank algorithm used by the Google search engine.
+> It was invented by Larry Page and Sergey Brin while they were graduate students at Stanford, and it became a Google trademark in 1998.
+> The idea that Page Rank brought up was that, _the importance of any web page can be judged by looking at the pages that link to it_.
+> If we create a web page i and include a hyperlink to the web page j, this means that we consider j important and relevant for our topic.
 > If there are a lot of pages that link to j, this means that the common belief is that page j is important. If on the other hand, j has only one backlink,
-> but that comes from an authoritative site k, (like www.google.com, www.cnn.com, www.cornell.edu) we say that k transfers its authority to j; 
-> in other words, k asserts that j is important. 
+> but that comes from an authoritative site k, (like www.google.com, www.cnn.com, www.cornell.edu) we say that k transfers its authority to j;
+> in other words, k asserts that j is important.
 > Whether we talk about popularity or authority, we can iteratively assign a rank to each web page, based on the ranks of the pages that point to it.
 
 PageRank is the first importance measure of webpage in large scale application. And this is content-free so that it does not  take the relevance of webpages into consideration.
@@ -480,6 +555,8 @@ A depth first traversal takes O(N*E) time for adjacency list representation and 
 + [Breadth First Search (BFS) and Depth First Search (DFS) Algorithms](https://www.includehelp.com/algorithms/breadth-first-search-bfs-and-depth-first-search-dfs.aspx)
 
 <img src="https://kobiso.github.io//assets/images/graph/bid.png" width="80%" />
+
++ [Power-Efficient Breadth-First Search with DRAM Row Buffer Locality-Aware Address Mapping](http://hpgdmp.bsc.es/system/files/uploads/20161113_hpgdmp2016_slides.pdf)
 
 #### $A^{\ast}$ Algorithm
 
@@ -829,7 +906,6 @@ See more details of this procedure in the following links.
 The following is to translate the procedure to the language of computational graph.
 We suppose that the decision tree is built by a greedy way.
 
-
 ____
 
 Different from building the tree, prediction of decision tree is a tree traversal in nature.
@@ -860,7 +936,6 @@ In a compact form, a decision tree is expressed as follows:
 $$T(x)=v[\min((B\,\,\operatorname{Diag}[\frac{-(Sign[Sx-t])+1}{2}] )^{\oplus} P)^+]$$
 where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a matrix; $B$ is the bitvector matrix of the decision tree.
 
-
 The hierarchical  structure of decision tree is clear:
 $$x\to h\to H\to v[i]\\
 \mathbb{R}^p \to\mathbb{B}^{n_L}\to\mathbb{B}^{L}\to\mathbb{R}
@@ -877,8 +952,6 @@ It looks  far from a step function. However, note that
 
 All `if-then` tests transform to numerical computation.
 
-
-
 * [RapidScorer: Fast Tree Ensemble Evaluation by Maximizing Compactness in Data Level Parallelization](https://www.kdd.org/kdd2018/accepted-papers/view/rapidscorer-fast-tree-ensemble-evaluation-by-maximizing-compactness-in-data)
 * https://www.researchgate.net/publication/300031474_QuickScorer
 * [Learning to Rank in theory and practice](http://ltr-tutorial-sigir19.isti.cnr.it/)
@@ -888,7 +961,6 @@ All `if-then` tests transform to numerical computation.
 * [Probabilistic decision trees using SVM for multi-class classification](https://ieeexplore.ieee.org/document/6693840)
 * [Decision Trees and Forests: A Probabilistic Perspective](http://www.gatsby.ucl.ac.uk/~balaji/balaji-phd-thesis.pdf)
 * http://ai.stanford.edu/~wzou/
-
 
 From mathematical consideration, can we replace the $Sign$ function with some smooth function? Can we generalize the $S, B$ to real matrices?
 Can we apply gradient-based methods to train a decision tree?
@@ -926,26 +998,4 @@ __________________________________
 
 + [Stanford Network Analysis Project](http://snap.stanford.edu/)
 
-###  Toolkits
 
-+ [Abelian: A Compiler for Graph Analytics on Distributed, Heterogeneous Platforms](https://link.springer.com/chapter/10.1007/978-3-319-96983-1_18)
-+ [Probabilistische Graphische Modelle](https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html)
-+ [NetworkX : a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks](https://networkx.github.io/documentation/stable/index.html)
-+ [The Neo4j Graph Algorithms User Guide v3.5](https://github.com/neo4j-contrib/neo4j-graph-algorithms)
-+ [Matlab tools for working with simple graphs](https://github.com/scheinerman/matgraph)
-+ [GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms](https://julialang.org/blog/2019/02/light-graphs)
-+ [Graph theory (network) library for visualization and analysis](http://js.cytoscape.org/)
-+ [graph-tool | Efficient network analysis](https://graph-tool.skewed.de/)
-+ [JGraphT: a Java library of graph theory data structures and algorithms](https://jgrapht.org/)
-+ https://iss.oden.utexas.edu/?p=projects/galois
-+ https://github.com/alibaba/euler
-+ https://github.com/tencent/plato
-+ https://fma-ai.cn/
-+ https://people.csail.mit.edu/jshun/ligra.shtml
-+ https://people.csail.mit.edu/jshun/graphit.pdf
-+ https://graphit-lang.org/
-+ https://arxiv.org/abs/1905.01294
-+ https://arxiv.org/search/cs?searchtype=author&query=Kepner%2C+J
-+ https://people.eecs.berkeley.edu/~aydin/CombBLAS/html/index.html
-+ http://graphblas.org/index.php?title=Graph_BLAS_Forum
-+ https://www.boost.org/doc/libs/1_42_0/libs/graph/doc/index.html
