@@ -6,6 +6,9 @@
 
 
 * [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
+* [A Comprehensive Analysis of Deep Regression](https://github.com/Stephlat/DeepRegression)
+* https://gangwg.github.io/research.html
+* http://www.mit.edu/~k2smith/
 * [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
 * [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
 * [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
@@ -184,6 +187,7 @@ Not all one can understand the relative theory or quantum theory.
 *  https://github.com/CalculatedContent/ImplicitSelfRegularization
 * [torbenkruegermath](https://sites.google.com/site/torbenkruegermath/home/graduate-seminar-random-matrices-spin-glasses-deep-learning)
 * [TOWARDS A NEW THEORY OF LEARNING: STATISTICAL MECHANICS OF DEEP NEURAL NETWORKS](https://calculatedcontent.com/2019/12/03/towards-a-new-theory-of-learning-statistical-mechanics-of-deep-neural-networks/)
+* https://zhuanlan.zhihu.com/p/90096775
 
 ### Born Machine
 
@@ -708,6 +712,9 @@ Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/
 
 Except the matrix and tensor decomposotion for accelerating the deep neural network, `Tensor network` is close to deep learning model.
 
+- http://people.cs.uchicago.edu/~risi/
+- https://ttic.uchicago.edu/~shubhendu/
+
 ### Tensor network
 
 - [Linear Algebra and Learning from Data](http://math.mit.edu/~gs/learningfromdata/)
@@ -888,6 +895,7 @@ In the absence of explanations for such cognitive phenomena, in turn cognitive s
 <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1364661319300348-gr2.jpg" width="69%"/>
 
 * https://www.mis.mpg.de/ay/
+* [Josh Tenenbaum](http://web.mit.edu/cocosci/josh.html)
 * [Deep Neural Networks as Scientific Models](https://www.sciencedirect.com/science/article/pii/S1364661319300348)
 * https://wiki.opencog.org/w/Language_learning
 * https://github.com/opencog/learn
@@ -931,6 +939,7 @@ In the absence of explanations for such cognitive phenomena, in turn cognitive s
 - https://arxiv.org/abs/1909.13458
 - https://zhuanlan.zhihu.com/p/84178021
 - https://zhuanlan.zhihu.com/p/67782029
+- https://openai.com/blog/deep-double-descent/
 
 ## AOGNet
 
