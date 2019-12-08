@@ -116,13 +116,6 @@ The connections can be directed, weighted even probabilistic. It can be studied 
 
 All data in computer machine is digitalized bits. The primitive goal is to represent graph in computer as one data structure.
 
-> **Definition**:  Let $G=(V, E)$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$. Suppose each
-> edge of $G$ is assigned an orientation, which is arbitrary but fixed. The (vertex-edge)
-> `incidence` matrix of $G$, denoted by $Q(G)$, is the $n \times m$ matrix defined as follows.
-> The rows and the columns of $Q(G)$ are indexed by $V(G)$ and $E(G)$, respectively.
-> The $(i, j)$-entry of $Q(G)$ is 0 if vertex $i$ and edge $e_j$ are not incident, and otherwise it
-> is $\color{red}{\text{1 or −1}}$ according as $e_j$ originates or terminates at $i$, respectively. We often denote
-> $Q(G)$ simply by $Q$. Whenever we mention $Q(G)$ it is assumed that the edges of $G$ are oriented.
 
 |The adjacency matrix|
 |:---:|
@@ -134,6 +127,13 @@ All data in computer machine is digitalized bits. The primitive goal is to repre
 > `Adjacency Matrix` is also used to represent `weighted graphs`. If the $(i, j)$-entry of $A(G)$ is $w_{i, j}$, i.e. $A[i][j] = w_{i, j}$, then there is an edge from vertex $i$ to vertex $j$ with weight $w$.
 > The `Adjacency Matrix` of `weighted graphs` $G$ is also called `weight` matrix of $G$, denoted by $W(G)$ or simply by $W$.
 
+> **Definition**:  Let $G=(V, E)$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$. Suppose each
+> edge of $G$ is assigned an orientation, which is arbitrary but fixed. The (vertex-edge)
+> `incidence` matrix of $G$, denoted by $Q(G)$, is the $n \times m$ matrix defined as follows.
+> The rows and the columns of $Q(G)$ are indexed by $V(G)$ and $E(G)$, respectively.
+> The $(i, j)$-entry of $Q(G)$ is 0 if vertex $i$ and edge $e_j$ are not incident, and otherwise it
+> is $\color{red}{\text{1 or −1}}$ according as $e_j$ originates or terminates at $i$, respectively. We often denote
+> $Q(G)$ simply by $Q$. Whenever we mention $Q(G)$ it is assumed that the edges of $G$ are oriented.
 See *Graph representations using set and hash* at <https://www.geeksforgeeks.org/graph-representations-using-set-hash/>.
 
 > **Definition**: In graph theory, the degree (or valency) of a vertex of a graph is the number of edges incident to the vertex, with loops counted twice. From the wikipedia page at <https://www.wikiwand.com/en/Degree_(graph_theory)>.
@@ -167,13 +167,7 @@ Although the adjacency-list representation is asymptotically at least as efficie
 
 It seems that graph theory is partially the application of nonnegative matrix theory.
 [Graph Algorithms in the Language of Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9780898719918?mobileUi=0) shows how to leverage existing parallel matrix computation techniques and the large amount of software infrastructure that exists for these computations to implement efficient and scalable parallel graph algorithms. The benefits of this approach are reduced algorithmic complexity, ease of implementation, and improved performance.
-__________________________________
-Matrix Theory        | Graph Theory|-----|---
----------------------|-------------|-----|---
-Matrix Addition      |?   | Spectral Theory |?
-Matrix Power         |?   | Jordan Form     |?
-Matrix Multiplication|?   | Rank            |?
-Basis                |?   | Spectra         |?
+
 __________________________________
 
 > **Definition** A `walk` in a digraph is an alternating sequence of vertices and
@@ -213,11 +207,13 @@ If $G(V, E)$ is undirected graph. $V$ are vertices, $E$ are edges, T are triangl
 * Edge flows(edge field ): $X:V\times V\to \mathbb R$, where  $X(i, j)=0,$ if $(i, j)\not\in E$ and $X(i, j)=-X(j,i)$ for all $(i, j)$.
 * Triangular flows: $\Phi: V\times V\times V\to\mathbb R$ where $\Phi(i, j ,k)=0$ if $(i, j, k)\not\in T$ and $\Phi(i, j, k)=\Phi(k, i, j)=\Phi(j, k, i)=-\Phi(j, i, k)=-\Phi(i, k, j)=-\Phi(k,j,i)$ for all $i, j, k$.
 
+[Some operators on Graph](https://arxiv.org/pdf/0811.1067v2.pdf)
+
 Operators | Definition
 ----------|--------------
-Graph gradient: grad | $\text{(grad s)(i, j)}=s_j - s_i$
-Graph curl: curl |$\text{(curl X)(i, j, k)}=X_{ij}+X_{jk}+X_{ik}$
-Graph divergence: div |$\text{(div X)(i)}= \sum_{j}w_{ij}X_{ij}$
+Graph  combinatorial gradient: grad | $\text{(grad s)(i, j)}=s_j - s_i$
+Graph  combinatorial curl: curl |$\text{(curl X)(i, j, k)}=X_{ij}+X_{jk}+X_{ik}$
+Graph combinatorial divergence: div |$\text{(div X)(i)}= \sum_{j}w_{ij}X_{ij}$
 Graph Laplacian |$\Delta_0=div\circ grad$
 Graph Helmholtzian |$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
 
@@ -227,7 +223,8 @@ Graph Helmholtzian |$\Delta_1=curl^{\ast}\circ curl-grad\circ div$
 - https://sites.cs.ucsb.edu/~gilbert/talks/2018-05-21-GilbertGABB21May2018.pdf
 - https://sites.cs.ucsb.edu/~gilbert/talks/talks.htm
 - [ Calculus on Graphs](http://www.cs.columbia.edu/~verma/classes/uml/lec/uml_lec4_spectral_graph_theory_and_clustering.pdf)
-
+- https://johncarlosbaez.wordpress.com/
+- https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/
 
 ##### Co-boundary Mapping
 
@@ -241,14 +238,19 @@ $$g=Af;g(i)=\sum_{i\sim j}f(j)$$
 which is the extension of degree function.
 
 Let each edge in the graph have an arbitrary but `fixed orientation`.
-> The `incidence matrix` of a graph is a  $|V|\times |E|$ matrix defined as follows:
-> $$\triangledown=
+> The `incidence matrix` of a graph $G$ is a  $|V|\times |E|$ matrix defined as follows:
+> $$Q(G)=\triangledown=
 >\begin{cases}
 >\triangledown_{ev}=-1, &\text{if $v$ is the initial vertex of edge $e$}\\
 >\triangledown_{ev}=1, &\text{if $v$ is the terminal vertex of edge $e$}\\
 >\triangledown_{ev}=0, &\text{if $v$ is not in the edge $e$}
 >\end{cases}
 >$$
+
+$\color{red}{Note}$ that the column sums of $Q(G)$ are 0s  so the rows of $Q(G)$ is linearly dependent.
+
+* If the graph $G$ is connected on $n$ vertices, the rank of incidence matrix $\triangledown$ is $n-1$, i.e. $rank(\triangledown)=n-1$.
+* If $G$ is a graph on $n$ vertices and has $k$ connected components, then $rank(\triangledown)=n-k$.
 
 The mapping $f \to \nabla f$ is known as the `co-boundary mapping` of the graph defined by
 $$(\nabla f)(e_{ij})=f(v_j)-f(v_i)$$
@@ -257,6 +259,7 @@ where $e_{ij}$ is the edge and $v_i$($v_j$) is the initial(terminal) node of the
 
 And $\nabla f$ is the product of the incidence matrix $\triangledown$ and the function $f$.
 
+- [The Discrete Master Equation](https://phorgyphynance.wordpress.com/2011/10/29/network-theory-and-discrete-calculus-the-discrete-master-equation/)
 - https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf
 - https://zhuanlan.zhihu.com/p/67336297
 
@@ -269,6 +272,8 @@ And $\nabla f$ is the product of the incidence matrix $\triangledown$ and the fu
 ##### Graph Divergence
 
 * [Function and divergence on a graph](https://math.stackexchange.com/questions/1960191/function-and-divergence-on-a-graph)
+* http://math.ucr.edu/home/baez/
+* [Network Theory and Discrete Calculus – Graph Divergence and Graph Laplacian](https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/)
 
 ##### Graph Laplacians
 
@@ -282,7 +287,7 @@ And $\nabla f$ is the product of the incidence matrix $\triangledown$ and the fu
 > Laplacian matrix of  a  graph $G$ with `weighted matrix` $W$ is ${L^{W}=D-W}$, where $D$ is the degree matrix of $G$.
 > We often denote $L(G)$ simply by $L$ or $\triangle$.
 
-If $\triangledown$ is the incidence matrix of the graph, teh Laplacians is
+If $\triangledown$ is the incidence matrix of the graph, the Laplacians are defined as
 $$L=\triangle =\triangledown^T\triangledown.$$
 So $(Lf)(v_i)=\sum_{i\sim j}f(v_i)-f(v_j)$.
 
@@ -315,13 +320,23 @@ L_1\quad \quad \quad\quad\\
 * The eigenspace corresponding to $\lambda_1 = \cdots = \lambda_k = 0$ is spanned by the k mutually orthogonal vectors:
 * These vectors are the indicator vectors of the graph’s connected components.
 
+
+It is also called as `Kirchhoff matrix` or `information matrix`.
+
+> **Kirchhoff matrix tree theorem** If $G$ is a connected graph, then the cofactor of the Laplacian matrix are all equal and the common value is the number of spanning tree of the graph $G$.
+
+
+- https://www.isid.ac.in/~rbb/
 - http://cs-www.cs.yale.edu/homes/spielman/
 - [A Short Tutorial on Graph Laplacians, Laplacian Embedding, and Spectral Clustering](https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf)
 - https://team.inria.fr/perception/
 - https://csustan.csustan.edu/~tom/
 - https://github.com/epfl-lts2/pygsp
 - [Graph Signal Processing: Overview, Challenges and Applications](https://arxiv.org/abs/1712.00468)
-
+- [Laplacian Matrices of Graphs: A Survey](https://www.math.ucdavis.edu/~saito/data/graphlap/merris-graphlap-eigvals.pdf)
+- https://www.seas.upenn.edu/~jadbabai/ESE680/Laplacian_Thesis.pdf
+- https://www.seas.upenn.edu/~jadbabai/papthes.html
+* [Network Theory and Discrete Calculus – Graph Divergence and Graph Laplacian](https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/)
 
 ##### Graph Helmholtzian
 
@@ -331,13 +346,12 @@ L_1\quad \quad \quad\quad\\
 
 * http://www.mit.edu/~parrilo/
 * https://www.stat.uchicago.edu/~lekheng/
-* [Network Theory and Discrete Calculus – Graph Divergence and Graph Laplacian](https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/)
-* https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/
+* [Graph Helmholtzian and Rank Learning](https://www.stat.uchicago.edu/~lekheng/work/nips.pdf)
 * [https://www.stat.uchicago.edu/~lekheng/work/nips.pdf](https://www.stat.uchicago.edu/~lekheng/work/nips.pdf)
 * [Statistical ranking and combinatorial Hodge theory](http://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/ref/jiang-lim-yao-ye.pdf)
+* [STATISTICAL RANKING AND COMBINATORIAL HODGE THEORY](https://arxiv.org/pdf/0811.1067v2.pdf)
 
-
-##### Graph Convolution 
+##### Graph Convolution
 
 - [Convolution on Graph: A High-Order and Adaptive Approach](https://arxiv.org/pdf/1706.09916.pdf)
 - [Molecular graph convolutions: moving beyond fingerprints](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5028207/)
@@ -370,38 +384,15 @@ Graph Fourier Transform (GFT)|  minimizes the total rate of signal’s transform
 * [GRAPH FOURIER TRANSFORM WITH NEGATIVE EDGES FOR DEPTH IMAGE CODING](https://www.eecs.yorku.ca/~genec/2017/icip2017_nthu.pdf)
 * [Graph Signal Processing for Image Coding & Restoration](http://materials.dagstuhl.de/files/16/16462/16462.GeneCheung.Slides.pdf)
 
-#### Graph Kernel
-
-Like kernels in **kernel methods**, graph kernel is used as functions measuring the similarity of pairs of graphs.
-They allow kernelized learning algorithms such as support vector machines to work directly on graphs, without having to do feature extraction to transform them to fixed-length, real-valued feature vectors.
-
-**Definition** : Find a mapping $f$ of the vertices of $G_1$ to the vertices of $G_2$ such that $G_1$ and $G_2$ are identical;
-i.e. $(x, y)$ is an edge of $G_1$  if and only if $(f(x),f(y))$ is an edge of $G_2$.
-Then ${f}$ is an isomorphism, and $G_1$ and $G_2$ are called `isomorphic`.
-
-No polynomial-time algorithm is known for graph isomorphism.
-Graph kernel are convolution kernels on pairs of graphs. A graph kernel makes the whole family kernel methods applicable to graphs.
-
-`Von Neumann diffusion` is defined as
- $$K_{VND}=\sum_{k=0}^{\infty}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}, \alpha\in[0,1].$$
-
-`Exponential diffusion` is defined as $K_{ED}=\sum_{k=0}^{\infty}\frac{1}{k!}{\alpha}^{k}{A}^{k}=\exp(\alpha A)$.
-`Katz method` is defined as the truncation of `Von Neumann diffusion`
-$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A}^K).$$
+__________________________________
+Matrix Theory        | Graph Theory|-----|---
+---------------------|-------------|-----|---
+Matrix Addition      |?   | Spectral Theory |?
+Matrix Power         |?   | Jordan Form     |?
+Matrix Multiplication|?   | Rank            |?
+Basis                |?   | Spectra         |?
 
 
-+ https://www.wikiwand.com/en/Graph_product
-+ https://www.wikiwand.com/en/Graph_kernel
-+ [Graph Kernels](http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf)
-+ [GRAPH KERNELS by Karsten M. Borgwardt](https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf)
-+ [List of graph kernels](https://github.com/BorgwardtLab/graph-kernels)
-+ [Deep Graph Kernel](http://www.mit.edu/~pinary/kdd/YanVis15.pdf)
-+ [Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/)
-+ [Diffusion Kernels on Graphs and Other Discrete Structures](http://people.cs.uchicago.edu/~risi/papers/diffusion-kernels.pdf)
-+ [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
-+ [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
-+ [DDGK: Learning Graph Representations for Deep Divergence Graph Kernels](https://arxiv.org/pdf/1904.09671.pdf)
-+ https://britishmachinevisionassociation.github.io/
 
 
 ### Spectral Graph  Theory
@@ -787,7 +778,38 @@ $$ E = \{ (i, j) \mid p_i\in N_k(p_j)\quad \text{or}\quad p_j \in N_k(p_i) \}. $
 [A Spectral Analysis of Moore Graphs](https://jeremykun.com/2016/11/03/a-spectral-analysis-of-moore-graphs/)
 
 
+#### Graph Kernel
 
+Like kernels in **kernel methods**, graph kernel is used as functions measuring the similarity of pairs of graphs.
+They allow kernelized learning algorithms such as support vector machines to work directly on graphs, without having to do feature extraction to transform them to fixed-length, real-valued feature vectors.
+
+**Definition** : Find a mapping $f$ of the vertices of $G_1$ to the vertices of $G_2$ such that $G_1$ and $G_2$ are identical;
+i.e. $(x, y)$ is an edge of $G_1$  if and only if $(f(x),f(y))$ is an edge of $G_2$.
+Then ${f}$ is an isomorphism, and $G_1$ and $G_2$ are called `isomorphic`.
+
+No polynomial-time algorithm is known for graph isomorphism.
+Graph kernel are convolution kernels on pairs of graphs. A graph kernel makes the whole family kernel methods applicable to graphs.
+
+`Von Neumann diffusion` is defined as
+ $$K_{VND}=\sum_{k=0}^{\infty}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}, \alpha\in[0,1].$$
+
+`Exponential diffusion` is defined as $K_{ED}=\sum_{k=0}^{\infty}\frac{1}{k!}{\alpha}^{k}{A}^{k}=\exp(\alpha A)$.
+`Katz method` is defined as the truncation of `Von Neumann diffusion`
+$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A}^K).$$
+
+
++ https://www.wikiwand.com/en/Graph_product
++ https://www.wikiwand.com/en/Graph_kernel
++ [Graph Kernels](http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf)
++ [GRAPH KERNELS by Karsten M. Borgwardt](https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf)
++ [List of graph kernels](https://github.com/BorgwardtLab/graph-kernels)
++ [Deep Graph Kernel](http://www.mit.edu/~pinary/kdd/YanVis15.pdf)
++ [Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/)
++ [Diffusion Kernels on Graphs and Other Discrete Structures](http://people.cs.uchicago.edu/~risi/papers/diffusion-kernels.pdf)
++ [Awesome Graph Embedding](https://github.com/benedekrozemberczki/awesome-graph-embedding)
++ [Document Analysis with Transducers](https://leon.bottou.org/publications/pdf/transducer-1996.pdf)
++ [DDGK: Learning Graph Representations for Deep Divergence Graph Kernels](https://arxiv.org/pdf/1904.09671.pdf)
++ https://britishmachinevisionassociation.github.io/
 
 ### Semi-supervised Learning based Graph
 
@@ -997,5 +1019,3 @@ __________________________________
 * https://github.com/sungyongs/graph-based-nn
 
 + [Stanford Network Analysis Project](http://snap.stanford.edu/)
-
-
