@@ -1,34 +1,6 @@
 # Recommender System
 
-https://typewind.github.io/2017/04/05/rsbmc-notes/
-
 <img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
-
-* https://zhuanlan.zhihu.com/p/87293483
-* https://www.zhihu.com/question/336304380/answer/784976195
-* [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
-* [深度学习在搜索和推荐系统中的应用](https://blog.csdn.net/malefactor/article/details/52040228)
-* [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
-* [CSE 291: Trends in Recommender Systems and Human Behavioral Modeling](https://cseweb.ucsd.edu/classes/fa17/cse291-b/)
-* [THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)](https://recnlp2019.github.io/)
-* [Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan](https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html)
-* [Recommendations for all : solving thousands of recommendation problems a day](https://ai.google/research/pubs/pub46822)
-* http://staff.ustc.edu.cn/~hexn/
-* [Learning Item-Interaction Embeddings for User Recommendations](https://arxiv.org/abs/1812.04407)
-* [Summary of RecSys](https://github.com/fuxuemingzhu/Summary-of-Recommender-System-Papers)
-* [How Netflix’s Recommendations System Works](https://help.netflix.com/en/node/100639)
-* [个性化推荐系统，必须关注的五大研究热点](https://www.msra.cn/zh-cn/news/executivebylines/tech-bylines-personalized-recommendation-system)
-* [How Does Spotify Know You So Well?](https://medium.com/s/story/spotifys-discover-weekly-how-machine-learning-finds-your-new-music-19a41ab76efe)
-* [推荐系统论文集合](https://daiwk.github.io/posts/links-navigation-recommender-system.html)
-* https://hong.xmu.edu.cn/Services___fw/Recommender_System.htm
-* https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3
-* https://buildingrecommenders.wordpress.com/
-* https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/
-* https://developers.google.com/machine-learning/recommendation/
-* https://sites.google.com/view/lianghu/home/tutorials/ijcai2019
-* https://acmrecsys.github.io/rsss2019/
-* https://github.com/alibaba/x-deeplearning/wiki
-* https://apple.github.io/turicreate/docs/userguide/recommender/
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 
@@ -59,6 +31,7 @@ It is an application of machine learning, which is in the *representation + eval
 - [ ] [Semantic Recommender Systems. Analysis of the state of the topic](https://www.upf.edu/hipertextnet/en/numero-6/recomendacion.html)
 - [ ] [Recommender Systems (2019/1)](https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
+- [ ] [Large scale recommender systems](https://bigdata.oden.utexas.edu/project/large-scale-recommender-systems/)
 
 |Evolution of the Recommender Problem|
 |:---:|
@@ -306,7 +279,6 @@ We use stochastic gradient ascent to maximize the objective function.
 * [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
 
 
-
 ### BellKor's Progamatic Chaos
 
 Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
@@ -351,6 +323,7 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 [Alternating least square](http://suo.im/4YCM5f) (**ALS**) can give an analytic solution to this optimization problem by setting the gradients equal to 0s.
 
 * [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
+* [Recommending Based on Implicit Feedback](https://www.researchgate.net/publication/324895157_Recommending_Based_on_Implicit_Feedback)
 * [Fast Collaborative Filtering from Implicit Feedback with Provable Guarantees](http://proceedings.mlr.press/v63/Dasgupta79.pdf)
 * [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
 * http://nicolas-hug.com/blog/matrix_facto_1
@@ -466,6 +439,36 @@ where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
 * [Yuchin Juan at ACEMAP](https://www.acemap.info/author/page?AuthorID=7E61F31B)
 * [Field-aware Factorization Machines for CTR Prediction](https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf)
 * https://blog.csdn.net/mmc2015/article/details/51760681
+
+### Beyond Matrix Completion
+
+There are 2 common techniques in recommender system:
+
+1.  The goal of `matrix factorization` techniques in RS is to determine a low-rank approximation of the user-item rating matrix by decomposing it into a product of (user and item) matrices of lower dimensionality (latent factors).
+2.  The idea of `ensemble methods` is to combine multiple alternative machine learning models to obtain more accurate predictions.
+
+There are 2 disadvantages of Matrix Completion:
+1. $Postdiction \not= prediction$
+   - Need initial post data
+   - Predict poorly on a random set of items the user has not rated.
+   - Repeated recommendation of purchased items
+   - The evaluation method of Netflix Prize is misleading. RMSE(regression) vs Rank-based measures(sorting)
+2. Quality factors beyond accuracy
+   - Introduce why we use the quality factors:
+   - Novelty, diversity and unexpectedness(How to recommend new things to users exactly)
+   - Depend on context and different problems
+   - Interact with users: conversational recommender systems
+   - Example of context and interaction:To Be Continued: Helping you find shows to continue watching on Netflix(search the “context”)
+   - Manipulation resistance(in detail)
+   - Recommendation is optimal to sellers not users - transparency and explanation strategy (nearly a moral problem).
+
+***
+
+- https://www.researchgate.net/project/Proactive-Recommendation-Delivery
+- [Beyond Matrix Completion of the traditional Recommender System](https://www.ijert.org/beyond-matrix-completion-of-the-traditional-recommender-system)
+- [Recommender systems---: Recommender systems---: beyond matrix completion](https://www.researchgate.net/publication/309600906_Recommender_systems---_beyond_matrix_completion)
+- [Notes of "Recommender Systems - Beyond Matrix Completion"](https://typewind.github.io/2017/04/05/rsbmc-notes/)
+- [Toward the Next Generation of Recommender Systems: A Survey of the State-of-the-Art and Possible Extensions](http://people.stern.nyu.edu/atuzhili/pdf/TKDE-Paper-as-Printed.pdf)
 
 ## Deep Learning for Recommender System
 
@@ -1084,6 +1087,7 @@ Providing personalized explanations for recommendations can help users to unders
 + http://www.cs.cmu.edu/~rkanjira/thesis/rose_proposal.pdf
 + http://jamesmc.com/publications
 + [FIRST INTERNATIONAL WORKSHOP ON  DEEP MATCHING IN PRACTICAL APPLICATIONS ](https://wsdm2019-dapa.github.io/#section-ketnotes)
++ [Explainable Matrix Factorization for Collaborative Filtering](https://www.researchgate.net/publication/301616080_Explainable_Matrix_Factorization_for_Collaborative_Filtering)
 
 ## Social Recommendation
 
@@ -1309,16 +1313,15 @@ thus far.
 
 Services that introduce stores to users on the Internet are increasing in recent years. Each service conducts thorough analyses in order to display stores matching each user's preferences. In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). It is practically impossible to learn everything when the number of items to be learned periodically increases. The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. In order to solve this problem, we propose a recommender system based on deep reinforcement learning. In deep reinforcement learning, a multilayer neural network is used to update the value function.
 
-* [eep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
+* [Ieep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
 * [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
 * [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
 * [TPGR: Large-scale Interactive Recommendation with Tree-structured Policy Gradient](http://www.noahlab.com.hk/#/news/new1811_1)
-+ [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
-+ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
-+ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
 + [Explore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
 + [Learning from logged bandit feedback](https://drive.google.com/file/d/0B2Rxz7LRWLOMX2dycXpWTGxoUE5lNkRnRWZuaDNZUlVRZ1kw/view)
 + [Improving the Quality of Top-N Recommendation](https://drive.google.com/file/d/0B2Rxz7LRWLOMekRtdExZVVpZQmlXNks0Y2FJTnd6ZG90TXdZ/view)
++ [ParsRec: Meta-Learning Recommendations for Bibliographic Reference Parsing](https://arxiv.org/abs/1808.09036)
++ [强化学习在阿里的技术演进与业务创新 | 免费资料库](https://yq.aliyun.com/articles/708953)
 
 _______
 |Traditional Approaches | Beyond Traditional Methods|
@@ -1336,11 +1339,44 @@ _______
 - [ ] https://zhuanlan.zhihu.com/p/45097523
 - [ ] https://www.zhihu.com/question/20830906
 - [ ] https://www.zhihu.com/question/56806755/answer/150755503
-
++ [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
++ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
++ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
 ## Resource on RecSys
 
+- https://mquad.github.io/
+- https://www.aau.at/en/ainf/research-groups/infsys/team/dietmar-jannach/
+- https://xamat.github.io/
+- http://presnick.people.si.umich.edu/
+- https://www.stern.nyu.edu/faculty/bio/alexander-tuzhilin
+- http://people.stern.nyu.edu/atuzhili/
+- https://www.researchgate.net/profile/Markus_Zanker
 - https://cseweb.ucsd.edu/~jmcauley/datasets.html
-
+* https://zhuanlan.zhihu.com/p/87293483
+* https://www.zhihu.com/question/336304380/answer/784976195
+* [最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎](https://zhuanlan.zhihu.com/p/69050253)
+* [深度学习在搜索和推荐系统中的应用](https://blog.csdn.net/malefactor/article/details/52040228)
+* [CSE 258: Web Mining and Recommender Systems](http://cseweb.ucsd.edu/classes/fa18/cse258-a/)
+* [CSE 291: Trends in Recommender Systems and Human Behavioral Modeling](https://cseweb.ucsd.edu/classes/fa17/cse291-b/)
+* [THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)](https://recnlp2019.github.io/)
+* [Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan](https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html)
+* [Recommendations for all : solving thousands of recommendation problems a day](https://ai.google/research/pubs/pub46822)
+* http://staff.ustc.edu.cn/~hexn/
+* [Learning Item-Interaction Embeddings for User Recommendations](https://arxiv.org/abs/1812.04407)
+* [Summary of RecSys](https://github.com/fuxuemingzhu/Summary-of-Recommender-System-Papers)
+* [How Netflix’s Recommendations System Works](https://help.netflix.com/en/node/100639)
+* [个性化推荐系统，必须关注的五大研究热点](https://www.msra.cn/zh-cn/news/executivebylines/tech-bylines-personalized-recommendation-system)
+* [How Does Spotify Know You So Well?](https://medium.com/s/story/spotifys-discover-weekly-how-machine-learning-finds-your-new-music-19a41ab76efe)
+* [推荐系统论文集合](https://daiwk.github.io/posts/links-navigation-recommender-system.html)
+* https://hong.xmu.edu.cn/Services___fw/Recommender_System.htm
+* https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3
+* https://buildingrecommenders.wordpress.com/
+* https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/
+* https://developers.google.com/machine-learning/recommendation/
+* https://sites.google.com/view/lianghu/home/tutorials/ijcai2019
+* https://acmrecsys.github.io/rsss2019/
+* https://github.com/alibaba/x-deeplearning/wiki
+* https://apple.github.io/turicreate/docs/userguide/recommender/
 
 ### Labs
 
