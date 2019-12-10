@@ -3,7 +3,6 @@
 <img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
-
 RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items that a Web site, for example, may offer.
 
 [Xavier Amatriain discusses the traditional definition and its data mining core.](https://www.kdd.org/exploration_files/V14-02-05-Amatriain.pdf)
@@ -15,6 +14,8 @@ It is an application of machine learning, which is in the *representation + eval
 
 
 - [ ] https://github.com/hongleizhang/RSPapers
+- [ ] https://github.com/familyld/AwesomeRecSysPaper/
+- [ ] http://kdd2018tutorial-behavior.datasciences.org/
 - [ ] https://github.com/benfred/implicit
 - [ ] https://github.com/YuyangZhangFTD/awesome-RecSys-papers
 - [ ] https://github.com/daicoolb/RecommenderSystem-Paper
@@ -242,11 +243,15 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 * [Regression-based Latent Factor Models @CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 * [Probabilistic Matrix Factorization](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf)
 
-### Coupled Poisson Factorization
+### Poisson Factorization
 
+[We develop a Bayesian Poisson matrix factorization model for forming recommendations from sparse user behavior data. These data are large user/item matrices where each user has provided feedback on only a small subset of items, either explicitly (e.g., through star ratings) or implicitly (e.g., through views or purchases). In contrast to traditional matrix factorization approaches, Poisson factorization implicitly models each user's limited attention to consume items. Moreover, because of the mathematical form of the Poisson likelihood, the model needs only to explicitly consider the observed entries in the matrix, leading to both scalable computation and good predictive performance. We develop a variational inference algorithm for approximate posterior inference that scales up to massive data sets. This is an efficient algorithm that iterates over the observed entries and adjusts an approximate posterior over the user/item representations. We apply our method to large real-world user data containing users rating movies, users listening to songs, and users reading scientific papers. In all these settings, Bayesian Poisson factorization outperforms state-of-the-art matrix factorization methods.](https://arxiv.org/abs/1311.1704)
 
-
-+ [Coupled Poisson Factorization Integrated with User/Item Metadata for Modeling Popular and Sparse Ratings in Scalable Recommendation](http://www.datasciences.org/)
++ https://lkpy.readthedocs.io/en/stable/hpf.html
++ https://hpfrec.readthedocs.io/en/latest/
++ [Scalable Recommendation with Hierarchical Poisson Factorization](http://jakehofman.com/inprint/poisson_recs.pdf)
++ [Dynamic Poisson Factorization](https://dl.acm.org/citation.cfm?doid=2792838.2800174)
++ [Coupled Poisson Factorization Integrated with User/Item Metadata for Modeling Popular and Sparse Ratings in Scalable Recommendation](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16637)
 + [Coupled Compound Poisson Factorization](https://arxiv.org/pdf/1701.02058.pdf)
 + https://github.com/mehmetbasbug/ccpf
 
@@ -323,6 +328,7 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 [Alternating least square](http://suo.im/4YCM5f) (**ALS**) can give an analytic solution to this optimization problem by setting the gradients equal to 0s.
 
 * [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
+* [A Generic Framework for Learning Explicit and Implicit User-Item Couplings in Recommendation](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8815704)
 * [Recommending Based on Implicit Feedback](https://www.researchgate.net/publication/324895157_Recommending_Based_on_Implicit_Feedback)
 * [Fast Collaborative Filtering from Implicit Feedback with Provable Guarantees](http://proceedings.mlr.press/v63/Dasgupta79.pdf)
 * [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
@@ -442,7 +448,7 @@ where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
 
 ### Beyond Matrix Completion
 
-There are 2 common techniques in recommender system:
+There are 2 common techniques in recommender systems:
 
 1.  The goal of `matrix factorization` techniques in RS is to determine a low-rank approximation of the user-item rating matrix by decomposing it into a product of (user and item) matrices of lower dimensionality (latent factors).
 2.  The idea of `ensemble methods` is to combine multiple alternative machine learning models to obtain more accurate predictions.
@@ -459,10 +465,24 @@ There are 2 disadvantages of Matrix Completion:
    - Depend on context and different problems
    - Interact with users: conversational recommender systems
    - Example of context and interaction:To Be Continued: Helping you find shows to continue watching on Netflix(search the “context”)
-   - Manipulation resistance(in detail)
+   - Manipulation resistance
    - Recommendation is optimal to sellers not users - transparency and explanation strategy (nearly a moral problem).
 
+
+**From Algorithms to Systems**
+
+Beyond the computer science perspective.
+
+
+Putting the user back in the loop.
+
+
+Toward a more comprehensive characterization of the recommendation task.
+
 ***
+
+[Collaborative filtering has become a key tool in recommender systems. The Netflix competition was instrumental in this context to further development of scalable tools. At its heart lies the minimization of the Root Mean Squares Error (RMSE) which helps to decide upon the quality of a recommender system. Moreover, minimizing the RMSE comes with desirable guarantees of statistical consistency. In this talk I make the case that RMSE minimization is a poor choice for a number of reasons: firstly, review scores are anything but Gaussian distributed, often exhibiting asymmetry and bimodality in their scores. Secondly, in a retrieval setting accuracy matters primarily for the top rated items. Finally, such ratings are highly context dependent and should only be considered in interaction with a user. I will show how this can be accomplished easily by relatively minor changes to existing systems.](http://www.ueo-workshop.com/invited-speakers/)
+
 
 - https://www.researchgate.net/project/Proactive-Recommendation-Delivery
 - [Beyond Matrix Completion of the traditional Recommender System](https://www.ijert.org/beyond-matrix-completion-of-the-traditional-recommender-system)
@@ -481,7 +501,7 @@ Deep learning is really popular in recommender system such as [spotlight](https:
 
 What is the role deep learning plays in recommender system? At one hand, deep learning helps to match the user and items based on the history of their interactions such as `deep matching` and `deep collaborative learning`. 
 In mathematics, it is a function that evaluates the how likely the user would interact with the items in some context: $f(X_U, X_I, X_C)$ where $X_U, X_I, X_C$ is the features of user, item and context, respectively.
-At another hand, deep learning leads a role as one represenation methods to embbed high diemensional sparse data into semantics space.
+At another hand, deep learning leads a role as one representation methods to embedded high dimensional sparse data into semantics space.
 
 * [A review on deep learning for recommender systems: challenges and remedies](https://daiwk.github.io/assets/Batmaz2018_Article_AReviewOnDeepLearningForRecomm.pdf)
 * [Deep Learning Recommendation Model for Personalization and Recommendation Systems](https://github.com/facebookresearch/dlrm)
@@ -491,6 +511,7 @@ At another hand, deep learning leads a role as one represenation methods to embb
 * https://recsys.acm.org/recsys17/dlrs/
 * https://dl.acm.org/citation.cfm?id=3125486
 * [The 1st International Workshop on Deep Learning Practice for High-Dimensional Sparse Data with KDD 2019 (DLP-KDD 2019）](https://dlp-kdd.github.io/)
+* https://recsys.acm.org/recsys19/session-3/
 
 ### Restricted Boltzmann Machines for Collaborative Filtering(RBM)
 
@@ -691,6 +712,8 @@ It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Networ
 * [论文快读 - Deep Neural Networks for YouTube Recommendations](http://lipixun.me/2018/02/01/youtube)
 
 ### Deep Matrix Factorization
+
+[Matrix Factorization is a widely used collaborative filtering method in recommender systems. However, most of them are under the assumption that the rating data is missing at random (MAR), which may not be very common. For some users, they may only rate those movies they like, so the inferences will be biased in previous models. In this paper, we proposed a deep matrix factorization method based on missing not at random (MNAR) assumption. As far as we know, this model firstly uses deep learning method to address MNAR issue. The model consists of a complete data model (CDM) and a missing data model (MDM), which are both learned by neural networks. The CDM is nonlinearly determined by two factors, the user latent features and item latent features like other matrix factorization methods. And the MDM also use these two factors but taking the rating value as extra information while training. We used variational Bayesian inference to generate the posterior distribution of our proposed model. Through extensive experiments on different kind of datasets, our proposed model produce gains in some widely used metrics, comparing with several state-of-the-art models. We also explore the performance of our model within different experimental settings.](https://iopscience.iop.org/article/10.1088/1742-6596/1060/1/012001)
 
 * [Deep Matrix Factorization Models for Recommender Systems](https://www.ijcai.org/proceedings/2017/0447.pdf)
 * [Deep Matrix Factorization for Recommender Systems with Missing Data not at Random](https://iopscience.iop.org/article/10.1088/1742-6596/1060/1/012001)
@@ -1114,6 +1137,10 @@ Based on the assumption of trust aware recommender
 * users have similar tastes with other users they trust
 * the transitivity of trust and propagate trust to indirect neighbors in the social network.
 
+- https://github.com/grahamjenson/list_of_recommender_systems
+- https://www.librec.net/doc/librec-v1.1/librec/rating/SocialMF.html
+- [A matrix factorization technique with trust propagation for recommendation in social networks](https://www.semanticscholar.org/paper/A-matrix-factorization-technique-with-trust-for-in-Jamali-Ester/c73287153c0a50102a40800c1ada626a410c63cc)
+
 ## Knowledge Graph and Recommender System
 
 Items usually correspond to entities in many fields, such as books, movies and music, making it possible for transferring information between them.
@@ -1154,13 +1181,8 @@ This workshop will deepen the discussions started at the three prior workshops a
 - [SeWeBMeDa 2019 Semantic Web Solutions for Large-Scale Biomedical Data Analytics](http://ceur-ws.org/Vol-2477/)
 - [2019 KDD Workshop on Applied Data Science for Healthcare](https://dshealthkdd.github.io/dshealth-2019/)
 - https://dshealthkdd.github.io/dshealth-2019/#papers
-* http://2013.digitalhealth.ws/
-* http://www.digitalhealth.ws/
-* [Digital Health 2015](https://wp.cs.ucl.ac.uk/acm-digitalhealth-2015/)
-* [DIGITAL HEALTH 2018](https://www.acm-digitalhealth.org/2018/index.html)
 - [Health Recommender Systems: Concepts, Requirements, Technical Basics and Challenges](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3968965/)
 - [Health Recommender System using Big data analytics](http://ibii-us.org/Journals/JMSBI/V2N2/Publish/V2N2_3.pdf)
-- [DeepReco: Deep Learning Based Health Recommender System Using Collaborative Filtering](https://www.mdpi.com/2079-3197/7/2/25/htm)
 - [Health Recommender System in Social Networks: A Case of Facebook](http://www.webology.org/2019/v16n1/a178.pdf)
 - [Health Recommender research project](https://healthrecommender.org/)
 - [Consumers’ intention to use health recommendation systems to receive personalized nutrition advice](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3623628/)
@@ -1180,11 +1202,6 @@ This workshop will deepen the discussions started at the three prior workshops a
 - http://homepages.inf.ed.ac.uk/ckiw/
 - http://groups.csail.mit.edu/medg/people/psz/home/Pete_MEDG_site/Home.html
 - [MIT CSAIL Clinical Decision Making Group](http://groups.csail.mit.edu/medg/)
-- http://www.cs.ucr.edu/~cshelton/
-- http://hst.mit.edu/users/rgmarkmitedu
-- http://erichorvitz.com/
-- https://www.hms.harvard.edu/dms/neuroscience/fac/Kohane.php
-- https://www.khoury.northeastern.edu/people/carla-brodley/
 
 
 ### Recommdender System for Doctor 
@@ -1307,12 +1324,15 @@ thus far.
 * https://www.acm-digitalhealth.org/2018/committee/alberto-sanna/index.html
 * https://research.hsr.it/en/index.html
 
+### DeepReco
 
+- [DeepReco: Deep Learning Based Health Recommender System Using Collaborative Filtering](https://www.mdpi.com/2079-3197/7/2/25/htm)
 
 ## Reinforcement Learning and Recommender System
 
 Services that introduce stores to users on the Internet are increasing in recent years. Each service conducts thorough analyses in order to display stores matching each user's preferences. In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). It is practically impossible to learn everything when the number of items to be learned periodically increases. The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. In order to solve this problem, we propose a recommender system based on deep reinforcement learning. In deep reinforcement learning, a multilayer neural network is used to update the value function.
 
+* http://www.cse.msu.edu/~zhaoxi35/
 * [Ieep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
 * [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
 * [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
@@ -1322,6 +1342,8 @@ Services that introduce stores to users on the Internet are increasing in recent
 + [Improving the Quality of Top-N Recommendation](https://drive.google.com/file/d/0B2Rxz7LRWLOMekRtdExZVVpZQmlXNks0Y2FJTnd6ZG90TXdZ/view)
 + [ParsRec: Meta-Learning Recommendations for Bibliographic Reference Parsing](https://arxiv.org/abs/1808.09036)
 + [强化学习在阿里的技术演进与业务创新 | 免费资料库](https://yq.aliyun.com/articles/708953)
++ https://recsys.acm.org/recsys19/reveal/
++ [Closing the loop with the real world: reinforcement and robust estimators for recommendation](https://sites.google.com/view/reveal2019/)
 
 _______
 |Traditional Approaches | Beyond Traditional Methods|
@@ -1342,8 +1364,16 @@ _______
 + [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 + [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
+
+
 ## Resource on RecSys
 
+
+- http://www.cs.ucr.edu/~cshelton/
+- http://hst.mit.edu/users/rgmarkmitedu
+- http://erichorvitz.com/
+- https://www.hms.harvard.edu/dms/neuroscience/fac/Kohane.php
+- https://www.khoury.northeastern.edu/people/carla-brodley/
 - https://mquad.github.io/
 - https://www.aau.at/en/ainf/research-groups/infsys/team/dietmar-jannach/
 - https://xamat.github.io/
@@ -1433,7 +1463,7 @@ _______
 - [ ] [Orange3-Recommendation: a Python library that extends Orange3 to include support for recommender systems.](https://orange3-recommendation.readthedocs.io/en/latest/)
 - [ ] [MyMediaLite: a recommender system library for the Common Language Runtime](http://www.mymedialite.net/index.html)
 - [ ] http://www.mymediaproject.org/
-- [Workshop: Building Recommender Systems w/ Apache Spark 2.x](https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x)
+- [Workshop: Building Recommender Systems with Apache Spark 2.x](https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x)
 - [A Leading Java Library for Recommender Systems](https://www.librec.net/)
 - [lenskit: Python Tools for Recommender Experiments](https://lenskit.org/)
 - [Samantha - A generic recommender and predictor server](https://grouplens.github.io/samantha/)
@@ -1535,7 +1565,29 @@ ______________________________________________________
 - [The User Engagement Optimization Workshop1](http://www.ueo-workshop.com/previous-editions/ueo-2013-at-cikm-2013/)
 - [EVALUATION OF USER EXPERIENCE IN MOBILE ADVERTISI](http://galjot.si/research)
 - [WWW 2019 Tutorial on Online User Engagement](https://onlineuserengagement.github.io/)
+- http://www.ueo-workshop.com/
+- http://www.ueo-workshop.com/program/
 - https://www.nngroup.com/
+- https://labtomarket.eu/
+- http://research.google.com/pubs/AmrAhmed.html
+- https://home.ubalt.edu/ntsbarsh/business-stat/opre504.htm
+- https://www.nersc.gov/about/nersc-staff/user-engagement/
+- https://www.microsoft.com/en-us/research/people/eladyt/
+- http://yom-tov.info/
+
+## User Modeling
+
+[User models are used to generate or adapt user interfaces at runtime, to address particular user needs and preferences. User models are also known as user profiles, personas or archetypes. They can be used by designers and developers for personalisation purposes and to increase the usability and accessibility of products and services.](https://www.w3.org/WAI/RD/wiki/User_modeling)
+
+- https://www.um.org/
+- https://www.um.org/umap2020/
+- https://www.um.org/awards/best-paper-awards
+- https://www.w3.org/WAI/RD/wiki/User_modeling
+- https://www2018.thewebconf.org/program/user-modeling/
+- http://kdd2018tutorial-behavior.datasciences.org/
+- https://www2019.thewebconf.org/research-track/user-modeling-personalization-and-experience
+- [Research on the Use, Characteristics, and Impact of e-Commerce Product Recommendation Agents: A Review and Update for 2007–2012](https://link.springer.com/chapter/10.1007%2F978-3-642-39747-9_18)
+- [E-Commerce Product Recommendation Agents: Use, Characteristics, and Impact](https://misq.org/catalog/product/view/id/222)
 
 ## Resource
 
@@ -1566,6 +1618,7 @@ ______________________________________________________
 - https://sigopt.com/blog/
 - [Web Understanding, Modeling, and Evaluation Lab](http://wume.cse.lehigh.edu/)
 - https://knightlab.northwestern.edu/
+- https://bdsc.lab.uic.edu/
 
 ### Courese
 

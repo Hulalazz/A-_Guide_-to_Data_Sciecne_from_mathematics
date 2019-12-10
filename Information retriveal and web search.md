@@ -1056,9 +1056,8 @@ $$\nabla_{\Theta}\hat{v}(q)=\gamma^t G_t\nabla_{\Theta}\log(\pi(a_t\mid S_t;\The
 + [Improving Session Search Performance with a Multi-MDP Model](http://www.thuir.cn/group/~YQLiu/publications/AIRS18Chen.pdf)
 + https://github.com/ICT-BDA/EasyML
 
-
-
 ----
+
 ### Vertical Domain Search: Beyond String and Texts
 
 As we have learned how to handle text, information retrieval is moving on, to projects in sound and image retrieval, along with electronic provision of much of what is now in libraries.
@@ -1100,6 +1099,24 @@ Different from general web search engine, scholar search engine does rank the we
 - https://www.semion.io/Home/About
 - https://scite.ai/
 
+
+*************
+
+- [MACHINE LEARNING FOR HEALTHCARE (MLHC)](http://www.mucmd.org/)
+- [BigCHat: Connected Health at Big Data Era](http://tonghanghang.org/events/KDD_BigChat.htm)
+- [HEALTH DAY AT KDD](https://www.kdd.org/kdd2019/special-days/health-day)
+- [Microsoft’s focus on transforming healthcare: Intelligent health through AI and the cloud](https://blogs.microsoft.com/blog/2018/02/28/microsofts-focus-transforming-healthcare-intelligent-health-ai-cloud/)
+- https://www.cs.ubc.ca/~rng/
+- http://homepages.inf.ed.ac.uk/ckiw/
+- http://groups.csail.mit.edu/medg/people/psz/home/Pete_MEDG_site/Home.html
+- [MIT CSAIL Clinical Decision Making Group](http://groups.csail.mit.edu/medg/)
+- http://www.cs.ucr.edu/~cshelton/
+- http://hst.mit.edu/users/rgmarkmitedu
+- http://erichorvitz.com/
+- https://www.hms.harvard.edu/dms/neuroscience/fac/Kohane.php
+- https://www.khoury.northeastern.edu/people/carla-brodley/
+
+
 #### Medical Information Retrieval: Biomedical and Health Informatics
 
 ChartRequest claims that:
@@ -1109,6 +1126,10 @@ ChartRequest claims that:
 - http://web.cs.ucla.edu/~wwc/
 - http://www.kmed.cs.ucla.edu/
 - [KMeX: A Knowledge-Based Approach for Scenario-Specific Medical Free Text Retrieval](http://www.cobase.cs.ucla.edu/projects/kmex/index.html)
+- https://www.informedhealth.org/
+- http://yom-tov.info/publications.html
+- http://yom-tov.info/publications.html
+- [Internet Searches for Medical Symptoms Before Seeking Information on 12-Step Addiction Treatment Programs: A Web-Search Log Analysis](https://www.jmir.org/2019/5/e10946/)
 
 ##### What is Biomedical and Health Informatics?
 
@@ -1117,6 +1138,8 @@ ChartRequest claims that:
 - Unified Medical Language System (UMLS)
 - Systematized Nomenclature of Medicine--Clinical Terms (SNOMED-CT)
 - International Classification of Diseases (ICD)
+
+We focus on ICD10.
 
 * https://dmice.ohsu.edu/hersh//whatis/
 * https://www.nlm.nih.gov/research/umls/
@@ -1168,7 +1191,19 @@ It is becasue medical information is really professional while critical.
 * https://search.kconnect.eu/beta/
 * https://clefehealth.imag.fr/
 * http://www.bilegaldoc.com/
+* http://www.munmund.net/index.html
 
+#### Digital Health 
+
+[The opportunities for interdisciplinary digital health research bringing together computer science to dramatically improve public health, global health and wellbeing of individuals and populations globally are extraordinary.](https://www.acm-digitalhealth.org/2018/index.html)
+
+* http://2013.digitalhealth.ws/
+* http://www.digitalhealth.ws/
+* [Digital Health 2015](https://wp.cs.ucl.ac.uk/acm-digitalhealth-2015/)
+* [DIGITAL HEALTH 2018](https://www.acm-digitalhealth.org/2018/index.html)
+* https://www.crowdsourcedhealth.com/
+* https://www.jmir.org/2019/1/e10179/
+* http://yom-tov.info/publications.html
 
 #### Multimedia Search Engine
 
