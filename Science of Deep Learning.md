@@ -1,6 +1,7 @@
 # Science of Deep Learning
 
 - https://nthu-datalab.github.io/ml/index.html
+- http://www.cs.cornell.edu/~shmat/research.html
 
 [Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
 
@@ -179,6 +180,8 @@ Not all one can understand the relative theory or quantum theory.
 
 ### Statistical Mechanics and Deep Learning
 
+[The recent striking success of deep neural networks in machine learning raises profound questions about the theoretical principles underlying their success. For example, what can such deep networks compute? How can we train them? How does information propagate through them? Why can they generalize? And how can we teach them to imagine? We review recent work in which methods of physical analysis rooted in statistical mechanics have begun to shed conceptual insights into these questions. These insights yield connections between deep learning and diverse physical and mathematical topics, including random landscapes, spin glasses, jamming, dynamical phase transitions, chaos, Riemannian geometry, random matrix theory, free probability, and nonequilibrium statistical mechanics. Indeed, the fields of statistical mechanics and machine learning have long enjoyed a rich history of strongly coupled interactions, and recent advances at the intersection of statistical mechanics and deep learning suggest these interactions will only deepen going forward.](https://www.annualreviews.org/doi/pdf/10.1146/annurev-conmatphys-031119-050745)
+
 * [statistical mechanics // machine learning](http://smml.io/)
 * [A Theoretical Connection Between Statistical Physics and Reinforcement Learning](https://arxiv.org/abs/1906.10228)
 * [The thermodynamics of learning](https://phys.org/news/2017-02-thermodynamics.html)
@@ -187,6 +190,7 @@ Not all one can understand the relative theory or quantum theory.
 *  https://github.com/CalculatedContent/ImplicitSelfRegularization
 * [torbenkruegermath](https://sites.google.com/site/torbenkruegermath/home/graduate-seminar-random-matrices-spin-glasses-deep-learning)
 * [TOWARDS A NEW THEORY OF LEARNING: STATISTICAL MECHANICS OF DEEP NEURAL NETWORKS](https://calculatedcontent.com/2019/12/03/towards-a-new-theory-of-learning-statistical-mechanics-of-deep-neural-networks/)
+* [Statistical Mechanics of Deep Learning](https://www.annualreviews.org/doi/pdf/10.1146/annurev-conmatphys-031119-050745)
 * https://zhuanlan.zhihu.com/p/90096775
 
 ### Born Machine
@@ -212,9 +216,6 @@ Not all one can understand the relative theory or quantum theory.
 - https://peterwittek.com/
 * [Lecture Note on Deep Learning and Quantum Many-Body Computation](https://wangleiphy.github.io/lectures/DL.pdf)
 * [Quantum Deep Learning and Renormalization](http://www.math.chalmers.se/~stig/project4.pdf)
-
-
-
 
 ____
 * https://scholar.harvard.edu/madvani/home
@@ -863,6 +864,7 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - [DEEP 3D REPRESENTATION LEARNING](http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf)
 - https://www.mis.mpg.de/ay/index.html
 - https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180BigData_info.html
+- https://www.tbsi.edu.cn/index.php?s=/cms/181.html
 
 ## Brain Science and AI
 

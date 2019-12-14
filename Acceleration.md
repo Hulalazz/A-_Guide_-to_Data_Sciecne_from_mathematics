@@ -843,6 +843,15 @@ In the training phase, both full-precision and quantized weights are kept. In th
 - https://courses.cs.washington.edu/courses/cse467/08au/labs/l5/fp.pdf
 - [Fixed Point Arithmetic and Tricks](http://x86asm.net/articles/fixed-point-arithmetic-and-tricks/)
 
+#### 8-bit-training
+
+[The state-of-the-art hardware platforms for training Deep Neural Networks (DNNs) are moving from traditional single precision (32-bit) computations towards 16 bits of precision -- in large part due to the high energy efficiency and smaller bit storage associated with using reduced-precision representations. However, unlike inference, training with numbers represented with less than 16 bits has been challenging due to the need to maintain fidelity of the gradient computations during back-propagation. Here we demonstrate, for the first time, the successful training of DNNs using 8-bit floating point numbers while fully maintaining the accuracy on a spectrum of Deep Learning models and datasets. In addition to reducing the data and computation precision to 8 bits, we also successfully reduce the arithmetic precision for additions (used in partial product accumulation and weight updates) from 32 bits to 16 bits through the introduction of a number of key ideas including chunk-based accumulation and floating point stochastic rounding.](https://arxiv.org/abs/1812.08011)
+- [8-Bit Precision for Training Deep Learning Systems](https://www.ibm.com/blogs/research/2018/12/8-bit-precision-training/)
+- [Extending 8-bit training breakthroughs to the toughest deep learning models](https://www.ibm.com/blogs/research/2019/12/8-bit-training-breakthroughs-deep-learning/)
+- [Hybrid 8-bit Floating Point (HFP8) Training and Inference for Deep Neural Networks](https://papers.nips.cc/paper/8736-hybrid-8-bit-floating-point-hfp8-training-and-inference-for-deep-neural-networks)
+- [Training Deep Neural Networks with 8-bit Floating Point Numbers](https://arxiv.org/abs/1812.08011)
+- https://www.ibm.com/blogs/research/author/xiao-sun/
+
 #### Binarized Neural Network, Ternary Weight Networks, XOR-Net
 
 
@@ -910,6 +919,7 @@ This network has the following layers:
 - [ ] [FP-BNN: Binarized neural network on FPGA](https://www.sciencedirect.com/science/article/pii/S0925231217315655)
 - [ ] [Embedded Binarized Neural Networks](http://www.eecs.harvard.edu/~htk/publication/2017-ewsn-mcdanel-teerapittayanon-kung.pdf)
 - [ ] [Deep Learning for Real-Time Crime Forecasting and Its Ternarization](https://arxiv.org/pdf/1711.08833.pdf)
+- [ ] https://www.ibm.com/blogs/research/2019/04/2-bit-precision/
 
 
 ##### Ternary Weight Networks
@@ -1174,6 +1184,7 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 ### The lottery ticket hypothesis
 
 [The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
+
 - https://ai.facebook.com/blog/understanding-the-generalization-of-lottery-tickets-in-neural-networks
 - https://arxiv.org/pdf/1905.13405.pdf
 - https://arxiv.org/abs/1903.01611
@@ -1181,6 +1192,11 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 - https://arxiv.org/abs/1906.02768
 - https://arxiv.org/abs/1906.02773
 - https://arxiv.org/abs/1909.13458
+
+### Privacy and Security
+
+- [Deep Leakage from Gradients](https://arxiv.org/abs/1906.08935)
+- http://www.cs.cornell.edu/~shmat/research.html
 
 ## Distributed Training
 
