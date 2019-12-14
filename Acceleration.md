@@ -1,6 +1,7 @@
 # Network Compression and Acceleration
 
 It is about how to accelerate the training and inference of deep learning(generally machine learning) except numerical optimization methods including the following topics:
+
 * compiler optimization for computation intensive programs;
 * system architecture design for computation intensive programs;
 * network model compression.
@@ -31,6 +32,7 @@ It is about how to accelerate the training and inference of deep learning(genera
 * https://github.com/fengbintu/Neural-Networks-on-Silicon
 * https://vast.cs.ucla.edu/
 * [Blade Benchmark Suite(BBS)简介](https://help.aliyun.com/document_detail/140558.html)
+* https://web.northeastern.edu/yanzhiwang/research/
 
 [To revolutionize deep learning with real-time AI solutions that scale from the edge to the datacenter](https://wavecomp.ai/).
 
@@ -77,14 +79,13 @@ can we deploy deep learning models? Definitely yes.
 + [How to Train for and Run Machine Learning Models on Edge Devices](https://www.simonwenkel.com/2018/12/08/How-to-run-Deep-Learning-Models-on-Edge-devices.html)
 
 
-## Sys for Deep Learning
+## System for Deep Learning
 
 Over the past few years, deep learning has become an important technique to successfully solve problems in many different fields, such as vision, NLP, robotics. An important ingredient that is driving this success is the development of deep learning systems that efficiently support the task of learning and inference of complicated models using many devices and possibly using distributed resources. The study of how to build and optimize these deep learning systems is now an active area of research and commercialization.
 
 Matrix computation dense application like deep neural network would take the advantages of specific architecture design. Thus it is really close to `high performance computational science` when solving some computation dense problems.
 
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
-
 
 
 <img src="https://www.researchgate.net/profile/Gu_Yeon_Wei/publication/306398249/figure/fig2/AS:614016141512719@1523404264555/Breakdown-of-execution-time-by-operation-type-for-each-Fathom-workload.png" width="80%" />
@@ -108,6 +109,8 @@ Parallel Architectures for Parallel Processing as co-design is a subfield of sys
 - [Introduction to Parallel Computing Author: Blaise Barney, Lawrence Livermore National Laboratory](https://computing.llnl.gov/tutorials/parallel_comp/)
 - [Parallel Architectures for Artificial Neural Networks: Paradigms and Implementations N. Sundararajan, P. Saratchandran](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0818683996,miniSiteCd-IEEE_CS2.html)
 - [Parallel Computer Architecture and Programming (CMU 15-418/618)](http://www.math-cs.gordon.edu/courses/cps343/)
+
+
 
 #### GPU
 
@@ -211,6 +214,9 @@ NPU are required for the following purpose:
 * [System for Machine Learning @.washington.edu/](https://dlsys.cs.washington.edu/)
 * [Hanlab: ACCELERATED DEEP LEARNING COMPUTING Hardware, AI and Neural-nets](https://hanlab.mit.edu/)
 * [Bingsheng He's publication on GPU](https://www.comp.nus.edu.sg/~hebs/publication.html)
+* [Architecture Lab for Creative High-performance Energy-efficient Machines](http://alchem.usc.edu/portal/machinelearning.html)
+* [HIGH PERFORMANCE POWER EFFICIENT NEURAL NETWORK IMPLEMENTATIONS ON EMBEDDED DEVICES](https://events.vtools.ieee.org/m/211223)
+* https://eiclab.net/
 * https://parsa.epfl.ch/~falsafi/
 
 ## Numerical algorithms for high-performance computational science
@@ -340,6 +346,7 @@ Our program is memory bound, which means that the multipliers are not active mos
 * [SPATIAL: A high-level language for programming accelerators](https://spatial-lang.org/gemm)
 * https://github.com/OAID/Tengine
 * [Performance of Classic Matrix Multiplication Algorithm on Intel® Xeon Phi™ Processor System](https://software.intel.com/en-us/articles/performance-of-classic-matrix-multiplication-algorithm-on-intel-xeon-phi-processor-system)
+* [Low-precision matrix multiplication](https://github.com/google/gemmlowp)
 
 ##### Strassen Algorithms
 
@@ -1024,6 +1031,27 @@ It can do better than previous algorithms because it reduces the two sources of 
 * https://www.ibm.com/blogs/research/author/chia-yuchen/
 * https://www.ibm.com/blogs/research/author/naigangwang/
 
+
+##### ADMM
+
+We can apply alteranting direction method of mulipliers(ADMM) to train deep neural networks.
+[The first part of ADMM-NN is a systematic, joint framework of DNN weight pruning and quantization using ADMM. It can be understood as a smart regularization technique with regularization target dynamically updated in each ADMM iteration, thereby resulting in higher performance in model compression than prior work. The second part is hardware-aware DNN optimizations to facilitate hardware-level implementations. Without accuracy loss, we can achieve 85\timesand 24\timespruning on LeNet-5 and AlexNet models, respectively, significantly higher than prior work. The improvement becomes more significant when focusing on computation reductions. Combining weight pruning and quantization, we achieve 1,910\timesand 231\timesreductions in overall model size on these two benchmarks, when focusing on data storage. Highly promising results are also observed on other representative DNNs such as VGGNet and ResNet-50.](https://scinapse.io/papers/2906775339)
+
+- https://web.northeastern.edu/yanzhiwang/publications/
+- [Deep ADMM-Net for Compressive Sensing MRI](https://papers.nips.cc/paper/6406-deep-admm-net-for-compressive-sensing-mri)
+- [Extremely Low Bit Neural Network: Squeeze the Last Bit Out with ADMM](https://arxiv.org/abs/1707.09870)
+- [Toward Extremely Low Bit and Lossless Accuracy in DNNs with Progressive ADMM](https://arxiv.org/abs/1905.00789)
+- [ADMM-based Weight Pruning for Real-Time Deep Learning Acceleration on Mobile Devices](https://cse.buffalo.edu/~wenyaoxu/papers/conference/xu-glvlsi2019.pdf)
+- [ADMM-NN: An Algorithm-Hardware Co-Design Framework of DNNs Using Alternating Direction Method of Multipliers](https://scinapse.io/papers/2906775339)
+- [StructADMM: A Systematic, High-Efficiency Framework of Structured Weight Pruning for DNNs](https://arxiv.org/abs/1807.11091)
+- https://blog.csdn.net/XSYYMY/article/details/81904882
+- https://arxiv.org/abs/1706.06197
+- https://csyhhu.github.io/
+- https://www.ntu.edu.sg/home/sinnopan/
+- https://ywang393.expressions.syr.edu/
+- https://cse.buffalo.edu/~wenyaoxu/
+- http://gr.xjtu.edu.cn/web/jiansun/publications
+
 #### Huffman Encoding
 
 Huffman code is a type of optimal prefix code that is commonly used for loss-less data compression.
@@ -1033,8 +1061,6 @@ probability for each symbol.
 As in other entropy encoding methods, more common symbols are represented with fewer bits than less common symbols, thus save the total space.
 
 * [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
-
-
 
 ### Knowledge Distillation
 
@@ -1368,6 +1394,7 @@ RNN is feedback network where there is rings in its computational graph.
 |[Distiller is an open-source Python package for neural network compression research.](https://nervanasystems.github.io/distiller/index.html)|
 |[PocketFlow](https://pocketflow.github.io/)|
 |[PocketFlow中的模型压缩算法](https://zhuanlan.zhihu.com/c_1041626714043949056)|
+|[BNN](https://yq.aliyun.com/articles/230662)|
 |[PERMDNN: Efficient Compressed DNN Architecture with Permuted Diagonal Matrices](http://alchem.usc.edu/portal/static/download/permdnn.pdf)|
 |[knowledge-distillation-pytorch](https://github.com/peterliht/knowledge-distillation-pytorch)|
 |[keras_compressor](https://github.com/DwangoMediaVillage/keras_compressor)|

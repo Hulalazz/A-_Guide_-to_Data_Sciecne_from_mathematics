@@ -209,7 +209,7 @@ There are some activation functions in history.
 
 ### Feed-forward Neural Network
 
-#### Representation of Feedforward Neural Network
+#### Representation of Feed forward Neural Network
 
 Given that the function of a single neuron is rather simple, it subdivides the input space into two regions by a hyperplane, the complexity must come from having more layers of neurons involved in a complex action (like recognizing your grandmother in all possible situations).
 The "squashing" functions introduce critical non-linearities in the system, without their presence multiple layers would still create linear functions.
@@ -2339,19 +2339,36 @@ Training deep learning models does not require gradients such as `ADMM, simulate
 - https://zhuanlan.zhihu.com/p/67782029
 - [Biologically-Plausible Learning Algorithms Can Scale to Large Datasets](https://arxiv.org/pdf/1811.03567.pdf)
 - [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
+- [DEEP LEARNING AS A MIXED CONVEXCOMBINATORIAL OPTIMIZATION PROBLEM](https://homes.cs.washington.edu/~pedrod/papers/iclr18.pdf)
+- [An Alternating Minimization Method to Train Neural Network Models for Brain Wave Classification](http://evoq-eval.siam.org/Portals/0/Publications/SIURO/Volume%2011/An_Alternating_Minimization_Method_to_Train_Neural_Network_Models.pdf?ver=2018-02-27-134920-257)
 
-#### Operator Splitting Methods For Training Deep Neural Network
+#### Operator Splitting Methods For Training Deep Neural Networks
+
+##### ADMM
+
+ADMM is based on the constraints of  successive layers in neural networks.
+Recall the feedforward neural networks:
+$$O=\sigma(W^nx^{N}+b_{N})\\
+x^{n}=\sigma(W^{n-1}x^{n-1}+b_{n-1})\quad\forall n=1,\cdots, N 
+$$
+
+
+- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
+- [ADMM-CSNet: A Deep Learning Approach for Image Compressive Sensing](https://ieeexplore.ieee.org/document/8550778/)
+- https://github.com/KaiqiZhang/ADAM-ADMM
+- [ADMM-NN: An Algorithm-Hardware Co-Design Framework of DNNs Using Alternating Direction Method of Multipliers](https://ui.adsabs.harvard.edu/abs/2018arXiv181211677R/abstract)
+- [ALTERNATING DIRECTION METHOD OF MULTIPLIERS FOR SPARSE CONVOLUTIONAL NEURAL NETWORKS](https://arxiv.org/pdf/1611.01590.pdf)
+- https://patents.google.com/patent/US20170147920/fi
+
+
+##### Lifted proximal operator machine (LPOM) 
 
 [By rewriting the activation function as an equivalent proximal operator, we approximate a feed-forward neural network by adding the proximal operators to the objective function as penalties, hence we call the lifted proximal operator machine (LPOM). LPOM is block multi-convex in all layer-wise weights and activations. This allows us to use block coordinate descent to update the layer-wise weights and activations in parallel. Most notably, we only use the mapping of the activation function itself, rather than its derivatives, thus avoiding the gradient vanishing or blow-up issues in gradient based training methods. So our method is applicable to various non-decreasing Lipschitz continuous activation functions, which can be saturating and non-differentiable. LPOM does not require more auxiliary variables than the layer-wise activations, thus using roughly the same amount of memory as stochastic gradient descent (SGD) does. We further prove the convergence of updating the layer-wise weights and activations. Experiments on MNIST and CIFAR-10 datasets testify to the advantages of LPOM.](https://arxiv.org/abs/1811.01501v1)
 
-
-- https://yq.aliyun.com/articles/230662
+- [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
 - https://zhouchenlin.github.io/
 - [Lifted Proximal Operator Machines](https://arxiv.org/abs/1811.01501v1)
-- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
-- [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
-- [Extremely Low Bit Neural Network: Squeeze the Last Bit Out with ADMM](https://arxiv.org/abs/1707.09870)
-- [Toward Extremely Low Bit and Lossless Accuracy in DNNs with Progressive ADMM](https://arxiv.org/abs/1905.00789)
+
 
 
 #### Layer-wise Relevance Propagation
@@ -2422,3 +2439,4 @@ Capsule Networks provide a way to detect parts of objects in an image and repres
 - https://ieeexplore.ieee.org/author/37273489000
 - [Scalable Kernel Learning via the Discriminant Information](https://arxiv.org/abs/1909.10432)
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
+
