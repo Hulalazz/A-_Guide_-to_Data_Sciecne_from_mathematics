@@ -844,6 +844,7 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 
 [In this talk, we formulate a new problem called the "universal feature selection" problem, where we need to select from the high dimensional data a low dimensional feature that can be used to solve, not one, but a family of inference problems. We solve this problem by developing a new information metric that can be used to quantify the semantics of data, and by using a geometric analysis approach. We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks)
 
+* http://ita.ucsd.edu/
 * http://naftali-tishby.mystrikingly.com/
 * http://lizhongzheng.mit.edu/
 * [Information Theory of Deep Learning](https://adityashrm21.github.io/Information-Theory-In-Deep-Learning/)

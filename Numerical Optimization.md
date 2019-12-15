@@ -18,7 +18,7 @@ The objective function to be minimized is also called cost function.
 
 Evaluation is always attached with optimization; the evaluation which cannot be optimized is not a good evaluation in machine learning.
 
-* https://www.wikiwand.com/en/Mathematical_optimization
+* [15 095 - Machine Learning Under a Modern Optimization Lens](https://www.coursicle.com/mit/courses/15/095/)
 * https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf
 * http://www.cs.cmu.edu/~pradeepr/convexopt/
 * [An interactive tutorial to numerical optimization](https://www.benfrederickson.com/numerical-optimization/)
@@ -958,8 +958,7 @@ where the matrix $Q$ is not necessary symmetric, but $Q^T+Q$ is positive definit
 $$v^{k+1} =v^{k}- \alpha M(v^{k}-\tilde v^{k+1}).$$
 ***
 
-Convergence Conditions
-: For the matrices $Q$ and $M$ above, there is a positive definite matrix $H$ such that
+Convergence Conditions: For the matrices $Q$ and $M$ above, there is a positive definite matrix $H$ such that
 $$HM = Q. \tag{2.20a}$$
 Moreover, the matrix
 $$G = Q^T + Q − \alpha M^T H M \tag{2.20b}$$
@@ -1558,9 +1557,9 @@ to solve
 ***
 * http://maths.nju.edu.cn/~hebma/
 * http://stanford.edu/~boyd/admm.html
+* https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * [A General Analysis of the Convergence of ADMM](https://arxiv.org/pdf/1502.02009.pdf)
 * [用ADMM实现统计学习问题的分布式计算](http://shijun.wang/2016/01/19/admm-for-distributed-statistical-learning/)
-* https://www.wikiwand.com/en/Augmented_Lagrangian_method
 * [凸优化：ADMM(Alternating Direction Method of Multipliers)交替方向乘子算法](https://blog.csdn.net/shanglianlm/article/details/45919679)
 
 ### Monotone Operator Splitting Methods for Optimization
@@ -2797,6 +2796,39 @@ ____
 - [Understanding the Role of Momentum in Stochastic Gradient Methods](https://arxiv.org/abs/1910.13962v1)
 - [Accelerated Linear Convergence of Stochastic Momentum Methods in Wasserstein Distances](https://arxiv.org/abs/1901.07445v2)
 
+#### Adam-type algorithms
+
+`ADAM` composes of adaptive step strategies and momentum methods in some sense. It is widely used in deep learning training.
+
+Formally, an Adam-type algorithm is of the following form:
+
+<img src="https://www.ibm.com/blogs/research/wp-content/uploads/2019/04/Algorithm-768x365.png" width="80%"/>
+
+where $x$ is the optimization variable, $g_t$ is a stochastic gradient at step $t$, $\beta_1,t$ is a non-increasing sequence, and $h_t$ is an arbitrary function that outputs a vector having the same dimension as $x$.
+This class of algorithms is very general, and it includes most of the popular training algorithms such as **SGD (Ghadimi, et al., 2013), AdaGrad (Duchi et al., 2011), AMSGrad (Reddi et al., 2018), and Adam (Kingma et al., 2014)** as special cases.
+
+- [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
+- [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
+- [Will Adam Algorithms Work for Me?](https://www.ibm.com/blogs/research/2019/05/adam-algorithms/)
+- [On the Convergence of A Class of Adam-Type Algorithms for Non-Convex Optimization](https://openreview.net/forum?id=H1x-x309tm)
+- [Gentle Introduction to the Adam Optimization Algorithm for Deep Learning](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/)
+- [A Survey on Proposed Methods to Address Adam Optimizer Deficiencies](http://www.cs.toronto.edu/~sajadn/sajad_norouzi/ECE1505.pdf)
+- [Fix regularization in Adam](https://openreview.net/pdf?id=rk6qdGgCZ)
+
+
+|The Differences of Stochastic Gradient Descent and its Variants|
+|:-------------------------------------------------------------:|
+|<img src="http://beamandrew.github.io//images/deep_learning_101/sgd.gif" width = "60%" />|
+
+
+
+- https://2018.ieeeglobalsip.org/sym/18/AML
+- https://github.com/LiyuanLucasLiu/RAdam
+- https://github.com/CyberZHG/keras-radam
+- http://ruder.io/deep-learning-optimization-2017/
+- http://people.ece.umn.edu/~mhong/Activities.html
+
+
 #### YellowFin
 
 [We revisit SGD with Polyak's momentum, study some of its robustness properties and extract the design principles for a tuner, YellowFin. YellowFin automatically tunes a single learning rate and momentum value for SGD.](https://cs.stanford.edu/~zjian/project/YellowFin/)
@@ -2809,34 +2841,6 @@ ____
 - http://mitliagkas.github.io/
 - https://github.com/JianGoForIt/YellowFin
 - https://cs.stanford.edu/~zjian/
-
-
-#### Adam-type algorithms
-
-`ADAM` composes of adaptive step strategies and momentum methods in some sense. It is widely used in deep learning training.
-
-Formally, an Adam-type algorithm is of the following form:
-
-<img src="https://www.ibm.com/blogs/research/wp-content/uploads/2019/04/Algorithm-768x365.png" width="80%"/>
-
-where $x$ is the optimization variable, gt is a stochastic gradient at step $t$, $\beta_1,t$ is a non-increasing sequence, and $h_t$ is an arbitrary function that outputs a vector having the same dimension as $x$.
-
-- [Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)
-- [On the convergence of Adam and Beyond](https://www.satyenkale.com/pubs/on-the-convergence-of-adam-and-beyond/)
-- [Will Adam Algorithms Work for Me?](https://www.ibm.com/blogs/research/2019/05/adam-algorithms/)
-- [On the Convergence of A Class of Adam-Type Algorithms for Non-Convex Optimization](https://openreview.net/forum?id=H1x-x309tm)
-- [Gentle Introduction to the Adam Optimization Algorithm for Deep Learning](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/)
-- [A Survey on Proposed Methods to Address Adam Optimizer Deficiencies](http://www.cs.toronto.edu/~sajadn/sajad_norouzi/ECE1505.pdf)
-- https://2018.ieeeglobalsip.org/sym/18/AML
-- https://github.com/LiyuanLucasLiu/RAdam
-- https://github.com/CyberZHG/keras-radam
-- http://ruder.io/deep-learning-optimization-2017/
-- http://people.ece.umn.edu/~mhong/Activities.html
-
-|The Differences of Stochastic Gradient Descent and its Variants|
-|:-------------------------------------------------------------:|
-|<img src="http://beamandrew.github.io//images/deep_learning_101/sgd.gif" width = "60%" />|
-
 
 #### Natasha, Katyusha and Beyond
 
@@ -3115,8 +3119,7 @@ Hogwild allows processors access to shared memory with the possibility of overwr
 
 ### Distributed Non-convex Optimization Problems
 
-- [Distributed Non-Convex First-Order Optimization and Information
-Processing: Lower Complexity Bounds and Rate Optimal Algorithms](https://arxiv.org/abs/1804.02729)
+- [Distributed Non-Convex First-Order Optimization and Information Processing: Lower Complexity Bounds and Rate Optimal Algorithms](https://arxiv.org/abs/1804.02729)
 
 ### Stochastic ADMM
 
@@ -3424,6 +3427,9 @@ The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete da
 * [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
 * https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
 * http://fa.bianp.net/blog/2014/surrogate-loss-functions-in-machine-learning/
+* [successive convex approxiamtion](https://www.zhihu.com/question/354882496/answer/919173270)
+* [Sun Y, Babu P, Palomar D P. Majorization-minimization algorithms in signal processing, communications, and machine learning[J]. IEEE Transactions on Signal Processing, 2016, 65(3): 794-816](https://www.zhihu.com/question/354882496/answer/917669298)
+
 
 ### Relaxation and Convexification
 
@@ -3476,66 +3482,6 @@ $$g(x)=f(y)+(x-y)'b+\frac12 (x-y)'A(x-y)$$
 + [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
 + [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
 
-
-## Gradient Free Optimization Methods
-
-As shown in `Principle of Optimal Design`, `non-gradient methods` are classified into 3 classes:
-
-[We organize the discussion of non-gradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
-
-> Derivative-free optimization (DFO) algorithms differ in the way they use the sampled function values to determine the new iterate. One class of methods constructs a linear
-or quadratic model of the objective function and defines the next iterate by seeking to minimize this model inside a trust region. We pay particular attention to these model-based
-approaches because they are related to the unconstrained minimization methods described in earlier chapters. Other widely used DFO methods include the simplex-reflection method
-of Nelder and Mead, pattern-search methods, conjugate-direction methods, and simulated annealing.
-
-`Heuristic methods` will be introduced in computational intelligence as well as `Bayesian Optimization`.
-
-Let us start with the example and suppose that we want to
-$$
-\arg\min_{x}f(x)=x^{2}+4\sin(2x).\tag{1}
-$$
-
-The objective function $f(x)$, a non-convex function, has many local minimizer or extrema.
-The function (1) is upper bounded by $x^2+4$ and lower bounded by $x^2 - 4$.
-
-![pluskid](http://freemind.pluskid.org/att/2016/03/nonconvex.svg)
-
-Another insightful example is to minimize the following cost function:
-$$
-x^{2}+4\sin(2x) - 1001 \color{red}{\mathbb{I}_{\sqrt{2}}}(x) \tag{2}
-$$
-where the last part $\color{red}{\mathbb{I}_{\sqrt{2}}}(x)$ is equal to 1 when $x=\sqrt{2}$ and 0 otherwise, a Dirac function.
-It is almost equal to the first function (1) except at the point $x=\sqrt{2}$.
-The minimal value of the above function is  $2+4\sin(2\sqrt{2})-1001$ when $x=\sqrt{2}$.
-And these two functions are two different kinds of non-convex functions.
-
-
-[Optimization and Assumptions @ Freemind](http://freemind.pluskid.org/misc/optimization-and-assumptions/)|[Test functions for optimization](https://www.wikiwand.com/en/Test_functions_for_optimization)
-
-- [Book: Introduction to Derivative-Free Optimization](http://www.mat.uc.pt/~lnv/idfo/)
-- [Derivative-free optimization methods](http://www.optimization-online.org/DB_FILE/2019/04/7153.pdf)
-
-#### Zeroth-Order Oracle
-
-[Zeroth-Order optimization is increasingly embraced for solving big data and machine learning problems when explicit expressions of the gradients are difficult or infeasible to obtain. It achieves gradient-free optimization by
-approximating the full gradient via efficient gradient estimators.](http://www.comp.hkbu.edu.hk/~cib/2018/Dec/article4/iib_vol19no2_article4.pdf)
-
-- [Learning to Learn by Zeroth-Order Oracle](https://www.groundai.com/project/learning-to-learn-by-zeroth-order-oracle/)
-- https://openreview.net/forum?id=BJe-DsC5Fm
-- [ZOO: Zeroth Order Optimization based Black-box Attacks to Deep Neural Networks without Training Substitute Models](https://arxiv.org/abs/1708.03999)
-- [Recent Advances of Zeroth-Order Optimization with Applications in Adversarial ML](https://2018.ieeeglobalsip.org/sym/18/AML)
-- [Adversarial Learning and Zeroth Order Optimization for Machine Learning and Data Mining](https://www.ibm.com/blogs/research/2019/08/adversarial-learning/)
-- https://sites.google.com/view/adv-robustness-zoopt
-- [Zeroth-Order Optimization and Its Application to Adversarial Machine Learning](http://www.comp.hkbu.edu.hk/~cib/2018/Dec/article4/iib_vol19no2_article4.pdf)
-- [Zeroth-Order Stochastic Variance Reduction for Nonconvex Optimization](https://arxiv.org/abs/1805.10367v1)
-- https://sgo-workshop.github.io/index_2018.html
-- [New Advances in Sparse Learning, Deep Networks, and Adversarial Learning: Theory and Applications](http://reports-archive.adm.cs.cmu.edu/anon/ml2019/CMU-ML-19-103.pdf)
-- https://www.researchgate.net/profile/Sijia_Liu2
-- http://web.cs.ucla.edu/~chohsieh/publications.html
-- https://deepai.org/machine-learning/researcher/sijia-liu
-- [Zeroth-order (Non)-convex stochastic optimization via conditional gradient and gradient updates](https://dl.acm.org/citation.cfm?id=3327264)
-
-
 #### Block Coordinate Descent
 
 The methods such as ADMM, proximal gradient methods do not optimize the cost function directly.
@@ -3585,18 +3531,39 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 * https://ryancorywright.github.io/
 * http://www.optimization-online.org/DB_FILE/2014/12/4679.pdf
 * https://www.math.ucdavis.edu/~sqma/MAT258A_Files/Beck-CD-2013.pdf
+
 #### Block Splitting Methods
 
-- [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)
+[In particular, if the problem data includes a large linear operator or matrix A, the method allows for handling each subblock of A on a separate machine. The approach works as follows. First, we define a canonical problem form called graph form, in which we have two sets of variables x and y related by a linear operator A, such that the objective function is separable across these two sets of variables. Many problems are easily expressed in graph form, including cone programs and a wide variety of regularized loss minimization problems from statistics, like logistic regression, the support vector machine, and the lasso. Next, we describe graph projection splitting, a form of Douglas-Rachford splitting or the alternating direction method of multipliers, to solve graph form problems serially. Finally, we derive a distributed block splitting algorithm based on graph projection splitting. In a statistical or machine learning context, this allows for training models exactly with a huge number of both training examples and features, such that each processor handles only a subset of both. To the best of our knowledge, this is the only general purpose method with this property. We present several numerical experiments in both the serial and distributed settings.](https://web.stanford.edu/~boyd/papers/block_splitting.html)
 
+- [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)
+- [Block Splitting for Large-Scale Distributed Learning](https://web.stanford.edu/~boyd/papers/block_splitting_short.html)
+- https://www.researchgate.net/scientific-contributions/70614203_Neal_Parikh
+
+#### Block Relaxation Methods
+
++ [Block Relaxation Methods in Statistics by Jan de Leeuw](https://bookdown.org/jandeleeuw6/bras/)
++ https://deleeuw.rbind.io/
++ [Block-Relaxation Methods for 3D Constant-Coefficient Stencils on GPUs and Multicore CPUs](https://arxiv.org/abs/1208.1975)
++ [On the convergence of block relaxation methods for circuit simulation](https://ieeexplore.ieee.org/document/31330)
++ [Uzawa block relaxation method for the unilateral contact problem](https://www.sciencedirect.com/science/article/pii/S0377042710005984)
++ [Block Relaxation, Augmentation, Majorization, Alternating Least Squares](https://www.researchgate.net/project/Block-Relaxation-Augmentation-Majorization-Alternating-Least-Squares)
++ [Block-relaxation Algorithms in Statistics](https://escholarship.org/content/qt0b46j0gj/qt0b46j0gj.pdf)
++ [Relaxation Methods for Convex Problems](https://epubs.siam.org/doi/pdf/10.1137/0705048)
+
+
+#### Deep Relaxation
+
++ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
++ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
++ [A PDE APPROACH TO REGULARIZATION IN DEEP LEARNING](http://cmx.caltech.edu/seminar-2017-08-31-oberman.pdf)
++ [Deep relaxation: partial differential equations for optimizing deep neural networks](https://link.springer.com/article/10.1007/s40687-018-0148-y)
++ [pratikac](https://pratikac.github.io/)
++ https://pratikac.github.io/pub/chaudhari.thesis18.pdf
 
 
 ***
 
-+ https://pratikac.github.io/
-+ [Block Relaxation Methods in Statistics by Jan de Leeuw](https://bookdown.org/jandeleeuw6/bras/)
-+ [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
-+ [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
 + [CS 369S: Hierarchies of Integer Programming Relaxations](https://web.stanford.edu/class/cs369h/)
 + [Convex Relaxations and Integrality Gaps](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 + [LP/SDP Hierarchies Reading Group](https://www.win.tue.nl/~nikhil/hierarchies/index.html)
@@ -3604,7 +3571,7 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 + [Iterative Convex Optimization Algorithms; Part Two: Without the Baillon–Haddad Theorem](http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf)
 + [Relaxation and Decomposition Methods for Mixed Integer Nonlinear Programming](https://www.springer.com/gp/book/9783764372385)
 
-*****
+#### Convexification
 
 ![nonconvex](https://www.math.hu-berlin.de/~stefan/B19/nonconvex.gif)
 
@@ -3623,7 +3590,99 @@ A nonconvex problem can be convexified and transformed into one which can be sol
 + [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
 + [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 
-### Surrogate-based Optimization
+
+## Gradient Free Optimization Methods
+
+As shown in `Principle of Optimal Design`, `non-gradient methods` are classified into 3 classes:
+
+[We organize the discussion of non-gradient methods in three parts, direct search methods, heuristic methods, and black-box methods. Direct search methods rely on ranking the objective function values rather than using the objective values themselves. Heuristic methods use some random process to generate new candidate solutions, and so the iteration paths and even the solutions obtained can change each time we perform a search. Black-box methods deal with problems that have no known model function structure that we can exploit. For example, functions generated by simulations have no discernible mathematical properties (like convexity), and so we refer to them as black-box functions. In this sense, all nongradient methods can be used for black-box problems. The two black-box methods described in this chapter were created to address design problems with expensive simulations, and so their main goal is to find an optimum quickly with few function evaluations.](http://principlesofoptimaldesign.org/)
+
+> Derivative-free optimization (DFO) algorithms differ in the way they use the sampled function values to determine the new iterate. One class of methods constructs a linear
+or quadratic model of the objective function and defines the next iterate by seeking to minimize this model inside a trust region. We pay particular attention to these model-based
+approaches because they are related to the unconstrained minimization methods described in earlier chapters. Other widely used DFO methods include the simplex-reflection method
+of Nelder and Mead, pattern-search methods, conjugate-direction methods, and simulated annealing.
+
+`Heuristic methods` will be introduced in computational intelligence as well as `Bayesian Optimization`.
+
+Let us start with the example and suppose that we want to
+$$
+\arg\min_{x}f(x)=x^{2}+4\sin(2x).\tag{1}
+$$
+
+The objective function $f(x)$, a non-convex function, has many local minimizer or extrema.
+The function (1) is upper bounded by $x^2+4$ and lower bounded by $x^2 - 4$.
+
+![pluskid](http://freemind.pluskid.org/att/2016/03/nonconvex.svg)
+
+Another insightful example is to minimize the following cost function:
+$$
+x^{2}+4\sin(2x) - 1001 \color{red}{\mathbb{I}_{\sqrt{2}}}(x) \tag{2}
+$$
+where the last part $\color{red}{\mathbb{I}_{\sqrt{2}}}(x)$ is equal to 1 when $x=\sqrt{2}$ and 0 otherwise, a Dirac function.
+It is almost equal to the first function (1) except at the point $x=\sqrt{2}$.
+The minimal value of the above function is  $2+4\sin(2\sqrt{2})-1001$ when $x=\sqrt{2}$.
+And these two functions are two different kinds of non-convex functions.
+
+
+[Optimization and Assumptions @ Freemind](http://freemind.pluskid.org/misc/optimization-and-assumptions/)|[Test functions for optimization](https://www.wikiwand.com/en/Test_functions_for_optimization)
+
+- https://persyval-lab.org/
+
+#### Zeroth-Order Oracle
+
+[Zeroth-Order optimization is increasingly embraced for solving big data and machine learning problems when explicit expressions of the gradients are difficult or infeasible to obtain. It achieves gradient-free optimization by
+approximating the full gradient via efficient gradient estimators.](http://www.comp.hkbu.edu.hk/~cib/2018/Dec/article4/iib_vol19no2_article4.pdf)
+
+- [Learning to Learn by Zeroth-Order Oracle](https://www.groundai.com/project/learning-to-learn-by-zeroth-order-oracle/)
+- https://openreview.net/forum?id=BJe-DsC5Fm
+- [ZOO: Zeroth Order Optimization based Black-box Attacks to Deep Neural Networks without Training Substitute Models](https://arxiv.org/abs/1708.03999)
+- [Recent Advances of Zeroth-Order Optimization with Applications in Adversarial ML](https://2018.ieeeglobalsip.org/sym/18/AML)
+- [Adversarial Learning and Zeroth Order Optimization for Machine Learning and Data Mining](https://www.ibm.com/blogs/research/2019/08/adversarial-learning/)
+- https://sites.google.com/view/adv-robustness-zoopt
+- [Zeroth-Order Optimization and Its Application to Adversarial Machine Learning](http://www.comp.hkbu.edu.hk/~cib/2018/Dec/article4/iib_vol19no2_article4.pdf)
+- [Zeroth-Order Stochastic Variance Reduction for Nonconvex Optimization](https://arxiv.org/abs/1805.10367v1)
+- https://sgo-workshop.github.io/index_2018.html
+- [New Advances in Sparse Learning, Deep Networks, and Adversarial Learning: Theory and Applications](http://reports-archive.adm.cs.cmu.edu/anon/ml2019/CMU-ML-19-103.pdf)
+- https://www.researchgate.net/profile/Sijia_Liu2
+- http://web.cs.ucla.edu/~chohsieh/publications.html
+- https://deepai.org/machine-learning/researcher/sijia-liu
+- [Zeroth-order (Non)-convex stochastic optimization via conditional gradient and gradient updates](https://dl.acm.org/citation.cfm?id=3327264)
+
+
+#### Derivative-Free Optimization
+
+[The absence of derivatives, often combined with the presence of noise or lack of smoothness, is a major challenge for optimization. This book explains how sampling and model techniques are used in derivative-free methods and how these methods are designed to efficiently and rigorously solve optimization problems. Although readily accessible to readers with a modest background in computational mathematics, it is also intended to be of interest to researchers in the field. Introduction to Derivative-Free Optimization is the first contemporary comprehensive treatment of optimization without derivatives. This book covers most of the relevant classes of algorithms from direct search to model-based approaches. It contains a comprehensive description of the sampling and modeling tools needed for derivative-free optimization; these tools allow the reader to better understand the convergent properties of the algorithms and identify their differences and similarities. Introduction to Derivative-Free Optimization also contains analysis of convergence for modified Nelder Mead and implicit-filtering methods, as well as for model-based methods such as wedge methods and methods based on minimum-norm Frobenius models. Audience: The book is intended for anyone interested in using optimization on problems where derivatives are difficult or impossible to obtain. Such audiences include chemical, mechanical, aeronautical, and electrical engineers, as well as economists, statisticians, operations researchers, management scientists, biological and medical researchers, and computer scientists.](https://dl.acm.org/citation.cfm?id=1508119)
+
+
+[DFO is a Fortran package for solving general nonlinear optimization problems that have the following characteristics](https://projects.coin-or.org/Dfo):
+
+- they are relatively small scale (less than 100 variables),
+- their objective function is relatively expensive to compute and derivatives of such functions are not available and
+- cannot be estimated efficiently.
+
+There also may be some noise in the function evaluation procedures. Such optimization problems arise ,for example, in engineering design, where the objective function evaluation is a simulation package treated as a black box.
+
+- [Book: Introduction to Derivative-Free Optimization](http://www.mat.uc.pt/~lnv/idfo/)
+- [Derivative-free optimization methods](http://www.optimization-online.org/DB_FILE/2019/04/7153.pdf)
+- http://www.mat.uc.pt/~lnv/talks/siopt-2008.pdf
+- http://www.mat.uc.pt/~lnv/dfo.html
+- https://courses.maths.ox.ac.uk/node/view_material/2246
+- https://projects.coin-or.org/Dfo
+- [A Derivative-free approach in Constrained Global Optimization of Dynamic Systems in Preliminary Design Phase](https://persyval-lab.org/sites/default/files/Report_BABANEZHAD_MiSCIT.pdf)
+- [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
+- [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)
+
+
+
+##### Nevergrad
+
+- https://code.fb.com/ai-research/nevergrad/
+- https://github.com/facebookresearch/nevergrad
+
+
+![never grad](https://code.fb.com/wp-content/uploads/2018/12/nevergrad_hero_v1.gif)
+
+#### Surrogate-based Optimization
 
 - [Surrogate-based methods for black-box optimization](https://www.lix.polytechnique.fr/~liberti/itor16.pdf)
 - https://rdrr.io/cran/suropt/
@@ -3632,6 +3691,12 @@ A nonconvex problem can be convexified and transformed into one which can be sol
 - [Surrogate-Based Optimization](https://link.springer.com/chapter/10.1007/978-3-319-04367-8_3)
 - [Surrogate-based Optimization using Mutual Information for Computer Experiments (optim-MICE)](https://arxiv.org/abs/1909.04600)
 
+##### Delaunay-based derivative-free optimization
+
+
+
+- [Delaunay-based derivative-free optimization via global surrogates, part I: linear constraints](http://fccr.ucsd.edu/pubs/BCB16.pdf)
+- [Delaunay-based derivative-free optimization via global surrogates, part II: convex constraints](http://fccr.ucsd.edu/pubs/BB16a.pdf)
 
 
 ### Graduated Optimization
@@ -3715,19 +3780,13 @@ Roberto Battiti and Mauro Brunato explains that how `reactive search optimizatio
 
 ****
 - [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
-- [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
-- [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)
-- [Delaunay-based derivative-free optimization via global surrogates, part I: linear constraints](http://fccr.ucsd.edu/pubs/BCB16.pdf)
-- [Delaunay-based derivative-free optimization via global surrogates, part II: convex constraints](http://fccr.ucsd.edu/pubs/BB16a.pdf)
 - https://projects.coin-or.org/Dfo
 - https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/
 - http://adl.stanford.edu/aa222/Lecture_Notes_files/chapter6_gradfree.pdf
-- https://code.fb.com/ai-research/nevergrad/
-- https://github.com/facebookresearch/nevergrad
 - https://www.kthohr.com/optimlib.html
 - https://www.infoq.com/presentations/black-box-optimization
 
-![never grad](https://code.fb.com/wp-content/uploads/2018/12/nevergrad_hero_v1.gif)
+
 ***
 And there are more topics on optimization such as [this site](http://mat.uab.cat/~alseda/MasterOpt/IntroHO.pdf).
 And more courses on optimization:
