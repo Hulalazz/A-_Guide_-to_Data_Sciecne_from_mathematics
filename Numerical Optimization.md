@@ -2814,12 +2814,11 @@ This class of algorithms is very general, and it includes most of the popular tr
 - [Gentle Introduction to the Adam Optimization Algorithm for Deep Learning](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/)
 - [A Survey on Proposed Methods to Address Adam Optimizer Deficiencies](http://www.cs.toronto.edu/~sajadn/sajad_norouzi/ECE1505.pdf)
 - [Fix regularization in Adam](https://openreview.net/pdf?id=rk6qdGgCZ)
-
+  [Fast and Scalable Bayesian Deep Learning by Weight-Perturbation in Adam](https://arxiv.org/abs/1806.04854)
 
 |The Differences of Stochastic Gradient Descent and its Variants|
 |:-------------------------------------------------------------:|
 |<img src="http://beamandrew.github.io//images/deep_learning_101/sgd.gif" width = "60%" />|
-
 
 
 - https://2018.ieeeglobalsip.org/sym/18/AML
@@ -2913,7 +2912,7 @@ Procedure SVRG
 * [Fast Stochastic Variance Reduced Gradient Method with Momentum Acceleration for Machine Learning](https://arxiv.org/abs/1703.07948v2)
 
 
-#### Escape Saddle Points
+#### Escape From Saddle Points
 
 
 Saddle points is considered as the fundamnetal problem in high dimensional space when training a deep learning model.
@@ -2936,9 +2935,14 @@ It is  the inherent nature of stochastic gardient methods to escape saddle point
 - [Escaping Undesired Stationary Points in Local Saddle Point Optimization A Curvature Exploitation Approach](http://leox1v.com/poster/local_saddle_opt.pdf)
 - [SSRGD: Simple Stochastic Recursive Gradient Descent for Escaping Saddle Points](https://arxiv.org/abs/1904.09265)
 
+### Stochastic Fixed Point Equations
+
+[The Feynman-​-Kac formula implies that every suitable classical solution of a semilinear Kolmogorov partial differential equation (PDE) is also a solution of a certain stochastic fixed point equation (SFPE). In this article we study such and related SFPEs. In particular, the main result of this work proves existence of unique solutions of certain SFPEs in a general setting. As an application of this main result we establish the existence of unique solutions of SFPEs associated with semilinear Kolmogorov PDEs with Lipschitz continuous nonlinearities even in the case where the associated semilinear Kolmogorov PDE does not possess a classical solution.](https://math.ethz.ch/sam/research/reports.html?id=851)
+
+
+- [On existence and uniqueness properties for solutions of stochastic fixed point equations](https://math.ethz.ch/sam/research/reports.html?id=851)
 
 #### Stochastic Proximal Point Methods
-
 
 - [Stochastic (Approximate) Proximal Point Methods: Convergence, Optimality, and Adaptivity](https://arxiv.org/abs/1810.05633)
 - [Nonasymptotic convergence of stochastic proximal point methods for constrained convex optimization](http://jmlr.csail.mit.edu/papers/volume18/17-347/17-347.pdf)
@@ -3434,53 +3438,8 @@ The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete da
 ### Relaxation and Convexification
 
 - https://www.di.ens.fr/~aspremon/PDF/Oxford14.pdf
+- https://www.zhihu.com/question/66550233/answer/253597280
 
-The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
-
-![block relaxation methods](https://bookdown.org/jandeleeuw6/bras/graphics/bookfig1.png)
-
-In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. We choose initial values for all blocks, and then minimize over one of the blocks, while keeping all other blocks fixed at their current values. We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. An iteration of the algorithm steps through all blocks in turn, each time keeping the non-active blocks fixed at current values, and each time replacing the active blocks by solving the minimization subproblems. If there are more than two blocks there are different ways to cycle through the blocks. If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
-
-In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
-
-**Augmentation Methods**
-
-[Augmentation and Decomposition Methods](https://bookdown.org/jandeleeuw6/bras/augmentation-and-decomposition-methods.html)
-Note: augmentation duality.
-$$ h(y)=\min_{x\in\mathcal{X}} g(x,y) $$
-then
-$$ \min_{x\in\mathcal{X}}f(x)=\min_{x\in\mathcal{X}}\min_{y\in\mathcal{Y}}g(x,y)=\min_{y\in\mathcal{Y}}\min_{x\in\mathcal{X}}g(x,y)=\min_{y\in\mathcal{Y}}h(y). $$
-
-**Alternating Conditional Expectations**
-
-[The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
-
-A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
-
-As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
-
-**Convex Relaxations**
-
-[Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
-Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an
-integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
-
-**Quadratic Majorization**
-
-A quadratic  $g$  majorizes  $f$  at  $y$  on  $\mathbb{R}^n$  if  $g(y)=f(y)$  and  $g(x)\geq f(x)$  for all  $x$. If we write it in the form
-$$g(x)=f(y)+(x-y)'b+\frac12 (x-y)'A(x-y)$$
-
-<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
-
-**Majorization**
-
-+ http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
-+ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
-+ [Majorization Methods](https://bookdown.org/jandeleeuw6/bras/majorization-methods.html)
-+ [Tangential Majorization](https://bookdown.org/jandeleeuw6/bras/tangential-majorization.html)
-+ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
-+ [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
-+ [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
 
 #### Block Coordinate Descent
 
@@ -3552,7 +3511,68 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 + [Relaxation Methods for Convex Problems](https://epubs.siam.org/doi/pdf/10.1137/0705048)
 
 
+The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
+
+![block relaxation methods](https://bookdown.org/jandeleeuw6/bras/graphics/bookfig1.png)
+
+In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. We choose initial values for all blocks, and then minimize over one of the blocks, while keeping all other blocks fixed at their current values. We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. An iteration of the algorithm steps through all blocks in turn, each time keeping the non-active blocks fixed at current values, and each time replacing the active blocks by solving the minimization subproblems. If there are more than two blocks there are different ways to cycle through the blocks. If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
+
+In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
+
+##### Augmentation Methods
+
+[Augmentation and Decomposition Methods](https://bookdown.org/jandeleeuw6/bras/augmentation-and-decomposition-methods.html)
+Note: augmentation duality.
+$$ h(y)=\min_{x\in\mathcal{X}} g(x,y) $$
+then
+$$ \min_{x\in\mathcal{X}}f(x)=\min_{x\in\mathcal{X}}\min_{y\in\mathcal{Y}}g(x,y)=\min_{y\in\mathcal{Y}}\min_{x\in\mathcal{X}}g(x,y)=\min_{y\in\mathcal{Y}}h(y). $$
+
+##### Alternating Conditional Expectations
+
+[The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
+
+A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
+
+As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
+
+##### Convex Relaxations
+
+[Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
+Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
+
+##### Quadratic Majorization
+
+A quadratic  $g$  majorizes  $f$  at  $y$  on  $\mathbb{R}^n$  if  $g(y)=f(y)$  and  $g(x)\geq f(x)$  for all  $x$. If we write it in the form
+$$g(x)=f(y)+(x-y)'b+\frac{1}{2} (x-y)'A(x-y)$$
+
+
+<img  title = "cali" src = "https://bookdown.org/jandeleeuw6/bras/graphics/cali.png" width = 60% />
+
++ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
+
+##### Majorization Method
+
+Suppose we can find a function  $h$  such that  $g(\alpha)\leq h(\alpha)$  for all  $0<\alpha <\overline{\alpha}$  and such that  $g(0)=h(0)$. 
+
+Now set
+$$\alpha^{(k)} :=\arg\min_{0≤\alpha≤\overline{\alpha}} h(\alpha).$$
+ 
+Then the sandwich inequality says
+$$g{(\alpha^{(k)})}\leq h(\alpha^{(k)})\leq h(0)=g(0),$$
+ 
+and thus  $f(x^{(k)}−\alpha^{(k)}p(k)) \leq f(x^{(k)})$.
+
++ http://www.cs.cmu.edu/afs/cs/user/dwoodruf/www/w10b.pdf
++ [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
++ [Majorization Methods](https://bookdown.org/jandeleeuw6/bras/majorization-methods.html)
++ [Tangential Majorization](https://bookdown.org/jandeleeuw6/bras/tangential-majorization.html)
++ [Sharp Majorization](https://bookdown.org/jandeleeuw6/bras/sharp-majorization.html)
++ [Using Higher Derivatives](https://bookdown.org/jandeleeuw6/bras/using-higher-derivatives.html)
++ [Generalized Majorization-Minimization](http://proceedings.mlr.press/v97/parizi19a/parizi19a.pdf)
+
 #### Deep Relaxation
+
+[In this paper we establish a connection between non-convex optimization methods for training deep neural networks and nonlinear partial differential equations (PDEs). Relaxation techniques arising in statistical physics which have already been used successfully in this context are reinterpreted as solutions of a viscous Hamilton-Jacobi PDE. Using a stochastic control interpretation allows we prove that the modified algorithm performs better in expectation that stochastic gradient descent. Well-known PDE regularity results allow us to analyze the geometry of the relaxed energy landscape, confirming empirical evidence. The PDE is derived from a stochastic homogenization problem, which arises in the implementation of the algorithm. The algorithms scale well in practice and can effectively tackle the high dimensionality of modern neural networks.](https://arxiv.org/abs/1704.04932)
 
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
@@ -3590,6 +3610,7 @@ A nonconvex problem can be convexified and transformed into one which can be sol
 + [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
 + [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 
+[We consider problems that are non-convex in the input norm, which is a semi-continuous variable that can be zero or lower- and upper-bounded. Using lossless convexification, the non-convex problem is relaxed to a convex problem whose optimal solution is proved to be optimal almost everywhere for the original problem. The relaxed problem can be solved using second-order cone programming, which is a subclass of convex optimization for which there exist numerically reliable solvers with convergence guarantees and polynomial time complexity. This is the first lossless convexification result for mixed-integer optimization problems. An example of spacecraft docking with a rotating space station corroborates the effectiveness of the approach and features a computation time almost three orders of magnitude shorter than a mixed-integer programming formulation.](https://arxiv.org/abs/1902.02726)
 
 ## Gradient Free Optimization Methods
 
@@ -3651,8 +3672,15 @@ approximating the full gradient via efficient gradient estimators.](http://www.c
 
 #### Derivative-Free Optimization
 
-[The absence of derivatives, often combined with the presence of noise or lack of smoothness, is a major challenge for optimization. This book explains how sampling and model techniques are used in derivative-free methods and how these methods are designed to efficiently and rigorously solve optimization problems. Although readily accessible to readers with a modest background in computational mathematics, it is also intended to be of interest to researchers in the field. Introduction to Derivative-Free Optimization is the first contemporary comprehensive treatment of optimization without derivatives. This book covers most of the relevant classes of algorithms from direct search to model-based approaches. It contains a comprehensive description of the sampling and modeling tools needed for derivative-free optimization; these tools allow the reader to better understand the convergent properties of the algorithms and identify their differences and similarities. Introduction to Derivative-Free Optimization also contains analysis of convergence for modified Nelder Mead and implicit-filtering methods, as well as for model-based methods such as wedge methods and methods based on minimum-norm Frobenius models. Audience: The book is intended for anyone interested in using optimization on problems where derivatives are difficult or impossible to obtain. Such audiences include chemical, mechanical, aeronautical, and electrical engineers, as well as economists, statisticians, operations researchers, management scientists, biological and medical researchers, and computer scientists.](https://dl.acm.org/citation.cfm?id=1508119)
-
+The absence of derivatives, often combined with the presence of noise or lack of smoothness, is a major challenge for optimization. 
+[This book](https://dl.acm.org/citation.cfm?id=1508119) explains how sampling and model techniques are used in derivative-free methods 
+and how these methods are designed to efficiently and rigorously solve optimization problems. 
+Introduction to `Derivative-Free Optimization` is the first contemporary comprehensive treatment of optimization without derivatives. 
+This book covers most of the relevant classes of algorithms from direct search to model-based approaches. 
+It contains a comprehensive description of the sampling and modeling tools needed for derivative-free optimization; 
+these tools allow the reader to better understand the convergent properties of the algorithms and identify their differences and similarities. 
+Introduction to `Derivative-Free Optimization` also contains analysis of convergence for `modified Nelder Mead` and `implicit-filtering methods`, 
+as well as for model-based methods such as wedge methods and methods based on minimum-norm Frobenius models. 
 
 [DFO is a Fortran package for solving general nonlinear optimization problems that have the following characteristics](https://projects.coin-or.org/Dfo):
 
@@ -3661,6 +3689,8 @@ approximating the full gradient via efficient gradient estimators.](http://www.c
 - cannot be estimated efficiently.
 
 There also may be some noise in the function evaluation procedures. Such optimization problems arise ,for example, in engineering design, where the objective function evaluation is a simulation package treated as a black box.
+
+[Alongside derivative-based methods, which scale better to higher-dimensional problems, derivative-free methods play an essential role in the optimization of many practical engineering systems, especially those in which function evaluations are determined by statistical averaging, and those for which the function of interest is nonconvex in the adjustable parameters.  We are in the process of developing an entire new family of surrogate-based derivative-free optimization schemes.  The idea unifying this efficient and (under the appropriate assumptions) provably-globally-convergent family of schemes is the the minimization of a search function which linearly combines a computationally-inexpensive “surrogate” (that is, an interpolation, or in some cases a regression, of recent function evaluations - we generally favor some variant of polyharmonic splines for this purpose), to summarize the trends evident in the data available thus far, with a synthetic piecewise-quadratic “uncertainty function” (built on the framework of a Delaunay triangulation of existing datapoints), to characterize the reliability of the surrogate by quantifying the distance of any given point in parameter space to the nearest function evaluations.](https://www.ucsdrobotics.org/derivative-free-optimization)
 
 - [Book: Introduction to Derivative-Free Optimization](http://www.mat.uc.pt/~lnv/idfo/)
 - [Derivative-free optimization methods](http://www.optimization-online.org/DB_FILE/2019/04/7153.pdf)
@@ -3671,32 +3701,57 @@ There also may be some noise in the function evaluation procedures. Such optimiz
 - [A Derivative-free approach in Constrained Global Optimization of Dynamic Systems in Preliminary Design Phase](https://persyval-lab.org/sites/default/files/Report_BABANEZHAD_MiSCIT.pdf)
 - [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
 - [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)
-
+- https://www.ucsdrobotics.org/derivative-free-optimization
 
 
 ##### Nevergrad
 
 - https://code.fb.com/ai-research/nevergrad/
 - https://github.com/facebookresearch/nevergrad
-
+- https://github.com/facebookresearch/nevergrad/blob/master/docs/optimization.md
 
 ![never grad](https://code.fb.com/wp-content/uploads/2018/12/nevergrad_hero_v1.gif)
 
 #### Surrogate-based Optimization
 
+[Surrogate-Based Optimization](http://cdn.intechopen.com/pdfs/30305/InTech-Surrogate_based_optimization.pdf)
+> Surrogate-based optimization (Queipo et al. 2005, Simpson et al. 2008) represents a class of optimization methodologies that make use of surrogate modeling techniques to quickly find the local or global optima. 
+> It provides us a novel optimization framework in which the conventional optimization algorithms,
+>  e.g. gradient-based or evolutionary algorithms are used for sub-optimization(s). 
+> Surrogate modeling techniques are of particular interest for engineering design when high-fidelity, thus expensive analysis codes 
+> (e.g. Computation Fluid Dynamics (CFD) or Computational Structural Dynamics (CSD)) are used. 
+> They can be used to greatly improve the design efficiency and be very helpful 
+> in finding global optima, filtering numerical noise, realizing parallel design optimization and integrating simulation codes of different disciplines into a process chain. 
+> Here the term “surrogate model” has the same meaning as “response surface model”, “metamodel”, “approximation model”, “emulator” etc. 
+
 - [Surrogate-based methods for black-box optimization](https://www.lix.polytechnique.fr/~liberti/itor16.pdf)
 - https://rdrr.io/cran/suropt/
-- http://cdn.intechopen.com/pdfs/30305/InTech-Surrogate_based_optimization.pdf
+- [Surrogate-Based Optimization ](http://cdn.intechopen.com/pdfs/30305/InTech-Surrogate_based_optimization.pdf)
 - https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20050186653.pdf
 - [Surrogate-Based Optimization](https://link.springer.com/chapter/10.1007/978-3-319-04367-8_3)
 - [Surrogate-based Optimization using Mutual Information for Computer Experiments (optim-MICE)](https://arxiv.org/abs/1909.04600)
+- [Surrogate-based analysis and optimization](https://mae.ufl.edu/haftka/resume/publications/Prog%20'05%20Surrogate.pdf)
+- [ReLU networks as surrogate models in mixed-integer linear programs](https://www.sciencedirect.com/science/article/pii/S0098135419307203)
 
 ##### Delaunay-based derivative-free optimization
 
-
+Like other Response Surface Methods, at each optimization step, 
+[the algorithm minimizes a metric combining `an interpolation of existing function evaluations`  and `a model of the uncertainty of this interpolation`.](http://fccr.ucsd.edu/pubs/BCB16.pdf) 
+By adjusting the respective weighting of these two terms, the algorithm incorporates a tunable balance between `global exploration and local refinement`; 
+a rule to adjust this balance automatically is also presented. 
+Unlike other methods,  any well-behaved interpolation strategy may be used. 
+The uncertainty model is built upon the framework of a Delaunay triangulation of existing datapoints in parameter space. 
+A quadratic function which goes to zero at each datapoint is formed within each simplex of this triangulation; 
+the union of each of these quadratics forms the desired uncertainty model.
+Care is taken to ensure that function evaluations are performed at points that are well situated in parameter space;
+that is, such that the simplices of the resulting triangulation have circumradii with a known bound. 
+This facilitates well-behaved local refinement as additional function evaluations are performed.
 
 - [Delaunay-based derivative-free optimization via global surrogates, part I: linear constraints](http://fccr.ucsd.edu/pubs/BCB16.pdf)
 - [Delaunay-based derivative-free optimization via global surrogates, part II: convex constraints](http://fccr.ucsd.edu/pubs/BB16a.pdf)
+- [Delaunay-based Derivative-free Optimization via Global Surrogate](http://ccom.ucsd.edu/~socalopt/Beyhaghi.pdf)
+- [Delaunay-based optimization in CFD leveraging multivariate adaptive polyharmonic splines (MAPS)](http://www.mit.edu/~mgl/pdf/alimohammadi2017delaunay.pdf)
+- http://ccom.ucsd.edu/~socalopt/
 
 
 ### Graduated Optimization
@@ -3743,7 +3798,7 @@ During the n-th stage, observations $y^{\prime\prime}$ and $y^{\prime}$ are take
 > 1. Cheap minimization of modified $\hat{f}$:
   $$y^{k}=\arg\min_{x\in \mathbb{R}^p} + \left<v_k, x\right>.$$
 > 2. Use $y^{k}$ to give descent direction,
-  $$x^{k+1} = x^k -a_k(x^k - y^k) .$$
+  $$x^{k+1} = x^k -a_k(x^k - y^k).$$
 > 3. Set $v_k$ to satisfy first-order coherence
 $$v_{k+1}=\frac{L_f}{L_F} F^{\prime}(x^{k+1}) - f^{\prime}(x^{k+1}).$$
 

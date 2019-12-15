@@ -241,8 +241,7 @@ Deep Neural Networks and Partial Differential Equations: Approximation Theory an
 Structural Properties
 Philipp Petersen, University of Oxford
 
-https://memento.epfl.ch/event/a-theoretical-analysis-of-machine-learning-and-par/
-
+- https://memento.epfl.ch/event/a-theoretical-analysis-of-machine-learning-and-par/
 - http://at.yorku.ca/c/b/p/g/30.htm
 - https://mat.univie.ac.at/~grohs/
 - [Topics course Mathematics of Deep Learning, NYU, Spring 18](https://joanbruna.github.io/MathsDL-spring18/)
@@ -461,7 +460,7 @@ $$\operatorname{minimize}_{ \theta,W,\mu} loss[g(W(T)Y(T)+\mu), C] + regularizer
 + [Neural Ordinary Differential Equations and Adversarial Attacks](https://rajatvd.github.io/Neural-ODE-Adversarial/)
 + [Neural Dynamics and Computation Lab](http://ganguli-gang.stanford.edu/)
 + [NeuPDE: Neural Network Based Ordinary and Partial Differential Equations for Modeling Time-Dependent Data](https://arxiv.org/abs/1908.03190)
-
++ https://math.ethz.ch/sam/research/reports.html?year=2019
 
 
 ## Dynamics and Deep Learning
@@ -557,6 +556,11 @@ $\mathcal H$ matrix and deep learning
 - https://www.math.tu-berlin.de/?108957
 - [Deep Learning: An Introduction for Applied Mathematicians](https://arxiv.org/abs/1801.05894)
 
+###  Stochastic Differential Equations and Deep Learning
+
+- [Deep-Learning Based Numerical BSDE Method for Barrier Options](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3366314)
+- [Machine learning approximation algorithms for high-dimensional fully nonlinear partial differential equations and second-order backward stochastic differential equations](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2017/2017-49.pdf)
+
 ## Approximation Theory for Deep Learning
 
 Universal approximation theory show the expression power of deep neural network of some wide while shallow neural network.
@@ -579,6 +583,8 @@ The section will extend the approximation to the deep neural network.
 - [Deep Approximation via Deep Learning](http://www.ipam.ucla.edu/abstract/?tid=15953&pcode=GLWS3)
 - [Convolutional Neural Networks for Steady Flow Approximation](https://github.com/loliverhennigh/Steady-State-Flow-With-Neural-Nets)
 - https://www.cityu.edu.hk/ma/people/profile/zhoudx.htm
+- [Efficient approximation of high-dimensional functions with deep neural networks](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-64_fp.pdf)
+- [Neural Jump SDEs (Jump Diffusions) and Neural PDEs](http://www.stochasticlifestyle.com/neural-jump-sdes-jump-diffusions-and-neural-pdes/)
 
 ### The F-Principle
 
