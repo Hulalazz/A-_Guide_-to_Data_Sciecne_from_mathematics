@@ -1,5 +1,7 @@
 # Network Compression and Acceleration
 
+- https://hgpu.org/
+
 It is about how to accelerate the training and inference of deep learning(generally machine learning) except numerical optimization methods including the following topics:
 
 * compiler optimization for computation intensive programs;
