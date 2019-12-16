@@ -2,34 +2,9 @@
 
 <img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
 
-+ https://papers.nips.cc/paper/8288-contrastive-learning-from-pairwise-measurements.pdf
-+ http://lintool.github.io/NSF-projects/IIS-1144034/
-+ https://cs.uwaterloo.ca/~jimmylin/projects/index.html
-+ [Spectral method and regularized MLE are both optimal for top-K ranking](https://projecteuclid.org/euclid.aos/1558425643)
-+ https://europepmc.org/articles/pmc6785035
-+ [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
-+ [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
-+ [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
-+ [Information Retrieval and the Web @Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
-+ [Yandex Research](https://research.yandex.com/)
-+ [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
-+ <https://www.cse.iitb.ac.in/~soumen/>
-+ https://fate-events.github.io/facts-ir/
-+ [DocRank: Computer Science Capstone Project with the College of Charleston](https://fullmetalhealth.com/docrank-computer-science-capstone-project-college-charleston/index.html)
-+ [Ratings and rankings: voodoo or science?](http://www.andreasaltelli.eu/file/repository/rssa_1059.pdf)
-+ [The Science of Ranking Items: from webpages to teams to movies](http://langvillea.people.cofc.edu/RankAggJapan.pdf)
-+ [Ranking with Optimization Techniques](http://langvillea.people.cofc.edu/RankbyOptim.pdf)
-+ [Rank and Rating Aggregation](http://langvillea.people.cofc.edu/RankAgg.pdf)
-+ [Sensitivity and Stability of Ranking Vectors](https://epubs.siam.org/doi/10.1137/090772745)
-+ [The Rankability of Data](https://epubs.siam.org/doi/pdf/10.1137/18M1183595)
-+ [A Rating-Ranking Method for Crowdsourced Top-k Computation](http://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod18-crowdtopk.pdf)
-+ [the (data) science of sports](http://thespread.us/category/ranking.html)
-+ [Learning to Rank with Tensorflow](https://quantdare.com/learning-to-rank-with-tensorflow/)
-
 The rating algorithms help to match the players in video games or compare the players in sports.
 Ratings is a numerical score to describe the level  of the players' skill based on the results of many competition.
 The basic idea is the back-feed from the results to improve the experience. After each game, this data is updated for the participants in the game.
-
 
 The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items
 which may answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
@@ -59,6 +34,7 @@ In some sense, rating is to evaluate in a quantity approach, i.e. how much the i
 * http://www.whydomath.org/index.html
 * [Introducing Steam Database's new rating algorithm](https://steamdb.info/blog/steamdb-rating/)
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
+* [Neural Collaborative Ranking](https://arxiv.org/abs/1808.04957v1)
 
 ## Rating
 
@@ -117,7 +93,7 @@ Glickman's principal contribution to measurement is "ratings reliability", calle
 The RD measures the accuracy of a player's rating, with one RD being equal to one standard deviation.
 If the player is unrated, the rating is usually set to 1500 and the RD to 350.
 
-> 1. Determine RD
+> 1.  Determine RD
 >  The new Ratings Deviation (RD) is found using the old Ratings Deviation $RD_0$:
 > $$RD=\min\{\sqrt{RD_0^2+c_2t}, 350\}$$
 >  where ${t}$ is the amount of time (rating periods) since the last competition and '350' is assumed to be the RD of an unrated player. And $c=\sqrt{(350^2-50^2)/100}\simeq 34.6$.
@@ -287,8 +263,7 @@ There are some links on the  collective decision-making theory:
 ## Ranking
 
 
-* [AIM Workshop on the Mathematics of Ranking](https://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/)
-* [Symposium: The mathematics of ranking](https://nalag.cs.kuleuven.be/research/workshops/ranking/)
+
 * [Learning to Rank explained](https://everything.explained.today/Learning_to_rank/)
 * [Learning to Rank with (a Lot of) Word Features](http://ronan.collobert.com/pub/matos/2009_ssi_jir.pdf)
 * http://www.cs.cmu.edu/~kdelaros/
@@ -1454,6 +1429,12 @@ $${[{\Delta}_{0}]}_{(i,j)}=
 - [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
 - [ ] [Graph Helmholtzian and Rank Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/lekhenglim-nips.pdf)
 
+### Differentiable Ranking and Sorting
+
+[Sorting is used pervasively in machine learning, either to define elementary algorithms, such as k-nearest neighbors (k-NN) rules, or to define test-time metrics, such as top-n classification accuracy or ranking losses. Sorting is however a poor match for the end-to-end, automatically differentiable pipelines of deep learning. Indeed, sorting procedures output two vectors, neither of which is differentiable: the vector of sorted values is piecewise linear, while the sorting permutation itself (or its inverse, the vector of ranks) has no differentiable properties to speak of, since it is integer-valued. We propose in this paper to replace the usual $\texttt{sort}$ procedure with a differentiable proxy. Our proxy builds upon the fact that sorting can be seen as an optimal assignment problem, one in which the  values to be sorted are matched to an $\emph{auxiliary}$ probability measure supported on any $\emph{increasing}$ family of  target values. From this observation, we propose extended rank and sort operators by considering optimal transport (OT) problems (the natural relaxation for assignments) where the auxiliary measure can be any weighted measure supported on  increasing values, where $m\not= n$. We recover differentiable operators by regularizing these OT problems with an entropic penalty, and solve them by applying Sinkhorn iterations. Using these smoothed rank and sort operators, we propose differentiable proxies for the classification 0/1 loss as well as for the quantile regression loss.]()
+
+- [Differentiable Ranking and Sorting using Optimal Transport](http://papers.nips.cc/paper/8910-differentiable-ranking-and-sorting-using-optimal-transport)
+
 ### Online Learning to Rank
 
 During the past 10-15 years offline learning to rank has had a tremendous influence on information retrieval, both scientifically and in practice. Recently, as the limitations of offline learning to rank for information retrieval have become apparent, there is increased attention for online learning to rank methods for information retrieval in the community. Such methods learn from `user interactions` rather than from a set of labeled data that is fully available for training up front. The time is right for an intermediate-level tutorial on online learning to rank.
@@ -1516,6 +1497,7 @@ And in this part we only talk on the Top-N recommendation.
 
 * https://www.cs.rutgers.edu/events/phd-defense-collaborative-ranking-based-recommender-systems
 - [ ] [Collaborative ranking-based recommender systems](https://rucore.libraries.rutgers.edu/rutgers-lib/59115/)
+- [ ] [Neural Collaborative Ranking](https://arxiv.org/abs/1808.04957v1)
 - [ ] [Decoupled Collaborative Ranking](https://www.researchgate.net/publication/315874080_Decoupled_Collaborative_Ranking)
 - [ ] [Large-scale Collaborative Ranking in Near-Linear Time](http://www.stat.ucdavis.edu/~chohsieh/rf/KDD_Collaborative_Ranking.pdf)
 - [ ] [Preference Completion: Large-scale Collaborative Ranking from Pairwise Comparisons](http://proceedings.mlr.press/v37/park15.html)
@@ -1532,15 +1514,6 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 
 * [Ranking Evaluation](http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf)
 * http://fastml.com/evaluating-recommender-systems/
-
-
-**Top-N recommendation**
-
-* http://glaros.dtc.umn.edu/gkhome/node/1192
-* https://www.ijcai.org/Proceedings/16/Papers/339.pdf
-* https://blog.csdn.net/lthirdonel/article/details/80021282
-* https://arxiv.org/abs/1808.04957v1
-* http://ceur-ws.org/Vol-1127/paper4.pdf
 
 ### Loss Functions in Ranking
 
@@ -1620,3 +1593,88 @@ QuickRank is an efficient Learning to Rank toolkit providing multithreaded C++ i
 
 + [ ] [QuickRank: A C++ suite of Learning to Rank algorithms](http://quickrank.isti.cnr.it/research-papers/)
 + [ ] http://lyst.github.io/lightfm/docs/index.html
+
+### Mathematics of Ranking
+
+The mathematics of ranking is an emerging branch of mathematics. 
+It has been given a boost with the success of Google. 
+The gigantic eigenvalue problem solved to rank web pages 
+according to their "importance" is an example of mathematics 
+[that are applied in our dayly lives.](https://nalag.cs.kuleuven.be/research/workshops/ranking/proceedings.shtml)
+
+Ranking problems arise in a multitude of domains, 
+ranging from elections to web search and from management science 
+to drug discovery. Consequently, ranking problems 
+have been studied under different guises in many different fields, 
+and each field has developed its own mathematical tools for studying ranking. This workshop will bring together for the first time researchers from mathematics, statistics, computer science, operations research, economics and game theory, and from both academic and industry backgrounds, to share their perspectives on ranking problems 
+[and on the mathematical tools used to study them.](https://aimath.org/ARCC/workshops/mathofranking.html)
+
+
+* https://www.stat.uchicago.edu/~lekheng/
+* http://www.shivani-agarwal.net/Teaching/teaching.html
+* http://www.shivani-agarwal.net/Publications/publications.html
+* [AIM Workshop on the Mathematics of Ranking](https://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/)
+* [Symposium: The mathematics of ranking](https://nalag.cs.kuleuven.be/research/workshops/ranking/)
+* https://aimath.org/ARCC/workshops/mathofranking.html
+* https://aimath.org/WWN/mathofranking/
+* https://yao-lab.github.io/seminar.html
+* https://shenhaihui.github.io/
+* http://jhc.sjtu.edu.cn/people/members/faculty/shuai-li.html
+* https://shuaili8.github.io/
+* https://mathcitations.github.io/recent.html
+* https://sites.google.com/site/wcdingwebsite/products-services
+
+### The Rankability of Data
+
+The rankability problem  refers to a dataset's inherent ability 
+to produce a meaningful ranking of its items. 
+Ranking is a fundamental data science task. 
+Its applications are numerous and include web search, data mining, cybersecurity, machine learning, and statistical learning theory. 
+Yet little attention has been paid to the question of whether a dataset is suitable for ranking. 
+As a result, when a ranking method is applied to an unrankable dataset, 
+the resulting ranking may not be reliable. 
+The rankability problem asks the following: How can rankability be quantified? 
+At what point is a dynamic, time-evolving graph rankable? 
+If a dataset has low rankability, c
+an modifications be made and which most improve the graph's rankability? 
+[We present a combinatorial approach to a rankability measure and then compare several algorithms for computing this new measure.](https://epubs.siam.org/doi/abs/10.1137/18M1183595)
+
+- [The Rankability of Data](https://epubs.siam.org/doi/abs/10.1137/18M1183595)
+- https://anderson-data-science.com/research/
+- [ Graphs Analytics and Research in Data Science (IGARDS)](https://igards.github.io/)
+- http://www.fields.utoronto.ca/talks/Rankability-Data
+- [On the graph Laplacian and the rankability of data](https://www.sciencedirect.com/science/article/abs/pii/S0024379519305026)
+- https://arxiv.org/abs/1912.00275
+- https://anderson-data-science.com/research/
+- https://thomasrcameron.com/research.html
+- [Random variation and rankability of hospitals using outcome indicators](https://qualitysafety.bmj.com/content/20/10/869)
+- https://github.com/IGARDS/ranklib
+- https://github.com/IGARDS/rankability_toolbox
+
+### Resource on Ranking and Reating
+
++ https://papers.nips.cc/paper/8288-contrastive-learning-from-pairwise-measurements.pdf
++ http://lintool.github.io/NSF-projects/IIS-1144034/
++ https://cs.uwaterloo.ca/~jimmylin/projects/index.html
++ [Spectral method and regularized MLE are both optimal for top-K ranking](https://projecteuclid.org/euclid.aos/1558425643)
++ https://europepmc.org/articles/pmc6785035
++ [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
++ [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
++ [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
++ [Information Retrieval and the Web @Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
++ [Yandex Research](https://research.yandex.com/)
++ [CIKM 2018 Papers Notes](https://www.hongliangjie.com/2019/01/20/cikm-2018-papers-notes/)
++ <https://www.cse.iitb.ac.in/~soumen/>
++ https://fate-events.github.io/facts-ir/
++ [DocRank: Computer Science Capstone Project with the College of Charleston](https://fullmetalhealth.com/docrank-computer-science-capstone-project-college-charleston/index.html)
++ [Ratings and rankings: voodoo or science?](http://www.andreasaltelli.eu/file/repository/rssa_1059.pdf)
++ [The Science of Ranking Items: from webpages to teams to movies](http://langvillea.people.cofc.edu/RankAggJapan.pdf)
++ [Ranking with Optimization Techniques](http://langvillea.people.cofc.edu/RankbyOptim.pdf)
++ [Rank and Rating Aggregation](http://langvillea.people.cofc.edu/RankAgg.pdf)
++ [Sensitivity and Stability of Ranking Vectors](https://epubs.siam.org/doi/10.1137/090772745)
++ [The Rankability of Data](https://epubs.siam.org/doi/pdf/10.1137/18M1183595)
++ [A Rating-Ranking Method for Crowdsourced Top-k Computation](http://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod18-crowdtopk.pdf)
++ [the (data) science of sports](http://thespread.us/category/ranking.html)
++ [Learning to Rank with Tensorflow](https://quantdare.com/learning-to-rank-with-tensorflow/)
++ http://www.cs.virginia.edu/~hw5x/
++ https://taskintelligence.github.io/WSDM2019-Workshop/#

@@ -2443,3 +2443,22 @@ Capsule Networks provide a way to detect parts of objects in an image and repres
 - [Scalable Kernel Learning via the Discriminant Information](https://arxiv.org/abs/1909.10432)
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
 
+### Mixed Integer Optimization
+
+- [Deep neural networks and mixed integer linear optimization](https://link.springer.com/article/10.1007/s10601-018-9285-6)
+- [Matteo Fischetti, University of Padova](http://www.dei.unipd.it/~fisch/papers/slides/2018%20Dagstuhl%20%5BFischetti%20on%20DL%5D.pdf)
+- [Deep Neural Networks as 0-1 Mixed Integer Linear Programs: A Feasibility Study](https://arxiv.org/abs/1712.06174)
+- https://www.researchgate.net/profile/Matteo_Fischetti
+- [A Mixed Integer Linear Programming Formulation to Artificial Neural Networks](http://www.amp.i.kyoto-u.ac.jp/tecrep/ps_file/2019/2019-001.pdf)
+- [ReLU Networks as Surrogate Models in Mixed-Integer Linear Programs](http://www.optimization-online.org/DB_FILE/2019/07/7276.pdf)
+- [Strong mixed-integer programming formulations for trained neural networks](http://www.optimization-online.org/DB_FILE/2018/11/6911.pdf)
+- [Deep Learning in Computational Discrete Optimization CO 759, Winter 2018](https://www.math.uwaterloo.ca/~bico/co759/2018/index.html)
+- https://sites.google.com/site/mipworkshop2017/program
+- [Second Conference on Discrete Optimization and Machine Learning](https://aip.riken.jp/events/doml190729-31/)
+- [Mixed integer programming (MIP) for machine learning](http://www.normastic.fr/wp-content/uploads/2014/12/Main_MIP_Rouen_2019.pdf)
+- https://atienergyworkshop.wordpress.com/
+- http://www.doc.ic.ac.uk/~dletsios/publications/gradient_boosted_trees.pdf
+- https://minoa-itn.fau.de/
+- http://www.me.titech.ac.jp/technicalreport/h26/2014-1.pdf
+- [Training Binarized Neural Networks using MIP and CP](http://www.cs.toronto.edu/~lillanes/papers/ToroIcarteICCMB-cp2019-training-preprint.pdf)
+

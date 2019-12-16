@@ -229,6 +229,7 @@ ____
 
 - [Meeting on Mathematics of Deep Learning](https://www.4tu.nl/ami/en/Agenda-Events/)
 - [Probability in high dimensions](http://www.yanivplan.com/math-608d)
+- https://math.ethz.ch/sam/research/reports.html?year=2019
 - [Learning Deep Learning](http://rt.dgyblog.com/ref/ref-learning-deep-learning.html)
 - [Summer school on Deep Learning Theory by Weinan E](https://github.com/leiwu1990/course.math_theory_nn)
 - [.520/6.860: Statistical Learning Theory and Applications, Fall 2018](http://www.mit.edu/~9.520/fall18/)

@@ -62,6 +62,7 @@ and that can learn form the feedback information over time, which will be talked
 * [multimedia information retrieval](http://press.liacs.nl/mlew/mir2019.html)
 * [Notes on Music Information Retrieval](https://musicinformationretrieval.com/index.html)
 * https://ntent.com/
+* https://www.researchgate.net/scientific-contributions/2118044344_Xiangnan_He
 * http://www.somaproject.eu/
 * [How Search Engines Work: Crawling, Indexing, and Ranking](https://moz.com/beginners-guide-to-seo/how-search-engines-operate)
 
@@ -1100,9 +1101,11 @@ Different from general web search engine, scholar search engine does rank the we
 - https://scite.ai/
 
 
-*************
+### MACHINE LEARNING FOR HEALTHCARE
 
 - [MACHINE LEARNING FOR HEALTHCARE (MLHC)](http://www.mucmd.org/)
+- https://ml4health.github.io/2017/
+- https://ml4health.github.io/2019/
 - [BigCHat: Connected Health at Big Data Era](http://tonghanghang.org/events/KDD_BigChat.htm)
 - [HEALTH DAY AT KDD](https://www.kdd.org/kdd2019/special-days/health-day)
 - [Microsoft’s focus on transforming healthcare: Intelligent health through AI and the cloud](https://blogs.microsoft.com/blog/2018/02/28/microsofts-focus-transforming-healthcare-intelligent-health-ai-cloud/)

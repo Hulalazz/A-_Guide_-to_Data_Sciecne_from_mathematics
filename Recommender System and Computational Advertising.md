@@ -737,6 +737,15 @@ the selected GCN.
 * [Deep Geometric Matrix Completion: a Geometric Deep Learning approach to Recommender Systems](http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018)
 * [Talk: Deep Geometric Matrix Completion](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
 
+### Top-N recommendation
+
+* [Local Item-Item Models for Top-N Recommendation](http://glaros.dtc.umn.edu/gkhome/node/1192)
+* [Improving Top-N Recommendation with Heterogeneous Loss](https://www.ijcai.org/Proceedings/16/Papers/339.pdf)
+* https://blog.csdn.net/lthirdonel/article/details/80021282
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data](http://ceur-ws.org/Vol-1127/paper4.pdf)
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
+
+
 ### Collaborative Deep Learning for Recommender Systems
 
 [Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.](http://www.wanghao.in/CDL.htm)
