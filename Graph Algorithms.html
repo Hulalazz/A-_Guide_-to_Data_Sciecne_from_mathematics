@@ -1,0 +1,2066 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body {
+  max-width: 980px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 45px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headerlink {
+  font: normal 400 16px fontawesome-mini;
+  vertical-align: middle;
+  margin-left: -16px;
+  float: left;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0;
+  color: #333;
+}
+
+.markdown-body .headerlink:focus {
+  outline: none;
+}
+
+.markdown-body h1 .headerlink {
+  margin-top: 0.8rem;
+}
+
+.markdown-body h2 .headerlink,
+.markdown-body h3 .headerlink {
+  margin-top: 0.6rem;
+}
+
+.markdown-body h4 .headerlink {
+  margin-top: 0.2rem;
+}
+
+.markdown-body h5 .headerlink,
+.markdown-body h6 .headerlink {
+  margin-top: 0;
+}
+
+.markdown-body .headerlink:hover,
+.markdown-body h1:hover .headerlink,
+.markdown-body h2:hover .headerlink,
+.markdown-body h3:hover .headerlink,
+.markdown-body h4:hover .headerlink,
+.markdown-body h5:hover .headerlink,
+.markdown-body h6:hover .headerlink {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* MultiMarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px fontawesome-mini;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\e157';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><style>/*GitHub*/
+.codehilite {background-color:#fff;color:#333333;}
+.codehilite .hll {background-color:#ffffcc;}
+.codehilite .c{color:#999988;font-style:italic}
+.codehilite .err{color:#a61717;background-color:#e3d2d2}
+.codehilite .k{font-weight:bold}
+.codehilite .o{font-weight:bold}
+.codehilite .cm{color:#999988;font-style:italic}
+.codehilite .cp{color:#999999;font-weight:bold}
+.codehilite .c1{color:#999988;font-style:italic}
+.codehilite .cs{color:#999999;font-weight:bold;font-style:italic}
+.codehilite .gd{color:#000000;background-color:#ffdddd}
+.codehilite .ge{font-style:italic}
+.codehilite .gr{color:#aa0000}
+.codehilite .gh{color:#999999}
+.codehilite .gi{color:#000000;background-color:#ddffdd}
+.codehilite .go{color:#888888}
+.codehilite .gp{color:#555555}
+.codehilite .gs{font-weight:bold}
+.codehilite .gu{color:#800080;font-weight:bold}
+.codehilite .gt{color:#aa0000}
+.codehilite .kc{font-weight:bold}
+.codehilite .kd{font-weight:bold}
+.codehilite .kn{font-weight:bold}
+.codehilite .kp{font-weight:bold}
+.codehilite .kr{font-weight:bold}
+.codehilite .kt{color:#445588;font-weight:bold}
+.codehilite .m{color:#009999}
+.codehilite .s{color:#dd1144}
+.codehilite .n{color:#333333}
+.codehilite .na{color:teal}
+.codehilite .nb{color:#0086b3}
+.codehilite .nc{color:#445588;font-weight:bold}
+.codehilite .no{color:teal}
+.codehilite .ni{color:purple}
+.codehilite .ne{color:#990000;font-weight:bold}
+.codehilite .nf{color:#990000;font-weight:bold}
+.codehilite .nn{color:#555555}
+.codehilite .nt{color:navy}
+.codehilite .nv{color:teal}
+.codehilite .ow{font-weight:bold}
+.codehilite .w{color:#bbbbbb}
+.codehilite .mf{color:#009999}
+.codehilite .mh{color:#009999}
+.codehilite .mi{color:#009999}
+.codehilite .mo{color:#009999}
+.codehilite .sb{color:#dd1144}
+.codehilite .sc{color:#dd1144}
+.codehilite .sd{color:#dd1144}
+.codehilite .s2{color:#dd1144}
+.codehilite .se{color:#dd1144}
+.codehilite .sh{color:#dd1144}
+.codehilite .si{color:#dd1144}
+.codehilite .sx{color:#dd1144}
+.codehilite .sr{color:#009926}
+.codehilite .s1{color:#dd1144}
+.codehilite .ss{color:#990073}
+.codehilite .bp{color:#999999}
+.codehilite .vc{color:teal}
+.codehilite .vg{color:teal}
+.codehilite .vi{color:teal}
+.codehilite .il{color:#009999}
+.codehilite .gc{color:#999;background-color:#EAF2F5}
+</style><title>Graph Algorithms</title></head><body><article class="markdown-body"><h1 id="graph-and-networks">Graph and Networks<a class="headerlink" href="#graph-and-networks" title="Permanent link"></a></h1>
+<p><a href="http://www.rlslog.net/graph-algorithms-practical-examples-in-apache-spark-and-neo4j-p2p/">The world is driven by connections—from financial and communication systems to social and biological processes.
+Revealing the meaning behind these connections drives breakthroughs across industries in areas such as identifying fraud rings and
+optimizing recommendations to evaluating the strength of a group and predicting cascading failures.</a>
+Graph and networks are the language to describe the connected entities.
+They focus on the connections and consider the crowd as a network. They are close with topology.</p>
+<p>Graph is mathematical abstract or generalization of the connection between entities. It is an important part of discrete mathematics &ndash; graph theory.
+And graph processing is widely applied in industry and science such as the <code>network analysis</code>, <code>graph convolutional network (GCN)</code>,  <code>probabilistic graph model(PGM)</code> and <code>knowledge graph</code>, which are introduced in other chapters.</p>
+<ul>
+<li><a href="https://kobiso.github.io//data%20structure/coding-DS_graph/">Learn about graph, graph representations, graph traversals and their running time.</a></li>
+<li><a href="https://ica1www.epfl.ch/PS_files/netCalBookv4.pdf">NETWORK CALCULUS</a></li>
+<li><a href="https://www.seas.upenn.edu/~gsp16/ortega.pdf">Graph Signal Processing: An Introductory Overview</a></li>
+<li><a href="http://lca.epfl.ch/people/">http://lca.epfl.ch/people/</a></li>
+<li><a href="http://shichuan.org/HENA2019.html">http://shichuan.org/HENA2019.html</a></li>
+<li><a href="https://www.eecs.yorku.ca/~genec/">https://www.eecs.yorku.ca/~genec/</a></li>
+</ul>
+<h2 id="resource-on-graph-processing">Resource On Graph Processing<a class="headerlink" href="#resource-on-graph-processing" title="Permanent link"></a></h2>
+<ul>
+<li><a href="https://www.amrita.edu/event/international-conference-graph-theory-and-its-applications-icgta19">International Conference on Graph Theory and its Applications - ICGTA19</a></li>
+<li><a href="https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html">https://ai.googleblog.com/2019/06/applying-automl-to-transformer.html</a></li>
+<li><a href="http://mat.uab.cat/~alseda/MasterOpt/">Combinatorial Algorithms for graphs</a></li>
+<li><a href="http://ryanrossi.com/search.php">Introduction to Search Engine Theory</a></li>
+<li><a href="https://iss.oden.utexas.edu/">Galois programming model</a></li>
+<li><a href="http://2019.ieeeglobalsip.org/pages/symposium-graph-signal-processing">Symposium on Graph Signal Processing</a></li>
+<li><a href="http://2019.ieeeglobalsip.org/">http://2019.ieeeglobalsip.org/</a></li>
+<li><a href="https://signalprocessingsociety.org/">IEEE Signal Processing Society</a></li>
+<li><a href="http://hpgdmp.bsc.es/">High Performance Graph Data Management and Processing workshop</a></li>
+<li><a href="https://www.ntu.edu.sg/home/arijit.khan/">https://www.ntu.edu.sg/home/arijit.khan/</a></li>
+<li><a href="http://www.cs.cmu.edu/~wcohen/">http://www.cs.cmu.edu/~wcohen/</a></li>
+<li><a href="http://math.bit.edu.cn/szdw/azcpl/js/xlm/index.htm">http://math.bit.edu.cn/szdw/azcpl/js/xlm/index.htm</a></li>
+<li><a href="https://sites.google.com/view/textgraphs2018/">https://sites.google.com/view/textgraphs2018/</a></li>
+<li><a href="https://ipads.se.sjtu.edu.cn/start">https://ipads.se.sjtu.edu.cn/start</a></li>
+<li><a href="http://michele-ackerer.fr/algorithmic-graph-theory.htm">http://michele-ackerer.fr/algorithmic-graph-theory.htm</a></li>
+<li><a href="http://www.columbia.edu/~mc2775/">http://www.columbia.edu/~mc2775/</a></li>
+<li><a href="http://dbgroup.cs.tsinghua.edu.cn/ligl/">http://dbgroup.cs.tsinghua.edu.cn/ligl/</a></li>
+<li><a href="http://web.eecs.umich.edu/~dkoutra/tut/sdm17.html">http://web.eecs.umich.edu/~dkoutra/tut/sdm17.html</a></li>
+<li><a href="http://web.eecs.umich.edu/~dkoutra/tut/icdm18.html">http://web.eecs.umich.edu/~dkoutra/tut/icdm18.html</a></li>
+<li><a href="http://www.mlgworkshop.org/2019/">http://www.mlgworkshop.org/2019/</a></li>
+<li><a href="https://www.computationalnetworkscience.org/">https://www.computationalnetworkscience.org/</a></li>
+<li><a href="http://ccni.hrl.com/">http://ccni.hrl.com/</a></li>
+<li><a href="http://web.eecs.umich.edu/~pettie/">http://web.eecs.umich.edu/~pettie/</a></li>
+<li><a href="https://kam.mff.cuni.cz/~matej/">https://kam.mff.cuni.cz/~matej/</a></li>
+<li><a href="http://orion.math.iastate.edu/lhogben/">http://orion.math.iastate.edu/lhogben/</a></li>
+<li><a href="https://aimath.org/~hogben/">https://aimath.org/~hogben/</a></li>
+<li><a href="https://people.csail.mit.edu/jshun/">https://people.csail.mit.edu/jshun/</a></li>
+<li><a href="https://iiis.tsinghua.edu.cn/duanr/">https://iiis.tsinghua.edu.cn/duanr/</a></li>
+<li><a href="https://www.renyi.hu/hu">https://www.renyi.hu/hu</a></li>
+<li><a href="http://dimacs.rutgers.edu/archive/Research/partnership/">http://dimacs.rutgers.edu/archive/Research/partnership/</a></li>
+<li><a href="http://dimacs.rutgers.edu/archive/index.html">http://dimacs.rutgers.edu/archive/index.html</a></li>
+<li><a href="http://thinklab.sjtu.edu.cn/IPCA_GM.html">Combinatorial Learning of Robust Deep Graph Matching: an Embedding based Approach</a></li>
+<li><a href="http://thinklab.sjtu.edu.cn/publication.html">http://thinklab.sjtu.edu.cn/publication.html</a></li>
+<li><a href="http://www.cs.sjtu.edu.cn/~shen-lp/">http://www.cs.sjtu.edu.cn/~shen-lp/</a></li>
+<li><a href="http://yifanhu.net/">http://yifanhu.net/</a></li>
+<li><a href="http://shichuan.org/">http://shichuan.org/</a></li>
+<li><a href="https://aimath.org/ARCC/workshops/perfectgraph.html">The Perfect Graph Conjecture</a></li>
+<li><a href="https://mitpress.mit.edu/books/mathematics-big-data">https://mitpress.mit.edu/books/mathematics-big-data</a></li>
+<li><a href="http://lkm.fri.uni-lj.si/rmarko/">http://lkm.fri.uni-lj.si/rmarko/</a></li>
+<li><a href="http://web.cs.ucla.edu/~yzsun/">http://web.cs.ucla.edu/~yzsun/</a></li>
+<li><a href="http://www.ifp.illinois.edu/~chang87/">http://www.ifp.illinois.edu/~chang87/</a></li>
+<li><a href="http://people.csail.mit.edu/chang87/">http://people.csail.mit.edu/chang87/</a></li>
+<li><a href="https://id2221kth.github.io/slides/2018/12_graph_processing_part2.pdf">Large Scale Graph Processing - GraphX, Giraph++, and Pegasus</a></li>
+<li><a href="https://www.usenix.org/conference/atc17/technical-sessions/presentation/malicevic">https://www.usenix.org/conference/atc17/technical-sessions/presentation/malicevic</a></li>
+<li><a href="https://alliance.seas.upenn.edu/~gsp16/wiki/index.php">https://alliance.seas.upenn.edu/~gsp16/wiki/index.php</a></li>
+<li><a href="https://warrencenter.upenn.edu/">https://warrencenter.upenn.edu/</a></li>
+<li><a href="http://kw.fudan.edu.cn/publications">http://kw.fudan.edu.cn/publications</a></li>
+<li><a href="https://lts2.epfl.ch/">https://lts2.epfl.ch/</a></li>
+<li><a href="https://www.osti.gov/biblio/1185842">Graph processing platforms at scale: practices and experiences</a></li>
+<li><a href="https://web.cs.ucla.edu/~chiyuze/">https://web.cs.ucla.edu/~chiyuze/</a></li>
+</ul>
+<h3 id="toolkits">Toolkits<a class="headerlink" href="#toolkits" title="Permanent link"></a></h3>
+<ul>
+<li><a href="https://dirtysalt.github.io/html/pregel.html">https://dirtysalt.github.io/html/pregel.html</a></li>
+<li><a href="http://gdm.fudan.edu.cn/GDMWiki/Wiki.jsp?page=Graph%20Code%20Library">http://gdm.fudan.edu.cn/GDMWiki/Wiki.jsp?page=Graph%20Code%20Library</a></li>
+<li><a href="https://igraph.org/">https://igraph.org/</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007/978-3-319-96983-1_18">Abelian: A Compiler for Graph Analytics on Distributed, Heterogeneous Platforms</a></li>
+<li><a href="https://www-ai.cs.uni-dortmund.de/LEHRE/VORLESUNGEN/PGM/WS1415/index.html">Probabilistische Graphische Modelle</a></li>
+<li><a href="https://networkx.github.io/documentation/stable/index.html">NetworkX : a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks</a></li>
+<li><a href="https://github.com/neo4j-contrib/neo4j-graph-algorithms">The Neo4j Graph Algorithms User Guide v3.5</a></li>
+<li><a href="https://github.com/scheinerman/matgraph">Matlab tools for working with simple graphs</a></li>
+<li><a href="https://julialang.org/blog/2019/02/light-graphs">GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms</a></li>
+<li><a href="http://js.cytoscape.org/">Graph theory (network) library for visualization and analysis</a></li>
+<li><a href="https://graph-tool.skewed.de/">graph-tool | Efficient network analysis</a></li>
+<li><a href="https://jgrapht.org/">JGraphT: a Java library of graph theory data structures and algorithms</a></li>
+<li><a href="https://iss.oden.utexas.edu/?p=projects/galois">https://iss.oden.utexas.edu/?p=projects/galois</a></li>
+<li><a href="https://github.com/alibaba/euler">https://github.com/alibaba/euler</a></li>
+<li><a href="https://github.com/tencent/plato">https://github.com/tencent/plato</a></li>
+<li><a href="https://fma-ai.cn/">https://fma-ai.cn/</a></li>
+<li><a href="https://people.csail.mit.edu/jshun/ligra.shtml">https://people.csail.mit.edu/jshun/ligra.shtml</a></li>
+<li><a href="https://people.csail.mit.edu/jshun/graphit.pdf">https://people.csail.mit.edu/jshun/graphit.pdf</a></li>
+<li><a href="https://graphit-lang.org/">https://graphit-lang.org/</a></li>
+<li><a href="https://arxiv.org/abs/1905.01294">https://arxiv.org/abs/1905.01294</a></li>
+<li><a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kepner%2C+J">https://arxiv.org/search/cs?searchtype=author&amp;query=Kepner%2C+J</a></li>
+<li><a href="https://people.eecs.berkeley.edu/~aydin/CombBLAS/html/index.html">https://people.eecs.berkeley.edu/~aydin/CombBLAS/html/index.html</a></li>
+<li><a href="http://graphblas.org/index.php?title=Graph_BLAS_Forum">http://graphblas.org/index.php?title=Graph_BLAS_Forum</a></li>
+<li><a href="https://www.boost.org/doc/libs/1_42_0/libs/graph/doc/index.html">https://www.boost.org/doc/libs/1_42_0/libs/graph/doc/index.html</a></li>
+<li><a href="https://ibm.github.io/lagraph/index.html">https://ibm.github.io/lagraph/index.html</a></li>
+<li><a href="https://epfl-lts2.github.io/gspbox-html/">The Graph Signal Processing Toolbox</a></li>
+<li><a href="http://giraph.apache.org/">http://giraph.apache.org/</a></li>
+</ul>
+<h2 id="graph-as-data-structure">Graph as Data Structure<a class="headerlink" href="#graph-as-data-structure" title="Permanent link"></a></h2>
+<p><img title="http://davidhall.io/visualising-music-graphic-scores/" src="http://davidhall.io/wp-content/uploads/2017/08/graphic-notation-Roman-Haubenstock-Ramati-2.jpg" width="80%"/></p>
+<p>A graph ${G=(V,E)}$ consists of a finite set of vertices $V(G)$ and a set of edges $E(G)$ consisting of distinct, unordered pairs of vertices, where nodes stand for entities and edges stand for their connections.
+It is the foundation of <strong>network science</strong>.
+It is  the fact that the feature is nothing except the connection that makes different from the common data.</p>
+<blockquote>
+<p>Graphs provide a powerful way to represent and exploit these connections.
+Graphs can be used to model such diverse areas as computer vision, natural language processing, and recommender systems. [^12]</p>
+</blockquote>
+<p>The connections can be directed, weighted even probabilistic. It can be studied from the perspectives of matrix analysis and discrete mathematics.   </p>
+<p>All data in computer machine is digitalized bits. The primitive goal is to represent graph in computer as one data structure.</p>
+<blockquote>
+<p><strong>Definition</strong>:  Let $G=(V, E)$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$. Suppose each
+edge of $G$ is assigned an orientation, which is arbitrary but fixed. The (vertex-edge)
+<code>incidence</code> matrix of $G$, denoted by $Q(G)$, is the $n \times m$ matrix defined as follows.
+The rows and the columns of $Q(G)$ are indexed by $V(G)$ and $E(G)$, respectively.
+The $(i, j)$-entry of $Q(G)$ is 0 if vertex $i$ and edge $e_j$ are not incident, and otherwise it
+is $\color{red}{\text{1 or −1}}$ according as $e_j$ originates or terminates at $i$, respectively. We often denote
+$Q(G)$ simply by $Q$. Whenever we mention $Q(G)$ it is assumed that the edges of $G$ are oriented.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">The adjacency matrix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src = https://cdncontribute.geeksforgeeks.org/wp-content/uploads/adjacencymatrix.png width=60% /></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Definition</strong>: Let $G$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$.The <code>adjacency</code> matrix of $G$, denoted by $A(G)$, is the $n\times n$ matrix defined as follows. The rows and
+the columns of $A(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $A(G)$ is $0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{1}}$ for $i$ and $j$ adjacent. The $(i,i)$-entry of $A(G)$ is 0 for $i = 1,\dots,n.$ We often denote $A(G)$ simply by $A$.</p>
+<p><code>Adjacency Matrix</code> is also used to represent <code>weighted graphs</code>. If the $(i, j)$-entry of $A(G)$ is $w_{i, j}$, i.e. $A[i][j] = w_{i, j}$, then there is an edge from vertex $i$ to vertex $j$ with weight $w$.
+The <code>Adjacency Matrix</code> of <code>weighted graphs</code> $G$ is also called <code>weight</code> matrix of $G$, denoted by $W(G)$ or simply by $W$.</p>
+</blockquote>
+<p>See <em>Graph representations using set and hash</em> at <a href="https://www.geeksforgeeks.org/graph-representations-using-set-hash/">https://www.geeksforgeeks.org/graph-representations-using-set-hash/</a>.</p>
+<blockquote>
+<p><strong>Definition</strong>: In graph theory, the degree (or valency) of a vertex of a graph is the number of edges incident to the vertex, with loops counted twice. From the wikipedia page at <a href="https://www.wikiwand.com/en/Degree_(graph_theory)">https://www.wikiwand.com/en/Degree_(graph_theory)</a>.
+The degree of a vertex $v$ is denoted $\deg(v)$ or $\deg v$. <code>Degree matrix</code> $D$ is a diagonal matrix such that $D_{i,i}=\sum_{j} w_{i,j}$ for the <code>weighted graph</code> with $W=(w_{i,j})$.</p>
+<p><strong>Definition</strong>:  A <em>directed graph</em> (or <code>digraph</code>) is a set of vertices and a collection of directed edges that each connects an ordered pair of vertices. We say that a directed edge points from the first vertex in the pair and points to the second vertex in the pair. We use the names 0 through V-1 for the vertices in a V-vertex graph. Via <a href="https://algs4.cs.princeton.edu/42digraph/">https://algs4.cs.princeton.edu/42digraph/</a>.</p>
+</blockquote>
+<p><code>Adjacency List</code> is an array of lists.  An entry array[i] represents the list of vertices adjacent to the ith vertex. This representation can also be used to represent a weighted graph. The weights of edges can be represented as lists of pairs.
+See more representation of graph in computer in <a href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/</a>.
+Although the adjacency-list representation is asymptotically at least as efficient as the adjacency-matrix representation, the simplicity of an adjacency matrix may make it preferable when graphs are reasonably small. Moreover, if the graph is unweighted, there is an additional advantage in storage for the adjacency-matrix representation.</p>
+<p><img title="list" src="https://kobiso.github.io//assets/images/graph/list.png" width = "80%"/></p>
+<hr />
+<table>
+<thead>
+<tr>
+<th align="center">Cayley graph of F2 in Wikimedia</th>
+<th align="center">Moreno Sociogram 1st Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="http://mathworld.wolfram.com/images/eps-gif/CayleyGraph_1000.gif?w=200" width="80%" /></td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Moreno_Sociogram_1st_Grade.png/440px-Moreno_Sociogram_1st_Grade.png?w=400" width="50%" /></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="http://mathworld.wolfram.com/Graph.html">http://mathworld.wolfram.com/Graph.html</a></li>
+<li><a href="https://www.wikiwand.com/en/Graph_theory">https://www.wikiwand.com/en/Graph_theory</a></li>
+<li><a href="https://www.wikiwand.com/en/Gallery_of_named_graphs">https://www.wikiwand.com/en/Gallery_of_named_graphs</a></li>
+<li><a href="https://www.wikiwand.com/en/Laplacian_matrix">https://www.wikiwand.com/en/Laplacian_matrix</a></li>
+<li><a href="https://www.wikiwand.com/en/Cayley_graph">https://www.wikiwand.com/en/Cayley_graph</a></li>
+<li><a href="https://www.wikiwand.com/en/Network_science">https://www.wikiwand.com/en/Network_science</a></li>
+<li><a href="https://www.wikiwand.com/en/Directed_graph">https://www.wikiwand.com/en/Directed_graph</a></li>
+<li><a href="https://www.wikiwand.com/en/Directed_acyclic_graph">https://www.wikiwand.com/en/Directed_acyclic_graph</a></li>
+</ul>
+<h3 id="graph-theory-and-linear-algebra">Graph Theory and Linear Algebra<a class="headerlink" href="#graph-theory-and-linear-algebra" title="Permanent link"></a></h3>
+<p>It seems that graph theory is partially the application of nonnegative matrix theory.
+<a href="https://epubs.siam.org/doi/book/10.1137/1.9780898719918?mobileUi=0">Graph Algorithms in the Language of Linear Algebra</a> shows how to leverage existing parallel matrix computation techniques and the large amount of software infrastructure that exists for these computations to implement efficient and scalable parallel graph algorithms. The benefits of this approach are reduced algorithmic complexity, ease of implementation, and improved performance.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Matrix Theory</th>
+<th>Graph Theory</th>
+<th>-----</th>
+<th>&mdash;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matrix Addition</td>
+<td>?</td>
+<td>Spectral Theory</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Matrix Power</td>
+<td>?</td>
+<td>Jordan Form</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Matrix Multiplication</td>
+<td>?</td>
+<td>Rank</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Basis</td>
+<td>?</td>
+<td>Spectra</td>
+<td>?</td>
+</tr>
+<tr>
+<td>__________________________________</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Definition</strong> A <code>walk</code> in a digraph is an alternating sequence of vertices and
+edges that begins with a vertex, ends with a vertex, and such that for every edge
+$\left<u\to v\right>$ in the walk, vertex $u$ is the element just before the edge,
+and vertex $v$ is the next element after the edge.</p>
+</blockquote>
+<p>A payoff of this representation is that we can use matrix powers to count numbers
+of walks between vertices. The adjacent matrix ${A(G)}^k$ provides a count of the number of length $k$
+walks between vertices in any digraph $G$.</p>
+<p><strong>Definition</strong> The length-k walk counting matrix for an n-vertex graph $G$ is
+the $n \times n$ matrix $C^{k}$ such that:
+$$
+C_{uv}^{k} ::= \text{the number of length-k walks from $u$ to $v$}.
+$$</p>
+<blockquote>
+<p>The length-k counting matrix of a digraph $G$ is ${A(G)}^k$, for all $k\in\mathbb{N}$.</p>
+<p><strong>Definition</strong> A <strong>walk</strong> in an undirected graph is a sequence of vertices, where each successive pair of vertices are adjacent; informally, we can also think of a walk as a sequence of edges.
+A walk is called a <strong>path</strong> if it visits each vertex at most once.
+For any two vertices $u$ and $v$ in a graph $G$, we say that $v$ is reachable from $u$ if $G$ contains a walk (and therefore a path) between $u$ and $v$.
+An undirected graph is connected if every vertex is reachable from every other vertex.
+A <strong>cycle</strong> is a path that starts and ends at the same vertex and has at least one edge.</p>
+</blockquote>
+<h4 id="operators-on-graph">Operators on Graph<a class="headerlink" href="#operators-on-graph" title="Permanent link"></a></h4>
+<p>Like linear algebra, we define the graph and then we would like to know their properties, their transformation and their invariants.</p>
+<p>We will limit our attention to undirected graphs and view them as a discrete analog of manifolds. We define the vertex set $V={1,\dots,n}$ (it can be any set containing n objects, which we canonically map to the above set of natural numbers from 1 to n); the edge set and the edge set $E\subset V\times V$. An undirected graph has $(i,j)\in E⇔(j,i)\in E$. We further define the <code>vertex weights</code> as the function $a:V\to (0,\infty)$ and the <code>edge weights</code> as $w:E\to \mathbb R_+$ (in fact, w can be defined on the entire $V×V$ with $w_{ij}=0$ meaning $(i,j)\not\in E$). We refer to the tuple $G=(V,E,a,w)$ as to a <code>weighted undirected graph</code>.</p>
+<p>If $G(V, E)$ is undirected graph. $V$ are vertices, $E$ are edges, T are triangles/3-cliques, i.e., if $(i, j, k)\in T\iff {i , j}, {j , k}, {k, i}\in E.$</p>
+<ul>
+<li>Function on vertices(vertex field): $s : V \to \mathbb R$. Such a function assigns a real number to each graph node.</li>
+<li>Edge flows(edge field ): $X:V\times V\to \mathbb R$, where  $X(i, j)=0,$ if $(i, j)\not\in E$ and $X(i, j)=-X(j,i)$ for all $(i, j)$.</li>
+<li>Triangular flows: $\Phi: V\times V\times V\to\mathbb R$ where $\Phi(i, j ,k)=0$ if $(i, j, k)\not\in T$ and $\Phi(i, j, k)=\Phi(k, i, j)=\Phi(j, k, i)=-\Phi(j, i, k)=-\Phi(i, k, j)=-\Phi(k,j,i)$ for all $i, j, k$.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Operators</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graph gradient: grad</td>
+<td _grad="(grad" j_="j)" s_i_="s)(i,">$\text</td>
+</tr>
+<tr>
+<td>Graph curl: curl</td>
+<td X_i_="X)(i," _curl="(curl" j_="j," k_="k)">$\text</td>
+</tr>
+<tr>
+<td>Graph divergence: div</td>
+<td X_i_="X)(i)" _div="(div">$\text</td>
+</tr>
+<tr>
+<td>Graph Laplacian</td>
+<td>$\Delta_0=div\circ grad$</td>
+</tr>
+<tr>
+<td>Graph Helmholtzian</td>
+<td _ast="\ast">$\Delta_1=curl^</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://export.arxiv.org/pdf/1511.03512v4">On the Shift Operator, Graph Frequency and Optimal Filtering in Graph Signal Processing</a></li>
+<li><a href="https://arxiv.org/abs/1211.0053">The Emerging Field of Signal Processing on Graphs: Extending High-Dimensional Data Analysis to Networks and Other Irregular Domains</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Graph_operations">https://en.wikipedia.org/wiki/Graph_operations</a></li>
+<li><a href="https://sites.cs.ucsb.edu/~gilbert/talks/2018-05-21-GilbertGABB21May2018.pdf">https://sites.cs.ucsb.edu/~gilbert/talks/2018-05-21-GilbertGABB21May2018.pdf</a></li>
+<li><a href="https://sites.cs.ucsb.edu/~gilbert/talks/talks.htm">https://sites.cs.ucsb.edu/~gilbert/talks/talks.htm</a></li>
+<li><a href="http://www.cs.columbia.edu/~verma/classes/uml/lec/uml_lec4_spectral_graph_theory_and_clustering.pdf"> Calculus on Graphs</a></li>
+</ul>
+<h5 id="co-boundary-mapping">Co-boundary Mapping<a class="headerlink" href="#co-boundary-mapping" title="Permanent link"></a></h5>
+<p>We consider real-valued functions on the set of the graph’s vertices, $f : V \to \mathbb R$. Such a function assigns a real number
+to each graph node.
+$f$ is a vector indexed by the graph’s vertices, hence $f\in\mathbb{R}^{n}$.
+Notation: $f = (f(v_1), \cdots , f(v_n)) = (f(1), . . . , f(n))$.</p>
+<p>The adjacency matrix can be viewed as an operator:
+$$g=Af;g(i)=\sum_{i\sim j}f(j)$$
+which is the extension of degree function.</p>
+<p>Let each edge in the graph have an arbitrary but <code>fixed orientation</code>.</p>
+<blockquote>
+<p>The <code>incidence matrix</code> of a graph is a  $|V|\times |E|$ matrix defined as follows:
+$$\triangledown=
+\begin{cases}
+\triangledown_{ev}=-1, &amp;\text{if $v$ is the initial vertex of edge $e$}\
+\triangledown_{ev}=1, &amp;\text{if $v$ is the terminal vertex of edge $e$}\
+\triangledown_{ev}=0, &amp;\text{if $v$ is not in the edge $e$}
+\end{cases}
+$$</p>
+</blockquote>
+<p>The mapping $f \to \nabla f$ is known as the <code>co-boundary mapping</code> of the graph defined by
+$$(\nabla f)(e_{ij})=f(v_j)-f(v_i)$$</p>
+<p>where $e_{ij}$ is the edge and $v_i$($v_j$) is the initial(terminal) node of the edge $e_{ij}$.</p>
+<p>And $\nabla f$ is the product of the incidence matrix $\triangledown$ and the function $f$.</p>
+<ul>
+<li><a href="https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf">https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/67336297">https://zhuanlan.zhihu.com/p/67336297</a></li>
+</ul>
+<h5 id="graph-curl">Graph Curl<a class="headerlink" href="#graph-curl" title="Permanent link"></a></h5>
+<ul>
+<li><a href="https://deepblue.lib.umich.edu/bitstream/handle/2027.42/25853/0000416.pdf">THE CURL OF GRAPHS AND NETWORKS </a></li>
+<li><a href="https://deepblue.lib.umich.edu/">https://deepblue.lib.umich.edu/</a></li>
+</ul>
+<h5 id="graph-divergence">Graph Divergence<a class="headerlink" href="#graph-divergence" title="Permanent link"></a></h5>
+<ul>
+<li><a href="https://math.stackexchange.com/questions/1960191/function-and-divergence-on-a-graph">Function and divergence on a graph</a></li>
+</ul>
+<h5 id="graph-laplacians">Graph Laplacians<a class="headerlink" href="#graph-laplacians" title="Permanent link"></a></h5>
+<blockquote>
+<p><strong>Definition</strong>: Let $G$ be a graph with $V(G) = {1,\dots,n}$ and $E(G) = {e_1,\dots, e_m}$.The <code>Laplacian</code> matrix of $G$, denoted by $L(G)$, is the $n\times n$ matrix defined as follows. The rows and
+the columns of $L(G)$ are indexed by $V(G)$. If $i \not= j$ then the $(i, j)$-entry of $L(G)$ is
+$0$ for vertices $i$ and $j$ nonadjacent, and the $(i, j)$-entry is $\color{red}{\text{ −1}}$ for $i$ and $j$ adjacent. The
+$(i,i)$-entry of $L(G)$ is $\color{red}{d_i}$, the degree of the vertex $i$, for $i = 1,\dots,n.$
+In other words, the $(i,i)$-entry of $L(G)$, ${L(G)}<em i_j="i,j">{i,j}$, is defined by
+$${L(G)}</em> = D - A = \begin{cases} \deg(V_i) &amp; \text{if $i=j$,}\ -1  &amp; \text{if $i\not= j$ and $V_i$ and $V_j$ is adjacent,} \ 0  &amp; \text{otherwise.}\end{cases}$$
+Laplacian matrix of  a  graph $G$ with <code>weighted matrix</code> $W$ is ${L^{W}=D-W}$, where $D$ is the degree matrix of $G$.
+We often denote $L(G)$ simply by $L$ or $\triangle$.</p>
+</blockquote>
+<p>If $\triangledown$ is the incidence matrix of the graph, teh Laplacians is
+$$L=\triangle =\triangledown^T\triangledown.$$
+So $(Lf)(v_i)=\sum_{i\sim j}f(v_i)-f(v_j)$.</p>
+<p>We consider <code>undirected weighted</code> graphs: Each edge $e_{ij}$ is weighted by $w_{ij} &gt; 0$.
+The Laplacian as an operator:
+$$(\triangle  f)(v_i)=\sum_{v_j\sim v_i}w_{ij}(f(v_i)-f(v_j)).$$</p>
+<p>As a quadratic form:
+$$f^T\triangle f=\sum_{v_j\sim v_i}w_{ij}(f(v_i)-f(v_j))^2$$</p>
+<blockquote>
+<p>The Laplacian of the graph $L=\triangle$ is symmetric and positive semi-definite.</p>
+<p>Therefore, a graph with one <code>connected component</code> has the constant vector $u_1 = 1_n$ as the only eigenvector with eigenvalue 0.</p>
+</blockquote>
+<p>Each connected component has an associated Laplacian.
+Therefore, we can write matrix $L$ as a block diagonal matrix:
+$$L=\begin{pmatrix}
+L_1\quad \quad \quad\quad\
+\
+\quad\ddots \
+\
+\quad \quad \quad\quad\quad L_k
+\end{pmatrix}.$$</p>
+<ul>
+<li>Each block corresponds to a connected component, hence each matrix $L_i$ has an eigenvalue 0 with multiplicity 1.</li>
+<li>The spectrum of $L$ is given by the union of the spectra of $L_i$.</li>
+<li>The eigenspace corresponding to $\lambda_1 = \cdots = \lambda_k = 0$ is spanned by the k mutually orthogonal vectors:</li>
+<li>
+<p>These vectors are the indicator vectors of the graph’s connected components.</p>
+</li>
+<li>
+<p><a href="http://cs-www.cs.yale.edu/homes/spielman/">http://cs-www.cs.yale.edu/homes/spielman/</a></p>
+</li>
+<li><a href="https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf">A Short Tutorial on Graph Laplacians, Laplacian Embedding, and Spectral Clustering</a></li>
+<li><a href="https://team.inria.fr/perception/">https://team.inria.fr/perception/</a></li>
+<li><a href="https://csustan.csustan.edu/~tom/">https://csustan.csustan.edu/~tom/</a></li>
+<li><a href="https://github.com/epfl-lts2/pygsp">https://github.com/epfl-lts2/pygsp</a></li>
+<li><a href="https://arxiv.org/abs/1712.00468">Graph Signal Processing: Overview, Challenges and Applications</a></li>
+</ul>
+<h5 id="graph-helmholtzian">Graph Helmholtzian<a class="headerlink" href="#graph-helmholtzian" title="Permanent link"></a></h5>
+<blockquote>
+<p>(Helmholtz decomposition)：$G = (V; E)$ is undirected, unweighted graph. $\Delta_1$ is its Helmholtzian. The space of edge flows admits orthogonal decomposition:
+$$L^2(E)=im(grad)\oplus ker(\Delta_1)\oplus im(curl^{\ast}).$$
+Furthermore, $ker(\Delta_1) = ker(curl) \cap ker(div)$.</p>
+</blockquote>
+<ul>
+<li><a href="http://www.mit.edu/~parrilo/">http://www.mit.edu/~parrilo/</a></li>
+<li><a href="https://www.stat.uchicago.edu/~lekheng/">https://www.stat.uchicago.edu/~lekheng/</a></li>
+<li><a href="https://phorgyphynance.wordpress.com/2011/12/04/network-theory-and-discrete-calculus-graph-divergence-and-graph-laplacian/">Network Theory and Discrete Calculus – Graph Divergence and Graph Laplacian</a></li>
+<li><a href="https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/">https://phorgyphynance.wordpress.com/network-theory-and-discrete-calculus/</a></li>
+<li><a href="https://www.stat.uchicago.edu/~lekheng/work/nips.pdf">https://www.stat.uchicago.edu/~lekheng/work/nips.pdf</a></li>
+<li><a href="http://www.stat.uchicago.edu/~lekheng/meetings/mathofranking/ref/jiang-lim-yao-ye.pdf">Statistical ranking and combinatorial Hodge theory</a></li>
+</ul>
+<h5 id="graph-convolution">Graph Convolution<a class="headerlink" href="#graph-convolution" title="Permanent link"></a></h5>
+<ul>
+<li><a href="https://arxiv.org/pdf/1706.09916.pdf">Convolution on Graph: A High-Order and Adaptive Approach</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5028207/">Molecular graph convolutions: moving beyond fingerprints</a></li>
+<li><a href="https://arxiv.org/abs/1706.02263">Graph Convolutional Matrix Completion</a></li>
+</ul>
+<h5 id="graph-fourier-transform">Graph Fourier Transform<a class="headerlink" href="#graph-fourier-transform" title="Permanent link"></a></h5>
+<ul>
+<li><a href="https://arxiv.org/abs/1601.03204">Graph Fourier Transform based on Directed Laplacian</a></li>
+<li><a href="https://arxiv.org/abs/1712.07811v1">Multi-dimensional Graph Fourier Transform</a></li>
+<li><a href="http://www.icst.pku.edu.cn/huwei/docs/20190929164109880131.pdf">Graph Convolutional Neural Networks: from perspective of Graph Signal Processing</a></li>
+<li><a href="https://arxiv.org/abs/1801.04749">Graph Spectral Image Processing</a></li>
+<li><a href="https://www.researchgate.net/profile/Wallace_Martins">https://www.researchgate.net/profile/Wallace_Martins</a></li>
+<li><a href="https://gangwg.github.io/research.html">https://gangwg.github.io/research.html</a></li>
+<li><a href="http://www.icst.pku.edu.cn/huwei/">http://www.icst.pku.edu.cn/huwei/</a></li>
+<li><a href="https://arxiv.org/abs/1609.08642">https://arxiv.org/abs/1609.08642</a></li>
+<li><a href="http://techieme.in/graph-operations/">http://techieme.in/graph-operations/</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Transform Name</th>
+<th>Transform Representation</th>
+<th>Transform Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Karhunen-Loeve Transform (KLT)</td>
+<td>“Sparsest” signal representation given available statistical model</td>
+<td>Can be expensive (if poorly structured)</td>
+</tr>
+<tr>
+<td>Discrete Cosine Transform (DCT)</td>
+<td>non-sparse signal representation across sharp boundaries</td>
+<td>little (fixed transform)</td>
+</tr>
+<tr>
+<td>Graph Fourier Transform (GFT)</td>
+<td>minimizes the total rate of signal’s transform representation &amp; transform description</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://www.eecs.yorku.ca/~genec/">https://www.eecs.yorku.ca/~genec/</a></li>
+<li><a href="https://www.eecs.yorku.ca/~genec/2018/epfl_gsip_june2018.pdf">Recent Advances in Graph Spectral Image Processing</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/25494508">Multiresolution graph Fourier transform for compression of piecewise smooth images.</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/31403414">Graph Transform Optimization with Application to Image Compression.</a></li>
+<li><a href="https://www.eecs.yorku.ca/~genec/2015/spletter2015_hkust.pdf">Intra-Prediction and Generalized Graph Fourier Transform for Image Coding</a></li>
+<li><a href="https://www.eecs.yorku.ca/~genec/2017/icip2017_nthu.pdf">GRAPH FOURIER TRANSFORM WITH NEGATIVE EDGES FOR DEPTH IMAGE CODING</a></li>
+<li><a href="http://materials.dagstuhl.de/files/16/16462/16462.GeneCheung.Slides.pdf">Graph Signal Processing for Image Coding &amp; Restoration</a></li>
+</ul>
+<h4 id="graph-kernel">Graph Kernel<a class="headerlink" href="#graph-kernel" title="Permanent link"></a></h4>
+<p>Like kernels in <strong>kernel methods</strong>, graph kernel is used as functions measuring the similarity of pairs of graphs.
+They allow kernelized learning algorithms such as support vector machines to work directly on graphs, without having to do feature extraction to transform them to fixed-length, real-valued feature vectors.</p>
+<p><strong>Definition</strong> : Find a mapping $f$ of the vertices of $G_1$ to the vertices of $G_2$ such that $G_1$ and $G_2$ are identical;
+i.e. $(x, y)$ is an edge of $G_1$  if and only if $(f(x),f(y))$ is an edge of $G_2$.
+Then ${f}$ is an isomorphism, and $G_1$ and $G_2$ are called <code>isomorphic</code>.</p>
+<p>No polynomial-time algorithm is known for graph isomorphism.
+Graph kernel are convolution kernels on pairs of graphs. A graph kernel makes the whole family kernel methods applicable to graphs.</p>
+<p><code>Von Neumann diffusion</code> is defined as
+ $$K_{VND}=\sum_{k=0}^{\infty}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}, \alpha\in[0,1].$$</p>
+<p><code>Exponential diffusion</code> is defined as $K_{ED}=\sum_{k=0}^{\infty}\frac{1}{k!}{\alpha}^{k}{A}^{k}=\exp(\alpha A)$.
+<code>Katz method</code> is defined as the truncation of <code>Von Neumann diffusion</code>
+$$S_K=\sum_{k=0}^{K}{\alpha}^{k}{A}^{k}=(I-\alpha A)^{-1}(\alpha A-{\alpha}^K {A}^K).$$</p>
+<ul>
+<li><a href="https://www.wikiwand.com/en/Graph_product">https://www.wikiwand.com/en/Graph_product</a></li>
+<li><a href="https://www.wikiwand.com/en/Graph_kernel">https://www.wikiwand.com/en/Graph_kernel</a></li>
+<li><a href="http://people.cs.uchicago.edu/~risi/papers/VishwanathanGraphKernelsJMLR.pdf">Graph Kernels</a></li>
+<li><a href="https://www.cs.ucsb.edu/~xyan/tutorial/GraphKernels.pdf">GRAPH KERNELS by Karsten M. Borgwardt</a></li>
+<li><a href="https://github.com/BorgwardtLab/graph-kernels">List of graph kernels</a></li>
+<li><a href="http://www.mit.edu/~pinary/kdd/YanVis15.pdf">Deep Graph Kernel</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4116356/">Topological Graph Kernel on Multiple Thresholded Functional Connectivity Networks for Mild Cognitive Impairment Classification</a></li>
+<li><a href="http://people.cs.uchicago.edu/~risi/papers/diffusion-kernels.pdf">Diffusion Kernels on Graphs and Other Discrete Structures</a></li>
+<li><a href="https://github.com/benedekrozemberczki/awesome-graph-embedding">Awesome Graph Embedding</a></li>
+<li><a href="https://leon.bottou.org/publications/pdf/transducer-1996.pdf">Document Analysis with Transducers</a></li>
+<li><a href="https://arxiv.org/pdf/1904.09671.pdf">DDGK: Learning Graph Representations for Deep Divergence Graph Kernels</a></li>
+<li><a href="https://britishmachinevisionassociation.github.io/">https://britishmachinevisionassociation.github.io/</a></li>
+</ul>
+<h3 id="spectral-graph-theory">Spectral Graph  Theory<a class="headerlink" href="#spectral-graph-theory" title="Permanent link"></a></h3>
+<p>As the title suggests, <code>Spectral Graph  Theory</code> is about the eigenvalues and eigenvectors of matrices associated
+with graphs, and their applications.
+&mdash;|&mdash;
+&mdash;|&mdash;
+Adjacency matrix| ${A}$
+Degree matrix | ${D}$
+Laplacian matrix| ${L}$</p>
+<p>For the symmetric matrix $L = D - A$, we can obtain that $x^T Lx=\sum_{(u,v)\in E}(x_u-x_v)^2$. If the graph ${G}$ is directed, then $x^T Lx=\sum_{(u,v)\in E}w(u,v) (x_u-x_v)^2$.</p>
+<blockquote>
+<p>Let $G = (V;E)$ be a graph, and let $\lambda=(\lambda_1, \cdots, \lambda_n)^T$ be the eigenvalues of
+its Laplacian matrix. Then, $\lambda_2&gt;0$ if and only if G is connected.</p>
+</blockquote>
+<p>There are many iterative computational methods to approximate the eigenvalues of the graph-related matrices.</p>
+<h4 id="spectral-clustering-algorithm">Spectral Clustering Algorithm<a class="headerlink" href="#spectral-clustering-algorithm" title="Permanent link"></a></h4>
+<p>Spectral method is the kernel tricks applied to <a href="http://papers.nips.cc/paper/2359-locality-preserving-projections.pdf">locality preserving projections</a> as to reduce the dimension, which is as the data preprocessing for clustering.</p>
+<p>In multivariate statistics and the clustering of data, spectral clustering techniques make use of the spectrum (eigenvalues) of the <code>similarity matrix</code> of the data to perform dimensionality reduction before clustering in fewer dimensions.
+The similarity matrix is provided as an input and consists of a quantitative assessment of the relative similarity of each pair of points in the data set.</p>
+<p><strong>Similarity matrix</strong> is to measure the similarity between the input features ${\mathbf{x}<em i="1">i}</em>^{n}\subset\mathbb{R}^{p}$.
+For example, we can use Gaussian kernel function
+$$ f(\mathbf{x_i},\mathbf{x}<em i_="i," j="j">j)=exp(-\frac{{|\mathbf{x_i}-\mathbf{x}_j|}_2^2}{2\sigma^2}) $$
+to measure the <em>similarity</em> of inputs.
+The element of <em>similarity matrix</em> $S$ is $S</em> = exp(-\frac{{| \mathbf{x_i} -\mathbf{x}<em i_="i," j="j">j|}_2^2}{2\sigma^2})$.
+Thus $S$ is symmetrical, i.e. $S</em>=S_{j, i}$ for $i,j\in{1,2,\dots, n}$.
+If the sample size $n\gg p$, the storage of <strong>similarity matrix</strong> is much larger than the original input ${\mathbf{x}<em i="1">i }</em>^{n}$, when we would only preserve the entries above some values.
+The <strong>Laplacian matrix</strong> is defined by $L=D-S$ where $D = Diag{D_1, D_2, \dots, D_n}$ and
+$D_{i} = \sum_{j=1}^{n} S_{i,j} = \sum_{j=1}^{n} exp(-\frac{{|\mathbf{x_i} - \mathbf{x}_j|}_2^2}{2\sigma^2})$.</p>
+<p>Then we can apply <em>principal component analysis</em> to the <em>Laplacian matrix</em> $L$ to reduce the data dimension. After that we can perform $K-means$ or other clustering.</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/34848710">https://zhuanlan.zhihu.com/p/34848710</a></li>
+<li><em>On Spectral Clustering: Analysis and an algorithm</em> at <a href="http://papers.nips.cc/paper/2092-on-spectral-clustering-analysis-and-an-algorithm.pdf">http://papers.nips.cc/paper/2092-on-spectral-clustering-analysis-and-an-algorithm.pdf</a></li>
+<li><em>A Tutorial on Spectral Clustering</em> at <a href="https://www.cs.cmu.edu/~aarti/Class/10701/readings/Luxburg06_TR.pdf">https://www.cs.cmu.edu/~aarti/Class/10701/readings/Luxburg06_TR.pdf</a>.</li>
+<li><strong>谱聚类</strong> <a href="https://www.cnblogs.com/pinard/p/6221564.html">https://www.cnblogs.com/pinard/p/6221564.html</a>.</li>
+<li><em>Spectral Clustering</em> <a href="http://www.datasciencelab.cn/clustering/spectral">http://www.datasciencelab.cn/clustering/spectral</a>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Category:Graph_algorithms">https://en.wikipedia.org/wiki/Category:Graph_algorithms</a></li>
+<li>The course <em>Spectral Graph Theory, Fall 2015</em> at <a href="http://www.cs.yale.edu/homes/spielman/561/">http://www.cs.yale.edu/homes/spielman/561/</a>.</li>
+<li><a href="http://swoh.web.engr.illinois.edu/courses/ie532/">IE532. Analysis of Network Data, Sewoong Oh, University of Illinois Urbana-Champaign</a>.</li>
+<li><a href="https://skymind.ai/wiki/graph-analysis">https://skymind.ai/wiki/graph-analysis</a></li>
+</ul>
+<h4 id="pagerank">PageRank<a class="headerlink" href="#pagerank" title="Permanent link"></a></h4>
+<p>Raluca Tanase and Remus Radu, in <a href="http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html">The Mathematics of Web Search</a>, asserted that</p>
+<blockquote>
+<p>The usefulness of a search engine depends on the relevance of the result set it gives back.
+There may of course be millions of web pages that include a particular word or phrase;
+however some of them will be more relevant, popular, or authoritative than others.
+A user does not have the ability or patience to scan through all pages that contain the given query words.
+One expects the relevant pages to be displayed within the top 20-30 pages returned by the search engine.</p>
+<p>Modern search engines employ methods of ranking the results to provide the &ldquo;best&rdquo; results first that are more elaborate than just plain text ranking.
+One of the most known and influential algorithms for computing the relevance of web pages is the Page Rank algorithm used by the Google search engine.
+It was invented by Larry Page and Sergey Brin while they were graduate students at Stanford, and it became a Google trademark in 1998.
+The idea that Page Rank brought up was that, <em>the importance of any web page can be judged by looking at the pages that link to it</em>.
+If we create a web page i and include a hyperlink to the web page j, this means that we consider j important and relevant for our topic.
+If there are a lot of pages that link to j, this means that the common belief is that page j is important. If on the other hand, j has only one backlink,
+but that comes from an authoritative site k, (like <a href="http://www.google.com">www.google.com</a>, <a href="http://www.cnn.com">www.cnn.com</a>, <a href="http://www.cornell.edu">www.cornell.edu</a>) we say that k transfers its authority to j;
+in other words, k asserts that j is important.
+Whether we talk about popularity or authority, we can iteratively assign a rank to each web page, based on the ranks of the pages that point to it.</p>
+</blockquote>
+<p>PageRank is the first importance measure of webpage in large scale application. And this is content-free so that it does not  take the relevance of webpages into consideration.</p>
+<p><img title = "page rank" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PageRanks-Example.jpg/800px-PageRanks-Example.jpg" width="47%"/></p>
+<p>Here&rsquo;s how the PageRank is determined. Suppose that page $P_j$ has $l_j$ links. If one of those links is to page $P_i$, then $P_j$ will pass on $1/l_j$ of its importance to $P_i$. The importance ranking of $P_i$ is then the sum of all the contributions made by pages linking to it. That is, if we denote the set of pages linking to $P_i$ by $B_i$, then
+$$I(P_i)=\sum_{P_j\in B_i}\frac{I(P_j)}{l_j}.$$</p>
+<p>Note that the importance ranking of $P_i$ is the finite sum of 2 factors: the importance of its neighbors&rsquo; importance $I(P_j)$ and the number of links $l_j$ when $P_j\in B_i$ thus it can be rewritten as
+$$I(P_i)=\sum_{j} [I(P_j)\cdot \frac{1}{l_j}] \mathbb{I}(ij)$$
+where the indicator function $\mathbb{I}(ij)$ is equal to 1 if the page $P_i$ is linked with the page $P_j$.
+If we define a matrix, called the hyper-link matrix, $\mathbf{H}=[\mathbf{H}<em ij="ij">{ij}]$ in which the entry in the $i^{th}$ row and $j^{th}$ column is
+$$
+[\mathbf{H}</em>]=
+\begin{cases}
+\frac{1}{l_j}\quad &amp;\text{if $P_j\in B_i$},\
+0 \quad &amp; \text{otherwise}.
+\end{cases}
+$$</p>
+<p>The condition above defining the PageRank $I$ may be expressed as</p>
+<p>$$ I = {\bf H}I  $$
+In other words, the vector I is an eigenvector of the matrix H with eigenvalue 1. We also call this a stationary vector of H.</p>
+<p>It is not very simple and easy to compute the eigenvalue vectors of large scale matrix.
+If we denote by $\bf 1$the  $n\times n$  matrix whose entries are all one, we obtain the <em>Google matrix</em>:</p>
+<p>$$ {\bf G}=\alpha{\bf S}+ (1-\alpha)\frac{1}{n}{\bf 1}  $$
+Notice now that G is stochastic as it is a combination of stochastic matrices. Furthermore, all the entries of G are positive, which implies that G is both primitive and irreducible. Therefore, G has a unique stationary vector I that may be found using the power method.</p>
+<ul>
+<li><a href="https://www.wikiwand.com/en/PageRank">Page rank@wikiwand</a></li>
+<li><a href="http://infolab.stanford.edu/pub/papers/google.pdf">The Anatomy of a Large-Scale Hypertextual Web Search Engine by Sergey Brin and Lawrence Page </a></li>
+<li><a href="https://research.yandex.com/publications/140">Learning Supervised PageRank with Gradient-Based and Gradient-Free Optimization Methods</a></li>
+<li><a href="http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html">Lecture #3: PageRank Algorithm - The Mathematics of Google Search</a></li>
+<li><a href="http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture4/lecture4.html">HITS Algorithm - Hubs and Authorities on the Internet</a></li>
+<li><a href="http://langvillea.people.cofc.edu/">http://langvillea.people.cofc.edu/</a></li>
+<li><a href="http://www.whydomath.org/node/google/index.html">Google PageRank: The Mathematics of Google</a></li>
+<li><a href="http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank">How Google Finds Your Needle in the Web&rsquo;s Haystack</a></li>
+<li><a href="http://ryanrossi.com/dynamic-pagerank.php">Dynamic PageRank</a></li>
+</ul>
+<h4 id="trustrank">TrustRank<a class="headerlink" href="#trustrank" title="Permanent link"></a></h4>
+<ul>
+<li><a href="https://www.cnblogs.com/chenying99/archive/2012/06/07/2540013.html">https://www.cnblogs.com/chenying99/archive/2012/06/07/2540013.html</a></li>
+<li><a href="https://blog.csdn.net/aspirinvagrant/article/details/40924539">https://blog.csdn.net/aspirinvagrant/article/details/40924539</a></li>
+<li><a href="http://dm.uestc.edu.cn/wp-content/uploads/seminar/20150409Clustering%20in%20Heterogeneous%20Network.pdf">http://dm.uestc.edu.cn/wp-content/uploads/seminar/20150409Clustering%20in%20Heterogeneous%20Network.pdf</a></li>
+</ul>
+<h3 id="shortest-paths">Shortest Paths<a class="headerlink" href="#shortest-paths" title="Permanent link"></a></h3>
+<p>In graph theory, the <code>shortest path</code> problem is the problem of finding a path between two vertices (or nodes) in a graph such that the sum of the weights of its constituent edges is minimized.</p>
+<p>Given the start node and end node, it is supposed to identify whether there is a path and find the shortest path(s) among all these possible paths.</p>
+<p>The distance between the node $u$ and $v$ is the minimal number $k$ that makes $A^{k}_{uv}&gt;0$.
+Given two nodes $E_1, E_2$ in graph $\mathrm{G}$, if we would like begin from the node $E_1$ to the end node $E_2$, we must judege that if there is a path from $E_1$ to $E_2$ before finding the shortest way.
+In the perspective of optimization, the feasible domain is finite in the shortest path problem.</p>
+<h4 id="depth-first-search-and-breadth-first">Depth-first Search and Breadth-First<a class="headerlink" href="#depth-first-search-and-breadth-first" title="Permanent link"></a></h4>
+<p>Because it is unknown whether there is a path between the given nodes, it is necessary to take the first brave walk into a neighbor of the start node $E_1$.</p>
+<p>Breadth first search explores the space level by level only when there are no more states to be explored at a given level does the algorithm move on to the next level.
+We implement BFS using lists open and closed to keep track of progress through the state space.
+In the order list, the elements will be those who have been generated but whose children have not been examined.
+The closed list records the states that have been examined and whose children have been generated.
+The order of removing the states from the open list will be the order of searching.
+The open is maintained as a queue on the first in first out data structure.
+States are added to the right of the list and removed from the left.</p>
+<p><img src="https://kobiso.github.io//assets/images/graph/depth.png" width ="50%" /><img src="https://kobiso.github.io//assets/images/graph/breadth.png" width ="50%" /></p>
+<p>After initialization, each vertex is enqueued at most once and hence dequeued at most once.
+The operations of enqueuing and dequeuing take $O (1)$ time, so the total time devoted to queue operations is $O (v)$.
+Because the adjacency list of each vertex is scanned only when the vertex is dequeued, the adjacency list of each vertex is scanned at most once.
+Since the sum of the lengths of all the adjacency lists is the $ta(E)$, at most $O(E)$ time is spent in total scanning adjacency lists.
+The overhead for the initialization is $O(v)$, and thus the total running time of BFS is $O(v+E)$. Thus, breadth first search runs in time linear in the size of the adjacency list representation.</p>
+<p>In depth first search, when a state is examined all of its children and their descendants are examined before any of its siblings. Depth first search goes deeper into the search space whenever this is possible, only when no further descendants of a state can be found, are its siblings considered.</p>
+<p>A depth first traversal takes O(N*E) time for adjacency list representation and $O(N^2)$ for matrix representation.</p>
+<ul>
+<li><a href="https://brilliant.org/wiki/depth-first-search-dfs/">https://brilliant.org/wiki/depth-first-search-dfs/</a></li>
+<li><a href="https://www.includehelp.com/algorithms/breadth-first-search-bfs-and-depth-first-search-dfs.aspx">Breadth First Search (BFS) and Depth First Search (DFS) Algorithms</a></li>
+</ul>
+<p><img src="https://kobiso.github.io//assets/images/graph/bid.png" width="80%" /></p>
+<ul>
+<li><a href="http://hpgdmp.bsc.es/system/files/uploads/20161113_hpgdmp2016_slides.pdf">Power-Efficient Breadth-First Search with DRAM Row Buffer Locality-Aware Address Mapping</a></li>
+</ul>
+<h4 id="aast-algorithm">$A^{\ast}$ Algorithm<a class="headerlink" href="#aast-algorithm" title="Permanent link"></a></h4>
+<p>As introduced in wikipedia, $A^{\ast}$ algorithm has its advantages and disadvantages:</p>
+<blockquote>
+<p>In computer science, $A^{\ast}$ (pronounced &ldquo;A star&rdquo;) is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called &ldquo;nodes&rdquo;. It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found $A^{\ast}$ to be superior to other approaches.</p>
+</blockquote>
+<p>First we learn the <strong>Dijkstra&rsquo;s algorithm</strong>.
+Dijkstra&rsquo;s algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist <a href="https://www.wikiwand.com/en/Edsger_W._Dijkstra">Edsger W. Dijkstra</a> in 1956 and published three years later.</p>
+<p>For example, we want to find the shortest path between a and b in the following graph.
+The distance of every pair is given.</p>
+<ol>
+<li>the distance to its neighbors is computed:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>a(0)</th>
+<th>2</th>
+<th>3</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>7</td>
+<td>9</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>as the first step, compute the distance to all neighbors:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>3</th>
+<th>4</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>10</td>
+<td>15</td>
+<td>0</td>
+<td>11</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Now we have 2 choices from 1 to 3: (1) $1\to3\mid 9$;(2) $1\to 2\to3\mid (7+10=17 &gt;9)$. And we find all paths from 1 to 3 and the shortest path from 1 to 3  is $1\to3$ with distance 9.</p>
+<p>From 1 to 4: (1) $1\to2\to4\mid 7+15=22$; (2) $1\to3\to4\mid 9+11=20&lt;22$.
+the shortest path from 1 to 6  is $1\to3\to4$ with distance 20.</p>
+<p>From 1 to 6: (1) $1\to6\mid 14$; (2) $1\to3\to6\mid 9+2=11&lt;14$.
+the shortest path from 1 to 6  is $1\to3\to6$ with distance 11.</p>
+<ol>
+<li>distance to neighbor:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>4</th>
+<th>b</th>
+<th>6</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>$1\to3\to4\to b\mid 9+11+6=26$ and
+ $1\to3\to6\to b\mid 9+2+9=20&lt;26$ is the shortest.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th align="center">Dijkstra algorithm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img title="Dijkstra algorithm" src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif" width = " 80%"/></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://www.wikiwand.com/en/Dijkstra%27s_algorithm">https://www.wikiwand.com/en/Dijkstra%27s_algorithm</a></li>
+<li><a href="https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/">https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/</a></li>
+<li><a href="https://www.wikiwand.com/en/Shortest_path_problem">https://www.wikiwand.com/en/Shortest_path_problem</a></li>
+<li><a href="https://www.cnblogs.com/chxer/p/4542068.html">https://www.cnblogs.com/chxer/p/4542068.html</a></li>
+<li><a href="http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html">Introduction to $A^{\ast}$: From Amit’s Thoughts on Pathfinding</a></li>
+<li><a href="https://cs.stanford.edu/people/abisee/gs.pdf">Graph Search Algorithms by Steve Mussmann and Abi See</a></li>
+</ul>
+<p>See the page at Wikipedia <a href="https://www.wikiwand.com/en/A*_search_algorithm">$A^{\ast}$ search algorithm</a></p>
+<h4 id="graph-adjacency-matrix-duality">Graph adjacency matrix duality<a class="headerlink" href="#graph-adjacency-matrix-duality" title="Permanent link"></a></h4>
+<p>Perhaps even more important is the duality that exists with the fundamental
+operation of linear algebra (vector matrix multiply) and a breadth-first search (BFS)
+step performed on G from a starting vertex s:
+$$
+BFS(G, s) \iff A^T v, v(s)=1.
+$$</p>
+<p>This duality allows graph algorithms to be simply recast as a sequence of linear
+algebraic operations. Many additional relations exist between fundamental linear
+algebraic operations and fundamental graph operations</p>
+<ul>
+<li><a href="https://sites.cs.ucsb.edu/~gilbert/cs240a/slides/old/cs240a-GALA.pdf">Graph Algorithms in the Language of Linear Algebra</a></li>
+<li><a href="http://www.mit.edu/~kepner/D4M/MathOfBigData.html">Mathematics of Big Data: Spreadsheets, Databases, Matrices, and Graphs</a></li>
+<li>
+<p><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.12643">Dual Adjacency Matrix: Exploring Link Groups in Dense Networks by K. Dinkla  N. Henry Riche  M.A. Westenberg</a></p>
+</li>
+<li>
+<p><a href="http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JACO/Volume1_4/q1ur742gt117v044.fulltext.pdf">On the p-Rank of the Adjacency Matrices of Strongly Regular Graphs</a></p>
+</li>
+<li><a href="http://cage.ugent.be/~fdc/intensivecourse2/haemers2.pdf">Matrix techniques for strongly regular graphs and related geometries</a></li>
+</ul>
+<h3 id="directed-acyclic-graph">Directed Acyclic Graph<a class="headerlink" href="#directed-acyclic-graph" title="Permanent link"></a></h3>
+<p><code>Directed acyclic graph (DAG)</code> is the directed graph without any cycles. It is used widely in scheduling, distributed computation.</p>
+<blockquote>
+<p><strong>Definition</strong> The acyclic graph is called <code>forest</code>. A connected acyclic graph is called a <code>tree</code>.</p>
+</blockquote>
+<p>A graph $G$ is a tree if and only if $G$ is a forest and $|V(G)|=|E(G)| + 1$.</p>
+<p>Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge ${uv}$, vertex ${u}$ comes before ${v}$ in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.</p>
+<ul>
+<li><a href="https://songlee24.github.io/2015/05/07/topological-sorting/">拓扑排序(Topological Sorting)</a></li>
+<li><a href="https://www.geeksforgeeks.org/topological-sorting/">https://www.geeksforgeeks.org/topological-sorting/</a></li>
+</ul>
+<h3 id="chemical-graph-theory">Chemical Graph Theory<a class="headerlink" href="#chemical-graph-theory" title="Permanent link"></a></h3>
+<p>Graph theory applied in the study of molecular structures represents an interdisciplinary science, called <code>chemical graph theory</code> or <code>molecular topology</code>.</p>
+<p>A chemical graph  is a model of a chemical system, used to characterize   the
+interactions among its components: atoms, bonds, groups of atoms or molecules. A structural formula
+of a chemical compound can be represented by a molecular graph, its
+vertices being atoms and edges corresponding to covalent bonds.
+Usually hydrogen atoms are not depicted in which case we speak of <code>hydrogen depleted molecular graphs</code>.</p>
+<p>In a <code>multigraph</code> two points may be joined by more than one line.
+If multibonds are taken into account, a variant of adjacency matrix $A(G)$ , denoted $C(G)$, (the connectivity matrix) can be written:
+$$
+{[C]}<em ij="ij">{ij}=\begin{cases} b</em> &amp;\text{if $i\not=j$ and $(i, j)\in E(G)$},\
+0 &amp;\text{otherwise}
+\end{cases}
+$$
+where $b_{ij}$ is the conventional bond order: 1; 2; 3; 1.5 for simple, double, triple and
+aromatic bonds, respectively.</p>
+<p><code>Distance Matrix</code> $D(G)$, is a square
+symmetric table, of size $n\times n$, similar to adjacency matrix by replacing the entity of topological distance:
+$$
+{[D]}<em ij="ij">{ij}=\begin{cases} d</em> &amp;\text{if $i\not=j$},\
+0 &amp;\text{otherwise}
+\end{cases}
+$$
+where $d_{ij}$, the topological distance between $i$ and $j$.</p>
+<p>M. V. Diudea, I. Gutman and L. Jantschi in <a href="http://lori.academicdirect.org/books/pdf/2001_moltop.pdf">Molecular Topology</a> claims that</p>
+<blockquote>
+<p>A single number, representing a chemical structure, in graph-theoretical terms, is called a <code>topological descriptor</code>. Being a structural invariant it does not depend on the labeling or the pictorial representation of a graph. Despite the considerable loss of information by the projection in a single number of a structure, such descriptors found broad applications in the correlation and prediction of several molecular properties1,2 and also in tests of similarity and isomorphism.</p>
+</blockquote>
+<p>The simplest TI is the half sum of entries in the adjacency matrix $A$:
+$$A=\frac{1}{2}\sum_{ij}{[A]}_{ij}.$$</p>
+<p><strong>The Indices of Platt, F, Gordon-Scantlebury, N2, and Bertz, B1</strong>：
+$$F={\sum}<em j="j">{i}\sum</em>{[EA]}<em i="i">{ij}=2\sum</em>C_{2}^{\delta_i}=2 N2=2 B1$$
+where $EA$ is the Edge Adjacency matrix. This index is twice the Gordon - Scantlebury
+index, N2 , defined as the number of modes in which the acyclic fragment C-C-C may be
+superposed on a molecular graph
+$$N2=\sum_{i}{(P_2)}_i.$$
+This index equals the number of all paths of length 2, P2 , in graph.
+The last one can be calculated combinatorially from the vertex degree, $\delta_i$ .</p>
+<hr />
+<p>First TIs based on adjacency matrix (i.e., based on connectivity) were introduced
+by the Group from Zagreb:
+$$
+M_1=\sum_{i}\delta_i^2, \
+M_2=\sum_{(i,j)\in E(G)}\delta_i\delta_j
+$$
+where $\delta_i, \delta_j$ are the vertex degrees for any two adjacent vertices.</p>
+<p><strong>The Randic Index, $\chi$</strong>
+$$\chi=\sum_{(i,j)\in E(G)}(\delta_i\delta_j)^{-\frac{1}{2}}
+$$
+$\chi$ - called the connectivity index, is calculated on edge, by using the vertex degrees of its endpoints.
+The $\chi$ values decrease as the branching increases within a set of alkane isomers.
+They increase by the number of atoms in the molecular graph.</p>
+<p>It can extended the summation over all paths of
+length $e$:
+$$\chi^{e}=\sum_{p_e}(\delta_i\delta_j\cdots \delta_{e+1})^{-\frac{1}{2}}
+$$
+where $(\delta_i, \delta_j, \cdots, \delta_{e+1}$ are the vertex degrees along the path $p_e$.</p>
+<hr />
+<p><strong>Wiener-Type Indices</strong>
+In <code>acyclic structures</code>, the Wiener index, W and its extension, the hyper-Wiener
+index, WW can be defined as
+$$
+W=W(G)={\sum}<em i_e="i,e">e N</em>N_{e,j} \
+WW=WW(G)={\sum}<em i_p="i,p">e N</em>N_{p, j}
+$$</p>
+<p>where $N_i$ and $N_j$ denote the number of vertices lying on the two sides of the edge $e$ or
+path $p$, respectively, having the endpoints $i$ and $j$.
+Other main definitions38,39 of the Wiener-type indices are based on the distance matrices,
+$$
+W=\frac{1}{2}\sum_{i}\sum_{j}{[D_e]}<em i="i">{ij},\
+WW=\frac{1}{2}\sum</em>\sum_{j}{[D_p]}_{ij}.
+$$</p>
+<hr />
+<p><strong>INDICES BASED ON RECIPROCAL MATRICES</strong></p>
+<p><strong>INDICES BASED ON COMBINATION OF MATRICES</strong></p>
+<p><strong>INDICES BASED ON EIGENVALUES AND EIGENVECTORS</strong></p>
+<p><a href="http://www.vcclab.org/lab/indexhlp/topodes.html">Topological descriptors</a>
+<a href="https://en.wikipedia.org/wiki/Topological_index">Topological index</a></p>
+<ul>
+<li><a href="http://www.vcclab.org/lab/">Virtual Computational Chemistry Laboratory</a></li>
+<li><a href="http://chem.ubbcluj.ro/~diudea/lucraripublicate/gabi_mtfile.html">Molecular Topology File</a></li>
+<li><a href="https://www.nap.edu/read/4886/chapter/1">MATHEMATICAL CHALLENGES FROM THEORETICAL/COMPUTATIONAL CHEMISTRY</a></li>
+<li><a href="http://www.chem.msu.ru/eng/misc/babaev/match/welcome.html">The Universe of Chemical Mathematics and the Worlds of Mathematical Chemistry</a></li>
+<li><a href="http://www.estradalab.org/research-description-three/">http://www.estradalab.org/research-description-three/</a></li>
+<li><a href="https://nrich.maths.org/5904">Mathematical Issues for Chemists</a></li>
+<li><a href="https://www.wikiwand.com/en/Mathematical_chemistry">https://www.wikiwand.com/en/Mathematical_chemistry</a></li>
+<li><a href="http://match.pmf.kg.ac.rs/">http://match.pmf.kg.ac.rs/</a></li>
+<li><a href="https://crystalmathlabs.com/tracker/">https://crystalmathlabs.com/tracker/</a></li>
+</ul>
+<h3 id="graph-partitioning">Graph Partitioning<a class="headerlink" href="#graph-partitioning" title="Permanent link"></a></h3>
+<p><strong>Definition</strong>: <code>Separators</code> A subsect of vertices ${C}$ of a graph ${G}$ with ${n}$ vertices is an $f(n)$-separator that $\delta$-splits if $|C|&lt;f(n)$ and vertices $G-C$ can be partitioned into two sets ${A}$ and ${B}$ such that $|A|, |B|&lt;\delta n$ and there is no edge between ${A}$ and ${B}$, where $f$ is a positive function and $0&lt;\delta &lt; 1$.</p>
+<blockquote>
+<p>The fundamental problem that is trying to solve is that of splitting a large irregular graphs into ${k}$ parts. This problem has applications in many different areas including, parallel/distributed computing (load balancing of computations), scientific computing (fill-reducing matrix re-orderings), EDA algorithms for VLSI CAD (placement), data mining (clustering), social network analysis (community discovery), pattern recognition, relationship network analysis, etc.
+The partitioning is usually done so that it satisfies certain constraints and optimizes certain objectives. The most common constraint is that of producing equal-size partitions, whereas the most common objective is that of minimizing the number of cut edges (i.e., the edges that straddle partition boundaries). However, in many cases, different application areas tend to require their own type of constraints and objectives; thus, making the problem all that more interesting and challenging!</p>
+<p>The research in the lab is focusing on a class of algorithms that have come to be known as multilevel graph partitioning algorithms. These algorithms solve the problem by following an approximate-and-solve paradigm, which is very effective for this as well as other (combinatorial) optimization problems.</p>
+<p><a href="http://glaros.dtc.umn.edu/gkhome/views/projects">Over the years we focused and produced good solutions for a number of graph-partitioning related problems. This includes partitioning algorithms for graphs corresponding to finite element meshes, multilevel nested dissection, parallel graph/mesh partitioning, dynamic/adaptive graph repartitioning, multi-constraint and multi-objective partitioning, and circuit and hypergraph partitioning.</a></p>
+</blockquote>
+<ul>
+<li><a href="http://glaros.dtc.umn.edu/gkhome/views/projects">Graph Partitioning</a></li>
+<li><a href="https://www.cs.cmu.edu/~glmiller/Publications/class_rescat.html#Graph%20Separators">Gary L. Miller&rsquo;s Publications on Graph Separartor</a></li>
+<li><a href="https://www.cs.cmu.edu/~glmiller/Publications/TengPHD.pdf">Points, Spheres, and Separators: A Unified Geometric Approach to Graph Partitioning</a></li>
+</ul>
+<p>Let $P = {p_i, \cdots, p_n }$ be a set of ${n}$ points in $\mathbb{R}^d$. For each $p_i\in P$, let $N(p_i)$ be a closest
+neighbor of ${p}$ in ${P}$, where ties are broken arbitrarily. Similarly, for any integer ${k}$, let $N_k(p_i)$ be the
+set of ${k}$ nearest neighbors of ${p}$ in ${P}$, where the ties too are broken arbitrarily.</p>
+<p><strong>Definition</strong>  A ${k}$-nearest neighborhood graph of  $P = {p_i, \cdots, p_n }$ in $\mathbb{R}^d$
+, is a graph with
+vertices $V = {1, \cdots,n}$, and edges ${E}$,</p>
+<p>$$ E = { (i, j) \mid p_i\in N_k(p_j)\quad \text{or}\quad p_j \in N_k(p_i) }. $$</p>
+<p><img title="Moore Graphs" src="https://jeremykun.files.wordpress.com/2016/11/hoffman_singleton_graph_circle2.gif?w=400" /></p>
+<p><a href="https://jeremykun.com/2016/11/03/a-spectral-analysis-of-moore-graphs/">A Spectral Analysis of Moore Graphs</a></p>
+<h3 id="semi-supervised-learning-based-graph">Semi-supervised Learning based Graph<a class="headerlink" href="#semi-supervised-learning-based-graph" title="Permanent link"></a></h3>
+<p><code>Dirichlet energy functional</code> is defined as
+$$\mathbb{E}(f)=\frac{1}{2}\int_{U}{|\nabla f|}^2\mathrm d x$$
+$$\mathbb{E}(f)=\frac{1}{2}\sum_{i, j}w_{i,j}{|f_i -f_j|}^2\implies f(h)=\frac{\sum_{i}w_{i,h}f(i)}{\sum_i w_{i,h}}$$</p>
+<h3 id="link-prediction">Link Prediction<a class="headerlink" href="#link-prediction" title="Permanent link"></a></h3>
+<p>The above algorithms are unsupervised algorithms so what is the supervised algorithms in graph data sets? Do prediction algorithms such as classification and regression matter?</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1802.09691">Link Prediction Based on Graph Neural Networks</a></li>
+<li><a href="https://neo4j.com/docs/graph-algorithms/current/algorithms/linkprediction/index.html">Chapter 9. Link Prediction algorithms@neo4j</a></li>
+</ul>
+<h3 id="probability-on-graph">Probability on Graph<a class="headerlink" href="#probability-on-graph" title="Permanent link"></a></h3>
+<p>It is to answer the question how to characterize a network in the term of some summary statistic.
+The following distribution may be the key:</p>
+<ul>
+<li>the distribution of the degree;</li>
+<li>the distribution of the eigenvalue of the Laplacian matrix;</li>
+<li>random matrix and dynamical network.</li>
+</ul>
+<p>A particle moves around the vertex-set ${V}$. Having arrived at the vertex $S_n$ at time n, its next position Sn+1 is chosen uniformly at random from the set of neighbours of $S_n$.
+The trajectory of the particle is called a
+symmetric random walk (SRW) on ${G}$.
+Two of the basic questions concerning symmetric random walk are:
+1. Under what conditions is the walk recurrent, in that it returns (almost surely) to its starting point?
+2. How does the distance between S0 and Sn behave as $n\to\infty$?</p>
+<h2 id="dynamic-graphs">Dynamic Graphs<a class="headerlink" href="#dynamic-graphs" title="Permanent link"></a></h2>
+<p><a href="http://cs.ioc.ee/ewscs/2012/index.php?page=italiano">In many applications of graph algorithms, including communication networks, graphics, assembly planning, and VLSI design, graphs are subject to discrete changes, such as additions or deletions of edges or vertices. In the last decades there has been a growing interest in such dynamically changing graphs, and a whole body of algorithms and data structures for dynamic graphs has been discovered. In a typical dynamic graph problem one would like to answer queries on graphs that are undergoing a sequence of updates, for instance, insertions and deletions of edges and vertices. The goal of a dynamic graph algorithm is to update efficiently the solution of a problem after dynamic changes, rather than having to recompute it from scratch each time. Given their powerful versatility, it is not surprising that dynamic algorithms and dynamic data structures are often more difficult to design and analyze than their static counterparts.</a></p>
+<ul>
+<li><a href="https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/lectures/17/Small17.pdf">https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/lectures/17/Small17.pdf</a></li>
+<li><a href="http://cs.ioc.ee/ewscs/2012/italiano/dynamic1.pdf">http://cs.ioc.ee/ewscs/2012/italiano/dynamic1.pdf</a></li>
+<li><a href="https://github.com/stack-of-tasks/dynamic-graph">https://github.com/stack-of-tasks/dynamic-graph</a></li>
+<li><a href="http://www.cs.ust.hk/mjg_lib/bibs/qzhang_lib/Dynamic/p669-eppstein.pdf">http://www.cs.ust.hk/mjg_lib/bibs/qzhang_lib/Dynamic/p669-eppstein.pdf</a></li>
+<li><a href="http://graphstream-project.org/">http://graphstream-project.org/</a></li>
+<li><a href="http://hackage.haskell.org/package/dynamic-graphs">http://hackage.haskell.org/package/dynamic-graphs</a></li>
+<li><a href="https://docs.instana.io/core_concepts/dynamic_graph/">https://docs.instana.io/core_concepts/dynamic_graph/</a></li>
+<li><a href="http://cs.ioc.ee/ewscs/2012/index.php?page=italiano">http://cs.ioc.ee/ewscs/2012/index.php?page=italiano</a></li>
+<li><a href="https://www.cs.princeton.edu/courses/archive/spr10/cos423/lectures.php">https://www.cs.princeton.edu/courses/archive/spr10/cos423/lectures.php</a></li>
+<li><a href="https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/">https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/</a></li>
+</ul>
+<h3 id="computational-graph">Computational Graph<a class="headerlink" href="#computational-graph" title="Permanent link"></a></h3>
+<p>Computational graphs are a nice way to think about mathematical expressions, where the mathematical expression will be in the decomposed form and in topological order.</p>
+<p><img title="Computational Graph" src="https://colah.github.io/posts/2015-08-Backprop/img/tree-eval.png" width=40% /></p>
+<p><a href="https://colah.github.io/posts/2015-08-Backprop/">To create a computational graph, we make each of these operations, along with the input variables, into nodes. When one node’s value is the input to another node, an arrow goes from one to another. These sorts of graphs come up all the time in computer science, especially in talking about functional programs. They are very closely related to the notions of dependency graphs and call graphs. They’re also the core abstraction behind the popular deep learning framework <code>TensorFlow</code>.</a>
+Computational graph is an convenient representation of the work flow or process pipeline, which describes the dependence/composite relationship of every variable.
+Additionally, each composite relationship is specified.</p>
+<p><a href="http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/">A computational graph is a directed graph where the nodes correspond to <code>operations or variables</code>. Variables can feed their value into operations, and operations can feed their output into other operations. </a></p>
+<p><a href="http://www.cs.columbia.edu/~mcollins/ff2.pdf">The basic idea in a computational graph is to express some model—for example a feedforward neural network—as a <code>directed graph</code> expressing a sequence of computational steps. Each step in the sequence corresponds to a vertex in the computational graph; each step corresponds to a simple operation that takes some inputs and produces some output as a function of its inputs. Directed edges in the graph are used to specify the inputs to each vertex.</a></p>
+<ul>
+<li><a href="https://colah.github.io/posts/2015-08-Backprop/">https://colah.github.io/posts/2015-08-Backprop/</a></li>
+<li><a href="https://docs.chainer.org/en/stable/reference/graph.html">Visualization of Computational Graph@chainer.org</a></li>
+<li><a href="https://github.com/lobachevzky/computational-graph">Efficiently performs automatic differentiation on arbitrary functions. </a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/69175484">计算图反向传播的原理及实现</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/70075944">运用计算图搭建 LR、NN、Wide &amp; Deep、FM、FFM 和 DeepFM</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/publication/a-computational-network/">A Computational Network</a></li>
+<li><a href="http://www.cs.columbia.edu/~mcollins/ff2.pdf">Chapter 1 Computational Graphs, and Backpropagation</a></li>
+<li><a href="http://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf">http://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf</a></li>
+<li><a href="http://mt-class.org/jhu/slides/lecture-nn-computation-graphs.pdf">http://mt-class.org/jhu/slides/lecture-nn-computation-graphs.pdf</a></li>
+<li><a href="http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture06.pdf">http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture06.pdf</a></li>
+<li><a href="https://docs.microsoft.com/zh-cn/cognitive-toolkit/">https://docs.microsoft.com/zh-cn/cognitive-toolkit/</a></li>
+<li><a href="http://www.cs.columbia.edu/~mcollins/">http://www.cs.columbia.edu/~mcollins/</a></li>
+<li><a href="http://rll.berkeley.edu/cgt/">http://rll.berkeley.edu/cgt/</a></li>
+</ul>
+<h4 id="computaional-graph-of-decision-tree">Computaional Graph of Decision Tree<a class="headerlink" href="#computaional-graph-of-decision-tree" title="Permanent link"></a></h4>
+<p><img src="https://www.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png" width="40%" />
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/undirectedgraph.png" width="50%" /></p>
+<p>Decision tree looks like a simple graph without loops, where only the leaf nodes specify the output values and the middle nodes specify their test or computation.
+Computational graph is regarded as an extension of deep neural network.
+The computational graph of deep neural network focus on two parts: <code>the operation of each node</code> and automatic differentiation.</p>
+<p>In deep neural network, the operation of middle node is a smooth activation function such as $\sigma(x)=\frac{1}{1+\exp(-x)}$ or <code>ReLU</code> and it maps every input in the element-wise sense. All input of the deep neural network share  the same <code>depth</code> and <code>activation</code> function in computational graph. More complex architecture can include some <code>feedback structure</code>.</p>
+<p>In decision tree, the operation of middle node is a <code>test function</code> such as typical <code>statistical test</code> and it determines the input next state - for example terminated or not. Different inputs have <code>different depth</code> and <code>test function</code> in  computational graph. The <code>test function</code> depends on the <code>splitting criteria</code> when building a decision tree.
+In vanilla decision tree, the test function does not change the inputs and the final outputs of a leaf depend its instances labels.  </p>
+<p>We select a feature and find the optimal splitting point recursively and then the outputs are as some summary of the instances of the leaf nodes.</p>
+<p><a href="https://www.kdd.org/kdd2018/accepted-papers/view/rapidscorer-fast-tree-ensemble-evaluation-by-maximizing-compactness-in-data"><code>QuickScorer</code> establishes tree traversal by applying bitwise AND to boolean representations of FALSE nodes, i.e., nodemask.</a>
+<code>Bitvector representation of the tree nodes</code> makes it possible express the building procedure of decision tree in the language of computational graph.</p>
+<p>Suppose $X\in\mathbb{R}^p$ is the input of the decision tree, categorical feature will consider later.
+The first thing is to rewrite the test as one function, i.e., transforming the <code>if-then</code> sentence to number/bit computation.
+The second thing is to represent a decision tree as some tabular data frame.</p>
+<p>There are 4 steps of <code>tree traversal  of QuickScorer</code>:</p>
+<ul>
+<li>build the <code>nodemasks</code> of each middle node in decision tree with the length equal to the number of leaf nodes $B=(B_1,B_2,\cdots, B_{|T|})$;</li>
+<li>find the <code>FALSE</code> nodes with respect to an input $x$;</li>
+<li>apply <code>bitwise AND</code> to boolean representations of FALSE nodes and return the results $v_h$;</li>
+<li>the leftmost bit equal to 1 in $v_h$ corresponds to the exit leaf $e_h$.</li>
+</ul>
+<p>See more details of this procedure in the following links.</p>
+<ul>
+<li><a href="http://pages.di.unipi.it/rossano/wp-content/uploads/sites/7/2015/11/sigir15.pdf">QuickScorer: a Fast Algorithm to Rank Documents with Additive Ensembles of Regression Trees</a></li>
+<li><a href="https://github.com/hpclab/vectorized-quickscorer">Vectorized Quickscorer</a></li>
+<li><a href="https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf">https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/sigir15bestpaperslides.pdf</a></li>
+</ul>
+<p>The following is to translate the procedure to the language of computational graph.
+We suppose that the decision tree is built by a greedy way.</p>
+<hr />
+<p>Different from building the tree, prediction of decision tree is a tree traversal in nature.
+Inspired by <code>QuickScorer</code>, we split such prediction to the following stages.</p>
+<p>The first stage is to  find the false nodes in the decision tree with respect to the input $x$:
+   $$h=\frac{-(Sign[Sx-t])+1}{2}$$
+  where so-called <code>selection matrix</code> $S\in\mathbb{R}^{n_L\times p}$ consists of one-hot row vector in $\mathbb{R}^p$ representing which feature is tested in a node; the bias vector $t\in\mathbb{R}^{n_L}$ is the optimal point of each node associated with one feature; $Sign(\cdot)$ is the element-wise sign function. Here $n_L$ is the number of the middle nodes.
+If the feature of $x$ is greater than the splitting point, the corresponding node is a true node. Otherwise, the node is <code>False</code> node.</p>
+<p>The second stage is to apply bitwise <code>AND</code> to false nodes
+$$H=(B \, \,\operatorname{Diag}(h))^{\otimes}$$</p>
+<p>where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a diagonal matrix; $B\in\mathbb{B}^{L\times n_L}$ is the bitvector matrix of the decision tree. Every columns of $B$ is a bit-vector of node; $B \, \,\operatorname{Diag}(h)$ is the matrix multiplication of matrix $B$ and $\operatorname{Diag}(h)$. Here $L$ is the number of exit leaf nodes.</p>
+<p>The final stage is to determine the output
+$$v[i]\
+i=min(HP)^+
+$$
+where $P=(1,2, \cdots, L)^T\in\mathbb{R}^L$ and $L$ is the number of the exist leaves; $v[i]$ are the $i$th elements of vector $v$; $(HP)^+$ are the positive elements of vector $HP$; $min(v)$ outputs the minimum values in the vector $v$.</p>
+<hr />
+<p>In a compact form, a decision tree is expressed as follows:</p>
+<p>$$T(x)=v[\min((B\,\,\operatorname{Diag}[\frac{-(Sign[Sx-t])+1}{2}] )^{\oplus} P)^+]$$
+where the notation ${\otimes}$ is a element-wise multiplication of the non-zeros columns of a matrix; $Diag(x)$ maps a vector to a matrix; $B$ is the bitvector matrix of the decision tree.</p>
+<p>The hierarchical  structure of decision tree is clear:
+$$x\to h\to H\to v[i]\
+\mathbb{R}^p \to\mathbb{B}^{n_L}\to\mathbb{B}^{L}\to\mathbb{R}
+$$</p>
+<p>It is really a shallow model.
+And its hidden layers are sparse binary.</p>
+<p>Now there is nothing rather than expressing the decision tree in the language of computational graph.
+It looks  far from a step function. However, note that
++ the $Sign$ function is a step function.
++ the matrix $S$ and $B$ are binary, i.e., their elements are 0 or 1.
++ $min()$ only select one element.</p>
+<p>All <code>if-then</code> tests transform to numerical computation.</p>
+<ul>
+<li><a href="https://www.kdd.org/kdd2018/accepted-papers/view/rapidscorer-fast-tree-ensemble-evaluation-by-maximizing-compactness-in-data">RapidScorer: Fast Tree Ensemble Evaluation by Maximizing Compactness in Data Level Parallelization</a></li>
+<li><a href="https://www.researchgate.net/publication/300031474_QuickScorer">https://www.researchgate.net/publication/300031474_QuickScorer</a></li>
+<li><a href="http://ltr-tutorial-sigir19.isti.cnr.it/">Learning to Rank in theory and practice</a></li>
+<li><a href="http://www.eggie5.com/147-sigir-2019-recap">SIGIR 2019 Recap</a></li>
+<li><a href="https://github.com/benedekrozemberczki/awesome-decision-tree-papers">awesome-decision-tree-papers</a></li>
+<li><a href="https://researcher.watson.ibm.com/researcher/files/us-adhuran/dec_tree_ic.pdf">Probabilistic Characterization of Random Decision Trees</a></li>
+<li><a href="https://ieeexplore.ieee.org/document/6693840">Probabilistic decision trees using SVM for multi-class classification</a></li>
+<li><a href="http://www.gatsby.ucl.ac.uk/~balaji/balaji-phd-thesis.pdf">Decision Trees and Forests: A Probabilistic Perspective</a></li>
+<li><a href="http://ai.stanford.edu/~wzou/">http://ai.stanford.edu/~wzou/</a></li>
+</ul>
+<p>From mathematical consideration, can we replace the $Sign$ function with some smooth function? Can we generalize the $S, B$ to real matrices?
+Can we apply gradient-based methods to train a decision tree?</p>
+<p>In the language of computational graph, how can we describe the (gradient) boosting decision tree?
+The structure information of the decision tree transforms to the bitvector matrix $B$.
+The splitting points information transforms to the pair $(S, t)$.
+Given triple(tuple) $(S, t, B)$, we can traverse a tree to each leaf.
+The question is if it is a ono-one mapping from a decision tree to $(S, t, B, v)$?</p>
+<h4 id="dynamic-computational-graphs">Dynamic Computational Graphs<a class="headerlink" href="#dynamic-computational-graphs" title="Permanent link"></a></h4>
+<p><a href="https://ai.stackexchange.com/questions/3801/what-is-a-dynamic-computational-graph">A Dynamic Computational Graph is a mutable system represented as a directed graph of data flow between operations. It can be visualized as shapes containing text connected by arrows, whereby the vertices (shapes) represent operations on the data flowing along the edges (arrows).</a></p>
+<p><a href="https://mc.ai/dynamic-vs-static-computation-graph/">The main difference between frameworks that uses static computation graph like Tensor Flow, CNTK and frameworks that uses dynamic computation graph like Pytorch and DyNet is that the latter works as follows, a different computation graph is constructed from scratch for each training sample, forward and backward propagation are then take place so in another words the user is free to use different networks for each input sample but this of course will cost you a little overhead but don’t worry frameworks like DyNet has an optimized C++ backend and lightweight graph representation. Experiments show that DyNet’s speeds are faster than or comparable with static declaration toolkits while the static graph frameworks the graph is defined once and then the optimization graph compiler then produced optimization graph and all the training samples are then feed to this graph .On the one hand, once compiled, large graphs can be run efficiently
+on either the CPU or a GPU, making it ideal for large graphs with a fixed structure, where only the inputs change between instances. However, the compilation step itself can be costly, and it makes the interface more cumbersome to work with.</a></p>
+<ul>
+<li><a href="https://courses.cs.washington.edu/courses/cse547/18sp/slides/computation_graphs.pdf">https://courses.cs.washington.edu/courses/cse547/18sp/slides/computation_graphs.pdf</a></li>
+<li><a href="https://courses.cs.washington.edu/courses/cse547/18sp/">https://courses.cs.washington.edu/courses/cse547/18sp/</a></li>
+</ul>
+<hr />
+<ul>
+<li><a href="http://ww3.algorithmdesign.net/sample/ch07-weights.pdf">http://ww3.algorithmdesign.net/sample/ch07-weights.pdf</a></li>
+<li><a href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/">https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/</a></li>
+<li><a href="https://www.geeksforgeeks.org/graph-types-and-applications/">https://www.geeksforgeeks.org/graph-types-and-applications/</a></li>
+<li><a href="https://algs4.cs.princeton.edu/40graphs/">https://algs4.cs.princeton.edu/40graphs/</a></li>
+<li><a href="http://networkscience.cn/">http://networkscience.cn/</a></li>
+<li><a href="http://www.ericweisstein.com/encyclopedias/books/GraphTheory.html">http://www.ericweisstein.com/encyclopedias/books/GraphTheory.html</a></li>
+<li><a href="http://mathworld.wolfram.com/CayleyGraph.html">http://mathworld.wolfram.com/CayleyGraph.html</a></li>
+<li><a href="http://yaoyao.codes/algorithm/2018/06/11/laplacian-matrix">http://yaoyao.codes/algorithm/2018/06/11/laplacian-matrix</a></li>
+<li>The book <strong>Graphs and Matrices</strong> <a href="https://www.springer.com/us/book/9781848829800">https://www.springer.com/us/book/9781848829800</a></li>
+<li>The book <strong>Random Graph</strong> <a href="https://www.math.cmu.edu/~af1p/BOOK.pdf">https://www.math.cmu.edu/~af1p/BOOK.pdf</a></li>
+<li>The book <a href="https://arxiv.org/pdf/1712.00468.pdf">Graph Signal Processing: Overview, Challenges and Application</a></li>
+<li><a href="http://www.andres.sc/graph.html">http://www.andres.sc/graph.html</a></li>
+<li>
+<p><a href="https://github.com/sungyongs/graph-based-nn">https://github.com/sungyongs/graph-based-nn</a></p>
+</li>
+<li>
+<p><a href="http://snap.stanford.edu/">Stanford Network Analysis Project</a></p>
+</li>
+</ul></article></body></html>

@@ -1,0 +1,2662 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body {
+  max-width: 980px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 45px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAABE0AA8AAAAAHWwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABWAAAADsAAABUIIslek9TLzIAAAGUAAAAQwAAAFY3d1HZY21hcAAAAdgAAACqAAACOvWLi0FjdnQgAAAChAAAABMAAAAgBtX/BGZwZ20AAAKYAAAFkAAAC3CKkZBZZ2FzcAAACCgAAAAIAAAACAAAABBnbHlmAAAIMAAABdQAAAjkYT9TNWhlYWQAAA4EAAAAMwAAADYQ6WvNaGhlYQAADjgAAAAfAAAAJAc6A1pobXR4AAAOWAAAACAAAAA0Kmz/7mxvY2EAAA54AAAAHAAAABwQPBJubWF4cAAADpQAAAAgAAAAIAEHC/NuYW1lAAAOtAAAAYQAAALxhQT4h3Bvc3QAABA4AAAAfgAAAMS3SYh9cHJlcAAAELgAAAB6AAAAhuVBK7x4nGNgZGBg4GIwYLBjYHJx8wlh4MtJLMljkGJgYYAAkDwymzEnMz2RgQPGA8qxgGkOIGaDiAIAJjsFSAB4nGNgZHZmnMDAysDAVMW0h4GBoQdCMz5gMGRkAooysDIzYAUBaa4pDA4Pwz+yMwf9z2KIYg5imAYUZgTJAQDcoQvQAHic7ZHNDYJAFIRnBXf94cDRIiyCKkCpwFCPJ092RcKNDoYKcN4+EmMPvpdvk539zQyAPYBCXEUJhBcCrJ5SQ9YLnLJe4qF5rdb+uWPDngNHTkta101pNyWa8lMhn6xx2dqUnW4q9YOIhAOOeueMSgsR/6ry+P7O5s6xVNg4chBsHUuFnWNJ8uZYwrw7chrsHXkODo7cB0dHOYCTY8kv0VE2WJKD6gOlWjsxAAB4nGNgQAMSEMgc9D8LhAESbAPdAHicrVZpd9NGFB15SZyELCULLWphxMRpsEYmbMGACUGyYyBdnK2VoIsUO+m+8Ynf4F/zZNpz6Dd+Wu8bLySQtOdwmpOjd+fN1czbZRJaktgL65GUmy/F1NYmjew8CemGTctRfCg7eyFlisnfBVEQrZbatx2HREQiULWusEQQ+x5ZmmR86FFGy7akV03KLT3pLlvjQb1V334aOsqxO6GkZjN0aD2yJVUYVaJIpj1S0qZlqPorSSu8v8LMV81QwohOImm8GcbQSN4bZ7TKaDW24yiKbLLcKFIkmuFBFHmU1RLn5IoJDMoHzZDyyqcR5cP8iKzYo5xWsEu20/y+L3mndzk/sV9vUbbkQB/Ijuzg7HQlX4RbW2HctJPtKFQRdtd3QmzZ7FT/Zo/ymkYDtysyvdCMYKl8hRArP6HM/iFZLZxP+ZJHo1qykRNB62VO7Es+gdbjiClxzRhZ0N3RCRHU/ZIzDPaYPh788d4plgsTAngcy3pHJZwIEylhczRJ2jByYCVliyqp9a6YOOV1WsRbwn7t2tGXzmjjUHdiPFsPHVs5UcnxaFKnmUyd2knNoykNopR0JnjMrwMoP6JJXm1jNYmVR9M4ZsaERCICLdxLU0EsO7GkKQTNoxm9uRumuXYtWqTJA/Xco/f05la4udNT2g70s0Z/VqdiOtgL0+lp5C/xadrlIkXp+ukZfkziQdYCMpEtNsOUgwdv/Q7Sy9eWHIXXBtju7fMrqH3WRPCkAfsb0B5P1SkJTIWYVYhWQGKta1mWydWsFqnI1HdDmla+rNMEinIcF8e+jHH9XzMzlpgSvt+J07MjLj1z7UsI0xx8m3U9mtepxXIBcWZ5TqdZlu/rNMfyA53mWZ7X6QhLW6ejLD/UaYHlRzodY3lBC5p038GQizDkAg6QMISlA0NYXoIhLBUMYbkIQ1gWYQjLJRjC8mMYwnIZhrC8rGXV1FNJ49qZWAZsQmBijh65zEXlaiq5VEK7aFRqQ54SbpVUFM+qf2WgXjzyhjmwFkiXyJpfMc6Vj0bl+NYVLW8aO1fAsepvH472OfFS1ouFPwX/1dZUJb1izcOTq/Abhp5sJ6o2qXh0TZfPVT26/l9UVFgL9BtIhVgoyrJscGcihI86nYZqoJVDzGzMPLTrdcuan8P9NzFCFlD9+DcUGgvcg05ZSVnt4KzV19uy3DuDcjgTLEkxN/P6VvgiI7PSfpFZyp6PfB5wBYxKZdhqA60VvNknMQ+Z3iTPBHFbUTZI2tjOBIkNHPOAefOdBCZh6qoN5E7hhg34BWFuwXknXKJ6oyyH7kXs8yik/Fun4kT2qGiMwLPZG2Gv70LKb3EMJDT5pX4MVBWhqRg1FdA0Um6oBl/G2bptQsYO9CMqdsOyrOLDxxb3lZJtGYR8pIjVo6Of1l6iTqrcfmYUl++dvgXBIDUxf3vfdHGQyrtayTJHbQNTtxqVU9eaQ+NVh+rmUfW94+wTOWuabronHnpf06rbwcVcLLD2bQ7SUiYX1PVhhQ2iy8WlUOplNEnvuAcYFhjQ71CKjf+r+th8nitVhdFxJN9O1LfR52AM/A/Yf0f1A9D3Y+hyDS7P95oTn2704WyZrqIX66foNzBrrblZugbc0HQD4iFHrY64yg18pwZxeqS5HOkh4GPdFeIBwCaAxeAT3bWM5lMAo/mMOT7A58xh0GQOgy3mMNhmzhrADnMY7DKHwR5zGHzBnHWAL5nDIGQOg4g5DJ4wJwB4yhwGXzGHwdfMYfANc+4DfMscBjFzGCTMYbCv6dYwzC1e0F2gtkFVoANTT1jcw+JQU2XI/o4Xhv29Qcz+wSCm/qjp9pD6Ey8M9WeDmPqLQUz9VdOdIfU3Xhjq7wYx9Q+DmPpMvxjLZQa/jHyXCgeUXWw+5++J9w/bxUC5AAEAAf//AA94nIVVX2hbZRQ/5/t7893s5ja9f7ouzdZ0TTqz3bRJmogbWya6bG6Cq0VbSV2ddIJjFtfIQHEig80Hda8yUN/0YQz8AyriiyD+xQd92R4HCnaCb3samnpumrpsCsLlfPf7zvedc37nL3CAtc/5W/wQZGA3tOBSY/g+TMjHmwzEoM1Q8+ZjRZY4oJhmBw5/YB6Za0yC5AkhlwA1A1yCBIBOwCII0Cj0U8BAMdUCzq05sKwkP7SlUY6fcJk4Fb/RyE79/6P5hjM/F4aZiXBoeMgzcqQ4Xi1hPqfDLG5FT+lchCVU3lYMyvuwhl1mqndQL0RsuloLywHtthLXI06OblTrhfWVnpSJ5+mwu/JdbtuN3IAnkW0LLMcRwaC7ktrlzridM6kVdyf9uO1UNBByI7JhwtG2sEwab07ORBeilWhqavJCqV0qzZTOl/7ZXQ5TbTcdcFelyGhhRDAQpdqp1FEX3w3cFTc1k9pJQkmm4ySCbSikxRP2QOfN+0tHS5MrpQuTU1Mk5nw0E5Xa0WvrOwDyGax9yB9ma6DAg82wHc43SAGTI4GjBWebOePAERFE8/AHaQpZASSTy8A4WwZiLQMQ82mFKATO0ILicRAoDm9p5P99E5b/fXG+kQYY3TYUuqmERWYoT0u/GNYL2q/4WB3LaVS+VynXsVYIcWw6DkCh3nX1D+VzlYN4LClF5yexSQos8exqZ3KVP+wtrC54u4Nznq6cq+xpMpUUnZ8FUYzE86ud0g28NOIv3Gj5/rmA3ABs7S/ywzFuQ4qyd6QxfNtiQIaEgp3w/entQg4Vcbqa16M5FfpeUB8t1+qeg7mI7cUyOe79wOk86gSxkVec4KPTX69++5x68Yubn5/F+w52z7u08sJX7fZXv8ekT/d2mILJxq6sn+SC6qEJknzLJCxyZEKwWVqYmAPBxBE/9DLeZiWHu7lcr/VytrCRuHojncNuTt9h46tmacmYisnSamdN2bZptcsmSysdVsy1PrOvOzF3xN64Rb937t/og9KHxYdcjIUqFAmIAHGHNzlns+RTPgeUYAQm9DwpNxfxbhhBHPaw3/gfTcXO2L+eJVIx5nsyGkvm9X4/f+bGkH45G0PaSjcMXTjcZyTvi3UdHoCDjQd3IDUVsgwYmUoJK/gp4JJxeRI0MKHZIkgynyIBqBTOUs6rOVCojvjZ4mCQz49ZMlMcp8QoYk6NoBfsxnJtsBohpa8iGJS+ZH7gU7NxME6cmF+t7cO9vB8d3jTWSct0ycW9ranXmolNDwmVkNnxe+8JtoztwS5rKJ0xWS95tQ/1zMYzg69MzUZnNtl1ofNbsml/OJm6f9wjRjpnu2o4MzHzn77IQkRd+1DjwMQ2pqSjGMMhyjrgTbBAKksuUm0iU7hI0aN2wOKOq7WYBSH0HGihj/jkiPxAfmwsEbfYrjMG+j3ij932Db/LV7I/xruNrhnroxjR9HRMb2nTvO0ZXOoHPk8H2ZhDPx93qcE/53sH5np/dkIP7zzhTVKdR/BAY/9ElkkR+A6lJGsqpJ4oQcTxpvBT3Kn58VkaJjgHyPEIws57xkaHh9KuVpDEpJZeMbZ5w/zBHi5NMQ4r5VphsFqID7TyB9eR4pX216c3AHxpdAwoqU9qg0ZJ6yVLKmMSz1iG2z27ifx18NkY0LPx1W/wCc2l5LrznrIsiKsqbmB78A9wIGx4tI8rjihVHJyY9pgMirenVq0yWg7Iw7eogG7ZgYM3qR9959A/fZkg6MnD/exlkmc+jWV4SB15XUR+eqC6l6ZmgPtN9z5JMfik05OV8ljylunJ4J+wA/FUaQSSKotsYsCWqaPBidBLcxkWx7XKFRIb45TGaEhjlF9uUVPqXOtcIwsXbBvfoZXIyRYFdkfnqjExH98xpnPczqzjX/uNdO1Y17Wpi5+6Ts8BXtjVFasp9KZ1mOiNbH65c5w6HgmyF2jFCZywM8mWjRc7T5Pmt0lRy7Y71+jYbpGyvwG4sH0XeJxjYGRgYADiwBB/53h+m68M3MwvgCIM1z5N/g6j///9v5H5BbMnkMvBwAQSBQCIcA9gAHicY2BkYGAO+p8FJF/8//v/F/MLBqAICuAFALYQB5kAeJxjfsHAwLwAiCNB+P9fbJjJmoGBMRUo/wKCAfO2EnQAAAAAANoBXgGcAgICVALaA1IDvAPkBAYEPARyAAEAAAANAF0ABAAAAAAAAgAUACQAcwAAAG4LcAAAAAB4nHWRzWrCQBSFT+pPqUIXLXTTzayKUohGKIibCoLuhbrrYtTRxCYZmYyKyz5Fd32HvlDfoO/QkziIFJtw9bvnnpl7ZwLgBt/wcHieGAf2UGd24Atcou+4RH3kuEweO66QXx1XyaHjGh6ROa7jFp/cwStfMVvhy7GHO+/e8QWuvcBxifqz4zL5xXGF/Oa4Sn53XMPE+3Bcx4P3M9DrvYmWoRWNQVN02kFXTPdCU4pSGQu5saE2meiLhU6timPtz3SSs9ypTCdqrJabWJoT5QQnymSRTkXgt0/UkUqVkVbN807ZdtmxdiEWRidi6HqItdErNbN+aO2612qd9sYAGmvsYRBhyUu0EGhQbfK/gzYCdElTOgSdB1eEFBIxFYkNV4RFJWPeZyyYpVQVHTHZx4y/yVGX2LGWFZri51TccUOn5B7nPefVCSPvGhVVwUl9znveO2KkhV8Wk82PZ8qwZf8OVcu1+fSmWCMw/HMOwXvKaysqM+p+cVuWag8tvv+c+xdd+4+teJxtjUEOwiAURJla24KliQfhUA2g/Sl+CKXx+loNrpzVezOLEY34Ron/0WhwQoszOvQYIKFwwQiNSbSBeO2SZ0tBP4j3zVjKNng32ZmtD1VVXCuOiw/pJ8S3WOU6l+K5UOTaDC4+2TjKMtN9KQf1ezLx/Sg/00FCvABHhjDjAAB4nGPw3sFwIihiIyNjX+QGxp0cDBwMyQUbGVidNjEwMmiBGJu5mBg5ICw+BjCLzWkX0wGgNCeQze60i8EBwmZmcNmowtgRGLHBoSNiI3OKy0Y1EG8XRwMDI4tDR3JIBEhJJBBs5mFi5NHawfi/dQNL70YmBhcADHYj9AAA) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headerlink {
+  font: normal 400 16px fontawesome-mini;
+  vertical-align: middle;
+  margin-left: -16px;
+  float: left;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0;
+  color: #333;
+}
+
+.markdown-body .headerlink:focus {
+  outline: none;
+}
+
+.markdown-body h1 .headerlink {
+  margin-top: 0.8rem;
+}
+
+.markdown-body h2 .headerlink,
+.markdown-body h3 .headerlink {
+  margin-top: 0.6rem;
+}
+
+.markdown-body h4 .headerlink {
+  margin-top: 0.2rem;
+}
+
+.markdown-body h5 .headerlink,
+.markdown-body h6 .headerlink {
+  margin-top: 0;
+}
+
+.markdown-body .headerlink:hover,
+.markdown-body h1:hover .headerlink,
+.markdown-body h2:hover .headerlink,
+.markdown-body h3:hover .headerlink,
+.markdown-body h4:hover .headerlink,
+.markdown-body h5:hover .headerlink,
+.markdown-body h6:hover .headerlink {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* MultiMarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px fontawesome-mini;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\e157';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><style>/*GitHub*/
+.codehilite {background-color:#fff;color:#333333;}
+.codehilite .hll {background-color:#ffffcc;}
+.codehilite .c{color:#999988;font-style:italic}
+.codehilite .err{color:#a61717;background-color:#e3d2d2}
+.codehilite .k{font-weight:bold}
+.codehilite .o{font-weight:bold}
+.codehilite .cm{color:#999988;font-style:italic}
+.codehilite .cp{color:#999999;font-weight:bold}
+.codehilite .c1{color:#999988;font-style:italic}
+.codehilite .cs{color:#999999;font-weight:bold;font-style:italic}
+.codehilite .gd{color:#000000;background-color:#ffdddd}
+.codehilite .ge{font-style:italic}
+.codehilite .gr{color:#aa0000}
+.codehilite .gh{color:#999999}
+.codehilite .gi{color:#000000;background-color:#ddffdd}
+.codehilite .go{color:#888888}
+.codehilite .gp{color:#555555}
+.codehilite .gs{font-weight:bold}
+.codehilite .gu{color:#800080;font-weight:bold}
+.codehilite .gt{color:#aa0000}
+.codehilite .kc{font-weight:bold}
+.codehilite .kd{font-weight:bold}
+.codehilite .kn{font-weight:bold}
+.codehilite .kp{font-weight:bold}
+.codehilite .kr{font-weight:bold}
+.codehilite .kt{color:#445588;font-weight:bold}
+.codehilite .m{color:#009999}
+.codehilite .s{color:#dd1144}
+.codehilite .n{color:#333333}
+.codehilite .na{color:teal}
+.codehilite .nb{color:#0086b3}
+.codehilite .nc{color:#445588;font-weight:bold}
+.codehilite .no{color:teal}
+.codehilite .ni{color:purple}
+.codehilite .ne{color:#990000;font-weight:bold}
+.codehilite .nf{color:#990000;font-weight:bold}
+.codehilite .nn{color:#555555}
+.codehilite .nt{color:navy}
+.codehilite .nv{color:teal}
+.codehilite .ow{font-weight:bold}
+.codehilite .w{color:#bbbbbb}
+.codehilite .mf{color:#009999}
+.codehilite .mh{color:#009999}
+.codehilite .mi{color:#009999}
+.codehilite .mo{color:#009999}
+.codehilite .sb{color:#dd1144}
+.codehilite .sc{color:#dd1144}
+.codehilite .sd{color:#dd1144}
+.codehilite .s2{color:#dd1144}
+.codehilite .se{color:#dd1144}
+.codehilite .sh{color:#dd1144}
+.codehilite .si{color:#dd1144}
+.codehilite .sx{color:#dd1144}
+.codehilite .sr{color:#009926}
+.codehilite .s1{color:#dd1144}
+.codehilite .ss{color:#990073}
+.codehilite .bp{color:#999999}
+.codehilite .vc{color:teal}
+.codehilite .vg{color:teal}
+.codehilite .vi{color:teal}
+.codehilite .il{color:#009999}
+.codehilite .gc{color:#999;background-color:#EAF2F5}
+</style><title>Recommender System and Computational Advertising</title></head><body><article class="markdown-body"><h1 id="recommender-system">Recommender System<a class="headerlink" href="#recommender-system" title="Permanent link"></a></h1>
+<p><img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" /></p>
+<p>Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
+RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items that a Web site, for example, may offer.</p>
+<p><a href="https://www.kdd.org/exploration_files/V14-02-05-Amatriain.pdf">Xavier Amatriain discusses the traditional definition and its data mining core.</a></p>
+<p>Traditional definition: The <strong>recommender system</strong> is to estimate a utility  function that automatically predicts how a user will like an item.</p>
+<p>User Interest is <strong>implicitly</strong> reflected in <code>Interaction history</code>, <code>Demographics</code> and <code>Contexts</code>, which can be regarded as a typical example of data mining. Recommender system should match a context to a collection of information objects. There are some methods called <code>Deep Matching Models for Recommendation</code>.
+It is an application of machine learning, which is in the <em>representation + evaluation + optimization</em> form. And we will focus on the <code>representation and evaluation</code>.</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/hongleizhang/RSPapers">https://github.com/hongleizhang/RSPapers</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/familyld/AwesomeRecSysPaper/">https://github.com/familyld/AwesomeRecSysPaper/</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://kdd2018tutorial-behavior.datasciences.org/">http://kdd2018tutorial-behavior.datasciences.org/</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/benfred/implicit">https://github.com/benfred/implicit</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/YuyangZhangFTD/awesome-RecSys-papers">https://github.com/YuyangZhangFTD/awesome-RecSys-papers</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/daicoolb/RecommenderSystem-Paper">https://github.com/daicoolb/RecommenderSystem-Paper</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/grahamjenson/list_of_recommender_systems">https://github.com/grahamjenson/list_of_recommender_systems</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.zhihu.com/question/20465266/answer/142867207">https://www.zhihu.com/question/20465266/answer/142867207</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://www.mbmlbook.com/Recommender.html">http://www.mbmlbook.com/Recommender.html</a></li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <a href="https://blog.csdn.net/u013166160/article/details/17935193">直接优化物品排序的推荐算法</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.jianshu.com/c/e12d7195a9ff">推荐系统遇上深度学习</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://bigdata.ices.utexas.edu/project/large-scale-recommender-systems/">Large-Scale Recommender Systems@UTexas</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.alansaid.com/publications.html">Alan Said&rsquo;s publication</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://www.mymedialite.net/links.html">MyMediaLite Recommender System Library</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://www.deitel.com/ResourceCenters/Web20/RecommenderSystems/RecommenderSystemAlgorithms/tabid/1317/Default.aspx">Recommender System Algorithms @ deitel.com</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://sigir.org/files/forum/F99/Soboroff.html">Workshop on Recommender Systems: Algorithms and Evaluation</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.upf.edu/hipertextnet/en/numero-6/recomendacion.html">Semantic Recommender Systems. Analysis of the state of the topic</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/">Recommender Systems (2019/1)</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://sites.google.com/view/chohsieh-research/recommender-systems">Recommender systems &amp; ranking</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://bigdata.oden.utexas.edu/project/large-scale-recommender-systems/">Large scale recommender systems</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Evolution of the Recommender Problem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Rating</td>
+</tr>
+<tr>
+<td align="center">Ranking</td>
+</tr>
+<tr>
+<td align="center">Page Optimization</td>
+</tr>
+<tr>
+<td align="center">Context-aware Recommendations</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://datawarrior.wordpress.com/2019/06/19/strategies-of-recommendation-systems/">Recommendation Strategies</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Collaborative Filtering (CF)</td>
+</tr>
+<tr>
+<td align="center">Content-Based Filtering (CBF)</td>
+</tr>
+<tr>
+<td align="center">Demographic Filtering (DF)</td>
+</tr>
+<tr>
+<td align="center">Knowledge-Based Filtering (KBF)</td>
+</tr>
+<tr>
+<td align="center">Hybrid Recommendation Systems</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evaluation of Recommendation System</strong></p>
+<p>The evaluation of machine learning algorithms depends on the tasks.
+The evaluation of recommendation system can be regarded as some machine learning models such as regression, classification and so on.
+We only take the mathematical convenience into consideration in the following methods.
+<code>Gini index, covering rate</code> and more realistic factors are not discussed in the following content.</p>
+<ul>
+<li><a href="http://fastml.com/evaluating-recommender-systems/">Evaluating recommender systems</a></li>
+<li><a href="https://www.benfrederickson.com/distance-metrics/">Distance Metrics for Fun and Profit</a></li>
+<li><a href="https://github.com/jeanigarcia/recsys2018-evaluation-tutorial">Recsys2018 evaluation: tutorial</a></li>
+</ul>
+<h2 id="collaborative-filtering">Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permanent link"></a></h2>
+<p>There are 3 kinds of collaborative filtering: user-based, item-based and model-based collaborative filtering.</p>
+<p>The user-based methods are based on the similarities of users. If user ${u}$ and ${v}$ are very similar friends, we may recommend the items which user ${u}$ bought to the user ${v}$ and explains it that your friends also bought it.</p>
+<p>The item-based methods are based on the similarity of items. If one person added a brush to shopping-list, it is reasonable to recommend some toothpaste to him or her. And we can explain that you bought item $X$ and the people who bought $X$ also bought $Y$.
+And we focus on the model-based collaborative filtering.</p>
+<ul>
+<li><a href="https://www.cnblogs.com/ECJTUACM-873284962/p/8729010.html">协同过滤详解</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html">深入推荐引擎相关算法 - 协同过滤</a></li>
+</ul>
+<h3 id="matrix-completion">Matrix Completion<a class="headerlink" href="#matrix-completion" title="Permanent link"></a></h3>
+<p>Matrix completion is to complete the matrix $X$ with missing elements, such as</p>
+<p>$$
+\min_{Z} Rank(Z) \
+s.t. \sum_{(i,j):Observed}(Z_{(i,j)}-X_{(i,j)})^2\leq \delta
+$$</p>
+<p>Note that the rank of a matrix is not easy or robust  to compute.</p>
+<p>We can apply <a href="http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf">customized PPA</a> to matrix completion problem</p>
+<p>$$
+\min { {|Z|}<em _Omega="\Omega">{\ast}} \
+s.t. Z</em> = X_{\Omega}
+$$</p>
+<p>We let ${Y}\in\mathbb{R}^{n\times n}$ be the the Lagrangian multiplier to the constraints $Z_{\Omega} = X_{\Omega}$
+and Lagrange function is
+$$
+L(Z,Y) = {|Z|}<em _Omega="\Omega">{\ast} - Y(Z</em> - X_{\Omega}).
+$$</p>
+<ol>
+<li>Producing $Y^{k+1}$ by
+   $$Y^{k+1}=\arg\max_{Y} {L([2Z^k-Z^{k-1}],Y)-\frac{s}{2}|Y-Y^k|};$$</li>
+<li>Producing $Z^{k+1}$ by
+    $$Z^{k+1}=\arg\min_{Z} {L(Z,Y^{k+1}) + \frac{r}{2}|Z-Z^k|}.$$</li>
+</ol>
+<p><img title = "Netflix DataSet" src=https://pic3.zhimg.com/80/dc9a2b89742a05c3cd2f025105ba1c4a_hd.png width = 80% /></p>
+<p><a href="http://www.jmlr.org/papers/v11/mazumder10a.html">Rahul Mazumder, Trevor Hastie, Robert Tibshirani</a> reformulate it as the following:</p>
+<p>$$
+\min f_{\lambda}(Z)=\frac{1}{2}{|P_{\Omega}(Z-X)|}<em _ast="\ast">F^2 + \lambda {|Z|}</em>
+$$</p>
+<p>where $X$ is the observed matrix, $P_{\Omega}$ is a projector and ${|\cdot|}_{\ast}$ is the nuclear norm of matrix.</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/47716840/answer/110843844">A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION</a></li>
+<li><a href="http://delab.csd.auth.gr/papers/RecSys2016s.pdf">Matrix and Tensor Decomposition in Recommender Systems</a></li>
+<li><a href="http://www.princeton.edu/~yc5/ele538b_sparsity/lectures/matrix_recovery.pdf">Low-Rank Matrix Recovery</a></li>
+<li><a href="https://users.ece.cmu.edu/~yuejiec/ece18898G_notes/ece18898g_nonconvex_lowrank_recovery.pdf">ECE 18-898G: Special Topics in Signal Processing: Sparsity, Structure, and Inference Low-rank matrix recovery via nonconvex optimization</a></li>
+</ul>
+<p><img title = "MMM" src=https://pic3.zhimg.com/80/771b16ac7e7aaeb50ffd8a8f5cf4e582_hd.png width = 80% /></p>
+<ul>
+<li><a href="http://sunju.org/research/nonconvex/">Matrix Completion/Sensing as NonConvex Optimization Problem</a></li>
+<li><a href="http://statweb.stanford.edu/~candes/papers/MatrixCompletion.pdf">Exact Matrix Completion via Convex Optimization</a></li>
+<li><a href="http://statweb.stanford.edu/~candes/papers/SVT.pdf">A SINGULAR VALUE THRESHOLDING ALGORITHM FOR MATRIX COMPLETION</a></li>
+<li><a href="http://maths.nju.edu.cn/~hebma/Talk/Unified_Framework.pdf">Customized PPA for convex optimization</a></li>
+<li><a href="http://www.convexoptimization.com/wikimization/index.php/Matrix_Completion.m">Matrix Completion.m</a></li>
+</ul>
+<h3 id="maximum-margin-matrix-factorization">Maximum Margin Matrix Factorization<a class="headerlink" href="#maximum-margin-matrix-factorization" title="Permanent link"></a></h3>
+<blockquote>
+<p>A  novel approach to collaborative prediction is presented, using low-norm instead of low-rank factorizations. The approach is inspired by, and has strong connections to, large-margin linear discrimination. We show how to learn low-norm factorizations by solving a semi-definite program, and present generalization error bounds based on analyzing the Rademacher complexity of low-norm factorizations.</p>
+</blockquote>
+<p>Consider the soft-margin learning, where we minimize a trade-off between the trace norm of $Z$ and its
+hinge-loss relative to $X_O$:
+$$
+\min_{Z} { | Z | }<em O="O" _ui_in="(ui)\in">{\Omega} + c \sum</em>\max(0, 1 - Z_{ui}X_{ui}).
+$$</p>
+<p>And it can be rewritten  as  a semi-definite optimization problem (SDP):
+$$
+\min_{A, B} \frac{1}{2}(tr(A)+tr(B))+c\sum_{(ui)\in O}\xi_{ui}, \
+s.t.  \, \begin{bmatrix} A &amp; X \ X^T &amp; B \ \end{bmatrix} \geq 0, Z_{ui}X_{ui}\geq 1- \xi_{ui},
+\xi_{ui}&gt;0 \,\forall ui\in O
+$$
+where $c$ is a trade-off constant.</p>
+<ul>
+<li><a href="https://ttic.uchicago.edu/~nati/Publications/MMMFnips04.pdf">Maximum Margin Matrix Factorization</a></li>
+<li><a href="https://ttic.uchicago.edu/~nati/Publications/RennieSrebroICML05.pdf">Fast Maximum Margin Matrix Factorization for Collaborative Prediction</a></li>
+<li><a href="https://ttic.uchicago.edu/~nati/mmmf/">Maximum Margin Matrix Factorization by Nathan Srebro</a></li>
+</ul>
+<p>This technique is also called <strong>nonnegative matrix factorization</strong>.</p>
+<p>$\color{red}{Note:}$ The data sets we more frequently encounter in collaborative prediction problem are of <code>ordinal ratings</code> $X_{ij} \in {1, 2, \dots, R}$ such as ${1, 2, 3, 4, 5}$.
+To relate the real-valued $Z_{ij}$ to the
+discrete $X_{ij}$. we use $R − 1$ thresholds $\theta_{1}, \dots, \theta_{R-1}$.</p>
+<h3 id="svd-and-beyond">SVD and Beyond<a class="headerlink" href="#svd-and-beyond" title="Permanent link"></a></h3>
+<p>If we have collected user ${u}$&rsquo;s explicit evaluation score to the item ${i}$ ,  $R_{[u][i]}$, and all such data makes up a matrix $R=(R_{[u][i]})$ while the user $u$ cannot evaluate all the item so that the matrix is incomplete and missing much data.
+<strong>SVD</strong> is to factorize the matrix into the multiplication of matrices so that
+$$
+\hat{R} = P^{T}Q.
+$$</p>
+<p>And we can predict the score $R_{[u][i]}$ via
+$$
+\hat{R}<em u_i="u,i">{[u][i]} = \hat{r}</em> = \left<P_u, Q_i\right> = \sum_f p_{u,f} q_{i,f}
+$$</p>
+<p>where $P_u, Q_i$ is the ${u}$-th column of ${P}$ and the ${i}$-th column of ${Q}$, respectively.
+And we can define the cost function</p>
+<p>$$
+C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\hat{r}<em _u_i_:Observed="(u,i):Observed">{u,i})^{2}=\sum</em>(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}\
+\arg\min_{P_u, Q_i} C(P, Q)
+$$</p>
+<p>where $\lambda_u$ is always equal to $\lambda_i$.</p>
+<p>Additionally, we can add regular term into the cost function to void over-fitting</p>
+<p>$$
+C(P,Q) = \sum_{(u,i):Observed}(r_{u,i}-\sum_f p_{u,f}q_{i,f})^{2}+\lambda_u|P_u|^2+\lambda_i|Q_i|^2.
+$$</p>
+<p>It is called <a href="https://www.cs.uic.edu/~liub/KDD-cup-2007/proceedings/Regular-Paterek.pdf">the regularized singular value decomposition</a>  or <strong>Regularized SVD</strong>.</p>
+<p><strong>Funk-SVD</strong> considers the user&rsquo;s preferences or bias.
+It predicts the scores by
+$$
+\hat{r}<em Observed="Observed" _u_i_:="(u,i):">{u,i} = \mu + b_u + b_i + \left&lt; P_u, Q_i \right&gt;
+$$
+where $\mu, b_u, b_i$ is biased mean, biased user, biased item, respectively.
+And the cost function is defined as
+$$
+\min\sum</em>(r_{u,i} - \hat{r}_{u,i})^2 + \lambda (|P_u|^2+|Q_i|^2+|b_i|^2+|b_u|^2).
+$$</p>
+<p><strong>SVD ++</strong> predicts the scores by</p>
+<p>$$
+\hat{r}<em N_u_="N(u)" i_in="i\in">{u,i} = \mu + b_u + b_i + (P_u + |N(u)|^{-0.5}\sum</em> y_i) Q_i^{T}
+$$
+where $y_j$ is the implicit  feedback of item ${j}$ and $N(u)$ is user ${u}$&rsquo;s item set.
+And it can decompose into 3 parts:</p>
+<ul>
+<li>$\mu + b_u + b_i$ is the base-line prediction;</li>
+<li>$\left<P_u, Q_i\right>$ is the SVD of rating matrix;</li>
+<li>$\left&lt;|N(u)|^{-0.5}\sum_{i\in N(u)} y_i, Q_i\right&gt;$ is the implicit feedback where $N(u)$ is user ${u}$&rsquo;s item set, $y_j$ is the implicit feedback of item $j$.</li>
+</ul>
+<p>We learn the values of involved parameters by minimizing the regularized squared error function.</p>
+<ul>
+<li><a href="https://orange3-recommendation.readthedocs.io/en/latest/scripting/rating.html">Biased Regularized Incremental Simultaneous Matrix Factorization@orange3-recommender</a></li>
+<li><a href="https://orange3-recommendation.readthedocs.io/en/latest/widgets/svdplusplus.html">SVD++@orange3-recommender</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1107364">矩阵分解之SVD和SVD++</a></li>
+<li><a href="https://www.bbsmax.com/A/KE5Q0M9ZJL/">SVD++：推荐系统的基于矩阵分解的协同过滤算法的提高</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/42269534">https://zhuanlan.zhihu.com/p/42269534</a></li>
+<li><a href="https://www.cnblogs.com/Xnice/p/4522671.html">使用SVD++进行协同过滤（算法原理部分主要引用自他人）</a></li>
+<li><a href="https://blog.csdn.net/turing365/article/details/80544594">SVD++推荐系统</a></li>
+</ul>
+<h3 id="probabilistic-matrix-factorization">Probabilistic Matrix Factorization<a class="headerlink" href="#probabilistic-matrix-factorization" title="Permanent link"></a></h3>
+<p>In linear regression, the least square methods is equivalent to maximum likelihood estimation of the error in standard normal distribution.  </p>
+<table>
+<thead>
+<tr>
+<th align="center">Regularized SVD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td _u_i_:Observed="(u,i):Observed" align="center">$C(P,Q) = \sum_</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">Probabilistic model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" u_i="u,i">$r_</td>
+</tr>
+</tbody>
+</table>
+<p>And $\sigma_u^2$ and $\sigma_i^2$ is related with the regular term $\lambda_u$ and $\lambda_u$.</p>
+<p>So that we can reformulate the optimization problem as maximum likelihood estimation.</p>
+<ul>
+<li><a href="http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf">Latent Factor Models for Web Recommender Systems</a></li>
+<li><a href="https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf">Regression-based Latent Factor Models @CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei</a></li>
+<li><a href="https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf">Probabilistic Matrix Factorization</a></li>
+</ul>
+<h3 id="poisson-factorization">Poisson Factorization<a class="headerlink" href="#poisson-factorization" title="Permanent link"></a></h3>
+<p><a href="https://arxiv.org/abs/1311.1704">We develop a Bayesian Poisson matrix factorization model for forming recommendations from sparse user behavior data. These data are large user/item matrices where each user has provided feedback on only a small subset of items, either explicitly (e.g., through star ratings) or implicitly (e.g., through views or purchases). In contrast to traditional matrix factorization approaches, Poisson factorization implicitly models each user&rsquo;s limited attention to consume items. Moreover, because of the mathematical form of the Poisson likelihood, the model needs only to explicitly consider the observed entries in the matrix, leading to both scalable computation and good predictive performance. We develop a variational inference algorithm for approximate posterior inference that scales up to massive data sets. This is an efficient algorithm that iterates over the observed entries and adjusts an approximate posterior over the user/item representations. We apply our method to large real-world user data containing users rating movies, users listening to songs, and users reading scientific papers. In all these settings, Bayesian Poisson factorization outperforms state-of-the-art matrix factorization methods.</a></p>
+<ul>
+<li><a href="https://lkpy.readthedocs.io/en/stable/hpf.html">https://lkpy.readthedocs.io/en/stable/hpf.html</a></li>
+<li><a href="https://hpfrec.readthedocs.io/en/latest/">https://hpfrec.readthedocs.io/en/latest/</a></li>
+<li><a href="http://jakehofman.com/inprint/poisson_recs.pdf">Scalable Recommendation with Hierarchical Poisson Factorization</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?doid=2792838.2800174">Dynamic Poisson Factorization</a></li>
+<li><a href="https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16637">Coupled Poisson Factorization Integrated with User/Item Metadata for Modeling Popular and Sparse Ratings in Scalable Recommendation</a></li>
+<li><a href="https://arxiv.org/pdf/1701.02058.pdf">Coupled Compound Poisson Factorization</a></li>
+<li><a href="https://github.com/mehmetbasbug/ccpf">https://github.com/mehmetbasbug/ccpf</a></li>
+</ul>
+<h3 id="collaborative-less-is-more-filteringclimf">Collaborative Less-is-More Filtering(CliMF)<a class="headerlink" href="#collaborative-less-is-more-filteringclimf" title="Permanent link"></a></h3>
+<p>Sometimes, the information of user we could collect is implicit such as the clicking at some item.</p>
+<p>In <code>CLiMF</code> <a href="https://github.com/gamboviol/climf">the model parameters are learned by directly maximizing the Mean Reciprocal Rank (MRR).</a></p>
+<p>Its objective function is
+$$
+F(U,V)=\sum_{i=1}^{M}\sum_{j=1}^{N} Y_{ij} [\ln g(U_{i}^{T}V_{j})+\sum_{k=1}^{N}\ln (1 - Y_{ij} g(U_{i}^{T}V_{k}-U_{i}^{T}V_{j}))] \-\frac{\lambda}{2}({|U|}^2 + {|V|}^2)
+$$</p>
+<p>where ${M, N}$ is the number of users and items, respectively. Additionally, $\lambda$ denotes the regularization coefficient and $Y_{ij}$ denotes the binary relevance score of item ${j}$ to user ${i}$, i.e., $Y_{ij} = 1$ if item ${j}$ is relevant to user ${j}$, 0 otherwise. The function $g$ is logistic function $g(x)=\frac{1}{1+\exp(-x)}$.
+The vector $U_i$ denotes a d-dimensional latent factor vector for
+user ${i}$, and $V_j$ a d-dimensional latent factor vector for item ${i}$.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Numbers</th>
+<th></th>
+<th align="center">Factors</th>
+<th></th>
+<th align="center">Others</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">$M$</td>
+<td>the number of users</td>
+<td align="center">$U_i$</td>
+<td i="i">latent factor vector for user $</td>
+<td align="center" ij="ij">$Y_</td>
+<td>binary relevance score</td>
+</tr>
+<tr>
+<td align="center">$N$</td>
+<td>the number of items</td>
+<td align="center">$V_j$</td>
+<td i="i">latent factor vector for item $</td>
+<td align="center">$f$</td>
+<td>logistic function</td>
+</tr>
+</tbody>
+</table>
+<p>We use stochastic gradient ascent to maximize the objective function.</p>
+<ul>
+<li><a href="https://orange3-recommendation.readthedocs.io/en/latest/scripting/ranking.html">Collaborative Less-is-More Filtering@orange3-recommendation</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2540581">https://dl.acm.org/citation.cfm?id=2540581</a></li>
+<li><a href="https://github.com/gamboviol/climf">Collaborative Less-is-More Filtering python Implementation</a></li>
+<li><a href="https://www.ijcai.org/Proceedings/13/Papers/460.pdf">CLiMF: Collaborative Less-Is-More Filtering</a></li>
+</ul>
+<h3 id="bellkors-progamatic-chaos">BellKor&rsquo;s Progamatic Chaos<a class="headerlink" href="#bellkors-progamatic-chaos" title="Permanent link"></a></h3>
+<p>Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
+The boosting or stacking methods may help us to enhance these methods.</p>
+<blockquote>
+<p>A key to achieving highly competitive results on the Netflix data is usage of sophisticated blending schemes, which combine the multiple individual predictors into a single final solution. This significant component was managed by our colleagues at the Big Chaos team. Still, we were producing a few blended solutions, which were later incorporated as individual predictors in the final blend. Our blending techniques were applied to three distinct sets of predictors. First is a set of 454 predictors, which represent all predictors of the BellKor’s Pragmatic Chaos team for which we have matching Probe and Qualifying results. Second, is a set of 75 predictors, which the BigChaos team picked out of the 454 predictors by forward selection. Finally, a set of 24 BellKor predictors for which we had matching Probe and Qualifying results. from <a href="https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf">Netflix Prize.</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.netflixprize.com/community/topic_1537.html">https://www.netflixprize.com/community/topic_1537.html</a></li>
+<li><a href="https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf">https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf</a></li>
+<li><a href="https://www.netflixprize.com/assets/GrandPrize2009_BPC_BigChaos.pdf">https://www.netflixprize.com/assets/GrandPrize2009_BPC_BigChaos.pdf</a></li>
+</ul>
+<hr />
+<p>Another advantage of collaborative filtering or matrix completion is that even the element of matrix is binary or implicit information such as</p>
+<ul>
+<li><a href="https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf">BPR: Bayesian Personalized Ranking from Implicit Feedback</a>,</li>
+<li><a href="http://rs1.sze.hu/~gtakacs/download/recsys_2011_draft.pdf">Applications of the conjugate gradient method for implicit feedback collaborative filtering</a>,</li>
+<li><a href="https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/">Intro to Implicit Matrix Factorization</a></li>
+<li><a href="https://github.com/benfred/implicit">a curated list in github.com</a>.</li>
+</ul>
+<h3 id="recommendation-with-implicit-information">Recommendation with Implicit Information<a class="headerlink" href="#recommendation-with-implicit-information" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th align="center">Explicit and implicit feedback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="" src="https://www.msra.cn/wp-content/uploads/2018/06/knowledge-graph-in-recommendation-system-i-8.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/"><strong>WRMF</strong></a> is simply a modification of this loss function:</p>
+<p>$$
+{C(P,Q)}<em _u_i_:Observed="(u,i):Observed">{WRMF} = \sum</em>c_{u,i}(I_{u,i} - \sum_f p_{u,f}q_{i,f})^{2} + \underbrace{\lambda_u|P_u|^2 + \lambda_i|Q_i|^2}_{\text{regularization terms}}.
+$$</p>
+<p>We make the assumption that if a user has interacted at all with an item, then $I_{u,i} = 1$. Otherwise, $I_{u,i} = 0$.
+If we take $d_{u,i}$ to be the number of times a user ${u}$ has clicked on an item ${i}$ on a website, then
+$$c_{u,i}=1+\alpha d_{u,i}$$
+where $\alpha$ is some hyperparameter determined by cross validation.
+The new  term in cost function $C=(c_{u,i})$ is called confidence matrix.</p>
+<p>WRMF does not make the assumption that a user who has not interacted with an item does not like the item. WRMF does assume that that user has a negative preference towards that item, but we can choose how confident we are in that assumption through the confidence hyperparameter.</p>
+<p><a href="http://suo.im/4YCM5f">Alternating least square</a> (<strong>ALS</strong>) can give an analytic solution to this optimization problem by setting the gradients equal to 0s.</p>
+<ul>
+<li><a href="http://yifanhu.net/PUB/cf.pdf">Collaborative Filtering for Implicit Feedback Datasets</a></li>
+<li><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8815704">A Generic Framework for Learning Explicit and Implicit User-Item Couplings in Recommendation</a></li>
+<li><a href="https://www.researchgate.net/publication/324895157_Recommending_Based_on_Implicit_Feedback">Recommending Based on Implicit Feedback</a></li>
+<li><a href="http://proceedings.mlr.press/v63/Dasgupta79.pdf">Fast Collaborative Filtering from Implicit Feedback with Provable Guarantees</a></li>
+<li><a href="https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/">Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models</a></li>
+<li><a href="http://nicolas-hug.com/blog/matrix_facto_1">http://nicolas-hug.com/blog/matrix_facto_1</a></li>
+<li><a href="http://nicolas-hug.com/blog/matrix_facto_2">http://nicolas-hug.com/blog/matrix_facto_2</a></li>
+<li><a href="http://nicolas-hug.com/blog/matrix_facto_3">http://nicolas-hug.com/blog/matrix_facto_3</a></li>
+<li><a href="https://github.com/Mendeley/mrec">A recommender systems development and evaluation package by Mendeley</a></li>
+<li><a href="https://mendeley.github.io/mrec/">https://mendeley.github.io/mrec/</a></li>
+<li><a href="https://github.com/benfred/implicit">Fast Python Collaborative Filtering for Implicit Feedback Datasets</a></li>
+<li><a href="https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/">Alternating Least Squares Method for Collaborative Filtering</a></li>
+<li><a href="http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/">Implicit Feedback and Collaborative Filtering</a></li>
+<li><a href="https://www.benfrederickson.com/fast-implicit-matrix-factorization/">Faster Implicit Matrix Factorization</a></li>
+<li><a href="https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/">CUDA Tutorial: Implicit Matrix Factorization on the GPU</a></li>
+<li><a href="https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf">BPR: Bayesian Personalized Ranking from Implicit Feedback</a></li>
+<li><a href="http://yifanhu.net/PUB/cf.pdf">Collaborative Filtering for Implicit Feedback Datasets</a></li>
+<li><a href="http://webia.lip6.fr/~gallinar/gallinari/uploads/Teaching/WSDM2014-rendle.pdf">Improving Pairwise Learning for Item Recommendation from Implicit Feedback</a></li>
+<li><a href="https://github.com/skywaLKer518/A-Recsys">A-RecSys : a Tensorflow Toolkit for Implicit Recommendation Tasks</a></li>
+<li><a href="http://lyst.github.io/lightfm/docs/examples/warp_loss.html">http://lyst.github.io/lightfm/docs/examples/warp_loss.html</a></li>
+</ul>
+<hr />
+<ul>
+<li><a href="https://www.wikiwand.com/en/Matrix_factorization_(recommender_systems)}">Matrix factorization for recommender system@Wikiwand</a></li>
+<li><a href="http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html">http://www.cnblogs.com/DjangoBlog/archive/2014/06/05/3770374.html</a></li>
+<li><a href="https://www.ethanrosenthal.com/2016/11/07/implicit-mf-part-2/">Learning to Rank Sketchfab Models with LightFM</a></li>
+<li><a href="https://www.benfrederickson.com/matrix-factorization/">Finding Similar Music using Matrix Factorization</a></li>
+<li><a href="https://core.ac.uk/display/23873231">Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?</a></li>
+</ul>
+<h3 id="inductive-matrix-completion">Inductive Matrix Completion<a class="headerlink" href="#inductive-matrix-completion" title="Permanent link"></a></h3>
+<p>One possible improvement of this cost function is that we may design more appropriate loss function other than the squared  error function.</p>
+<p><img alt="utexas.edu" src="http://bigdata.ices.utexas.edu/wp-content/uploads/2015/09/IMC.png" /></p>
+<p><strong>Inductive Matrix Completion (IMC)</strong> is an algorithm for recommender systems with side-information of users and items. The IMC formulation incorporates features associated with rows (users) and columns (items) in matrix completion, so that it enables predictions for users or items that were not seen during training, and for which only features are known but no dyadic information (such as ratings or linkages).</p>
+<p>IMC assumes that the associations matrix is generated by applying feature vectors associated with
+its rows as well as columns to a low-rank matrix ${Z}$.
+The goal is to recover ${Z}$ using observations from ${P}$.</p>
+<p>The  inputs $x_i, y_j$ are feature vectors.
+The entry $P_{(i, j)}$ of the matrix is modeled as $P_{(i, j)}=x_i^T Z  y_j$ and ${Z}$ is to recover in the form of $Z=WH^T$.</p>
+<p>$$
+\min \sum_{(i,j)\in \Omega}\ell(P_{(i,j)}, x_i^T W H^T y_j) + \frac{\lambda}{2}(| W |^2+| H |^2)
+$$
+The loss function $\ell$ penalizes the deviation of estimated entries from the observations.
+And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logistic error $\ell(a,b) = \log(1 + \exp(-ab))$.</p>
+<ul>
+<li><a href="http://bigdata.ices.utexas.edu/software/inductive-matrix-completion/">Inductive Matrix Completion for Recommender Systems with Side-Information</a></li>
+<li><a href="http://www.cs.utexas.edu/users/inderjit/public_papers/imc_bioinformatics14.pdf">Inductive Matrix Completion for Predicting Gene-Diseasev Associations</a></li>
+</ul>
+<p><strong>More on Matrix Factorization</strong></p>
+<ul>
+<li><a href="https://sites.google.com/site/igorcarron2/matrixfactorizations">The Advanced Matrix Factorization Jungle</a></li>
+<li><a href="http://www.ams.org/publicoutreach/feature-column/fc-2019-03">Non-negative Matrix Factorizations</a></li>
+<li><a href="http://people.eecs.berkeley.edu/~yima/">http://people.eecs.berkeley.edu/~yima/</a></li>
+<li><a href="http://people.eecs.berkeley.edu/~yima/matrix-rank/home.html">New tools for recovering low-rank matrices from incomplete or corrupted observations by Yi Ma@UCB</a></li>
+<li><a href="https://www.cs.cmu.edu/~muli/file/difacto.pdf">DiFacto — Distributed Factorization Machines</a></li>
+<li><a href="https://sinews.siam.org/Details-Page/learning-with-nonnegative-matrix-factorizations">Learning with Nonnegative Matrix Factorizations</a></li>
+<li><a href="http://www.princeton.edu/~yc5/publications/NcxOverview_Arxiv.pdf">Nonconvex Optimization Meets Low-Rank Matrix Factorization: An Overview</a></li>
+<li><a href="https://www.princeton.edu/~yc5/slides/itw2018_tutorial.pdf">Taming Nonconvexity in Information Science, tutorial at ITW 2018.</a></li>
+<li><a href="https://user.eng.umd.edu/~smiran/Allerton16.pdf">Nonnegative Matrix Factorization by Optimization on the Stiefel Manifold with SVD Initialization</a></li>
+<li><a href="http://swoh.web.engr.illinois.edu/software/optspace_v1/papers.html">Matrix and Tensor Completion Algorithms</a></li>
+<li><a href="https://www.math.ucla.edu/~wotaoyin/papers/tmac_tensor_recovery.html">Parallel matrix factorization for low-rank tensor completion</a></li>
+</ul>
+<hr />
+<h3 id="factorization-machinesfm">Factorization Machines(FM)<a class="headerlink" href="#factorization-machinesfm" title="Permanent link"></a></h3>
+<p>The matrix completion used in recommender system are linear combination of some features such as regularized SVD and they only take the user-user interaction and item-item similarity.
+<code>Factorization Machines(FM)</code> is inspired from previous factorization models.
+It represents each feature an embedding vector, and models the second-order feature interactions:
+$$
+\hat{y}
+= w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\
+= \underbrace{w_0  + \left<w, x\right>}<em i="1">{\text{First-order: Linear Regression}} + \underbrace{\sum</em>^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j}_{\text{Second-order: pair-wise interactions between features}}
+$$</p>
+<p>where the model parameters that have to be estimated are
+$$
+w_0 \in \mathbb{R}, w\in\mathbb{R}^n, V\in\mathbb{R}^{n\times k}.
+$$</p>
+<p>And $\left&lt;\cdot,\cdot\right&gt;$ is the dot (inner) product of two vectors so that $\left<v_i, v_j\right>=\sum_{f=1}^{k}v_{i,f} \cdot v_{j,f}$.
+A row $v_i$ within ${V}$ describes the ${i}$-th latent variable with ${k}$ factors for $x_i$.</p>
+<p>And the linear regression $w_0 + \sum_{i=1}^{n} w_i x_i$ is called <code>the first order part</code>; the pair-wise interactions between features
+$\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is called the <code>second order part</code>.</p>
+<p>However, why we call it <code>factorization machine</code>? Where is the <em>factorization</em>?
+If ${[W]}<em ij="ij">{ij}=w</em>= \left<v_i, v_j\right>$, $W=V V^T$.</p>
+<p>In order to reduce the computation complexity, the second order part $\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is rewritten in the following form
+$$\frac{1}{2}\sum_{l=1}^{k}{[\sum_{i=1}^{n}(v_{il}x_i))]^2-\sum_{i=1}^{n}(v_{il}x_i)^2}.$$</p>
+<ul>
+<li><a href="https://blog.csdn.net/g11d111/article/details/77430095">FM算法（Factorization Machine）</a></li>
+<li><a href="https://www.cnblogs.com/pinard/p/6370127.html">分解机(Factorization Machines)推荐算法原理 by 刘建平Pinard</a></li>
+<li><a href="https://getstream.io/blog/factorization-recommendation-systems/">Factorization Machines for Recommendation Systems</a></li>
+<li><a href="http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/">第09章：深入浅出ML之Factorization家族</a></li>
+<li><a href="https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf">Factorization Machines</a></li>
+<li><a href="https://github.com/geffy/tffm">TensorFlow implementation of an arbitrary order Factorization Machine</a></li>
+</ul>
+<h3 id="field-aware-factorization-machineffm">Field-aware Factorization Machine(FFM)<a class="headerlink" href="#field-aware-factorization-machineffm" title="Permanent link"></a></h3>
+<p>In FMs, every feature has only one latent vector to learn the latent effect with any other features.
+In FFMs, each feature has several latent vectors. Depending on the field of other features, one of them is used to do the inner product.
+Mathematically,
+$$
+\hat{y}=\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_{j_1,f_2}, v_{j_2,f_1}\right> x_{j_1} x_{j_2}
+$$
+where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.</p>
+<ul>
+<li><a href="https://www.acemap.info/author/page?AuthorID=7E61F31B">Yuchin Juan at ACEMAP</a></li>
+<li><a href="https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf">Field-aware Factorization Machines for CTR Prediction</a></li>
+<li><a href="https://blog.csdn.net/mmc2015/article/details/51760681">https://blog.csdn.net/mmc2015/article/details/51760681</a></li>
+</ul>
+<h3 id="beyond-matrix-completion">Beyond Matrix Completion<a class="headerlink" href="#beyond-matrix-completion" title="Permanent link"></a></h3>
+<p>There are 2 common techniques in recommender systems:</p>
+<ol>
+<li>The goal of <code>matrix factorization</code> techniques in RS is to determine a low-rank approximation of the user-item rating matrix by decomposing it into a product of (user and item) matrices of lower dimensionality (latent factors).</li>
+<li>The idea of <code>ensemble methods</code> is to combine multiple alternative machine learning models to obtain more accurate predictions.</li>
+</ol>
+<p>There are 2 disadvantages of Matrix Completion:
+1. $Postdiction \not= prediction$
+   - Need initial post data
+   - Predict poorly on a random set of items the user has not rated.
+   - Repeated recommendation of purchased items
+   - The evaluation method of Netflix Prize is misleading. RMSE(regression) vs Rank-based measures(sorting)
+2. Quality factors beyond accuracy
+   - Introduce why we use the quality factors:
+   - Novelty, diversity and unexpectedness(How to recommend new things to users exactly)
+   - Depend on context and different problems
+   - Interact with users: conversational recommender systems
+   - Example of context and interaction:To Be Continued: Helping you find shows to continue watching on Netflix(search the “context”)
+   - Manipulation resistance
+   - Recommendation is optimal to sellers not users - transparency and explanation strategy (nearly a moral problem).</p>
+<p><strong>From Algorithms to Systems</strong></p>
+<p>Beyond the computer science perspective.</p>
+<p>Putting the user back in the loop.</p>
+<p>Toward a more comprehensive characterization of the recommendation task.</p>
+<hr />
+<p><a href="http://www.ueo-workshop.com/invited-speakers/">Collaborative filtering has become a key tool in recommender systems. The Netflix competition was instrumental in this context to further development of scalable tools. At its heart lies the minimization of the Root Mean Squares Error (RMSE) which helps to decide upon the quality of a recommender system. Moreover, minimizing the RMSE comes with desirable guarantees of statistical consistency. In this talk I make the case that RMSE minimization is a poor choice for a number of reasons: firstly, review scores are anything but Gaussian distributed, often exhibiting asymmetry and bimodality in their scores. Secondly, in a retrieval setting accuracy matters primarily for the top rated items. Finally, such ratings are highly context dependent and should only be considered in interaction with a user. I will show how this can be accomplished easily by relatively minor changes to existing systems.</a></p>
+<ul>
+<li><a href="https://www.researchgate.net/project/Proactive-Recommendation-Delivery">https://www.researchgate.net/project/Proactive-Recommendation-Delivery</a></li>
+<li><a href="https://www.ijert.org/beyond-matrix-completion-of-the-traditional-recommender-system">Beyond Matrix Completion of the traditional Recommender System</a></li>
+<li><a href="https://www.researchgate.net/publication/309600906_Recommender_systems---_beyond_matrix_completion">Recommender systems&mdash;: Recommender systems&mdash;: beyond matrix completion</a></li>
+<li><a href="https://typewind.github.io/2017/04/05/rsbmc-notes/">Notes of &ldquo;Recommender Systems - Beyond Matrix Completion&rdquo;</a></li>
+<li><a href="http://people.stern.nyu.edu/atuzhili/pdf/TKDE-Paper-as-Printed.pdf">Toward the Next Generation of Recommender Systems: A Survey of the State-of-the-Art and Possible Extensions</a></li>
+</ul>
+<h2 id="deep-learning-for-recommender-system">Deep Learning for Recommender System<a class="headerlink" href="#deep-learning-for-recommender-system" title="Permanent link"></a></h2>
+<p>Deep learning is powerful in processing visual and text information so that it helps to find the interests of users such as
+<a href="http://www.cnblogs.com/rongyux/p/8026323.html">Deep Interest Network</a>, <a href="https://www.jianshu.com/p/b4128bc79df0">xDeepFM</a>  and more.</p>
+<p>Deep learning models for recommender system may come from the restricted Boltzman machine.
+And deep learning models are powerful information extractors.
+Deep learning is really popular in recommender system such as <a href="https://github.com/maciejkula/spotlight">spotlight</a>.</p>
+<p>What is the role deep learning plays in recommender system? At one hand, deep learning helps to match the user and items based on the history of their interactions such as <code>deep matching</code> and <code>deep collaborative learning</code>. 
+In mathematics, it is a function that evaluates the how likely the user would interact with the items in some context: $f(X_U, X_I, X_C)$ where $X_U, X_I, X_C$ is the features of user, item and context, respectively.
+At another hand, deep learning leads a role as one representation methods to embedded high dimensional sparse data into semantics space.</p>
+<ul>
+<li><a href="https://daiwk.github.io/assets/Batmaz2018_Article_AReviewOnDeepLearningForRecomm.pdf">A review on deep learning for recommender systems: challenges and remedies</a></li>
+<li><a href="https://github.com/facebookresearch/dlrm">Deep Learning Recommendation Model for Personalization and Recommendation Systems</a></li>
+<li><a href="http://tw991.github.io/">http://tw991.github.io/</a></li>
+<li><a href="https://dlp-kdd.github.io/">https://dlp-kdd.github.io/</a></li>
+<li><a href="https://recsys.acm.org/recsys17/workshops/">https://recsys.acm.org/recsys17/workshops/</a></li>
+<li><a href="https://recsys.acm.org/recsys17/dlrs/">https://recsys.acm.org/recsys17/dlrs/</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=3125486">https://dl.acm.org/citation.cfm?id=3125486</a></li>
+<li><a href="https://dlp-kdd.github.io/">The 1st International Workshop on Deep Learning Practice for High-Dimensional Sparse Data with KDD 2019 (DLP-KDD 2019）</a></li>
+<li><a href="https://recsys.acm.org/recsys19/session-3/">https://recsys.acm.org/recsys19/session-3/</a></li>
+</ul>
+<h3 id="restricted-boltzmann-machines-for-collaborative-filteringrbm">Restricted Boltzmann Machines for Collaborative Filtering(RBM)<a class="headerlink" href="#restricted-boltzmann-machines-for-collaborative-filteringrbm" title="Permanent link"></a></h3>
+<p>Let ${V}$ be a $K\times m$ observed binary indicator matrix with $v_i^k = 1$ if the user rated item ${i}$ as ${k}$ and ${0}$ otherwise.
+We also let $h_j$, $j = 1, \dots, F,$ be the binary values of hidden (latent) variables, that can be thought of as representing
+stochastic binary features that have different values for different users.</p>
+<p>We use a conditional multinomial distribution (a “softmax”) for modeling each column of the observed
+&ldquo;visible&rdquo; binary rating matrix ${V}$ and a conditional
+Bernoulli distribution for modeling &ldquo;hidden&rdquo; user features <em>${h}$</em>:
+$$
+p(v_i^k = 1 \mid h) = \frac{\exp(b_i^k + \sum_{j=1}^{F} h_j W_{i,j}^{k})}{\sum_{l=1}^{K}\exp( b_i^k + \sum_{j=1}^{F} h_j W_{i, j}^{l})} \
+p( h_j = 1 \mid V) = \sigma(b_j + \sum_{i=1}^{m}\sum_{k=1}^{K} v_i^k W_{i,j}^k)
+$$
+where $\sigma(x) = \frac{1}{1 + exp(-x)}$ is the logistic function, $W_{i,j}^{k}$ is is a symmetric interaction parameter between feature
+${j}$ and rating ${k}$ of item ${i}$, $b_i^k$ is the bias of rating ${k}$ for item ${i}$, and $b_j$ is the bias of feature $j$.</p>
+<p>The marginal distribution over the visible ratings ${V}$ is
+$$
+p(V) = \sum_{h}\frac{\exp(-E(V,h))}{\sum_{V^{\prime},h^{\prime}} \exp(-E(V^{\prime},h^{\prime}))}
+$$
+with an &ldquo;energy&rdquo; term given by:</p>
+<p>$$
+E(V,h) = -\sum_{i=1}^{m}\sum_{j=1}^{F}\sum_{k=1}^{K}W_{i,j}^{k} h_j v_i^k - \sum_{i=1}^{m}\sum_{k=1}^{K} v_i^k b_i^k -\sum_{j=1}^{F} h_j b_j.
+$$
+The items with missing ratings do not make any contribution to the energy function</p>
+<p>The parameter updates required to perform gradient ascent in the log-likelihood  over the visible ratings ${V}$ can be obtained
+$$
+\Delta W_{i,j}^{k} = \epsilon \frac{\partial\log(p(V))}{\partial W_{i,j}^{k}}
+$$
+where $\epsilon$ is the learning rate.
+The authors put a <code>Contrastive Divergence</code> to approximate the gradient.</p>
+<p>We can also model “hidden” user features $h$ as Gaussian latent variables:
+$$
+p(v_i^k = 1 | h) = \frac{\exp(b_i^k+\sum_{j=1}^{F}h_j W_{i,j}^{k})}{\sum_{l=1}^{K}\exp(b_i^k+\sum_{j=1}^{F}h_j W_{i,j}^{l})} \
+p( h_j = 1 | V) = \frac{1}{\sqrt{2\pi}\sigma_j} \exp(\frac{(h - b_j -\sigma_j \sum_{i=1}^{m}\sum_{k=1}^{K} v_i^k W_{i,j}^k)^2}{2\sigma_j^2})
+$$
+where $\sigma_j^2$ is the variance of the hidden unit ${j}$.</p>
+<p><img title = "RBM " src ="https://raw.githubusercontent.com/adityashrm21/adityashrm21.github.io/master/_posts/imgs/book_reco/rbm.png" width="30%" /></p>
+<ul>
+<li><a href="https://www.cnblogs.com/pinard/p/6530523.html">https://www.cnblogs.com/pinard/p/6530523.html</a></li>
+<li><a href="https://www.cnblogs.com/kemaswill/p/3269138.html">https://www.cnblogs.com/kemaswill/p/3269138.html</a></li>
+<li><a href="https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf">Restricted Boltzmann Machines for Collaborative Filtering</a></li>
+<li><a href="https://adityashrm21.github.io/Book-Recommender-System-RBM/">Building a Book Recommender System using Restricted Boltzmann Machines</a></li>
+<li><a href="http://www.cs.toronto.edu/~fritz/absps/cdmiguel.pdf">On Contrastive Divergence Learning</a></li>
+<li><a href="http://deeplearning.net/tutorial/rbm.html">http://deeplearning.net/tutorial/rbm.html</a></li>
+<li><a href="https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb">RBM notebook form Microsoft</a></li>
+</ul>
+<h3 id="autorec">AutoRec<a class="headerlink" href="#autorec" title="Permanent link"></a></h3>
+<p><a href="http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf">AutoRec</a> is a novel <code>autoencoder</code> framework for collaborative filtering (CF). Empirically, AutoRec’s
+compact and efficiently trainable model outperforms state-of-the-art CF techniques (biased matrix factorization, RBMCF and LLORMA) on the Movielens and Netflix datasets.</p>
+<p>Formally, the objective function for the Item-based AutoRec (I-AutoRec) model is, for regularisation strength $\lambda &gt; 0$,</p>
+<p>$$
+\min_{\theta}\sum_{i=1}^{n} {|r^{i}-h(r^{i}|\theta)|}_{O}^2 +\frac{1}{2}({|W|}_F^{2}+ {|V|}_F^{2})
+$$</p>
+<p>where ${r^{i}\in\mathbb{R}^{d}, i=1,2,\dots,n}$ is partially observed vector and ${| \cdot |}_{o}^2$ means that we only consider the contribution of observed ratings.
+The function $h(r|\theta)$ is  the reconstruction of input $r\in\mathbb{R}^{d}$:</p>
+<p>$$
+h(r|\theta) = f(W\cdot g(Vr+\mu)+b)
+$$</p>
+<p>for for activation functions $f, g$ as described in  dimension reduction. Here $\theta = {W,V,r,b}$.</p>
+<ul>
+<li><a href="https://blog.csdn.net/studyless/article/details/70880829">《AutoRec: Autoencoders Meet Collaborative Filtering》WWW2015 阅读笔记</a></li>
+<li><a href="http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf">AutoRec: Autoencoders Meet Collaborative Filtering</a></li>
+</ul>
+<h3 id="wide-deep-model">Wide &amp; Deep Model<a class="headerlink" href="#wide-deep-model" title="Permanent link"></a></h3>
+<p>The output of this model is
+$$
+P(Y=1|x) = \sigma(W_{wide}^T[x,\phi(x)] + W_{deep}^T \alpha^{(lf)}+b)
+$$
+where the <code>wide</code> part deal with the categorical features such as user demographics and the <code>deep</code> part deal with continuous features.</p>
+<p><img src=https://upload-images.jianshu.io/upload_images/1500965-13fa11d119bb20b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp width=70%/>
+<img src=http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/fnn_pnn_wdl.png width=70%/></p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1606.07792.pdf">https://arxiv.org/pdf/1606.07792.pdf</a></li>
+<li><a href="https://ai.googleblog.com/2016/06/wide-deep-learning-better-together-with.html">Wide &amp; Deep Learning: Better Together with TensorFlow, Wednesday, June 29, 2016</a></li>
+<li><a href="https://www.jianshu.com/p/dbaf2d9d8c94">Wide &amp; Deep</a></li>
+<li><a href="https://www.sohu.com/a/190148302_115128">https://www.sohu.com/a/190148302_115128</a></li>
+</ul>
+<p><img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/></p>
+<h3 id="deep-fm">Deep FM<a class="headerlink" href="#deep-fm" title="Permanent link"></a></h3>
+<p><code>DeepFM</code> ensembles FM and DNN and to learn both second order and higher-order feature interactions:
+$$\hat{y}=\sigma(y_{FM} + y_{DNN})$$
+where $\sigma$ is the sigmoid function so that $\hat{y}\in[0, 1]$ is the predicted CTR, $y_{FM}$ is the output of
+FM component, and $y_{DNN}$ is the output of deep component.</p>
+<p><img src = https://pic3.zhimg.com/v2-c0b871f214bdae6284e98989dc8ac99b_1200x500.jpg width=60%/></p>
+<p>The <strong>FM component</strong> is a factorization machine and the output of FM is the summation of
+an <code>Addition</code> unit and a number of <code>Inner Product</code> units:</p>
+<p>$$
+\hat{y}
+= \left<w, x\right>+\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_i, v_j\right> x_{j_1} x_{j_2}.
+$$</p>
+<p>The <strong>deep component</strong> is a <code>feed-forward neural network</code>, which is used to learn high-order feature interactions. There is a personal guess that the component function in activation function $e^x$ can expand in the polynomials form $e^x=1+x+\frac{x^2}{2!}+\dots,+\frac{x^n}{n!}+\dots$, which include all the order of interactions.</p>
+<p>We would like to point out the two interesting features of this network structure:</p>
+<p>1) while the lengths of different input field vectors can be different, their embeddings are of the same size $(k)$;
+2) the latent feature vectors $(V)$ in FM now server as network weights which are learned and used to compress the input field vectors to the embedding vectors.</p>
+<p>It is worth pointing out that FM component and deep component share the same feature embedding, which brings two important benefits:</p>
+<p>1) it learns both low- and high-order feature interactions from raw features;
+2) there is no need for expertise feature engineering of the input.</p>
+<p><img src=http://kubicode.me/img/Deep-in-out-Wide-n-Deep-Series/deepfm_arch.png width=80% /></p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/27999355">https://zhuanlan.zhihu.com/p/27999355</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25343518">https://zhuanlan.zhihu.com/p/25343518</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/32127194">https://zhuanlan.zhihu.com/p/32127194</a></li>
+<li><a href="https://arxiv.org/pdf/1703.04247.pdf">https://arxiv.org/pdf/1703.04247.pdf</a></li>
+<li><a href="https://blog.csdn.net/John_xyz/article/details/78933253#deep-fm">CTR预估算法之FM, FFM, DeepFM及实践</a></li>
+</ul>
+<h3 id="neural-factorization-machines">Neural Factorization Machines<a class="headerlink" href="#neural-factorization-machines" title="Permanent link"></a></h3>
+<p>$$
+\hat{y} = w_0 + \left<w, x\right> + f(x)
+$$
+where the first and second terms are the linear regression part similar to that for FM, which models global bias of data and weight
+of features. The third term $f(x)$ is the core component of NFM
+for modelling feature interactions, which is a <code>multi-layered feedforward neural network</code>.</p>
+<p><code>B-Interaction Layer</code> including <code>Bi-Interaction Pooling</code> is an innovation in artificial neural network.</p>
+<p><img title="Neu FM" src="https://pic2.zhimg.com/80/v2-c7012d7a76e488643db9911d7588ccbd_hd.jpg" width="70%" /></p>
+<ul>
+<li><a href="http://staff.ustc.edu.cn/~hexn/">http://staff.ustc.edu.cn/~hexn/</a></li>
+<li><a href="https://github.com/hexiangnan/neural_factorization_machine">https://github.com/hexiangnan/neural_factorization_machine</a></li>
+<li><a href="https://www.infosec-wiki.com/?p=394011">LibRec 每周算法：NFM (SIGIR&lsquo;17)</a></li>
+</ul>
+<h3 id="attentional-factorization-machines">Attentional Factorization Machines<a class="headerlink" href="#attentional-factorization-machines" title="Permanent link"></a></h3>
+<p>Attentional Factorization Machine (AFM) learns the importance of each feature interaction from data via a neural attention network.</p>
+<p>We employ the attention mechanism on feature interactions by performing a weighted sum on the interacted vectors:</p>
+<p>$$\sum_{(i, j)} a_{(i, j)}(V_i \odot V_j) x_i x_j$$</p>
+<p>where $a_{i, j}$ is the attention score for feature interaction.</p>
+<p><img src=https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png width=80% /></p>
+<ul>
+<li><a href="https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf">https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf</a></li>
+<li><a href="http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89">http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89</a></li>
+</ul>
+<h3 id="xdeepfm">xDeepFM<a class="headerlink" href="#xdeepfm" title="Permanent link"></a></h3>
+<p>It mainly consists of 3 parts: <code>Embedding Layer</code>, <code>Compressed Interaction Network(CIN)</code> and <code>DNN</code>.</p>
+<p><img title="xDeepFM" src="https://www.msra.cn/wp-content/uploads/2018/08/kdd-2018-xdeepfm-5.png" width="60%" /></p>
+<p><img src="http://kubicode.me/img/eXtreme-Deep-Factorization-Machine/CIN-Network.png" width="80%" /></p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> <a href="https://www.msra.cn/zh-cn/news/features/kdd-2018-xdeepfm">KDD 2018 | 推荐系统特征构建新进展：极深因子分解机模型</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://arxiv.org/abs/1803.05170">xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://arxiv.org/abs/1803.05170">https://arxiv.org/abs/1803.05170</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://kubicode.me/2018/09/17/Deep%20Learning/eXtreme-Deep-Factorization-Machine/">据说有RNN和CNN结合的xDeepFM</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.jianshu.com/p/b4128bc79df0">推荐系统遇上深度学习(二十二)&ndash;DeepFM升级版XDeepFM模型强势来袭！</a></li>
+</ul>
+<h3 id="repeatnet">RepeatNet<a class="headerlink" href="#repeatnet" title="Permanent link"></a></h3>
+<p><img title="Repeat Net" src="http://kubicode.me/img/More-Session-Based-Recommendation/repeatnet_arch.png" width="70%"/></p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1806.08977.pdf">https://arxiv.org/pdf/1806.08977.pdf</a></li>
+<li><a href="https://github.com/PengjieRen/RepeatNet">https://github.com/PengjieRen/RepeatNet</a></li>
+</ul>
+<hr />
+<ul>
+<li><a href="https://github.com/hwwang55/DKN">Deep Knowledge-aware Network for News Recommendation</a></li>
+<li><a href="https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf">https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf</a></li>
+<li><a href="https://www.cnblogs.com/pinard/p/6370127.html">https://www.cnblogs.com/pinard/p/6370127.html</a></li>
+<li><a href="https://www.jianshu.com/p/6f1c2643d31b">https://www.jianshu.com/p/6f1c2643d31b</a></li>
+<li><a href="https://blog.csdn.net/John_xyz/article/details/78933253">https://blog.csdn.net/John_xyz/article/details/78933253</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/38613747">https://zhuanlan.zhihu.com/p/38613747</a></li>
+<li><a href="https://amundtveit.com/2016/11/20/recommender-systems-with-deep-learning/">Recommender Systems with Deep Learning</a></li>
+<li><a href="http://kubicode.me/2018/10/25/Deep%20Learning/More-Session-Based-Recommendation/">深度学习在序列化推荐中的应用</a></li>
+<li><a href="http://kubicode.me/2018/02/23/Deep%20Learning/Deep-in-out-Factorization-Machines-Series/">深入浅出 Factorization Machine 系列</a></li>
+<li><a href="http://lipixun.me/2018/02/01/youtube">论文快读 - Deep Neural Networks for YouTube Recommendations</a></li>
+</ul>
+<h3 id="deep-matrix-factorization">Deep Matrix Factorization<a class="headerlink" href="#deep-matrix-factorization" title="Permanent link"></a></h3>
+<p><a href="https://iopscience.iop.org/article/10.1088/1742-6596/1060/1/012001">Matrix Factorization is a widely used collaborative filtering method in recommender systems. However, most of them are under the assumption that the rating data is missing at random (MAR), which may not be very common. For some users, they may only rate those movies they like, so the inferences will be biased in previous models. In this paper, we proposed a deep matrix factorization method based on missing not at random (MNAR) assumption. As far as we know, this model firstly uses deep learning method to address MNAR issue. The model consists of a complete data model (CDM) and a missing data model (MDM), which are both learned by neural networks. The CDM is nonlinearly determined by two factors, the user latent features and item latent features like other matrix factorization methods. And the MDM also use these two factors but taking the rating value as extra information while training. We used variational Bayesian inference to generate the posterior distribution of our proposed model. Through extensive experiments on different kind of datasets, our proposed model produce gains in some widely used metrics, comparing with several state-of-the-art models. We also explore the performance of our model within different experimental settings.</a></p>
+<ul>
+<li><a href="https://www.ijcai.org/proceedings/2017/0447.pdf">Deep Matrix Factorization Models for Recommender Systems</a></li>
+<li><a href="https://iopscience.iop.org/article/10.1088/1742-6596/1060/1/012001">Deep Matrix Factorization for Recommender Systems with Missing Data not at Random</a></li>
+</ul>
+<h3 id="deep-geometric-matrix-completion">Deep Geometric Matrix Completion<a class="headerlink" href="#deep-geometric-matrix-completion" title="Permanent link"></a></h3>
+<p>It’s easy to observe how better matrix completions can be achieved by considering the sparse matrix as defined over two different graphs:
+a user graph and an item graph. From a signal processing point of view, the matrix ${X}$
+can be considered as a bi-dimensional signal defined over two distinct domains.
+Instead of recurring to multigraph convolutions realized over the entire matrix ${X}$, two
+independent single-graph GCNs (graph convolution networks) can be applied on matrices ${W}$ and ${H}$.</p>
+<p>Given the aforementioned multi-graph convolutional layers,
+the last step that remains concerns the choice of the architecture to use for reconstructing the missing information.
+Every (user, item) pair in the multi-graph approach and every user/item in the separable
+one present in this case an independent state, which is updated (at every step) by means of the features produced by
+the selected GCN.</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/305395488/answer/554847680">graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎</a></li>
+<li><a href="https://arxiv.org/abs/1704.06803">https://arxiv.org/abs/1704.06803</a></li>
+<li><a href="http://www.ipam.ucla.edu/abstract/?tid=14552&amp;pcode=DLT2018">Deep Geometric Matrix Completion: a Geometric Deep Learning approach to Recommender Systems</a></li>
+<li><a href="http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf">Talk: Deep Geometric Matrix Completion</a></li>
+</ul>
+<h3 id="collaborative-deep-learning-for-recommender-systems">Collaborative Deep Learning for Recommender Systems<a class="headerlink" href="#collaborative-deep-learning-for-recommender-systems" title="Permanent link"></a></h3>
+<p><a href="http://www.wanghao.in/CDL.htm">Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.</a></p>
+<p>Given part of the ratings in ${R}$ and the content information $X_c$, the problem is to predict the other ratings in ${R}$,
+where row ${j}$ of the content information matrix $X_c$ is the bag-of-words vector $Xc;j{\ast}$ for item ${j}$ based on a vocabulary of size ${S}$.</p>
+<p><code>Stacked denoising autoencoders(SDAE)</code> is a feedforward neural network for learning
+representations (encoding) of the input data by learning to predict the clean input itself in the output.
+Using the Bayesian SDAE as a component, the generative
+process of CDL is defined as follows:
+1. For each layer ${l}$ of the SDAE network,
+    * For each column ${n}$ of the weight matrix $W_l$, draw
+    $$W_l;{\ast}n \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
+    * Draw the bias vector
+    $$b_l \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
+    * For each row ${j}$ of $X_l$, draw
+    $$X_{l;j\ast}\sim \mathcal{N}(\sigma(X_{l-1;j\ast}W_l b_l), \lambda_s^{-1} I_{K_l}).$$</p>
+<ol>
+<li>For each item ${j}$,<ul>
+<li>Draw a clean input
+    $$X_{c;j\ast}\sim \mathcal{N}(X_{L, j\ast}, \lambda_n^{-1} I_{K_l}).$$</li>
+<li>Draw a latent item offset vector $\epsilon_j \sim \mathcal{N}(0, \lambda_v^{-1} I_{K_l})$ and then set the latent item vector to be:
+    $$v_j=\epsilon_j+X^T_{\frac{L}{2}, j\ast}.$$</li>
+</ul>
+</li>
+<li>
+<p>Draw a latent user vector for each user ${i}$:
+     $$u_i \sim \mathcal{N}(0, \lambda_u^{-1} I_{K_l}).$$</p>
+</li>
+<li>
+<p>Draw a rating $R_{ij}$ for each user-item pair $(i; j)$:
+  $$R_{ij}\sim \mathcal{N}(u_i^T v_j, C_{ij}^{-1}).$$</p>
+</li>
+</ol>
+<p>Here $\lambda_w, \lambda_s, \lambda_n, \lambda_u$and $\lambda_v$ are hyperparameters and $C_{ij}$ is
+a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R_{ij} = 1$ and $C_{ij} = b$ otherwise).</p>
+<p>And joint log-likelihood of these parameters is
+$$L=-\frac{\lambda_u}{2}\sum_{i} {|u_i|}<em l="l">2^2-\frac{\lambda_w}{2}\sum</em> [{|W_l|}<em j="j">F+{|b_l|}_2^2]\
+-\frac{\lambda_v}{2}\sum</em> {|v_j - X^T_{\frac{L}{2},j\ast}|}<em l="l">2^2-\frac{\lambda_n}{2}\sum</em> {|X_{c;j\ast}-X_{L;j\ast}|}<em l="l">2^2 \
+-\frac{\lambda_s}{2}\sum</em>\sum_{j} {|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}|}<em ij="ij">2^2 -\sum</em> {|R_{ij}-u_i^Tv_j|}_2^2
+$$</p>
+<p>It is not easy to prove that it converges.</p>
+<ul class="task-list">
+<li><a href="http://www.winsty.net/">http://www.winsty.net/</a></li>
+<li><a href="http://www.wanghao.in/">http://www.wanghao.in/</a></li>
+<li><a href="https://www.cse.ust.hk/~dyyeung/">https://www.cse.ust.hk/~dyyeung/</a></li>
+<li><a href="http://www.wanghao.in/CDL.htm">Collaborative Deep Learning for Recommender Systems</a></li>
+<li><a href="https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf">Deep Learning for Recommender Systems</a></li>
+<li><a href="https://github.com/robi56/Deep-Learning-for-Recommendation-Systems">https://github.com/robi56/Deep-Learning-for-Recommendation-Systems</a></li>
+<li><a href="http://www.10tiao.com/html/236/201701/2650688117/2.html">推荐系统中基于深度学习的混合协同过滤模型</a></li>
+<li><a href="http://203.170.84.89/~idawis33/DataScienceLab/publication/nonIID-RS-final.pdf">CoupledCF: Learning Explicit and Implicit User-item Couplings in Recommendation for Deep Collaborative Filtering</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/">Deep Learning Meets Recommendation Systems</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/">Using Keras&rsquo; Pretrained Neural Networks for Visual Similarity Recommendations</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://benanne.github.io/2014/08/05/spotify-cnns.html">Recommending music on Spotify with deep learning</a></li>
+</ul>
+<h3 id="deep-matching-models-for-recommendation">Deep Matching Models for Recommendation<a class="headerlink" href="#deep-matching-models-for-recommendation" title="Permanent link"></a></h3>
+<p>It is essential for the recommender system  to find the item which matches the users&rsquo; demand. Its difference from web search is that recommender system provides item information even if the users&rsquo; demands or generally interests are not provided.
+It sounds like modern crystal ball to read your mind.</p>
+<p>In <a href="http://sonyis.me/paperpdf/frp1159-songA-www-2015.pdf">A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems</a> the authors propose to extract rich features from user’s browsing
+and search histories to model user’s interests. The underlying assumption is that, users’ historical online activities
+reflect a lot about user’s background and preference, and
+therefore provide a precise insight of what items and topics users might be interested in.</p>
+<p>Its training data set and the test data is  ${(\mathrm{X}<em n_1="n+1">i, y_i, r_i)\mid i =1, 2, \cdots, n}$ and $(\mathrm{X}</em>, y_{n+1})$, respectively.
+Matching Model is trained using the training data set: a class of `matching functions’
+$\mathcal F= {f(x, y)}$ is defined, while the value of the function $r(\mathrm{X}, y)\in \mathcal F$ is a real number  a set of numbers $R$ and the $r_{n+1}$ is predicted as  $r_{n+1} = r(\mathrm{X}<em n_1="n+1">{n+1}, y</em>)$.</p>
+<p>The data is assumed to be generated according to the distributions $(x, y) \sim P(X,Y)$, $r \sim P(R \mid X,Y)$ . The goal of
+the learning task is to select a matching function $f (x, y)$ from the class $F$ based on the observation of the training data.
+The learning task, then, becomes the following optimization problem.
+$$\arg\min_{r\in \mathcal F}\sum_{i=1}^{n}L(r_i, r(x_i, y_i))+\Omega(r)$$
+where $L(\cdot, \cdot)$ denotes a loss function and $\Omega(\cdot)$ denotes regularization.</p>
+<p>In fact, the inputs x and y can be instances (IDs), feature vectors, and structured objects, and thus the task can be carried out at instance level, feature level, and structure level.</p>
+<p>And $r(x, y)$ is supposed to be non-negative in some cases.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Framework of Matching</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Output: MLP</td>
+</tr>
+<tr>
+<td align="center">Aggregation: Pooling, Concatenation</td>
+</tr>
+<tr>
+<td align="center">Interaction: Matrix, Tensor</td>
+</tr>
+<tr>
+<td align="center">Representation: MLP, CNN, LSTM</td>
+</tr>
+<tr>
+<td X="X" align="center">Input: ID Vectors $\mathrm</td>
+</tr>
+</tbody>
+</table>
+<p>Sometimes, matching model and ranking model are combined and trained together with pairwise loss.
+Deep Matching models takes the ID vectors and features together as the input to a deep neural network to train the matching scores including <strong>Deep Matrix Factorization, AutoRec, Collaborative Denoising Auto-Encoder, Deep User and Image Feature, Attentive Collaborative Filtering, Collaborative Knowledge Base Embedding</strong>.</p>
+<p><code>semantic-based matching models</code></p>
+<p><img src="https://www.msra.cn/wp-content/uploads/2018/06/knowledge-graph-in-recommendation-system-i-18.png" width="80%"/></p>
+<ul>
+<li><a href="https://sites.google.com/site/nkxujun/">https://sites.google.com/site/nkxujun/</a></li>
+<li><a href="http://sonyis.me/dnn.html">http://sonyis.me/dnn.html</a></li>
+<li><a href="https://akmenon.github.io/">https://akmenon.github.io/</a></li>
+<li><a href="https://sigir.org/sigir2018/program/tutorials/">https://sigir.org/sigir2018/program/tutorials/</a></li>
+<li><a href="http://www.hangli-hl.com/uploads/3/4/4/6/34465961/learning_to_match.pdf">Learning  to Match</a></li>
+<li><a href="http://staff.ustc.edu.cn/~hexn/papers/sigir18-tutorial-deep-matching.pdf">Deep Learning for Matching in Search and Recommendation</a></li>
+<li><a href="https://github.com/NTMC-Community/MatchZoo">Facilitating the design, comparison and sharing of deep text matching models.</a></li>
+<li><a href="http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf">Framework and Principles of Matching Technologies</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf">A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/wwwfp0192-mitra.pdf">Learning to Match using Local and Distributed Representations of Text for Web Search</a></li>
+<li><a href="https://github.com/super-zhangchao/learning-to-match">https://github.com/super-zhangchao/learning-to-match</a></li>
+</ul>
+<h3 id="hyperbolic-recommender-systems">Hyperbolic Recommender Systems<a class="headerlink" href="#hyperbolic-recommender-systems" title="Permanent link"></a></h3>
+<p>Many well-established recommender systems are based on representation learning in Euclidean space.
+In these models, matching functions such as the Euclidean distance or inner product are typically used for computing similarity scores between user and item embeddings.
+<code>Hyperbolic Recommender Systems</code> investigate the notion of learning user and item representations in hyperbolic space.</p>
+<p>Given a user ${u}$ and an item ${v}$ that are both lying in the Poincare ball $B^n$, the distance between two points on <em>P</em> is given by
+$$d_p(x, y)=cosh^{-1}(1+2\frac{|(x-y|^2}{(1-|x|^2)(1-|y|^2)}).$$</p>
+<p><code>Hyperbolic Bayesian Personalized
+Ranking(HyperBPR)</code> leverages BPR pairwise learning to minimize the pairwise ranking loss between the positive and negative items.
+Given a user ${u}$ and an item ${v}$ that are both lying in Poincare ball $B^n$, we take:
+$$\alpha(u, v) = f(d_p(u, v))$$
+where $f(\cdot)$ is simply preferred as a linear function $f(x) = \beta x + c$ with $\beta\in\mathbb{R}$ and $c\in\mathbb{R}$ are scalar parameters and learned along with the network.
+The objective function is defined as follows:
+$$\arg\min_{\Theta} \sum_{i, j, k} -\ln(\sigma{\alpha(u_i, v_j) - \alpha(u_i, v_k)}) + \lambda  {|\Theta|}_2^2$$</p>
+<p>where $(i, j, k)$ is the triplet that belongs to the set ${D}$ that
+contains all pairs of positive and negative items for each
+user; $\sigma$ is the logistic sigmoid function; $\Theta$ represents the model parameters; and $\lambda$ is the regularization parameter.</p>
+<p>The parameters of our model are learned by using <a href="https://arxiv.org/abs/1111.5280"><code>RSGD</code></a>.</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1111.5280">Stochastic gradient descent on Riemannian manifolds</a></li>
+<li><a href="https://arxiv.org/abs/1809.01703">Hyperbolic Recommender Systems</a></li>
+<li><a href="https://arxiv.org/abs/1902.08648v1">Scalable Hyperbolic Recommender Systems</a></li>
+</ul>
+<h2 id="ensemble-methods-for-recommender-system">Ensemble Methods for Recommender System<a class="headerlink" href="#ensemble-methods-for-recommender-system" title="Permanent link"></a></h2>
+<p>The RecSys can be considered as some regression or classification tasks, so that we can apply the ensemble methods to these methods as  <code>BellKor's Progamatic Chaos</code> used the blended solution to win the prize.
+In fact, its essence is bagging or blending, which is one sequential ensemble strategy in order to avoid over-fitting or reduce the variance.</p>
+<p>In this section, the boosting is the focus, which is to reduce the error and boost the performance from a weaker learner.</p>
+<p>There are two common methods to construct a stronger learner from a weaker learner: (1) reweight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting.</p>
+<ul>
+<li><a href="http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf">General Functional Matrix Factorization Using Gradient Boosting</a></li>
+</ul>
+<h3 id="boostfm">BoostFM<a class="headerlink" href="#boostfm" title="Permanent link"></a></h3>
+<p><code>BoostFM</code> integrates boosting into factorization models during the process of item ranking.
+Specifically, BoostFM is an adaptive boosting framework that linearly combines multiple homogeneous component recommender system,
+which are repeatedly constructed on the basis of the individual FM model by a re-weighting scheme.</p>
+<p><strong>BoostFM</strong></p>
+<ul>
+<li><em>Input</em>: The observed context-item interactions or Training Data $S ={(\mathbf{x}_i, y_i)}$ parameters E and T.</li>
+<li><em>Output</em>: The strong recommender $g^{T}$.</li>
+<li>Initialize $Q_{ci}^{(t)}=1/|S|,g^{(0)}=0, \forall (c, i)\in S$.</li>
+<li>for $t = 1 \to T$ do</li>
+<li>
+<ol>
+<li>Create component recommender $\hat{y}^{(t)}$ with $\bf{Q}^{(t)}$ on $\bf S$,$\forall (c,i) \in \bf S$, , i.e., <code>Component Recommender Learning Algorithm</code>;</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Compute the ranking accuracy $E[\hat{r}(c, i, y^{(t)})], \forall (c,i) \in \bf S$;</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Compute the coefficient $\beta_t$,
+ $$ \beta_t = \ln (\frac{\sum_{(c,i) \in \bf S} \bf{Q}^{(t)}<em S="S" _bf="\bf" _c_i_="(c,i)" _in="\in">{ci}{1 + E[\hat{r}(c, i, y^{(t)})]}}{\sum</em> \bf{Q}^{(t)}_{ci}{1-  E[\hat{r}(c, i, y^{(t)})]}})^{\frac{1}{2}} ; $$</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Create the strong recommender $g^{(t)}$,
+  $$ g^{(t)} = \sum_{h=1}^{t} \beta_h \hat{y}^{(t)} ;$$</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Update weight distribution (\bf{Q}^{t+1}),
+  $$ \bf{Q}^{t+1}<em _bf_S="\bf{S" _c_i_in="(c,i)\in">{ci} = \frac{\exp(E[\hat{r}(c, i, y^{(t)})])}{\sum</em>} E[\hat{r}(c, i, y^{(t)})]} ; $$</li>
+</ol>
+</li>
+<li>end for</li>
+</ul>
+<p><strong>Component Recommender</strong></p>
+<p>Naturally, it is feasible to exploit the L2R techniques to optimize Factorization Machines
+(FM). There are two major approaches in the field of L2R, namely, pairwise and listwise approaches.
+In the following, we demonstrate ranking factorization machines with both pairwise and listwise optimization.</p>
+<p><code>Weighted Pairwise FM (WPFM)</code></p>
+<p><code>Weighted ‘Listwise’ FM (WLFM)</code></p>
+<ul>
+<li><a href="http://wnzhang.net/papers/boostfm.pdf">BoostFM: Boosted Factorization Machines for Top-N Feature-based Recommendation</a></li>
+<li><a href="http://wnzhang.net/">http://wnzhang.net/</a></li>
+<li><a href="https://fajieyuan.github.io/">https://fajieyuan.github.io/</a></li>
+<li><a href="https://www.librec.net/luckymoon.me/">https://www.librec.net/luckymoon.me/</a></li>
+<li><a href="http://eprints.gla.ac.uk/135914/7/135914.pdf">The author’s final accepted version.</a></li>
+</ul>
+<h3 id="gradient-boosting-factorization-machines">Gradient Boosting Factorization Machines<a class="headerlink" href="#gradient-boosting-factorization-machines" title="Permanent link"></a></h3>
+<p><code>Gradient Boosting Factorization Machine (GBFM)</code> model is to incorporate feature selection algorithm with Factorization Machines into a unified framework.</p>
+<p><strong>Gradient Boosting Factorization Machine Model</strong></p>
+<blockquote>
+<ul>
+<li><em>Input</em>: Training Data $S ={(\mathbf{x}_i, y_i)}$.</li>
+<li><em>Output</em>: $\hat{y}<em s="1">S =y_0(x) + {\sum}^S</em>\left<v_{si}, v_{sj}\right>$.</li>
+<li>Initialize rating prediction function as $\hat{y}_0(x)$</li>
+<li>for $s = 1 \to S$ do</li>
+<li>
+<ol>
+<li>Select interaction feature $C_p$ and $C_q$ from Greedy Feature Selection Algorithm;</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Estimate latent feature matrices $V_p$ and $V_q$;</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Update  $\hat{y}<em s-1="s-1">s(\mathrm{x}) = \hat{y}</em>(\mathrm{x}) + {\sum}<em C_q="C_q" j_in="j\in">{i\in C_p}{\sum}</em> \mathbb{I}[i,j\in \mathrm{x}]\left<V_{p}^{i}, V_{q}^{j}\right>$</li>
+</ol>
+</li>
+<li>end for</li>
+</ul>
+</blockquote>
+<p>where s is the iteration step of the learning algorithm. At step s, we greedily select two interaction features $C_p$ and $C_q$
+where $\mathbb{I}$ is the indicator function, the value is 1 if the condition holds otherwise 0.</p>
+<p><strong>Greedy Feature Selection Algorithm</strong></p>
+<p>From the view of gradient boosting machine, at each
+step s, we would like to search a function ${f}$ in the function
+space ${F}$ that minimize the objective function:
+$$L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$$</p>
+<p>where $\hat{y}<em s_1="s−1">s(\mathrm{x}) = \hat{y}</em>(\mathrm{x}) + \alpha_s f_s(\mathrm{x})$.</p>
+<p>We heuristically assume that the
+function ${f}$ has the following form:
+$$ f_{\ell}(\mathrm{x})={\prod}<em C__i="C_{i">{t=1}^{\ell} q</em>(t)}(\mathrm{x}) $$
+where the function <em>q</em> maps latent feature
+vector x to real value domain
+$$ q_{C_{i}(t)}(\mathrm{x})=\sum_{j\in C_{i}(t)}\mathbb{I}[j\in \mathrm{x}]w_{t} $$</p>
+<p>It is hard for a general convex loss function $\ell$ to search function ${f}$ to optimize the objective function:
+$L=\sum_{i}\ell(\hat{y}_s(\mathrm{x}_i), y_i)+\Omega(f)$.</p>
+<p>The most common way is to approximate it by least-square
+minimization, i.e., $\ell={| \cdot |}_2^2$. Like in <code>xGBoost</code>, it takes second order Taylor expansion of the loss function $\ell$ and problem isfinalized to find the ${i}$(t)-th feature which:</p>
+<p>$$\arg{\min}<em i="1">{i(t)\in {0, \dots, m}} \sum</em>^{n} h_i(\frac{g_i}{h_i}-f_{t-1}(\mathrm{x}<em C__i="C_{i">i) q</em>(t)}(\mathrm{x}_i))^2 + {|\theta|}_2^2 $$
+where the negativefirst derivative and the second derivative at instance ${i}$ as $g_i$ and $h_i$.</p>
+<ul>
+<li><a href="http://tongzhang-ml.org/papers/recsys14-fm.pdf">Gradient boosting factorization machines</a></li>
+</ul>
+<h4 id="gradient-boosted-categorical-embedding-and-numerical-trees">Gradient Boosted Categorical Embedding and Numerical Trees<a class="headerlink" href="#gradient-boosted-categorical-embedding-and-numerical-trees" title="Permanent link"></a></h4>
+<p><code>Gradient Boosted Categorical Embedding and Numerical Trees (GB-CSENT)</code> is to combine Tree-based Models and Matrix-based Embedding Models in order to handle numerical features and large-cardinality categorical features.
+A prediction is based on:</p>
+<ul>
+<li>Bias terms from each categorical feature.</li>
+<li>Dot-product of embedding features of two categorical features,e.g., user-side v.s. item-side.</li>
+<li>Per-categorical decision trees based on numerical features ensemble of numerical decision trees where each tree is based on one categorical feature.</li>
+</ul>
+<p>In details, it is as following:
+$$
+\hat{y}(x) = \underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}<em U_a_="U(a)" a_i_in="a_i\in">{bias} + \underbrace{(\sum</em> Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }<em CAT-E="CAT-E">{factors}}</em> + \underbrace{\sum_{i=0}^{k} T_{a_i}(b)}_{CAT-NT}.
+$$
+And it is decomposed as the following table.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Ingredients</th>
+<th>Formulae</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Factorization Machines</td>
+<td>$\underbrace{\underbrace{\sum_{i=0}^{k} w_{a_i}}<em U_a_="U(a)" a_i_in="a_i\in">{bias} + \underbrace{(\sum</em> Q_{a_i})^{T}(\sum_{a_i\in I(a)} Q_{a_i}) }<em CAT-E="CAT-E">{factors}}</em>$</td>
+<td>Categorical Features</td>
+</tr>
+<tr>
+<td>GBDT</td>
+<td _sum__i="0">$\underbrace</td>
+<td>Numerical Features</td>
+</tr>
+<tr>
+<td>_________</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_SD_2017-02-22.pdf">http://www.hongliangjie.com/talks/GB-CENT_SD_2017-02-22.pdf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_SantaClara_2017-03-28.pdf">http://www.hongliangjie.com/talks/GB-CENT_SantaClara_2017-03-28.pdf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_Lehigh_2017-04-12.pdf">http://www.hongliangjie.com/talks/GB-CENT_Lehigh_2017-04-12.pdf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_PopUp_2017-06-14.pdf">http://www.hongliangjie.com/talks/GB-CENT_PopUp_2017-06-14.pdf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_CAS_2017-06-23.pdf">http://www.hongliangjie.com/talks/GB-CENT_CAS_2017-06-23.pdf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_Boston_2017-09-07.pdf">http://www.hongliangjie.com/talks/GB-CENT_Boston_2017-09-07.pdf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="http://www.hongliangjie.com/talks/GB-CENT_MLIS_2017-06-06.pdf">Talk: Gradient Boosted Categorical Embedding and Numerical Trees</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="https://qzhao2018.github.io/zhao/publication/zhao2017www.pdf">Paper: Gradient Boosted Categorical Embedding and Numerical Trees</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <a href="https://qzhao2018.github.io/">https://qzhao2018.github.io/</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="adaptive-boosting-personalized-ranking-adabpr">Adaptive Boosting Personalized Ranking (AdaBPR)<a class="headerlink" href="#adaptive-boosting-personalized-ranking-adabpr" title="Permanent link"></a></h3>
+<p><code>AdaBPR (Adaptive Boosting Personalized Ranking)</code> is a boosting algorithm for top-N item recommendation using users&rsquo; implicit feedback.
+In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
+The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.</p>
+<p>Here explicit feedback refers to users&rsquo; ratings to items while implicit feedback is derived
+from users&rsquo; interactions with items, e.g., number of times a user plays a song.</p>
+<p>The primary idea of applying boosting for item recommendation is to learn a set of homogeneous component recommenders and then create an ensemble of the component recommenders to predict users&rsquo; preferences.</p>
+<p>Here, we use a linear combination of component recommenders as the final recommendation model
+$$f=\sum_{t=1}^{T}{\alpha}<em t="t">t f</em>.$$</p>
+<p>In the training process, AdaBPR runs for ${T}$ rounds, and the component recommender $f_t$ is created at t-th round by
+$$
+\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}<em n="1">{u} \exp{-E(\pi(u,i,\sum</em>^{t}{\alpha}<em n="n">n f</em>))}.
+$$</p>
+<p>where the notations are listed as follows:</p>
+<ul>
+<li>$\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms;</li>
+<li>$E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair;</li>
+<li>$\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$;</li>
+<li>$\mathbb{O}$ is the set of all observed user-item interactions;</li>
+<li>${\beta}<em u="u">{u}$ is defined as reciprocal of the number of user $u$&rsquo;s  historical items  ${\beta}</em>=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).</li>
+</ul>
+<hr />
+<ul>
+<li><a href="https://www.ijcai.org/Proceedings/15/Papers/255.pdf">A Boosting Algorithm for Item Recommendation with Implicit Feedback</a></li>
+<li><a href="http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/">The review @Arivin&rsquo;s blog</a></li>
+</ul>
+<h2 id="tree-based-index-and-deep-model-for-recommender-systems">Tree-based Index and Deep Model for Recommender Systems<a class="headerlink" href="#tree-based-index-and-deep-model-for-recommender-systems" title="Permanent link"></a></h2>
+<p><a href="https://arxiv.org/abs/1801.02294">By indexing items in a tree hierarchy and training a user-node preference prediction model satisfying a max-heap like property in the tree, TDM provides logarithmic computational complexity w.r.t. the corpus size, enabling the use of arbitrary advanced models in candidate retrieval and recommendation.</a></p>
+<p>Our purpose, in this paper, is to develop a method to jointly learn the <code>index structure and user preference prediction model</code>. </p>
+<p>Recommendation problem is basically <code>to retrieve a set of most relevant or preferred items for each user request from the entire corpus</code>. In the practice of large-scale recommendation, the algorithm design should strike a balance between accuracy and efficiency.</p>
+<p>The above methods include 2 stages/models: (1) find the preference of the users based on history or other infoamtion; (2) retrive some items according to the predicted preferences.</p>
+<p>TDM uses a tree hierarchy to organize items, and each leaf node in the tree corresponds to an item. Like a max-heap, <code>TDM assumes that each user-node preference is the largest one among the node’s all children’s preferences</code>.
+The main idea is to predict user interests <code>from coarse to fine by traversing tree nodes in a top-down fashion and making decisions for each user-node pair</code>. </p>
+<p>Each item in the corpus is firstly assigned to a leaf node of a tree
+hierarchy $\mathcal{T}$. 
+The non-leaf nodes can be seen as a coarser abstraction of their children. In retrieval, the user information combined with the node to score is firstly vectorized to a user preference representation as the input of a deep neural network $\mathcal{M}$ (e.g. fully connected networks). While retrieving
+for the top-k items (leaf nodes), a <code>top-down beam search strategy</code>
+is carried out level by level.</p>
+<p><img src="https://yqfile.alicdn.com/c8fbcb9f1d76a3d5789aadc5fceb4914eb475c03.png" width="80%" /></p>
+<p>TDM uses a tree as index and creatively proposes a max-heap like probability formulation on the tree, where the user preference for each non-leaf node $n$ in level $l$ is derived as:
+$$p^{(l)}(u \mid n)=\frac{\max_{n_c\in{\text{the children of the node $n$ in the $l+1$ level}}} p^{(l)}(n_c \mid u)}{\alpha^{(l)}}$$</p>
+<p>where $p^{(l)}(u \mid n)$ is the ground truth probability that the user $u$ prefers the node $n$. 
+The above formulation means that the ground truth user-node probability on a node equals to the maximum user-node probability of its children divided by a normalization term. 
+Therefore, the top-k nodes in level $l$ must be contained in the children of top-k nodes in level $l −1$ and the retrieval for top-k leaf items can be restricted to top-k nodes in each layer without losing the accuracy. 
+Based on this, <code>TDM turns the recommendation task into a hierarchical retrieval problem</code>. 
+By a top-down retrieval process, the candidate items are selected gradually from coarse to detailed.</p>
+<p>According to the retrieval process, the recommendation accuracy of TDM is determined by the quality of the user preference model
+$\mathcal M$ and tree index $\mathcal T$. Given n pairs of positive training data $(u_i, c_i)$, which means the user $u_i$ is interested in the target item $c_i$, $\mathcal T$ determines which non-leaf nodes $\mathcal M$ should select to achieve $c_i$ for $u_i$.</p>
+<p>Denote $p (\pi(c_i)|u_i; \pi)$ as user u’s preference probability over
+leaf node $\pi(c_i)$ given a user-item pair $(u_i, c_i)$, where $\pi(·)$ is a projection function that projects an item to a leaf node in $\mathcal T$.
+Note that the projection function $\pi(\cdot)$ actually determines the item hierarchy in the tree. 
+The model $\mathcal M$ is used to estimate and output the user-node preference $\hat{p} (\pi(c_i)|u_i;\theta \pi)$ given $\theta$ as model parameters.
+If the pair $(u_i , c_i)$ is a positive sample, we have the ground truth preference $p (\pi(c_i)|u_i; \pi)=1$. According to the <code>max-heap property</code>,
+the user preference probability of all $π(c_i)$’s ancestor nodes, i.e.,
+${p(b_j (\pi(c_i))|u_i; \pi)}^{l_{max}}<em max="max">{j=0}$ should also be 1, in which $b_j(\cdot)$ is the projection from a node to its ancestor node in level $j$ and $l</em>$ is the max level in $\mathcal T$.
+To fit such a user-node preference distribution, the
+global loss function is formulated as</p>
+<p>$$L(\theta, \mathcal T)= -\sum_{i=1}^n \sum_{j=1}^{l_{max}}\log(\hat{p}(b_j (\pi(c_i))|u_i; \pi) )$$</p>
+<p>where we sum up the negative logarithm of predicted user-node
+preference probability on all the positive training samples and their
+ancestor user-node pairs as the global empirical loss.</p>
+<ul>
+<li><a href="https://github.com/DeepGraphLearning/RecommenderSystems">https://github.com/DeepGraphLearning/RecommenderSystems</a></li>
+<li><a href="https://github.com/DeepGraphLearning">https://github.com/DeepGraphLearning</a></li>
+<li><a href="https://jian-tang.com/">https://jian-tang.com/</a></li>
+<li><a href="https://arxiv.org/abs/1801.02294">Learning Tree-based Deep Model for Recommender Systems</a></li>
+<li><a href="https://arxiv.org/pdf/1902.07565.pdf">Joint Optimization of Tree-based Index and Deep Model for Recommender Systems</a></li>
+<li><a href="https://developer.aliyun.com/article/720309">https://developer.aliyun.com/article/720309</a></li>
+<li><a href="https://blog.csdn.net/XindiOntheWay/article/details/85220342">学习基于树的推荐系统深度模型</a></li>
+</ul>
+<h2 id="explainable-recommendations">Explainable Recommendations<a class="headerlink" href="#explainable-recommendations" title="Permanent link"></a></h2>
+<p>Explainable recommendation and search attempt to develop models or methods that not only generate high-quality recommendation or search results, but also intuitive explanations of the results for users or system designers, which can help improve the system transparency, persuasiveness, trustworthiness, and effectiveness, etc.</p>
+<p>Providing personalized explanations for recommendations can help users to understand the underlying insight of the recommendation results, which is helpful to the effectiveness, transparency, persuasiveness and trustworthiness of recommender systems. Current explainable recommendation models mostly generate textual explanations based on pre-defined sentence templates. However, the expressiveness power of template-based explanation sentences are limited to the pre-defined expressions, and manually defining the expressions require significant human efforts</p>
+<ul>
+<li><a href="https://www.cs.rutgers.edu/content/explainable-recommendation-and-search">Explainable Recommendation and Search @ rutgers</a></li>
+<li><a href="https://www.groundai.com/project/explainable-recommendation-a-survey-and-new-perspectives/">Explainable Recommendation: A Survey and New Perspectives</a></li>
+<li><a href="http://www.cs.cmu.edu/~wcohen/postscript/recsys-2017-poster.pdf">Explainable Entity-based Recommendations with Knowledge Graphs</a></li>
+<li><a href="https://ears2018.github.io/">2018 Workshop on Explainable Recommendation and Search (EARS 2018)</a></li>
+<li><a href="https://sigir.org/sigir2019/program/workshops/ears/">EARS 2019</a></li>
+<li><a href="http://yongfeng.me/projects/">Explainable Recommendation and Search (EARS)</a></li>
+<li><a href="http://staff.ustc.edu.cn/~hexn/slides/www18-tree-embedding-recsys.pdf">TEM: Tree-enhanced Embedding Model for Explainable Recommendation</a></li>
+<li><a href="https://ears2019.github.io/">https://ears2019.github.io/</a></li>
+<li><a href="http://www.cogsys.org/papers/ACSvol6/posters/Freed.pdf">Explainable Recommendation for Self-Regulated Learning</a></li>
+<li><a href="http://www.yongfeng.me/attach/dynamic-explainable-recommendation.pdf">Dynamic Explainable Recommendation based on Neural Attentive Models</a></li>
+<li><a href="https://github.com/fridsamt/Explainable-Recommendation">https://github.com/fridsamt/Explainable-Recommendation</a></li>
+<li><a href="https://talks.cs.umd.edu/talks/2028">Explainable Recommendation for Event Sequences: A Visual Analytics Approach by Fan Du</a></li>
+<li><a href="https://wise.cs.rutgers.edu/code/">https://wise.cs.rutgers.edu/code/</a></li>
+<li><a href="http://www.cs.cmu.edu/~rkanjira/thesis/rose_proposal.pdf">http://www.cs.cmu.edu/~rkanjira/thesis/rose_proposal.pdf</a></li>
+<li><a href="http://jamesmc.com/publications">http://jamesmc.com/publications</a></li>
+<li><a href="https://wsdm2019-dapa.github.io/#section-ketnotes">FIRST INTERNATIONAL WORKSHOP ON  DEEP MATCHING IN PRACTICAL APPLICATIONS </a></li>
+<li><a href="https://www.researchgate.net/publication/301616080_Explainable_Matrix_Factorization_for_Collaborative_Filtering">Explainable Matrix Factorization for Collaborative Filtering</a></li>
+</ul>
+<h2 id="social-recommendation">Social Recommendation<a class="headerlink" href="#social-recommendation" title="Permanent link"></a></h2>
+<p><a href="http://people.cs.vt.edu/~ramakris/papers/receval.pdf">We present a novel framework for studying recommendation algorithms in terms of the ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the <code>implicit graph structure</code> underlying a recommender dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.</a></p>
+<p>User-item/user-user interactions are usually in the form of graph/network structure. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.pnas.org/content/113/50/14207">Accurate and scalable social recommendation using mixed-membership stochastic block models</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://arxiv.org/pdf/1304.3405.pdf">Do Social Explanations Work? Studying and Modeling the
+Effects of Social Explanations in Recommender Systems</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://ajbc.io/projects/slides/chaney_recsys2015.pdf">Existing Methods for Including Social Networks until 2015</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://shiruipan.github.io/pdf/TSMC-18-Xiong.pdf">Social Recommendation With Evolutionary Opinion Dynamics</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://piret.gitlab.io/fatrec/">Workshop on Responsible Recommendation</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://recsys.acm.org/recsys18/fatrec/">https://recsys.acm.org/recsys18/fatrec/</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://ajbc.io/projects/papers/Chaney2015.pdf">A Probabilistic Model for Using Social Networks in Personalized Item Recommendation</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://delab.csd.auth.gr/papers/RecSys2011stm.pdf">Product Recommendation and Rating Prediction based on Multi-modal Social Networks</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://paperswithcode.com/paper/graph-neural-networks-for-social">Graph Neural Networks for Social Recommendation</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://people.cs.vt.edu/~ramakris/papers/receval.pdf">Studying Recommendation Algorithms by Graph Analysis</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://akmenon.github.io/papers/loco/loco-paper.pdf">Low-rank Linear Cold-Start Recommendation from Social Data</a></li>
+</ul>
+<h3 id="socialmf-mf-with-social-trust-propagation">SocialMF: MF with social trust propagation<a class="headerlink" href="#socialmf-mf-with-social-trust-propagation" title="Permanent link"></a></h3>
+<p>Based on the assumption of trust aware recommender
+* users have similar tastes with other users they trust
+* the transitivity of trust and propagate trust to indirect neighbors in the social network.</p>
+<ul>
+<li><a href="https://github.com/grahamjenson/list_of_recommender_systems">https://github.com/grahamjenson/list_of_recommender_systems</a></li>
+<li><a href="https://www.librec.net/doc/librec-v1.1/librec/rating/SocialMF.html">https://www.librec.net/doc/librec-v1.1/librec/rating/SocialMF.html</a></li>
+<li><a href="https://www.semanticscholar.org/paper/A-matrix-factorization-technique-with-trust-for-in-Jamali-Ester/c73287153c0a50102a40800c1ada626a410c63cc">A matrix factorization technique with trust propagation for recommendation in social networks</a></li>
+</ul>
+<h2 id="knowledge-graph-and-recommender-system">Knowledge Graph and Recommender System<a class="headerlink" href="#knowledge-graph-and-recommender-system" title="Permanent link"></a></h2>
+<p>Items usually correspond to entities in many fields, such as books, movies and music, making it possible for transferring information between them.
+These information involving in <code>recommender system and knowledge graph</code> are complementary revealing the connectivity among items or between users and items.
+In terms of models, the two tasks are both to rank candidates for a target according to either implicit or explicit relations.
+For example, KG completion is to find correct movies (e.g., Death Becomes Her) for the person Robert Zemeckis given the explicit relation is Director Of.
+Item recommendation aims at recommending movies for a target user satisfying some implicit preference.
+Therefore, we are to fill in the gap between <code>item recommendation</code> and <code>KG completion</code> via a joint model, and systematically investigate how the two tasks impact each other.</p>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-i">推荐算法不够精准？让知识图谱来解决</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.msra.cn/zh-cn/news/features/embedding-knowledge-graph-in-recommendation-system-ii">如何将知识图谱特征学习应用到推荐系统？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.msra.cn/zh-cn/news/features/explainable-recommender-system-20170914">可解释推荐系统：身怀绝技，一招击中用户心理</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://tech.meituan.com/2018/06/07/searchads-dnn.html">深度学习与知识图谱在美团搜索广告排序中的应用实践</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://staff.ustc.edu.cn/~hexn/papers/www19-KGRec.pdf">Unifying Knowledge Graph Learning and Recommendation: Towards a Better Understanding of User Preferences</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://arxiv.org/pdf/1811.04540.pdf">Explainable Reasoning over Knowledge Graphs for Recommendation</a></li>
+</ul>
+<h2 id="health-recommender-systems">Health Recommender Systems<a class="headerlink" href="#health-recommender-systems" title="Permanent link"></a></h2>
+<p><a href="https://healthrecsys.github.io/2019/">Recommendations are becoming evermore important in health settings with the aim being to assist people live healthier lives. Three previous workshops on Health Recommender Systems (HRS) have incorporated diverse research fields and problems in which recommender systems can improve our awareness, understanding and behaviour regarding our own, and the general public&rsquo;s health. At the same time, these application areas bring new challenges into the recommender community. Recommendations that influence the health status of a patient need to be legally sound and, as such, today, they often involve a human in the loop to make sure the recommendations are appropriate. To make the recommender infallible, complex domain-specific user models need to be created, which creates privacy issues. While trust in a recommendation needs to be explicitly earned through, for example, transparency, explanations and empowerment, other systems might want to persuade users into taking beneficial actions that would not be willingly chosen otherwise.</a>
+Multiple and diverse stakeholders in health systems produce further challenges. </p>
+<ul>
+<li>Taking the patient&rsquo;s perspective, simple interaction and safety against harmful recommendations might be the prioritized concern. </li>
+<li>For clinicians and experts, on the other hand, what matters is precise and accurate content. </li>
+<li>Healthcare and insurance providers and clinics all have other priorities. </li>
+</ul>
+<p>This workshop will deepen the discussions started at the three prior workshops and will work towards further development of the research topics in Health Recommender Systems.</p>
+<ul>
+<li><a href="http://132.199.138.79/healthrecsys/papers/index.html">http://132.199.138.79/healthrecsys/papers/index.html</a></li>
+<li><a href="http://ceur-ws.org/Vol-1953/">http://ceur-ws.org/Vol-1953/</a></li>
+<li><a href="https://recsys.acm.org/recsys18/healthrecsys/">https://recsys.acm.org/recsys18/healthrecsys/</a></li>
+<li><a href="https://healthrecsys.github.io/2019/">https://healthrecsys.github.io/2019/</a></li>
+<li><a href="https://www.vis.uni-konstanz.de/en/members/schaefer/">https://www.vis.uni-konstanz.de/en/members/schaefer/</a></li>
+<li><a href="https://www.christophtrattner.info/">https://www.christophtrattner.info/</a></li>
+<li><a href="https://www.christophtrattner.info/pubs/DH2017.pdf">Towards Health (Aware) Recommender Systems</a></li>
+<li><a href="http://ceur-ws.org/Vol-2216/">HealthRecSys 2018 Health Recommender Systems</a></li>
+<li><a href="https://healthrecsys.github.io/umuai/">UMUAI: Special Issue on Recommender Systems for Health and Wellbeing</a></li>
+<li><a href="http://ceur-ws.org/Vol-2477/">SeWeBMeDa 2019 Semantic Web Solutions for Large-Scale Biomedical Data Analytics</a></li>
+<li><a href="https://dshealthkdd.github.io/dshealth-2019/">2019 KDD Workshop on Applied Data Science for Healthcare</a></li>
+<li><a href="https://dshealthkdd.github.io/dshealth-2019/#papers">https://dshealthkdd.github.io/dshealth-2019/#papers</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3968965/">Health Recommender Systems: Concepts, Requirements, Technical Basics and Challenges</a></li>
+<li><a href="http://ibii-us.org/Journals/JMSBI/V2N2/Publish/V2N2_3.pdf">Health Recommender System using Big data analytics</a></li>
+<li><a href="http://www.webology.org/2019/v16n1/a178.pdf">Health Recommender System in Social Networks: A Case of Facebook</a></li>
+<li><a href="https://healthrecommender.org/">Health Recommender research project</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3623628/">Consumers’ intention to use health recommendation systems to receive personalized nutrition advice</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S1877050917316009">Visual instance-based recommendation system for medical data mining</a></li>
+<li><a href="https://caregiversprommd-project.eu/wp-content/uploads/Olive-Felipe-et-al.pdf">Health Recommender System design in the context of CAREGIVERSPRO-MMD Project</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=3079499">Towards Health (Aware) Recommender Systems</a></li>
+<li><a href="https://www.ijcaonline.org/research/volume128/number9/salunke-2015-ijca-906626.pdf">Personalized Recommendation System for Medical Assistance using Hybrid Filtering</a></li>
+<li><a href="https://fruct.org/publications/fruct22/files/Zav.pdf">Designing a Mobile Recommender System for Treatment Adherence Improvement among Hypertensives</a></li>
+<li><a href="https://caregiversprommd-project.eu/">https://caregiversprommd-project.eu/</a></li>
+<li><a href="https://wiki.aalto.fi/display/~llahti@aalto.fi/Lauri+Lahti">https://wiki.aalto.fi/display/~llahti@aalto.fi/Lauri+Lahti</a></li>
+<li><a href="https://fruct.org/">https://fruct.org/</a></li>
+<li><a href="https://www.researchgate.net/publication/261488604_A_systematic_literature_review_on_Health_Recommender_Systems">A Systematic Literature Review on Health Recommender Systems</a></li>
+<li><a href="http://people.dbmi.columbia.edu/noemie/">http://people.dbmi.columbia.edu/noemie/</a></li>
+<li><a href="http://www.mucmd.org/">MACHINE LEARNING FOR HEALTHCARE (MLHC)</a></li>
+<li><a href="https://blogs.microsoft.com/blog/2018/02/28/microsofts-focus-transforming-healthcare-intelligent-health-ai-cloud/">Microsoft’s focus on transforming healthcare: Intelligent health through AI and the cloud</a></li>
+<li><a href="https://www.cs.ubc.ca/~rng/">https://www.cs.ubc.ca/~rng/</a></li>
+<li><a href="http://homepages.inf.ed.ac.uk/ckiw/">http://homepages.inf.ed.ac.uk/ckiw/</a></li>
+<li><a href="http://groups.csail.mit.edu/medg/people/psz/home/Pete_MEDG_site/Home.html">http://groups.csail.mit.edu/medg/people/psz/home/Pete_MEDG_site/Home.html</a></li>
+<li><a href="http://groups.csail.mit.edu/medg/">MIT CSAIL Clinical Decision Making Group</a></li>
+</ul>
+<h3 id="recommdender-system-for-doctor">Recommdender System for Doctor<a class="headerlink" href="#recommdender-system-for-doctor" title="Permanent link"></a></h3>
+<p><a href="https://venturebeat.com/2018/08/14/researchers-use-ai-to-match-patients-with-primary-care-doctors/">Finding a primary care doctor is simpler than it used to be, thanks to on-demand services like ZocDoc, SimplyBook, and Doodle. 
+But matching up with a clinician who’s compatible with your (or your family’s) personality is another story.</a></p>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4956912/?report=printable">Which Doctor to Trust: A Recommender System for Identifying the Right Doctors</a></li>
+<li><a href="https://www.leadingindia.ai/downloads/projects/HC/hc_10.pdf">Recommendation of Doctors and Medicines Using Review Mining</a></li>
+<li><a href="https://www.researchgate.net/publication/305036152_Which_Doctor_to_Trust_A_Recommender_System_for_Identifying_the_Right_Doctors">Which Doctor to Trust: A Recommender System for Identifying the Right Doctors</a></li>
+</ul>
+<hr />
+<p>The recommender system is the core component of the social network named HealthNet (HN).
+The recommendation algorithm first computes similarities among patients, and then generates a ranked list of doctors and hospitals suitable for a given patient profile, by exploiting health data shared by the community. 
+Accordingly, the HN user can find her most similar patients, look how they cured their diseases, and receive suggestions for solving her problem.</p>
+<p>HN is implemented as a standard social network where users are <code>patients</code>. 
+The first interaction with the system is the registration step. 
+Then, the patient can enter <code>personal health data</code>: conditions, treatments (e.g., drugs, dosages, side effects, surgeries), health indicators (e.g., blood pressure, body weight, laboratory analysis, etc.), consulted doctors, hospitalizations.
+In this way, HN centralizes individual health data and allows a simple and organized <code>access</code> to them.</p>
+<p>The Recommender System is the core component of HN. 
+It exploits patient profiles for suggesting other <code>similar</code> patients, doctors,hospitals (the list of suggested, patients, doctors and hospitals can be further filtered by position and disease). 
+The similarity between two patients $p,p^{\prime}$ is computed in terms of conditions and treatments. 
+The <code>semantic matching</code> between the conditions exploits the <a href="http://www.www2015.it/documents/proceedings/companion/p81.pdf">HN disease hierarchy</a>.
+More formally, the similarity score between two
+patients is computed as follows:
+$$s(p, p^{\prime}) =
+\alpha\frac{\sum_{i=1}^{k}\sum_{j=1}^{n}s_c(p_{c_i}, p^{\prime}<em i="1">{c_j})}{kn}\
++ (1-\alpha)\frac{\sum</em>^{z}\sum_{j=1}^{r}s_t(p_{t_i}, p^{\prime}<em c_i="c_i">{t_j})}{zr}
+$$
+where $k$ (respectively $n$) is the number of conditions $p$ (respectively $p^{\prime}$) is affected by, 
+$p_c$ is a condition of the patient $p$,
+$z$ (respectively $r$) is the number of treatments for $p$ (respectively $p^{\prime}$), 
+$p_t$ is a treatment for the patient $p$.
+They are computed as follows:
+$$s_c(p</em>, p^{\prime}<em c_i="c_i">{c_j}) =
+\begin{cases}
+\log\frac{p</em>}{p^{\prime}<em t_i="t_i">{c_j}}, &amp;\text{if $c_i=c_j$}\
+\frac{1}{sp(c_i, c_j)}, &amp;\text{otherwise}
+\end{cases},
+s_t(p</em>, p^{\prime}_{t_j}) =
+\begin{cases}
+1, &amp;\text{if $t_i=t_j$}\
+0, &amp;\text{otherwise}
+\end{cases}.
+$$</p>
+<ul>
+<li><a href="http://www.www2015.it/documents/proceedings/companion/p81.pdf">A Recommender System for Connecting Patients to the Right Doctors in the HealthNet Social Network</a></li>
+</ul>
+<h4 id="patient-doctor-matchmaking">Patient-Doctor Matchmaking<a class="headerlink" href="#patient-doctor-matchmaking" title="Permanent link"></a></h4>
+<p>There are different perspectives of patient-doctor matchmaking system:</p>
+<ul>
+<li>From patients’ perspectives, such systems should provide <code>explainable</code> recommendations and safeguard against poor recommendations in order to be
+trustworthy. </li>
+<li>From the perspective of healthcare professionals, these systems need to provide suitable recommendations based on their <code>domain knowledge and experience</code>. </li>
+<li>More generally, insurance companies and healthcare institutes are interested in improving recommendation rates through research and reaping the potential benefits of these recommendation systems.</li>
+</ul>
+<p>The features include demographic data, behevioral data, ICD-9, interaction, the number of visits to the doctor.</p>
+<p><a href="https://arxiv.org/abs/1808.03265">A Hybrid Recommender System for Patient-Doctor Matchmaking in Primary Care</a> perform <code>hybrid matrix
+factorization (MF)</code> and recommend each patient a list of family doctors according to the level of information available about them.
+We achieve this by learning <code>latent representations</code> for patients and doctors from their interactions and metadata</p>
+<p>Given the different level of information available to us about different patients,  five use cases are proposed to make doctor recommendations in different scenarios.</p>
+<p>The patient-doctor interaction matrix $Y \in \mathbb{R}^{M\times N}$ is defined as:
+$$y_{ij} =
+\begin{cases}
+1, &amp;\text{if interaction (patient i, doctor j) exists}\
+0, &amp;\text{otherwise}
+\end{cases}
+$$</p>
+<p>MF learns $\mathbf{p}<em ij="ij">i$ and $\mathbf{q}_j$, such that the predicted score for
+unobserved entries $\hat{y}</em>$ is given by the <code>inner product</code> of latent
+patient and doctor representations:
+$$\hat{y}_{ij}=g(i,j\mid \mathbf{p}_i, \mathbf{q}_j)=g(\mathbf{p}_i\cdot \mathbf{q}_j)=\frac{1}{1+\exp(\left&lt;\mathbf{p}_i,\mathbf{q}_j)\right&gt;}.$$</p>
+<p>Then formulate a learning-to-rank task by using
+Weighted Approximate-Rank Pairwise (WARP) loss.
+For each observed interaction $\hat{y}<em ij="ij">{ij}$, WARP samples a negative doctor $d$ and computes the difference between predicted $\hat{y}</em>$ and $\hat{y}_{id}$, 
+and performs a gradient update to rank the positive doctor higher if the difference is negative,
+i.e., a rank violation is found.
+Otherwise, it continues sampling negative doctors until it identifies a violating example. 
+Thus, the rank of doctor j for patient i is minimized when taking a large number of sampled doctors d that need to be considered
+before finding a violating example.</p>
+<p>We can model the trust $T_{ij} (t)$ between a patient $i$ and a family doctor $j$ at time $t$, given both the frequency and recency of their consultation
+history as:
+$$T_{ij} (t)=\sum_{t}\sum_{k}\frac{C_{ij}(t)e^{-\lambda t}}{C_{ik}(t)}$$
+where $\lambda$ is annualized discount rate for the exponential
+decay function and treated as hyper-parameter during the
+model training, $C_{ij}(t)$ is the number of consultations between
+patient $i$ and doctor $j$ until year $t$, which is normalized by
+the total number of her consultations with $k$ doctors $C_{ik} (t)$
+thus far. </p>
+<ul>
+<li><a href="http://yifanhu.net/PUB/cf.pdf">Collaborative Filtering for Implicit Feedback Datasets</a></li>
+<li><a href="https://venturebeat.com/2018/08/14/researchers-use-ai-to-match-patients-with-primary-care-doctors/">AI Researchers use AI to match patients with primary care doctors</a></li>
+<li><a href="https://arxiv.org/abs/1808.03265">A Hybrid Recommender System for Patient-Doctor Matchmaking in Primary Care</a></li>
+<li><a href="http://www.suggestadoctor.com/">http://www.suggestadoctor.com/</a></li>
+<li><a href="https://www.researchgate.net/profile/Bo_Jin16">https://www.researchgate.net/profile/Bo_Jin16</a></li>
+<li><a href="https://orcid.org/0000-0002-4209-4637">https://orcid.org/0000-0002-4209-4637</a></li>
+<li><a href="https://nyulangone.org/doctors">https://nyulangone.org/doctors</a></li>
+<li><a href="https://destrin.smalldata.io/">https://destrin.smalldata.io/</a></li>
+<li><a href="https://smalldata.io/">https://smalldata.io/</a></li>
+<li><a href="http://www.www2015.it/industrial-track/">http://www.www2015.it/industrial-track/</a></li>
+<li><a href="http://www.itu.dk/~bardram/pmwiki/">http://www.itu.dk/~bardram/pmwiki/</a></li>
+<li><a href="http://www.bardram.net/">http://www.bardram.net/</a></li>
+<li><a href="http://www.cachet.dk/">http://www.cachet.dk/</a></li>
+<li><a href="https://www.researchgate.net/profile/Jakob_Bardram">https://www.researchgate.net/profile/Jakob_Bardram</a></li>
+<li><a href="https://wp.cs.ucl.ac.uk/acm-digitalhealth-2015/alberto-sanna/">https://wp.cs.ucl.ac.uk/acm-digitalhealth-2015/alberto-sanna/</a></li>
+<li><a href="https://www.acm-digitalhealth.org/2018/committee/alberto-sanna/index.html">https://www.acm-digitalhealth.org/2018/committee/alberto-sanna/index.html</a></li>
+<li><a href="https://research.hsr.it/en/index.html">https://research.hsr.it/en/index.html</a></li>
+</ul>
+<h3 id="deepreco">DeepReco<a class="headerlink" href="#deepreco" title="Permanent link"></a></h3>
+<ul>
+<li><a href="https://www.mdpi.com/2079-3197/7/2/25/htm">DeepReco: Deep Learning Based Health Recommender System Using Collaborative Filtering</a></li>
+</ul>
+<h2 id="reinforcement-learning-and-recommender-system">Reinforcement Learning and Recommender System<a class="headerlink" href="#reinforcement-learning-and-recommender-system" title="Permanent link"></a></h2>
+<p>Services that introduce stores to users on the Internet are increasing in recent years. Each service conducts thorough analyses in order to display stores matching each user&rsquo;s preferences. In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). It is practically impossible to learn everything when the number of items to be learned periodically increases. The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. In order to solve this problem, we propose a recommender system based on deep reinforcement learning. In deep reinforcement learning, a multilayer neural network is used to update the value function.</p>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/document/8350761">Ieep reinforcement learning for recommender systems</a></li>
+<li><a href="https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf">Deep Reinforcement Learning for Page-wise Recommendations</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf">A Reinforcement Learning Framework for Explainable Recommendation</a></li>
+<li><a href="http://www.noahlab.com.hk/#/news/new1811_1">TPGR: Large-scale Interactive Recommendation with Tree-structured Policy Gradient</a></li>
+<li><a href="http://jamesmc.com/blog/2018/10/1/explore-exploit-explain">Explore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits</a></li>
+<li><a href="https://drive.google.com/file/d/0B2Rxz7LRWLOMX2dycXpWTGxoUE5lNkRnRWZuaDNZUlVRZ1kw/view">Learning from logged bandit feedback</a></li>
+<li><a href="https://drive.google.com/file/d/0B2Rxz7LRWLOMekRtdExZVVpZQmlXNks0Y2FJTnd6ZG90TXdZ/view">Improving the Quality of Top-N Recommendation</a></li>
+<li><a href="https://arxiv.org/abs/1808.09036">ParsRec: Meta-Learning Recommendations for Bibliographic Reference Parsing</a></li>
+<li><a href="https://yq.aliyun.com/articles/708953">强化学习在阿里的技术演进与业务创新 | 免费资料库</a></li>
+<li><a href="https://recsys.acm.org/recsys19/reveal/">https://recsys.acm.org/recsys19/reveal/</a></li>
+<li><a href="https://sites.google.com/view/reveal2019/">Closing the loop with the real world: reinforcement and robust estimators for recommendation</a></li>
+</ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Traditional Approaches</th>
+<th>Beyond Traditional Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collaborative Filtering</td>
+<td>Tensor Factorization &amp; Factorization Machines</td>
+</tr>
+<tr>
+<td>Content-Based Recommendation</td>
+<td>Social Recommendations</td>
+</tr>
+<tr>
+<td>Item-based Recommendation</td>
+<td>Learning to rank</td>
+</tr>
+<tr>
+<td>Hybrid Approaches</td>
+<td>MAB Explore/Exploit</td>
+</tr>
+</tbody>
+</table>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/wzhe06/Reco-papers">https://github.com/wzhe06/Reco-papers</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/hongleizhang/RSPapers">https://github.com/hongleizhang/RSPapers</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/hongleizhang/RSAlgorithms">https://github.com/hongleizhang/RSAlgorithms</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://zhuanlan.zhihu.com/p/26977788">https://zhuanlan.zhihu.com/p/26977788</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://zhuanlan.zhihu.com/p/45097523">https://zhuanlan.zhihu.com/p/45097523</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.zhihu.com/question/20830906">https://www.zhihu.com/question/20830906</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.zhihu.com/question/56806755/answer/150755503">https://www.zhihu.com/question/56806755/answer/150755503</a></li>
+<li><a href="https://arxiv.org/abs/1812.10613">Generative Adversarial User Model for Reinforcement Learning Based Recommendation System</a></li>
+<li><a href="http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf">Adversarial Personalized Ranking for Recommendation</a></li>
+<li><a href="https://github.com/duxy-me/AMR">Adversarial Training Towards Robust Multimedia Recommender System</a></li>
+</ul>
+<h2 id="resource-on-recsys">Resource on RecSys<a class="headerlink" href="#resource-on-recsys" title="Permanent link"></a></h2>
+<ul>
+<li><a href="http://www.cs.ucr.edu/~cshelton/">http://www.cs.ucr.edu/~cshelton/</a></li>
+<li><a href="http://hst.mit.edu/users/rgmarkmitedu">http://hst.mit.edu/users/rgmarkmitedu</a></li>
+<li><a href="http://erichorvitz.com/">http://erichorvitz.com/</a></li>
+<li><a href="https://www.hms.harvard.edu/dms/neuroscience/fac/Kohane.php">https://www.hms.harvard.edu/dms/neuroscience/fac/Kohane.php</a></li>
+<li><a href="https://www.khoury.northeastern.edu/people/carla-brodley/">https://www.khoury.northeastern.edu/people/carla-brodley/</a></li>
+<li><a href="https://mquad.github.io/">https://mquad.github.io/</a></li>
+<li><a href="https://www.aau.at/en/ainf/research-groups/infsys/team/dietmar-jannach/">https://www.aau.at/en/ainf/research-groups/infsys/team/dietmar-jannach/</a></li>
+<li><a href="https://xamat.github.io/">https://xamat.github.io/</a></li>
+<li><a href="http://presnick.people.si.umich.edu/">http://presnick.people.si.umich.edu/</a></li>
+<li><a href="https://www.stern.nyu.edu/faculty/bio/alexander-tuzhilin">https://www.stern.nyu.edu/faculty/bio/alexander-tuzhilin</a></li>
+<li><a href="http://people.stern.nyu.edu/atuzhili/">http://people.stern.nyu.edu/atuzhili/</a></li>
+<li><a href="https://www.researchgate.net/profile/Markus_Zanker">https://www.researchgate.net/profile/Markus_Zanker</a></li>
+<li><a href="https://cseweb.ucsd.edu/~jmcauley/datasets.html">https://cseweb.ucsd.edu/~jmcauley/datasets.html</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/87293483">https://zhuanlan.zhihu.com/p/87293483</a></li>
+<li><a href="https://www.zhihu.com/question/336304380/answer/784976195">https://www.zhihu.com/question/336304380/answer/784976195</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/69050253">最新！五大顶会2019必读的深度推荐系统与CTR预估相关的论文 - 深度传送门的文章 - 知乎</a></li>
+<li><a href="https://blog.csdn.net/malefactor/article/details/52040228">深度学习在搜索和推荐系统中的应用</a></li>
+<li><a href="http://cseweb.ucsd.edu/classes/fa18/cse258-a/">CSE 258: Web Mining and Recommender Systems</a></li>
+<li><a href="https://cseweb.ucsd.edu/classes/fa17/cse291-b/">CSE 291: Trends in Recommender Systems and Human Behavioral Modeling</a></li>
+<li><a href="https://recnlp2019.github.io/">THE AAAI-19 WORKSHOP ON RECOMMENDER SYSTEMS AND NATURAL LANGUAGE PROCESSING (RECNLP)</a></li>
+<li><a href="https://www.cs.purdue.edu/homes/lsi/CI_Recom/CI_Recom.html">Information Recommendation for Online Scientific Communities, Purdue University, Luo Si, Gerhard Klimeck and Michael McLennan</a></li>
+<li><a href="https://ai.google/research/pubs/pub46822">Recommendations for all : solving thousands of recommendation problems a day</a></li>
+<li><a href="http://staff.ustc.edu.cn/~hexn/">http://staff.ustc.edu.cn/~hexn/</a></li>
+<li><a href="https://arxiv.org/abs/1812.04407">Learning Item-Interaction Embeddings for User Recommendations</a></li>
+<li><a href="https://github.com/fuxuemingzhu/Summary-of-Recommender-System-Papers">Summary of RecSys</a></li>
+<li><a href="https://help.netflix.com/en/node/100639">How Netflix’s Recommendations System Works</a></li>
+<li><a href="https://www.msra.cn/zh-cn/news/executivebylines/tech-bylines-personalized-recommendation-system">个性化推荐系统，必须关注的五大研究热点</a></li>
+<li><a href="https://medium.com/s/story/spotifys-discover-weekly-how-machine-learning-finds-your-new-music-19a41ab76efe">How Does Spotify Know You So Well?</a></li>
+<li><a href="https://daiwk.github.io/posts/links-navigation-recommender-system.html">推荐系统论文集合</a></li>
+<li><a href="https://hong.xmu.edu.cn/Services___fw/Recommender_System.htm">https://hong.xmu.edu.cn/Services___fw/Recommender_System.htm</a></li>
+<li><a href="https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3">https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3</a></li>
+<li><a href="https://buildingrecommenders.wordpress.com/">https://buildingrecommenders.wordpress.com/</a></li>
+<li><a href="https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/">https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/</a></li>
+<li><a href="https://developers.google.com/machine-learning/recommendation/">https://developers.google.com/machine-learning/recommendation/</a></li>
+<li><a href="https://sites.google.com/view/lianghu/home/tutorials/ijcai2019">https://sites.google.com/view/lianghu/home/tutorials/ijcai2019</a></li>
+<li><a href="https://acmrecsys.github.io/rsss2019/">https://acmrecsys.github.io/rsss2019/</a></li>
+<li><a href="https://github.com/alibaba/x-deeplearning/wiki">https://github.com/alibaba/x-deeplearning/wiki</a></li>
+<li><a href="https://apple.github.io/turicreate/docs/userguide/recommender/">https://apple.github.io/turicreate/docs/userguide/recommender/</a></li>
+</ul>
+<h3 id="labs">Labs<a class="headerlink" href="#labs" title="Permanent link"></a></h3>
+<ul>
+<li><a href="http://www.christophtrattner.com/">http://www.christophtrattner.com/</a></li>
+<li><a href="http://elizabethchurchill.com/presentations/">http://elizabethchurchill.com/presentations/</a></li>
+<li><a href="http://www.that-recsys-lab.net/">http://www.that-recsys-lab.net/</a></li>
+<li><a href="https://www.christophtrattner.info/publications.html">https://www.christophtrattner.info/publications.html</a></li>
+<li><a href="https://www.ludovicoboratto.com/publications/">https://www.ludovicoboratto.com/publications/</a></li>
+<li><a href="https://www.ucsm.info/publications">https://www.ucsm.info/publications</a></li>
+<li><a href="http://recsys.deib.polimi.it/">http://recsys.deib.polimi.it/</a></li>
+<li><a href="https://www.know-center.tugraz.at/en/publications/publications/">https://www.know-center.tugraz.at/en/publications/publications/</a></li>
+<li><a href="https://qcri.academia.edu/LuisLuque">https://qcri.academia.edu/LuisLuque</a></li>
+<li><a href="http://www.martijnwillemsen.nl/recommenderlab/">http://www.martijnwillemsen.nl/recommenderlab/</a></li>
+<li><a href="https://cseweb.ucsd.edu/~jmcauley/">https://cseweb.ucsd.edu/~jmcauley/</a></li>
+<li><a href="https://github.com/mJackie/RecSys">https://github.com/mJackie/RecSys</a></li>
+<li><a href="https://piret.gitlab.io/fatrec/">https://piret.gitlab.io/fatrec/</a></li>
+<li><a href="https://ailab.criteo.com/publications/">https://ailab.criteo.com/publications/</a></li>
+<li><a href="https://layer6.ai/">https://layer6.ai/</a></li>
+<li><a href="https://cseweb.ucsd.edu/~jmcauley/career.html">https://cseweb.ucsd.edu/~jmcauley/career.html</a></li>
+<li><a href="http://csse.szu.edu.cn/csse.szu.edu.cn/staff/panwk/recommendation/index.html">Recommender Systems</a></li>
+<li><a href="https://libraries.io/github/computational-class">https://libraries.io/github/computational-class</a></li>
+<li><a href="http://www.52caml.com/">http://www.52caml.com/</a></li>
+<li><a href="http://www-scf.usc.edu/~kuanl/">http://www-scf.usc.edu/~kuanl/</a></li>
+</ul>
+<h3 id="workshop">Workshop<a class="headerlink" href="#workshop" title="Permanent link"></a></h3>
+<ul class="task-list">
+<li><a href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=76328&amp;copyownerid=87252">DLRS 2018 : 3rd Workshop on Deep Learning for Recommender Systems</a></li>
+<li><a href="https://arxiv.org/pdf/1707.07435.pdf">Deep Learning based Recommender System: A Survey and New Perspectives</a></li>
+<li><a href="https://doogkong.github.io/2019/">$5^{th}$ International Workshop on Machine Learning Methods for Recommender Systems</a></li>
+<li><a href="http://most-rec.gt-arc.com/">MoST-Rec 2019: Workshop on Model Selection and Parameter Tuning in Recommender Systems</a></li>
+<li><a href="https://prs2018.splashthat.com/">2018 Personalization, Recommendation and Search (PRS) Workshop</a></li>
+<li><a href="https://www.papis.io/recommender-systems">WIDE &amp; DEEP RECOMMENDER SYSTEMS AT PAPI</a></li>
+<li><a href="http://www.digitaluses-congress.univ-paris8.fr/Interdisciplinary-Workshop-on-Recommender-Systems">Interdisciplinary Workshop on Recommender Systems</a></li>
+<li><a href="https://piret.gitlab.io/fatrec2018/">2nd FATREC Workshop: Responsible Recommendation</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://dmml.asu.edu/smm/slides/">Social Media Mining: An Introduction</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://ears2019.github.io/">The 2nd International Workshop on ExplainAble Recommendation and Search (EARS 2019)</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://recnlp2019.github.io/">NLP meets RecSys</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf">http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://prs2018.splashthat.com/">PRS 2019</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://recsys.acm.org/blog/">https://recsys.acm.org/blog/</a></li>
+</ul>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link"></a></h3>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/gasevi/pyreclab">https://github.com/gasevi/pyreclab</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/cheungdaven/DeepRec">https://github.com/cheungdaven/DeepRec</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/cyhong549/DeepFM-Keras">https://github.com/cyhong549/DeepFM-Keras</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/grahamjenson/list_of_recommender_systems">https://github.com/grahamjenson/list_of_recommender_systems</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/maciejkula/spotlight">https://github.com/maciejkula/spotlight</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/Microsoft/Recommenders">https://github.com/Microsoft/Recommenders</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/alibaba/euler">https://github.com/alibaba/euler</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/alibaba/x-deeplearning/wiki/">https://github.com/alibaba/x-deeplearning/wiki/</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://github.com/lyst/lightfm">https://github.com/lyst/lightfm</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://surpriselib.com/">Surprise: a Python scikit building and analyzing recommender systems</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://orange3-recommendation.readthedocs.io/en/latest/">Orange3-Recommendation: a Python library that extends Orange3 to include support for recommender systems.</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://www.mymedialite.net/index.html">MyMediaLite: a recommender system library for the Common Language Runtime</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://www.mymediaproject.org/">http://www.mymediaproject.org/</a></li>
+<li><a href="https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x">Workshop: Building Recommender Systems w/ Apache Spark 2.x</a></li>
+<li><a href="https://www.librec.net/">A Leading Java Library for Recommender Systems</a></li>
+<li><a href="https://lenskit.org/">lenskit: Python Tools for Recommender Experiments</a></li>
+<li><a href="https://grouplens.github.io/samantha/">Samantha - A generic recommender and predictor server</a></li>
+</ul>
+<h1 id="computational-advertising">Computational Advertising<a class="headerlink" href="#computational-advertising" title="Permanent link"></a></h1>
+<p><code>Advertising, recommendation and search</code> is 3 fundation stone of e-economics.</p>
+<ul>
+<li><a href="https://www.ecommercefoundation.org/reports">https://www.ecommercefoundation.org/reports</a></li>
+</ul>
+<p>Online advertising has grown over the past decade to over 26 billion dollars in recorded revenue in 2010. The revenues generated are based on different pricing models that can be fundamentally grouped into two types: cost per (thousand) impressions (CPM) and cost per action (CPA), where an action can be a click, signing up with the advertiser, a sale, or any other measurable outcome. A web publisher generating revenues by selling advertising space on its site can offer either a CPM or CPA contract. We analyze the conditions under which the two parties agree on each contract type, accounting for the relative risk experienced by each party.</p>
+<p>The information technology industry relies heavily on the on-line advertising such as [Google，Facebook or Alibaba].
+Advertising is nothing except information, which is not usually accepted gladly. In fact, it is more difficult than recommendation because it is less known of the context where the advertisement is placed.</p>
+<p><a href="http://www.hongliangjie.com/talks/Etsy_ML.pdf">Hongliang Jie</a> shares 3 challenges of computational advertising in Etsy,
+which will be the titles of the following subsections.</p>
+<p><img title="ad" src="https://gokulchittaranjan.files.wordpress.com/2016/06/blog-on-advertising-figures-e1466486030771.png" width="70%" /></p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/72092504">广告为什么要计算</a></li>
+<li><a href="https://www.jianshu.com/p/8c591feb9fc4">计算广告资料汇总</a></li>
+<li><a href="https://strategico.io/video-advertising/">ONLINE VIDEO ADVERTISING: All you need to know in 2019</a></li>
+<li><a href="https://dirtysalt.github.io/html/computational-advertising.html">计算广告</a></li>
+<li><a href="http://www.52caml.com/">计算广告和机器学习</a></li>
+<li><a href="https://headerbidding.co/category/adops/">https://headerbidding.co/category/adops/</a></li>
+<li><a href="https://www.omicsonline.org/open-access/deep-learning-based-modeling-in-computational-advertising-a-winning-formula-2169-0316-1000266.pdf">Deep Learning Based Modeling in Computational Advertising: A Winning Formula</a></li>
+<li><a href="https://www.marketing-schools.org/types-of-marketing/computational-marketing.html">Computational Marketing</a></li>
+<li><a href="https://gokulchittaranjan.wordpress.com/2016/06/22/datascienceinadvertising/">Data Science and Analytics in Computational Advertising</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2013/11/bottou13a.pdf">Counterfactual Reasoning and Learning Systems: The Example of Computational Advertising</a></li>
+<li><a href="https://www.valassisdigital.com/us/wp-content/uploads/sites/7/2017/01/Whitepaper_TextMining.pdf">Text Mining in Computational Advertising</a></li>
+<li><a href="https://stat.duke.edu/people/david-l-banks">https://stat.duke.edu/people/david-l-banks</a></li>
+<li><a href="http://wnzhang.net/teaching/ee448/">http://wnzhang.net/teaching/ee448/</a></li>
+<li><a href="https://recsys.acm.org/recsys08/keynotes/">https://recsys.acm.org/recsys08/keynotes/</a></li>
+<li><a href="https://www.researchgate.net/profile/Andrei_Broder">https://www.researchgate.net/profile/Andrei_Broder</a></li>
+</ul>
+<h2 id="click-through-rate-modeling">Click-Through Rate Modeling<a class="headerlink" href="#click-through-rate-modeling" title="Permanent link"></a></h2>
+<p><strong>GBRT+LR</strong></p>
+<p>When the feature vector ${x}$ are given, the tree split the features by GBRT then we transform and input the features to the logistic regression.</p>
+<p><a href="https://www.jianshu.com/p/96173f2c2fb4">Practical Lessons from Predicting Clicks on Ads at Facebook</a> or the <a href="https://zhuanlan.zhihu.com/p/25043821">blog</a> use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
+Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).</p>
+<p><img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "40%" /></p>
+<ul>
+<li><a href="https://arxiv.org/abs/1704.05194">Learning Piece-wise Linear Models from Large Scale Data for Ad Click Prediction</a></li>
+<li><a href="http://kubicode.me/2018/03/19/Deep%20Learning/Talk-About-CTR-With-Deep-Learning/">聊聊CTR预估的中的深度学习</a></li>
+<li><a href="https://deepctr.readthedocs.io/en/latest/models/DeepModels.html">Deep Models at DeepCTR</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/54822778">镶嵌在互联网技术上的明珠：漫谈深度学习时代点击率预估技术进展</a></li>
+<li><a href="https://blog.csdn.net/john_xyz/article/details/78933253">CTR预估算法之FM, FFM, DeepFM及实践</a></li>
+<li><a href="https://www.hongliangjie.com/talks/SF_2018-05-09.pdf">Turning Clicks into Purchases</a></li>
+<li><a href="https://github.com/shenweichen/DeepCTR">https://github.com/shenweichen/DeepCTR</a></li>
+<li><a href="https://github.com/wzhe06/CTRmodel">https://github.com/wzhe06/CTRmodel</a></li>
+<li><a href="https://github.com/cnkuangshi/LightCTR">https://github.com/cnkuangshi/LightCTR</a></li>
+<li><a href="https://github.com/evah/CTR_Prediction">https://github.com/evah/CTR_Prediction</a></li>
+<li><a href="http://2016.qconshanghai.com/track/3025/">http://2016.qconshanghai.com/track/3025/</a></li>
+<li><a href="https://blog.csdn.net/u011747443/article/details/68928447">https://blog.csdn.net/u011747443/article/details/68928447</a></li>
+</ul>
+<h2 id="conversion-rate-modeling">Conversion Rate Modeling<a class="headerlink" href="#conversion-rate-modeling" title="Permanent link"></a></h2>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://people.csail.mit.edu/romer/papers/NGDAdvertisingWSDM12.pdf">Post-Click Conversion Modeling and Analysis for Non-Guaranteed Delivery Display Advertising</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="http://wnzhang.net/share/rtb-papers/cvr-est.pdf">Estimating Conversion Rate in Display Advertising from Past Performance Data</a></li>
+<li class="task-list-item"><input type="checkbox" disabled/> <a href="https://www.optimizesmart.com/introduction-machine-learning-conversion-optimization/">https://www.optimizesmart.com/</a></li>
+</ul>
+<h2 id="bid-optimization">Bid Optimization<a class="headerlink" href="#bid-optimization" title="Permanent link"></a></h2>
+<ul>
+<li><a href="https://github.com/wnzhang/rtb-papers">A collection of research and survey papers of real-time bidding (RTB) based display advertising techniques.</a></li>
+</ul>
+<hr />
+<ul>
+<li><a href="http://yelp.github.io/MOE/">http://yelp.github.io/MOE/</a></li>
+<li><a href="http://www.hongliangjie.com/talks/AICon2018.pdf">http://www.hongliangjie.com/talks/AICon2018.pdf</a></li>
+<li><a href="https://sites.google.com/view/tsmo2018/invited-talks">https://sites.google.com/view/tsmo2018/invited-talks</a></li>
+<li><a href="https://matinathomaidou.github.io/research/">https://matinathomaidou.github.io/research/</a></li>
+<li><a href="https://www.usermind.com/">https://www.usermind.com/</a></li>
+</ul>
+<hr />
+<h2 id="user-engagement">User Engagement<a class="headerlink" href="#user-engagement" title="Permanent link"></a></h2>
+<p><a href="https://mixpanel.com/topics/what-is-user-engagement/">User engagement measures whether users find value in a product or service. Engagement can be measured by a variety or combination of activities such as downloads, clicks, shares, and more. Highly engaged users are generally more profitable, provided that their activities are tied to valuable outcomes such as purchases, signups, subscriptions, or clicks.</a></p>
+<ul>
+<li><a href="https://mixpanel.com/topics/what-is-user-engagement/">WHAT IS USER ENGAGEMENT?</a></li>
+<li><a href="https://blog.smile.io/what-is-customer-engagement-and-why-is-it-important">What is Customer Engagement, and Why is it Important?</a></li>
+<li><a href="https://open.library.ubc.ca/cIRcle/collections/facultyresearchandpublications/52383/items/1.0107445">What is user engagement? A conceptual framework for defining user engagement with technology</a></li>
+<li><a href="https://www.pega.com/artificial-intelligence-applications">How to apply AI for customer engagement</a></li>
+<li><a href="https://dma.org.uk/event/the-future-of-customer-engagement">The future of customer engagement</a></li>
+<li><a href="https://eng.uber.com/second-uber-science-symposium-behavioral-science">Second Uber Science Symposium: Exploring Advances in Behavioral Science</a></li>
+<li><a href="https://mounia-lalmas.blog/2013/04/29/measuring-user-engagement/">Measuring User Engagement</a></li>
+<li><a href="https://uberbehavioralsciencesymposium.splashthat.com/">https://uberbehavioralsciencesymposium.splashthat.com/</a></li>
+<li><a href="https://inlabdigital.com/">https://inlabdigital.com/</a></li>
+<li><a href="https://www.futurelab.net/">https://www.futurelab.net/</a></li>
+<li><a href="http://www.ueo-workshop.com/">The User Engagement Optimization Workshop2</a></li>
+<li><a href="http://www.ueo-workshop.com/previous-editions/ueo-2013-at-cikm-2013/">The User Engagement Optimization Workshop1</a></li>
+<li><a href="http://galjot.si/research">EVALUATION OF USER EXPERIENCE IN MOBILE ADVERTISI</a></li>
+<li><a href="https://onlineuserengagement.github.io/">WWW 2019 Tutorial on Online User Engagement</a></li>
+<li><a href="http://www.ueo-workshop.com/">http://www.ueo-workshop.com/</a></li>
+<li><a href="http://www.ueo-workshop.com/program/">http://www.ueo-workshop.com/program/</a></li>
+<li><a href="https://www.nngroup.com/">https://www.nngroup.com/</a></li>
+<li><a href="https://labtomarket.eu/">https://labtomarket.eu/</a></li>
+<li><a href="http://research.google.com/pubs/AmrAhmed.html">http://research.google.com/pubs/AmrAhmed.html</a></li>
+</ul>
+<h2 id="user-modeling">User Modeling<a class="headerlink" href="#user-modeling" title="Permanent link"></a></h2>
+<p><a href="https://www.w3.org/WAI/RD/wiki/User_modeling">User models are used to generate or adapt user interfaces at runtime, to address particular user needs and preferences. User models are also known as user profiles, personas or archetypes. They can be used by designers and developers for personalisation purposes and to increase the usability and accessibility of products and services.</a></p>
+<ul>
+<li><a href="https://www.um.org/">https://www.um.org/</a></li>
+<li><a href="https://www.w3.org/WAI/RD/wiki/User_modeling">https://www.w3.org/WAI/RD/wiki/User_modeling</a></li>
+<li><a href="https://www2018.thewebconf.org/program/user-modeling/">https://www2018.thewebconf.org/program/user-modeling/</a></li>
+<li><a href="http://kdd2018tutorial-behavior.datasciences.org/">http://kdd2018tutorial-behavior.datasciences.org/</a></li>
+<li><a href="https://www2019.thewebconf.org/research-track/user-modeling-personalization-and-experience">https://www2019.thewebconf.org/research-track/user-modeling-personalization-and-experience</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007%2F978-3-642-39747-9_18">Research on the Use, Characteristics, and Impact of e-Commerce Product Recommendation Agents: A Review and Update for 2007–2012</a></li>
+<li><a href="https://misq.org/catalog/product/view/id/222">E-Commerce Product Recommendation Agents: Use, Characteristics, and Impact</a></li>
+</ul>
+<h2 id="resource">Resource<a class="headerlink" href="#resource" title="Permanent link"></a></h2>
+<h3 id="labs_1">Labs<a class="headerlink" href="#labs_1" title="Permanent link"></a></h3>
+<ul>
+<li><a href="https://www.hongliangjie.com/">洪亮劼，博士 – Etsy工程总监</a></li>
+<li><a href="http://www.ideal.ece.utexas.edu/">Data Mining Machine Learning @The University of Texas at Austin</a></li>
+<li><a href="https://bigdata.oden.utexas.edu/">Center for Big Data Analytics @The University of Texas at Austin</a></li>
+<li><a href="https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/multimedia-computing/">Multimedia Computing Group@tudelft.nl</a></li>
+<li><a href="https://www.knowledgelab.org/">knowledge Lab@Uchicago</a></li>
+<li><a href="https://www.dtc.umn.edu/">DIGITAL TECHNOLOGY CENTER@UMN</a></li>
+<li><a href="https://icai.ai/">The Innovation Center for Artificial Intelligence (ICAI)</a></li>
+<li><a href="http://dmml.asu.edu/">Data Mining and Machine Learning lab (DMML)@ASU</a></li>
+<li><a href="http://ids.csom.umn.edu/faculty/gedas/NSFcareer/">Next Generation Personalization Technologies</a></li>
+<li><a href="https://sites.google.com/view/chohsieh-research/recommender-systems">Recommender systems &amp; ranking</a></li>
+<li><a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=0430303">Secure Personalization: Building Trustworthy Recommender Systems</a></li>
+<li><a href="https://app.dimensions.ai/details/grant/grant.3063812">Similar grants of  Next Generation Personalization Technologies</a></li>
+<li><a href="https://bdsc.lab.uic.edu/">Big Data and Social Computing Lab @UIC</a></li>
+<li><a href="https://www.cse.cuhk.edu.hk/irwin.king/wisc_lab/home">Web Intelligence and Social Computing</a></li>
+<li><a href="https://jobs.zalando.com/tech/blog/zalando-adtech-lab-hamburg/">Welcome to the family, Zalando AdTech Lab Hamburg!</a></li>
+<li><a href="https://dma.org.uk/">Data and Marketing Associat</a></li>
+<li><a href="http://www.wsdm-conference.org/2019/">Web search and data mining(WSDM) 2019</a></li>
+<li><a href="https://wise.cs.rutgers.edu/">Web Intelligent Systems and Economics(WISE) lab @Rutgers</a></li>
+<li><a href="http://www.miv.t.u-tokyo.ac.jp/HomePageEng.html">Ishizuka Lab. was closed. (2013.3) </a></li>
+<li><a href="https://gorrion.io/blog/online-marketing-congress-2017">Online Marketing Congress 2017</a></li>
+<li><a href="https://pooyanjamshidi.github.io/mls/course-materials/">course-materials of Sys for ML/AI</a></li>
+<li><a href="https://sigopt.com/blog/">https://sigopt.com/blog/</a></li>
+<li><a href="http://wume.cse.lehigh.edu/">Web Understanding, Modeling, and Evaluation Lab</a></li>
+<li><a href="https://knightlab.northwestern.edu/">https://knightlab.northwestern.edu/</a></li>
+</ul>
+<h3 id="courese">Courese<a class="headerlink" href="#courese" title="Permanent link"></a></h3>
+<ul>
+<li><a href="https://github.com/wzhe06/Ad-papers">Papers on Computational Advertising</a></li>
+<li><a href="http://www.cse.fau.edu/~xqzhu/courses/cap6807.html">CAP 6807: Computational Advertising and Real-Time Data Analytics</a></li>
+<li><a href="https://www.soe.ucsc.edu/departments/technology-management/research/computational-advertising">Computational Advertising Contract Preferences for Display Advertising</a></li>
+<li><a href="http://alex.smola.org/teaching/ucsc2009/">Machine Learning for Computational Advertising, UC Santa Cruz, April 22, 2009, Alex Smola, Yahoo Labs, Santa Clara, CA</a></li>
+<li><a href="https://people.eecs.berkeley.edu/~jfc/DataMining/SP12/lecs/lec12.pdf">Computational Advertising and Recommendation</a></li>
+<li><a href="http://quinonero.net/Publications/predicting-clicks-facebook.pdf">Practical Lessons from Predicting Clicks on Ads at Facebook</a></li>
+<li><a href="https://web.njit.edu/~ychen/advertising.html">advertising</a></li>
+<li><a href="http://people.stern.nyu.edu/ja1517/">http://people.stern.nyu.edu/ja1517/</a></li>
+<li><a href="http://www.cs.cornell.edu/courses/cs7792/2018fa/">CS7792 - Counterfactual Machine Learning, Special Topics in Machine Learning</a></li>
+<li><a href="https://github.com/computational-class/computational-advertising-2015">https://github.com/computational-class/computational-advertising-2015</a></li>
+<li><a href="https://www.nowpublishers.com/article/Details/INR-045">Computational Advertising: Techniques for Targeting Relevant Ads</a></li>
+<li><a href="http://catalog.illinois.edu/courses-of-instruction/adv/">http://catalog.illinois.edu/courses-of-instruction/adv/</a></li>
+<li><a href="http://people.csail.mit.edu/morteza/">http://people.csail.mit.edu/morteza/</a></li>
+<li><a href="http://www.cse.fau.edu/~xqzhu/courses/cap6807.html">CAP 6807: Computational Advertising and Real-Time Data Analytics</a></li>
+<li><a href="http://www.cikm2011.org/tutorials/PM3.html">Tutorial: Information Retrieval Challenges in Computational Advertising</a></li>
+</ul></article></body></html>
