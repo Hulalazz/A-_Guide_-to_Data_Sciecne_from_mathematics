@@ -816,8 +816,9 @@ $$x^{k+1}=\frac{x^{1}\exp(\sum_{n=1}^{k}-\alpha \nabla f(x^n))}{\prod_{n=1}^{k}\
 
 ### Proximal Gradient Method
 
-Recall the projected gradient method,  it converts the constrained problem $\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$ into unconstrained (also uncontinuous) problem $\arg\min_{x}\{f(x)+\delta_{\mathbb{S}}(x)\}$ literally
-and it follows the following iteration:
+Recall the projected gradient method,  
+it converts the constrained problem $\arg\min_{x}\{f(x)\mid x\in \mathbb{S}\}$ into unconstrained (also uncontinuous) problem $\arg\min_{x}\{f(x)+\delta_{\mathbb{S}}(x)\}$ 
+literally and it follows the following iteration:
 $$
 x^{k+1} = \arg\min_{x}\{\|x-(x^{k}-\alpha_k\nabla_x f(x^{k}))\|^{2} +\delta_{\mathbb{S}}(x) \}
 $$
@@ -830,7 +831,8 @@ h(x) =\delta_{\mathbb{S}}(x)=
  \end{cases}
 $$
 
-If the function $\delta_{\mathbb{S}}(x)$ is replaced by general non-differential while  convex function $\mathbf{h}(x)$, the `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
+If the function $\delta_{\mathbb{S}}(x)$ is replaced by general non-differential 
+while  convex function $\mathbf{h}(x)$, the `proximal mapping (or prox-operator)` of a convex function $\mathbf{h}$ is defined as
 $$
 prox_h(x)=\arg\min_{u}\{\mathbf{h}(u)+\frac{1}{2} {\|x-u\|}_2^2\}
 $$
@@ -2529,6 +2531,7 @@ $$
 
 ***
 - [ ] [Analysis of Hamilton-Jacobi Equation: Optimization, Dynamics and Control - Part II of II](https://www.pathlms.com/siam/courses/1825/sections/2464)
+- [ ] [From differential equation solvers to accelerated first-order methods for convex optimization](https://arxiv.org/pdf/1909.03145.pdf)
 - [ ] [Optimization via the Hamilton-Jacobi-Bellman Method: Theory and Applications by Navin Khaneja, Harvard & KITP](http://online.kitp.ucsb.edu/online/qcontrol09/khaneja3/)
 - [ ] [GRADIENT FLOW DYNAMICS](http://www-bcf.usc.edu/~mihailo/Keyword/GRADIENT-FLOW-DYNAMICS.html)
 - [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)

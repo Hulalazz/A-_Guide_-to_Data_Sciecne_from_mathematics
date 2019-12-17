@@ -11,6 +11,7 @@ Information retrieval is the extension of the search engine.
 - http://www.wsdm-conference.org/
 - http://www.svcl.ucsd.edu/projects/regularization/
 - http://www.svcl.ucsd.edu/projects/crossmodal/
+- http://fengzheyun.github.io/
 - [ ] [RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
 - [ ] [Information on Information Retrieval (IR) books, courses, conferences and other resources.](https://nlp.stanford.edu/IR-book/information-retrieval.html)
 - https://monkeylearn.com/text-analysis/
@@ -980,7 +981,9 @@ the document.
 
 ### Information Distribution: Search Engine Results Page
 
-[Information Distribution Methods – Information distribution is the timely collection, sharing and distribution of information to the project team. Methods can be portals, collaborative work management tools, web conferencing, web publishing, and when all technology is not available, manual filing systems and hard copy distribution.](http://www.anticlue.net/archives/000804.htm)
+Information Distribution Methods – Information distribution is the timely collection, sharing and distribution of information to the project team. 
+Methods can be portals, collaborative work management tools, web conferencing, web publishing, 
+[and when all technology is not available, manual filing systems and hard copy distribution.](http://www.anticlue.net/archives/000804.htm)
 
 * [SERP: GUIDE TO THE GOOGLE SEARCH ENGINE RESULTS (UPDATED 2019 GUIDE)](https://ignitevisibility.com/serp/)
 * [CH. 5: PRESENTATION OF SEARCH RESULTS](http://searchuserinterfaces.com/book/sui_ch5_retrieval_results.html)
@@ -991,8 +994,21 @@ the document.
 #### Keywords Highlight
 
 - https://doc.nuxeo.com/nxdoc/elasticsearch-highlights/
+- https://www.the-art-of-web.com/javascript/search-highlight/
 
 #### Webpage Snapshot
+
+Google Cache is normally referred as the copies of the web pages cached by Google. 
+Google crawls the web and takes snapshots of each page as a backup just in case the current page is not available. 
+These pages then become part of Google's cache. These Google cached pages can be extremely useful 
+[if a site is temporary down, you can always access these page by visiting Google’s cached version.](http://cachedview.com/)
+
+[Google web is usually updated in a few days. The actual time of the updates depends on the frequency the website updates itself.](http://cachedview.com/)
+
+- https://web.archive.org/
+- https://www.websgj.com/
+- http://archive.org/web/
+- http://cachedview.com/
 
 ### Information Retrieval Evaluation
 
@@ -1007,13 +1023,14 @@ Evaluation is used to enhance the performance of the result of the information r
 
 Neural networks or deep learning as a subfield of machine learning, is widely applied in information processing.
 
-> During the opening keynote of the SIGIR 2016 conference, Christopher Manning predicted a significant influx of deep neural network related papers for IR in the next few years.
-However, he encouraged the community to be mindful of some of the “irrational exuberance” that plagues the field today.
-The first SIGIR workshop on neural information retrieval received an unexpectedly high number of submissions and registrations.
-These are clear indications that the IR community is excited by the recent developments in the area of deep neural networks.
-This is indeed an exciting time for this area of research and we believe that besides attempting to simply demonstrate empirical progress on retrieval tasks,
-our explorations with neural models should also provide new insights about IR itself.
-In return, we should also look for opportunities to apply IR intuitions into improving these neural models, and their application to non-IR tasks.
+> During the opening keynote of the SIGIR 2016 conference, 
+> `Christopher Manning` predicted a significant influx of deep neural network related papers for IR in the next few years.
+> However, he encouraged the community to be mindful of some of the “irrational exuberance” that plagues the field today.
+> The first SIGIR workshop on neural information retrieval received an unexpectedly high number of submissions and registrations.
+> These are clear indications that the IR community is excited by the recent developments in the area of deep neural networks.
+> This is indeed an exciting time for this area of research and we believe that besides attempting to simply demonstrate empirical progress on retrieval tasks,
+> our explorations with neural models should also provide new insights about IR itself.
+> In return, we should also look for opportunities to apply IR intuitions into improving these neural models, and their application to non-IR tasks.
 
 - http://nn4ir.com/
 - https://microsoft.github.io/TREC-2019-Deep-Learning/
@@ -1120,10 +1137,14 @@ Different from general web search engine, scholar search engine does rank the we
 - https://www.khoury.northeastern.edu/people/carla-brodley/
 
 
-#### Medical Information Retrieval: Biomedical and Health Informatics
+#### Health Information Retrieval: Biomedical and Health Informatics
 
 ChartRequest claims that:
-> Requesting medical records is vital to your operations as a health insurance company. From workers’ compensation claims to chronic-condition care, insurance companies require numerous medical records—daily. Obtain records quickly and accurately with our medical information retrieval software. ChartRequest offers a complete enterprise solution for health insurance companies—facilitating swift fulfillment and secure, HIPAA-compliant records release.
+> Requesting medical records is vital to your operations as a health insurance company. 
+> From workers’ compensation claims to chronic-condition care, insurance companies require numerous medical records—daily. 
+> Obtain records quickly and accurately with our medical information retrieval software. 
+> ChartRequest offers a complete enterprise solution for health insurance companies—facilitating swift fulfillment and secure, 
+> HIPAA-compliant records release.
 
 - http://web.cs.ucla.edu/~wwc/course/cs245a/
 - http://web.cs.ucla.edu/~wwc/
@@ -1133,6 +1154,12 @@ ChartRequest claims that:
 - http://yom-tov.info/publications.html
 - http://yom-tov.info/publications.html
 - [Internet Searches for Medical Symptoms Before Seeking Information on 12-Step Addiction Treatment Programs: A Web-Search Log Analysis](https://www.jmir.org/2019/5/e10946/)
+- https://www.webmd.com/
+- https://ingemarcox.cs.ucl.ac.uk/?page_id=14
+- https://ingemarcox.cs.ucl.ac.uk/?page_id=14
+- https://ingemarcox.cs.ucl.ac.uk/
+- [Using the World Wide Web to answer clinical questions: how efficient are different methods of information retrieval?](https://www.ncbi.nlm.nih.gov/pubmed/10428249)
+- [Clinical Digital Libraries Project: design approach and exploratory assessment of timely use in clinical environments.](https://www.ncbi.nlm.nih.gov/pubmed/16636712)
 
 ##### What is Biomedical and Health Informatics?
 
@@ -1166,13 +1193,32 @@ Lately, the control over and access to health information by consumers has been 
 
 ##### Why is medical information retrieval difficult?
 
-It is becasue medical information is really professional while critical.
+Simply, it is becasue medical information is really professional while critical.
+It is not easy to understand the semantics of texts with medical terms for patients 
+the ones who need such information.
 
+This can be difficult because health information is constantly changing as a result of new research and because 
+[there may be different valid approaches to treating particular conditions.](https://www.ucsfhealth.org/education/evaluating-health-information)
+
+It is therefore of interest to find out 
+how well web search engines work for diagnostic queries 
+and what factors contribute to successes and failures. 
+Among diseases, `rare (or orphan) diseases` represent an especially challenging and thus interesting class to diagnose as each is rare, diverse in symptoms 
+and usually has scattered resources associated with it.
+
+- [Specialized tools are needed when searching the web for rare disease diagnoses](https://www.ncbi.nlm.nih.gov/pubmed/25002998)
+- [Online Health Information: Is It Reliable?](https://www.nia.nih.gov/health/online-health-information-it-reliable)
+- https://www.ucsfhealth.org/education/evaluating-health-information
+- [FindZebra: a search engine for rare diseases.](https://www.ncbi.nlm.nih.gov/pubmed/23462700)
+- [Rare disease diagnosis: A review of web search, social media and large-scale data-mining approaches.](https://www.ncbi.nlm.nih.gov/pubmed/26442199)
+- [A comparison of world wide web resources for identifying medical information.](https://www.ncbi.nlm.nih.gov/pubmed/18692758)
 
 ##### How knowledge bases can improve retrieval performance?
 
 - https://slides.com/saeidbalaneshinkordan/medical_information_retrieval#/23
 - https://slides.com/saeidbalaneshinkordan/medical_information_retrieval-1-5-6
+- http://www0.cs.ucl.ac.uk/staff/ingemar/Content/papers/2015/DMKD2015.pdf
+
 
 ****
 * https://dmice.ohsu.edu/hersh/
@@ -1220,6 +1266,7 @@ It is becasue medical information is really professional while critical.
 * [Building a Content-Based Multimedia Search Engine V: Signature Quadratic Form Distance](http://www.deepideas.net/building-content-based-multimedia-search-engine-signature-quadratic-form-distance/)
 * [Building a Content-Based Multimedia Search Engine VI: Efficient Query Processing](http://www.deepideas.net/building-content-based-multimedia-search-engine-efficient-query-processing/)
 * http://www.sonic.net/~rteeter/multimedia.html
+* http://www.ee.columbia.edu/~wjiang/
 * [WebMARS: A Multimedia Search Engine](https://www.microsoft.com/en-us/research/publication/webmars-a-multimedia-search-engine/)
 
 ##### Image Search Engine
@@ -1227,6 +1274,8 @@ It is becasue medical information is really professional while critical.
 [Milvus is the world's fastest similarity search engine for massive-scale feature vectors. Built with heterogeneous computing architecture for the best cost efficiency. Searches over billion-scale vectors take only milliseconds with minimum computing resources.](https://github.com/milvus-io/milvus)
 
 - https://github.com/milvus-io/milvus
+- http://www.ifp.illinois.edu/~xzhou2/
+- http://fengzheyun.github.io/publications.html
 - [关于 Milvus 在线训练营](https://github.com/milvus-io/bootcamp)
 - https://milvus.io/
 - [自制AI图像搜索引擎](https://blog.csdn.net/baidu_40840693/article/details/88230418)
@@ -1258,7 +1307,13 @@ It is becasue medical information is really professional while critical.
 
 #### Ecommerce Search
 
-[According to a recent survey, over 55% of online customers begin their online shopping journey by searching on an E-Commerce website like Amazon as opposed to a generic web search engine like Google. While information retrieval research to date has been primarily focused on optimizing generic search experiences, and search engines in the past decade have improved significantly, not too much attention has been paid to search for E-Commerce. In this talk, I will explore some intrinsic differences between web search and E-Commerce search that makes the direct application of traditional search ranking algorithms to E-Commerce search difficult. In addition, I will present some recent attempts at Etsy to tackle challenges in E-Commerce search.](https://sigir-ecom.github.io/ecom2018/program.html)
+According to a recent survey, over 55% of online customers begin their online shopping journey by searching on an E-Commerce website like Amazon 
+as opposed to a generic web search engine like Google. 
+While information retrieval research to date has been primarily focused on optimizing generic search experiences, 
+and search engines in the past decade have improved significantly, not too much attention has been paid to search for E-Commerce. 
+In this talk, I will explore some intrinsic differences 
+between web search and E-Commerce search that makes the direct application of traditional search ranking algorithms to E-Commerce search difficult. 
+In addition, [I will present some recent attempts at Etsy to tackle challenges in E-Commerce search.](https://sigir-ecom.github.io/ecom2018/program.html)
 
 - https://www.nngroup.com/articles/state-ecommerce-search/
 - https://www.nngroup.com/articles/ecommerce-expectations/
@@ -1278,7 +1333,8 @@ It is becasue medical information is really professional while critical.
 
 #### Multimodal Search
 
-[A multilingual, multimodal search and access system for biomedical information and documents.](http://www.khresmoi.eu/overview/) The system allows access to biomedical data:
+[A multilingual, multimodal search and access system for biomedical information and documents.](http://www.khresmoi.eu/overview/) 
+The system allows access to biomedical data:
 
 * from many sources,
 * analyzing and indexing multi-dimensional (2D, 3D) medical images,
@@ -1289,6 +1345,7 @@ with improved search capabilities due to the integration of technologies to link
 * [DeepStyle: Multimodal Search Engine for Fashion and Interior Design](https://ieeexplore.ieee.org/document/8737943)
 * [What Looks Good with my Sofa: Ensemble Multimodal Search for Interior Design](https://annals-csis.org/proceedings/2017/drp/56.html)
 * http://www.khresmoi.eu/overview/
+* http://www.ee.columbia.edu/~wjiang/publications.html
 * [Multi-Task Learning with Neural Networks for Voice Query Understanding on an Entertainment Platform](https://www.kdd.org/kdd2018/accepted-papers/view/multi-task-learning-with-neural-networks-for-voice-query-understanding-on-a)
 
 #### Princeton CASS: Content-Aware Search Systems
@@ -1296,6 +1353,8 @@ with improved search capabilities due to the integration of technologies to link
 The Content-Aware Similarity Search (CASS) project investigates research issues in searching, clustering, and classification, and management for feature-rich, non-text data types.
 
 - https://www.cs.princeton.edu/cass/
+
+
 ### Knowledge Graphs
 
 Search is not only on string but also things.
@@ -1461,3 +1520,6 @@ Winter 2011 ](http://web.stanford.edu/class/linguist289/)
 + https://www.cl.cam.ac.uk/teaching/1516/InfoRtrv/materials.html
 + [Information Retrieval](https://www.comp.nus.edu.sg/~kanmy/courses/3245_2017/)
 + https://www.jianshu.com/p/a133f54222cb
++ http://ir.cs.georgetown.edu/
++ http://people.cs.georgetown.edu/~nazli/
++ http://ir.cs.georgetown.edu/publications/

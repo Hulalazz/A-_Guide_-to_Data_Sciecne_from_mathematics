@@ -299,6 +299,8 @@ And it can be applied to information retrieval and recommender system.
 * [TREC 2014 Session Track](http://ir.cis.udel.edu/sessions/)
 * [Introduction to Information Retrievel](https://nlp.stanford.edu/IR-book/)
 * [Images do npt lie](https://arxiv.org/abs/1511.06746)
+
+
 ![meituan.net](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
 
 *Learning to Rank* can be classified into [pointwise, pairwise and listless approaches](http://www.l3s.de/~anand/tir15/lectures/ws15-tir-l2r.pdf).
@@ -958,6 +960,11 @@ In the information retrieval community, explorations in effectiveness and effici
 * Produce new results based on reformulated query.
 * Allows more interactive, multi-pass process.
 
+- [Relevance Feedback Algorithms Inspired By Quantum Detection](https://ieeexplore.ieee.org/document/7350145/)
+- [/Relevance Feedback In Image Retrieval](http://dimacs.rutgers.edu/~billp/pubs/RelevanceFeedbackInImageRetrieval.pdf)
+- [Comparing Relevance Feedback Algorithms for Web Search](http://wwwconference.org/proceedings/www2005/docs/p1052.pdf)
+- https://www.ercim.eu/publication/ws-proceedings/DelNoe02/hiemstra.pdf
+
 ### AdaRank
 
 In the abstract, it  claims that:
@@ -1429,11 +1436,6 @@ $${[{\Delta}_{0}]}_{(i,j)}=
 - [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
 - [ ] [Graph Helmholtzian and Rank Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/lekhenglim-nips.pdf)
 
-### Differentiable Ranking and Sorting
-
-[Sorting is used pervasively in machine learning, either to define elementary algorithms, such as k-nearest neighbors (k-NN) rules, or to define test-time metrics, such as top-n classification accuracy or ranking losses. Sorting is however a poor match for the end-to-end, automatically differentiable pipelines of deep learning. Indeed, sorting procedures output two vectors, neither of which is differentiable: the vector of sorted values is piecewise linear, while the sorting permutation itself (or its inverse, the vector of ranks) has no differentiable properties to speak of, since it is integer-valued. We propose in this paper to replace the usual $\texttt{sort}$ procedure with a differentiable proxy. Our proxy builds upon the fact that sorting can be seen as an optimal assignment problem, one in which the  values to be sorted are matched to an $\emph{auxiliary}$ probability measure supported on any $\emph{increasing}$ family of  target values. From this observation, we propose extended rank and sort operators by considering optimal transport (OT) problems (the natural relaxation for assignments) where the auxiliary measure can be any weighted measure supported on  increasing values, where $m\not= n$. We recover differentiable operators by regularizing these OT problems with an entropic penalty, and solve them by applying Sinkhorn iterations. Using these smoothed rank and sort operators, we propose differentiable proxies for the classification 0/1 loss as well as for the quantile regression loss.]()
-
-- [Differentiable Ranking and Sorting using Optimal Transport](http://papers.nips.cc/paper/8910-differentiable-ranking-and-sorting-using-optimal-transport)
 
 ### Online Learning to Rank
 
@@ -1587,6 +1589,35 @@ $$L_{\beta}(f;\mathrm x, \mathcal L)= 0\iff \exists y\in Y_{\mathcal L}\quad sat
 - [ ] [Revisiting Approximate Metric Optimization in the Age of Deep Neural Networks](https://ai.google/research/pubs/pub48168)
 - [ ] [Revisiting Online Personal Search Metrics with the User in Mind](https://ai.google/research/pubs/pub48243)
 
+### Differentiable Ranking and Sorting
+
+Sorting is used pervasively in machine learning, either to define elementary algorithms, 
+such as k-nearest neighbors (k-NN) rules,  
+or to define test-time metrics, such as top-n  classification accuracy or ranking losses. 
+Sorting is however a poor match for the end-to-end, 
+automatically differentiable pipelines of deep learning. 
+Indeed, sorting procedures output two vectors,  neither of which is differentiable: 
+the vector of sorted values is piecewise linear, 
+while the sorting permutation itself 
+(or its inverse, the vector of ranks) has no differentiable properties to speak of, 
+since it is integer-valued. 
+We propose in this paper to replace the usual $\texttt{sort}$ procedure 
+with a differentiable proxy. 
+Our proxy builds upon the fact that sorting  can be seen as an optimal assignment problem, 
+one in which the  values to be ted are matched to an $\emph{auxiliary}$ probability measure 
+supported on any $\emph{increasing}$ family of  target values. 
+From this observation, we propose extended rank and sort operators by 
+considering optimal transport (OT) problems (the natural relaxation for assignments)
+where the auxiliary measure can be any weighted measure  supported on  increasing values, where $m\not= n$. 
+We recover differentiable operators by regularizing these OT problems with an entropic penalty, 
+and solve them by applying Sinkhorn  iterations. 
+Using these smoothed rank and sort operators, 
+[we propose differentiable proxies or the classification 0/1 loss as well as for the quantile regression loss.]()
+
+- [Differentiable Ranking and Sorting using Optimal Transport](http://papers.nips.cc/paper/8910-differentiable-ranking-and-sorting-using-optimal-transport)
+
+**Sinkhorn Ranks/Sorts**
+
 ### QuickRank
 
 QuickRank is an efficient Learning to Rank toolkit providing multithreaded C++ implementation of several algorithms.
@@ -1678,3 +1709,10 @@ an modifications be made and which most improve the graph's rankability?
 + [Learning to Rank with Tensorflow](https://quantdare.com/learning-to-rank-with-tensorflow/)
 + http://www.cs.virginia.edu/~hw5x/
 + https://taskintelligence.github.io/WSDM2019-Workshop/#
++ http://www.ifp.illinois.edu/~nakazato/
++ http://disi.unitn.it/~bernardi/
++ http://www.cs.cmu.edu/~wcohen/
++ https://ingemarcox.cs.ucl.ac.uk/
++ http://www.ifp.illinois.edu/~xzhou2/
++ https://faculty.utrgv.edu/zhixiang.chen/
++ http://dia.fi.upm.es/
