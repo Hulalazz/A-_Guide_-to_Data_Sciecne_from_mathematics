@@ -2,10 +2,16 @@
 
 - https://nthu-datalab.github.io/ml/index.html
 - http://www.cs.cornell.edu/~shmat/research.html
+- http://www.prace-ri.eu/best-practice-guide-deep-learning
 
-[Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
+Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
+Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
+[Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
 
 
+## Resource  on Deep Learning Theory 
+
+* https://ori.ox.ac.uk/labs/a2i/
 * [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
 * [A Comprehensive Analysis of Deep Regression](https://github.com/Stephlat/DeepRegression)
 * https://gangwg.github.io/research.html
@@ -51,6 +57,7 @@
 * https://www.researchgate.net/profile/Hatef_Monajemi
 * [Symposium Artificial Intelligence for Science, Industry and Society](https://indico.cern.ch/event/781223/)
 * https://arxiv.org/abs/1909.13458
+* [TAU & GTDeepNet seminars](https://www.lri.fr/TAU_seminars/)
 
 ### Deep Learning Reading Group
 
@@ -114,15 +121,25 @@ Finally, we discuss prospective trends in explainable artificial intelligence.
 * https://www.seas.upenn.edu/~minchenl/
 * https://cs.nyu.edu/~yixinhu/
 * http://www.cs.utexas.edu/~huangqx/
+* https://stats385.github.io/
 
 Not all one can understand the relative theory or quantum theory.
 
+### DeepLEVER
+
+- [DeepLEVER](http://anitideeplever.laas.fr/deeplever-project-has-started)
+- https://aniti.univ-toulouse.fr/index.php/en/
+- https://jpmarquessilva.github.io/
+- https://www.researchgate.net/profile/Martin_Cooper3
+- http://homepages.laas.fr/ehebrard/Home.html
+- http://www.merl.com/
 
 ## Physics and Deep Learning
 
 [Neuronal networks have enjoyed a resurgence both in the worlds of neuroscience, where they yield mathematical frameworks for thinking about complex neural datasets, and in machine learning, where they achieve state of the art results on a variety of tasks, including machine vision, speech recognition, and language translation.   Despite their empirical success, a mathematical theory of how deep neural circuits, with many layers of cascaded nonlinearities, learn and compute remains elusive.  We will discuss three recent vignettes in which ideas from statistical physics can shed light on this issue.  In particular, we show how dynamical criticality can help in neural learning, how the non-intuitive geometry of high dimensional error landscapes can be exploited to speed up learning, and how modern ideas from non-equilibrium statistical physics, like the Jarzynski equality, can be extended to yield powerful algorithms for modeling complex probability distributions.  Time permitting, we will also discuss the relationship between neural network learning dynamics and the developmental time course of semantic concepts in infants.](https://physics.berkeley.edu/news-events/events/20151005/the-statistical-physics-of-deep-learning-on-the-beneficial-roles-of)
 
-[In recent years, artificial intelligence has made remarkable advancements, impacting many industrial sectors dependent on complex decision-making and optimization. Physics-leaning disciplines also face hard inference problems in complex systems: climate prediction, density matrix estimation for many-body quantum systems, material phase detection, protein-fold quality prediction, parametrization of effective models of high-dimensional neural activity, energy landscapes of transcription factor-binding, etc. Methods using artificial intelligence have in fact already advanced progress on such problems. So, the question is not whether, but how AI serves as a powerful tool for data analysis in academic research, and physics-leaning disciplines in particular.](http://www.physics.mcgill.ca/ai2019/)
+[In recent years, artificial intelligence has made remarkable advancements, impacting many industrial sectors dependent on complex decision-making and optimization. 
+Physics-leaning disciplines also face hard inference problems in complex systems: climate prediction, density matrix estimation for many-body quantum systems, material phase detection, protein-fold quality prediction, parametrization of effective models of high-dimensional neural activity, energy landscapes of transcription factor-binding, etc. Methods using artificial intelligence have in fact already advanced progress on such problems. So, the question is not whether, but how AI serves as a powerful tool for data analysis in academic research, and physics-leaning disciplines in particular.](http://www.physics.mcgill.ca/ai2019/)
 
 <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2017/09/InfoBottleneck_2880x1620.jpg" width="80%"/>
 
@@ -176,7 +193,7 @@ Not all one can understand the relative theory or quantum theory.
 * https://www.researchgate.net/scientific-contributions/2135376837_Maurice_Weiler
 * [Spontaneous Symmetry Breaking in Neural Networks](https://arxiv.org/abs/1710.06096)
 * [2017 Machine Learning for Physicists, by Florian Marquardt](http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt)
-
+* https://physai.sciencesconf.org/
 
 ### Statistical Mechanics and Deep Learning
 
@@ -584,6 +601,7 @@ The section will extend the approximation to the deep neural network.
 - [Deep Approximation via Deep Learning](http://www.ipam.ucla.edu/abstract/?tid=15953&pcode=GLWS3)
 - [Convolutional Neural Networks for Steady Flow Approximation](https://github.com/loliverhennigh/Steady-State-Flow-With-Neural-Nets)
 - https://www.cityu.edu.hk/ma/people/profile/zhoudx.htm
+- https://dblp.uni-trier.de/pers/hd/y/Yang:Haizhao
 - [Efficient approximation of high-dimensional functions with deep neural networks](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-64_fp.pdf)
 - [Neural Jump SDEs (Jump Diffusions) and Neural PDEs](http://www.stochasticlifestyle.com/neural-jump-sdes-jump-diffusions-and-neural-pdes/)
 
@@ -603,21 +621,44 @@ The section will extend the approximation to the deep neural network.
 
 ## Inverse Problem and Deep Learning
 
-[There is a long history of algorithmic development for solving inverse problems arising in sensing and imaging systems and beyond. Examples include medical and computational imaging, compressive sensing, as well as community detection in networks. Until recently, most algorithms for solving inverse problems in the imaging and network sciences were based on static signal models derived from physics or intuition, such as wavelets or sparse representations.](https://deep-inverse.org/)
+[There is a long history of algorithmic development for solving inverse problems arising in sensing and imaging systems and beyond. 
+Examples include medical and computational imaging, compressive sensing, as well as community detection in networks. Until recently, 
+most algorithms for solving inverse problems in the imaging and network sciences were based on static signal models derived from physics or intuition, 
+such as wavelets or sparse representations.](https://deep-inverse.org/)
 
-[Today, the best performing approaches for the aforementioned image reconstruction and sensing problems are based on deep learning, which learn various elements of the method including i) signal representations, ii) stepsizes and parameters of iterative algorithms, iii) regularizers, and iv) entire inverse functions. For example, it has recently been shown that solving a variety of inverse problems by transforming an iterative, physics-based algorithm into a deep network whose parameters can be learned from training data, offers faster convergence and/or a better quality solution. Moreover, even with very little or no learning, deep neural networks enable superior performance for classical linear inverse problems such as denoising and compressive sensing. Motivated by those success stories, researchers are redesigning traditional imaging and sensing systems.](https://deep-inverse.org/)
+[Today](https://deep-inverse.org/), the best performing approaches for the aforementioned image reconstruction and sensing problems are based on deep learning, 
+which learn various elements of the method including 
+i) signal representations, 
+ii) stepsizes and parameters of iterative algorithms, 
+iii) regularizers, and iv) entire inverse functions. 
+For example, it has recently been shown that solving a variety of inverse problems by transforming an iterative, physics-based algorithm into a deep network 
+whose parameters can be learned from training data, offers faster convergence and/or a better quality solution. 
+Moreover, even with very little or no learning, deep neural networks enable superior performance for classical linear inverse problems 
+such as denoising and compressive sensing. Motivated by those success stories, researchers are redesigning traditional imaging and sensing systems.
 
 - [Sixteenth International Conference on the Integration of Constraint Programming, Artificial Intelligence, and Operations Research](http://cpaior2019.uowm.gr/)
-- [Neumann Networks for Inverse Problems in Imaging](https://arxiv.org/abs/1901.03707)
 - https://github.com/mughanibu/Deep-Learning-for-Inverse-Problems
 - [Accurate Image Super-Resolution Using Very Deep Convolutional Networks](https://cv.snu.ac.kr/research/VDSR/)
-- [Deep Learning for Inverse Problems](https://arxiv.org/abs/1803.00092)
-- [Solving inverse problems with deep networks](https://deep-inverse.org/)
 - https://earthscience.rice.edu/mathx2019/
+- https://www.researchgate.net/publication/329395098_On_Deep_Learning_for_Inverse_Problems
 - [Deep Learning and Inverse Problem](https://www.dlip.org/)
 - https://www.scec.org/publication/8768
-- [deep inverse optimization](https://github.com/tankconcordia/deep_inv_opt)
 - https://amds123.github.io/
+- 
+- https://imaginary.org/snapshot/deep-learning-and-inverse-problems
+- https://www.researchgate.net/scientific-contributions/2150388821_Jaweria_Amjad
+
+### Deep Learning for Inverse Problems
+
+- [Deep Learning for Inverse Problems](https://arxiv.org/abs/1803.00092)
+- [Solving inverse problems with deep networks](https://deep-inverse.org/)
+- [Neumann Networks for Inverse Problems in Imaging](https://arxiv.org/abs/1901.03707)
+
+### Deep Inverse Optimization
+
+- [deep inverse optimization](https://github.com/tankconcordia/deep_inv_opt)
+- https://ori.ox.ac.uk/deep-irl/
+- https://physai.sciencesconf.org/data/pages/perez_2019_03_Institut_Pascal_AI_and_Physics_noanim.pdf
 
 ## Random Matrix Theory and Deep Learning
 
@@ -625,13 +666,13 @@ Random matrix focus on the matrix, whose entities are sampled from  some specifi
 Weight matrices in deep nerual network are initialed in random.
 However, the model is over-parametered and it is hard to verify the role of one individual parameter.
 
+- http://romaincouillet.hebfree.org/
+- https://zhenyu-liao.github.io/
+- https://dionisos.wp.imt.fr/
 - https://project.inria.fr/paiss/
 - https://zhenyu-liao.github.io/activities/
 - [Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning](https://arxiv.org/abs/1810.01075)
 - [Recent Advances in Random Matrix Theory for Modern Machine Learning](https://zhenyu-liao.github.io/pdf/pre/Matrix_talk_liao_handout.pdf)
-- http://romaincouillet.hebfree.org/
-- https://zhenyu-liao.github.io/
-- https://dionisos.wp.imt.fr/
 - [Features extraction using random matrix theory](https://ir.library.louisville.edu/cgi/viewcontent.cgi?article=2227&context=etd)
 - [Nonlinear random matrix theory for deep learning](https://papers.nips.cc/paper/6857-nonlinear-random-matrix-theory-for-deep-learning.pdf)
 - [A RANDOM MATRIX APPROACH TO NEURAL NETWORKS](https://arxiv.org/pdf/1702.05419.pdf)
@@ -639,19 +680,36 @@ However, the model is over-parametered and it is hard to verify the role of one 
 - [Harnessing neural networks: A random matrix approach](https://hal.archives-ouvertes.fr/hal-01962073)
 - [Tensor Programs: A Swiss-Army Knife for Nonlinear Random Matrix Theory of Deep Learning and Beyond](https://www.csail.mit.edu/event/tensor-programs-swiss-army-knife-nonlinear-random-matrix-theory-deep-learning-and-beyond)
 - [Scaling Limits of Wide Neural Networks with Weight Sharing: Gaussian Process Behavior, Gradient Independence, and Neural Tangent Kernel Derivation](https://arxiv.org/abs/1902.04760)
+- [Random Matrix Theory and its Innovative Applications∗](http://www-math.mit.edu/~edelman/publications/random_matrix_theory_innovative.pdf)
 - https://romaincouillet.hebfree.org/docs/conf/ELM_icassp.pdf
 - https://romaincouillet.hebfree.org/docs/conf/NN_ICML.pdf
 - http://www.vision.jhu.edu/tutorials/CVPR16-Tutorial-Math-Deep-Learning-Raja.pdf
+- [A Random Matrix Framework for BigData Machine Learning](https://www.lri.fr/TAU_seminars/videos/Romain_Couillet_12juin2017/talk_lri.pdf)
+
+### Nonlinear Random Matrix Theory
+
+- https://ai.google/research/pubs/pub46342
+- http://people.cs.uchicago.edu/~pworah/nonlinear_rmt.pdf
+- [A SWISS-ARMY KNIFE FOR NONLINEAR RANDOM MATRIX THEORY OF DEEP LEARNING AND BEYOND](https://toc.csail.mit.edu/node/1314)
+- https://simons.berkeley.edu/talks/9-24-mahoney-deep-learning
+- https://cs.stanford.edu/people/mmahoney/
+- https://www.stat.berkeley.edu/~mmahoney/f13-stat260-cs294/
+- https://arxiv.org/abs/1902.04760
+- https://melaseddik.github.io/
+- https://thayafluss.github.io/
 
 ## Deep learning and Optimal Transport
 
-[Optimal transport (OT) provides a powerful and flexible way to compare probability measures, of all shapes: absolutely continuous, degenerate, or discrete. This includes of course point clouds, histograms of features, and more generally datasets, parametric densities or generative models. Originally proposed by Monge in the eighteenth century, this theory later led to Nobel Prizes for Koopmans and Kantorovich as well as Villani’s Fields Medal in 2010.](http://otml17.marcocuturi.net/)
+Optimal transport (OT) provides a powerful and flexible way to compare probability measures, 
+of all shapes: absolutely continuous, degenerate, or discrete. 
+This includes of course point clouds, histograms of features, and more generally datasets, parametric densities or generative models. 
+Originally proposed by Monge in the eighteenth century, 
+[this theory later led to Nobel Prizes for Koopmans and Kantorovich as well as Villani’s Fields Medal in 2010.](http://otml17.marcocuturi.net/)
 
 - [Optimal Transport & Machine Learning](http://otml17.marcocuturi.net/)
 - [Topics on Optimal Transport in Machine Learning and Shape Analysis (OT.ML.SA)](https://people.math.osu.edu/memolitechera.1/courses/cse-topics-2018/)
 - https://www-obelix.irisa.fr/files/2017/01/postdoc-Obelix.pdf
 - http://www.cis.jhu.edu/~rvidal/talks/learning/StructuredFactorizations.pdf
-- http://cmsa.fas.harvard.edu/wp-content/uploads/2018/06/David_Gu_Harvard.pdf
 - https://mc.ai/optimal-transport-theory-the-new-math-for-deep-learning/
 - https://www.louisbachelier.org/wp-content/uploads/2017/07/170620-ilb-presentation-gabriel-peyre.pdf
 - http://people.csail.mit.edu/davidam/
@@ -659,6 +717,17 @@ However, the model is over-parametered and it is hard to verify the role of one 
 - https://github.com/hindupuravinash/nips2017
 - [Selection dynamics for deep neural networks](https://arxiv.org/abs/1905.09076v1)
 - https://people.math.osu.edu/memolitechera.1/index.html
+
+
+### Generative Models and Optimal Transport
+
+- https://www.researchgate.net/publication/317378242_GAN_and_VAE_from_an_Optimal_Transport_Point_of_View
+- https://arxiv.org/abs/1710.05488
+- http://www.dataguru.cn/article-14562-1.html
+- http://cmsa.fas.harvard.edu/wp-content/uploads/2018/06/David_Gu_Harvard.pdf
+- http://www.dataguru.cn/article-14563-1.html
+- http://games-cn.org/games-webinar-20190509-93/
+- https://www3.cs.stonybrook.edu/~gu/
 
 ## Geometric Analysis Approach to AI
 
@@ -703,7 +772,13 @@ Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/
 
 ## Topology and Deep Learning
 
-[We perform topological data analysis on the internal states of convolutional deep neural networks to develop an understanding of the computations that they perform. We apply this understanding to modify the computations so as to (a) speed up computations and (b) improve generalization from one data set of digits to another. One byproduct of the analysis is the production of a geometry on new sets of features on data sets of images, and use this observation to develop a methodology for constructing analogues of CNN's for many other geometries, including the graph structures constructed by topological data analysis.](https://arxiv.org/abs/1811.01122)
+[We perform `topological data analysis`](https://arxiv.org/abs/1811.01122) 
+on the internal states of convolutional deep neural networks to develop an understanding of the computations 
+that they perform. We apply this understanding to modify the computations so as to (a) speed up computations and (b) improve generalization 
+from one data set of digits to another. 
+One byproduct of the analysis is the production of a geometry on new sets of features on data sets of images, 
+and use this observation to develop a methodology for constructing analogues of CNN's for many other geometries, 
+including the graph structures constructed by topological data analysis.
 
 - [Topological Methods for Machine Learning](http://topology.cs.wisc.edu/)
 - [A Topology Layer for Machine Learning](http://ai.stanford.edu/blog/topologylayer/)
@@ -715,6 +790,16 @@ Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/
 - https://zhuanlan.zhihu.com/p/26515275
 - [Applying Topological Persistence in Convolutional Neural Network for Music Audio Signals](https://arxiv.org/pdf/1608.07373.pdf)
 - [Towards a topological–geometrical theory of group equivariant non-expansive operators for data analysis and machine learning](https://www.nature.com/articles/s42256-019-0087-3)
+
+### Topology Optimization and  Deep Learning
+
+- http://www.inescporto.pt/~jsc/publications/conferences/2019RAraujoMICCAI.pdf
+- https://yangliang.github.io/pdf/ijcai19_to.pdf
+- https://www.dbs.ifi.lmu.de/~tresp/
+- [A Novel Topology Optimization Approach using Conditional Deep Learning](https://arxiv.org/abs/1901.04859)
+- https://arxiv.org/ftp/arxiv/papers/1901/1901.07761.pdf
+- https://www.researchgate.net/publication/322568237_Deep_learning_for_determining_a_near-optimal_topological_design_without_any_iteration
+- [Topology Optimization Accelerated by Deep Learning](https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/74695/1/MAGCON-18-11-1747-final.pdf)
 
 ## Algebra and Deep Learning
 
@@ -750,9 +835,24 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 
 ### Quaternion Neural Networks
 
-[It looks like Deep (Convolutional) Neural Networks are really powerful. However, there are situations where they don’t deliver as expected. I assume that perhaps many are happy with pre-trained VGG, Resnet, YOLO, SqueezeNext, MobileNet, etc. models because they are “good enough”, even though they break quite easily on really realistic problems and require tons of training data. IMHO there are much smarter approaches out there, which are neglected/ignored. I don’t want to argue why they are ignored but I want to provide a list with other useful architectures.](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+[It looks like Deep (Convolutional) Neural Networks are really powerful. ](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+However, there are situations where they don’t deliver as expected. 
+I assume that perhaps many are happy with pre-trained VGG, Resnet, YOLO, SqueezeNext, MobileNet, etc. models because they are “good enough”, 
+even though they break quite easily on really realistic problems and require tons of training data. 
+IMHO there are much smarter approaches out there, 
+which are neglected/ignored. I don’t want to argue why they are ignored but I want to provide a list with other useful architectures.
 
-[Instead of staying with real numbers, we should have a look at complex numbers as well. Let’s remember the single reason why we use complex numbers ($C$) or quaternions ($\mathcal H$). The most important reason why we use complex numbers is not to solve $x^2=−1$. The reason why we use complex numbers for everything that involves waves etc. is that we are lazy or efficient ;). Who wants to waste time writing down and solving a bunch of trignometric identities. The same is true for quaternions in robotics. Speaking in terms of computer science, we are using a much more efficient data structure/representation. It seems like complex valued neural networks as well as quaternion, which are a different kind of complex numbers for the mathematical correct reader of this post, seem to outperform real valued neural networks while using less parameters. This makes sense because we are using a different data structure that itself helps to represent certain things in a much more useful way.](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+Instead of staying with real numbers, we should have a look at complex numbers as well. 
+Let’s remember the single reason why we use complex numbers ($C$) or quaternions ($\mathcal H$). 
+The most important reason why we use complex numbers is not to solve $x^2=−1$.
+The reason why we use complex numbers for everything that involves waves etc. is that we are lazy or efficient ;). 
+Who wants to waste time writing down and solving a bunch of trignometric identities. 
+The same is true for quaternions in robotics. Speaking in terms of computer science, 
+we are using a much more efficient data structure/representation. 
+It seems like complex valued neural networks as well as quaternion, 
+which are a different kind of complex numbers for the mathematical correct reader of this post, 
+seem to outperform real valued neural networks while using less parameters. This makes sense because we are using a different data structure 
+[that itself helps to represent certain things in a much more useful way.](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
 
 - https://arxiv.org/abs/1903.08478
 - [Introduction to Quaternion Neural Networks](https://www.simonwenkel.com/projects/introduction-to-quaternion-neural-networks.html)
@@ -816,6 +916,7 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 * https://github.com/robi56/awesome-bayesian-deep-learning
 * https://alexgkendall.com/computer_vision/phd_thesis/
 * http://bayesiandeeplearning.org/
+* https://ericmjl.github.io/bayesian-deep-learning-demystified/
 * http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
 * http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
 * https://uvadlc.github.io/lectures/apr2019/lecture9-bayesiandeeplearning.pdf
@@ -840,17 +941,52 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 >and he successfully demonstrated the learning process in a computer identification system called Alpha.
 
 - https://zhuanlan.zhihu.com/p/36519666
+- http://www.sdlcv-workshop.com/
+- https://gkunapuli.github.io/files/17rrbmILP-longslides.pdf
+- https://arxiv.org/abs/1810.07132
+- https://dashee87.github.io/
+- http://lear.inrialpes.fr/workshop/osl2015/
+- http://www.stats.ox.ac.uk/~teh/
 - http://blog.shakirm.com/ml-series/a-statistical-view-of-deep-learning/
 - http://blog.shakirm.com/wp-content/uploads/2015/07/SVDL.pdf
 - [On Statistical Thinking in Deep Learning: A Blog Post](http://bulletin.imstat.org/wp-content/uploads/ml-LONG_On_Statistical_Thinking_in_Deep_Learning.pdf)
 - [Implementing Bayesian Inference with Neural Networks](http://ul.qucosa.de/api/qucosa%3A34703/attachment/ATT-0/)
 
+### Statistical Relational AI
+
+Handling inherent uncertainty and exploiting compositional structure are fundamental to understanding and designing large-scale systems. 
+[Statistical relational learning builds on ideas from probability theory and statistics to address uncertainty](https://www.cs.umd.edu/srl-book/)
+while incorporating tools from logic, databases, and programming languages to represent structure. 
+In Introduction to Statistical Relational Learning, leading researchers in this emerging area of machine learning describe current formalisms, models, and algorithms that enable effective and robust reasoning about richly structured systems and data.
+
+- [Statistical Relational AI Meets Deep Learning](https://gkunapuli.github.io/files/17rrbmILP-longslides.pdf)
+- https://people.cs.kuleuven.be/~luc.deraedt/salvador.pdf
+- http://www.starai.org/2020/
+- https://homes.cs.washington.edu/~pedrod/cikm13.html
+- https://www.cs.umd.edu/srl-book/
+- https://gkunapuli.github.io/
+- https://aifrenz.github.io/
+- https://ipvs.informatik.uni-stuttgart.de/mlr/spp-wordpress/
+- https://personal.utdallas.edu/~sriraam.natarajan/Courses/starai.html
+- http://acai2018.unife.it/
+- https://www.biostat.wisc.edu/~page/838.html
+
 ## Information Theory and Deep Learning
 
-[In short, Neural Networks extract from the data the most relevant part of the information that describes the statistical dependence between the features and the labels. In other words, the size of a Neural Networks specifies a data structure that we can compute and store, and the result of training the network is the best approximation of the statistical relationship between the features and the labels that can be represented by this data structure.](https://lizhongresearch.miraheze.org/wiki/Understanding_the_Power_of_Neural_Networks)
+[In short](https://lizhongresearch.miraheze.org/wiki/Understanding_the_Power_of_Neural_Networks), 
+Neural Networks extract from the data the most relevant part of the information that describes the statistical dependence between the features and the labels. 
+In other words, the size of a Neural Networks specifies a data structure that we can compute and store, 
+and the result of training the network is the best approximation of the statistical relationship between the features and the labels 
+that can be represented by this data structure.
 
-[In this talk, we formulate a new problem called the "universal feature selection" problem, where we need to select from the high dimensional data a low dimensional feature that can be used to solve, not one, but a family of inference problems. We solve this problem by developing a new information metric that can be used to quantify the semantics of data, and by using a geometric analysis approach. We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks)
+[In this talk](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks), 
+we formulate a new problem called the "universal feature selection" problem, 
+where we need to select from the high dimensional data a low dimensional feature that can be used to solve, not one, but a family of inference problems.
+We solve this problem by developing a new information metric that can be used to quantify the semantics of data, and by using a geometric analysis approach. 
+We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. 
+At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.
 
+* https://glouppe.github.io/info8010-deep-learning/
 * http://ita.ucsd.edu/
 * http://naftali-tishby.mystrikingly.com/
 * http://lizhongzheng.mit.edu/
@@ -873,10 +1009,15 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - https://www.mis.mpg.de/ay/index.html
 - https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180BigData_info.html
 - https://www.tbsi.edu.cn/index.php?s=/cms/181.html
+- https://www.bigr.io/deep-learning-neural-networks-iot/
 
 ## Brain Science and AI
 
-[Artificial intelligence and brain science have had a swinging relationship of convergence and divergence. In the early days of pattern recognition, multi-layer neural networks based on the anatomy and physiology of the visual cortex played a key role, but subsequent sophistication of machine learning promoted methods that are little related to the brain. Recently, however, the remarkable success of deep neural networks in learning from big data has re-evoked the interests in brain-like artificial intelligence.](http://www.brain-ai.jp/project-outline/)
+Artificial intelligence and brain science have had a swinging relationship of convergence and divergence. 
+In the early days of pattern recognition, multi-layer neural networks based on the anatomy and physiology of the visual cortex played a key role, 
+but subsequent sophistication of machine learning promoted methods that are little related to the brain. 
+Recently, however, the remarkable success of deep neural networks in learning from big data has re-evoked the interests in 
+[brain-like artificial intelligence.](http://www.brain-ai.jp/project-outline/)
 
 <img src="http://www.brain-ai.jp/wp-content/uploads/2017/01/brain.png" width="70%" />
 
@@ -899,8 +1040,9 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 Brain science is the physological theorey of cognitive science, which focus on the physical principle of brain function.
 The core problem of cognition science is how to learn in my eyes.
 
-[Artificial deep neural networks (DNNs) initially inspired by the brain enable computers to solve cognitive tasks at which humans excel.
-In the absence of explanations for such cognitive phenomena, in turn cognitive scientists have started using DNNs as models to investigate biological cognition and its neural basis, creating heated debate.](https://www.sciencedirect.com/science/article/pii/S1364661319300348)
+Artificial deep neural networks (DNNs) initially inspired by the brain enable computers to solve cognitive tasks at which humans excel.
+In the absence of explanations for such cognitive phenomena, 
+[in turn cognitive scientists have started using DNNs as models to investigate biological cognition and its neural basis, creating heated debate.](https://www.sciencedirect.com/science/article/pii/S1364661319300348)
 
 <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1364661319300348-gr2.jpg" width="69%"/>
 
@@ -936,10 +1078,17 @@ In the absence of explanations for such cognitive phenomena, in turn cognitive s
 * https://www.bio.purdue.edu/People/faculty_dm/directory.php?refID=1000000303
 * https://people.csail.mit.edu/mirrokni/Welcome.html
 * https://www.mindcogsci.net/
+* https://ganguli-gang.stanford.edu/people.html
+* http://wiki.ict.usc.edu/cogarch/index.php/Main_Page
+* http://cogarch.ict.usc.edu/
+* http://bicasociety.org/cogarch/architectures.php
 
 ## The lottery ticket hypothesis
 
-[The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
+[The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training](https://arxiv.org/pdf/1906.02768.pdf)  
+by increasing the probability of a “lucky” sub-network initialization being 
+present rather than by helping the optimization process (Frankle & Carbin, 2019).
+
 - https://ai.facebook.com/blog/understanding-the-generalization-of-lottery-tickets-in-neural-networks
 - https://arxiv.org/pdf/1905.13405.pdf
 - https://arxiv.org/abs/1903.01611
@@ -953,7 +1102,10 @@ In the absence of explanations for such cognitive phenomena, in turn cognitive s
 
 ## AOGNet
 
-[An AOGNet consists of a number of stages each of which is composed of a number of AOG building blocks. An AOG building block splits its input feature map into $N$ groups along feature channels and then treat it as a sentence of $N$ words. It then jointly realizes a phrase structure grammar and a dependency grammar in bottom-up parsing the “sentence” for better feature exploration and reuse. It provides a unified framework for the best practices developed in state-of-the-art DNNs.](https://arxiv.org/pdf/1711.05847.pdf)
+An AOGNet consists of a number of stages each of which is composed of a number of AOG building blocks. 
+An AOG building block splits its input feature map into $N$ groups along feature channels and then treat it as a sentence of $N$ words. 
+It then jointly realizes a phrase structure grammar and a dependency grammar in bottom-up parsing the “sentence” for better feature exploration and reuse. 
+[It provides a unified framework for the best practices developed in state-of-the-art DNNs.](https://arxiv.org/pdf/1711.05847.pdf)
 
 `We first need to understand the underlying wisdom in designing better network architectures: It usually lies in finding network structures
 which can support flexible and diverse information flows for exploring new features, reusing existing features in previous layers 
