@@ -3437,8 +3437,9 @@ The $Q(\theta|\theta^{(t)})$ function is  log-likelihood function of complete da
 * [Some Theoretical Properties of an Augmented Lagrangian Merit Function](http://www.ccom.ucsd.edu/~peg/papers/merit.pdf)
 * https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
 * http://fa.bianp.net/blog/2014/surrogate-loss-functions-in-machine-learning/
-* [successive convex approxiamtion](https://www.zhihu.com/question/354882496/answer/919173270)
 * [Sun Y, Babu P, Palomar D P. Majorization-minimization algorithms in signal processing, communications, and machine learning[J]. IEEE Transactions on Signal Processing, 2016, 65(3): 794-816](https://www.zhihu.com/question/354882496/answer/917669298)
+
+
 
 
 ### Relaxation and Convexification
@@ -3582,6 +3583,26 @@ $$g(x)=f(y)+(x-y)'b+\frac{1}{2} (x-y)'A(x-y)$$
 
 + [Quadratic Majorization](https://bookdown.org/jandeleeuw6/bras/quadratic-majorization.html)
 
+#### Lagrangian Relaxation
+
+Lagrangian relaxation (Fisher, 2004) is a technique that exploits the fact that many difficult MILP
+problems can be seen as relatively easy problems complicated by a set of side constraints. These
+constraints can be transferred to the objective function with associated parameters (Lagrangian
+multipliers), which impose a penalty on violations. The relaxed problem provides an upper
+bound (for a maximization problem) on the optimal value of the original problem. To obtain the
+tightest bound, a problem on the Lagrangian multipliers (Lagrangian dual) needs to be solved.
+This problem is typically solved with an iterative method called subgradient method, which uses
+subgradients of the objective function to update the Lagrangian multipliers at each iteration.
+
+
+
+- https://personal.eur.nl/birbil/bolbilim/teaa/02_Lag_Rel.pdf
+- http://www.strc.ch/2018/Paneque_EtAl.pdf
+- [The Lagrangian Relaxation Method for Solving Integer Programming Problems](https://www.jstor.org/stable/2631139)
+- http://home.deib.polimi.it/amaldi/SlidesOPT-18-19/IP-lagrangian-relaxation-18-19.pdf
+- http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_script_lag_I.pdf
+- http://auai.org/~w-auai/
+
 #### Deep Relaxation
 
 [In this paper we establish a connection between non-convex optimization methods for training deep neural networks and nonlinear partial differential equations (PDEs). Relaxation techniques arising in statistical physics which have already been used successfully in this context are reinterpreted as solutions of a viscous Hamilton-Jacobi PDE. Using a stochastic control interpretation allows we prove that the modified algorithm performs better in expectation that stochastic gradient descent. Well-known PDE regularity results allow us to analyze the geometry of the relaxed energy landscape, confirming empirical evidence. The PDE is derived from a stochastic homogenization problem, which arises in the implementation of the algorithm. The algorithms scale well in practice and can effectively tackle the high dimensionality of modern neural networks.](https://arxiv.org/abs/1704.04932)
@@ -3619,10 +3640,38 @@ A nonconvex problem can be convexified and transformed into one which can be sol
 + [Lossless Convexification of Nonconvex Control Bound and Pointing Constraints of the Soft Landing Optimal Control Problem](http://larsblackmore.com/iee_tcst13.pdf)
 + [A General Class of Convexification Transformation for the Noninferior Frontier of a Multiobjective Program](http://file.scirp.org/Html/8-1040011_31681.htm)
 + [Implementation of a Convexification Technique for Signomial Functions](http://www.users.abo.fi/alundell/files/Escape19.pdf)
-+ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
 + [A method to convexify functions via curve evolution](https://www.tandfonline.com/doi/abs/10.1080/03605309908821476)
 
 [We consider problems that are non-convex in the input norm, which is a semi-continuous variable that can be zero or lower- and upper-bounded. Using lossless convexification, the non-convex problem is relaxed to a convex problem whose optimal solution is proved to be optimal almost everywhere for the original problem. The relaxed problem can be solved using second-order cone programming, which is a subclass of convex optimization for which there exist numerically reliable solvers with convergence guarantees and polynomial time complexity. This is the first lossless convexification result for mixed-integer optimization problems. An example of spacecraft docking with a rotating space station corroborates the effectiveness of the approach and features a computation time almost three orders of magnitude shorter than a mixed-integer programming formulation.](https://arxiv.org/abs/1902.02726)
+
+#### Successive Convex Approximation
+
+[In this paper, we](https://arxiv.org/abs/1209.2385) study an `alternative inexact BCD` approach 
+which updates the variable blocks by successively minimizing a sequence of approximations of 
+which are either locally tight upper bounds of f or strictly convex local approximations of f. 
+We focus on characterizing the convergence properties for a fairly wide class of such methods, especially for the cases 
+where the objective functions are either non-differentiable or nonconvex.
+
+
+* [successive convex approxiamtion](https://www.zhihu.com/question/354882496/answer/919173270)
+* [Successive convex approximation: analysis and applications](https://conservancy.umn.edu/handle/11299/163884)
+* [Decomposition by Successive Convex Approximation: A Unifying Approach for Linear Transceiver Design in Heterogeneous Networks](http://lsec.cc.ac.cn/~yafliu/DSCA.pdf)
+* https://arxiv.org/abs/1806.10773
+* https://www.cnblogs.com/kailugaji/p/11731217.html
+* https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=1055&context=imse_conf
+* [Parallel and Distributed Training of Neural Networks via Successive Convex Approximation](https://rc.signalprocessingsociety.org/conference-workshop-videos/mlsp/SPSVID00137.html)
+* https://epubs.siam.org/doi/abs/10.1137/120891009?mobileUi=0
+* [A Unified Convergence Analysis of Block Successive Minimization Methods for Nonsmooth Optimization](https://arxiv.org/abs/1209.2385)
+
+#### Sequential Quadratic Programming
+
++ [Sequential quadratic programming](https://web.cse.ohio-state.edu/~parent.1/classes/788/Au10/OptimizationPapers/SQP/actaSqp.pdf)
++ https://www.math.uh.edu/~rohop/fall_06/Chapter4.pdf
++ https://ccom.ucsd.edu/~peg/papers/sqpReview.pdf
++ http://php.math.unifi.it/users/cimeCourses/2007/02/200723-Notes.pdf
++ https://cs.nyu.edu/overton/papers/pdffiles/sqpgs.pdf
++ http://www.cs.nthu.edu.tw/~cherung/teaching/2011cs5321/handout8.pdf
++ [Sequential Quadratic Programming for Task Plan Optimization](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-218.pdf)
 
 ## Gradient Free Optimization Methods
 
