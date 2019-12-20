@@ -294,14 +294,71 @@ Another application of design loss function is in feature selection or regulariz
 
 ### Spline Regression
 
+The smoothing spline is one of the most popular curve-fitting methods,
+ partly because of empirical evidence supporting its effectiveness and partly 
+ because of its elegant mathematical formulation. 
+However, there are two obstacles that restrict the use of the smoothing spline in practical statistical work. 
+Firstly, it becomes `computationally prohibitive` for large data sets 
+because the number of basis functions roughly equals the sample size. 
+Secondly, its global smoothing parameter can only provide a constant amount of smoothing, 
+which often results in poor performances when estimating inhomogeneous functions. 
+[In this work](https://projecteuclid.org/euclid.ba/1401148314), 
+we introduce a class of adaptive smoothing spline models 
+that is derived by solving certain stochastic differential equations 
+with finite element methods. 
+The solution extends the smoothing parameter to a continuous data-driven function, which is able to capture the change of the smoothness of the underlying process. The new model is Markovian, which makes Bayesian computation fast. A simulation study 
+and real data example are presented to demonstrate the effectiveness of our method.
+
 - https://patsy.readthedocs.io/en/v0.4.0/spline-regression.html
 - https://ckrapu.github.io/2018/07/09/Spline-Regression.html
 - https://aldosolari.github.io/SL/docs/slides/2_Splines/2_Splines.html#1
 - http://bragqut.github.io/2016/05/24/samclifford-splines/
 - http://madrury.github.io/jekyll/update/statistics/2017/08/04/basis-expansions.html
 - https://asbates.rbind.io/2019/02/04/what-are-splines/
+- https://www.salford-systems.com/products/mars
 - http://nickreich.github.io/methods2/assets/lectures/class19_Splines.pdf
 - [Chapter 9 Splines and Friends: Basis Expansion and Regularization](https://rafalab.github.io/pages/649/section-09.pdf)
+
+#### Multivariate Adaptive Regression Splines
+
+Multivariate adaptive regression is a `stepwise` procedure for the `automatic selection of basis functions` from observed data
+The selected basis functions $B_m(x)$ yield models of the form
+$$f_M(x, \theta)=\sum_{m=1}^{M}\theta_m B_m(x)$$
+for $x$ in $\mathbb R^n$. These models are fit to observed data $(x_i, y_i )_{i=1}^{N}$. 
+
+
+- https://www.salford-systems.com/products/mars
+- http://www.stat.yale.edu/~lc436/08Spring665/Mars_Friedman_91.pdf
+- https://projecteuclid.org/download/pdf_1/euclid.aos/1176347963
+- http://www.stat.yale.edu/~lc436/
+- https://bradleyboehmke.github.io/HOML/mars.html
+- http://web.stanford.edu/~hastie/Papers/Ecology/fwb_1448.pdf
+- http://www.stat.yale.edu/~arb4/
+- http://www.stat.yale.edu/~arb4/publications_files/DiscussionMultivariateAdaptiveRegressionSplines.pdf
+
+#### Bayesian  Adaptive Regression Splines
+
+BARS (Bayesian Adaptive Regression Splines) solves 
+[the generalized nonparametric regression (curve-fitting) problem](http://www.stat.cmu.edu/~kass/bars/bars.html):
+
+$$Y_i \sim P(y\mid \theta_i, \varsigma)$$
+$$\theta_i=f(x_i)$$
+
+by assuming the function $f(x)$ may be approximated by a spline. 
+Here, for example, the data $Y_i$ may be binary, or counts, and the explanatory variable $x$ may be time. 
+The special cases in which the data are continuous pose the usual curve-fitting problem, 
+ordinarily solved by some variation on least-squares.
+
+- http://ftp.stat.duke.edu/WorkingPapers/05-06.pdf
+- https://core.ac.uk/download/pdf/36719451.pdf
+- http://www.stat.cmu.edu/~kass/bars/bars.html
+- http://www.stat.cmu.edu/~kass/papers/
+- https://www.ism.ac.jp/editsec/aism/pdf/10463_2010_Article_321.pdf
+- https://projecteuclid.org/euclid.ba/1401148314
+- https://astro.temple.edu/~msobel/courses_files/mars.pdf
+- http://www.drryanmc.com/presentations/BMARS.pdf
+- http://www.stats.uwaterloo.ca/~hachipma/stat946/shenxu.pdf
+- http://www.drryanmc.com/
 
 #### Smoothing Splines
 
@@ -340,6 +397,8 @@ As usual $X_1,X_2, \cdots ,X_p$ represent predictors and ${Y}$ is the outcome; t
 - https://projecteuclid.org/euclid.ss/1177013604
 - https://www.statsmodels.org/devel/gam.html
 - https://peerj.com/preprints/27320.pdf
+- http://www.stat.cmu.edu/~ryantibs/advmethods/notes/addmodels.pdf
+- https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118445112.stat03141
 
 ### Projection pursuit regression
 
@@ -463,3 +522,21 @@ the conditional distribution of the hidden variables given the observed data.
 ***
 
 <img src = "https://blogs.ams.org/visualinsight/files/2013/10/atomic_singular_inner_function.png" width="60%" />
+
+
+## InterpretML
+
+- https://www.sciencewiki.com/articles/microsoft-interpret-interpretml-is-an-open-source-package-for-training
+- https://arxiv.org/abs/1909.09223
+- https://github.com/interpretml/interpret
+- https://www.ibm.com/blogs/research/2019/08/ai-explainability-360/
+- https://github.com/sicara/tf-explain
+- https://tf-explain.readthedocs.io/en/latest/
+- https://github.com/interpretml/interpret-community
+- https://miccai2018.org/en/WORKSHOP---CHALLENGE---TUTORIAL.html
+- https://meichenlu.com/2018-11-10-SHAP-explainable-machine-learning/
+- https://github.com/slundberg/shap
+- https://christophm.github.io/interpretable-ml-book/
+- http://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch13.pdf
+- https://users.cs.duke.edu/~cynthia/papers.html
+- https://www.kaggle.com/learn/machine-learning-explainability
