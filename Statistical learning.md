@@ -7,6 +7,8 @@
 
 This is a brief introduction to data science. [Data science](https://www.wikiwand.com/en/Data_science) can be seen as an extension of statistics.
 
+<img src="https://deliveryimages.acm.org/10.1145/3020000/3015456/f4.jpg" width="80%" />
+
 ***
 
 * $\color{aqua}{\text{ All sciences are, in the abstract, mathematics.}}$
@@ -22,9 +24,9 @@ This is a brief introduction to data science. [Data science](https://www.wikiwan
 ***
 |On mathematical model|
 |:-------------------:|
-|![Albert](http://www.quotesvalley.com/images/51/i-am-convinced-that-he-god-does-not-play-dice.jpg)|
-|![](https://www.azquotes.com/picture-quotes/quote-all-models-are-wrong-but-some-are-useful-george-e-p-box-53-42-27.jpg)|
-|![john-von-neumanns](http://www.quotationof.com/images/john-von-neumanns-quotes-7.jpg)|
+|<img title="Albert"  src="http://www.quotesvalley.com/images/51/i-am-convinced-that-he-god-does-not-play-dice.jpg" width="70%">|
+|<img src="https://www.azquotes.com/picture-quotes/quote-all-models-are-wrong-but-some-are-useful-george-e-p-box-53-42-27.jpg" width="70%"/>|
+|<img src="http://www.quotationof.com/images/john-von-neumanns-quotes-7.jpg"  width="70%" />|
 ***
 
 ## Basic Probability
@@ -33,6 +35,8 @@ Probability theory is regarded as the theoretical foundation of statistics,
 which provides the ideal models to measure the stochastic phenomenon, randomness, chance or luck.
 It is the distribution theory bridging probability and statistics.
 The project [seeing theory](https://seeing-theory.brown.edu/#secondPage/chapter5) is a brief introduction to statistics and probability theory and also a [.pdf file](https://seeing-theory.brown.edu/doc/seeing-theory.pdf).
+
+- https://nsf-tripods.org/institutes/
 
 ### Random Variable
 
@@ -131,10 +135,11 @@ $$
 f(x|\sigma^2, \mu)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},
 $$
 where $\sigma^2$ is given positive and finite, $\mu$ is given and finite. And its support is $(-\infty,\infty)$.
-![Gausian Distribution ()](http://sfonline.barnard.edu/wp-content/uploads/2015/12/gaussian-distribution.jpg)
+
+<img title="Gausian Distribution"  src="http://sfonline.barnard.edu/wp-content/uploads/2015/12/gaussian-distribution.jpg" width="80%"/>
 ***
-![Carl Friedrich Gauss](https://pic3.zhimg.com/v2-bfed62f9b7049c1399f9698cfb72861b_1200x500.jpg)
-***
+<img title="Carl Friedrich Gauss" src="https://pic3.zhimg.com/v2-bfed62f9b7049c1399f9698cfb72861b_1200x500.jpg" width="70%"/>
+
 
 #### Power-law Distributions
 
@@ -148,13 +153,24 @@ The power law can be used to describe a phenomenon where a small number of items
 ***
 |Pareto  Distribution |
 |:-------------------:|
-|![Pareto Distribution](https://effectiviology.com/wp-content/uploads/Power-Law-illustration-Pareto-Distribution.png)|
+|<img title="Pareto Distribution" src="https://effectiviology.com/wp-content/uploads/Power-Law-illustration-Pareto-Distribution.png" width="70%"/>|
 | <https://www.wikiwand.com/en/Power_law>.|
 | <http://www.wikiwand.com/en/Pareto_distribution> |
 ***
 Every probability distribution is an ideal mathematical model that describes some real event.
 Here is [a field guide to continuous distribution](http://threeplusone.com/FieldGuide.pdf).
 See more content in [wikipedia](https://www.wikiwand.com/en/Probability_density_function). [^5]
+
+#### Long Tail Distributions
+
+- https://systemsinnovation.io/long-tail-distributions/
+- https://www.marketing-schools.org/types-of-marketing/long-tail-marketing.html
+- https://www.scheller.gatech.edu/directory/faculty/hu/index.html
+- https://www.mariner-usa.com/blog/exploring-long-tail-with-analytics-and-machine-learning/
+- https://infocus.dellemc.com/william_schmarzo/monetizing-the-long-tail-with-big-data/
+- https://www.investopedia.com/terms/p/paretoprinciple.asp
+- http://users.cms.caltech.edu/~adamw/
+- http://people.cst.cmich.edu/lee1c/icosda2019/index.htm
 
 #### Link between discrete and continuous distributions
 
@@ -265,7 +281,7 @@ The **vertical bar** $|$ means that the right one is given or known and is param
 
 Here is [a visual explanation](http://setosa.io/conditional/).
 
->*Definition*: If $P(A\bigcap B)= P(A)P(B)$, we call the event $A$ and $B$ are statistically independent.
+> *Definition*: If $P(A\bigcap B)= P(A)P(B)$, we call the event $A$ and $B$ are statistically independent.
 
 From the definition of conditional probability, it is obvious that:
 * $P(B)=\frac{P(A\bigcap B)}{P(A|B)}$
@@ -561,6 +577,20 @@ The algorithm (used by [John von Neumann](https://www.wikiwand.com/en/John_von_N
 
 The algorithm will take an average of $M$ iterations to obtain a sample.
 [Ziggural algorithm](https://www.wikiwand.com/en/Ziggurat_algorithm) is an application of rejection sampling to draw samples from Gaussian distribution.
+
+**Adaptive rejection sampling**
+
+Construction of an envelope function is particularly straightforward for cases in which $p(z$ is log concave,
+in other words when $\ln p(z)$ has derivatives that are nonincreasing functions of ${z}$.
+The function $\ln p(z)$ and its gradient are evaluated at some initial set of grid
+points, and the intersections of the resulting tangent lines are used to construct the
+envelope function. Next a sample value is drawn from the envelope distribution.
+This is straightforward because the log of the envelope distribution is a succession of linear functions, and hence the envelope distribution itself comprises a piecewise
+exponential distribution of the form
+$$
+q(z) = k_i \lambda_i \exp(-{\lambda}_i (z-z_{i-1}), z_{i-1}< z \leq z_{i}.
+$$
+
 
 |[John von Neumann, 1903-1957](https://www.wikiwand.com/en/John_von_Neumann)|
 |:-------------------------------------------------------------------------:|
@@ -1197,7 +1227,7 @@ where $f(x)$ and $g(y)$ is convex; $A and $B$ are matrices.
 
 Define the augmented Lagrangian:
 $$
-L_{\mu}(x,y)=f(x)+g(y)+\lambda^{T}(Ax+By-b)+\frac{\mu}{2}\|Ax+By-b\|_{2}^{2}.
+L_{\mu}(x,y)=f(x)+g(y)+\lambda^{T}(Ax+By-b)+\frac{\mu}{2}{\|Ax+By-b\|}_{2}^{2}.
 $$
 ***
 It is iterative procedure:

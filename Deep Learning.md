@@ -2374,6 +2374,7 @@ $$
 
 #### Mixed Integer Optimization
 
+- [Strong mixed-integer programming formulations for trained neural networks by Joey Huchette1](http://www.cas.mcmaster.ca/~deza/slidesRIKEN2019/huchette.pdf)
 - [Deep neural networks and mixed integer linear optimization](https://link.springer.com/article/10.1007/s10601-018-9285-6)
 - [Matteo Fischetti, University of Padova](http://www.dei.unipd.it/~fisch/papers/slides/2018%20Dagstuhl%20%5BFischetti%20on%20DL%5D.pdf)
 - [Deep Neural Networks as 0-1 Mixed Integer Linear Programs: A Feasibility Study](https://arxiv.org/abs/1712.06174)
@@ -2390,11 +2391,30 @@ $$
 - https://minoa-itn.fau.de/
 - http://www.me.titech.ac.jp/technicalreport/h26/2014-1.pdf
 - [Training Binarized Neural Networks using MIP and CP](http://www.cs.toronto.edu/~lillanes/papers/ToroIcarteICCMB-cp2019-training-preprint.pdf)
+
+#### Lagrangian Propagator
+
+It has been showed that Neural Networks can be embedded in a `Constraint Programming` model 
+by simply encoding each neuron as a global constraint, 
+which is then propagated individually. 
+[Unfortunately, this decomposition approach may lead to weak bounds.](https://link.springer.com/article/10.1007/s10601-015-9234-6)
+
 - [A Lagrangian Propagator for Artificial Neural Networks in Constraint Programming](https://bitbucket.org/m_lombardi/constraints-15-ann-lag-resources/src/master/)
+- https://link.springer.com/article/10.1007/s10601-015-9234-6
+- https://www.researchgate.net/profile/Michele_Lombardi
+- [Embedding Machine Learning Models in Optimization](https://emlopt.github.io/)
+- https://www.unibo.it/sitoweb/michele.lombardi2/pubblicazioni
+- https://people.eng.unimelb.edu.au/pstuckey/papers.html
+- https://cis.unimelb.edu.au/agentlab/publications/
+- [A New Propagator for Two-Layer Neural Networks in Empirical Model Learning](https://link.springer.com/chapter/10.1007/978-3-642-40627-0_35)
 
 #### Layer-wise Relevance Propagation
 
-[Layer-wise Relevance Propagation (LRP) is a method that identifies important pixels by running a backward pass in the neural network. The backward pass is a conservative relevance redistribution procedure, where neurons that contribute the most to the higher-layer receive most relevance from it. The LRP procedure is shown graphically in the figure below.](http://www.heatmapping.org/)
+Layer-wise Relevance Propagation (LRP) is a method 
+that identifies important pixels by running a backward pass in the neural network. 
+The backward pass is a conservative relevance redistribution procedure, 
+where neurons that contribute the most to the higher-layer receive most relevance from it. 
+[The LRP procedure is shown graphically in the figure below.](http://www.heatmapping.org/)
 
 <img src="http://www.heatmapping.org/lrpgraph.png" width="50%"/>
 

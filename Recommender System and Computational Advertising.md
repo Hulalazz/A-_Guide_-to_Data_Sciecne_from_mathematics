@@ -3,17 +3,23 @@
 <img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
-RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items that a Web site, for example, may offer.
+RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items 
+that a Web site, for example, may offer.
 
 [Xavier Amatriain discusses the traditional definition and its data mining core.](https://www.kdd.org/exploration_files/V14-02-05-Amatriain.pdf)
 
 Traditional definition: The **recommender system** is to estimate a utility  function that automatically predicts how a user will like an item.
 
-User Interest is **implicitly** reflected in `Interaction history`, `Demographics` and `Contexts`, which can be regarded as a typical example of data mining. Recommender system should match a context to a collection of information objects. There are some methods called `Deep Matching Models for Recommendation`.
-It is an application of machine learning, which is in the *representation + evaluation + optimization* form. And we will focus on the `representation and evaluation`.
+User Interest is **implicitly** reflected in `Interaction history`, `Demographics` and `Contexts`, 
+which can be regarded as a typical example of data mining. 
+Recommender system should match a context to a collection of information objects. 
+There are some methods called `Deep Matching Models for Recommendation`.
+It is an application of machine learning, which is in the *representation + evaluation + optimization* form. 
+And we will focus on the `representation and evaluation`.
 
 
 - [ ] https://github.com/hongleizhang/RSPapers
+- [ ] https://rsbd2019.wordpress.com/
 - [ ] https://github.com/familyld/AwesomeRecSysPaper/
 - [ ] http://kdd2018tutorial-behavior.datasciences.org/
 - [ ] https://github.com/benfred/implicit
@@ -393,8 +399,9 @@ And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logisti
 - [Nonnegative Matrix Factorization by Optimization on the Stiefel Manifold with SVD Initialization](https://user.eng.umd.edu/~smiran/Allerton16.pdf)
 - [Matrix and Tensor Completion Algorithms](http://swoh.web.engr.illinois.edu/software/optspace_v1/papers.html)
 - [Parallel matrix factorization for low-rank tensor completion](https://www.math.ucla.edu/~wotaoyin/papers/tmac_tensor_recovery.html)
-
-----
+- https://canyilu.github.io/publications/
+- http://people.eecs.berkeley.edu/~yima/matrix-rank/references.html
+- [A Library of ADMM for Sparse and Low-rank Optimization](https://github.com/canyilu/LibADMM)
 
 
 ### Factorization Machines(FM)
@@ -1041,16 +1048,19 @@ where the notations are listed as follows:
 
 ## Tree-based Index and Deep Model for Recommender Systems
 
-[By indexing items in a tree hierarchy and training a user-node preference prediction model satisfying a max-heap like property in the tree, TDM provides logarithmic computational complexity w.r.t. the corpus size, enabling the use of arbitrary advanced models in candidate retrieval and recommendation.](https://arxiv.org/abs/1801.02294)
+By indexing items in a tree hierarchy and training a user-node preference prediction model satisfying a max-heap like property in the tree, 
+[`TDM` provides logarithmic computational complexity w.r.t. the corpus size, enabling the use of arbitrary advanced models in candidate retrieval and recommendation.](https://arxiv.org/abs/1801.02294)
 
 Our purpose, in this paper, is to develop a method to jointly learn the `index structure and user preference prediction model`. 
 
 
-Recommendation problem is basically `to retrieve a set of most relevant or preferred items for each user request from the entire corpus`. In the practice of large-scale recommendation, the algorithm design should strike a balance between accuracy and efficiency.
+Recommendation problem is basically `to retrieve a set of most relevant or preferred items for each user request from the entire corpus`. 
+In the practice of large-scale recommendation, the algorithm design should strike a balance between accuracy and efficiency.
 
 The above methods include 2 stages/models: (1) find the preference of the users based on history or other infoamtion; (2) retrive some items according to the predicted preferences.
 
-TDM uses a tree hierarchy to organize items, and each leaf node in the tree corresponds to an item. Like a max-heap, `TDM assumes that each user-node preference is the largest one among the node’s all children’s preferences`.
+TDM uses a tree hierarchy to organize items, and each leaf node in the tree corresponds to an item. Like a max-heap, 
+`TDM assumes that each user-node preference is the largest one among the node’s all children’s preferences`.
 The main idea is to predict user interests `from coarse to fine by traversing tree nodes in a top-down fashion and making decisions for each user-node pair`. 
 
 Each item in the corpus is firstly assigned to a leaf node of a tree
@@ -1071,10 +1081,12 @@ Based on this, `TDM turns the recommendation task into a hierarchical retrieval 
 By a top-down retrieval process, the candidate items are selected gradually from coarse to detailed.
 
 According to the retrieval process, the recommendation accuracy of TDM is determined by the quality of the user preference model
-$\mathcal M$ and tree index $\mathcal T$. Given n pairs of positive training data $(u_i, c_i)$, which means the user $u_i$ is interested in the target item $c_i$, $\mathcal T$ determines which non-leaf nodes $\mathcal M$ should select to achieve $c_i$ for $u_i$.
+$\mathcal M$ and tree index $\mathcal T$. Given n pairs of positive training data $(u_i, c_i)$, 
+which means the user $u_i$ is interested in the target item $c_i$, $\mathcal T$ determines which non-leaf nodes $\mathcal M$ should select to achieve $c_i$ for $u_i$.
 
 Denote $p (\pi(c_i)|u_i; \pi)$ as user u’s preference probability over
-leaf node $\pi(c_i)$ given a user-item pair $(u_i, c_i)$, where $\pi(·)$ is a projection function that projects an item to a leaf node in $\mathcal T$.
+leaf node $\pi(c_i)$ given a user-item pair $(u_i, c_i)$, 
+where $\pi(·)$ is a projection function that projects an item to a leaf node in $\mathcal T$.
 Note that the projection function $\pi(\cdot)$ actually determines the item hierarchy in the tree. 
 The model $\mathcal M$ is used to estimate and output the user-node preference $\hat{p} (\pi(c_i)|u_i;\theta \pi)$ given $\theta$ as model parameters.
 If the pair $(u_i , c_i)$ is a positive sample, we have the ground truth preference $p (\pi(c_i)|u_i; \pi)=1$. According to the `max-heap property`,
@@ -1099,9 +1111,15 @@ ancestor user-node pairs as the global empirical loss.
 
 ## Explainable Recommendations
 
-Explainable recommendation and search attempt to develop models or methods that not only generate high-quality recommendation or search results, but also intuitive explanations of the results for users or system designers, which can help improve the system transparency, persuasiveness, trustworthiness, and effectiveness, etc.
+Explainable recommendation and search attempt to develop models or methods that not only generate high-quality recommendation or search results, 
+but also intuitive explanations of the results for users or system designers, 
+which can help improve the system transparency, persuasiveness, trustworthiness, and effectiveness, etc.
 
-Providing personalized explanations for recommendations can help users to understand the underlying insight of the recommendation results, which is helpful to the effectiveness, transparency, persuasiveness and trustworthiness of recommender systems. Current explainable recommendation models mostly generate textual explanations based on pre-defined sentence templates. However, the expressiveness power of template-based explanation sentences are limited to the pre-defined expressions, and manually defining the expressions require significant human efforts
+Providing personalized explanations for recommendations can help users to understand the underlying insight of the recommendation results, 
+which is helpful to the effectiveness, transparency, persuasiveness and trustworthiness of recommender systems. 
+Current explainable recommendation models mostly generate textual explanations based on pre-defined sentence templates. 
+However, the expressiveness power of template-based explanation sentences are limited to the pre-defined expressions, 
+and manually defining the expressions require significant human efforts
 
 + [Explainable Recommendation and Search @ rutgers](https://www.cs.rutgers.edu/content/explainable-recommendation-and-search)
 + [Explainable Recommendation: A Survey and New Perspectives](https://www.groundai.com/project/explainable-recommendation-a-survey-and-new-perspectives/)
@@ -1169,7 +1187,15 @@ Therefore, we are to fill in the gap between `item recommendation` and `KG compl
 
 ## Health Recommender Systems
 
-[Recommendations are becoming evermore important in health settings with the aim being to assist people live healthier lives. Three previous workshops on Health Recommender Systems (HRS) have incorporated diverse research fields and problems in which recommender systems can improve our awareness, understanding and behaviour regarding our own, and the general public's health. At the same time, these application areas bring new challenges into the recommender community. Recommendations that influence the health status of a patient need to be legally sound and, as such, today, they often involve a human in the loop to make sure the recommendations are appropriate. To make the recommender infallible, complex domain-specific user models need to be created, which creates privacy issues. While trust in a recommendation needs to be explicitly earned through, for example, transparency, explanations and empowerment, other systems might want to persuade users into taking beneficial actions that would not be willingly chosen otherwise.](https://healthrecsys.github.io/2019/)
+Recommendations are becoming evermore important in health settings with the aim being to assist people live healthier lives. 
+Three previous workshops on Health Recommender Systems (HRS) have incorporated diverse research fields and problems 
+in which recommender systems can improve our awareness, understanding and behaviour regarding our own, and the general public's health. 
+At the same time, these application areas bring new challenges into the recommender community. 
+Recommendations that influence the health status of a patient need to be legally sound and, 
+as such, today, they often involve a human in the loop to make sure the recommendations are appropriate. 
+To make the recommender infallible, complex domain-specific user models need to be created, which creates privacy issues.
+While trust in a recommendation needs to be explicitly earned through, 
+for example, transparency, explanations and empowerment, other systems might [want to persuade users into taking beneficial actions that would not be willingly chosen otherwise.](https://healthrecsys.github.io/2019/)
 Multiple and diverse stakeholders in health systems produce further challenges. 
 
 * Taking the patient's perspective, simple interaction and safety against harmful recommendations might be the prioritized concern. 
@@ -1296,8 +1322,7 @@ unobserved entries $\hat{y}_{ij}$ is given by the `inner product` of latent
 patient and doctor representations:
 $$\hat{y}_{ij}=g(i,j\mid \mathbf{p}_i, \mathbf{q}_j)=g(\mathbf{p}_i\cdot \mathbf{q}_j)=\frac{1}{1+\exp(\left<\mathbf{p}_i,\mathbf{q}_j)\right>}.$$
 
-Then formulate a learning-to-rank task by using
-Weighted Approximate-Rank Pairwise (WARP) loss.
+Then formulate a learning-to-rank task by using `Weighted Approximate-Rank Pairwise (WARP) loss`.
 For each observed interaction $\hat{y}_{ij}$, WARP samples a negative doctor $d$ and computes the difference between predicted $\hat{y}_{ij}$ and $\hat{y}_{id}$, 
 and performs a gradient update to rank the positive doctor higher if the difference is negative,
 i.e., a rank violation is found.
@@ -1339,7 +1364,16 @@ thus far.
 
 ## Reinforcement Learning and Recommender System
 
-Services that introduce stores to users on the Internet are increasing in recent years. Each service conducts thorough analyses in order to display stores matching each user's preferences. In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). It is practically impossible to learn everything when the number of items to be learned periodically increases. The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. In order to solve this problem, we propose a recommender system based on deep reinforcement learning. In deep reinforcement learning, a multilayer neural network is used to update the value function.
+Services that introduce stores to users on the Internet are increasing in recent years. 
+Each service conducts thorough analyses in order to display stores matching each user's preferences. 
+In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. 
+Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. 
+When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. 
+Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). 
+It is practically impossible to learn everything when the number of items to be learned periodically increases. 
+The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. 
+In order to solve this problem, we propose a recommender system based on deep reinforcement learning. 
+In deep reinforcement learning, a multilayer neural network is used to update the value function.
 
 * http://www.cse.msu.edu/~zhaoxi35/
 * [Ieep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
@@ -1484,10 +1518,16 @@ _______
 
 - https://www.ecommercefoundation.org/reports
 
-Online advertising has grown over the past decade to over 26 billion dollars in recorded revenue in 2010. The revenues generated are based on different pricing models that can be fundamentally grouped into two types: cost per (thousand) impressions (CPM) and cost per action (CPA), where an action can be a click, signing up with the advertiser, a sale, or any other measurable outcome. A web publisher generating revenues by selling advertising space on its site can offer either a CPM or CPA contract. We analyze the conditions under which the two parties agree on each contract type, accounting for the relative risk experienced by each party.
+Online advertising has grown over the past decade to over 26 billion dollars in recorded revenue in 2010. 
+The revenues generated are based on different pricing models that can be fundamentally grouped into two types: 
+cost per (thousand) impressions (CPM) and cost per action (CPA), 
+where an action can be a click, signing up with the advertiser, a sale, or any other measurable outcome. 
+A web publisher generating revenues by selling advertising space on its site can offer either a CPM or CPA contract. 
+We analyze the conditions under which the two parties agree on each contract type, accounting for the relative risk experienced by each party.
 
 The information technology industry relies heavily on the on-line advertising such as [Google，Facebook or Alibaba].
-Advertising is nothing except information, which is not usually accepted gladly. In fact, it is more difficult than recommendation because it is less known of the context where the advertisement is placed.
+Advertising is nothing except information, which is not usually accepted gladly. 
+In fact, it is more difficult than recommendation because it is less known of the context where the advertisement is placed.
 
 
 [Hongliang Jie](http://www.hongliangjie.com/talks/Etsy_ML.pdf) shares 3 challenges of computational advertising in Etsy,
@@ -1518,8 +1558,10 @@ which will be the titles of the following subsections.
 
 When the feature vector ${x}$ are given, the tree split the features by GBRT then we transform and input the features to the logistic regression.
 
-[Practical Lessons from Predicting Clicks on Ads at Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
-Once we have the right features and the right model (decisions trees plus logistic regression), other factors play small roles (though even small improvements are important at scale).
+[Practical Lessons from Predicting Clicks on Ads at Facebook](https://www.jianshu.com/p/96173f2c2fb4) or the [blog](https://zhuanlan.zhihu.com/p/25043821) 
+use the GBRT to select proper features and LR to map these features into the interval $[0,1]$ as a ratio.
+Once we have the right features and the right model (decisions trees plus logistic regression), 
+other factors play small roles (though even small improvements are important at scale).
 
 <img src="https://pic4.zhimg.com/80/v2-fcb223ba88c456ce34c9d912af170e97_hd.png" width = "40%" />
 
