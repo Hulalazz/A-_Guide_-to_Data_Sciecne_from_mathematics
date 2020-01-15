@@ -1,13 +1,20 @@
 # Science of Deep Learning
 
+V. Vapnik said that ``Nothing is more practical than a good theory.''
+
+
 - https://nthu-datalab.github.io/ml/index.html
 - http://www.cs.cornell.edu/~shmat/research.html
 - http://www.prace-ri.eu/best-practice-guide-deep-learning
+- https://math.ethz.ch/sam/research/reports.html?year=2019
+- http://gr.xjtu.edu.cn/web/jjx323/home
+- https://zhouchenlin.github.io/
 
 Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
 Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
 [Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
 
+- https://www.cl.cam.ac.uk/~rja14/
 
 ## Resource  on Deep Learning Theory 
 
@@ -136,10 +143,16 @@ Not all one can understand the relative theory or quantum theory.
 
 ## Physics and Deep Learning
 
-[Neuronal networks have enjoyed a resurgence both in the worlds of neuroscience, where they yield mathematical frameworks for thinking about complex neural datasets, and in machine learning, where they achieve state of the art results on a variety of tasks, including machine vision, speech recognition, and language translation.   Despite their empirical success, a mathematical theory of how deep neural circuits, with many layers of cascaded nonlinearities, learn and compute remains elusive.  We will discuss three recent vignettes in which ideas from statistical physics can shed light on this issue.  In particular, we show how dynamical criticality can help in neural learning, how the non-intuitive geometry of high dimensional error landscapes can be exploited to speed up learning, and how modern ideas from non-equilibrium statistical physics, like the Jarzynski equality, can be extended to yield powerful algorithms for modeling complex probability distributions.  Time permitting, we will also discuss the relationship between neural network learning dynamics and the developmental time course of semantic concepts in infants.](https://physics.berkeley.edu/news-events/events/20151005/the-statistical-physics-of-deep-learning-on-the-beneficial-roles-of)
+Neuronal networks have enjoyed a resurgence both in the worlds of neuroscience, where they yield mathematical frameworks for thinking about complex neural datasets, and in machine learning, where they achieve state of the art results on a variety of tasks, including machine vision, speech recognition, and language translation.  
+Despite their empirical success, a mathematical theory of how deep neural circuits, with many layers of cascaded nonlinearities, learn and compute remains elusive.  
+We will discuss three recent vignettes in which ideas from statistical physics can shed light on this issue.  
+In particular, we show how dynamical criticality can help in neural learning, how the non-intuitive geometry of high dimensional error landscapes can be exploited to speed up learning, and how modern ideas from non-equilibrium statistical physics, like the Jarzynski equality, can be extended to yield powerful algorithms for modeling complex probability distributions.  
+[Time permitting, we will also discuss the relationship between neural network learning dynamics and the developmental time course of semantic concepts in infants.](https://physics.berkeley.edu/news-events/events/20151005/the-statistical-physics-of-deep-learning-on-the-beneficial-roles-of)
 
-[In recent years, artificial intelligence has made remarkable advancements, impacting many industrial sectors dependent on complex decision-making and optimization. 
-Physics-leaning disciplines also face hard inference problems in complex systems: climate prediction, density matrix estimation for many-body quantum systems, material phase detection, protein-fold quality prediction, parametrization of effective models of high-dimensional neural activity, energy landscapes of transcription factor-binding, etc. Methods using artificial intelligence have in fact already advanced progress on such problems. So, the question is not whether, but how AI serves as a powerful tool for data analysis in academic research, and physics-leaning disciplines in particular.](http://www.physics.mcgill.ca/ai2019/)
+In recent years, artificial intelligence has made remarkable advancements, impacting many industrial sectors dependent on complex decision-making and optimization. 
+Physics-leaning disciplines also face hard inference problems in complex systems: climate prediction, density matrix estimation for many-body quantum systems, material phase detection, protein-fold quality prediction, parametrization of effective models of high-dimensional neural activity, energy landscapes of transcription factor-binding, etc. 
+Methods using artificial intelligence have in fact already advanced progress on such problems. 
+[So, the question is not whether, but how AI serves as a powerful tool for data analysis in academic research, and physics-leaning disciplines in particular.](http://www.physics.mcgill.ca/ai2019/)
 
 <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2017/09/InfoBottleneck_2880x1620.jpg" width="80%"/>
 
@@ -253,7 +266,9 @@ ____
 - [2018上海交通大学深度学习理论前沿研讨会 - 凌泽南的文章 - 知乎](https://zhuanlan.zhihu.com/p/40097048)
 - [Theories of Deep Learning](https://www.researchgate.net/project/Theories-of-Deep-Learning)
 
-[A mathematical theory of deep networks and of why they work as well as they do is now emerging. I will review some recent theoretical results on the approximation power of deep networks including conditions under which they can be exponentially better than shallow learning. A class of deep convolutional networks represent an important special case of these conditions, though weight sharing is not the main reason for their exponential advantage. I will also discuss another puzzle around deep networks: what guarantees that they generalize and they do not overfit despite the number of weights being larger than the number of training data and despite the absence of explicit regularization in the optimization?](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html)
+A mathematical theory of deep networks and of why they work as well as they do is now emerging. [I will review some recent theoretical results on the approximation power of deep networks](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html) including conditions under which they can be exponentially better than shallow learning. 
+A class of deep convolutional networks represent an important special case of these conditions, though weight sharing is not the main reason for their exponential advantage. 
+I will also discuss another puzzle around deep networks: what guarantees that they generalize and they do not overfit despite the number of weights being larger than the number of training data and despite the absence of explicit regularization in the optimization?
 
 Deep Neural Networks and Partial Differential Equations: Approximation Theory and
 Structural Properties
@@ -307,6 +322,13 @@ In another word, there are no unified scientific principle or  guide to design t
 
 Many recursive formula share the same `feedback` forms or hidden structure, where the next input is the output of previous or historical record or generated points.
 
+- [401-3650-19L  Numerical Analysis Seminar: Mathematics of Deep Neural Network Approximation](http://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=136996&semkez=2020S&lang=en)
+- http://www.mathcs.emory.edu/~lruthot/talks/
+- [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
+- [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
+- [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
+- [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
+- [MA 721: Topics in Numerical Analysis: Deep Learning](http://www.ms.uky.edu/~qye/MA721/ma721F17.html)
 
 #### ResNets
 
@@ -382,12 +404,7 @@ $$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
 $$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
 
 
-- http://www.mathcs.emory.edu/~lruthot/talks/
-- [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
-- [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
-- [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
-- [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
-- [MA 721: Topics in Numerical Analysis: Deep Learning](http://www.ms.uky.edu/~qye/MA721/ma721F17.html)
+
 - [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
 - [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
 - [Deep Neural Networks Motivated By Ordinary Differential Equations](http://www.mathcs.emory.edu/~lruthot/talks/2019-LR-IPAM-ODE-handout.pdf)
@@ -525,14 +542,27 @@ In another hand, it is expected that machine learning could learn/approximate th
 - https://ankita-shukla.github.io/
 - [Neural-network-based iterative learning control of nonlinear systems](https://www.sciencedirect.com/science/article/abs/pii/S0019057819303908)
 
+### Stability For Neural Networks
 
+- https://folk.uio.no/vegarant/
+- https://www.mn.uio.no/math/english/people/aca/vegarant/index.html
+- https://arxiv.org/pdf/1710.11029.pdf
+- http://www.vision.jhu.edu/tutorials/ICCV15-Tutorial-Math-Deep-Learning-Raja.pdf
+- https://arxiv.org/abs/1705.03341
+- https://izmailovpavel.github.io/
+- https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zheng_Improving_the_Robustness_CVPR_2016_paper.pdf
 
 ## Differential Equation and Deep Learning
 
 This section is on how to use deep learning or more general machine learning to solve  differential equation numerically.
 
-[We derive upper bounds on the complexity of ReLU neural networks approximating the solution maps of parametric partial differential equations. In particular, without any knowledge of its concrete shape, we use the inherent low-dimensionality of the solution manifold to obtain approximation rates which are significantly superior to those provided by classical approximation results. We use this low dimensionality to guarantee the existence of a reduced basis. Then, for a large variety of parametric partial differential equations, we construct neural networks that yield approximations of the parametric maps not suffering from a curse of dimension and essentially only depending on the size of the reduced basis.](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Kutyniok/Papers/Parametric_PDEs_and_NNs_.pdf)
+We derive upper bounds on the complexity of ReLU neural networks approximating the solution maps of parametric partial differential equations.
+In particular, without any knowledge of its concrete shape, we use the inherent low-dimensionality of the solution manifold to obtain approximation rates
+which are significantly superior to those provided by classical approximation results. 
+We use this low dimensionality to guarantee the existence of a reduced basis. 
+[Then, for a large variety of parametric partial differential equations, we construct neural networks that yield approximations of the parametric maps not suffering from a curse of dimension and essentially only depending on the size of the reduced basis.](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Kutyniok/Papers/Parametric_PDEs_and_NNs_.pdf)
 
+- https://math.ethz.ch/sam/research/reports.html?year=2019
 - https://aimath.org/workshops/upcoming/deeppde/
 - https://github.com/IBM/pde-deep-learning
 - https://arxiv.org/abs/1804.04272
@@ -543,23 +573,27 @@ This section is on how to use deep learning or more general machine learning to 
 - https://github.com/amkatrutsa/DeepPDE
 - https://github.com/maziarraissi/DeepHPMs
 - https://github.com/markovmodel/deeptime
-- [The Deep Ritz Method: A Deep Learning-Based Numerical Algorithm for Solving Variational Problems](https://link.springer.com/article/10.1007/s40304-018-0127-z)
-- [Solving Nonlinear and High-Dimensional Partial Differential Equations via Deep Learning](http://utstat.toronto.edu/~ali/papers/PDEandDeepLearning.pdf)
 - [Deep Hidden Physics Models: Deep Learning of Nonlinear Partial Differential Equations](https://arxiv.org/abs/1801.06637)
 - [SPNets: Differentiable Fluid Dynamics for Deep Neural Networks](https://rse-lab.cs.washington.edu/papers/spnets2018.pdf)
 - https://maziarraissi.github.io/DeepHPMs/
-- [DGM: A deep learning algorithm for solving partial differential equations](https://www.sciencedirect.com/science/article/pii/S0021999118305527)
 - [A Theoretical Analysis of Deep Neural Networks and Parametric PDEs](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Kutyniok/Papers/Parametric_PDEs_and_NNs_.pdf)
+- [Deep Approximation via Deep Learning](http://ins.sjtu.edu.cn:3300/conferences/7/talks/314)
+
+### Deep Learning for PDEs
+
+- [The Deep Ritz Method: A Deep Learning-Based Numerical Algorithm for Solving Variational Problems](https://link.springer.com/article/10.1007/s40304-018-0127-z)
+- [Solving Nonlinear and High-Dimensional Partial Differential Equations via Deep Learning](http://utstat.toronto.edu/~ali/papers/PDEandDeepLearning.pdf)
+- [DGM: A deep learning algorithm for solving partial differential equations](https://www.sciencedirect.com/science/article/pii/S0021999118305527)
 - [NeuralNetDiffEq.jl: A Neural Network solver for ODEs](https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq)
 - [PIMS CRG Summer School: Deep Learning for Computational Mathematics](https://www.pims.math.ca/scientific-event/190722-pcssdlcm)
-- [Deep Approximation via Deep Learning](http://ins.sjtu.edu.cn:3300/conferences/7/talks/314)
+
 * https://arxiv.org/abs/1806.07366
 * https://mat.univie.ac.at/~grohs/
 * https://rse-lab.cs.washington.edu/
 * http://www.ajentzen.de/
 * https://web.math.princeton.edu/~jiequnh/
 
-$\mathcal H$ matrix and deep learning
+### $\mathcal H$ matrix and deep learning
 
 [In this work we introduce a new multiscale artificial neural network based on the structure of H-matrices. This network generalizes the latter to the nonlinear case by introducing a local deep neural network at each spatial scale. Numerical results indicate that the network is able to efficiently approximate discrete nonlinear maps obtained from discretized nonlinear partial differential equations, such as those arising from nonlinear Schodinger equations and the KohnSham density functional theory.](https://web.stanford.edu/~lexing/mnnh.pdf)
 
@@ -586,6 +620,7 @@ The section will extend the approximation to the deep neural network.
 
 [We derive fundamental lower bounds on the connectivity and the memory requirements of deep neural networks guaranteeing uniform approximation rates for arbitrary function classes in $L^2(\mathbb R^d)$. In other words, we establish a connection between the complexity of a function class and the complexity of deep neural networks approximating functions from this class to within a prescribed accuracy.](https://epubs.siam.org/doi/pdf/10.1137/18M118709X)
 
+- [Deep Neural Network Approximation Theory](https://arxiv.org/abs/1901.02220)
 - [Approximation Analysis of Convolutional Neural Networks](https://cpb-us-w2.wpmucdn.com/blog.nus.edu.sg/dist/d/11132/files/2019/07/paper_cnn_copy.pdf)
 - [Deep vs. shallow networks : An approximation theory perspective](https://arxiv.org/abs/1608.03287)
 - [Deep Neural Network Approximation Theory](https://arxiv.org/abs/1901.02220)
@@ -653,6 +688,7 @@ such as denoising and compressive sensing. Motivated by those success stories, r
 - [Deep Learning for Inverse Problems](https://arxiv.org/abs/1803.00092)
 - [Solving inverse problems with deep networks](https://deep-inverse.org/)
 - [Neumann Networks for Inverse Problems in Imaging](https://arxiv.org/abs/1901.03707)
+- https://deepai.org/publication/unsupervised-deep-learning-algorithm-for-pde-based-forward-and-inverse-problems
 
 ### Deep Inverse Optimization
 
@@ -731,9 +767,12 @@ Originally proposed by Monge in the eighteenth century,
 
 ## Geometric Analysis Approach to AI
 
-[Why and how that deep learning works well on different tasks remains a mystery from a theoretical perspective. In this paper we draw a geometric picture of the deep learning system by finding its analogies with two existing geometric structures, the geometry of quantum computations and the geometry of the diffeomorphic template matching. In this framework, we give the geometric structures of different deep learning systems including convolutional neural networks, residual networks, recursive neural networks, recurrent neural networks and the equilibrium prapagation framework. We can also analysis the relationship between the geometrical structures and their performance of different networks in an algorithmic level so that the geometric framework may guide the design of the structures and algorithms of deep learning systems.](https://arxiv.org/pdf/1710.10784.pdf)
+Why and how that deep learning works well on different tasks remains a mystery from a theoretical perspective. In this paper we draw a geometric picture of the deep learning system by finding its analogies with two existing geometric structures, the geometry of quantum computations and the geometry of the diffeomorphic template matching. 
+In this framework, we give the geometric structures of different deep learning systems including convolutional neural networks, residual networks, recursive neural networks, recurrent neural networks and the equilibrium prapagation framework. 
+[We can also analysis the relationship between the geometrical structures and their performance of different networks in an algorithmic level so that the geometric framework may guide the design of the structures and algorithms of deep learning systems.](https://arxiv.org/pdf/1710.10784.pdf)
 
-- [Machine Learning on Geometrical DataCSE291-C00 - Winter 2019](https://cse291-i.github.io/)
+
+- [Machine Learning on Geometrical Data CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
 - [ABC Dataset A Big CAD Model Dataset For Geometric Deep Learning](https://deep-geometry.github.io/abc-dataset/)
 - [Into the Wild: Machine Learning In Non-Euclidean Spaces](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/)
 - [How deep learning works — The geometry of deep learning](https://arxiv.org/pdf/1710.10784.pdf)
@@ -742,8 +781,6 @@ Originally proposed by Monge in the eighteenth century,
 - https://diglib.eg.org/handle/10.2312/2631996
 - http://ubee.enseeiht.fr/skelneton/
 - https://biomedicalimaging.org/2019/tutorials/
-- [Machine Learning on Geometrical Data
-CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
 - [Geometric View to Deep Learning](http://valser.org/article-269-1.html)
 - [GEOMETRIC IDEAS IN MACHINE LEARNING: FROM DEEP LEARNING TO INCREMENTAL OPTIMIZATION](https://www.isi.edu/events/calendar/12459/)
 - [Deep Learning Theory: Geometric Analysis of Capacity, Optimization, and Generalization for Improving Learning in Deep Neural Networks](https://cordis.europa.eu/project/rcn/214602/factsheet/en)
@@ -986,10 +1023,12 @@ We solve this problem by developing a new information metric that can be used to
 We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. 
 At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.
 
+* [Universal Features](https://arxiv.org/pdf/1911.09105.pdf)
 * https://glouppe.github.io/info8010-deep-learning/
 * http://ita.ucsd.edu/
 * http://naftali-tishby.mystrikingly.com/
 * http://lizhongzheng.mit.edu/
+* https://lizhongzheng.mit.edu/sites/default/files/documents/FFSE.pdf
 * [Information Theory of Deep Learning](https://adityashrm21.github.io/Information-Theory-In-Deep-Learning/)
 * [Anatomize Deep Learning with Information Theory](https://lilianweng.github.io/lil-log/2017/09/28/anatomize-deep-learning-with-information-theory.html)
 * [“Deep learning - Information theory & Maximum likelihood.”](https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/)
@@ -1027,6 +1066,7 @@ Recently, however, the remarkable success of deep neural networks in learning fr
 * [Where neuroscience and artificial intelligence converge.](https://braininspired.co/about/)
 * https://elsc.huji.ac.il/events/elsc-conference-10
 * http://www.brain-ai.jp/organization/
+* https://neurodata.io/
 * [Artificial Intelligence and brain](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5818638/)
 * [Dissecting Artificial Intelligence to Better Understand the Human Brain](https://www.cogneurosociety.org/dissecting-artificial-intelligence-to-better-understand-the-human-brain/)
 * [Deep Learning and the Brain](https://quest.mit.edu/projects/)
@@ -1099,6 +1139,7 @@ present rather than by helping the optimization process (Frankle & Carbin, 2019)
 - https://zhuanlan.zhihu.com/p/84178021
 - https://zhuanlan.zhihu.com/p/67782029
 - https://openai.com/blog/deep-double-descent/
+- https://zhuanlan.zhihu.com/p/100451862
 
 ## AOGNet
 

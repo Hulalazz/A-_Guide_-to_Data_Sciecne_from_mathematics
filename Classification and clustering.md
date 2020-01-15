@@ -207,13 +207,12 @@ The simplified version is to compute the `median` of each attribute to approxima
 
 It also begins with randomly selecting k data items as initial medoids to represent the k clusters. All
 the other remaining items are included in a cluster which has its medoid closest to them.
-Thereafter a new medoid is determined which can represent the cluster better. All the remaining
-data items are yet again assigned to the clusters having closest medoid. In each iteration, the
-medoids alter their location. The method minimizes the sum of the dissimilarities between each
-data item and its corresponding medoid. This cycle is repeated till no medoid changes its
-placement. This marks the end of the process and we have the resultant final clusters with their
-medoids defined. ${K}$ clusters are formed which are centered around the medoids and all the data
-members are placed in the appropriate cluster based on nearest medoid.
+Thereafter a new medoid is determined which can represent the cluster better. All the remaining data items are yet again assigned to the clusters having closest medoid. 
+In each iteration, the medoids alter their location. The method minimizes the sum of the dissimilarities between each data item and its corresponding medoid. 
+This cycle is repeated till no medoid changes its
+placement. 
+This marks the end of the process and we have the resultant final clusters with their medoids defined. 
+${K}$ clusters are formed which are centered around the medoids and all the data members are placed in the appropriate cluster based on nearest medoid.
 
 * http://www.math.le.ac.uk/people/ag153/homepage/KmeansKmedoids/Kmeans_Kmedoids.html
 * http://blog.pluskid.org/?p=40
@@ -375,7 +374,25 @@ A bicluster is defined as a submatrix spanned by a set of genes and a set of sam
 #### Evaluating Clustering
 
 - https://amueller.github.io/COMS4995-s18/slides/aml-17-032818-clustering-evaluation/#1
+- https://blog.csdn.net/JiangLongShen/article/details/88605355
 
+##### Clustering Tendency
+
+Hopkins statistic is a simple measure of clustering tendency. 
+It compares nearest-neighbor distances in the data-set with nearest neighbor distances in data-sets simulated from a multivariate Normal distribution. 
+By repeating the simulation many times, an estimate of the probability that the observed nearest-neighbor distances could have been obtained from the random distribution can be obtained. 
+Hopkins statistics >0.5 indicate clustering in the data. They do not inform the user about how many clusters are present. 
+If ‘clustering’ just depends on sharing between pairs of syllables, then the prediction is that H will be >0.5 for 1st or 2nd nearest neighbors, but should decline to 0.5 for 10th or 20th nearest neighbors.
+
+- http://luscinia.sourceforge.net/page19/page18/styled-9/index.html
+
+##### Number of Clusters
+
+- https://www.cnblogs.com/think90/p/7133753.html
+
+#####  Quantity of Clustering  
+
+- https://www.jianshu.com/p/6352d9d468f8
 
 #### Ensemble methods of Clusterings
 
@@ -399,15 +416,14 @@ Its inputs or the feature vector is always numerical $X\in\mathbb{R}^p$ and the 
 * https://en.wikipedia.org/wiki/Category:Classification_algorithms
 * https://people.eecs.berkeley.edu/~jordan/classification.html
 
-#### Recursive Partitioning and Decision Tree for Clasification
+#### Recursive Partitioning and Decision Tree for Classification
 
+[An algorithm known as recursive partitioning is the key to the nonparametric statistical method of classification and regression trees (CART) (Breiman, Friedman, Olshen, and Stone, 1984). Recursive partitioning is the step-by-step process by which a decision tree is constructed by either splitting or not splitting each node on the tree into two daughter nodes. An attractive feature of the CART methodology (or the related C4.5 methodology; Quinlan, 1993) is that because the algorithm asks a sequence of hierarchical Boolean questions,  it is relatively simple to understand and interpret the results.](https://link.springer.com/chapter/10.1007/978-0-387-78189-1_9)
 
-[高效决策树算法系列笔记](https://github.com/wepe/efficient-decision-tree-notes)
-
-
-* [Decision Trees (for Classification) by Willkommen auf meinen Webseiten.](http://christianherta.de/lehre/dataScience/machineLearning/decision-trees.php)
-* [DECISION TREES DO NOT GENERALIZE TO NEW VARIATIONS](https://www.iro.umontreal.ca/~lisa/pointeurs/bengio+al-decisiontrees-2010.pdf)
-* [On the Boosting Ability of Top-Down Decision Tree Learning Algorithms](http://www.columbia.edu/~aec2163/NonFlash/Papers/Boosting2016.pdf)
+* [Recursive Partitioning for Classification](https://newonlinecourses.science.psu.edu/stat555/node/100/)
+* [Recursive Partitioning and Application by Heping Zhang](https://publichealth.yale.edu/c2s2/8_209304_5_v1.pdf)
+* https://www.wikiwand.com/en/Recursive_partitioning
+* [Model-Based Recursive Partitioning for Subgroup Analyses, Heidi Seibold, Achim Zeileis, Torsten Hothorn](https://www.degruyter.com/view/j/ijb.2016.12.issue-1/ijb-2015-0032/ijb-2015-0032.xml)
 
 A decision tree is a set of questions(i.e. if-then sentence) organized in a **hierarchical** manner and represented graphically as a tree.
 It use 'divide-and-conquer' strategy recursively. It is easy to scale up to massive data set. The models are obtained by recursively partitioning
@@ -427,32 +443,6 @@ result, the partitioning can be represented graphically as a decision tree.
 Creating a binary decision tree is actually a process of dividing up the input space according to the sum of **impurities**.
 
 
-* [Data Mining Tools See5 and C5.0](https://www.rulequest.com/see5-info.html)
-* [A useful view of decision trees](https://www.benkuhn.net/tree-imp)
-* https://www.wikiwand.com/en/Decision_tree_learning
-* https://www.wikiwand.com/en/Decision_tree
-* https://www.wikiwand.com/en/Recursive_partitioning
-* [TimeSleuth is an open source software tool for generating temporal rules from sequential data](http://timesleuth-rule.sourceforge.net/)
-***
-
-Like other supervised algorithms, decision tree makes a trade-off between over-fitting and under-fitting and how to choose the hyper-parameters of decision tree such as the max depth?
-The regularization techniques in regression may not suit the tree algorithms such as LASSO.
-
-**Pruning** is a regularization technique for tree-based algorithm. In arboriculture, the reason to prune tree is [because each cut has the potential to change the growth of the tree, no branch should be removed without a reason. Common reasons for pruning are to remove dead branches, to improve form, and to reduce risk. Trees may also be pruned to increase light and air penetration to the inside of the tree’s crown or to the landscape below. ](https://www.treesaregood.org/treeowner/pruningyourtrees)
-
-<img title = "pruning" src="https://www.treesaregood.org/portals/0/images/treeowner/pruning1.jpg" width="40%" />
-
-In machine learning, it is to avoid the overfitting, to make a balance between over-fitting and under-fitting and boost the generalization ability. The important step of tree pruning is to define a criterion be used to determine the correct final tree size using one of the following methods:
-
-1. Use a distinct dataset from the training set (called validation set), to evaluate the effect of post-pruning nodes from the tree.
-2. Build the tree by using the training set, then apply a statistical test to estimate whether pruning or expanding a particular node is likely to produce an improvement beyond the training set.
-    * Error estimation
-    * Significance testing (e.g., Chi-square test)
-3. Minimum Description Length principle : Use an explicit measure of the complexity for encoding the training set and the decision tree, stopping growth of the tree when this encoding size (size(tree) + size(misclassifications(tree)) is minimized.
-
-* [Decision Tree - Overfitting saedsayad](https://www.saedsayad.com/decision_tree_overfitting.htm)
-* [Decision Tree Pruning based on Confidence Intervals (as in C4.5)](http://www.cs.bc.edu/~alvarez/ML/statPruning.html)
-
 ***
 ![Recursive Partitioning](http://ai-depot.com/Tutorial/DT2.jpg)
 
@@ -465,23 +455,18 @@ Multivariate Adaptive Regression
 Splines(MARS) is the boosting ensemble methods for decision tree algorithms.
 `Recursive partition` is a recursive  way to construct decision tree.
 
-***
-* [Treelite : model compiler for decision tree ensembles](https://treelite.readthedocs.io/en/latest/)
+
 * [Tutorial on Regression Tree Methods for Precision Medicine and Tutorial on Medical Product Safety: Biological Models and Statistical Methods](http://ims.nus.edu.sg/events/2017/quan/tut.php)
 * [An Introduction to Recursive Partitioning: Rationale, Application and Characteristics of Classification and Regression Trees, Bagging and Random Forests](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2927982/)
 * [ADAPTIVE CONCENTRATION OF REGRESSION TREES, WITH APPLICATION TO RANDOM FORESTS](https://arxiv.org/pdf/1503.06388.pdf)
 * [GUIDE Classification and Regression Trees and Forests (version 31.0)](http://www.stat.wisc.edu/~loh/guide.html)
-* [How to visualize decision trees by Terence Parr and Prince Grover](https://explained.ai/decision-tree-viz/index.html)
-* [CART](https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/)
 * [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
-* [Interpretable Machine Learning: Decision Tree](https://christophm.github.io/interpretable-ml-book/tree.html)
 * [Tree-based Models](https://dinh-hung-tu.github.io/tree-based-models/)
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
-* https://www.ncbi.nlm.nih.gov/pubmed/16149128
+* [Repeated split sample validation to assess logistic regression and recursive partitioning: an application to the prediction of cognitive impairment.](https://www.ncbi.nlm.nih.gov/pubmed/16149128)
 * http://www.cnblogs.com/en-heng/p/5035945.html
 * http://ai-depot.com/Tutorial/DecisionTrees-Partitioning.html
-* https://www.wikiwand.com/en/Recursive_partitioning
-* [Model-Based Recursive Partitioning for Subgroup Analyses, Heidi Seibold, Achim Zeileis, Torsten Hothorn](https://www.degruyter.com/view/j/ijb.2016.12.issue-1/ijb-2015-0032/ijb-2015-0032.xml)
+
 
 #### K-Nearest Neighbors
 
