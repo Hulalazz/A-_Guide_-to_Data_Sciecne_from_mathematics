@@ -1,8 +1,7 @@
 # Network Compression and Acceleration
 
-- https://hgpu.org/
-
-It is about how to accelerate the training and inference of deep learning(generally machine learning) except numerical optimization methods including the following topics:
+It is about how to accelerate the training and inference of deep learning(generally machine learning) 
+except numerical optimization methods including the following topics:
 
 * compiler optimization for computation intensive programs;
 * system architecture design for computation intensive programs;
@@ -17,6 +16,8 @@ It is about how to accelerate the training and inference of deep learning(genera
 |Distributed Computing|
 |Hardware Architectures|
 
+* [Trax — your path to advanced deep learning](https://github.com/google/trax)
+* https://www.atlaswang.com/
 * https://github.com/1duo/awesome-ai-infrastructures
 * https://duvenaud.github.io/learning-to-search/
 * http://www.eecs.harvard.edu/htk/publications/
@@ -35,13 +36,17 @@ It is about how to accelerate the training and inference of deep learning(genera
 * https://vast.cs.ucla.edu/
 * [Blade Benchmark Suite(BBS)简介](https://help.aliyun.com/document_detail/140558.html)
 * https://web.northeastern.edu/yanzhiwang/research/
+* http://shivaram.org/#teaching
 
-[To revolutionize deep learning with real-time AI solutions that scale from the edge to the datacenter](https://wavecomp.ai/).
+[To revolutionize deep learning with real-time AI solutions that scale from the edge to the data center](https://wavecomp.ai/).
 
-The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
+The parameters of deep neural networks are tremendous. And deep learning is matrix-computation intensive. 
+Specific hardware  such as GPU or TPU is used to speed up the computation of deep learning in training or inference.
 The optimization methods are used to train the deep neural network.
-To boost the training of deep learning, we would like to design faster optimization methods such as `ADAM` and delicate architectures of neural network such as `ResNet`.
-After training, the parameters of the deep neural network are fixed and used for inference, we would do much matrix multiplication via the saved fixed parameters of deep neural network.  
+To boost the training of deep learning, 
+we would like to design faster optimization methods such as `ADAM` and delicate architectures of neural network such as `ResNet`.
+After training, the parameters of the deep neural network are fixed and used for inference, 
+we would do much matrix multiplication via the saved fixed parameters of deep neural network.  
 From [What’s the Difference Between Deep Learning Training and Inference?](https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/)
 
 <img src="https://blogs.nvidia.com/wp-content/uploads/2016/08/ai_difference_between_deep_learning_training_inference.jpg" width="80%">
@@ -66,6 +71,7 @@ can we deploy deep learning models? Definitely yes.
 
 * [Awesome model compression and acceleration](https://github.com/memoiry/Awesome-model-compression-and-acceleration)
 * [Acceleration and Model Compression by Handong](https://handong1587.github.io/deep_learning/2015/10/09/cnn-compression-acceleration.html)
+* [Accelerating Deep Learning Inference via Freezing](https://www.usenix.org/conference/hotcloud19/presentation/kumar)
 * [模型压缩之deep compression](https://littletomatodonkey.github.io/2018/10/10/2018-10-10-%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B9%8Bdeep%20compression/)
 * [论文笔记《A Survey of Model Compression and Acceleration for Deep Neural Networks》](https://blog.csdn.net/song_pipi/article/details/79154539)
 * https://zhuanlan.zhihu.com/p/67508423
@@ -79,13 +85,17 @@ can we deploy deep learning models? Definitely yes.
 + https://github.com/BlueWinters/research
 + [Reference workloads for modern deep learning methods](https://github.com/rdadolf/fathom)
 + [How to Train for and Run Machine Learning Models on Edge Devices](https://www.simonwenkel.com/2018/12/08/How-to-run-Deep-Learning-Models-on-Edge-devices.html)
-
++ http://mvapich.cse.ohio-state.edu/
++ http://people.eecs.berkeley.edu/~reddy/
 
 ## System for Deep Learning
 
-Over the past few years, deep learning has become an important technique to successfully solve problems in many different fields, such as vision, NLP, robotics. An important ingredient that is driving this success is the development of deep learning systems that efficiently support the task of learning and inference of complicated models using many devices and possibly using distributed resources. The study of how to build and optimize these deep learning systems is now an active area of research and commercialization.
+Over the past few years, deep learning has become an important technique to successfully solve problems in many different fields, such as vision, NLP, robotics. 
+An important ingredient that is driving this success is the development of deep learning systems that efficiently support the task of learning and inference of complicated models using many devices and possibly using distributed resources. 
+The study of how to build and optimize these deep learning systems is now an active area of research and commercialization.
 
-Matrix computation dense application like deep neural network would take the advantages of specific architecture design. Thus it is really close to `high performance computational science` when solving some computation dense problems.
+Matrix computation dense application like deep neural network would take the advantages of specific architecture design. 
+Thus it is really close to `high performance computational science` when solving some computation dense problems.
 
 <img src="https://pooyanjamshidi.github.io/mls/_images/mls-logo.jpg" width="69%" />
 
@@ -97,8 +107,9 @@ Matrix computation dense application like deep neural network would take the adv
 * [Facebook AI Performance Evaluation Platform](https://github.com/facebook/FAI-PEP)
 * [Hardware Accelerators for Machine Learning (CS 217) Stanford University, Fall 2018](https://cs217.stanford.edu/readings)
 * [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
+* [DeepDream: Accelerating Deep Learning With Hardware](https://www.svds.com/deepdream-accelerating-deep-learning-hardware/)
 
-### Parallel Architectures
+### Parallel Architectures and Special Hardware
 
 Parallel Architectures for Parallel Processing as co-design is a subfield of system for machine learning.
 
@@ -111,14 +122,20 @@ Parallel Architectures for Parallel Processing as co-design is a subfield of sys
 - [Introduction to Parallel Computing Author: Blaise Barney, Lawrence Livermore National Laboratory](https://computing.llnl.gov/tutorials/parallel_comp/)
 - [Parallel Architectures for Artificial Neural Networks: Paradigms and Implementations N. Sundararajan, P. Saratchandran](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0818683996,miniSiteCd-IEEE_CS2.html)
 - [Parallel Computer Architecture and Programming (CMU 15-418/618)](http://www.math-cs.gordon.edu/courses/cps343/)
-
-
+- https://twimlcon.com/
+- [Accelerating Deep Learning with a Parallel Mechanism Using CPU + MIC](https://link.springer.com/article/10.1007%2Fs10766-017-0535-9)
+- [Papers on Big Data Meets New Hardware](https://readingxtra.github.io/)
 
 #### GPU
 
-This GPU architecture works well on applications with massive parallelism, such as matrix multiplication in a neural network. Actually, you would see order of magnitude higher throughput than CPU on typical training workload for deep learning. This is why the GPU is the most popular processor architecture used in deep learning at time of writing.
+This GPU architecture works well on applications with massive parallelism, such as matrix multiplication in a neural network.
+ Actually, you would see order of magnitude higher throughput than CPU on typical training workload for deep learning. 
+ This is why the GPU is the most popular processor architecture used in deep learning at time of writing.
 
-[But, the GPU is still a general purpose processor that has to support millions of different applications and software. This leads back to our fundamental problem, the von Neumann bottleneck. For every single calculation in the thousands of ALUs, GPU need to access registers or shared memory to read and store the intermediate calculation results. Because the GPU performs more parallel calculations on its thousands of ALUs, it also spends proportionally more energy accessing memory and also increases footprint of GPU for complex wiring.](https://cloud.google.com/blog/products/ai-machine-learning/what-makes-tpus-fine-tuned-for-deep-learning)
+But, the GPU is still a general purpose processor that has to support millions of different applications and software. 
+This leads back to our fundamental problem, the von Neumann bottleneck. 
+For every single calculation in the thousands of ALUs, GPU need to access registers or shared memory to read and store the intermediate calculation results. 
+Because the GPU performs more parallel calculations on its thousands of ALUs, [it also spends proportionally more energy accessing memory and also increases footprint of GPU for complex wiring.](https://cloud.google.com/blog/products/ai-machine-learning/what-makes-tpus-fine-tuned-for-deep-learning)
 
 <img src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/image2.gif" width="70%"/>
 
@@ -128,9 +145,13 @@ This GPU architecture works well on applications with massive parallelism, such 
 
 #### TPU
 
-TPUs can't run word processors, control rocket engines, or execute bank transactions, but they can handle the massive multiplications and additions for neural networks, at blazingly fast speeds while consuming much less power and inside a smaller physical footprint.
+TPUs can't run word processors, control rocket engines, or execute bank transactions, 
+but they can handle the massive multiplications and additions for neural networks, at blazingly fast speeds while consuming much less power and inside a smaller physical footprint.
 
-The key enabler is a major reduction of the von Neumann bottleneck. Because the primary task for this processor is matrix processing, hardware designer of the TPU knew every calculation step to perform that operation. So they were able to place thousands of multipliers and adders and connect them to each other directly to form a large physical matrix of those operators. This is called systolic array architecture.
+The key enabler is a major reduction of the von Neumann bottleneck. 
+Because the primary task for this processor is matrix processing, hardware designer of the TPU knew every calculation step to perform that operation. 
+So they were able to place thousands of multipliers and adders and connect them to each other directly to form a large physical matrix of those operators. 
+This is called systolic array architecture.
 
 <img src="https://deliveryimages.acm.org/10.1145/3160000/3154484/f2.jpg" width="70%"/>
 
@@ -145,7 +166,9 @@ The key enabler is a major reduction of the von Neumann bottleneck. Because the 
 
 #### NPU
 
-[A neural processing unit (NPU) is a microprocessor that specializes in the acceleration of machine learning algorithms, typically by operating on predictive models such as artificial neural networks (ANNs) or random forests (RFs). It is, also, known as neural processor.](https://iq.opengenus.org/neural-processing-unit-npu/)
+A neural processing unit (NPU) is a microprocessor that specializes in the acceleration of machine learning algorithms, 
+typically by operating on predictive models such as artificial neural networks (ANNs) or random forests (RFs). 
+[It is, also, known as neural processor.](https://iq.opengenus.org/neural-processing-unit-npu/)
 
 NPU are required for the following purpose:
 
@@ -203,6 +226,7 @@ NPU are required for the following purpose:
 * https://www.intel.ai/blog/
 * https://www.arm.com/solutions/artificial-intelligence
 * https://mlperf.org/index.html#companies
+* [Accelerating Deep Learning with Memcomputing](https://arxiv.org/pdf/1801.00512.pdf)
 
 ##### Courses and Labs
 
@@ -220,6 +244,7 @@ NPU are required for the following purpose:
 * [HIGH PERFORMANCE POWER EFFICIENT NEURAL NETWORK IMPLEMENTATIONS ON EMBEDDED DEVICES](https://events.vtools.ieee.org/m/211223)
 * https://eiclab.net/
 * https://parsa.epfl.ch/~falsafi/
+* [swDNN: A Library for Accelerating Deep Learning Applications on Sunway TaihuLight Supercomputer](https://github.com/THUHPGC/swDNN)
 
 ## Numerical algorithms for high-performance computational science
 
@@ -230,11 +255,17 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 * Minimizing `data movement (communication)` is crucial, because of its increasing costs relative to the costs of floating-point arithmetic.
 * `Co-design` (the collaborative and concurrent development of hardware, software, and numerical algorithms, with knowledge of applications) is increasingly important for numerical computing.
 
+For more on high performance computation on GPU see [https://hgpu.org/](- https://hgpu.org/).
+
+
+
++ https://hgpu.org/
 + [Numerical Algorithms for High-Performance Computational Science: Highlights of the Meeting](https://nickhigham.wordpress.com/2019/05/07/numerical-algorithms-for-high-performance-computational-science-highlights/)
 + [Numerical algorithms for high-performance computational science](https://royalsociety.org/science-events-and-lectures/2019/04/high-performance-computing/)
 + [Reflections on the Royal Society’s “Numerical Algorithms for High-performance Computational Science” Discussion Meeting](https://sinews.siam.org/Details-Page/reflections-on-the-royal-societys-numerical-algorithms-for-high-performance-computational-science-discussion-meeting)
 + [Overview of Microsoft HPC Pack 2016](https://docs.microsoft.com/zh-cn/powershell/high-performance-computing/overview?view=hpc16-ps)
 + [Document Library: High Performance Computing Fabrics](https://www.intel.com/content/www/us/en/high-performance-computing-fabrics/library.html)
++ [MVAPICH: MPI over InfiniBand, Omni-Path, Ethernet/iWARP, and RoCE](http://mvapich.cse.ohio-state.edu/)
 + https://researchcomputing.lehigh.edu/
 + https://library.columbia.edu/libraries/dsc/hpc.html
 + [Open MPI: Open Source High Performance Computing](https://www.open-mpi.org/)
@@ -283,7 +314,8 @@ can, metaphorically, indicate one address or house and each $v(i)$ a letter addr
 
 ### Computation of Matrix Chain Products
 
-Generations of students have learned that the product $xy^Tz$, where $x, y,$ and $z$ are n-vectors, should be written and evaluated as $x(y^Tz)$ ($O(n)$ flops) rather than $(xy^T)z$ ($O(n^2)$) flops). More generally, deciding where to put the parentheses in a matrix product $A_1A_2\dots A_k$ to minimize the number of operations in the evaluation is a nontrivial problem, known as the `matrix chain multiplication problem`.
+Generations of students have learned that the product $xy^Tz$, where $x, y,$ and $z$ are n-vectors, should be written and evaluated as $x(y^Tz)$ ($O(n)$ flops) rather than $(xy^T)z$ ($O(n^2)$) flops). 
+More generally, deciding where to put the parentheses in a matrix product $A_1A_2\dots A_k$ to minimize the number of operations in the evaluation is a nontrivial problem, known as the `matrix chain multiplication problem`.
 
 A special case is when $A_1=A_2=\dots =A_k$ the problem is to compute the $A^k=\underbrace{A\cdots A}_{k}$.
 
@@ -318,7 +350,8 @@ for (int m = 0; m < M; m++) {
 
 It  needs $O(MKN)$ multiplication.
 
-The picture below visualizes the computation of a single element in the result matrix $C$. Each element in the result matrix $C$ is the sum of element-wise multiplication of a row from $A$ and a column from $B$.
+The picture below visualizes the computation of a single element in the result matrix $C$. 
+Each element in the result matrix $C$ is the sum of element-wise multiplication of a row from $A$ and a column from $B$.
 
 <img src="https://gist.githubusercontent.com/nadavrot/5b35d44e8ba3dd718e595e40184d03f0/raw/23dc2fdf78e88ef7fa2f00028bb735ee70429d6d/zsimple.png" width="60%">
 
@@ -492,13 +525,18 @@ $$
 
 #### Automatic Differentiation
 
-All numerical gradient-based optimization methods benifits from faster computation of gradients specially `backprop`.
+All numerical gradient-based optimization methods benefits from faster computation of gradients specially `backprop`.
 
-> Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. Manual derivation of gradients can be time consuming and error-prone. `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities. Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
-
+> Many algorithms in machine learning, computer vision, physical simulation, and other fields require the calculation of `gradients and other derivatives`. 
+> Manual derivation of gradients can be time consuming and error-prone. 
+> `Automatic Differentiation (AD)` is a technology for automatically augmenting computer programs, including arbitrarily complex simulations, with statements for the computation of derivatives, also known as sensitivities. 
+> Automatic differentiation comprises a set of techniques to calculate the derivative of a numerical computation expressed as a computer program. 
+> These techniques are commonly used in atmospheric sciences and computational fluid dynamics, and have more recently also been adopted by machine learning researchers.
 > Practitioners across many fields have built a wide set of automatic differentiation tools, using different programming languages, computational primitives and intermediate compiler representations. Each of these choices comes with positive and negative trade-offs, in terms of their usability, flexibility and performance in specific domains.
 
-> [In the ideal case, automatically generated derivatives should be competitive with manually generated ones and run at near-peak performance on modern hardware, but the most expressive systems for autodiff which can handle arbitrary, Turing-complete programs, are unsuited for performance-critical applications, such as large-scale machine learning or physical simulation. Alternatively, the most performant systems are not designed for use outside of their designated application space, e.g. graphics or neural networks.](https://autodiff-workshop.github.io/)
+> In the ideal case, automatically generated derivatives should be competitive with manually generated ones and run at near-peak performance on modern hardware, 
+but the most expressive systems for autodiff which can handle arbitrary, Turing-complete programs, are unsuited for performance-critical applications, such as large-scale machine learning or physical simulation. 
+[Alternatively, the most performant systems are not designed for use outside of their designated application space, e.g. graphics or neural networks.](https://autodiff-workshop.github.io/)
 
 + https://autodiff-workshop.github.io/
 + https://autodiff-workshop.github.io/2016.html
@@ -507,9 +545,13 @@ All numerical gradient-based optimization methods benifits from faster computati
 + https://arxiv.org/abs/1611.01652
 + [The simple essence of automatic differentiation](http://conal.net/papers/essence-of-ad/)
 
-[“What does AD mean, independently of implementation?” An answer arises in the form of naturality of sampling a function and its derivative. Automatic differentiation flows out of this naturality condition, together with the chain rule. Graduating from first-order to higher-order AD corresponds to sampling all derivatives instead of just one. Next, the setting is expanded to arbitrary vector spaces, in which derivative values are linear maps. The specification of AD adapts to this elegant and very general setting, which even simplifies the development.](http://conal.net/papers/beautiful-differentiation/)
+“What does AD mean, independently of implementation?” An answer arises in the form of naturality of sampling a function and its derivative. 
+Automatic differentiation flows out of this naturality condition, 
+together with the chain rule. Graduating from first-order to higher-order AD corresponds to sampling all derivatives instead of just one. 
+Next, the setting is expanded to arbitrary vector spaces, in which derivative values are linear maps. 
+[The specification of AD adapts to this elegant and very general setting, which even simplifies the development.](http://conal.net/papers/beautiful-differentiation/)
 
-+ [autodiff is a C++17 library that uses modern and advanced programming techniques to enable automatic computation of derivatives in an efficient and easy way.](https://autodiff.github.io/)
++ [autodiff is a C++17 library for automatic computation of derivatives](https://autodiff.github.io/)
 + [DiffSharp: Differentiable Functional Programming](http://diffsharp.github.io/DiffSharp/)
 + https://www.mcs.anl.gov/OpenAD/
 + https://github.com/google/tangent
@@ -533,7 +575,11 @@ All numerical gradient-based optimization methods benifits from faster computati
 
 #### Differentiable Programming
 
-[Deep learning may look like another passing fad, in the vein of "expert systems" or "big data." But it's based on two timeless ideas (back-propagation and weight-tying), and while differentiable programming is a very new concept, it's a natural extension of these ideas that may prove timeless itself. Even as specific implementations, architectures, and technical phrases go in and out of fashion, these core concepts will continue to be essential to the success of AI.](https://www.edge.org/response-detail/26794)
+Deep learning may look like another passing fad, in the vein of "expert systems" or "big data." 
+But it's based on two timeless ideas (back-propagation and weight-tying), and while differentiable programming is a very new concept, 
+it's a natural extension of these ideas that may prove timeless itself. 
+Even as specific implementations, architectures, and technical phrases go in and out of fashion, 
+[these core concepts will continue to be essential to the success of AI.](https://www.edge.org/response-detail/26794)
 
 <img src="https://skymind.ai/images/wiki/differentiable_probabilistic.jpg" width="70%">
 
@@ -571,11 +617,17 @@ Input variety|Homogeneous objects (e.g. images all having the same height/width 
 #### Program Transformations
 
 [Program Transformations for Machine Learning](https://program-transformations.github.io/)- Workshop at NeurIPS 2019 – December 13 or 14 2019, Vancouver, Canada - claims that
-> Machine learning researchers often express complex models as a program, relying on program transformations to add functionality. New languages and transformations (e.g., TorchScript and TensorFlow AutoGraph) are becoming core capabilities of ML libraries. However, existing transformations, such as `automatic differentiation` (AD or autodiff), inference in `probabilistic programming languages` (PPLs), and `optimizing compilers` are often built in isolation, and limited in scope. This workshop aims at viewing program transformations in ML in a unified light, making these capabilities more accessible, and building entirely new ones.
+> Machine learning researchers often express complex models as a program, relying on program transformations to add functionality. 
+> New languages and transformations (e.g., TorchScript and TensorFlow AutoGraph) are becoming core capabilities of ML libraries. 
+> However, existing transformations, such as `automatic differentiation` (AD or autodiff), inference in `probabilistic programming languages` (PPLs), and `optimizing compilers` are often built in isolation, and limited in scope. 
+> This workshop aims at viewing program transformations in ML in a unified light, making these capabilities more accessible, and building entirely new ones.
 
-> Program transformations are an area of active study. AD transforms a program performing numerical computation into one computing the gradient of those computations. In probabilistic programming, a program describing a sampling procedure can be modified to perform inference on model parameters given observations. Other examples are vectorizing a program expressed on one data point, and learned transformations where ML models use programs as inputs or outputs.
+> Program transformations are an area of active study. AD transforms a program performing numerical computation into one computing the gradient of those computations. 
+> In probabilistic programming, a program describing a sampling procedure can be modified to perform inference on model parameters given observations. 
+> Other examples are vectorizing a program expressed on one data point, and learned transformations where ML models use programs as inputs or outputs.
 
-> This workshop will bring together researchers in the fields of `AD, probabilistic programming, programming languages, compilers, and ML` with the goal of understanding the commonalities between disparate approaches and views, and sharing ways to make these techniques broadly available. It would enable ML practitioners to iterate faster on novel models and architectures (e.g., those naturally expressed through high-level constructs like recursion).
+> This workshop will bring together researchers in the fields of `AD, probabilistic programming, programming languages, compilers, and ML` with the goal of understanding the commonalities between disparate approaches and views, and sharing ways to make these techniques broadly available. 
+> It would enable ML practitioners to iterate faster on novel models and architectures (e.g., those naturally expressed through high-level constructs like recursion).
 
 + https://popl19.sigplan.org/track/lafi-2019#About
 + https://program-transformations.github.io/
@@ -592,7 +644,10 @@ Input variety|Homogeneous objects (e.g. images all having the same height/width 
 
 Today’s computing systems are designed to deliver only exact solutions at high energy cost, while many of the algorithms that are run on data are at their heart statistical, and thus do not require exact answers.
 
-It turns out that it is sometimes possible to get high-accuracy solutions from low-precision training—and here we'll describe a new variant of stochastic gradient descent (SGD) called high-accuracy low precision (HALP) that can do it. HALP can do better than previous algorithms because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
+It turns out that it is sometimes possible to get high-accuracy solutions from low-precision training—
+and here we'll describe a new variant of stochastic gradient descent (SGD) called high-accuracy low precision (HALP) that can do it. 
+HALP can do better than previous algorithms 
+because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
 
 <img src="https://jackwish.net/images/2019/quantization/mixed-fp32int8-pure-int8.svg" width="80%"/>
 
@@ -616,7 +671,8 @@ It turns out that it is sometimes possible to get high-accuracy solutions from l
 
 ### TVM and Versatile Tensor Accelerator (VTA)
 
-> TVM is an open deep learning compiler stack for CPUs, GPUs, and specialized accelerators. It aims to close the gap between the productivity-focused deep learning frameworks, and the performance- or efficiency-oriented hardware backends. TVM provides the following main features:
+> TVM is an open deep learning compiler stack for CPUs, GPUs, and specialized accelerators. It aims to close the gap between the productivity-focused deep learning frameworks, and the performance- or efficiency-oriented hardware backends. 
+> TVM provides the following main features:
 
 > Compilation of deep learning models in Keras, MXNet, PyTorch, Tensorflow, CoreML, DarkNet into minimum deployable modules on diverse hardware backends.
 Infrastructure to automatic generate and optimize tensor operators on more backend with better performance.
@@ -624,7 +680,9 @@ Infrastructure to automatic generate and optimize tensor operators on more backe
 <img src="https://raw.githubusercontent.com/tvmai/tvmai.github.io/master/images/main/stack_tvmlang.png" width= "80%" />
 
 
-The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework designed to advance deep learning and hardware innovation. VTA is a programmable accelerator that exposes a RISC-like programming abstraction to describe compute and memory operations at the tensor level. We designed VTA to expose the most salient and common characteristics of mainstream deep learning accelerators, such as tensor operations, DMA load/stores, and explicit compute/memory arbitration.
+The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework designed to advance deep learning and hardware innovation. 
+VTA is a programmable accelerator that exposes a RISC-like programming abstraction to describe compute and memory operations at the tensor level. 
+We designed VTA to expose the most salient and common characteristics of mainstream deep learning accelerators, such as tensor operations, DMA load/stores, and explicit compute/memory arbitration.
 
 
 <img src="https://raw.githubusercontent.com/uwsampl/web-data/master/vta/blogpost/vta_stack.png" width="70%" />
@@ -656,7 +714,9 @@ The Versatile Tensor Accelerator (VTA) is an extension of the TVM framework desi
 
 ### XLA
 
-The XLA compilation framework is invoked on subgraphs of TensorFlow computations. The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes.
+The XLA compilation framework is invoked on subgraphs of TensorFlow computations. 
+The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. 
+This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes.
 
 - https://www.tensorflow.org/versions/master/experimental/xla/
 - https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
@@ -666,7 +726,10 @@ The XLA compilation framework is invoked on subgraphs of TensorFlow computations
 
 ### JAX: Autograd and XLA
 
-With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions. It can differentiate through loops, branches, recursion, and closures, and it can take derivatives of derivatives of derivatives. It supports reverse-mode differentiation (a.k.a. backpropagation) via grad as well as forward-mode differentiation, and the two can be composed arbitrarily to any order.
+With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions.
+It can differentiate through loops, branches, recursion, and closures, and it can take derivatives of derivatives of derivatives. 
+It supports reverse-mode differentiation (a.k.a. backpropagation) via grad as well as forward-mode differentiation,
+ and the two can be composed arbitrarily to any order.
 
 <img src="https://raw.githubusercontent.com/google/jax/master/images/lifecycle.png" width="60%" />
 
@@ -675,14 +738,20 @@ With its updated version of Autograd, JAX can automatically differentiate native
 
 ### Multi-Level Intermediate Representation
 
-The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. It is thus well-suited to deep learning computations in particular. Yet it is general enough to also represent arbitrary sequential computation. The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
+The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. 
+It is thus well-suited to deep learning computations in particular. 
+Yet it is general enough to also represent arbitrary sequential computation. 
+The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
 
 - https://github.com/tensorflow/mlir
 - https://llvm.org/devmtg/2019-04/slides/Keynote-ShpeismanLattner-MLIR.pdf
 
 ### Glow
 
-`Glow` is a machine learning compiler and execution engine for hardware accelerators. It is designed to be used as a backend for high-level machine learning frameworks. The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. This library is in active development.
+`Glow` is a machine learning compiler and execution engine for hardware accelerators. 
+It is designed to be used as a backend for high-level machine learning frameworks. 
+The compiler is designed to allow state of the art compiler optimizations and code generation of neural network graphs. 
+This library is in active development.
 
 - https://arxiv.org/pdf/1805.00907.pdf
 - https://ai.facebook.com/tools/glow/
@@ -691,10 +760,13 @@ The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expres
 
 ### Cilk
 
-[Cilk aims to make parallel programming a simple extension of ordinary serial programming. Other concurrency platforms, such as Intel’s Threading Building Blocks (TBB) and OpenMP, share similar goals of making parallel programming easier. But Cilk sets itself apart from other concurrency platforms through its simple design and implementation and its powerful suite of provably effective tools. These properties make Cilk well suited as a platform for next-generation multicore research.](http://cilk.mit.edu/)
-
-[Tapir enables effective compiler optimization of parallel programs with only minor changes to existing compiler analyses and code transformations. Tapir uses the serial-projection property to order logically parallel fine-grained tasks in the program's control-flow graph. This ordered representation of parallel tasks allows the compiler to optimize parallel codes effectively with only minor modifications.](https://www.csail.mit.edu/event/tapir-embedding-recursive-fork-join-parallelism-llvms-intermediate-representation)
-
+[Cilk aims to make parallel programming a simple extension of ordinary serial programming.](http://cilk.mit.edu/)
+Other concurrency platforms, such as Intel’s Threading Building Blocks (TBB) and OpenMP, share similar goals of making parallel programming easier. 
+But Cilk sets itself apart from other concurrency platforms through its simple design and implementation and its powerful suite of provably effective tools. 
+These properties make Cilk well suited as a platform for next-generation multicore research.
+[Tapir enables effective compiler optimization of parallel programs with only minor changes to existing compiler analyses and code transformations.](https://www.csail.mit.edu/event/tapir-embedding-recursive-fork-join-parallelism-llvms-intermediate-representation)
+Tapir uses the serial-projection property to order logically parallel fine-grained tasks in the program's control-flow graph. 
+This ordered representation of parallel tasks allows the compiler to optimize parallel codes effectively with only minor modifications.
 - http://cilk.mit.edu/tapir/
 - https://llvm.org/
 - https://zhuanlan.zhihu.com/p/64903359
@@ -725,9 +797,24 @@ DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
 - https://github.com/dmlc/treelite
 - http://treelite.io/
 - https://aws.amazon.com/cn/sagemaker/neo/
+
+
 ### Butterflies: A Universal Building Block for Structured Linear Maps
 
-[Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, and other structured transformations such as convolutions. All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. This generic formulation can automatically learn an efficient algorithm for many important transforms; for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines to learn efficient and compressible transformations. On a standard task of compressing a single hidden-layer network, our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
+Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, 
+and other structured transformations such as convolutions. 
+All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. 
+We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, 
+and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. 
+Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, 
+we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. T
+his generic formulation can automatically learn an efficient algorithm for many important transforms; 
+for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. 
+Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines 
+to learn efficient and compressible transformations. 
+On a standard task of compressing a single hidden-layer network, 
+our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points
+[---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
 
 + [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
 + [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
@@ -801,8 +888,10 @@ Pruning is to prune the connections in deep neural network in order to reduce th
 reducing the number of bits required to represent each weight.`
 
 
-[`Uniform quantization` is widely used for model compression and acceleration. Originally the weights in the network are represented by 32-bit floating-point numbers. With uniform quantization, low-precision (e.g. 4-bit or 8-bit) fixed-point numbers are used to approximate the full-precision network. For k-bit quantization, the memory saving can be up to $32/k$​. For example, 8-bit quantization can reduce the network size by 4 folds with negligible drop of performance.
-The lth quantized ReLU $\sigma(x_l, \alpha_l)$ acts element-wise on vector $x_l$ from a previous layer and is parameterized by trainable scalar $\alpha_l>0$. ](https://pocketflow.github.io/uq_learner/)
+[`Uniform quantization` is widely used for model compression and acceleration. Originally the weights in the network are represented by 32-bit floating-point numbers. ](https://pocketflow.github.io/uq_learner/)
+With uniform quantization, low-precision (e.g. 4-bit or 8-bit) fixed-point numbers are used to approximate the full-precision network. 
+For k-bit quantization, the memory saving can be up to $32/k$​. For example, 8-bit quantization can reduce the network size by 4 folds with negligible drop of performance.
+The lth quantized ReLU $\sigma(x_l, \alpha_l)$ acts element-wise on vector $x_l$ from a previous layer and is parameterized by trainable scalar $\alpha_l>0$. 
 In uniform quantization,
 $$
 \sigma (x,\alpha ) = \begin{cases}
@@ -815,9 +904,13 @@ where $x$ is the scalar input, $b_a$ is the bit-width, and $k$ is the quantizati
 
 <img src="https://jackwish.net/images/2019/quantization/calibration-and-quantization-aware-training.jpg" width="70%" />
 
-Given a pre-defined full-precision model, the learner inserts quantization nodes and operations into the computation graph of the model. With activation quantization enabled, quantization nodes will also be placed after activation operations (e.g. ReLU).
+Given a pre-defined full-precision model, the learner inserts quantization nodes and operations into the computation graph of the model. 
+With activation quantization enabled, quantization nodes will also be placed after activation operations (e.g. ReLU).
 
-In the training phase, both full-precision and quantized weights are kept. In the forward pass, quantized weights are obtained by applying the quantization function on full-precision weights. To update full-precision weights in the backward pass, since gradients w.r.t. quantized weights are zeros almost everywhere, we use the straight-through estimator (STE, Bengio et al., 2015) to pass gradients of quantized weights directly to full-precision weights for update.
+In the training phase, both full-precision and quantized weights are kept. 
+In the forward pass, quantized weights are obtained by applying the quantization function on full-precision weights. 
+To update full-precision weights in the backward pass, since gradients w.r.t. quantized weights are zeros almost everywhere,
+ we use the straight-through estimator (STE, Bengio et al., 2015) to pass gradients of quantized weights directly to full-precision weights for update.
 
 
 
@@ -847,7 +940,10 @@ In the training phase, both full-precision and quantized weights are kept. In th
 
 #### 8-bit-training
 
-[The state-of-the-art hardware platforms for training Deep Neural Networks (DNNs) are moving from traditional single precision (32-bit) computations towards 16 bits of precision -- in large part due to the high energy efficiency and smaller bit storage associated with using reduced-precision representations. However, unlike inference, training with numbers represented with less than 16 bits has been challenging due to the need to maintain fidelity of the gradient computations during back-propagation. Here we demonstrate, for the first time, the successful training of DNNs using 8-bit floating point numbers while fully maintaining the accuracy on a spectrum of Deep Learning models and datasets. In addition to reducing the data and computation precision to 8 bits, we also successfully reduce the arithmetic precision for additions (used in partial product accumulation and weight updates) from 32 bits to 16 bits through the introduction of a number of key ideas including chunk-based accumulation and floating point stochastic rounding.](https://arxiv.org/abs/1812.08011)
+The state-of-the-art hardware platforms for training Deep Neural Networks (DNNs) are moving from traditional single precision (32-bit) computations towards 16 bits of precision -- in large part due to the high energy efficiency and smaller bit storage associated with using reduced-precision representations. 
+However, unlike inference, training with numbers represented with less than 16 bits has been challenging due to the need to maintain fidelity of the gradient computations during back-propagation. 
+Here we demonstrate, for the first time, the successful training of DNNs using 8-bit floating point numbers while fully maintaining the accuracy on a spectrum of Deep Learning models and datasets. 
+[In addition to reducing the data and computation precision to 8 bits, we also successfully reduce the arithmetic precision for additions (used in partial product accumulation and weight updates) from 32 bits to 16 bits through the introduction of a number of key ideas including chunk-based accumulation and floating point stochastic rounding.](https://arxiv.org/abs/1812.08011)
 - [8-Bit Precision for Training Deep Learning Systems](https://www.ibm.com/blogs/research/2018/12/8-bit-precision-training/)
 - [Extending 8-bit training breakthroughs to the toughest deep learning models](https://www.ibm.com/blogs/research/2019/12/8-bit-training-breakthroughs-deep-learning/)
 - [Hybrid 8-bit Floating Point (HFP8) Training and Inference for Deep Neural Networks](https://papers.nips.cc/paper/8736-hybrid-8-bit-floating-point-hfp8-training-and-inference-for-deep-neural-networks)
@@ -859,7 +955,9 @@ In the training phase, both full-precision and quantized weights are kept. In th
 
 ##### Binarized Neural Network
 
-[Binary neural networks are networks with binary weights and activations at run time. At training time these weights and activations are used for computing gradients; however, the gradients and true weights are stored in full precision. This procedure allows us to effectively train a network on systems with fewer resources.](https://software.intel.com/en-us/articles/binary-neural-networks)
+Binary neural networks are networks with binary weights and activations at run time. 
+At training time these weights and activations are used for computing gradients; however, the gradients and true weights are stored in full precision. 
+[This procedure allows us to effectively train a network on systems with fewer resources.](https://software.intel.com/en-us/articles/binary-neural-networks)
 
 `Forward Binarization`
 
@@ -877,20 +975,24 @@ deterministic| stochastic
 <img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-sign-function.png?w=206&h=44">|<img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-stochastic-binarization-function.png?w=213&h=44">
 
 Here $\sigma(x)$ is is the “hard sigmoid” function: $\sigma(x)=\max(0, min(1, \frac{x+1}{2}))$.
-The stochastic binarization is better than the Sign function but is harder to implement. As a result, the deterministic Sign function is used more often.
+The stochastic binarization is better than the Sign function but is harder to implement. 
+As a result, the deterministic Sign function is used more often.
 
 - https://mohitjain.me/2018/07/14/bnn/
 
 `Gradient Propagation Through Discretization`
 
-The derivative of the sign function is zero almost everywhere, making it incompatible with backpropagation. Thus, a straight-through estimator is used. This preserves the gradient's information and cancels large gradients.
+The derivative of the sign function is zero almost everywhere, making it incompatible with backpropagation. 
+Thus, a straight-through estimator is used. This preserves the gradient's information and cancels large gradients.
 
 <img src="https://software.intel.com/sites/default/files/managed/c0/e0/webops10048-fig2-gradientPropagationProcedure.png" width="80%" />
 <img src="https://mohitjainweb.files.wordpress.com/2018/07/bnn-backward-propagation.png?w=312&h=216" />
 
 While updating the weights, the following is done:
 
-Each real valued weight, $w^r$, is constrained to remain between -1 and +1. If a weight update brings $w^r$ outside $[-1, 1]$, it is clipped. This is done because otherwise, the real-valued weights will grow very large without having any impact on the binary weights, $w^b$.
+Each real valued weight, $w^r$, is constrained to remain between -1 and +1. 
+If a weight update brings $w^r$ outside $[-1, 1]$, it is clipped. This is done because otherwise, 
+the real-valued weights will grow very large without having any impact on the binary weights, $w^b$.
 The new updated binary weights are then calculated as $w^b = Sign(w^r)$.
 
 This network has the following layers:
@@ -939,7 +1041,9 @@ This network can date up to the paper [Learning algorithms with neural network w
 
 ##### XOR-Net
 
-[In Binary-WeightNetworks, the filters are approximated with binary values resulting in 32× memory saving. In XNOR-Networks, both the filters and the input to convolutional layers are binary. XNOR-Networks approximate convolutions using primarily binary operations. This results in 58× faster convolutional operations and 32× memory savings.](https://pjreddie.com/media/files/papers/xnor.pdf)
+In Binary-WeightNetworks, the filters are approximated with binary values resulting in 32× memory saving. 
+In XNOR-Networks, both the filters and the input to convolutional layers are binary. 
+[XNOR-Networks approximate convolutions using primarily binary operations. This results in 58× faster convolutional operations and 32× memory savings.](https://pjreddie.com/media/files/papers/xnor.pdf)
 
 <img title="XNOR Net" src="https://pic1.zhimg.com/80/v2-a5bcc5b680ec296aeb706ca4f2fe2c90_hd.jpg" width="80%" />
 
@@ -966,7 +1070,11 @@ _____
 <img src="https://devblogs.nvidia.com/wp-content/uploads/2017/10/ssd_ag_log_histo_coarse.png" width="70%"/>
 
 The Y-axis is the percentage of all values on a log scale. The X-axis is the log scale of absolute values, as well as a special entry for zeros. For example, in this training session 66.8% of values were zero, whereas 4% of values were between $2^{-32}$ and $2^{-30}$.
-[A very efficient way to ensure that gradients fall into the range representable by half precision is to multiply the training loss with the scale factor. This adds just a single multiplication and by the chain rule it ensures that all the gradients are scaled up (or shifted up) at no additional cost. Loss scaling ensures that relevant gradient values lost to zeros are recovered. Weight gradients need to be scaled down by the same factor S before the weight update. The scale-down operation could be fused with the weight update itself (resulting in no extra memory accesses) or carried out separately.](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/)
+A very efficient way to ensure that gradients fall into the range representable by half precision is to multiply the training loss with the scale factor. 
+This adds just a single multiplication and by the chain rule it ensures that all the gradients are scaled up (or shifted up) at no additional cost. 
+Loss scaling ensures that relevant gradient values lost to zeros are recovered. 
+Weight gradients need to be scaled down by the same factor $S$ before the weight update. 
+[The scale-down operation could be fused with the weight update itself (resulting in no extra memory accesses) or carried out separately.](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/)
 
 Additions to the traditional iteration procedure are in bold.
 
@@ -994,7 +1102,9 @@ Additions to the traditional iteration procedure are in bold.
 
 #### Blended Coarse Gradient Descent
 
-[Coarse gradient is generally not a gradient of any function but an artificial ascent direction. The weight update of BCGD goes by coarse gradient correction of a weighted average of the full-precision weights and their quantization (the so-called blending), which yields sufficient descent in the objective value and thus accelerates the training.](https://www.math.uci.edu/~jxin/BCGD_RMS_2018.pdf)
+Coarse gradient is generally not a gradient of any function but an artificial ascent direction. 
+The weight update of BCGD goes by coarse gradient correction of a weighted average of the full-precision weights and their quantization (the so-called blending), 
+[which yields sufficient descent in the objective value and thus accelerates the training.](https://www.math.uci.edu/~jxin/BCGD_RMS_2018.pdf)
 
 * https://www.math.uci.edu/~jxin/
 * [Blended coarse gradient descent for full quantization of deep neural networks](https://www.math.uci.edu/~jxin/BCGD_RMS_2018.pdf)
@@ -1012,7 +1122,9 @@ Additions to the traditional iteration procedure are in bold.
 
 ####  Low-precision Training
 
-[It turns out that DNNs can work with smaller datatypes, with less precision, such as 8-bit integers. Roughly speaking, we’re trying to work with a number line looking closer to the sparse one on the bottom. The numbers are quantized, i.e. discretized to some specific values, which we can then represent using integers instead of floating-point numbers.](https://sahnimanas.github.io/post/quantization-in-tflite/)
+It turns out that DNNs can work with smaller datatypes, with less precision, such as 8-bit integers. 
+Roughly speaking, we’re trying to work with a number line looking closer to the sparse one on the bottom. 
+[The numbers are quantized, i.e. discretized to some specific values, which we can then represent using integers instead of floating-point numbers.](https://sahnimanas.github.io/post/quantization-in-tflite/)
 
 - https://arxiv.org/abs/1906.03193
 - https://arxiv.org/abs/1903.05662
@@ -1023,8 +1135,12 @@ Additions to the traditional iteration procedure are in bold.
 High-accuracy low precision (HALP) is our algorithm which runs SVRG and uses bit centering with a full gradient at every epoch to update the low-precision representation.
 It can do better than previous algorithms because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
 
-- To reduce noise from gradient variance, HALP uses a known technique called `stochastic variance-reduced gradient (SVRG)`. SVRG periodically uses full gradients to decrease the variance of the gradient samples used in SGD.
-- To reduce noise from quantizing numbers into a low-precision representation, HALP uses a new technique we call `bit centering`. The intuition behind bit centering is that as we get closer to the optimum, the gradient gets smaller in magnitude and in some sense carries less information, so we should be able to compress it. By dynamically re-centering and re-scaling our low-precision numbers, we can lower the quantization noise as the algorithm converges.
+- To reduce noise from gradient variance, HALP uses a known technique called `stochastic variance-reduced gradient (SVRG)`. 
+   SVRG periodically uses full gradients to decrease the variance of the gradient samples used in SGD.
+- To reduce noise from quantizing numbers into a low-precision representation, HALP uses a new technique we call `bit centering`.
+  The intuition behind bit centering is that as we get closer to the optimum, the gradient gets smaller in magnitude and in some sense carries less information, 
+  so we should be able to compress it. 
+  By dynamically re-centering and re-scaling our low-precision numbers, we can lower the quantization noise as the algorithm converges.
 
 * [High-Accuracy Low-Precision Training](https://arxiv.org/pdf/1803.03383.pdf)
 * [Training deep neural networks with low precision multiplications](https://arxiv.org/abs/1412.7024)
@@ -1032,7 +1148,12 @@ It can do better than previous algorithms because it reduces the two sources of 
 
 ##### Ultra-Low Precision Training
 
-[There are three primary challenges that make it difficult to scale precision below 16 bits while fully preserving model accuracy. Firstly, when all the operands (i.e., weights, activations, errors, and gradients) for general matrix multiplication (GEMM) and convolution computations are simply reduced to 8 bits, most DNNs suffer noticeable accuracy degradation. Secondly, reducing the bit precision of accumulations in GEMM from 32 bits to 16 bits significantly impacts the convergence of DNN training. This is why commercially available hardware platforms exploiting scaled precision for training (including GPUs) still continue to use 32 bits of precision for accumulation. Reducing accumulation bit precision below 32 bits is critically important for reducing the area and power of 8-bit hardware. Finally, reducing the bit precision of weight updates to 16-bit floating-point impacts accuracy, while 32-bit weight updates, used in today’s systems, require an extra copy of the high-precision weights and gradients to be kept in memory, which is expensive.](https://www.ibm.com/blogs/research/2018/12/8-bit-precision-training/)
+There are three primary challenges that make it difficult to scale precision below 16 bits while fully preserving model accuracy. 
+Firstly, when all the operands (i.e., weights, activations, errors, and gradients) for general matrix multiplication (GEMM) and convolution computations are simply reduced to 8 bits, most DNNs suffer noticeable accuracy degradation. Secondly, reducing the bit precision of accumulations in GEMM from 32 bits to 16 bits significantly impacts the convergence of DNN training. 
+This is why commercially available hardware platforms exploiting scaled precision for training (including GPUs) still continue to use 32 bits of precision for accumulation. 
+Reducing accumulation bit precision below 32 bits is critically important for reducing the area and power of 8-bit hardware. 
+Finally, reducing the bit precision of weight updates to 16-bit floating-point impacts accuracy, 
+[while 32-bit weight updates, used in today’s systems, require an extra copy of the high-precision weights and gradients to be kept in memory, which is expensive.](https://www.ibm.com/blogs/research/2018/12/8-bit-precision-training/)
 
 * [Accumulation Bit-Width Scaling For Ultra-Low Precision Training Of Deep Networks](https://arxiv.org/abs/1901.06588)
 * [Ultra-Low-Precision Training of Deep Neural Networks](https://www.ibm.com/blogs/research/2019/05/ultra-low-precision-training/)
@@ -1047,7 +1168,13 @@ It can do better than previous algorithms because it reduces the two sources of 
 ##### ADMM
 
 We can apply alteranting direction method of mulipliers(ADMM) to train deep neural networks.
-[The first part of ADMM-NN is a systematic, joint framework of DNN weight pruning and quantization using ADMM. It can be understood as a smart regularization technique with regularization target dynamically updated in each ADMM iteration, thereby resulting in higher performance in model compression than prior work. The second part is hardware-aware DNN optimizations to facilitate hardware-level implementations. Without accuracy loss, we can achieve 85\timesand 24\timespruning on LeNet-5 and AlexNet models, respectively, significantly higher than prior work. The improvement becomes more significant when focusing on computation reductions. Combining weight pruning and quantization, we achieve 1,910\timesand 231\timesreductions in overall model size on these two benchmarks, when focusing on data storage. Highly promising results are also observed on other representative DNNs such as VGGNet and ResNet-50.](https://scinapse.io/papers/2906775339)
+The first part of ADMM-NN is a systematic, joint framework of DNN weight pruning and quantization using ADMM. 
+It can be understood as a smart regularization technique with regularization target dynamically updated in each ADMM iteration, 
+thereby resulting in higher performance in model compression than prior work. 
+The second part is hardware-aware DNN optimizations to facilitate hardware-level implementations. 
+Without accuracy loss, we can achieve 85\timesand 24\timespruning on LeNet-5 and AlexNet models, respectively, significantly higher than prior work. 
+The improvement becomes more significant when focusing on computation reductions. 
+[Combining weight pruning and quantization, we achieve 1,910\timesand 231\timesreductions in overall model size on these two benchmarks, when focusing on data storage. Highly promising results are also observed on other representative DNNs such as VGGNet and ResNet-50.](https://scinapse.io/papers/2906775339)
 
 - https://web.northeastern.edu/yanzhiwang/publications/
 - [Deep ADMM-Net for Compressive Sensing MRI](https://papers.nips.cc/paper/6406-deep-admm-net-for-compressive-sensing-mri)
@@ -1115,7 +1242,10 @@ Therefore, utilizing the knowledge transfer technique, a portable network can be
 
 ### Transferred/Compact Convolutional Filters
 
-Transfer learning methods have demonstrated state-of-the-art performance on various small-scale image classification tasks. This is generally achieved by exploiting the information from an ImageNet convolution neural network (ImageNet CNN). However, the transferred CNN model is generally with high computational complexity and storage requirement. It raises the issue for real-world applications, especially for some portable devices like phones and tablets without high-performance GPUs. Several approximation methods have been proposed to reduce the complexity by reconstructing the linear or non-linear filters (responses) in convolutional layers with a series of small ones.
+Transfer learning methods have demonstrated state-of-the-art performance on various small-scale image classification tasks. 
+This is generally achieved by exploiting the information from an ImageNet convolution neural network (ImageNet CNN). However, the transferred CNN model is generally with high computational complexity and storage requirement. 
+It raises the issue for real-world applications, especially for some portable devices like phones and tablets without high-performance GPUs. 
+Several approximation methods have been proposed to reduce the complexity by reconstructing the linear or non-linear filters (responses) in convolutional layers with a series of small ones.
 
 + [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/pdf/1905.11946v1.pdf)
 + [MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
@@ -1128,7 +1258,11 @@ Transfer learning methods have demonstrated state-of-the-art performance on vari
 
 Note that the deep learning models are composite of linear and non-linear maps. And linear maps are based on matrices.
 
-[These methods take a layer and decompose it into several smaller layers. Although there will be more layers after the decomposition, the total number of floating point operations and weights will be smaller. Some reported results are on the order of x8 for entire networks (not aimed at large tasks like imagenet, though), or x4 for specific layers inside imagenet. My experience was that with these decompositions I was able to get a speedup of between x2 to x4, depending on the accuracy drop I was willing to take.](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
+These methods take a layer and decompose it into several smaller layers. 
+Although there will be more layers after the decomposition, 
+the total number of floating point operations and weights will be smaller. 
+Some reported results are on the order of x8 for entire networks (not aimed at large tasks like imagenet, though), or x4 for specific layers inside imagenet. 
+[My experience was that with these decompositions I was able to get a speedup of between x2 to x4, depending on the accuracy drop I was willing to take.](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
 
 - http://www.tensorlet.com/
 - [Optimal Low Rank Tensor Factorization for Deep Learning](https://link.springer.com/chapter/10.1007%2F978-981-13-2372-0_42)
@@ -1185,7 +1319,8 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 
 ### The lottery ticket hypothesis
 
-[The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
+The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  
+[by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
 
 - https://ai.facebook.com/blog/understanding-the-generalization-of-lottery-tickets-in-neural-networks
 - https://arxiv.org/pdf/1905.13405.pdf
@@ -1207,10 +1342,33 @@ Distributed training of deep learnig models is a branch of distributed computati
 It is really important to reduce the cost of communication in distributed computation
 including the communication time, communication frequency, communication content and latency.
 
-[Existing security mechanisms for high-performance and distributed computing infrastructure are complex and difficult to deploy. As a result, many high-performance and distributed computing facilities do no deploy sufficient security mechanisms. This has prevented privacy-sensitive applications, such as those in the medical fields, and security-sensitive applications from using such facilities. In this project, we will develop and deploy DICE, Data Insurance in the Cluster Environment, to enhance the security in HPC and distributed computing clusters. DICE will consist of three major components: a container-based virtual cluster, a component to defend against side-channel attacks, and a secure execution ledger for auditing. The container-based virtual cluster will be developed based on the Docker Linux container. The Docker security mechanism will be enhanced by deploying an effective key management scheme for groups and by reducing the attack surface exposed to containers. Novel defense mechanisms will be developed and deployed to defend against side-channel attacks in the cluster environment by exploiting new security features in the recent processors. The secure execution ledger will provide a global holistic view of program execution in the whole system, enabling auditing the behavior of individual user as well as user groups. DICE essentially creates a two-level security model: on the (physical) cluster level, a group of (mostly) mutually trusted users share a single virtual cluster for their jobs; and inside the virtual cluster, the group may use existing security mechanisms of their software-of-choice to further refine security.](http://explorer.cs.fsu.edu/research/)
+Existing security mechanisms for high-performance and distributed computing infrastructure are complex and difficult to deploy.
+As a result, many high-performance and distributed computing facilities do no deploy sufficient security mechanisms. 
+This has prevented privacy-sensitive applications, such as those in the medical fields, and security-sensitive applications from using such facilities.
+[In this project, we will develop and deploy DICE, Data Insurance in the Cluster Environment, to enhance the security in HPC and distributed computing clusters.](http://explorer.cs.fsu.edu/research/) 
+DICE will consist of three major components: a container-based virtual cluster, a component to defend against side-channel attacks, and a secure execution ledger for auditing. 
+The container-based virtual cluster will be developed based on the Docker Linux container. 
+The `Docker security` mechanism will be enhanced by deploying an effective key management scheme for groups and by reducing the attack surface exposed to containers. 
+Novel defense mechanisms will be developed and deployed to defend against side-channel attacks in the cluster environment by exploiting new security features in the recent processors. 
+The secure execution ledger will provide a global holistic view of program execution in the whole system, enabling auditing the behavior of individual user as well as user groups. 
+DICE essentially creates a two-level security model: on the (physical) cluster level, a group of (mostly) mutually trusted users share a single virtual cluster for their jobs; and inside the virtual cluster, the group may use existing security mechanisms of their software-of-choice to further refine security.
 
 <img src="- https://www.microsoft.com/en-us/research/uploads/prod/2019/10/Figure3_pipedream.png" width="80%"/>
 
+
+- [BigDL is a distributed deep learning library for Apache Spark](https://bigdl-project.github.io/0.10.0/)
+- https://github.com/intel-analytics/BigDL/
+- https://github.com/amplab/drizzle-spark
+- https://github.com/NVIDIA/nccl
+- https://github.com/horovod/horovod
+- http://explorer.cs.fsu.edu/
+- https://www.cs.rice.edu/~as143/COMP640_Fall16/
+- https://www.cs.rice.edu/~as143/
+
+
+### Accelerating Deep Learning Workloads
+
+- https://itpeernetwork.intel.com/accelerating-deep-learning-workloads/#gs.ny4nke
 - https://github.com/bytedance/byteps
 - [A Generic Communication Scheduler for Distributed DNN Training Acceleration](https://i.cs.hku.hk/~cwu/papers/yhpeng-sosp19.pdf)
 - [Characterizing Deep Learning Training Workloads on Alibaba-PAI](https://arxiv.org/abs/1910.05930)
@@ -1223,19 +1381,14 @@ including the communication time, communication frequency, communication content
 - https://github.com/msr-fiddle/philly-traces
 - [PipeMare: Asynchronous Pipeline Parallel DNN Training](https://arxiv.org/abs/1910.05124)
 - [GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism](https://arxiv.org/abs/1811.06965)
-- [XPipe: Efficient Pipeline Model Parallelism for
-Multi-GPU DNN Training](https://arxiv.org/pdf/1911.04610.pdf)
+- [XPipe: Efficient Pipeline Model Parallelism for Multi-GPU DNN Training](https://arxiv.org/pdf/1911.04610.pdf)
 - https://arxiv.org/pdf/1806.03377.pdf
 - https://www.microsoft.com/en-us/research/project/fiddle/
 - [Bandwidth Optimal All-reduce Algorithms for Clusters of Workstations](http://www.cs.fsu.edu/~xyuan/paper/09jpdc.pdf)
 - https://zhuanlan.zhihu.com/p/87515411
 - https://zhuanlan.zhihu.com/p/84862107
-- https://github.com/NVIDIA/nccl
-- https://github.com/horovod/horovod
-- http://explorer.cs.fsu.edu/
-- https://www.cs.rice.edu/~as143/COMP640_Fall16/
-- https://www.cs.rice.edu/~as143/
-
+- [Accelerating Deep Learning Workloads through Efficient Multi-Model Execution](https://cs.stanford.edu/~matei/papers/2018/mlsys_hivemind.pdf)
+- https://cs.stanford.edu/~matei/
 
 ### Count-Sketches
 
@@ -1288,7 +1441,10 @@ See [prior articles](https://zachcharles.com/files/Presentations/sbc_slides.pdf)
 
 #### Gradient Compression
 
-[In `distributed training` of machine learning models with stochastic optimization, the exchange of parameter updates between workers often is a bottleneck that limits the scalability of distributed training. This is especially true for models with a large parameter space, such as neural networks. Several techniques have been proposed to enhance scalability by `compressing gradients`, e.g. by sending a sparse set of coordinates only, or by quantization. We study the gradient compression literature from both sides: on the one hand, we study properties of these algorithms in a distributed setting, and their effectiveness for speed and scalability. On the other hand, we explore properties of the minima found by these algorithms, such as robustness or generalisation.](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
+In `distributed training` of machine learning models with stochastic optimization, the exchange of parameter updates between workers often is a bottleneck that limits the scalability of distributed training. 
+This is especially true for models with a large parameter space, such as neural networks. Several techniques have been proposed to enhance scalability by `compressing gradients`, 
+e.g. by sending a sparse set of coordinates only, or by quantization. 
+We study the gradient compression literature from both sides: on the one hand, [we study properties of these algorithms in a distributed setting, and their effectiveness for speed and scalability. On the other hand, we explore properties of the minima found by these algorithms, such as robustness or generalisation.](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
 
 ##### Deep Gradient Compression @ MIT
 
@@ -1301,7 +1457,13 @@ See [prior articles](https://zachcharles.com/files/Presentations/sbc_slides.pdf)
 
 ##### Gradient Compression @ epfl
 
-[We study gradient compression methods to alleviate the communication bottleneck in data-parallel distributed optimization. Despite the significant attention received, current compression schemes either do not scale well or fail to achieve the target test accuracy. We propose a new low-rank gradient compressor based on power iteration that can i) compress gradients rapidly, ii) efficiently aggregate the compressed gradients using all-reduce, and iii) achieve test performance on par with SGD. The proposed algorithm is the only method evaluated that achieves consistent wall-clock speedups when benchmarked against regular SGD with an optimized communication backend. We demonstrate reduced training times for convolutional networks as well as LSTMs on common datasets.](https://github.com/epfml/powersgd)
+We study gradient compression methods to alleviate the communication bottleneck in data-parallel distributed optimization. 
+Despite the significant attention received, current compression schemes either do not scale well or fail to achieve the target test accuracy. 
+[We propose a new low-rank gradient compressor based on power iteration that can](https://github.com/epfml/powersgd) 
+i) compress gradients rapidly, ii) efficiently aggregate the compressed gradients using all-reduce, and iii) achieve test performance on par with SGD. 
+The proposed algorithm is the only method evaluated 
+that achieves consistent wall-clock speedups when benchmarked against regular SGD with an optimized communication backend. 
+We demonstrate reduced training times for convolutional networks as well as LSTMs on common datasets.
 
 
 - [Gradient Compression Techniques to Accelerate Distributed Training of Neural Networks](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
@@ -1378,6 +1540,39 @@ RNN is feedback network where there is rings in its computational graph.
 - https://zhuanlan.zhihu.com/p/87458316
 - https://lutzroeder.github.io/netron/
 - https://github.com/daquexian/onnx-simplifier
+- https://www.dataiku.com/
+
+## Edge Computation
+
+- https://github.com/microsoft/EdgeML
+- https://github.com/fritzlabs/Awesome-Mobile-Machine-Learning
+- https://github.com/Bisonai/awesome-edge-machine-learning
+- https://github.com/hoangcuong2011/Good-Papers
+- https://github.com/rkirkendall/MLEdgeDeploy
+- https://github.com/sig-ml/bleedml
+- https://www.usenix.org/conference/hotedge18
+- https://project-sparthan.github.io/
+
+
+### Mobile Deep Learning
+
+- https://www.sigmobile.org/mobisys/2019/workshops/deepmobile19/
+- https://mi.inf.ed.ac.uk/
+- https://www-users.cs.umn.edu/~fengqian/
+- http://homepages.inf.ed.ac.uk/ppatras/
+- https://www.cs.ucr.edu/~jiasi/
+- https://ix.cs.uoregon.edu/~jiao/
+- https://arxiv.org/abs/1904.09274
+- https://github.com/PaddlePaddle/Paddle-Lite
+- https://paddlepaddle.github.io/Paddle-Lite/
+- https://github.com/alibaba/MNN
+- https://www.tensorflow.org/lite
+- https://project-sparthan.github.io/papers/acm19.pdf
+- https://www.zhqiang.org/deep-learning-mobile/
+- https://bdtechtalks.com/2019/12/30/computer-vision-applications-deep-learning/
+- http://openaccess.thecvf.com/content_ICCVW_2019/papers/CEFRL/Chen_MuffNet_Multi-Layer_Feature_Federation_for_Mobile_Deep_Learning_ICCVW_2019_paper.pdf
+- [Deep Learning for Mobile Multimedia: A Survey](https://www.iti.gr/~bmezaris/publications/tomm17_survey_preprint.pdf)
+
 
 
 ****

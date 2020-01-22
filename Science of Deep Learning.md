@@ -9,6 +9,8 @@ V. Vapnik said that ``Nothing is more practical than a good theory.''
 - https://math.ethz.ch/sam/research/reports.html?year=2019
 - http://gr.xjtu.edu.cn/web/jjx323/home
 - https://zhouchenlin.github.io/
+- https://www.math.tamu.edu/~bhanin/
+- https://yani.io/annou/
 
 Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
 Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
@@ -18,11 +20,16 @@ Many researchers are trying to better understand how to improve prediction perfo
 
 ## Resource  on Deep Learning Theory 
 
+* http://pwp.gatech.edu/fdl-2018/program/
+* https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6052125/
 * https://ori.ox.ac.uk/labs/a2i/
 * [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
 * [A Comprehensive Analysis of Deep Regression](https://github.com/Stephlat/DeepRegression)
 * https://gangwg.github.io/research.html
 * http://www.mit.edu/~k2smith/
+* [4th Workshop on Semantic Deep Learning (SemDeep-4)](http://www.dfki.de/semdeep-4/)
+* [Deep Learning in Practice](https://www.lri.fr/~gcharpia/deeppractice/)
+* [Deep learning theory](http://guillefix.me/cosmos/static/Deep%2520learning%2520theory)
 * [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
 * [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
 * [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
@@ -132,6 +139,8 @@ Finally, we discuss prospective trends in explainable artificial intelligence.
 
 Not all one can understand the relative theory or quantum theory.
 
+- [Interpretable Convolutional Neural Networks](https://github.com/zqs1022/interpretableCNN)
+
 ### DeepLEVER
 
 - [DeepLEVER](http://anitideeplever.laas.fr/deeplever-project-has-started)
@@ -157,6 +166,7 @@ Methods using artificial intelligence have in fact already advanced progress on 
 <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2017/09/InfoBottleneck_2880x1620.jpg" width="80%"/>
 
 * https://zhuanlan.zhihu.com/p/94249675
+* https://web.stanford.edu/~montanar/index.html
 * [Physics Informed Neural Networks](https://github.com/maziarraissi/PINNs)
 * [Physics Based Vision meets Deep Learning (PBDL)](https://pbdl2019.github.io/)
 * [Physics-Based Deep Learning](https://github.com/thunil/Physics-Based-Deep-Learning)
@@ -266,9 +276,13 @@ ____
 - [2018上海交通大学深度学习理论前沿研讨会 - 凌泽南的文章 - 知乎](https://zhuanlan.zhihu.com/p/40097048)
 - [Theories of Deep Learning](https://www.researchgate.net/project/Theories-of-Deep-Learning)
 
-A mathematical theory of deep networks and of why they work as well as they do is now emerging. [I will review some recent theoretical results on the approximation power of deep networks](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html) including conditions under which they can be exponentially better than shallow learning. 
-A class of deep convolutional networks represent an important special case of these conditions, though weight sharing is not the main reason for their exponential advantage. 
-I will also discuss another puzzle around deep networks: what guarantees that they generalize and they do not overfit despite the number of weights being larger than the number of training data and despite the absence of explicit regularization in the optimization?
+A mathematical theory of deep networks and of why they work as well as they do is now emerging. 
+[I will review some recent theoretical results on the approximation power of deep networks](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html) 
+including conditions under which they can be exponentially better than shallow learning. 
+A class of deep convolutional networks represent an important special case of these conditions, 
+though weight sharing is not the main reason for their exponential advantage. 
+I will also discuss another puzzle around deep networks: what guarantees that they generalize and
+ they do not overfit despite the number of weights being larger than the number of training data and despite the absence of explicit regularization in the optimization?
 
 Deep Neural Networks and Partial Differential Equations: Approximation Theory and
 Structural Properties
@@ -277,6 +291,7 @@ Philipp Petersen, University of Oxford
 - https://memento.epfl.ch/event/a-theoretical-analysis-of-machine-learning-and-par/
 - http://at.yorku.ca/c/b/p/g/30.htm
 - https://mat.univie.ac.at/~grohs/
+- [Deep Learning: Theory and Applications (Math 689 Fall 2018)](https://www.math.tamu.edu/~bhanin/DL2018.html)
 - [Topics course Mathematics of Deep Learning, NYU, Spring 18](https://joanbruna.github.io/MathsDL-spring18/)
 - https://skymind.ai/ebook/Skymind_The_Math_Behind_Neural_Networks.pdf
 - https://github.com/markovmodel/deeptime
@@ -313,7 +328,8 @@ Philipp Petersen, University of Oxford
 
 ### Numerical Analysis for Deep Learning
 
-Dynamics of deep learning is to  consider deep learning as a dynamic system. For example, the forward feedback network is expressed in the recurrent form:
+Dynamics of deep learning is to  consider deep learning as a dynamic system. 
+For example, the forward feedback network is expressed in the recurrent form:
 $$x^{t+1} = f_t(x^{t}),t\in [0,1,\cdots, T]$$
 where $f_t$ is some nonlinear function and $t$ is discrete.
 
