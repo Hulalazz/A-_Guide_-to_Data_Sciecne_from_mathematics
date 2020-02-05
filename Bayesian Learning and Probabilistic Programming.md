@@ -1,4 +1,10 @@
-# Bayesian Learning and Probabilistic Programming
+# Probabilistic Modeling
+
+https://bayes.wustl.edu/
+https://www.zhihu.com/question/59442141
+https://research.cs.aalto.fi/bayes/
+
+**Bayesian Learning and Probabilistic Programming**
 
 
 Bayesian learning can be regarded as the extension of Bayesian statistics.
@@ -22,7 +28,15 @@ For example, we restrict the parameters of linear regression into some prior dis
 An increasingly-popular prior is the double exponential or Bayesian LASSO prior.
 
 
-[Bayes, Oracle Bayes, and Empirical Bayes](http://statweb.stanford.edu/~ckirby/brad/papers/2017BayesOBayesEBayes.pdf)
+- [Bayes, Oracle Bayes, and Empirical Bayes](http://statweb.stanford.edu/~ckirby/brad/papers/2017BayesOBayesEBayes.pdf)
+
+[Probabilistic programming lies at the intersection of machine learning, statistics, programming languages, and deep learning.](https://www.cs.ubc.ca/~fwood/CS532W-539W/) 
+Historically probabilistic programming has been about automating Bayesian statistical inference; 
+more recently it has emerged as a candidate for the next toolchain for AI, particularly unsupervised and reinforcement learning.
+
+- https://www.cs.ubc.ca/~fwood/CS532W-539W/
+- https://probmods.org/
+- https://github.com/hongseok-yang/probprog17
 
 
 ## Resources on Bayesian Learning
@@ -76,6 +90,7 @@ An increasingly-popular prior is the double exponential or Bayesian LASSO prior.
 + https://bayesianwatch.wordpress.com/
 + http://worrydream.com/
 
+
 ## Naive Bayes
 
 `Naive Bayes` is to reconstruct the joint distribution of features and labels $Pr(\vec{x}, y)$ given some training dataset/samples $T=\{(\vec{X}_i, y_i)\}_{i=1}^{n}$.
@@ -84,9 +99,7 @@ so the dimension curse occurs
 which makes it impossible to compute the joint distribution $Pr(\vec{X}, y)$ via the (emprical) conditional probability $Pr(\vec{X}\mid y)$
 and the prior $Pr(y)$.
 A `naive` idea is to simplify the computation process by assumption that the features are conditional independence so that
-$$
-Pr(\vec{X}\mid y) =\prod_{i=1}^{p} Pr(\vec{X}^{(i)}\mid y).\tag{1}
-$$  
+$$Pr(\vec{X}\mid y) =\prod_{i=1}^{p} Pr(\vec{X}^{(i)}\mid y).\tag{1}$$  
 
 And the predicted labels will be computed via
 $$
@@ -101,7 +114,7 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 * [Naive Bayesian](https://www.saedsayad.com/naive_bayesian.htm)
 * [Ritchie Ng on Machine Learning](https://jrnold.github.io/bayesian_notes/naive-bayes.html)
 * [MLE/MAP + Naïve Bayes](https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture5-nb.pdf)
-
+* http://inverseprobability.com/talks/notes/guest-lecture.html
 
 ### Gaussian Naive Bayes
 
@@ -114,9 +127,70 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 * [Not so naive Bayes: Aggregating one-dependence estimators](https://perun.pmf.uns.ac.rs/radovanovic/dmsem/cd/install/Weka/doc/classifiers-papers/bayes/AODE/WebbBoughtonWang04.pdf)
 * https://link.springer.com/article/10.1007%2Fs10994-005-4258-6
 
-## Maximum Entropy Method
+## Maximum Entropy Methods
 
+Maximum Entropy Methods, similar to maximum likelihood estimations, are based oon the probability distribution.
 
+[The maximum entropy method is usually stated in a deceptively simple way:](http://bactra.org/notebooks/max-ent.html)
+from among all the probability distributions compatible with empirical data, pick the one with the highest information-theoretic entropy. 
+To really understand where this comes from, and appreciate it at its proper worth, we need to look at its origins in equilibrium 
+[statistical mechanics](http://bactra.org/notebooks/stat-mech.html).
+
+Entropy is defined as the expectation of self-information for discrete multiply states system as following
+$$H(p)=\mathbb{E}_{p(x)}(\ln\frac{1}{p(x)})=\sum_{x\in\mathcal{S}}-p(x)\log p(x)\mathrm{d}x$$
+where $x$ is in the support $\mathcal{S}$ of probability mass function $p(x)$ and 
+we call $\ln\frac{1}{p(x)}$ the self-information of the state $x$.
+Note that $\lim_{p\to 0}H(p)=\lim_{p\to 0}\frac{\ln \frac{1}{p}}{\frac{1}{p}}=0$. As convention, $H(0)$ is defined to $0$.
+
+The self-information $I(\cdot)$ is a function $I:[0, 1]\to [0,\infty)$ which satisfies the  following axioms: 
+1. Monotonicity: if $p(x)> p(y)$, $I(p(x))< I(p(y))$ for any $x, y\in[0, 1]$.
+2. Non-negativeness: $I(p(x))\geq 0$ for all $p(x)$ and specially $I(p(x))=0$ if $p(x)=1$.
+3. $I(p)$ is a continuous function of $p\in [0, 1]$.
+4. $I(p(x\cup y)) = I(p(x)) + I(p(y))$ if the events $x, y$ are  independent.
+
+Thus the entropy is $0$ for the single state or determined system.
+And the entropy function $p\mapsto [0,\infty)]$ is concave in the term of $p(x)\in[0, 1]$, 
+i.e., $H(\lambda p +(1-\lambda)p)\geq \lambda H(p)+(1-\lambda)H(p)$.
+Additionally, $\max_{p}H(p)=\ln |\mathcal{S}|$ when $p(x)=\frac{1}{|\mathcal{S}|}$ where $|X|$ is the cardinality of $X$. 
+
+If the random variable $X$ is continuos or the states of the system is continuous, we extend the entropy to the following formula
+$$H(X)=\int_{x\in\mathcal{S}}-f(x)\log f(x)\mathrm{d}x$$
+where $f(x)$ is the probability density function of the random variable $X$ at the point $x$.
+
+The **joint entropy**, $H(X, Y )$ of two random variables $(X, Y )$ with pmf $p(x, y)$ is defined as
+$$H(X, Y)=\sum_{(x,y) \in\mathcal{S}}-p(x, y)\log p(x, y)=-\mathbb{E}_{p(x, y)}(\log p(x, y))$$
+
+The **conditional entropy** measures how much entropy a random variable $X$ has remaining if we have already learned the value of a second random variable $Y$.
+It is referred to as the entropy of $X$ conditional on $Y$, and is written $H(X\mid Y)$. 
+If the probability that $X = x$ is denoted by $p(x)$, then we donote by $p(x\mid y)$ the probability that $X = x$, given that we already know that $Y = y$. $p(x\mid y)$ is a conditional probability. 
+In Baysian language, $Y$ represents our prior information information about $X$.
+The conditional entropy is just the Shannon entropy with $p(x\mid y)$ replacing $p(x)$, and then we average it over all possible "Y".
+$$H(X|Y):=\sum_{y}p(y)H(x\mid Y=y)=-\sum_{x, y} \{p(x|y)\log p(x|y)\} p(y)\\=-\sum_{x, y}p(x, y)\log p(x|y)=-\sum_{x, y} \{p(x, y)\log p(x, y)\}+\sum_{x, y} \{p(x, y)\} \log p(y).$$
+
+Using the Baysian sum rule $p(x, y) = p(x∣y)p(y)$, one finds that the conditional entropy is equal to $H(X|Y) = H(X,Y) - H(Y)$ with "H(X, Y)" the joint entropy of "X" and "Y".
+
+The maximum entropy principle (**EMaxEnt**) states that the most appropriate distribution to model a given set of data is the one with highest entropy among all those that satisfy the constrains of our prior knowledge.
+
+- https://bayes.wustl.edu/
+- [Maximum Entropy and the Foundation of Direct Methods](http://greeley.org/~hod/papers/ByAuthor/Bricogne/a23092.pdf)
+- [A comparison of algorithms for maximum entropy parameter estimation](https://www.aclweb.org/anthology/W02-2018.pdf)
+- [Space-Time Power Spectral Analysis Using the Maximum Entropy Methods](https://www.jstage.jst.go.jp/article/jmsj1965/55/4/55_4_415/_pdf)
+- [On the Rationale of Maximum-Entropy Methods](https://bayes.wustl.edu/etj/articles/rational.pdf)
+- [Self-information](https://psychology.wikia.org/wiki/Self-information)
+- [CSE 599S: Entropy optimality](https://homes.cs.washington.edu/~jrl/teaching/cse599swi16/)
+- [MAXIMUM ENTROPY: THE UNIVERSAL METHOD FOR INFERENCE](https://arxiv.org/ftp/arxiv/papers/0901/0901.2987.pdf)
+- [Differential Entropy](http://www.jaist.ac.jp/~t-asano/kougi/InformationTheory/SLIDE09.pdf)
+- [Conditional entropy](https://www.quantiki.org/wiki/conditional-entropy)
+- [A relation between conditional entropy and conditional expectation, to evaluate secrecy systems](https://arxiv.org/ftp/arxiv/papers/1709/1709.01550.pdf)
+- [Entropy, information, and computation](http://tnt.phys.uniroma1.it/twiki/pub/TNTgroup/AngeloVulpiani/machta.pdf)
+- [Note: Information Theory, Axiomatic Foundations, Connections to Statistics](https://www.stat.cmu.edu/~cshalizi/350/2008/lectures/06a/lecture-06a.pdf)
+- [On the Axioms of Information Theory](https://projecteuclid.org/download/pdf_1/euclid.aoms/1177703765)
+- [Maximum Entropy](http://www.di.fc.ul.pt/~jpn/r/maxent/maxent.html)
+- [MaxEnt and Exponential Models](http://www.cs.cmu.edu/~aberger/maxent.html)
+- [Maximum Entropy Modeling](on.hum.uva.nl/rob/Courses/InformationInSpeech/CDROM/Literature/LOTwinterschool2006/homepages.inf.ed.ac.uk/s0450736/maxent.html)
+- [Maximum Entropy Modelling, sgp@clg.ox.ac.uk](http://www.cs.ox.ac.uk/files/560/class2.pdf)
+- [Entropy by Patrick Xia](http://www.cs.cmu.edu/~venkatg/teaching/ITCS-spr2013/notes/15359-2009-lecture25.pdf)
+- [Lecture 3: KL-divergence and connections](http://www.cs.cmu.edu/~venkatg/teaching/ITCS-spr2013/notes/lect-jan22.pdf)
 
 ## Approximate Bayesian Inference
 
@@ -141,6 +215,7 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 + [approximate Bayesian inference under informative sampling](https://xianblog.wordpress.com/2018/03/30/approximate-bayesian-inference-under-informative-sampling/)
 + [Approximate Bayesian Inference Reveals Evidence for a Recent, Severe Bottleneck in a Netherlands Population of Drosophila melanogaster](https://www.genetics.org/content/172/3/1607)
 + [Approximate Bayesian inference methods for stochastic state space models](https://trepo.tuni.fi/handle/10024/114538)
++ [Variational Inference: A Review for Statisticians](https://arxiv.org/abs/1601.00670)
 
 ### Expectation propagation
 
@@ -163,16 +238,19 @@ The prior probability $Pr(y)$ can be emprical or estimated.
 
 ##  Hierarchical Models
 
-We consider a multilevel model to be a regression (a linear or generalized linear model)
+We consider a multilevel model to be a regression (a linear or generalized linear model) 
 in which the parameters—the regression coefficients—are given a probability model.
 This second-level model has parameters of its own—the hyperparameters of the model—which are also estimated from data.
-The two key parts of a multilevel model are varying coefficients, and a model for those varying coefficients (which can itself include group-level predictors).
+The two key parts of a multilevel model are varying coefficients, and a model for those varying coefficients 
+(which can itself include group-level predictors).
 Classical regression can sometimes accommodate varying coefficients by using indicator variables.
 The feature that distinguishes multilevel models from classical regression is in the modeling of the variation between groups.
 
 Multilevel models are also called hierarchical, for two different reasons:
 first, from the structure of the data (for example, students clustered within schools);
-and second, from the model itself, which has its own hierarchy, with the parameters of the within-school regressions at the bottom, controlled by the hyperparameters of the upper-level model.
+and second, from the model itself, 
+which has its own hierarchy, 
+with the parameters of the within-school regressions at the bottom, controlled by the hyperparameters of the upper-level model.
 
 ### Hierarchical Bayesian Regression
 
@@ -335,6 +413,8 @@ Bayesian optimization usually uses `Gaussian process` regression.
 * [A Tutorial on Bayesian Optimization](https://arxiv.org/abs/1807.02811)
 
 ## Bayesian Ensemble Methods
+
+- [Bayesian Ensemble Learning](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/bel-nips.pdf)
 
 ### Bayesian parameter averaging
 
@@ -514,11 +594,22 @@ $$\bar\lambda \leftarrow \arg\max_{\lambda}Q(\lambda, \bar\lambda).$$
 
 ## Probabilistic Programming
 
-> Probabilistic graphical models provide a formal lingua franca for modeling and a common target for efficient inference algorithms. Their introduction gave rise to an extensive body of work in machine learning, statistics, robotics, vision, biology, neuroscience, artificial intelligence (AI) and cognitive science. However, many of the most innovative and useful probabilistic models published by the AI, machine learning, and statistics community far outstrip the representational capacity of graphical models and associated inference techniques. Models are communicated using a mix of natural language, pseudo code, and mathematical formulae and solved using special purpose, one-off inference methods. Rather than precise specifications suitable for automatic inference, graphical models typically serve as coarse, high-level descriptions, eliding critical aspects such as fine-grained independence, abstraction and recursion.
+> Probabilistic graphical models provide a formal lingua franca for modeling and a common target for efficient inference algorithms. Their introduction gave rise to an extensive body of work in machine learning, statistics, robotics, vision, biology, neuroscience, artificial intelligence (AI) and cognitive science. 
+> However, many of the most innovative and useful probabilistic models published by the AI, machine learning, 
+> and statistics community far outstrip the representational capacity of graphical models and associated inference techniques. 
+> Models are communicated using a mix of natural language, pseudo code, 
+> and mathematical formulae and solved using special purpose, one-off inference methods. 
+> Rather than precise specifications suitable for automatic inference, graphical models typically serve as coarse, high-level descriptions, eliding critical aspects such as fine-grained independence, abstraction and recursion.
 >
-> PROBABILISTIC PROGRAMMING LANGUAGES aim to close this representational gap, unifying general purpose programming with probabilistic modeling; literally, users specify a probabilistic model in its entirety (e.g., by writing code that generates a sample from the joint distribution) and inference follows automatically given the specification. These languages provide the full power of modern programming languages for describing complex distributions, and can enable reuse of libraries of models, support interactive modeling and formal verification, and provide a much-needed abstraction barrier to foster generic, efficient inference in universal model classes.
+> PROBABILISTIC PROGRAMMING LANGUAGES aim to close this representational gap, unifying general purpose programming with probabilistic modeling; 
+> literally, users specify a probabilistic model in its entirety (e.g., by writing code that generates a sample from the joint distribution) 
+> and inference follows automatically given the specification. 
+> These languages provide the full power of modern programming languages for describing complex distributions, 
+> and can enable reuse of libraries of models, support interactive modeling and formal verification, 
+> and provide a much-needed abstraction barrier to foster generic, efficient inference in universal model classes.
 
-[We believe that the probabilistic programming language approach within AI has the potential to fundamentally change the way we understand, design, build, test and deploy probabilistic systems. This approach has seen growing interest within AI over the last 10 years, yet the endeavor builds on over 40 years of work in range of diverse fields including mathematical logic, theoretical computer science, formal methods, programming languages, as well as machine learning, computational statistics, systems biology, probabilistic AI.](http://www.probabilistic-programming.org/wiki/Home)
+[We believe that](http://www.probabilistic-programming.org/wiki/Home) the probabilistic programming language approach within AI has the potential to fundamentally change the way we understand, design, build, test and deploy probabilistic systems. 
+This approach has seen growing interest within AI over the last 10 years, yet the endeavor builds on over 40 years of work in range of diverse fields including mathematical logic, theoretical computer science, formal methods, programming languages, as well as machine learning, computational statistics, systems biology, probabilistic AI.
 
 |Graph Nets library|
 |--------------------------|
@@ -528,11 +619,22 @@ There is a list of existing probabilistic programming systems at <http://www.pro
 [The Algorithms Behind Probabilistic Programming](https://blog.fastforwardlabs.com/2017/01/30/the-algorithms-behind-probabilistic-programming.html) includes:
 Bayesian Inference, Hamiltonian Monte Carlo and the No U-Turn Sampler, Variational Inference and Automatic Differentation and Probabilistic Programming Languages.
 
+[Broadly speaking, probabilistic programming languages are to express computations with degrees of uncertainty, which comes from the imprecision in input data, lack of the complete knowledge or is inherent in the domain. More precisely, the goal of probabilistic programming languages is to represent and automate reasoning about probabilistic models, which describe uncertain quantities -- random variables -- and relationships among them. ](http://okmij.org/ftp/kakuritu/)
+
+- https://www.cs.ubc.ca/~fwood/CS532W-539W/
+- https://learnit.itu.dk/local/coursebase/view.php?ciid=445
+- https://uol.de/en/lcs/probabilistic-programming
+- https://moves.rwth-aachen.de/teaching/ws-1617/probabilistic-programming/
+- http://okmij.org/ftp/
+
 ***
 
 * https://uncertainties-python-package.readthedocs.io/en/latest/
+* [Automating Inference, Learning, and Design using Probabilistic Programming](https://www.robots.ox.ac.uk/~twgr/assets/pdf/rainforth2017thesis.pdf)
+* [Embedded domain-specific languages for probabilistic programming](http://okmij.org/ftp/kakuritu/)
 * [Program Transformations for Machine Learning](https://program-transformations.github.io/)
 * [LAFI 2019 : Languages for Inference (formerly PPS)](https://popl19.sigplan.org/track/lafi-2019#event-overview)
+* http://webppl.org/
 * [PPS 2018 Probabilistic Programming Languages, Semantics, and Systems (PPS 2018)](https://conf.researchr.org/track/POPL-2018/pps-2018)
 * [PROBPROG 2018 -- The International Conference on Probabilistic Programming](https://probprog.cc/)
 * [PyMC: Probabilistic Programming in Python](http://pymc-devs.github.io/pymc3/)
@@ -571,9 +673,13 @@ _______
 + [Probabilistic Model-Based Reinforcement Learning Using The Differentiable Neural Computer](http://blog.adeel.io/2018/09/10/probabilistic-model-based-reinforcement-learning-using-the-differentiable-neural-computer/)
 + [Probabilistic Modeling and Inference](https://las.inf.ethz.ch/research)
 + [MIT Probabilistic Computing Project](http://probcomp.csail.mit.edu/)
++ https://eng.uber.com/pyro/
++ https://github.com/pyprob/pyprob
 
 
 ## Stein Method
+
+
 [Stein's method, due to Charles M. Stein, is a set of remarkably powerful theoretical techniques for proving approximation and limit theorems in probability theory. It has been mostly known to theoretical statisticians. Recently, however, it has been shown that some of the key ideas from Stein's method can be naturally adopted to solve computational and statistical challenges in practical machine learning.](https://www.cs.dartmouth.edu/~qliu/stein.html)
 + https://statweb.stanford.edu/~souravc/beam-icm-trans.pdf
 + http://www.math.nus.edu.sg/~lhychen/files/IMS4-pp-1-59.pdf
@@ -591,3 +697,39 @@ _______
 + [Workshop on New Directions in Stein's Method (18 - 29 May 2015)](http://www2.ims.nus.edu.sg/Programs/015wstein/index.php)
 + [Workshop on Stein’s Method and it’s Applications](https://www.stats.ox.ac.uk/events/steins-method/)
 + http://junezhe.com/posts/2017/07/blog-post-1/
+
+
+## Probabilistic Machine Learning
+
+[Probabilistic modeling is a practical approach for designing machines that]():
+
+* Learn from noisy and unlabeled data
+* Define confidence levels in predictions
+* Allow decision making in the absence of complete information
+* Infer missing data and latent correlations in data**
+
+- https://www.cse.iitk.ac.in/users/piyush/courses/pml_fall17/pml_fall17.html
+- [STA561 COMPSCI571 ECE682: Probabilistic Machine Learning: Spring 2019](http://www2.stat.duke.edu/~sayan/561/2019/)
+- [Probabilistic Machine Learning 4f13 Michaelmas 2019](http://mlg.eng.cam.ac.uk/teaching/4f13/1920/)
+- [Probabilistic Machine Learning Group @aalto](https://research.cs.aalto.fi/pml/)
+- [Probabilistic Topic Model](http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf)
+- [Build, Compute, Critique, Repeat: Data Analysis with Latent Variable Models](http://www.cs.columbia.edu/~blei/papers/Blei2014b.pdf)
+- [Representation Learning: A Probabilistic Perspective](http://www.cs.columbia.edu/~blei/seminar/2020-representation/index.html)
+- [Probabilistic Machine Learning: Models, Algorithms and a Programming Library](https://www.ijcai.org/Proceedings/2018/0823.pdf)
+- http://inverseprobability.com/talks/
+- https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers
+- https://statml.io/
+- http://www.cs.columbia.edu/~blei/seminar/2020-representation/readings/Mohamed2015a.pdf
+
+### Latent Variable Models and Structure Prediction
+
+
+- https://ermongroup.github.io/cs228-notes/learning/latent/
+- http://www.biostat.jhsph.edu/~kbroche/Aging%20-%20PDF/Intro%20to%20Latent%20Variable%20Models.pdf
+- https://cs228.stanford.edu/
+- [Introduction to Latent Variable Models for Cross-Sectional and Longitudinal Data ](http://www.econ.upf.edu/~michael/latentvariables/)
+- http://web.media.mit.edu/~kdinakar/LatentVariableModels/
+- https://learnche.org/pid/latent-variable-modelling/applications-of-latent-variable-models
+- https://www.cs.toronto.edu/~radford/res-latent.html
+- [Mixture and latent variable model for causal inference and analysis of socio-economic data](http://www.stat.unipg.it/bartolucci/firb/)
+
