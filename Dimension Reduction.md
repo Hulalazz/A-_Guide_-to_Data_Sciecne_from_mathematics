@@ -1,4 +1,4 @@
-## Dimension Reduction
+## Dimension Reduction and Manifold Learning
 
 <img title="https://fineartamerica.com" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/vital-statistics-ian-duncan-anderson.jpg" width="80%"  />
 
@@ -153,7 +153,8 @@ $$
 
 via backpropagation, where $L(\cdot , \cdot)$ is a loss function and $z^{(i)}$ is the output of sparse autoencoder when the input is $x^{(i)}$.
 
-If we want to compress the information of the data set, we only need output of hidden units $y^{(i)}=\sigma\circ(x^{(i)})$, which maps the data in higher dimensional space to a low dimensional space
+If we want to compress the information of the data set, we only need output of hidden units $y^{(i)}=\sigma\circ(x^{(i)})$, 
+which maps the data in higher dimensional space to a low dimensional space
 $$
 \mathbb{R}^{p}\to\mathbb{R}^{n}\\
 x\to \sigma\circ(W_1 x+b_1).
@@ -171,20 +172,26 @@ Given an compressed data $\{y^{(i)}\}$ via a autoencoder, we can decode it by th
 The basic idea of t-SNE is that the similarity should preserve after dimension reduction.
 It maps the data $x$ in high dimensional space $X\subset\mathbb{R}^{p}$ to a low dimensional space $Y\subset\mathbb{R}^{d}$. **t-SNE** is an extension of stochastic neighbor embedding.
 
-**Stochastic Neighbor Embedding (SNE)** starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities that represent similarities. The similarity of data point $x_j$ to data point $x_i$ is the conditional probability, $p_{j|i}$, that $x_i$ would pick $x_j$ as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at $x_i$.
+**Stochastic Neighbor Embedding (SNE)** starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities 
+that represent similarities. The similarity of data point $x_j$ to data point $x_i$ is the conditional probability, $p_{j|i}$, 
+that $x_i$ would pick $x_j$ as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at $x_i$.
 Mathematically, the conditional probability $p_{j|i}$ is given by
 $$
 p_{j|i} = \frac{exp(-\|x_i-x_j\|^2/2\sigma_i^2)}{\sum_{k\ne 1} exp(-\|x_k-x_i\|^2/2\sigma_i^2)}.
 $$
 
-Because we are only interested in modeling pairwise similarities, we set the value of $p_{i|i}$ to zero. For the low-dimensional counterparts $y_i$ and $y_j$ of the high-dimensional data points $x_i$ and $x_j$, it is possible to compute a similar conditional probability, which we denote by $q_{j|i}$. we model the similarity of map point $y_j$ to map point $y_i$ by
+Because we are only interested in modeling pairwise similarities, we set the value of $p_{i|i}$ to zero. 
+For the low-dimensional counterparts $y_i$ and $y_j$ of the high-dimensional data points $x_i$ and $x_j$, 
+it is possible to compute a similar conditional probability, which we denote by $q_{j|i}$. 
+we model the similarity of map point $y_j$ to map point $y_i$ by
 $$q_{j|i}=\frac{exp(-\|y_i-y_j\|^2)}{\sum_{k\ne i}exp(-\|y_k-y_i\|^2)}.$$
 
 SNE minimizes the sum of cross entropy over all data points using a gradient descent
 method. The cost function $C$ is given by
 $$C=\sum_{i}\sum_{j}p_{j|i}\log(\frac{p_{j|i}}{q_{j|i}}).$$
 
-In the high-dimensional space, we convert distances into probabilities using a Gaussian distribution. In the low-dimensional map, we can use a probability distribution that has much heavier tails than a Gaussian to convert distances into probabilities.
+In the high-dimensional space, we convert distances into probabilities using a Gaussian distribution. 
+In the low-dimensional map, we can use a probability distribution that has much heavier tails than a Gaussian to convert distances into probabilities.
 In t-SNE, we employ a **Student t-distribution** with one degree of freedom (which is the same
 as a Cauchy distribution) as the heavy-tailed distribution in the low-dimensional map. Using this
 distribution, the joint probabilities $q_{i|j}$ are defined as
@@ -282,7 +289,8 @@ Peter J Huber said in [Projection Pursuit](https://projecteuclid.org/euclid.aos/
 
 
 [Discussion by Friedman](https://projecteuclid.org/euclid.aos/1176349535) put that
-> Projection pursuit methods are by no means the only ones to be originally ignored for lack of theoretical justification. Factor analysis, clustering, multidimensional scaling, recursive partitioning, correspondence analysis, soft modeling (partial-least-squares), represent methods that were in common sense for many years before their theoretical underpinnings were well understood. Again, the principal justification for their use was that they made sense heuristically and seemed to work well in a wide variety of situations.
+> Projection pursuit methods are by no means the only ones to be originally ignored for lack of theoretical justification. 
+> Factor analysis, clustering, multidimensional scaling, recursive partitioning, correspondence analysis, soft modeling (partial-least-squares), represent methods that were in common sense for many years before their theoretical underpinnings were well understood. Again, the principal justification for their use was that they made sense heuristically and seemed to work well in a wide variety of situations.
 
 It reduces the data of dimension ${m}$ to dimension ${p}$  for visual inspection.
 This method consists of defining a measure of information content in two dimension and optimizing that measure or index as
@@ -340,7 +348,8 @@ However, we can not explain all efficient methods in mathematics or statistics t
 on competitive learning; the output neurons of the network compete among themselves to
 be activated or fired, with the result that only one output neuron, or one neuron per group.
 
-Each node has a specific topological position (an x, y coordinate in the lattice) and contains a vector of weights of the same dimension as the input vectors. That is to say, if the training data consists of vectors, V,  of n dimensions:
+Each node has a specific topological position (an x, y coordinate in the lattice) and contains a vector of weights of the same dimension as the input vectors. 
+That is to say, if the training data consists of vectors, $V$,  of $n$ dimensions:
 
 $$V_1, V_2, V_3, \cdots, V_n.$$
 
@@ -352,9 +361,12 @@ $$W_1, W_2, W_3, \cdots, W_n.$$
 
 - Each node's weights are initialized.
 - A vector is chosen at random from the set of training data and presented to the lattice.
-- Every node is examined to calculate which one's weights are most like the input vector. The winning node is commonly known as the `Best Matching Unit (BMU)`.
-- The radius of the neighbourhood of the BMU is now calculated. This is a value that starts large, typically set to the 'radius' of the lattice,  but diminishes each time-step. Any nodes found within this radius are deemed to be inside the BMU's neighbourhood.
-- Each neighbouring node's (the nodes found in step 4) weights are adjusted to make them more like the input vector. The closer a node is to the BMU, the more its weights get altered.
+- Every node is examined to calculate which one's weights are most like the input vector. 
+  The winning node is commonly known as the `Best Matching Unit (BMU)`.
+- The radius of the neighbourhood of the BMU is now calculated. This is a value that starts large, typically set to the 'radius' of the lattice,  
+  but diminishes each time-step. Any nodes found within this radius are deemed to be inside the BMU's neighbourhood.
+- Each neighbouring node's (the nodes found in step 4) weights are adjusted to make them more like the input vector. 
+  The closer a node is to the BMU, the more its weights get altered.
 - Repeat step 2 for N iterations.
 
 
@@ -365,8 +377,7 @@ $$W_1, W_2, W_3, \cdots, W_n.$$
 * https://users.ics.aalto.fi/teuvo/
 * http://www.ai-junkie.com/ann/som/som1.html
 * http://www.mlab.uiah.fi/~timo/som/thesis-som.html
-* [Self-Organizing Maps](http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html
-)
+* [Self-Organizing Maps](http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html)
 
 ### Diffusion map
 
@@ -381,6 +392,20 @@ https://www.wikiwand.com/en/Diffusion_map
 * [A short introduction to Diffusion Maps](https://stephanosterburg.github.io/an_introductio_to_diffusion_maps)
 * [pydiffmap: an open-source project to develop a robust and accessible diffusion map code for public use.](https://pydiffmap.readthedocs.io/en/master/index.html)
 * [MAT 585: Diffusion Maps by Amit Singer](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/Singer_diffusionmaps.pdf)
+* http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/
+
+### Hessian Eigenmaps
+
+### Isomap 
+
+### Laplacian Eigenmaps
+
+
+### Local Tangent Space Alignment
+
+- https://manifoldlearningjl.readthedocs.io/en/latest/ltsa.html
+- https://www.cs.cmu.edu/~bapoczos/Classes/ML10715_2015Fall/manifold.html
+- http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/lecture11_3_mani.pdf
 
 ### Uniform Manifold Approximation and Projection 
 
@@ -405,6 +430,10 @@ Methods for identifying the dimension：
 
 * Haussdorff dimension, Doubling dimension, epsilon-cover
 
+- [Intrinsic dimension of data representations in deep neural networks](https://arxiv.org/abs/1905.12784)
+- https://www.nature.com/articles/s41598-019-53549-9
+- http://hal.cse.msu.edu/assets/pdfs/papers/2019-cvpr-intrinsic-dimensionality.pdf
+- https://people.eng.unimelb.edu.au/baileyj/papers/PID5041135-2.pdf
 
 ## Metric Learning
 

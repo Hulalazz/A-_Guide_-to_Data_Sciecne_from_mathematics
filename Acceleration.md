@@ -18,6 +18,7 @@ except numerical optimization methods including the following topics:
 
 * [Trax — your path to advanced deep learning](https://github.com/google/trax)
 * https://www.atlaswang.com/
+* https://faculty.ucmerced.edu/mcarreira-perpinan/research/MCCO.html
 * https://github.com/1duo/awesome-ai-infrastructures
 * https://duvenaud.github.io/learning-to-search/
 * http://www.eecs.harvard.edu/htk/publications/
@@ -1442,7 +1443,8 @@ See [prior articles](https://zachcharles.com/files/Presentations/sbc_slides.pdf)
 #### Gradient Compression
 
 In `distributed training` of machine learning models with stochastic optimization, the exchange of parameter updates between workers often is a bottleneck that limits the scalability of distributed training. 
-This is especially true for models with a large parameter space, such as neural networks. Several techniques have been proposed to enhance scalability by `compressing gradients`, 
+This is especially true for models with a large parameter space, such as neural networks. 
+Several techniques have been proposed to enhance scalability by `compressing gradients`, 
 e.g. by sending a sparse set of coordinates only, or by quantization. 
 We study the gradient compression literature from both sides: on the one hand, [we study properties of these algorithms in a distributed setting, and their effectiveness for speed and scalability. On the other hand, we explore properties of the minima found by these algorithms, such as robustness or generalisation.](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
 

@@ -2,7 +2,7 @@
 
 V. Vapnik said that ``Nothing is more practical than a good theory.''
 
-
+- http://www.vanderschaar-lab.com/NewWebsite/index.html
 - https://nthu-datalab.github.io/ml/index.html
 - http://www.cs.cornell.edu/~shmat/research.html
 - http://www.prace-ri.eu/best-practice-guide-deep-learning
@@ -11,6 +11,11 @@ V. Vapnik said that ``Nothing is more practical than a good theory.''
 - https://zhouchenlin.github.io/
 - https://www.math.tamu.edu/~bhanin/
 - https://yani.io/annou/
+- https://probability.dmi.unibas.ch/seminar.html
+- http://mjt.cs.illinois.edu/courses/dlt-f19/
+- http://danroy.org/
+- https://www.symbiont-project.org/events/Slides-2018-03/SYMBIONT-2018-03-zimmermann.pdf
+- https://losslandscape.com/faq/
 
 Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
 Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
@@ -343,7 +348,6 @@ Many recursive formula share the same `feedback` forms or hidden structure, wher
 - [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
 - [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
 - [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
-- [CS 584 / MATH 789R - Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/math789r-sp20.html)
 - [MA 721: Topics in Numerical Analysis: Deep Learning](http://www.ms.uky.edu/~qye/MA721/ma721F17.html)
 
 #### ResNets
@@ -363,6 +367,15 @@ They take a standard feed-forward ConvNet and add skip connections that bypass (
 - https://github.com/liuzhuang13/DenseNet
 - https://arxiv.org/abs/1810.11741
 - [Depth with nonlinearity creates no bad local minima in ResNets](https://www.sciencedirect.com/science/article/pii/S0893608019301820?via%3Dihub)
+- [LeanConvNets: Low-cost Yet Effective Convolutional Neural Networks](https://arxiv.org/abs/1910.13157)
+
+**Reversible Residual Network**
+
+- [The Reversible Residual Network: Backpropagation Without Storing Activations](https://arxiv.org/abs/1707.04585)
+- https://ai.googleblog.com/2020/01/reformer-efficient-transformer.html
+- https://arxiv.org/abs/2001.04451
+- https://ameroyer.github.io/reading-notes/architectures/2019/05/07/the_reversible_residual_network.html
+- [Layer-Parallel Training of Deep Residual Neural Networks](https://arxiv.org/abs/1812.04352)
 
 #### Differential Equations Motivated Deep Learning Methods
 
@@ -373,12 +386,11 @@ This section is on insight from numerical analysis to inspire more effective dee
  [We show that residual neural networks can be interpreted as discretizations of a nonlinear time-dependent ordinary differential equation that depends on unknown parameters, i.e., the network weights. We show how this insight has been used, e.g., to study the `stability of neural networks, design new architectures, or use established methods from optimal control methods for training ResNets`. Finally, we discuss open questions and opportunities for mathematical advances in this area.](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
 
 
-- https://elsc.huji.ac.il/all-publications/1050
+- [Path integral approach to random neural networks](https://elsc.huji.ac.il/all-publications/1050)
 - [NEURAL NETWORKS AS ORDINARY DIFFERENTIAL EQUATIONS](https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/)
 - [Dynamical aspects of Deep Learning](https://zhenyu-liao.github.io/pdf/pre/GDD_iCODE.pdf)
 - [Dynamical Systems and Deep Learning](http://www.doc.ic.ac.uk/~ae/teaching.html#complex)
 - https://zhuanlan.zhihu.com/p/71747175
-- https://web.stanford.edu/~yplu/
 - https://web.stanford.edu/~yplu/project.html
 - https://github.com/2prime/ODE-DL/
 - [Deep Neural Networks Motivated by Partial Differential Equations](https://arxiv.org/pdf/1804.04272.pdf)
@@ -426,6 +438,8 @@ $$\partial Y(t)=\sigma(K(t) Y(t) + b(t)), Y(0)=Y_0, t\in[0, T].$$
 - [Deep Neural Networks Motivated By Ordinary Differential Equations](http://www.mathcs.emory.edu/~lruthot/talks/2019-LR-IPAM-ODE-handout.pdf)
 - [Continuous Models: Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/3-NumDNNshort-ContinuousModels.pdf)
 - [Fully Hyperbolic Convolutional Neural Networks](https://arxiv.org/abs/1905.10484)
+- https://eldad-haber.webnode.com/selected-talks/
+- http://www.mathcs.emory.edu/~lruthot/courses/NumDL/3-NumDNNshort-ContinuousModels.pdf
 
 <img src="https://pic4.zhimg.com/80/v2-542db02f15d327ccc7558df7a8e6e137_hd.jpg" width="60%"/>
 
@@ -497,6 +511,7 @@ $$\operatorname{minimize}_{ \theta,W,\mu} loss[g(W(T)Y(T)+\mu), C] + regularizer
 - [Machine Learning-based Control](https://github.com/lakehanne/awesome-neurocontrol)
 - [CAREER: A Flexible Optimal Control Framework for Efficient Training of Deep Neural Networks](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1751636)
 - https://www.zhihu.com/question/315809187/answer/623687046
+- https://www4.comp.polyu.edu.hk/~cslzhang/paper/CVPR19-FOCNet.pdf
 
 
 ### Neural Ordinary Differential Equations
@@ -695,7 +710,7 @@ such as denoising and compressive sensing. Motivated by those success stories, r
 - [Deep Learning and Inverse Problem](https://www.dlip.org/)
 - https://www.scec.org/publication/8768
 - https://amds123.github.io/
-- 
+- https://github.com/IPAIopen
 - https://imaginary.org/snapshot/deep-learning-and-inverse-problems
 - https://www.researchgate.net/scientific-contributions/2150388821_Jaweria_Amjad
 

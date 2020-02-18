@@ -261,6 +261,12 @@ if we take some proper activation functions such as sigmoid function.
 
 <img src="https://www.cse.unsw.edu.au/~cs9417ml/MLP2/MainPage.gif" width="70%">
 
+
+- [Do Deep Nets Really Need to be Deep?](https://papers.nips.cc/paper/5484-do-deep-nets-really-need-to-be-deep)
+- [Depth Creates No Bad Local Minima](https://arxiv.org/abs/1702.08580)
+- [Spurious Local Minima of Shallow ReLU Networks Conform with the Symmetry of the Target Model](https://arxiv.org/abs/1912.11939)
+- [Depth with Nonlinearity Creates No Bad Local Minima in ResNets](https://arxiv.org/abs/1810.09038)
+
 #### Evaluation and Optimization in Multilayer Perceptron
 
 The problem is how to find the optimal parameters $W_1, b_1, W_2, b_2,\cdots, W, b$ ?
@@ -281,7 +287,7 @@ We will solve it in the next section *Backpropagation, Optimization and Regulari
 
 |The diagram of MLP|
 |:----------------:|
-|![](https://www.hindawi.com/journals/jcse/2012/389690.fig.0011.jpg)|
+|![viz](https://www.hindawi.com/journals/jcse/2012/389690.fig.0011.jpg)|
 |[Visualizing level surfaces of a neural network with raymarching](https://arogozhnikov.github.io/3d_nn/)|
 
 * https://devblogs.nvidia.com/deep-learning-nutshell-history-training/
@@ -309,9 +315,7 @@ in probability models, the loss function always is joint probability or logarith
 In classification, the last layer is to predict the degree of belief of the labels via [softmax function](http://freemind.pluskid.org/machine-learning/softmax-vs-softmax-loss-numerical-stability/),
 i.e.
 
-$$
-softmax(z)=(\frac{\exp(z_1)}{\sum_{i=1}^{n}\exp(z_i)},\frac{\exp(z_2)}{\sum_{i=1}^{n} \exp(z_i)}, \cdots, \frac{\exp(z_n)}{\sum_{i=1}^{n}\exp(z_i)})
-$$
+$$softmax(z)=(\frac{\exp(z_1)}{\sum_{i=1}^{n}\exp(z_i)},\frac{\exp(z_2)}{\sum_{i=1}^{n} \exp(z_i)}, \cdots, \frac{\exp(z_n)}{\sum_{i=1}^{n}\exp(z_i)})$$
 
 where $n$ is the number of total classes. The labels are encoded as the one hot vector such as $\mathrm{d}=(1,0,0,\cdots,0)$. The [cross entropy](https://www.cnblogs.com/smartwhite/p/8601477.html) is defined as:
 
@@ -426,7 +430,56 @@ $$\rho(t;\lambda) = \lambda \int_{0}^{t}{(1-\frac{x}{\gamma\lambda})}_{+} \mathr
 The function defined by its derivative is convenient for us to minimize the cost function via gradient-based methods.
 
 ***
-The two page paper [Eliminating All Bad Local Minima from Loss Landscapes
+
+
+For more on **loss function** see:
+
+* <https://blog.algorithmia.com/introduction-to-loss-functions/>;
+* <https://arxiv.org/abs/1701.03077>;
+* https://www.wikiwand.com/en/Robust_statistics
+* https://www.wikiwand.com/en/Huber_loss
+* [Variable Selection with Nonconcave Penalty Function on Reduced-Rank Regression](https://www.e-sciencecentral.org/articles/SC000012498)
+* [A Convergence Theory for Deep Learning via Over-Parameterization](https://arxiv.org/abs/1811.03962)
+
+
+
+
+### Loss Landscape
+
+
+This learning is evaluated through some kind of loss function that estimates the distance between what our network generates and what we should obtain. 
+Minimizing that loss value is the objective of most processes of this kind. 
+Typically, we begin with a network that doesn’t perform very well and therefore has a high loss value. 
+Through training, we gradually descend to loss values that are much smaller.
+[Visualizing the morphology and dynamics of these loss values while training is taking place, can help us generate new insights about our training processes and deep learning in general.](https://losslandscape.com/faq/)
+<img src="https://losslandscape.com/wp-content/uploads/2019/09/loss-landscape-research-9.jpg" width="60%"/>
+
+[Many papers on optimization in deep learning implicitly assume that a rigorous understanding will follow from establishing geometric properties of the loss landscape](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/), and in particular, of critical points (points where the gradient vanishes). 
+For example, through an analogy with the spherical spin-glass model from condensed matter physics, Choromanska et al. 2015 argued for what has become a colloquial conjecture in deep learning:
+
+> Landscape Conjecture: In neural network optimization problems, suboptimal critical points are very likely to have negative eigenvalues to their Hessian. In other words, there are almost no poor local minima, and nearly all saddle points are strict.
+
+- [Spurious Local Minima are Common in Two-Layer ReLU Neural Networks](https://arxiv.org/abs/1712.08968)
+- [No Spurious Local Minima in a Two Hidden Unit ReLU Network](https://openreview.net/forum?id=B14uJzW0b)
+- [Depth Creates No Bad Local Minima](https://arxiv.org/abs/1702.08580)
+- [Spurious Local Minima of Shallow ReLU Networks Conform with the Symmetry of the Target Model](https://arxiv.org/abs/1912.11939)
+- [Depth creates no more spurious local minima](https://arxiv.org/abs/1901.09827)
+- [Depth with Nonlinearity Creates No Bad Local Minima in ResNets](https://arxiv.org/abs/1810.09038)
+- [Small nonlinearities in activation functions create bad local minima in neural networks](https://arxiv.org/abs/1802.03487)
+- [Global Optimality Conditions for Deep Neural Networks ](https://openreview.net/forum?id=BJk7Gf-CZ)
+- [Effect of Depth and Width on Local Minima in Deep Learning](https://arxiv.org/abs/1811.08150)
+- http://stanford.edu/~sfort1/
+- [Towards Understanding Generalization of Deep Learning: Perspective of Loss Landscapes](https://arxiv.org/abs/1706.10239v2)
+- [Emergent properties of the local geometry of neural loss landscapes](https://arxiv.org/abs/1910.05929)
+- [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913)
+- https://github.com/tomgoldstein/loss-landscape
+- https://www.cs.umd.edu/~tomg/projects/landscapes/
+- https://losslandscape.com/
+- [Using Loss Surface Geometry for Scalable Bayesian Deep Learning](http://bayesiandeeplearning.org/2019/slides/Andrew%20Gordon%20Wilson.pdf)
+* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
+* [Landscape Connectivity of Low Cost Solutions for Multilayer Nets](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
+
+The two-page paper [Eliminating All Bad Local Minima from Loss Landscapes
 Without Even Adding an Extra Unit](https://arxiv.org/pdf/1901.03909.pdf) modified the loss function $L(\theta)$ to eliminate all the bad local minima:
 
 $$
@@ -443,17 +496,8 @@ $$
 
 so that setting them to be 0s, we could get $a=0, L(\theta) = 0$ if $|b|<\infty$.
 
-For more on **loss function** see:
 
-* <https://blog.algorithmia.com/introduction-to-loss-functions/>;
-* <https://arxiv.org/abs/1701.03077>;
-* https://www.wikiwand.com/en/Robust_statistics
-* https://www.wikiwand.com/en/Huber_loss
-* https://www.e-sciencecentral.org/articles/SC000012498
-* <https://arxiv.org/abs/1811.03962>
-* https://arxiv.org/pdf/1901.03909.pdf
-* <https://www.cs.umd.edu/~tomg/projects/landscapes/>.
-* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
+* [Eliminating all bad Local Minima from Loss Landscapes without even adding an Extra Unit](https://arxiv.org/abs/1901.03909)
 
 ### Backpropagation, Training and Regularization
 
@@ -571,7 +615,7 @@ $$\frac{\partial L(x_0,y_0)}{\partial W_4^i}
 
 $$
 = \color{aqua}{
-\sum_{j=1}^{o} \frac{\partial L}{\partial y^j}}\color{blue}{
+\sum_{j=1}^{o} \frac{\partial L}{\partial y^j}}\color{yellow}{
 \sum_{n}(\underbrace{\frac{\partial\, y^j}{\partial (W^jH+b^j)}
 \frac{\partial (W^jH + b^j)}{\partial H^{n}}}_{\color{purple}{\frac{\partial y^j}{ \partial H^i}} }
 \frac{\partial (H^{n})}{\partial W_4^i}) } \\
@@ -691,7 +735,8 @@ And  an alternative function is so-called `hard tanh`: $f(x)=\max(-1, \min(1, x)
 
 <img src=https://i.stack.imgur.com/CJnMI.png width=40% />
 
-***
+**ReLU and their generalizations**
+
 The first attempt at curbing the problem of vanishing gradients in a general deep network setting (LSTMs were introduced to combat this as well, but they were restricted to recurrent models) was the introduction of the `ReLU` activation function:
 $$
 ReLU(x)= \max\{x, 0\}={(x)}_{+}
@@ -754,6 +799,21 @@ x, & \text{if} \quad x > 0;\\
 $$
 where this $\alpha$ can be learned since you can backpropagate into it.
 
+`Absolute Value Rectification`
+
+$$
+f(x) = |x|=
+\begin{cases}
+x, & \text{if} \quad x > 0;\\
+- x, & \text{otherwise}.
+\end{cases}
+$$
+
+[`Maxoout`](https://arxiv.org/abs/1302.4389) is a multiple-piecewise linear function:
+$$h(z)_{G}=\max_{i\in G} z$$
+where $z\in\mathbb{R}^d$ and $G$ is the segment of index set such as $[k, k+1, \cdots, d]$. 
+
+
 ![](https://i.stack.imgur.com/1BX7l.png)
 
 `ELU(Exponential Linear Units)` is an alternative of ReLU:
@@ -807,13 +867,10 @@ $$
 
 The sign function  is defined as
 
-$$
-sgn(x)=
-   \begin{cases}
+$$sgn(x)=\begin{cases}
      1, &\text{if $x > 0$}\\
      0, &\text{if $x=0$}  \\
-     - 1, &\text{if $x < 0$}
-   \end{cases}
+     - 1, &\text{if $x < 0$}\end{cases}
 \\=\frac{x}{|x|}\quad\text{if $x\not= 0$}.
 $$
 
@@ -857,6 +914,7 @@ The functions in the right column are  approximate to the identity function in $
 - [第一十三章 优化算法](https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md)
 - [ReLU and Softmax Activation Functions](https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions)
 - [Mish Deep Learning Activation Function for PyTorch / FastAI](https://github.com/lessw2020/mish)
+- https://cedar.buffalo.edu/~srihari/CSE676/6.3%20HiddenUnits.pdf
 
 ****
 * http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
@@ -2065,6 +2123,14 @@ In contrast to traditional ensembles (produce an ensemble of multiple neural net
 
 - [SelfieBoost: A Boosting Algorithm for Deep Learning](https://arxiv.org/pdf/1411.3436.pdf)
 
+### Deep Ensembles
+
+
+
+- https://deepmind.com/research/publications/Deep-Ensembles-A-Loss-Landscape-Perspective
+- http://www.gatsby.ucl.ac.uk/~balaji/BDL-NeurIPS2019-ensembles-poster.pdf
+- http://www.gatsby.ucl.ac.uk/~balaji/
+- [Deep Ensembles: A Loss Landscape Perspective](https://arxiv.org/abs/1912.02757)
 
 ## Theories of Deep Learning
 
