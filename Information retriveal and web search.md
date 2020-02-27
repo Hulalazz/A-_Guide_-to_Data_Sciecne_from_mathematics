@@ -848,6 +848,23 @@ binary as restrictions on the type of the tree in our model.
 - [阿里自主创新的下一代匹配&推荐技术：任意深度学习+树状全库检索](https://zhuanlan.zhihu.com/p/35030348)
 - https://dzone.com/articles/breakthroughs-in-matching-and-recommendation-algor
 
+#### Approximate Nearest Neighbors
+[An approximate nearest neighbor search algorithm is allowed to return points, whose distance from the query is at most c times the distance from the query to its nearest points.](https://apacheignite.readme.io/docs/ann-approximate-nearest-neighbor)
+
+- https://github.com/spotify/annoy
+- http://web.stanford.edu/class/cs369g/
+- https://yongyuan.name/blog/approximate-nearest-neighbor-search.html
+- https://www.cs.umd.edu/~mount/ANN/
+- https://www.pnas.org/content/pnas/108/38/15679.full.pdf
+- https://dl.acm.org/doi/10.1145/293347.293348
+- https://people.csail.mit.edu/indyk/
+- https://simons.berkeley.edu/data-science-2018-3
+- https://github.com/mlberkeley/PyTorch-Workshop
+- https://sarielhp.org/p/12/him/
+- https://nn2017.mit.edu/
+- https://arxiv.org/pdf/1804.06829.pdf
+- https://wiki.52north.org/AI_GEOSTATS/ConfNNWorkshop2008
+
 ##### SPTAG
 
 `SPTAG` assumes that the samples are represented as vectors and that the vectors can be compared by L2 distances or cosine distances. Vectors returned for a query vector are the vectors that have smallest L2 distance or cosine distances with the query vector.
@@ -977,6 +994,8 @@ the document.
 * http://www2003.org/cdrom/papers/refereed/p779/ess.html
 * https://blog.alexa.com/semantic-search/
 * https://wsdm2019-dapa.github.io/slides/05-YiweiSong.pdf
+
+
 
 
 ### Information Distribution: Search Engine Results Page
@@ -1116,7 +1135,12 @@ Different from general web search engine, scholar search engine does rank the we
 - http://citeseerx.ist.psu.edu/index
 - https://www.semion.io/Home/About
 - https://scite.ai/
+- https://awesomeopensource.com/
+- http://evolutionofmachinelearning.com/
 
+### Patent Search and Analysis
+
+- [Patent Search and Analysis](https://www.lens.org/)
 
 ### MACHINE LEARNING FOR HEALTHCARE
 
@@ -1253,6 +1277,8 @@ and usually has scattered resources associated with it.
 * https://www.crowdsourcedhealth.com/
 * https://www.jmir.org/2019/1/e10179/
 * http://yom-tov.info/publications.html
+* http://tonghanghang.org/events/KDD_BigChat.htm
+* https://www.richgames.org/
 
 #### Multimedia Search Engine
 
@@ -1329,6 +1355,7 @@ In addition, [I will present some recent attempts at Etsy to tackle challenges i
 - https://www.sli-systems.com/blog/putting-ai-work-e-commerce.html
 - https://www.nosto.com/
 - https://adeptmind.ai/
+- https://www.kdd.org/kdd2015/program.html#ig02
 
 
 #### Multimodal Search
