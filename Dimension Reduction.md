@@ -421,19 +421,63 @@ https://www.wikiwand.com/en/Diffusion_map
 - https://umap-learn.readthedocs.io/en/latest/
 - https://arxiv.org/abs/1802.03426
 
-### Intrinsic Dimension
+## Intrinsic Dimension
 
 In [Description Of Intrinsic Dimension 2019](https://yoavfreund.miraheze.org/wiki/Description_Of_Intrinsic_Dimension_2019), Yoav Freund pointed out that:
 > It is often the case that very high dimensional data, such as images, can be compressed into low dimensional vectors with small reconstruction error. The dimension of these vectors is the **`intrinsic dimension`** of the data. We will discuss several techniques for estimating intrinsic dimension and for mapping data vectors to their low-dimensional representations. The ultimate goal is to find streaming algorithms can can process very large dataset in linear or sub-linear time.
+
+
+[In mathematical terms](https://ins.uni-bonn.de/media/public/publication-media/diss_wissel.pdf), let the original data be given by the finite sequence of points
+$$\mathcal{X}=\{x_1,x_2,\cdots,x_N\}$$
+where $x_i\in\mathbb{R}^d$ for $i=1,2,\cdots, N$.
+In the model-driven approach, one assumes that there exists a sequence of generating variables of minimal dimension $m$
+$$\mathcal{Y}=\{y_1, y_2,\cdots, y_N\}$$
+where $y_i\in\mathbb{R}^m$ for $i=1,2,\cdots, N$,
+and a mapping function
+$$f:\mathbb{R}^m\to\mathbb{R}^d, f(y_i)=x_i\qquad\forall\quad i.$$
+While specific knowledge about $f$ can certainly be useful in the process of dimensionality reduction, it is not compulsory. 
+Moreover, in most practical applications, also the dimension $m$ of the generating space $\mathbb{R}^m$ is unknown a priori. 
+Depending on the current perspective, $m$ is referred to as the number of latent variables or as the intrinsic dimension of the data $X$.
+
+Yet, numerous reduction methods do not compute a target embedding dimension but rather rely on an external input parameter. 
+Consequently, the estimation of the intrinsic dimension of a given dataset is essential for the proper functioning of those methods.
+
+- [Intrinsic dimension of data representations in deep neural networks](https://arxiv.org/abs/1905.12784)
+- [Intrinsic Dimension Estimation using Simplex Volumes](https://ins.uni-bonn.de/media/public/publication-media/diss_wissel.pdf)
+- [Intrinsic dimension estimation for locally undersampled data](https://www.nature.com/articles/s41598-019-53549-9)
+- [Structures in High-Dimensional Data: Intrinsic Dimension and Cluster Analysis](http://lup.lub.lu.se/search/ws/files/10994514/Kerstin_Johnsson_PhD_thesis.pdf)
+- [Intrinsic Dimension 2019:: Papers](https://yoavfreund.miraheze.org/wiki/Intrinsic_Dimension_2019::_Papers)
+- http://hal.cse.msu.edu/assets/pdfs/papers/2019-cvpr-intrinsic-dimensionality.pdf
+- https://people.eng.unimelb.edu.au/baileyj/papers/PID5041135-2.pdf
+- [Measuring the Intrinsic Dimension of Objective Landscapes](https://eng.uber.com/intrinsic-dimension/)
+- https://en.wikipedia.org/wiki/Intrinsic_dimension
+- https://www.hcm.uni-bonn.de/research/research-areas/ra-b2/
 
 Methods for identifying the dimension：
 
 * Haussdorff dimension, Doubling dimension, epsilon-cover
 
-- [Intrinsic dimension of data representations in deep neural networks](https://arxiv.org/abs/1905.12784)
-- https://www.nature.com/articles/s41598-019-53549-9
-- http://hal.cse.msu.edu/assets/pdfs/papers/2019-cvpr-intrinsic-dimensionality.pdf
-- https://people.eng.unimelb.edu.au/baileyj/papers/PID5041135-2.pdf
+`Lebesgue covering dimension`, also called `topological dimension` or just `covering dimension`, is defined with respect to a given topological space $(\mathcal{Y}, \tau )$, 
+that is a set of points $\mathcal{Y}$ together with a collection $\tau$ of subsets of $\mathcal{Y}$ called open sets.
+For any subset $S \subset \mathcal{Y}$, a covering of $S$ is defined as a family $\mathcal{C}$ of open sets whose union contains $S$.
+Now the Lebesgue covering dimension of $S \subset \mathcal{Y}$ is defined as the smallest integer $D_L$,
+such that every covering $\mathcal{C}$ of $S$ has a refinement $C^{\prime}$, for which each point of $S$ is contained in at most $D_L +1$ sets of $C^{\prime}$.
+If such an integer does not exist, the covering dimension is infinite.
+
+- [Intrinsic Dimension Estimation using Simplex Volumes](https://ins.uni-bonn.de/media/public/publication-media/diss_wissel.pdf)
+
+Set $S \subset \mathbb{R}^d$ has `doubling dimension` $d_o$ if for any (Euclidean) ball $B$, the subset $S \cap B$ can be covered by 2$d_o$ balls of half the radius.
+
+- [Exploiting low intrinsic dimensionality](https://www2.mathematik.hu-berlin.de/~for1735/potsdam/docs/Dasgupta2.pdf)
+- [Assouad dimension](https://web.stanford.edu/group/mmds/slides2008/dasgupta.pdf)
+
+
+###  Simplex Volumes
+
+One popular example is the relationship of volumes between the unit hypercube and its inscribed d-ball.
+It might seem surprising at first that the volume of the corresponding d-ball tends to zero very quickly.
+
+- [Intrinsic Dimension Estimation using Simplex Volumes](https://ins.uni-bonn.de/media/public/publication-media/diss_wissel.pdf)
 
 ## Metric Learning
 

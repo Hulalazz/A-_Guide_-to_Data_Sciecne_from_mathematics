@@ -15,6 +15,7 @@ And graph processing is widely applied in industry and science such as the `netw
 - http://lca.epfl.ch/people/
 - http://shichuan.org/HENA2019.html
 - https://www.eecs.yorku.ca/~genec/
+- https://networksciencebook.com/chapter/0
 
 
 ## Resource On Graph Processing
@@ -552,11 +553,16 @@ A depth first traversal takes O(N*E) time for adjacency list representation and 
 #### $A^{\ast}$ Algorithm
 
  As introduced in wikipedia, $A^{\ast}$ algorithm has its advantages and disadvantages:
-> In computer science, $A^{\ast}$ (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found $A^{\ast}$ to be superior to other approaches.
+> In computer science, $A^{\ast}$ (pronounced "A star") is a computer algorithm that is widely used in path finding and graph traversal, 
+> which is the process of finding a path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. 
+> However, in practical travel-routing systems, it is generally outperformed by algorithms 
+> which can pre-process the graph to attain better performance, although other work has found $A^{\ast}$ to be superior to other approaches.
 
 
 First we learn the **Dijkstra's algorithm**.
-Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist [Edsger W. Dijkstra](https://www.wikiwand.com/en/Edsger_W._Dijkstra) in 1956 and published three years later.
+Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, 
+which may represent, for example, road networks. 
+It was conceived by computer scientist [Edsger W. Dijkstra](https://www.wikiwand.com/en/Edsger_W._Dijkstra) in 1956 and published three years later.
 
 For example, we want to find the shortest path between a and b in the following graph.
 The distance of every pair is given.
@@ -574,7 +580,8 @@ a(0)| 2 | 3 | 6
 ----|---|---|---|---|---|
   0 | 10| 15|0  | 11| 2 |
 
-Now we have 2 choices from 1 to 3: (1) $1\to3\mid 9$;(2) $1\to 2\to3\mid (7+10=17 >9)$. And we find all paths from 1 to 3 and the shortest path from 1 to 3  is $1\to3$ with distance 9.
+Now we have 2 choices from 1 to 3: (1) $1\to3\mid 9$;(2) $1\to 2\to3\mid (7+10=17 >9)$. 
+And we find all paths from 1 to 3 and the shortest path from 1 to 3  is $1\to3$ with distance 9.
 
 From 1 to 4: (1) $1\to2\to4\mid 7+15=22$; (2) $1\to3\to4\mid 9+11=20<22$.
 the shortest path from 1 to 6  is $1\to3\to4$ with distance 20.
@@ -635,7 +642,8 @@ algebraic operations and fundamental graph operations
 
 A graph $G$ is a tree if and only if $G$ is a forest and $|V(G)|=|E(G)| + 1$.
 
-Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge ${uv}$, vertex ${u}$ comes before ${v}$ in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.
+Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge ${uv}$, vertex ${u}$ comes before ${v}$ in the ordering. 
+Topological Sorting for a graph is not possible if the graph is not a DAG.
 
 
 
@@ -673,7 +681,10 @@ $$
 where $d_{ij}$, the topological distance between $i$ and $j$.
 
 M. V. Diudea, I. Gutman and L. Jantschi in [Molecular Topology](http://lori.academicdirect.org/books/pdf/2001_moltop.pdf) claims that
-> A single number, representing a chemical structure, in graph-theoretical terms, is called a `topological descriptor`. Being a structural invariant it does not depend on the labeling or the pictorial representation of a graph. Despite the considerable loss of information by the projection in a single number of a structure, such descriptors found broad applications in the correlation and prediction of several molecular properties1,2 and also in tests of similarity and isomorphism.
+> A single number, representing a chemical structure, in graph-theoretical terms, is called a `topological descriptor`. 
+> Being a structural invariant it does not depend on the labeling or the pictorial representation of a graph. 
+> Despite the considerable loss of information by the projection in a single number of a structure, 
+> such descriptors found broad applications in the correlation and prediction of several molecular properties1,2 and also in tests of similarity and isomorphism.
 
 The simplest TI is the half sum of entries in the adjacency matrix $A$:
 $$A=\frac{1}{2}\sum_{ij}{[A]}_{ij}.$$
@@ -841,24 +852,33 @@ Two of the basic questions concerning symmetric random walk are:
 1. Under what conditions is the walk recurrent, in that it returns (almost surely) to its starting point?
 2. How does the distance between S0 and Sn behave as $n\to\infty$?
 
-## Dynamic Graphs
 
-[In many applications of graph algorithms, including communication networks, graphics, assembly planning, and VLSI design, graphs are subject to discrete changes, such as additions or deletions of edges or vertices. In the last decades there has been a growing interest in such dynamically changing graphs, and a whole body of algorithms and data structures for dynamic graphs has been discovered. In a typical dynamic graph problem one would like to answer queries on graphs that are undergoing a sequence of updates, for instance, insertions and deletions of edges and vertices. The goal of a dynamic graph algorithm is to update efficiently the solution of a problem after dynamic changes, rather than having to recompute it from scratch each time. Given their powerful versatility, it is not surprising that dynamic algorithms and dynamic data structures are often more difficult to design and analyze than their static counterparts.](http://cs.ioc.ee/ewscs/2012/index.php?page=italiano)
+## Graph Learning 
 
-- https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/lectures/17/Small17.pdf
-- http://cs.ioc.ee/ewscs/2012/italiano/dynamic1.pdf
-- https://github.com/stack-of-tasks/dynamic-graph
-- http://www.cs.ust.hk/mjg_lib/bibs/qzhang_lib/Dynamic/p669-eppstein.pdf
-- http://graphstream-project.org/
-- http://hackage.haskell.org/package/dynamic-graphs
-- https://docs.instana.io/core_concepts/dynamic_graph/
-- http://cs.ioc.ee/ewscs/2012/index.php?page=italiano
-- https://www.cs.princeton.edu/courses/archive/spr10/cos423/lectures.php
-- https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/
+Graph Learning is to learn from the graph data:
+[Simply said, it’s the application of machine learning techniques on graph-like data. Deep learning techniques (neural networks) can, in particular,  be applied and yield new opportunities which classic algorithms cannot deliver.](https://graphsandnetworks.com/graph-learning/)
+
+- https://snap-stanford.github.io/cs224w-notes/machine-learning-with-networks/graph-neural-networks
+- https://graphsandnetworks.com/blog/
+- http://web.stanford.edu/class/cs224w/
+- https://networkdatascience.ceu.edu/
+- http://tensorlab.cms.caltech.edu/users/anima/
+
+
 
 ### Computational Graph
 
 Computational graphs are a nice way to think about mathematical expressions, where the mathematical expression will be in the decomposed form and in topological order.
+
+[A computational graph is defined as](https://www.tutorialspoint.com/python_deep_learning/python_deep_learning_computational_graphs.htm)
+ a directed graph where the `nodes` correspond to mathematical operations. Computational graphs are a way of expressing and evaluating a mathematical expression.
+
+- https://deepnotes.io/tensorflow
+- https://sites.google.com/a/uclab.re.kr/lhparkdeep/feeding-habits
+- https://kharshit.github.io/blog/
+- http://rll.berkeley.edu/cgt/
+- http://www.charuaggarwal.net/
+- http://colah.github.io/posts/2015-08-Backprop/
 
 <img title="Computational Graph" src="https://colah.github.io/posts/2015-08-Backprop/img/tree-eval.png" width=40% />
 
@@ -887,7 +907,7 @@ Additionally, each composite relationship is specified.
 * http://www.cs.columbia.edu/~mcollins/
 * http://rll.berkeley.edu/cgt/
 
-#### Computaional Graph of Decision Tree
+#### Computational Graph of Decision Tree
 
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png" width="40%" />
 <img src="https://www.geeksforgeeks.org/wp-content/uploads/undirectedgraph.png" width="50%" />
@@ -1019,3 +1039,18 @@ __________________________________
 * https://github.com/sungyongs/graph-based-nn
 
 + [Stanford Network Analysis Project](http://snap.stanford.edu/)
+
+## Dynamic Graphs
+
+[In many applications of graph algorithms, including communication networks, graphics, assembly planning, and VLSI design, graphs are subject to discrete changes, such as additions or deletions of edges or vertices. In the last decades there has been a growing interest in such `dynamically changing graphs`, and a whole body of algorithms and data structures for dynamic graphs has been discovered. In a typical dynamic graph problem one would like to answer queries on graphs that are undergoing a sequence of updates, for instance, insertions and deletions of edges and vertices. The goal of a dynamic graph algorithm is to update efficiently the solution of a problem after dynamic changes, rather than having to recompute it from scratch each time. Given their powerful versatility, it is not surprising that dynamic algorithms and dynamic data structures are often more difficult to design and analyze than their static counterparts.](http://cs.ioc.ee/ewscs/2012/index.php?page=italiano)
+
+- https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/lectures/17/Small17.pdf
+- http://cs.ioc.ee/ewscs/2012/italiano/dynamic1.pdf
+- https://github.com/stack-of-tasks/dynamic-graph
+- http://www.cs.ust.hk/mjg_lib/bibs/qzhang_lib/Dynamic/p669-eppstein.pdf
+- http://graphstream-project.org/
+- http://hackage.haskell.org/package/dynamic-graphs
+- https://docs.instana.io/core_concepts/dynamic_graph/
+- http://cs.ioc.ee/ewscs/2012/index.php?page=italiano
+- https://www.cs.princeton.edu/courses/archive/spr10/cos423/lectures.php
+- https://web.stanford.edu/class/archive/cs/cs166/cs166.1146/
