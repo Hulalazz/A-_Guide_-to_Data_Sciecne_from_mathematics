@@ -1,0 +1,493 @@
+---
+title: "Metric Learning"
+author: "zjx"
+date: "2020/5/3"
+output:
+  html_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Prediction evaluation metric: loss function
+
+In general, [learning consists of three compoents](https://dl.acm.org/doi/pdf/10.1145/2347736.2347755):
+$$\text{Learning=Representation + Evaluation + Optimization}.$$
+
+
+[The prediction evaluation metric should be selected to reflect domain-specific considerations, such as the types of errors that are more costly.](https://www.stat.berkeley.edu/~binyu/ps/papers2020/VDS20-YuKumbier.pdf) 
+[In fact, there is an entire area of research devoted to evaluating the quality of probabilistic forecasts through “scoring rules”.](https://www.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf)
+
+- https://rohanvarma.me/Loss-Functions/
+- [Probabilistic Setup and Empirical Risk Minimization](https://ttic.uchicago.edu/~tewari/lectures/lecture7.pdf)
+- [10: Empirical Risk Minimization](https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote10.html)
+- [Principles of risk minimization for learning theory](http://papers.nips.cc/paper/506-principles-of-risk-minimization-for-learning-theory.pdf)
+- https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html
+
+************
+
+Loss function| Cost function | Empirical risk| Structure risk 
+-----|----|---|---
+$L(y , f(x , a))$ between the response $y$ of the supervisor to a given input $x$ and the response $f(x, a )$ provided by the learning machine|the objective function to minimize|approximation to the expected value of the loss | regularized emprical risk
+
+In absence of prior knowledge about data we can only use general purpose metrics like Euclidean distance, Cosine similarity or Manhattan distance etc, 
+but these metric often fail to capture the correct behaviour of data which directly affects the performance of the learning algorithm. 
+Solution to this problem is to tune the metric according to the data and the problem, manually deriving the metric for high dimensional data which is often difficult to even visualize is not only tedious but is extremely difficult. Which leads to put effort on metric learning which satisfies the data geometry.
+[Goal of metric learning algorithm is to learn a metric which assigns small distance to similar points and relatively large distance to dissimilar points](https://parajain.github.io/metric_learning_tutorial/)
+
+- https://parajain.github.io/metric_learning_tutorial/
+- https://en.wikipedia.org/wiki/Similarity_learning
+
+
+
+### Maximum likelihood estimate
+
+Let us begin with the maximum likelihood estimate(mle).
+In statistics, the **likelihood principle** is the proposition that, given a statistical model, all the evidence in a sample relevant to model parameters is contained in the likelihood function.
+The maximum likelihood estimation 
+In mle, the sample $\{x_i\}_{i=1}^{N}$ are generated  independently from a probability distribution $\mathcal{P}(\theta)$, 
+so that we can obtain their joint probability
+$$P(x_1,\cdots,x_n)=\prod_{i=1}^N P(\theta;x_i)$$
+where $P(\theta;x_i)\in [0, 1]$ is the probability of $x_i$.
+It is also called the likelihood of the parameter $\theta$.
+Here $P(\theta;x_i)$ is point in the probaility (distribution) function at the point $x_i$
+and $P(\theta;x)$ is parameteried by $\theta\in \Theta$.
+In another word, we know the distribution family $\mathcal P$ parametrized  $\theta\in \Theta$.
+
+
+
+Because we have observed that samples $x_i$ generated from the probibiliy (distribution) familiy $P(\theta)$,
+the joint probility of $\{x_i\}_{i=1}^{N}$ cannot be zero.
+If $P(x_1,\cdots,x_n)$ is too small, the event is rare to observe.
+Thus it should be common enough for us to observe.
+The maximum likelihood estimate (mle) of $\theta$ is the one that maximize the joint probaility
+$$\theta^{\ast}=\arg\max_{\theta\in \Theta} P(x_1,\cdots,x_n)=\arg\max_{\theta\in \Theta} \prod_{i=1}^N P(\theta;x_i).$$
+
+```{r likelihood, echo=FALSE, fig.height=4, fig.width=4, paged.print=TRUE}
+q = seq(0,1,length=100)
+L= function(q){q^30 * (1-q)^70}
+plot(q,L(q),ylab="L(q)",xlab="q",type="l")
+```
+
+Because likelihoods may be very small numbers, 
+the product of the likelihoods can get very small very fast and can exceed the precision of the computer.
+Because we only care about the relative likelihood, 
+the convention is to work with the log-likelihoods instead, 
+because `the log of a product is equal to the sum of the logs`. 
+Therefore, we can take of the logarithm of each individual likelihood and add them together 
+and get the same end result, i.e., 
+the parameter value that maximizes the likelihood ($L$) is equal to the parameter value that maximizes the log-likelihood $\ell$:
+$$\ell=\log(\prod_{i=1}^N P(\theta;x_i))=\sum_{i=1}^{N}\log P(\theta;x_i)$$
+where $\log P(\theta;x_i)\leq 0$.
+Because the logarithm function is monotonic and inverse, so that 
+$$\theta^{\ast}=\arg\max_{\theta\in \Theta} P(x_1,\cdots,x_n)=\arg\max_{\theta\in \Theta} \sum_{i=1}^{N}\log P(\theta;x_i).$$
+
+```{r log-likelihood, echo=FALSE, fig.height=4, fig.width=4, paged.print=TRUE}
+q = seq(0,1,length=100)
+L= function(q){q^30 * (1-q)^70}
+plot(q,L(q)/L(0.3),ylab="L(q)/L(qhat)",xlab="q",type="l")
+```
+
+Given our goodness(or badness)-of-fit measure, our next step is to find the values of the parameters
+that give us the best fit – the so-called `maximum likelihood estimators`.
+In short, we convert the parameter inference into the numerical optimization. 
+
+
+* [Likelihood Ratios, Likelihoodism, and the Law of Likelihood](https://plato.stanford.edu/entries/logic-inductive/sup-likelihood.html)
+* <https://algorithmia.com/blog/introduction-to-loss-functions>
+* [Analysis of Environmental Data Conceptual Foundations: Maximum Likelihood Inference](https://www.umass.edu/landeco/teaching/ecodata/schedule/likelihood.pdf)
+
+Note the following relation
+$$\theta^{\ast}=\arg\max_{\theta\in \Theta} \sum_{i=1}^{N}\log P(\theta;x_i) = \arg\max_{\theta\in \Theta}\frac{1}{N} \sum_{i=1}^{N}\log P(\theta;x_i)$$
+where $N$ is a constant positive number.
+
+Now we regard the term $\log P(\theta;x_i)$ as an transformation of the observation,
+$$\theta^{\ast} 
+=\arg\max_{\theta\in \Theta}\mathbb{E}_{x\sim \hat{p}(x)}  \log P(\theta;x)\\
+=\arg\min_{\theta\in \Theta} -\mathbb{E}_{x\sim \hat{p}(x)} \log P(\theta;x)\\
+=\arg\min_{\theta\in \Theta} \mathbb{E}_{x\sim \hat{p}(x)} -\log P(\theta;x)\\
+=\arg\min_{\theta\in \Theta} \mathbb{E}_{x\sim \hat{p}(x)} \log\frac{1}{P(\theta;x)}.
+$$
+As $N\to\infty$, this average log-likelihood function tends, with probability 1,
+
+$$\mathbb{E}_{x\sim \hat{p}(x)} \log\frac{1}{P(\theta;x)}=\mathbb{E}_{x\sim {p}^{true}(x)} \log\frac{1}{P(\theta;x)}\\
+=\int_{x}p^{true}(x)\log\frac{1}{p(\theta;x)}\mathrm dx\\
+=\int_{x}p^{true}(x)\log\frac{1}{p(\theta;x)}\mathrm dx+\underbrace{\int_{x}p^{true}(x)\log{p^{true}(x)}\mathrm dx}_{constant}-\underbrace{\int_{x}p^{true}(x)\log{p^{true}(x)}\mathrm dx}_{constant}\\
+=\int_{x}p^{true}(x)\log\frac{p^{true}(x)}{p(\theta;x)}\mathrm dx- \underbrace{\int_{x}p^{true}(x)\log{p^{true}(x)}\mathrm dx}_{constant}\\
+=KL(p^{true}(x)\mid p(\theta;x))-\underbrace{\int_{x}p^{true}(x)\log{p^{true}(x)}\mathrm dx}_{constant}$$
+
+where ${p}^{true}(x)$ is the true probaility distribution function of $x$.
+
+So we conclude that 
+$$\theta^{\ast}=\arg\min_{\theta\in \Theta} KL(p^{true}(x)\mid p(\theta;x))$$
+as $N\to\infty$.
+
+In this sense, mle is to find the optimal approxmiation to the true probability distribution function constained in the probability distribution function family $p(\theta;\cdot)$ given some observation.
+
+
+- [Alternative form of max likelihood ](https://cedar.buffalo.edu/~srihari/CSE676/5.5%20MLBasics-MaxLikelihood.pdf)
+- [Maximum Likelihood as minimising KL Divergence](https://www.jessicayung.com/maximum-likelihood-as-minimising-kl-divergence/)
+- [Why Minimize Negative Log Likelihood?](https://quantivity.wordpress.com/2011/05/23/why-minimize-negative-log-likelihood/)
+
+------
+
+The loss function of mle is based on the probability distribution family.
+
+For example, $x_i\in \{0, 1\}\sim Bernoulli(p)$, the log-likelihood of $\{x_i\}_{i=1}^N$ is 
+$$\ell(p)=\log(\prod_{i=1}^{N}p^{x_i}(1-p)^{1-x_i})=\sum_{i=1}^N (x_i\log p+(1-x_i)\log (1-p))\\=\sum_{i=1}^N(x_i\log\frac{p}{1-p}+\log(1-p))\\=(\sum_{i=1}^Nx_i)\log\frac{p}{1-p}+n\log(1-p).$$
+To find the mle, we set the derivtive of $\ell(p)$ to zero
+$$\frac{\mathrm d \ell(p)}{\mathrm d p}=(\sum_{i=1}^Nx_i)(\frac{1}{p}+\frac{1}{1-p})-\frac{n}{1-p}=0$$
+and we get $p^{\ast}=\arg\max_{p}\ell(p)=\frac{(\sum_{i=1}^Nx_i)}{n}$.
+
+For example, $x_i\sim Poisson(\lambda)$, the log-likelihood of $\{x_i\}_{i=1}^N$ is
+$$\ell(\lambda)=\log(\prod_{i=1}^{N}\frac{\lambda^{x_i}\exp(-\lambda)}{x_i!})=\sum_{i=1}^N [x_i\log(\lambda)-\log x_i!]-N\lambda\propto \sum_{i=1}^N x_i\log(\lambda)-N\lambda$$
+To find the mle, we set the derivtive of $\ell(\lambda)$ to zero
+$$\frac{\mathrm d \ell(\lambda)}{\mathrm d \lambda}=\sum_{i=1}^N\frac{x_i}{\lambda}-N=0$$
+and we get $\lambda=\frac{\sum_{i=1}^N x_i}{N}$.
+
+Let $x_1, \cdots , x_N$ be i.i.d. samples with Laplace density 
+$$P(\theta\mid \cdot)=\frac{1}{2}\exp(-\|x-\theta\|_1)$$
+where $\theta\in\mathbb{R}$.
+Their log-likelihood is 
+$$\ell(\theta)=\log(\prod_{i=1}^NP(\theta\mid x_i))=\log(\prod_{i=1}^N\frac{1}{2}\exp(-\|x_i-\theta\|_1)=-N\log(2)-\sum_{i=1}^N\|x_i-\theta\|_1$$
+Observe that 
+$$\hat{\theta}=\arg\max_{\theta}\ell(\theta)=\arg\max_{\theta}-\sum_{i=1}^N\|x_i-\theta\|_1\\=\arg\min_{\theta}\underbrace{\sum_{i=1}^N\|x_i-\theta\|_1}_{\text{convex}}.$$
+According to convex optimization, $0\in\partial \sum_{i=1}^N\|x_i-\hat\theta\|_1$
+thus $\sum_{i=1}^N\operatorname{sgn}(x_i-\hat\theta)=0\implies \hat\theta=\operatorname{median}\{x_1,\cdots,x_N\}$.
+
+- https://www.colorado.edu/amath/sites/default/files/attached-files/ch4.pdf
+- https://rpubs.com/FJRubio/logisMLE
+- https://shodhganga.inflibnet.ac.in/bitstream/10603/21266/12/12_chapter%206.pdf
+
+### Bayesian mle
+
+Sometimes, domain-specific knowledegment will tell us how to select some appropriate  parameters of the probiality distribution functions.
+
+[For example, adult male heights are on average 70 inches  (5'10) with a standard deviation of 4 inches. Adult women are on average a bit shorter and less variable in height with a mean height of 65  inches (5'5) and standard deviation of 3.5 inches. ](https://www.usablestats.com/lessons/normal)
+
+However, we know that human heights cannot be negative. 
+It is better to use the truncated normal distribution for adult  heights.
+The parameters must be compatible with the domain-specific knowledegment.
+
+[There's one key difference between frequentist statisticians and Bayesian statisticians that we first need to acknowledge before we can even begin to talk about how a Bayesian might estimate a population parameter $\theta$.](https://online.stat.psu.edu/stat414/node/241/)
+Bayesians describe the mapping from prior beliefs about $\theta$, summarized in so-called prior density of $P(\theta)$, to new posterior beliefs in the light of observing the data.
+
+[Maximum A Posteriori (MAP) estimator](https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/ppt/22-MAP.pdf) of $\theta$ is to maximize the posteriori of $\theta$
+$$\theta^{\ast}=\arg\max_{\theta\in \Theta}P(\theta\mid x)\\=\arg\max_{\theta\in \Theta}\frac{P(\theta, x)}{P(x)}\\=\arg\max_{\theta\in \Theta}\frac{P(x\mid \theta)P(\theta)}{P(x)}\\=\arg\max_{\theta\in \Theta} P(x\mid \theta)P(\theta)$$
+where $P(x)$ is the function of random variable.
+
+`Basyesian maximum likelihood estimate` is to maximize the likelihood with a penalty function
+$$\theta^{\ast}=\arg\max_{\theta\in \Theta}\sum_{i=1}^{N}\log P(\theta;x_i)+\log P(\theta)$$
+where $\sum_{i=1}^{N}\log P(\theta;x_i)$ is the likelihood of the parameter $\theta$ and $P(\theta)$ is the prior probability density function of $\theta$.
+
+```{r Bayesian-likelihood, echo=FALSE, fig.height=4, fig.width=6, paged.print=TRUE}
+q = seq(0,1,length=100)
+l= function(q){30*log(q) + 70 * log(1-q)+log(dnorm(q))}
+plot(q,L(q),ylab="Bayesian log-likelihood",xlab="q",type="b")
+```
+
+MAP estimate is the `mode of the posterior distribution`.
+Another option of Bayesian estimate would be to choose the `posterior mean`
+$$\hat{\theta}=\mathbb E[\theta|X=x]=\int_{\theta\in\Theta}\theta P(\theta\mid x)\mathrm d \theta.$$
+It is called minimum mean squared error (MMSE) estimate of the random variable $\theta$ given $x$.
+
+- [Bayesian Maximum Likelihood](http://faculty.wcas.northwestern.edu/~lchrist/course/CIED_2012/bayesian.pdf)
+- [Maximum Likelihood vs.Bayesian Estimation](http://www-edlab.cs.umass.edu/cs689/lectures/ml-vs-bayes-estimation.pdf)
+- [9.1.2 Maximum A Posteriori (MAP) Estimation](https://www.probabilitycourse.com/chapter9/9_1_2_MAP_estimation.php)
+- [9.1.4 Conditional Expectation (MMSE)](https://www.probabilitycourse.com/chapter9/9_1_4_conditional_expectation_MMSE.php)
+- [ML, MAP, and Bayesian — The Holy Trinity of Parameter Estimation and Data Prediction](https://engineering.purdue.edu/kak/Trinity.pdf)
+
+-----
+
+Suppose that $Y$ follows a binomial distribution with parameters $n$ and $p = \theta$, so that the p.m.f. of $Y$ given $\theta$ is:
+$$g(y|\theta) = \binom{n}{y}\theta^y(1-\theta)^{n-y}$$
+for $y = 0, 1, 2, \cdots, n$. 
+Suppose that the prior p.d.f. of the parameter $\theta$ is the beta p.d.f., that is:
+$$h(\theta)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}$$
+for $0 < \theta < 1$. 
+Find the posterior p.d.f of $\theta$, given that $Y = y$. 
+
+First we obtain the joint density function by multiplying the prior and conditional probability
+$$P(y,\theta)=g(y|\theta)h(\theta)=\binom{n}{y}\theta^y(1-\theta)^{n-y}\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}\\=\underbrace{\binom{n}{y}\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}}_{\text{normalization factor}}\theta^{y+\alpha-1}(1-\theta)^{n-y+\beta-1}$$
+and 
+$$\theta^{\ast}=\arg\max_{\theta\in (0, 1)}\log(k(y,\theta))=\arg\max_{\theta\in (0, 1)}(y+\alpha-1)\log(\theta)+(n-y+\beta-1)\log(1-\theta)$$
+let 
+$$(y+\alpha-1)(1-\theta)-\theta(n-y+\beta-1)=y+\alpha-1-\theta(n-y+\beta-1+y+\alpha-1)=0$$
+we obtain $\theta=\frac{y+\alpha-1}{n+\alpha+\beta-2}$
+so $\theta^{\ast}=\frac{y+\alpha-1}{n-2+\beta+\alpha}$.
+
+And $P(\theta\mid y)=\int_{y}P(y,\theta)\mathrm d y\propto \theta^{y+\alpha-1}(1-\theta)^{n-y+\beta-1}$.
+In another word, $\theta\mid y$ follows a $Beta$ distribution, and 
+$$\mathbb E(\theta\mid y)=\frac{y+\alpha}{n+\alpha+\beta}.$$
+
+- [Notes for 6.864, ML vs. MAP (Sept. 24, 2009)](http://people.csail.mit.edu/regina/6864/mlvsmap.pdf)
+- [Bayesian Estimation](https://online.stat.psu.edu/stat414/node/241/)
+
+------
+
+The mle only takes the samples $\{x_i\}_{i=1}^N$ into consideration
+while Bayesian mle also considers the parameters.
+
+mle|Bayesian mle
+---|----
+point estimation  of density function|Bayesian inference 
+$\arg\max_{\theta\in\Theta}P(x\mid\theta)$|$\arg\max_{\theta\in\Theta}P(x\mid\theta)P(\theta)$
+$\theta$ is as the unknown parameter of the probability $P(x\mid \theta)$. | $\theta$ is the latent random factor to measure the rareness of the model $P(\cdot\mid \theta)$.
+
+Bayesian mle is to find the frequent pattern of the model.
+MAP is to answer the question what is the most possible pattern in the belief of $P(\theta)$ if we have observed a sequence of samples generated by a model parameterized by $\theta$.
+
+
+Bayesian estimates constraint the probability distribution of parameter $\theta$
+so it is  to rule out some chances.
+The prior $P(\theta)$ penalize the rare values of parameters.
+The core of Bayesian statistics is to use the prior probability of the parameters to decrease their uncertainty.
+
+According to the product rule of probability, we can find that
+$$P(x,\theta)=P(x\mid \theta)P(\theta)=P( \theta\mid x)P(x)\implies P( \theta\mid x)=\frac{P(x\mid \theta)P(\theta)}{P(x)}\propto P(x\mid \theta)P(\theta).$$
+
+It is summarized as follwing 
+``` posterior is proportional to likelihood times prior```.
+
+In standard Bayesian notation, we use $\pi(\theta)$ to denote the `prior probability density function (pdf)` of parameter $\theta$ with support$S(\theta)$, 
+$L(y|\theta)$ the `likelihood function` (i.e. the pdf of data given the parameter) with support $S(Y |\theta)$,
+$p(\theta|y)$ the `posterior pdf` with support $S(\theta\mid Y)$ of parameter given the data, 
+and $f(y)$ the unconditional pdf for the data with support $S(Y)$. Both $\theta$ and $y$ can be vectors.
+
+From the joint pdf identity, $L(y|\theta)\pi(\theta) = p(\theta|y)f(y)$, the `Bayes formula`
+$$ p(\theta|y)=\frac{L(y|\theta)\pi(\theta)}{f(y)}=\frac{L(y|\theta)\pi(\theta)}{\int_{S(\theta\mid Y)}L(y|\theta)\pi(\theta)}.$$
+We can re-write the above joint pdf identity as $f(y)=\frac{L(y|\theta)\pi(\theta)}{p(\theta|y)}$.
+Now for any fixed $\theta$, we can integrate both sides of the re-expressed joint pdf identity with respect to $y$
+over  $S(Y\mid \theta)$  and obtain the prior pdf at $\theta$
+$$\int_{y\in S(Y\mid \theta)}f(y)\mathrm d y=\pi(\theta)\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y \\ \Downarrow  \\ \pi(\theta)=\frac{\int_{y\in S(Y\mid \theta)}f(y)\mathrm d y}{\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y}=\int_{y\in S(Y\mid \theta)}f(y)\mathrm d y(\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y)^{-1}.$$
+Under so-called positivity assumption, we will obtain the  [Inversion of Bayes formula](https://www.intlpress.com/site/pub/files/_fulltext/journals/sii/2011/0004/0001/SII-2011-0004-0001-a010.pdf):
+$$\pi(\theta)=(\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y)^{-1}$$
+for $\theta \in S(\theta)$.
+
+If we prefer some  posterior pdf, we can use Inversion of Bayes formula to find a proper $\pi(\theta)$. 
+
+* [Inversion of Bayes formula](https://www.intlpress.com/site/pub/files/_fulltext/journals/sii/2011/0004/0001/SII-2011-0004-0001-a010.pdf)
+* [Inverse Bayes Formulae (IBF)](http://web.hku.hk/~kaing/Section1_3.pdf)
+* [Unexpected Journey to the Converse of Bayes’ Theorem](http://web.hku.hk/~kaing/HKSSinterview.pdf)
+
+----
+
+Now we turn to regression problem.
+Simply speacking, regression is to find the relationship of variables.
+The commn setting of regresion probelm is training data set $(x_i, y_i)$ for $i=1,\cdots, N$ and the model space $\mathcal{M}=\{m(\theta)\mid \theta\in\Theta\}$, where $x_i\in\mathbb{R}^d$ and $y_i\in\mathbb{R}$.
+And there is an orcle $m_o\in \mathcal{M}$ so that 
+$$y_i=m_o(x_i)+\varepsilon_i$$
+for $i=1,\cdots, N$ and $\{\varepsilon_i\}){i=1}^N$ are  random variables identically indepentlt distributed in some probability family.
+
+
+```{r regression, echo=FALSE, fig.height=4, fig.width=6, paged.print=TRUE}
+x <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120)
+y <- c(10, 18, 25, 29, 30, 28, 25, 22, 18, 15, 11, 8)
+fit <- lm(y ~ poly(x, 3))   ## polynomial of degree 3
+plot(x, y)  ## scatter plot (colour: black)
+x0 <- seq(min(x), max(x), length = 20)  ## prediction grid
+y0 <- predict.lm(fit, newdata = list(x = x0))  ## predicted values
+lines(x0, y0, col = 2)  ## add regression curve (colour: red)
+#https://stackoverflow.com/questions/39736847/plot-regression-line-in-r
+```
+
+[`The method of least squares` is about estimating parameters by minimizing the `squared discrepancies` between observed data, on the one hand, and their expected values on the other](https://stat.ethz.ch/~geer/bsa199_o.pdf)
+The least squares estimator, denoted by $\hat{\beta}$, is that value of b that minimizes
+$$\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2.$$
+In another word, 
+$$\hat{\beta}=\arg\min_{\theta\in\Theta}\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2=\arg\min_{\theta\in\Theta}\frac{1}{N}\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2\\=\arg\max_{\theta\in\Theta}-\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2=\arg\max_{\theta\in\Theta}\sum_{i=1}^{N}-(y_i-m(x_i;\theta))^2\\=\arg\max_{\theta\in\Theta}\prod_{i=1}^{N}\exp(-(\underbrace{y_i-m(x_i;\theta)}_{\varepsilon_i})^2)\\=\arg\max_{\theta\in\Theta}\prod_{i=1}^{N}\exp(-(\varepsilon_i)^2).$$
+In some sense, least squares estimation is equivalent to maximum likelihood estimation.
+The basic model is the linear model, i.e., $m(x_i)=w\cdot x_i - b=\left<w\,\, b, x_i \,\,1\right>$.
+Without generality, we set $m(x)=\left<\theta, x\right>$.
+The ordinary least squares estimate is to minimize the $\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2$, i.e.,
+$$\hat{\theta}=\arg\min_{\theta}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2=\arg\min_{\theta}\|y-X\theta\|_2^2$$
+where $y=(y_1,\cdots, y_N)^T$ and $X=(x_1,\cdots,x_N)^T$.
+
+
+- [Least squares and maximum likelihood by M.R.Osborne](https://maths-people.anu.edu.au/~mike/lsnml.pdf)
+- [Least squares and maximum likelihood estimation](https://bookdown.org/egarpor/PM-UC3M/app-ext-mle.html)
+
+[Regularization is a popular approach to reducing a model’s predisposition to overfit on the training data and thus hopefully increasing the generalization ability of the model.](https://rohanvarma.me/Regularization/)
+
+[The Lasso is a shrinkage and selection method for linear regression. It minimizes the usual sum of squared errors, with a bound on the sum of the absolute values of the coefficients. It has connections to soft-thresholding of wavelet coefficients, forward stagewise regression, and boosting methods.](http://statweb.stanford.edu/~tibs/lasso.html)
+The `lasso` estimate is defined as
+$$\hat{\theta}=\arg\min_{\theta\in\mathbb{R}^p}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2+\lambda\sum_{i=1}^{p}|\theta_i|=\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1$$
+
+Lasso  
+$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1$ 
+
+Ridge Regression 
+$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_2^2$ 
+
+Elastic Net 
+$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\alpha\|\theta\|_2^2+(1-\alpha)\|\theta\|_1$
+
+The lasso does `variable selection and shrinkage`,
+whereas ridge regression, in contrast, `only shrinks`.
+
+- https://www.cvxpy.org/examples/machine_learning/lasso_regression.html
+- http://statweb.stanford.edu/~tibs/lasso.html
+- https://trevorhastie.github.io/
+- [The Bayesian Lasso slide](https://www2.stat.duke.edu/courses/Fall17/sta521/knitr/Lec-13-Bayes-VarSel/bayes-varsel.pdf)
+- [The Bayesian Lasso](https://people.eecs.berkeley.edu/~jordan/courses/260-spring09/other-readings/park-casella.pdf)
+- http://hedibert.org/wp-content/uploads/2015/12/BayesianRegularization.pdf
+- [Mixtures of g Priors for Bayesian Variable Selection](https://people.eecs.berkeley.edu/~jordan/courses/260-spring10/readings/liang-etal.pdf)
+- [29 : Posterior Regularization](https://www.cs.cmu.edu/~epxing/Class/10708-14/scribe_notes/scribe_note_lecture29.pdf)
+- [Lecture 3: More on regularization. Bayesian vs maximum likelihood learning](https://www.cs.mcgill.ca/~dprecup/courses/ML/Lectures/ml-lecture03.pdf)
+- [Bayesian Interpretations of Regularization](https://www.mit.edu/~9.520/spring09/Classes/class15-bayes.pdf)
+- https://rohanvarma.me/Regularization/
+- [The Learning Problem and Regularization](https://www.mit.edu/~9.520/spring11/slides/class02.pdf)
+
+```{r regularization, echo=FALSE, fig.height=12, fig.width=6}
+library(MASS)  # Package needed to generate correlated precictors
+library(glmnet)  # Package to fit ridge/lasso/elastic net models
+library(Matrix)
+# Generate data
+set.seed(19875)  # Set seed for reproducibility
+n <- 1000  # Number of observations
+p <- 5000  # Number of predictors included in model
+real_p <- 15  # Number of true predictors
+x <- matrix(rnorm(n*p), nrow=n, ncol=p)
+y <- apply(x[,1:real_p], 1, sum) + rnorm(n)
+
+# Split data into train (2/3) and test (1/3) sets
+train_rows <- sample(1:n, .66*n)
+x.train <- x[train_rows, ]
+x.test <- x[-train_rows, ]
+
+y.train <- y[train_rows]
+y.test <- y[-train_rows]
+fit.lasso <- glmnet(x.train, y.train, family="gaussian", alpha=1)
+fit.ridge <- glmnet(x.train, y.train, family="gaussian", alpha=0)
+fit.elnet <- glmnet(x.train, y.train, family="gaussian", alpha=.5)
+
+
+# 10-fold Cross validation for each alpha = 0, 0.1, ... , 0.9, 1.0
+# (For plots on Right)
+for (i in 0:10) {
+    assign(paste("fit", i, sep=""), cv.glmnet(x.train, y.train, type.measure="mse", 
+                                              alpha=i/10,family="gaussian"))
+}
+# Plot solution paths:
+par(mfrow=c(3,2))
+# For plotting options, type '?plot.glmnet' in R console
+plot(fit.lasso, xvar="lambda")
+plot(fit10, main="LASSO")
+
+plot(fit.ridge, xvar="lambda")
+plot(fit0, main="Ridge")
+
+plot(fit.elnet, xvar="lambda")
+plot(fit5, main="Elastic Net")
+#https://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html
+```
+
+----
+
+Last but not least, we introduce more on Bayesian statistics.
+
+
+- https://bayesian.org/isba2020-home/
+- https://www.stats.ox.ac.uk/bnp12/
+- [Objections to Bayesian statistics](http://www.stat.columbia.edu/~gelman/research/published/badbayesmain.pdf)
+- [The Limitation of Bayesianism](https://www.cc.gatech.edu/~isbell/classes/reading/papers/wang.bayesianism.pdf)
+- [Should all Machine Learning be Bayesian? Should all Bayesian models be non-parametric?](http://gpss.cc/bark08/slides/1%20zoubin.pdf)
+- http://www.math.leidenuniv.nl/~avdvaart/talks/ICM.pdf
+- http://www2.stat.duke.edu/~rcs46/lectures_2015/14-bayes1/14-bayes3.pdf
+- http://courses.ieor.berkeley.edu/ieor165/lecture_notes/ieor165_lec8.pdf
+
+### Penalized mle 
+
+The penality term in Baysain elm requirs that $P(\theta)$ is a probability density (distribution) function, i.e., $\int_{x}P(x)\mathrm dx=1$.
+However, it is not easy to find appropriate prior.
+[One distinguishing feature of the nonconcave penalized likelihood approach is that it can simultaneously select variables and estimate coefficients of variables.](http://www.math.hkbu.edu.hk/~hpeng/Paper/modsel.pdf)
+
+- [Variable Selection via Nonconcave Penalized Likelihood and its Oracle Properties](https://orfe.princeton.edu/~jqfan/papers/01/penlike.pdf)
+- [Nonconcave penalized likelihood with a diverging number of parameters](https://arxiv.org/abs/math/0406466)
+- https://www.sis.uta.fi/tilasto/mttapu/runze.pdf
+- https://ned.ipac.caltech.edu/level5/March02/Silverman/Silver2_8.html
+- https://www.ccg.unam.mx/~vinuesa/tlem/pdfs/Sanderson_PL_2002.pdf
+- http://people.vcu.edu/~dbandyop/BIOS625/Penalized.pdf
+
+## Classification Loss 
+
+Classification is about categorical variable.
+[A categorical variable (sometimes called a nominal variable) is one that has two or more categories, but there is no intrinsic ordering to the categories.  For example, gender is a categorical variable having two categories (male and female) and there is no intrinsic ordering to the categories.  Hair color is also a categorical variable having a number of categories (blonde, brown, brunette, red, etc.) and again, there is no agreed way to order these from highest to lowest.  A purely categorical variable is one that simply allows you to assign categories but you cannot clearly order the variables.](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-numerical-variables/)  
+[If the variable has a clear ordering, then that variable would be an ordinal variable, as described below.](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-numerical-variables/)
+
+There is no arithmetic and magnitude concept in the world of categorical variables.
+Purely categorical variables are not comparable.
+In computer, they are always in the format of string or char.
+Like other common objects in computer, we can test that if two categorical variables share the same literal value.
+So it is natrual to apply the 0-1 loss function in classification problems.
+The 0-1 loss is defined as following
+\begin{equation}
+\label{0-1 loss}
+L(\hat{y}, y)=\begin{cases}1,&\text{if $\hat{y}\not= y$}\\
+                           0,&\text{if $\hat{y}= y$}\end{cases}.
+\end{equation}
+
+The categorical variable is really discrete variables that can take on one of finite possible mutually exclusive states.
+
+We follow the 1-of-K scheme proposed by [Christopher Bishop](https://www.microsoft.com/en-us/research/people/cmbishop/)  
+in [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf).
+The categorical variable is represented by a K-dimensional vector $x$ 
+in which one of the elements $x_k$ equals $1$, and all remaining elements equal $0$,
+i.e., one-hot vector.
+
+
+- https://online.stat.psu.edu/stat504/node/6/
+- https://rohanvarma.me/Loss-Functions/
+
+### Cross-Entropy Loss
+
+
+
+Given two distributions $p$ and $q$ over a given variable $X$, the cross entropy is defined as
+\begin{equation}
+\label{cross}
+H(p\|q)=\int_{x}p(x)\log(\frac{1}{q(x)})\mathrm d x
+\end{equation}
+
+KL divergence in simple term is a measure of how two probability distributions (say $p$ and $q$) are different from each other.
+\begin{equation}
+\label{k-l}
+KL(p\|q)=\int_{x}p(x)\log(\frac{p(x)}{q(x)})\mathrm d x
+=\int_{x}p(x)[\log({p(x)})-\log({q(x)})]\mathrm d x
+\end{equation}
+where $p, q$ are probaility density function.
+
+- [On The Pairing Of The Softmax Activation And Cross--Entropy Penalty Functions And The Derivation Of The Softmax Activation Function](https://core.ac.uk/display/24298161)
+- https://arm-software.github.io/CMSIS_5/NN/html/group__Softmax.html
+- https://gombru.github.io/2018/05/23/cross_entropy_loss/
+
+#### f-Divergences
+
+- https://people.eecs.berkeley.edu/~jordan/jordan-ssg.pdf
+- http://people.lids.mit.edu/yp/homepage/data/LN_fdiv.pdf
+- https://rgmia.org/monographs/csiszar_list.html
+
+
+### Bregman Divergences
+
+- http://mark.reid.name/blog/meet-the-bregman-divergences.html
+- https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf
+
+### Circle loss
+
+- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
+- https://github.com/TinyZeaMays/CircleLoss
+- https://zhuanlan.zhihu.com/p/45014864
+
+## Ranking loss
+
+- https://gombru.github.io/2019/04/03/ranking_loss/
+
+## Metric learning
+
+- https://ai.stanford.edu/~ang/papers/nips02-metric.pdf
+- http://www.jmlr.org/papers/volume10/weinberger09a/weinberger09a.pdf
