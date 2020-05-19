@@ -13,9 +13,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Prediction evaluation metric: loss function
+# Prediction evaluation metric: loss function
 
-In general, [learning consists of three compoents](https://dl.acm.org/doi/pdf/10.1145/2347736.2347755):
+In general, [learning consists of three components](https://dl.acm.org/doi/pdf/10.1145/2347736.2347755):
 $$\text{Learning=Representation + Evaluation + Optimization}.$$
 
 
@@ -35,7 +35,7 @@ Loss function| Cost function | Empirical risk| Structure risk
 $L(y , f(x , a))$ between the response $y$ of the supervisor to a given input $x$ and the response $f(x, a )$ provided by the learning machine|the objective function to minimize|approximation to the expected value of the loss | regularized emprical risk
 
 In absence of prior knowledge about data we can only use general purpose metrics like Euclidean distance, Cosine similarity or Manhattan distance etc, 
-but these metric often fail to capture the correct behaviour of data which directly affects the performance of the learning algorithm. 
+but these metric often fail to capture the correct behavior of data which directly affects the performance of the learning algorithm. 
 Solution to this problem is to tune the metric according to the data and the problem, manually deriving the metric for high dimensional data which is often difficult to even visualize is not only tedious but is extremely difficult. Which leads to put effort on metric learning which satisfies the data geometry.
 [Goal of metric learning algorithm is to learn a metric which assigns small distance to similar points and relatively large distance to dissimilar points](https://parajain.github.io/metric_learning_tutorial/)
 
@@ -44,28 +44,29 @@ Solution to this problem is to tune the metric according to the data and the pro
 
 
 
-### Maximum likelihood estimate
+## Maximum likelihood estimate
 
 Let us begin with the maximum likelihood estimate(mle).
-In statistics, the **likelihood principle** is the proposition that, given a statistical model, all the evidence in a sample relevant to model parameters is contained in the likelihood function.
-The maximum likelihood estimation 
-In mle, the sample $\{x_i\}_{i=1}^{N}$ are generated  independently from a probability distribution $\mathcal{P}(\theta)$, 
+In statistics, the **likelihood principle** is the proposition that, 
+given a statistical model, all the evidence in a sample relevant to model parameters is contained in the likelihood function.
+In maximum likelihood estimate (mle）, the sample $\{x_i\}_{i=1}^{N}$ are identitically independently from a probability distribution $\mathcal{P}(\theta)$, 
 so that we can obtain their joint probability
 $$P(x_1,\cdots,x_n)=\prod_{i=1}^N P(\theta;x_i)$$
 where $P(\theta;x_i)\in [0, 1]$ is the probability of $x_i$.
 It is also called the likelihood of the parameter $\theta$.
-Here $P(\theta;x_i)$ is point in the probaility (distribution) function at the point $x_i$
-and $P(\theta;x)$ is parameteried by $\theta\in \Theta$.
+Here $P(\theta;x_i)$ is point in the probability (distribution) function at the point $x_i$
+and $P(\theta;x)$ is parameterized by $\theta\in \Theta$.
 In another word, we know the distribution family $\mathcal P$ parametrized  $\theta\in \Theta$.
 
 
 
-Because we have observed that samples $x_i$ generated from the probibiliy (distribution) familiy $P(\theta)$,
-the joint probility of $\{x_i\}_{i=1}^{N}$ cannot be zero.
+Because we have observed that samples $x_i$ generated from the probability (distribution) family $P(\theta)$,
+the joint probability of $\{x_i\}_{i=1}^{N}$ cannot be zero.
 If $P(x_1,\cdots,x_n)$ is too small, the event is rare to observe.
 Thus it should be common enough for us to observe.
-The maximum likelihood estimate (mle) of $\theta$ is the one that maximize the joint probaility
-$$\theta^{\ast}=\arg\max_{\theta\in \Theta} P(x_1,\cdots,x_n)=\arg\max_{\theta\in \Theta} \prod_{i=1}^N P(\theta;x_i).$$
+The maximum likelihood estimate (mle) of $\theta$ is the one that maximize the joint probability
+\begin{equation}\label{mle}
+\theta^{\ast}=\arg\max_{\theta\in \Theta} P(x_1,\cdots,x_n)=\arg\max_{\theta\in \Theta} \prod_{i=1}^N P(\theta;x_i).\end{equation}
 
 ```{r likelihood, echo=FALSE, fig.height=4, fig.width=4, paged.print=TRUE}
 q = seq(0,1,length=100)
@@ -81,7 +82,7 @@ because `the log of a product is equal to the sum of the logs`.
 Therefore, we can take of the logarithm of each individual likelihood and add them together 
 and get the same end result, i.e., 
 the parameter value that maximizes the likelihood ($L$) is equal to the parameter value that maximizes the log-likelihood $\ell$:
-$$\ell=\log(\prod_{i=1}^N P(\theta;x_i))=\sum_{i=1}^{N}\log P(\theta;x_i)$$
+\begin{equation}\label{log-likelihood}\ell=\log(\prod_{i=1}^N P(\theta;x_i))=\sum_{i=1}^{N}\log P(\theta;x_i)\end{equation}
 where $\log P(\theta;x_i)\leq 0$.
 Because the logarithm function is monotonic and inverse, so that 
 $$\theta^{\ast}=\arg\max_{\theta\in \Theta} P(x_1,\cdots,x_n)=\arg\max_{\theta\in \Theta} \sum_{i=1}^{N}\log P(\theta;x_i).$$
@@ -120,17 +121,17 @@ $$\mathbb{E}_{x\sim \hat{p}(x)} \log\frac{1}{P(\theta;x)}=\mathbb{E}_{x\sim {p}^
 =\int_{x}p^{true}(x)\log\frac{p^{true}(x)}{p(\theta;x)}\mathrm dx- \underbrace{\int_{x}p^{true}(x)\log{p^{true}(x)}\mathrm dx}_{constant}\\
 =KL(p^{true}(x)\mid p(\theta;x))-\underbrace{\int_{x}p^{true}(x)\log{p^{true}(x)}\mathrm dx}_{constant}$$
 
-where ${p}^{true}(x)$ is the true probaility distribution function of $x$.
+where ${p}^{true}(x)$ is the true probability distribution function of $x$.
 
 So we conclude that 
-$$\theta^{\ast}=\arg\min_{\theta\in \Theta} KL(p^{true}(x)\mid p(\theta;x))$$
+$$\theta^{\ast}=\arg\min_{\theta\in \Theta} KL(p^{true}(x)\mid p(\theta;x))=\arg\min_{\theta\in \Theta}\log\frac{p^{true}(x)}{p(\theta;x)}$$
 as $N\to\infty$.
 
-In this sense, mle is to find the optimal approxmiation to the true probability distribution function constained in the probability distribution function family $p(\theta;\cdot)$ given some observation.
+In this sense, mle is to find the optimal approximation to the true probability distribution function constrained in the probability distribution function family $p(\theta;\cdot)$ given some observation.
 
 
 - [Alternative form of max likelihood ](https://cedar.buffalo.edu/~srihari/CSE676/5.5%20MLBasics-MaxLikelihood.pdf)
-- [Maximum Likelihood as minimising KL Divergence](https://www.jessicayung.com/maximum-likelihood-as-minimising-kl-divergence/)
+- [Maximum Likelihood as minimizing KL Divergence](https://www.jessicayung.com/maximum-likelihood-as-minimising-kl-divergence/)
 - [Why Minimize Negative Log Likelihood?](https://quantivity.wordpress.com/2011/05/23/why-minimize-negative-log-likelihood/)
 
 ------
@@ -139,13 +140,13 @@ The loss function of mle is based on the probability distribution family.
 
 For example, $x_i\in \{0, 1\}\sim Bernoulli(p)$, the log-likelihood of $\{x_i\}_{i=1}^N$ is 
 $$\ell(p)=\log(\prod_{i=1}^{N}p^{x_i}(1-p)^{1-x_i})=\sum_{i=1}^N (x_i\log p+(1-x_i)\log (1-p))\\=\sum_{i=1}^N(x_i\log\frac{p}{1-p}+\log(1-p))\\=(\sum_{i=1}^Nx_i)\log\frac{p}{1-p}+n\log(1-p).$$
-To find the mle, we set the derivtive of $\ell(p)$ to zero
+To find the mle, we set the derivative of $\ell(p)$ to zero
 $$\frac{\mathrm d \ell(p)}{\mathrm d p}=(\sum_{i=1}^Nx_i)(\frac{1}{p}+\frac{1}{1-p})-\frac{n}{1-p}=0$$
 and we get $p^{\ast}=\arg\max_{p}\ell(p)=\frac{(\sum_{i=1}^Nx_i)}{n}$.
 
 For example, $x_i\sim Poisson(\lambda)$, the log-likelihood of $\{x_i\}_{i=1}^N$ is
 $$\ell(\lambda)=\log(\prod_{i=1}^{N}\frac{\lambda^{x_i}\exp(-\lambda)}{x_i!})=\sum_{i=1}^N [x_i\log(\lambda)-\log x_i!]-N\lambda\propto \sum_{i=1}^N x_i\log(\lambda)-N\lambda$$
-To find the mle, we set the derivtive of $\ell(\lambda)$ to zero
+To find the mle, we set the derivative of $\ell(\lambda)$ to zero
 $$\frac{\mathrm d \ell(\lambda)}{\mathrm d \lambda}=\sum_{i=1}^N\frac{x_i}{\lambda}-N=0$$
 and we get $\lambda=\frac{\sum_{i=1}^N x_i}{N}$.
 
@@ -165,23 +166,23 @@ thus $\sum_{i=1}^N\operatorname{sgn}(x_i-\hat\theta)=0\implies \hat\theta=\opera
 
 ### Bayesian mle
 
-Sometimes, domain-specific knowledegment will tell us how to select some appropriate  parameters of the probiality distribution functions.
+Sometimes, domain-specific experience will tell us how to select some appropriate  parameters of the probiality distribution functions.
 
 [For example, adult male heights are on average 70 inches  (5'10) with a standard deviation of 4 inches. Adult women are on average a bit shorter and less variable in height with a mean height of 65  inches (5'5) and standard deviation of 3.5 inches. ](https://www.usablestats.com/lessons/normal)
 
 However, we know that human heights cannot be negative. 
 It is better to use the truncated normal distribution for adult  heights.
-The parameters must be compatible with the domain-specific knowledegment.
+The parameters must be compatible with the domain-specific experience.
 
 [There's one key difference between frequentist statisticians and Bayesian statisticians that we first need to acknowledge before we can even begin to talk about how a Bayesian might estimate a population parameter $\theta$.](https://online.stat.psu.edu/stat414/node/241/)
-Bayesians describe the mapping from prior beliefs about $\theta$, summarized in so-called prior density of $P(\theta)$, to new posterior beliefs in the light of observing the data.
+Bayesian describes the mapping from prior beliefs about $\theta$, summarized in so-called prior density of $P(\theta)$, to new posterior beliefs in the light of observing the data.
 
 [Maximum A Posteriori (MAP) estimator](https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/ppt/22-MAP.pdf) of $\theta$ is to maximize the posteriori of $\theta$
 $$\theta^{\ast}=\arg\max_{\theta\in \Theta}P(\theta\mid x)\\=\arg\max_{\theta\in \Theta}\frac{P(\theta, x)}{P(x)}\\=\arg\max_{\theta\in \Theta}\frac{P(x\mid \theta)P(\theta)}{P(x)}\\=\arg\max_{\theta\in \Theta} P(x\mid \theta)P(\theta)$$
 where $P(x)$ is the function of random variable.
 
-`Basyesian maximum likelihood estimate` is to maximize the likelihood with a penalty function
-$$\theta^{\ast}=\arg\max_{\theta\in \Theta}\sum_{i=1}^{N}\log P(\theta;x_i)+\log P(\theta)$$
+`Bayesian maximum likelihood estimate` is to maximize the likelihood with a penalty function
+\begin{equation}\label{Bayesian mle}\theta^{\ast}=\arg\max_{\theta\in \Theta}\sum_{i=1}^{N}\log P(\theta;x_i)+\log P(\theta)\end{equation}
 where $\sum_{i=1}^{N}\log P(\theta;x_i)$ is the likelihood of the parameter $\theta$ and $P(\theta)$ is the prior probability density function of $\theta$.
 
 ```{r Bayesian-likelihood, echo=FALSE, fig.height=4, fig.width=6, paged.print=TRUE}
@@ -192,7 +193,7 @@ plot(q,L(q),ylab="Bayesian log-likelihood",xlab="q",type="b")
 
 MAP estimate is the `mode of the posterior distribution`.
 Another option of Bayesian estimate would be to choose the `posterior mean`
-$$\hat{\theta}=\mathbb E[\theta|X=x]=\int_{\theta\in\Theta}\theta P(\theta\mid x)\mathrm d \theta.$$
+\begin{equation}\label{MMSE}\hat{\theta}=\mathbb E[\theta|X=x]=\int_{\theta\in\Theta}\theta P(\theta\mid x)\mathrm d \theta.\end{equation}
 It is called minimum mean squared error (MMSE) estimate of the random variable $\theta$ given $x$.
 
 - [Bayesian Maximum Likelihood](http://faculty.wcas.northwestern.edu/~lchrist/course/CIED_2012/bayesian.pdf)
@@ -214,8 +215,8 @@ Find the posterior p.d.f of $\theta$, given that $Y = y$.
 First we obtain the joint density function by multiplying the prior and conditional probability
 $$P(y,\theta)=g(y|\theta)h(\theta)=\binom{n}{y}\theta^y(1-\theta)^{n-y}\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}\\=\underbrace{\binom{n}{y}\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}}_{\text{normalization factor}}\theta^{y+\alpha-1}(1-\theta)^{n-y+\beta-1}$$
 and 
-$$\theta^{\ast}=\arg\max_{\theta\in (0, 1)}\log(k(y,\theta))=\arg\max_{\theta\in (0, 1)}(y+\alpha-1)\log(\theta)+(n-y+\beta-1)\log(1-\theta)$$
-let 
+$$\theta^{\ast}=\arg\max_{\theta\in (0, 1)}\log(k(y,\theta))=\arg\max_{\theta\in (0, 1)}(y+\alpha-1)\log(\theta)+(n-y+\beta-1)\log(1-\theta).$$
+By setting the derivative of the log-likelihood function be 0, we  obtain the following equation
 $$(y+\alpha-1)(1-\theta)-\theta(n-y+\beta-1)=y+\alpha-1-\theta(n-y+\beta-1+y+\alpha-1)=0$$
 we obtain $\theta=\frac{y+\alpha-1}{n+\alpha+\beta-2}$
 so $\theta^{\ast}=\frac{y+\alpha-1}{n-2+\beta+\alpha}$.
@@ -239,7 +240,8 @@ $\arg\max_{\theta\in\Theta}P(x\mid\theta)$|$\arg\max_{\theta\in\Theta}P(x\mid\th
 $\theta$ is as the unknown parameter of the probability $P(x\mid \theta)$. | $\theta$ is the latent random factor to measure the rareness of the model $P(\cdot\mid \theta)$.
 
 Bayesian mle is to find the frequent pattern of the model.
-MAP is to answer the question what is the most possible pattern in the belief of $P(\theta)$ if we have observed a sequence of samples generated by a model parameterized by $\theta$.
+MAP is to answer the question what is the most possible pattern in the belief of $P(\theta)$ 
+if we have observed a sequence of samples generated by a model parameterized by $\theta$.
 
 
 Bayesian estimates constraint the probability distribution of parameter $\theta$
@@ -250,7 +252,7 @@ The core of Bayesian statistics is to use the prior probability of the parameter
 According to the product rule of probability, we can find that
 $$P(x,\theta)=P(x\mid \theta)P(\theta)=P( \theta\mid x)P(x)\implies P( \theta\mid x)=\frac{P(x\mid \theta)P(\theta)}{P(x)}\propto P(x\mid \theta)P(\theta).$$
 
-It is summarized as follwing 
+It is summarized as following 
 ``` posterior is proportional to likelihood times prior```.
 
 In standard Bayesian notation, we use $\pi(\theta)$ to denote the `prior probability density function (pdf)` of parameter $\theta$ with support$S(\theta)$, 
@@ -265,7 +267,7 @@ Now for any fixed $\theta$, we can integrate both sides of the re-expressed join
 over  $S(Y\mid \theta)$  and obtain the prior pdf at $\theta$
 $$\int_{y\in S(Y\mid \theta)}f(y)\mathrm d y=\pi(\theta)\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y \\ \Downarrow  \\ \pi(\theta)=\frac{\int_{y\in S(Y\mid \theta)}f(y)\mathrm d y}{\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y}=\int_{y\in S(Y\mid \theta)}f(y)\mathrm d y(\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y)^{-1}.$$
 Under so-called positivity assumption, we will obtain the  [Inversion of Bayes formula](https://www.intlpress.com/site/pub/files/_fulltext/journals/sii/2011/0004/0001/SII-2011-0004-0001-a010.pdf):
-$$\pi(\theta)=(\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y)^{-1}$$
+\begin{equation}\label{IBF}\pi(\theta)=(\int_{y\in S(Y\mid \theta)}\frac{L(y|\theta)}{p(\theta|y)}\mathrm d y)^{-1}\end{equation}
 for $\theta \in S(\theta)$.
 
 If we prefer some  posterior pdf, we can use Inversion of Bayes formula to find a proper $\pi(\theta)$. 
@@ -274,13 +276,14 @@ If we prefer some  posterior pdf, we can use Inversion of Bayes formula to find 
 * [Inverse Bayes Formulae (IBF)](http://web.hku.hk/~kaing/Section1_3.pdf)
 * [Unexpected Journey to the Converse of Bayes’ Theorem](http://web.hku.hk/~kaing/HKSSinterview.pdf)
 
-----
+### Linear Regression
 
 Now we turn to regression problem.
-Simply speacking, regression is to find the relationship of variables.
-The commn setting of regresion probelm is training data set $(x_i, y_i)$ for $i=1,\cdots, N$ and the model space $\mathcal{M}=\{m(\theta)\mid \theta\in\Theta\}$, where $x_i\in\mathbb{R}^d$ and $y_i\in\mathbb{R}$.
-And there is an orcle $m_o\in \mathcal{M}$ so that 
-$$y_i=m_o(x_i)+\varepsilon_i$$
+Simply speaking, regression is to find the relationship of variables.
+The common setting of regression problem is training data set $(x_i, y_i)$ for $i=1,\cdots, N$ 
+and the model space $\mathcal{M}=\{m(\theta)\mid \theta\in\Theta\}$, where $x_i\in\mathbb{R}^d$ and $y_i\in\mathbb{R}$.
+And there is an oracle $m_o\in \mathcal{M}$ so that 
+$$y_i=m_o(x_i)+\varepsilon_i\tag{regression}$$
 for $i=1,\cdots, N$ and $\{\varepsilon_i\}){i=1}^N$ are  random variables identically indepentlt distributed in some probability family.
 
 
@@ -297,19 +300,71 @@ lines(x0, y0, col = 2)  ## add regression curve (colour: red)
 
 [`The method of least squares` is about estimating parameters by minimizing the `squared discrepancies` between observed data, on the one hand, and their expected values on the other](https://stat.ethz.ch/~geer/bsa199_o.pdf)
 The least squares estimator, denoted by $\hat{\beta}$, is that value of b that minimizes
-$$\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2.$$
+$$\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2.\tag{least squares method}$$
 In another word, 
 $$\hat{\beta}=\arg\min_{\theta\in\Theta}\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2=\arg\min_{\theta\in\Theta}\frac{1}{N}\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2\\=\arg\max_{\theta\in\Theta}-\sum_{i=1}^{N}(y_i-m(x_i;\theta))^2=\arg\max_{\theta\in\Theta}\sum_{i=1}^{N}-(y_i-m(x_i;\theta))^2\\=\arg\max_{\theta\in\Theta}\prod_{i=1}^{N}\exp(-(\underbrace{y_i-m(x_i;\theta)}_{\varepsilon_i})^2)\\=\arg\max_{\theta\in\Theta}\prod_{i=1}^{N}\exp(-(\varepsilon_i)^2).$$
-In some sense, least squares estimation is equivalent to maximum likelihood estimation.
+In some sense, least squares estimation is equivalent to maximum likelihood estimation with respect to the residual $\varepsilon_i$.
+
 The basic model is the linear model, i.e., $m(x_i)=w\cdot x_i - b=\left<w\,\, b, x_i \,\,1\right>$.
 Without generality, we set $m(x)=\left<\theta, x\right>$.
-The ordinary least squares estimate is to minimize the $\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2$, i.e.,
-$$\hat{\theta}=\arg\min_{\theta}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2=\arg\min_{\theta}\|y-X\theta\|_2^2$$
+The `ordinary least squares` estimate is to minimize the $\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2$, i.e.,
+$$\hat{\theta}=\arg\min_{\theta}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2=\arg\min_{\theta}\|y-X\theta\|_2^2\tag{ordianry least squares}$$
 where $y=(y_1,\cdots, y_N)^T$ and $X=(x_1,\cdots,x_N)^T$.
+According to the [first-order optimality conditions], we can obtain that
+$$X^T(y-X\hat{\theta})=0\iff X^T X\hat{\theta}= X^T y$$
+so we can obtain $\hat{\theta}=( X^T X)^{-1}X^Ty$ when $X^T X$ is invertible.
 
+[Ordinary least squares method](https://www.albert.io/blog/key-assumptions-of-ols-econometrics-review/) holds  some following assumptions:
 
+1. The regression model is linear in the coefficients and the error term.
+2. The error term has a population mean of zero.
+3. All independent variables are uncorrelated with the error term.
+4. Observations of the error term are uncorrelated with each other.
+5. The error term has a constant variance (no heteroscedasticity)
+6. No independent variable is a perfect linear function of other explanatory variables.
+7. The error term is normally distributed (optional).
+
+- https://www.itl.nist.gov/div898/handbook/pmd/section2/pmd21.htm
+- https://statisticsbyjim.com/regression/ols-linear-regression-assumptions/
+- https://www.econometrics-with-r.org/4-4-tlsa.html
 - [Least squares and maximum likelihood by M.R.Osborne](https://maths-people.anu.edu.au/~mike/lsnml.pdf)
 - [Least squares and maximum likelihood estimation](https://bookdown.org/egarpor/PM-UC3M/app-ext-mle.html)
+
+From the computtaional perspective, we add some regularization term to deal with ill-posed problem.
+
+For example, [Ridge Regression is a technique for analyzing multiple regression data that suffer from multicollinearity](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf) by 
+$$\hat{\theta}=\arg\min_{\theta}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2+\lambda\sum_{i=1}^p\|\theta_i\|_2^2=\arg\min_{\theta}\|y-X\theta\|_2^2+\lambda\|\theta\|_2^2\tag{Ridge Regression}.$$
+According to the [first-order optimality conditions](https://web.stanford.edu/class/msande312/restricted/OPTconditions.pdf), we can obtain that
+$$X^T(y-X\hat{\theta})+\lambda\hat\theta=0\iff (X^T X+\lambda I)\hat{\theta}= X^T y$$
+so that $\hat\theta=(X^T X+\lambda I)^{-1}X^T y$.
+
+Note that $\theta=\frac{\partial m(x))}{\partial x}=\frac{\partial }{\partial x} x^T\theta$ so we can apply the regularization technique to nonlinear model. 
+
+- http://statweb.stanford.edu/~owen/courses/305-1314/Rudyregularization.pdf
+- http://www.few.vu.nl/~wvanwie/Courses/HighdimensionalDataAnalysis/WNvanWieringen_HDDA_Lecture234_RidgeRegression_20182019.pdf
+- https://en.wikipedia.org/wiki/Regularized_least_squares
+
+[first-order optimality conditions]: https://web.stanford.edu/class/msande312/restricted/OPTconditions.pdf
+
+----
+
+
+The method of `weighted least squares` can be used when the ordinary least squares assumption of constant variance in the errors is violated (which is called heteroscedasticity).
+Simply, it is not necessary to think all the errors(residuals) are equally weighted:
+$$\hat{\theta}=\arg\min_{\theta}\sum_{i=1}^N w_i^2(y_i-\left<\theta, x_i\right>)^2=\arg\min_{\theta}\|W(y-X\theta)\|_2^2\tag{weigted least squares}.$$
+According to [first-order optimality conditions], we can obtain that $(WX)^T(Wy-WX\hat{\theta})=0\iff (WX)^T WX\hat{\theta}= (WX)^T y$ and 
+$$\hat\theta=[(WX)^T WX]^{-1}(WX)^T Wy$$
+where $W=\operatorname{diag}(w_1,\cdots,w_n)$.
+
+<img src="https://online.stat.psu.edu/onlinecourses/sites/stat508/files/lesson04/ridge_regression_geomteric.png" width="40%"/>
+
+- [13.1 - Weighted Least Squares](https://online.stat.psu.edu/stat501/lesson/13/13.1)
+- https://online.stat.psu.edu/stat501/lesson/13/13.3
+- [5.1 - Ridge Regression](https://online.stat.psu.edu/stat508/lesson/5/5.1)
+- https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd143.htm
+- https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/24/lecture-24--25.pdf
+
+----
 
 [Regularization is a popular approach to reducing a model’s predisposition to overfit on the training data and thus hopefully increasing the generalization ability of the model.](https://rohanvarma.me/Regularization/)
 
@@ -317,32 +372,33 @@ where $y=(y_1,\cdots, y_N)^T$ and $X=(x_1,\cdots,x_N)^T$.
 The `lasso` estimate is defined as
 $$\hat{\theta}=\arg\min_{\theta\in\mathbb{R}^p}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2+\lambda\sum_{i=1}^{p}|\theta_i|=\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1$$
 
-Lasso  
-$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1$ 
 
-Ridge Regression 
-$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_2^2$ 
+Lasso penalty corresponds to Double-exponential prior:
+  $\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1=\arg\max_{\theta\in\Theta}\exp(-\|y-X\theta\|_2^2)\underbrace{\exp(-\lambda \|\theta\|_1)}_{\text{Double-exponential prior}}$. 
 
-Elastic Net 
-$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\alpha\|\theta\|_2^2+(1-\alpha)\|\theta\|_1$
+Ridge Regression penalty corresponds to Gaussian prior:
+$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_2^2=\arg\max_{\theta\in\Theta}\exp(-\|y-X\theta\|_2^2)\underbrace{\exp(-\lambda \|\theta\|_2^2)}_{\text{Gaussian prior}}$. 
+
+Elastic Net penalty corresponds to a new prior:
+$\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\alpha\|\theta\|_2^2+(1-\alpha)\|\theta\|_1=\arg\max_{\theta\in\Theta}\exp(-\|y-X\theta\|_2^2)\exp(-\alpha\|\theta\|_2^2-(1-\alpha)\|\theta\|_1)$
 
 The lasso does `variable selection and shrinkage`,
 whereas ridge regression, in contrast, `only shrinks`.
+Different priors have different effects.
 
+- https://online.stat.psu.edu/stat508/lesson/5
 - https://www.cvxpy.org/examples/machine_learning/lasso_regression.html
 - http://statweb.stanford.edu/~tibs/lasso.html
 - https://trevorhastie.github.io/
 - [The Bayesian Lasso slide](https://www2.stat.duke.edu/courses/Fall17/sta521/knitr/Lec-13-Bayes-VarSel/bayes-varsel.pdf)
 - [The Bayesian Lasso](https://people.eecs.berkeley.edu/~jordan/courses/260-spring09/other-readings/park-casella.pdf)
-- http://hedibert.org/wp-content/uploads/2015/12/BayesianRegularization.pdf
-- [Mixtures of g Priors for Bayesian Variable Selection](https://people.eecs.berkeley.edu/~jordan/courses/260-spring10/readings/liang-etal.pdf)
-- [29 : Posterior Regularization](https://www.cs.cmu.edu/~epxing/Class/10708-14/scribe_notes/scribe_note_lecture29.pdf)
 - [Lecture 3: More on regularization. Bayesian vs maximum likelihood learning](https://www.cs.mcgill.ca/~dprecup/courses/ML/Lectures/ml-lecture03.pdf)
 - [Bayesian Interpretations of Regularization](https://www.mit.edu/~9.520/spring09/Classes/class15-bayes.pdf)
 - https://rohanvarma.me/Regularization/
 - [The Learning Problem and Regularization](https://www.mit.edu/~9.520/spring11/slides/class02.pdf)
+- [New and Evolving Roles of Shrinkage in Large-Scale Prediction and Inference](https://www.birs.ca/events/2019/5-day-workshops/19w5188/schedule#)
 
-```{r regularization, echo=FALSE, fig.height=12, fig.width=6}
+```{r regularization, echo=FALSE, fig.height=10, fig.width=6}
 library(MASS)  # Package needed to generate correlated precictors
 library(glmnet)  # Package to fit ridge/lasso/elastic net models
 library(Matrix)
@@ -385,6 +441,81 @@ plot(fit.elnet, xvar="lambda")
 plot(fit5, main="Elastic Net")
 #https://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html
 ```
+When the number of predictors is large compared to the number of observations, 
+$X$ is likely to be singular and the regression approach is no longer feasible.
+
+`Partial Least Squares`(pls) finds components from $X$ that are also relevant for $Y$. 
+Specifically, pls regression searches for a set of components (called latent vectors) 
+that performs a simultaneous decomposition of $X$ and $Y$ with the
+constraint that these components explain as much as possible of the covariance between $X$ and $Y$.
+
+- https://stats.idre.ucla.edu/wp-content/uploads/2016/02/pls.pdf
+- https://personal.utdallas.edu/~herve/Abdi-PLS-pretty.pdf
+- https://en.wikipedia.org/wiki/Partial_least_squares_regression
+- https://www.camo.com/resources/pls-regression.html
+- http://virtuallaboratory.org/lab/pls/
+
+### Bayesian Regularization
+
+`Bayesian Regularization` apply the Bayesian statistics to the regularization techniques.
+
+The inverse Bayesan formula tells us that we  can imply the piror from posterior.
+
+The `sparsity inducing priors` used in the Bayesian approach can broadly be classified as
+
+* A single continuous shrinkage prior such as the Double Exponential prior and the Horseshoe prior;
+* Two-group spike-and-slab prior, such as the spike-and-slab Normal prior and spike-and-slab Lasso prior.
+
+The `horseshoe prior` is a member of the family of multivariate scale mixtures of normals, 
+and is therefore closely related to widely used approaches for sparse Bayesian learning, including, among others, Laplacian priors (e.g. the LASSO) and Student-t priors (e.g. the relevance vector machine).
+The probability density function of Cauchy distribution  is defined as
+$$f(y;\mu,\sigma) = \frac{1}{\pi \sigma}\,\frac{1}{1 + (y-\mu)^2/\sigma^2}.$$
+The Half-Cauchy distribution is supported on the set of all real numbers that are greater than or equal to $\mu$, that is on $[\mu, \infty)$ with the following pdf:
+\[\begin{split} \begin{align} 
+f(y;\mu, \sigma) = \left\{\begin{array}{cll} \frac{2}{\pi \sigma}\,\frac{1}{1 + (y-\mu)^2/\sigma^2} & & y \ge \mu \\[1em] 0 & & \text{otherwise}. \end{array}\right. 
+\end{align}\end{split}\]
+
+By a spike and slab model we mean a Bayesian model specified by the following prior hierarchy:
+$$\tag{The spike and slab model}
+(Y_i\mid x_i，\theta,\sigma^2)\sim \mathcal{N}(\theta^T x_i, \sigma^2) \\
+(\theta\mid\Gamma)\sim \mathcal{N}(0, \Gamma)\\
+\Gamma\sim \pi(d\gamma)\\
+\sigma^2\sim \mu(d\sigma^2).
+$$
+
+- https://github.com/AsaCooperStickland/Spike_And_Slab
+- http://proceedings.mlr.press/v5/carvalho09a.html
+- https://projecteuclid.org/euclid.aos/1117114335
+
+During the modeling stage a critical design decision concerns choosing between model complexity and model expressiveness. 
+Although one wishes to use a model that can explain as closely as possible the particular application’s generative process, 
+one has to restrict oneself to models that are computationally tractable.
+[This leads to models that are generally an oversimplification of the inherent process, as seen in the previous chapter.]
+These models, due to their simplifying assumptions, fail to learn the parameters settings that produce the desired predictions.
+
+One solution to this problem is to add more complexity to the model to better reflect the underlying process.
+The posterior regularization framework incorporates side-information into parameter estimation in the form of linear constraints on posterior expectations, 
+which allows tractable learning and inference even when the constraints would be intractable to encode directly in the model parameters.
+By defining a flexible language for specifying diverse types of problem-specific prior knowledge, 
+we make the framework applicable to a wide variety of probabilistic models, both generative and discriminative.
+
+- [Bayesian Regularization](http://hedibert.org/wp-content/uploads/2015/12/BayesianRegularization.pdf)
+- [Mixtures of g Priors for Bayesian Variable Selection](https://people.eecs.berkeley.edu/~jordan/courses/260-spring10/readings/liang-etal.pdf)
+- [29 : Posterior Regularization](https://www.cs.cmu.edu/~epxing/Class/10708-14/scribe_notes/scribe_note_lecture29.pdf)
+- [New and Evolving Roles of Shrinkage in Large-Scale Prediction and Inference](https://www.birs.ca/workshops/2019/19w5188/report19w5188.pdf)
+- [Shrinkage priors for Bayesian prediction](https://projecteuclid.org/euclid.aos/1151418241)
+- [Posterior Regularization for Structured Latent Variable Models](http://jmlr.csail.mit.edu/papers/volume11/ganchev10a/ganchev10a.pdf)
+
+```{r LaplacesDemon, echo=FALSE, fig.height=4, fig.width=6}
+library(LaplacesDemon)
+x <- rnorm(100)
+lambda <- rhalfcauchy(100, 5)
+tau <- 5
+x <- dhs(x, lambda, tau, log=TRUE)
+x <- rhs(100, lambda=lambda, tau=tau)
+plot(density(x))
+#https://www.rdocumentation.org/packages/LaplacesDemon/versions/16.1.1/topics/dist.Horseshoe
+```
 
 ----
 
@@ -400,10 +531,58 @@ Last but not least, we introduce more on Bayesian statistics.
 - http://www2.stat.duke.edu/~rcs46/lectures_2015/14-bayes1/14-bayes3.pdf
 - http://courses.ieor.berkeley.edu/ieor165/lecture_notes/ieor165_lec8.pdf
 
+### Robust regression
+
+[Robust regression can be used in any situation where OLS regression can be applied. It generally gives better accuracies over OLS because it uses a weighting mechanism to weigh down the influential observations. It is particularly resourceful when there are no compelling reasons to exclude outliers in your data.](http://r-statistics.co/Robust-Regression-With-R.html)
+
+
+- https://stats.idre.ucla.edu/r/dae/robust-regression/
+- [13.3 - Robust Regression Methods](https://online.stat.psu.edu/stat501/lesson/13/13.3)
+- http://r-statistics.co/Robust-Regression-With-R.html
+
+The least absolute deviation (LAD) method, which is also known as the $L_1$ method,
+provides a useful and plausible alternative to least squares (LS) method.
+
+
+The least absolute deviation (LAD) method is to  minimize
+$$\sum_{i=1}^{N}|\underbrace{y_i-m(x_i;\theta)}_{\varepsilon_i}|\tag{least absolute deviation}$$
+which in turn minimizes the absolute value of the residuals.
+In another word, $\varepsilon_i$ is generated from Laplacian distribution.
+
+- [Analysis of least absolute deviation](https://www.math.ust.hk/~makchen/papers/LAD.pdf)
+
+This achieves robustness, but is hard to work with in practice
+because the absolute value function is `not differentiable`.
+
+[Peter Huber](https://statmodeling.stat.columbia.edu/2011/05/01/peter_hubers_th/) defines a loss function
+$$\rho(r_i)=\begin{cases}\varepsilon_i^2,\text{if  } |\varepsilon_i|<c,\\|2\varepsilon_i|c -c,\text{otherwise}.\end{cases}\tag{Huber}$$
+
+`Log Hyperbolic Cosine Loss` is defined as 
+$$\rho(\varepsilon_i)=\log\frac{\exp(\varepsilon_i)+\exp(-\varepsilon_i)}{2}\tag{log-cosh}=\log\operatorname{cosh}(\varepsilon_i).$$
+
+Log cosh is a smooth approximation to huber loss. 
+$$\lim_{\varepsilon_i\to 0}\frac{\log\operatorname{cosh}(\varepsilon_i)}{\varepsilon_i^2}=1=\lim_{\varepsilon_i\to \infty}\frac{\log\operatorname{cosh}(\varepsilon_i)}{|\varepsilon_i|}.$$
+
+- [Log Hyperbolic Cosine Loss Improves Variational Auto-Encoder](https://openreview.net/forum?id=rkglvsC9Ym)
+
+If an observation has a response value that is very different from the predicted value based on a model, 
+then that observation is called an outlier. 
+On the other hand, if an observation has a particularly unusual combination of predictor values (e.g., one predictor has a very different value for that observation compared with all the other data observations), 
+then that observation is said to have high leverage. 
+Thus, there is a distinction between outliers and high leverage observations, and each can impact our regression analyses differently. 
+It is also possible for an observation to be both an outlier and have high leverage. 
+Thus, it is important to know how to detect outliers and high leverage data points.
+
+- https://online.stat.psu.edu/stat501/lesson/11
+
 ### Penalized mle 
 
-The penality term in Baysain elm requirs that $P(\theta)$ is a probability density (distribution) function, i.e., $\int_{x}P(x)\mathrm dx=1$.
+The penalty term in Bayesian elm requires that $P(\theta)$ is a probability density (distribution) function, i.e., $\int_{x}P(x)\mathrm dx=1$.
 However, it is not easy to find appropriate prior.
+Penalized least squares are to minimize the 
+\begin{equation}\label{ Penalized mle}\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\sum_{i=1}^{p}\lambda_ip_i(|\theta_i|)\end{equation}
+where the penalty function $p_i$ are not necessary for all $i$.
+
 [One distinguishing feature of the nonconcave penalized likelihood approach is that it can simultaneously select variables and estimate coefficients of variables.](http://www.math.hkbu.edu.hk/~hpeng/Paper/modsel.pdf)
 
 - [Variable Selection via Nonconcave Penalized Likelihood and its Oracle Properties](https://orfe.princeton.edu/~jqfan/papers/01/penlike.pdf)
@@ -413,7 +592,21 @@ However, it is not easy to find appropriate prior.
 - https://www.ccg.unam.mx/~vinuesa/tlem/pdfs/Sanderson_PL_2002.pdf
 - http://people.vcu.edu/~dbandyop/BIOS625/Penalized.pdf
 
-## Classification Loss 
+### Regression Discontinuity Design
+
+We can deal with the categorical independent variable.
+`Indicator variable, instrumental variable`
+
+- [Endogenous Regressors and Instrumental Variables](https://eml.berkeley.edu/~powell/e240b_sp10/ivnotes.pdf)
+- https://www.mailman.columbia.edu/research/population-health-methods/instrumental-variables
+- [8.2 - The Basics of Indicator Variables](https://online.stat.psu.edu/stat462/node/161/)
+- https://idss.mit.edu/calendar/idss-distinguished-speaker-seminar-rocio-titiunik/
+
+## Classification Loss
+
+Simply speaking, classification is to
+$$\mathbb{R}^d\mapsto \mathbb{D}$$
+where $\mathbb{D}$ is the finite categorical set.
 
 Classification is about categorical variable.
 [A categorical variable (sometimes called a nominal variable) is one that has two or more categories, but there is no intrinsic ordering to the categories.  For example, gender is a categorical variable having two categories (male and female) and there is no intrinsic ordering to the categories.  Hair color is also a categorical variable having a number of categories (blonde, brown, brunette, red, etc.) and again, there is no agreed way to order these from highest to lowest.  A purely categorical variable is one that simply allows you to assign categories but you cannot clearly order the variables.](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-numerical-variables/)  
@@ -423,71 +616,544 @@ There is no arithmetic and magnitude concept in the world of categorical variabl
 Purely categorical variables are not comparable.
 In computer, they are always in the format of string or char.
 Like other common objects in computer, we can test that if two categorical variables share the same literal value.
-So it is natrual to apply the 0-1 loss function in classification problems.
-The 0-1 loss is defined as following
-\begin{equation}
-\label{0-1 loss}
-L(\hat{y}, y)=\begin{cases}1,&\text{if $\hat{y}\not= y$}\\
-                           0,&\text{if $\hat{y}= y$}\end{cases}.
-\end{equation}
-
-The categorical variable is really discrete variables that can take on one of finite possible mutually exclusive states.
-
-We follow the 1-of-K scheme proposed by [Christopher Bishop](https://www.microsoft.com/en-us/research/people/cmbishop/)  
-in [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf).
-The categorical variable is represented by a K-dimensional vector $x$ 
-in which one of the elements $x_k$ equals $1$, and all remaining elements equal $0$,
-i.e., one-hot vector.
 
 
 - https://online.stat.psu.edu/stat504/node/6/
+- [How good is your classifier? Revisiting the role of evaluation metrics in machine learning](https://talks.cam.ac.uk/talk/index/128293)
+
+----
+
+[Category Encoders](http://contrib.scikit-learn.org/category_encoders/index.html) is a set of scikit-learn-style transformers for encoding categorical variables into numeric with different techniques. 
+
+- http://contrib.scikit-learn.org/category_encoders/
+- https://brendanhasz.github.io/2019/03/04/target-encoding.html
+- https://www.kaggle.com/waydeherman/tutorial-categorical-encoding
+- https://kiwidamien.github.io/encoding-categorical-variables.html
+- https://kiwidamien.github.io/james-stein-encoder.html
+- https://kiwidamien.github.io/are-you-getting-burned-by-one-hot-encoding.html
+
+----
+
 - https://rohanvarma.me/Loss-Functions/
+- https://people.eecs.berkeley.edu/~wainwrig/stat241b/lec11.pdf
+- https://people.cs.umass.edu/~akshay/courses/cs690m/files/lec12.pdf
+- https://www.cse.huji.ac.il/~daphna/theses/Alon_Cohen_2014.pdf
+- [About loss functions, regularization and joint losses : multinomial logistic, cross entropy, square errors, euclidian, hinge, Crammer and Singer, one versus all, squared hinge, absolute value, infogain, L1 / L2 - Frobenius / L2,1 norms, connectionist temporal classification loss](http://christopher5106.github.io/deep/learning/2016/09/16/about-loss-functions-multinomial-logistic-logarithm-cross-entropy-square-errors-euclidian-absolute-frobenius-hinge.html)
 
-### Cross-Entropy Loss
+### 0-1 loss and its surrogates
+
+It is natural to apply the 0-1 loss function in classification problems according to lack of arithmetic operation.
+The 0-1 loss is defined as following
+\begin{equation}\label{0-1 loss}
+L(\hat{y}, y)=\begin{cases}1,&\text{if $\hat{y}\not= y$}\\
+                           0,&\text{if $\hat{y}= y$}\end{cases}=\mathbb{I}(\hat{y}\not= y).
+\end{equation}
+where $\mathbb{I}(\cdot)$ is the indicator function and $\hat y, y$ are categorical variables.
+And [this loss will induce the discrete topology space.](https://proofwiki.org/wiki/Definition:Discrete_Topology)
+[This metric "shatters" the points, isolating each one within its own unit ball.](https://math.stackexchange.com/questions/2614268/why-is-a-discrete-topology-called-a-discrete-topology)
+
+- [Why is a discrete topology called a discrete topology?](https://math.stackexchange.com/questions/2614268/why-is-a-discrete-topology-called-a-discrete-topology)
+- https://proofwiki.org/wiki/Category:Discrete_Topology
+- https://stattrek.com/multiple-regression/dummy-variables.aspx
+
+---
+
+For example, it is uased in linear regression of an indicator matrix.
+
+- https://online.stat.psu.edu/stat508/lesson/8/8.5
+- http://users.umiacs.umd.edu/~hcorrada/PracticalML/pdf/lectures/classification.pdf
+
+### Binary classification
+
+An n-dimensional pattern (object) $\mathbb x$ has $n$ coordinates, $x=(x_1, x_2, \cdots, x_n)$, 
+where each $x_i$ is a real number, $x_i\in\mathbb{R}$ for $i = 1, 2,\cdots, n$. 
+Each pattern $\mathbb x_j$ belongs to a class $y_j\in\{-1, +1\}$. 
+Consider a training set $T$ of $m$ patterns together with their classes, $T=\{(\mathbb{x}_1, y_1), (\mathbb{x}_2, y_2), \cdots, (\mathbb{x}_m, y_m)\}$. 
+Consider a dot product space $S$, in which the patterns $x$ are embedded, $x_1, x_2,\cdots, x_m\in S$. 
+Any hyperplane in the space $S$ can be written as
+$$\{\mathbb x\in S\mid \mathbb w\cdot\mathbb x+b=0\}, \mathbb w\in S, b\in\mathbb{R}.$$
 
 
+The dot product $w\cdot\mathbb x$ is defined by:
+$$\mathbb w\cdot\mathbb x=\sum_{i}^n w_ix_i$$
+
+
+A training set of patterns is `linearly separable` if there exists at least one linear classifier defined by the pair $(\mathbb w, b)$ 
+which correctly classifies all training patterns. 
+This linear classifier is represented by the hyperplane $H$ $(\mathbb{w\cdot x}+b=0)$ and 
+defines a region for class $+1$ patterns $(\mathbb{w\cdot x}+b>0)$ and another region for class $-1$ patterns $(\mathbb{w\cdot x}+b<0)$.
+The  linear classifiers are in the following form
+\begin{equation}\hat{y}=\operatorname{sgn}(\mathbb{w\cdot x}+b)
+=\begin{cases}1, &\text{if $\mathbb{w\cdot x}+b> 0$;}\\
+-1, &\text{if $\mathbb{w\cdot x}+b< 0$.}\end{cases}
+\end{equation}
+
+In this case, we can reexpress the loss \ref{0-1 loss} as following
+\begin{equation}\tag{binary loss}\label{binary loss}
+L(\hat{y}, y)=\begin{cases}1,&\text{if $\hat{y}\not= y$}\\
+                           0,&\text{if $\hat{y}= y$}\end{cases}
+                           =\frac{1}{2}(1-\operatorname{sgn}(\mathbb{w\cdot x}+b)y).
+\end{equation}
+
+The optimization procedure will minimize the loss over the training data set $T$
+$$\sum_{i=1}^{m} \frac{1}{2}(1-\operatorname{sgn}(\mathbb{w\cdot x_i}+b)\mathbb{y}_i)$$
+And if the positive  $\alpha>0$ is small enough, we could obtain
+$$(w^*, b^*)=
+\arg\min_{\mathbb{w}, b} \sum_{i=1}^{m} \frac{1}{2}(1-\operatorname{sgn}(\mathbb{w\cdot x_i}+b)\mathbb{y}_i)\\=
+\arg\min_{\mathbb{w}, b} \sum_{i=1}^{m} \frac{1}{2}(1-\operatorname{sgn}(\frac{1}{\alpha}[\mathbb{w\cdot x_i}+b])\mathbb{y}_i)
+$$
+where $\alpha\leq \min\{\mathbb{w^*\cdot x_i}+b^*\mid i=1,\cdots, m\}$.
+The above objective is `non-differentiable and non-convex`.
+
+If the training set $T$ is `linearly separable`, we can transfer the linear separability condition into constraints
+\begin{equation}\label{SVM}\tag{SVM}
+ \begin{split}
+  (w^*, b^*) =&\arg\min_{\mathbb{w}, b}\frac{1}{2}\|\mathbb{w}\|_2^2 \\
+  &\text{subject to  } \underbrace{(\mathbb{w\cdot x_i}+b)\mathbb{y}_i\geq 0}_{\text{linear separability}} \,\, i=1,\cdots,m.
+ \end{split}
+\end{equation}
+We prefer `the maximal margin hyperplane` 
+\begin{equation}\label{hard margins}\tag{hard margins}
+ \begin{split}
+  (w^*, b^*) =&\arg\min_{\mathbb{w}, b}\frac{1}{2}\|\mathbb{w}\|_2^2 \\
+  &\text{subject to  } \underbrace{(\mathbb{w\cdot x_i}+b)\mathbb{y}_i\geq 1}_{\text{linear separability}} \,\, i=1,\cdots,m.
+ \end{split}
+\end{equation}
+where the `support vectors` are defined as $\{(\mathbb{x}_i , y_i)\mid \mathbb{w\cdot x_i}+b)=\mathbb{y}_i\}$.
+It is the `quadratic optimization problem with linear constraints`.
+
+If the training set $T$ is not `linearly separable`,  we prefer `the maximal soft margin hyperplane`
+\begin{equation}\tag{soft margin}\label{soft margin}
+ \begin{split}
+  (w^*, b^*) =&\arg\min_{\mathbb{w}, b}\frac{1}{2}\|\mathbb{w}\|_2^2+\lambda\sum_{i=1}^m\varepsilon_i \\
+  &\text{subject to  } (\mathbb{w\cdot x_i}+b)\mathbb{y}_i\geq 1- \varepsilon_i \\
+  & \varepsilon_i \geq 0\,\, i=1,\cdots,m.
+ \end{split}
+\end{equation}
+Here $\lambda > 0$ is the regularization constant.
+
+A surrogate loss is a loss that is used as a proxy for the 0-1 loss, and usually has better computational properties such as [Hinge loss](https://en.wikipedia.org/wiki/Hinge_loss), [Ramp loss](https://www.jstor.org/stable/23013182).
+
+- http://www.svms.org/history.html
+- https://cs231n.github.io/linear-classify/
+- https://www.jianshu.com/p/4a40f90f0d98
+- https://www.cs.otago.ac.nz/research/student-publications/Haitao_Xu_Tbldm_for_ajcai2018.pdf
+
+---
+
+If $\varepsilon_i> 1$, we can imply that $\operatorname{sgn}(\mathbb{w\cdot x_i}+b)\not=\mathbb{y}_i$, 
+i.e.,  the prediction is wrong with respect to the sample $(\mathbb{x}_i , y_i)$.
+And $(\mathbb{w\cdot x_i}+b)\mathbb{y}_i\geq 1- \varepsilon_i\implies \varepsilon_i\geq 1- (\mathbb{w\cdot x_i}+b)\mathbb{y}_i$, so the prediction is right if $\varepsilon_i\leq 0$.
+The [Hinge loss](https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es1999-461.pdf)  is defined as 
+$$\operatorname{H}(y_i,\hat{y}_i)=\max\{0, 1- (\underbrace{\mathbb{w\cdot x_i}+b}_{\hat y_i})y_i\}\tag{Hinge loss}$$
+so `hinge loss` is $0$ when the prediction is right.
+The `ramp loss` is defined as following
+$$\operatorname{R}(y_i,\hat{y}_i)=\min\{1,\max\{0, 1- (\underbrace{\mathbb{w\cdot x_i}+b}_{\hat y_i})y_i\}\}\tag{Ramp loss}$$
+which is  closer to the  0-1 loss \eqref{binary loss} than the hinge loss.
+
+Note that $\lim_{t\to 0}\frac{1- t}{\exp(-t)}=1$, `Exponential  Loss` is defined that
+$$E(y_i,\hat y_i)=\exp(-(\mathbb{w\cdot x_i}+b)y_i).\tag{Exponential  loss}$$
+
+Another principle to solve the non-limear classification is to take some feature transformation and apply a linear classifer.
+Kernel tricks are one of the most popular methods.
+
+kernel tricks maps the data points into higher dimensional space.
+
+- [SVM for Pattern recognition](http://support-vector-machines.org/SVM_pr.html)
+- http://www.ece.utep.edu/research/webfuzzy/docs/kk-thesis/kk-thesis-html/node19.html
+- http://web.mit.edu/6.034/wwwbob/svm-notes-long-08.pdf
+- https://en.wikipedia.org/wiki/Support-vector_machine
+- https://en.wikipedia.org/wiki/Hinge_loss
+- [Nonconvex online support vector machines](https://www.ncbi.nlm.nih.gov/pubmed/20513924)
+- [The Support Vector Machine and Mixed Integer Linear Programming: Ramp Loss SVM with L1-Norm Regularization](https://scholarscompass.vcu.edu/cgi/viewcontent.cgi?article=1007&context=ssor_pubs)
+
+Without modification of loss functions, we can extend the binary claasifers to mutlicall classifers.
+The basic belief is that a single binary classifer must learn a specific pattern 
+so we can use multiply binary classifer to learn  multiply patterns.
+
+- https://en.wikipedia.org/wiki/Multiclass_classification
+- [Multiclass Learning with ECOC](http://blog.pluskid.org/?p=870)
+
+``` {r svm, echo=FALSE, fig.height=4, fig.width=6}
+data(cats, package = "MASS")
+library(e1071)
+m <- svm(Sex~., data = cats)
+plot(m, cats)
+
+## more than two variables: fix 2 dimensions
+data(iris)
+m2 <- svm(Species~., data = iris)
+plot(m2, iris, Petal.Width ~ Petal.Length,
+     slice = list(Sepal.Width = 3, Sepal.Length = 4))
+
+## plot with custom symbols and colors
+plot(m, cats, svSymbol = 1, dataSymbol = 2, symbolPalette = rainbow(4),
+color.palette = terrain.colors)
+```
+
+- https://arxiv.org/abs/1808.02435
+- [Mixed-Integer Support Vector Machine](http://opt.kyb.tuebingen.mpg.de/papers/OPT2009-Guan.pdf)
+- [OPTIMIZING $\Psi$-LEARNING VIA MIXED INTEGER PROGRAMMING](https://stat-or.unc.edu/files/2016/04/05-20.pdf)
+
+---
+
+We could explain the linear classifier in the probabilistic interpretation 
+$$\hat{y}=\operatorname{sgn}(\mathbb{w\cdot x}+b)=\operatorname{sgn}[\ln(\frac{P(Y=1\mid x)}{1-P(Y=1\mid x)})]$$
+so that $P(Y=1\mid x)=\frac{\exp(\mathbb{w\cdot x}+b)}{1+\exp(\mathbb{w\cdot x}+b)}=\frac{1}{1+\exp(-[\mathbb{w\cdot x}+b])}$.
+And $P(Y\not=1\mid x)=1-\frac{\exp(\mathbb{w\cdot x}+b)}{1+\exp(\mathbb{w\cdot x}+b)}=\frac{1}{1+\exp(\mathbb{w\cdot x}+b)}$.
+In our setting $y_i\{+1,-1\}$, we can get that 
+$$P(y\mid x)=\frac{1}{1+\exp(-y[\mathbb{w\cdot x}+b])}$$
+where $y\{+1,-1\}$.
+
+We apply the maximum likelihood principle to estimate the parameters
+$$\arg\max_{\mathbb w, b}\prod_{i=1}^m P(y_i\mid x_i)=\arg\min_{\mathbb w, b}\ln(\frac{1}{P(y_i\mid x_i)})\\=\arg\min_{\mathbb w, b}\ln(1+\exp(-y_i[\mathbb{w\cdot x_i}+b])).\tag{negative likellihood}$$
+Note that $\lim_{z\to\infty}\frac{\ln(1+\exp(z))}{1+z}=1$
+so the negative log-likelihood function is the approximation of the hinge loss.
+
+In our  context, we always assume that $y\in\{+1,-1\}$ while another option is 
+$y\{0,1\}$.
+If $y\{0,1\}$, we still suppose that
+$$P(Y=1\mid x)=\frac{1}{1+\exp(-[\mathbb{w\cdot x}+b])}$$
+and 
+$$P(Y=0\mid x)-P(Y\not=1\mid x)=\frac{1}{1+\exp([\mathbb{w\cdot x}+b])}$$
+so we can express the probaility in 
+$$P(Y=y\mid x)=[\frac{1}{1+\exp(-[\mathbb{w\cdot x}+b])}]^{y} [\frac{1}{1+\exp([\mathbb{w\cdot x}+b])}]^{1-y}$$
+where $y=0$ or $y=1$.
+We apply the maximum likelihood principle to estimate the parameters
+$$\arg\max_{\mathbb w, b}\prod_{i=1}^m P(y_i\mid x_i)
+\\=\arg\min_{\mathbb w, b}\sum_{i=1}^m-\ln([\frac{1}{1+\exp(-[\mathbb{w\cdot x_i}+b])}]^{y_i} [\frac{1}{1+\exp([\mathbb{w\cdot x_i}+b])}]^{1-y_i})\\
+=\arg\min_{\mathbb w, b} \sum_{i=1}^m y_i\ln(1+\exp(-[\mathbb{w\cdot x_i}+b]))+(1-y_i)\ln([1+\exp([\mathbb{w\cdot x_i}+b])]) \\
+=\arg\min_{\mathbb w, b} \sum_{i=1}^m
+y_i\ln(\frac{1+\exp(-[\mathbb{w\cdot x_i}+b])}{1+\exp([\mathbb{w\cdot x_i}+b])})
++\ln([1+\exp([\mathbb{w\cdot x_i}+b])]) \\
+=\arg\min_{\mathbb w, b} \sum_{i=1}^m y_i[\mathbb{w\cdot x_i}+b]+\ln([1+\exp([\mathbb{w\cdot x_i}+b])])
+\tag{negative likellihood}.$$
+
+- [Which loss function is correct for logistic regression?](https://stats.stackexchange.com/questions/250937/which-loss-function-is-correct-for-logistic-regression)
+- [Why there are two different logistic loss formulation / notations?](https://stats.stackexchange.com/questions/229645/why-there-are-two-different-logistic-loss-formulation-notations)
+- [Logistic Regression](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf)
+- [Logistic classification model - Maximum likelihood estimation](https://www.statlect.com/fundamentals-of-statistics/logistic-model-maximum-likelihood)
+- [Robustness and Regularization of Support Vector Machines](http://www.jmlr.org/papers/volume10/xu09b/xu09b.pdf)
+- [The Entire Regularization Path for the Support Vector Machine](https://web.stanford.edu/~hastie/Papers/svmpath_jmlr.pdf)
+
+Note that 
+$$\hat{y}=\operatorname{sgn}[\ln(\frac{P(Y=1\mid x)}{1-P(Y=1\mid x)})]=\begin{cases}+1, & \text{if  } P(Y=1\mid x)> P(Y\not=1\mid x);\\ -1, &\text{if  } P(Y=1\mid x)< P(Y\not=1\mid x).\end{cases}$$
+If we set 
+$$P(Y=1\mid x)=\frac{1}{2}+\operatorname{sgn}(\mathbb{w}x+b)(1-\exp(-\|\mathbb{w}x+b\|_1))$$
+so $P(Y\not=1\mid x)=\frac{1}{2}-\operatorname{sgn}(\mathbb{w}x+b)(1-\exp(-\|\mathbb{w}x+b\|_1))$ and the following condition also holds
+$$\hat{y}=\operatorname{sgn}(\mathbb{w\cdot x}+b)=\operatorname{sgn}[\ln(\frac{P(Y=1\mid x)}{1-P(Y=1\mid x)})].$$
+In our setting $y_i\{+1,-1\}$, we can get that 
+$$P(y\mid x)=\frac{1}{2}+y\operatorname{sgn}(\mathbb{w}x+b)(1-\exp(-\|\mathbb{w}x+b\|_1))$$
+where $y\{+1,-1\}$.
+We apply the maximum likelihood principle to estimate the parameters
+$$\arg\max_{\mathbb w, b}\prod_{i=1}^m P(y_i\mid x_i)=\arg\min_{\mathbb w, b}\sum_{i=1}^m -\ln [\frac{1}{2}+y_i\operatorname{sgn}(\mathbb{w}x_i+b)(1-\exp(-\|\mathbb{w}x_i+b\|_1))]$$
+where $\mathbb{w}x_i+b\not= 0$.
+Note that  $\lim_{x\to 0}\frac{-\ln(1+x)}{x}=-1$ so 
+$$-\ln [\frac{1}{2}+{y}_{i}\operatorname{sgn}(\mathbb{w}{x}_{i}+b)(1-\exp(-{\|\mathbb{w}{x}_{i}+b\|}_{1}))]\\ \approx \frac{1}{2}- y_i\operatorname{sgn}(\mathbb{w}x_i+b)(1-\exp(-\|\mathbb{w}x_i+b\|_1))\\ =\frac{1}{2}[1-y_i\operatorname{sgn}(\mathbb{w}x_i+b)\frac{1-\exp(-\|\mathbb{w}x_i+b\|_1)}{2}]\\=\frac{1}{2}[1-y_i\operatorname{sgn}(\mathbb{w}x_i+b)]+\frac{y_i\operatorname{sgn}(\mathbb{w}x_i+b)(1+\exp(-\|\mathbb{w}x_i+b\|_1)}{4}).$$
+And we can induce more loss functions based on this approach.
+
+A more general result states that Bayes consistent loss functions can be generated using the following formulation：
+$$\phi (v)=C[f^{-1}(v)]+(1-f^{-1}(v))C'[f^{-1}(v)]$$
+where  $f(\eta ),(0\leq \eta \leq 1)$ is any convertible function such that  $f^{-1}(-v)=1-f^{-1}(v)$
+and $C(\eta )$ is  any differentiable strictly concave function such that $C(\eta )=C(1-\eta )$.
+See [Loss functions for classification](https://en.wikipedia.org/wiki/Loss_functions_for_classification).
+
+- https://en.wikipedia.org/wiki/Loss_functions_for_classification
+- http://jmlr.org/papers/volume16/masnadi15a/masnadi15a.pdf
+- https://papers.nips.cc/paper/3591-on-the-design-of-loss-functions-for-classification-theory-robustness-to-outliers-and-savageboost.pdf
+
+---
+
+If the training set $T$ is `linearly separable`, we can train a decision tree so that
+it defines a region for class $+1$ patterns $\mathbb{w\cdot x}+b>0$ 
+and another region for class $-1$ patterns $\mathbb{w\cdot x}+b<0$.
+
+In the analytic form of decision tree, it is defined as following
+$$\mathbb{I}(\mathbb{w\cdot x}+b>0)-(1-\mathbb{I}(\mathbb{w\cdot x}+b>0))\tag{Decision tree}$$
+where $\mathbb{I}$ is the indicator function. 
+
+The decision tree is to minimize the Split Criteria at each stage.
+
+Tsallis entropy is defined by 
+\begin{equation}\label{Tsallis entropy}\tag{Tsallis entropy}
+S_q(X) =\frac{1}{1-q}(\sum_{i=1}^n p(x_i)^q-1)
+\end{equation}
+which converges to Shannon entropy when $q \to 1$.
+
+- https://www.benkuhn.net/tree-imp
+- [How does a Decision Tree decide where to split?](http://www.ashukumar27.io/Decision-Trees-splitting/)
+- [Selecting Multiway Splits in Decision Trees](https://www.cs.waikato.ac.nz/~ml/publications/1996/Frank-Witten96.pdf)
+- [Unifying the Split Criteria of Decision Trees Using Tsallis Entropy](https://arxiv.org/pdf/1511.08136.pdf)
+- https://daviddalpiaz.github.io/r4sl/trees.html
+- https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy
+- https://online.stat.psu.edu/stat508/lesson/11/11.2
+
+
+### Mutil-class classification
+
+The categorical variable is really discrete variables that can take on one of finite possible mutually exclusive states.
+
+We follow the 1-of-K scheme proposed by [Christopher Bishop](https://www.microsoft.com/en-us/research/people/cmbishop/) in [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf).
+The categorical variable is represented by a K-dimensional vector $x$  
+in which one of the elements $x_k$ equals $1$, and all remaining elements equal $0$,
+i.e., one-hot vector.
+For example, we use the vector $x$ to represent gender (male and female) so $x\in\{(0, 1)^T, (1, 0)^T\}$
+where $(0, 1)^T/(1, 0)^T$ corresponds male/female.
+
+If we denote the probability of $x_k = 1$ by the parameter $\mu_k$, 
+then the distribution of $x$ is given
+$$P(x\mid \mu)=\prod_{i=1}^K\mu_i^{x_i}$$
+where $\sum_{i=1}^K\mu_i=\sum_{i=1}^Kx_i=1$ and $x_i\in\{0,1\}, u_i>0$ for $i=1,\cdots,K$.
+And the expectation of the categorical random variable is computed by
+$$\mathbb{E}(x)=\sum_{x}xP(x)=(\mu_1,\cdots,\mu_K)^T=\mu.$$
+The  marginal distribution for $x_k$ is given by
+$$P(x_k)=\sum_{i\not=k}P(x_i)=[\sum_{i\not=k}\mu_i]^{1-x_i}\mu_i^{x_i}=(1-\mu_i)^{1-x_i}\mu_i^{x_i}$$
+and the marginal expectation of $x_i$ is $\mu_i$.
+
+- [The Multinomial Distribution](https://dipmat.univpm.it/~demeio/Alabama_PDF/11.%20Bernoulli_Trials/Multinomial.pdf)
 
 Given two distributions $p$ and $q$ over a given variable $X$, the cross entropy is defined as
 \begin{equation}
 \label{cross}
-H(p\|q)=\int_{x}p(x)\log(\frac{1}{q(x)})\mathrm d x
+H(p\|q)=\int_{x}p(x)\log(\frac{1}{q(x)})\mathrm d x\tag{Cross entropy}
 \end{equation}
 
 KL divergence in simple term is a measure of how two probability distributions (say $p$ and $q$) are different from each other.
 \begin{equation}
 \label{k-l}
 KL(p\|q)=\int_{x}p(x)\log(\frac{p(x)}{q(x)})\mathrm d x
-=\int_{x}p(x)[\log({p(x)})-\log({q(x)})]\mathrm d x
+=\int_{x}p(x)[\log({p(x)})-\log({q(x)})]\mathrm d x \tag{Cross entropy}
 \end{equation}
-where $p, q$ are probaility density function.
+where $p, q$ are probability density function.
 
+- [A Friendly Introduction to Cross-Entropy Loss](https://rdipietro.github.io/friendly-intro-to-cross-entropy-loss/)
+
+-----
+
+Here we cast the classification task as maximum likelihood estimate for discrete distribution.
+
+[For polytomous logistic regression, we will consider the possibility of having k > 2 possible outcomes. (Note: The word polychotomous is sometimes used, but note that this is not actually a word!)](https://online.stat.psu.edu/stat501/lesson/15/15.2)
+
+The multiple nominal logistic regression model (sometimes called the multinomial logistic regression model) is given by the following:
+$$\pi_{j}=\left\{ 
+\begin{array}{ll} 
+\dfrac{\exp(\textbf{X}\beta_{j})}{1+\sum_{j=2}^{k}\exp(\textbf{X}\beta_{j})} & \hbox{j=2,\cdots,k} \\ 
+\\ 
+\dfrac{1}{1+\sum_{j=2}^{k}\exp(\textbf{X}\beta_{j})} 
+& \hbox{j=1} \end{array} \right.$$
+
+$\pi_j$ is the probability that an observation is in one of $k$ categories. 
+The likelihood for the nominal logistic regression model is given by:
+$$L(\beta;\textbf{y},\textbf{X})=\prod_{i=1}^{n}\prod_{j=1}^{k}\pi_{i,j}^{y_{i,j}},$$
+where $\sum_{j=1}^k y_{i,j}=\sum_{j=1}^k\pi_{i,j}=1$.
+
+This yields the log likelihood 
+$$\ell(\beta)=\sum_{i=1}^{n}\sum_{j=1}^{k}y_{i,j}\log\pi_{i,j}=\sum_{i=1}^{n}\mathbb{I}(y_{i,j}\not=0)\log\pi_{i,j}.$$
+
+Maximizing the likelihood (or log likelihood) has no closed-form solution, so a technique like iteratively reweighted least squares is used to find an estimate of the regression coefficients.
+
+- [15.2 - Polytomous Regression](https://online.stat.psu.edu/stat501/lesson/15/15.2)
+- https://www.statisticssolutions.com/mlr/
+- [MULTINOMIAL LOGISTIC REGRESSION | R DATA ANALYSIS EXAMPLES](https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/)
+- [Lesson 12: Logistic, Poisson & Nonlinear Regression](https://online.stat.psu.edu/stat462/node/90/)
+- [6.2 The Multinomial Logit Model](https://data.princeton.edu/wws509/notes/c6s2)
+- [Softmax regression](https://zh.d2l.ai/chapter_deep-learning-basics/softmax-regression.html)
+- https://peterroelants.github.io/posts/cross-entropy-softmax/
+- https://peterroelants.github.io/posts/cross-entropy-logistic/
+
+----
+
+There is a natural pairing between the softmax activation function and the cross-entropy penalty function.
+
+`Softmax` maps a vector to a discrete probability:
+$$\tag{Softmax}p(x)=\operatorname{Softmax}(Wx)=(p_1,\cdots, p_k)^T,\\p_i=\frac{\exp(W_ix)}{\sum_{i=1}^k\exp(W_ix)}=\frac{\exp(z_i)}{\sum_{i=1}^k\exp(z_i)},\\z_i=W_ix,$$
+where $x\in\mathbb{R}^p$ and $W_i$ are the row vectors of $W$.
+
+
+We can compute the derivative of the cross-entropy loss function for the softmax function
+$$\frac{\partial p_i}{\partial z_i}=\frac{\exp(z_i)^2-\exp(z_i)\sum_{i=1}^p\exp(z_i)}{(\sum_{i=1}^p\exp(z_i))^2}=p_i^2-p_i\\ \frac{\partial p_i}{\partial z_j}=\frac{\exp(z_j)\exp(z_i)}{(\sum_{i=1}^p\exp(z_i))^2}=p_ip_j\quad \forall\,\, j\not=i$$
+and
+$$\frac{\partial }{\partial z_i}\log(\frac{1}{p_i})=-\frac{1}{p_i}\frac{\partial p_i}{\partial z_i}=\frac{\sum_{j=1}^k\exp(z_j)-\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\sum_{j\not=i}\exp(z_j)}{\sum_{i=1}^k\exp(z_i)}=1-p_i\\\frac{\partial }{\partial z_j}\log(\frac{1}{p_i})=-p_j.$$
+
+
+The `Cross-Entropy` for discrete distribution is defined as
+$$\sum_{i=1}^k y_i\log(\frac{y_i}{p_i}),\\ y_i\log(\frac{y_i}{p_i})=0 \quad\text{when    }y_i=0.$$
+where $\sum_{i=1}^k y_i=\sum_{i=1}^k p_i=1$ and $y_i\geq 0, p_i\geq 0\quad\forall i$.
+
+Using [the one-hot encoding](https://www.kaggle.com/dansbecker/using-categorical-data-with-one-hot-encoding), we encode the categorical label as the one-hot vector such as $y=(0,0, i, 0,0)^T$.
+And we use the cross-entropy to measure the predicted probability and the ground truth label after the softmax activation function
+$$\sum_{i=1}^n H(\mathbb{y}_i, p)=\sum_{i=1}^n \log(\frac{1}{p_j})=\sum_{i=1}^n -\log({p_j})\quad\text{if } y_{i,j}=1.$$
+
+- [Properties of Cross-Entropy Minimization](https://bayes.wustl.edu/Manual/CrossEntropyMinimization.pdf)
 - [On The Pairing Of The Softmax Activation And Cross--Entropy Penalty Functions And The Derivation Of The Softmax Activation Function](https://core.ac.uk/display/24298161)
-- https://arm-software.github.io/CMSIS_5/NN/html/group__Softmax.html
-- https://gombru.github.io/2018/05/23/cross_entropy_loss/
+- [Rethinking Softmax with Cross-Entropy: Neural Network Classifier as Mutual Information Estimator](https://github.com/ZhenyueQin/Research-Softmax-with-Mutual-Information)
+- [Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
+
+The softmax function is also the gradient of the `LogSumExp` function, a smooth maximum;
+defining: 
+$$\operatorname{LSE}(z)=\log(\sum_{i=1}^k\exp(z_i))\tag{LogSumExp}$$
+the partial derivatives are:
+$$\partial_i \operatorname{LSE}(z)=\frac{\exp(z_i)}{\sum_{i=1}^p\exp(z_i)}=p_i.$$
+Let $z_j=max\{z_1,\cdots,z_k\}$
+$$LSE(z)=\log(\sum_{i=1}^k\exp(z_i))=\log(\exp(z_j)\sum_{i=1}^k\frac{\exp(z_i)}{\exp(z_j)})\\=\log(\exp(z_j)[1+\sum_{i\not=j}\frac{\exp(z_i)}{\exp(z_j)}])\approx \log(\exp(z_j))+\sum_{i\not=j}\frac{\exp(z_i)}{\exp(z_j)}\geq z_j.$$
+And if we define
+$$\displaystyle f_\varepsilon(x) = \varepsilon \log \Big( \sum_{i=1}^n \exp( x_i / \varepsilon) \Big),$$
+and $\lim_{\varepsilon\to 0} f_\varepsilon(x)=\max\{x_1,\cdots,x_n\}$.
+Observe that for all $c\in\mathbb{R}$
+$$\frac{\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\exp(z_i+c)}{\sum_{i=1}^k\exp(z_i+c)}.$$
+
+- https://en.wikipedia.org/wiki/Smooth_maximum
+- https://en.wikipedia.org/wiki/Softmax_function
+
+
+Note that 
+$$\lim_{n\to\infty}\frac{\exp(m)}{\sum_{i=1}^k\exp(nz_i)}\\=\lim_{n\to\infty}\frac{\exp(m)}{\exp(m)\sum_{i=1}^k\exp(nz_i-m))}=1$$
+where $m=\{nz_1,\cdots,nz_k\}$.
+So that we can find a smooth maximum by inner product
+$$(z_1,\cdots,z_k)^T\operatorname{softmax}(z)\approx \max\{z_1,\cdots,z_k\}.$$
+
+
+The `Gumbel-Max trick` provides a simple way to draw samples $z$ (one-hot vector) from a categorical distribution with class probabilities $\pi$
+$$z=\text{one-hot}[\arg\max_{i}\log(g_i+\log(\pi_i))]$$
+where $g_i=-\log(-\log(u)),u\sim\text{Unif}(0,1)$.
+
+Notice that there is still an argmax in Gumbel Max, which still makes it indifferentiable. Therefore, we use a softmax function to approximate this `argmax` procedure.
+The `Gumbel softmax` is defined as
+$$y_i=\frac{\exp(\log(g_i+\log(\pi_i))/\tau)}{\sum_{i}\exp(\log(g_i+\log(\pi_i))/\tau)}$$
+where $\tau\in(0,\infty)$ is a temparature hyperparameter.
+
+- [The Gumbel Trick](https://irenechen.net/2017/08/the-gumbel-trick/)
+- [Categorical reparameterization with Gumbel-Softmax](https://www.ntu.edu.sg/home/lixiucheng/paper/gumbel-softmax.html)
+- [The Gumbel-Max Trick for Discrete Distributions](https://lips.cs.princeton.edu/the-gumbel-max-trick-for-discrete-distributions/)
+- [Proof of the Gumbel Max Trick](https://www.hsfzxjy.site/2019-08-01-proof-of-gumbel-max-trick/)
+- [Gumbel-Max Trick Inference](https://laurent-dinh.github.io/2016/11/22/gumbel-max.html)
+- [The Gumbel trick](https://francisbach.com/the-gumbel-trick/)
+- [The Gumbel-Softmax Trick for Inference of Discrete Variables](https://casmls.github.io/general/2017/02/01/GumbelSoftmax.html)
+- [The Reparameterization Trick](https://gregorygundersen.com/blog/2018/04/29/reparameterization/)
+- https://gabrielhuang.gitbooks.io/machine-learning/content/reparametrization-trick.html
+- https://anotherdatum.com/gumbel-gan.html
+- [Differientiable Sampling and Argmax](https://wiki.lzhbrian.me/notes/differientiable-sampling-and-argmax)
+- http://people.csail.mit.edu/tommi/papers/Lorberbom_etal_neurips19.pdf
+
+
+----
+
+
+
+- https://zhuanlan.zhihu.com/p/34044634
+- [Large Margin In Softmax Cross-Entropy Loss](https://bmvc2019.org/wp-content/uploads/papers/0636-paper.pdf)
+- [Additive Margin Softmax for Face Verification github](https://github.com/happynear/AMSoftmax)
+- [Additive Margin Softmax for Face Verification](https://arxiv.org/abs/1801.05599)
+- https://happynear.wang/
+- https://wyliu.com/
+
+----
+
+`Generalized linear models and generalized additive models` are extension of linear models from two distinct perspectives.
+
+Generalized linear models use nonlinear model to estimate the mean of the errors
+$$\mathbb{E}(Y\mid X)=f(\theta\cdot X)\iff f^{-1}(\mathbb{E}(Y\mid X))=\theta\cdot X.\tag{GLM}$$
+where $f$ is invertible nonlinear function.
+
+Generalized additive models are defined as
+
+$$\mathbb{E}(Y\mid X)=\sum_{i=1}^{p}f_i(\theta_i\cdot X)\tag{GAM}$$
+where $f_i$ are nonlinear models.
+
+- http://environmentalcomputing.net/intro-to-gams/
+- https://m-clark.github.io/generalized-additive-models/
+- [Generalized additive model](https://projecteuclid.org/download/pdf_1/euclid.ss/1177013604)
+- [Lesson 10: Log-Linear Models](https://online.stat.psu.edu/stat504/node/117/)
 
 #### f-Divergences
 
+Roughly speaking, all f-divergences quantify the difference between a pair of distributions, each with different operational meaning.
+Note that we can use the following divergence to measure the discrepancy of two distribution function:
+$$KL(p\|q)=\int_{x}p(x)\log(\frac{p(x)}{q(x)})\mathrm d x=\int_{x}p(x)[-\log(\frac{q(x)}{p(x)})]\mathrm d x\geq 0.$$
+f-Divergences are to extend the $\log(\cdot)$ function to the function $f$.
+
+The functions $f$ are supposed to be concave and $f(1)=0$
+For example, $f(x)=x^2-1$ and 
+
+- https://en.wikipedia.org/wiki/F-divergence
 - https://people.eecs.berkeley.edu/~jordan/jordan-ssg.pdf
 - http://people.lids.mit.edu/yp/homepage/data/LN_fdiv.pdf
-- https://rgmia.org/monographs/csiszar_list.html
-
+- [Inequalities for Csiszár f-Divergence in Information Theory](https://rgmia.org/monographs/csiszar_list.html)
+- [ON SURROGATE LOSS FUNCTIONS AND f-DIVERGENCES1](https://projecteuclid.org/download/pdfview_1/euclid.aos/1236693153)
 
 ### Bregman Divergences
 
-- http://mark.reid.name/blog/meet-the-bregman-divergences.html
+Bregman Divergences are the extension of squares of $\ell_2$.
+It is based on the differentiable convex function $f$ as following
+$$d_f(x,y) := f(x) - f(y) - {\langle \nabla f(y), x-y \rangle} \ge 0$$
+which is called the Bregman divergence induced by $f$.
+
+- [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
+- [Bregman Divergence and Mirror Descent](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
 - https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf
+
+### Boosting and loss function
+
+The machine learning problem of classifier design is studied from  the perspective of probability elicitation, in statistics. 
+This shows that the standard approach of proceeding from the specification of a loss,  to the minimization of conditional risk is overly restrictive. 
+It is shown that a better alternative is to start from the specification of a functional form for the minimum conditional risk, 
+and derive the loss function. 
+This has various consequences of practical interest, 
+such as showing that 1) the widely adopted practice of relying on convex loss functions is unnecessary, 
+and 2) many new losses can be derived for classification problems. 
+These points are illustrated by the derivation of a number of novel Bayes consistent loss functions, 
+some of which are not convex but do not compromise the computational tractability of classifier design. 
+A number of algorithms custom tailored for specific classification problems are derived based on novel loss functions. 
+[These include classification algorithms for cost sensitive learning, robust outlier resistant classification and variable margin classification.](http://www.svcl.ucsd.edu/projects/LossDesign/)
+
+- [Classifier Loss Function Design](http://www.svcl.ucsd.edu/projects/LossDesign/)
+- [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/content/pdf/10.1023/A:1013912006537.pdf)
+- https://www.jiqizhixin.com/articles/2020-04-16-10
+- http://www.52caml.com/head_first_ml/ml-chapter6-boosting-family/
+
+[It has shown](https://web.stanford.edu/~hastie/Papers/AdditiveLogisticRegression/alr.pdf) that how boosting algorithms result from building additive models using Newton updates of the exponential loss function.
+Then the boosting methods are extended to gradeint boosting.
+
+- https://en.wikipedia.org/wiki/AdaBoost
+- https://explained.ai/gradient-boosting/L2-loss.html
+- https://www.cnblogs.com/jcchen1987/p/4581651.html
+
+### Optimal margine distribution machine learning
+
+Optimal margin Distribution Machine (ODM) can achieve a better generalization performance by optimizing the margin distribution explicitly.
+
+- [Optimal Margin Distribution Machine](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde19odm.pdf)
+- [Semi-Supervised Optimal Margin Distribution Machines](https://www.ijcai.org/Proceedings/2018/0431.pdf)
+- [Multi-Label Optimal Margin Distribution Machine](http://www.acml-conf.org/2019/conference/accepted-papers/175/)
+- [Large Margin Distribution Learning with Cost Interval and Unlabeled Data](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde16cisldm.pdf)
+- [Optimal Margin Distribution Clustering](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16895)
+- https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Cost-Sensitive%20and%20Class-Imbalance%20Learning
+
 
 ### Circle loss
 
 - [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
 - https://github.com/TinyZeaMays/CircleLoss
 - https://zhuanlan.zhihu.com/p/45014864
+- https://happynear.wang/
+
+
 
 ## Ranking loss
 
+Learning to rank is another kind of supervised learning task.
+
+- https://pub.ist.ac.at/~vnk/papers/MRJKK-CVPR2018.pdf
 - https://gombru.github.io/2019/04/03/ranking_loss/
+- https://github.com/xiaohai2016/StatRank
+- https://www.zhihu.com/people/richard-lee-91-28/posts
+
+### Differentiable Ranks
+
+- http://www.fields.utoronto.ca/talks/Differentiable-Ranking-and-Sorting-using-Optimal-Transport
 
 ## Metric learning
 
+- http://sanmi.cs.illinois.edu/research.html
 - https://ai.stanford.edu/~ang/papers/nips02-metric.pdf
 - http://www.jmlr.org/papers/volume10/weinberger09a/weinberger09a.pdf
