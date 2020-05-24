@@ -1006,6 +1006,8 @@ $$\frac{\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\exp(z_i+c)}{\sum_{i=1}^k\exp(z_
 - https://en.wikipedia.org/wiki/Softmax_function
 
 
+### Reparameterization trick 
+
 Note that 
 $$\lim_{n\to\infty}\frac{\exp(m)}{\sum_{i=1}^k\exp(nz_i)}\\=\lim_{n\to\infty}\frac{\exp(m)}{\exp(m)\sum_{i=1}^k\exp(nz_i-m))}=1$$
 where $m=\{nz_1,\cdots,nz_k\}$.
@@ -1022,6 +1024,7 @@ The `Gumbel softmax` is defined as
 $$y_i=\frac{\exp(\log(g_i+\log(\pi_i))/\tau)}{\sum_{i}\exp(\log(g_i+\log(\pi_i))/\tau)}$$
 where $\tau\in(0,\infty)$ is a temparature hyperparameter.
 
+
 - [The Gumbel Trick](https://irenechen.net/2017/08/the-gumbel-trick/)
 - [Categorical reparameterization with Gumbel-Softmax](https://www.ntu.edu.sg/home/lixiucheng/paper/gumbel-softmax.html)
 - [The Gumbel-Max Trick for Discrete Distributions](https://lips.cs.princeton.edu/the-gumbel-max-trick-for-discrete-distributions/)
@@ -1029,15 +1032,42 @@ where $\tau\in(0,\infty)$ is a temparature hyperparameter.
 - [Gumbel-Max Trick Inference](https://laurent-dinh.github.io/2016/11/22/gumbel-max.html)
 - [The Gumbel trick](https://francisbach.com/the-gumbel-trick/)
 - [The Gumbel-Softmax Trick for Inference of Discrete Variables](https://casmls.github.io/general/2017/02/01/GumbelSoftmax.html)
-- [The Reparameterization Trick](https://gregorygundersen.com/blog/2018/04/29/reparameterization/)
-- https://gabrielhuang.gitbooks.io/machine-learning/content/reparametrization-trick.html
-- https://anotherdatum.com/gumbel-gan.html
-- [Differientiable Sampling and Argmax](https://wiki.lzhbrian.me/notes/differientiable-sampling-and-argmax)
-- http://people.csail.mit.edu/tommi/papers/Lorberbom_etal_neurips19.pdf
 
+<img src="https://vitalab.github.io/article/images/concrete/fig1.png" width="70%"/>
+The derivative of the argmax is 0 everywhere except at the boundary of state changes, where it is undefined. 
+For this reason the `Gumbel-Max` trick is not a suitable reparameterization for use in stochastic computation graphs trained with automatic differentiation. 
+This is why the Concrete distribution is introduced; see Figure 1(b) for how to sample from it. Basically, the argmax operation is replaced with a softmax.
+
+- https://vitalab.github.io/article/2018/11/29/concrete.html
+- [Differientiable Sampling and Argmax](https://wiki.lzhbrian.me/notes/differientiable-sampling-and-argmax)
+- http://papers.nips.cc/paper/5666-variational-dropout-and-the-local-reparameterization-trick
+- [The Reparameterization Trick](https://gregorygundersen.com/blog/2018/04/29/reparameterization/)
+- [Backpropagating through continuous and discrete samples](https://gabrielhuang.gitbooks.io/machine-learning/content/reparametrization-trick.html)
+- https://anotherdatum.com/gumbel-gan.html
+- http://people.csail.mit.edu/tommi/papers/Lorberbom_etal_neurips19.pdf
+- http://dpkingma.com/
+- https://arxiv.org/pdf/1312.6114v10.pdf
+- [REINFORCE vs Reparameterization Trick](http://stillbreeze.github.io/REINFORCE-vs-Reparameterization-trick/)
+
+#### Local Reparameterization Trick
+
+- https://github.com/gngdb/variational-dropout
+- [The (Local) Reparameterization Trick](https://www.cs.toronto.edu/~duvenaud/courses/csc2541/slides/structured-encoders-decoders.pdf)
+- [Variational Dropout and the Local Reparameterization Tric](https://www.ics.uci.edu/~welling/publications/papers/VariationalDropout.pdf)
+
+### Hierarchical softmax
+
+Hierarchical softmax is an alternative to the softmax in which the probability of any one outcome depends on a number of model parameters that is only logarithmic in the total number of outcomes
+
+- https://ruder.io/word-embeddings-softmax/
+- http://building-babylon.net/2017/08/01/hierarchical-softmax/
+
+`soft binning`
+
+- http://bnaic2010.uni.lu/Papers/Category%20B/Bouchard.pdf
+- http://www.sci.utah.edu/~acoste/uou/Image/project1/Arthur_COSTE_Project_1_report.html
 
 ----
-
 
 
 - https://zhuanlan.zhihu.com/p/34044634
@@ -1080,6 +1110,8 @@ For example, $f(x)=x^2-1$ and
 - http://people.lids.mit.edu/yp/homepage/data/LN_fdiv.pdf
 - [Inequalities for Csiszár f-Divergence in Information Theory](https://rgmia.org/monographs/csiszar_list.html)
 - [ON SURROGATE LOSS FUNCTIONS AND f-DIVERGENCES1](https://projecteuclid.org/download/pdfview_1/euclid.aos/1236693153)
+- [Variational Inference with Tail-adaptive f-Divergence](https://arxiv.org/pdf/1810.11943.pdf)
+- https://hal.inria.fr/inria-00542337/document
 
 ### Bregman Divergences
 
@@ -1087,10 +1119,12 @@ Bregman Divergences are the extension of squares of $\ell_2$.
 It is based on the differentiable convex function $f$ as following
 $$d_f(x,y) := f(x) - f(y) - {\langle \nabla f(y), x-y \rangle} \ge 0$$
 which is called the Bregman divergence induced by $f$.
+If $f$ is only convex, we can take a subgradient $z\in\partial f(y)$ to rreplace the gradient $\nabla f(y)$.
+And $d_f(x, y)=0$ if $x=y$.
 
 - [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
 - [Bregman Divergence and Mirror Descent](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
-- https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf
+- [Generalized cross entropy loss for training deep neural networks with noisy labels](https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf)
 
 ### Boosting and loss function
 
@@ -1137,23 +1171,228 @@ Optimal margin Distribution Machine (ODM) can achieve a better generalization pe
 - https://zhuanlan.zhihu.com/p/45014864
 - https://happynear.wang/
 
+### Contrastive learning
+
+> Contrastive self-supervised learning techniques are a promising class of methods that build representations 
+> by learning to encode what makes two things similar or different.
+
+[Contrastive methods, as the name implies, learn representations by contrasting positive and negative examples.](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
+
+- https://blog.einstein.ai/prototypical-contrastive-learning-pushing-the-frontiers-of-unsupervised-learning/
+- [Contrastive Self-Supervised Learning](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
+- [Contractive Auto-Encoders: Explicit Invariance During Feature Extraction](https://icml.cc/Conferences/2011/papers/455_icmlpaper.pdf)
+
+## Ranking loss   
+
+A metric/distance $d$  in mathematics is defined as a function following three properties:
+1. Non-negativeness: $d(x, y)\geq 0\quad\forall x, y\in S$;
+2. Symetry: $d(x, y)=d(y,x) \quad\forall x, y\in S$;
+3. Triangle inequality: $d(x,z)+d(z,y)\geq d(x,y) \quad\forall x, y, z\in S$.
+
+For example, the 0-1 loss is a metric.
+And diveregence only requires $d(x, y)\geq 0\quad\forall x, y\in S$ and $d(x, y)=0$ if $x=y$.
+
+We can induce a loss function based on the probability distribution function of the ground truth.
+
+- https://en.wikipedia.org/wiki/Divergence_(statistics)
+
+[An ordinal variable is similar to a categorical variable.  The difference between the two is that there is a clear ordering of the variables.](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/what-is-the-difference-between-categorical-ordinal-and-numerical-variables/)
+In another word, ordinal variable is comparable while we cannot add either substract two ordinal variables.
+All real numerical variable is ordinal while complex variable is not ordinal.
+Binning is a direct way to tranlate numerical variables to orderial variables.
+
+An ordinal variable is a categorical variable for which the possible values are ordered. 
+[Ordinal variables can be considered “in between” categorical and quantitative variables.](https://web.ma.utexas.edu/users/mks/statmistakes/ordinal.html)
+
+[Example: Educational level might be categorized as](https://web.ma.utexas.edu/users/mks/statmistakes/ordinal.html)
+1.  Elementary school education
+2.  High school graduate
+3.  Some college
+4.  College graduate
+5.  Graduate degree
+
+*  In this example (and for many ordinal variables), the quantitative differences between the categories are uneven, even though the differences between the labels are the same. (e.g., the difference between 1 and 2 is four years, whereas the difference between 2 and 3 could be anything from part of a year to several years)
+*  Thus it does not make sense to take a mean of the values.
+*  Common mistake: Treating ordinal variables like quantitative variables without thinking about whether this is appropriate in the particular situation at hand.
+*  For example, the “floor effect” can produce the appearance of interaction when using Least Squares Regression, when no interaction is present
+
+- https://web.ma.utexas.edu/users/mks/statmistakes/ordinal.html
+- https://en.wikipedia.org/wiki/Ordinal_data#Ways_to_analyse_ordinal_data
+
+[Ordinal Regression](https://betanalpha.github.io/assets/case_studies/ordinal_regression.html) is a statistical technique that is used to predict behavior of ordinal level dependent variables with a set of independent variables.
 
 
-## Ranking loss
+- [Loss Functions for Ordinal regression](http://fa.bianp.net/blog/2013/loss-functions-for-ordinal-regression/)
+- https://www.stat.uchicago.edu/~pmcc/
+- [COMMON MISTEAKS MISTAKES IN USING STATISTICS: Spotting and Avoiding Them](https://web.ma.utexas.edu/users/mks/statmistakes/ordinal.html)
+- [Source Code for Support Vector Ordinal Regression](http://www.gatsby.ucl.ac.uk/~chuwei/svor.htm)
+- [6.5 Models for Ordinal Response Data](https://data.princeton.edu/wws509/notes/c6s5)
+- https://papers.nips.cc/paper/6659-adversarial-surrogate-losses-for-ordinal-regression
+- https://www.jstor.org/stable/2984952
+- https://pythonhosted.org/mord/
+- https://en.wikipedia.org/wiki/Ordinal_regression
+- https://www.statisticssolutions.com/regression-analysis-ordinal-regression/
 
-Learning to rank is another kind of supervised learning task.
+### Learning to rank
 
+Learning to rank is another kind of supervised learning task including pairwise, listwise and groupwise methods.
+
+The ranking function $f$ learns to assign an absolute score (categories) to each item in isolation.
+
+* Pointwise - Regression, Classification, Ordinal regression (items to be ranked are treated in isolation)
+* Pairwise -  Rank-preference models (items to be ranked are treated in pairs)
+* Listwise - Treat each list as an instance. Usually tries to directly optimise the evaluation measure (e.g. mean average precision)
+
+In information retrieval, learning to rank is to learning a function that can sort the documents when given a query.
+
+
+
+- http://nn4ir.com/sigir2017/slides/05_LearningToRank.pdf
+- [Learning to Rank: From Pairwise Approach to Listwise Approach](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2007-40.pdf)
+- https://www.cl.cam.ac.uk/teaching/1516/R222/l2r-overview.pdf
+- [Learning to rank past and future](https://wwwconference.org/www2009/pdf/T7A-LEARNING%20TO%20RANK%20TUTORIAL.pdf)
+- [Learning to Rank for Information Retrieval](https://wwwconference.org/www2009/pdf/T7A-LEARNING%20TO%20RANK%20TUTORIAL.pdf)
+- http://ltr-tutorial-sigir19.isti.cnr.it/
+- [Variance Reduction in Gradient Exploration for Online Learning to Rank](https://dl.acm.org/doi/10.1145/3331184.3331264)
+- http://www.cse.scu.edu/~yfang/energy-ICTIR16.pdf
+
+Regression|Ordinal Regression|Classification
+----|----|----
+Continous| Ordinal | Discrete
+$y=f(\vec{x})$|$y=\operatorname{thresh}f(\vec{x})$|$y=\operatorname{sign}f(\vec{x})$
+Regression Loss | Ordinal Regression Loss | Classification Loss
+
+The regression loss and classification loss can be regarded as the log-likelihood, which relies on the probility distribution.
+
+- [Future directions in learning to rank](http://www.yichang-cs.com/yahoo/JMLR11_LTR_future.pdf)
+- [Learning to match](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/learning_to_match.pdf)
+- [Learning to hash](https://cs.nju.edu.cn/lwj/L2H.html)
+- https://learning2hash.github.io/
+
+### Relevance Judgements
+
+For vectors, we have discussed more on the design of loss functions.
+[Vector Space Models](http://mlwiki.org/index.php/Vector_Space_Models) is to representation of a set of documents as vectors in a common vector space.
+[Vector Quantization](http://www.mqasem.net/vectorquantization/vq.html) will accelerate the vector search.
+
+In the context of web search, the inputs are some key words in the format of string.
+
+
+[`Relevancy`, the notion that some results are better than others is one of the key factors that distinguishes search engines from most other databases.](http://blog.florian-hopf.de/2016/10/book-review-relevant-search.html)
+Search relevance is a measurement of how closely related a document is to a query. 
+Search relevance can be determined in a wide variety of ways, ranging from simple binary relevance to a weighted relevance algorithm such as TF-IDF, 
+which assigns a relevance score to documents.
+So it is a natural language processing problem.
+
+
+- https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/
+- https://trec.nist.gov/data/reljudge_eng.html
+- http://people.ischool.berkeley.edu/~hearst/irbook/10/node8.html
+- [Relevance Judgment Guidelines](http://trec-cds.appspot.com/relevance_guidelines.pdf)
+- [Crowd vs. Expert: What Can Relevance Judgment Rationales Teach Us About Assessor Disagreement?](https://www.ischool.utexas.edu/~ml/papers/kutlu-sigir18.pdf)
+- [Relevance Judgment: What Do Information Users Consider Beyond Topicality?](http://www2.hawaii.edu/~donnab/lis670/xu_and_chen_relevance_beyond_topicality_2006.pdf)
+- [Loss Functions for Preference Levels: Regression with Discrete Ordered Labels](https://ttic.uchicago.edu/~nati/Publications/RennieSrebroIJCAI05.pdf)
+- [Relevance as process: judgements in the context of scholarly research](http://informationr.net/ir/10-2/paper226.html)
+
+-----
+
+
+[A ranking model is given by a collection of items, and an unknown total ordering of these items. ](http://proceedings.mlr.press/v97/tang19a/tang19a.pdf)
+
+`Precision at position $k$` for query $q$:
+$$P@k=\frac{\text{the number of relevant documentsin top $k$ results}}{k}$$
+`Average precision` for query $q$:
+$$AveP=\frac{\text{Precision at position } k}{\text{the number of relevant documentsin top $k$ results}}$$
+`Mean average precision(MAP)` is the averaged precision over all queries 
+$$MAP=\frac{\sum_{q=1}^Q AveP_{q}}{Q}$$
+where $AveP_{q}$ is `Average precision` for query $q$.
+
+`Discounted Cumulative Gain (DCG)` is the metric of measuring ranking quality. It is mostly used in information retrieval problems such as measuring the effectiveness of the search engine algorithm by ranking the articles it displays according to their relevance in terms of the search keyword.
+The `Cumulative Gain` is the sum of these relevance scores.
+The discounted cumulative gain can be calculated by the formula:
+$$DCG=\sum_i\frac{\text{rel}_i}{\log_2(i+1)}$$
+where $\text{rel}_i$ represents the weight assigned to the label of the document at position $i$.
+
+`Normalized Cumulative Gain (NDCG)` at position $n$ for query $q$  normalizes DCG at rank $n$ by the DCG value at rank $n$ of the ideal ranking
+$$NDCG@n=\frac{DCG@n}{IDCG@n}$$
+where $IDCG@n$ is the  Discounted Cumulative Gain (DCG) of the ideal ranking, 
+which would first return the documents with the highest relevance level,
+then the next highest relevance level, etc.
+
+
+- https://catboost.ai/docs/references/ndcg.html
+- https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)
+- [Ranking Relevance in Yahoo Search](http://www.yichang-cs.com/yahoo/KDD16_yahoosearch.pdf)
+- https://github.com/IGARDS/rankability_toolbox
+- https://prof.beuth-hochschule.de/fileadmin/prof/aloeser/shuaib_ltr_places_defence.pdf
+- https://tech.meituan.com/2018/12/20/head-in-l2r.html
+- https://www.aclweb.org/anthology/P09-5005/
 - https://pub.ist.ac.at/~vnk/papers/MRJKK-CVPR2018.pdf
-- https://gombru.github.io/2019/04/03/ranking_loss/
-- https://github.com/xiaohai2016/StatRank
+- [Understanding Ranking Loss, Contrastive Loss, Margin Loss, Triplet Loss, Hinge Loss and all those confusing names](https://gombru.github.io/2019/04/03/ranking_loss/)
+- [Learning to Rank with Alpha-divergence and Entropy Regularization](https://github.com/xiaohai2016/StatRank)
 - https://www.zhihu.com/people/richard-lee-91-28/posts
+- [Ranking Measures and Loss Functions in Learning to Rank](https://papers.nips.cc/paper/3708-ranking-measures-and-loss-functions-in-learning-to-rank.pdf)
+- [IR evaluation methods for retrieving highly relevant documents](https://dl.acm.org/doi/10.1145/345508.345545)
+- http://proceedings.mlr.press/v30/Wang13.pdf
+- [A Short Survey on Search Evaluation](https://staff.fnwi.uva.nl/e.kanoulas/a-short-survey-on-search-evaluation/)
+- [Metrics for evaluating ranking algorithms](https://stats.stackexchange.com/questions/159657/metrics-for-evaluating-ranking-algorithms)
+- [Metric Learning to Rank](https://bmcfee.github.io/papers/mlr.pdf)
+- [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
+- [Forum for Information Retrieval Evaluation](http://fire.irsi.res.in/fire/2019/Lecture%20Series)
+
+### LambdaMART
+
+The evaluation metric is not differentiable and continous like the 0-1 loss for the classification tasks.
+It is first to minimize the nonsmooth cost function as shown in LambdaRank of [Learning to Rank with Nonsmooth Cost Functions](https://papers.nips.cc/paper/2971-learning-to-rank-with-nonsmooth-cost-functions.pdf)
+
+Multiple Additive Regression Tree is another name of gradient boosting decision trees.
+
+- https://liam.page/uploads/slides/lambdamart.pdf
+- https://stanfordphd.com/MART.html
+- [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
+- [Multiple Additive Regression Trees](http://statweb.stanford.edu/~jhf/MART.html)
+- https://arxiv.org/pdf/1809.05818.pdf
+- [Learning to Rank by Optimizing NDCG Measure](http://people.cs.pitt.edu/~valizadegan/Publications/NDCG_Boost.pdf)
+- https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/LambdaMART_Final.pdf
 
 ### Differentiable Ranks
 
+Sorting is however a poor match for the end-to-end, automatically differentiable pipelines of deep learning.
+
+
+- [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/techReport.pdf)
+- https://arxiv.org/pdf/1905.11885.pdf
 - http://www.fields.utoronto.ca/talks/Differentiable-Ranking-and-Sorting-using-Optimal-Transport
+- https://github.com/google-research/google-research/tree/master/soft_sort
+- https://www.microsoft.com/en-us/research/publication/softrank-optimising-non-smooth-rank-metrics/
+
+### The Rankability of Data
+
+The concept of rankability  refers to a dataset's inherent ability to produce a meaningful ranking of its items.
+
+- https://epubs.siam.org/doi/pdf/10.1137/18M1183595
+- http://www.fields.utoronto.ca/talks/Rankability-Data
+- https://arxiv.org/abs/1912.00275
+- https://anderson-data-science.com/research/
+- https://www.thomasrcameron.com/
 
 ## Metric learning
 
+[Goal of metric learning algorithm is to learn a metric which assigns small distance to similar points and relatively large distance to dissimilar points.](https://parajain.github.io/metric_learning_tutorial/)
+       
+
+- https://pydml.readthedocs.io/en/latest/index.html    
 - http://sanmi.cs.illinois.edu/research.html
 - https://ai.stanford.edu/~ang/papers/nips02-metric.pdf
-- http://www.jmlr.org/papers/volume10/weinberger09a/weinberger09a.pdf
+- http://www.cs.toronto.edu/~mvolkovs/NIPS2019_GSS.pdf
+- [Distance Metric Learning for Large Margin Nearest Neighbor Classification](http://www.jmlr.org/papers/volume10/weinberger09a/weinberger09a.pdf)
+
+### Learning Loss
+
+<img src="https://dgyoo.github.io/dgyoo.github.io/images/cvpr19.PNG" width="60%"/>
+
+- https://dgyoo.github.io/
+- https://arxiv.org/abs/1905.03677
+- https://papers.nips.cc/paper/7882-learning-to-teach-with-dynamic-loss-functions.pdf
+- https://vitalab.github.io/article/2019/07/04/Learning-Loss-for-Active-Learning.html
+- https://gmum.net/slides/rymarczyk_loss_for_activity_learning.pdf
