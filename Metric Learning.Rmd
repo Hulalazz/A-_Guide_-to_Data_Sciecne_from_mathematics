@@ -1328,7 +1328,6 @@ then the next highest relevance level, etc.
 - https://tech.meituan.com/2018/12/20/head-in-l2r.html
 - https://www.aclweb.org/anthology/P09-5005/
 - https://pub.ist.ac.at/~vnk/papers/MRJKK-CVPR2018.pdf
-- [Understanding Ranking Loss, Contrastive Loss, Margin Loss, Triplet Loss, Hinge Loss and all those confusing names](https://gombru.github.io/2019/04/03/ranking_loss/)
 - [Learning to Rank with Alpha-divergence and Entropy Regularization](https://github.com/xiaohai2016/StatRank)
 - https://www.zhihu.com/people/richard-lee-91-28/posts
 - [Ranking Measures and Loss Functions in Learning to Rank](https://papers.nips.cc/paper/3708-ranking-measures-and-loss-functions-in-learning-to-rank.pdf)
@@ -1339,6 +1338,23 @@ then the next highest relevance level, etc.
 - [Metric Learning to Rank](https://bmcfee.github.io/papers/mlr.pdf)
 - [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 - [Forum for Information Retrieval Evaluation](http://fire.irsi.res.in/fire/2019/Lecture%20Series)
+
+Learning to rank is to sort the items $\{d_i\}_{i}^{n_q}$ when given a query $q$.
+The ranking loss is to measure how the sorted order is different from the ground truth.
+
+Ranking Losses are essentialy the ones explained above, and are used in many different aplications with the same formulation or minor variations. 
+However, different names are used for them, which can be confusing. 
+[Here I explain why those names are used.](https://gombru.github.io/2019/04/03/ranking_loss/)
+
+1. Ranking loss: This name comes from the information retrieval field, where we want to train models to rank items in an specific order.
+2. Margin Loss: This name comes from the fact that these losses use a margin to compare samples representations distances.
+3. Contrastive Loss: Contrastive refers to the fact that these losses are computed contrasting two or more data points representations. This name is often used for Pairwise Ranking Loss, but I’ve never seen using it in a setup with triplets.
+4. Triplet Loss: Often used as loss name when triplet training pairs are employed.
+Hinge loss: Also known as max-margin objective. It’s used for training SVMs for classification. It has a similar formulation in the sense that it optimizes until a margin. That’s why this name is sometimes used for Ranking Losses.
+
+- https://omoindrot.github.io/triplet-loss
+- https://github.com/adambielski/siamese-triplet
+- [Understanding Ranking Loss, Contrastive Loss, Margin Loss, Triplet Loss, Hinge Loss and all those confusing names](https://gombru.github.io/2019/04/03/ranking_loss/)
 
 ### LambdaMART
 
