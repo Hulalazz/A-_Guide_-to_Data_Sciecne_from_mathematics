@@ -2448,6 +2448,9 @@ So our method is applicable to various non-decreasing Lipschitz continuous activ
 
 #### Mixed Integer Optimization
 
+[Network models and integer programs are applicable for an enormous known variety of decision problems. Some of these decision problems are really physical problems, such as transportation or flow of commodities. Many network problems are more of an abstract representations of processes or activities, such as the critical path activity network in project management. These problems are easily illustrated by using a network of arcs, and nodes.](http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm)
+
+- http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm
 - [Strong mixed-integer programming formulations for trained neural networks by Joey Huchette1](http://www.cas.mcmaster.ca/~deza/slidesRIKEN2019/huchette.pdf)
 - [Deep neural networks and mixed integer linear optimization](https://link.springer.com/article/10.1007/s10601-018-9285-6)
 - [Matteo Fischetti, University of Padova](http://www.dei.unipd.it/~fisch/papers/slides/2018%20Dagstuhl%20%5BFischetti%20on%20DL%5D.pdf)
@@ -2527,6 +2530,7 @@ We also give a general technique for weights initialization.
 - [Quantized Neural Networks: Training Neural Networks with Low Precision Weights and Activations](https://arxiv.org/pdf/1609.07061.pdf)
 - [Gradient target propagation](https://arxiv.org/abs/1810.09284)
 - https://github.com/tiago939/target
+- https://qdata.github.io/deep2Read//MoreTalksTeam/Un17/Muthu-OptmTarget.pdf
 
 ### Capsule Networks and More
 
@@ -2575,6 +2579,11 @@ It will be used as a surrogate  of the popular metrics such as  0-1 loss or  pre
 - [Scalable Kernel Learning via the Discriminant Information](https://arxiv.org/abs/1909.10432)
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
 
+
+### Dynamic Hierarchical Mimicking
+
+- https://arxiv.org/abs/2003.10739
+- https://github.com/d-li14/DHM
 
 ### DLphi
 

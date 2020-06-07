@@ -673,6 +673,10 @@ The section will extend the approximation to the deep neural network.
 
 ### The F-Principle
 
+> Understanding the training process of Deep Neural Networks (DNNs) is a fundamental problem in the area of deep learning. The study of the training process from the frequency perspective makes important progress in understanding the strength and weakness of DNN, such as generalization and converging speed etc., which may consist in “a reasonably complete picture about the main reasons behind the success of modern machine learning” (E et al., 2019).
+
+> The “Frequency Principle” was first named in the paper (Xu et al., 2018), then (Xu 2018; Xu et al., 2019) use more convincing experiments and a simple theory to demonstrate the university of the Frequency Principle. Bengio's paper (Rahaman et al., 2019) also uses the the simple theory in (Xu 2018; Xu et al., 2019) to understand the mechanism underlying the Frequency Principle for ReLU activation function. Note that the second version of Rahaman et al., (2019) points out this citation clearly but they reorganize this citation to “related works” in the final version. Later, Luo et al., (2019) studies the Frequency Principle in the general setting of deep neural networks and mathematically proves Frequency Principle with the assumption of infinite samples. Zhang et al., (2019) study the Frequency Principle in the NTK regime with finite sample points. Zhang et al., (2019) explicitly shows that the converging speed for each frequency and can accurately predict the learning results.
+
 [We aim to develop a theoretical framework on Fourier domain to analyze the Deep Neural Network (DNN) training process and understand the DNN generalization. We exemplified our theoretical results through DNNs fitting 1-d functions and the MNIST dataset.](https://www.researchgate.net/project/Deep-learning-in-Fourier-domain)
 
 - [Deep learning in Fourier domain](https://www.researchgate.net/project/Deep-learning-in-Fourier-domain)
@@ -684,6 +688,8 @@ The section will extend the approximation to the deep neural network.
 - [Theory of the Frequency Principle for General Deep Neural Networks](https://arxiv.org/pdf/1906.09235v1.pdf)
 - [Explicitizing an Implicit Bias of the Frequency Principle in Two-layer Neural Networks](https://arxiv.org/pdf/1905.10264.pdf)
 - https://www.researchgate.net/profile/Zhiqin_Xu
+- https://github.com/xuzhiqin1990/F-Principle
+- https://ins.sjtu.edu.cn/people/xuzhiqin/
 
 ## Inverse Problem and Deep Learning
 
@@ -1065,7 +1071,7 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 * [“Deep learning - Information theory & Maximum likelihood.”](https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/)
 * [On the information bottleneck theory of deep learning](https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning)
 * [Deep Learning and the Information Bottleneck Principle](https://arxiv.org/pdf/1503.02406.pdf)
-* [Information Theoretic Interpretation of Deep Neural Networks](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks)
+* [Information Theoretic Interpretation of Deep Neural Networks](https://www.rle.mit.edu/sia/wp-content/uploads/2019/07/2019-huang-xu-zheng-wornell.pdf)
 - http://pirsa.org/18040050
 - https://lizhongresearch.miraheze.org/wiki/Main_Page
 - https://lizhongzheng.mit.edu/
@@ -1077,7 +1083,7 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 - https://www.math.ias.edu/wtdl
 - [DEEP 3D REPRESENTATION LEARNING](http://ai.ucsd.edu/~haosu/papers/thesis_finalversion.pdf)
 - https://www.mis.mpg.de/ay/index.html
-- https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180BigData_info.html
+- [Mathematical Algorithms for Artificial Intelligence and Big Data Analysis (Spring 2017)](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180BigData_info.html)
 - https://www.tbsi.edu.cn/index.php?s=/cms/181.html
 - https://www.bigr.io/deep-learning-neural-networks-iot/
 
