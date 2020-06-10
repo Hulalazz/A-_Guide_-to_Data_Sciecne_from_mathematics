@@ -1,6 +1,9 @@
 #  Back-propagation and Beyond
 
-### Beyond Back-propagation
+The problem on back-propagation or generally gradient-based training methods of the deep neural networks including the following drawbacks:
+(1) 
+
+## Beyond Back-propagation
 
 Training deep learning models does not require gradients such as `ADMM, simulated annealing`.
 
@@ -23,9 +26,9 @@ Training deep learning models does not require gradients such as `ADMM, simulate
 - [DEEP LEARNING AS A MIXED CONVEXCOMBINATORIAL OPTIMIZATION PROBLEM](https://homes.cs.washington.edu/~pedrod/papers/iclr18.pdf)
 - [An Alternating Minimization Method to Train Neural Network Models for Brain Wave Classification](http://evoq-eval.siam.org/Portals/0/Publications/SIURO/Volume%2011/An_Alternating_Minimization_Method_to_Train_Neural_Network_Models.pdf?ver=2018-02-27-134920-257)
 
-#### Operator Splitting Methods For Training Deep Neural Networks
+### Operator Splitting Methods For Training Deep Neural Networks
 
-##### ADMM
+#### ADMM
 
 ADMM is based on the constraints of  successive layers in neural networks.
 Recall the feedforward neural networks:
@@ -43,7 +46,7 @@ $$
 - https://patents.google.com/patent/US20170147920/fi
 
 
-##### Lifted Proximal Operator Machine (LPOM) 
+#### Lifted Proximal Operator Machine (LPOM) 
 
 By rewriting the activation function as an equivalent proximal operator, 
 we approximate a feed-forward neural network by adding the proximal operators to the objective function as penalties, 
@@ -58,7 +61,7 @@ So our method is applicable to various non-decreasing Lipschitz continuous activ
 - [Lifted Proximal Operator Machines](https://arxiv.org/abs/1811.01501v1)
 - [一种提升邻近算子机神经网络优化方法 [发明]](http://cprs.patentstar.com.cn/Search/Detail?ANE=9GED7DEA8EDAAICA9CGA9EFB9HHGAGGADGIA9AIFDHEA9IHH)
 
-#### Mixed Integer Optimization
+### Mixed Integer Optimization
 
 [Network models and integer programs are applicable for an enormous known variety of decision problems. Some of these decision problems are really physical problems, such as transportation or flow of commodities. Many network problems are more of an abstract representations of processes or activities, such as the critical path activity network in project management. These problems are easily illustrated by using a network of arcs, and nodes.](http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm)
 
@@ -81,7 +84,7 @@ So our method is applicable to various non-decreasing Lipschitz continuous activ
 - http://www.me.titech.ac.jp/technicalreport/h26/2014-1.pdf
 - [Training Binarized Neural Networks using MIP and CP](http://www.cs.toronto.edu/~lillanes/papers/ToroIcarteICCMB-cp2019-training-preprint.pdf)
 
-#### Lagrangian Propagator
+### Lagrangian Propagator
 
 It has been showed that Neural Networks can be embedded in a `Constraint Programming` model 
 by simply encoding each neuron as a global constraint, 
@@ -97,7 +100,7 @@ which is then propagated individually.
 - https://cis.unimelb.edu.au/agentlab/publications/
 - [A New Propagator for Two-Layer Neural Networks in Empirical Model Learning](https://link.springer.com/chapter/10.1007/978-3-642-40627-0_35)
 
-#### Layer-wise Relevance Propagation
+### Layer-wise Relevance Propagation
 
 Layer-wise Relevance Propagation (LRP) is a method 
 that identifies important pixels by running a backward pass in the neural network. 
@@ -113,7 +116,7 @@ where neurons that contribute the most to the higher-layer receive most relevanc
 - http://www.heatmapping.org/
 - http://iphome.hhi.de/same
 
-####  Target Propagation
+###  Target Propagation
 
 Back-propagation has been the workhorse of recent successes of deep learning
 but it relies on infinitesimal effects (partial derivatives) in order to perform credit
@@ -143,6 +146,20 @@ We also give a general technique for weights initialization.
 - [Gradient target propagation](https://arxiv.org/abs/1810.09284)
 - https://github.com/tiago939/target
 - https://qdata.github.io/deep2Read//MoreTalksTeam/Un17/Muthu-OptmTarget.pdf
+
+### Dynamic Hierarchical Mimicking
+
+- https://arxiv.org/abs/2003.10739
+- https://github.com/d-li14/DHM
+
+### DLphi
+
+
+- http://www.pc-petersen.eu/
+- http://voigtlaender.xyz/
+- https://math.ethz.ch/sam/research/reports.html
+- [The Oracle of DLphi](https://arxiv.org/abs/1901.05744)
+- https://faculty.washington.edu/kutz/
 
 ### Capsule Networks and More
 
@@ -180,29 +197,43 @@ MIND-Net hinges upon the use of an effective optimization metric, called Discrim
 It will be used as a surrogate  of the popular metrics such as  0-1 loss or  prediction accuracy. Mathematically, DI is equivalent or closely related to Gauss’ LSE, Fisher’s FDR, and Shannon’s Mutual Information.  
 [We shall explain why is that higher DI means higher linear separability, i.e. higher DI means that  the data are more discriminable.  In fact, it can be shown that, both theoretically and empirically,  a high DI score usually implies a high prediction accuracy.](http://www.it.fudan.edu.cn/En/Data/View/2519)
 
+
+[To facilitate node/layer ranking, we develop an internal learning paradigm, making a good use of (1) internal teacher labels (ITL); and (2) internal optimization metrics (IOM), i.e. DI, for evaluating hidden layers/nodes. In other words, we have  incorporated a notion of Internal Neuron's Learnablility (INL) into the traditional external learning paradigm (i.e. BP) and create a  new generation of neural networks, called  Explainable Neural Network (XNN). Mathematically, we adopt a new IOM, called discriminant information (DI) which offers an effective metric for ranking the nodes/layer in a network. It can be shown that by simply removing redundant and harmful nodes based on DI tended can greatly enhance the model’s robustness. This allows us to develop a joint parameter/structural gradient-type method for deep compression.](https://ee.princeton.edu/people/sun-yuan-kung)
+
 - https://datasciencephd.eu/
 - https://ieeexplore.ieee.org/document/8682208
 - https://www.researchgate.net/scientific-contributions/9628663_Sun-Yuan_Kung
 - https://dblp.uni-trier.de/pers/hd/k/Kung:Sun=Yuan
 - http://www.zhejianglab.com/mien/active_info/75.html
 - https://ee.princeton.edu/people/sun-yuan-kung
-- 
 - https://ieeexplore.ieee.org/author/37273489000
 - [Scalable Kernel Learning via the Discriminant Information](https://arxiv.org/abs/1909.10432)
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
 
 
-### Dynamic Hierarchical Mimicking
 
-- https://arxiv.org/abs/2003.10739
-- https://github.com/d-li14/DHM
+### Polynomial Neural Networks
 
-### DLphi
+[The Polynomial Neural Network (PNN) algorithm[1,2]  is also known as Iterational Algorithm of Group Methods of Data Handling (GMDH). GMDH were originally proposed by Prof. A.G. Ivakhnenko. PNN correlates input and target variables using (non) linear regression.](http://146.107.217.178/lab/pnn/)
+[The PNN models inherit the format of discrete Volterra series and possess universal approximation abilities.](http://homepages.gold.ac.uk/nikolaev/Nnets.htm) 
+Their approximation properties can be explained using the generalized Stone-Weierstrass theorem and the Kolmogorov-Lorentz superposition theorem.
 
+There have been developed several groups of PNN models:
 
-- http://www.pc-petersen.eu/
-- http://voigtlaender.xyz/
-- https://math.ethz.ch/sam/research/reports.html
-- https://arxiv.org/abs/1901.05744
-- https://faculty.washington.edu/kutz/
+- high-order multivariate polynomials: including block polynomials and horizontally expanded polynomials;
+- orthogonal polynomials: including polynomials of orthogonal terms, Chebishev polynomials;
+- trigonometric polynomials: using harmonics with non-multiple frequencies;
+- rational polynomials: including polynomial fractions and sigmoidal power series;
+- local basis polynomials: including radial-basis polynomials and piecewise polynomials;
+- fuzzy polynomials: using various membership functions;
+- dynamic polynomials: including time-lagged, NARMA polynomials and recurrent PNN.
+
+[In the hope to capture the complexity of a process, the artificial neural networks attempt to decompose it into many simpler relationships each described by a processing function of a single neuron. The processing function of the neurons is quite simple; it is the configuration of the network itself that requires much work to design and adjust to the training data. In 1961, Frank Rosenblatt had identified the key weakness of neurocomputing as the lack of means for effectively selecting structure and weights of the hidden layer(s) of the perceptron. In 1968, when backpropagation technique was not known yet, a technique called Group Method of Data Handling (GMDH) was developed by an Ukranian scientist Aleksey Ivakhnenko who was working at that time on a better prediction of fish population in rivers.](https://ulcar.uml.edu/~iag/CS/Polynomial-NN.html)
+
+- https://ulcar.uml.edu/~iag/CS/Polynomial-NN.html
+- http://homepages.gold.ac.uk/nikolaev/Nnets.htm
+- http://homepages.gold.ac.uk/nikolaev/Dnns.htm
+- http://146.107.217.178/lab/pnn/
+- http://www.gmdh.net/
+- [GMDH Polynomial Neural Networks](https://www.dtreg.com/solution/view/24)
 
