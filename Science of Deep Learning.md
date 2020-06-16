@@ -23,6 +23,9 @@ Many researchers are trying to better understand how to improve prediction perfo
 
 - https://www.cl.cam.ac.uk/~rja14/
 
+Deep learning is at least related with kernel tricks, projection pursuit and neural networks.
+
+
 ## Resource  on Deep Learning Theory 
 
 * http://pwp.gatech.edu/fdl-2018/program/
@@ -1177,6 +1180,8 @@ present rather than by helping the optimization process (Frankle & Carbin, 2019)
 - https://zhuanlan.zhihu.com/p/67782029
 - https://openai.com/blog/deep-double-descent/
 - https://zhuanlan.zhihu.com/p/100451862
+
+
 
 ## AOGNet
 

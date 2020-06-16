@@ -825,17 +825,23 @@ our method exceeds the classification accuracy of unconstrained matrices on CIFA
 
 ### halide
 
+Halide is a programming language designed to make it easier to write high-performance image and array processing code on modern machines. 
+
 - https://halide-lang.org/
 - https://halide-lang.org/#publications
 - https://people.csail.mit.edu/tzumao/
 
 ### taichi
 
+Taichi (太极) is a programming language designed for high-performance computer graphics. It is deeply embedded in Python, and its just-in-time compiler offloads compute-intensive tasks to multi-core CPUs and massively parallel GPUs
+
 - http://taichi.graphics/
 - https://github.com/yuanming-hu/taichi
 - http://taichi.graphics/wp-content/uploads/2019/09/taichi_lang.pdf\
 
 ### TASO
+
+TASO optimizes the computation graphs of DNN models using automatically generated and verified graph transformations. For an arbitrary DNN model, TASO uses the auto-generated graph transformations to build a large search space of potential computation graphs that are equivalent to the original DNN model. TASO employs a cost-based search algorithm to explore the space, and automatically discovers highly optimized computation graphs.
 
 * https://cs.stanford.edu/people/zhihao/
 * https://github.com/jiazhihao/TASO
@@ -1318,30 +1324,9 @@ where ${M}$ is the square weight matrix, $T_1, T_2, T_3, T_4, T_5$ are square *T
 * [CS236605: Deep Learning](https://vistalab-technion.github.io/cs236605/lectures/)
 * https://mlperf.org/
 
-### The lottery ticket hypothesis
-
-The lottery ticket hypothesis proposes that over-parameterization of deep neural networks (DNNs) aids training  
-[by increasing the probability of a “lucky” sub-network initialization being present rather than by helping the optimization process (Frankle & Carbin, 2019).](https://arxiv.org/pdf/1906.02768.pdf)
-
-- https://ai.facebook.com/blog/understanding-the-generalization-of-lottery-tickets-in-neural-networks
-- https://arxiv.org/pdf/1905.13405.pdf
-- https://arxiv.org/abs/1903.01611
-- https://arxiv.org/abs/1905.13405
-- https://arxiv.org/abs/1906.02768
-- https://arxiv.org/abs/1906.02773
-- https://arxiv.org/abs/1909.13458
 
 ### Privacy and Security
 
-- [Deep Leakage from Gradients](https://arxiv.org/abs/1906.08935)
-- http://www.cs.cornell.edu/~shmat/research.html
-
-## Distributed Training
-
-Distributed training of deep learnig models is a branch of distributed computation.
-
-It is really important to reduce the cost of communication in distributed computation
-including the communication time, communication frequency, communication content and latency.
 
 Existing security mechanisms for high-performance and distributed computing infrastructure are complex and difficult to deploy.
 As a result, many high-performance and distributed computing facilities do no deploy sufficient security mechanisms. 
@@ -1357,6 +1342,25 @@ DICE essentially creates a two-level security model: on the (physical) cluster l
 <img src="- https://www.microsoft.com/en-us/research/uploads/prod/2019/10/Figure3_pipedream.png" width="80%"/>
 
 
+- [Deep Leakage from Gradients](https://arxiv.org/abs/1906.08935)
+- http://www.cs.cornell.edu/~shmat/research.html
+
+## Distributed Training
+
+The problem of deep learning $T(x;\Theta)$ is the big model and big data, i.e., $\Theta$ may be in too extra-high dimensional space to store in a single laptop computer.
+And the training process is to find the optimal parameters $\arg\min_{\Theta}\sum_{i}L(T(x_i;\Theta), y_i)$, which requires sufficient data size.
+
+Sometimes we need partition the model or the data into different machines.
+In another world, the model or the data are distributed in a few machines.
+
+Distributed training of deep learnig models is a branch of distributed computation.
+
+[Training advanced deep learning models is challenging. Beyond model design, model scientists also need to set up the state-of-the-art training techniques such as distributed training, mixed precision, gradient accumulation, and checkpointing. Yet still, scientists may not achieve the desired system performance and convergence rate. Large model sizes are even more challenging: a large model easily runs out of memory with pure data parallelism and it is difficult to use model parallelism.](https://www.deepspeed.ai/)
+
+It is really important to reduce the cost of communication in distributed computation
+including the communication time, communication frequency, communication content and latency.
+
+
 - [BigDL is a distributed deep learning library for Apache Spark](https://bigdl-project.github.io/0.10.0/)
 - https://github.com/intel-analytics/BigDL/
 - https://github.com/amplab/drizzle-spark
@@ -1365,9 +1369,12 @@ DICE essentially creates a two-level security model: on the (physical) cluster l
 - http://explorer.cs.fsu.edu/
 - https://www.cs.rice.edu/~as143/COMP640_Fall16/
 - https://www.cs.rice.edu/~as143/
+- https://www.deepspeed.ai/
 
 
 ### Accelerating Deep Learning Workloads
+
+[PipeDream, a system developed as part of Microsoft Research’s Project Fiddle, introduces pipeline parallelism, a new way to parallelize DNN training by combining traditional intra-batch parallelism (model and data parallelism) with inter-batch parallelism (pipelining).](https://www.microsoft.com/en-us/research/blog/pipedream-a-more-effective-way-to-train-deep-neural-networks-using-pipeline-parallelism/)
 
 - https://itpeernetwork.intel.com/accelerating-deep-learning-workloads/#gs.ny4nke
 - https://github.com/bytedance/byteps
@@ -1409,6 +1416,17 @@ Sketch is a class of algorithms using a probabilistic data structure to approxim
 - https://dblp.org/pers/hd/k/Kyrillidis:Anastasios
 - https://www.csauthors.net/vijai-mohan/
 - [SketchML: Accelerating Distributed Machine Learning with Data Sketches](http://net.pku.edu.cn/~yangtong/uploads/SketchML.pdf)
+
+### DeepSpeed
+
+The DeepSpeed API is a lightweight wrapper on PyTorch. 
+This means that you can use everything you love in PyTorch and without learning a new platform. 
+In addition, DeepSpeed manages all of the boilerplate state-of-the-art training techniques, such as `distributed training, mixed precision, gradient accumulation, and checkpoints` so that you can focus on your model development. 
+Most importantly, you can leverage the distinctive efficiency and effectiveness benefit of DeepSpeed to boost speed and scale with just a few lines of code changes to your PyTorch models.
+
+- https://www.microsoft.com/en-us/research/blog/zero-2-deepspeed-shattering-barriers-of-deep-learning-speed-scale/
+- https://www.deepspeed.ai/
+
 
 ### Gradient Code and Compression
 
@@ -1506,6 +1524,8 @@ We demonstrate reduced training times for convolutional networks as well as LSTM
 * [Better Communication Complexity for Local SGD](https://arxiv.org/abs/1909.04746)
 * [Gradient Descent with Compressed Iterates](https://arxiv.org/abs/1909.04716)
 
+
+
 ##  Compressing Recurrent Neural Network
 
 All techniques above can be used to fully-connected networks or generally feed-forward network.
@@ -1546,6 +1566,11 @@ RNN is feedback network where there is rings in its computational graph.
 
 ## Edge Computation
 
+Edge computation is to perform some computation on the edge devices such as the monior in order to send less raw data to the computation center.
+
+
+> Machine learning models for edge devices need to have a small footprint in terms of storage, prediction latency, and energy. One instance of where such models are desirable is resource-scarce devices and sensors in the Internet of Things (IoT) setting. Making real-time predictions locally on IoT devices without connecting to the cloud requires models that fit in a few kilobytes.
+
 - https://github.com/microsoft/EdgeML
 - https://github.com/fritzlabs/Awesome-Mobile-Machine-Learning
 - https://github.com/Bisonai/awesome-edge-machine-learning
@@ -1558,7 +1583,13 @@ RNN is feedback network where there is rings in its computational graph.
 
 ### Mobile Deep Learning
 
+Mobile deep learning is aimed to run deep learning models (training or inference) on the mobile phones.
+
+It is necessary to compress the deep learning models in order to run it in mobile phones.
+
 - https://www.sigmobile.org/mobisys/2019/workshops/deepmobile19/
+- https://github.com/amusi/mobile-deep-learning
+- https://github.com/pytorch/qnnpack
 - https://mi.inf.ed.ac.uk/
 - https://www-users.cs.umn.edu/~fengqian/
 - http://homepages.inf.ed.ac.uk/ppatras/
@@ -1600,6 +1631,8 @@ RNN is feedback network where there is rings in its computational graph.
 |[Menoh: fast DNN inference library with multiple programming language support](https://github.com/pfnet-research/menoh)|
 |[trillium](https://www.arm.com/products/silicon-ip-cpu/machine-learning/project-trillium)|
 |https://github.com/alibaba/MNN|
+|https://github.com/sql-machine-learning/elasticdl|
+|https://github.com/Tencent/TNN|
 
 
 *****
@@ -1617,3 +1650,10 @@ RNN is feedback network where there is rings in its computational graph.
 |[TensorRT](https://github.com/NVIDIA/TensorRT)|
 |https://github.com/Tencent/ncnn|
 |[Introduction to Intel® Deep Learning Deployment Toolkit](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html)|
+
+## Tool kits
+
+- https://www.wandb.com/
+- https://github.com/fastnlp/fitlog
+- https://optuna.org/
+- https://preferred.jp/en/projects/optuna/
