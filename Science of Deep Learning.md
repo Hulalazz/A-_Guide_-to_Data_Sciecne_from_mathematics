@@ -16,6 +16,9 @@ V. Vapnik said that ``Nothing is more practical than a good theory.''
 - http://danroy.org/
 - https://www.symbiont-project.org/events/Slides-2018-03/SYMBIONT-2018-03-zimmermann.pdf
 - https://losslandscape.com/faq/
+- https://mcallester.github.io/ttic-31230/
+- http://deep-phenomena.org/
+- https://ijcai20interpretability.github.io/
 
 Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
 Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
@@ -646,6 +649,21 @@ We use this low dimensionality to guarantee the existence of a reduced basis.
 
 - [Deep-Learning Based Numerical BSDE Method for Barrier Options](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3366314)
 - [Machine learning approximation algorithms for high-dimensional fully nonlinear partial differential equations and second-order backward stochastic differential equations](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2017/2017-49.pdf)
+
+### Finite Element Methods and Deep Learning
+
+- http://www.multigrid.org/index.php?id=13
+- http://casopisi.junis.ni.ac.rs/index.php/FUMechEng/article/view/309
+- http://people.math.sc.edu/imi/DASIV/
+- [Deep ReLU Networks and High-Order Finite Element Methods](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-07.pdf)
+- https://math.psu.edu/events/35992
+- [Neural network for constitutive modelling in finite element analysis](https://olemiss.edu/sciencenet/trefftz/Trefftz/Exeter/Javadi.pdf)
+- https://arxiv.org/abs/1807.03973
+- [A deep learning approach to estimate stress distribution: a fast and accurate surrogate of finite-element analysis](https://royalsocietypublishing.org/doi/10.1098/rsif.2017.0844)
+- [An Integrated Machine Learning and Finite Element Analysis Framework, Applied to Composite Substructures including Damage](https://repository.tudelft.nl/islandora/object/uuid%3A615f2151-bcae-4e78-a2cb-3f1891a28275)
+- https://github.com/oleksiyskononenko/mlfem
+- https://people.math.gatech.edu/~wliao60/
+- https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Kutyniok/Papers/main.pdf
 
 ## Approximation Theory for Deep Learning
 

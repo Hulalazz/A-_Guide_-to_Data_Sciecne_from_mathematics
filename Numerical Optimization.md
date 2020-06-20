@@ -32,6 +32,11 @@ Evaluation is always attached with optimization; the evaluation which cannot be 
 * https://cp2019.a4cp.org/
 * https://minoa-itn.fau.de/
 * https://gekko.readthedocs.io/en/latest/
+* http://opt-ml.org/schedule.html
+* https://statisticaloddsandends.wordpress.com/
+* https://tydlin.github.io/
+* https://faculty.ucmerced.edu/mcarreira-perpinan/papers.html
+* https://www.nsf.gov/awardsearch/showAward?AWD_ID=1423515
 
 The proof of convergence  or complexity is often based  on the convex cases where the objective function as well as the constrained set is convex, i.e.,
 $$t x+(1-t)y\in\Theta,\\
@@ -1106,7 +1111,7 @@ where $\mu>0$ is the `penalty parameter`. By driving $\mu\to\infty$, we penalize
 - https://www.me.utexas.edu/~jensen/ORMM/supplements/units/nlp_methods/const_opt.pdf
 - http://users.jyu.fi/~jhaka/opt/TIES483_constrained_indirect.pdf
 
-## Path Following Methods
+### Path Following Methods
 
 The main ideas of path following by predictor–corrector and piecewise-linear methods, and their application in the direction of homotopy methods and nonlinear eigenvalue problems are reviewed. Further new applications to areas such as polynomial systems of equations, linear eigenvalue problems, interior methods for linear programming, parametric programming and complex bifurcation are surveyed. Complexity issues and available software are also discussed.
 
@@ -2158,9 +2163,6 @@ In this sense, `ADMM` is really fixed point iteration: $(x^{k+1}, y^{k+1}, \lamb
 * https://epubs.siam.org/doi/abs/10.1137/15M103580X
 * https://xu-yangyang.github.io/
 
-#### Anderson Accelerated Halley's Method
-
-
 
 ### Approximate Minimal Polynomial Extrapolation
 
@@ -2456,6 +2458,8 @@ $x^{k+1}=x^{k}-\alpha_kH_k^{-1} g(x^k)$|$\dot{x}(t) =- H^{-1}(x)g(x(t))$| Newton
 Like Newton interpolation, more points can compute higher order derivatives.
 The dynamics of accelerated gradient methods are expected to correspond to higher order differential equations.
 
+### Asymptotic Vanishing Damping
+
 Some acceleration methods are iterations of the corresponding algorithms of `Asymptotic Vanishing Damping` called by [Hedy Attouch](https://arxiv.org/search/math?searchtype=author&query=Attouch%2C+H):
 
 $$
@@ -2495,7 +2499,9 @@ if possible where $x^{\star}$ optimizes the cost/objective function $f(x)$ speci
 
 <img src="http://awibisono.github.io/images/sqcomp.png" width="80%" />
 
-***
+### Symplectic Optimization
+
+Symplectic Optimizatio
 It is difficult to generalize these methods to stochastic cases.
 
 There is a wonderful summary [DYNAMICAL, SYMPLECTIC AND STOCHASTIC PERSPECTIVES ON GRADIENT-BASED OPTIMIZATION](https://people.eecs.berkeley.edu/~jordan/papers/jordan-icm.pdf) given by Micheal I Jordan at ICM 2018.
@@ -2530,20 +2536,19 @@ $$
 - https://www.researchgate.net/profile/Weijie_Su
 
 ***
+- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
+- [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
+- [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
+- [Integration Methods and Optimization Algorithms](https://papers.nips.cc/paper/6711-integration-methods-and-optimization-algorithms.pdf)
 - [ ] [Analysis of Hamilton-Jacobi Equation: Optimization, Dynamics and Control - Part II of II](https://www.pathlms.com/siam/courses/1825/sections/2464)
 - [ ] [From differential equation solvers to accelerated first-order methods for convex optimization](https://arxiv.org/pdf/1909.03145.pdf)
 - [ ] [Optimization via the Hamilton-Jacobi-Bellman Method: Theory and Applications by Navin Khaneja, Harvard & KITP](http://online.kitp.ucsb.edu/online/qcontrol09/khaneja3/)
 - [ ] [GRADIENT FLOW DYNAMICS](http://www-bcf.usc.edu/~mihailo/Keyword/GRADIENT-FLOW-DYNAMICS.html)
 - [Sampling as optimization in the space of measures: The Langevin dynamics as a composite optimization problem](http://proceedings.mlr.press/v75/wibisono18a/wibisono18a.pdf)
 - [The dynamics of Lagrange and Hamilton](https://nisheethvishnoi.wordpress.com/2018/09/19/the-dynamics-of-lagrange-and-hamilton/)
-- [Optimization and Dynamical Systems](http://users.cecs.anu.edu.au/~john/papers/BOOK/B04.PDF)
-- [Direct Runge-Kutta Discretization Achieves Acceleration](https://arxiv.org/abs/1805.00521)
-- [The Physical systems Behind Optimization Algorithms](https://arxiv.org/abs/1612.02803)
-- [Integration Methods and Optimization Algorithms](https://papers.nips.cc/paper/6711-integration-methods-and-optimization-algorithms.pdf)
-***
-**ADMM and Dynamics**
 
 
+### ADMM and Dynamics
 
 
 - [A Dynamical Systems Perspective on Nonsmooth Constrained Optimization](https://arxiv.org/abs/1808.04048)
@@ -2553,7 +2558,14 @@ $$
 - [Relax, and Accelerate: A Continuous Perspective on ADMM](https://pdfs.semanticscholar.org/0814/423300a6d7e69ed61f10060de5f3b84d7527.pdf)
 - http://people.ee.duke.edu/~lcarin/Xuejun12.11.2015.pdf
 
-The last but not least important question is how to rewrite the fixed point iteration as the discrete form of some differential equation. What is more, it is the interaction and connnetion between numerical solution to differential equations and  optimization methods in form of fixed ponit iteration that matters.
+***** 
+
+- http://rahul.narain.name/admm-pd/
+- https://mattoverby.net/pages/admmpd_abstract.html
+
+The last but not least important question is how to rewrite the fixed point iteration as the discrete form of some differential equation. 
+What is more, it is the interaction and connnetion between numerical solution to differential equations and  optimization methods 
+in form of fixed ponit iteration that matters.
 
 - [Glossary of Dynamical Systems Terms](https://lbm.niddk.nih.gov/glossary/glossary.html)
 - [Bifurcations Involving Fixed Points and Limit Cycles in Biological Systems](http://www.medicine.mcgill.ca/physio/guevaralab/CNDSUM-bifurcations.pdf)
@@ -2570,11 +2582,23 @@ The last but not least important question is how to rewrite the fixed point iter
 
 [GRADIENTS AND FLOWS: CONTINUOUS OPTIMIZATION APPROACHES TO THE MAXIMUM FLOW PROBLEM](https://eta.impa.br/dl/028.pdf)
 
+## Optimization for differential equations
 
+- http://www.it.uu.se/grad/courses/optforDE/
+- http://www.it.uu.se/grad/courses/optforDE/shape-2up.pdf
+- https://eccm-ecfd2018.org/frontal/Default.asp
+- https://www.ima.umn.edu/2015-2016/SW6.6-10.16
+- https://archive.siam.org/meetings/op08/Heinkenschloss.pdf
+- https://www.math.uh.edu/~rohop/spring_04/downloads/script.pdf
+- https://www.math.uh.edu/~rohop/
+- http://www.maths.dur.ac.uk/lms/
 
 ## Stochastic Approximation
 
-[`Stochastic approximation` methods are a family of iterative methods typically used for *root-finding* problems or for *optimization* problems. The recursive update rules of stochastic approximation methods can be used, among other things, for solving linear systems when the collected data is corrupted by noise, or for approximating extreme values of functions which cannot be computed directly, but only estimated via noisy observations.](https://www.wikiwand.com/en/Stochastic_approximation)
+`Stochastic approximation` methods are a family of iterative methods typically used for *root-finding* problems or for *optimization* problems. 
+The recursive update rules of stochastic approximation methods can be used, among other things, for solving linear systems 
+when the collected data is corrupted by noise, or for approximating extreme values of functions which cannot be computed directly, 
+[but only estimated via noisy observations.](https://www.wikiwand.com/en/Stochastic_approximation)
 
 - [Kiefer-Wolfowitz Algorithm](https://link.springer.com/chapter/10.1007/978-1-4471-4285-0_4)
 - [Stochastic Process and Application](http://www.math.wayne.edu/~gyin/conf_web/index.html)
@@ -2832,11 +2856,13 @@ This class of algorithms is very general, and it includes most of the popular tr
 - https://github.com/CyberZHG/keras-radam
 - http://ruder.io/deep-learning-optimization-2017/
 - http://people.ece.umn.edu/~mhong/Activities.html
+- [Adam revisited: a weighted past gradients perspective](https://link.springer.com/article/10.1007/s11704-019-8457-x)
 
 
 #### YellowFin
 
-[We revisit SGD with Polyak's momentum, study some of its robustness properties and extract the design principles for a tuner, YellowFin. YellowFin automatically tunes a single learning rate and momentum value for SGD.](https://cs.stanford.edu/~zjian/project/YellowFin/)
+We revisit SGD with Polyak's momentum, study some of its robustness properties and extract the design principles for a tuner, YellowFin. 
+[YellowFin automatically tunes a single learning rate and momentum value for SGD.](https://cs.stanford.edu/~zjian/project/YellowFin/)
 
 - [YellowFin and the Art of Momentum Tuning](https://cs.stanford.edu/~zjian/project/YellowFin/)
 - https://arxiv.org/abs/1706.03471
@@ -2849,7 +2875,8 @@ This class of algorithms is very general, and it includes most of the popular tr
 
 #### Natasha, Katyusha and Beyond
 
-$\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and others published much work on acceleration of stochastic gradient descent.
+$\color{green}{PS}$: [Zeyuan Allen-Zhu](http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu) and 
+others published much work on acceleration of stochastic gradient descent.
 
 
 - http://www.arxiv-sanity.com/search?q=Zeyuan+Allen-Zhu
@@ -2869,7 +2896,8 @@ For general convex optimization, stochastic gradient descent methods can obtain 
 A more general version of SGD is the following
 $$\omega^{(t)}=\omega^{(t−1)}- g_t(\omega(t−1), \epsilon_t)$$
 
-where $\epsilon_t$ is a random variable that may depend on $\omega^{(t−1)}$. And it is usually assumed that $\mathbb E(g_t(\omega^{(t−1)}, \epsilon_t)\mid \omega^{(t−1)} = \nabla f(\omega^{(t−1)})$.
+where $\epsilon_t$ is a random variable that may depend on $\omega^{(t−1)}$. 
+And it is usually assumed that $\mathbb E(g_t(\omega^{(t−1)}, \epsilon_t)\mid \omega^{(t−1)} = \nabla f(\omega^{(t−1)})$.
 
 Randomness introduces large variance if $g_t(\omega^{(t−1)}, \epsilon_t)$ is very large, it will slow down the convergence.
 
@@ -2943,7 +2971,10 @@ It is  the inherent nature of stochastic gardient methods to escape saddle point
 
 ### Stochastic Fixed Point Equations
 
-[The Feynman-​-Kac formula implies that every suitable classical solution of a semilinear Kolmogorov partial differential equation (PDE) is also a solution of a certain stochastic fixed point equation (SFPE). In this article we study such and related SFPEs. In particular, the main result of this work proves existence of unique solutions of certain SFPEs in a general setting. As an application of this main result we establish the existence of unique solutions of SFPEs associated with semilinear Kolmogorov PDEs with Lipschitz continuous nonlinearities even in the case where the associated semilinear Kolmogorov PDE does not possess a classical solution.](https://math.ethz.ch/sam/research/reports.html?id=851)
+The Feynman-​-Kac formula implies that every suitable classical solution of a semilinear Kolmogorov partial differential equation (PDE) is also a solution of a certain stochastic fixed point equation (SFPE). 
+[In this article we study such and related SFPEs.](https://math.ethz.ch/sam/research/reports.html?id=851)
+In particular, the main result of this work proves existence of unique solutions of certain SFPEs in a general setting. 
+As an application of this main result we establish the existence of unique solutions of SFPEs associated with semilinear Kolmogorov PDEs with Lipschitz continuous nonlinearities even in the case where the associated semilinear Kolmogorov PDE does not possess a classical solution.
 
 
 - [On existence and uniqueness properties for solutions of stochastic fixed point equations](https://math.ethz.ch/sam/research/reports.html?id=851)
@@ -3010,10 +3041,11 @@ where
 
 ### Stochastic Optimization
 
-Stochastic optimization problems are so diverse that the field has become fragmented into a Balkanized set of communities with competing algorithmic strategies and modeling styles. It is easy to spend a significant part of a career mastering the subtleties of each perspective on stochastic optimization, without recognizing the common themes.
+Stochastic optimization problems are so diverse that the field has become fragmented into a Balkanized set of communities with competing algorithmic strategies and modeling styles. 
+It is easy to spend a significant part of a career mastering the subtleties of each perspective on stochastic optimization, without recognizing the common themes.
 
 We have developed a unified framework that covers all of these books.
-We break all `sequential decision problems` into five components: `state variables`, `decision variables`, `exogenous information variables`, the `transition function` and the `objective function`, where we search over policies (functions) for making decisions.
+We break all `sequential decision problems` into five components: `state variables`, `decision variables`, `exogenous information variables, the `transition function` and the `objective function`, where we search over policies (functions) for making decisions.
 We have identified two core strategies for designing policies (policy search, and policies based on lookahead approximations), each of which further divides into two classes, creating four classes that cover all of the solution approaches.
 
 - [Clearing the Jungle of Stochastic Optimization](https://castlelab.princeton.edu/jungle/)
@@ -3062,7 +3094,9 @@ Large scale supervised machine learning methods, which are based on gradient to 
 
 #### Elastic Stochastic Gradient Descent
 
-It is based on an elastic force which links the parameters they compute with a center variable stored by the parameter server (master). The algorithm enables the local workers to perform more exploration, i.e. the algorithm allows the local variables to fluctuate further from the center variable by reducing the amount of communication between local workers and the master.
+It is based on an elastic force which links the parameters they compute with a center variable stored by the parameter server (master). 
+The algorithm enables the local workers to perform more exploration, 
+i.e. the algorithm allows the local variables to fluctuate further from the center variable by reducing the amount of communication between local workers and the master.
 
 The loss function of `Elastic-SGD`
 $$x^{\ast}=\arg\min_{x, x^1, x^N}\frac{1}{N}\sum_{n=1}^{N} f(x^n)+\frac{1}{2\rho N}\|x-x^n\|^2.$$
@@ -3071,7 +3105,9 @@ $$x^{\ast}=\arg\min_{x, x^1, x^N}\frac{1}{N}\sum_{n=1}^{N} f(x^n)+\frac{1}{2\rho
 
 #### Parle
 
-Parle exploits the phenomenon of wide minima that has been shown to improve generalization performance of deep networks and trains multiple “replicas” of a network that are coupled to each other using attractive potentials. It requires infrequent communication with the parameter server and is well-suited to singlemachine-multi-GPU as well as distributed settings.
+Parle exploits the phenomenon of wide minima that has been shown to improve generalization performance of deep networks and trains multiple “replicas” of a network 
+that are coupled to each other using attractive potentials. It requires infrequent communication with the parameter server and 
+is well-suited to singlemachine-multi-GPU as well as distributed settings.
 
 The method replace the loss function by a smoother loss called local entropy
 $$f_{\gamma}^{\beta}(x)=-\frac{1}{\beta}\log(G_{\gamma/\beta}\times \exp(-\beta f(x)))$$
@@ -3261,7 +3297,10 @@ $$
 Q_k(x) = f(x^k)+\left<\nabla f(x^k), x-x^k\right>+\frac{1}{2\alpha_k}(x-x^k)^{T}H_k(x-x^k).
 $$
 
-Note that the Hessian matrix $H_k$ is supposed to be positive definite. The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. And they can rewrite in the principle of surrogate function, where the surrogate function is convex in the form of linear function + squared functions in some sense.  
+Note that the Hessian matrix $H_k$ is supposed to be positive definite. 
+The quasi-Newton methods will approximate the Hessian  matrix with some inverse symmetric matrix. 
+And they can rewrite in the principle of surrogate function, 
+where the surrogate function is convex in the form of linear function + squared functions in some sense.  
 
 Note that momentum methods can be rewrite in the surrogate function form:
 $$
@@ -3285,7 +3324,9 @@ More generally, auxiliary function $g_k(x)$ may replace the Bregman divergence $
 + http://fa.bianp.net/teaching/2018/eecs227at/newton.html
 + http://faculty.uml.edu/cbyrne/NBHSeminar2015.pdf
 
-The parameters $\alpha_k$ is chosen so that the surrogate function is convex by observing that the condition number of  Hessian matrix is determined by the factor $\frac{1}{\alpha_k}$. And gradient are used in these methods to construct the surrogate function. There are still two problems in unconstrained optimization:
+The parameters $\alpha_k$ is chosen so that the surrogate function is convex by observing that 
+the condition number of  Hessian matrix is determined by the factor $\frac{1}{\alpha_k}$. 
+And gradient are used in these methods to construct the surrogate function. There are still two problems in unconstrained optimization:
 
 1. If the cost function is not smooth or differential such as absolute value function, the gradient is not available so that it is a problem to construct a convex surrogate function without gradient;
 2. In another hand, there is no unified principle to construct a convex surrogate function if we know more information of higher order derivatives.
@@ -3463,7 +3504,9 @@ $$
 \min_{x} \sum_{i} f_i(x_i) \leq \sum_{i}\min_{x_i}{f_i(x_i)}.
 $$
 
-And ADMM or proximal gradient methods are to split the cost function to 2 blocks, of which one is differentiable and smooth while the other may not be differentiable. In another word, we can use them to solve some non-smooth optimization problem.
+And ADMM or proximal gradient methods are to split the cost function to 2 blocks, 
+of which one is differentiable and smooth while the other may not be differentiable. 
+In another word, we can use them to solve some non-smooth optimization problem.
 However, what if there is no constraints application to the optimization problem?
 
 **Coordinate descent** is aimed to minimize the following cost function
@@ -3504,7 +3547,20 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 
 #### Block Splitting Methods
 
-[In particular, if the problem data includes a large linear operator or matrix A, the method allows for handling each subblock of A on a separate machine. The approach works as follows. First, we define a canonical problem form called graph form, in which we have two sets of variables x and y related by a linear operator A, such that the objective function is separable across these two sets of variables. Many problems are easily expressed in graph form, including cone programs and a wide variety of regularized loss minimization problems from statistics, like logistic regression, the support vector machine, and the lasso. Next, we describe graph projection splitting, a form of Douglas-Rachford splitting or the alternating direction method of multipliers, to solve graph form problems serially. Finally, we derive a distributed block splitting algorithm based on graph projection splitting. In a statistical or machine learning context, this allows for training models exactly with a huge number of both training examples and features, such that each processor handles only a subset of both. To the best of our knowledge, this is the only general purpose method with this property. We present several numerical experiments in both the serial and distributed settings.](https://web.stanford.edu/~boyd/papers/block_splitting.html)
+In particular, if the problem data includes a large linear operator or matrix $A$, the method allows for handling each subblock of $A$ on a separate machine. 
+The approach works as follows. 
+First, we define a canonical problem form called graph form, 
+in which we have two sets of variables $x$ and $y$ related by a linear operator $A$, 
+such that the objective function is separable across these two sets of variables. 
+Many problems are easily expressed in graph form, including cone programs and a wide variety of regularized loss minimization problems from statistics, 
+like logistic regression, the support vector machine, and the lasso. 
+Next, we describe graph projection splitting, a form of Douglas-Rachford splitting or the alternating direction method of multipliers, 
+to solve graph form problems serially. 
+Finally, we derive a distributed block splitting algorithm based on graph projection splitting. 
+In a statistical or machine learning context, this allows for training models exactly with a huge number of both training examples and features, 
+such that each processor handles only a subset of both. 
+To the best of our knowledge, this is the only general purpose method with this property. 
+[We present several numerical experiments in both the serial and distributed settings.](https://web.stanford.edu/~boyd/papers/block_splitting.html)
 
 - [Block Splitting for Distributed Optimization by N. Parikh and S. Boyd](https://web.stanford.edu/~boyd/papers/block_splitting.html)
 - [Block Splitting for Large-Scale Distributed Learning](https://web.stanford.edu/~boyd/papers/block_splitting_short.html)
@@ -3522,13 +3578,23 @@ It can extended to block coordinate descent(`BCD`) if the variables ${x_1, x_2, 
 + [Relaxation Methods for Convex Problems](https://epubs.siam.org/doi/pdf/10.1137/0705048)
 
 
-The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
+The methods discussed in the book `Block Relaxation Methods in Statistics` are special cases of what we shall call block-relaxation methods, 
+although other names such as decomposition or nonlinear Gauss-Seidel or ping-pong or seesaw methods have also been used.
 
 ![block relaxation methods](https://bookdown.org/jandeleeuw6/bras/graphics/bookfig1.png)
 
-In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. We choose initial values for all blocks, and then minimize over one of the blocks, while keeping all other blocks fixed at their current values. We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. An iteration of the algorithm steps through all blocks in turn, each time keeping the non-active blocks fixed at current values, and each time replacing the active blocks by solving the minimization subproblems. If there are more than two blocks there are different ways to cycle through the blocks. If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
+In a block relaxation method we minimize a real-valued function of several variables by partitioning the variables into blocks. 
+We choose initial values for all blocks, and then minimize over one of the blocks, 
+while keeping all other blocks fixed at their current values. 
+We then replace the values of the active block by the minimizer, and proceed by choosing another block to become active. 
+An iteration of the algorithm steps through all blocks in turn, 
+each time keeping the non-active blocks fixed at current values, 
+and each time replacing the active blocks by solving the minimization subproblems. 
+If there are more than two blocks there are different ways to cycle through the blocks. 
+If we use the same sequence of active blocks in each iteration then the block method is called cyclic.
 
-In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
+In the special case in which blocks consist of only one coordinate we speak of the coordinate relaxation method or the coordinate descent (or CD) method. 
+If we are maximizing then it is coordinate ascent (or CA). The cyclic versions are CCD and CCA.
 
 ##### Augmentation Methods
 
@@ -3542,14 +3608,20 @@ $$ \min_{x\in\mathcal{X}}f(x)=\min_{x\in\mathcal{X}}\min_{y\in\mathcal{Y}}g(x,y)
 
 [The alternating descent conditional gradient method](https://www.stat.berkeley.edu/~nickboyd/adcg/)
 
-A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
+A ubiquitous prior in modern statistical signal processing asserts that an observed signal is the noisy measurement of a few weighted sources. 
+In other words, compared to the entire dictionary of possible sources, the set of sources actually present is sparse. 
+In many cases of practical interest the sources are parameterized and the measurement of multiple weighted sources is linear in their individual measurements.
 
-As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. The sources are the aircraft themselves, and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
+As a concrete example, consider the idealized task of identifying the aircraft that lead to an observed radar signal. 
+The sources are the aircraft themselves, 
+and each is parameterized by, perhaps, its position and velocity relative to the radar detectors. 
+The sparse inverse problem is to recover the number of aircraft present, along with each of their parameters.
 
 ##### Convex Relaxations
 
-[Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
-Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. Approximation algorithms for these problems are developed by formulating the problem at hand as an integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
+Convex relaxations are one of the most powerful techniques for designing polynomial time approximation algorithms for NP-hard optimization problems such as
+Chromatic Number, MAX-CUT, Minimum Vertex Cover etc. 
+[Approximation algorithms for these problems are developed by formulating the problem at hand as an integer program.](https://ttic.uchicago.edu/~madhurt/Papers/sdpchapter.pdf)
 
 
 
@@ -3586,13 +3658,12 @@ $$g(x)=f(y)+(x-y)'b+\frac{1}{2} (x-y)'A(x-y)$$
 #### Lagrangian Relaxation
 
 Lagrangian relaxation (Fisher, 2004) is a technique that exploits the fact that many difficult MILP
-problems can be seen as relatively easy problems complicated by a set of side constraints. These
-constraints can be transferred to the objective function with associated parameters (Lagrangian
-multipliers), which impose a penalty on violations. The relaxed problem provides an upper
-bound (for a maximization problem) on the optimal value of the original problem. To obtain the
-tightest bound, a problem on the Lagrangian multipliers (Lagrangian dual) needs to be solved.
-This problem is typically solved with an iterative method called subgradient method, which uses
-subgradients of the objective function to update the Lagrangian multipliers at each iteration.
+problems can be seen as relatively easy problems complicated by a set of side constraints. 
+These constraints can be transferred to the objective function with associated parameters (Lagrangian multipliers), which impose a penalty on violations. 
+The relaxed problem provides an upper bound (for a maximization problem) on the optimal value of the original problem. 
+To obtain the tightest bound, a problem on the Lagrangian multipliers (Lagrangian dual) needs to be solved.
+This problem is typically solved with an iterative method called subgradient method, 
+which uses subgradients of the objective function to update the Lagrangian multipliers at each iteration.
 
 
 
@@ -3605,7 +3676,11 @@ subgradients of the objective function to update the Lagrangian multipliers at e
 
 #### Deep Relaxation
 
-[In this paper we establish a connection between non-convex optimization methods for training deep neural networks and nonlinear partial differential equations (PDEs). Relaxation techniques arising in statistical physics which have already been used successfully in this context are reinterpreted as solutions of a viscous Hamilton-Jacobi PDE. Using a stochastic control interpretation allows we prove that the modified algorithm performs better in expectation that stochastic gradient descent. Well-known PDE regularity results allow us to analyze the geometry of the relaxed energy landscape, confirming empirical evidence. The PDE is derived from a stochastic homogenization problem, which arises in the implementation of the algorithm. The algorithms scale well in practice and can effectively tackle the high dimensionality of modern neural networks.](https://arxiv.org/abs/1704.04932)
+[In this paper we establish a connection between non-convex optimization methods for training deep neural networks and nonlinear partial differential equations (PDEs).](https://arxiv.org/abs/1704.04932)
+Relaxation techniques arising in statistical physics which have already been used successfully in this context are reinterpreted as solutions of a viscous Hamilton-Jacobi PDE. 
+Using a stochastic control interpretation allows we prove that the modified algorithm performs better in expectation that stochastic gradient descent. 
+Well-known PDE regularity results allow us to analyze the geometry of the relaxed energy landscape, confirming empirical evidence. 
+The PDE is derived from a stochastic homogenization problem, which arises in the implementation of the algorithm. The algorithms scale well in practice and can effectively tackle the high dimensionality of modern neural networks.
 
 + [Deep Relaxation: partial differential equations for optimizing deep neural networks](https://arxiv.org/abs/1704.04932)
 + [Deep Relaxation tutorials](http://www.adamoberman.net/uploads/6/2/4/2/62426505/2017_08_30_ipam.pdf)
