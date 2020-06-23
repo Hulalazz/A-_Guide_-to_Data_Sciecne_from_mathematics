@@ -7,8 +7,8 @@ Since 2018, pre-training has without a doubt become one of the hottest research 
 
 * https://deep-learning-drizzle.github.io/
 * https://nlpprogress.com/
-* https://ruder.io/tracking-progress-nlp/
-* https://github.com/keon/awesome-nlp
+* [Tracking Progress in Natural Language Processing](https://ruder.io/tracking-progress-nlp/)
+* [A curated list of resources dedicated to Natural Language Processing (NLP)](https://github.com/keon/awesome-nlp)
 * https://www.cs.cmu.edu/~rsalakhu/
 * https://github.com/harvardnlp
 * https://nlpoverview.com/
@@ -21,14 +21,22 @@ Since 2018, pre-training has without a doubt become one of the hottest research 
 * https://handong1587.github.io/deep_learning/2015/10/09/nlp.html
 * https://cla2018.github.io/dl4nlp_roth.pdf
 * https://deep-learning-nlp.readthedocs.io/en/latest/
-* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
-* [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 * https://zhuanlan.zhihu.com/c_188941548
 * https://allennlp.org/
 * http://aan.how/
 * http://www.cs.yale.edu/homes/radev/
+* http://www.cs.cmu.edu/~bishan/pubs.html
 
 <img src="https://pic3.zhimg.com/80/v2-598c67c45b4fe0d0b16a21ee7ba91226_hd.jpg" width="70%"/>
+
+The general building blocks of their model, however, are still found in all current neural language and word embedding models. These are:
+
+1. Embedding Layer: a layer that generates word embeddings by multiplying an index vector with a word embedding matrix;
+2. Intermediate Layer(s): one or more layers that produce an intermediate representation of the input, e.g. a fully-connected layer that applies a non-linearity to the concatenation of word embeddings of $n$ previous words;
+3. Softmax Layer: the final layer that produces a probability distribution over words in $V$.
+
+> The softmax layer is a core part of many current neural network architectures. When the number of output classes is very large, such as in the case of language modelling, computing the softmax becomes very expensive. 
+
 
 ### Attention
 
@@ -43,9 +51,12 @@ Since 2018, pre-training has without a doubt become one of the hottest research 
 * https://arxiv.org/abs/1902.10186
 * https://arxiv.org/abs/1906.03731
 * https://arxiv.org/abs/1908.04626v1
+* [遍地开花的 Attention，你真的懂吗？ - 阿里技术的文章 - 知乎](https://zhuanlan.zhihu.com/p/77307258)
   
 ### Transformer
 
+* [Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 - 知乎](https://zhuanlan.zhihu.com/p/69290203)
+* [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
 * [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
 * [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning) ](http://jalammar.github.io/illustrated-bert/)
 * [Universal Transformers](https://mostafadehghani.com/2019/05/05/universal-transformers/)
@@ -68,3 +79,4 @@ Since 2018, pre-training has without a doubt become one of the hottest research 
 
 - https://github.com/openai/gpt-2
 - [Better Language Models and Their Implications](https://openai.com/blog/better-language-models/)
+- https://openai.com/blog/image-gpt/

@@ -335,7 +335,7 @@ From the computtaional perspective, we add some regularization term to deal with
 For example, [Ridge Regression is a technique for analyzing multiple regression data that suffer from multicollinearity](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf) by 
 $$\hat{\theta}=\arg\min_{\theta}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2+\lambda\sum_{i=1}^p\|\theta_i\|_2^2=\arg\min_{\theta}\|y-X\theta\|_2^2+\lambda\|\theta\|_2^2\tag{Ridge Regression}.$$
 According to the [first-order optimality conditions](https://web.stanford.edu/class/msande312/restricted/OPTconditions.pdf), we can obtain that
-$$X^T(y-X\hat{\theta})+\lambda\hat\theta=0\iff (X^T X+\lambda I)\hat{\theta}= X^T y$$
+$$-X^T(y-X\hat{\theta})+\lambda\hat\theta=0\iff (X^T X+\lambda I)\hat{\theta}= X^T y$$
 so that $\hat\theta=(X^T X+\lambda I)^{-1}X^T y$.
 
 Note that $\theta=\frac{\partial m(x))}{\partial x}=\frac{\partial }{\partial x} x^T\theta$ so we can apply the regularization technique to nonlinear model. 
@@ -371,7 +371,9 @@ where $W=\operatorname{diag}(w_1,\cdots,w_n)$.
 [The Lasso is a shrinkage and selection method for linear regression. It minimizes the usual sum of squared errors, with a bound on the sum of the absolute values of the coefficients. It has connections to soft-thresholding of wavelet coefficients, forward stagewise regression, and boosting methods.](http://statweb.stanford.edu/~tibs/lasso.html)
 The `lasso` estimate is defined as
 $$\hat{\theta}=\arg\min_{\theta\in\mathbb{R}^p}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2+\lambda\sum_{i=1}^{p}|\theta_i|=\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1$$
-
+The optimal codnition is 
+$$-X^T(y-x\theta)+\lambda S(\theta)=0$$ 
+where $S(\theta)$ is the subgradeint of $\|\theta\|_1$.
 
 Lasso penalty corresponds to Double-exponential prior:
   $\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1=\arg\max_{\theta\in\Theta}\exp(-\|y-X\theta\|_2^2)\underbrace{\exp(-\lambda \|\theta\|_1)}_{\text{Double-exponential prior}}$. 
@@ -995,7 +997,7 @@ $$\operatorname{LSE}(z)=\log(\sum_{i=1}^k\exp(z_i))\tag{LogSumExp}$$
 the partial derivatives are:
 $$\partial_i \operatorname{LSE}(z)=\frac{\exp(z_i)}{\sum_{i=1}^p\exp(z_i)}=p_i.$$
 Let $z_j=max\{z_1,\cdots,z_k\}$
-$$LSE(z)=\log(\sum_{i=1}^k\exp(z_i))=\log(\exp(z_j)\sum_{i=1}^k\frac{\exp(z_i)}{\exp(z_j)})\\=\log(\exp(z_j)[1+\sum_{i\not=j}\frac{\exp(z_i)}{\exp(z_j)}])\approx \log(\exp(z_j))+\sum_{i\not=j}\frac{\exp(z_i)}{\exp(z_j)}\geq z_j.$$
+$$LSE(z)=\log(\sum_{i=1}^k\exp(z_i))=\log(\exp(z_j)\sum_{i=1}^k\frac{\exp(z_i)}{\exp(z_j)})\\=\log(\exp(z_j)[1+\sum_{i\not=j}\frac{\exp(z_i)}{\exp(z_j)}])= z_j [1  +\sum_{i\not=j}\frac{1}{\exp(z_j-z_i)}]\geq z_j.$$
 And if we define
 $$\displaystyle f_\varepsilon(x) = \varepsilon \log \Big( \sum_{i=1}^n \exp( x_i / \varepsilon) \Big),$$
 and $\lim_{\varepsilon\to 0} f_\varepsilon(x)=\max\{x_1,\cdots,x_n\}$.
@@ -1005,6 +1007,39 @@ $$\frac{\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\exp(z_i+c)}{\sum_{i=1}^k\exp(z_
 - https://en.wikipedia.org/wiki/Smooth_maximum
 - https://en.wikipedia.org/wiki/Softmax_function
 
+### Optimal margine distribution machine learning
+
+Optimal margin Distribution Machine (ODM) can achieve a better generalization performance by optimizing the margin distribution explicitly.
+
+- [Optimal Margin Distribution Machine](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde19odm.pdf)
+- [Semi-Supervised Optimal Margin Distribution Machines](https://www.ijcai.org/Proceedings/2018/0431.pdf)
+- [Multi-Label Optimal Margin Distribution Machine](http://www.acml-conf.org/2019/conference/accepted-papers/175/)
+- [Large Margin Distribution Learning with Cost Interval and Unlabeled Data](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde16cisldm.pdf)
+- [Optimal Margin Distribution Clustering](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16895)
+- https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Cost-Sensitive%20and%20Class-Imbalance%20Learning
+
+### Adaptive Margin Learning
+
+- [Adaptive Margin Support Vector Machines for Classification](http://pdfs.semanticscholar.org/a3db/a5e48d2e57941efe7b4cab7e299fd2cd9de7.pdf)
+- [Adaptive Large Margin Training for Multilabel Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI11/paper/viewFile/3455/3878)
+- [AdaptiveFace: Adaptive Margin and Sampling for Face Recognition](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/papers/2019adaptiveface.pdf)
+- [Boosting Few-Shot Learning With Adaptive Margin Loss](https://arxiv.org/abs/2005.13826)
+- 
+- https://arxiv.org/abs/1707.00409
+- https://www.weiranhuang.com/
+- https://github.com/valeoai/BF3S
+- https://abursuc.github.io/
+- http://imagine.enpc.fr/~komodakn/
+- https://webia.lip6.fr/~cord/
+
+### Circle loss
+
+   
+
+- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
+- https://github.com/TinyZeaMays/CircleLoss
+- https://zhuanlan.zhihu.com/p/45014864
+- https://happynear.wang/
 
 ### Reparameterization trick 
 
@@ -1034,6 +1069,7 @@ where $\tau\in(0,\infty)$ is a temparature hyperparameter.
 - [The Gumbel-Softmax Trick for Inference of Discrete Variables](https://casmls.github.io/general/2017/02/01/GumbelSoftmax.html)
 
 <img src="https://vitalab.github.io/article/images/concrete/fig1.png" width="70%"/>
+
 The derivative of the argmax is 0 everywhere except at the boundary of state changes, where it is undefined. 
 For this reason the `Gumbel-Max` trick is not a suitable reparameterization for use in stochastic computation graphs trained with automatic differentiation. 
 This is why the Concrete distribution is introduced; see Figure 1(b) for how to sample from it. Basically, the argmax operation is replaced with a softmax.
@@ -1152,24 +1188,7 @@ Then the boosting methods are extended to gradeint boosting.
 - https://explained.ai/gradient-boosting/L2-loss.html
 - https://www.cnblogs.com/jcchen1987/p/4581651.html
 
-### Optimal margine distribution machine learning
 
-Optimal margin Distribution Machine (ODM) can achieve a better generalization performance by optimizing the margin distribution explicitly.
-
-- [Optimal Margin Distribution Machine](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde19odm.pdf)
-- [Semi-Supervised Optimal Margin Distribution Machines](https://www.ijcai.org/Proceedings/2018/0431.pdf)
-- [Multi-Label Optimal Margin Distribution Machine](http://www.acml-conf.org/2019/conference/accepted-papers/175/)
-- [Large Margin Distribution Learning with Cost Interval and Unlabeled Data](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde16cisldm.pdf)
-- [Optimal Margin Distribution Clustering](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16895)
-- https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Cost-Sensitive%20and%20Class-Imbalance%20Learning
-
-
-### Circle loss
-
-- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
-- https://github.com/TinyZeaMays/CircleLoss
-- https://zhuanlan.zhihu.com/p/45014864
-- https://happynear.wang/
 
 ### Contrastive learning
 
@@ -1181,6 +1200,8 @@ Optimal margin Distribution Machine (ODM) can achieve a better generalization pe
 - https://blog.einstein.ai/prototypical-contrastive-learning-pushing-the-frontiers-of-unsupervised-learning/
 - [Contrastive Self-Supervised Learning](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
 - [Contractive Auto-Encoders: Explicit Invariance During Feature Extraction](https://icml.cc/Conferences/2011/papers/455_icmlpaper.pdf)
+
+
 
 ## Ranking loss   
 
@@ -1235,15 +1256,18 @@ An ordinal variable is a categorical variable for which the possible values are 
 
 ### Learning to rank
 
+
+In information retrieval,  learning to rank is to sort the items $\{d_i\}_{i}^{n_q}$ when given a query $q$.
+The ranking loss is to measure how the sorted order is different from the ground truth.
+The ranking function $f$ learns to assign an absolute score (categories) to each item in isolation.
 Learning to rank is another kind of supervised learning task including pairwise, listwise and groupwise methods.
 
-The ranking function $f$ learns to assign an absolute score (categories) to each item in isolation.
 
 * Pointwise - Regression, Classification, Ordinal regression (items to be ranked are treated in isolation)
 * Pairwise -  Rank-preference models (items to be ranked are treated in pairs)
 * Listwise - Treat each list as an instance. Usually tries to directly optimise the evaluation measure (e.g. mean average precision)
 
-In information retrieval, learning to rank is to learning a function that can sort the documents when given a query.
+We can take the classic methods in other fields to learn the rank like the pointwise methods.
 
 
 
@@ -1339,8 +1363,7 @@ then the next highest relevance level, etc.
 - [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 - [Forum for Information Retrieval Evaluation](http://fire.irsi.res.in/fire/2019/Lecture%20Series)
 
-Learning to rank is to sort the items $\{d_i\}_{i}^{n_q}$ when given a query $q$.
-The ranking loss is to measure how the sorted order is different from the ground truth.
+
 
 Ranking Losses are essentialy the ones explained above, and are used in many different aplications with the same formulation or minor variations. 
 However, different names are used for them, which can be confusing. 
@@ -1363,6 +1386,7 @@ It is first to minimize the nonsmooth cost function as shown in LambdaRank of [L
 
 Multiple Additive Regression Tree is another name of gradient boosting decision trees.
 
+- https://www.cnblogs.com/bentuwuying/p/6681943.html
 - https://liam.page/uploads/slides/lambdamart.pdf
 - https://stanfordphd.com/MART.html
 - [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
@@ -1391,6 +1415,22 @@ The concept of rankability  refers to a dataset's inherent ability to produce a 
 - https://arxiv.org/abs/1912.00275
 - https://anderson-data-science.com/research/
 - https://www.thomasrcameron.com/
+
+## Semantic Similarity
+
+Different words can share the same meanings.
+
+
+- http://semanticmatching.eu/semantic-matching.html
+- http://semanticmatching.eu/semantic-matching.html
+- https://fastsemsim.readthedocs.io/en/latest/
+- https://blog.lateral.io/
+- http://www4.comp.polyu.edu.hk/~cslzhang/paper/DeepHashing_TIP.pdf
+- https://www.cortical.io/freetools/compare-text/
+- [Efficient Graph-Based Document Similarity](https://usc-isi-i2.github.io/papers/cpaul16-eswc.pdf)
+- http://www.semanticsimilarity.org/
+- https://github.com/jinfengr/hcan
+- https://www.textkernel.com/solution/match/
 
 ## Metric learning
 
