@@ -862,7 +862,7 @@ See [Loss functions for classification](https://en.wikipedia.org/wiki/Loss_funct
 
 - https://en.wikipedia.org/wiki/Loss_functions_for_classification
 - http://jmlr.org/papers/volume16/masnadi15a/masnadi15a.pdf
-- https://papers.nips.cc/paper/3591-on-the-design-of-loss-functions-for-classification-theory-robustness-to-outliers-and-savageboost.pdf
+- [on the design of loss functions for classification theory robustness to outliers and savageboost](https://papers.nips.cc/paper/3591-on-the-design-of-loss-functions-for-classification-theory-robustness-to-outliers-and-savageboost.pdf)
 
 ---
 
@@ -963,7 +963,7 @@ Maximizing the likelihood (or log likelihood) has no closed-form solution, so a 
 - https://peterroelants.github.io/posts/cross-entropy-softmax/
 - https://peterroelants.github.io/posts/cross-entropy-logistic/
 
-----
+#### Softmax    
 
 There is a natural pairing between the softmax activation function and the cross-entropy penalty function.
 
@@ -976,7 +976,7 @@ We can compute the derivative of the cross-entropy loss function for the softmax
 $$\frac{\partial p_i}{\partial z_i}=\frac{\exp(z_i)^2-\exp(z_i)\sum_{i=1}^p\exp(z_i)}{(\sum_{i=1}^p\exp(z_i))^2}=p_i^2-p_i\\ \frac{\partial p_i}{\partial z_j}=\frac{\exp(z_j)\exp(z_i)}{(\sum_{i=1}^p\exp(z_i))^2}=p_ip_j\quad \forall\,\, j\not=i$$
 and
 $$\frac{\partial }{\partial z_i}\log(\frac{1}{p_i})=-\frac{1}{p_i}\frac{\partial p_i}{\partial z_i}=\frac{\sum_{j=1}^k\exp(z_j)-\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\sum_{j\not=i}\exp(z_j)}{\sum_{i=1}^k\exp(z_i)}=1-p_i\\\frac{\partial }{\partial z_j}\log(\frac{1}{p_i})=-p_j.$$
-
+So it is efficent to compute the gradients.
 
 The `Cross-Entropy` for discrete distribution is defined as
 $$\sum_{i=1}^k y_i\log(\frac{y_i}{p_i}),\\ y_i\log(\frac{y_i}{p_i})=0 \quad\text{when    }y_i=0.$$
@@ -991,8 +991,7 @@ $$\sum_{i=1}^n H(\mathbb{y}_i, p)=\sum_{i=1}^n \log(\frac{1}{p_j})=\sum_{i=1}^n 
 - [Rethinking Softmax with Cross-Entropy: Neural Network Classifier as Mutual Information Estimator](https://github.com/ZhenyueQin/Research-Softmax-with-Mutual-Information)
 - [Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
 
-The softmax function is also the gradient of the `LogSumExp` function, a smooth maximum;
-defining: 
+The softmax function is also the gradient of the `LogSumExp` function, a smooth maximum; defining: 
 $$\operatorname{LSE}(z)=\log(\sum_{i=1}^k\exp(z_i))\tag{LogSumExp}$$
 the partial derivatives are:
 $$\partial_i \operatorname{LSE}(z)=\frac{\exp(z_i)}{\sum_{i=1}^p\exp(z_i)}=p_i.$$
@@ -1007,6 +1006,117 @@ $$\frac{\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\exp(z_i+c)}{\sum_{i=1}^k\exp(z_
 - https://en.wikipedia.org/wiki/Smooth_maximum
 - https://en.wikipedia.org/wiki/Softmax_function
 
+
+What is the role of the $\exp()$ in the softmax operator?
+Consider the funuction $\ln(1+\exp(x))$ instead of the $\exp()$ in the softmax functions, we invent 
+$$\frac{\ln(1+\exp(x_i))}{\sum_{i=1}^k\ln(1+\exp(x_i))}.$$
+
+
+- [Softmax Optimizations for Intel Xeon Processor-based Platforms](https://deepai.org/publication/softmax-optimizations-for-intel-xeon-processor-based-platforms)
+- [Efficient Sampled Softmax for Tensorflow](https://deepai.org/publication/efficient-sampled-softmax-for-tensorflow)
+- https://github.com/vene/sparsemap
+
+We first consider the simple problem of selecting the largest value in a vector $\theta\in\mathbb{R}^k$.
+We denote the vector mapping
+$$\max{\theta}=\theta^Tz,z=\arg\max_{y\in\Delta_k}y^T\theta$$
+where $\Delta_k$ is the probability simplex $\Delta_k=\{y\in\mathbb{R}^k\mid \sum_{i=1}^{k}y_i=1, y_i\geq 0\forall i\}\subset \mathbb{R}^k$. 
+The `softmax`, a continuous and differentiable approximation to arg max, can be
+seen as an entropy-regularized $\arg\max$:
+$$\operatorname{softmax}(\theta)=\arg\max_{y\in\Delta_k}y^T\theta+H(y)$$
+where $H(y)=\sum_{i=1}^ky_i\ln(\frac{1}{y_i})$.
+And the sparsemax is given by 
+$$\operatorname{sparsemax}(\theta)=\arg\max_{y\in\Delta_k}y^T\theta+\|y\|_2^2=\arg\max_{y\in\Delta_k}\|\theta-y\|_2^2$$
+which is an Euclidean projection onto the simplex.
+
+<img src="https://raw.githubusercontent.com/vene/sparsemap/master/sparsemap.png" width="50%" />
+
+And we would like some sparsity
+$$\arg\max_{y\in\Delta_k}y^T\theta+\|y\|_1.$$
+
+- [Argmax vs Softmax vs Sparsemax](https://www.cs.utah.edu/~tli/posts/2019/01/blog-post-1/)
+- https://arxiv.org/abs/1802.04223
+- https://arxiv.org/abs/2001.04437
+- [From Softmax to Sparsemax: A Sparse Model of Attention and Multi-Label Classification](http://proceedings.mlr.press/v48/martins16.pdf)
+- https://zhuanlan.zhihu.com/p/38897903
+- https://github.com/vene/sparse-structured-attention
+
+#### Hierarchical softmax
+
+Hierarchical softmax is an alternative to the softmax in which the probability of any one outcome depends on a number of model parameters 
+that is only logarithmic in the total number of outcomes.
+
+
+- https://github.com/kojisekig/word2vec-lucene
+- https://ruder.io/word-embeddings-softmax/
+- http://building-babylon.net/2017/08/01/hierarchical-softmax/
+- [Effectiveness of Hierarchical Softmax in Large Scale Classification Tasks](https://www.researchgate.net/publication/329399049_Effectiveness_of_Hierarchical_Softmax_in_Large_Scale_Classification_Tasks)
+- https://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf
+- https://arxiv.org/abs/2002.04723
+
+### Adaptive Margin Learning
+
+
+
+- http://yining-wang.com/mdactive-slides.pdf
+- [Adaptive Margin Support Vector Machines for Classification](http://pdfs.semanticscholar.org/a3db/a5e48d2e57941efe7b4cab7e299fd2cd9de7.pdf)
+- [Adaptive Large Margin Training for Multilabel Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI11/paper/viewFile/3455/3878)
+- [AdaptiveFace: Adaptive Margin and Sampling for Face Recognition](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/papers/2019adaptiveface.pdf)
+- [Boosting Few-Shot Learning With Adaptive Margin Loss](https://arxiv.org/abs/2005.13826)
+- [Margin-adaptive model selection in statistical learning](https://projecteuclid.org/download/pdfview_1/euclid.bj/1302009243)
+- https://github.com/cvqluu/Angular-Penalty-Softmax-Losses-Pytorch
+- https://arxiv.org/abs/1707.00409
+- https://www.weiranhuang.com/
+- https://github.com/valeoai/BF3S
+- https://abursuc.github.io/
+- http://imagine.enpc.fr/~komodakn/
+- https://webia.lip6.fr/~cord/
+
+### Circle loss
+
+The loss function of the multiclass classification are based on the distribution of the groundtruth.
+
+And the cross entropy is 
+$$-\ln\frac{\exp(W_j\cdot x+b_j)}{\sum_{i=1}^k\exp(W_i\cdot x)+b_i}=\ln\frac{\sum_{i=1}^k\exp(W_i\cdot x)+b_i}{\exp(W_j\cdot x)+b_i} =\ln {\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}$$
+$$=\ln [{1+\sum_{i\not=j}\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}].$$
+where the training instance is $(x, y)$ and $y=(\underbrace{0,\cdots, 0}_{k-1},1,0,\cdots, 0)^T$.
+And based on the one-hot vector $y$, we can rewrite the cross entropy as
+$$-\ln[\operatorname{softmax}(Wx+b)^Ty]=-\ln[z\cdot y]=-\ln(\|z\|_2\cos(z, y))$$
+where $z=\operatorname{softmax}(Wx+b)$. Note that the inner product of $z$ and $y$ matters.
+
+It is obvious that 
+$$\arg\min_{W, b}\ln {\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}=\arg\min_{W, b}{\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}.$$
+Note that this loss can not reach the zero because of the probability is always less than 1.
+
+We can invent different loss fucntions by modifying the softmax loss functions or the inner products.
+Different loss functions can  lead to different feature representation.
+
+<img src="https://raw.githubusercontent.com/cvqluu/Angular-Penalty-Softmax-Losses-Pytorch/master/figs/cosface.png" />
+
+The [Circle Loss](https://arxiv.org/pdf/2002.10857v1.pdf) aimed at 
+maximize the within-class similarity $s_p$ and minimize the between-class similarity $s_n$.
+
+<img src="https://pic4.zhimg.com/80/v2-e6d3e7a67ff6d28da996322cb9855bb3_720w.jpg" width="70%"/>
+
+
+- https://kexue.fm/archives/3290
+- https://happynear.wang/paper/NormFace.pdf
+- https://github.com/happynear/NormFace
+- https://github.com/wy1iu/sphereface
+- [A Metric Learning Reality Check](https://arxiv.org/abs/2003.08505)    
+- https://zhuanlan.zhihu.com/p/34044634
+- [Large Margin In Softmax Cross-Entropy Loss](https://bmvc2019.org/wp-content/uploads/papers/0636-paper.pdf)
+- [Additive Margin Softmax for Face Verification github](https://github.com/happynear/AMSoftmax)
+- [Additive Margin Softmax for Face Verification](https://arxiv.org/abs/1801.05599)
+- https://happynear.wang/
+- https://wyliu.com/
+- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
+- https://github.com/TinyZeaMays/CircleLoss
+- https://zhuanlan.zhihu.com/p/45014864
+- https://happynear.wang/
+- [Focal Loss](https://xmfbit.github.io/2017/08/14/focal-loss-paper/)
+- https://github.com/happynear/NormFace
+- https://omoindrot.github.io/triplet-loss
+
 ### Optimal margine distribution machine learning
 
 Optimal margin Distribution Machine (ODM) can achieve a better generalization performance by optimizing the margin distribution explicitly.
@@ -1018,28 +1128,7 @@ Optimal margin Distribution Machine (ODM) can achieve a better generalization pe
 - [Optimal Margin Distribution Clustering](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16895)
 - https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Cost-Sensitive%20and%20Class-Imbalance%20Learning
 
-### Adaptive Margin Learning
 
-- [Adaptive Margin Support Vector Machines for Classification](http://pdfs.semanticscholar.org/a3db/a5e48d2e57941efe7b4cab7e299fd2cd9de7.pdf)
-- [Adaptive Large Margin Training for Multilabel Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI11/paper/viewFile/3455/3878)
-- [AdaptiveFace: Adaptive Margin and Sampling for Face Recognition](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/papers/2019adaptiveface.pdf)
-- [Boosting Few-Shot Learning With Adaptive Margin Loss](https://arxiv.org/abs/2005.13826)
-- 
-- https://arxiv.org/abs/1707.00409
-- https://www.weiranhuang.com/
-- https://github.com/valeoai/BF3S
-- https://abursuc.github.io/
-- http://imagine.enpc.fr/~komodakn/
-- https://webia.lip6.fr/~cord/
-
-### Circle loss
-
-   
-
-- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
-- https://github.com/TinyZeaMays/CircleLoss
-- https://zhuanlan.zhihu.com/p/45014864
-- https://happynear.wang/
 
 ### Reparameterization trick 
 
@@ -1085,35 +1174,17 @@ This is why the Concrete distribution is introduced; see Figure 1(b) for how to 
 - https://arxiv.org/pdf/1312.6114v10.pdf
 - [REINFORCE vs Reparameterization Trick](http://stillbreeze.github.io/REINFORCE-vs-Reparameterization-trick/)
 
+`soft binning`
+
+- [Split Variational Inference](http://bnaic2010.uni.lu/Papers/Category%20B/Bouchard.pdf)
+- http://www.sci.utah.edu/~acoste/uou/Image/project1/Arthur_COSTE_Project_1_report.html
 #### Local Reparameterization Trick
 
 - https://github.com/gngdb/variational-dropout
 - [The (Local) Reparameterization Trick](https://www.cs.toronto.edu/~duvenaud/courses/csc2541/slides/structured-encoders-decoders.pdf)
 - [Variational Dropout and the Local Reparameterization Tric](https://www.ics.uci.edu/~welling/publications/papers/VariationalDropout.pdf)
 
-### Hierarchical softmax
 
-Hierarchical softmax is an alternative to the softmax in which the probability of any one outcome depends on a number of model parameters that is only logarithmic in the total number of outcomes
-
-- https://ruder.io/word-embeddings-softmax/
-- http://building-babylon.net/2017/08/01/hierarchical-softmax/
-
-`soft binning`
-
-- http://bnaic2010.uni.lu/Papers/Category%20B/Bouchard.pdf
-- http://www.sci.utah.edu/~acoste/uou/Image/project1/Arthur_COSTE_Project_1_report.html
-
-----
-
-
-- https://zhuanlan.zhihu.com/p/34044634
-- [Large Margin In Softmax Cross-Entropy Loss](https://bmvc2019.org/wp-content/uploads/papers/0636-paper.pdf)
-- [Additive Margin Softmax for Face Verification github](https://github.com/happynear/AMSoftmax)
-- [Additive Margin Softmax for Face Verification](https://arxiv.org/abs/1801.05599)
-- https://happynear.wang/
-- https://wyliu.com/
-
-----
 
 `Generalized linear models and generalized additive models` are extension of linear models from two distinct perspectives.
 
@@ -1130,6 +1201,22 @@ where $f_i$ are nonlinear models.
 - https://m-clark.github.io/generalized-additive-models/
 - [Generalized additive model](https://projecteuclid.org/download/pdf_1/euclid.ss/1177013604)
 - [Lesson 10: Log-Linear Models](https://online.stat.psu.edu/stat504/node/117/)
+
+
+
+
+### Bregman Divergences
+
+Bregman Divergences are the extension of squares of $\ell_2$.
+It is based on the differentiable convex function $f$ as following
+$$d_f(x,y) := f(x) - f(y) - {\langle \nabla f(y), x-y \rangle} \ge 0$$
+which is called the Bregman divergence induced by $f$.
+If $f$ is only convex, we can take a subgradient $z\in\partial f(y)$ to rreplace the gradient $\nabla f(y)$.
+And $d_f(x, y)=0$ if $x=y$.
+
+- [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
+- [Bregman Divergence and Mirror Descent](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
+- [Generalized cross entropy loss for training deep neural networks with noisy labels](https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf)
 
 #### f-Divergences
 
@@ -1148,19 +1235,6 @@ For example, $f(x)=x^2-1$ and
 - [ON SURROGATE LOSS FUNCTIONS AND f-DIVERGENCES1](https://projecteuclid.org/download/pdfview_1/euclid.aos/1236693153)
 - [Variational Inference with Tail-adaptive f-Divergence](https://arxiv.org/pdf/1810.11943.pdf)
 - https://hal.inria.fr/inria-00542337/document
-
-### Bregman Divergences
-
-Bregman Divergences are the extension of squares of $\ell_2$.
-It is based on the differentiable convex function $f$ as following
-$$d_f(x,y) := f(x) - f(y) - {\langle \nabla f(y), x-y \rangle} \ge 0$$
-which is called the Bregman divergence induced by $f$.
-If $f$ is only convex, we can take a subgradient $z\in\partial f(y)$ to rreplace the gradient $\nabla f(y)$.
-And $d_f(x, y)=0$ if $x=y$.
-
-- [Meet the Bregman Divergences](http://mark.reid.name/blog/meet-the-bregman-divergences.html)
-- [Bregman Divergence and Mirror Descent](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
-- [Generalized cross entropy loss for training deep neural networks with noisy labels](https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf)
 
 ### Boosting and loss function
 
@@ -1197,10 +1271,13 @@ Then the boosting methods are extended to gradeint boosting.
 
 [Contrastive methods, as the name implies, learn representations by contrasting positive and negative examples.](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
 
+[Contrastive learning between multiple views of the data has recently achieved state of the art performance in the field of self-supervised representation learning. Despite its success, the influence of different view choices has been less studied. In this paper, we use empirical analysis to better understand the importance of view selection, and argue that we should reduce the mutual information (MI) between views while keeping task-relevant information intact.](https://hobbitlong.github.io/InfoMin/)
+
 - https://blog.einstein.ai/prototypical-contrastive-learning-pushing-the-frontiers-of-unsupervised-learning/
 - [Contrastive Self-Supervised Learning](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
 - [Contractive Auto-Encoders: Explicit Invariance During Feature Extraction](https://icml.cc/Conferences/2011/papers/455_icmlpaper.pdf)
-
+- https://hobbitlong.github.io/InfoMin/
+- https://github.com/HobbitLong/PyContrast
 
 
 ## Ranking loss   
@@ -1279,6 +1356,7 @@ We can take the classic methods in other fields to learn the rank like the point
 - http://ltr-tutorial-sigir19.isti.cnr.it/
 - [Variance Reduction in Gradient Exploration for Online Learning to Rank](https://dl.acm.org/doi/10.1145/3331184.3331264)
 - http://www.cse.scu.edu/~yfang/energy-ICTIR16.pdf
+- http://members.cbio.mines-paristech.fr/~jvert//talks/190918mines/mines.pdf
 
 Regression|Ordinal Regression|Classification
 ----|----|----
@@ -1399,10 +1477,12 @@ Multiple Additive Regression Tree is another name of gradient boosting decision 
 
 Sorting is however a poor match for the end-to-end, automatically differentiable pipelines of deep learning.
 
+> The sorting operation is one of the most basic and commonly used building blocks in computer programming. In machine learning, it is commonly used for robust statistics. However, seen as a function, it is piecewise linear and as a result includes many kinks at which it is non-differentiable. More problematic is the related ranking operator, commonly used for order statistics and ranking metrics. It is a piecewise constant function, meaning that its derivatives are null or undefined. While numerous works have proposed differentiable proxies to sorting and ranking, they do not achieve the O(nlogn) time complexity one would expect from sorting and ranking operation.
 
 - [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/techReport.pdf)
 - https://arxiv.org/pdf/1905.11885.pdf
-- http://www.fields.utoronto.ca/talks/Differentiable-Ranking-and-Sorting-using-Optimal-Transport
+- [Talk: Differentiable Ranks and Sorting using Optimal Transport](http://www.fields.utoronto.ca/talks/Differentiable-Ranking-and-Sorting-using-Optimal-Transport)
+- [Fast Differentiable Sorting and Ranking](https://arxiv.org/abs/2002.08871)
 - https://github.com/google-research/google-research/tree/master/soft_sort
 - https://www.microsoft.com/en-us/research/publication/softrank-optimising-non-smooth-rank-metrics/
 
@@ -1442,6 +1522,7 @@ Different words can share the same meanings.
 - https://ai.stanford.edu/~ang/papers/nips02-metric.pdf
 - http://www.cs.toronto.edu/~mvolkovs/NIPS2019_GSS.pdf
 - [Distance Metric Learning for Large Margin Nearest Neighbor Classification](http://www.jmlr.org/papers/volume10/weinberger09a/weinberger09a.pdf)
+- [A Tutorial on Distance Metric Learning: Mathematical Foundations, Algorithms and Software](https://arxiv.org/pdf/1812.05944v1.pdf)
 
 ### Learning Loss
 
