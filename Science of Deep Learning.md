@@ -154,12 +154,28 @@ Not all one can understand the relative theory or quantum theory.
 
 ### DeepLEVER
 
+> DeepLEVER aims at explaining and verifying machine learning systems via combinatorial optimization in general and SAT in particular. 
+[The main thesis of the DeepLever project](http://anitideeplever.laas.fr/project) is that a solution to address the challenges faced by ML models is at the intersection of formal methods (FM) and AI. (A recent Summit on Machine Learning Meets Formal Methods offered supporting evidence to how strategic this topic is.) The DeepLever project envisions two main lines of research, concretely explanation and verification of deep ML models, supported by existing and novel constraint reasoning technologies.
+
 - [DeepLEVER](http://anitideeplever.laas.fr/deeplever-project-has-started)
 - https://aniti.univ-toulouse.fr/index.php/en/
 - https://jpmarquessilva.github.io/
 - https://www.researchgate.net/profile/Martin_Cooper3
 - http://homepages.laas.fr/ehebrard/Home.html
 - http://www.merl.com/
+
+### Scientific Machine Learning  
+
+[Scientific machine learning is a burgeoning discipline which blends scientific computing and machine learning. Traditionally, scientific computing focuses on large-scale mechanistic models, usually differential equations, that are derived from scientific laws that simplified and explained phenomena. On the other hand, machine learning focuses on developing non-mechanistic data-driven models which require minimal knowledge and prior assumptions. The two sides have their pros and cons: differential equation models are great at extrapolating, the terms are explainable, and they can be fit with small data and few parameters. Machine learning models on the other hand require "big data" and lots of parameters but are not biased by the scientists ability to correctly identify valid laws and assumptions.](https://thewinnower.com/papers/25359-the-essential-tools-of-scientific-machine-learning-scientific-ml)
+
+- https://www.scd.stfc.ac.uk/Pages/Scientific-Machine-Learning.aspx
+- https://mitmath.github.io/18337/
+- https://www.stat.purdue.edu/~fmliang/STAT598Purdue/MLS.pdf
+- https://sciml.ai/
+- https://github.com/mitmath/18S096SciML
+- https://ml4sci.lbl.gov/
+- https://www.nottingham.ac.uk/conference/fac-sci/maths-sci/scientific-computation-using-machine-learning-algorithms/
+- https://sites.google.com/lbl.gov/ml4sci/
 
 ## Physics and Deep Learning
 
