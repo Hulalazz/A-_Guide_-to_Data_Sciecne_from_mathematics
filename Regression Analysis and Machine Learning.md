@@ -309,6 +309,7 @@ From [ALPAYDIN, Ethem, 2004. Introduction to Machine Learning. Cambridge, MA: Th
 * https://www.seas.harvard.edu/courses/cs281/
 * https://developers.google.com/machine-learning/guides/rules-of-ml/
 * https://lilianweng.github.io/lil-log/2017/08/01/how-to-explain-the-prediction-of-a-machine-learning-model.html
+* https://www.comp.nus.edu.sg/~reza/courses/cs6231/
 
 [Unsupervised learning is a form of descriptive analytics. Predictive analytics aims to estimate outcomes from current data. Supervised learning is a kind of predictive analytics. Finally, prescriptive analytics guides actions to take in order to guarantee outcomes.](http://www.argmin.net/2018/01/29/taxonomy/)
 
@@ -412,6 +413,8 @@ http://bytesizebio.net/2014/02/05/support-vector-machines-explained-well/
 +  http://www.kernel-machines.org/
 +  http://onlineprediction.net/?n=Main.KernelMethods
 +  https://arxiv.org/pdf/math/0701907.pdf
++  http://disi.unitn.it/moschitti/Tree-Kernel.htm
++  http://disi.unitn.it/moschitti/Kernel_Group.htm
 
 ***
 ![](https://courses.cs.ut.ee/2011/graphmining/uploads/Main/pm.png)
