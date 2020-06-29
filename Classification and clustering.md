@@ -722,3 +722,4 @@ If we apply the  stacking ensemble methods to kernelized SVM, it is equivalent t
 * https://www.cc.gatech.edu/~isbell/tutorials/rbf-intro.pdf
 * http://fourier.eng.hmc.edu/e161/lectures/nn/node11.html
 * https://www.cs.cmu.edu/afs/cs/academic/class/15883-f15/slides/rbf.pdf
+* http://disi.unitn.it/moschitti/Kernel_Group.htm

@@ -1025,13 +1025,20 @@ seen as an entropy-regularized $\arg\max$:
 $$\operatorname{softmax}(\theta)=\arg\max_{y\in\Delta_k}y^T\theta+H(y)$$
 where $H(y)=\sum_{i=1}^ky_i\ln(\frac{1}{y_i})$.
 And the sparsemax is given by 
-$$\operatorname{sparsemax}(\theta)=\arg\max_{y\in\Delta_k}y^T\theta+\|y\|_2^2=\arg\max_{y\in\Delta_k}\|\theta-y\|_2^2$$
+$$\operatorname{sparsemax}(\theta)=\arg\max_{y\in\Delta_k}y^T\theta-\frac{1}{2}\|y\|_2^2=\arg\min_{y\in\Delta_k}\|\theta-y\|_2^2$$
 which is an Euclidean projection onto the simplex.
 
 <img src="https://raw.githubusercontent.com/vene/sparsemap/master/sparsemap.png" width="50%" />
 
-And we would like some sparsity
-$$\arg\max_{y\in\Delta_k}y^T\theta+\|y\|_1.$$
+And we would like some sparsity via the LASSO-like approach
+$$\arg\max_{y\in\Delta_k}y^T\theta-\|y\|_1=\arg\max_{y\in\Delta_k}y^T(\theta-\vec{1})=\arg\max_{y\in\Delta_k}y^T\theta$$
+where $\|y\|_1$ is the $\ell_1$ norm equal to $y^T\vec{1}=\sum_{i=1}^ky_i$.
+There is no novel operator.
+
+And it is natural to think the follwoing opertor
+$$\arg\min_{y\in\Delta_k}\|\theta-y\|_1$$
+while this is not a well defined.
+
 
 - [Argmax vs Softmax vs Sparsemax](https://www.cs.utah.edu/~tli/posts/2019/01/blog-post-1/)
 - https://arxiv.org/abs/1802.04223
@@ -1039,6 +1046,7 @@ $$\arg\max_{y\in\Delta_k}y^T\theta+\|y\|_1.$$
 - [From Softmax to Sparsemax: A Sparse Model of Attention and Multi-Label Classification](http://proceedings.mlr.press/v48/martins16.pdf)
 - https://zhuanlan.zhihu.com/p/38897903
 - https://github.com/vene/sparse-structured-attention
+- https://kexue.fm/archives/7359
 
 #### Hierarchical softmax
 
