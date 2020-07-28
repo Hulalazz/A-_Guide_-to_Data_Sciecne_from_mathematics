@@ -1,6 +1,5 @@
 # Recommender System
 
-<img src= "https://img.dpm.org.cn/Uploads/Picture/dc/27569[1024].jpg" width="50%" />
 
 Recommender Systems (RSs) are software tools and techniques providing suggestions for items to be of use to a user.
 RSs are primarily directed towards individuals who lack sufficient personal experience or competence to evaluate the potentially overwhelming number of alternative items 
@@ -17,17 +16,19 @@ There are some methods called `Deep Matching Models for Recommendation`.
 It is an application of machine learning, which is in the *representation + evaluation + optimization* form. 
 And we will focus on the `representation and evaluation`.
 
+<img src= "https://pic1.zhimg.com/80/v2-c0953af315e5108bc60bb30a4e38a37c_720w.jpg" width="70%" />
 
 - [ ] https://github.com/hongleizhang/RSPapers
+- [ ] https://github.com/chihming/competitive-recsys
 - [ ] https://rsbd2019.wordpress.com/
 - [ ] https://github.com/familyld/AwesomeRecSysPaper/
-- [ ] http://kdd2018tutorial-behavior.datasciences.org/
 - [ ] https://github.com/benfred/implicit
 - [ ] https://github.com/YuyangZhangFTD/awesome-RecSys-papers
 - [ ] https://github.com/daicoolb/RecommenderSystem-Paper
 - [ ] https://github.com/grahamjenson/list_of_recommender_systems
 - [ ] https://www.zhihu.com/question/20465266/answer/142867207
 - [ ] http://www.mbmlbook.com/Recommender.html
+- [ ] https://wiki.recsys.acm.org/index.php/Main_Page  
 - [X] [直接优化物品排序的推荐算法](https://blog.csdn.net/u013166160/article/details/17935193)
 - [ ] [推荐系统遇上深度学习](https://www.jianshu.com/c/e12d7195a9ff)
 - [ ] [Large-Scale Recommender Systems@UTexas](http://bigdata.ices.utexas.edu/project/large-scale-recommender-systems/)
@@ -39,6 +40,9 @@ And we will focus on the `representation and evaluation`.
 - [ ] [Recommender Systems (2019/1)](https://homepages.dcc.ufmg.br/~rodrygo/recsys-2019-1/)
 - [ ] [Recommender systems & ranking](https://sites.google.com/view/chohsieh-research/recommender-systems)
 - [ ] [Large scale recommender systems](https://bigdata.oden.utexas.edu/project/large-scale-recommender-systems/)
+- [ ] [Symposium on Semantic Computing and Personalization](http://dasfaa-secop.org/)
+- [ ] [International Workshop on Web Personalization, Recommender Systems, and Social Media (WPRSM2018)](http://www.webpres-workshop.com/)
+- [ ] https://www.comp.hkbu.edu.hk/mdm2019/files/slides/keynote_xie.pdf
 
 |Evolution of the Recommender Problem|
 |:---:|
@@ -65,8 +69,6 @@ We only take the mathematical convenience into consideration in the following me
 - [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
 - [Distance Metrics for Fun and Profit](https://www.benfrederickson.com/distance-metrics/)
 - [Recsys2018 evaluation: tutorial](https://github.com/jeanigarcia/recsys2018-evaluation-tutorial)
-
-
 
 ## Collaborative Filtering
 
@@ -251,7 +253,14 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 
 ### Poisson Factorization
 
-[We develop a Bayesian Poisson matrix factorization model for forming recommendations from sparse user behavior data. These data are large user/item matrices where each user has provided feedback on only a small subset of items, either explicitly (e.g., through star ratings) or implicitly (e.g., through views or purchases). In contrast to traditional matrix factorization approaches, Poisson factorization implicitly models each user's limited attention to consume items. Moreover, because of the mathematical form of the Poisson likelihood, the model needs only to explicitly consider the observed entries in the matrix, leading to both scalable computation and good predictive performance. We develop a variational inference algorithm for approximate posterior inference that scales up to massive data sets. This is an efficient algorithm that iterates over the observed entries and adjusts an approximate posterior over the user/item representations. We apply our method to large real-world user data containing users rating movies, users listening to songs, and users reading scientific papers. In all these settings, Bayesian Poisson factorization outperforms state-of-the-art matrix factorization methods.](https://arxiv.org/abs/1311.1704)
+[We develop a Bayesian Poisson matrix factorization model for forming recommendations from sparse user behavior data.](https://arxiv.org/abs/1311.1704)
+ These data are large user/item matrices where each user has provided feedback on only a small subset of items, either explicitly (e.g., through star ratings) or implicitly (e.g., through views or purchases). 
+ In contrast to traditional matrix factorization approaches, Poisson factorization implicitly models each user's limited attention to consume items. 
+ Moreover, because of the mathematical form of the Poisson likelihood, the model needs only to explicitly consider the observed entries in the matrix, leading to both scalable computation and good predictive performance. 
+ We develop a variational inference algorithm for approximate posterior inference that scales up to massive data sets. 
+ This is an efficient algorithm that iterates over the observed entries and adjusts an approximate posterior over the user/item representations. 
+ We apply our method to large real-world user data containing users rating movies, users listening to songs, and users reading scientific papers. 
+ In all these settings, Bayesian Poisson factorization outperforms state-of-the-art matrix factorization methods.
 
 + https://lkpy.readthedocs.io/en/stable/hpf.html
 + https://hpfrec.readthedocs.io/en/latest/
@@ -290,28 +299,14 @@ We use stochastic gradient ascent to maximize the objective function.
 * [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
 
 
-### BellKor's Progamatic Chaos
+### Recommendation with Implicit Information
 
-Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
-The boosting or stacking methods may help us to enhance these methods.
-
-> A key to achieving highly competitive results on the Netflix data is usage of sophisticated blending schemes, which combine the multiple individual predictors into a single final solution. This significant component was managed by our colleagues at the Big Chaos team. Still, we were producing a few blended solutions, which were later incorporated as individual predictors in the final blend. Our blending techniques were applied to three distinct sets of predictors. First is a set of 454 predictors, which represent all predictors of the BellKor’s Pragmatic Chaos team for which we have matching Probe and Qualifying results. Second, is a set of 75 predictors, which the BigChaos team picked out of the 454 predictors by forward selection. Finally, a set of 24 BellKor predictors for which we had matching Probe and Qualifying results. from [Netflix Prize.](https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf)
-
-
-
-* https://www.netflixprize.com/community/topic_1537.html
-* https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf
-* https://www.netflixprize.com/assets/GrandPrize2009_BPC_BigChaos.pdf
-
-***
 Another advantage of collaborative filtering or matrix completion is that even the element of matrix is binary or implicit information such as
 
 * [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf),
 * [Applications of the conjugate gradient method for implicit feedback collaborative filtering](http://rs1.sze.hu/~gtakacs/download/recsys_2011_draft.pdf),
 * [Intro to Implicit Matrix Factorization](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
 * [a curated list in github.com](https://github.com/benfred/implicit).
-
-### Recommendation with Implicit Information
 
 |Explicit and implicit feedback|
 |:---:|
@@ -402,56 +397,7 @@ And $\ell$ is diverse such as the squared error $\ell(a,b)=(a-b)^2$, the logisti
 - https://canyilu.github.io/publications/
 - http://people.eecs.berkeley.edu/~yima/matrix-rank/references.html
 - [A Library of ADMM for Sparse and Low-rank Optimization](https://github.com/canyilu/LibADMM)
-
-
-### Factorization Machines(FM)
-
-The matrix completion used in recommender system are linear combination of some features such as regularized SVD and they only take the user-user interaction and item-item similarity.
-`Factorization Machines(FM)` is inspired from previous factorization models.
-It represents each feature an embedding vector, and models the second-order feature interactions:
-$$
-\hat{y}
-= w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\\
-= \underbrace{w_0  + \left<w, x\right>}_{\text{First-order: Linear Regression}} + \underbrace{\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j}_{\text{Second-order: pair-wise interactions between features}}
-$$
-
-where the model parameters that have to be estimated are
-$$
-w_0 \in \mathbb{R}, w\in\mathbb{R}^n, V\in\mathbb{R}^{n\times k}.
-$$
-
-And $\left<\cdot,\cdot\right>$ is the dot (inner) product of two vectors so that $\left<v_i, v_j\right>=\sum_{f=1}^{k}v_{i,f} \cdot v_{j,f}$.
-A row $v_i$ within ${V}$ describes the ${i}$-th latent variable with ${k}$ factors for $x_i$.
-
-And the linear regression $w_0 + \sum_{i=1}^{n} w_i x_i$ is called `the first order part`; the pair-wise interactions between features
-$\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is called the `second order part`.
-
-However, why we call it `factorization machine`? Where is the _factorization_?
-If ${[W]}_{ij}=w_{ij}= \left<v_i, v_j\right>$, $W=V V^T$.
-
-In order to reduce the computation complexity, the second order part $\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is rewritten in the following form
-$$\frac{1}{2}\sum_{l=1}^{k}\{[\sum_{i=1}^{n}(v_{il}x_i))]^2-\sum_{i=1}^{n}(v_{il}x_i)^2\}.$$
-
-* [FM算法（Factorization Machine）](https://blog.csdn.net/g11d111/article/details/77430095)
-* [分解机(Factorization Machines)推荐算法原理 by 刘建平Pinard](https://www.cnblogs.com/pinard/p/6370127.html)
-* [Factorization Machines for Recommendation Systems](https://getstream.io/blog/factorization-recommendation-systems/)
-* [第09章：深入浅出ML之Factorization家族](http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/)
-* [Factorization Machines](https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf)
-* [TensorFlow implementation of an arbitrary order Factorization Machine](https://github.com/geffy/tffm)
-
-### Field-aware Factorization Machine(FFM)
-
-In FMs, every feature has only one latent vector to learn the latent effect with any other features.
-In FFMs, each feature has several latent vectors. Depending on the field of other features, one of them is used to do the inner product.
-Mathematically,
-$$
-\hat{y}=\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_{j_1,f_2}, v_{j_2,f_1}\right> x_{j_1} x_{j_2}
-$$
-where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
-
-* [Yuchin Juan at ACEMAP](https://www.acemap.info/author/page?AuthorID=7E61F31B)
-* [Field-aware Factorization Machines for CTR Prediction](https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf)
-* https://blog.csdn.net/mmc2015/article/details/51760681
+- https://arxiv.org/abs/1603.06038
 
 ### Beyond Matrix Completion
 
@@ -488,7 +434,9 @@ Toward a more comprehensive characterization of the recommendation task.
 
 ***
 
-[Collaborative filtering has become a key tool in recommender systems. The Netflix competition was instrumental in this context to further development of scalable tools. At its heart lies the minimization of the Root Mean Squares Error (RMSE) which helps to decide upon the quality of a recommender system. Moreover, minimizing the RMSE comes with desirable guarantees of statistical consistency. In this talk I make the case that RMSE minimization is a poor choice for a number of reasons: firstly, review scores are anything but Gaussian distributed, often exhibiting asymmetry and bimodality in their scores. Secondly, in a retrieval setting accuracy matters primarily for the top rated items. Finally, such ratings are highly context dependent and should only be considered in interaction with a user. I will show how this can be accomplished easily by relatively minor changes to existing systems.](http://www.ueo-workshop.com/invited-speakers/)
+Collaborative filtering has become a key tool in recommender systems. The Netflix competition was instrumental in this context to further development of scalable tools. 
+At its heart lies the minimization of the Root Mean Squares Error (RMSE) which helps to decide upon the quality of a recommender system. Moreover, minimizing the RMSE comes with desirable guarantees of statistical consistency. 
+[In this talk I make the case that RMSE minimization is a poor choice for a number of reasons: firstly, review scores are anything but Gaussian distributed, often exhibiting asymmetry and bimodality in their scores. Secondly, in a retrieval setting accuracy matters primarily for the top rated items. Finally, such ratings are highly context dependent and should only be considered in interaction with a user. I will show how this can be accomplished easily by relatively minor changes to existing systems.](http://www.ueo-workshop.com/invited-speakers/)
 
 
 - https://www.researchgate.net/project/Proactive-Recommendation-Delivery
@@ -496,6 +444,151 @@ Toward a more comprehensive characterization of the recommendation task.
 - [Recommender systems---: Recommender systems---: beyond matrix completion](https://www.researchgate.net/publication/309600906_Recommender_systems---_beyond_matrix_completion)
 - [Notes of "Recommender Systems - Beyond Matrix Completion"](https://typewind.github.io/2017/04/05/rsbmc-notes/)
 - [Toward the Next Generation of Recommender Systems: A Survey of the State-of-the-Art and Possible Extensions](http://people.stern.nyu.edu/atuzhili/pdf/TKDE-Paper-as-Printed.pdf)
+
+*****************
+
+## Factorization Machines(FM)
+
+The matrix completion used in recommender system are linear combination of some features such as regularized SVD and they only take the user-user interaction and item-item similarity.
+`Factorization Machines(FM)` is inspired from previous factorization models.
+It represents each feature an embedding vector, and models the second-order feature interactions:
+$$
+\hat{y}
+= w_0 + \sum_{i=1}^{n} w_i x_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j\\
+= \underbrace{w_0  + \left<w, x\right>}_{\text{First-order: Linear Regression}} + \underbrace{\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j}_{\text{Second-order: pair-wise interactions between features}}
+$$
+
+where the model parameters that have to be estimated are
+$$
+w_0 \in \mathbb{R}, w\in\mathbb{R}^n, V\in\mathbb{R}^{n\times k}.
+$$
+
+And $\left<\cdot,\cdot\right>$ is the dot (inner) product of two vectors so that $\left<v_i, v_j\right>=\sum_{f=1}^{k}v_{i,f} \cdot v_{j,f}$.
+A row $v_i$ within ${V}$ describes the ${i}$-th latent variable with ${k}$ factors for $x_i$.
+
+And the linear regression $w_0 + \sum_{i=1}^{n} w_i x_i$ is called `the first order part`; the pair-wise interactions between features
+$\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is called the `second order part`.
+
+However, why we call it `factorization machine`? Where is the _factorization_?
+If ${[W]}_{ij}=w_{ij}= \left<v_i, v_j\right>$, $W=V V^T$, 
+the second order part $\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is equivalent to the following relationship:
+$$\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j=\frac{1}{2}x^TWx=\frac{1}{2}\sum_{i,j}w_{ij}x_i x_j$$
+thus it is to factorize the matrix $W$ into the product of the $V$ and $V^T$.
+
+
+In order to reduce the computation complexity, the second order part $\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\left<v_i, v_j\right> x_i x_j$ is rewritten in the following form
+$$\frac{1}{2}\sum_{l=1}^{k}\{[\sum_{i=1}^{n}(v_{il}x_i))]^2-\sum_{i=1}^{n}(v_{il}x_i)^2\}.$$
+This show that we can use less resource to compute the model.
+
+The next step is to find the optimal parameters of the model using the numerical optimization methods.
+Optimality of model parameters is usually defined with a loss function $\ell$ where the task is to minimize the sum of losses over the observed data $S=\{(x_i,y_i)\}_{i=1}^N$.
+$$\arg\min_{\Theta}\sum_{(x_i,y_i)\in  S}\ell(\hat{y}(x_i), x_i)$$
+
+<img src="https://img-blog.csdn.net/20150506130413304" width="80%"/>
+
+* [第09章：深入浅出ML之Factorization家族](http://www.52caml.com/head_first_ml/ml-chapter9-factorization-family/)
+* [FM算法（Factorization Machine）](https://blog.csdn.net/g11d111/article/details/77430095)
+* [分解机(Factorization Machines)推荐算法原理 by 刘建平Pinard](https://www.cnblogs.com/pinard/p/6370127.html)
+* [Factorization Machines for Recommendation Systems](https://getstream.io/blog/factorization-recommendation-systems/)
+* http://www.libfm.org/
+* https://github.com/ibayer/fastFM
+* https://www.d2l.ai/chapter_recommender-systems/fm.html
+
+
+[Factorization Machines]: https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf
+
+FMs model all interactions between variables using factorized parameters. 
+Thus they are able to estimate interactions even in problems with huge sparsity (like recommender systems) where SVMs fail. 
+It is shown that the model equation of FMs can be calculated in linear time and thus FMs can be optimized directly.
+
+In [Factorization Machines], the factorization machine models all nested variable interactions (comparable to a polynomial kernel in
+SVM), but uses a factorized parametrization instead of a
+dense parametrization like in SVMs.
+
+And [sparse factorization machines]((http://jiayuzhou.github.io/papers/jxuSDM16b.pdf)) enforce group sparsity to remove the effect of a feature of user or a feature of item.
+
+> Polynomial networks and factorization machines are two recently-proposed models that can efficiently use feature interactions in classification and regression tasks. In this paper, we revisit both models from a unified perspective. Based on this new view, we study the properties of both models and propose new efficient training algorithms. Key to our approach is to cast parameter learning as a low-rank symmetric tensor estimation problem, which we solve by multi-convex optimization. We demonstrate our approach on regression and recommender system tasks.
+
+* https://arxiv.org/abs/1607.08810
+* [Polynomial Networks and Factorization Machines: New Insights and Efficient Training Algorithms](http://mblondel.org/talks/mblondel-erato-2016-08.pdf)
+* https://www.csie.ntu.edu.tw/~cjlin/talks/sdm2015.pdf
+* https://www.ismll.uni-hildesheim.de/pub/pdfs/RendleFreudenthaler2010-FPMC.pdf
+* https://mlconf.com/speakers/steffen-rendle/
+* http://www.cs.cmu.edu/~wcohen/10-605/2015-guest-lecture/FM.pdf
+* [Synergies that Matter: Efficient Interaction Selection via Sparse Factorization Machine](http://jiayuzhou.github.io/papers/jxuSDM16b.pdf)
+* http://csse.szu.edu.cn/staff/panwk/recommendation/Sequence/FPMC.pdf
+
+### Field-aware Factorization Machine(FFM)
+
+In FMs, every feature has only one latent vector to learn the latent effect with any other features.
+In FFMs, each feature has several latent vectors. Depending on the field of other features, one of them is used to do the inner product.
+Mathematically,
+$$
+\hat{y}=\sum_{j_1=1}^{n}\sum_{j_2=i+1}^{n}\left<v_{j_1,f_2}, v_{j_2,f_1}\right> x_{j_1} x_{j_2}
+$$
+where $f_1$ and $f_2$ are respectively the fields of $j_1$ and $j_2$.
+
+* https://www.csie.ntu.edu.tw/~cjlin/
+* https://github.com/ycjuan/libffm
+* [Yuchin Juan at ACEMAP](https://www.acemap.info/author/page?AuthorID=7E61F31B)
+* [Field-aware Factorization Machines for CTR Prediction](https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf)
+* https://blog.csdn.net/mmc2015/article/details/51760681
+* https://www.aaai.org/ojs/index.php/AAAI/article/view/4267/4145
+* https://ailab.criteo.com/ctr-prediction-linear-model-field-aware-factorization-machines/
+
+### Convex Factorization Machines
+
+> Factorization machines are a generic framework which allows to mimic many factorization models simply by feature engineering. In this way, they combine the high predictive accuracy of factorization models with the flexibility of feature engineering. 
+> Unfortunately, factorization machines involve a non-convex optimization problem and are thus subject to bad local minima. 
+> [In this paper](https://www.researchgate.net/publication/300544530_Convex_Factorization_Machines), we propose a convex formulation of factorization machines based on the nuclear norm.
+>  Our formulation imposes fewer restrictions on the learned model and is thus more general than the original formulation. 
+> To solve the corresponding optimization problem, we present an efficient globally-convergent two-block coordinate descent algorithm. 
+> Empirically, we demonstrate that our approach achieves comparable or better predictive accuracy than the original factorization machines on 4 recommendation tasks and scales to datasets with 10 million samples.
+
+<img src="https://maidousj.github.io/assets/images/2020-06-02-Convex-FM/image-20200629175631089.png" width="70%"/>
+
+And the objective function to optimize is the regularized empirical loss function or structured empirical loss function:
+$$\sum_{i}\ell(\hat{y}(x_i), y_i)+\frac{\alpha}{2}\|w\|_2^2+\beta\|Z\|_{\ast}$$
+where $\|Z\|_{\ast}$ is the nuclear norm of the matrix $Z$.
+
+
+- [Online Compact Convexified Factorization Machine](https://arxiv.org/abs/1802.01379)
+- http://mblondel.org/talks/mblondel-cambridge-2015-09.pdf
+- https://bigdata.nii.ac.jp/eratokansyasai4/wp-content/uploads/2017/09/929e8b7e82a0043cc993d328bfbb400e.pdf
+- https://maidousj.github.io/2020/06/02/Convex-FM/
+- http://www.yichang-cs.com/yahoo/KDD17_FM.pdf
+- https://arxiv.org/abs/1507.01073
+- http://talks.cam.ac.uk/talk/index/60262
+
+### Higher-Order Factorization Machines
+
+In [Factorization Machines], the d-way factorization machines are proposed in the following form:
+$$\hat{y}=w_0+\left<x, w\right>+\sum_{m=2}^d\sum_{n_1=1}^n\cdots\sum_{n_m}^n(\prod_{j=1}^{m}x_j)(\sum_{f}^k\prod_{j=1}^{m}v_{m_j,f}^{(m)}).$$
+Unfortunately, despite increasing interest in FMs, there exists to date no efficient training algorithm for higher-order FMs (HOFMs).
+
+The FM can be considered as the second order polynomial regression with lower computation complexity.
+And FM is also considered as the ANOVA kernel regression of degree 2.
+So we can generalize the FM into `Higher-Order Factorization Machines` (HOFM) based on ANOVA kernel.
+
+- https://people.eecs.berkeley.edu/~jordan/kernels/0521813972c09_p291-326.pdf
+- http://mblondel.org/talks/mblondel-stair-2016-09.pdf
+- https://rdrr.io/cran/FactoRizationMachines/man/010-FactoRizationMachines.html
+- https://papers.nips.cc/paper/6144-higher-order-factorization-machines.pdf
+- http://mblondel.org/talks/mblondel-stair-2016-09.pdf
+- https://ideas.repec.org/p/zbw/iwqwdp/132017.html
+- http://www.kecl.ntt.co.jp/as/members/ueda/
+- https://papers.nips.cc/paper/6144-higher-order-factorization-machines.pdf
+
+
+### Implementation 
+
+* [TensorFlow implementation of an arbitrary order Factorization Machine](https://github.com/geffy/tffm)
+* http://libfm.org/
+* https://github.com/srendle/libfm
+* https://www.csie.ntu.edu.tw/~cjlin/libffm/
+* https://github.com/srendle
+
+********************
 
 ## Deep Learning for Recommender System
 
@@ -519,8 +612,16 @@ At another hand, deep learning leads a role as one representation methods to emb
 * https://dl.acm.org/citation.cfm?id=3125486
 * [The 1st International Workshop on Deep Learning Practice for High-Dimensional Sparse Data with KDD 2019 (DLP-KDD 2019）](https://dlp-kdd.github.io/)
 * https://recsys.acm.org/recsys19/session-3/
+* http://bdsc.lab.uic.edu/docs/survey-critique-deep.pdf
+- [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
+- [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
+- [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
+- [ ] https://bdsc.lab.uic.edu/docs/survey-critique-deep.pdf
+- [ ] [Deep Learning based Recommender System](https://fardapaper.ir/mohavaha/uploads/2019/09/Fardapaper-Deep-Learning-based-Recommender-System-A-Survey-and-New-Perspectives.pdf)
+- [ ] http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=101417&copyownerid=158713
+- [ ] https://786121244.github.io/NeuRec-Workshop/
 
-### Restricted Boltzmann Machines for Collaborative Filtering(RBM)
+### Restricted Boltzmann Machines for Collaborative Filtering
 
 Let ${V}$ be a $K\times m$ observed binary indicator matrix with $v_i^k = 1$ if the user rated item ${i}$ as ${k}$ and ${0}$ otherwise.
 We also let $h_j$, $j = 1, \dots, F,$ be the binary values of hidden (latent) variables, that can be thought of as representing
@@ -571,28 +672,103 @@ where $\sigma_j^2$ is the variance of the hidden unit ${j}$.
 * http://deeplearning.net/tutorial/rbm.html
 * [RBM notebook form Microsoft](https://github.com/Microsoft/Recommenders/blob/master/notebooks/00_quick_start/rbm_movielens.ipynb)
 
-### AutoRec
+### AutoRec for Collaborative Filtering
 
 [AutoRec](http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf) is a novel `autoencoder` framework for collaborative filtering (CF). Empirically, AutoRec’s
 compact and efficiently trainable model outperforms state-of-the-art CF techniques (biased matrix factorization, RBMCF and LLORMA) on the Movielens and Netflix datasets.
 
-Formally, the objective function for the Item-based AutoRec (I-AutoRec) model is, for regularisation strength $\lambda > 0$,
+Formally, the objective function for the Item-based AutoRec (I-AutoRec) model is, for regularization strength $\lambda > 0$,
 
-$$
-\min_{\theta}\sum_{i=1}^{n} {\|r^{i}-h(r^{i}|\theta)\|}_{O}^2 +\frac{1}{2}({\|W\|}_F^{2}+ {\|V\|}_F^{2})
-$$
+$$\min_{\theta}\sum_{i=1}^{n} {\|r^{i}-h(r^{i}|\theta)\|}_{O}^2 +\frac{1}{2}({\|W\|}_F^{2}+ {\|V\|}_F^{2})$$
 
 where $\{r^{i}\in\mathbb{R}^{d}, i=1,2,\dots,n\}$ is partially observed vector and ${\| \cdot \|}_{o}^2$ means that we only consider the contribution of observed ratings.
 The function $h(r|\theta)$ is  the reconstruction of input $r\in\mathbb{R}^{d}$:
 
-$$
-h(r|\theta) = f(W\cdot g(Vr+\mu)+b)
-$$
+$$h(r|\theta) = f(W\cdot g(Vr+\mu)+b)$$
 
 for for activation functions $f, g$ as described in  dimension reduction. Here $\theta = \{W,V,r,b\}$.
 
-* [《AutoRec: Autoencoders Meet Collaborative Filtering》WWW2015 阅读笔记](https://blog.csdn.net/studyless/article/details/70880829)
+* [AutoRec: Autoencoders Meet Collaborative Filtering》WWW2015 阅读笔记](https://blog.csdn.net/studyless/article/details/70880829)
 * [AutoRec: Autoencoders Meet Collaborative Filtering](http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf)
+
+
+### Deep crossing
+
+
+
+<img src="http://www.arvinzyy.cn/2017/10/15/Deep-Crossing-Web-Scale-Modeling-without-Manually-Crafted-Combinatorial-Features/1.png" width="70%"/>
+
+- https://zhuanlan.zhihu.com/p/91057914
+- https://www.microsoft.com/en-us/research/people/xingx/
+- https://www.pianshen.com/article/31571380403/
+- https://www.kdd.org/kdd2016/papers/files/adf0975-shanA.pdf
+
+
+### Neural collaborative filtering
+
+>  This model leverages the flexibility and `non-linearity of neural networks to replace dot products of matrix factorization`, aiming at enhancing the model expressiveness. 
+> In specific, this model is structured with two subnetworks including generalized matrix factorization (GMF) and MLP and models the interactions from two pathways instead of simple inner products. 
+> The outputs of these two networks are concatenated for the final prediction scores calculation. 
+> Unlike the rating prediction task in AutoRec, this model generates a ranked recommendation list to each user based on the implicit feedback.
+>  [We will use the personalized ranking loss introduced in the last section to train this model.](https://d2l.ai/chapter_recommender-systems/neumf.html)
+
+<img src="https://d2l.ai/_images/rec-neumf.svg" width="80%"/>
+
+- https://www.comp.nus.edu.sg/~xiangnan/papers/ncf.pdf
+- https://d2l.ai/chapter_recommender-systems/neumf.html
+- https://github.com/hexiangnan/neural_collaborative_filtering
+- [Neural Collaborative Filtering vs. Matrix Factorization Revisited](https://arxiv.org/abs/2005.09683)
+  
+### Collaborative deep learning for RecSys
+
+[Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.](http://www.wanghao.in/CDL.htm)
+
+Given part of the ratings in ${R}$ and the content information $X_c$, the problem is to predict the other ratings in ${R}$,
+where row ${j}$ of the content information matrix $X_c$ is the bag-of-words vector $Xc;j{\ast}$ for item ${j}$ based on a vocabulary of size ${S}$.
+
+`Stacked denoising autoencoders(SDAE)` is a feedforward neural network for learning
+representations (encoding) of the input data by learning to predict the clean input itself in the output.
+Using the Bayesian SDAE as a component, the generative
+process of CDL is defined as follows:
+1. For each layer ${l}$ of the SDAE network,
+    * For each column ${n}$ of the weight matrix $W_l$, draw
+    $$W_l;{\ast}n \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
+    * Draw the bias vector
+    $$b_l \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
+    * For each row ${j}$ of $X_l$, draw
+    $$X_{l;j\ast}\sim \mathcal{N}(\sigma(X_{l-1;j\ast}W_l b_l), \lambda_s^{-1} I_{K_l}).$$
+
+2. For each item ${j}$,
+      * Draw a clean input
+        $$X_{c;j\ast}\sim \mathcal{N}(X_{L, j\ast}, \lambda_n^{-1} I_{K_l}).$$
+      * Draw a latent item offset vector $\epsilon_j \sim \mathcal{N}(0, \lambda_v^{-1} I_{K_l})$ and then set the latent item vector to be:
+        $$v_j=\epsilon_j+X^T_{\frac{L}{2}, j\ast}.$$
+3. Draw a latent user vector for each user ${i}$:
+     $$u_i \sim \mathcal{N}(0, \lambda_u^{-1} I_{K_l}).$$
+
+4. Draw a rating $R_{ij}$ for each user-item pair $(i; j)$:
+  $$R_{ij}\sim \mathcal{N}(u_i^T v_j, C_{ij}^{-1}).$$
+
+Here $\lambda_w, \lambda_s, \lambda_n, \lambda_u$and $\lambda_v$ are hyperparameters and $C_{ij}$ is
+a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R_{ij} = 1$ and $C_{ij} = b$ otherwise).
+
+And joint log-likelihood of these parameters is
+$$L=-\frac{\lambda_u}{2}\sum_{i} {\|u_i\|}_2^2-\frac{\lambda_w}{2}\sum_{l} [{\|W_l\|}_F+{\|b_l\|}_2^2]\\
+-\frac{\lambda_v}{2}\sum_{j} {\|v_j - X^T_{\frac{L}{2},j\ast}\|}_2^2-\frac{\lambda_n}{2}\sum_{l} {\|X_{c;j\ast}-X_{L;j\ast}\|}_2^2 \\
+-\frac{\lambda_s}{2}\sum_{l}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2 -\sum_{ij} {\|R_{ij}-u_i^Tv_j\|}_2^2
+$$
+
+It is not easy to prove that it converges.
+
+
+* http://www.winsty.net/
+* http://www.wanghao.in/
+* https://www.cse.ust.hk/~dyyeung/
+* [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
+* [Deep Learning for Recommender Systems](https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf)
+* https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
+* [推荐系统中基于深度学习的混合协同过滤模型](http://www.10tiao.com/html/236/201701/2650688117/2.html)
+* [CoupledCF: Learning Explicit and Implicit User-item Couplings in Recommendation for Deep Collaborative Filtering](http://203.170.84.89/~idawis33/DataScienceLab/publication/nonIID-RS-final.pdf)
 
 ### Wide & Deep Model
 
@@ -612,6 +788,8 @@ where the `wide` part deal with the categorical features such as user demographi
 * https://www.sohu.com/a/190148302_115128
 
 <img src = http://kubicode.me/img/Take-about-CTR-With-Deep-Learning/dcn_arch.png width=60%/>
+
+--------------
 
 ### Deep FM
 
@@ -681,7 +859,9 @@ where $a_{i, j}$ is the attention score for feature interaction.
 <img src=https://deepctr-doc.readthedocs.io/en/latest/_images/AFM.png width=80% />
 
 * https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf
+* https://arxiv.org/abs/1708.04617
 * http://blog.leanote.com/post/ryan_fan/Attention-FM%EF%BC%88AFM%EF%BC%89
+* https://www.cnblogs.com/Lee-yl/p/9643098.html
 
 ### xDeepFM
 
@@ -705,6 +885,7 @@ It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Networ
 * https://arxiv.org/pdf/1806.08977.pdf
 * https://github.com/PengjieRen/RepeatNet
 
+
 ****
 
 * [Deep Knowledge-aware Network for News Recommendation](https://github.com/hwwang55/DKN)
@@ -725,87 +906,8 @@ It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Networ
 * [Deep Matrix Factorization Models for Recommender Systems](https://www.ijcai.org/proceedings/2017/0447.pdf)
 * [Deep Matrix Factorization for Recommender Systems with Missing Data not at Random](https://iopscience.iop.org/article/10.1088/1742-6596/1060/1/012001)
 
-### Deep Geometric Matrix Completion
+----------------
 
-It’s easy to observe how better matrix completions can be achieved by considering the sparse matrix as defined over two different graphs:
-a user graph and an item graph. From a signal processing point of view, the matrix ${X}$
-can be considered as a bi-dimensional signal defined over two distinct domains.
-Instead of recurring to multigraph convolutions realized over the entire matrix ${X}$, two
-independent single-graph GCNs (graph convolution networks) can be applied on matrices ${W}$ and ${H}$.
-
-Given the aforementioned multi-graph convolutional layers,
-the last step that remains concerns the choice of the architecture to use for reconstructing the missing information.
-Every (user, item) pair in the multi-graph approach and every user/item in the separable
-one present in this case an independent state, which is updated (at every step) by means of the features produced by
-the selected GCN.
-
-* [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
-* https://arxiv.org/abs/1704.06803
-* [Deep Geometric Matrix Completion: a Geometric Deep Learning approach to Recommender Systems](http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018)
-* [Talk: Deep Geometric Matrix Completion](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
-
-### Top-N recommendation
-
-* [Local Item-Item Models for Top-N Recommendation](http://glaros.dtc.umn.edu/gkhome/node/1192)
-* [Improving Top-N Recommendation with Heterogeneous Loss](https://www.ijcai.org/Proceedings/16/Papers/339.pdf)
-* https://blog.csdn.net/lthirdonel/article/details/80021282
-* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data](http://ceur-ws.org/Vol-1127/paper4.pdf)
-* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
-
-
-### Collaborative Deep Learning for Recommender Systems
-
-[Collaborative filtering (CF) is a successful approach commonly used by many recommender systems. Conventional CF-based methods use the ratings given to items by users as the sole source of information for learning to make recommendation. However, the ratings are often very sparse in many applications, causing CF-based methods to degrade significantly in their recommendation performance. To address this sparsity problem, auxiliary information such as item content information may be utilized. Collaborative topic regression (CTR) is an appealing recent method taking this approach which tightly couples the two components that learn from two different sources of information. Nevertheless, the latent representation learned by CTR may not be very effective when the auxiliary information is very sparse. To address this problem, we generalize recently advances in deep learning from i.i.d. input to non-i.i.d. (CF-based) input and propose in this paper a hierarchical Bayesian model called collaborative deep learning (CDL), which jointly performs deep representation learning for the content information and collaborative filtering for the ratings (feedback) matrix. Extensive experiments on three real-world datasets from different domains show that CDL can significantly advance the state of the art.](http://www.wanghao.in/CDL.htm)
-
-Given part of the ratings in ${R}$ and the content information $X_c$, the problem is to predict the other ratings in ${R}$,
-where row ${j}$ of the content information matrix $X_c$ is the bag-of-words vector $Xc;j{\ast}$ for item ${j}$ based on a vocabulary of size ${S}$.
-
-`Stacked denoising autoencoders(SDAE)` is a feedforward neural network for learning
-representations (encoding) of the input data by learning to predict the clean input itself in the output.
-Using the Bayesian SDAE as a component, the generative
-process of CDL is defined as follows:
-1. For each layer ${l}$ of the SDAE network,
-    * For each column ${n}$ of the weight matrix $W_l$, draw
-    $$W_l;{\ast}n \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
-    * Draw the bias vector
-    $$b_l \sim \mathcal{N}(0,\lambda_w^{-1} I_{K_l}).$$
-    * For each row ${j}$ of $X_l$, draw
-    $$X_{l;j\ast}\sim \mathcal{N}(\sigma(X_{l-1;j\ast}W_l b_l), \lambda_s^{-1} I_{K_l}).$$
-
-2. For each item ${j}$,
-      * Draw a clean input
-        $$X_{c;j\ast}\sim \mathcal{N}(X_{L, j\ast}, \lambda_n^{-1} I_{K_l}).$$
-      * Draw a latent item offset vector $\epsilon_j \sim \mathcal{N}(0, \lambda_v^{-1} I_{K_l})$ and then set the latent item vector to be:
-        $$v_j=\epsilon_j+X^T_{\frac{L}{2}, j\ast}.$$
-3. Draw a latent user vector for each user ${i}$:
-     $$u_i \sim \mathcal{N}(0, \lambda_u^{-1} I_{K_l}).$$
-
-4. Draw a rating $R_{ij}$ for each user-item pair $(i; j)$:
-  $$R_{ij}\sim \mathcal{N}(u_i^T v_j, C_{ij}^{-1}).$$
-
-Here $\lambda_w, \lambda_s, \lambda_n, \lambda_u$and $\lambda_v$ are hyperparameters and $C_{ij}$ is
-a confidence parameter similar to that for CTR ($C_{ij} = a$ if $R_{ij} = 1$ and $C_{ij} = b$ otherwise).
-
-And joint log-likelihood of these parameters is
-$$L=-\frac{\lambda_u}{2}\sum_{i} {\|u_i\|}_2^2-\frac{\lambda_w}{2}\sum_{l} [{\|W_l\|}_F+{\|b_l\|}_2^2]\\
--\frac{\lambda_v}{2}\sum_{j} {\|v_j - X^T_{\frac{L}{2},j\ast}\|}_2^2-\frac{\lambda_n}{2}\sum_{l} {\|X_{c;j\ast}-X_{L;j\ast}\|}_2^2 \\
--\frac{\lambda_s}{2}\sum_{l}\sum_{j} {\|\sigma(X_{l-1;j\ast}W_l b_l)-X_{l;j}\|}_2^2 -\sum_{ij} {\|R_{ij}-u_i^Tv_j\|}_2^2
-$$
-
-It is not easy to prove that it converges.
-
-
-* http://www.winsty.net/
-* http://www.wanghao.in/
-* https://www.cse.ust.hk/~dyyeung/
-* [Collaborative Deep Learning for Recommender Systems](http://www.wanghao.in/CDL.htm)
-* [Deep Learning for Recommender Systems](https://www.inovex.de/fileadmin/files/Vortraege/2017/deep-learning-for-recommender-systems-pycon-10-2017.pdf)
-* https://github.com/robi56/Deep-Learning-for-Recommendation-Systems
-* [推荐系统中基于深度学习的混合协同过滤模型](http://www.10tiao.com/html/236/201701/2650688117/2.html)
-* [CoupledCF: Learning Explicit and Implicit User-item Couplings in Recommendation for Deep Collaborative Filtering](http://203.170.84.89/~idawis33/DataScienceLab/publication/nonIID-RS-final.pdf)
-- [ ] [Deep Learning Meets Recommendation Systems](https://nycdatascience.com/blog/student-works/deep-learning-meets-recommendation-systems/)
-- [ ] [Using Keras' Pretrained Neural Networks for Visual Similarity Recommendations](https://www.ethanrosenthal.com/2016/12/05/recasketch-keras/)
-- [ ] [Recommending music on Spotify with deep learning](http://benanne.github.io/2014/08/05/spotify-cnns.html)
 
 ### Deep Matching Models for Recommendation
 
@@ -859,7 +961,31 @@ Deep Matching models takes the ID vectors and features together as the input to 
 * [A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 * [Learning to Match using Local and Distributed Representations of Text for Web Search](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/wwwfp0192-mitra.pdf)
 * https://github.com/super-zhangchao/learning-to-match
+* https://deepctr-doc.readthedocs.io/en/latest/Features.html
 
+
+
+## Top-N recommendation
+
+* http://yongfeng.me/attach/jrl-cikm17.pdf
+* [Local Item-Item Models for Top-N Recommendation](http://glaros.dtc.umn.edu/gkhome/node/1192)
+* [Improving Top-N Recommendation with Heterogeneous Loss](https://www.ijcai.org/Proceedings/16/Papers/339.pdf)
+* https://blog.csdn.net/lthirdonel/article/details/80021282
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data](http://ceur-ws.org/Vol-1127/paper4.pdf)
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
+
+## Embedding methods for RecSys
+
+
+
+- https://recsys.acm.org/recsys18/tutorials/
+- https://dawenl.github.io/publications/LiangACB16-cofactor.pdf
+- https://cseweb.ucsd.edu/~jmcauley/pdfs/recsys18c.pdf
+- http://diposit.ub.edu/dspace/bitstream/2445/130481/3/memoria.pdf
+- https://cseweb.ucsd.edu/~jmcauley/workshops/scmls20/
+- https://www.ismll.uni-hildesheim.de/pub/pdfs/Ahmed_RecSys19.pdf
+- https://www.cc.gatech.edu/~lsong/papers/rnn_coevolve.pdf
+- http://yongfeng.me/attach/wang-sigir2019a.pdf
 
 ### Hyperbolic Recommender Systems
 
@@ -888,6 +1014,183 @@ The parameters of our model are learned by using [`RSGD`](https://arxiv.org/abs/
 * [Hyperbolic Recommender Systems](https://arxiv.org/abs/1809.01703)
 * [Scalable Hyperbolic Recommender Systems](https://arxiv.org/abs/1902.08648v1)
 
+
+
+### Prod2Vec
+
+ Product embedding
+* Based on item-item co-occurrence from transaction sequences
+ co-purhased products)
+* Uses method of word embedding: low-dimensional, distributed
+embeddings of words based on word sequences in text documents
+
+- https://astro.temple.edu/~tuc17157/pdfs/grbovic2015kddB.pdf
+- http://www.majumderb.com/prod2vec_initial_report.pdf
+- https://dl.acm.org/citation.cfm?id=2959166
+
+### Item2vec
+
+- https://www.cnblogs.com/hellojamest/p/11766401.html
+- http://ceur-ws.org/Vol-1688/paper-13.pdf
+
+### Meta-Prod2Vec
+
+- https://arxiv.org/abs/1607.07326
+- http://labs.criteo.com/2016/09/meta-prod2vec-product-embeddings-using-side-information-recommendation/
+
+
+### proNet
+
+- http://cherry.cs.nccu.edu.tw/~g10018/portfolio/slides/pronet.pdf
+- https://github.com/haowei01/proNet-core
+
+### Modularize Graph Embedding for Recommendation
+
+We can take the recommendation as Link Prediction on Graphs.
+
+1. Efficient retrieval from approximate nearest neighbor (ANN) search methods.
+2. Efficient pairwise comparison due to dimensionality reduction (DR)
+3. Reduced space complexity due to DR
+4. Transfer learning with pertained embeddings 
+
+So graph embedding is GREAT for recommendation :
+* Reduces data sparsity and cold start via integrating auxiliary information
+* Provides holistic view of REC problem and jointly mines different relations in terms of graph structures
+* Trains fast, compares fast, and retrieves fast while taking less space
+
+In order to address the challenges of the graph embedding, we need modularize graph embedding for adaptability.
+
+* Extracts graph structures from dataset while remains type-agnostic to sampled entities, i.e., nodes & edges
+* Converts entities into spatial features via embedding stacking operations, e.g, lookup, pooling (average, etc.)
+* Preserves entity relatedness as spatial properties with customizable similarity metrics and loss functions
+
+
+- https://github.com/cnclabs/smore
+- https://github.com/chihming/awesome-network-embedding
+- http://cherry.cs.nccu.edu.tw/~g10018/recsys19_smore.pdf
+- http://staff.ustc.edu.cn/~hexn/papers/sigir19-NGCF.pdf
+
+## Graph networks for RecSys
+
+> Graph is an important structure for System II intelligence, with the universal representation ability to capture the relationship between different variables, and support interpretability, causality, and transferability / inductive generalization. Traditional logic and symbolic reasoning over graphs has relied on methods and tools which are very different from deep learning models, such Prolog language, SMT solvers, constrained optimization and discrete algorithms. Is such a methodology separation between System I and System II intelligence necessary? How to build a flexible, effective and efficient bridge to smoothly connect these two systems, and create higher order artificial intelligence?
+
+> [Graph neural networks](https://logicalreasoninggnn.github.io/), have emerged as the tool of choice for graph representation learning, which has led to impressive progress in many classification and regression problems such as chemical synthesis, 3D-vision, recommender systems and social network analysis. However, prediction and classification tasks can be very different from logic/symbolic reasoning.
+
+[In this tutorial, we revisit the recommendation problem from the perspective of graph learning. ](https://next-nus.github.io/)
+Common data sources for recommendation can be organized into graphs, such as user-item interactions (bipartite graphs), social networks, item knowledge graphs (heterogeneous graphs), among others. 
+Such a graph-based organization connects the isolated data instances, bringing benefits for exploiting high-order connectivities that encode meaningful patterns for collaborative filtering, content-based filtering, social influence modeling and knowledge-aware reasoning. 
+Together with the recent success of graph neural networks (GNNs), graph-based models have exhibited the potential to be the technologies for next generation recommendation systems. 
+The tutorial provides a review on graph-based learning methods for recommendation, with special focus on recent developments of GNNs and knowledge grap-henhanced recommendation. 
+By introducing this emerging and promising area in the tutorial, we expect the audience can get deep understanding and accurate insight on the spaces, stimulate more ideas and discussions, and promote developments of technologies.
+
+- https://next-nus.github.io/
+- https://logicalreasoninggnn.github.io/
+- https://arxiv.org/abs/1902.07243
+- https://zhuanlan.zhihu.com/p/66521058
+- https://github.com/wenqifan03/GraphRec-WWW19
+- https://next-nus.github.io/slides/tuto-cikm2019-public.pdf
+
+### Deep Geometric Matrix Completion
+
+It’s easy to observe how better matrix completions can be achieved by considering the sparse matrix as defined over two different graphs:
+a user graph and an item graph. From a signal processing point of view, the matrix ${X}$
+can be considered as a bi-dimensional signal defined over two distinct domains.
+Instead of recurring to multigraph convolutions realized over the entire matrix ${X}$, two
+independent single-graph GCNs (graph convolution networks) can be applied on matrices ${W}$ and ${H}$.
+
+Given the aforementioned multi-graph convolutional layers,
+the last step that remains concerns the choice of the architecture to use for reconstructing the missing information.
+Every (user, item) pair in the multi-graph approach and every user/item in the separable
+one present in this case an independent state, which is updated (at every step) by means of the features produced by
+the selected GCN.
+
+* [graph convolution network有什么比较好的应用task？ - superbrother的回答 - 知乎](https://www.zhihu.com/question/305395488/answer/554847680)
+* https://arxiv.org/abs/1704.06803
+* [Deep Geometric Matrix Completion: a Geometric Deep Learning approach to Recommender Systems](http://www.ipam.ucla.edu/abstract/?tid=14552&pcode=DLT2018)
+* [Talk: Deep Geometric Matrix Completion](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14552.pdf)
+
+### PinSage
+
+- http://cedric.cnam.fr/~thomen/journal_club/19-10-18.pdf
+- https://sites.google.com/view/ruining-he/
+- https://samsiatrtp.wordpress.com/category/program/computational-advertising/
+- https://docs.dgl.ai/en/latest/_modules/dgl/sampling/pinsage.html
+- https://www.hotbak.net/key/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%94%A8%E4%BA%8E%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98PinSage.html
+
+### Spectral Collaborative Filtering
+
+- https://www.cs.uic.edu/~clu/doc/recsys18_spectralCF.pdf
+
+
+
+### LightGCN
+
+-  https://github.com/kuandeng/LightGCN
+-  https://blog.csdn.net/qq_39388410/article/details/106970194
+-  http://staff.ustc.edu.cn/~hexn/
+
+## Automatic Feature Interaction Selection in RecSys
+
+
+[A feature interaction is some way in which a feature or features modify or influence another feature in defining overall system behavior.](http://pamelazave.com/faq.html)
+
+- https://www.tinymind.cn/articles/4233?from=articles_commend
+
+Generally, feature interactions matter in recommender system.
+
+
+[Attribute interactions are the irreducible dependencies between attributes. Interactions underlie feature relevance and selection, the structure of joint probability and classification models: if and only if the attributes interact, they should be connected. While the issue of 2-way interactions, especially of those between an attribute and the label, has already been addressed, we introduce an operational definition of a generalized n-way interaction by highlighting two models: the reductionistic part-to-whole approximation, where the model of the whole is reconstructed from models of the parts, and the holistic reference model, where the whole is modelled directly. An interaction is deemed significant if these two models are significantly different. Correlation is a special case of attribute interaction.](http://stat.columbia.edu/~jakulin/Int/)
+
+- http://pamelazave.com/fi.html
+- https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/chen-2019-bayesian.pdf
+- http://www.that-recsys-lab.net/home/projects/fala-tutorial-2020
+- http://www.inf.unibz.it/~ricci/papers/intro-rec-sys-handbook.pdf
+- https://pycaret.org/feature-interaction/
+- https://www.cs.cmu.edu/~ckaestne/pdf/icse12.pdf
+- https://www.public.asu.edu/~huanliu/papers/ijcai07.pdf
+- https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1189&context=cseconfwork
+- http://stat.columbia.edu/~jakulin/Int/interaction-slides.pdf
+- https://iclr.cc/virtual_2020/poster_BkgnhTEtDS.html
+- http://stat.columbia.edu/~jakulin/Int/
+- https://christophm.github.io/interpretable-ml-book/interaction.html
+
+### AutoCross
+
+<img src="https://cdn-image.aijishu.com/419/674/4196744805-5efef8e60a75b" width="80%"/>
+
+- https://dl.acm.org/doi/10.1145/3292500.3330679
+- https://aijishu.com/a/1060000000081601
+
+### Product-based Neural Network
+
+> Facing with the extreme sparsity, traditional models may limit their capacity of mining shallow patterns from the data, i.e. low-order feature combinations. Deep models like deep neural networks, on the other hand, cannot be directly applied for the high-dimensional input because of the huge feature space.
+
+- https://arxiv.org/abs/1611.00144
+- https://www.kdd.org/kdd2016/papers/files/adf0975-shanA.pdf
+- https://dl.acm.org/doi/10.1145/3233770
+- https://github.com/Atomu2014/product-nets
+- https://app.dimensions.ai/details/publication/pub.1007555309
+
+### Deep Crossing
+
+[The Deep Crossing model  is a deep neural network that automatically combines features to produce superior models. The input of Deep Crossing is a set of individual features that can be either dense or sparse. The important crossing features are discovered implicitly by the networks, which are comprised of an embedding and stacking layer, as well as a cascade of Residual Units.](https://www.kdd.org/kdd2016/subtopic/view/deep-crossing-web-scale-modeling-without-manually-crafted-combinatorial-fea)
+
+- https://www.kdd.org/kdd2016/papers/files/adf0975-shanA.pdf
+
+### AutoGroup
+
+- https://icml.cc/Conferences/2011/papers/9_icmlpaper.pdf
+- https://zhuanlan.zhihu.com/p/136594025
+
+### AutoFIS
+
+> `AutoFIS` can automatically identify important feature interactions for factorization models with computational cost just equivalent to training the target model to convergence. In the $\color{red}\text{search stage}$, instead of searching over a discrete set of candidate feature interactions, we relax the choices to be continuous by introducing the architecture parameters
+
+- https://arxiv.org/abs/2003.11235
+- https://github.com/zhuchenxv/AutoFIS
+
+
+
 ## Ensemble Methods for Recommender System
 
 The RecSys can be considered as some regression or classification tasks, so that we can apply the ensemble methods to these methods as  `BellKor's Progamatic Chaos` used the blended solution to win the prize.
@@ -898,6 +1201,21 @@ In this section, the boosting is the focus, which is to reduce the error and boo
 There are two common methods to construct a stronger learner from a weaker learner: (1) reweight the samples and learn from the error: AdaBoosting; (2) retrain another learner and learn to approximate the error: Gradient Boosting.
 
 - [General Functional Matrix Factorization Using Gradient Boosting](http://w.hangli-hl.com/uploads/3/1/6/8/3168008/icml_2013.pdf)
+- [recsys2019](https://github.com/logicai-io/recsys2019/tree/master/publications)
+
+### BellKor's Progamatic Chaos
+
+Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
+The boosting or stacking methods may help us to enhance these methods.
+
+> A key to achieving highly competitive results on the Netflix data is usage of sophisticated blending schemes, which combine the multiple individual predictors into a single final solution. This significant component was managed by our colleagues at the Big Chaos team. Still, we were producing a few blended solutions, which were later incorporated as individual predictors in the final blend. Our blending techniques were applied to three distinct sets of predictors. First is a set of 454 predictors, which represent all predictors of the BellKor’s Pragmatic Chaos team for which we have matching Probe and Qualifying results. Second, is a set of 75 predictors, which the BigChaos team picked out of the 454 predictors by forward selection. Finally, a set of 24 BellKor predictors for which we had matching Probe and Qualifying results. from [Netflix Prize.](https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf)
+
+
+
+* https://www.netflixprize.com/community/topic_1537.html
+* https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf
+* https://www.netflixprize.com/assets/GrandPrize2009_BPC_BigChaos.pdf
+
 
 ### BoostFM
 
@@ -937,6 +1255,37 @@ In the following, we demonstrate ranking factorization machines with both pairwi
 - https://fajieyuan.github.io/
 - https://www.librec.net/luckymoon.me/
 - [The author’s final accepted version.](http://eprints.gla.ac.uk/135914/7/135914.pdf)
+
+### Adaptive Boosting Personalized Ranking (AdaBPR)
+
+`AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
+In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
+The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
+
+Here explicit feedback refers to users' ratings to items while implicit feedback is derived
+from users' interactions with items, e.g., number of times a user plays a song.
+
+The primary idea of applying boosting for item recommendation is to learn a set of homogeneous component recommenders and then create an ensemble of the component recommenders to predict users' preferences.
+
+Here, we use a linear combination of component recommenders as the final recommendation model
+$$f=\sum_{t=1}^{T}{\alpha}_t f_{t}.$$
+
+In the training process, AdaBPR runs for ${T}$ rounds, and the component recommender $f_t$ is created at t-th round by
+$$
+\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}_{u} \exp\{-E(\pi(u,i,\sum_{n=1}^{t}{\alpha}_n f_{n}))\}.
+$$
+
+where the notations are listed as follows:
+
+- $\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms;
+- $E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair;
+- $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$;
+- $\mathbb{O}$ is the set of all observed user-item interactions;
+- ${\beta}_{u}$ is defined as reciprocal of the number of user $u$'s  historical items  ${\beta}_{u}=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).
+***
+- [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
+- [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
+
 
 ### Gradient Boosting Factorization Machines
 
@@ -1015,37 +1364,6 @@ _________
 
 
 
-### Adaptive Boosting Personalized Ranking (AdaBPR)
-
-`AdaBPR (Adaptive Boosting Personalized Ranking)` is a boosting algorithm for top-N item recommendation using users' implicit feedback.
-In this framework, multiple homogeneous component recommenders are linearly combined to achieve more accurate recommendation.
-The component recommenders are learned based on a re-weighting strategy that assigns a dynamic weight to each observed user-item interaction.
-
-Here explicit feedback refers to users' ratings to items while implicit feedback is derived
-from users' interactions with items, e.g., number of times a user plays a song.
-
-The primary idea of applying boosting for item recommendation is to learn a set of homogeneous component recommenders and then create an ensemble of the component recommenders to predict users' preferences.
-
-Here, we use a linear combination of component recommenders as the final recommendation model
-$$f=\sum_{t=1}^{T}{\alpha}_t f_{t}.$$
-
-In the training process, AdaBPR runs for ${T}$ rounds, and the component recommender $f_t$ is created at t-th round by
-$$
-\arg\min_{f_t\in\mathbb{H}} \sum_{(u,i)\in\mathbb{O}} {\beta}_{u} \exp\{-E(\pi(u,i,\sum_{n=1}^{t}{\alpha}_n f_{n}))\}.
-$$
-
-where the notations are listed as follows:
-
-- $\mathbb{H}$ is the set of possible component recommenders such as collaborative ranking algorithms;
-- $E(\pi(u,i,f))$ denotes the ranking accuracy associated with each observed interaction pair;
-- $\pi(u,i,f)$ is the rank position of item ${i}$ in the ranked item list of ${u}$, resulted by a learned ranking model ${f}$;
-- $\mathbb{O}$ is the set of all observed user-item interactions;
-- ${\beta}_{u}$ is defined as reciprocal of the number of user $u$'s  historical items  ${\beta}_{u}=\frac{1}{|V_{u}^{+}|}$ ($V_{u}^{+}$ is the historical items of ${u}$).
-***
-- [A Boosting Algorithm for Item Recommendation with Implicit Feedback](https://www.ijcai.org/Proceedings/15/Papers/255.pdf)
-- [The review @Arivin's blog](http://www.arvinzyy.cn/2017/09/23/A-Boosting-Algorithm-for-Item-Recommendation-with-Implicit-Feedback/)
-
-
 ## Tree-based Index and Deep Model for Recommender Systems
 
 By indexing items in a tree hierarchy and training a user-node preference prediction model satisfying a max-heap like property in the tree, 
@@ -1057,7 +1375,7 @@ Our purpose, in this paper, is to develop a method to jointly learn the `index s
 Recommendation problem is basically `to retrieve a set of most relevant or preferred items for each user request from the entire corpus`. 
 In the practice of large-scale recommendation, the algorithm design should strike a balance between accuracy and efficiency.
 
-The above methods include 2 stages/models: (1) find the preference of the users based on history or other infoamtion; (2) retrive some items according to the predicted preferences.
+The above methods include 2 stages/models: (1) find the preference of the users based on history or other information; (2) retrive some items according to the predicted preferences.
 
 TDM uses a tree hierarchy to organize items, and each leaf node in the tree corresponds to an item. Like a max-heap, 
 `TDM assumes that each user-node preference is the largest one among the node’s all children’s preferences`.
@@ -1108,6 +1426,12 @@ ancestor user-node pairs as the global empirical loss.
 - [Joint Optimization of Tree-based Index and Deep Model for Recommender Systems](https://arxiv.org/pdf/1902.07565.pdf)
 - https://developer.aliyun.com/article/720309
 - [学习基于树的推荐系统深度模型](https://blog.csdn.net/XindiOntheWay/article/details/85220342)
+- [Behavior Sequence Transformer for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1905.06874)
+- [Multi-Interest Network with Dynamic Routing for Recommendation at Tmall](https://arxiv.org/abs/1904.08030v1)
+- [AutoInt: Automatic Feature Interaction Learning via Self-Attentive Neural Networks](https://arxiv.org/abs/1810.11921v1)
+
+The core of `TDM` is to regard the recommendation as ranking.
+
 
 ## Explainable Recommendations
 
@@ -1139,6 +1463,9 @@ and manually defining the expressions require significant human efforts
 + [FIRST INTERNATIONAL WORKSHOP ON  DEEP MATCHING IN PRACTICAL APPLICATIONS ](https://wsdm2019-dapa.github.io/#section-ketnotes)
 + [Explainable Matrix Factorization for Collaborative Filtering](https://www.researchgate.net/publication/301616080_Explainable_Matrix_Factorization_for_Collaborative_Filtering)
 
+
+
+
 ## Social Recommendation
 
 [We present a novel framework for studying recommendation algorithms in terms of the ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
@@ -1146,6 +1473,9 @@ and manually defining the expressions require significant human efforts
 User-item/user-user interactions are usually in the form of graph/network structure. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
 
 - [ ] [Accurate and scalable social recommendation using mixed-membership stochastic block models](https://www.pnas.org/content/113/50/14207)
+- [ ] [6th International Workshop on Social Recommender Systems (SRS 2015)](http://www.comp.hkbu.edu.hk/~lichen/srs2015/)
+- [ ] http://www.comp.hkbu.edu.hk/~lichen/srs2012/
+- [ ] http://www.comp.hkbu.edu.hk/~lichen/srs2011/
 - [ ] [Do Social Explanations Work? Studying and Modeling the
 Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
 - [ ] [Existing Methods for Including Social Networks until 2015](http://ajbc.io/projects/slides/chaney_recsys2015.pdf)
@@ -1184,6 +1514,7 @@ Therefore, we are to fill in the gap between `item recommendation` and `KG compl
 - [ ] [深度学习与知识图谱在美团搜索广告排序中的应用实践](https://tech.meituan.com/2018/06/07/searchads-dnn.html)
 - [ ] [Unifying Knowledge Graph Learning and Recommendation: Towards a Better Understanding of User Preferences](http://staff.ustc.edu.cn/~hexn/papers/www19-KGRec.pdf)
 - [ ] [Explainable Reasoning over Knowledge Graphs for Recommendation](https://arxiv.org/pdf/1811.04540.pdf)
+- [ ] https://github.com/numb3r3/kgraph-recsys
 
 ## Health Recommender Systems
 
@@ -1441,6 +1772,7 @@ _______
 * [个性化推荐系统，必须关注的五大研究热点](https://www.msra.cn/zh-cn/news/executivebylines/tech-bylines-personalized-recommendation-system)
 * [How Does Spotify Know You So Well?](https://medium.com/s/story/spotifys-discover-weekly-how-machine-learning-finds-your-new-music-19a41ab76efe)
 * [推荐系统论文集合](https://daiwk.github.io/posts/links-navigation-recommender-system.html)
+* http://csse.szu.edu.cn/staff/panwk/recommendation/
 * https://hong.xmu.edu.cn/Services___fw/Recommender_System.htm
 * https://blog.statsbot.co/recommendation-system-algorithms-ba67f39ac9a3
 * https://buildingrecommenders.wordpress.com/
@@ -1489,6 +1821,7 @@ _______
 - [ ] [NLP meets RecSys](https://recnlp2019.github.io/)
 - [ ] http://dmml.asu.edu/smm/slide/SMM-Slides-ch9.pdf
 - [ ] [PRS 2019](https://prs2018.splashthat.com/)
+- [ ] https://dlp-kdd.github.io/
 - [ ] https://recsys.acm.org/blog/
 
 ### Implementation
@@ -1612,6 +1945,7 @@ ______________________________________________________
 * https://uberbehavioralsciencesymposium.splashthat.com/
 * https://inlabdigital.com/
 * https://www.futurelab.net/
+* http://www.ueo-workshop.com/
 - [The User Engagement Optimization Workshop2](http://www.ueo-workshop.com/)
 - [The User Engagement Optimization Workshop1](http://www.ueo-workshop.com/previous-editions/ueo-2013-at-cikm-2013/)
 - [EVALUATION OF USER EXPERIENCE IN MOBILE ADVERTISI](http://galjot.si/research)
