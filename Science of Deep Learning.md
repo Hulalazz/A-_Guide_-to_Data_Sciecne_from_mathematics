@@ -2,6 +2,8 @@
 
 V. Vapnik said that ``Nothing is more practical than a good theory.''
 
+- https://www.math.ubc.ca/~erobeva/seminar.html
+- https://www.deel.ai/theoretical-guarantees/
 - http://www.vanderschaar-lab.com/NewWebsite/index.html
 - https://nthu-datalab.github.io/ml/index.html
 - http://www.cs.cornell.edu/~shmat/research.html
@@ -262,7 +264,10 @@ Methods using artificial intelligence have in fact already advanced progress on 
 
 ### Born Machine
 
+Born machine is a Probabilistic Generative Modeling.
+
 - [Unsupervised Generative Modeling Using Matrix Product States](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012#fulltext)
+- https://wangleiphy.github.io/talks/BornMachine-USTC.pdf
 - https://github.com/congzlwag/UnsupGenModbyMPS
 - https://congzlwag.github.io/UnsupGenModbyMPS/
 - https://github.com/congzlwag/BornMachineTomo
@@ -349,7 +354,7 @@ Philipp Petersen, University of Oxford
 + [DALI 2018 - Data, Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
 + [BMS Summer School 2019: Mathematics of Deep Learning](https://www.math-berlin.de/academics/summer-schools/2019)
 + [SIAM Conference on Mathematics of Data Science (MDS20)](https://www.siam.org/conferences/cm/conference/mds20)
-
+* http://web.cs.ucla.edu/~qgu/research.html
 * [BRIDGING GAME THEORY AND DEEP LEARNING](https://sgo-workshop.github.io/)
 
 
@@ -503,7 +508,9 @@ _____
 - [Automatic Differentiation of Parallelised Convolutional Neural Networks - Lessons from Adjoint PDE Solvers](https://autodiff-workshop.github.io/slides/Hueckelheim_nips_autodiff_CNN_PDE.pdf)
 - [A Theoretical Analysis of Deep Neural Networks and Parametric PDEs.](https://www.math.tu-berlin.de/fachgebiete_ag_modnumdiff/angewandtefunktionalanalysis/v_menue/mitarbeiter/kutyniok/v_menue/kutyniok_publications/)
 - https://raoyongming.github.io/  
-
+- https://sites.google.com/prod/view/haizhaoyang/
+- https://github.com/HaizhaoYang
+- https://www.stat.uchicago.edu/events/rtg/index.shtml
 
 
 ### Control Theory and Deep Learning
@@ -566,34 +573,7 @@ $$\operatorname{minimize}_{ \theta,W,\mu} loss[g(W(T)Y(T)+\mu), C] + regularizer
 - [A Survey on Machine Learning Applied to Dynamic Physical Systems](https://sagarverma.github.io/others/lit_rev_physics.pdf)
 - https://deepdrive.berkeley.edu/project/dynamical-view-machine-learning-systems
 
-### Deep Unrolling
 
-Several recent studies build deep structures by unrolling a particular optimization model that involves task information, i.e., `learning to optime`.
-
-Like gradient boost decision tree, we can optimize a cost function with a machine learning algorithms to fit the gradients- that is so-called gradient boost machine.
-In another hand, it is expected that machine learning could learn/approximate the ierative formula of any optimization algorithms.
-
-- [Learning to learn by gradient descent by gradient descent](https://arxiv.org/abs/1606.04474)
-
-[The move from hand-designed features to learned features in machine learning has been wildly successful. In spite of this, optimization algorithms are still designed by hand. In this paper we show how the design of an optimization algorithm can be cast as a learning problem, allowing the algorithm to learn to exploit structure in the problems of interest in an automatic way. Our learned algorithms, implemented by LSTMs, outperform generic, hand-designed competitors on the tasks for which they are trained, and also generalize well to new tasks with similar structure. We demonstrate this on a number of tasks, including simple convex problems, training neural networks, and styling images with neural art.](https://arxiv.org/abs/1606.04474)
-
-
-`learning-based iterative methods `
-
-[Numerous tasks at the core of statistics, learning and vision areas are specific cases of ill-posed inverse problems. Recently, learning-based (e.g., deep) iterative methods have been empirically shown to be useful for these problems. Nevertheless, integrating learnable structures into iterations is still a laborious process, which can only be guided by intuitions or empirical insights. Moreover, there is a lack of rigorous analysis about the convergence behaviors of these reimplemented iterations, and thus the significance of such methods is a little bit vague. This paper moves beyond these limits and proposes Flexible Iterative Modularization Algorithm (FIMA), a generic and provable paradigm for nonconvex inverse problems. Our theoretical analysis reveals that FIMA allows us to generate globally convergent trajectories for learning-based iterative methods. Meanwhile, the devised scheduling policies on flexible modules should also be beneficial for classical numerical methods in the nonconvex scenario. Extensive experiments on real applications verify the superiority of FIMA.](http://dutmedia.org/FIMA/)
-
-- https://github.com/Heyi007/FIMA
-- [Proximal Alternating Direction Network: A Globally Converged Deep Unrolling Framework](https://arxiv.org/abs/1711.07653)
-- [A Bridging Framework for Model Optimization and Deep Propagation](http://papers.nips.cc/paper/7685-a-bridging-framework-for-model-optimization-and-deep-propagation)
-- [On the Convergence of Learning-based Iterative Methods for Nonconvex Inverse Problems](http://dutmedia.org/FIMA/)
-- [Deep unrolling](https://zhuanlan.zhihu.com/p/44003318)
-- http://dutmedia.org/
-- http://dlutir.dlut.edu.cn/Scholar/Detail/6711
-- https://dblp.uni-trier.de/pers/hd/l/Liu:Risheng
-- https://github.com/dlut-dimt
-- https://www.researchgate.net/project/optimization-numerical-computation-optimal-control
-- https://ankita-shukla.github.io/
-- [Neural-network-based iterative learning control of nonlinear systems](https://www.sciencedirect.com/science/article/abs/pii/S0019057819303908)
 
 ### Stability For Neural Networks
 
@@ -705,6 +685,12 @@ The section will extend the approximation to the deep neural network.
 - [Convolutional Neural Networks for Steady Flow Approximation](https://github.com/loliverhennigh/Steady-State-Flow-With-Neural-Nets)
 - https://www.cityu.edu.hk/ma/people/profile/zhoudx.htm
 - https://dblp.uni-trier.de/pers/hd/y/Yang:Haizhao
+- https://math.duke.edu/people/ingrid-daubechies
+- http://www.pc-petersen.eu/
+- https://www.eurandom.tue.nl/wp-content/uploads/2018/11/Johannes-Schmidt-Hieber-lecture-1-2.pdf
+- https://deepai.org/profile/julius-berner
+- https://www.math.tamu.edu/~foucart/
+- https://arxiv.org/abs/2006.00294
 - [Efficient approximation of high-dimensional functions with deep neural networks](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-64_fp.pdf)
 - [Neural Jump SDEs (Jump Diffusions) and Neural PDEs](http://www.stochasticlifestyle.com/neural-jump-sdes-jump-diffusions-and-neural-pdes/)
 
@@ -873,6 +859,8 @@ Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/
 
 ### Tropical Geometry of Deep Neural Networks
 
+> The basic idea of tropical geometry is to study the same kinds of questions as in standard algebraic geometry, but change what we mean when we talk about ‘polynomial equations’. 
+
 - [Tropical Geometry of Deep Neural Networks](https://arxiv.org/pdf/1805.07091.pdf)
 - https://opendatagroup.github.io/data%20science/2019/04/11/tropical-geometry.html
 - https://www.stat.uchicago.edu/~lekheng/
@@ -880,6 +868,9 @@ Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/
 - https://www.math.ubc.ca/~erobeva/seminar.html
 - https://sites.google.com/view/maag2019/home
 - https://sites.google.com/site/feliper84/
+- https://deepai.org/publication/a-tropical-approach-to-neural-networks-with-piecewise-linear-activations
+- [ReLu and Maxout Networks and Their Possible Connections to Tropical Methods](https://www.symbiont-project.org/events/Slides-2018-03/SYMBIONT-2018-03-zimmermann.pdf)
+- [Applications of Tropical Geometry in Deep Neural Networks](https://repository.kaust.edu.sa/bitstream/handle/10754/662473/Masters_Thesis%20(6).pdf?sequence=10)
 
 ## Topology and Deep Learning
 
@@ -1052,6 +1043,8 @@ seem to outperform real valued neural networks while using less parameters. This
 >and he successfully demonstrated the learning process in a computer identification system called Alpha.
 
 - https://zhuanlan.zhihu.com/p/36519666
+- https://wwwhome.ewi.utwente.nl/~schmidtaj/
+- http://csml.stats.ox.ac.uk/people/teh/
 - http://www.sdlcv-workshop.com/
 - https://gkunapuli.github.io/files/17rrbmILP-longslides.pdf
 - https://arxiv.org/abs/1810.07132
@@ -1060,6 +1053,12 @@ seem to outperform real valued neural networks while using less parameters. This
 - http://www.stats.ox.ac.uk/~teh/
 - http://blog.shakirm.com/ml-series/a-statistical-view-of-deep-learning/
 - http://blog.shakirm.com/wp-content/uploads/2015/07/SVDL.pdf
+- https://www.ijcai.org/Proceedings/2019/0789.pdf
+- http://www.stat.ucla.edu/~jxie/ 
+- https://mifods.mit.edu/seminar.php
+- https://johanneslederer.com/people/
+- https://www.tsu.ge/data/file_db/faculty_zust_sabunebismetk/WEB%20updated%205.05.15-announcement.pdf
+- [On Statistical Thinking in Deep Learning: A Talk](http://www.stats.ox.ac.uk/~teh/research/jsm2019/OnStatisticalThinkinginDeepLearning.pdf)
 - [On Statistical Thinking in Deep Learning: A Blog Post](http://bulletin.imstat.org/wp-content/uploads/ml-LONG_On_Statistical_Thinking_in_Deep_Learning.pdf)
 - [Implementing Bayesian Inference with Neural Networks](http://ul.qucosa.de/api/qucosa%3A34703/attachment/ATT-0/)
 
@@ -1123,6 +1122,20 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 - [Mathematical Algorithms for Artificial Intelligence and Big Data Analysis (Spring 2017)](https://www.math.ucdavis.edu/~strohmer/courses/180BigData/180BigData_info.html)
 - https://www.tbsi.edu.cn/index.php?s=/cms/181.html
 - https://www.bigr.io/deep-learning-neural-networks-iot/
+
+***
+- https://www.ee.ucl.ac.uk/iiml//projects/it_foundations.html
+- https://www.isi.edu/~gregv/ijcai/
+- https://arxiv.org/abs/1804.09060
+- https://people.eng.unimelb.edu.au/jmanton/static/pdf/ISIT2020_preprint.pdf
+- http://proceedings.mlr.press/v80/chen18j/chen18j.pdf
+- https://arxiv.org/pdf/1503.02406.pdf
+- https://stat.mit.edu/calendar/gregory-wornell/
+- http://www.mit.edu/~a_makur/publications.html
+- https://www.rle.mit.edu/sia/publications/
+- https://www.rle.mit.edu/sia/
+- https://xiangxiangxu.com/
+
 
 ## Brain Science and AI
 
@@ -1216,6 +1229,42 @@ present rather than by helping the optimization process (Frankle & Carbin, 2019)
 - https://zhuanlan.zhihu.com/p/100451862
 
 
+[This project explores the `Lottery Ticket Hypothesis`: the conjecture that neural networks contain much smaller sparse subnetworks capable of training to full accuracy. In the course of this project, we have demonstrated that these subnetworks existed at initialization in small networks and early in training in larger networks. In addition, we have shown that these lottery ticket subnetworks are state-of-the-art pruned neural networks.](https://www.csail.mit.edu/research/lottery-ticket-hypothesis)
+
+- http://www.jfrankle.com/
+- https://gkdz.org/#about
+- http://yosinski.com/
+- [Deconstructing Lottery Tickets: Zeros, Signs, and the Supermask](https://arxiv.org/abs/1905.01067)
+- [OpenLTH: A Framework for Lottery Tickets and Beyond](https://github.com/facebookresearch/open_lth)
+- [Code: The Lottery Ticket Hypothesis: Finding Small, Trainable Neural Networks](https://github.com/google-research/lottery-ticket-hypothesis)
+- [The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks](https://arxiv.org/abs/1803.03635)
+- [The Lottery Ticket Hypothesis at Scale](https://deepai.org/publication/the-lottery-ticket-hypothesis-at-scale)
+- [Stabilizing the Lottery Ticket Hypothesis](https://arxiv.org/abs/1903.01611)
+- [Linear Mode Connectivity and the Lottery Ticket Hypothesis](https://arxiv.org/abs/1912.05671)
+- [The Lottery Ticket Hypothesis for Pre-trained BERT Networks](https://arxiv.org/abs/2007.12223)
+- https://roberttlange.github.io/posts/2020/06/lottery-ticket-hypothesis/
+- https://internetpolicy.mit.edu/neural-networks-and-the-lottery-ticket-hypothesis/
+- [Luck Matters: Understanding Training Dynamics of Deep ReLU Networks](https://arxiv.org/abs/1905.13405)
+
+## Double Descent
+
+The model with optimal parameters are not equal to the best model.
+$$\fbox{Learning}\not ={Training} \\ Generalization\not ={Optimziation}.$$ 
+[Back-propagation (BP), the current de facto training paradigm for deep learning models, is only useful for parameter learning but offers no role in finding an optimal network structure. We need to go beyond BP in order to derive an optimal network, both in structure and in parameter.](https://ee.princeton.edu/people/sun-yuan-kung)
+
+> We show that the double descent phenomenon occurs in CNNs, ResNets, and transformers: performance first improves, then gets worse, and then improves again with increasing model size, data size, or training time. This effect is often avoided through careful regularization. While this behavior appears to be fairly universal, we don’t yet fully understand why it happens, and view further study of this phenomenon as an important research direction.
+
+<img src="https://openai.com/content/images/size/w1400/2019/12/Frame-1--3-.png" width="70%"/>
+
+- https://arxiv.org/abs/1710.03667
+- [Reproducing Deep Double Descent](https://hippocampus-garden.com/double_descent/)
+- [Deep Double Descent](https://openai.com/blog/deep-double-descent/)
+- [Deep Double Descent (cross-posted on OpenAI blog)](https://windowsontheory.org/2019/12/05/deep-double-descent/)
+- [Deep Double Descent: Where Bigger Models and More Data Hurt](https://arxiv.org/abs/1912.02292)
+- [Double Trouble in Double Descent : Bias and Variance(s) in the Lazy Regime](https://arxiv.org/abs/2003.01054)
+- https://www.lyrn.ai/
+- [High-dimensional dynamics of generalization error in neural networks](https://arxiv.org/abs/1710.03667)
+- https://mltheory.org/deep.pdf
 
 ## AOGNet
 

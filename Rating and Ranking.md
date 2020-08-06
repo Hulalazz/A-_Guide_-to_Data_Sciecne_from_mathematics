@@ -4,7 +4,8 @@
 
 The rating algorithms help to match the players in video games or compare the players in sports.
 Ratings is a numerical score to describe the level  of the players' skill based on the results of many competition.
-The basic idea is the back-feed from the results to improve the experience. After each game, this data is updated for the participants in the game.
+The basic idea is the back-feed from the results to improve the experience. 
+After each game, this data is updated for the participants in the game.
 
 The ranking problem is from information retrieval. Given a query as we type in a search engine, the ranking algorithms are to sort the items
 which may answer this query as the PageRank does for web searching. And `search engine optimization (SOE)` can be regarded as the reverse engineer of the ranking algorithms of search engine.
@@ -32,9 +33,11 @@ In some sense, rating is to evaluate in a quantity approach, i.e. how much the i
 - [ ] [Deconstructing the App Store Rankings Formula with a Little Mad Science](https://moz.com/blog/app-store-rankings-formula-deconstructed-in-5-mad-science-experiments)
 - [ ] [Mathematics and Voting: More Than Just Counting Votes](http://www.whydomath.org/node/voting/index.html)
 * http://www.whydomath.org/index.html
+* https://rangevoting.org/
 * [Introducing Steam Database's new rating algorithm](https://steamdb.info/blog/steamdb-rating/)
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
 * [Neural Collaborative Ranking](https://arxiv.org/abs/1808.04957v1)
+* https://www.stat.berkeley.edu/~stark/Vote/index.htm
 
 ## Rating
 
@@ -299,6 +302,8 @@ And it can be applied to information retrieval and recommender system.
 * [TREC 2014 Session Track](http://ir.cis.udel.edu/sessions/)
 * [Introduction to Information Retrievel](https://nlp.stanford.edu/IR-book/)
 * [Images do npt lie](https://arxiv.org/abs/1511.06746)
+* [FastForest: Learning Gradient-Boosted Regression Trees for Classiﬁcation, Regression and Ranking](https://claudio-lucchese.github.io/archives/20180517/)
+* [Providing Relevant and Timely Results: Real-Time Search Architectures and Relevance Algorithms](http://lintool.github.io/NSF-projects/IIS-1218043/)
 
 
 ![meituan.net](https://p1.meituan.net/travelcube/58920553566822f1fe059f95eba71d95131646.png)
@@ -472,7 +477,7 @@ estimator and an efficient batch training algorithm
 - [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 - [Deep Convolutional Ranking for Multilabel Image Annotation](https://arxiv.org/abs/1312.4894)
 - [WMRB: Learning to Rank in a Scalable Batch Training Approach](https://arxiv.org/pdf/1711.04015.pdf)
-
+- [Learning to Rank With Bregman Divergences and Monotone Retargeting](https://arxiv.org/ftp/arxiv/papers/1210/1210.4851.pdf)
 
 #### Ranking Creation
 
@@ -1460,7 +1465,12 @@ DORS is designed and implemented in a three-level novel architecture, which incl
 
 #### Unbiased Learning to Rank
 
-[Implicit feedback (e.g., user clicks) is an important source of data for modern search engines. While heavily biased, it is cheap to collect and particularly useful for user-centric retrieval applications such as search ranking. To develop an unbiased learning-to-rank system with biased feedback, previous studies have focused on constructing probabilistic graphical models (e.g., click models) with user behavior hypothesis to extract and train ranking systems with unbiased relevance signals. Recently, a novel counter- factual learning framework that estimates and adopts examination propensity for unbiased learning to rank has attracted much attention. Despite its popularity, there is no systematic comparison of the unbiased learning-to-rank frameworks based on counterfactual learning and graphical models. In this tutorial, we aim to provide an overview of the fundamental mechanism for unbiased learning to rank. We will describe the theory behind existing frameworks, and give detailed instructions on how to conduct unbiased learning to rank in practice.](https://www.cikm2018.units.it/tutorial8.html)
+Implicit feedback (e.g., user clicks) is an important source of data for modern search engines. 
+While heavily biased, it is cheap to collect and particularly useful for user-centric retrieval applications such as search ranking. 
+To develop an unbiased learning-to-rank system with biased feedback, previous studies have focused on constructing probabilistic graphical models (e.g., click models) with user behavior hypothesis to extract and train ranking systems with unbiased relevance signals. 
+Recently, a novel counter- factual learning framework that estimates and adopts examination propensity for unbiased learning to rank has attracted much attention. 
+Despite its popularity, there is no systematic comparison of the unbiased learning-to-rank frameworks based on counterfactual learning and graphical models. 
+[In this tutorial, we aim to provide an overview of the fundamental mechanism for unbiased learning to rank. We will describe the theory behind existing frameworks, and give detailed instructions on how to conduct unbiased learning to rank in practice.](https://www.cikm2018.units.it/tutorial8.html)
 
 - [Learning to Rank in theory and practice: FROM GRADIENT BOOSTING TO NEURAL NETWORKS AND UNBIASED LEARNING](http://ltr-tutorial-sigir19.isti.cnr.it/)
 - https://dl.acm.org/citation.cfm?id=3334824
@@ -1682,7 +1692,7 @@ an modifications be made and which most improve the graph's rankability?
 - https://github.com/IGARDS/ranklib
 - https://github.com/IGARDS/rankability_toolbox
 
-### Resource on Ranking and Reating
+### Resource on Ranking and Rating
 
 + https://papers.nips.cc/paper/8288-contrastive-learning-from-pairwise-measurements.pdf
 + http://lintool.github.io/NSF-projects/IIS-1144034/
@@ -1716,3 +1726,4 @@ an modifications be made and which most improve the graph's rankability?
 + http://www.ifp.illinois.edu/~xzhou2/
 + https://faculty.utrgv.edu/zhixiang.chen/
 + http://dia.fi.upm.es/
++ https://www.culpepper.io/
