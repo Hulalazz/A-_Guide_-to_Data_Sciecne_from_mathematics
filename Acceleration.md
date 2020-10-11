@@ -109,6 +109,7 @@ Thus it is really close to `high performance computational science` when solving
 * [Hardware Accelerators for Machine Learning (CS 217) Stanford University, Fall 2018](https://cs217.stanford.edu/readings)
 * [CSCE 790/590: Machine Learning Systems](https://github.com/pooyanjamshidi/mls)
 * [DeepDream: Accelerating Deep Learning With Hardware](https://www.svds.com/deepdream-accelerating-deep-learning-hardware/)
+* http://ece-research.unm.edu/jimp/codesign/
 
 ### Parallel Architectures and Special Hardware
 
@@ -945,6 +946,26 @@ To update full-precision weights in the backward pass, since gradients w.r.t. qu
 - https://courses.cs.washington.edu/courses/cse467/08au/labs/l5/fp.pdf
 - [Fixed Point Arithmetic and Tricks](http://x86asm.net/articles/fixed-point-arithmetic-and-tricks/)
 
+### Low Bit Neural Network
+
+- [Convergence of a Relaxed Variable Splitting Coarse Gradient Descent Method for Learning Sparse Weight Binarized Activation Neural Network](https://www.math.uci.edu/~jxin/RVSCGD_2020.pdf)
+- https://www.math.uci.edu/~jxin/xue.pdf
+- https://arxiv.org/abs/1711.07354v1
+- https://www.math.uci.edu/~jxin/signals.html
+- [Extremely Low Bit Neural Network: Squeeze the Last Bit Out with ADMM](https://arxiv.org/abs/1707.09870)
+- [Toward Extremely Low Bit and Lossless Accuracy in DNNs with Progressive ADMM](https://arxiv.org/abs/1905.00789)
+
+
+###  Deep Model Compression
+
+- https://github.com/he-y/Awesome-Pruning
+- https://www.microsoft.com/en-us/research/search/?q=Deep+Compression
+- https://www.tinyml.org/summit/slides/tinyMLSummit2020-4-1-Choi.pdf
+- https://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
+- https://github.com/mightydeveloper/Deep-Compression-PyTorch
+- https://www.oki.com/en/rd/tt/dl/
+- [Deep Compression, DSD Training and EIE: Deep Neural Network Model Compression, Regularization and Hardware Acceleration](https://www.microsoft.com/en-us/research/video/deep-compression-dsd-training-and-eie-deep-neural-network-model-compression-regularization-and-hardware-acceleration/)
+
 #### 8-bit-training
 
 The state-of-the-art hardware platforms for training Deep Neural Networks (DNNs) are moving from traditional single precision (32-bit) computations towards 16 bits of precision -- in large part due to the high energy efficiency and smaller bit storage associated with using reduced-precision representations. 
@@ -1059,6 +1080,11 @@ In XNOR-Networks, both the filters and the input to convolutional layers are bin
 * [XNOR-Net: ImageNet Classification Using Binary Convolutional Neural Networks](https://arxiv.org/abs/1603.05279)
 * [Joseph Chet Redmon: author of XORNet](https://pjreddie.com/)
 * [XNOR-Net论文解读](https://zhuanlan.zhihu.com/p/65103916)
+* https://github.com/liuzechun/Bi-Real-net
+* http://iis-projects.ee.ethz.ch/index.php/Bringing_XNOR-nets_(ConvNets)_to_Silicon
+* http://web.eng.tau.ac.il/deep_learn/wp-content/uploads/2017/03/Binary-Deep-Learning.pdf
+* https://papers.nips.cc/paper/6638-towards-accurate-binary-convolutional-neural-network.pdf
+* https://arxiv.org/pdf/2001.05936v1.pdf
 _____
 
 * [Low Precision Arithmetic Simulation in PyTorch](https://github.com/Tiiiger/QPyTorch)
@@ -1524,7 +1550,24 @@ We demonstrate reduced training times for convolutional networks as well as LSTM
 * [Better Communication Complexity for Local SGD](https://arxiv.org/abs/1909.04746)
 * [Gradient Descent with Compressed Iterates](https://arxiv.org/abs/1909.04716)
 
+### Synthetic gradient
 
+> It’s a simple idea: rather than compute gradients through backpropagation, we can train a model to predict what those gradients will be, and use our prediction to update our weights. It’s dynamic programming for neural networks.
+
+-  https://github.com/andrewliao11/dni.pytorch
+-  https://arxiv.org/pdf/1703.00522.pdf
+-  https://r2rt.com/synthetic-gradients-with-tensorflow.html
+-  https://arxiv.org/abs/1703.00522
+-  http://deliprao.com/archives/187
+-  [Exploring the Use of Synthetic Gradients for Distributed Deep Learning across Cloud and Edge Resources](https://www.usenix.org/conference/hotedge19/presentation/chen)
+-  http://cnichkawde.github.io/SyntheticGradients.html
+
+### Gradient Centralization
+
+- http://www.breloff.com/
+- https://github.com/Yonghongwei/Gradient-Centralization
+- https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer
+- https://www4.comp.polyu.edu.hk/~cslzhang/paper/conf/ECCV20/ECCV_GC.pdf
 
 ##  Compressing Recurrent Neural Network
 
