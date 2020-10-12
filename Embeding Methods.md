@@ -40,6 +40,7 @@ Manifold learning and finding low-dimensional structure in data is an important 
 - [ ] [BIGDATA: Collaborative Research: F: Stochastic Approximation for Subspace and Multiview Representation Learning](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546482)
 - [ ] [ CRII: III: Scaling up Distance Metric Learning for Large-scale Ultrahigh-dimensional Data](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1463988&HistoricalAwards=false)
 - https://www.cs.cmu.edu/~anupamg/adv-approx/lecture20.pdf
+- https://mnick.github.io/project/geometric-representation-learning/
 
 ## Knowledge Representation and Reasoning
 
@@ -654,6 +655,10 @@ inorganic and physical chemistry, not to mention treatises on theoretical chemis
 - [Graph Embeddings search result @ Arxiv-sanity](http://www.arxiv-sanity.com/search?q=Graph+Embedding)
 - [Semantic Annotation for Places in LBSN through Graph Embedding](https://yangzhangalmo.github.io/papers/CIKM17.pdf)
 - https://ai.googleblog.com/2019/06/innovations-in-graph-representation.html
+
+### Knowledge Graph Embeddings
+
+- https://mnick.github.io/project/knowledge-graph-embeddings/
 
 ##  Hierarchical Representation Learning
 

@@ -209,7 +209,7 @@ There are some activation functions in history.
 
 ### Feed-forward Neural Network
 
-#### Representation of Feed forward Neural Network
+#### Representation of Feedforward Neural Network
 
 Given that the function of a single neuron is rather simple, it subdivides the input space into two regions by a hyperplane, the complexity must come from having more layers of neurons involved in a complex action (like recognizing your grandmother in all possible situations).
 The "squashing" functions introduce critical non-linearities in the system, without their presence multiple layers would still create linear functions.
@@ -261,12 +261,6 @@ if we take some proper activation functions such as sigmoid function.
 
 <img src="https://www.cse.unsw.edu.au/~cs9417ml/MLP2/MainPage.gif" width="70%">
 
-
-- [Do Deep Nets Really Need to be Deep?](https://papers.nips.cc/paper/5484-do-deep-nets-really-need-to-be-deep)
-- [Depth Creates No Bad Local Minima](https://arxiv.org/abs/1702.08580)
-- [Spurious Local Minima of Shallow ReLU Networks Conform with the Symmetry of the Target Model](https://arxiv.org/abs/1912.11939)
-- [Depth with Nonlinearity Creates No Bad Local Minima in ResNets](https://arxiv.org/abs/1810.09038)
-
 #### Evaluation and Optimization in Multilayer Perceptron
 
 The problem is how to find the optimal parameters $W_1, b_1, W_2, b_2,\cdots, W, b$ ?
@@ -287,7 +281,7 @@ We will solve it in the next section *Backpropagation, Optimization and Regulari
 
 |The diagram of MLP|
 |:----------------:|
-|![viz](https://www.hindawi.com/journals/jcse/2012/389690.fig.0011.jpg)|
+|![](https://www.hindawi.com/journals/jcse/2012/389690.fig.0011.jpg)|
 |[Visualizing level surfaces of a neural network with raymarching](https://arogozhnikov.github.io/3d_nn/)|
 
 * https://devblogs.nvidia.com/deep-learning-nutshell-history-training/
@@ -315,7 +309,9 @@ in probability models, the loss function always is joint probability or logarith
 In classification, the last layer is to predict the degree of belief of the labels via [softmax function](http://freemind.pluskid.org/machine-learning/softmax-vs-softmax-loss-numerical-stability/),
 i.e.
 
-$$softmax(z)=(\frac{\exp(z_1)}{\sum_{i=1}^{n}\exp(z_i)},\frac{\exp(z_2)}{\sum_{i=1}^{n} \exp(z_i)}, \cdots, \frac{\exp(z_n)}{\sum_{i=1}^{n}\exp(z_i)})$$
+$$
+softmax(z)=(\frac{\exp(z_1)}{\sum_{i=1}^{n}\exp(z_i)},\frac{\exp(z_2)}{\sum_{i=1}^{n} \exp(z_i)}, \cdots, \frac{\exp(z_n)}{\sum_{i=1}^{n}\exp(z_i)})
+$$
 
 where $n$ is the number of total classes. The labels are encoded as the one hot vector such as $\mathrm{d}=(1,0,0,\cdots,0)$. The [cross entropy](https://www.cnblogs.com/smartwhite/p/8601477.html) is defined as:
 
@@ -430,56 +426,7 @@ $$\rho(t;\lambda) = \lambda \int_{0}^{t}{(1-\frac{x}{\gamma\lambda})}_{+} \mathr
 The function defined by its derivative is convenient for us to minimize the cost function via gradient-based methods.
 
 ***
-
-
-For more on **loss function** see:
-
-* <https://blog.algorithmia.com/introduction-to-loss-functions/>;
-* <https://arxiv.org/abs/1701.03077>;
-* https://www.wikiwand.com/en/Robust_statistics
-* https://www.wikiwand.com/en/Huber_loss
-* [Variable Selection with Nonconcave Penalty Function on Reduced-Rank Regression](https://www.e-sciencecentral.org/articles/SC000012498)
-* [A Convergence Theory for Deep Learning via Over-Parameterization](https://arxiv.org/abs/1811.03962)
-
-
-
-
-### Loss Landscape
-
-
-This learning is evaluated through some kind of loss function that estimates the distance between what our network generates and what we should obtain. 
-Minimizing that loss value is the objective of most processes of this kind. 
-Typically, we begin with a network that doesn’t perform very well and therefore has a high loss value. 
-Through training, we gradually descend to loss values that are much smaller.
-[Visualizing the morphology and dynamics of these loss values while training is taking place, can help us generate new insights about our training processes and deep learning in general.](https://losslandscape.com/faq/)
-<img src="https://losslandscape.com/wp-content/uploads/2019/09/loss-landscape-research-9.jpg" width="60%"/>
-
-[Many papers on optimization in deep learning implicitly assume that a rigorous understanding will follow from establishing geometric properties of the loss landscape](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/), and in particular, of critical points (points where the gradient vanishes). 
-For example, through an analogy with the spherical spin-glass model from condensed matter physics, Choromanska et al. 2015 argued for what has become a colloquial conjecture in deep learning:
-
-> Landscape Conjecture: In neural network optimization problems, suboptimal critical points are very likely to have negative eigenvalues to their Hessian. In other words, there are almost no poor local minima, and nearly all saddle points are strict.
-
-- [Spurious Local Minima are Common in Two-Layer ReLU Neural Networks](https://arxiv.org/abs/1712.08968)
-- [No Spurious Local Minima in a Two Hidden Unit ReLU Network](https://openreview.net/forum?id=B14uJzW0b)
-- [Depth Creates No Bad Local Minima](https://arxiv.org/abs/1702.08580)
-- [Spurious Local Minima of Shallow ReLU Networks Conform with the Symmetry of the Target Model](https://arxiv.org/abs/1912.11939)
-- [Depth creates no more spurious local minima](https://arxiv.org/abs/1901.09827)
-- [Depth with Nonlinearity Creates No Bad Local Minima in ResNets](https://arxiv.org/abs/1810.09038)
-- [Small nonlinearities in activation functions create bad local minima in neural networks](https://arxiv.org/abs/1802.03487)
-- [Global Optimality Conditions for Deep Neural Networks ](https://openreview.net/forum?id=BJk7Gf-CZ)
-- [Effect of Depth and Width on Local Minima in Deep Learning](https://arxiv.org/abs/1811.08150)
-- http://stanford.edu/~sfort1/
-- [Towards Understanding Generalization of Deep Learning: Perspective of Loss Landscapes](https://arxiv.org/abs/1706.10239v2)
-- [Emergent properties of the local geometry of neural loss landscapes](https://arxiv.org/abs/1910.05929)
-- [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913)
-- https://github.com/tomgoldstein/loss-landscape
-- https://www.cs.umd.edu/~tomg/projects/landscapes/
-- https://losslandscape.com/
-- [Using Loss Surface Geometry for Scalable Bayesian Deep Learning](http://bayesiandeeplearning.org/2019/slides/Andrew%20Gordon%20Wilson.pdf)
-* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
-* [Landscape Connectivity of Low Cost Solutions for Multilayer Nets](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
-
-The two-page paper [Eliminating All Bad Local Minima from Loss Landscapes
+The two page paper [Eliminating All Bad Local Minima from Loss Landscapes
 Without Even Adding an Extra Unit](https://arxiv.org/pdf/1901.03909.pdf) modified the loss function $L(\theta)$ to eliminate all the bad local minima:
 
 $$
@@ -496,8 +443,17 @@ $$
 
 so that setting them to be 0s, we could get $a=0, L(\theta) = 0$ if $|b|<\infty$.
 
+For more on **loss function** see:
 
-* [Eliminating all bad Local Minima from Loss Landscapes without even adding an Extra Unit](https://arxiv.org/abs/1901.03909)
+* <https://blog.algorithmia.com/introduction-to-loss-functions/>;
+* <https://arxiv.org/abs/1701.03077>;
+* https://www.wikiwand.com/en/Robust_statistics
+* https://www.wikiwand.com/en/Huber_loss
+* https://www.e-sciencecentral.org/articles/SC000012498
+* <https://arxiv.org/abs/1811.03962>
+* https://arxiv.org/pdf/1901.03909.pdf
+* <https://www.cs.umd.edu/~tomg/projects/landscapes/>.
+* [optimization beyond landscape at offconvex.org](http://www.offconvex.org/2018/11/07/optimization-beyond-landscape/)
 
 ### Backpropagation, Training and Regularization
 
@@ -615,7 +571,7 @@ $$\frac{\partial L(x_0,y_0)}{\partial W_4^i}
 
 $$
 = \color{aqua}{
-\sum_{j=1}^{o} \frac{\partial L}{\partial y^j}}\color{yellow}{
+\sum_{j=1}^{o} \frac{\partial L}{\partial y^j}}\color{blue}{
 \sum_{n}(\underbrace{\frac{\partial\, y^j}{\partial (W^jH+b^j)}
 \frac{\partial (W^jH + b^j)}{\partial H^{n}}}_{\color{purple}{\frac{\partial y^j}{ \partial H^i}} }
 \frac{\partial (H^{n})}{\partial W_4^i}) } \\
@@ -735,8 +691,7 @@ And  an alternative function is so-called `hard tanh`: $f(x)=\max(-1, \min(1, x)
 
 <img src=https://i.stack.imgur.com/CJnMI.png width=40% />
 
-**ReLU and their generalizations**
-
+***
 The first attempt at curbing the problem of vanishing gradients in a general deep network setting (LSTMs were introduced to combat this as well, but they were restricted to recurrent models) was the introduction of the `ReLU` activation function:
 $$
 ReLU(x)= \max\{x, 0\}={(x)}_{+}
@@ -799,21 +754,6 @@ x, & \text{if} \quad x > 0;\\
 $$
 where this $\alpha$ can be learned since you can backpropagate into it.
 
-`Absolute Value Rectification`
-
-$$
-f(x) = |x|=
-\begin{cases}
-x, & \text{if} \quad x > 0;\\
-- x, & \text{otherwise}.
-\end{cases}
-$$
-
-[`Maxoout`](https://arxiv.org/abs/1302.4389) is a multiple-piecewise linear function:
-$$h(z)_{G}=\max_{i\in G} z$$
-where $z\in\mathbb{R}^d$ and $G$ is the segment of index set such as $[k, k+1, \cdots, d]$. 
-
-
 ![](https://i.stack.imgur.com/1BX7l.png)
 
 `ELU(Exponential Linear Units)` is an alternative of ReLU:
@@ -867,10 +807,13 @@ $$
 
 The sign function  is defined as
 
-$$sgn(x)=\begin{cases}
+$$
+sgn(x)=
+   \begin{cases}
      1, &\text{if $x > 0$}\\
      0, &\text{if $x=0$}  \\
-     - 1, &\text{if $x < 0$}\end{cases}
+     - 1, &\text{if $x < 0$}
+   \end{cases}
 \\=\frac{x}{|x|}\quad\text{if $x\not= 0$}.
 $$
 
@@ -914,7 +857,6 @@ The functions in the right column are  approximate to the identity function in $
 - [第一十三章 优化算法](https://github.com/scutan90/DeepLearning-500-questions/blob/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95.md)
 - [ReLU and Softmax Activation Functions](https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions)
 - [Mish Deep Learning Activation Function for PyTorch / FastAI](https://github.com/lessw2020/mish)
-- https://cedar.buffalo.edu/~srihari/CSE676/6.3%20HiddenUnits.pdf
 
 ****
 * http://people.idsia.ch/~juergen/fundamentaldeeplearningproblem.html
@@ -955,7 +897,6 @@ In this section, we will talk other optimization tricks such as **Normalization*
 - https://github.com/scutan90/DeepLearning-500-questions/tree/master/ch13_%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95
 - https://arxiv.org/pdf/1803.09820.pdf
 - https://github.com/kmkolasinski/deep-learning-notes/tree/master/seminars/2018-12-Improving-DL-with-tricks
-- https://deepai.org/publication/ssn-learning-sparse-switchable-normalization-via-sparsestmax
 
 See **Improve the way neural networks learn** at <http://neuralnetworksanddeeplearning.com/chap3.html>.
 See more on nonconvex optimization at <http://sunju.org/research/nonconvex/>.
@@ -1143,7 +1084,7 @@ It is to collect more datum in the statistical perspective.
 |:----------------------------------:|
 |![TF](http://beamandrew.github.io//images/deep_learning_101/tensors_flowing.gif)|
 
-### Ablation Studies
+#### Ablation Studies
 
 Ablation studies have been widely used in the field of neuroscience to tackle complex biological systems such as the extensively studied Drosophila central nervous system, the vertebrate brain and more interestingly and most delicately, the human brain. In the past, these kinds of studies were utilized to uncover structure and organization in the brain, i.e. a mapping of features inherent to external stimuli onto different areas of the neocortex. considering the growth in size and complexity of state-of-the-art artificial neural networks (ANNs) and the corresponding growth in complexity of the tasks that are tackled by these networks, the question arises whether ablation studies may be used to investigate these networks for a similar organization of their inner representations. In this paper, we address this question and performed two ablation studies in two fundamentally different ANNs to investigate their inner representations of two well-known benchmark datasets from the computer vision domain. We found that features distinct to the local and global structure of the data are selectively represented in specific parts of the network. Furthermore, some of these representations are redundant, awarding the network a certain robustness to structural damages. We further determined the importance of specific parts of the network for the classification task solely based on the weight structure of single units. Finally, we examined the ability of damaged networks to recover from the consequences of ablations by means of recovery training.
 
@@ -1255,7 +1196,7 @@ See more in the following links:
 * http://deeplearning.stanford.edu/tutorial/supervised/Pooling/
 * https://machinelearning.wtf/terms/pooling-layer/
 
-##### Max Pooling
+#### Max Pooling
 
 It is to use the maximum to represent the local information.
 
@@ -1264,15 +1205,15 @@ It is to use the maximum to represent the local information.
 See <https://www.superdatascience.com/convolutional-neural-networks-cnn-step-2-max-pooling/>.
 * https://computersciencewiki.org/index.php/Max-pooling_/_Pooling
 
-##### Sum Pooling
+#### Sum Pooling
 
 It is to use the sum to represent the local information.
 
-##### Average Pooling
+#### Average Pooling
 
 It is to use the average to represent the local information.
 
-##### Random Pooling
+#### Random Pooling
 
 It is to draw a sample from the receptive field to represent the local information.
 https://www.cnblogs.com/tornadomeet/p/3432093.html
@@ -1579,6 +1520,7 @@ $U$, $V$ and $W$, respectively for input-to-hidden, hidden-to-output and hidden-
 |<img title="RNN Types" src="https://devblogs.nvidia.com/wp-content/uploads/2015/05/Figure_3-624x208.png" width="60%" />|
 |<img title="RNN Types" src="https://www.altoros.com/blog/wp-content/uploads/2017/01/Deep-Learning-Using-TensorFlow-recurrent-neural-networks.png" width="68%" />|
 
+* https://explained.ai/rnn/index.html
 * https://srdas.github.io/DLBook/RNNs.html
 * [A Beginner’s Guide on Recurrent Neural Networks with PyTorch](https://blog.floydhub.com/a-beginners-guide-on-recurrent-neural-networks-with-pytorch/)
 * [Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
@@ -2112,6 +2054,16 @@ In contrast to traditional ensembles (produce an ensemble of multiple neural net
 - https://izmailovpavel.github.io/files/curves/nips_poster.pdf
 - https://bayesgroup.github.io/bmml_sem/2018/Garipov_Loss%20Surfaces.pdf
 
+### Ensemble Distribution Distillation
+
+EnD^2 enables a single model to retain both the improved classification performance of ensemble distillation as well as information about the diversity of the ensemble, which is useful for uncertainty estimation. 
+A solution for EnD^2 based on Prior Networks, a class of models which allow a single neural network to explicitly model a distribution over output distributions, is proposed in this work. 
+The properties of EnD^2 are investigated on both an artificial dataset, and on the CIFAR-10, CIFAR-100 and TinyImageNet datasets, where it is shown that EnD^2 can approach the classification performance of an ensemble, and outperforms both standard DNNs and Ensemble Distillation on the tasks of misclassification and out-of-distribution input detection.
+
+- https://arxiv.org/abs/1905.00076
+- https://research.yandex.com/people/610809
+- https://deepai.org/publication/a-general-framework-for-ensemble-distribution-distillation
+
 ### Stochastic Weight Averaging (SWA)
 
 - https://github.com/timgaripov/swa
@@ -2123,14 +2075,6 @@ In contrast to traditional ensembles (produce an ensemble of multiple neural net
 
 - [SelfieBoost: A Boosting Algorithm for Deep Learning](https://arxiv.org/pdf/1411.3436.pdf)
 
-### Deep Ensembles
-
-
-
-- https://deepmind.com/research/publications/Deep-Ensembles-A-Loss-Landscape-Perspective
-- http://www.gatsby.ucl.ac.uk/~balaji/BDL-NeurIPS2019-ensembles-poster.pdf
-- http://www.gatsby.ucl.ac.uk/~balaji/
-- [Deep Ensembles: A Loss Landscape Perspective](https://arxiv.org/abs/1912.02757)
 
 ## Theories of Deep Learning
 
@@ -2345,7 +2289,6 @@ Even deep learning is young and cut-edge, some pioneers contribute to its develo
 * [BRAIN INSPIRED](https://braininspired.co/about/)
 * [http://www.timkietzmann.de](http://www.timkietzmann.de/)
 * http://www.brain-ai.jp/organization/
-* https://github.com/hussius/deeplearning-biology
 
 ## The Future
 
@@ -2386,7 +2329,6 @@ The ultimate goal is general artificial intelligence.
 * http://webdocs.cs.ualberta.ca/~mennatul/
 * https://edouardoyallon.github.io/
 * https://deff.ch/
-* http://www.cse.cuhk.edu.hk/~lxu/index-year.html
 
 ### Beyond Back-propagation
 
@@ -2408,90 +2350,24 @@ Training deep learning models does not require gradients such as `ADMM, simulate
 - https://zhuanlan.zhihu.com/p/67782029
 - [Biologically-Plausible Learning Algorithms Can Scale to Large Datasets](https://arxiv.org/pdf/1811.03567.pdf)
 - [A Biologically Plausible Learning Algorithm for Neural Networks](https://www.ibm.com/blogs/research/2019/04/biological-algorithm/)
-- [DEEP LEARNING AS A MIXED CONVEXCOMBINATORIAL OPTIMIZATION PROBLEM](https://homes.cs.washington.edu/~pedrod/papers/iclr18.pdf)
-- [An Alternating Minimization Method to Train Neural Network Models for Brain Wave Classification](http://evoq-eval.siam.org/Portals/0/Publications/SIURO/Volume%2011/An_Alternating_Minimization_Method_to_Train_Neural_Network_Models.pdf?ver=2018-02-27-134920-257)
 
-#### Operator Splitting Methods For Training Deep Neural Networks
+#### Operator Splitting Methods For Training Deep Neural Network
 
-##### ADMM
-
-ADMM is based on the constraints of  successive layers in neural networks.
-Recall the feedforward neural networks:
-$$O=\sigma(W^nx^{N}+b_{N})\\
-x^{n}=\sigma(W^{n-1}x^{n-1}+b_{n-1})\quad\forall n=1,\cdots, N 
-$$
-[The parameters in each layer are updated backward and then forward so that the parameter information in each layer is exchanged efficiently. The time complexity is reduced from cubic to quadratic in (latent) feature dimensions via a dedicated algorithm design for subproblems that enhances them utilizing iterative quadratic approximations and backtracking. Finally, we provide the first proof of global convergence for an ADMM-based method (dlADMM) in a deep neural network problem under mild conditions. Experiments on benchmark datasets demonstrated that our proposed dlADMM algorithm outperforms most of the comparison methods.](https://arxiv.org/abs/1905.13611)
-
-- [Training Neural Networks Without Gradients: A Scalable ADMM Approach](https://arxiv.org/abs/1605.02026)
-- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
-- [ADMM-CSNet: A Deep Learning Approach for Image Compressive Sensing](https://ieeexplore.ieee.org/document/8550778/)
-- https://github.com/KaiqiZhang/ADAM-ADMM
-- [ADMM-NN: An Algorithm-Hardware Co-Design Framework of DNNs Using Alternating Direction Method of Multipliers](https://ui.adsabs.harvard.edu/abs/2018arXiv181211677R/abstract)
-- [ALTERNATING DIRECTION METHOD OF MULTIPLIERS FOR SPARSE CONVOLUTIONAL NEURAL NETWORKS](https://arxiv.org/pdf/1611.01590.pdf)
-- https://patents.google.com/patent/US20170147920/fi
+[By rewriting the activation function as an equivalent proximal operator, we approximate a feed-forward neural network by adding the proximal operators to the objective function as penalties, hence we call the lifted proximal operator machine (LPOM). LPOM is block multi-convex in all layer-wise weights and activations. This allows us to use block coordinate descent to update the layer-wise weights and activations in parallel. Most notably, we only use the mapping of the activation function itself, rather than its derivatives, thus avoiding the gradient vanishing or blow-up issues in gradient based training methods. So our method is applicable to various non-decreasing Lipschitz continuous activation functions, which can be saturating and non-differentiable. LPOM does not require more auxiliary variables than the layer-wise activations, thus using roughly the same amount of memory as stochastic gradient descent (SGD) does. We further prove the convergence of updating the layer-wise weights and activations. Experiments on MNIST and CIFAR-10 datasets testify to the advantages of LPOM.](https://arxiv.org/abs/1811.01501v1)
 
 
-##### Lifted Proximal Operator Machine (LPOM) 
-
-By rewriting the activation function as an equivalent proximal operator, 
-we approximate a feed-forward neural network by adding the proximal operators to the objective function as penalties, 
-hence we call the lifted proximal operator machine (LPOM). LPOM is block multi-convex in all layer-wise weights and activations. 
-This allows us to use block coordinate descent to update the layer-wise weights and activations in parallel.
-Most notably, we only use the mapping of the activation function itself, rather than its derivatives, thus avoiding the gradient vanishing or blow-up issues in gradient based training methods.
-So our method is applicable to various non-decreasing Lipschitz continuous activation functions, which can be saturating and non-differentiable. LPOM does not require more auxiliary variables than the layer-wise activations, thus using roughly the same amount of memory as stochastic gradient descent (SGD) does. 
-[We further prove the convergence of updating the layer-wise weights and activations. Experiments on MNIST and CIFAR-10 datasets testify to the advantages of LPOM.](https://arxiv.org/abs/1811.01501v1)
-
-- [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
+- https://yq.aliyun.com/articles/230662
 - https://zhouchenlin.github.io/
 - [Lifted Proximal Operator Machines](https://arxiv.org/abs/1811.01501v1)
-- [一种提升邻近算子机神经网络优化方法 [发明]](http://cprs.patentstar.com.cn/Search/Detail?ANE=9GED7DEA8EDAAICA9CGA9EFB9HHGAGGADGIA9AIFDHEA9IHH)
+- [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
+- [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
+- [Extremely Low Bit Neural Network: Squeeze the Last Bit Out with ADMM](https://arxiv.org/abs/1707.09870)
+- [Toward Extremely Low Bit and Lossless Accuracy in DNNs with Progressive ADMM](https://arxiv.org/abs/1905.00789)
 
-#### Mixed Integer Optimization
-
-[Network models and integer programs are applicable for an enormous known variety of decision problems. Some of these decision problems are really physical problems, such as transportation or flow of commodities. Many network problems are more of an abstract representations of processes or activities, such as the critical path activity network in project management. These problems are easily illustrated by using a network of arcs, and nodes.](http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm)
-
-- http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm
-- [Strong mixed-integer programming formulations for trained neural networks by Joey Huchette1](http://www.cas.mcmaster.ca/~deza/slidesRIKEN2019/huchette.pdf)
-- [Deep neural networks and mixed integer linear optimization](https://link.springer.com/article/10.1007/s10601-018-9285-6)
-- [Matteo Fischetti, University of Padova](http://www.dei.unipd.it/~fisch/papers/slides/2018%20Dagstuhl%20%5BFischetti%20on%20DL%5D.pdf)
-- [Deep Neural Networks as 0-1 Mixed Integer Linear Programs: A Feasibility Study](https://arxiv.org/abs/1712.06174)
-- https://www.researchgate.net/profile/Matteo_Fischetti
-- [A Mixed Integer Linear Programming Formulation to Artificial Neural Networks](http://www.amp.i.kyoto-u.ac.jp/tecrep/ps_file/2019/2019-001.pdf)
-- [ReLU Networks as Surrogate Models in Mixed-Integer Linear Programs](http://www.optimization-online.org/DB_FILE/2019/07/7276.pdf)
-- [Strong mixed-integer programming formulations for trained neural networks](http://www.optimization-online.org/DB_FILE/2018/11/6911.pdf)
-- [Deep Learning in Computational Discrete Optimization CO 759, Winter 2018](https://www.math.uwaterloo.ca/~bico/co759/2018/index.html)
-- https://sites.google.com/site/mipworkshop2017/program
-- [Second Conference on Discrete Optimization and Machine Learning](https://aip.riken.jp/events/doml190729-31/)
-- [Mixed integer programming (MIP) for machine learning](http://www.normastic.fr/wp-content/uploads/2014/12/Main_MIP_Rouen_2019.pdf)
-- https://atienergyworkshop.wordpress.com/
-- http://www.doc.ic.ac.uk/~dletsios/publications/gradient_boosted_trees.pdf
-- https://minoa-itn.fau.de/
-- http://www.me.titech.ac.jp/technicalreport/h26/2014-1.pdf
-- [Training Binarized Neural Networks using MIP and CP](http://www.cs.toronto.edu/~lillanes/papers/ToroIcarteICCMB-cp2019-training-preprint.pdf)
-
-#### Lagrangian Propagator
-
-It has been showed that Neural Networks can be embedded in a `Constraint Programming` model 
-by simply encoding each neuron as a global constraint, 
-which is then propagated individually. 
-[Unfortunately, this decomposition approach may lead to weak bounds.](https://link.springer.com/article/10.1007/s10601-015-9234-6)
-
-- [A Lagrangian Propagator for Artificial Neural Networks in Constraint Programming](https://bitbucket.org/m_lombardi/constraints-15-ann-lag-resources/src/master/)
-- https://link.springer.com/article/10.1007/s10601-015-9234-6
-- https://www.researchgate.net/profile/Michele_Lombardi
-- [Embedding Machine Learning Models in Optimization](https://emlopt.github.io/)
-- https://www.unibo.it/sitoweb/michele.lombardi2/pubblicazioni
-- https://people.eng.unimelb.edu.au/pstuckey/papers.html
-- https://cis.unimelb.edu.au/agentlab/publications/
-- [A New Propagator for Two-Layer Neural Networks in Empirical Model Learning](https://link.springer.com/chapter/10.1007/978-3-642-40627-0_35)
 
 #### Layer-wise Relevance Propagation
 
-Layer-wise Relevance Propagation (LRP) is a method 
-that identifies important pixels by running a backward pass in the neural network. 
-The backward pass is a conservative relevance redistribution procedure, 
-where neurons that contribute the most to the higher-layer receive most relevance from it. 
-[The LRP procedure is shown graphically in the figure below.](http://www.heatmapping.org/)
+[Layer-wise Relevance Propagation (LRP) is a method that identifies important pixels by running a backward pass in the neural network. The backward pass is a conservative relevance redistribution procedure, where neurons that contribute the most to the higher-layer receive most relevance from it. The LRP procedure is shown graphically in the figure below.](http://www.heatmapping.org/)
 
 <img src="http://www.heatmapping.org/lrpgraph.png" width="50%"/>
 
@@ -2499,11 +2375,12 @@ where neurons that contribute the most to the higher-layer receive most relevanc
 - https://github.com/gentaman/LRP
 - [Tutorial: Implementing Layer-Wise Relevance Propagation](http://www.heatmapping.org/tutorial/)
 - http://www.heatmapping.org/
-- http://iphome.hhi.de/same
+- http://iphome.hhi.de/samek/
+
 
 ####  Target Propagation
 
-Back-propagation has been the workhorse of recent successes of deep learning
+[Back-propagation has been the workhorse of recent successes of deep learning
 but it relies on infinitesimal effects (partial derivatives) in order to perform credit
 assignment. This could become a serious issue as one considers deeper and more
 non-linear functions, e.g., consider the extreme case of non-linearity where the relation between parameters and cost is actually discrete. Inspired by the biological implausibility of back-propagation, a few approaches have been proposed in the past that could play a similar credit assignment role as backprop.
@@ -2511,7 +2388,7 @@ In this spirit, we explore a novel approach to credit assignment in deep network
 `The main idea is to compute targets rather than gradients, at each layer. Like gradients, they are propagated backwards.
 In a way that is related but different from previously proposed proxies for back-propagation which rely on a backwards network with symmetric weights, target propagation relies on auto-encoders at each layer`.
 Unlike back-propagation, it can be applied even when units exchange stochastic bits rather than real numbers.
-[We show that a linear correction for the imperfectness of the auto-encoders is very effective to make target propagation actually work, along with adaptive learning rates.](http://www2.cs.uh.edu/~ceick/7362/T3-3.pdf)
+We show that a linear correction for the imperfectness of the auto-encoders is very effective to make target propagation actually work, along with adaptive learning rates.](http://www2.cs.uh.edu/~ceick/7362/T3-3.pdf)
 
 - [TARGET PROPAGATION](http://www2.cs.uh.edu/~ceick/7362/T3-3.pdf)
 - [Training Language Models Using Target-Propagation](https://arxiv.org/abs/1702.04770)
@@ -2522,15 +2399,13 @@ Unlike back-propagation, it can be applied even when units exchange stochastic b
 
 ####  Gradient Target Propagation
 
-We report a learning rule for neural networks that computes how much each neuron should contribute to minimize a giving cost function via the estimation of its target value.
-By theoretical analysis, we show that this learning rule contains backpropagation, Hebbian learning, and additional terms. 
-We also give a general technique for weights initialization.
-[Our results are at least as good as those obtained with backpropagation.](https://arxiv.org/pdf/1810.09284.pdf)
+[We report a learning rule for neural networks that computes how much each neuron should contribute to minimize a giving cost function via the estimation of its target value.
+By theoretical analysis, we show that this learning rule contains backpropagation, Hebbian learning, and additional terms. We also give a general technique for weights initialization.
+Our results are at least as good as those obtained with backpropagation.](https://arxiv.org/pdf/1810.09284.pdf)
 
 - [Quantized Neural Networks: Training Neural Networks with Low Precision Weights and Activations](https://arxiv.org/pdf/1609.07061.pdf)
 - [Gradient target propagation](https://arxiv.org/abs/1810.09284)
 - https://github.com/tiago939/target
-- https://qdata.github.io/deep2Read//MoreTalksTeam/Un17/Muthu-OptmTarget.pdf
 
 ### Capsule Networks and More
 
@@ -2545,28 +2420,9 @@ Capsule Networks provide a way to detect parts of objects in an image and repres
 - http://people.missouristate.edu/RandallSexton/sabp.pdf
 - [Neuronal Dynamics: From single neurons to networks and models of cognition](https://neuronaldynamics.epfl.ch/book.html)
 
-### Deep Stochastic Configuration Networks
-
-In contrast to known randomized learning algorithms for single layer feed-forward neural networks (e.g., random vector functional-link networks), 
-Stochastic Configuration Networks (SCNs) randomly assign the input weights and biases of the hidden nodes in the light of a supervisory mechanism, 
-while the output weights are analytically evaluated in a constructive or selective manner.
-
-Current experimental results indicate that SCNs outperform other randomized neural networks in terms of required human intervention, selection of the scope of random parameters, and fast learning and generalization. 
-`Deep sctochastic configuration networks (DeepSCNs)' have been mathematically proved as universal approximators for continous nonlinear functions defined over compact sets. 
-They can be constructed efficiently (much faster than other deep neural networks) 
-and share many great features, such as learning representation and consistency property between learning and generalization.
-
-[This website](http://www.deepscn.com/index.php) collect some introductory material on DeepSCNs, most notably a brief selection of publications and some software to get started.
-
-- http://www.deepscn.com/references.php
-
 ### MIND-Net
 
-From the  analytical perspective, the ad hoc nature of deep learning renders  its success  at the mercy of  trial-and-errors.  
-To rectify this problem, we advocate a methodic  learning paradigm, MIND-Net,  which is computationally efficient in  training the networks and yet mathematically feasible to  analyze.  
-MIND-Net hinges upon the use of an effective optimization metric, called Discriminant Information (DI).  
-It will be used as a surrogate  of the popular metrics such as  0-1 loss or  prediction accuracy. Mathematically, DI is equivalent or closely related to Gauss’ LSE, Fisher’s FDR, and Shannon’s Mutual Information.  
-[We shall explain why is that higher DI means higher linear separability, i.e. higher DI means that  the data are more discriminable.  In fact, it can be shown that, both theoretically and empirically,  a high DI score usually implies a high prediction accuracy.](http://www.it.fudan.edu.cn/En/Data/View/2519)
+[From the  analytical perspective, the ad hoc nature of deep learning renders  its success  at the mercy of  trial-and-errors.  To rectify this problem, we advocate a methodic  learning paradigm, MIND-Net,  which is computationally efficient in  training the networks and yet mathematically feasible to  analyze.  MIND-Net hinges upon the use of an effective optimization metric, called Discriminant Information (DI).  It will be used   as a surrogate  of the popular metrics such as  0-1 loss or  prediction accuracy. Mathematically, DI is equivalent or closely related to Gauss’ LSE, Fisher’s FDR, and Shannon’s Mutual Information.  We shall explain why is that higher DI means higher linear separability, i.e. higher DI means that  the data are more discriminable.  In fact, it can be shown that, both theoretically and empirically,  a high DI score usually implies a high prediction accuracy. ](http://www.it.fudan.edu.cn/En/Data/View/2519)
 
 - https://datasciencephd.eu/
 - https://ieeexplore.ieee.org/document/8682208
@@ -2574,23 +2430,6 @@ It will be used as a surrogate  of the popular metrics such as  0-1 loss or  pre
 - https://dblp.uni-trier.de/pers/hd/k/Kung:Sun=Yuan
 - http://www.zhejianglab.com/mien/active_info/75.html
 - https://ee.princeton.edu/people/sun-yuan-kung
-- 
 - https://ieeexplore.ieee.org/author/37273489000
 - [Scalable Kernel Learning via the Discriminant Information](https://arxiv.org/abs/1909.10432)
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
-
-
-### Dynamic Hierarchical Mimicking
-
-- https://arxiv.org/abs/2003.10739
-- https://github.com/d-li14/DHM
-
-### DLphi
-
-
-- http://www.pc-petersen.eu/
-- http://voigtlaender.xyz/
-- https://math.ethz.ch/sam/research/reports.html
-- https://arxiv.org/abs/1901.05744
-- https://faculty.washington.edu/kutz/
-
