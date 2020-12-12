@@ -1,7 +1,9 @@
-# Science of Deep Learning
+# Science of  Learning
 
 V. Vapnik said that ``Nothing is more practical than a good theory.''
+Here we focus on the theoretical machine learning.
 
+- https://www.helsinki.fi/en/researchgroups/constraint-reasoning-and-optimization
 - https://www.math.ubc.ca/~erobeva/seminar.html
 - https://www.deel.ai/theoretical-guarantees/
 - http://www.vanderschaar-lab.com/NewWebsite/index.html
@@ -21,6 +23,7 @@ V. Vapnik said that ``Nothing is more practical than a good theory.''
 - https://mcallester.github.io/ttic-31230/
 - http://deep-phenomena.org/
 - https://ijcai20interpretability.github.io/
+- https://niceworkshop.org/
 
 Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
 Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
@@ -29,7 +32,71 @@ Many researchers are trying to better understand how to improve prediction perfo
 - https://www.cl.cam.ac.uk/~rja14/
 
 Deep learning is at least related with kernel tricks, projection pursuit and neural networks.
-
+- [Science of  Learning](#science-of--learning)
+  - [Resource  on Deep Learning Theory](#resource--on-deep-learning-theory)
+    - [Deep Learning Reading Group](#deep-learning-reading-group)
+  - [Interpretability in AI](#interpretability-in-ai)
+    - [Interpretability of Neural Networks](#interpretability-of-neural-networks)
+    - [DeepLEVER](#deeplever)
+    - [DLphi](#dlphi)
+    - [Scientific Machine Learning](#scientific-machine-learning)
+  - [Physics and Deep Learning](#physics-and-deep-learning)
+    - [Machine Learning for Physics](#machine-learning-for-physics)
+      - [Deep Learning for Physics](#deep-learning-for-physics)
+    - [Physics for Machine Learning](#physics-for-machine-learning)
+      - [Physics Informed Machine Learning](#physics-informed-machine-learning)
+    - [Statistical Mechanics and Deep Learning](#statistical-mechanics-and-deep-learning)
+    - [Born Machine](#born-machine)
+    - [Quantum Machine learning](#quantum-machine-learning)
+  - [Mathematics of Deep Learning](#mathematics-of-deep-learning)
+    - [Discrete Mathematics and  Neural Networks](#discrete-mathematics-and--neural-networks)
+      - [MIP and Deep Learning](#mip-and-deep-learning)
+    - [Numerical Analysis for Deep Learning](#numerical-analysis-for-deep-learning)
+      - [ResNets](#resnets)
+      - [Differential Equations Motivated Deep Learning Methods](#differential-equations-motivated-deep-learning-methods)
+    - [Control Theory and Deep Learning](#control-theory-and-deep-learning)
+    - [Neural Ordinary Differential Equations](#neural-ordinary-differential-equations)
+  - [Dynamics and Deep Learning](#dynamics-and-deep-learning)
+    - [Stability For Neural Networks](#stability-for-neural-networks)
+  - [Differential Equation and Deep Learning](#differential-equation-and-deep-learning)
+    - [Deep Learning for PDEs](#deep-learning-for-pdes)
+    - [$\mathcal H$ matrix and deep learning](#mathcal-h-matrix-and-deep-learning)
+    - [Stochastic Differential Equations and Deep Learning](#stochastic-differential-equations-and-deep-learning)
+    - [Finite Element Methods and Deep Learning](#finite-element-methods-and-deep-learning)
+  - [Approximation Theory for Deep Learning](#approximation-theory-for-deep-learning)
+      - [Workshop](#workshop)
+      - [Labs and Groups](#labs-and-groups)
+    - [The F-Principle](#the-f-principle)
+  - [Inverse Problem and Deep Learning](#inverse-problem-and-deep-learning)
+    - [Deep Learning for Inverse Problems](#deep-learning-for-inverse-problems)
+    - [Deep Inverse Optimization](#deep-inverse-optimization)
+  - [Random Matrix Theory and Deep Learning](#random-matrix-theory-and-deep-learning)
+    - [Nonlinear Random Matrix Theory](#nonlinear-random-matrix-theory)
+  - [Deep learning and Optimal Transport](#deep-learning-and-optimal-transport)
+    - [Generative Models and Optimal Transport](#generative-models-and-optimal-transport)
+  - [Geometric Analysis Approach to AI](#geometric-analysis-approach-to-ai)
+    - [Tropical Geometry of Deep Neural Networks](#tropical-geometry-of-deep-neural-networks)
+  - [Topology and Deep Learning](#topology-and-deep-learning)
+    - [Topology Optimization and  Deep Learning](#topology-optimization-and--deep-learning)
+  - [Algebra and Deep Learning](#algebra-and-deep-learning)
+    - [Tensor network](#tensor-network)
+    - [Group Equivariant Convolutional Networks](#group-equivariant-convolutional-networks)
+    - [Complex Valued Neural Networks](#complex-valued-neural-networks)
+    - [Quaternion Neural Networks](#quaternion-neural-networks)
+  - [Probabilistic Theory and Deep Learning](#probabilistic-theory-and-deep-learning)
+    - [Bayesian Deep Learning](#bayesian-deep-learning)
+  - [Statistics and Deep Learning](#statistics-and-deep-learning)
+    - [Statistical Relational AI](#statistical-relational-ai)
+    - [Principal Component Neural Networks](#principal-component-neural-networks)
+    - [Least squares support vector machines](#least-squares-support-vector-machines)
+  - [Information Theory and Deep Learning](#information-theory-and-deep-learning)
+    - [Information bottleneck theory](#information-bottleneck-theory)
+  - [Brain Science and AI](#brain-science-and-ai)
+    - [Spiking neural networks](#spiking-neural-networks)
+    - [The Thousand Brains Theory of Intelligence](#the-thousand-brains-theory-of-intelligence)
+  - [Cognition Science and Deep Learning](#cognition-science-and-deep-learning)
+  - [The lottery ticket hypothesis](#the-lottery-ticket-hypothesis)
+  - [Double Descent](#double-descent)
 
 ## Resource  on Deep Learning Theory 
 
@@ -109,7 +176,17 @@ Deep learning is at least related with kernel tricks, projection pursuit and neu
 * https://project.inria.fr/deeplearning/
 * https://hustcv.github.io/reading-list.html
 
-## Interpretability of Neural Networks
+## Interpretability in AI 
+
+
+- https://ec.europa.eu/jrc/communities/en/node/1162/article/interpretability-ai-and-its-relation-fairness-transparency-reliability-and-trust
+- https://github.com/jphall663/awesome-machine-learning-interpretability
+- https://people.mpi-sws.org/~manuelgr/
+- https://ec.europa.eu/jrc/communities/en/community/humaint/event/2nd-humaint-winter-school-fairness-accountability-and-transparency
+- https://facctconference.org/network/
+- https://facctconference.org/network/
+
+### Interpretability of Neural Networks
 
 [ Although deep neural networks have exhibited superior performance in various tasks, interpretability is always Achilles’ heel of deep neural networks.](http://academic.hep.com.cn/fitee/CN/10.1631/FITEE.1700808#1)
 At present, deep neural networks obtain high discrimination power at the cost of a low interpretability of their black-box representations.
@@ -166,6 +243,17 @@ Not all one can understand the relative theory or quantum theory.
 - http://homepages.laas.fr/ehebrard/Home.html
 - http://www.merl.com/
 
+### DLphi
+
+> Together with the participants of the Oberwolfach Seminar: Mathematics of Deep Learning, [I wrote a (not entirely serious) paper](http://www.pc-petersen.eu/) called "The Oracle of DLPhi" proving that `Deep Learning techniques can perform accurate classifications on test data that is entirely uncorrelated to the training data`. This, however, requires a couple of non-standard assumptions such as uncountably many data points and the axiom of choice. In a sense this shows that mathematical results on machine learning need to be approached with a bit of scepticism.
+
+- https://github.com/juliusberner/oberwolfach_workshop
+- http://www.pc-petersen.eu/
+- http://voigtlaender.xyz/
+- https://math.ethz.ch/sam/research/reports.html
+- [The Oracle of DLphi](https://arxiv.org/abs/1901.05744)
+- https://faculty.washington.edu/kutz/
+
 ### Scientific Machine Learning  
 
 [Scientific machine learning is a burgeoning discipline which blends scientific computing and machine learning. Traditionally, scientific computing focuses on large-scale mechanistic models, usually differential equations, that are derived from scientific laws that simplified and explained phenomena. On the other hand, machine learning focuses on developing non-mechanistic data-driven models which require minimal knowledge and prior assumptions. The two sides have their pros and cons: differential equation models are great at extrapolating, the terms are explainable, and they can be fit with small data and few parameters. Machine learning models on the other hand require "big data" and lots of parameters but are not biased by the scientists ability to correctly identify valid laws and assumptions.](https://thewinnower.com/papers/25359-the-essential-tools-of-scientific-machine-learning-scientific-ml)
@@ -178,6 +266,7 @@ Not all one can understand the relative theory or quantum theory.
 - https://ml4sci.lbl.gov/
 - https://www.nottingham.ac.uk/conference/fac-sci/maths-sci/scientific-computation-using-machine-learning-algorithms/
 - https://sites.google.com/lbl.gov/ml4sci/
+- [SciANN: Neural Networks for Scientific Computations](https://github.com/sciann/sciann/)
 
 ## Physics and Deep Learning
 
@@ -196,43 +285,21 @@ Methods using artificial intelligence have in fact already advanced progress on 
 
 * https://zhuanlan.zhihu.com/p/94249675
 * https://web.stanford.edu/~montanar/index.html
-* [Physics Informed Neural Networks](https://github.com/maziarraissi/PINNs)
-* [Physics Based Vision meets Deep Learning (PBDL)](https://pbdl2019.github.io/)
-* [Physics-Based Deep Learning](https://github.com/thunil/Physics-Based-Deep-Learning)
 * [Physics Meets ML](https://www.microsoft.com/en-us/research/event/physics-ml-workshop/)
-* [Physics in Machine Learning Workshop](https://bids.berkeley.edu/events/physics-machine-learning-workshop)
-* [Physics in Machine Learning Workshop](https://www.ml4science.org/astrophysics-in-machine-learning-workshop)
-* [Physics Informed Machine Learning Workshop](http://www.databookuw.com/page-5/)
 * [physics forests](http://apagom.com/physicsforests/)
 * [Applied Machine Learning Days](https://www.appliedmldays.org/)
-* [Machine Learning in Physics School/Workshop](http://phys.cts.nthu.edu.tw/actnews/content.php?Sn=468)
 * [DEEP LEARNING FOR MULTIMESSENGER ASTROPHYSICS: REAL-TIME DISCOVERY AT SCALE](http://www.ncsa.illinois.edu/Conferences/DeepLearningLSST/)
 * [Workshop on Science of Data Science | (smr 3283)](http://indico.ictp.it/event/8722/)
 * [Physics & AI Workshop](http://www.physics.mcgill.ca/ai2019/)
-* https://www.icts.res.in/discussion-meeting/spmml2020
 * https://physicsml.github.io/pages/papers.html
-* http://super-ms.mit.edu/physics-ai.html
-* https://dl4physicalsciences.github.io/
-* https://maziarraissi.github.io/PINNs/
-* http://deeplearnphysics.org/
-* [Machine Learning for Physics and the Physics of Learning](https://www.ipam.ucla.edu/programs/long-programs/machine-learning-for-physics-and-the-physics-of-learning/)
-* https://www.ias.edu/events/deep-learning-physics
-* [A Differentiable Physics Engine for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
+* [Physics-AI opportunities at MIT](http://super-ms.mit.edu/physics-ai.html)
 * https://gogul.dev/software/deep-learning-meets-physics
 * https://github.com/2prime/ODE-DL/blob/master/DL_Phy.md
 * https://physics-ai.com/
 * http://physics.usyd.edu.au/quantum/Coogee2015/Presentations/Svore.pdf
 * [Brains, Minds and Machines Summer Course](https://ocw.mit.edu/resources/res-9-003-brains-minds-and-machines-summer-course-summer-2015/index.htm)
-* [Physics-Based Deep Learning for Fluid Flow](http://phys2018.csail.mit.edu/papers/29.pdf)
 * [deep medcine](http://amos3.aapm.org/abstracts/pdf/127-36916-419554-130797.pdf)
 * http://www.dam.brown.edu/people/mraissi/publications/
-* [Deep Learning in High Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecorsa.pdf)
-* [MATH + X SYMPOSIUM ON INVERSE PROBLEMS AND DEEP LEARNING IN SPACE EXPLORATION](https://earthscience.rice.edu/mathx2019/)
-* [Machine Learning for Physics](https://machine-learning-for-physicists.org/)
-* https://sites.google.com/view/icml2019phys4dl/schedule
-* [Master-Seminar - Deep Learning in Physics (IN2107, IN0014)](https://www.in.tum.de/cg/teaching/winter-term-1819/deep-learning-in-physics/)
-* https://www.ml4science.org/agenda-physics-in-ml
-* [Theoretical Physics for Deep Learning](https://icml.cc/Conferences/2019/ScheduleMultitrack?event=3531)
 * http://www.physics.rutgers.edu/gso/SSPAR/
 * https://community.singularitynet.io/c/education/course-brains-minds-machines
 * [ARTIFICIAL INTELLIGENCE AND PHYSICS](https://physai.sciencesconf.org/)
@@ -244,13 +311,50 @@ Methods using artificial intelligence have in fact already advanced progress on 
 * http://djstrouse.com/
 * https://www.researchgate.net/scientific-contributions/2135376837_Maurice_Weiler
 * [Spontaneous Symmetry Breaking in Neural Networks](https://arxiv.org/abs/1710.06096)
-* [2017 Machine Learning for Physicists, by Florian Marquardt](http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt)
 * https://physai.sciencesconf.org/
 
+
+### Machine Learning for Physics
+
+* [Deep Learning in High Energy Physics](https://dlonsc.github.io/ISC2019/7_Keynote_DL_HEP_SofiaVallecorsa.pdf)
+* [Machine Learning for Physics and the Physics of Learning](https://www.ipam.ucla.edu/programs/long-programs/machine-learning-for-physics-and-the-physics-of-learning/)
+* [Machine Learning for Physics](https://machine-learning-for-physicists.org/)
+* [2017 Machine Learning for Physicists, by Florian Marquardt](http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt)
+* https://ml4physicalsciences.github.io/2020/
+* [Machine Learning in Physics School/Workshop](http://phys.cts.nthu.edu.tw/actnews/content.php?Sn=468)
+* http://deeplearnphysics.org/
+
+#### Deep Learning for Physics
+
+* https://inspirehep.net/literature/1680302
+* [Master-Seminar - Deep Learning in Physics (IN2107, IN0014)](https://www.in.tum.de/cg/teaching/winter-term-1819/deep-learning-in-physics/)
+* https://www.ml4science.org/agenda-physics-in-ml
+* https://www.ias.edu/events/deep-learning-physics
+* https://dl4physicalsciences.github.io/
+
+### Physics for Machine Learning
+
+* https://tartakovsky.stanford.edu/research/physics-informed-machine-learning
+* [Physics in Machine Learning Workshop](https://bids.berkeley.edu/events/physics-machine-learning-workshop)
+* [Physics in Machine Learning Workshop](https://www.ml4science.org/astrophysics-in-machine-learning-workshop)
+* [A Differentiable Physics Engine for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
+* [Physics Based Vision meets Deep Learning (PBDL)](https://pbdl2019.github.io/)
+* [Physics-Based Deep Learning](https://github.com/thunil/Physics-Based-Deep-Learning)
+
+#### Physics Informed Machine Learning
+
+* https://sites.google.com/view/icml2019phys4dl/schedule
+* [Theoretical Physics for Deep Learning](https://icml.cc/Conferences/2019/ScheduleMultitrack?event=3531)
+* https://sites.google.com/view/icml2019phys4dl/schedule
+* [Physics Informed Machine Learning Workshop](http://www.databookuw.com/page-5/)
+* [Physics Informed Neural Networks](https://github.com/maziarraissi/PINNs)
+* https://maziarraissi.github.io/PINNs/
+  
 ### Statistical Mechanics and Deep Learning
 
 [The recent striking success of deep neural networks in machine learning raises profound questions about the theoretical principles underlying their success. For example, what can such deep networks compute? How can we train them? How does information propagate through them? Why can they generalize? And how can we teach them to imagine? We review recent work in which methods of physical analysis rooted in statistical mechanics have begun to shed conceptual insights into these questions. These insights yield connections between deep learning and diverse physical and mathematical topics, including random landscapes, spin glasses, jamming, dynamical phase transitions, chaos, Riemannian geometry, random matrix theory, free probability, and nonequilibrium statistical mechanics. Indeed, the fields of statistical mechanics and machine learning have long enjoyed a rich history of strongly coupled interactions, and recent advances at the intersection of statistical mechanics and deep learning suggest these interactions will only deepen going forward.](https://www.annualreviews.org/doi/pdf/10.1146/annurev-conmatphys-031119-050745)
 
+* [Statistical Physics of Machine Learning](https://www.icts.res.in/discussion-meeting/spmml2020)
 * [statistical mechanics // machine learning](http://smml.io/)
 * [A Theoretical Connection Between Statistical Physics and Reinforcement Learning](https://arxiv.org/abs/1906.10228)
 * [The thermodynamics of learning](https://phys.org/news/2017-02-thermodynamics.html)
@@ -337,7 +441,6 @@ Philipp Petersen, University of Oxford
 - https://www-m15.ma.tum.de/Allgemeines/MathFounNN
 - https://www.math.purdue.edu/~buzzard/MA598-Spring2019/index.shtml
 - http://mathematics-in-europe.eu/?p=801
-- [Discrete Mathematics of Neural Networks: Selected Topics](https://epubs.siam.org/doi/book/10.1137/1.9780898718539?mobileUi=0)
 - https://cims.nyu.edu/~bruna/
 - https://www.math.ias.edu/wtdl
 - https://www.pims.math.ca/scientific-event/190722-pcssdlcm
@@ -358,6 +461,33 @@ Philipp Petersen, University of Oxford
 * [BRIDGING GAME THEORY AND DEEP LEARNING](https://sgo-workshop.github.io/)
 
 
+### Discrete Mathematics and  Neural Networks
+
+
+- [Taming the Curse of Dimensionality: Discrete Integration by Hashing and Optimization](http://proceedings.mlr.press/v28/ermon13.html)
+- [DATA SCIENCE MEETS OPTIMIZATION](https://sites.google.com/view/ijcai2019dso/)   
+- http://www.cas.mcmaster.ca/~deza/tokyo2018progr.html
+- https://www.cs.cornell.edu/~bistra/
+- [Discrete Mathematics of Neural Networks: Selected Topics](https://epubs.siam.org/doi/book/10.1137/1.9780898718539?mobileUi=0)
+- [Deep Learning in Computational Discrete Optimization](https://www.math.uwaterloo.ca/~bico/co759/2018/index.html)
+- [Deep Learning in Discrete Optimization](http://www.ams.jhu.edu/~wcook12/dl/index.html)
+- https://web-app.usc.edu/soc/syllabus/20201/30126.pdf
+- http://www.columbia.edu/~yf2414/Slides.pdf
+- http://www.columbia.edu/~yf2414/teach.html
+- https://opt-ml.org/cfp.html
+- https://easychair.org/smart-program/CPAIOR2020/index.html
+
+
+#### MIP and Deep Learning
+
+- [Strong mixed-integer programming formulations for trained neural networks by Joey Huchette1](http://www.cas.mcmaster.ca/~deza/slidesRIKEN2019/huchette.pdf)
+- [Deep neural networks and mixed integer linear optimization](https://link.springer.com/article/10.1007/s10601-018-9285-6)
+- [Matteo Fischetti, University of Padova](http://www.dei.unipd.it/~fisch/papers/slides/2018%20Dagstuhl%20%5BFischetti%20on%20DL%5D.pdf)
+- [Deep Neural Networks as 0-1 Mixed Integer Linear Programs: A Feasibility Study](https://arxiv.org/abs/1712.06174)
+- https://www.researchgate.net/profile/Matteo_Fischetti
+- [A Mixed Integer Linear Programming Formulation to Artificial Neural Networks](http://www.amp.i.kyoto-u.ac.jp/tecrep/ps_file/2019/2019-001.pdf)
+- [ReLU Networks as Surrogate Models in Mixed-Integer Linear Programs](http://www.optimization-online.org/DB_FILE/2019/07/7276.pdf)
+
 ### Numerical Analysis for Deep Learning
 
 Dynamics of deep learning is to  consider deep learning as a dynamic system. 
@@ -376,6 +506,8 @@ Many recursive formula share the same `feedback` forms or hidden structure, wher
 - [Numerical methods for deep learning](https://github.com/IPAIopen/NumDL-CourseNotes)
 - [Short Course on Numerical Methods for Deep Learning](http://www.mathcs.emory.edu/~lruthot/courses/NumDL/index.html)
 - [MA 721: Topics in Numerical Analysis: Deep Learning](http://www.ms.uky.edu/~qye/MA721/ma721F17.html)
+* [Physics-Based Deep Learning for Fluid Flow](http://phys2018.csail.mit.edu/papers/29.pdf)
+
 
 #### ResNets
 
@@ -643,6 +775,7 @@ We use this low dimensionality to guarantee the existence of a reduced basis.
 
 ###  Stochastic Differential Equations and Deep Learning
 
+- [Neural Jump SDEs (Jump Diffusions) and Neural PDEs](http://www.stochasticlifestyle.com/neural-jump-sdes-jump-diffusions-and-neural-pdes/)
 - [Deep-Learning Based Numerical BSDE Method for Barrier Options](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3366314)
 - [Machine learning approximation algorithms for high-dimensional fully nonlinear partial differential equations and second-order backward stochastic differential equations](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2017/2017-49.pdf)
 
@@ -675,7 +808,6 @@ The section will extend the approximation to the deep neural network.
 - [Provable approximation properties for deep neural networks](https://cpsc.yale.edu/sites/default/files/files/tr1513(1).pdf)
 - [Optimal Approximation with Sparsely Connected Deep Neural Networks](https://epubs.siam.org/doi/pdf/10.1137/18M118709X)
 - [Deep Learning: Approximation of Functions by Composition](http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14936.pdf)
-- [DGD Approximation Theory Workshop](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Petersen/DGD_Approximation_Theory.pdf)
 - [Deep Neural Networks: Approximation Theory and Compositionality](http://www.mit.edu/~9.520/fall16/Classes/deep_approx.html)
 - [DNN Bonn](http://voigtlaender.xyz/DNNBonnHandout.pdf)
 - [From approximation theory to machine learning](http://npfsa2017.uni-jena.de/l_notes/vybiral.pdf)
@@ -683,16 +815,30 @@ The section will extend the approximation to the deep neural network.
 - [Nonlinear Approximation and (Deep) ReLU Networks](https://www.math.tamu.edu/~foucart/publi/DDFHP.pdf)
 - [Deep Approximation via Deep Learning](http://www.ipam.ucla.edu/abstract/?tid=15953&pcode=GLWS3)
 - [Convolutional Neural Networks for Steady Flow Approximation](https://github.com/loliverhennigh/Steady-State-Flow-With-Neural-Nets)
+- https://www.eurandom.tue.nl/wp-content/uploads/2018/11/Johannes-Schmidt-Hieber-lecture-1-2.pdf
+- https://arxiv.org/abs/2006.00294
+- [Efficient approximation of high-dimensional functions with deep neural networks](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-64_fp.pdf)
+
+
+#### Workshop
+
+- https://www.mfo.de/occasion/1842b
+- https://www.mfo.de/occasion/1947a
+- https://github.com/juliusberner/oberwolfach_workshop
+- [DGD Approximation Theory Workshop](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Petersen/DGD_Approximation_Theory.pdf)
+
+#### Labs and Groups 
+
+- https://deepai.org/profile/julius-berner
 - https://www.cityu.edu.hk/ma/people/profile/zhoudx.htm
 - https://dblp.uni-trier.de/pers/hd/y/Yang:Haizhao
 - https://math.duke.edu/people/ingrid-daubechies
 - http://www.pc-petersen.eu/
-- https://www.eurandom.tue.nl/wp-content/uploads/2018/11/Johannes-Schmidt-Hieber-lecture-1-2.pdf
-- https://deepai.org/profile/julius-berner
+- https://wwwhome.ewi.utwente.nl/~schmidtaj/
+- https://personal-homepages.mis.mpg.de/montufar/
 - https://www.math.tamu.edu/~foucart/
-- https://arxiv.org/abs/2006.00294
-- [Efficient approximation of high-dimensional functions with deep neural networks](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-64_fp.pdf)
-- [Neural Jump SDEs (Jump Diffusions) and Neural PDEs](http://www.stochasticlifestyle.com/neural-jump-sdes-jump-diffusions-and-neural-pdes/)
+- http://www.damtp.cam.ac.uk/user/sl767/#about
+- http://voigtlaender.xyz/publications.html
 
 ### The F-Principle
 
@@ -731,6 +877,7 @@ whose parameters can be learned from training data, offers faster convergence an
 Moreover, even with very little or no learning, deep neural networks enable superior performance for classical linear inverse problems 
 such as denoising and compressive sensing. Motivated by those success stories, researchers are redesigning traditional imaging and sensing systems.
 
+* [MATH + X SYMPOSIUM ON INVERSE PROBLEMS AND DEEP LEARNING IN SPACE EXPLORATION](https://earthscience.rice.edu/mathx2019/)
 - [Sixteenth International Conference on the Integration of Constraint Programming, Artificial Intelligence, and Operations Research](http://cpaior2019.uowm.gr/)
 - https://github.com/mughanibu/Deep-Learning-for-Inverse-Problems
 - [Accurate Image Super-Resolution Using Very Deep Convolutional Networks](https://cv.snu.ac.kr/research/VDSR/)
@@ -742,6 +889,9 @@ such as denoising and compressive sensing. Motivated by those success stories, r
 - https://github.com/IPAIopen
 - https://imaginary.org/snapshot/deep-learning-and-inverse-problems
 - https://www.researchgate.net/scientific-contributions/2150388821_Jaweria_Amjad
+- https://zif.ai/inverse-reinforcement-learning/
+- [Physics Based Machine Learning for Inverse Problems](https://kailaix.github.io/ADCMESlides/Inverse.pdf)
+- https://www.ece.nus.edu.sg/stfpage/elechenx/Papers/TGRS_Learning.pdf
 
 ### Deep Learning for Inverse Problems
 
@@ -935,6 +1085,24 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - http://www.mit.edu/~kawaguch/
 - https://www.4tu.nl/ami/en/Agenda-Events/
 
+### Complex Valued Neural Networks
+
+Aizenberg, Ivaskiv, Pospelov and Hudiakov (1971) (former Soviet Union) proposed a complex-valued neuron model for the first time, and although it was only available in Russian literature, their work can now be read in English (Aizenberg, Aizenberg & Vandewalle, 2000). Prior to that time, most researchers other than Russians had assumed that the first persons to propose a complex-valued neuron were Widrow, McCool and Ball (1975). Interest in the field of neural networks started to grow around 1990, and various types of complex-valued neural network models were subsequently proposed. Since then, their characteristics have been researched, making it possible to solve some problems which could not be solved with the real-valued neuron, and to solve many complicated problems more simply and efficiently.
+
+- http://what-when-how.com/artificial-intelligence/complex-valued-neural-networks-artificial-intelligence/
+
+> The complex-valued Neural Network is an extension of a (usual) real-valued neural network, whose input and output signals and parameters such as weights and thresholds are all complex numbers (the activation function is inevitably a complex-valued function).
+
+- https://staff.aist.go.jp/tohru-nitta/HNN.html
+- https://staff.aist.go.jp/tohru-nitta/CNN.html
+- https://github.com/ChihebTrabelsi/deep_complex_networks
+- https://r2rt.com/beyond-binary-ternary-and-one-hot-neurons.html
+- https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es2011-42.pdf
+- https://www.microsoft.com/en-us/research/uploads/prod/2018/04/Deep-Complex-Networks.pdf
+- https://core.ac.uk/reader/41356536
+
+
+
 ### Quaternion Neural Networks
 
 [It looks like Deep (Convolutional) Neural Networks are really powerful. ](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
@@ -959,6 +1127,7 @@ seem to outperform real valued neural networks while using less parameters. This
 - https://arxiv.org/abs/1903.08478
 - [Introduction to Quaternion Neural Networks](https://www.simonwenkel.com/projects/introduction-to-quaternion-neural-networks.html)
 - [Capsule Networks and other neural architectures that are less known](https://www.simonwenkel.com/2019/07/15/Capsule-Networks-and-other-neural-architectures.html)
+- https://github.com/Orkis-Research/Quaternion-Convolutional-Neural-Networks-for-End-to-End-Automatic-Speech-Recognition
 
 ## Probabilistic Theory and Deep Learning
 
@@ -1081,6 +1250,26 @@ In Introduction to Statistical Relational Learning, leading researchers in this 
 - http://acai2018.unife.it/
 - https://www.biostat.wisc.edu/~page/838.html
 
+### Principal Component Neural Networks
+
+[Nonlinear principal component analysis (NLPCA) is commonly seen as a nonlinear generalization of standard principal component analysis (PCA). It generalizes the principal components from straight lines to curves (nonlinear). Thus, the subspace in the original data space which is described by all nonlinear components is also curved.
+Nonlinear PCA can be achieved by using a neural network with an autoassociative architecture also known as autoencoder, replicator network, bottleneck or sandglass type network. Such autoassociative neural network is a multi-layer perceptron that performs an identity mapping, meaning that the output of the network is required to be identical to the input. However, in the middle of the network is a layer that works as a bottleneck in which a reduction of the dimension of the data is enforced. This bottleneck-layer provides the desired component values (scores).](http://www.nlpca.org/)
+
+- http://www.nlpca.org/
+- http://users.ics.aalto.fi/~juha/papers/Generalizations_NN_1995.pdf
+- https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture18-pca.pdf
+- http://www.vision.jhu.edu/teaching/learning/deeplearning19/assets/Baldi_Hornik-89.pdf
+- https://www.cs.purdue.edu/homes/dgleich/projects/pca_neural_nets_website/
+- https://rdrr.io/cran/caret/man/pcaNNet.html
+- http://research.ics.aalto.fi/ica/book/
+
+### Least squares support vector machines
+
+- https://www.esat.kuleuven.be/sista/lssvmlab/
+- https://zhenyu-liao.github.io/pdf/journal/LSSVM-TSP.pdf
+- https://sci2s.ugr.es/keel/pdf/specific/articulo/vs04.pdf
+- https://www.esat.kuleuven.be/sista/members/suykens.html
+
 ## Information Theory and Deep Learning
 
 [In short](https://lizhongresearch.miraheze.org/wiki/Understanding_the_Power_of_Neural_Networks), 
@@ -1105,8 +1294,6 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 * [Information Theory of Deep Learning](https://adityashrm21.github.io/Information-Theory-In-Deep-Learning/)
 * [Anatomize Deep Learning with Information Theory](https://lilianweng.github.io/lil-log/2017/09/28/anatomize-deep-learning-with-information-theory.html)
 * [“Deep learning - Information theory & Maximum likelihood.”](https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/)
-* [On the information bottleneck theory of deep learning](https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning)
-* [Deep Learning and the Information Bottleneck Principle](https://arxiv.org/pdf/1503.02406.pdf)
 * [Information Theoretic Interpretation of Deep Neural Networks](https://www.rle.mit.edu/sia/wp-content/uploads/2019/07/2019-huang-xu-zheng-wornell.pdf)
 - http://pirsa.org/18040050
 - https://lizhongresearch.miraheze.org/wiki/Main_Page
@@ -1136,6 +1323,11 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 - https://www.rle.mit.edu/sia/
 - https://xiangxiangxu.com/
 
+### Information bottleneck theory
+
+* [On the information bottleneck theory of deep learning](https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning)
+* [Deep Learning and the Information Bottleneck Principle](https://arxiv.org/pdf/1503.02406.pdf)
+* https://mc.ai/summary-on-the-information-bottleneck-theory-of-deep-learning/
 
 ## Brain Science and AI
 
@@ -1161,6 +1353,28 @@ Recently, however, the remarkable success of deep neural networks in learning fr
 * [Neuroscience-Inspired Artificial Intelligence](http://www.columbia.edu/cu/appliedneuroshp/Papers/out.pdf)
 * [深度神经网络（DNN）是否模拟了人类大脑皮层结构？ - Harold Yue的回答 - 知乎](https://www.zhihu.com/question/59800121/answer/184888043)
 * [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
+* https://www.humanbrainproject.eu/en/
+* https://www.neuro-central.com/ask-experts-artificial-intelligence-neuroscience/
+
+### Spiking neural networks
+
+- https://zenkelab.org/
+- https://neural-reckoning.github.io/snn_workshop_2020/
+- https://fzenke.net/
+- https://github.com/google/ihmehimmeli
+- https://www.humanbrainproject.eu/en/education/participatecollaborate/curriculum/workshops/3rd-curriculum-workshop-ict-snn/
+- http://www.cosyne.org/c/index.php?title=Workshops2019_spike_1
+- https://2020.wcci-virtual.org/session/workshop-6-design-implementation-and-applications-spiking-neural-networks-and-neuromorphic
+- https://niceworkshop.org/nice-2020/nice-2020-tutorials/
+- https://github.com/ai-cortex/snn-workshop-amld-2020
+
+### The Thousand Brains Theory of Intelligence
+
+- https://numenta.com/
+- https://numenta.com/blog/2019/01/16/the-thousand-brains-theory-of-intelligence/
+- https://www.microsoft.com/en-us/research/uploads/prod/2019/03/42804_The_Thousand_Brains_Theory.pdf
+- https://lexfridman.com/jeff-hawkins/
+
 
 ## Cognition Science and Deep Learning
 
@@ -1266,21 +1480,6 @@ $$\fbox{Learning}\not ={Training} \\ Generalization\not ={Optimziation}.$$
 - [High-dimensional dynamics of generalization error in neural networks](https://arxiv.org/abs/1710.03667)
 - https://mltheory.org/deep.pdf
 
-## AOGNet
 
-An AOGNet consists of a number of stages each of which is composed of a number of AOG building blocks. 
-An AOG building block splits its input feature map into $N$ groups along feature channels and then treat it as a sentence of $N$ words. 
-It then jointly realizes a phrase structure grammar and a dependency grammar in bottom-up parsing the “sentence” for better feature exploration and reuse. 
-[It provides a unified framework for the best practices developed in state-of-the-art DNNs.](https://arxiv.org/pdf/1711.05847.pdf)
 
-`We first need to understand the underlying wisdom in designing better network architectures: It usually lies in finding network structures
-which can support flexible and diverse information flows for exploring new features, reusing existing features in previous layers 
-and back-propagating learning signals (e.g., gradients).`
 
-- [AOGNets: Compositional Grammatical Architectures for Deep Learning](https://arxiv.org/pdf/1711.05847.pdf)
-- http://www.stat.ucla.edu/~tfwu/
-- http://www.stat.ucla.edu/~tfwu//project_posts/iRCNN/
-- https://github.com/xilaili/AOGNet
-- https://github.com/iVMCL/AOGNets
-- http://www.stat.ucla.edu/~tfwu/project_posts/AOGNets/
-- [New Framework Improves Performance of Deep Neural Networks](https://research.ece.ncsu.edu/ivmcl/2019/05/29/new-framework-improves-performance-of-deep-neural-networks/)

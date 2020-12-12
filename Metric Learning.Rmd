@@ -1,6 +1,6 @@
 ---
-title: "Metric Learning"
-author: "zjx"
+title: "Prediction evaluation metric: loss functions"
+author: "Zhang Jinxiong zhangjinxiong@qq.com"
 date: "2020/5/3"
 output:
   html_document:
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Prediction evaluation metric: loss function
+# Prediction evaluation metric: loss functions
 
 In general, [learning consists of three components](https://dl.acm.org/doi/pdf/10.1145/2347736.2347755):
 $$\text{Learning=Representation + Evaluation + Optimization}.$$
@@ -21,6 +21,8 @@ $$\text{Learning=Representation + Evaluation + Optimization}.$$
 
 [The prediction evaluation metric should be selected to reflect domain-specific considerations, such as the types of errors that are more costly.](https://www.stat.berkeley.edu/~binyu/ps/papers2020/VDS20-YuKumbier.pdf) 
 [In fact, there is an entire area of research devoted to evaluating the quality of probabilistic forecasts through “scoring rules”.](https://www.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf)
+Even Zongben Xu propose the [the independence assumption of loss function on dataset](https://dl.acm.org/doi/pdf/10.1145/3397271.3402428), 
+we should remind that the loss function design dependens on the `errors`.
 
 - https://rohanvarma.me/Loss-Functions/
 - [Probabilistic Setup and Empirical Risk Minimization](https://ttic.uchicago.edu/~tewari/lectures/lecture7.pdf)
@@ -30,21 +32,58 @@ $$\text{Learning=Representation + Evaluation + Optimization}.$$
 
 ************
 
-Loss function| Cost function | Empirical risk| Structure risk 
------|----|---|---
-$L(y , f(x , a))$ between the response $y$ of the supervisor to a given input $x$ and the response $f(x, a )$ provided by the learning machine|the objective function to minimize|approximation to the expected value of the loss | regularized emprical risk
 
 In absence of prior knowledge about data we can only use general purpose metrics like Euclidean distance, Cosine similarity or Manhattan distance etc, 
 but these metric often fail to capture the correct behavior of data which directly affects the performance of the learning algorithm. 
-Solution to this problem is to tune the metric according to the data and the problem, manually deriving the metric for high dimensional data which is often difficult to even visualize is not only tedious but is extremely difficult. Which leads to put effort on metric learning which satisfies the data geometry.
-[Goal of metric learning algorithm is to learn a metric which assigns small distance to similar points and relatively large distance to dissimilar points](https://parajain.github.io/metric_learning_tutorial/)
+Solution to this problem is to tune the metric according to the data and the problem, 
+manually deriving the metric for high dimensional data which is often difficult to even visualize is not only tedious but is extremely difficult.,
+Which leads to put effort on metric learning which satisfies the data geometry.
+[Goal of `metric learning` algorithm is to learn a metric which assigns small distance to similar points and relatively large distance to dissimilar points](https://parajain.github.io/metric_learning_tutorial/)
 
 - https://parajain.github.io/metric_learning_tutorial/
 - https://en.wikipedia.org/wiki/Similarity_learning
 
+Loss function| Cost function | Empirical risk| Structure risk 
+-----|----|---|---
+$\ell(y, f(x;\theta))$ between the response $y$ of the supervisor to a given input $x$ and the response $f(x;\theta)$ provided by the learning machine|the objective function to minimize|$\frac{1}{N}\sum_{i=1}^N\ell(y_i , f(x_i;\theta))$ approximation to the expected value of the loss | $\frac{1}{N}\sum_{i=1}^N\ell(y_i , f(x_i;\theta))+\mathcal{R}(f)$ regularized emprical risk
 
+We use the formula $f(x;\theta)$ to predict the response of the inout $x$, which is parameterized by $\theta\in\Theta$.
+The formula $f(\cdot;\cdot)$ is the representation of the machine learning algorithm.
+We use the `structure risk minimization(SRM)` principle to find the optimal parameters $\theta^{\ast}$ to select
+ the beat model over the representation space$\mathcal{F}=\{f(x;\theta)\mid \theta\in |theta\}$, i.e.,
+$$\theta^{\ast}=\arg\min_{\theta\in\Theta} \frac{1}{N}\sum_{i=1}^N\ell(y_i , f(x_i;\theta))+\mathcal{R}(f)$$
+where $\ell(y_i , f(x_i;\theta))$ is the predictive metric with the respect to the input $x_i$ and its groundtruth $y_i$.
+Here we will focus on the design of the predictive metric for different tasks.
 
-## Maximum likelihood estimate
+After optimization, we obtain the (sub)optimal model $f(x;\theta^{\ast})$.
+
+Now we turn to the error decomposition of the trained model $f(x;\theta^{\ast})$ and the oracle model $\mathcal{o}$:
+$$\|f(x;\theta^{\ast}) - \mathcal{o}\|=\|f(x;\theta^{\ast}) -f^{\ast}+ f^{\ast}-f_{*}+f_{*}-\mathcal{o}\|\\$$
+$$\leq \underbrace{\|f(x;\theta^{\ast}) -f^{\ast}\|}_{\text{Computational error}} + \underbrace{\|f^{\ast}-f_{*}\|}_{\text{Approximation error}}+\underbrace{\|f_{*}-\mathcal{o}\|}_{\text{Representation error}}$$
+
+where $f^{\ast}$ is the best model based on the training data set; $f_*$ is the best model constrainted in the hypothesis space $\mathcal{F}=\{f(x;\theta)\mid \theta\in \Theta\}$.
+The predictive metric or the loss function $\ell(\cdot, \cdot)$ directly determine the difficulity and complexity of the optimization problem as well as the computtaional error.
+
+***
+
+Except the supervised learning, we also need the evaluation metrics to  reflect the truth degree of the algorithms such as the goodness of fit.
+
+If all models are approximation of the truth, what is criteria or principle to choose the best one?
+As [Andrew R. Barron](http://www.stat.yale.edu/~arb4/publications.html) quote
+> [Thus learning is not possible without inductive bias, and now the question is how to choose the right bias. This is called `model selection`.](http://www.modelselection.org/)
+
+- http://www.modelselection.org/
+- https://www.ssc.wisc.edu/~bhansen/
+- http://www.stat.yale.edu/~arb4/
+- http://sp.cs.tut.fi/WITMSE08/
+- [Modern MDL meets Data Mining — Insights, Theory, and Practice](http://eda.mmci.uni-saarland.de/events/mdldm19)
+- https://cispa.de/en
+- [Distance Geometry in data science](https://www.lix.polytechnique.fr/~liberti/dgds.pdf)
+- http://iphome.hhi.de/samek/pdf/LapNCOMM19.pdf
+
+## Regression loss
+
+### Maximum likelihood estimatation
 
 Let us begin with the maximum likelihood estimate(mle).
 In statistics, the **likelihood principle** is the proposition that, 
@@ -366,9 +405,12 @@ where $W=\operatorname{diag}(w_1,\cdots,w_n)$.
 
 ----
 
-[Regularization is a popular approach to reducing a model’s predisposition to overfit on the training data and thus hopefully increasing the generalization ability of the model.](https://rohanvarma.me/Regularization/)
+Regularization is a popular approach to reducing a model’s predisposition to overfit on the training data 
+[and thus hopefully increasing the generalization ability of the model.](https://rohanvarma.me/Regularization/)
 
-[The Lasso is a shrinkage and selection method for linear regression. It minimizes the usual sum of squared errors, with a bound on the sum of the absolute values of the coefficients. It has connections to soft-thresholding of wavelet coefficients, forward stagewise regression, and boosting methods.](http://statweb.stanford.edu/~tibs/lasso.html)
+The Lasso is a `shrinkage and selection` method for linear regression. It minimizes the usual sum of squared errors, 
+with a bound on the sum of the absolute values of the coefficients. 
+[It has connections to soft-thresholding of wavelet coefficients, forward stagewise regression, and boosting methods.](http://statweb.stanford.edu/~tibs/lasso.html)
 The `lasso` estimate is defined as
 $$\hat{\theta}=\arg\min_{\theta\in\mathbb{R}^p}\sum_{i=1}^N (y_i-\left<\theta, x_i\right>)^2+\lambda\sum_{i=1}^{p}|\theta_i|=\arg\min_{\theta\in\mathbb{R}^p}\|y-X\theta\|_2^2+\lambda\|\theta\|_1$$
 The optimal codnition is 
@@ -549,7 +591,7 @@ provides a useful and plausible alternative to least squares (LS) method.
 The least absolute deviation (LAD) method is to  minimize
 $$\sum_{i=1}^{N}|\underbrace{y_i-m(x_i;\theta)}_{\varepsilon_i}|\tag{least absolute deviation}$$
 which in turn minimizes the absolute value of the residuals.
-In another word, $\varepsilon_i$ is generated from Laplacian distribution.
+In another word, $\varepsilon_i$ is generated from `Laplacian distribution`.
 
 - [Analysis of least absolute deviation](https://www.math.ust.hk/~makchen/papers/LAD.pdf)
 
@@ -797,7 +839,47 @@ color.palette = terrain.colors)
 - [Mixed-Integer Support Vector Machine](http://opt.kyb.tuebingen.mpg.de/papers/OPT2009-Guan.pdf)
 - [OPTIMIZING $\Psi$-LEARNING VIA MIXED INTEGER PROGRAMMING](https://stat-or.unc.edu/files/2016/04/05-20.pdf)
 
----
+### Adaptive margin learning
+
+The margin is defined in support vector machines.
+The Multiclass SVM loss for the i-th example is then formalized as follows:
+$$\sum_{i}\sum_{y\not=y_i}[\Delta+(W x_i+b)^Ty-(W x_i+b)^Ty_i]_{+}$$
+where $y_i, y$ are one-hot vectors and $\Delta>0$ is constant.
+
+<img src="https://cs231n.github.io/assets/margin.jpg" width="80%" />
+
+Why the margine $\Delta$ is constant for all categories?
+To make the size of the margin at each training point a controlling variable we propose the following learning algorithm [AM-SVM](http://pdfs.semanticscholar.org/a3db/a5e48d2e57941efe7b4cab7e299fd2cd9de7.pdf):
+$$\min \xi_i\\ \text{s.t. }\quad y_if(x_i)\geq 1-\xi_i+\alpha_i k(x_i, x_i)\\
+\xi_i\geq 0, \alpha_i \geq 0$$
+
+- http://yining-wang.com/mdactive-slides.pdf
+- [Adaptive Margin Support Vector Machines for Classification](http://pdfs.semanticscholar.org/a3db/a5e48d2e57941efe7b4cab7e299fd2cd9de7.pdf)
+- [Adaptive Large Margin Training for Multilabel Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI11/paper/viewFile/3455/3878)
+- [AdaptiveFace: Adaptive Margin and Sampling for Face Recognition](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/papers/2019adaptiveface.pdf)
+- [Boosting Few-Shot Learning With Adaptive Margin Loss](https://arxiv.org/abs/2005.13826)
+- [Margin-adaptive model selection in statistical learning](https://projecteuclid.org/download/pdfview_1/euclid.bj/1302009243)
+- https://github.com/cvqluu/Angular-Penalty-Softmax-Losses-Pytorch
+- [Deep Ranking Model by Large Adaptive Margin Learning for Person Re-identification](https://arxiv.org/abs/1707.00409)
+- [Boosting Few-Shot Visual Learning with Self-Supervision](https://github.com/valeoai/BF3S)
+- https://abursuc.github.io/
+- http://imagine.enpc.fr/~komodakn/
+- https://webia.lip6.fr/~cord/
+- https://www.weiranhuang.com/
+
+### Optimal margine distribution machine learning
+
+Optimal margin Distribution Machine (ODM) can achieve a better generalization performance by optimizing the margin distribution explicitly.
+
+- [Optimal Margin Distribution Machine](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde19odm.pdf)
+- [Semi-Supervised Optimal Margin Distribution Machines](https://www.ijcai.org/Proceedings/2018/0431.pdf)
+- [Multi-Label Optimal Margin Distribution Machine](http://www.acml-conf.org/2019/conference/accepted-papers/175/)
+- [Large Margin Distribution Learning with Cost Interval and Unlabeled Data](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde16cisldm.pdf)
+- [Optimal Margin Distribution Clustering](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16895)
+- https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Cost-Sensitive%20and%20Class-Imbalance%20Learning
+
+
+### Logistic regression and beyond
 
 We could explain the linear classifier in the probabilistic interpretation 
 $$\hat{y}=\operatorname{sgn}(\mathbb{w\cdot x}+b)=\operatorname{sgn}[\ln(\frac{P(Y=1\mid x)}{1-P(Y=1\mid x)})]$$
@@ -891,6 +973,7 @@ which converges to Shannon entropy when $q \to 1$.
 - https://online.stat.psu.edu/stat508/lesson/11/11.2
 
 
+
 ### Mutil-class classification
 
 The categorical variable is really discrete variables that can take on one of finite possible mutually exclusive states.
@@ -934,7 +1017,8 @@ where $p, q$ are probability density function.
 
 Here we cast the classification task as maximum likelihood estimate for discrete distribution.
 
-[For polytomous logistic regression, we will consider the possibility of having k > 2 possible outcomes. (Note: The word polychotomous is sometimes used, but note that this is not actually a word!)](https://online.stat.psu.edu/stat501/lesson/15/15.2)
+For polytomous logistic regression, we will consider the possibility of having $k > 2$ possible outcomes. 
+[(Note: The word polychotomous is sometimes used, but note that this is not actually a word!)](https://online.stat.psu.edu/stat501/lesson/15/15.2)
 
 The multiple nominal logistic regression model (sometimes called the multinomial logistic regression model) is given by the following:
 $$\pi_{j}=\left\{ 
@@ -952,18 +1036,19 @@ where $\sum_{j=1}^k y_{i,j}=\sum_{j=1}^k\pi_{i,j}=1$.
 This yields the log likelihood 
 $$\ell(\beta)=\sum_{i=1}^{n}\sum_{j=1}^{k}y_{i,j}\log\pi_{i,j}=\sum_{i=1}^{n}\mathbb{I}(y_{i,j}\not=0)\log\pi_{i,j}.$$
 
-Maximizing the likelihood (or log likelihood) has no closed-form solution, so a technique like iteratively reweighted least squares is used to find an estimate of the regression coefficients.
+Maximizing the likelihood (or log likelihood) has no closed-form solution, 
+so a technique like iteratively reweighted least squares is used to find an estimate of the regression coefficients.
 
 - [15.2 - Polytomous Regression](https://online.stat.psu.edu/stat501/lesson/15/15.2)
 - https://www.statisticssolutions.com/mlr/
 - [MULTINOMIAL LOGISTIC REGRESSION | R DATA ANALYSIS EXAMPLES](https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/)
 - [Lesson 12: Logistic, Poisson & Nonlinear Regression](https://online.stat.psu.edu/stat462/node/90/)
 - [6.2 The Multinomial Logit Model](https://data.princeton.edu/wws509/notes/c6s2)
-- [Softmax regression](https://zh.d2l.ai/chapter_deep-learning-basics/softmax-regression.html)
 - https://peterroelants.github.io/posts/cross-entropy-softmax/
 - https://peterroelants.github.io/posts/cross-entropy-logistic/
+- [Local loss](https://www.cnblogs.com/king-lps/p/9497836.html)
 
-#### Softmax    
+#### Softmax and Cross-Entropy
 
 There is a natural pairing between the softmax activation function and the cross-entropy penalty function.
 
@@ -979,7 +1064,7 @@ $$\frac{\partial }{\partial z_i}\log(\frac{1}{p_i})=-\frac{1}{p_i}\frac{\partial
 So it is efficent to compute the gradients.
 
 The `Cross-Entropy` for discrete distribution is defined as
-$$\sum_{i=1}^k y_i\log(\frac{y_i}{p_i}),\\ y_i\log(\frac{y_i}{p_i})=0 \quad\text{when    }y_i=0.$$
+$$\sum_{i=1}^k y_i\log(\frac{y_i}{p_i}),\\ y_i\log(\frac{y_i}{p_i})=0 \quad\text{when  }y_i=0.$$
 where $\sum_{i=1}^k y_i=\sum_{i=1}^k p_i=1$ and $y_i\geq 0, p_i\geq 0\quad\forall i$.
 
 Using [the one-hot encoding](https://www.kaggle.com/dansbecker/using-categorical-data-with-one-hot-encoding), we encode the categorical label as the one-hot vector such as $y=(0,0, i, 0,0)^T$.
@@ -1005,6 +1090,7 @@ $$\frac{\exp(z_i)}{\sum_{i=1}^k\exp(z_i)}=\frac{\exp(z_i+c)}{\sum_{i=1}^k\exp(z_
 
 - https://en.wikipedia.org/wiki/Smooth_maximum
 - https://en.wikipedia.org/wiki/Softmax_function
+- [Softmax regression](https://zh.d2l.ai/chapter_deep-learning-basics/softmax-regression.html)
 
 
 What is the role of the $\exp()$ in the softmax operator?
@@ -1014,6 +1100,7 @@ $$\frac{\ln(1+\exp(x_i))}{\sum_{i=1}^k\ln(1+\exp(x_i))}.$$
 
 - [Softmax Optimizations for Intel Xeon Processor-based Platforms](https://deepai.org/publication/softmax-optimizations-for-intel-xeon-processor-based-platforms)
 - [Efficient Sampled Softmax for Tensorflow](https://deepai.org/publication/efficient-sampled-softmax-for-tensorflow)
+- [ADMM-SOFTMAX : An ADMM Approach for Multinomial Logistic Regression  ](https://arxiv.org/abs/1901.09450)
 - https://github.com/vene/sparsemap
 
 We first consider the simple problem of selecting the largest value in a vector $\theta\in\mathbb{R}^k$.
@@ -1028,7 +1115,7 @@ And the sparsemax is given by
 $$\operatorname{sparsemax}(\theta)=\arg\max_{y\in\Delta_k}y^T\theta-\frac{1}{2}\|y\|_2^2=\arg\min_{y\in\Delta_k}\|\theta-y\|_2^2$$
 which is an Euclidean projection onto the simplex.
 
-<img src="https://raw.githubusercontent.com/vene/sparsemap/master/sparsemap.png" width="50%" />
+
 
 And we would like some sparsity via the LASSO-like approach
 $$\arg\max_{y\in\Delta_k}y^T\theta-\|y\|_1=\arg\max_{y\in\Delta_k}y^T(\theta-\vec{1})=\arg\max_{y\in\Delta_k}y^T\theta$$
@@ -1041,12 +1128,10 @@ while this is not a well defined.
 
 
 - [Argmax vs Softmax vs Sparsemax](https://www.cs.utah.edu/~tli/posts/2019/01/blog-post-1/)
-- https://arxiv.org/abs/1802.04223
-- https://arxiv.org/abs/2001.04437
-- [From Softmax to Sparsemax: A Sparse Model of Attention and Multi-Label Classification](http://proceedings.mlr.press/v48/martins16.pdf)
-- https://zhuanlan.zhihu.com/p/38897903
-- https://github.com/vene/sparse-structured-attention
 - https://kexue.fm/archives/7359
+- https://kexue.fm/archives/3290
+- https://kexue.fm/archives/6620
+
 
 #### Hierarchical softmax
 
@@ -1061,84 +1146,8 @@ that is only logarithmic in the total number of outcomes.
 - https://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf
 - https://arxiv.org/abs/2002.04723
 
-### Adaptive Margin Learning
 
-
-
-- http://yining-wang.com/mdactive-slides.pdf
-- [Adaptive Margin Support Vector Machines for Classification](http://pdfs.semanticscholar.org/a3db/a5e48d2e57941efe7b4cab7e299fd2cd9de7.pdf)
-- [Adaptive Large Margin Training for Multilabel Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI11/paper/viewFile/3455/3878)
-- [AdaptiveFace: Adaptive Margin and Sampling for Face Recognition](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/papers/2019adaptiveface.pdf)
-- [Boosting Few-Shot Learning With Adaptive Margin Loss](https://arxiv.org/abs/2005.13826)
-- [Margin-adaptive model selection in statistical learning](https://projecteuclid.org/download/pdfview_1/euclid.bj/1302009243)
-- https://github.com/cvqluu/Angular-Penalty-Softmax-Losses-Pytorch
-- https://arxiv.org/abs/1707.00409
-- https://www.weiranhuang.com/
-- https://github.com/valeoai/BF3S
-- https://abursuc.github.io/
-- http://imagine.enpc.fr/~komodakn/
-- https://webia.lip6.fr/~cord/
-
-### Circle loss
-
-The loss function of the multiclass classification are based on the distribution of the groundtruth.
-
-And the cross entropy is 
-$$-\ln\frac{\exp(W_j\cdot x+b_j)}{\sum_{i=1}^k\exp(W_i\cdot x)+b_i}=\ln\frac{\sum_{i=1}^k\exp(W_i\cdot x)+b_i}{\exp(W_j\cdot x)+b_i} =\ln {\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}$$
-$$=\ln [{1+\sum_{i\not=j}\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}].$$
-where the training instance is $(x, y)$ and $y=(\underbrace{0,\cdots, 0}_{k-1},1,0,\cdots, 0)^T$.
-And based on the one-hot vector $y$, we can rewrite the cross entropy as
-$$-\ln[\operatorname{softmax}(Wx+b)^Ty]=-\ln[z\cdot y]=-\ln(\|z\|_2\cos(z, y))$$
-where $z=\operatorname{softmax}(Wx+b)$. Note that the inner product of $z$ and $y$ matters.
-
-It is obvious that 
-$$\arg\min_{W, b}\ln {\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}=\arg\min_{W, b}{\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}.$$
-Note that this loss can not reach the zero because of the probability is always less than 1.
-
-We can invent different loss fucntions by modifying the softmax loss functions or the inner products.
-Different loss functions can  lead to different feature representation.
-
-<img src="https://raw.githubusercontent.com/cvqluu/Angular-Penalty-Softmax-Losses-Pytorch/master/figs/cosface.png" />
-
-The [Circle Loss](https://arxiv.org/pdf/2002.10857v1.pdf) aimed at 
-maximize the within-class similarity $s_p$ and minimize the between-class similarity $s_n$.
-
-<img src="https://pic4.zhimg.com/80/v2-e6d3e7a67ff6d28da996322cb9855bb3_720w.jpg" width="70%"/>
-
-
-- https://kexue.fm/archives/3290
-- https://happynear.wang/paper/NormFace.pdf
-- https://github.com/happynear/NormFace
-- https://github.com/wy1iu/sphereface
-- [A Metric Learning Reality Check](https://arxiv.org/abs/2003.08505)    
-- https://zhuanlan.zhihu.com/p/34044634
-- [Large Margin In Softmax Cross-Entropy Loss](https://bmvc2019.org/wp-content/uploads/papers/0636-paper.pdf)
-- [Additive Margin Softmax for Face Verification github](https://github.com/happynear/AMSoftmax)
-- [Additive Margin Softmax for Face Verification](https://arxiv.org/abs/1801.05599)
-- https://happynear.wang/
-- https://wyliu.com/
-- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
-- https://github.com/TinyZeaMays/CircleLoss
-- https://zhuanlan.zhihu.com/p/45014864
-- https://happynear.wang/
-- [Focal Loss](https://xmfbit.github.io/2017/08/14/focal-loss-paper/)
-- https://github.com/happynear/NormFace
-- https://omoindrot.github.io/triplet-loss
-
-### Optimal margine distribution machine learning
-
-Optimal margin Distribution Machine (ODM) can achieve a better generalization performance by optimizing the margin distribution explicitly.
-
-- [Optimal Margin Distribution Machine](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde19odm.pdf)
-- [Semi-Supervised Optimal Margin Distribution Machines](https://www.ijcai.org/Proceedings/2018/0431.pdf)
-- [Multi-Label Optimal Margin Distribution Machine](http://www.acml-conf.org/2019/conference/accepted-papers/175/)
-- [Large Margin Distribution Learning with Cost Interval and Unlabeled Data](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tkde16cisldm.pdf)
-- [Optimal Margin Distribution Clustering](https://aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16895)
-- https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/publication_toc.htm#Cost-Sensitive%20and%20Class-Imbalance%20Learning
-
-
-
-### Reparameterization trick 
+#### Reparameterization trick 
 
 Note that 
 $$\lim_{n\to\infty}\frac{\exp(m)}{\sum_{i=1}^k\exp(nz_i)}\\=\lim_{n\to\infty}\frac{\exp(m)}{\exp(m)\sum_{i=1}^k\exp(nz_i-m))}=1$$
@@ -1186,12 +1195,12 @@ This is why the Concrete distribution is introduced; see Figure 1(b) for how to 
 
 - [Split Variational Inference](http://bnaic2010.uni.lu/Papers/Category%20B/Bouchard.pdf)
 - http://www.sci.utah.edu/~acoste/uou/Image/project1/Arthur_COSTE_Project_1_report.html
+
 #### Local Reparameterization Trick
 
 - https://github.com/gngdb/variational-dropout
 - [The (Local) Reparameterization Trick](https://www.cs.toronto.edu/~duvenaud/courses/csc2541/slides/structured-encoders-decoders.pdf)
 - [Variational Dropout and the Local Reparameterization Tric](https://www.ics.uci.edu/~welling/publications/papers/VariationalDropout.pdf)
-
 
 
 `Generalized linear models and generalized additive models` are extension of linear models from two distinct perspectives.
@@ -1210,13 +1219,121 @@ where $f_i$ are nonlinear models.
 - [Generalized additive model](https://projecteuclid.org/download/pdf_1/euclid.ss/1177013604)
 - [Lesson 10: Log-Linear Models](https://online.stat.psu.edu/stat504/node/117/)
 
+#### Tweedie’s Formula
+
+- [Towards Machine Learning: Alternative Methods for Insurance Pricing – Poisson-Gamma GLM’s, Tweedie GLM’s and Artificial Neural Networks](https://www.actuaries.org.uk/system/files/field/document/F7%20Navarun%20Jain.pdf)
+- http://statweb.stanford.edu/~ckirby/brad/papers/2011TweediesFormula.pdf
+- https://en.wikipedia.org/wiki/Tweedie_distribution
+
+#### Sparse-max
+
+- https://deepai.org/publication/sparse-and-continuous-attention-mechanisms
+- https://arxiv.org/abs/1802.04223
+- https://arxiv.org/abs/2001.04437
+- [From Softmax to Sparsemax: A Sparse Model of Attention and Multi-Label Classification](http://proceedings.mlr.press/v48/martins16.pdf)
+- https://zhuanlan.zhihu.com/p/38897903
+- https://github.com/vene/sparse-structured-attention
+
+#### Cross-Entropy Method
+
+The cross-entropy (CE) method is a new generic approach to combinatorial and multi-extremal optimization and rare event simulation.
+
+- http://iew3.technion.ac.il/CE/
+- https://people.smp.uq.edu.au/DirkKroese/ps/aortut.pdf
+
+### Loss for face recognition
+
+Here we will review some metric in face recogition including additive margines.
+
+
+- https://omoindrot.github.io/triplet-loss
+- https://happynear.wang/paper/NormFace.pdf
+- https://github.com/happynear/NormFace
+- https://github.com/wy1iu/sphereface
+- https://zhuanlan.zhihu.com/p/160943421
+- http://www.cbsr.ia.ac.cn/users/xiaobowang/papers/AAAI2020.pdf
+- [Large Margin In Softmax Cross-Entropy Loss](https://bmvc2019.org/wp-content/uploads/papers/0636-paper.pdf)
+- [Additive Margin Softmax for Face Verification github](https://github.com/happynear/AMSoftmax)
+- [Additive Margin Softmax for Face Verification](https://arxiv.org/abs/1801.05599)
+
+
+#### Circle loss
+
+The loss function of the multiclass classification are based on the distribution of the groundtruth.
+
+And the cross entropy is 
+$$-\ln\frac{\exp(W_j\cdot x+b_j)}{\sum_{i=1}^k\exp(W_i\cdot x)+b_i}=\ln\frac{\sum_{i=1}^k\exp(W_i\cdot x)+b_i}{\exp(W_j\cdot x)+b_i} =\ln {\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}$$
+$$=\ln [{1+\sum_{i\not=j}\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}].$$
+where the training instance is $(x, y)$ and $y=(\underbrace{0,\cdots, 0}_{k-1},1,0,\cdots, 0)^T$.
+And based on the one-hot vector $y$, we can rewrite the cross entropy as
+$$-\ln[\operatorname{softmax}(Wx+b)^Ty]=-\ln[z\cdot y]=-\ln(\|z\|_2\cos(z, y))$$
+where $z=\operatorname{softmax}(Wx+b)$. Note that the inner product of $z$ and $y$ matters.
+
+It is obvious that 
+$$\arg\min_{W, b}\ln {\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}=\arg\min_{W, b}{\sum_{i=1}^k\exp(W_i\cdot x+b_i-W_j\cdot x-b_j)}.$$
+Note that this loss can not reach the zero because of the probability is always less than 1.
+
+We can invent different loss fucntions by modifying the softmax loss functions or the inner products.
+Different loss functions can  lead to different feature representation.
 
 
 
-### Bregman Divergences
+The [Circle Loss](https://arxiv.org/pdf/2002.10857v1.pdf) aimed at 
+maximize the within-class similarity $s_p$ and minimize the between-class similarity $s_n$.
+
+<img src="https://pic4.zhimg.com/80/v2-e6d3e7a67ff6d28da996322cb9855bb3_720w.jpg" width="50%"/>
+
+
+- https://kexue.fm/archives/3290
+- [A Metric Learning Reality Check](https://arxiv.org/abs/2003.08505)    
+- https://zhuanlan.zhihu.com/p/34044634
+- https://zhuanlan.zhihu.com/p/45014864
+- https://happynear.wang/
+- https://wyliu.com/
+- [Circle Loss: A Unified Perspective of Pair Similarity Optimization](https://arxiv.org/pdf/2002.10857v1.pdf)
+- https://github.com/TinyZeaMays/CircleLoss
+- https://happynear.wang/
+- [Focal Loss](https://xmfbit.github.io/2017/08/14/focal-loss-paper/)
+
+
+### AUC optimization
+
+[AUC](https://tracholar.github.io/machine-learning/2018/01/26/auc.html) is an index to measure the correctness of machine learning methods.
+
+- https://qrfaction.github.io/2018/04/02/end2endAUC/
+- http://www.lamda.nju.edu.cn/gaow/
+- http://www.lamda.nju.edu.cn/code_OPAUC.ashx
+- https://zhuanlan.zhihu.com/p/74216219
+- https://link.springer.com/chapter/10.1007/978-3-540-74976-9_8
+- https://papers.nips.cc/paper/2518-auc-optimization-vs-error-rate-minimization.pdf
+- https://www.researchgate.net/profile/Wei_Gao57
+
+
+## Quality of probabilistic forecasts
+
+[The machine learning problem of classifier design](http://www.svcl.ucsd.edu/projects/LossDesign/) is studied from the perspective of ``probability elicitation``, in statistics. 
+`This shows that the standard approach of proceeding from the specification of a loss, to the minimization of conditional risk is overly restrictive. `
+It is shown that a better alternative is to start from the specification of a functional form for the minimum conditional risk, and derive the loss function.
+
+
+### Proper scoring rules
+
+Scoring rules assess the quality of probabilistic forecasts, by assigning a numerical score 
+based on the predictive distribution and on the event or value that materializes. 
+A scoring rule is proper if the forecaster maximizes the expected score for an observation drawn from the
+distribution $F$ if he or she issues the probabilistic forecast $F$, rather than $G \not= F$.
+
+- https://www2.cs.duke.edu/courses/spring17/compsci590.2/proper_scoring.pdf
+- [Proper scoring rules: How should we evaluate probabilistic forecasts?](https://oddacious.github.io/proper_scoring_rule)
+- https://stat.uw.edu/research/tech-reports/strictly-proper-scoring-rules-prediction-and-estimation-revised
+- https://imaging-in-paris.github.io/semester2019/slides/w3/Rudi.pdf
+- http://www.stat.cmu.edu/tr/tr865/tr865.pdf
+- https://jmlr.csail.mit.edu/papers/volume16/ovcharov15a/ovcharov15a.pdf
+
+### Bregman divergences
 
 Bregman Divergences are the extension of squares of $\ell_2$.
-It is based on the differentiable convex function $f$ as following
+It is based on the `differentiable convex function` $f$ as following
 $$d_f(x,y) := f(x) - f(y) - {\langle \nabla f(y), x-y \rangle} \ge 0$$
 which is called the Bregman divergence induced by $f$.
 If $f$ is only convex, we can take a subgradient $z\in\partial f(y)$ to rreplace the gradient $\nabla f(y)$.
@@ -1226,15 +1343,15 @@ And $d_f(x, y)=0$ if $x=y$.
 - [Bregman Divergence and Mirror Descent](http://users.cecs.anu.edu.au/~xzhang/teaching/bregman.pdf)
 - [Generalized cross entropy loss for training deep neural networks with noisy labels](https://papers.nips.cc/paper/8094-generalized-cross-entropy-loss-for-training-deep-neural-networks-with-noisy-labels.pdf)
 
-#### f-Divergences
+### f-Divergences
 
 Roughly speaking, all f-divergences quantify the difference between a pair of distributions, each with different operational meaning.
 Note that we can use the following divergence to measure the discrepancy of two distribution function:
 $$KL(p\|q)=\int_{x}p(x)\log(\frac{p(x)}{q(x)})\mathrm d x=\int_{x}p(x)[-\log(\frac{q(x)}{p(x)})]\mathrm d x\geq 0.$$
 f-Divergences are to extend the $\log(\cdot)$ function to the function $f$.
 
-The functions $f$ are supposed to be concave and $f(1)=0$
-For example, $f(x)=x^2-1$ and 
+The functions $f$ are supposed to be convex and $f(1)=0$
+For example, $f(x)=x^2-1$ and $t\log(t)$.
 
 - https://en.wikipedia.org/wiki/F-divergence
 - https://people.eecs.berkeley.edu/~jordan/jordan-ssg.pdf
@@ -1244,48 +1361,172 @@ For example, $f(x)=x^2-1$ and
 - [Variational Inference with Tail-adaptive f-Divergence](https://arxiv.org/pdf/1810.11943.pdf)
 - https://hal.inria.fr/inria-00542337/document
 
-### Boosting and loss function
 
-The machine learning problem of classifier design is studied from  the perspective of probability elicitation, in statistics. 
-This shows that the standard approach of proceeding from the specification of a loss,  to the minimization of conditional risk is overly restrictive. 
-It is shown that a better alternative is to start from the specification of a functional form for the minimum conditional risk, 
-and derive the loss function. 
-This has various consequences of practical interest, 
-such as showing that 1) the widely adopted practice of relying on convex loss functions is unnecessary, 
-and 2) many new losses can be derived for classification problems. 
-These points are illustrated by the derivation of a number of novel Bayes consistent loss functions, 
-some of which are not convex but do not compromise the computational tractability of classifier design. 
-A number of algorithms custom tailored for specific classification problems are derived based on novel loss functions. 
-[These include classification algorithms for cost sensitive learning, robust outlier resistant classification and variable margin classification.](http://www.svcl.ucsd.edu/projects/LossDesign/)
+### Fenchel-Young losses
 
-- [Classifier Loss Function Design](http://www.svcl.ucsd.edu/projects/LossDesign/)
-- [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/content/pdf/10.1023/A:1013912006537.pdf)
-- https://www.jiqizhixin.com/articles/2020-04-16-10
-- http://www.52caml.com/head_first_ml/ml-chapter6-boosting-family/
+`Fenchel-Young losses` constructed from a generalized entropy, including the Shannon and Tsallis entropies, induce predictive probability distributions.
 
-[It has shown](https://web.stanford.edu/~hastie/Papers/AdditiveLogisticRegression/alr.pdf) that how boosting algorithms result from building additive models using Newton updates of the exponential loss function.
-Then the boosting methods are extended to gradeint boosting.
-
-- https://en.wikipedia.org/wiki/AdaBoost
-- https://explained.ai/gradient-boosting/L2-loss.html
-- https://www.cnblogs.com/jcchen1987/p/4581651.html
+It is naed after [Fenchel-Young theorem]() generated by
+$$L_{\Omega}(\theta; y):=\Omega^{\ast}(\theta)+\Omega(y)-\left<\theta, y\right>\\
+=\sup_{p\in\mathrm{dom}(\Omega)}\{\left<\theta, p\right>-\Omega(p)\} -[\left<\theta, y\right>-\Omega(y)]
+$$
+where $\Omega^{\ast}$ is the Fenchel conjugate of $\Omega$ by $\Omega^{\ast}(\theta)=\sup_{p\in\mathrm{dom}(\Omega)}\left<\theta, p\right>-\Omega(p)$ and the function $\Omega$ is well-designed to make it welll-defined.
 
 
 
-### Contrastive learning
+- https://github.com/mblondel/fenchel-young-losses
+- https://alexander-schwing.de/projects.php
+- [Learning with Fenchel-Young Losses](https://jmlr.csail.mit.edu/papers/volume21/19-021/19-021.pdf)
 
-> Contrastive self-supervised learning techniques are a promising class of methods that build representations 
-> by learning to encode what makes two things similar or different.
+`Geometric loss` is a generalization of the logistic loss that incorporates a metric or cost between classes.
 
-[Contrastive methods, as the name implies, learn representations by contrasting positive and negative examples.](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
+- https://github.com/arthurmensch/g-softmax
+- https://www.amensch.fr/docs/presentations/icml2019_presentation.pdf
+- https://mblondel.org/publications/
+- http://www-stat.wharton.upenn.edu/~buja/
 
-[Contrastive learning between multiple views of the data has recently achieved state of the art performance in the field of self-supervised representation learning. Despite its success, the influence of different view choices has been less studied. In this paper, we use empirical analysis to better understand the importance of view selection, and argue that we should reduce the mutual information (MI) between views while keeping task-relevant information intact.](https://hobbitlong.github.io/InfoMin/)
 
-- https://blog.einstein.ai/prototypical-contrastive-learning-pushing-the-frontiers-of-unsupervised-learning/
-- [Contrastive Self-Supervised Learning](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
-- [Contractive Auto-Encoders: Explicit Invariance During Feature Extraction](https://icml.cc/Conferences/2011/papers/455_icmlpaper.pdf)
-- https://hobbitlong.github.io/InfoMin/
-- https://github.com/HobbitLong/PyContrast
+
+
+### Differentiable ranking and sorting 
+
+Sorting is however a poor match for the end-to-end, automatically differentiable pipelines of deep learning.
+
+> The sorting operation is one of the most basic and commonly used building blocks in computer programming. 
+In machine learning, it is commonly used for robust statistics. 
+However, seen as a function, it is piecewise linear and as a result includes many kinks at which it is non-differentiable. 
+More problematic is the related ranking operator, commonly used for order statistics and ranking metrics. 
+It is a piecewise constant function, meaning that its derivatives are null or undefined. 
+While numerous works have proposed differentiable proxies to sorting and ranking, 
+they do not achieve the $O(nlogn)$ time complexity one would expect from sorting and ranking operation.
+
+For example, given the input sample $x=(5.1, 4.4, 2.3, 3.6, 8.8)^T$, 
+the ranking $R(\cdot)$ will return the ascent order of the entity, i.e., $R(x)=(4,3,1,2,5)^T$.
+However the sorting $S(\cdot)$ will return the vector in ascent order  as an permuttaion of the input sample, i.e, $S(x)=(2.3, 3.6, 4.4, 5.1, 8.8)^T$.
+In notation, the ranking function $R(x)$ maps the vector to its order $R:\mathbb{R}^d\mapsto \{0,1,2,\cdots, d\}$ 
+so that $R(x_i)\geq R(x_j)\iff x_i\geq x_j$.
+The sorting function $S:\mathbb{R}^d\mapsto \mathbb{R}^d$ return the sorted vector in descending order.
+These functions are `non-linear`, in another word $R(x+y)\not=R(x)+R(y)$ and $S(x+y)=S(x)+S(y)$ for some $x, y$.
+What is worse, they are not differetiable so we cannot compute the Jacobian matrix of $R(x), S(x)$.
+
+> For  all $x\in\mathbb{R}^d$ and $\rho=(d, d-1,\cdots, 1)^T$, we have 
+
+$$S(x)=\arg\max_{y\in\mathcal{P}(x)}\left< y, \rho \right>$$
+$$R(x)=\arg\max_{y\in\mathcal{P}(\rho)}\left< y, -x\right>$$
+where $\mathcal{P}(x)$ ($\mathcal{P}(\rho)$) is all the permutation of $x$ ($\rho$).
+
+- https://mblondel.org/
+- https://qb3.github.io/research.html
+
+#### Sinkhorn Ranks/Sorts
+
+In following, we set $x\in\mathbb{R}^d$ and $\rho=(d, d-1,\cdots, 1)^T$.
+
+Differentiable ranking is based on the regularized linear programming formulations of ranking.  
+We formulate the sorting 
+$$S(x)=\arg\max_{y\in\mathcal{P}(x)}\left< y, \rho \right>=\\ Px,P=\arg\max_{M}\left<Mx, \rho \right>$$
+where $M$ is a permutation matrix (so that $M^T=M^{-1}$).
+
+Here we focus on 
+$$\arg\max_{M}\left<Mx, \rho \right>=\arg\max_{M}2\left<Mx, \rho \right>-(\|Mx\|_2^2+\|\rho\|_2^2)\\
+=\arg\min_{M\in\mathcal{P}}\|Mx-\rho\|_2^2)$$
+where $M^T=M^{-1}$ and $M_{i,j}\in\{0, 1\}$, $\sum_{i}M_{ij}=\sum_{j}M_{ij}=1$.
+It is non-differentiable and requires considering $n!$ permutations.
+This is an maximization problem on matrix manifold.
+
+The set of doubly stochastic matrices gives the Birkhoff Polytope
+$$\mathcal{B}=\{M\in [0, 1]^{d\times d}\mid M_{ij}=\sum_{j}M_{ij}=1\}.$$
+The `Birkhoff-von Neumann theorem` states that this defines the convex hull of ${N\times N}$   permutation matrices.
+
+So that we will define a soft sort function $\operatorname{softsort}$
+$$\operatorname{softsort}(x)=Px,P=\arg\max_{M\in \mathcal{B}-\mathcal{P}}\left<Mx, \rho \right>+\sum_{i}\sum_{j}[M_{ij}\log(M_{ij})+(1-M_{ij})\log(1-M_{ij})]$$
+where $\mathcal{B}$ is the Birkhoff Polytope.
+And another `softsort` is defined as 
+$$\arg\max_{z}\left<z,\rho\right>\\ \text{subject to } z=Mx, M^T\vec{1}=M\vec{1}=\vec{1}, M\succeq 0.$$
+And we can reformulate it as the following
+$$\arg\max_{z}\left<z, \rho\right>\\ \text{subject to } z=Mx,P=M^T, M\vec{1}=\vec{1}, P\vec{1}=\vec{1}.$$
+
+If we define the following entropy regularried loss function
+$$F(M)=\sum_{i=1}^d(\sum_{j=1}^d M_{ij}x_j\rho_i)+\sum_{i}^d\sum_{j}^d M_{ij}\log(M_{ij})+(1-M_{ij})\log(1-M_{ij})$$
+subject to $\sum_{i}M_{ij}=1\,\,\forall j, \sum_{j} M_{ij}=1\,\,\forall i, M_{ij}>0\forall i,j\in\{1,2,\cdots, d\}$.
+And we can obtain that the partial derivative $\frac{\partial F(M)}{\partial M_{ij}}=x_j\rho_i + \log(M_{ij})- \log(1-M_{ij})$.                                                                                                                                           
+$$\max_{M, P}\sum_{i=1}^d(\sum_{j=1}^d M_{ij}x_j\rho_i)+\sum_{i}^d\sum_{j}^d[ P_{ij}\log(P_{ij})+(1-P_{ij})\log(1-P_{ij})]\\ \text{subject to } M=P^T, M\vec{1}=\vec{1}, M\in(0, 1)^{d\times d}$$
+and we can define its augmented Lagrangian
+$$L{\tau}({M, P,\lambda,\theta})=\sum_{i=1}^d (\sum_{j=1}^d M_{ij}x_j\rho_i)+\sum_{i}^d\sum_{j}^d[ P_{ij}\log(P_{ij})+(1-P_{ij})\log(1-P_{ij})]\\+\sum_{i}^d\sum_{j}^d[\lambda_{ij}(M_{ij}-P_{ji})+\frac{\tau}{2}(M_{ij}-P_{ji})^2]+\sum_{i=1}^d \theta_i (\sum_{j=1}^d M_{ij}-1)+\frac{\tau}{2}(\sum_{j=1}^d M_{ij}-1)^2$$
+
+
+- https://ncatlab.org/nlab/show/Birkhoff-von+Neumann+theorem
+- [Learning Latent Permutations with Gumbel-Sinkhorn Networks](https://arxiv.org/abs/1802.08665)
+- https://github.com/HeddaCohenIndelman/Learning-Gumbel-Sinkhorn-Permutations-w-Pytorch
+- https://duvenaud.github.io/learn-discrete/slides/Gumbel-Sinkhorn-Slides.pdf
+- [Differentiating Parameterized Inequality Constrained Optimization Problems](https://cs.anu.edu.au/courses/CSPROJECTS/19S2/initialTalks/u6555078.pdf)
+- [Sinkhorn Algorithm as a Special Case of Stochastic Mirror Descent](https://konstmish.github.io/files/slides/sinkhorn_slides.pdf)
+- http://www.stat.columbia.edu/~gonzalo
+- https://rfsantacruz.com/publications/
+- https://konstmish.github.io/
+- https://basurafernando.github.io/papers/vpl-pami.pdf
+
+`Sinkhorn Ranks/Sorts` are based on the Sinkhorn algorithms.
+
+- https://papers.nips.cc/paper/8693-massively-scalable-sinkhorn-distances-via-the-nystrom-method.pdf
+- https://research.google/pubs/pub48637/
+- http://members.cbio.mines-paristech.fr/~jvert/talks/191127inria/inria.pdf
+- [Ranking via Sinkhorn Propagation](https://www.cs.princeton.edu/~rpa/pubs/adams2011sinkhorn.pdf)
+- [Stochastic Optimization of Sorting Networks via Continuous Relaxations](https://arxiv.org/abs/1903.08850)
+- https://www.cs.brandeis.edu/~hugues/sorting_networks.html
+- http://members.cbio.mines-paristech.fr/~jvert/talks/200114turing/turing.pdf
+- https://marcocuturi.net/pub.html
+- [Talk: Differentiable Ranks and Sorting using Optimal Transport](http://www.fields.utoronto.ca/talks/Differentiable-Ranking-and-Sorting-using-Optimal-Transport)
+- [Talk: Differentiable Ranking and Sorting using Optimal Transport](https://neurips.cc/media/Slides/nips/2019/westballa+b(12-15-50)-12-16-20-15725-differentiable_.pdf)
+- [Differentiable Ranking and Sorting using Optimal Transport](http://papers.nips.cc/paper/8910-differentiable-ranking-and-sorting-using-optimal-transport)
+- https://github.com/google-research/google-research/tree/master/soft_sort
+- https://www.microsoft.com/en-us/research/publication/softrank-optimising-non-smooth-rank-metrics/
+- https://www.shivani-agarwal.net/Teaching/E0371/Papers/jir10-smoothrank.pdf
+- https://mrolinek.github.io/publication/2019-11-ranking2019
+
+#### Differentiable ranking
+
+We define the following operator:
+$$P_Q(w, x)=\arg\min_{y\in\mathcal{P}(x)} \| y-w\|_2^2$$
+$$P_E(w, x)=\log[\arg\max_{y\in\mathcal{P}(\exp(x))}\operatorname{KL}(y, \exp(w))].$$
+Note that $y\in\mathcal{P}(x)$ so that $\|y\|=\|x\|$
+$$S(x)=\arg\max_{y\in\mathcal{P}(x)}\left< y, \rho \right>\\=\arg\max_{y\in\mathcal{P}(x)}2\left< y, \rho \right>-(\underbrace{\|x\|_2^2+\|\rho\|_2^2}_{\text{constants}})\\=\arg\max_{y\in\mathcal{P}(x)}2\left< y, \rho \right>-(\underbrace{\|y\|_2^2+\|\rho\|_2^2}_{\|y\|=\|x\|})\\=\arg\min_{y\in\mathcal{P}(x)} \| y-\rho\|_2^2\\=P_Q(\rho, x).$$
+
+We set $x\in\mathbb{R}^d$ and $\rho=(d, d-1,\cdots, 1)$.
+The`soft sort` is defined as
+$$s_{\Phi}(x; \epsilon)= P_{\Phi}(\frac{\rho}{\epsilon}, x)$$
+where $\Phi\in\{Q, E\}$.
+For example,
+$$s_{E}(x; \epsilon)= P_Q(\frac{\rho}{\epsilon}, x)=\arg\min_{y\in\mathcal{P}(x)} \|y- \frac{\rho}{\epsilon}\|_2^2.$$
+
+The `soft rank` is defined as 
+$$r_{\Phi}(x;\epsilon)= P_{\Phi}(-\frac{x}{\epsilon}, \rho)\quad \epsilon>0.$$
+For example,
+$$r_{Q}(x;\epsilon)= P_Q(-\frac{x}{\epsilon}, \rho)=\arg\min_{y\in\mathcal{P}(\rho)} \|y +\frac{x}{\epsilon}\|_2^2 \quad \epsilon>0.$$
+
+
+- https://github.com/google-research/fast-soft-sort
+- [Fast Differentiable Sorting and Ranking](https://arxiv.org/abs/2002.08871)
+- [SoftSort: A Continuous Relaxation for the argsort Operator](https://arxiv.org/pdf/2006.16038v1.pdf)
+- https://github.com/sprillo/softsort
+
+####  Differentiable Top-k Operator
+
+
+Given a vector $x=(x_1, x_2,\cdots, x_n)$, the top-k selector will give the k largest elements in $x$.
+Top-1 selector will give the maximum element: $x^T\arg\max_{h}h^Tx=\max(x)$
+where $h^T\vec{1}=1$ and $h_i>0$ for $i=1,\cdots,n$.
+Top-k selector will give the maximum element: $T_k(x)=\operatorname{diag}(\arg\max_{h}h^tx)x$
+where $h^T\vec{1}=k$ and $h_i\in\{0,1\}$ for $i=1,\cdots,n$.
+And we can use the top-k selector to find the order of every element.
+
+
+
+
+- [On Differentiating Parameterized Argmin and Argmax Problems with Application to Bi-level Optimization](https://arxiv.org/abs/1607.05447)
+- http://www.cs.toronto.edu/~duvenaud/
+- [Differentiable Top-k Operator with Optimal Transport](https://arxiv.org/abs/2002.06504)
+- [Learning with Differentiable Perturbed Optimizers](https://arxiv.org/abs/2002.08676)
 
 
 ## Ranking loss   
@@ -1404,7 +1645,7 @@ So it is a natural language processing problem.
 - [Loss Functions for Preference Levels: Regression with Discrete Ordered Labels](https://ttic.uchicago.edu/~nati/Publications/RennieSrebroIJCAI05.pdf)
 - [Relevance as process: judgements in the context of scholarly research](http://informationr.net/ir/10-2/paper226.html)
 
------
+### Evaluation of ranked retrieval results
 
 
 [A ranking model is given by a collection of items, and an unknown total ordering of these items. ](http://proceedings.mlr.press/v97/tang19a/tang19a.pdf)
@@ -1429,8 +1670,9 @@ where $IDCG@n$ is the  Discounted Cumulative Gain (DCG) of the ideal ranking,
 which would first return the documents with the highest relevance level,
 then the next highest relevance level, etc.
 
-
+- https://www.zhihu.com/people/richard-lee-91-28/posts
 - https://catboost.ai/docs/references/ndcg.html
+- http://proceedings.mlr.press/v30/Wang13.pdf
 - https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)
 - [Ranking Relevance in Yahoo Search](http://www.yichang-cs.com/yahoo/KDD16_yahoosearch.pdf)
 - https://github.com/IGARDS/rankability_toolbox
@@ -1439,16 +1681,14 @@ then the next highest relevance level, etc.
 - https://www.aclweb.org/anthology/P09-5005/
 - https://pub.ist.ac.at/~vnk/papers/MRJKK-CVPR2018.pdf
 - [Learning to Rank with Alpha-divergence and Entropy Regularization](https://github.com/xiaohai2016/StatRank)
-- https://www.zhihu.com/people/richard-lee-91-28/posts
 - [Ranking Measures and Loss Functions in Learning to Rank](https://papers.nips.cc/paper/3708-ranking-measures-and-loss-functions-in-learning-to-rank.pdf)
 - [IR evaluation methods for retrieving highly relevant documents](https://dl.acm.org/doi/10.1145/345508.345545)
-- http://proceedings.mlr.press/v30/Wang13.pdf
 - [A Short Survey on Search Evaluation](https://staff.fnwi.uva.nl/e.kanoulas/a-short-survey-on-search-evaluation/)
 - [Metrics for evaluating ranking algorithms](https://stats.stackexchange.com/questions/159657/metrics-for-evaluating-ranking-algorithms)
 - [Metric Learning to Rank](https://bmcfee.github.io/papers/mlr.pdf)
 - [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
 - [Forum for Information Retrieval Evaluation](http://fire.irsi.res.in/fire/2019/Lecture%20Series)
-
+- https://brianmcfee.net/papers/mlr.pdf
 
 
 Ranking Losses are essentialy the ones explained above, and are used in many different aplications with the same formulation or minor variations. 
@@ -1457,42 +1697,15 @@ However, different names are used for them, which can be confusing.
 
 1. Ranking loss: This name comes from the information retrieval field, where we want to train models to rank items in an specific order.
 2. Margin Loss: This name comes from the fact that these losses use a margin to compare samples representations distances.
-3. Contrastive Loss: Contrastive refers to the fact that these losses are computed contrasting two or more data points representations. This name is often used for Pairwise Ranking Loss, but I’ve never seen using it in a setup with triplets.
+3. Contrastive Loss: Contrastive refers to the fact that these losses are computed contrasting two or more data points representations. 
+  This name is often used for Pairwise Ranking Loss, but I’ve never seen using it in a setup with triplets.
 4. Triplet Loss: Often used as loss name when triplet training pairs are employed.
-Hinge loss: Also known as max-margin objective. It’s used for training SVMs for classification. It has a similar formulation in the sense that it optimizes until a margin. That’s why this name is sometimes used for Ranking Losses.
+5. Hinge loss: Also known as max-margin objective. It’s used for training SVMs for classification. 
+    It has a similar formulation in the sense that it optimizes until a margin. That’s why this name is sometimes used for Ranking Losses.
 
 - https://omoindrot.github.io/triplet-loss
 - https://github.com/adambielski/siamese-triplet
 - [Understanding Ranking Loss, Contrastive Loss, Margin Loss, Triplet Loss, Hinge Loss and all those confusing names](https://gombru.github.io/2019/04/03/ranking_loss/)
-
-### LambdaMART
-
-The evaluation metric is not differentiable and continous like the 0-1 loss for the classification tasks.
-It is first to minimize the nonsmooth cost function as shown in LambdaRank of [Learning to Rank with Nonsmooth Cost Functions](https://papers.nips.cc/paper/2971-learning-to-rank-with-nonsmooth-cost-functions.pdf)
-
-Multiple Additive Regression Tree is another name of gradient boosting decision trees.
-
-- https://www.cnblogs.com/bentuwuying/p/6681943.html
-- https://liam.page/uploads/slides/lambdamart.pdf
-- https://stanfordphd.com/MART.html
-- [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
-- [Multiple Additive Regression Trees](http://statweb.stanford.edu/~jhf/MART.html)
-- https://arxiv.org/pdf/1809.05818.pdf
-- [Learning to Rank by Optimizing NDCG Measure](http://people.cs.pitt.edu/~valizadegan/Publications/NDCG_Boost.pdf)
-- https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/LambdaMART_Final.pdf
-
-### Differentiable Ranks
-
-Sorting is however a poor match for the end-to-end, automatically differentiable pipelines of deep learning.
-
-> The sorting operation is one of the most basic and commonly used building blocks in computer programming. In machine learning, it is commonly used for robust statistics. However, seen as a function, it is piecewise linear and as a result includes many kinks at which it is non-differentiable. More problematic is the related ranking operator, commonly used for order statistics and ranking metrics. It is a piecewise constant function, meaning that its derivatives are null or undefined. While numerous works have proposed differentiable proxies to sorting and ranking, they do not achieve the O(nlogn) time complexity one would expect from sorting and ranking operation.
-
-- [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/techReport.pdf)
-- https://arxiv.org/pdf/1905.11885.pdf
-- [Talk: Differentiable Ranks and Sorting using Optimal Transport](http://www.fields.utoronto.ca/talks/Differentiable-Ranking-and-Sorting-using-Optimal-Transport)
-- [Fast Differentiable Sorting and Ranking](https://arxiv.org/abs/2002.08871)
-- https://github.com/google-research/google-research/tree/master/soft_sort
-- https://www.microsoft.com/en-us/research/publication/softrank-optimising-non-smooth-rank-metrics/
 
 ### The Rankability of Data
 
@@ -1503,6 +1716,162 @@ The concept of rankability  refers to a dataset's inherent ability to produce a 
 - https://arxiv.org/abs/1912.00275
 - https://anderson-data-science.com/research/
 - https://www.thomasrcameron.com/
+
+
+### LambdaMART and the related
+
+The evaluation metric is not differentiable and continous like the 0-1 loss for the classification tasks.
+It is first to minimize the nonsmooth cost function as shown in `LambdaRank` of 
+[Learning to Rank with Nonsmooth Cost Functions](https://papers.nips.cc/paper/2971-learning-to-rank-with-nonsmooth-cost-functions.pdf).
+
+Multiple Additive Regression Tree(MART) is another name of gradient boosting decision trees,
+which use the gradient of the loss function to create new decision trees.
+
+`LambdaMART` use the `Lambda` gradient to generate new trees.
+
+
+- https://stanfordphd.com/MART.html
+- [Multiple Additive Regression Trees](http://statweb.stanford.edu/~jhf/MART.html)
+- https://arxiv.org/pdf/1809.05818.pdf
+- [Learning to Rank by Optimizing NDCG Measure](http://people.cs.pitt.edu/~valizadegan/Publications/NDCG_Boost.pdf)
+- https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/LambdaMART_Final.pdf
+- https://www.microsoft.com/en-us/research/wp-content/uploads/2005/08/icml_ranking.pdf
+  
+
+#### LambdaRank
+
+
+- [Learning to Rank with Nonsmooth Cost Functions](https://papers.nips.cc/paper/2971-learning-to-rank-with-nonsmooth-cost-functions.pdf)
+- [Learning to Rank using Gradient Descent](https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-gradient-descent/)
+
+#### LambdaMART
+
+
+- https://ml-compiled.readthedocs.io/en/latest/about.html
+- [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
+- [Unbiased LambdaMART](https://arxiv.org/pdf/1809.05818.pdf)
+- https://liam.page/uploads/slides/lambdamart.pdf
+- [Unbiased LambdaMART](https://arxiv.org/pdf/1809.05818.pdf)
+
+#### LambdaLoss
+
+Different from previous work that converts ranks in ranking metrics completely to scores, 
+our idea is to define loss functions using both `scores and ranks` explicitly.
+
+
+- [Essential Loss: Bridge the Gap between Ranking Measures and Loss Functions in Learning to Rank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/techReport.pdf)
+- [LambdaLoss: Metric-Driven Loss for Learning-to Rank](https://www.tdcommons.org/cgi/viewcontent.cgi?article=2281&context=dpubs_series)
+- [The LambdaLoss Framework for Ranking Metric Optimization](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/1e34e05e5e4bf2d12f41eb9ff29ac3da9fdb4de3.pdf)
+- https://zhuanlan.zhihu.com/p/134672431
+- http://marc.najork.org/
+- https://www.cnblogs.com/bentuwuying/p/6681943.html
+- [Differentiable Unbiased Online Learning to Rank](https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/oosterhuis-differentiable-2018.pdf)
+
+
+#### LambdaFM
+
+- https://wildltr.github.io/ptranking/ltr_adhoc/about/
+- http://wnzhang.net/papers/lambdafm.pdf
+- https://github.com/fajieyuan/LambdaFM
+
+## Boosting and loss function
+
+The machine learning problem of classifier design is studied from  the perspective of probability elicitation, in statistics. 
+This shows that the standard approach of proceeding from the specification of a loss,  to the minimization of conditional risk is overly restrictive. 
+It is shown that a better alternative is to start from the specification of a functional form for the minimum conditional risk, 
+and derive the loss function. 
+This has various consequences of practical interest, 
+such as showing that 1) the widely adopted practice of relying on convex loss functions is unnecessary, 
+and 2) many new losses can be derived for classification problems. 
+These points are illustrated by the derivation of a number of novel Bayes consistent loss functions, 
+some of which are not convex but do not compromise the computational tractability of classifier design. 
+A number of algorithms custom tailored for specific classification problems are derived based on novel loss functions. 
+[These include classification algorithms for cost sensitive learning, robust outlier resistant classification and variable margin classification.](http://www.svcl.ucsd.edu/projects/LossDesign/)
+
+- [Classifier Loss Function Design](http://www.svcl.ucsd.edu/projects/LossDesign/)
+- https://www.jiqizhixin.com/articles/2020-04-16-10
+- http://www.52caml.com/head_first_ml/ml-chapter6-boosting-family/
+
+
+### Boosting and optimization
+
+[It has shown](https://web.stanford.edu/~hastie/Papers/AdditiveLogisticRegression/alr.pdf) that how boosting algorithms result from building additive models using Newton updates of the exponential loss function.
+Then the boosting methods are extended to gradeint boosting.
+
+- https://static.miraheze.org/yoavfreundwiki/b/bd/BoostingAndInformationGeometry.pdf
+- https://www.cs.princeton.edu/courses/archive/spr09/cos598D/schedule.html
+- [Boosting, Convex Optimization, and Information Geometry](https://mitpress.mit.edu/sites/default/files/titles/content/boosting_foundations_algorithms/chapter008.html)
+- [Logistic Regression, AdaBoost and Bregman Distances](https://link.springer.com/content/pdf/10.1023/A:1013912006537.pdf)
+- http://www.lsta.upmc.fr/BIAU/bc2.pdf
+- https://web.stanford.edu/~jduchi/projects/DuchiSi09d.pdf
+- https://web.stanford.edu/~hastie/Papers/Rossetboost.pdf
+- https://web.stanford.edu/~hastie/TALKS/boost.pdf
+- https://www.stat.berkeley.edu/~binyu/summer08/colin.bregman.pdf
+***********
+
+- https://en.wikipedia.org/wiki/AdaBoost
+- https://explained.ai/gradient-boosting/L2-loss.html
+- https://www.cnblogs.com/jcchen1987/p/4581651.html
+
+### Robust Boosting
+
+- https://github.com/max-andr/provably-robust-boosting
+- http://home.olemiss.edu/~xdang/papers/CBoost17.pdf
+- http://home.olemiss.edu/~xdang/
+- https://www.tau.ac.il/~saharon/papers/bagboost.pdf
+- http://proceedings.mlr.press/v119/pfetsch20a/pfetsch20a.pdf
+
+
+### Regularized Boosting
+
+- https://www.tau.ac.il/~saharon/papers/PhDthesis.pdf
+- https://proceedings.neurips.cc/paper/2005/file/ec0bfd000f253eff3acb1043e1c06979-Paper.pdf
+- https://papers.nips.cc/paper/2019/file/465636eb4a7ff4b267f3b765d07a02da-Paper.pdf
+- https://www.cs.princeton.edu/~schapire/papers/speedsparsity.pdf
+- https://academic.oup.com/nar/article/46/7/e39/4817397
+
+### Sparse Boosting
+
+- https://jmlr.csail.mit.edu/papers/volume7/buehlmann06a/buehlmann06a.pdf
+- https://stat.ethz.ch/Manuscripts/buhlmann/sparseboost-JMLR.pdf
+- http://www.stat.ucdavis.edu/~chohsieh/rf/icml_sparse_GBDT.pdf
+- https://static.miraheze.org/yoavfreundwiki/b/bd/BoostingAndInformationGeometry.pdf
+
+### Bayesian Boosting
+
+- https://jmlr.csail.mit.edu/papers/volume15/wu14a/wu14a.pdf
+- https://github.com/bayesian/boosting
+- https://github.com/mpearmain/BayesBoost
+- https://link.springer.com/article/10.1023/A:1008931416845
+
+### Learned-Loss Boosting
+
+- http://faculty.bscb.cornell.edu/~hooker/learnedloss.pdf
+
+##  Adverisal losses
+
+- https://stat.uw.edu/news-resources/articles/perlman-stuetzle-and-wellner-retire-after-35-years-uw
+- https://www.cse.iitk.ac.in/users/purushot/articles.php
+- https://sss1.github.io/publications.html
+
+## Contrastive learning
+
+> Contrastive self-supervised learning techniques are a promising class of methods that build representations 
+> by learning to encode what makes two things similar or different.
+
+[Contrastive methods, as the name implies, learn representations by contrasting positive and negative examples.](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
+
+Contrastive learning between multiple views of the data has recently achieved state of the art performance in the field of self-supervised representation learning. 
+Despite its success, the influence of different view choices has been less studied. 
+[In this paper, we use empirical analysis to better understand the importance of view selection,](https://hobbitlong.github.io/InfoMin/) 
+and argue that we should reduce the mutual information (MI) between views while keeping task-relevant information intact.
+
+- https://blog.einstein.ai/prototypical-contrastive-learning-pushing-the-frontiers-of-unsupervised-learning/
+- [Contrastive Self-Supervised Learning](https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html)
+- [Contractive Auto-Encoders: Explicit Invariance During Feature Extraction](https://icml.cc/Conferences/2011/papers/455_icmlpaper.pdf)
+- https://blog.einstein.ai/prototypical-contrastive-learning-pushing-the-frontiers-of-unsupervised-learning/
+- https://hobbitlong.github.io/InfoMin/
+- https://github.com/HobbitLong/PyContrast
 
 ## Semantic Similarity
 
@@ -1531,13 +1900,66 @@ Different words can share the same meanings.
 - http://www.cs.toronto.edu/~mvolkovs/NIPS2019_GSS.pdf
 - [Distance Metric Learning for Large Margin Nearest Neighbor Classification](http://www.jmlr.org/papers/volume10/weinberger09a/weinberger09a.pdf)
 - [A Tutorial on Distance Metric Learning: Mathematical Foundations, Algorithms and Software](https://arxiv.org/pdf/1812.05944v1.pdf)
+- http://webia.lip6.fr/~cord/pdfs/courses/2019RIVCourse2.pdf
+- http://cseweb.ucsd.edu/~naverma/talks/metric_learning_tutorial_verma.pdf
 
 ### Learning Loss
 
+The loss function $\ell(\cdot,\cdot)$ seems independent with the training data.
+Usually we choose the squred error for the regression task and the cross-entropy attached with softmax layer for the classification task.
+
+Zongben Xu propose the [the independence assumption of loss function on dataset](https://dl.acm.org/doi/pdf/10.1145/3397271.3402428).
+
+In the least square methods, we only focus on the residual/error, i.e., we assump that the residual/error $y_i-f(x_i)$ are distributed in Gaussian and we minimize the mean squared errors $\frac{1}{N}\sum_{i=1}^{N}(y_i-f(x_i))^2$. 
+
+Why not the Gaussian distribution?
+
+
 <img src="https://dgyoo.github.io/dgyoo.github.io/images/cvpr19.PNG" width="60%"/>
+<img src="https://vitalab.github.io/article/images/learing-loss-active/fig1.jpeg" width="60%"/>
 
 - https://dgyoo.github.io/
-- https://arxiv.org/abs/1905.03677
-- https://papers.nips.cc/paper/7882-learning-to-teach-with-dynamic-loss-functions.pdf
-- https://vitalab.github.io/article/2019/07/04/Learning-Loss-for-Active-Learning.html
+- [Learning Adaptive Loss for Robust Learning with Noisy Labels](https://arxiv.org/abs/2002.06482)
+- [SoDeep: a Sorting Deep net to learn ranking loss surrogates](https://arxiv.org/pdf/1904.04272.pdf)
+- [Learning to teach with dynamic loss functions](https://papers.nips.cc/paper/7882-learning-to-teach-with-dynamic-loss-functions.pdf)
+- [Learning Loss for Active Learning](https://vitalab.github.io/article/2019/07/04/Learning-Loss-for-Active-Learning.html)
 - https://gmum.net/slides/rymarczyk_loss_for_activity_learning.pdf
+- https://arxiv.org/abs/2003.04521
+- https://github.com/technicolor-research/sodeep
+
+## Self-paced Learning
+
+Self-paced learning (SPL) is a recently proposed learning regime inspired by the learning process of humans and animals 
+that gradually incorporates easy to more complex samples into training. 
+While several easy SPL implementation strategies have been proposed,
+ it is still short of a general paradigm for guiding the construction of rational SPL learning regimes targeting specific applications. 
+ To resolve this problem, we provide an axiom for insightfully formulating the underlying principles of self-paced learning. 
+ This axiomatic understanding not only involves the previous SPL learning schemes as its special cases, 
+ but also can be utilized to extend a series of new SPL implementation regimes based on certain application aims. 
+ In the recent two years, we have constructed several SPL realizations, 
+ including SPaR, SPLD, SPCL, SPMF, SPMIL, based on this axiom, and achieved the best performance in several known benchmark datasets, 
+ e.g., Web Query, Hollywood2, and Olympic Sports. 
+ Especially, this paradigm has been integrated into the system developed by CMU Informedia team, 
+ and achieved the leading performance in challenging semantic query (SQ)/000Ex tasks of the TRECVID MED/MER competition organized by NIST in 2014.
+
+
+
+- http://gr.xjtu.edu.cn/web/dymeng/2
+- http://gr.xjtu.edu.cn/web/dymeng/6
+
+
+
+## Model assessment and selection
+
+We will focus on the alternatives to cross-validation in order to find more proper models.
+
+- https://faculty.washington.edu/edford/assessment.html
+- https://rafalab.github.io/pages/649/section-07.pdf
+- http://www1.se.cuhk.edu.hk/~seem5470/lecture/model-assess-select-2017.pdf
+- http://compdiag.molgen.mpg.de/ngfn/docs/2003/oct/model-selection.pdf
+- https://github.com/avehtari/modelselection
+
+### Credible interval
+
+- http://www2.stat.duke.edu/~rcs46/lecturesModernBayes/601-module3-morebayes/lecture5-more-bayes.pdf
+
