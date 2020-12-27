@@ -41,7 +41,8 @@ As the name shown, it is a guide thus it does not cover all the methods or techn
 Deeper advanced topics such as probability correct algorithms are not discussed.
 Until now, it is web resource driven. There are many links on each topic but no concrete examples and codes.
 
-The basic idea is **machine learning = representation + optimization +evaluation**. 
+The basic idea is **machine learning = representation+evaluation + optimization**. 
+I would like formulate every machine learning problem into numerical optimization problems.
 The section *Numerical optimmization* may be too theoretical for practioner and too simple for the research on optimization. 
 
 It is draft and notes when I learn data science. It is planned to be a open source e-book.
