@@ -28,45 +28,44 @@ except numerical optimization methods including the following topics:
     - [Cilk](#cilk)
     - [Triton](#triton)
     - [nGraph](#ngraph)
-    - [DLVM](#dlvm)
-    - [CHET](#chet)
     - [DLR](#dlr)
     - [Butterflies: A Universal Building Block for Structured Linear Maps](#butterflies-a-universal-building-block-for-structured-linear-maps)
     - [halide](#halide)
     - [taichi](#taichi)
     - [TASO](#taso)
+    - [DLVM](#dlvm)
+    - [CHET](#chet)
   - [Numerical algorithms for high-performance computational science](#numerical-algorithms-for-high-performance-computational-science)
     - [Fast Matrix-vector Multiplication](#fast-matrix-vector-multiplication)
     - [Computation of Matrix Chain Products](#computation-of-matrix-chain-products)
     - [Generalized Matrix to Matrix Multiplication](#generalized-matrix-to-matrix-multiplication)
-        - [Strassen Algorithms](#strassen-algorithms)
+      - [Strassen Algorithms](#strassen-algorithms)
       - [Coppersmith–Winograd Algorithms](#coppersmithwinograd-algorithms)
       - [Linear Algebra Packages](#linear-algebra-packages)
     - [Automatic Differentiation, Differentiable Programming and Program Transformations](#automatic-differentiation-differentiable-programming-and-program-transformations)
       - [Automatic Differentiation](#automatic-differentiation)
       - [Differentiable Programming](#differentiable-programming)
       - [Program Transformations](#program-transformations)
-    - [Fixed-point Arithmetic and Approximate Computing](#fixed-point-arithmetic-and-approximate-computing)
     - [Open Auto-differentiation Library](#open-auto-differentiation-library)
-    - [High-Performance Deep Learning](#high-performance-deep-learning)
-  - [Compression and Acceleration of Convolutional Neural Networks](#compression-and-acceleration-of-convolutional-neural-networks)
+  - [Deep Model Compression](#deep-model-compression)
+    - [Fixed-point Arithmetic and Approximate Computing](#fixed-point-arithmetic-and-approximate-computing)
+    - [Huffman Encoding](#huffman-encoding)
+    - [Knowledge Distillation](#knowledge-distillation)
     - [Parameter Pruning and Sharing](#parameter-pruning-and-sharing)
     - [Quantization and  Fixed-point Arithmetic](#quantization-and--fixed-point-arithmetic)
     - [Low Bit Neural Network](#low-bit-neural-network)
-    - [Deep Model Compression](#deep-model-compression)
       - [8-bit-training](#8-bit-training)
       - [Binarized Neural Network, Ternary Weight Networks, XOR-Net](#binarized-neural-network-ternary-weight-networks-xor-net)
         - [Binarized Neural Network](#binarized-neural-network)
         - [Ternary Weight Networks](#ternary-weight-networks)
         - [XOR-Net](#xor-net)
-      - [Mixed Precision Trainging](#mixed-precision-trainging)
+      - [Mixed Precision Training](#mixed-precision-training)
+      - [AdderNet](#addernet)
       - [Blended Coarse Gradient Descent](#blended-coarse-gradient-descent)
       - [Low-precision Training](#low-precision-training)
         - [High-accuracy Low Precision](#high-accuracy-low-precision)
         - [Ultra-Low Precision Training](#ultra-low-precision-training)
-        - [ADMM](#admm)
-      - [Huffman Encoding](#huffman-encoding)
-    - [Knowledge Distillation](#knowledge-distillation)
+        - [ADMM-NN](#admm-nn)
     - [Transferred/Compact Convolutional Filters](#transferredcompact-convolutional-filters)
     - [Tensor Methods](#tensor-methods)
     - [Compressing Recurrent Neural Network](#compressing-recurrent-neural-network)
@@ -483,21 +482,6 @@ This ordered representation of parallel tasks allows the compiler to optimize pa
 + https://github.com/plaidml/plaidml
 - https://en.wikipedia.org/wiki/Zeroth_(software)
 
-### DLVM
-
-- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR
-DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
-- http://dowobeha.github.io/papers/autodiff17.pdf
-- http://dowobeha.github.io/
-- https://roshandathathri.github.io/
-- https://www.clsp.jhu.edu/workshops/19-workshop/
-
-### CHET
-
-- https://www.cs.utexas.edu/~roshan/CHET.pdf
-- https://www.cs.utexas.edu/~pingali/
-- https://roshandathathri.github.io/
-- https://iss.oden.utexas.edu/
 
 ### DLR
 DLR is a compact, common runtime for deep learning models and decision tree models compiled by AWS SageMaker Neo, TVM, or Treelite. DLR uses the TVM runtime, Treelite runtime, NVIDIA TensorRT™, and can include other hardware-specific runtimes. DLR provides unified Python/C++ APIs for loading and running compiled models on various devices. DLR currently supports platforms from Intel, NVIDIA, and ARM, with support for Xilinx, Cadence, and Qualcomm coming soon.
@@ -553,6 +537,22 @@ TASO optimizes the computation graphs of DNN models using automatically generate
 * https://cs.stanford.edu/people/zhihao/
 * https://github.com/jiazhihao/TASO
 * http://theory.stanford.edu/~aiken/
+
+### DLVM
+
+- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR
+DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
+- http://dowobeha.github.io/papers/autodiff17.pdf
+- http://dowobeha.github.io/
+- https://roshandathathri.github.io/
+- https://www.clsp.jhu.edu/workshops/19-workshop/
+
+### CHET
+
+- https://www.cs.utexas.edu/~roshan/CHET.pdf
+- https://www.cs.utexas.edu/~pingali/
+- https://roshandathathri.github.io/
+- https://iss.oden.utexas.edu/
 
 
 ## Numerical algorithms for high-performance computational science
@@ -692,7 +692,7 @@ Our program is memory bound, which means that the multipliers are not active mos
 * [Performance of Classic Matrix Multiplication Algorithm on Intel® Xeon Phi™ Processor System](https://software.intel.com/en-us/articles/performance-of-classic-matrix-multiplication-algorithm-on-intel-xeon-phi-processor-system)
 * [Low-precision matrix multiplication](https://github.com/google/gemmlowp)
 
-##### Strassen Algorithms
+#### Strassen Algorithms
 
 It is based on block-multiplication. It is required that $C\in\mathbb R^{2^n\times 2^n}$.
 
@@ -928,26 +928,6 @@ Input variety|Homogeneous objects (e.g. images all having the same height/width 
 + https://kedar-namjoshi.github.io/
 + https://vega.github.io/vega/
 
-### Fixed-point Arithmetic and Approximate Computing
-
-Today’s computing systems are designed to deliver only exact solutions at high energy cost, while many of the algorithms that are run on data are at their heart statistical, and thus do not require exact answers.
-
-It turns out that it is sometimes possible to get high-accuracy solutions from low-precision training—
-and here we'll describe a new variant of stochastic gradient descent (SGD) called high-accuracy low precision (HALP) that can do it. 
-HALP can do better than previous algorithms 
-because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
-
-<img src="https://jackwish.net/images/2019/quantization/mixed-fp32int8-pure-int8.svg" width="80%"/>
-
-* https://www.wikiwand.com/en/Fixed-point_arithmetic
-* [Approximate Computing](http://moimani.weebly.com/approximate-computing.html)
-* [PACO: The Worlds First Approximate Computing General Purpose CPU](https://paco-cpu.github.io/paco-cpu/)
-* [System Energy Efficiency Lab](http://seelab.ucsd.edu/)
-* http://www.oliviervalery.com/publications/pdp2018
-* https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
-* https://nvidia.github.io/apex/
-* [A Multiprecision World](https://sinews.siam.org/Details-Page/a-multiprecision-world)
-* https://arxiv.org/abs/1806.00875v1
 
 ###  Open Auto-differentiation Library
 
@@ -979,18 +959,7 @@ because it reduces the two sources of noise that limit the accuracy of low-preci
 + https://nvidia.github.io/MinkowskiEngine/
 
 
-### High-Performance Deep Learning
-
-+ [High Performance Distributed Deep Learning](https://ppopp20.sigplan.org/details/PPoPP-2020-Workshops-and-Tutorials/3/Tutorial-High-Performance-Distributed-Deep-Learning)
-+ [High-Performance Deep Learning (HiDL)](http://hidl.cse.ohio-state.edu/)
-+ [High Performance Distributed Deep Learning: A Beginner's Guide](http://web.cse.ohio-state.edu/~panda.2/ppopp18_dl_tut.html)
-+ http://prace.it4i.cz/en/HPDDL-01-2018
-+ https://github.com/drcut/CPD
-+ https://github.com/purine/purine2
-+ https://dlonsc19.github.io/
-+ http://prace.it4i.cz/en/HPDDL-01-2018
-
-## Compression and Acceleration of Convolutional Neural Networks
+-----------------------------
 
 CNN is the most wisely used deep learning models in computer vision.
 
@@ -1012,6 +981,87 @@ Knowledge distillation |Training a compact neural network with distilled knowled
 * [Model Compression and Acceleration for Deep Neural Networks: The Principles, Progress, and Challenges](https://ieeexplore.ieee.org/document/8253600)
 * https://www.ibm.com/blogs/research/2018/02/deep-learning-training/
 
+
+##  Deep Model Compression
+
+- https://github.com/he-y/Awesome-Pruning
+- https://www.microsoft.com/en-us/research/search/?q=Deep+Compression
+- https://www.tinyml.org/summit/slides/tinyMLSummit2020-4-1-Choi.pdf
+- https://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
+- https://github.com/mightydeveloper/Deep-Compression-PyTorch
+- https://www.oki.com/en/rd/tt/dl/
+- [Deep Compression, DSD Training and EIE: Deep Neural Network Model Compression, Regularization and Hardware Acceleration](https://www.microsoft.com/en-us/research/video/deep-compression-dsd-training-and-eie-deep-neural-network-model-compression-regularization-and-hardware-acceleration/)
+
+
+
+
+### Fixed-point Arithmetic and Approximate Computing
+
+Today’s computing systems are designed to deliver only exact solutions at high energy cost, while many of the algorithms that are run on data are at their heart statistical, and thus do not require exact answers.
+
+It turns out that it is sometimes possible to get high-accuracy solutions from low-precision training—
+and here we'll describe a new variant of stochastic gradient descent (SGD) called high-accuracy low precision (HALP) that can do it. 
+HALP can do better than previous algorithms 
+because it reduces the two sources of noise that limit the accuracy of low-precision SGD: gradient variance and round-off error.
+
+<img src="https://jackwish.net/images/2019/quantization/mixed-fp32int8-pure-int8.svg" width="80%"/>
+
+* https://www.wikiwand.com/en/Fixed-point_arithmetic
+* [Approximate Computing](http://moimani.weebly.com/approximate-computing.html)
+* [PACO: The Worlds First Approximate Computing General Purpose CPU](https://paco-cpu.github.io/paco-cpu/)
+* [System Energy Efficiency Lab](http://seelab.ucsd.edu/)
+* http://www.oliviervalery.com/publications/pdp2018
+* https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/
+* https://nvidia.github.io/apex/
+* [A Multiprecision World](https://sinews.siam.org/Details-Page/a-multiprecision-world)
+* https://arxiv.org/abs/1806.00875v1
+
+### Huffman Encoding
+
+Huffman code is a type of optimal prefix code that is commonly used for loss-less data compression.
+It produces a variable-length code table for encoding source symbol.
+The table is derived from the occurrence
+probability for each symbol.
+As in other entropy encoding methods, more common symbols are represented with fewer bits than less common symbols, thus save the total space.
+
+* [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
+
+### Knowledge Distillation
+
+[Distillation (Hinton et al., 2015) is a kind of model compression approaches in which a pre-trained large model teaches a smaller model to achieve the similar prediction performance. It is often named as the "teacher-student" training, where the large model is the teacher and the smaller model is the student.](https://pocketflow.github.io/distillation/)
+
+Initially, [it is used to compress the knowledge in an ensemble into a single model  which is much easier to deploy.](https://arxiv.org/pdf/1503.02531.pdf)
+
+The core idea is that [an obvious way to transfer the generalization ability of the cumbersome model to a small model is to use the class probabilities produced by the cumbersome model as “soft targets” for training the small model. When the soft targets have high entropy, they provide much more information per training case than hard targets and much less variance in the gradient between training cases, so the small model can often be trained on much less data than the original cumbersome model and using a much higher learning rate.](https://arxiv.org/pdf/1503.02531.pdf)
+
+[With distillation, knowledge can be transferred from the teacher model to the student by minimizing a loss function to recover the distribution of class probabilities predicted by the teacher model. In most situations, the probability of the correct class predicted by the teacher model is very high, and probabilities of other classes are close to 0, which may not be able to provide extra information beyond ground-truth labels. To overcome this issue, a commonly-used solution is to raise the temperature of the final softmax function until the cumbersome model produces a suitably soft set of targets.](https://pocketflow.github.io/distillation/)
+The soften probability $q_i$ of class $i$ is calculated from the logit $z_i$
+$$q_i = \frac{\exp \left( z_i / T \right)}{\sum_j{\exp \left( z_j / T \right)}}$$
+
+where $T$ is the temperature. As $T$ grows, the probability distribution is more smooth, providing more information as to which classes the cumbersome model more similar to the predicted class. It is better to include the standard loss ($T=1$) between the predicted class probabilities and ground-truth labels. The overall loss function is given by:
+
+$$L(x;W)=H(y,\sigma(z_s;T=1))+\alpha⋅H(\sigma(z_t;T=\tau),\sigma(z_s,T=\tau))$$
+where $x$ is the input, $W$ are parameters of the distilled small model and $y$ is ground-truth labels, $\sigma$ is the softmax parameterized by temperature $T, H$ is the cross-entropy loss, and $\alpha$ is the coefficient of distillation loss.
+
+
+* https://nervanasystems.github.io/distiller/knowledge_distillation/index.html
+* [Awesome Knowledge Distillation](https://github.com/dkozlov/awesome-knowledge-distillation)
+* [knowledge distillation papers](https://github.com/lhyfst/knowledge-distillation-papers)
+* https://pocketflow.github.io/distillation/
+* [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531)
+
+
+[Knowledge Distillation (KD) is a widely used approach to transfer the output information from a heavy network to a smaller network for achieving higher performance.](http://www.noahlab.com.hk/#/news/new1909_1) The student network can be optimized using the following loss function based on knowledge distillation:
+$$\mathcal L_{KD}=\frac{1}{n}H(y_S^i, y_T^i).$$
+
+Therefore, utilizing the knowledge transfer technique, a portable network can be optimized without the specific architecture of the given network.
+
+<img src="http://www.noahlab.com.hk/mockdata/news/new1909_1/img/datafree7.png" width="70%"/>
+
+* [Great Breakthrough! Huawei Noah's Ark Lab first pioneers a novel knowledge distillation technique without training data.](http://www.noahlab.com.hk/#/news/new1909_1)
+* [DAFL: Data-Free Learning of Student Networks](https://arxiv.org/abs/1904.01186)
+* https://github.com/huawei-noah/DAFL
+* https://blog.csdn.net/xbinworld/article/details/83063726
 
 ### Parameter Pruning and Sharing
 
@@ -1098,16 +1148,6 @@ To update full-precision weights in the backward pass, since gradients w.r.t. qu
 - [Toward Extremely Low Bit and Lossless Accuracy in DNNs with Progressive ADMM](https://arxiv.org/abs/1905.00789)
 
 
-###  Deep Model Compression
-
-- https://github.com/he-y/Awesome-Pruning
-- https://www.microsoft.com/en-us/research/search/?q=Deep+Compression
-- https://www.tinyml.org/summit/slides/tinyMLSummit2020-4-1-Choi.pdf
-- https://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
-- https://github.com/mightydeveloper/Deep-Compression-PyTorch
-- https://www.oki.com/en/rd/tt/dl/
-- [Deep Compression, DSD Training and EIE: Deep Neural Network Model Compression, Regularization and Hardware Acceleration](https://www.microsoft.com/en-us/research/video/deep-compression-dsd-training-and-eie-deep-neural-network-model-compression-regularization-and-hardware-acceleration/)
-
 #### 8-bit-training
 
 The state-of-the-art hardware platforms for training Deep Neural Networks (DNNs) are moving from traditional single precision (32-bit) computations towards 16 bits of precision -- in large part due to the high energy efficiency and smaller bit storage associated with using reduced-precision representations. 
@@ -1123,6 +1163,7 @@ Here we demonstrate, for the first time, the successful training of DNNs using 8
 #### Binarized Neural Network, Ternary Weight Networks, XOR-Net
 
 - https://github.com/uber-research/sbnet
+- [BinaryConnect](https://github.com/MatthieuCourbariaux/BinaryConnect)
 
 ##### Binarized Neural Network
 
@@ -1236,7 +1277,7 @@ _____
 * [8-bit Inference with TensorRT](http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf)
 
 
-#### Mixed Precision Trainging
+#### Mixed Precision Training
 
 [Mixed-precision training lowers the required resources by using lower-precision arithmetic, which has the following benefits.](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/)
 
@@ -1275,6 +1316,27 @@ Additions to the traditional iteration procedure are in bold.
 * [TRAINING WITH MIXED PRECISION](http://on-demand.gputechconf.com/gtc/2017/presentation/s7218-training-with-mixed-precision-boris-ginsburg.pdf)
 * [NVIDIA Apex: Tools for Easy Mixed-Precision Training in PyTorch](https://devblogs.nvidia.com/apex-pytorch-easy-mixed-precision-training/)
 * https://developer.nvidia.com/vulkan-driver
+
+
+
+#### AdderNet
+
+[In AdderNets, we take the $\ell_1$-norm distance between filters and input feature as the output response.](https://github.com/huawei-noah/AdderNet)
+
+The convolution in CNN is replaced by the calculating $\ell_1$-norm distance distance between the filter and the input.
+
+
+<img src="https://raw.githubusercontent.com/huawei-noah/AdderNet/master/figures/visualization.png"  width="80%">
+
+- https://github.com/huawei-noah/AdderNet
+- https://papers.nips.cc/paper/2020/file/1cf44d7975e6c86cffa70cae95b5fbb2-Paper.pdf
+- [Kernel Based Progressive Distillation for Adder Neural Networks](https://arxiv.org/abs/2009.13044)
+- https://www.zhihu.com/column/EdgeDeepLearning
+- [AdderSR: Towards Energy Efficient Image Super-Resolution](https://arxiv.org/abs/2009.08891)
+- https://arxiv.org/abs/2101.10015
+- https://github.com/dlut-dimt/PODM
+- [A Bridging Framework for Model Optimization and Deep Propagation](https://papers.nips.cc/paper/2018/file/1a0a283bfe7c549dee6c638a05200e32-Paper.pdf)
+
 
 #### Blended Coarse Gradient Descent
 
@@ -1341,7 +1403,7 @@ Finally, reducing the bit precision of weight updates to 16-bit floating-point i
 * https://www.ibm.com/blogs/research/author/naigangwang/
 
 
-##### ADMM
+##### ADMM-NN
 
 We can apply alteranting direction method of mulipliers(ADMM) to train deep neural networks.
 The first part of ADMM-NN is a systematic, joint framework of DNN weight pruning and quantization using ADMM. 
@@ -1366,54 +1428,6 @@ The improvement becomes more significant when focusing on computation reductions
 - https://ywang393.expressions.syr.edu/
 - https://cse.buffalo.edu/~wenyaoxu/
 - http://gr.xjtu.edu.cn/web/jiansun/publications
-
-#### Huffman Encoding
-
-Huffman code is a type of optimal prefix code that is commonly used for loss-less data compression.
-It produces a variable-length code table for encoding source symbol.
-The table is derived from the occurrence
-probability for each symbol.
-As in other entropy encoding methods, more common symbols are represented with fewer bits than less common symbols, thus save the total space.
-
-* [Huffman coding](https://www.wikiwand.com/en/Huffman_coding) is a code scheme.
-
-### Knowledge Distillation
-
-[Distillation (Hinton et al., 2015) is a kind of model compression approaches in which a pre-trained large model teaches a smaller model to achieve the similar prediction performance. It is often named as the "teacher-student" training, where the large model is the teacher and the smaller model is the student.](https://pocketflow.github.io/distillation/)
-
-Initially, [it is used to compress the knowledge in an ensemble into a single model  which is much easier to deploy.](https://arxiv.org/pdf/1503.02531.pdf)
-
-The core idea is that [an obvious way to transfer the generalization ability of the cumbersome model to a small model is to use the class probabilities produced by the cumbersome model as “soft targets” for training the small model. When the soft targets have high entropy, they provide much more information per training case than hard targets and much less variance in the gradient between training cases, so the small model can often be trained on much less data than the original cumbersome model and using a much higher learning rate.](https://arxiv.org/pdf/1503.02531.pdf)
-
-[With distillation, knowledge can be transferred from the teacher model to the student by minimizing a loss function to recover the distribution of class probabilities predicted by the teacher model. In most situations, the probability of the correct class predicted by the teacher model is very high, and probabilities of other classes are close to 0, which may not be able to provide extra information beyond ground-truth labels. To overcome this issue, a commonly-used solution is to raise the temperature of the final softmax function until the cumbersome model produces a suitably soft set of targets.](https://pocketflow.github.io/distillation/)
-The soften probability $q_i$ of class $i$ is calculated from the logit $z_i$
-$$q_i = \frac{\exp \left( z_i / T \right)}{\sum_j{\exp \left( z_j / T \right)}}$$
-
-where $T$ is the temperature. As $T$ grows, the probability distribution is more smooth, providing more information as to which classes the cumbersome model more similar to the predicted class. It is better to include the standard loss ($T=1$) between the predicted class probabilities and ground-truth labels. The overall loss function is given by:
-
-$$L(x;W)=H(y,\sigma(z_s;T=1))+\alpha⋅H(\sigma(z_t;T=\tau),\sigma(z_s,T=\tau))$$
-where $x$ is the input, $W$ are parameters of the distilled small model and $y$ is ground-truth labels, $\sigma$ is the softmax parameterized by temperature $T, H$ is the cross-entropy loss, and $\alpha$ is the coefficient of distillation loss.
-
-
-* https://nervanasystems.github.io/distiller/knowledge_distillation/index.html
-* [Awesome Knowledge Distillation](https://github.com/dkozlov/awesome-knowledge-distillation)
-* [knowledge distillation papers](https://github.com/lhyfst/knowledge-distillation-papers)
-* https://pocketflow.github.io/distillation/
-* [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531)
-
-
-[Knowledge Distillation (KD) is a widely used approach to transfer the output information from a heavy network to a smaller network for achieving higher performance.](http://www.noahlab.com.hk/#/news/new1909_1) The student network can be optimized using the following loss function based on knowledge distillation:
-$$\mathcal L_{KD}=\frac{1}{n}H(y_S^i, y_T^i).$$
-
-Therefore, utilizing the knowledge transfer technique, a portable network can be optimized without the specific architecture of the given network.
-
-<img src="http://www.noahlab.com.hk/mockdata/news/new1909_1/img/datafree7.png" width="70%"/>
-
-* [Great Breakthrough! Huawei Noah's Ark Lab first pioneers a novel knowledge distillation technique without training data.](http://www.noahlab.com.hk/#/news/new1909_1)
-* [DAFL: Data-Free Learning of Student Networks](https://arxiv.org/abs/1904.01186)
-* https://github.com/huawei-noah/DAFL
-* https://blog.csdn.net/xbinworld/article/details/83063726
-
 
 
 ### Transferred/Compact Convolutional Filters
@@ -1532,15 +1546,16 @@ And the training process is to find the optimal parameters $\arg\min_{\Theta}\su
 Sometimes we need partition the model or the data into different machines.
 In another world, the model or the data are distributed in a few machines.
 
-Distributed training of deep learnig models is a branch of distributed computation.
+Distributed training of deep learning models is a branch of distributed computation.
 
-[Training advanced deep learning models is challenging. Beyond model design, model scientists also need to set up the state-of-the-art training techniques such as distributed training, mixed precision, gradient accumulation, and checkpointing. Yet still, scientists may not achieve the desired system performance and convergence rate. Large model sizes are even more challenging: a large model easily runs out of memory with pure data parallelism and it is difficult to use model parallelism.](https://www.deepspeed.ai/)
+Training advanced deep learning models is challenging. Beyond model design, model scientists also need to set up the state-of-the-art training techniques such as distributed training, mixed precision, gradient accumulation, and checkpointing. 
+[Yet still, scientists may not achieve the desired system performance and convergence rate. Large model sizes are even more challenging: a large model easily runs out of memory with pure data parallelism and it is difficult to use model parallelism.](https://www.deepspeed.ai/)
 
 It is really important to reduce the cost of communication in distributed computation
 including the communication time, communication frequency, communication content and latency.
 
 
-- [BigDL is a distributed deep learning library for Apache Spark](https://bigdl-project.github.io/0.10.0/)
+- [BigDL is a distributed deep learning library for Apache Spark](https://bigdl-project.github.io/master/)
 - https://github.com/intel-analytics/BigDL/
 - https://github.com/amplab/drizzle-spark
 - https://github.com/NVIDIA/nccl
@@ -1557,30 +1572,32 @@ including the communication time, communication frequency, communication content
 
 ### Accelerating Deep Learning Workloads
 
+[The more we know about the resource usage patterns of workloads, the better we can allocate resources.](https://www.usenix.org/conference/hotcloud20/presentation/berral)
 
 - https://itpeernetwork.intel.com/accelerating-deep-learning-workloads/#gs.ny4nke
-- https://github.com/bytedance/byteps
 - [A Generic Communication Scheduler for Distributed DNN Training Acceleration](https://i.cs.hku.hk/~cwu/papers/yhpeng-sosp19.pdf)
-- [Characterizing Deep Learning Training Workloads on Alibaba-PAI](https://arxiv.org/abs/1910.05930)
 - https://arxiv.org/pdf/1806.03377.pdf
 - http://www.iiswc.org/iiswc2019/index.html
 - https://cs.stanford.edu/~matei/
-- https://www.microsoft.com/en-us/research/project/fiddle/
-- https://github.com/msr-fiddle/pipedream
-- https://github.com/msr-fiddle/philly-traces
-- [PipeMare: Asynchronous Pipeline Parallel DNN Training](https://arxiv.org/abs/1910.05124)
-- [GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism](https://arxiv.org/abs/1811.06965)
-- [XPipe: Efficient Pipeline Model Parallelism for Multi-GPU DNN Training](https://arxiv.org/pdf/1911.04610.pdf)
-- https://arxiv.org/pdf/1806.03377.pdf
-- https://www.microsoft.com/en-us/research/project/fiddle/
 - [Bandwidth Optimal All-reduce Algorithms for Clusters of Workstations](http://www.cs.fsu.edu/~xyuan/paper/09jpdc.pdf)
 - https://zhuanlan.zhihu.com/p/87515411
 - https://zhuanlan.zhihu.com/p/84862107
 - [Accelerating Deep Learning Workloads through Efficient Multi-Model Execution](https://cs.stanford.edu/~matei/papers/2018/mlsys_hivemind.pdf)
+- [Multi-tenant GPU Clusters for Deep Learning Workloads: Analysis and Implications](https://www.microsoft.com/en-us/research/uploads/prod/2018/05/gpu_sched_tr.pdf)
 - https://cs.stanford.edu/~matei/
 
 #### PipeDream
 
+- [Characterizing Deep Learning Training Workloads on Alibaba-PAI](https://arxiv.org/abs/1910.05930)
+- https://www.microsoft.com/en-us/research/project/fiddle/
+- https://github.com/bytedance/byteps
+- https://github.com/msr-fiddle/pipedream
+- https://github.com/msr-fiddle/philly-trace
+- https://www.microsoft.com/en-us/research/project/fiddle/
+- [PipeMare: Asynchronous Pipeline Parallel DNN Training](https://arxiv.org/abs/1910.05124)
+- [GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism](https://arxiv.org/abs/1811.06965)
+- [XPipe: Efficient Pipeline Model Parallelism for Multi-GPU DNN Training](https://arxiv.org/pdf/1911.04610.pdf)
+- https://arxiv.org/pdf/1806.03377.pdf
 
 [PipeDream, a system developed as part of Microsoft Research’s Project Fiddle, introduces pipeline parallelism, a new way to parallelize DNN training by combining traditional intra-batch parallelism (model and data parallelism) with inter-batch parallelism (pipelining).](https://www.microsoft.com/en-us/research/blog/pipedream-a-more-effective-way-to-train-deep-neural-networks-using-pipeline-parallelism/)
 
@@ -1872,3 +1889,8 @@ It is necessary to compress the deep learning models in order to run it in mobil
 - https://github.com/fastnlp/fitlog
 - https://optuna.org/
 - https://preferred.jp/en/projects/optuna/
+- http://prace.it4i.cz/en/HPDDL-01-2018
+- https://github.com/drcut/CPD
+- https://github.com/purine/purine2
+- https://dlonsc19.github.io/
+- http://prace.it4i.cz/en/HPDDL-01-2018
