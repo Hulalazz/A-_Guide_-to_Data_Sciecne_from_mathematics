@@ -1,40 +1,10 @@
-# Science of  Learning
-
-V. Vapnik said that ``Nothing is more practical than a good theory.''
-Here we focus on the theoretical machine learning.
-
-- https://www.helsinki.fi/en/researchgroups/constraint-reasoning-and-optimization
-- https://www.math.ubc.ca/~erobeva/seminar.html
-- https://www.deel.ai/theoretical-guarantees/
-- http://www.vanderschaar-lab.com/NewWebsite/index.html
-- https://nthu-datalab.github.io/ml/index.html
-- http://www.cs.cornell.edu/~shmat/research.html
-- http://www.prace-ri.eu/best-practice-guide-deep-learning
-- https://math.ethz.ch/sam/research/reports.html?year=2019
-- http://gr.xjtu.edu.cn/web/jjx323/home
-- https://zhouchenlin.github.io/
-- https://www.math.tamu.edu/~bhanin/
-- https://yani.io/annou/
-- https://probability.dmi.unibas.ch/seminar.html
-- http://mjt.cs.illinois.edu/courses/dlt-f19/
-- http://danroy.org/
-- https://www.symbiont-project.org/events/Slides-2018-03/SYMBIONT-2018-03-zimmermann.pdf
-- https://losslandscape.com/faq/
-- https://mcallester.github.io/ttic-31230/
-- http://deep-phenomena.org/
-- https://ijcai20interpretability.github.io/
-- https://niceworkshop.org/
-
-Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
-Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
-[Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
-
-- https://www.cl.cam.ac.uk/~rja14/
-
-Deep learning is at least related with kernel tricks, projection pursuit and neural networks.
 - [Science of  Learning](#science-of--learning)
   - [Resource  on Deep Learning Theory](#resource--on-deep-learning-theory)
+    - [Blogs and Paper](#blogs-and-paper)
+    - [Course on Deep Learning](#course-on-deep-learning)
     - [Deep Learning Reading Group](#deep-learning-reading-group)
+    - [Workshops](#workshops)
+    - [Labs](#labs)
   - [Interpretability in AI](#interpretability-in-ai)
     - [Interpretability of Neural Networks](#interpretability-of-neural-networks)
     - [DeepLEVER](#deeplever)
@@ -45,9 +15,11 @@ Deep learning is at least related with kernel tricks, projection pursuit and neu
       - [Deep Learning for Physics](#deep-learning-for-physics)
     - [Physics for Machine Learning](#physics-for-machine-learning)
       - [Physics Informed Machine Learning](#physics-informed-machine-learning)
+      - [Physics Informed Deep Learning](#physics-informed-deep-learning)
     - [Statistical Mechanics and Deep Learning](#statistical-mechanics-and-deep-learning)
     - [Born Machine](#born-machine)
     - [Quantum Machine learning](#quantum-machine-learning)
+    - [Deep Neural Network and Renormalization Group](#deep-neural-network-and-renormalization-group)
   - [Mathematics of Deep Learning](#mathematics-of-deep-learning)
     - [Discrete Mathematics and  Neural Networks](#discrete-mathematics-and--neural-networks)
       - [MIP and Deep Learning](#mip-and-deep-learning)
@@ -77,7 +49,12 @@ Deep learning is at least related with kernel tricks, projection pursuit and neu
   - [Geometric Analysis Approach to AI](#geometric-analysis-approach-to-ai)
     - [Tropical Geometry of Deep Neural Networks](#tropical-geometry-of-deep-neural-networks)
   - [Topology and Deep Learning](#topology-and-deep-learning)
+    - [Topological machine learning](#topological-machine-learning)
     - [Topology Optimization and  Deep Learning](#topology-optimization-and--deep-learning)
+    - [Deep Learning with Topological Data Analysis](#deep-learning-with-topological-data-analysis)
+      - [Deep Learning with Topological Layer](#deep-learning-with-topological-layer)
+      - [Topological Graph Neural Networks](#topological-graph-neural-networks)
+      - [Topology-Based Graph Classification](#topology-based-graph-classification)
   - [Algebra and Deep Learning](#algebra-and-deep-learning)
     - [Tensor network](#tensor-network)
     - [Group Equivariant Convolutional Networks](#group-equivariant-convolutional-networks)
@@ -91,46 +68,65 @@ Deep learning is at least related with kernel tricks, projection pursuit and neu
     - [Least squares support vector machines](#least-squares-support-vector-machines)
   - [Information Theory and Deep Learning](#information-theory-and-deep-learning)
     - [Information bottleneck theory](#information-bottleneck-theory)
+    - [InfoMax](#infomax)
   - [Brain Science and AI](#brain-science-and-ai)
     - [Spiking neural networks](#spiking-neural-networks)
     - [The Thousand Brains Theory of Intelligence](#the-thousand-brains-theory-of-intelligence)
   - [Cognition Science and Deep Learning](#cognition-science-and-deep-learning)
+    - [Predictive coding](#predictive-coding)
+    - [Contrastive Predictive Coding](#contrastive-predictive-coding)
+    - [Hierarchical Predictive Coding](#hierarchical-predictive-coding)
   - [The lottery ticket hypothesis](#the-lottery-ticket-hypothesis)
   - [Double Descent](#double-descent)
+  - [Neural Tangents](#neural-tangents)
+# Science of  Learning
+
+V. Vapnik said that ``Nothing is more practical than a good theory.''
+Here we focus on the theoretical machine learning.
+
+- [CONSTRAINT REASONING AND OPTIMIZATION](https://www.helsinki.fi/en/researchgroups/constraint-reasoning-and-optimization)
+- https://www.math.ubc.ca/~erobeva/seminar.html
+- https://www.deel.ai/theoretical-guarantees/
+- http://www.vanderschaar-lab.com/NewWebsite/index.html
+- https://nthu-datalab.github.io/ml/index.html
+- http://www.cs.cornell.edu/~shmat/research.html
+- http://www.prace-ri.eu/best-practice-guide-deep-learning
+- https://math.ethz.ch/sam/research/reports.html?year=2019
+- http://gr.xjtu.edu.cn/web/jjx323/home
+- https://zhouchenlin.github.io/
+- https://www.math.tamu.edu/~bhanin/
+- https://yani.io/annou/
+- https://probability.dmi.unibas.ch/seminar.html
+- http://mjt.cs.illinois.edu/courses/dlt-f19/
+- http://danroy.org/
+- [Symbolic Methods for Biological Networks](https://www.symbiont-project.org/)
+- https://losslandscape.com/faq/
+- https://mcallester.github.io/ttic-31230/
+- https://sites.google.com/view/holist/home
+
+
+Deep learning is a transformative technology that has delivered impressive improvements in image classification and speech recognition. 
+Many researchers are trying to better understand how to improve prediction performance and also how to improve training methods. 
+[Some researchers use experimental techniques; others use theoretical approaches.](https://stats385.github.io/)
+
+- https://www.cl.cam.ac.uk/~rja14
+
+
+There has  been a lot  of interest in algorithms that learn  feature hierarchies  from unlabeled  data. Deep learning methods such as deep belief networks, sparse coding-based methods, convolutional networks, and deep Boltzmann machines, have shown promise and have already been successfully applied to a variety of tasks in computer vision, audio processing, natural language rocessing, information retrieval, and robotics. 
+[In this workshop, we will bring together researchers who are interested in deep learning and unsupervised feature learning, review the recent technical progress, discuss the challenges, and identify promising future research directions.](https://deeplearningworkshopnips2010.wordpress.com/)
+
+* https://deeplearningworkshopnips2010.wordpress.com/
+
+[The development of a "Science of Deep Learning" is now an active, interdisciplinary area of research combining insights from information theory, statistical physics, mathematical biology, and others.](https://www.neuralnet.science/)
+Deep learning is at least related with kernel tricks, projection pursuit and neural networks.
 
 ## Resource  on Deep Learning Theory 
 
-* http://pwp.gatech.edu/fdl-2018/program/
-* https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6052125/
-* https://ori.ox.ac.uk/labs/a2i/
-* [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
-* [A Comprehensive Analysis of Deep Regression](https://github.com/Stephlat/DeepRegression)
-* https://gangwg.github.io/research.html
-* http://www.mit.edu/~k2smith/
-* [4th Workshop on Semantic Deep Learning (SemDeep-4)](http://www.dfki.de/semdeep-4/)
-* [Deep Learning in Practice](https://www.lri.fr/~gcharpia/deeppractice/)
-* [Deep learning theory](http://guillefix.me/cosmos/static/Deep%2520learning%2520theory)
-* [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
-* [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
-* [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
-* [TBSI 2019 Retreat Conference](http://workshop.tbsi.edu.cn/index.html)
-* [6.883 Science of Deep Learning: Bridging Theory and Practice -- Spring 2018](https://people.csail.mit.edu/madry/6.883/)
-* [(Winter 2018) IFT 6085: Theoretical principles for deep learning](http://mitliagkas.github.io/ift6085-dl-theory-class/)
-* http://principlesofdeeplearning.com/
-* https://cbmm.mit.edu/education/courses
-* [DALI 2018 - Data, Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
-* [On Theory@http://www.deeplearningpatterns.com ](http://www.deeplearningpatterns.com/doku.php?id=theory)
-* https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/85815724
-* [UVA DEEP LEARNING COURSE](https://uvadlc.github.io/)
+### Blogs and Paper
+
+
 * [Understanding Neural Networks by embedding hidden representations](https://rakeshchada.github.io/Neural-Embedding-Animation.html)
 * [Tractable Deep Learning](https://www.cs.washington.edu/research/tractable-deep-learning)
-* [Theories of Deep Learning (STATS 385)](https://stats385.github.io/)
-* [Topics Course on Deep Learning for Spring 2016 by Joan Bruna, UC Berkeley, Statistics Department](https://github.com/joanbruna/stat212b)
-* [Mathematical aspects of Deep Learning](http://elmos.scripts.mit.edu/mathofdeeplearning/)
-* [MATH 6380p. Advanced Topics in Deep Learning Fall 2018](https://deeplearning-math.github.io/)
-* [CoMS E6998 003: Advanced Topics in Deep Learning](https://www.advancedtopicsindeeplearning.com/)
-* [Deep Learning Theory: Approximation, Optimization, Generalization](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html)
-* [Theory of Deep Learning, ICML'2018](https://sites.google.com/site/deeplearningtheory/)
 * [DALI 2018, Data Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
 * [MATHEMATICS OF DEEP LEARNING, NYU, Spring 2018](https://github.com/joanbruna/MathsDL-spring18)
 * [Theory of Deep Learning, project in researchgate](https://www.researchgate.net/project/Theory-of-Deep-Learning)
@@ -140,19 +136,37 @@ Deep learning is at least related with kernel tricks, projection pursuit and neu
 * [A Convergence Theory for Deep Learning via Over-Parameterization](https://arxiv.org/pdf/1811.03962.pdf)
 * [Advancing AI through cognitive science](https://github.com/brendenlake/AAI-site)
 * [Deep Learning and the Demand for Interpretability](http://stillbreeze.github.io/Deep-Learning-and-the-Demand-For-Interpretability/)
-* [Integrated and detailed image understanding](https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html)
-* [NeuroIP 2018 workshop on Deep Learning Theory](http://nips2018dltheory.rice.edu/)
-* http://networkinterpretability.org/
-* https://interpretablevision.github.io/
-* https://www.msra.cn/zh-cn/news/people-stories/wei-chen
-* https://www.microsoft.com/en-us/research/people/tyliu/
-* https://zhuanlan.zhihu.com/p/22353056
-* http://qszhang.com/index.php/team/
-* https://www.researchgate.net/profile/Hatef_Monajemi
-* [Symposium Artificial Intelligence for Science, Industry and Society](https://indico.cern.ch/event/781223/)
-* https://arxiv.org/abs/1909.13458
-* [TAU & GTDeepNet seminars](https://www.lri.fr/TAU_seminars/)
+* [Doing the Impossible: Why Neural Networks Can Be Trained at All](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6052125/)
+* [Deep Learning Drizzle](https://deep-learning-drizzle.github.io/)
+* [A Comprehensive Analysis of Deep Regression](https://github.com/Stephlat/DeepRegression)
+* [Deep Learning in Practice](https://www.lri.fr/~gcharpia/deeppractice/)
+* [Deep learning theory](http://guillefix.me/cosmos/static/Deep%2520learning%2520theory)
+* [The Science of Deep Learning](http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_5058.html)
+* [TBSI 2019 Retreat Conference](http://workshop.tbsi.edu.cn/index.html)
+* http://principlesofdeeplearning.com/
+* https://cbmm.mit.edu/education/courses
+* [DALI 2018 - Data, Learning and Inference](http://dalimeeting.org/dali2018/workshopTheoryDL.html)
+* [On Theory@http://www.deeplearningpatterns.com ](http://www.deeplearningpatterns.com/doku.php?id=theory)
+* https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/85815724
 
+-----
+* https://zhuanlan.zhihu.com/p/22353056
+* https://arxiv.org/abs/1909.13458
+
+###  Course on Deep Learning
+
+
+* [CoMS E6998 003: Advanced Topics in Deep Learning](https://www.advancedtopicsindeeplearning.com/)
+* [Analyses of Deep Learning (STATS 385) 2019](https://stats385.github.io/)
+* [Deep Learning Theory: Approximation, Optimization, Generalization](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html)
+* [UVA DEEP LEARNING COURSE](https://uvadlc.github.io/)
+* [Theories of Deep Learning (STATS 385)](https://stats385.github.io/)
+* [Topics Course on Deep Learning for Spring 2016 by Joan Bruna, UC Berkeley, Statistics Department](https://github.com/joanbruna/stat212b)
+* [Mathematical aspects of Deep Learning](http://elmos.scripts.mit.edu/mathofdeeplearning/)
+* [MATH 6380p. Advanced Topics in Deep Learning Fall 2018](https://deeplearning-math.github.io/)
+* [6.883 Science of Deep Learning: Bridging Theory and Practice -- Spring 2018](https://people.csail.mit.edu/madry/6.883/)
+* [(Winter 2018) IFT 6085: Theoretical principles for deep learning](http://mitliagkas.github.io/ift6085-dl-theory-class/)
+* [STAT 991: Topics in deep learning (UPenn)](https://github.com/dobriban/Topics-in-deep-learning)
 ### Deep Learning Reading Group
 
 [yanjun](http://www.cs.virginia.edu//papers.htm) organized a wonderful reading group on deep learning.
@@ -176,15 +190,62 @@ Deep learning is at least related with kernel tricks, projection pursuit and neu
 * https://project.inria.fr/deeplearning/
 * https://hustcv.github.io/reading-list.html
 
+### Workshops
+
+* http://pwp.gatech.edu/fdl-2018/program/
+* [Symposium Artificial Intelligence for Science, Industry and Society](https://indico.cern.ch/event/781223/)
+* [4th Workshop on Semantic Deep Learning (SemDeep-4)](http://www.dfki.de/semdeep-4/)
+* [TAU & GTDeepNet seminars](https://www.lri.fr/TAU_seminars/)
+* [NeuroIP 2018 workshop on Deep Learning Theory](http://nips2018dltheory.rice.edu/)
+* [Toward theoretical understanding of deep learning](https://unsupervised.cs.princeton.edu/deeplearningtutorial.html)
+- [The Science of Deep Learning](http://www.nasonline.org/programs/nas-colloquia/completed_colloquia/science-of-deep-learning.html)
+- [PG Program in Artificial Intelligence & Machine Learning: Business Applications](https://la.utexas.edu/greatlearning/uta-artificial-intelligence-machine-learning.html)
+- [Explainable AI Workshop](https://www.nist.gov/news-events/events/2021/01/explainable-ai-workshop)
+- https://people.eecs.berkeley.edu/~malik/
+- [heoretical Foundation of Deep Learning (TFDL 2018)](https://sites.gatech.edu/fdl-2018/program/)
+- https://simons.berkeley.edu/programs/dl2019
+- https://www.minds.jhu.edu/tripods/
+- https://humancompatible.ai/research
+- [Theory of Deep Learning, ICML'2018](https://sites.google.com/site/deeplearningtheory/)
+- [Identifying and Understanding Deep Learning Phenomena](http://deep-phenomena.org/)
+- https://ijcai20interpretability.github.io/
+- https://niceworkshop.org/
+- https://ecea-5.sciforum.net/
+
+### Labs
+
+* https://ori.ox.ac.uk/labs/a2i/
+- [NSF, Simons Foundation partner to uncover foundations of deep learning](https://www.nsf.gov/news/special_reports/announcements/082520.jsp)
+- https://elsc.huji.ac.il/faculty-staff/haim-sompolinsky
+- https://www.neuralnet.science/
+- https://carolewu.engineering.asu.edu/
+- https://www.nist.gov/artificial-intelligence
+- https://humancompatible.ai/
+- http://kordinglab.com/
+- http://koerding.com/
+- https://www.regina.csail.mit.edu/
+- https://www.cs.huji.ac.il/~shashua/research.php
+- http://www.cns.nyu.edu/~eero/
+- https://xiangxiangxu.com/
+* http://qszhang.com/index.php/team/
+* https://gangwg.github.io/research.html
+* http://www.mit.edu/~k2smith/
+* https://www.msra.cn/zh-cn/news/people-stories/wei-chen
+* https://www.microsoft.com/en-us/research/people/tyliu/
+* https://www.researchgate.net/profile/Hatef_Monajemi
+
 ## Interpretability in AI 
 
-
-- https://ec.europa.eu/jrc/communities/en/node/1162/article/interpretability-ai-and-its-relation-fairness-transparency-reliability-and-trust
+* [2018 Workshop on Interpretable & Reasonable Deep Learning and its Applications (IReDLiA)](http://web.fsktm.um.edu.my/~cschan/iredlia.html)
+- http://networkinterpretability.org/
+- https://interpretablevision.github.io/
+- https://vipriors.github.io/
+- [Interpretability in AI and its relation to fairness, transparency, reliability and trust](https://ec.europa.eu/jrc/communities/en/node/1162/article/interpretability-ai-and-its-relation-fairness-transparency-reliability-and-trust)
 - https://github.com/jphall663/awesome-machine-learning-interpretability
 - https://people.mpi-sws.org/~manuelgr/
-- https://ec.europa.eu/jrc/communities/en/community/humaint/event/2nd-humaint-winter-school-fairness-accountability-and-transparency
+- [2nd HUMAINT Winter school on Fairness, Accountability and Transparency in Artificial Intelligence](https://ec.europa.eu/jrc/communities/en/community/humaint/event/2nd-humaint-winter-school-fairness-accountability-and-transparency)
 - https://facctconference.org/network/
-- https://facctconference.org/network/
+- https://calculatedcontent.com/
 
 ### Interpretability of Neural Networks
 
@@ -230,7 +291,7 @@ Finally, we discuss prospective trends in explainable artificial intelligence.
 Not all one can understand the relative theory or quantum theory.
 
 - [Interpretable Convolutional Neural Networks](https://github.com/zqs1022/interpretableCNN)
-
+* [Integrated and detailed image understanding](https://www.robots.ox.ac.uk/~vedaldi//research/idiu/idiu.html)
 ### DeepLEVER
 
 > DeepLEVER aims at explaining and verifying machine learning systems via combinatorial optimization in general and SAT in particular. 
@@ -264,7 +325,7 @@ Not all one can understand the relative theory or quantum theory.
 - https://sciml.ai/
 - https://github.com/mitmath/18S096SciML
 - https://ml4sci.lbl.gov/
-- https://www.nottingham.ac.uk/conference/fac-sci/maths-sci/scientific-computation-using-machine-learning-algorithms/
+- [Scientific computation using machine-learning algorithms](https://www.nottingham.ac.uk/conference/fac-sci/maths-sci/scientific-computation-using-machine-learning-algorithms/)
 - https://sites.google.com/lbl.gov/ml4sci/
 - [SciANN: Neural Networks for Scientific Computations](https://github.com/sciann/sciann/)
 
@@ -283,6 +344,7 @@ Methods using artificial intelligence have in fact already advanced progress on 
 
 <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2017/09/InfoBottleneck_2880x1620.jpg" width="80%"/>
 
+* https://julialang.org/jsoc/gsoc/sciml/
 * https://zhuanlan.zhihu.com/p/94249675
 * https://web.stanford.edu/~montanar/index.html
 * [Physics Meets ML](https://www.microsoft.com/en-us/research/event/physics-ml-workshop/)
@@ -320,7 +382,7 @@ Methods using artificial intelligence have in fact already advanced progress on 
 * [Machine Learning for Physics and the Physics of Learning](https://www.ipam.ucla.edu/programs/long-programs/machine-learning-for-physics-and-the-physics-of-learning/)
 * [Machine Learning for Physics](https://machine-learning-for-physicists.org/)
 * [2017 Machine Learning for Physicists, by Florian Marquardt](http://www.thp2.nat.uni-erlangen.de/index.php/2017_Machine_Learning_for_Physicists,_by_Florian_Marquardt)
-* https://ml4physicalsciences.github.io/2020/
+* [Machine Learning and the Physical Sciences](https://ml4physicalsciences.github.io/2020/)
 * [Machine Learning in Physics School/Workshop](http://phys.cts.nthu.edu.tw/actnews/content.php?Sn=468)
 * http://deeplearnphysics.org/
 
@@ -340,15 +402,27 @@ Methods using artificial intelligence have in fact already advanced progress on 
 * [A Differentiable Physics Engine for Deep Learning](http://phys.csail.mit.edu/papers/1.pdf)
 * [Physics Based Vision meets Deep Learning (PBDL)](https://pbdl2019.github.io/)
 * [Physics-Based Deep Learning](https://github.com/thunil/Physics-Based-Deep-Learning)
+* [Hamiltonian Neural Networks](https://greydanus.github.io/2019/05/15/hamiltonian-nns/)
 
 #### Physics Informed Machine Learning
 
+- [Physics Informed Machine Learning](https://tartakovsky.stanford.edu/research/physics-informed-machine-learning)
+- https://www.pnnl.gov/computing/philms/
 * https://sites.google.com/view/icml2019phys4dl/schedule
 * [Theoretical Physics for Deep Learning](https://icml.cc/Conferences/2019/ScheduleMultitrack?event=3531)
 * https://sites.google.com/view/icml2019phys4dl/schedule
 * [Physics Informed Machine Learning Workshop](http://www.databookuw.com/page-5/)
+
+#### Physics Informed Deep Learning
+
 * [Physics Informed Neural Networks](https://github.com/maziarraissi/PINNs)
-* https://maziarraissi.github.io/PINNs/
+* [Physics Informed Deep Learning](https://maziarraissi.github.io/PINNs/)
+* https://maziarraissi.github.io/research/1_physics_informed_neural_networks/
+* https://github.com/maziarraissi/PINNs
+* https://github.com/56aaaaa/Physics-informed-neural-networks
+* [Physics-informed deep learning imaging](http://sites.bu.edu/tianlab/publications/physics-embedded-deep-learning/)
+* https://github.com/DeepNeuralAI/DL-Physics-Neural-Network
+* https://wasp-sweden.org/
   
 ### Statistical Mechanics and Deep Learning
 
@@ -401,6 +475,15 @@ ____
 * [Unifying Physics and Deep Learning with TossingBot](https://ai.googleblog.com/2019/03/unifying-physics-and-deep-learning-with.html)
 
 
+### Deep Neural Network and Renormalization Group
+
+- [A Common Logic to Seeing Cats and Cosmos](https://www.quantamagazine.org/deep-learning-relies-on-renormalization-physicists-find-20141204/)
+- [Neural Network Renormalization Group](http://www.iop.cas.cn/xwzx/kydt/201901/P020190107535434397653.pdf)
+- [WHY DEEP LEARNING WORKS II: THE RENORMALIZATION GROUP](https://calculatedcontent.com/2015/04/01/why-deep-learning-works-ii-the-renormalization-group/)
+- https://guava.physics.uiuc.edu/~nigel/courses/563/Essays_2017/PDF/Luo.pdf
+- https://rojefferson.blog/2019/08/04/deep-learning-and-the-renormalization-group/
+- [Dealings with Data Physics, Machine Learning and Geometry](https://ecommons.cornell.edu/handle/1813/67530)
+
 ## Mathematics of Deep Learning
 
 - [Meeting on Mathematics of Deep Learning](https://www.4tu.nl/ami/en/Agenda-Events/)
@@ -411,6 +494,9 @@ ____
 - [.520/6.860: Statistical Learning Theory and Applications, Fall 2018](http://www.mit.edu/~9.520/fall18/)
 - [2018上海交通大学深度学习理论前沿研讨会 - 凌泽南的文章 - 知乎](https://zhuanlan.zhihu.com/p/40097048)
 - [Theories of Deep Learning](https://www.researchgate.net/project/Theories-of-Deep-Learning)
+- https://orion.math.iastate.edu/hliu/MDL/
+- https://deepmath-conference.com/
+
 
 A mathematical theory of deep networks and of why they work as well as they do is now emerging. 
 [I will review some recent theoretical results on the approximation power of deep networks](http://www.mit.edu/~9.520/fall17/Classes/deep_learning_theory.html) 
@@ -480,6 +566,7 @@ Philipp Petersen, University of Oxford
 
 #### MIP and Deep Learning
 
+- http://www.joehuchette.com/
 - [Strong mixed-integer programming formulations for trained neural networks by Joey Huchette1](http://www.cas.mcmaster.ca/~deza/slidesRIKEN2019/huchette.pdf)
 - [Deep neural networks and mixed integer linear optimization](https://link.springer.com/article/10.1007/s10601-018-9285-6)
 - [Matteo Fischetti, University of Padova](http://www.dei.unipd.it/~fisch/papers/slides/2018%20Dagstuhl%20%5BFischetti%20on%20DL%5D.pdf)
@@ -738,11 +825,15 @@ We use this low dimensionality to guarantee the existence of a reduced basis.
 - https://github.com/amkatrutsa/DeepPDE
 - https://github.com/maziarraissi/DeepHPMs
 - https://github.com/markovmodel/deeptime
+- https://torchdyn.readthedocs.io/en/latest/index.html
 - [Deep Hidden Physics Models: Deep Learning of Nonlinear Partial Differential Equations](https://arxiv.org/abs/1801.06637)
 - [SPNets: Differentiable Fluid Dynamics for Deep Neural Networks](https://rse-lab.cs.washington.edu/papers/spnets2018.pdf)
 - https://maziarraissi.github.io/DeepHPMs/
 - [A Theoretical Analysis of Deep Neural Networks and Parametric PDEs](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Kutyniok/Papers/Parametric_PDEs_and_NNs_.pdf)
 - [Deep Approximation via Deep Learning](http://ins.sjtu.edu.cn:3300/conferences/7/talks/314)
+- [ Diffeq 202020](http://iclr2020deepdiffeq.rice.edu/)
+- https://openreview.net/group?id=ICLR.cc/2020/Workshop/DeepDiffEq#accept-poster
+- https://mcallester.github.io/ttic-31230/Fall2020/
 
 ### Deep Learning for PDEs
 
@@ -905,6 +996,8 @@ such as denoising and compressive sensing. Motivated by those success stories, r
 - [deep inverse optimization](https://github.com/tankconcordia/deep_inv_opt)
 - https://ori.ox.ac.uk/deep-irl/
 - https://physai.sciencesconf.org/data/pages/perez_2019_03_Institut_Pascal_AI_and_Physics_noanim.pdf
+- https://neurips.cc/virtual/2020/public/workshop_16128.html
+- https://data102.org/fa20/
 
 ## Random Matrix Theory and Deep Learning
 
@@ -1000,6 +1093,7 @@ In this framework, we give the geometric structures of different deep learning s
 - [Optimal Transport Theory the New Math for Deep Learning](https://mc.ai/optimal-transport-theory-the-new-math-for-deep-learning/)
 - [GeoNet: Deep Geodesic Networks for Point Cloud Analysis](http://openaccess.thecvf.com/content_CVPR_2019/papers/He_GeoNet_Deep_Geodesic_Networks_for_Point_Cloud_Analysis_CVPR_2019_paper.pdf)
 - http://www.stat.uchicago.edu/~lekheng/
+- https://web.mat.upc.edu/sebastia.xambo/ICIAM2019/GC&DL.html
 - https://www.nsf.gov/awardsearch/showAward?AWD_ID=1418255
 - https://nsf-tripods.org/institutes/
 - https://users.math.msu.edu/users/wei/
@@ -1032,26 +1126,95 @@ One byproduct of the analysis is the production of a geometry on new sets of fea
 and use this observation to develop a methodology for constructing analogues of CNN's for many other geometries, 
 including the graph structures constructed by topological data analysis.
 
+- https://keuperj.github.io/DeToL/
 - [Topological Methods for Machine Learning](http://topology.cs.wisc.edu/)
-- [A Topology Layer for Machine Learning](http://ai.stanford.edu/blog/topologylayer/)
 - [Topological Approaches to Deep Learning](https://arxiv.org/abs/1811.01122)
+- [Topological Data Analysis and Beyond](https://tda-in-ml.github.io/papers.html)
 - https://www.gaotingran.com/
 - [Topology based deep learning for biomolecular data](https://users.math.msu.edu/users/wei/AIM.pdf)
 - [RESEARCH ARTICLE TopologyNet: Topology based deep convolutional and multi-task neural networks for biomolecular property predictions](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005690)
 - [Exposition and Interpretation of the Topology of Neural Networks](https://arxiv.org/abs/1810.03234)
 - https://zhuanlan.zhihu.com/p/26515275
-- [Applying Topological Persistence in Convolutional Neural Network for Music Audio Signals](https://arxiv.org/pdf/1608.07373.pdf)
 - [Towards a topological–geometrical theory of group equivariant non-expansive operators for data analysis and machine learning](https://www.nature.com/articles/s42256-019-0087-3)
+- https://github.com/FatemehTarashi/awesome-tda
+- [Graph Machine Learning using 3D Topological Models](http://orca.cf.ac.uk/131855/1/55.pdf)
+- [A Stable Multi-Scale Kernel for Topological Machine Learning](https://openaccess.thecvf.com/content_cvpr_2015/papers/Reininghaus_A_Stable_Multi-Scale_2015_CVPR_paper.pdf)
+- https://github.com/Chen-Cai-OSU/Topology-and-Learning  
+- [Topology Optimization based Graph Convolutional Network](https://yangliang.github.io/pdf/ijcai19_to.pdf)
+
+
+### Topological machine learning
+
+- https://www.birs.ca/workshops/2012/12w5081/report12w5081.pdf
+- http://cunygc.appliedtopology.nyc/
+- https://www.sthu.org/research/topmachinelearning/
+- https://arxiv.org/abs/2003.04584
+- [Multiparameter Persistence Images for Topological Machine Learning](https://web.ma.utexas.edu/users/blumberg/camera-ready.pdf)
+- [Topological Data Analysis](https://github.com/FatemehTarashi/awesome-tda)
+- [Understanding Bias in Datasets using Topological Data Analysis](http://ceur-ws.org/Vol-2419/paper_9.pdf)
+- [Optimal Transport, Topological Data Analysis and Applications to Shape and Machine Learning](https://mbi.osu.edu/events/optimal-transport-topological-data-analysis-and-applications-shape-and-machine-learning)
+- https://tgda.osu.edu/ot-tda-workshop/
+- [Topology and Machine Learning](https://topology.cs.wisc.edu/Bak.pdf)
+- [A Topology Layer for Machine Learning](http://ai.stanford.edu/blog/topologylayer/)
+- [giotto-tda: A Topological Data Analysis Toolkit for Machine Learning and Data Exploration](https://www.jmlr.org/papers/volume22/20-325/20-325.pdf)
+- [A Stable Multi-Scale Kernel for Topological Machine Learning](https://openaccess.thecvf.com/content_cvpr_2015/papers/Reininghaus_A_Stable_Multi-Scale_2015_CVPR_paper.pdf)
+- [Topological Machine Learning for Multivariate Time Series](https://arxiv.org/pdf/1911.12082.pdf)
+- https://sites.google.com/site/nips2012topology/
+- [Persistence Images: A Stable Vector Representation of Persistent Homology](https://www.jmlr.org/papers/volume18/16-337/16-337.pdf)
+- [Topological data analysis of zebrafish patterns](https://www.pnas.org/content/117/10/5113)
+- https://elib.dlr.de/128105/1/MIMA_IGRASS_2019.pdf
+- [Using topological data analysis for diagnosis pulmonary embolism](http://cdn.ayasdi.com/wp-content/uploads/2016/01/JTACS_2015_01_05-1.pdf)
+- [Persistence Bag-of-Words for Topological Data Analysis](https://www.ijcai.org/Proceedings/2019/0624.pdf)
 
 ### Topology Optimization and  Deep Learning
 
-- http://www.inescporto.pt/~jsc/publications/conferences/2019RAraujoMICCAI.pdf
-- https://yangliang.github.io/pdf/ijcai19_to.pdf
+- [A Deep Learning Design for improving Topology Coherence in Blood Vessel Segmentation](http://www.inescporto.pt/~jsc/publications/conferences/2019RAraujoMICCAI.pdf)
 - https://www.dbs.ifi.lmu.de/~tresp/
 - [A Novel Topology Optimization Approach using Conditional Deep Learning](https://arxiv.org/abs/1901.04859)
-- https://arxiv.org/ftp/arxiv/papers/1901/1901.07761.pdf
+- [A deep Convolutional Neural Network for topology optimization with strong generalization ability](https://arxiv.org/ftp/arxiv/papers/1901/1901.07761.pdf)
 - https://www.researchgate.net/publication/322568237_Deep_learning_for_determining_a_near-optimal_topological_design_without_any_iteration
 - [Topology Optimization Accelerated by Deep Learning](https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/74695/1/MAGCON-18-11-1747-final.pdf)
+
+### Deep Learning with Topological Data Analysis
+
+
+- [Topological Data Analysis Based Approaches to Deep Learning](https://www.ayasdi.com/wp-content/uploads/2018/11/TDA-Based-Approaches-to-Deep-Learning.pdf)
+- [Topological Measurement of Deep Neural Networks Using Persistent Homology](https://isaim2020.cs.ou.edu/papers/ISAIM2020_Watanabe_Yamana.pdf)
+- https://isaim2020.cs.ou.edu/
+- https://graphnav.stanford.edu/
+- [Applying Topological Persistence in Convolutional Neural Network for Music Audio Signals](https://arxiv.org/pdf/1608.07373.pdf)
+#### Deep Learning with Topological Layer
+
+Topological Layer is used to extract the feature via topological data analysis.
+
+- [Deep Learning with Topological Signatures](https://biag.cs.unc.edu/publication/dblp-confnips-hofer-knu-17/)
+- http://machinelearning.math.rs/Jekic-TDA.pdf
+- [Feature Extraction Using Topological Data Analysis for Machine Learning and Network Science Applications](https://digital.lib.washington.edu/researchworks/handle/1773/45507)
+- [Mixing Topology and Deep Learning with PersLay](https://opendatascience.com/mixing-topology-and-deep-learning-with-perslay/)
+- https://arxiv.org/pdf/1904.09378.pdf
+- https://github.com/bruel-gabrielsson/TopologyLayer
+- [A Topology Layer for Machine Learning](http://proceedings.mlr.press/v108/gabrielsson20a.html)
+- [Improved Image Classification using Topological Persistence](http://web.cse.ohio-state.edu/~dey.8/paper/ImagePers/ImagePers.pdf)
+
+#### Topological Graph Neural Networks
+
+
+- https://arxiv.org/abs/2102.07835
+- [Topology Optimization based Graph Convolutional Network](https://yangliang.github.io/pdf/ijcai19_to.pdf)
+- [Persistence Enhanced Graph Neural Network](http://proceedings.mlr.press/v108/zhao20d.html)
+- https://www.ijcai.org/Proceedings/2019/0550.pdf
+
+#### Topology-Based Graph Classification
+
+
+- [Recent Advances in Topology-Based Graph Classification](https://bastian.rieck.me/talks/Topology-Based_Graph_Classification_December_2020.pdf)
+- https://arxiv.org/abs/1911.06892
+- [A Persistent Weisfeiler–Lehman Procedure for Graph Classification](http://proceedings.mlr.press/v97/rieck19a/rieck19a.pdf)
+- [A General Neural Network Architecture for Persistence Diagrams and Graph Classification](https://geometrica.saclay.inria.fr/team/Fred.Chazal/papers/ccilm-gnnap-19/graphclassifhks.pdf)
+- http://homepages.cs.ncl.ac.uk/stephen.mcgough/CV/Papers/2016/GFPX2-slides.pdf
+- https://ieeexplore.ieee.org/document/7840988
+- https://bastian.rieck.me/talks/AMLD2020_Slides.pdf
+- [Topological based classification of paper domains using graph convolutional networks](https://arxiv.org/ftp/arxiv/papers/1904/1904.07787.pdf)
 
 ## Algebra and Deep Learning
 
@@ -1090,6 +1253,7 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 Aizenberg, Ivaskiv, Pospelov and Hudiakov (1971) (former Soviet Union) proposed a complex-valued neuron model for the first time, and although it was only available in Russian literature, their work can now be read in English (Aizenberg, Aizenberg & Vandewalle, 2000). Prior to that time, most researchers other than Russians had assumed that the first persons to propose a complex-valued neuron were Widrow, McCool and Ball (1975). Interest in the field of neural networks started to grow around 1990, and various types of complex-valued neural network models were subsequently proposed. Since then, their characteristics have been researched, making it possible to solve some problems which could not be solved with the real-valued neuron, and to solve many complicated problems more simply and efficiently.
 
 - http://what-when-how.com/artificial-intelligence/complex-valued-neural-networks-artificial-intelligence/
+- [The 10th International Conference on Complex Networks and their Applications](https://complexnetworks.org/)
 
 > The complex-valued Neural Network is an extension of a (usual) real-valued neural network, whose input and output signals and parameters such as weights and thresholds are all complex numbers (the activation function is inevitably a complex-valued function).
 
@@ -1329,6 +1493,16 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 * [Deep Learning and the Information Bottleneck Principle](https://arxiv.org/pdf/1503.02406.pdf)
 * https://mc.ai/summary-on-the-information-bottleneck-theory-of-deep-learning/
 
+### InfoMax 
+
+* [Greedy InfoMax for Self-Supervised Representation Learning](https://loewex.github.io/Thesis_SindyLoewe_GreedyInfoMax.pdf)
+* [Mutual Information Maximization for Simple and Accurate Part-Of-Speech Induction](https://www.aclweb.org/anthology/N19-1113.pdf)
+* https://arxiv.org/abs/1808.06670
+* [Deep InfoMax: Learning good representations through mutual information maximization](https://www.microsoft.com/en-us/research/blog/deep-infomax-learning-good-representations-through-mutual-information-maximization/)
+* https://kwotsin.github.io/post/deep_infomax/
+* https://loewex.github.io/
+* https://kwotsin.github.io/publication/infomax-gan/
+
 ## Brain Science and AI
 
 Artificial intelligence and brain science have had a swinging relationship of convergence and divergence. 
@@ -1355,6 +1529,8 @@ Recently, however, the remarkable success of deep neural networks in learning fr
 * [Deep Learning: Branching into brains](https://elifesciences.org/articles/33066)
 * https://www.humanbrainproject.eu/en/
 * https://www.neuro-central.com/ask-experts-artificial-intelligence-neuroscience/
+* https://sites.google.com/mila.quebec/neuroaiworkshop
+* [Brains and Bits: Neuroscience Meets Machine Learning](http://www.stat.ucla.edu/~akfletcher/brainsbits.html)
 
 ### Spiking neural networks
 
@@ -1407,7 +1583,7 @@ In the absence of explanations for such cognitive phenomena,
 * https://www.dcsc.es/
 * [Deep Neural Networks as Scientific Models](https://www.cell.com/action/showPdf?pii=S1364-6613%2819%2930034-8)
 * http://vca.ele.tue.nl/
-* https://deepmind.com/research/publications/psychlab-psychology-laboratory-deep-reinforcement-learning-agents
+* [Psychlab](https://deepmind.com/research/publications/psychlab-psychology-laboratory-deep-reinforcement-learning-agents)
 * https://www.uni-potsdam.de/en/mlcog/index.html
 * https://csai.nl/home/
 * https://hadrienj.github.io/about/
@@ -1416,13 +1592,60 @@ In the absence of explanations for such cognitive phenomena,
 * https://sites.google.com/view/goergen
 * https://engineering.purdue.edu/IE/people/ptProfile?resource_id=126302
 * https://engineering.columbia.edu/faculty/christos-papadimitriou
-* https://www.bio.purdue.edu/People/faculty_dm/directory.php?refID=1000000303
+* [Peristera Paschou](https://www.bio.purdue.edu/People/faculty_dm/directory.php?refID=1000000303)
 * https://people.csail.mit.edu/mirrokni/Welcome.html
 * https://www.mindcogsci.net/
 * https://ganguli-gang.stanford.edu/people.html
 * http://wiki.ict.usc.edu/cogarch/index.php/Main_Page
 * http://cogarch.ict.usc.edu/
 * http://bicasociety.org/cogarch/architectures.php
+* [The Neural Adaptive Computing Laboratory (NAC Lab)](https://www.cs.rit.edu/~ago/nac_lab.html)
+* https://baicsworkshop.github.io/speakers.html
+
+### Predictive coding
+
+[Predictive coding is a leading theory of how the brain performs probabilistic inference. ](https://nms.kcl.ac.uk/michael.spratling/Doc/taxonomy_pc.pdf)
+
+<img src="https://libi.engin.umich.edu/wp-content/uploads/sites/471/2019/11/droppedImage-1.jpg" width="80%"/>
+
+
+- [Neuronal Dynamics of Predictive Coding](https://sites.oxy.edu/clint/physio/article/NeuronalDynamicsofPredictiveCoding.pdf)
+- https://lorenlugosch.github.io/posts/2020/07/predictive-coding/
+- https://www.cc.gatech.edu/~dovrolis/Papers/ContinualLearning18.pdf
+- [Predictive coding and Bayesian inference in the brain](https://xaqlab.com/2017/12/01/predictive-coding-and-bayesian-inference-in-the-brain/)
+- [PREDICTIVE CODING “IS AS IMPORTANT TO NEUROSCIENCE AS EVOLUTION IS TO BIOLOGY.”](https://mind-foundation.org/predictive-coding/)
+- [LAB: Lab for the Algorithmic Brain](https://xaqlab.com/)
+- https://www.fil.ion.ucl.ac.uk/~karl/#_Computational_neuroscience
+- [Maximal Mutual Information Predictive Coding for Natural Language Processing](https://ai.stonybrook.edu/AI-Lecture-Maximal-Mutual-Information-Predictive-Coding-NLP)
+- https://senselab.med.yale.edu/modeldb/ModelList?id=223029
+- https://libi.engin.umich.edu/research/neuroscience-driven-artificial-intelligence/
+- [The Bayesian Brain: An Introduction to Predictive Processing](https://www.mindcoolness.com/blog/bayesian-brain-predictive-processing/)
+- https://ieeexplore.ieee.org/document/8733892
+
+### Contrastive Predictive Coding
+
+<img src="https://yann-leguilly.gitlab.io/img/contrastive_1/contrastive_fig_1.webp" width="80%">
+
+- [Representation Learning with Contrastive Predictive Coding](https://arxiv.org/pdf/1807.03748.pdf)
+- [Representation Learning with Contrastive Predictive Coding (Jan 2019)](https://yann-leguilly.gitlab.io/post/2019-09-29-representation-learning-with-contrastive-predictive-coding/)
+- http://128.84.21.203/abs/2005.12963
+- https://arxiv.org/abs/2004.10120
+- https://github.com/SonyCSLParis/vqcpc-bach
+- https://sonycslparis.github.io/vqcpc-bach/
+- http://proceedings.mlr.press/v136/stacke20a/stacke20a.pdf
+- http://people.csail.mit.edu/clai24/data/lai2019contrastive.pdf
+
+### Hierarchical Predictive Coding
+
+> A hierarchical predictive coding model consists of layers of latent variables (tiers). Each tier attempts to predict the adjacent lower tier, resulting in a predicted state and a prediction error. By minimizing the prediction error, both the latent variables and the predictors of these variables are estimated.
+
+> This principle is often complemented by more general variations that will be supported in future versions of the package
+
+- https://sflippl.github.io/predicode/html/index.html
+- [Does Hierarchical Predictive Coding Explain Perception?](https://sungsoo.github.io/2018/06/02/what-explains-perception-in-the-brain.html)
+- https://arxiv.org/abs/2005.03230
+- https://ieeexplore.ieee.org/document/9262044
+- https://core.ac.uk/display/202307343
 
 ## The lottery ticket hypothesis
 
@@ -1480,6 +1703,12 @@ $$\fbox{Learning}\not ={Training} \\ Generalization\not ={Optimziation}.$$
 - [High-dimensional dynamics of generalization error in neural networks](https://arxiv.org/abs/1710.03667)
 - https://mltheory.org/deep.pdf
 
+## Neural Tangents
 
+- https://arxiv.org/pdf/1905.13192.pdf
+- [Neural Tangent Kernel: Convergence and Generlization in Neural Networks](https://neurips.cc/media/Slides/nips/2018/220e(04-15-30)-04-16-50-12604-Neural_Tangent_.pdf)
+- https://github.com/google/neural-tangents
+- http://simonshaoleidu.com/
+- http://www.offconvex.org/2019/10/03/NTK/
 
 

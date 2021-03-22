@@ -1,10 +1,123 @@
+# Content
+- [Content](#content)
+  - [IR and Search](#ir-and-search)
+    - [Information Acquisition: Web Crawling](#information-acquisition-web-crawling)
+    - [Information Organization and Storage: Indexing and Index](#information-organization-and-storage-indexing-and-index)
+      - [Index Creation](#index-creation)
+        - [B+ Tree](#b-tree)
+        - [BitMap](#bitmap)
+        - [Hashing](#hashing)
+        - [Locality-Sensitive Hashing](#locality-sensitive-hashing)
+        - [Cuckoo	Hashing](#cuckoohashing)
+        - [Bio-Inspired Hashing](#bio-inspired-hashing)
+        - [Learning to Hash](#learning-to-hash)
+        - [KNN graph](#knn-graph)
+        - [Learned Indexes](#learned-indexes)
+      - [Index Compression](#index-compression)
+        - [Index Compression for BitFunnel Query Processing](#index-compression-for-bitfunnel-query-processing)
+    - [Information Retrieval](#information-retrieval)
+      - [Query Languages](#query-languages)
+        - [Boolean Queries](#boolean-queries)
+        - [Phrasal Queries](#phrasal-queries)
+        - [Proximity Queries](#proximity-queries)
+        - [Pattern Matching](#pattern-matching)
+        - [Regular Expressions](#regular-expressions)
+        - [Structural Queries](#structural-queries)
+        - [SQL](#sql)
+      - [Query Parser and Understanding](#query-parser-and-understanding)
+        - [Query Operations](#query-operations)
+        - [Query Auto Completion](#query-auto-completion)
+        - [Spelling Correction](#spelling-correction)
+        - [Query Suggestion](#query-suggestion)
+        - [Query Expansion](#query-expansion)
+        - [Query Relaxation](#query-relaxation)
+        - [Query Segmentation](#query-segmentation)
+        - [Query Scoping](#query-scoping)
+        - [Query Understanding](#query-understanding)
+        - [Intention Analysis](#intention-analysis)
+      - [Relevance and Rank](#relevance-and-rank)
+      - [Query-independent Ranking](#query-independent-ranking)
+      - [Query-dependent ranking](#query-dependent-ranking)
+        - [TF-IDF](#tf-idf)
+        - [Robertson-SparckJones Model](#robertson-sparckjones-model)
+        - [BM25](#bm25)
+        - [The language model for information retrieval (LMIR)](#the-language-model-for-information-retrieval-lmir)
+        - [TextRank](#textrank)
+        - [Text Summarization](#text-summarization)
+        - [Document Similarity](#document-similarity)
+      - [Vector Quantization](#vector-quantization)
+        - [Latent semantic indexing](#latent-semantic-indexing)
+        - [Regularized Latent Semantic Indexing](#regularized-latent-semantic-indexing)
+        - [Partial Least Square (PLS)](#partial-least-square-pls)
+      - [Comparison and Matching](#comparison-and-matching)
+        - [Learning to Match](#learning-to-match)
+      - [Bit-string Signatures](#bit-string-signatures)
+        - [COBS](#cobs)
+        - [BitFunnel](#bitfunnel)
+      - [Approximate Nearest Neighbors](#approximate-nearest-neighbors)
+        - [Annoy](#annoy)
+        - [FALCONN](#falconn)
+        - [SPTAG](#sptag)
+        - [Faiss](#faiss)
+        - [HNSW: Hierarchical  Navigable Small World](#hnsw-hierarchical--navigable-small-world)
+      - [Scalable Similarity Search](#scalable-similarity-search)
+      - [Semantic Search](#semantic-search)
+    - [Personalized Search](#personalized-search)
+      - [Learning from User Interactions](#learning-from-user-interactions)
+      - [TrustRank](#trustrank)
+    - [Information Distribution: Search Engine Results Page](#information-distribution-search-engine-results-page)
+      - [Keywords Highlight](#keywords-highlight)
+      - [Webpage Snapshot](#webpage-snapshot)
+    - [Information Retrieval Evaluation](#information-retrieval-evaluation)
+    - [Neural Information Retrieval](#neural-information-retrieval)
+      - [Deep Structured Semantic Model](#deep-structured-semantic-model)
+      - [Deep Relevance Matching Model](#deep-relevance-matching-model)
+      - [DeepRank: Text Matching as Image Recognition](#deeprank-text-matching-as-image-recognition)
+      - [Tree-based Deep Match(TDM)](#tree-based-deep-matchtdm)
+      - [Vector Search Engine](#vector-search-engine)
+        - [Weaviate](#weaviate)
+        - [Milvus](#milvus)
+        - [Jina](#jina)
+    - [Modeling Diverse Ranking with MDP](#modeling-diverse-ranking-with-mdp)
+    - [Vertical Domain Search: Beyond String and Texts](#vertical-domain-search-beyond-string-and-texts)
+      - [Web Table Extraction, Retrieval and Augmentation](#web-table-extraction-retrieval-and-augmentation)
+      - [Scholar Search Engine](#scholar-search-engine)
+      - [Patent Search and Analysis](#patent-search-and-analysis)
+    - [MACHINE LEARNING FOR HEALTHCARE](#machine-learning-for-healthcare)
+      - [Health Information Retrieval: Biomedical and Health Informatics](#health-information-retrieval-biomedical-and-health-informatics)
+        - [What is Biomedical and Health Informatics?](#what-is-biomedical-and-health-informatics)
+        - [Why is medical information retrieval important?](#why-is-medical-information-retrieval-important)
+        - [Why is medical information retrieval difficult?](#why-is-medical-information-retrieval-difficult)
+        - [How knowledge bases can improve retrieval performance?](#how-knowledge-bases-can-improve-retrieval-performance)
+      - [Digital Health](#digital-health)
+      - [Multimedia Search Engine](#multimedia-search-engine)
+        - [FGCrossNet](#fgcrossnet)
+        - [Image Search Engine](#image-search-engine)
+      - [Visual search](#visual-search)
+        - [Music Information Retrieval](#music-information-retrieval)
+      - [Interactive Search](#interactive-search)
+      - [E-commerce Search](#e-commerce-search)
+      - [Multimodal Search](#multimodal-search)
+      - [Princeton CASS: Content-Aware Search Systems](#princeton-cass-content-aware-search-systems)
+    - [Knowledge Graphs](#knowledge-graphs)
+      - [WordNet](#wordnet)
+      - [Mag[i]](#magi)
+    - [Labs and Resources](#labs-and-resources)
+      - [Labs on Search and Information Retrieval](#labs-on-search-and-information-retrieval)
+      - [Conferences on Information Retrieval](#conferences-on-information-retrieval)
+      - [Courses on Information Retrieval and Search](#courses-on-information-retrieval-and-search)
 ## IR and Search
 
 Web search engine is the first big data system in order to collect and organize the data in world wide web.
 Information retrieval is the extension of the search engine.
 
+https://sarielhp.org/blog/
 
+- http://pages.cs.wisc.edu/~paris/
+- http://yongyuan.name/habir/
+- http://www.wisdom.weizmann.ac.il/~ronene/GeomAndDS.html
 - http://net.pku.edu.cn/~yangtong/pages/SummerForm18.html
+- https://www.mat.univie.ac.at/~neum/clouds.html
 - http://yongyuan.name/project/
 - https://textprocessing.github.io/ch5.pdf
 - [Princeton CASS: Content-Aware Search Systems](https://www.cs.princeton.edu/cass/)
@@ -12,18 +125,13 @@ Information retrieval is the extension of the search engine.
 - http://www.svcl.ucsd.edu/projects/regularization/
 - http://www.svcl.ucsd.edu/projects/crossmodal/
 - http://fengzheyun.github.io/
+- https://monkeylearn.com/text-analysis/
 - [ ] [RISE: Repository of Online Information Sources Used in Information Extraction Tasks](https://www.isi.edu/info-agents/RISE/)
 - [ ] [Information on Information Retrieval (IR) books, courses, conferences and other resources.](https://nlp.stanford.edu/IR-book/information-retrieval.html)
-- https://monkeylearn.com/text-analysis/
 - [ ] [Recommended Reading for IR Research Students](https://people.eng.unimelb.edu.au/ammoffat/swirl2004/homework-forum.pdf)
 - [ ] [AI in Information Retrieval and Language Processing collected by Wlodzislaw Duch](http://www.is.umk.pl/~duch/IR.html)
-- [ ] [Topics in Natural Language Processing (202-2-5381) Fall 2018](https://www.cs.bgu.ac.il/~elhadad/nlp18.html)
-- [ ] [CS 124: From Languages to Information Winter 2019 Dan Jurafsky](https://web.stanford.edu/class/cs124/)
-- [ ] [CS224U: Natural Language Understanding](https://web.stanford.edu/class/cs224u/)
-- [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
 - [ ] [Marti A. Hearst](http://people.ischool.berkeley.edu/~hearst/teaching.html)
-- [ ] [Applied Natural Language Processing](https://bcourses.berkeley.edu/courses/1453620/assignments/syllabus)
-- [ ] [HanLP：面向生产环境的自然语言处理工具包](http://www.hanlp.com/)
+- [ ] [Database Management Systems: Design and Implementation](http://pages.cs.wisc.edu/~paris/cs564-f15/)
 - [ ] [Synthesis Lectures on Information Concepts, Retrieval, and Services](https://www.morganclaypool.com/toc/icr/1/1)
 - [ ] [State_of_the_art](https://aclweb.org/aclwiki/State_of_the_art)
 - [ ] [Providing Relevant and Timely Results: Real-Time Search Architectures and Relevance Algorithms](http://lintool.github.io/NSF-projects/IIS-1218043/)
@@ -72,7 +180,10 @@ and that can learn form the feedback information over time, which will be talked
 The first step of information retrieval is to acquise the information itself. The web-scale information brings information overload problem, which `search  engine` or  `web search` attempts to solve.  
 
 [Web Crawling By Christopher Olston and Marc Najork](http://infolab.stanford.edu/~olston/publications/crawling_survey.pdf)
-> A web crawler (also known as a robot or a spider) is a system for the bulk downloading of web pages.  Web crawlers are used for a variety of purposes.  Most prominently, they are one of the main components of web search engines, systems that assemble a corpus of web pages, index them, and allow users to issue queries against the index and find the web pages that match the queries.  A related use is web archiving (a service provided by e.g., the Internet archive), where large sets of web pages are periodically collected and archived for posterity. A third use is web data mining, where web pages are analyzed for statistical properties, or where data analytics is performed on them (an example would be Attributor, a company that monitors the web for copyright and trademark infringements). Finally, web monitoring services allow their clients to submit standing queries, or triggers, and they continuously crawl the web and notify clients of pages that match those queries (an example would be GigaAlert).
+> A web crawler (also known as a robot or a spider) is a system for the bulk downloading of web pages.  
+> Web crawlers are used for a variety of purposes.  Most prominently, they are one of the main components of web search engines, systems that assemble a corpus of web pages, index them, and allow users to issue queries against the index and find the web pages that match the queries.  
+> A related use is web archiving (a service provided by e.g., the Internet archive), where large sets of web pages are periodically collected and archived for posterity. 
+> A third use is web data mining, where web pages are analyzed for statistical properties, or where data analytics is performed on them (an example would be Attributor, a company that monitors the web for copyright and trademark infringements). Finally, web monitoring services allow their clients to submit standing queries, or triggers, and they continuously crawl the web and notify clients of pages that match those queries (an example would be GigaAlert).
 
 * https://iorgforum.org/
 * http://facweb.cs.depaul.edu/mobasher/classes/ect584/
@@ -96,7 +207,9 @@ Search engine takes advantage of this idea: it is the best place to store  where
 - [Search engine indexing](https://www.wikiwand.com/en/Search_engine_indexing)
 - [Inverted Index versus Forward Index](http://www.darwinbiler.com/inverted-index-vs-forward-index/)
 - https://www.wikiwand.com/en/Inverted_index
-
+- [To Index or not to Index: Time-Space Trade-Offs in Search Engines with Positional Ranking Functions](http://engineering.nyu.edu/~suel/papers/wavelet.pdf)
+- [NSF III-1718680: Index Sharding and Query Routing in Parallel and Distributed Search Engines](http://engineering.nyu.edu/~suel/pdse/)
+  
 #### Index Creation
 
 Here we introduce some data structure which can speed up the search procedure given a query.
@@ -111,10 +224,130 @@ It is the core function of information retrieval system.
 - [ ] [Terrier IR Platform](http://terrier.org/)
 - [ ] [Trinity IR Infrastructure](https://github.com/phaistos-networks/Trinity)
 - [ ] [Lemur Beginner's Guide, getting started using Lemur](http://www.cs.cmu.edu/~lemur/LemurGuide.html)
-- [ ] [fast library for ANN search and KNN graph constructio](https://github.com/ZJULearning/efanna)
 - [ ] https://nlp.stanford.edu/IR-book/html/htmledition/index-construction-1.html
+- https://zhuanlan.zhihu.com/p/23624390
+- [Database tutorial](https://cstack.github.io/db_tutorial/)
+- [Inverted file indexing and retrieval optimized for short texts](https://github.com/Microsoft/QBASHER)
+- https://www2.cs.sfu.ca/CourseCentral/354/zaiane/
+- [Indexing CS6320 1/29/2018 Shachi Deshpande, Yunhe Liu](https://www.cs.cornell.edu/courses/cs6320/2019sp/slides/Indexing_final_version.pdf)
 
 
+
+##### B+ Tree
+
+A **B+ Tree** is primarily utilized for implementing dynamic indexing on multiple levels. 
+Compared to B- Tree, the B+ Tree stores the data pointers only at the leaf nodes of the Tree, which makes search more process more accurate and faster.
+
+- https://www.guru99.com/introduction-b-plus-tree.html
+- http://pages.cs.wisc.edu/~paris/cs564-f15/lectures/lecture-12.pdf
+- https://draveness.me/whys-the-design-mysql-b-plus-tree
+
+##### BitMap
+
+[In computing, a bitmap is a mapping from some domain](https://github.com/hashd/bitmap-elixir) (for example, a range of integers) to bits, that is, values which are zero or one. It is also called a bit array or bitmap index.
+
+- https://github.com/hashd/bitmap-elixir
+- https://blog.csdn.net/sunnyyoona/article/details/43604387
+- https://www.geeksforgeeks.org/bitmap-indexing-in-dbms/
+- https://www.oracletutorial.com/oracle-index/oracle-bitmap-index/
+
+##### Hashing 
+
+To quote the [hash function](https://en.wikipedia.org/wiki/Hash_function) at wikipedia:
+> A hash function is any function that can be used to map data of arbitrary size to fixed-size values. The values returned by a hash function are called hash values, hash codes, digests, or simply hashes. The values are used to index a fixed-size table called a hash table. Use of a hash function to index a hash table is called hashing or scatter storage addressing.
+
+Hashed indexes use a hashing function to compute the hash of the value of the index field. 
+The hashing function collapses embedded documents and computes the hash for the entire value but does not support multi-key (i.e. arrays) indexes.
+
+- [Hash function](https://www.jianshu.com/p/bba9b61b80e7)
+- https://github.com/caoyue10/DeepHash-Papers
+- https://zhuanlan.zhihu.com/p/43569947
+- https://www.tutorialspoint.com/dbms/dbms_hashing.htm
+- [Indexing based on Hashing](http://www.mathcs.emory.edu/~cheung/Courses/554/Syllabus/3-index/hashing.html)
+- https://docs.mongodb.com/manual/core/index-hashed/
+- https://www.cs.cmu.edu/~adamchik/15-121/lectures/Hashing/hashing.html
+- https://www2.cs.sfu.ca/CourseCentral/354/zaiane/material/notes/Chapter11/node15.html
+- https://github.com/Pfzuo/Level-Hashing
+- https://thehive.ai/insights/learning-hash-codes-via-hamming-distance-targets
+- [Various hashing methods for image retrieval and serves as the baselines](https://github.com/willard-yuan/hashing-baseline-for-image-retrieval)
+- http://papers.nips.cc/paper/5893-practical-and-optimal-lsh-for-angular-distance
+
+##### Locality-Sensitive Hashing
+
+Locality-Sensitive Hashing (LSH) is a class of methods for the nearest neighbor search problem, which is defined as follows: given a dataset of points in a metric space (e.g., Rd with the Euclidean distance), our goal is to preprocess the data set so that we can quickly answer nearest neighbor queries: given a previously unseen query point, we want to find one or several points in our dataset that are closest to the query point. 
+
+
+- http://web.mit.edu/andoni/www/LSH/index.html
+- http://yongyuan.name/blog/vector-ann-search.html
+- https://github.com/arbabenko/GNOIMI
+- https://github.com/willard-yuan/hashing-baseline-for-image-retrieval
+- http://yongyuan.name/habir/
+
+##### Cuckoo	Hashing
+
+> Cuckoo Hashing is a technique for resolving collisions in hash tables that produces a dictionary with constant-time worst-case lookup and deletion operations as well as amortized constant-time insertion operations.
+
+
+- [An Overview of Cuckoo Hashing](https://cs.stanford.edu/~rishig/courses/ref/l13a.pdf)
+- [Some Open Questions Related to Cuckoo Hashing](https://www.eecs.harvard.edu/~michaelm/postscripts/esa2009.pdf)
+- [Practical Survey on Hash Tables](http://romania.amazon.com/techon/presentations/PracticalSurveyHashTables_AurelianTutuianu.pdf)
+- [Elastic Cuckoo Page Tables: Rethinking Virtual Memory Translation for Parallelism](https://tianyin.github.io/pub/cuckoo_pt.pdf)
+- [MinCounter: An Efficient Cuckoo Hashing Scheme for Cloud Storage Systems](https://www.storageconference.us/2015/Papers/19.Sun.pdf)
+- [Bloom Filters, Cuckoo Hashing, Cuckoo Filters, Adaptive Cuckoo Filters and Learned Bloom Filters](http://research.baidu.com/Public/ueditor/upload/file/20180804/1533345837426670.pdf)
+
+##### Bio-Inspired Hashing
+
+
+The fruit fly Drosophila's olfactory circuit has inspired a new locality sensitive hashing (LSH) algorithm, FlyHash. In contrast with classical LSH algorithms that produce low dimensional hash codes, FlyHash produces sparse high-dimensional hash codes and has also been shown to have superior empirical performance compared to classical LSH algorithms in similarity search. 
+However, FlyHash uses random projections and cannot learn from data. Building on inspiration from FlyHash and the ubiquity of sparse expansive representations in neurobiology, our work proposes a novel hashing algorithm BioHash that produces sparse high dimensional hash codes in a data-driven manner. We show that BioHash outperforms previously published benchmarks for various hashing methods. 
+Since our learning algorithm is based on a local and biologically plausible synaptic plasticity rule, our work provides evidence for the proposal that LSH might be a computational reason for the abundance of sparse expansive motifs in a variety of biological systems. 
+We also propose a convolutional variant BioConvHash that further improves performance. From the perspective of computer science, BioHash and BioConvHash are fast, scalable and yield compressed binary representations that are useful for similarity search.
+
+**FlyHash**
+
+- [Bio-Inspired Hashing for Unsupervised Similarity Search](https://arxiv.org/abs/2001.04907)
+- https://github.com/dataplayer12/Fly-LSH
+- https://deepai.org/publication/bio-inspired-hashing-for-unsupervised-similarity-search
+- https://science.sciencemag.org/content/358/6364/793/tab-pdf
+- https://arxiv.org/abs/1812.01844
+
+#####  Learning to Hash
+
+By using hash-code to construct index, [we](https://cs.nju.edu.cn/lwj/slides/L2H.pdf) can achieve constant or
+sub-linear search time complexity.
+
+
+Hash functions are learned from a given training dataset.
+
+
+- https://cs.nju.edu.cn/lwj/slides/L2H.pdf
+- [Repository of Must Read Papers on Learning to Hash](https://learning2hash.github.io/)
+- [Learning to Hash: Paper, Code and Dataset](https://cs.nju.edu.cn/lwj/L2H.html)
+- [Learning to Hash with Binary Reconstructive Embeddings](https://papers.nips.cc/paper/3667-learning-to-hash-with-binary-reconstructive-embeddings)
+- http://zpascal.net/cvpr2015/Lai_Simultaneous_Feature_Learning_2015_CVPR_paper.pdf
+- https://cs.nju.edu.cn/lwj/slides/hash2.pdf
+- [Learning to hash for large scale image retrieval](https://era.ed.ac.uk/handle/1842/20390)
+- http://stormluke.me/learning-to-hash-intro/
+
+
+##### KNN graph
+
+- [ ] [fast library for ANN search and KNN graph construction](https://github.com/ZJULearning/efanna)
+- [ ] [Building KNN Graph for Billion High Dimensional Vectors Efficiently](https://github.com/lengyyy/KNN-Graph)
+- [ ] https://github.com/aaalgo/kgraph
+- [ ] https://www.msra.cn/zh-cn/news/features/approximate-nearest-neighbor-search
+- [ ] https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/37599.pdf
+
+##### Learned Indexes
+
+<img src="https://www.cs.purdue.edu/homes/aref/learned-indexes-tutorial.fld/image002.png" width="78%"/>
+
+- [On Learned Index Structures. Interview with Alex Beutel](http://www.odbms.org/blog/2018/12/on-learned-index-structures-interview-with-alex-beutel/)
+- [A Tutorial on Learned Multidimensional Indexes](https://www.cs.purdue.edu/homes/aref/learned-indexes-tutorial.html)
+- [Learned Indexes for a Google-scale Disk-based Database](http://mlforsystems.org/assets/papers/neurips2020/learned_abu-libdeh_2020.pdf)
+- [Benchmarking Learned Indexes](https://vldb.org/pvldb/vol14/p1-marcus.pdf)
+- [Why Are Learned Indexes So Effective?](http://proceedings.mlr.press/v119/ferragina20a.html)
+- [ALEX: An Updatable Adaptive Learned Index](https://www.microsoft.com/en-us/research/uploads/prod/2020/04/MSRAlexTechnicalReportV2.pdf)
 
 #### Index Compression
 
@@ -123,14 +356,30 @@ It is necessary to compress the index at the web scale.
 
 * [Elasticsearch from the Bottom Up, Part 1](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up)
 * [Intellectual Foundations for Information Organization and Information](http://people.ischool.berkeley.edu/~glushko/IFIOIR/)
-* http://planet.botany.uwc.ac.za/nisl/GIS/GIS_primer/index.htm
+* [Inverted Index Compression and Query Processing with Optimized Document Ordering](http://engineering.nyu.edu/~suel/papers/comp.pdf)
+* [GIS Introduction by David J. Buckey](http://planet.botany.uwc.ac.za/nisl/GIS/GIS_primer/index.htm)
 * https://nlp.stanford.edu/IR-book/html/htmledition/index-compression-1.html
 * https://richardfoote.wordpress.com/category/advanced-index-compression/
-* http://www.ir.uwaterloo.ca/book/06-index-compression.pdf
+* [6 Index Compression](http://www.ir.uwaterloo.ca/book/06-index-compression.pdf)
 * http://idc.hust.edu.cn/~rxli/teaching/ir/3.2%20Index%20compression.pdf
+* https://www.csauthors.net/gang-wang-0001/
 
+
+##### Index Compression for BitFunnel Query Processing
+
+Large-scale search engines utilize inverted indexes which store
+ordered lists of document identifies (docIDs) relevant to query
+terms, which can be queried thousands of times per second. In
+order to reduce storage requirements, we propose a dictionarybased compression approach for the recently proposed bitwise
+data-structure BitFunnel, which makes use of a Bloom filter. Compression is achieved through storing frequently occurring blocks
+in a dictionary. Infrequently occurring blocks (those which are not
+represented in the dictionary) are instead referenced using similar
+blocks that are in the dictionary, introducing additional false positive errors. We further introduce a docID reordering strategy to
+improve compression.
+
+- [Index Compression for BitFunnel Query Processing](https://nbjl.nankai.edu.cn/_upload/article/files/b8/df/788a01c9442a8597ae8379cb37f1/056348ad-db4c-436c-905a-79207eabdff6.pdf)
+- https://github.com/BitFunnelComp/dicComp
 ### Information Retrieval
-
 
 
 <img title = "search process" src = "http://www.searchtools.com/slides/images/search-process.gif" width="50%" />
@@ -148,6 +397,7 @@ It is necessary to compress the index at the web scale.
 * [Query Languages](http://www.site.uottawa.ca/~diana/csi4107/L5.pdf)
 * [Operational Database Management Systems](http://www.odbms.org/)
 * http://web.stanford.edu/class/cs245/
+* [NSF III-1117829: Efficient Query Processing in Large Search Engines](http://engineering.nyu.edu/~suel/queryproc/)
 
 ##### Boolean Queries
 
@@ -162,6 +412,9 @@ Retrieve documents with a specific phrase (ordered list of contiguous words)
 
 List of words with specific maximal distance constraints between terms
 Example: “dogs” and “race” within 4 words match “…dogs will begin the race…”
+
+
+
 
 ##### Pattern Matching
 
@@ -183,6 +436,11 @@ Language for composing complex patterns from simpler ones: `Union, Concatenation
 Assumes documents have structure that can be exploited in search, allow queries for text appearing in specific fields.
 
 
+##### SQL
+
+- https://www.w3schools.com/sql/
+
+
 #### Query Parser and Understanding
 
 Query is often some keywords in natural language such as English or Chinese. We use the search engine when we would like to find some information related with the keywords on the web/internet, which means  we do not completely know what the result is. Additionally, all information is digitalized in computer and the computers do not understand the natural language natively.
@@ -194,6 +452,7 @@ Natural language processing(NLP) or natural language understanding(NLU)  facilit
 * [Exploring Query Parsers](https://lucidworks.com/post/exploring-query-parsers/)
 * [Query Understanding: An efficient way how to deal with long tail queries](https://www.luigisbox.com/blog/query-understanding/)
 * [The Art of Tokenization](https://www.ibm.com/developerworks/community/blogs/nlp/entry/tokenization?lang=en)
+* https://jmmackenzie.io/publication/
 
 <img src="https://ntent.com/wp-content/uploads/2017/01/Query-Understanding2.jpg" width="60%" />
 
@@ -375,7 +634,8 @@ It uses Long Short Term Memory (LSTM) algorithms to classify a text into differe
 
 - https://www.paralleldots.com/intent-analysis
 - https://aiaioo.wordpress.com/tag/intention-analysis/
------
+
+
 #### Relevance and Rank
 
 Recall the definition of  `Discounted Cumulative Gain(DCG)`:
@@ -450,6 +710,7 @@ HITS algorithm is in the same spirit as PageRank. They both make use of the link
 * [Beyond PageRank: Machine Learning for Static Ranking ](http://www2006.org/programme/files/pdf/3101.pdf)
 * http://infolab.stanford.edu/~taherh/papers/topic-sensitive-pagerank-tkde.pdf
 * [CSCE 470 :: Information Storage and Retrieval :: Fall 2017](http://courses.cse.tamu.edu/caverlee/csce470/)
+* [Topic-Sensitive PageRank: A Context-Sensitive Ranking Algorithm for Web Search](https://www.cs.bham.ac.uk/~pxt/IDA/topic_pagerank.pdf)
 
 #### Query-dependent ranking
 
@@ -468,10 +729,13 @@ Query-dependent ranking:
 |Number of Terms in common between query and document|
 
 - https://en.wikipedia.org/wiki/Ranking
-- https://andrewoarnold.com/fp025-geng.pdf
-- https://sites.google.com/site/kimducthanh/publication/lrt-queryindependent.pdf
+- [Query Dependent Ranking Using K-Nearest Neighbor∗](https://andrewoarnold.com/fp025-geng.pdf)
+- [Query-Independent Learning to Rank for RDF Entity Search ](https://sites.google.com/site/kimducthanh/publication/lrt-queryindependent.pdf)
+- [CONTEXTUALIZED WEB SEARCH: QUERY-DEPENDENT RANKING AND SOCIAL MEDIASEARCH](https://smartech.gatech.edu/bitstream/handle/1853/37246/bian_jiang_201012_phd.pdf)
 - [Query-Independent Ranking for Large-Scale Persistent Search Systems](https://www.cs.princeton.edu/research/techreps/TR-837-08)
 - [Document vector representations for feature extraction in multi-stage document ranking](http://lintool.github.io/NSF-projects/IIS-1144034/publications/Asadi_Lin_IRJ2013.pdf)
+- [Query-dependent ranking and its asymptotic properties](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-13/issue-1/Query-dependent-ranking-and-its-asymptotic-properties/10.1214/19-EJS1531.pdf)
+- [THE ASYMPTOTICS OF RANKING ALGORITHMS](https://web.stanford.edu/~lmackey/papers/rankasymptotics-aos13.pdf)
 
 ##### TF-IDF
 
@@ -599,33 +863,63 @@ Document similarity (or distance between documents) is a one of the central them
 - [ ] https://fasttext.cc/
 
 
-### Personalized Search
 
-[Personalized Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommenders.
+#### Vector Quantization
 
-And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
+> Vector quantization (VQ) is an efficient coding technique to quantize signal vectors. It has been widely used in signal and image processing, such as pattern recognition and speech and image coding. A VQ compression procedure has two main steps: codebook training (sometimes also referred to as codebook generation) and coding (i.e., codevector matching). In the training step, similar vectors in a training sequence are grouped into clusters, and each cluster is assigned to a single representative vector called a codevector. In the coding step, each input vector is then compressed by replacing it with the nearest codevector referenced by a simple cluster index. The index (or address) of the matched codevector in the codebook is then transmitted to the decoder over a channel and is used by the decoder to retrieve the same codevector from an identical codebook. This is the reconstructed reproduction of the corresponding input vector. Compression is thus obtained by transmitting the index of the codevector rather than the entire codevector itself.
 
-* http://ryanrossi.com/search.php
-* https://a9.com/what-we-do/product-search.html
-* https://www.algolia.com/
-* https://www.cognik.net/
-* http://www.collarity.com/
-* https://www.wikiwand.com/en/Personalized_search
-* [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html)
-* [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
-* [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
-* [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
-* [Personalized Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
-* [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
-* [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
-* [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
-* [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
-* [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
-* [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
-* [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
-* [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
-* [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
-* [CH. 9: PERSONALIZATION IN SEARCH](https://searchuserinterfaces.com/book/sui_ch9_personalization.html)
+- http://www.mqasem.net/vectorquantization/vq.html
+- https://perso.telecom-paristech.fr/cagnazzo/doc/MN910/VQ/mn910_vq.pdf
+- [Daala: Perceptual Vector Quantization (PVQ)](https://people.xiph.org/~jm/daala/pvq_demo/)
+
+##### Latent semantic indexing
+
+Latent semantic indexing (LSI) is a concept used by search engines to discover how a term and content work together to mean the same thing, even if they do not share keywords or synonyms.
+
+- https://nlp.stanford.edu/IR-book/html/htmledition/latent-semantic-indexing-1.html
+- [Probabilistic Latent Semantic Indexing](http://cis.csuohio.edu/~sschung/CIS660/PLSIHoffman.pdf)
+- [Using Latent Semantic Indexing for Information Filtering](http://www.psych.nmsu.edu/~pfoltz/cois/filtering-cois.html)
+- http://edutechwiki.unige.ch/en/Latent_semantic_analysis_and_indexing
+- https://www.cse.msu.edu/~cse960/Papers/LSI/LSI.pdf
+
+##### Regularized Latent Semantic Indexing
+
+
+
+It is a matching method between query and document at topic level based on matrix factorization, which is scale up to large datasets.
+The parametric model is expressed in the following form:
+
+$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - U v_n\|}_2^2+\underbrace{\lambda_1\sum_{k=1}^K {\|u_k\|}_1}_{\text{topics are sparse}} + \underbrace{\lambda_2\sum_{n=1}^{N}{\|v_n \|}_2^2}_{\text{documents are smooth}}$$
+
+where
+- $d_n$ is term representation of doc $n$;
+- $U$ represents topics;
+- $v_n$ is the topic representation of doc $n$;
+- $\lambda_1$ and $\lambda_2$ are regularization parameters.
+
+It is optimized by coordinate descent:
+$$u_{mk}=\arg\min_{\bar u_m}\sum_{m=1}^M {\|\bar d_m - V^T \bar u_m\|}_2^2+\lambda_1\sum_{m=1}^{M}{\|\bar u_m\|}_1,\\ v_n^{\ast}=\arg\min_{\{v_n\}}\sum_{n=1}^{N}{\|d_n -U v_n\|}_2^2+\lambda_2\sum_{n=1}^N{\|v_n\|}_2^2=(U^T U + \lambda_2 I)^{-1}U^T {d}_n.$$
+
+- [Regularized Latent Semantic Indexing: A New Approach to Large Scale Topic Modeling](http://www.hangli-hl.com/uploads/3/1/6/8/3168008/rlsi-tois-revision.pdf)
+- https://www.academia.edu/13253156/Hierarchy-Regularized_Latent_Semantic_Indexing
+- https://patents.google.com/patent/US8533195B2/en
+- http://cse.msu.edu/~cse960/Papers/LSI/LSI.pdf
+- https://github.com/JunXu-ICT/rlsi-java-source
+- http://www.bigdatalab.ac.cn/~junxu/publications/SIGIR2011_RLSI.pdf
+
+##### Partial Least Square (PLS)
+
+The input training data set is $\{(x_i, y_i, r_i)\mid i=1, 2,\cdots, N\}$ where $r_i \in \{+1, -1\}$.
+
+
+It is to optimize the following cost function
+$$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
+`Regularized Mapping to Latent Space` will change the constraints
+$$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
+
+- https://stats.idre.ucla.edu/wp-content/uploads/2016/02/pls.pdf
+- https://www.microsoft.com/en-us/research/publication/learning-bilinear-model-matching-queries-documents/
+- https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
 
 #### Comparison and Matching
 
@@ -654,13 +948,17 @@ Let $\delta:X\times X\to \mathbb R$ be a distance function. $\delta$ is called a
 In a similarity-based retrieval model, it is assumed that the relevance status of a document with respect to a query is correlated with the similarity between the query and the document at some level of representation; the more similar to a query, the more relevant the document is assumed to be.
 $\color{red}{Similarity \not= Relevance}$
 
+>>>
+*****************
 Similarity matching | Relevance matching
----|---
+--------------------|---
 Whether two sentences are semantically similar| Whether a document is relevant to a query
 Homogeneous texts with comparable lengths| Heterogeneous texts (keywords query, document) and very different in lengths
 Matches at all positions of both sentences|  Matches in different parts of documents
 Symmetric matching function| Asymmetric matching function
 Representative task: Paraphrase Identification| Representative task: ad-hoc retrieval
+
+***************
 
 Each search is made up of $\color{red}{\fbox{Match + Rank}}$. 
 `Matching Problem` is to describe the tasks in IR that:
@@ -673,13 +971,17 @@ Each search is made up of $\color{red}{\fbox{Match + Rank}}$.
 * [Relevance Matching](https://zhuanlan.zhihu.com/p/39946041)
 * [DeepMatching: Deep Convolutional Matching](http://lear.inrialpes.fr/src/deepmatching/)
 * [Quantifying Similarity between Relations with Fact Distribution](https://arxiv.org/abs/1907.08937)
+
+
 ----
+
 * https://www.cnblogs.com/yaoyaohust/p/10642103.html
 * https://ekanou.github.io/dynamicsearch/
 * http://mlwiki.org/index.php/NLP_Pipeline
 * http://www.bigdatalab.ac.cn/tutorial/
 * http://lear.inrialpes.fr/src/deepmatching/
 * https://github.com/CansenJIANG/deepMatchingGUI
+* https://alex.smola.org/workshops/sigir10/index.html
 
 
 ##### Learning to Match
@@ -708,7 +1010,7 @@ Methods of Representation Learning for Matching:
 context (Chen et al., AAAI ’18)
 
 
-
+- [Text-matching software](https://flo.flinders.edu.au/mod/book/view.php?id=1127805)
 - http://staff.ustc.edu.cn/~hexn/papers/www18-tutorial-deep-matching-paper.pdf
 - [Deep Learning for Matching in Search and Recommendation](http://www.bigdatalab.ac.cn/~junxu/publications/SIGIR2018-DLMatch.pdf)
 - [Deep Learning for Recommendation, Matching, Ranking and Personalization](http://sonyis.me/dnn.html)
@@ -716,154 +1018,108 @@ context (Chen et al., AAAI ’18)
 - [Framework and Principles of Matching Technologies](http://www.hangli-hl.com/uploads/3/4/4/6/34465961/wsdm_2019_workshop.pdf)
 - [Semantic Matching in Search](http://www.hangli-hl.com/uploads/3/1/6/8/3168008/ml_for_match-step2.pdf)
 
-##### Regularized Latent Semantic Indexing
-
-It is a matching method between query and document at topic level based on matrix factorization, which is scale up to large datasets.
-The parametric model is expressed in the following form:
-
-$$min_{U, \{v_n\}}\sum_{n=1}^{N}{\|d_n - U v_n\|}_2^2+\underbrace{\lambda_1\sum_{k=1}^K {\|u_k\|}_1}_{\text{topics are sparse}} + \underbrace{\lambda_2\sum_{n=1}^{N}{\|v_n \|}_2^2}_{\text{documents are smooth}}$$
-
-where
-- $d_n$ is term representation of doc $n$;
-- $U$ represents topics;
-- $v_n$ is the topic representation of doc $n$;
-- $\lambda_1$ and $\lambda_2$ are regularization parameters.
-
-It is optimized by coordinate descent:
-$$u_{mk}=\arg\min_{\bar u_m}\sum_{m=1}^M {\|\bar d_m - V^T \bar u_m\|}_2^2+\lambda_1\sum_{m=1}^{M}{\|\bar u_m\|}_1,\\ v_n^{\ast}=\arg\min_{\{v_n\}}\sum_{n=1}^{N}{\|d_n -U v_n\|}_2^2+\lambda_2\sum_{n=1}^N{\|v_n\|}_2^2=(U^T U + \lambda_2 I)^{-1}U^T {d}_n.$$
-
-- [Regularized Latent Semantic Indexing: A New Approach to Large Scale
-Topic Modeling](http://www.hangli-hl.com/uploads/3/1/6/8/3168008/rlsi-tois-revision.pdf)
-- https://www.academia.edu/13253156/Hierarchy-Regularized_Latent_Semantic_Indexing
-- https://patents.google.com/patent/US8533195B2/en
-- http://cse.msu.edu/~cse960/Papers/LSI/LSI.pdf
-- https://github.com/JunXu-ICT/rlsi-java-source
-
-##### Partial Least Square (PLS)
-
-The input training data set is $\{(x_i, y_i, r_i)\mid i=1, 2,\cdots, N\}$ where $r_i \in \{+1, -1\}$.
 
 
-It is to optimize the following cost function
-$$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
-`Regularized Mapping to Latent Space` will change the constraints
-$$\arg\max_{L_x, L_y}\sum_{r_i=+1}\left<L_x x_i, L_y y_i\right>-\sum_{r_i=-1}\left<L_x x_i, L_y y_i\right>\\ s.t. \quad L_x^T L_x=L_y^TL_y=I_k.$$
+#### Bit-string Signatures
 
-- https://stats.idre.ucla.edu/wp-content/uploads/2016/02/pls.pdf
-- https://www.microsoft.com/en-us/research/publication/learning-bilinear-model-matching-queries-documents/
-- https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+##### COBS
 
-##### Deep Structured Semantic Model
+[We](http://bingmann.github.io/2019/1008-COBS-A-Compact-Bit-Sliced-Signature-Index/) present COBS, a COmpact Bit-sliced Signature index, which is a cross-over between an inverted index and Bloom filters. Our target application is to index k-mers of DNA samples or q-grams from text documents and process approximate pattern matching queries on the corpus with a user-chosen coverage threshold. Query results may contain a number of false positives which decreases exponentially with the query length. We compare COBS to seven other index software packages on 100000 microbial DNA samples. COBS' compact but simple data structure outperforms the other indexes in construction time and query performance with Mantis by Pandey et al. in second place. However, unlike Mantis and other previous work, COBS does not need the complete index in RAM and is thus designed to scale to larger document sets.
 
-DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic Similarity Model. DSSM, developed by the MSR Deep Learning Technology Center(DLTC), is a deep neural network (DNN) modeling technique for representing text strings (sentences, queries, predicates, entity mentions, etc.) in a continuous semantic space and modeling semantic similarity between two text strings (e.g., Sent2Vec).
+- [COBS: a Compact Bit-Sliced Signature Index](https://github.com/bingmann/cobs)
+- https://arxiv.org/abs/1905.09624
+- [Presentation "COBS: A Compact Bit-Sliced Signature Index" at SPIRE 2019 (Best Paper Award)](http://bingmann.github.io/2019/1008-COBS-A-Compact-Bit-Sliced-Signature-Index/)
+- [Engineering a Compact Bit-Sliced Signature Index for Approximate Search on Genomic Data](https://algo2.iti.kit.edu/english/3469.php)
 
-DSSM: Brief Summary
-+  Inputs: Bag of letter-trigrams as input for improving the scalability and generalizability
-+  Representations: mapping sentences to vectors with DNN:
-semantically similar sentences are close to each other
-+  Matching: cosine similarity as the matching function
-+  Problem: the order information of words is missing (bag of
-letter-trigrams cannot keep the word order information)
+##### BitFunnel
 
-Matching Function Learning:
-* Step 1: construct basic low-level matching signals
-* Step 2: aggregate matching patterns
+In recent years the Bing search engine has developed and deployed an index based on bit-sliced signatures. 
+This index, known as BitFunnel, replaced an existing production system based on an inverted index.
+
+The key idea of `bit-string signatures` is that each document in the corpus is represented by
+its signature. In `BitFunnel`, the signature is essentially the sequence
+of bits that make up a Bloom filter representing the set of terms in
+the document.
 
 
-- https://www.microsoft.com/en-us/research/project/dssm/
-- https://arxiv.org/pdf/1610.08136.pdf
-- [Tensorflow implementations of various Deep Semantic Matching Models](https://github.com/ChenglongChen/tensorflow-DSMM)
 
-##### Deep Relevance Matching Model
+<imgf src="https://image.jiqizhixin.com/uploads/editor/81d4b399-6399-44c8-9521-46dbd1f50f6f/640.png" width="40%"/>
+<img src="https://image.jiqizhixin.com/uploads/editor/917bf540-04c5-4681-b4e6-46ab0dacee19/640.png" width="40%"/> 
 
-It is asserted that
-> the ad-hoc retrieval task is mainly about relevance matching while most NLP matching tasks concern semantic matching, and there are some fundamental differences between these two matching tasks. Successful relevance matching requires proper handling of the exact matching signals, query term importance, and diverse matching requirements.
-
-A novel deep relevance matching model (DRMM) for ad-hoc retrieval employs a joint deep architecture at the query term level for relevance matching. By using matching histogram mapping, a feed forward matching network, and a term gating network, we can effectively deal with the three relevance matching factors mentioned above.
-
-<img src="https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/DRMM.jpg" width="80%" />
-
-+ Matching histogram mapping for summarizing each query matching signals
-+ Term gating network for weighting the query matching signals
-+ Lost word order information (during histogram mapping)
-
-- [A Deep Relevance Matching Model for Ad-hoc Retrieval](https://arxiv.org/abs/1711.08611)
-- https://zhuanlan.zhihu.com/p/38344505
-- https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/
-
-##### DeepRank: Text Matching as Image Recognition
-
-Calculate relevance by mimicking the human relevance judgement process
-
-1. Detecting Relevance locations: focusing on locations of query terms when scanning the whole document
-2. Determining local relevance: relevance between query and each location context, using MatchPyramid/MatchSRNN etc.
-3. Matching signals aggregation
-
-- [Deep Relevance Ranking Using Enhanced Document-Query Interactions](http://nlp.cs.aueb.gr/pubs/EMNLP2018Preso.pdf)
-- [DeepRank: A New Deep Architecture for Relevance Ranking in Information Retrieval](https://arxiv.org/pdf/1710.05649.pdf)
-
-Challenges
-
-- [ ] Representation: representing the word level matching signals as well as the matching positions
-- [ ] Modeling: discovering the matching patterns between two texts
-- [ ] Our solutions
-  - [ ] Step 1: representing as matching matrix
-  - [ ] Step 2: matching as image recognition
-
-Matching matrix $M_{ij}=\mathbb I_{w_i=v_j}$ or $M_{ij}= \frac{w_i^T v_j}{\|w_i\| \|v_j\|}$ or $M_{ij}=\left<w_i, v_j\right>$.
-
-$$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the semantic gap between words}}+\underbrace{Hierarchical\,\, Convolution}_{\text{Capturing rich matching patterns}}$$
-
-
-- http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_CNNTextMatch.pdf
-- http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_BiLSTMTextMatch.pdf
-- https://github.com/pl8787/MatchPyramid-TensorFlow
-
-##### Tree-based Deep Match(TDM)
-
-
-The idea  of  `TDM` is to predict user interests from coarse to fine by traversing tree nodes in a top-down fashion and making decisions for each user-node pair.
-
-A recommendation tree consists of a set of nodes N, where $N = \{n_1, n_2, \dots, n_{|N |}\}$ represents $|N |$ individual non-leaf or leaf nodes.
-Each node in $N$ except the root node has one parent and an arbitrary number of children. Specifically, each item $c_i$
-in the corpus $C$ corresponds to one and only one leaf node in the tree,
-and those non-leaf nodes are coarse-grained concepts. Without loss of generality, we suppose that node n1 is always the root node.
-An example
-tree is illustrated in the right bottom corner of the following figure , in which
-each circle represents a node and the number of node is its index in
-tree. The tree has 8 leaf nodes in total, each of which corresponds to an item in the corpus. It’s worth mentioning that though the given
-example is a complete binary tree, we don’t impose complete and
-binary as restrictions on the type of the tree in our model.
-
-<img title="TDM" src="https://pic2.zhimg.com/80/v2-92c403ef6fbb9e0616440bdefc67622d_hd.jpg" width="80%" />
-<img src="https://pic3.zhimg.com/80/v2-2b8eaa092b24668488b4bcab45f4bbce_hd.jpg" width="70%" />
-
-- http://www.6aiq.com/article/1565927125584
-- https://tianchi.alibabacloud.com/course/video?liveId=41072
-- [深度树匹配模型(TDM)@x-deeplearning](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
-- https://www.jianshu.com/p/149467a29b64
-- [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
-- [Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1803.02349)
-- [Joint Optimization of Tree-based Index and Deep Model for Recommender Systems](https://arxiv.org/pdf/1902.07565.pdf)
-- [阿里自主创新的下一代匹配&推荐技术：任意深度学习+树状全库检索](https://zhuanlan.zhihu.com/p/35030348)
-- https://dzone.com/articles/breakthroughs-in-matching-and-recommendation-algor
+- http://bitfunnel.org/strangeloop/
+- http://bitfunnel.org/blog-archive/
+- https://www.jiqizhixin.com/articles/2019-11-20-15
+- https://www.jianshu.com/p/624ac9173d96
+- [BitFunnel: Revisiting Signatures for Search](https://www.microsoft.com/en-us/research/publication/bitfunnel-revisiting-signatures-search/)
+- https://github.com/BitFunnel/BitFunnel
+- https://github.com/BitFunnel/sigir2017-bitfunnel
+- https://github.com/BitFunnelComp/dicComp
+- https://github.com/jondgoodwin/bitfunnel-play
+- [A Hybrid BitFunnel and Partitioned Elias-Fano Inverted Index](https://www.researchgate.net/publication/333060335_A_Hybrid_BitFunnel_and_Partitioned_Elias-Fano_Inverted_Index)
+- https://dblp.uni-trier.de/pers/hd/z/Zhang:Zhaohua
+- https://nbjl.nankai.edu.cn/12126/list.htm
+- [Index Compression for BitFunnel Query Processing](http://db.ucsd.edu/wp-content/uploads/2017/03/sidm338-wangA.pdf)
+- https://bitfunnel.org/a-small-query-language/
+- [BitFunnel: Revisiting Signatures for Search](https://danluu.com/bitfunnel-sigir.pdf)
 
 #### Approximate Nearest Neighbors
+
+[Nearest neighbour search is the problem of finding the most similar data-points to a query in a large database of data-points,}(https://learning2hash.github.io/) 
+and is a fundamental operation that has found wide applicability in many fields, from Bioinformatics, through to Natural Language Processing (NLP) and Computer Vision. 
+
 [An approximate nearest neighbor search algorithm is allowed to return points, whose distance from the query is at most c times the distance from the query to its nearest points.](https://apacheignite.readme.io/docs/ann-approximate-nearest-neighbor)
 
-- https://github.com/spotify/annoy
-- http://web.stanford.edu/class/cs369g/
+- https://github.com/erikbern/ann-benchmarks
+- http://ann-benchmarks.com/
+- [benchmarking-nearest-neighbor-searches-in-python](https://jakevdp.github.io/blog/2013/04/29/benchmarking-nearest-neighbor-searches-in-python/)
+- [New approximate nearest neighbor benchmarks](https://erikbern.com/2018/06/17/new-approximate-nearest-neighbor-benchmarks.html)
+- [Geometric Proximity Problems](https://graphics.stanford.edu/courses/cs468-06-fall/)
+- https://yongyuan.name/blog/vector-ann-search.html
+- https://yongyuan.name/blog/vector-ann-search.html
 - https://yongyuan.name/blog/approximate-nearest-neighbor-search.html
-- https://www.cs.umd.edu/~mount/ANN/
-- https://www.pnas.org/content/pnas/108/38/15679.full.pdf
-- https://dl.acm.org/doi/10.1145/293347.293348
+- [CS369G: Algorithmic Techniques for Big Data](http://web.stanford.edu/class/cs369g/)
+- [ANN: A Library for Approximate Nearest Neighbor Searching](https://www.cs.umd.edu/~mount/ANN/)
+- [Randomized approximate nearest neighbors algorithm](https://www.pnas.org/content/pnas/108/38/15679.full.pdf)
+- [HD-Index: Pushing the Scalability-Accuracy Boundary for Approximate kNN Search in High-Dimensional Spaces](https://dl.acm.org/doi/10.1145/293347.293348)
 - https://people.csail.mit.edu/indyk/
-- https://simons.berkeley.edu/data-science-2018-3
-- https://github.com/mlberkeley/PyTorch-Workshop
-- https://sarielhp.org/p/12/him/
-- https://nn2017.mit.edu/
+- [Approximate Nearest Neighbor: Towards Removing the Curse of Dimensionality](https://sarielhp.org/p/12/him/)
+- [Nearest Neighbors for Modern Applications with Massive Data](https://nn2017.mit.edu/)
 - https://arxiv.org/pdf/1804.06829.pdf
 - https://wiki.52north.org/AI_GEOSTATS/ConfNNWorkshop2008
+- [Topic: Locality Hashing, Similarity, Nearest Neighbours](https://www.cadmo.ethz.ch/education/lectures/FS18/SDBS/index.html)
+- [A General and Efficient Querying Method for Learning to Hash (SIGMOD 2018)](https://github.com/lijinf2/gqr)
+- https://people.csail.mit.edu/indyk/slides.html
+- https://appsrv.cse.cuhk.edu.hk/~jfli/
+- http://www.cse.cuhk.edu.hk/~jcheng/
+- https://postgis.net/workshops/postgis-intro/knn.html
+- [Sublinear Algorithms and Nearest-Neighbor Search](https://simons.berkeley.edu/workshops/schedule/6685)
+- [Bregman proximity queries](https://www.lix.polytechnique.fr/~nielsen/BregmanProximity/)
+- https://cs.nju.edu.cn/lwj/L2H.html
+- https://awesomeopensource.com/projects/nearest-neighbor-search
+- https://elastiknn.com/
+
+##### Annoy
+
+There are some other libraries to do nearest neighbor search. Annoy is almost as fast as the fastest libraries, (see below), 
+but there is actually another feature that really sets Annoy apart: it has the ability to use static files as indexes. 
+In particular, this means you can share index across processes. 
+Annoy also decouples creating indexes from loading them, so you can pass around indexes as files and map them into memory quickly. 
+Another nice thing of Annoy is that it tries to minimize memory footprint so the indexes are quite small.
+
+- https://github.com/spotify/annoy
+- https://erikbern.com/
+
+##### FALCONN
+
+FALCONN is a library with algorithms for the nearest neighbor search problem. The algorithms in FALCONN are based on Locality-Sensitive Hashing (LSH), which is a popular class of methods for nearest neighbor search in high-dimensional spaces. The goal of FALCONN is to provide very efficient and well-tested implementations of LSH-based data structures.
+
+- https://github.com/falconn-lib/falconn/wiki
+- https://libraries.io/pypi/FALCONN
+- https://www.ilyaraz.org/
+- https://github.com/FALCONN-LIB/FALCONN/wiki/LSH-Primer
+- https://github.com/FALCONN-LIB/FALCONN
+- https://falconn-lib.org/
+
 
 ##### SPTAG
 
@@ -886,30 +1142,31 @@ It explains how `SPTAG` works:
 
 Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.
 
-Most of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server.
+Most of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. 
+This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server.
 
 The GPU implementation can accept input from either CPU or GPU memory. On a server with GPUs, the GPU indexes can be used a drop-in replacement for the CPU indexes (e.g., replace IndexFlatL2 with GpuIndexFlatL2) and copies to/from GPU memory are handled automatically. Results will be faster however if both input and output remain resident on the GPU. Both single and multi-GPU usage is supported.
 
 - https://github.com/facebookresearch/faiss
 - https://waltyou.github.io/Faiss-Introduce/
+- https://github.com/facebookresearch/faiss/wiki
 
-##### Locality-Sensitive Hashing
 
-Locality-Sensitive Hashing (LSH) is a class of methods for the nearest neighbor search problem, which is defined as follows: given a dataset of points in a metric space (e.g., Rd with the Euclidean distance), our goal is to preprocess the data set so that we can quickly answer nearest neighbor queries: given a previously unseen query point, we want to find one or several points in our dataset that are closest to the query point. 
-
-- https://github.com/FALCONN-LIB/FALCONN/wiki/LSH-Primer
-- https://github.com/FALCONN-LIB/FALCONN
-- https://falconn-lib.org/
-- http://web.mit.edu/andoni/www/LSH/index.html
-- http://yongyuan.name/blog/vector-ann-search.html
-- https://github.com/arbabenko/GNOIMI
-- https://github.com/willard-yuan/hashing-baseline-for-image-retrieval
-- http://yongyuan.name/habir/
 
 ##### HNSW: Hierarchical  Navigable Small World
 
-[We present a new approach for the approximate K-nearest neighbor search based on navigable small world graphs with controllable hierarchy (Hierarchical NSW, HNSW). The proposed solution is fully graph-based, without any need for additional search structures, which are typically used at the coarse search stage of the most proximity graph techniques. Hierarchical NSW incrementally builds a multi-layer structure consisting from hierarchical set of proximity graphs (layers) for nested subsets of the stored elements. The maximum layer in which an element is present is selected randomly with an exponentially decaying probability distribution. This allows producing graphs similar to the previously studied Navigable Small World (NSW) structures while additionally having the links separated by their characteristic distance scales. Starting search from the upper layer together with utilizing the scale separation boosts the performance compared to NSW and allows a logarithmic complexity scaling. Additional employment of a heuristic for selecting proximity graph neighbors significantly increases performance at high recall and in case of highly clustered data. Performance evaluation has demonstrated that the proposed general metric space search index is able to strongly outperform previous opensource state-of-the-art vector-only approaches. Similarity of the algorithm to the skip list structure allows straightforward balanced distributed implementation.](https://arxiv.org/abs/1603.09320)
+[We](https://arxiv.org/abs/1603.09320) present a new approach for the approximate K-nearest neighbor search based on navigable small world graphs with controllable hierarchy (Hierarchical NSW, HNSW).
+The proposed solution is fully graph-based, without any need for additional search structures, which are typically used at the coarse search stage of the most proximity graph techniques. 
+Hierarchical NSW incrementally builds a multi-layer structure consisting from hierarchical set of proximity graphs (layers) for nested subsets of the stored elements. 
+The maximum layer in which an element is present is selected randomly with an exponentially decaying probability distribution. 
+This allows producing graphs similar to the previously studied Navigable Small World (NSW) structures while additionally having the links separated by their characteristic distance scales. 
+Starting search from the upper layer together with utilizing the scale separation boosts the performance compared to NSW and allows a logarithmic complexity scaling. 
+Additional employment of a heuristic for selecting proximity graph neighbors significantly increases performance at high recall and in case of highly clustered data. 
+Performance evaluation has demonstrated that the proposed general metric space search index is able to strongly outperform previous opensource state-of-the-art vector-only approaches. 
+Similarity of the algorithm to the skip list structure allows straightforward balanced distributed implementation.
 
+- https://github.com/nmslib/hnswlib
+- https://github.com/nmslib/nmslib
 - https://www.itu.dk/people/pagh/
 - https://blog.csdn.net/chieryu/article/details/81989920
 - http://yongyuan.name/blog/opq-and-hnsw.html
@@ -922,48 +1179,11 @@ Locality-Sensitive Hashing (LSH) is a class of methods for the nearest neighbor 
 - https://github.com/yurymalkov
 - https://arxiv.org/abs/1603.09320
 
-##### BitFunnel
-
-In recent years the Bing search engine has developed and deployed an index based on bit-sliced signatures. 
-This index, known as BitFunnel, replaced an existing production system based on an inverted index.
-
-The key idea of `bit-string signatures` is that each document in the corpus is represented by
-its signature. In `BitFunnel`, the signature is essentially the sequence
-of bits that make up a Bloom filter representing the set of terms in
-the document.
-
-[Hash function](https://www.jianshu.com/p/bba9b61b80e7)
-
-<imgf src="https://image.jiqizhixin.com/uploads/editor/81d4b399-6399-44c8-9521-46dbd1f50f6f/640.png" width="40%"/>
-<img src="https://image.jiqizhixin.com/uploads/editor/917bf540-04c5-4681-b4e6-46ab0dacee19/640.png" width="40%"/> 
-
-
-- http://bitfunnel.org/blog-archive/
-- https://www.jiqizhixin.com/articles/2019-11-20-15
-- https://www.jianshu.com/p/624ac9173d96
-- https://www.microsoft.com/en-us/research/publication/bitfunnel-revisiting-signatures-search/
-- https://github.com/BitFunnel/BitFunnel
-- https://github.com/BitFunnel/sigir2017-bitfunnel
-- https://github.com/BitFunnelComp/dicComp
-- https://github.com/jondgoodwin/bitfunnel-play
-- https://www.researchgate.net/publication/333060335_A_Hybrid_BitFunnel_and_Partitioned_Elias-Fano_Inverted_Index
-- https://www.researchgate.net/publication/326134053_Index_Compression_for_BitFunnel_Query_Processing
-- https://dblp.uni-trier.de/pers/hd/z/Zhang:Zhaohua
-- https://nbjl.nankai.edu.cn/12126/list.htm
-- http://bitfunnel.org/strangeloop/
-- http://db.ucsd.edu/wp-content/uploads/2017/03/sidm338-wangA.pdf
-
-##### FGCrossNet
-
-- https://zhuanlan.zhihu.com/p/93083455
-- https://arxiv.org/abs/1907.04476
-- http://59.108.48.34/tiki/FGCrossNet/
-- https://github.com/PKU-ICST-MIPL/FGCrossNet_ACMMM2019
-- https://www.researchgate.net/publication/221368756_NUS-WIDE_A_real-world_web_image_database_from_National_University_of_Singapore
 
 #### Scalable Similarity Search
 
 [ The aim of the project is to improve theory and practice of algorithms for high-dimensional similarity search on big data, and to extend similarity search algorithms to work in settings where data is distributed (using a communication complexity perspective) or uncertain (using a statistical perspective).](http://sss.projects.itu.dk/)
+
 - http://sss.projects.itu.dk/
 - http://sss.projects.itu.dk/proximity-workshop.html
 - http://www.itu.dk/people/jovt/
@@ -994,8 +1214,62 @@ the document.
 * http://www2003.org/cdrom/papers/refereed/p779/ess.html
 * https://blog.alexa.com/semantic-search/
 * https://wsdm2019-dapa.github.io/slides/05-YiweiSong.pdf
+* https://github.com/semanticvectors/semanticvectors
 
 
+### Personalized Search
+
+[Personalized Search fetches results and delivers search suggestions individually for each of its users based on their interests and preferences](https://yandex.com/company/technologies/personalised_search/), which is mined from the information that the search engine has about the user at the given time, such as their location, search history, demographics such as the recommenders.
+
+And here search engine and recommender system coincide except the recommender system push some items in order to attract the users' attention while search engine recall the information that the users desire in their mind.
+
+* http://ryanrossi.com/search.php
+* https://a9.com/what-we-do/product-search.html
+* https://www.algolia.com/
+* https://www.cognik.net/
+* http://www.collarity.com/
+* https://www.wikiwand.com/en/Personalized_search
+* [The Mathematics of Web Search](http://pi.math.cornell.edu/~mec/Winter2009/RalucaRemus/index.html)
+* [CSAW: Curating and Searching the Annotated Web](https://www.cse.iitb.ac.in/~soumen/doc/CSAW/)
+* [A Gradient-based Framework for Personalization by Liangjie Hong](http://www.hongliangjie.com/talks/Gradient_Indiana_2017-11-10.pdf)
+* [Style in the Long Tail: Discovering Unique Interests with Latent Variable Models in Large Scale Social E-commerce](https://mimno.infosci.cornell.edu/info6150/readings/p1640-hu.pdf)
+* [Personalized Search in Yandex](https://yandex.com/company/technologies/personalised_search/)
+* [Thoughts on Yandex personalized search and beyond](https://www.russiansearchtips.com/2012/12/thoughts-on-yandex-personalized-search-and-beyond/)
+* [Yandex filters & algorithms. 1997-2018](https://www.konstantinkanin.com/en/yandex-algorithms/)
+* [Google's Personalized Search Explained: How personalization works](https://www.link-assistant.com/news/personalized-search.html)
+* [A Better Understanding of Personalized Search](https://www.briggsby.com/better-understanding-personalized-search)
+* [Interest-Based Personalized Search](https://www.cpp.edu/~zma/research/Interest-Based%20Personalized%20Search.pdf)
+* [Search Personalization using Machine Learning by Hema Yoganarasimhan](https://faculty.washington.edu/hemay/search_personalization.pdf)
+* [Web Personalization and Recommender Systems](https://www.kdd.org/kdd2015/slides/KDD-tut.pdf)
+* [Scaling Concurrency of Personalized Semantic Search over Large RDF Data](https://research.csc.ncsu.edu/coul/Pub/BigD402.pdf)
+* [Behavior‐based personalization in web search](https://onlinelibrary.wiley.com/doi/full/10.1002/asi.23735)
+* [CH. 9: PERSONALIZATION IN SEARCH](https://searchuserinterfaces.com/book/sui_ch9_personalization.html)
+- https://github.com/actionml/template-personalized-search
+
+
+#### Learning from User Interactions
+
+[When users interact with online services (e.g. search engines, recommender systems, conversational agents), they leave behind traces of interaction patterns. The ability to record and interpret user interaction signals and understand user behavior gives online systems a vast treasure trove of insights for improving user engagement and experimentation. ](https://rishabhmehrotra.com/)
+
+- https://www.jagerman.nl/
+- [Learn-IR: Learning from User Interactions](https://task-ir.github.io/wsdm2018-learnIR-workshop/)
+- [Improving Information Access by Learning from User Interactions](https://www.nsf.gov/awardsearch/showAward?AWD_ID=0237381)
+- [Efficient, safe and adaptive learning from user interactions](https://pure.uva.nl/ws/files/52947917/Thesis.pdf)
+- [Learning from User Interactions with Rankings](https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/harrie-oosterhuis-phd-thesis-2020.pdf)
+- [Learning from Users’ Interactions with Visual Analytics Systems](http://www.cs.tufts.edu/~remco/publications/2015/Dissertation-Brown.pdf)
+- http://www.cs.tufts.edu/~remco/
+- https://rishabhmehrotra.com/
+- https://staff.fnwi.uva.nl/m.derijke/
+
+
+#### TrustRank
+
+- https://personalization.ccs.neu.edu/
+- [Numerical Algorithms for Personalized Search in Self-organizing Information Networks](https://press.princeton.edu/books/hardcover/9780691145037/numerical-algorithms-for-personalized-search-in-self-organizing)
+- https://cs.stanford.edu/~plofgren/
+- https://www.masternewmedia.org/news/2005/04/29/future_pagerank_helps_reputation_and.htm
+- http://www.stuntdubl.com/2005/05/18/personalize-search-trustrank/
+- https://github.com/actionml/template-personalized-search
 
 
 ### Information Distribution: Search Engine Results Page
@@ -1057,6 +1331,144 @@ Neural networks or deep learning as a subfield of machine learning, is widely ap
 - [Topics in Neural Information Retrieval](https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/teaching/ss19/topics-in-neural-information-retrieval/)
 - https://frankblood.github.io/
 - [5th Workshop on Semantic Deep Learning (SemDeep-5)](http://www.dfki.de/~declerck/semdeep-5/)
+- https://www.cs.cornell.edu/~kb/projects/productnet/
+- https://github.com/vearch/vearch
+- https://github.com/gofynd/mildnet
+- https://github.com/Ximilar-com/tf-metric-learning
+
+
+#### Deep Structured Semantic Model
+
+> DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic Similarity Model. DSSM, developed by the MSR Deep Learning Technology Center(DLTC), is a deep neural network (DNN) modeling technique for representing text strings (sentences, queries, predicates, entity mentions, etc.) in a continuous semantic space and modeling semantic similarity between two text strings (e.g., Sent2Vec).
+
+> DSSM can be used to develop latent semantic models that project entities of different types (e.g., queries and documents) into a common low-dimensional semantic space for a variety of machine learning tasks such as ranking and classification. For example, in web search ranking, the relevance of a document given a query can be readily computed as the distance between them in that space. With the latest GPUs from Nvidia, we are able to train our models on billions of words
+
+DSSM: Brief Summary
++  Inputs: Bag of letter-trigrams as input for improving the scalability and generalizability
++  Representations: mapping sentences to vectors with DNN:
+semantically similar sentences are close to each other
++  Matching: cosine similarity as the matching function
++  Problem: the order information of words is missing (bag of
+letter-trigrams cannot keep the word order information)
+
+Matching Function Learning:
+* Step 1: construct basic low-level matching signals
+* Step 2: aggregate matching patterns
+
+- https://blog.csdn.net/wangqingbaidu/article/details/79286038
+- https://www.microsoft.com/en-us/research/project/dssm/
+- [Learning to Match Using Local and Distributed Representations of Text for Web Search](https://arxiv.org/pdf/1610.08136.pdf)
+- [Tensorflow implementations of various Deep Semantic Matching Models](https://github.com/ChenglongChen/tensorflow-DSMM)
+- https://github.com/NTMC-Community/MatchZoo
+- https://github.com/shenweichen/DeepMatch
+
+#### Deep Relevance Matching Model
+
+It is asserted that
+> the ad-hoc retrieval task is mainly about relevance matching while most NLP matching tasks concern semantic matching, and there are some fundamental differences between these two matching tasks. Successful relevance matching requires proper handling of the exact matching signals, query term importance, and diverse matching requirements.
+
+A novel deep relevance matching model (DRMM) for ad-hoc retrieval employs a joint deep architecture at the query term level for relevance matching. By using matching histogram mapping, a feed forward matching network, and a term gating network, we can effectively deal with the three relevance matching factors mentioned above.
+
+<img src="https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/DRMM.jpg" width="80%" />
+
++ Matching histogram mapping for summarizing each query matching signals
++ Term gating network for weighting the query matching signals
++ Lost word order information (during histogram mapping)
+
+- [A Deep Relevance Matching Model for Ad-hoc Retrieval](https://arxiv.org/abs/1711.08611)
+- https://zhuanlan.zhihu.com/p/38344505
+- https://frankblood.github.io/2017/03/10/A-Deep-Relevance-Matching-Model-for-Ad-hoc-Retrieval/
+
+#### DeepRank: Text Matching as Image Recognition
+
+Calculate relevance by mimicking the human relevance judgement process
+
+1. Detecting Relevance locations: focusing on locations of query terms when scanning the whole document
+2. Determining local relevance: relevance between query and each location context, using MatchPyramid/MatchSRNN etc.
+3. Matching signals aggregation
+
+- [Deep Relevance Ranking Using Enhanced Document-Query Interactions](http://nlp.cs.aueb.gr/pubs/EMNLP2018Preso.pdf)
+- [DeepRank: A New Deep Architecture for Relevance Ranking in Information Retrieval](https://arxiv.org/pdf/1710.05649.pdf)
+
+Challenges
+
+- [ ] Representation: representing the word level matching signals as well as the matching positions
+- [ ] Modeling: discovering the matching patterns between two texts
+- [ ] Our solutions
+  - [ ] Step 1: representing as matching matrix
+  - [ ] Step 2: matching as image recognition
+
+Matching matrix $M_{ij}=\mathbb I_{w_i=v_j}$ or $M_{ij}= \frac{w_i^T v_j}{\|w_i\| \|v_j\|}$ or $M_{ij}=\left<w_i, v_j\right>$.
+
+$$\fbox{MatchPyramid} =\underbrace{Matching\,\, Matrix}_{\text{Bridging the semantic gap between words}}+\underbrace{Hierarchical\,\, Convolution}_{\text{Capturing rich matching patterns}}$$
+
+
+- http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_CNNTextMatch.pdf
+- http://www.bigdatalab.ac.cn/~junxu/publications/AAAI2016_BiLSTMTextMatch.pdf
+- https://github.com/pl8787/MatchPyramid-TensorFlow
+- https://www.cntk.ai/pythondocs/CNTK_303_Deep_Structured_Semantic_Modeling_with_LSTM_Networks.html
+
+#### Tree-based Deep Match(TDM)
+
+
+The idea  of  `TDM` is to predict user interests from coarse to fine by traversing tree nodes in a top-down fashion and making decisions for each user-node pair.
+
+A recommendation tree consists of a set of nodes N, where $N = \{n_1, n_2, \dots, n_{|N |}\}$ represents $|N |$ individual non-leaf or leaf nodes.
+Each node in $N$ except the root node has one parent and an arbitrary number of children. Specifically, each item $c_i$
+in the corpus $C$ corresponds to one and only one leaf node in the tree,
+and those non-leaf nodes are coarse-grained concepts. Without loss of generality, we suppose that node n1 is always the root node.
+An example
+tree is illustrated in the right bottom corner of the following figure , in which
+each circle represents a node and the number of node is its index in
+tree. The tree has 8 leaf nodes in total, each of which corresponds to an item in the corpus. It’s worth mentioning that though the given
+example is a complete binary tree, we don’t impose complete and
+binary as restrictions on the type of the tree in our model.
+
+<img title="TDM" src="https://pic2.zhimg.com/80/v2-92c403ef6fbb9e0616440bdefc67622d_hd.jpg" width="80%" />
+<img src="https://pic3.zhimg.com/80/v2-2b8eaa092b24668488b4bcab45f4bbce_hd.jpg" width="70%" />
+
+- http://www.6aiq.com/article/1565927125584
+- https://tianchi.alibabacloud.com/course/video?liveId=41072
+- [深度树匹配模型(TDM)@x-deeplearning](https://github.com/alibaba/x-deeplearning/wiki/%E6%B7%B1%E5%BA%A6%E6%A0%91%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%9E%8B(TDM))
+- https://www.jianshu.com/p/149467a29b64
+- [Learning Tree-based Deep Model for Recommender Systems](https://arxiv.org/abs/1801.02294)
+- [Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba](https://arxiv.org/abs/1803.02349)
+- [Joint Optimization of Tree-based Index and Deep Model for Recommender Systems](https://arxiv.org/pdf/1902.07565.pdf)
+- [阿里自主创新的下一代匹配&推荐技术：任意深度学习+树状全库检索](https://zhuanlan.zhihu.com/p/35030348)
+- https://dzone.com/articles/breakthroughs-in-matching-and-recommendation-algor
+
+
+#### Vector Search Engine
+
+Vector search engine (aka neural search engine or deep search engine) [uses deep learning models to encode data sets into meaningful vector representations, where distance between vectors represent the similarities between items.](https://www.microsoft.com/en-us/ai/ai-lab-vector-search)
+
+
+- https://www.microsoft.com/en-us/ai/ai-lab-vector-search
+- https://github.com/textkernel/vector-search-plugin
+
+##### Weaviate
+
+Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorizes the above-mentioned data object in a vector-space where the data object sits near the text ”landmarks in France”. This means that Weaviate can’t make a 100% match, but a very high one to show you the results.
+
+- https://github.com/semi-technologies/weaviate
+- https://www.semi.technology/developers/weaviate/current/
+
+##### Milvus
+
+As an open source vector similarity search engine, Milvus is easy-to-use, highly reliable, scalable, robust, and blazing fast. Adopted by over 100 organizations and institutions worldwide, Milvus empowers applications in a variety of fields, including image processing, computer vision, natural language processing, voice recognition, recommender systems, drug discovery, etc.
+
+- https://github.com/milvus-io/milvus
+- https://milvus.io/docs/v0.6.0/reference/comparison.md
+- https://milvus.io/cn/
+
+##### Jina
+Jina is a deep learning-powered search framework for building cross-/multi-modal search systems (e.g. text, images, video, audio) on the cloud.
+
+- https://github.com/jina-ai
+- https://jina.ai/
+- https://github.com/jina-ai/jina/
+
+
 
 ### Modeling Diverse Ranking with MDP
 
@@ -1138,9 +1550,11 @@ Different from general web search engine, scholar search engine does rank the we
 - https://awesomeopensource.com/
 - http://evolutionofmachinelearning.com/
 
-### Patent Search and Analysis
+#### Patent Search and Analysis
 
 - [Patent Search and Analysis](https://www.lens.org/)
+- https://ipportal.wipo.int/
+- https://www.google.com/patents
 
 ### MACHINE LEARNING FOR HEALTHCARE
 
@@ -1295,6 +1709,14 @@ and usually has scattered resources associated with it.
 * http://www.ee.columbia.edu/~wjiang/
 * [WebMARS: A Multimedia Search Engine](https://www.microsoft.com/en-us/research/publication/webmars-a-multimedia-search-engine/)
 
+##### FGCrossNet
+
+- https://zhuanlan.zhihu.com/p/93083455
+- https://arxiv.org/abs/1907.04476
+- http://59.108.48.34/tiki/FGCrossNet/
+- https://github.com/PKU-ICST-MIPL/FGCrossNet_ACMMM2019
+- https://www.researchgate.net/publication/221368756_NUS-WIDE_A_real-world_web_image_database_from_National_University_of_Singapore
+
 ##### Image Search Engine
 
 [Milvus is the world's fastest similarity search engine for massive-scale feature vectors. Built with heterogeneous computing architecture for the best cost efficiency. Searches over billion-scale vectors take only milliseconds with minimum computing resources.](https://github.com/milvus-io/milvus)
@@ -1307,6 +1729,20 @@ and usually has scattered resources associated with it.
 - [自制AI图像搜索引擎](https://blog.csdn.net/baidu_40840693/article/details/88230418)
 - [深度学习表征的不合理有效性——从头开始构建图像搜索服务（一）](https://segmentfault.com/a/1190000015570726)
 - [深度学习表征的不合理有效性——从头开始构建图像搜索服务（二）](https://yq.aliyun.com/articles/607384)
+
+####  Visual search
+
+Popular sites like Houzz, Pinterest, and LikeThatDecor, have communities of users helping each other answer questions about products in images.
+
+- https://tineye.com/
+- https://www.cs.cornell.edu/~kb/projects/productnet/
+- https://github.com/awslabs/visual-search
+- https://www.pyimagesearch.com/
+- https://w3-lab.com/rise-visual-search-seo-trend-2020/
+- https://www.bing.com/visualsearch
+- https://w3-lab.com/rise-visual-search-seo-trend-2020/
+- https://tech.ebayinc.com/research/tips-for-visual-search-at-scale/
+- [Arista (lARge-scale Image Search To Annotation) Established: January 1, 2006](https://www.microsoft.com/en-us/research/project/arista-large-scale-image-search-to-annotation/)
 
 #####  Music Information Retrieval
 
@@ -1330,8 +1766,15 @@ and usually has scattered resources associated with it.
 * [SGN-24006 Analysis of Audio, Speech and Music Signals Spring 2017 ](http://www.cs.tut.fi/~sgn24006/)
 * [Notes on Music Information Retrieval](https://musicinformationretrieval.com/index.html)
 
+#### Interactive Search
 
-#### Ecommerce Search
+- https://arxiv.org/abs/1905.13125
+- [Interactive search in image retrieval: a survey](https://link.springer.com/article/10.1007/s13735-012-0014-4)
+- [Interactive Visual Search](https://tech.ebayinc.com/research/interactive-visual-search/)
+- [Give me a hint! Navigating Image Databases using Human-in-the-loop Feedback](https://arxiv.org/pdf/1809.08714.pdf)
+- https://www.di.ens.fr/~josef/
+
+#### E-commerce Search
 
 According to a recent survey, over 55% of online customers begin their online shopping journey by searching on an E-Commerce website like Amazon 
 as opposed to a generic web search engine like Google. 
@@ -1368,7 +1811,10 @@ The system allows access to biomedical data:
 with improved search capabilities due to the integration of technologies to link the texts and images to facts in a knowledge base,
 * in a multilingual environment,
 * providing trustable results at a level of understandability adapted to the users.
+
+
 ----
+
 * [DeepStyle: Multimodal Search Engine for Fashion and Interior Design](https://ieeexplore.ieee.org/document/8737943)
 * [What Looks Good with my Sofa: Ensemble Multimodal Search for Interior Design](https://annals-csis.org/proceedings/2017/drp/56.html)
 * http://www.khresmoi.eu/overview/

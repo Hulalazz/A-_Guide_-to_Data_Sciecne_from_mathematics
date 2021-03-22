@@ -1,3 +1,100 @@
+- [Recommender System](#recommender-system)
+  - [Collaborative Filtering](#collaborative-filtering)
+    - [Matrix Completion](#matrix-completion)
+    - [Maximum Margin Matrix Factorization](#maximum-margin-matrix-factorization)
+    - [SVD and Beyond](#svd-and-beyond)
+    - [Probabilistic Matrix Factorization](#probabilistic-matrix-factorization)
+    - [Poisson Factorization](#poisson-factorization)
+    - [Collaborative Less-is-More Filtering(CliMF)](#collaborative-less-is-more-filteringclimf)
+    - [Matrix Factorization for Implicit Feedback](#matrix-factorization-for-implicit-feedback)
+    - [Discrete Collaborative Filtering](#discrete-collaborative-filtering)
+    - [Recommendation with Implicit Information](#recommendation-with-implicit-information)
+    - [Inductive Matrix Completion](#inductive-matrix-completion)
+    - [Beyond Matrix Completion](#beyond-matrix-completion)
+  - [Factorization Machines(FM)](#factorization-machinesfm)
+    - [Field-aware Factorization Machine(FFM)](#field-aware-factorization-machineffm)
+    - [Convex Factorization Machines](#convex-factorization-machines)
+    - [Higher-Order Factorization Machines](#higher-order-factorization-machines)
+    - [Implementation](#implementation)
+  - [Deep Learning for Recommender System](#deep-learning-for-recommender-system)
+    - [Restricted Boltzmann Machines for Collaborative Filtering](#restricted-boltzmann-machines-for-collaborative-filtering)
+    - [AutoRec for Collaborative Filtering](#autorec-for-collaborative-filtering)
+    - [Deep crossing](#deep-crossing)
+    - [Neural collaborative filtering](#neural-collaborative-filtering)
+    - [Collaborative deep learning for RecSys](#collaborative-deep-learning-for-recsys)
+    - [Wide & Deep Model](#wide--deep-model)
+    - [Deep FM](#deep-fm)
+    - [Neural Factorization Machines](#neural-factorization-machines)
+    - [Attentional Factorization Machines](#attentional-factorization-machines)
+    - [xDeepFM](#xdeepfm)
+    - [RepeatNet](#repeatnet)
+    - [Deep Matrix Factorization](#deep-matrix-factorization)
+    - [Deep Matching Models for Recommendation](#deep-matching-models-for-recommendation)
+  - [Embedding methods for RecSys](#embedding-methods-for-recsys)
+    - [Hyperbolic Recommender Systems](#hyperbolic-recommender-systems)
+    - [Prod2Vec](#prod2vec)
+    - [Item2vec](#item2vec)
+    - [Meta-Prod2Vec](#meta-prod2vec)
+    - [Graph Embeddings for RecSys](#graph-embeddings-for-recsys)
+      - [proNet](#pronet)
+      - [Modularize Graph Embedding for Recommendation](#modularize-graph-embedding-for-recommendation)
+  - [Graph-based RecSys](#graph-based-recsys)
+    - [Deep Geometric Matrix Completion](#deep-geometric-matrix-completion)
+    - [PinSage](#pinsage)
+    - [Spectral Collaborative Filtering](#spectral-collaborative-filtering)
+    - [LightGCN](#lightgcn)
+    - [GraphRec](#graphrec)
+  - [Feature Interaction Selection in RecSys](#feature-interaction-selection-in-recsys)
+    - [AutoCross](#autocross)
+    - [Product-based Neural Network](#product-based-neural-network)
+    - [Deep Crossing](#deep-crossing-1)
+    - [AutoGroup](#autogroup)
+    - [AutoFIS](#autofis)
+    - [AutoFeature](#autofeature)
+    - [Automated Embedding](#automated-embedding)
+  - [Ensemble Methods for Recommender System](#ensemble-methods-for-recommender-system)
+    - [BellKor's Progamatic Chaos](#bellkors-progamatic-chaos)
+    - [BoostFM](#boostfm)
+    - [Adaptive Boosting Personalized Ranking (AdaBPR)](#adaptive-boosting-personalized-ranking-adabpr)
+    - [Gradient Boosting Factorization Machines](#gradient-boosting-factorization-machines)
+      - [Gradient Boosted Categorical Embedding and Numerical Trees](#gradient-boosted-categorical-embedding-and-numerical-trees)
+      - [Deep Embedding Networks and Gradient Boosting Decision Trees](#deep-embedding-networks-and-gradient-boosting-decision-trees)
+  - [Tree-based Deep Model for Recommender Systems](#tree-based-deep-model-for-recommender-systems)
+  - [Context-aware Recommendations](#context-aware-recommendations)
+    - [Context-Aware Factorization Machines](#context-aware-factorization-machines)
+  - [Sequential Recommender Systems](#sequential-recommender-systems)
+  - [Top-N recommendation](#top-n-recommendation)
+  - [Explainable Recommendations](#explainable-recommendations)
+  - [Social Recommendation](#social-recommendation)
+    - [SocialMF: MF with social trust propagation](#socialmf-mf-with-social-trust-propagation)
+    - [Algorithmic Bias in Search and Recommendation](#algorithmic-bias-in-search-and-recommendation)
+  - [Knowledge Graph and Recommender System](#knowledge-graph-and-recommender-system)
+    - [RippleNet](#ripplenet)
+  - [Reinforcement Learning and Recommender System](#reinforcement-learning-and-recommender-system)
+  - [Adversarial Learning for  Recommender Systems](#adversarial-learning-for--recommender-systems)
+    - [Generative Adversarial Networks for Recommender Systems](#generative-adversarial-networks-for-recommender-systems)
+    - [Adversarial Attacks](#adversarial-attacks)
+    - [Adversarial Training](#adversarial-training)
+  - [Health Recommender Systems](#health-recommender-systems)
+    - [Recommdender System for Doctor](#recommdender-system-for-doctor)
+      - [Patient-Doctor Matchmaking](#patient-doctor-matchmaking)
+    - [DeepReco](#deepreco)
+  - [Resource on RecSys](#resource-on-recsys)
+    - [Labs](#labs)
+    - [Workshop](#workshop)
+    - [Implementation](#implementation-1)
+- [Computational Advertising](#computational-advertising)
+  - [Click-Through Rate Modeling](#click-through-rate-modeling)
+  - [Conversion Rate Modeling](#conversion-rate-modeling)
+  - [Bid Optimization](#bid-optimization)
+  - [User Engagement](#user-engagement)
+  - [User Modeling](#user-modeling)
+    - [Modeling Users’ Preferences](#modeling-users-preferences)
+  - [Resource](#resource)
+    - [Labs](#labs-1)
+    - [Courese](#courese)
+
+
 # Recommender System
 
 
@@ -44,14 +141,14 @@ And we will focus on the `representation and evaluation`.
 - [ ] [International Workshop on Web Personalization, Recommender Systems, and Social Media (WPRSM2018)](http://www.webpres-workshop.com/)
 - [ ] https://www.comp.hkbu.edu.hk/mdm2019/files/slides/keynote_xie.pdf
 
-|Evolution of the Recommender Problem|
-|:---:|
-|Rating|
-|Ranking|
-|Page Optimization|
-|Context-aware Recommendations|
-----
-|[Recommendation Strategies](https://datawarrior.wordpress.com/2019/06/19/strategies-of-recommendation-systems/)|
+Evolution of the Recommender Problem:
+- Rating
+- Ranking
+- Page Optimization
+- Context-aware Recommendations
+
+**********
+|------------------|
 |:---:|
 |Collaborative Filtering (CF)|
 |Content-Based Filtering (CBF)|
@@ -66,6 +163,7 @@ The evaluation of recommendation system can be regarded as some machine learning
 We only take the mathematical convenience into consideration in the following methods.
 `Gini index, covering rate` and more realistic factors are not discussed in the following content.
 
+- [Recommendation Strategies](https://datawarrior.wordpress.com/2019/06/19/strategies-of-recommendation-systems/)
 - [Evaluating recommender systems](http://fastml.com/evaluating-recommender-systems/)
 - [Distance Metrics for Fun and Profit](https://www.benfrederickson.com/distance-metrics/)
 - [Recsys2018 evaluation: tutorial](https://github.com/jeanigarcia/recsys2018-evaluation-tutorial)
@@ -298,8 +396,8 @@ We use stochastic gradient ascent to maximize the objective function.
 * [Collaborative Less-is-More Filtering python Implementation](https://github.com/gamboviol/climf)
 * [CLiMF: Collaborative Less-Is-More Filtering](https://www.ijcai.org/Proceedings/13/Papers/460.pdf)
 
+###  Matrix Factorization for Implicit Feedback
 
-### Recommendation with Implicit Information
 
 Another advantage of collaborative filtering or matrix completion is that even the element of matrix is binary or implicit information such as
 
@@ -328,11 +426,33 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 
 [Alternating least square](http://suo.im/4YCM5f) (**ALS**) can give an analytic solution to this optimization problem by setting the gradients equal to 0s.
 
+
+* [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
+* [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
+* [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
+* [Logistic Matrix Factorization for Implicit Feedback Data](http://stanford.edu/~rezab/nips2014workshop/submits/logmat.pdf)
+
+
+
+### Discrete Collaborative Filtering
+
+
+- [Discrete Collaborative Filtering](https://www.comp.nus.edu.sg/~xiangnan/papers/sigir16-dcf-cm.pdf)
+- https://arxiv.org/abs/2003.10719
+- https://github.com/hanwangzhang/Discrete-Collaborative-Filtering
+- [Discrete Content-aware Matrix Factorization](https://datasciences.org/publication/Lian-kdd17.pdf)
+- [Discrete Factorization Machines for Fast Feature-based Recommendation](https://www.ijcai.org/Proceedings/2018/0479.pdf)
+- [Binomial Matrix Factorization for Discrete Collaborative Filtering](https://ieeexplore.ieee.org/document/5360354)
+- [Discrete Matrix Factorization and Extension for Fast Item Recommendation](http://staff.ustc.edu.cn/~liandefu/paper/dmf_fast.pdf)
+- [Discrete Ranking-based Matrix Factorization with Self-Paced Learning](https://bigdata.ustc.edu.cn/paper_pdf/2018/Yan-Zhang-KDD2018.pdf)
+- https://github.com/yixianqianzy/drmf-spl
+
+### Recommendation with Implicit Information
+
 * [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 * [A Generic Framework for Learning Explicit and Implicit User-Item Couplings in Recommendation](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8815704)
 * [Recommending Based on Implicit Feedback](https://www.researchgate.net/publication/324895157_Recommending_Based_on_Implicit_Feedback)
 * [Fast Collaborative Filtering from Implicit Feedback with Provable Guarantees](http://proceedings.mlr.press/v63/Dasgupta79.pdf)
-* [Intro to Implicit Matrix Factorization: Classic ALS with Sketchfab Models](https://www.ethanrosenthal.com/2016/10/19/implicit-mf-part-1/)
 * http://nicolas-hug.com/blog/matrix_facto_1
 * http://nicolas-hug.com/blog/matrix_facto_2
 * http://nicolas-hug.com/blog/matrix_facto_3
@@ -341,13 +461,12 @@ WRMF does not make the assumption that a user who has not interacted with an ite
 * [Fast Python Collaborative Filtering for Implicit Feedback Datasets](https://github.com/benfred/implicit)
 * [Alternating Least Squares Method for Collaborative Filtering](https://bugra.github.io/work/notes/2014-04-19/alternating-least-squares-method-for-collaborative-filtering/)
 * [Implicit Feedback and Collaborative Filtering](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/)
-* [Faster Implicit Matrix Factorization](https://www.benfrederickson.com/fast-implicit-matrix-factorization/)
-* [CUDA Tutorial: Implicit Matrix Factorization on the GPU](https://www.benfrederickson.com/implicit-matrix-factorization-on-the-gpu/)
 - [BPR: Bayesian Personalized Ranking from Implicit Feedback](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf)
 - [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 - [Improving Pairwise Learning for Item Recommendation from Implicit Feedback](http://webia.lip6.fr/~gallinar/gallinari/uploads/Teaching/WSDM2014-rendle.pdf)
 - [A-RecSys : a Tensorflow Toolkit for Implicit Recommendation Tasks](https://github.com/skywaLKer518/A-Recsys)
 - http://lyst.github.io/lightfm/docs/examples/warp_loss.html
+
 
 ***
 
@@ -714,10 +833,11 @@ for for activation functions $f, g$ as described in  dimension reduction. Here $
 
 <img src="https://d2l.ai/_images/rec-neumf.svg" width="80%"/>
 
-- https://www.comp.nus.edu.sg/~xiangnan/papers/ncf.pdf
+- [Neural Collaborative Filtering](https://www.comp.nus.edu.sg/~xiangnan/papers/ncf.pdf)
 - https://d2l.ai/chapter_recommender-systems/neumf.html
 - https://github.com/hexiangnan/neural_collaborative_filtering
 - [Neural Collaborative Filtering vs. Matrix Factorization Revisited](https://arxiv.org/abs/2005.09683)
+- [Outer Product-based Neural Collaborative Filtering](https://www.ijcai.org/Proceedings/2018/0308.pdf)
   
 ### Collaborative deep learning for RecSys
 
@@ -880,11 +1000,17 @@ It mainly consists of 3 parts: `Embedding Layer`, `Compressed Interaction Networ
 
 ### RepeatNet
 
+
+
 <img title="Repeat Net" src="http://kubicode.me/img/More-Session-Based-Recommendation/repeatnet_arch.png" width="70%"/>
 
 * https://arxiv.org/pdf/1806.08977.pdf
+* [RepeatNet: A Repeat Aware Neural Recommendation Machine
+for Session-based Recommendation
+](https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/ren-repeatnet-2019.pdf)
 * https://github.com/PengjieRen/RepeatNet
-
+* https://github.com/PengjieRen/RepeatNet-pytorch
+* https://xamat.github.io/pubs/recsys12-tutorial.pdf
 
 ****
 
@@ -965,19 +1091,12 @@ Deep Matching models takes the ID vectors and features together as the input to 
 
 
 
-## Top-N recommendation
-
-* http://yongfeng.me/attach/jrl-cikm17.pdf
-* [Local Item-Item Models for Top-N Recommendation](http://glaros.dtc.umn.edu/gkhome/node/1192)
-* [Improving Top-N Recommendation with Heterogeneous Loss](https://www.ijcai.org/Proceedings/16/Papers/339.pdf)
-* https://blog.csdn.net/lthirdonel/article/details/80021282
-* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data](http://ceur-ws.org/Vol-1127/paper4.pdf)
-* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 
 ## Embedding methods for RecSys
 
-
-
+- https://u.osu.edu/cep1/
+- https://labs.pinterest.com/publications/embeddings/
+- https://theory.cs.northwestern.edu/events/embeddings/
 - https://recsys.acm.org/recsys18/tutorials/
 - https://dawenl.github.io/publications/LiangACB16-cofactor.pdf
 - https://cseweb.ucsd.edu/~jmcauley/pdfs/recsys18c.pdf
@@ -985,7 +1104,10 @@ Deep Matching models takes the ID vectors and features together as the input to 
 - https://cseweb.ucsd.edu/~jmcauley/workshops/scmls20/
 - https://www.ismll.uni-hildesheim.de/pub/pdfs/Ahmed_RecSys19.pdf
 - https://www.cc.gatech.edu/~lsong/papers/rnn_coevolve.pdf
-- http://yongfeng.me/attach/wang-sigir2019a.pdf
+- [Unified Collaborative Filtering over Graph Embeddings](http://yongfeng.me/attach/wang-sigir2019a.pdf)
+- [Hyperbolic embedding](https://github.com/LiuChuang0059/hyperbolic_embedding_papers)
+- [Item-based Collaborative Filtering with BER](https://www.aclweb.org/anthology/2020.ecnlp-1.8.pdf)
+- https://github.com/xiangwang1223/tree_enhanced_embedding_model
 
 ### Hyperbolic Recommender Systems
 
@@ -1035,16 +1157,22 @@ embeddings of words based on word sequences in text documents
 
 ### Meta-Prod2Vec
 
+`Meta-Prod2ve` is a novel method to compute item similarities for recommendation that leverages existing item metadata. 
+
 - https://arxiv.org/abs/1607.07326
 - http://labs.criteo.com/2016/09/meta-prod2vec-product-embeddings-using-side-information-recommendation/
 
+### Graph Embeddings for RecSys
 
-### proNet
+- https://github.com/aarivan/Graph-Embeddings-for-Recommender-Systems
+
+#### proNet
+
 
 - http://cherry.cs.nccu.edu.tw/~g10018/portfolio/slides/pronet.pdf
 - https://github.com/haowei01/proNet-core
 
-### Modularize Graph Embedding for Recommendation
+#### Modularize Graph Embedding for Recommendation
 
 We can take the recommendation as Link Prediction on Graphs.
 
@@ -1069,8 +1197,9 @@ In order to address the challenges of the graph embedding, we need modularize gr
 - https://github.com/chihming/awesome-network-embedding
 - http://cherry.cs.nccu.edu.tw/~g10018/recsys19_smore.pdf
 - http://staff.ustc.edu.cn/~hexn/papers/sigir19-NGCF.pdf
+- https://www.slideshare.net/changecandy/recsys19-smore
 
-## Graph networks for RecSys
+## Graph-based RecSys
 
 > Graph is an important structure for System II intelligence, with the universal representation ability to capture the relationship between different variables, and support interpretability, causality, and transferability / inductive generalization. Traditional logic and symbolic reasoning over graphs has relied on methods and tools which are very different from deep learning models, such Prolog language, SMT solvers, constrained optimization and discrete algorithms. Is such a methodology separation between System I and System II intelligence necessary? How to build a flexible, effective and efficient bridge to smoothly connect these two systems, and create higher order artificial intelligence?
 
@@ -1080,15 +1209,17 @@ In order to address the challenges of the graph embedding, we need modularize gr
 Common data sources for recommendation can be organized into graphs, such as user-item interactions (bipartite graphs), social networks, item knowledge graphs (heterogeneous graphs), among others. 
 Such a graph-based organization connects the isolated data instances, bringing benefits for exploiting high-order connectivities that encode meaningful patterns for collaborative filtering, content-based filtering, social influence modeling and knowledge-aware reasoning. 
 Together with the recent success of graph neural networks (GNNs), graph-based models have exhibited the potential to be the technologies for next generation recommendation systems. 
-The tutorial provides a review on graph-based learning methods for recommendation, with special focus on recent developments of GNNs and knowledge grap-henhanced recommendation. 
+The tutorial provides a review on graph-based learning methods for recommendation, with special focus on recent developments of GNNs and knowledge graph-enhanced recommendation. 
 By introducing this emerging and promising area in the tutorial, we expect the audience can get deep understanding and accurate insight on the spaces, stimulate more ideas and discussions, and promote developments of technologies.
 
 - https://next-nus.github.io/
 - https://logicalreasoninggnn.github.io/
 - https://arxiv.org/abs/1902.07243
 - https://zhuanlan.zhihu.com/p/66521058
-- https://github.com/wenqifan03/GraphRec-WWW19
+- [Graph-search based Recommendation system](https://github.com/chandan-u/graph-based-recommendation-system)
 - https://next-nus.github.io/slides/tuto-cikm2019-public.pdf
+- [Multi-behavior Recommendation with Graph Convolutional
+Networks](http://staff.ustc.edu.cn/~hexn/papers/sigir20-MBGCN.pdf)
 
 ### Deep Geometric Matrix Completion
 
@@ -1111,6 +1242,7 @@ the selected GCN.
 
 ### PinSage
 
+- http://snap.stanford.edu/graphsage/
 - http://cedric.cnam.fr/~thomen/journal_club/19-10-18.pdf
 - https://sites.google.com/view/ruining-he/
 - https://samsiatrtp.wordpress.com/category/program/computational-advertising/
@@ -1125,16 +1257,27 @@ the selected GCN.
 
 ### LightGCN
 
+
 -  https://github.com/kuandeng/LightGCN
 -  https://blog.csdn.net/qq_39388410/article/details/106970194
 -  http://staff.ustc.edu.cn/~hexn/
 
-## Automatic Feature Interaction Selection in RecSys
+### GraphRec
+
+
+- https://github.com/wenqifan03/GraphRec-WWW19
+- https://daiwk.github.io/posts/dl-graph-recommendations.html
+
+
+## Feature Interaction Selection in RecSys
 
 
 [A feature interaction is some way in which a feature or features modify or influence another feature in defining overall system behavior.](http://pamelazave.com/faq.html)
 
 - https://www.tinymind.cn/articles/4233?from=articles_commend
+- [HOP-rec: high-order proximity for implicit recommendation](https://dl.acm.org/doi/10.1145/3240323.3240381)
+- https://archsummit.infoq.cn/2020/shenzhen/presentation/2330
+- [Bayesian Personalized Feature Interaction Selection for Factorization Machines](https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/chen-2019-bayesian.pdf)
 
 Generally, feature interactions matter in recommender system.
 
@@ -1143,7 +1286,7 @@ Generally, feature interactions matter in recommender system.
 
 - http://pamelazave.com/fi.html
 - https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/chen-2019-bayesian.pdf
-- http://www.that-recsys-lab.net/home/projects/fala-tutorial-2020
+- [Experimentation with fairness-aware recommendation using librec-auto](http://www.that-recsys-lab.net/home/projects/fala-tutorial-2020)
 - http://www.inf.unibz.it/~ricci/papers/intro-rec-sys-handbook.pdf
 - https://pycaret.org/feature-interaction/
 - https://www.cs.cmu.edu/~ckaestne/pdf/icse12.pdf
@@ -1156,9 +1299,11 @@ Generally, feature interactions matter in recommender system.
 
 ### AutoCross
 
+By performing beam search in a tree-structured space, AutoCross enables efficient generation of high-order cross features, which is not yet visited by existing works.
+
 <img src="https://cdn-image.aijishu.com/419/674/4196744805-5efef8e60a75b" width="80%"/>
 
-- https://dl.acm.org/doi/10.1145/3292500.3330679
+- [AutoCross: Automatic Feature Crossing for Tabular Data in Real-World Applications](https://dl.acm.org/doi/10.1145/3292500.3330679)
 - https://aijishu.com/a/1060000000081601
 
 ### Product-based Neural Network
@@ -1179,17 +1324,39 @@ Generally, feature interactions matter in recommender system.
 
 ### AutoGroup
 
-- https://icml.cc/Conferences/2011/papers/9_icmlpaper.pdf
+
+AutoGroup casts the selection of feature interactions as a structural optimization problem. In a nutshell, AutoGroup first automatically groups useful features into a number of feature sets. Then, it generates interactions of any order from these feature sets using a novel interaction function. The main contribution of AutoGroup is that it performs both dimensionality reduction and feature selection which are not seen in previous models.
+
+
+
+- [Efficient Sparse Modeling with Automatic Feature Grouping](https://icml.cc/Conferences/2011/papers/9_icmlpaper.pdf)
+- [AutoGroup: Automatic Feature Grouping for Modelling Explicit High-Order Feature Interactions in CTR Prediction](https://dl.acm.org/doi/abs/10.1145/3397271.3401082)
 - https://zhuanlan.zhihu.com/p/136594025
 
 ### AutoFIS
 
 > `AutoFIS` can automatically identify important feature interactions for factorization models with computational cost just equivalent to training the target model to convergence. In the $\color{red}\text{search stage}$, instead of searching over a discrete set of candidate feature interactions, we relax the choices to be continuous by introducing the architecture parameters
 
-- https://arxiv.org/abs/2003.11235
+- [AutoFIS: Automatic Feature Interaction Selection in Factorization Models for Click-Through Rate PredictionCODE ](https://arxiv.org/abs/2003.11235)
 - https://github.com/zhuchenxv/AutoFIS
 
+### AutoFeature
 
+$\mathrm{AutoInt}$ to automatically learn the high-order feature interactions of input features.
+[Our proposed algorithm is very general, which can be applied to both numerical and categorical input features.](https://arxiv.org/abs/1810.11921)
+Specifically, we map both the numerical and categorical features into the same low-dimensional space. Afterwards, a multi-head self-attentive neural network with residual connections is proposed to explicitly model the feature interactions in the low-dimensional space. With different layers of the multi-head self-attentive neural networks, different orders of feature combinations of input features can be modeled. 
+
+- [AutoFeature: Searching for Feature Interactions and Their Architectures for Click-through Rate Prediction](https://dl.acm.org/doi/abs/10.1145/3340531.3411912)
+- https://arxiv.org/abs/1810.11921
+
+### Automated Embedding
+
+`AutoEmb`  can enable various embedding dimensions according to the popularity in an automated and dynamic manner.
+
+- [AutoEmb: Automated Embedding Dimensionality Search in Streaming Recommendations](https://arxiv.org/abs/2002.11252)
+- [Automated Embedding Size Search in Deep Recommender Systems](https://dl.acm.org/doi/abs/10.1145/3397271.3401436)
+- https://www.cse.msu.edu/~zhaoxi35/
+- https://sites.google.com/view/kdd20-marketplace-autorecsys/
 
 ## Ensemble Methods for Recommender System
 
@@ -1208,7 +1375,8 @@ There are two common methods to construct a stronger learner from a weaker learn
 Until now, we consider the recommendation task as a regression prediction process, which is really common in machine learning.
 The boosting or stacking methods may help us to enhance these methods.
 
-> A key to achieving highly competitive results on the Netflix data is usage of sophisticated blending schemes, which combine the multiple individual predictors into a single final solution. This significant component was managed by our colleagues at the Big Chaos team. Still, we were producing a few blended solutions, which were later incorporated as individual predictors in the final blend. Our blending techniques were applied to three distinct sets of predictors. First is a set of 454 predictors, which represent all predictors of the BellKor’s Pragmatic Chaos team for which we have matching Probe and Qualifying results. Second, is a set of 75 predictors, which the BigChaos team picked out of the 454 predictors by forward selection. Finally, a set of 24 BellKor predictors for which we had matching Probe and Qualifying results. from [Netflix Prize.](https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf)
+> A key to achieving highly competitive results on the Netflix data is usage of sophisticated blending schemes, which combine the multiple individual predictors into a single final solution. This significant component was managed by our colleagues at the Big Chaos team. Still, we were producing a few blended solutions, which were later incorporated as individual predictors in the final blend. Our blending techniques were applied to three distinct sets of predictors. First is a set of 454 predictors, which represent all predictors of the BellKor’s Pragmatic Chaos team for which we have matching Probe and Qualifying results. Second, is a set of 75 predictors, which the BigChaos team picked out of the 454 predictors by forward selection. 
+> Finally, a set of 24 BellKor predictors for which we had matching Probe and Qualifying results. from [Netflix Prize.](https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf)
 
 
 
@@ -1362,9 +1530,12 @@ _________
 - [Paper: Gradient Boosted Categorical Embedding and Numerical Trees](https://qzhao2018.github.io/zhao/publication/zhao2017www.pdf)
 - https://qzhao2018.github.io/
 
+####  Deep Embedding Networks and Gradient Boosting Decision Trees
 
+- http://www.simflow.net/Publications/Papers/Year2018/Baibing.pdf
+- https://doogkong.github.io/proposal_2019.html
 
-## Tree-based Index and Deep Model for Recommender Systems
+## Tree-based Deep Model for Recommender Systems
 
 By indexing items in a tree hierarchy and training a user-node preference prediction model satisfying a max-heap like property in the tree, 
 [`TDM` provides logarithmic computational complexity w.r.t. the corpus size, enabling the use of arbitrary advanced models in candidate retrieval and recommendation.](https://arxiv.org/abs/1801.02294)
@@ -1432,6 +1603,45 @@ ancestor user-node pairs as the global empirical loss.
 
 The core of `TDM` is to regard the recommendation as ranking.
 
+## Context-aware Recommendations
+
+[Context-aware information is widely available in various ways and is becoming more and more important for enhancing retrieval performance and recommendation results. ](http://carr-workshop.org/)
+The current main issue to cope with is not only recommending or retrieving the most relevant items and content, but defining them ad hoc. Further relevant issues are personalizing and adapting the information and the way it is displayed to the user’s current situation and interests. 
+
+
+- https://www.baltrunas.info/context-aware
+- https://www.kdd.org/kdd2014/tutorials/KDD-%20The%20RecommenderProblemRevisited-Part2.pdf
+- [Workshop on Context-Aware Recommender Systems (CARS-2009)](http://ids.csom.umn.edu/faculty/gedas/cars2009/)
+- [Context-aware Recommendation Using Role-based Trust Network](https://www.icst.pku.edu.cn/leizou/docs/2018-11/20181121164540356311.pdf)
+- [Context-Aware Recommendations Based on Deep Learning Frameworks](https://dl.acm.org/doi/10.1145/3386243)
+- [CARS2: Learning Context-aware Representations for Context-aware Recommendations](https://alexiskz.files.wordpress.com/2016/06/km1212-karatzoglou.pdf)
+- http://carr-workshop.org/
+
+### Context-Aware Factorization Machines
+
+- [Fast Context-aware Recommendations with Factorization Machines](https://www.ismll.uni-hildesheim.de/pub/pdfs/Rendle_et_al2011-Context_Aware.pdf)
+- [Optimizing Factorization Machines for Top-N Context-Aware Recommendations](https://fajieyuan.github.io/papers/WISE2016.pdf)
+- [Factorization Models for Context-/Time-Aware Movie
+Recommendations](https://www.ismll.uni-hildesheim.de/pub/pdfs/Gantner_Rendle_2010_CAMRa.pdf)
+- [Gaussian Process Factorization Machines for Context-aware  Recommendations](http://www.mscs.mu.edu/~praveen/Research/SocialAnalytics/p63-nguyen.pdf)
+
+## Sequential Recommender Systems
+
+- https://project.inria.fr/sr4sg/home/
+- https://jiaxit.github.io/resources/wsdm18caser.pdf
+- https://www.ijcai.org/Proceedings/2019/0883.pdf
+- [Adaptive-Hierarchical-Translation-Sequential](http://people.tamu.edu/~zhan13679/Paper/Adaptive-Hierarchical-Translation-Sequential.pdf)
+- https://www.hongliangjie.com/publications/wsdm2020.pdf
+- [Disentangled Self-Supervision in Sequential Recommenders](http://pengcui.thumedialab.com/papers/DisentangledSequentialRecommendation.pdf)
+
+## Top-N recommendation
+
+* http://yongfeng.me/attach/jrl-cikm17.pdf
+* [Local Item-Item Models for Top-N Recommendation](http://glaros.dtc.umn.edu/gkhome/node/1192)
+* [Improving Top-N Recommendation with Heterogeneous Loss](https://www.ijcai.org/Proceedings/16/Papers/339.pdf)
+* https://blog.csdn.net/lthirdonel/article/details/80021282
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data](http://ceur-ws.org/Vol-1127/paper4.pdf)
+* [Top-N Recommendations from Implicit Feedback Leveraging Linked Open Data ?](https://core.ac.uk/display/23873231)
 
 ## Explainable Recommendations
 
@@ -1470,14 +1680,22 @@ and manually defining the expressions require significant human efforts
 
 [We present a novel framework for studying recommendation algorithms in terms of the ‘jumps’ that they make to connect people to artifacts. This approach emphasizes reachability via an algorithm within the `implicit graph structure` underlying a recommender dataset and allows us to consider questions relating algorithmic parameters to properties of the datasets.](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
 
+> [Social Recommender Systems (SRSs)](http://www.comp.hkbu.edu.hk/~lichen/srs2010/) aim to alleviate information overload over social media users by presenting the most attractive and relevant content, often using personalization techniques adapted for the specific user. 
+> SRSs also aim at increasing adoption, engagement, and participation of new and existing users of social media sites. In addition to recommending content to consume, new types of recommendations emerge within social media, such as of people and communities to connect to, to follow, or to join.
+
 User-item/user-user interactions are usually in the form of graph/network structure. What is more, the graph is dynamic, and  we need to apply to new nodes without model retraining.
 
-- [ ] [Accurate and scalable social recommendation using mixed-membership stochastic block models](https://www.pnas.org/content/113/50/14207)
+
 - [ ] [6th International Workshop on Social Recommender Systems (SRS 2015)](http://www.comp.hkbu.edu.hk/~lichen/srs2015/)
+- [ ] http://www.comp.hkbu.edu.hk/~lichen/srs2010/
 - [ ] http://www.comp.hkbu.edu.hk/~lichen/srs2012/
 - [ ] http://www.comp.hkbu.edu.hk/~lichen/srs2011/
-- [ ] [Do Social Explanations Work? Studying and Modeling the
-Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
+- [ ] [1st International Workshop on Adaptation, Personalization and REcommendation in the Social-semantic We 7th Extended Semantic Web Conference (ESWC 2010)](http://ir.ii.uam.es/apresw2010/)
+- [ ] [Recommendation and Advertising in Online Social Networks](http://math.unipa.it/readnet2019/)
+- [ ] [Fairness and Discrimination in Retrieval and Recommendation](https://fair-ia.ekstrandom.net/)
+- [ ] https://fairumap.wordpress.com/
+- [ ] [Recommender Systems with Social Regularization](https://www.microsoft.com/en-us/research/wp-content/uploads/2011/01/wsdm10.pdf)
+- [ ] [Do Social Explanations Work? Studying and Modeling the Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/1304.3405.pdf)
 - [ ] [Existing Methods for Including Social Networks until 2015](http://ajbc.io/projects/slides/chaney_recsys2015.pdf)
 - [ ] [Social Recommendation With Evolutionary Opinion Dynamics](https://shiruipan.github.io/pdf/TSMC-18-Xiong.pdf)
 - [ ] [Workshop on Responsible Recommendation](https://piret.gitlab.io/fatrec/)
@@ -1487,6 +1705,9 @@ Effects of Social Explanations in Recommender Systems](https://arxiv.org/pdf/130
 - [ ] [Graph Neural Networks for Social Recommendation](https://paperswithcode.com/paper/graph-neural-networks-for-social)
 - [ ] [Studying Recommendation Algorithms by Graph Analysis](http://people.cs.vt.edu/~ramakris/papers/receval.pdf)
 - [ ] [Low-rank Linear Cold-Start Recommendation from Social Data](https://akmenon.github.io/papers/loco/loco-paper.pdf)
+- [ ] [Accurate and scalable social recommendation using mixed-membership stochastic block models](https://www.pnas.org/content/113/50/14207)
+- [ ] [Social Choice Theory and Recommender Systems](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/social_choice_theory.pdf)
+- [ ] https://raweb.inria.fr/rapportsactivite/RA2004/axis/uid26.html
 
 ### SocialMF: MF with social trust propagation
 
@@ -1497,6 +1718,19 @@ Based on the assumption of trust aware recommender
 - https://github.com/grahamjenson/list_of_recommender_systems
 - https://www.librec.net/doc/librec-v1.1/librec/rating/SocialMF.html
 - [A matrix factorization technique with trust propagation for recommendation in social networks](https://www.semanticscholar.org/paper/A-matrix-factorization-technique-with-trust-for-in-Jamali-Ester/c73287153c0a50102a40800c1ada626a410c63cc)
+
+
+### Algorithmic Bias in Search and Recommendation
+
+> Both search and recommendation algorithms provide results based on their relevance for the current user. In order to do so, such a relevance is usually computed by models trained on historical data, which is biased in most cases.
+>  Hence, the results produced by these algorithms naturally propagate, and frequently reinforce, biases hidden in the data, consequently strengthening inequalities. Being able to measure, characterize, and mitigate these biases while keeping high effectiveness is a topic of central interest for the information retrieval community. 
+
+- http://bias.disim.univaq.it/
+- https://www.mirkomarras.com/publication/bias2020/
+- [FAIRNESS, ACCOUNTABILITY AND TRANSPARENCY IN RECOMMENDER SYSTEMS](https://scholarworks.boisestate.edu/fatrec/)
+- [On the Need for Fairness in Financial Recommendation Engines](https://berthuang.com/papers/yao-finance18.pdf)
+- [What are you optimizing for? Aligning Recommender Systems with Human Values](https://participatoryml.github.io/papers/2020/42.pdf)
+- [Algorithms are not neutral: Bias in collaborative filtering](https://www.catherinestinson.ca/Files/Papers/Algorithms_are_not_Neutral.pdf)
 
 ## Knowledge Graph and Recommender System
 
@@ -1514,7 +1748,116 @@ Therefore, we are to fill in the gap between `item recommendation` and `KG compl
 - [ ] [深度学习与知识图谱在美团搜索广告排序中的应用实践](https://tech.meituan.com/2018/06/07/searchads-dnn.html)
 - [ ] [Unifying Knowledge Graph Learning and Recommendation: Towards a Better Understanding of User Preferences](http://staff.ustc.edu.cn/~hexn/papers/www19-KGRec.pdf)
 - [ ] [Explainable Reasoning over Knowledge Graphs for Recommendation](https://arxiv.org/pdf/1811.04540.pdf)
-- [ ] https://github.com/numb3r3/kgraph-recsys
+
+
+***********
+
+- https://github.com/BaeSeulki/WhySoMuch
+- https://github.com/numb3r3/kgraph-rec
+
+
+****
+
+- https://www.cs.cmu.edu/~wcohen/postscript/recsys-2016.pdf
+- https://ieeexplore.ieee.org/abstract/document/9216015/
+- https://github.com/hwwang55/KGNN-LS
+- https://github.com/hwwang55/KGCN
+- https://xiangwang1223.github.io/papers/KGAT_final.pdf
+- https://xiangwang1223.github.io/
+- https://arxiv.org/abs/2003.05753
+- https://arxiv.org/abs/2102.07057
+- https://www.comp.nus.edu.sg/~xiangnan/papers/www19-KGRec.pdf
+
+### RippleNet
+
+
+- https://arxiv.org/pdf/1803.03467.pdf
+- https://github.com/hwwang55/RippleNet
+- https://caojiangxia.github.io/RippleNet/
+
+## Reinforcement Learning and Recommender System
+
+Services that introduce stores to users on the Internet are increasing in recent years. 
+Each service conducts thorough analyses in order to display stores matching each user's preferences. 
+In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. 
+Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. 
+When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. 
+Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). 
+It is practically impossible to learn everything when the number of items to be learned periodically increases. 
+The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. 
+In order to solve this problem, we propose a recommender system based on deep reinforcement learning. 
+In deep reinforcement learning, a multilayer neural network is used to update the value function.
+
+* https://www.ashudeepsingh.com/publications/
+* http://www.cse.msu.edu/~zhaoxi35/
+* https://github.com/Jinjiarui/rl4rs-papers
++ https://recsys.acm.org/recsys19/reveal/
++ https://recsys.acm.org/recsys20/reveal/
+
+
+___________________________
+
+
+* [Ieep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
+* [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
+* [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
+* [TPGR: Large-scale Interactive Recommendation with Tree-structured Policy Gradient](http://www.noahlab.com.hk/#/news/new1811_1)
++ [Explore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
++ [Learning from logged bandit feedback](https://drive.google.com/file/d/0B2Rxz7LRWLOMX2dycXpWTGxoUE5lNkRnRWZuaDNZUlVRZ1kw/view)
++ [Improving the Quality of Top-N Recommendation](https://drive.google.com/file/d/0B2Rxz7LRWLOMekRtdExZVVpZQmlXNks0Y2FJTnd6ZG90TXdZ/view)
++ [ParsRec: Meta-Learning Recommendations for Bibliographic Reference Parsing](https://arxiv.org/abs/1808.09036)
++ [强化学习在阿里的技术演进与业务创新 | 免费资料库](https://yq.aliyun.com/articles/708953)
++ [Closing the loop with the real world: reinforcement and robust estimators for recommendation](https://sites.google.com/view/reveal2019/)
+
+_______
+
+|Traditional Approaches | Beyond Traditional Methods|
+|---------------------- |--------------------------|
+|Collaborative Filtering | Tensor Factorization & Factorization Machines|
+|Content-Based Recommendation | Social Recommendations|
+|Item-based Recommendation | Learning to rank|
+|Hybrid Approaches | MAB Explore/Exploit|
+
+
+- [ ] https://github.com/wzhe06/Reco-papers
+- [ ] https://github.com/hongleizhang/RSPapers
+- [ ] https://github.com/hongleizhang/RSAlgorithms
+- [ ] https://zhuanlan.zhihu.com/p/26977788
+- [ ] https://zhuanlan.zhihu.com/p/45097523
+- [ ] https://www.zhihu.com/question/20830906
+- [ ] https://www.zhihu.com/question/56806755/answer/150755503
+
+
+##  Adversarial Learning for  Recommender Systems
+
++ https://github.com/sisinflab/adversarial-recommender-systems-survey
++ https://github.com/EdisonLeeeee/RS-Adversarial-Learning
++ https://yasdel.github.io/
++ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
++ [Deep Adversarial Social Recommendation](https://www.ijcai.org/Proceedings/2019/0187.pdf)
++ https://yasdel.github.io/files/RecSys20_tutorial.pdf
++ [Generative Adversarial User Model for Reinforcement Learning BasedRecommendation System](https://icml.cc/media/Slides/icml/2019/201(11-14-00)-11-14-25-4831-generative_adve.pdf)
++ http://tommasodinoia.com/
+
+
+### Generative Adversarial Networks for Recommender Systems
+
+- [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
+- [RecGAN: Recurrent Generative Adversarial Networks for Recommendation Systems](https://www.brianlim.net/wordpress/wp-content/uploads/2018/08/recsys2018-recgan-recommender.pdf)
+- [Enhancing Social Recommendation with Adversarial Graph Convolutional Networks](https://arxiv.org/abs/2004.02340)
+
+### Adversarial Attacks
+
+
+- [Adversarial Attacks on an oblivious recommender](https://recsys.acm.org/wp-content/uploads/2019/10/recsys-19-material-adversarial.pdf)
+- https://www-users.cs.umn.edu/~baner029/papers/19/adv_attack.pdf
+
+### Adversarial Training
+
++ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
+- https://espace.library.uq.edu.au/view/UQ:b731966
+- [Generating Reliable Friends via Adversarial Training to Improve Social Recommendation](https://ieeexplore.ieee.org/document/8970896)
+- https://github.com/laugh12321/adversarial_multi_feedback_ranking
 
 ## Health Recommender Systems
 
@@ -1692,53 +2035,7 @@ thus far.
 ### DeepReco
 
 - [DeepReco: Deep Learning Based Health Recommender System Using Collaborative Filtering](https://www.mdpi.com/2079-3197/7/2/25/htm)
-
-## Reinforcement Learning and Recommender System
-
-Services that introduce stores to users on the Internet are increasing in recent years. 
-Each service conducts thorough analyses in order to display stores matching each user's preferences. 
-In the field of recommendation, collaborative filtering performs well when there is sufficient click information from users. 
-Generally, when building a user-item matrix, data sparseness becomes a problem. It is especially difficult to handle new users. 
-When sufficient data cannot be obtained, a multi-armed bandit algorithm is applied. 
-Bandit algorithms advance learning by testing each of a variety of options sufficiently and obtaining rewards (i.e. feedback). 
-It is practically impossible to learn everything when the number of items to be learned periodically increases. 
-The problem of having to collect sufficient data for a new user of a service is the same as the problem that collaborative filtering faces. 
-In order to solve this problem, we propose a recommender system based on deep reinforcement learning. 
-In deep reinforcement learning, a multilayer neural network is used to update the value function.
-
-* http://www.cse.msu.edu/~zhaoxi35/
-* [Ieep reinforcement learning for recommender systems](https://ieeexplore.ieee.org/document/8350761)
-* [Deep Reinforcement Learning for Page-wise Recommendations](https://pdfs.semanticscholar.org/5956/c34032126185d8ad19695e4a1a191c08b5a1.pdf)
-* [A Reinforcement Learning Framework for Explainable Recommendation](https://www.microsoft.com/en-us/research/uploads/prod/2018/08/main.pdf)
-* [TPGR: Large-scale Interactive Recommendation with Tree-structured Policy Gradient](http://www.noahlab.com.hk/#/news/new1811_1)
-+ [Explore, Exploit, and Explain: Personalizing Explainable Recommendations with Bandits](http://jamesmc.com/blog/2018/10/1/explore-exploit-explain)
-+ [Learning from logged bandit feedback](https://drive.google.com/file/d/0B2Rxz7LRWLOMX2dycXpWTGxoUE5lNkRnRWZuaDNZUlVRZ1kw/view)
-+ [Improving the Quality of Top-N Recommendation](https://drive.google.com/file/d/0B2Rxz7LRWLOMekRtdExZVVpZQmlXNks0Y2FJTnd6ZG90TXdZ/view)
-+ [ParsRec: Meta-Learning Recommendations for Bibliographic Reference Parsing](https://arxiv.org/abs/1808.09036)
-+ [强化学习在阿里的技术演进与业务创新 | 免费资料库](https://yq.aliyun.com/articles/708953)
-+ https://recsys.acm.org/recsys19/reveal/
-+ [Closing the loop with the real world: reinforcement and robust estimators for recommendation](https://sites.google.com/view/reveal2019/)
-
-_______
-|Traditional Approaches | Beyond Traditional Methods|
-|---------------------- |--------------------------|
-|Collaborative Filtering | Tensor Factorization & Factorization Machines|
-|Content-Based Recommendation | Social Recommendations|
-|Item-based Recommendation | Learning to rank|
-|Hybrid Approaches | MAB Explore/Exploit|
-
-
-- [ ] https://github.com/wzhe06/Reco-papers
-- [ ] https://github.com/hongleizhang/RSPapers
-- [ ] https://github.com/hongleizhang/RSAlgorithms
-- [ ] https://zhuanlan.zhihu.com/p/26977788
-- [ ] https://zhuanlan.zhihu.com/p/45097523
-- [ ] https://www.zhihu.com/question/20830906
-- [ ] https://www.zhihu.com/question/56806755/answer/150755503
-+ [Generative Adversarial User Model for Reinforcement Learning Based Recommendation System](https://arxiv.org/abs/1812.10613)
-+ [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
-+ [Adversarial Training Towards Robust Multimedia Recommender System](https://github.com/duxy-me/AMR)
-
+- https://utd-ir.tdl.org/handle/10735.1/7542
 
 ## Resource on RecSys
 
@@ -1805,6 +2102,7 @@ _______
 - https://libraries.io/github/computational-class
 - http://www.52caml.com/
 - http://www-scf.usc.edu/~kuanl/
+- http://www.yjzheng.com/
 
 ### Workshop 
 
@@ -1971,14 +2269,36 @@ ______________________________________________________
 - https://www2018.thewebconf.org/program/user-modeling/
 - http://kdd2018tutorial-behavior.datasciences.org/
 - https://www2019.thewebconf.org/research-track/user-modeling-personalization-and-experience
+- [User Modeling: Recent Work, Prospects and Hazards1](https://www.ics.uci.edu/~kobsa/papers/1993-aui-kobsa.pdf)
 - [Research on the Use, Characteristics, and Impact of e-Commerce Product Recommendation Agents: A Review and Update for 2007–2012](https://link.springer.com/chapter/10.1007%2F978-3-642-39747-9_18)
+- [Beyond Bags of Words: Modeling Implicit User Preferences in Information Retrieval](http://ciir.cs.umass.edu/pubfiles/ir-491.pdf)
+- [Modeling User Exposure in Recommendation](http://www.cs.columbia.edu/~blei/papers/LiangCharlinMcInerneyBlei2016.pdf)
 - [E-Commerce Product Recommendation Agents: Use, Characteristics, and Impact](https://misq.org/catalog/product/view/id/222)
+- [Modeling User Preferences and Mediating Agents in Electronic Commerce](http://ii.tudelft.nl/~catholijn/publications/sites/default/files/Dastani_Modeling%20user%20preferences%202001.pdf)
+- http://www.humanize-workshop.org/
+- http://iwum.org/
+
+### Modeling Users’ Preferences
+
+
+> The ever-growing nature of user generated data in online systems poses obvious challenges on how we process such data. Typically, this issue is regarded as a scalability problem and has been mainly addressed with distributed algorithms able to train on massive amounts of data in short time windows. However, data is inevitably adding up at high speeds. Eventually one needs to discard or archive some of it. Moreover, the dynamic nature of data in user modeling and recommender systems, such as change of user preferences, and the continuous introduction of new users and items make it increasingly difficult to maintain up-to-date, accurate recommendation models.
+
+- [Workshop on Online Recommender Systems and User Modeling](https://recsys.acm.org/recsys19/orsum/)
+- [Modeling Users’ Preferences and Social Links in Social Networking Services: A Joint-Evolving Perspective](http://staff.ustc.edu.cn/~cheneh/paper_pdf/2016/Le-Wu-AAAI.pdf)
+- [Modeling and Learning User Preferences Over Sets](https://www.seas.upenn.edu/~eeaton/papers/Wagstaff2010Modeling.pdf)
+- [Modeling the Dynamics of User Preferences in Coupled Tensor Factorization](http://delab.csd.auth.gr/papers/RecSys2014rn.pdf)
+- [Modeling Users’ Mobile App Privacy Preferences: Restoring Usability in a Sea of Permission Settings](https://www.usenix.org/system/files/conference/soups2014/soups14-paper-lin.pdf)
+- [Adaptive User Modeling with Long and Short-Term Preferences for Personalized Recommendation](https://www.ijcai.org/Proceedings/2019/0585.pdf)
+- [bbbbbbbbbbbbbbbbbb](http://ceur-ws.org/Vol-2711/paper40.pdf)
+- https://fangyuan1st.github.io/paper/ECML16_SEQ_slides.pdf
+- [Deep Modeling of the Evolution of User Preferences and Item Attributes in Dynamic Social Networks](https://dl.acm.org/doi/10.1145/3184558.3186956)
 
 ## Resource
 
 ### Labs
 
-
+- http://www.thuir.cn/group/~mzhang/
+- http://www.shichuan.org/
 - [洪亮劼，博士 – Etsy工程总监](https://www.hongliangjie.com/)
 - [Data Mining Machine Learning @The University of Texas at Austin](http://www.ideal.ece.utexas.edu/)
 - [Center for Big Data Analytics @The University of Texas at Austin](https://bigdata.oden.utexas.edu/)

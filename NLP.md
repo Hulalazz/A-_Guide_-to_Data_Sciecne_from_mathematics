@@ -284,7 +284,7 @@ Transformer blocks are characterized by a `multi-head self-attention mechanism`,
 - [A Unified Understanding of Transformer's Attention via the Lens of Kernel](https://www.aclweb.org/anthology/D19-1443.pdf)
 
 
-#### BERT 
+### BERT 
 
 * https://github.com/tomohideshibata/BERT-related-papers
 * https://github.com/google-research/bert
@@ -301,18 +301,54 @@ Transformer blocks are characterized by a `multi-head self-attention mechanism`,
 * [SenseBERT: Driving some sense into BERT](https://www.ai21.com/sense-bert)
 * https://github.com/clarkkev/attention-analysis
 
-#### GPT
+#### Masked Language Model
 
-- https://github.com/openai/gpt-2
+- https://keras.io/examples/nlp/masked_language_modeling/
+- https://github.com/huanghonggit/Mask-Language-Model
+- [Probabilistically Masked Language Model Capable of Autoregressive Generation in Arbitrary Word Order](https://www.aclweb.org/anthology/2020.acl-main.24.pdf)
+- https://www.aclweb.org/anthology/2020.acl-main.240/
+- http://proceedings.mlr.press/v119/bao20a.html
+- https://www.aclweb.org/anthology/D19-1633/
+
+### GPT
+
+- https://beta.openai.com/
+- https://openai.com/blog/clip/
+
+
+#### gpt-2
+
 - [Better Language Models and Their Implications](https://openai.com/blog/better-language-models/)
-- https://openai.com/blog/image-gpt/
+- https://github.com/openai/gpt-2
+- https://openai.com/blog/tags/gpt-2/
 
+#### gpt3
+
+- [GPT‑3: Its Nature, Scope, Limits, and Consequences](https://link.springer.com/article/10.1007/s11023-020-09548-1)
+- https://arxiv.org/abs/2005.14165
+- https://www.sparkcognition.com/gpt-3-natural-language-processing/
+- https://github.com/elyase/awesome-gpt3
+
+#### image-gpt
+
+- https://zhuanlan.zhihu.com/p/352350329
+- https://openai.com/blog/image-gpt/
+- https://github.com/openai/image-gpt
+- [Generative Pretraining from Pixels](https://cdn.openai.com/papers/Generative_Pretraining_from_Pixels_V2.pdf)
 
 #### ViT
 
 - https://github.com/gupta-abhay/ViT
 - https://abhaygupta.dev/blog/vision-transformer
 - https://arxiv.org/abs/2012.12556v3
+
+
+### Pre-trained Models
+
+- https://arxiv.org/pdf/2003.08271.pdf
+- https://github.com/onnx/models
+- https://www.zhihu.com/question/449261221
+- https://openai.com/blog/
 
 ### Predictive coding
 
@@ -323,6 +359,7 @@ Transformer blocks are characterized by a `multi-head self-attention mechanism`,
 
 * https://huggingface.co/transformers/
 * https://github.com/huggingface/transformers
+* https://github.com/facebookresearch/ParlAI
 
 #### Megatron-LM
 

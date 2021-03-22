@@ -1,6 +1,6 @@
 # Rating and Ranking
 
-<img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="80%" />
+<img src="https://pic1.zhimg.com/80/v2-ec0751e41981077e932ae0ce2cf6fe48_hd.jpg" width="60%" />
 
 The rating algorithms help to match the players in video games or compare the players in sports.
 Ratings is a numerical score to describe the level  of the players' skill based on the results of many competition.
@@ -38,6 +38,76 @@ In some sense, rating is to evaluate in a quantity approach, i.e. how much the i
 * https://www.cs.cornell.edu/jeh/book2016June9.pdf
 * [Neural Collaborative Ranking](https://arxiv.org/abs/1808.04957v1)
 * https://www.stat.berkeley.edu/~stark/Vote/index.htm
+
+
+
+****
+
+
+- [Rating and Ranking](#rating-and-ranking)
+  - [Rating](#rating)
+    - [Elo Rating](#elo-rating)
+    - [Glicko](#glicko)
+    - [TrueSkill](#trueskill)
+    - [Edo Historical Chess Rating](#edo-historical-chess-rating)
+    - [Whole-History Rating](#whole-history-rating)
+  - [Ranking](#ranking)
+    - [Training Setting](#training-setting)
+      - [Ranking Metrics](#ranking-metrics)
+      - [Ranking Creation](#ranking-creation)
+      - [Ranking Aggregation](#ranking-aggregation)
+    - [The Pointwise Approach](#the-pointwise-approach)
+    - [Ordinal Regression-Based Algorithms](#ordinal-regression-based-algorithms)
+      - [Perceptron-Based Ranking (PRanking)](#perceptron-based-ranking-pranking)
+    - [McRank](#mcrank)
+    - [Ranking with Large Margin Principles](#ranking-with-large-margin-principles)
+    - [The Pairwise Approach](#the-pairwise-approach)
+      - [Margin-based Ranking](#margin-based-ranking)
+      - [RankNet](#ranknet)
+      - [FRank: Ranking with a Fidelity Loss](#frank-ranking-with-a-fidelity-loss)
+    - [RankSVM](#ranksvm)
+    - [LambdaRank](#lambdarank)
+    - [LambdaMART](#lambdamart)
+    - [The Listwise Approach](#the-listwise-approach)
+      - [SoftRank](#softrank)
+      - [Plackett-Luce Model Ranking induced by pair-comparisons](#plackett-luce-model-ranking-induced-by-pair-comparisons)
+      - [ListNet](#listnet)
+      - [ListMLE](#listmle)
+    - [Cascade Ranking Models](#cascade-ranking-models)
+    - [Additive Models in Ranking](#additive-models-in-ranking)
+      - [AdaRank](#adarank)
+      - [RankBoost](#rankboost)
+      - [YetiRank and MatrixNet](#yetirank-and-matrixnet)
+      - [Selective Gradient Boosting](#selective-gradient-boosting)
+      - [X-CLEaVER](#x-cleaver)
+    - [Bayesian Personalized Ranking](#bayesian-personalized-ranking)
+      - [Group Preference Based Bayesian Personalized Ranking](#group-preference-based-bayesian-personalized-ranking)
+      - [Collaborative Multi-objective Ranking](#collaborative-multi-objective-ranking)
+      - [Adaptive Boosting Personalized Ranking (AdaBPR)](#adaptive-boosting-personalized-ranking-adabpr)
+    - [Borda Count](#borda-count)
+    - [Cranking](#cranking)
+    - [Probabilistic relevance model](#probabilistic-relevance-model)
+      - [Mallows Ranking Models and Generalized Mallows models](#mallows-ranking-models-and-generalized-mallows-models)
+    - [HodgeRank](#hodgerank)
+    - [Neural Ranking](#neural-ranking)
+    - [Unbiased Learning to Rank](#unbiased-learning-to-rank)
+      - [Unbiased LambdaMART](#unbiased-lambdamart)
+    - [Counterfactual Learning to Rank](#counterfactual-learning-to-rank)
+      - [Counterfactual Evaluation](#counterfactual-evaluation)
+    - [Online Learning to Rank](#online-learning-to-rank)
+      - [Deep Online Ranking System](#deep-online-ranking-system)
+    - [Collaborative Ranking](#collaborative-ranking)
+    - [Relevance Feedback](#relevance-feedback)
+    - [Loss Functions in Ranking](#loss-functions-in-ranking)
+      - [LambdaLoss](#lambdaloss)
+      - [$\lambda$Opt](#lambdaopt)
+      - [Essential Loss](#essential-loss)
+    - [Differentiable Ranking and Sorting](#differentiable-ranking-and-sorting)
+    - [QuickRank](#quickrank)
+    - [Mathematics of Ranking](#mathematics-of-ranking)
+    - [The Rankability of Data](#the-rankability-of-data)
+    - [Resource on Ranking and Rating](#resource-on-ranking-and-rating)
+      - [Open  Libraries for Learning-to-Ran](#open--libraries-for-learning-to-ran)
 
 ## Rating
 
@@ -473,7 +543,6 @@ estimator and an efficient batch training algorithm
 - [How is search different than other machine learning problems?](https://opensourceconnections.com/blog/2017/08/03/search-as-machine-learning-prob/)
 - [RankEval: An Evaluation and Analysis Framework for Learning-to-Rank Solutions](https://github.com/hpclab/rankeval)
 - [rankeval package](http://rankeval.isti.cnr.it/docs/rankeval.html)
-- [	SIGIR 2016 Tutorial on Counterfactual Evaluation and Learning for Search, Recommendation and Ad Placement](http://www.cs.cornell.edu/~adith/CfactSIGIR2016/)
 - [Collaborative Filtering for Implicit Feedback Datasets](http://yifanhu.net/PUB/cf.pdf)
 - [Deep Convolutional Ranking for Multilabel Image Annotation](https://arxiv.org/abs/1312.4894)
 - [WMRB: Learning to Rank in a Scalable Batch Training Approach](https://arxiv.org/pdf/1711.04015.pdf)
@@ -835,12 +904,6 @@ GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
 - [ ] https://www.cnblogs.com/genyuan/p/9788294.html
 
-### Unbiased LambdaMART
-
-Unbiased LambdaMART can jointly estimate the biases at click positions and the biases at unclick positions, and learn an unbiased ranker.
-
-- http://www.hangli-hl.com/uploads/3/4/4/6/34465961/unbiased_lambdamart.pdf
-- [Learning to Rank with Selection Bias in Personal Search](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45286.pdf)
 
 ### The Listwise Approach
 
@@ -958,19 +1021,9 @@ In the information retrieval community, explorations in effectiveness and effici
 - https://www.nsf.gov/awardsearch/showAward?AWD_ID=1144034
 - [Ivory: A Hadoop toolkit for web-scale information retrieval research](http://lintool.github.io/Ivory/)
 
-### Relevance Feedback
+### Additive Models in Ranking
 
-* After initial retrieval results are presented, allow the user to provide feedback on the relevance of one or more of the retrieved documents.
-* Use this feedback information to reformulate the query.
-* Produce new results based on reformulated query.
-* Allows more interactive, multi-pass process.
-
-- [Relevance Feedback Algorithms Inspired By Quantum Detection](https://ieeexplore.ieee.org/document/7350145/)
-- [/Relevance Feedback In Image Retrieval](http://dimacs.rutgers.edu/~billp/pubs/RelevanceFeedbackInImageRetrieval.pdf)
-- [Comparing Relevance Feedback Algorithms for Web Search](http://wwwconference.org/proceedings/www2005/docs/p1052.pdf)
-- https://www.ercim.eu/publication/ws-proceedings/DelNoe02/hiemstra.pdf
-
-### AdaRank
+#### AdaRank
 
 In the abstract, it  claims that:
 > Ideally a learning algorithm would train a ranking model that could directly optimize the performance measures with respect to the training data.
@@ -995,7 +1048,7 @@ In the abstract, it  claims that:
 - [Python implementation of the AdaRank algorithm](https://github.com/rueycheng/AdaRank)
 - [AdaRank: a boosting algorithm for information retrieval](https://dl.acm.org/citation.cfm?id=1277809)
 
-### RankBoost
+#### RankBoost
 
 The method of RankBoost adopts AdaBoost for the classification over document pairs.
 
@@ -1023,7 +1076,7 @@ Each leaf node stores the tree prediction, representing the potential contributi
 The scoring of $\mathrm{x}$ requires the traversal of all the ensemble’s trees and it is computed as a _weighted sum_ of all the tree predictions.
 Such leaf node is named exit leaf and denoted by $e(x)$.
 
-### YetiRank and MatrixNet
+#### YetiRank and MatrixNet
 
 `PageRank, LambdaRank, MatrixNet` is under the support of commercial firms *Google, Microsoft, Yandex*, respectively. The practical ranking algorithms in the search engines are the key to search engine optimization.
 Today the word Yandex has become synonymous with Internet search in Russian-speaking countries, just the same as Google in English-speaking countries.
@@ -1046,8 +1099,9 @@ The difficulty of the analysis of MatrixNet algorithm is that the formula has ne
 + [MatrixNet: New Level of Search Quality](https://yandex.com/company/technologies/matrixnet/)
 + [The Ultimate Guide To Yandex Algorithms](https://salt.agency/blog/the-ultimate-guide-to-yandex-algorithms/)
 + https://yandex.com/
++ [ ] [Computational Social Science and the Wisdom of Crowds (NIPS 2010)](https://people.cs.umass.edu/~wallach/workshops/nips2010css/)
 
-### Selective Gradient Boosting
+#### Selective Gradient Boosting
 
 `Selective Gradient Boosting (SelGB)` is an algorithm addressing the Learning-to-Rank task by focusing on those irrelevant documents
 that are most likely to be mis-ranked, thus severely hindering the quality of the learned model.
@@ -1061,12 +1115,15 @@ that are most likely to be mis-ranked, thus severely hindering the quality of th
 - [ ] http://learningtorank.isti.cnr.it/tutorial-ictir17/
 - [ ] https://maciejkula.github.io/spotlight/index.html#
 - [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/kais2011.pdf)
+- [ ] https://www.cnblogs.com/little-horse/p/11236531.html
 
-### X-CLEaVER
+#### X-CLEaVER
 
 [X-CLEaVER interleaves the iterations of a given gradient boosting learning algorithm with pruning and re-weighting phases. First, redundant trees are removed from the given ensemble, then the weights of the remaining trees are fine-tuned by optimizing the desired ranking quality metric. We propose and analyze several pruning strategies and we assess their benefits showing that interleaving pruning and re-weighting phases during learning is more effective than applying a single post-learning optimization step.](https://dl.acm.org/citation.cfm?doid=3289398.3205453)
 
 - https://dl.acm.org/citation.cfm?doid=3289398.3205453
+
+
 
 ### Bayesian Personalized Ranking
 
@@ -1282,6 +1339,8 @@ where the notations are listed as follows:
 
 
 
+
+
 ### Borda Count
 
 `Borda Count` is an unsupervised method for ranking aggregation.  Aslam & Montague propose employing Borda Count in meta search.
@@ -1431,7 +1490,9 @@ $${[{\Delta}_{0}]}_{(i,j)}=
 0, &\text{otherwise}.
 \end{cases}$$
 
+- https://www.math.pku.edu.cn/teachers/yaoy/2011.fudan/lecture04.pdf
 - [ ] [Who's Number 1? Hodge Theory Will Tell Us](http://www.ams.org/publicoutreach/feature-column/fc-2012-12)
+- [ ] [Hodge Decomposition of Paired Comparison Flows in Click-through Data](https://www.math.pku.edu.cn/teachers/yaoy/publications/MPR2010.pdf)
 - [ ] [Statistical Ranking and Combinatorial Hodge Theory](http://repository.ust.hk/ir/Record/1783.1-80467)
 - [ ] [HodgeRank on random graphs for subjective video quality assessment](http://repository.ust.hk/ir/Record/1783.1-80463)
 - [ ] [HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation](http://repository.ust.hk/ir/Record/1783.1-90160)
@@ -1441,6 +1502,57 @@ $${[{\Delta}_{0}]}_{(i,j)}=
 - [ ] [AML08: Algebraic Methods in Machine Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/)
 - [ ] [Graph Helmholtzian and Rank Learning](http://www.gatsby.ucl.ac.uk/~risi/AML08/lekhenglim-nips.pdf)
 
+
+### Neural Ranking
+
+> The power of neural ranking models lies in the ability to learn from the raw text inputs for the ranking problem to avoid many limitations of hand-crafted features. Neural networks have sufficient capacity to model complicated tasks, which is needed to handle the complexity of relevance estimation in ranking
+
+- [A Deep Look into Neural Ranking Models for Information Retrieval](http://www.bigdatalab.ac.cn/~gjf/papers/2019/Survey_Preprint.pdf)
+- https://arxiv.org/pdf/2004.14255.pdf
+- https://github.com/chullhwan-song/Neural-Ranking-Study
+- [Neural Model for Information Retrieval and Ranking](https://docs.deeppavlov.ai/en/0.0.6.5/components/neural_ranking.html)
+
+###  Unbiased Learning to Rank
+
+Implicit feedback (e.g., user clicks) is an important source of data for modern search engines. 
+While heavily biased, it is cheap to collect and particularly useful for user-centric retrieval applications such as search ranking. 
+To develop an unbiased learning-to-rank system with biased feedback, previous studies have focused on constructing probabilistic graphical models (e.g., click models) with user behavior hypothesis to extract and train ranking systems with unbiased relevance signals. 
+Recently, a novel counter- factual learning framework that estimates and adopts examination propensity for unbiased learning to rank has attracted much attention. 
+Despite its popularity, there is no systematic comparison of the unbiased learning-to-rank frameworks based on counterfactual learning and graphical models. 
+[In this tutorial, we aim to provide an overview of the fundamental mechanism for unbiased learning to rank. We will describe the theory behind existing frameworks, and give detailed instructions on how to conduct unbiased learning to rank in practice.](https://www.cikm2018.units.it/tutorial8.html)
+
+- [Learning to Rank in theory and practice: FROM GRADIENT BOOSTING TO NEURAL NETWORKS AND UNBIASED LEARNING](http://ltr-tutorial-sigir19.isti.cnr.it/)
+- https://dl.acm.org/citation.cfm?id=3334824
+- http://ltr-tutorial-sigir19.isti.cnr.it/program-overview/
+- [Unbiased Learning to Rank: Theory and Practice Half-day tutorial](https://www.cikm2018.units.it/tutorial8.html)
+- [Unbiased Learning to Rank: Counterfactual and Online Approaches](https://arxiv.org/abs/1907.07260)
+- https://ilps.github.io/webconf2020-tutorial-unbiased-ltr/
+- [Taking the Counterfactual Online: Efficient and Unbiased Online Evaluation for Ranking](https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/oosterhuis-2020-taking.pdf)
+- [Unbiased Learning-to-Rank with Biased Feedback](https://www.ijcai.org/Proceedings/2018/0738.pdf)
+- [Position Bias Estimation for Unbiased Learning to Rank in Personal Search](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/46485.pdf)
+- [Unbiased Learning to Rank in Feeds Recommendation](http://www.yichang-cs.com/jlu/WSDM21_unbiased.pdf)
+- https://par.nsf.gov/servlets/purl/10170896
+- [Unbiased Pairwise Learning from Implicit Feedback](https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/a/238/files/2019/12/Id_20_final.pdf)
+
+#### Unbiased LambdaMART
+
+Unbiased LambdaMART can jointly estimate the biases at click positions and the biases at unclick positions, and learn an unbiased ranker.
+
+- http://www.hangli-hl.com/uploads/3/4/4/6/34465961/unbiased_lambdamart.pdf
+- [Learning to Rank with Selection Bias in Personal Search](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45286.pdf)
+
+### Counterfactual Learning to Rank
+
+- [To Model or to Intervene: A Comparison of Counterfactual and Online Learning to Rank from User Interactions](https://www.jagerman.nl/pdf/jagerman-cf-vs-online-2019.pdf)
+- [Counterfactual and Online Approaches](http://ltr-tutorial-sigir19.isti.cnr.it/wp-content/uploads/2019/07/ULTR_SIGIR_tutorial.pdf)
+
+#### Counterfactual Evaluation
+
+- [	SIGIR 2016 Tutorial on Counterfactual Evaluation and Learning for Search, Recommendation and Ad Placement](http://www.cs.cornell.edu/~adith/CfactSIGIR2016/)
+- [ III: Medium: Collaborative Research: Counterfactual Learning and Evaluation for Interactive Information Systems](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1901168)
+- [Counterfactual Estimation and Optimization of Click
+Metrics for Search Engines](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/paper-tr.pdf)
+- [Simulating A/B tests offline with counterfactual inference](https://abhadury.com/articles/2019-05/simulating-ab-tests)
 
 ### Online Learning to Rank
 
@@ -1463,27 +1575,14 @@ DORS is designed and implemented in a three-level novel architecture, which incl
 - [ ] [International Conference on Web Search and Data Mining](http://www.wsdm-conference.org/2019/acm-proceedings.php)
 - [ ] [Learning to Rank with Deep Neural Networks](https://github.com/Isminoula/DL-to-Rank)
 
-#### Unbiased Learning to Rank
-
-Implicit feedback (e.g., user clicks) is an important source of data for modern search engines. 
-While heavily biased, it is cheap to collect and particularly useful for user-centric retrieval applications such as search ranking. 
-To develop an unbiased learning-to-rank system with biased feedback, previous studies have focused on constructing probabilistic graphical models (e.g., click models) with user behavior hypothesis to extract and train ranking systems with unbiased relevance signals. 
-Recently, a novel counter- factual learning framework that estimates and adopts examination propensity for unbiased learning to rank has attracted much attention. 
-Despite its popularity, there is no systematic comparison of the unbiased learning-to-rank frameworks based on counterfactual learning and graphical models. 
-[In this tutorial, we aim to provide an overview of the fundamental mechanism for unbiased learning to rank. We will describe the theory behind existing frameworks, and give detailed instructions on how to conduct unbiased learning to rank in practice.](https://www.cikm2018.units.it/tutorial8.html)
-
-- [Learning to Rank in theory and practice: FROM GRADIENT BOOSTING TO NEURAL NETWORKS AND UNBIASED LEARNING](http://ltr-tutorial-sigir19.isti.cnr.it/)
-- https://dl.acm.org/citation.cfm?id=3334824
-- http://ltr-tutorial-sigir19.isti.cnr.it/program-overview/
-- [Unbiased Learning to Rank: Theory and Practice Half-day tutorial](https://www.cikm2018.units.it/tutorial8.html)
-- [Unbiased Learning to Rank: Counterfactual and Online Approaches](https://arxiv.org/abs/1907.07260)
 
 ____
+
 + [Adversarial and reinforcement learning-based approaches to information retrieval](https://www.microsoft.com/en-us/research/blog/adversarial-and-reinforcement-learning-based-approaches-to-information-retrieval/)
 + [Cross Domain Regularization for Neural Ranking Models Using Adversarial Learning](https://www.microsoft.com/en-us/research/publication/cross-domain-regularization-neural-ranking-models-using-adversarial-learning/)
 + [Adversarial Personalized Ranking for Recommendation](http://bio.duxy.me/papers/sigir18-adversarial-ranking.pdf)
 
-<img title="adversial IR" src="https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png" width="50%">
+<img title="adversial IR" src="https://www.microsoft.com/en-us/research/uploads/prod/2018/06/adversarial.png" width="70%">
 
 **RankGAN**
 
@@ -1527,6 +1626,20 @@ For item recommendation tasks, the accuracy of a recommendation model is usually
 * [Ranking Evaluation](http://csse.szu.edu.cn/staff/panwk/recommendation/OCCF/RankingEvaluation.pdf)
 * http://fastml.com/evaluating-recommender-systems/
 
+
+
+### Relevance Feedback
+
+* After initial retrieval results are presented, allow the user to provide feedback on the relevance of one or more of the retrieved documents.
+* Use this feedback information to reformulate the query.
+* Produce new results based on reformulated query.
+* Allows more interactive, multi-pass process.
+
+- [Relevance Feedback Algorithms Inspired By Quantum Detection](https://ieeexplore.ieee.org/document/7350145/)
+- [/Relevance Feedback In Image Retrieval](http://dimacs.rutgers.edu/~billp/pubs/RelevanceFeedbackInImageRetrieval.pdf)
+- [Comparing Relevance Feedback Algorithms for Web Search](http://wwwconference.org/proceedings/www2005/docs/p1052.pdf)
+- https://www.ercim.eu/publication/ws-proceedings/DelNoe02/hiemstra.pdf
+
 ### Loss Functions in Ranking
 
 #### LambdaLoss
@@ -1561,6 +1674,12 @@ And such a loss can be minimized by the well-known `Expectation-Maximization (EM
 - [ ] [The LambdaLoss Framework for Ranking Metric Optimization](https://ai.google/research/pubs/pub47258)
 - [ ] [Michael Bendersky's publication on rankig](http://bendersky.github.io/pubs.html)
 - [ ] http://marc.najork.org/
+
+
+#### $\lambda$Opt
+
+- https://github.com/yihong-chen/lambda-opt
+- https://arxiv.org/abs/1905.11596
 
 #### Essential Loss
 
@@ -1628,6 +1747,10 @@ Using these smoothed rank and sort operators,
 
 **Sinkhorn Ranks/Sorts**
 
+- https://papers.nips.cc/paper/8693-massively-scalable-sinkhorn-distances-via-the-nystrom-method.pdf
+- https://research.google/pubs/pub48637/
+- http://members.cbio.mines-paristech.fr/~jvert/talks/191127inria/inria.pdf
+
 ### QuickRank
 
 QuickRank is an efficient Learning to Rank toolkit providing multithreaded C++ implementation of several algorithms.
@@ -1692,6 +1815,7 @@ an modifications be made and which most improve the graph's rankability?
 - https://github.com/IGARDS/ranklib
 - https://github.com/IGARDS/rankability_toolbox
 
+
 ### Resource on Ranking and Rating
 
 + https://papers.nips.cc/paper/8288-contrastive-learning-from-pairwise-measurements.pdf
@@ -1700,7 +1824,6 @@ an modifications be made and which most improve the graph's rankability?
 + [Spectral method and regularized MLE are both optimal for top-K ranking](https://projecteuclid.org/euclid.aos/1558425643)
 + https://europepmc.org/articles/pmc6785035
 + [Learning to Efficiently Rank with Cascades](http://lintool.github.io/NSF-projects/IIS-1144034/)
-+ [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
 + [Search and information retrieval@Microsoft](https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/)
 + [Information Retrieval and the Web @Google](https://ai.google/research/pubs/?area=InformationRetrievalandtheWeb)
 + [Yandex Research](https://research.yandex.com/)
@@ -1716,7 +1839,6 @@ an modifications be made and which most improve the graph's rankability?
 + [The Rankability of Data](https://epubs.siam.org/doi/pdf/10.1137/18M1183595)
 + [A Rating-Ranking Method for Crowdsourced Top-k Computation](http://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod18-crowdtopk.pdf)
 + [the (data) science of sports](http://thespread.us/category/ranking.html)
-+ [Learning to Rank with Tensorflow](https://quantdare.com/learning-to-rank-with-tensorflow/)
 + http://www.cs.virginia.edu/~hw5x/
 + https://taskintelligence.github.io/WSDM2019-Workshop/#
 + http://www.ifp.illinois.edu/~nakazato/
@@ -1727,3 +1849,15 @@ an modifications be made and which most improve the graph's rankability?
 + https://faculty.utrgv.edu/zhixiang.chen/
 + http://dia.fi.upm.es/
 + https://www.culpepper.io/
++ https://yao-lab.github.io/seminar.html
+
+#### Open  Libraries for Learning-to-Ran
+
++ [TensorFlow Ranking](https://github.com/tensorflow/ranking)
++ [Elasticsearch Learning to Rank: the documentation](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/core-concepts.html)
++ [Learning to Rank with Tensorflow](https://quantdare.com/learning-to-rank-with-tensorflow/)
++ [Pytorcgl2r](https://github.com/rjagerman/pytorchltr)
++ https://github.com/hpclab/quickrank
++ https://github.com/airalcorn2/Solr-LTR
++ https://sourceforge.net/p/lemur/wiki/RankLib/
++ https://docs.jina.ai/
