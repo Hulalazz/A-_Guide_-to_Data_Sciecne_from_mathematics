@@ -19,6 +19,7 @@
     - [Statistical Mechanics and Deep Learning](#statistical-mechanics-and-deep-learning)
     - [Born Machine](#born-machine)
     - [Quantum Machine learning](#quantum-machine-learning)
+    - [Tensor network](#tensor-network)
     - [Deep Neural Network and Renormalization Group](#deep-neural-network-and-renormalization-group)
   - [Mathematics of Deep Learning](#mathematics-of-deep-learning)
     - [Discrete Mathematics and  Neural Networks](#discrete-mathematics-and--neural-networks)
@@ -36,9 +37,11 @@
     - [Stochastic Differential Equations and Deep Learning](#stochastic-differential-equations-and-deep-learning)
     - [Finite Element Methods and Deep Learning](#finite-element-methods-and-deep-learning)
   - [Approximation Theory for Deep Learning](#approximation-theory-for-deep-learning)
+    - [The F-Principle](#the-f-principle)
+    - [Spline Theory and Deep Network](#spline-theory-and-deep-network)
+    - [Resource](#resource)
       - [Workshop](#workshop)
       - [Labs and Groups](#labs-and-groups)
-    - [The F-Principle](#the-f-principle)
   - [Inverse Problem and Deep Learning](#inverse-problem-and-deep-learning)
     - [Deep Learning for Inverse Problems](#deep-learning-for-inverse-problems)
     - [Deep Inverse Optimization](#deep-inverse-optimization)
@@ -47,6 +50,7 @@
   - [Deep learning and Optimal Transport](#deep-learning-and-optimal-transport)
     - [Generative Models and Optimal Transport](#generative-models-and-optimal-transport)
   - [Geometric Analysis Approach to AI](#geometric-analysis-approach-to-ai)
+    - [Loss Surface Of Deep  Networks](#loss-surface-of-deep--networks)
     - [Tropical Geometry of Deep Neural Networks](#tropical-geometry-of-deep-neural-networks)
   - [Topology and Deep Learning](#topology-and-deep-learning)
     - [Topological machine learning](#topological-machine-learning)
@@ -56,26 +60,34 @@
       - [Topological Graph Neural Networks](#topological-graph-neural-networks)
       - [Topology-Based Graph Classification](#topology-based-graph-classification)
   - [Algebra and Deep Learning](#algebra-and-deep-learning)
-    - [Tensor network](#tensor-network)
     - [Group Equivariant Convolutional Networks](#group-equivariant-convolutional-networks)
     - [Complex Valued Neural Networks](#complex-valued-neural-networks)
     - [Quaternion Neural Networks](#quaternion-neural-networks)
   - [Probabilistic Theory and Deep Learning](#probabilistic-theory-and-deep-learning)
+    - [Probabilistic Deep Learning](#probabilistic-deep-learning)
     - [Bayesian Deep Learning](#bayesian-deep-learning)
   - [Statistics and Deep Learning](#statistics-and-deep-learning)
     - [Statistical Relational AI](#statistical-relational-ai)
     - [Principal Component Neural Networks](#principal-component-neural-networks)
     - [Least squares support vector machines](#least-squares-support-vector-machines)
   - [Information Theory and Deep Learning](#information-theory-and-deep-learning)
-    - [Information bottleneck theory](#information-bottleneck-theory)
+    - [Universal Feature Selection](#universal-feature-selection)
+    - [Information Bottleneck Theory](#information-bottleneck-theory)
     - [InfoMax](#infomax)
+    - [Deep Learning and Coding Theory](#deep-learning-and-coding-theory)
+    - [Communication algorithms via deep learning](#communication-algorithms-via-deep-learning)
+      - [Learning-based coded computation](#learning-based-coded-computation)
+      - [Neural Audio Coding](#neural-audio-coding)
   - [Brain Science and AI](#brain-science-and-ai)
-    - [Spiking neural networks](#spiking-neural-networks)
+    - [Neuromorphic Computing](#neuromorphic-computing)
+      - [Spiking neural networks](#spiking-neural-networks)
+      - [SpiNNaker](#spinnaker)
+      - [Intel Corporation Loihi and Nx SDK](#intel-corporation-loihi-and-nx-sdk)
     - [The Thousand Brains Theory of Intelligence](#the-thousand-brains-theory-of-intelligence)
   - [Cognition Science and Deep Learning](#cognition-science-and-deep-learning)
     - [Predictive coding](#predictive-coding)
-    - [Contrastive Predictive Coding](#contrastive-predictive-coding)
-    - [Hierarchical Predictive Coding](#hierarchical-predictive-coding)
+      - [Contrastive Predictive Coding](#contrastive-predictive-coding)
+      - [Hierarchical Predictive Coding](#hierarchical-predictive-coding)
   - [The lottery ticket hypothesis](#the-lottery-ticket-hypothesis)
   - [Double Descent](#double-descent)
   - [Neural Tangents](#neural-tangents)
@@ -355,6 +367,7 @@ Methods using artificial intelligence have in fact already advanced progress on 
 * [Physics & AI Workshop](http://www.physics.mcgill.ca/ai2019/)
 * https://physicsml.github.io/pages/papers.html
 * [Physics-AI opportunities at MIT](http://super-ms.mit.edu/physics-ai.html)
+* https://deepray.github.io/publications.html
 * https://gogul.dev/software/deep-learning-meets-physics
 * https://github.com/2prime/ODE-DL/blob/master/DL_Phy.md
 * https://physics-ai.com/
@@ -473,6 +486,24 @@ ____
 * https://krzakala.github.io/cargese.io/program.html
 * [New Theory Cracks Open the Black Box of Deep Learning](https://www.quantamagazine.org/new-theory-cracks-open-the-black-box-of-deep-learning-20170921/)
 * [Unifying Physics and Deep Learning with TossingBot](https://ai.googleblog.com/2019/03/unifying-physics-and-deep-learning-with.html)
+
+
+
+### Tensor network
+
+[Tensor network methods are taking a central role in modern quantum physics and beyond. They can provide an efficient approximation to certain classes of quantum states, and the associated graphical language makes it easy to describe and pictorially reason about quantum circuits, channels, protocols, open systems and more. Our goal is to explain tensor networks and some associated methods as quickly and as painlessly as possible. Beginning with the key definitions, the graphical tensor network language is presented through examples. We then provide an introduction to matrix product states. We conclude the tutorial with tensor contractions evaluating combinatorial counting problems. The first one counts the number of solutions for Boolean formulae, whereas the second is Penrose's tensor contraction algorithm, returning the number of 3-edge-colorings of 3-regular planar graphs.](https://arxiv.org/abs/1708.00006)
+
+- [Linear Algebra and Learning from Data](http://math.mit.edu/~gs/learningfromdata/)
+- [Accelerating deep neural networks with tensor decompositions](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
+- [An Algebraic Perspective on Deep Learning](http://helper.ipam.ucla.edu/publications/gss2012/gss2012_10605.pdf)
+- [Tensor Networks in a Nutshell](https://arxiv.org/abs/1708.00006)
+- [A library for easy and efficient manipulation of tensor networks.](https://github.com/google/tensornetwork)
+- http://tensornetworktheory.org/
+- https://www.perimeterinstitute.ca/research/research-initiatives/tensor-networks-initiative
+- https://github.com/emstoudenmire/TNML
+- http://itensor.org/
+- http://users.cecs.anu.edu.au/~koniusz/
+- https://deep-learning-tensorflow.readthedocs.io/en/latest/
 
 
 ### Deep Neural Network and Renormalization Group
@@ -911,26 +942,6 @@ The section will extend the approximation to the deep neural network.
 - [Efficient approximation of high-dimensional functions with deep neural networks](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2019/2019-64_fp.pdf)
 
 
-#### Workshop
-
-- https://www.mfo.de/occasion/1842b
-- https://www.mfo.de/occasion/1947a
-- https://github.com/juliusberner/oberwolfach_workshop
-- [DGD Approximation Theory Workshop](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Petersen/DGD_Approximation_Theory.pdf)
-
-#### Labs and Groups 
-
-- https://deepai.org/profile/julius-berner
-- https://www.cityu.edu.hk/ma/people/profile/zhoudx.htm
-- https://dblp.uni-trier.de/pers/hd/y/Yang:Haizhao
-- https://math.duke.edu/people/ingrid-daubechies
-- http://www.pc-petersen.eu/
-- https://wwwhome.ewi.utwente.nl/~schmidtaj/
-- https://personal-homepages.mis.mpg.de/montufar/
-- https://www.math.tamu.edu/~foucart/
-- http://www.damtp.cam.ac.uk/user/sl767/#about
-- http://voigtlaender.xyz/publications.html
-
 ### The F-Principle
 
 > Understanding the training process of Deep Neural Networks (DNNs) is a fundamental problem in the area of deep learning. The study of the training process from the frequency perspective makes important progress in understanding the strength and weakness of DNN, such as generalization and converging speed etc., which may consist in “a reasonably complete picture about the main reasons behind the success of modern machine learning” (E et al., 2019).
@@ -949,7 +960,38 @@ The section will extend the approximation to the deep neural network.
 - [Explicitizing an Implicit Bias of the Frequency Principle in Two-layer Neural Networks](https://arxiv.org/pdf/1905.10264.pdf)
 - https://www.researchgate.net/profile/Zhiqin_Xu
 - https://github.com/xuzhiqin1990/F-Principle
-- https://ins.sjtu.edu.cn/people/xuzhiqin/
+
+### Spline Theory and Deep Network
+
+- http://proceedings.mlr.press/v80/balestriero18b/balestriero18b.pdf
+- http://proceedings.mlr.press/v80/balestriero18a/balestriero18a.pdf
+- http://rb42.web.rice.edu/
+- https://github.com/RandallBalestriero
+- https://www.nsf.gov/awardsearch/showAward?AWD_ID=1838177&HistoricalAwards=false
+- [A Max-Affine Spline Perspective of Recurrent Neural Networks (RNNs)](https://zw16.web.rice.edu/doc/poster_MASO_RNN_iclr%202.pdf)
+- https://zw16.web.rice.edu/
+
+### Resource
+
+#### Workshop
+
+- https://www.mfo.de/occasion/1842b
+- https://www.mfo.de/occasion/1947a
+- https://github.com/juliusberner/oberwolfach_workshop
+- [DGD Approximation Theory Workshop](https://www.math.tu-berlin.de/fileadmin/i26_fg-kutyniok/Petersen/DGD_Approximation_Theory.pdf)
+
+#### Labs and Groups 
+
+- https://deepai.org/profile/julius-berner
+- https://www.cityu.edu.hk/ma/people/profile/zhoudx.htm
+- https://dblp.uni-trier.de/pers/hd/y/Yang:Haizhao
+- https://math.duke.edu/people/ingrid-daubechies
+- http://www.pc-petersen.eu/
+- https://wwwhome.ewi.utwente.nl/~schmidtaj/
+- https://personal-homepages.mis.mpg.de/montufar/
+- https://www.math.tamu.edu/~foucart/
+- http://www.damtp.cam.ac.uk/user/sl767/#about
+- http://voigtlaender.xyz/publications.html- https://ins.sjtu.edu.cn/people/xuzhiqin/
 
 ## Inverse Problem and Deep Learning
 
@@ -972,6 +1014,7 @@ such as denoising and compressive sensing. Motivated by those success stories, r
 - [Sixteenth International Conference on the Integration of Constraint Programming, Artificial Intelligence, and Operations Research](http://cpaior2019.uowm.gr/)
 - https://github.com/mughanibu/Deep-Learning-for-Inverse-Problems
 - [Accurate Image Super-Resolution Using Very Deep Convolutional Networks](https://cv.snu.ac.kr/research/VDSR/)
+- https://eiffl.github.io/talks/KMI2020/index.html
 - https://earthscience.rice.edu/mathx2019/
 - https://www.researchgate.net/publication/329395098_On_Deep_Learning_for_Inverse_Problems
 - [Deep Learning and Inverse Problem](https://www.dlip.org/)
@@ -986,24 +1029,38 @@ such as denoising and compressive sensing. Motivated by those success stories, r
 
 ### Deep Learning for Inverse Problems
 
+
+> Learning-based methods, and in particular deep neural networks, have emerged as highly successful and universal tools for image and signal recovery and restoration. They achieve state-of-the-art results on tasks ranging from image denoising, image compression, and image reconstruction from few and noisy measurements. They are starting to be used in important imaging technologies, for example in GEs newest computational tomography scanners and in the newest generation of the iPhone.
+
+> The field has a range of theoretical and practical questions that remain unanswered. In particular, learning and neural network-based approaches often lack the guarantees of traditional physics-based methods. Further, while superior on average, learning-based methods can make drastic reconstruction errors, such as hallucinating a tumor in an MRI reconstruction or turning a pixelated picture of Obama into a white male.
+
 - [Deep Learning for Inverse Problems](https://arxiv.org/abs/1803.00092)
 - [Solving inverse problems with deep networks](https://deep-inverse.org/)
 - [Neumann Networks for Inverse Problems in Imaging](https://arxiv.org/abs/1901.03707)
+- [Deep Decomposition Learning for Inverse Imaging Problems](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123730511.pdf)
+- [Model Meets Deep Learning in Image Inverse Problems](https://doc.global-sci.org/uploads/online_news/CSIAM-AM/202009010924-17030.pdf)
 - https://deepai.org/publication/unsupervised-deep-learning-algorithm-for-pde-based-forward-and-inverse-problems
+- https://www.aapm.org/GrandChallenge/DL-sparse-view-CT/
+- https://github.com/jiupinjia/GANs-for-Inverse-Problems
+- https://eiffl.github.io/talks/KMI2020/index.html
+- https://onlinelibrary.wiley.com/doi/epdf/10.1002/qua.26599
+- [Deep neural networks learning to solve nonlinear inverse problems for the wave equation](https://www.caam.rice.edu/~caw16/papers/MLSC_NIPS_2018.pdf)
 
 ### Deep Inverse Optimization
 
 - [deep inverse optimization](https://github.com/tankconcordia/deep_inv_opt)
 - https://ori.ox.ac.uk/deep-irl/
-- https://physai.sciencesconf.org/data/pages/perez_2019_03_Institut_Pascal_AI_and_Physics_noanim.pdf
-- https://neurips.cc/virtual/2020/public/workshop_16128.html
+- [Attacking inverse problems with deep learning](https://physai.sciencesconf.org/data/pages/perez_2019_03_Institut_Pascal_AI_and_Physics_noanim.pdf)
+- [Workshop: Learning Meets Combinatorial Algorithms](https://neurips.cc/virtual/2020/public/workshop_16128.html)
 - https://data102.org/fa20/
+- https://ieeexplore.ieee.org/document/8434321
+- https://sites.google.com/site/sercmig/manish-bhatt_-phd-thesis-work
 
 ## Random Matrix Theory and Deep Learning
 
 Random matrix focus on the matrix, whose entities are sampled from  some specific probability distribution.
-Weight matrices in deep nerual network are initialed in random.
-However, the model is over-parametered and it is hard to verify the role of one individual parameter.
+Weight matrices in deep neural network are initialed in random.
+However, the model is over-parameterized and it is hard to verify the role of one individual parameter.
 
 - http://romaincouillet.hebfree.org/
 - https://zhenyu-liao.github.io/
@@ -1056,7 +1113,7 @@ Originally proposed by Monge in the eighteenth century,
 - https://github.com/hindupuravinash/nips2017
 - [Selection dynamics for deep neural networks](https://arxiv.org/abs/1905.09076v1)
 - https://people.math.osu.edu/memolitechera.1/index.html
-
+- [Optimal Transport Theory the New Math for Deep Learning](https://mc.ai/optimal-transport-theory-the-new-math-for-deep-learning/)
 
 ### Generative Models and Optimal Transport
 
@@ -1076,6 +1133,7 @@ In this framework, we give the geometric structures of different deep learning s
 
 
 - [Machine Learning on Geometrical Data CSE291-C00 - Winter 2019](https://cse291-i.github.io/)
+- [Geometric Analysis Approach to AI Workshop](https://cmsa.fas.harvard.edu/geometric-analysis-ai/)
 - [ABC Dataset A Big CAD Model Dataset For Geometric Deep Learning](https://deep-geometry.github.io/abc-dataset/)
 - [Into the Wild: Machine Learning In Non-Euclidean Spaces](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/)
 - [How deep learning works — The geometry of deep learning](https://arxiv.org/pdf/1710.10784.pdf)
@@ -1090,7 +1148,6 @@ In this framework, we give the geometric structures of different deep learning s
 - [Workshop IV: Deep Geometric Learning of Big Data and Applications](http://www.ipam.ucla.edu/programs/workshops/workshop-iv-deep-geometric-learning-of-big-data-and-applications/)
 - [Robustness and geometry of deep neural networks](https://gateway.newton.ac.uk/sites/default/files/asset/doc/1905/Alhussein_Fawzi.pdf)
 - [A geometric view of optimal transportation and generative model](https://www.sciencedirect.com/science/article/pii/S0167839618301249)
-- [Optimal Transport Theory the New Math for Deep Learning](https://mc.ai/optimal-transport-theory-the-new-math-for-deep-learning/)
 - [GeoNet: Deep Geodesic Networks for Point Cloud Analysis](http://openaccess.thecvf.com/content_CVPR_2019/papers/He_GeoNet_Deep_Geodesic_Networks_for_Point_Cloud_Analysis_CVPR_2019_paper.pdf)
 - http://www.stat.uchicago.edu/~lekheng/
 - https://web.mat.upc.edu/sebastia.xambo/ICIAM2019/GC&DL.html
@@ -1098,8 +1155,22 @@ In this framework, we give the geometric structures of different deep learning s
 - https://nsf-tripods.org/institutes/
 - https://users.math.msu.edu/users/wei/
 - https://www.darpa.mil/program/hierarchical-identify-verify-exploit
-- [The Loss Surface Of Deep Linear Networks Viewed
-Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/deep-linear.pdf)
+- https://deepai.org/profile/randall-balestriero
+- https://github.com/digantamisra98/Library
+
+### Loss Surface Of Deep  Networks
+
+- http://www.tianranchen.org/research/papers/deep-linear.pdf
+- [The Loss Surfaces of Multilayer Networks](http://proceedings.mlr.press/v38/choromanska15.pdf)
+- [The Loss Surface Of Deep Linear Networks Viewed Through The Algebraic Geometry Lens](http://www.tianranchen.org/research/papers/deep-linear.pdf)
+- [The Loss Surface of Deep and Wide Neural Networks](https://dl.acm.org/doi/pdf/10.5555/3305890.3305950)
+- [Visualizing the Loss Landscape of Neural Nets](https://papers.nips.cc/paper/2018/file/a41b3bb3e6b050b6c9067c67f663b915-Paper.pdf)
+- [Understanding the Loss Surface of Neural Networks for Binary Classification](http://proceedings.mlr.press/v80/liang18a.html)
+- [Optimization Landscape and Expressivity of Deep CNNs](http://proceedings.mlr.press/v80/nguyen18a/nguyen18a-supp.pdf)
+- [On the Flatness of Loss Surface for Two-layered ReLU Networks](https://tanmingkui.github.io/files/publications/On_The.pdf)
+- https://www.cs.umd.edu/~tomg/projects/landscapes/
+- [Deep Learning without Poor Local Minima](https://lis.csail.mit.edu/pubs/kawaguchi-nips16.pdf)
+- https://chulheey.mit.edu/wp-content/uploads/sites/12/2017/12/yun2017global_nips2017workshop.pdf
 
 ### Tropical Geometry of Deep Neural Networks
 
@@ -1223,20 +1294,6 @@ Except the matrix and tensor decomposotion for accelerating the deep neural netw
 - http://people.cs.uchicago.edu/~risi/
 - https://ttic.uchicago.edu/~shubhendu/
 
-### Tensor network
-
-- [Linear Algebra and Learning from Data](http://math.mit.edu/~gs/learningfromdata/)
-- [Accelerating deep neural networks with tensor decompositions](https://jacobgil.github.io/deeplearning/tensor-decompositions-deep-learning)
-- [An Algebraic Perspective on Deep Learning](http://helper.ipam.ucla.edu/publications/gss2012/gss2012_10605.pdf)
-- [Tensor Networks in a Nutshell](https://arxiv.org/abs/1708.00006)
-- [A library for easy and efficient manipulation of tensor networks.](https://github.com/google/tensornetwork)
-- http://tensornetworktheory.org/
-- https://www.perimeterinstitute.ca/research/research-initiatives/tensor-networks-initiative
-- https://github.com/emstoudenmire/TNML
-- http://itensor.org/
-- http://users.cecs.anu.edu.au/~koniusz/
-- https://deep-learning-tensorflow.readthedocs.io/en/latest/
-
 ### Group Equivariant Convolutional Networks
 
 - https://github.com/tscohen/gconv_experiments
@@ -1295,13 +1352,9 @@ seem to outperform real valued neural networks while using less parameters. This
 
 ## Probabilistic Theory and Deep Learning
 
-
-[Probabilistic Deep Learning with Python teaches the increasingly popular probabilistic approach to deep learning that allows you to tune and refine your results more quickly and accurately without as much trial-and-error testing. Emphasizing practical techniques that use the Python-based Tensorflow Probability Framework, you’ll learn to build highly-performant deep learning applications that can reliably handle the noise and uncertainty of real-world data.](https://www.manning.com/books/probabilistic-deep-learning-with-python)
-
 - [Probabilistic Framework for Deep Learning](https://ankitlab.co/projects/)
 - [A Probabilistic Theory of Deep Learning](https://arxiv.org/abs/1504.00641)
 - [A Probabilistic Framework for Deep Learning](https://papers.nips.cc/paper/6231-a-probabilistic-framework-for-deep-learning.pdf)
-- [Lightweight Probabilistic Deep Networks](https://zpascal.net/cvpr2018/Gast_Lightweight_Probabilistic_Deep_CVPR_2018_paper.pdf)
 - [Deep Probabilistic Programming](https://arxiv.org/abs/1701.03757)
 - https://github.com/oxmlcs/ML_bazaar/wiki/Deep-Learning-and-Probabilistic-Inference
 - https://eng.uber.com/pyro/
@@ -1316,6 +1369,16 @@ seem to outperform real valued neural networks while using less parameters. This
 - https://www.ida.liu.se/~ulfni53/lpp/bok/bok.pdf
 - https://www.biostat.wisc.edu/bmi576/
 - http://www.cs.ox.ac.uk/people/yarin.gal/website/blog_2248.html
+
+
+### Probabilistic Deep Learning
+
+
+[Probabilistic Deep Learning with Python teaches the increasingly popular probabilistic approach to deep learning that allows you to tune and refine your results more quickly and accurately without as much trial-and-error testing. Emphasizing practical techniques that use the Python-based Tensorflow Probability Framework, you’ll learn to build highly-performant deep learning applications that can reliably handle the noise and uncertainty of real-world data.](https://www.manning.com/books/probabilistic-deep-learning-with-python)
+
+- [Lightweight Probabilistic Deep Networks](https://zpascal.net/cvpr2018/Gast_Lightweight_Probabilistic_Deep_CVPR_2018_paper.pdf)
+- https://tensorchiefs.github.io/dl_book/
+
 
 ### Bayesian Deep Learning
 
@@ -1355,7 +1418,9 @@ seem to outperform real valued neural networks while using less parameters. This
 * http://www.cs.ox.ac.uk/people/yarin.gal/website/blog.html
 * http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
 * https://uvadlc.github.io/lectures/apr2019/lecture9-bayesiandeeplearning.pdf
-
+* [Self-supervised Bayesian Deep Learning for
+Image Recovery with Applications to
+Compressive Sensing](https://cpb-us-w2.wpmucdn.com/blog.nus.edu.sg/dist/8/10877/files/2020/07/ECCV_2020_BNNCS.pdf)
 
 ## Statistics and Deep Learning
 
@@ -1442,27 +1507,16 @@ In other words, the size of a Neural Networks specifies a data structure that we
 and the result of training the network is the best approximation of the statistical relationship between the features and the labels 
 that can be represented by this data structure.
 
-[In this talk](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks), 
-we formulate a new problem called the "universal feature selection" problem, 
-where we need to select from the high dimensional data a low dimensional feature that can be used to solve, not one, but a family of inference problems.
-We solve this problem by developing a new information metric that can be used to quantify the semantics of data, and by using a geometric analysis approach. 
-We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. 
-At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.
-
-* [Universal Features](https://arxiv.org/pdf/1911.09105.pdf)
-* https://glouppe.github.io/info8010-deep-learning/
-* http://ita.ucsd.edu/
-* http://naftali-tishby.mystrikingly.com/
-* http://lizhongzheng.mit.edu/
-* https://lizhongzheng.mit.edu/sites/default/files/documents/FFSE.pdf
+- https://github.com/adityashrm21/information-theory-deep-learning
+- https://infotheory.ece.uw.edu/research.html
 * [Information Theory of Deep Learning](https://adityashrm21.github.io/Information-Theory-In-Deep-Learning/)
 * [Anatomize Deep Learning with Information Theory](https://lilianweng.github.io/lil-log/2017/09/28/anatomize-deep-learning-with-information-theory.html)
 * [“Deep learning - Information theory & Maximum likelihood.”](https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/)
 * [Information Theoretic Interpretation of Deep Neural Networks](https://www.rle.mit.edu/sia/wp-content/uploads/2019/07/2019-huang-xu-zheng-wornell.pdf)
+* https://naftali-tishby.mystrikingly.com/
 - http://pirsa.org/18040050
 - https://lizhongresearch.miraheze.org/wiki/Main_Page
 - https://lizhongzheng.mit.edu/
-- https://lizhongresearch.m.miraheze.org/wiki/Main_Page
 - https://www.leiphone.com/news/201703/qzBcOeDYFHtYwgEq.html
 - http://nsfcbl.org/
 - [Large Margin Deep Neural Networks: Theory and Algorithms](https://arxiv.org/abs/1506.05232v1)
@@ -1487,11 +1541,34 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 - https://www.rle.mit.edu/sia/
 - https://xiangxiangxu.com/
 
-### Information bottleneck theory
+###  Universal Feature Selection
 
+[In this talk](https://lids.mit.edu/news-and-events/events/information-theoretic-interpretation-deep-neural-networks), 
+we formulate a new problem called the "universal feature selection" problem, 
+where we need to select from the high dimensional data a low dimensional feature that can be used to solve, not one, but a family of inference problems.
+We solve this problem by developing a new information metric that can be used to quantify the semantics of data, and by using a geometric analysis approach. 
+We then show that a number of concepts in information theory and statistics such as the HGR correlation and common information are closely connected to the universal feature selection problem. 
+At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, deep neural networks, etc., can also be interpreted as implicitly or explicitly solving the same problem, with various forms of constraints.
+
+* [Universal Features](https://arxiv.org/pdf/1911.09105.pdf)
+* https://glouppe.github.io/info8010-deep-learning/
+* http://ita.ucsd.edu/
+* http://naftali-tishby.mystrikingly.com/
+* http://lizhongzheng.mit.edu/
+* [The Information Theoretic Problem in Deep-Learning](https://lizhongzheng.mit.edu/sites/default/files/documents/FFSE.pdf)
+* https://xiangxiangxu.com/
+* https://www.tbsi.edu.cn/index.php?s=/cms/181.html
+
+
+### Information Bottleneck Theory
+
+* [The information bottleneck method](https://arxiv.org/pdf/physics/0004057.pdf)
 * [On the information bottleneck theory of deep learning](https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning)
 * [Deep Learning and the Information Bottleneck Principle](https://arxiv.org/pdf/1503.02406.pdf)
+* https://www.cs.huji.ac.il/labs/learning/Papers/allerton.pdf
 * https://mc.ai/summary-on-the-information-bottleneck-theory-of-deep-learning/
+* https://www.jmlr.org/papers/volume6/chechik05a/chechik05a.pdf
+* https://github.com/billy-odera/info8004-advanced-machine-learning
 
 ### InfoMax 
 
@@ -1502,6 +1579,53 @@ At the same time, a number of learning algorithms, PCA, Compressed Sensing, FM, 
 * https://kwotsin.github.io/post/deep_infomax/
 * https://loewex.github.io/
 * https://kwotsin.github.io/publication/infomax-gan/
+
+### Deep Learning and Coding Theory
+
+https://ee.stanford.edu/event/seminar/isl-seminar-inventing-algorithms-deep-learning
+> The first is reliable communication over noisy media where we successfully revisit classical open problems in information theory; we show that creatively trained and architected neural networks can beat state of the art on the AWGN channel with noisy feedback by a 100 fold improvement in bit error rate.
+
+> The second is optimization and classification problems on graphs, where the key algorithmic challenge is scalable performance to arbitrary sized graphs. Representing graphs as randomized nonlinear dynamical systems via recurrent neural networks, we show that creative adversarial training allows one to train on small size graphs and test on much larger sized graphs (100~1000x) with approximation ratios that rival state of the art on a variety of optimization problems across the complexity theoretic hardness spectrum.
+
+
+* https://deepcomm.github.io/
+* [Deep Learning meets Coding Theory](https://site.ieee.org/indiacouncil/files/2019/12/p67-p72.pdf)
+* [An End-to-End Sparse Coding](https://www.padl.ws/papers/Paper%2028.pdf)
+
+### Communication algorithms via deep learning
+
+* https://arxiv.org/abs/1805.09317v1
+* https://github.com/datlife/deepcom
+* [Inventing Communication Algorithms via Deep Learning](http://pramodv.ece.illinois.edu/)
+- https://infotheory.ece.uw.edu/research.html#deepcode
+- [Physical Layer Communication via Deep Learning](https://ieeexplore.ieee.org/abstract/document/9085350)
+- [COMMUNICATION ALGORITHMS VIA DEEP LEARNING](https://openreview.net/pdf?id=ryazCMbR-)
+- https://www.media.mit.edu/groups/signal-kinetics/publications/
+- https://research.ece.cmu.edu/lions/Papers/CodedEdge_INFOCOM.pdf
+
+#### Learning-based coded computation
+
+- https://jackkosaian.github.io/
+- https://deepcomm.github.io/
+- [Learning-Based Coded Computation](https://ieeexplore.ieee.org/document/9047948)
+- https://dl.acm.org/doi/10.1145/3341301.3359654
+- https://github.com/Thesys-lab/parity-models
+- https://www.cs.cmu.edu/~rvinayak/
+- [LEARN Codes: Inventing Low-Latency Codes via Recurrent Neural Networks](https://ieeexplore.ieee.org/document/9070167)
+
+
+#### Neural Audio Coding
+
+[Neural audio coding is an area where we want to compress an audio signal down to a bitstring, which should be recovered as another audio signal that sounds as similar as possible to human ears, of course, using neural nets. This objective is not that straightforward when it comes to training a neural network that does this autoencoding job, because what I just said in the previous sentence is not well defined as a differentiable loss function.](https://saige.sice.indiana.edu/research-projects/pam-nac/)
+
+<img src="https://saige.sice.indiana.edu/wp-content/uploads/cmrl2-1024x590.png">
+
+* [Neural Audio Coding](https://saige.sice.indiana.edu/research-projects/neural-audio-coding/)
+* [Psychoacoustic Loss Functions for Neural Audio Coding](https://saige.sice.indiana.edu/research-projects/pam-nac/)
+* [end-to-end optimized speech coding with deep neural networks](http://srik.tk/speech-coding/)
+* https://arxiv.org/abs/2101.00054
+* https://github.com/cocosci/pam-nac
+* http://web.mit.edu/hst.723/www/
 
 ## Brain Science and AI
 
@@ -1531,24 +1655,61 @@ Recently, however, the remarkable success of deep neural networks in learning fr
 * https://www.neuro-central.com/ask-experts-artificial-intelligence-neuroscience/
 * https://sites.google.com/mila.quebec/neuroaiworkshop
 * [Brains and Bits: Neuroscience Meets Machine Learning](http://www.stat.ucla.edu/~akfletcher/brainsbits.html)
+* [Learning From Brains How to Regularize Machines](https://openreview.net/pdf/9629eb3f71b99e9b01e39c854c01bc87983da35d.pdf)
 
-### Spiking neural networks
+### Neuromorphic Computing
+
+[The key challenges in neuromorphic research are matching a human's flexibility, and ability to learn from unstructured stimuli with the energy efficiency of the human brain. The computational building blocks within neuromorphic computing systems are logically analogous to neurons. Spiking neural networks (SNNs) are a novel model for arranging those elements to emulate natural neural networks that exist in biological brains.](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html)
+  
+- [Neuro Inspired Computational Elements Conference](https://niceworkshop.org/)  
+
+#### Spiking neural networks
+
 
 - https://zenkelab.org/
 - https://neural-reckoning.github.io/snn_workshop_2020/
 - https://fzenke.net/
 - https://github.com/google/ihmehimmeli
-- https://www.humanbrainproject.eu/en/education/participatecollaborate/curriculum/workshops/3rd-curriculum-workshop-ict-snn/
-- http://www.cosyne.org/c/index.php?title=Workshops2019_spike_1
+- [Spiking neural networks: Applications to computing, algorithmics, and robotics](https://www.humanbrainproject.eu/en/education/participatecollaborate/curriculum/workshops/3rd-curriculum-workshop-ict-snn/)
+- [“Why spikes? – Understanding the power and constraints of spiking based computation in biological and artificial neuronal networks” ](http://www.cosyne.org/c/index.php?title=Workshops2019_spike_1)
 - https://2020.wcci-virtual.org/session/workshop-6-design-implementation-and-applications-spiking-neural-networks-and-neuromorphic
 - https://niceworkshop.org/nice-2020/nice-2020-tutorials/
-- https://github.com/ai-cortex/snn-workshop-amld-2020
+- [Spiking Neural Networks for real-time inference tasks](https://github.com/ai-cortex/snn-workshop-amld-2020)
+
+#### SpiNNaker
+
+SpiNNaker is a novel massively-parallel computer architecture, inspired by the fundamental structure and function of the human brain, which itself is composed of billions of simple computing elements, communicating using unreliable spikes.
+
+The project's objectives are two-fold:
+
+1. To provide a platform for high-performance massively parallel processing appropriate for the simulation of large-scale neural networks in real-time, as a research tool for neuroscientists, computer scientists and roboticists
+2. As an aid in the investigation of new computer architectures, which break the rules of conventional supercomputing, but which we hope will lead to fundamentally new and advantageous principles for energy-efficient massively-parallel computing
+
+`SpiNNaker` project has delivered the world’s largest neuromorphic computing platform incorporating over a million ARM mobile phone processors and capable of modelling spiking neural networks of the scale of a mouse brain in biological real time
+
+- [SpiNNaker: A Spiking Neural Network Architecture](https://www.nowpublishers.com/article/BookDetails/9781680836523)
+- http://apt.cs.manchester.ac.uk/projects/SpiNNaker/project/
+- [The Neuromorphic Computing platform: Getting started to run network simulations on SpiNNaker and emulations on BrainScaleS](https://www.humanbrainproject.eu/en/silicon-brains/neuromorphic-computing-platform/)
+- [Running Spiking Neural Network Simulations on SpiNNaker](https://niceworkshop.org/nice-2020/nice-2020-tutorials/)
+- [SpiNNaker](http://meseec.ce.rit.edu/756-projects/fall2015/2-1.pdf)
+- [SpiNNaker Project - The SpiNNaker Chip.](http://apt.cs.manchester.ac.uk/projects/SpiNNaker/SpiNNchip/)
+
+####  Intel Corporation Loihi and Nx SDK
+
+- https://www.intel.com/content/www/us/en/research/neuromorphic-community.html
+- [Loihi Deep Dive Architecture, SDK, Examples](https://niceworkshop.org/wp-content/uploads/2019/04/NICE-2019-Day-4c_Loihi-Overview.pdf)
 
 ### The Thousand Brains Theory of Intelligence
 
+Numenta has developed a major theory of intelligence and how the brain works called The Thousand Brains Theory of Intelligence, and we’re now exploring how to incorporate key principles of the theory to the field of machine intelligence.
+
+<img src="https://numenta.com/wp-content/uploads/2019/02/Numenta-Timeline-version-2-e1614715844673.png" width="41%"/>
+<img src="https://cnl.salk.edu/images/figures/LevelsOfInvestigation.svg" width="41%"/>
+
+
 - https://numenta.com/
 - https://numenta.com/blog/2019/01/16/the-thousand-brains-theory-of-intelligence/
-- https://www.microsoft.com/en-us/research/uploads/prod/2019/03/42804_The_Thousand_Brains_Theory.pdf
+- [The Thousand Brains Theory](https://www.microsoft.com/en-us/research/uploads/prod/2019/03/42804_The_Thousand_Brains_Theory.pdf)
 - https://lexfridman.com/jeff-hawkins/
 
 
@@ -1622,7 +1783,7 @@ In the absence of explanations for such cognitive phenomena,
 - [The Bayesian Brain: An Introduction to Predictive Processing](https://www.mindcoolness.com/blog/bayesian-brain-predictive-processing/)
 - https://ieeexplore.ieee.org/document/8733892
 
-### Contrastive Predictive Coding
+#### Contrastive Predictive Coding
 
 <img src="https://yann-leguilly.gitlab.io/img/contrastive_1/contrastive_fig_1.webp" width="80%">
 
@@ -1635,7 +1796,7 @@ In the absence of explanations for such cognitive phenomena,
 - http://proceedings.mlr.press/v136/stacke20a/stacke20a.pdf
 - http://people.csail.mit.edu/clai24/data/lai2019contrastive.pdf
 
-### Hierarchical Predictive Coding
+#### Hierarchical Predictive Coding
 
 > A hierarchical predictive coding model consists of layers of latent variables (tiers). Each tier attempts to predict the adjacent lower tier, resulting in a predicted state and a prediction error. By minimizing the prediction error, both the latent variables and the predictors of these variables are estimated.
 

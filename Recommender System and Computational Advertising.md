@@ -15,7 +15,6 @@
     - [Field-aware Factorization Machine(FFM)](#field-aware-factorization-machineffm)
     - [Convex Factorization Machines](#convex-factorization-machines)
     - [Higher-Order Factorization Machines](#higher-order-factorization-machines)
-    - [Implementation](#implementation)
   - [Deep Learning for Recommender System](#deep-learning-for-recommender-system)
     - [Restricted Boltzmann Machines for Collaborative Filtering](#restricted-boltzmann-machines-for-collaborative-filtering)
     - [AutoRec for Collaborative Filtering](#autorec-for-collaborative-filtering)
@@ -82,14 +81,19 @@
   - [Resource on RecSys](#resource-on-recsys)
     - [Labs](#labs)
     - [Workshop](#workshop)
-    - [Implementation](#implementation-1)
+    - [Implementation](#implementation)
+- [Preference Learning](#preference-learning)
+  - [Pairwise Preference Learning and Ranking](#pairwise-preference-learning-and-ranking)
+  - [Collaborative Preference Learning](#collaborative-preference-learning)
+  - [Preference Learning and Gaussian Processes](#preference-learning-and-gaussian-processes)
+  - [Preference Learning and Choice Model](#preference-learning-and-choice-model)
+    - [Modeling Users’ Preferences](#modeling-users-preferences)
 - [Computational Advertising](#computational-advertising)
   - [Click-Through Rate Modeling](#click-through-rate-modeling)
   - [Conversion Rate Modeling](#conversion-rate-modeling)
   - [Bid Optimization](#bid-optimization)
   - [User Engagement](#user-engagement)
   - [User Modeling](#user-modeling)
-    - [Modeling Users’ Preferences](#modeling-users-preferences)
   - [Resource](#resource)
     - [Labs](#labs-1)
     - [Courese](#courese)
@@ -348,6 +352,7 @@ So that we can reformulate the optimization problem as maximum likelihood estima
 * [Latent Factor Models for Web Recommender Systems](http://www.ideal.ece.utexas.edu/seminar/LatentFactorModels.pdf)
 * [Regression-based Latent Factor Models @CS 732 - Spring 2018 - Advanced Machine Learning by Zhi Wei](https://web.njit.edu/~zhiwei/CS732/papers/Regression-basedLatentFactorModels_KDD2009.pdf)
 * [Probabilistic Matrix Factorization](https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf)
+* [Indexable Probabilistic Matrix Factorization for Maximum Inner Product Search](http://ulrichpaquet.com/Papers/fraccaro16aaai.pdf)
 
 ### Poisson Factorization
 
@@ -699,15 +704,7 @@ So we can generalize the FM into `Higher-Order Factorization Machines` (HOFM) ba
 - https://papers.nips.cc/paper/6144-higher-order-factorization-machines.pdf
 
 
-### Implementation 
 
-* [TensorFlow implementation of an arbitrary order Factorization Machine](https://github.com/geffy/tffm)
-* http://libfm.org/
-* https://github.com/srendle/libfm
-* https://www.csie.ntu.edu.tw/~cjlin/libffm/
-* https://github.com/srendle
-
-********************
 
 ## Deep Learning for Recommender System
 
@@ -2124,6 +2121,28 @@ thus far.
 
 ### Implementation
 
+
+- [ ] [Surprise: a Python scikit building and analyzing recommender systems](http://surpriselib.com/)
+- [ ] [Orange3-Recommendation: a Python library that extends Orange3 to include support for recommender systems.](https://orange3-recommendation.readthedocs.io/en/latest/)
+- [ ] [MyMediaLite: a recommender system library for the Common Language Runtime](http://www.mymedialite.net/index.html)
+- [ ] http://www.mymediaproject.org/
+- [Workshop: Building Recommender Systems with Apache Spark 2.x](https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x)
+- [A Leading Java Library for Recommender Systems](https://www.librec.net/)
+- [lenskit: Python Tools for Recommender Experiments](https://lenskit.org/)
+- [Samantha - A generic recommender and predictor server](https://grouplens.github.io/samantha/)
+* http://libfm.org/
+* https://github.com/srendle/libfm
+* https://www.csie.ntu.edu.tw/~cjlin/libffm/
+* https://github.com/srendle
+* https://github.com/lyst/lightfm
+* https://github.com/guoguibing/librec
+* https://recbole.io/index.html
+
+********************
+
+* [TensorFlow implementation of an arbitrary order Factorization Machine](https://github.com/geffy/tffm)
+* https://github.com/tensorflow/recommenders
+* https://github.com/fuhailin/DeePray
 - [ ] https://github.com/gasevi/pyreclab
 - [ ] https://github.com/cheungdaven/DeepRec
 - [ ] https://github.com/cyhong549/DeepFM-Keras
@@ -2133,15 +2152,83 @@ thus far.
 - [ ] https://github.com/alibaba/euler
 - [ ] https://github.com/alibaba/x-deeplearning/wiki/
 - [ ] https://github.com/lyst/lightfm
-- [ ] [Surprise: a Python scikit building and analyzing recommender systems](http://surpriselib.com/)
-- [ ] [Orange3-Recommendation: a Python library that extends Orange3 to include support for recommender systems.](https://orange3-recommendation.readthedocs.io/en/latest/)
-- [ ] [MyMediaLite: a recommender system library for the Common Language Runtime](http://www.mymedialite.net/index.html)
-- [ ] http://www.mymediaproject.org/
-- [Workshop: Building Recommender Systems with Apache Spark 2.x](https://qcon.ai/qconai2019/workshop/building-recommender-systems-w-apache-spark-2x)
-- [A Leading Java Library for Recommender Systems](https://www.librec.net/)
-- [lenskit: Python Tools for Recommender Experiments](https://lenskit.org/)
-- [Samantha - A generic recommender and predictor server](https://grouplens.github.io/samantha/)
 
+
+# Preference Learning
+
+
+> [Roughly speaking,](http://www.ke.tu-darmstadt.de/events/PL-10/) preference learning is about methods for learning preference models from explicit or implicit preference information, typically used for predicting the preferences of an individual or a group of individuals. Approaches relevant to this area range from learning special types of preference models, such as lexicographic orders, over "learning to rank" for information retrieval to collaborative filtering techniques for recommender systems.
+
+- http://www.ke.tu-darmstadt.de/events/PL-10/
+- http://www.preference-learning.org/
+- [Preference Learning: Problems and Applications in AI (PL-12) ECAI-12 Workshop, Montpellier](http://www.ke.tu-darmstadt.de/events/PL-12/workshop.html)
+- [From Multiple Criteria Decision Aid to Preference Learning](https://event.unitn.it/da2pl2020/)
+- [Research Workshop on AI for Preference Learning: Sentiment, Comparison, and Recommendation](https://scis.smu.edu.sg/newsletter/31391)
+- [PREFERENCE LEARNING   WHAT DEFINES AN OPTIMAL SHIFT SCHEDULE?](https://essay.utwente.nl/80170/1/van%20Weersel_MA_BMS.pdf)
+- [Preference Learning: A Tutorial Introduction](http://www.preference-learning.org/PL-Tutorial-DS-11.pdf)
+- [Preference Learning: An Introduction](http://www.ke.tu-darmstadt.de/publications/papers/PLBook-Introduction.pdf)
+- http://plt.institutedigitalgames.com/
+- http://www.gatsby.ucl.ac.uk/~chuwei/
+
+## Pairwise Preference Learning and Ranking
+
+- [Pairwise Preference Learning and Ranking](http://www.ofai.at/cgi-bin/get-tr?paper=oefai-tr-2003-14.pdf)
+- [Preference Learning and Ranking by Pairwise Comparison](http://www.ke.tu-darmstadt.de/publications/papers/PLBook-Pairwise.pdf)
+- [Preference Uncertainty, Preference Learning, and Paired Comparison Experiments ](https://www.fs.fed.us/rm/value/docs/preference_uncertainty_learning_paired_comparison.pdf)
+- [Learning Mallows Models with Pairwise Preferences](https://icml.cc/2011/papers/135_icmlpaper.pdf)
+
+## Collaborative Preference Learning
+
+
+
+- [Collaborative Gaussian Processes for Preference Learning](https://papers.nips.cc/paper/2012/hash/afdec7005cc9f14302cd0474fd0f3c96-Abstract.html)
+- [Poster Collaborative Gaussian Processes for Preference Learning](https://jmhldotorg.files.wordpress.com/2013/11/posternipscollaborativegaussianprocesses2012.pdf)
+- [Scalable Collaborative Bayesian Preference Learning](http://proceedings.mlr.press/v33/khan14.pdf)
+- [Collaborative Preference Learning: A Case Study](https://ieeexplore.ieee.org/document/9255131)
+- [Collaborative Context-aware Preference Learning](http://users.cecs.anu.edu.au/~sguo/cmpl2011_submission_4.pdf)
+- [Neural Collaborative Preference Learning with Pairwise Comparisons](https://ieeexplore.ieee.org/document/9141200)
+
+
+## Preference Learning and Gaussian Processes
+
+- [Multi-Task Preference Learning with Gaussian Processes](https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es2009-122.pdf)
+- [Gaussian Process Preference Elicitation](http://users.cecs.anu.edu.au/~ssanner/Papers/gppe_final.pdf)
+- [Extensions of Gaussian Processes for Ranking: Semi-supervised and Active Learning](http://www.gatsby.ucl.ac.uk/~chuwei/paper/gprl.pdf)
+- [Preference Learning with Gaussian Processes](https://icml.cc/Conferences/2005/proceedings/papers/018_Preference_ChuGhahramani.pdf)
+- https://github.com/neilhoulsby/pref_learning
+- [Fast Active Exploration for Link-Based Preference Learning using Gaussian Processes](https://www.cs.cornell.edu/people/tj/publications/xu_etal_10a.pdf)
+
+## Preference Learning and Choice Model
+
+
+Preference learning has been studied for several decades and has drawn increasing attention in recent years due to its importance in web applications, such as ad serving, search, and electronic commerce. In all of these applications, we observe (often discrete) choices that reflect relative preferences among several items, e.g. products, songs, web pages or documents. Moreover, observations are in many cases censored. Hence, the goal is to reconstruct the overall model of preferences by, for example, learning a general ordering function based on the partially observed decisions.
+Choice models try to predict the specific choices individuals (or groups of individuals) make when offered a possibly very large number of alternatives. Traditionally, they are concerned with the decision process of individuals and have been studied independently in machine learning, data and web mining, econometrics, and psychology. However, these diverse communities have had few interactions in the past. One goal of this workshop is to foster interdisciplinary exchange, by encouraging abstraction of the underlying problem (and solution) characteristics.
+
+
+- [Choice Models and Preference Learning Workshop](https://www.k4all.org/event/choice-models-and-preference-learning-workshop/)
+- [The 12th International Conference on Modeling Decisions for Artificial Intelligence](http://www.mdai.cat/mdai2015/)
+- [Choice Models and Preference Learning: NIPS workshop, 17 December 2011, Sierra Nevada, Spain](https://sites.google.com/site/cmplnips11/)
+- [Active Preference Learning with Discrete Choice Data](https://www.cs.ubc.ca/~nando/papers/interface.pdf)
+- [A rational model of preference learning and choice prediction by children](https://cocosci.princeton.edu/tom/papers/preferences1.pdf)
+- [Modeling preference evolution in discrete choice models: A Bayesian state-space approach](https://www8.gsb.columbia.edu/researcharchive/articles/2372)
+
+
+
+
+### Modeling Users’ Preferences
+
+
+> The ever-growing nature of user generated data in online systems poses obvious challenges on how we process such data. Typically, this issue is regarded as a scalability problem and has been mainly addressed with distributed algorithms able to train on massive amounts of data in short time windows. However, data is inevitably adding up at high speeds. Eventually one needs to discard or archive some of it. Moreover, the dynamic nature of data in user modeling and recommender systems, such as change of user preferences, and the continuous introduction of new users and items make it increasingly difficult to maintain up-to-date, accurate recommendation models.
+
+- [Workshop on Online Recommender Systems and User Modeling](https://recsys.acm.org/recsys19/orsum/)
+- [Modeling Users’ Preferences and Social Links in Social Networking Services: A Joint-Evolving Perspective](http://staff.ustc.edu.cn/~cheneh/paper_pdf/2016/Le-Wu-AAAI.pdf)
+- [Modeling and Learning User Preferences Over Sets](https://www.seas.upenn.edu/~eeaton/papers/Wagstaff2010Modeling.pdf)
+- [Modeling the Dynamics of User Preferences in Coupled Tensor Factorization](http://delab.csd.auth.gr/papers/RecSys2014rn.pdf)
+- [Modeling Users’ Mobile App Privacy Preferences: Restoring Usability in a Sea of Permission Settings](https://www.usenix.org/system/files/conference/soups2014/soups14-paper-lin.pdf)
+- [Adaptive User Modeling with Long and Short-Term Preferences for Personalized Recommendation](https://www.ijcai.org/Proceedings/2019/0585.pdf)
+- [bbbbbbbbbbbbbbbbbb](http://ceur-ws.org/Vol-2711/paper40.pdf)
+- https://fangyuan1st.github.io/paper/ECML16_SEQ_slides.pdf
+- [Deep Modeling of the Evolution of User Preferences and Item Attributes in Dynamic Social Networks](https://dl.acm.org/doi/10.1145/3184558.3186956)
 
 # Computational Advertising
 
@@ -2278,20 +2365,6 @@ ______________________________________________________
 - http://www.humanize-workshop.org/
 - http://iwum.org/
 
-### Modeling Users’ Preferences
-
-
-> The ever-growing nature of user generated data in online systems poses obvious challenges on how we process such data. Typically, this issue is regarded as a scalability problem and has been mainly addressed with distributed algorithms able to train on massive amounts of data in short time windows. However, data is inevitably adding up at high speeds. Eventually one needs to discard or archive some of it. Moreover, the dynamic nature of data in user modeling and recommender systems, such as change of user preferences, and the continuous introduction of new users and items make it increasingly difficult to maintain up-to-date, accurate recommendation models.
-
-- [Workshop on Online Recommender Systems and User Modeling](https://recsys.acm.org/recsys19/orsum/)
-- [Modeling Users’ Preferences and Social Links in Social Networking Services: A Joint-Evolving Perspective](http://staff.ustc.edu.cn/~cheneh/paper_pdf/2016/Le-Wu-AAAI.pdf)
-- [Modeling and Learning User Preferences Over Sets](https://www.seas.upenn.edu/~eeaton/papers/Wagstaff2010Modeling.pdf)
-- [Modeling the Dynamics of User Preferences in Coupled Tensor Factorization](http://delab.csd.auth.gr/papers/RecSys2014rn.pdf)
-- [Modeling Users’ Mobile App Privacy Preferences: Restoring Usability in a Sea of Permission Settings](https://www.usenix.org/system/files/conference/soups2014/soups14-paper-lin.pdf)
-- [Adaptive User Modeling with Long and Short-Term Preferences for Personalized Recommendation](https://www.ijcai.org/Proceedings/2019/0585.pdf)
-- [bbbbbbbbbbbbbbbbbb](http://ceur-ws.org/Vol-2711/paper40.pdf)
-- https://fangyuan1st.github.io/paper/ECML16_SEQ_slides.pdf
-- [Deep Modeling of the Evolution of User Preferences and Item Attributes in Dynamic Social Networks](https://dl.acm.org/doi/10.1145/3184558.3186956)
 
 ## Resource
 

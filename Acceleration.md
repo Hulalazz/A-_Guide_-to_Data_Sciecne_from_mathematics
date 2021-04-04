@@ -29,12 +29,13 @@ except numerical optimization methods including the following topics:
     - [Triton](#triton)
     - [nGraph](#ngraph)
     - [DLR](#dlr)
+    - [TASO](#taso)
+    - [DLVM](#dlvm)
+    - [Jittor](#jittor)
+    - [CHET](#chet)
     - [Butterflies: A Universal Building Block for Structured Linear Maps](#butterflies-a-universal-building-block-for-structured-linear-maps)
     - [halide](#halide)
     - [taichi](#taichi)
-    - [TASO](#taso)
-    - [DLVM](#dlvm)
-    - [CHET](#chet)
   - [Numerical algorithms for high-performance computational science](#numerical-algorithms-for-high-performance-computational-science)
     - [Fast Matrix-vector Multiplication](#fast-matrix-vector-multiplication)
     - [Computation of Matrix Chain Products](#computation-of-matrix-chain-products)
@@ -70,25 +71,44 @@ except numerical optimization methods including the following topics:
     - [Tensor Methods](#tensor-methods)
     - [Compressing Recurrent Neural Network](#compressing-recurrent-neural-network)
     - [Compressing GANs](#compressing-gans)
+      - [GAN-pruning](#gan-pruning)
+    - [Compressed Transformer](#compressed-transformer)
+      - [Compressed BERT](#compressed-bert)
+    - [Hashing-accelerated neural networks](#hashing-accelerated-neural-networks)
   - [Distributed Training](#distributed-training)
     - [Accelerating Deep Learning Workloads](#accelerating-deep-learning-workloads)
       - [PipeDream](#pipedream)
-    - [Count-Sketches](#count-sketches)
+      - [AdaptDL](#adaptdl)
     - [Efficient Communication  for Distributed Training](#efficient-communication--for-distributed-training)
       - [DeepSpeed](#deepspeed)
+      - [NCCL](#nccl)
     - [Gradient Code and Compression](#gradient-code-and-compression)
       - [Gradient Code and Approximate Gradient Coding](#gradient-code-and-approximate-gradient-coding)
       - [Gradient Compression](#gradient-compression)
-        - [Deep Gradient Compression @ MIT](#deep-gradient-compression--mit)
+      - [Deep Gradient Compression @ MIT](#deep-gradient-compression--mit)
         - [Gradient Compression @ epfl](#gradient-compression--epfl)
         - [Gradient Compression @ Edinburgh](#gradient-compression--edinburgh)
         - [Gradient Compression @ kaust](#gradient-compression--kaust)
+      - [Count-Sketches](#count-sketches)
     - [Synthetic gradient](#synthetic-gradient)
     - [Gradient Centralization](#gradient-centralization)
     - [Privacy and Security](#privacy-and-security)
+    - [Distributed deep learning libraries](#distributed-deep-learning-libraries)
+      - [Deep learning + Spark](#deep-learning--spark)
   - [Products and Packages](#products-and-packages)
+    - [TensorFlow](#tensorflow)
+    - [PyTorch](#pytorch)
+    - [MNN](#mnn)
+    - [TNN](#tnn)
+    - [PaddlePaddle](#paddlepaddle)
+      - [DasyDL](#dasydl)
+    - [MindSpore](#mindspore)
+      - [ModelArts](#modelarts)
+    - [MegEngine](#megengine)
+    - [Oneflow](#oneflow)
   - [Edge Computation](#edge-computation)
     - [Mobile Deep Learning](#mobile-deep-learning)
+      - [Toolkits](#toolkits)
   - [Tool kits](#tool-kits)
 
 |The World of Neural Network Acceleration|
@@ -114,7 +134,6 @@ except numerical optimization methods including the following topics:
 * https://machinethink.net/blog/compressing-deep-neural-nets/
 * [Rethinking Deep Learning: Architectures and Algorithms](https://nickhigham.files.wordpress.com/2019/05/talk12-constantinides.pdf)
 * https://girishvarma.in/teaching/efficient-cnns/
-* https://arxiv.org/abs/1904.00938
 * https://github.com/ChanChiChoi/awesome-model-compression
 * https://github.com/fengbintu/Neural-Networks-on-Silicon
 * https://vast.cs.ucla.edu/
@@ -307,7 +326,7 @@ Parallel Architectures for Parallel Processing as co-design is a subfield of sys
 - https://twimlcon.com/
 - [Accelerating Deep Learning with a Parallel Mechanism Using CPU + MIC](https://link.springer.com/article/10.1007%2Fs10766-017-0535-9)
 - [Papers on Big Data Meets New Hardware](https://readingxtra.github.io/)
-
+* [LUTNet: Rethinking Inference in FPGA Soft Logic](https://arxiv.org/abs/1904.00938)
 #### GPU
 
 This GPU architecture works well on applications with massive parallelism, such as matrix multiplication in a neural network.
@@ -465,6 +484,8 @@ This ordered representation of parallel tasks allows the compiler to optimize pa
 
 ### Triton
 
+The aim of Triton is to provide an open-source environment to write fast code at higher productivity than CUDA, but also with higher flexibility than other existing DSLs.
+
 - [Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations](http://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf)
 - https://github.com/ptillet/triton
 - https://pldi19.sigplan.org/details/mapl-2019-papers/1/Triton-An-Intermediate-Language-and-Compiler-for-Tiled-Neural-Network-Computations
@@ -484,11 +505,55 @@ This ordered representation of parallel tasks allows the compiler to optimize pa
 
 
 ### DLR
+
 DLR is a compact, common runtime for deep learning models and decision tree models compiled by AWS SageMaker Neo, TVM, or Treelite. DLR uses the TVM runtime, Treelite runtime, NVIDIA TensorRT™, and can include other hardware-specific runtimes. DLR provides unified Python/C++ APIs for loading and running compiled models on various devices. DLR currently supports platforms from Intel, NVIDIA, and ARM, with support for Xilinx, Cadence, and Qualcomm coming soon.
+
 - https://github.com/neo-ai/neo-ai-dlr
 - https://github.com/dmlc/treelite
 - http://treelite.io/
 - https://aws.amazon.com/cn/sagemaker/neo/
+
+### TASO
+
+TASO optimizes the computation graphs of DNN models using automatically generated and verified graph transformations. For an arbitrary DNN model, TASO uses the auto-generated graph transformations to build a large search space of potential computation graphs that are equivalent to the original DNN model. TASO employs a cost-based search algorithm to explore the space, and automatically discovers highly optimized computation graphs.
+
+* https://cs.stanford.edu/people/zhihao/
+* https://github.com/jiazhihao/TASO
+* http://theory.stanford.edu/~aiken/
+
+### DLVM
+
+We present DLVM, a design and implementation of a compiler infrastructure with a linear algebra intermediate representation, algorithmic differentiation by adjoint code generation, domain-specific optimizations, and a code generator targeting GPU via LLVM.
+
+- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
+- https://github.com/dlvm-team
+- https://github.com/Jittor/jittor
+- http://dlvm.org/
+- http://dowobeha.github.io/papers/autodiff17.pdf
+- http://dowobeha.github.io/
+- https://roshandathathri.github.io/
+- https://www.clsp.jhu.edu/workshops/19-workshop/
+
+### Jittor
+
+Jittor is a high-performance deep learning framework based on JIT compiling and meta-operators. The whole framework and meta-operators are compiled just-in-time. A powerful op compiler and tuner are integrated into Jittor. It allowed us to generate high-performance code with specialized for your model. Jittor also contains a wealth of high-performance model libraries, including: image recognition, detection, segmentation, generation, differentiable rendering, geometric learning, reinforcement learning, etc.。
+
+- https://github.com/Jittor
+- https://cg.cs.tsinghua.edu.cn/jittor/about/
+
+### CHET
+
+
+> CHET is a domain-specific optimizing compiler designed to make the task of programming FHE applications easier. Motivated by the need to perform neural network inference on encrypted medical and financial data, CHET supports a domain-specific language for specifying tensor circuits. It automates many of the laborious and error prone tasks of encoding such circuits homomorphically, including encryption parameter selection to guarantee security and accuracy of the computation, determining efficient tensor layouts, and performing scheme-specific optimizations.
+
+
+- https://roshandathathri.github.io/publication/2019-pldi
+- [CHET: An Optimizing Compiler for Fully-Homomorphic Neural-Network Inferencing](https://www.cs.utexas.edu/~roshan/CHET.pdf)
+- https://www.cs.utexas.edu/~pingali/
+- https://roshandathathri.github.io/
+- https://iss.oden.utexas.edu/
+
+------------
 
 
 ### Butterflies: A Universal Building Block for Structured Linear Maps
@@ -530,31 +595,6 @@ Taichi (太极) is a programming language designed for high-performance computer
 - https://github.com/yuanming-hu/taichi
 - http://taichi.graphics/wp-content/uploads/2019/09/taichi_lang.pdf\
 
-### TASO
-
-TASO optimizes the computation graphs of DNN models using automatically generated and verified graph transformations. For an arbitrary DNN model, TASO uses the auto-generated graph transformations to build a large search space of potential computation graphs that are equivalent to the original DNN model. TASO employs a cost-based search algorithm to explore the space, and automatically discovers highly optimized computation graphs.
-
-* https://cs.stanford.edu/people/zhihao/
-* https://github.com/jiazhihao/TASO
-* http://theory.stanford.edu/~aiken/
-
-### DLVM
-
-- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR
-DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
-- http://dowobeha.github.io/papers/autodiff17.pdf
-- http://dowobeha.github.io/
-- https://roshandathathri.github.io/
-- https://www.clsp.jhu.edu/workshops/19-workshop/
-
-### CHET
-
-- https://www.cs.utexas.edu/~roshan/CHET.pdf
-- https://www.cs.utexas.edu/~pingali/
-- https://roshandathathri.github.io/
-- https://iss.oden.utexas.edu/
-
-
 ## Numerical algorithms for high-performance computational science
 
 Several key themes emerged across multiple talks in [Royal Society Discussion Meeting](https://constantinides.net/2019/04/23/royal-society-discussion-meeting/), all in the context of today’s high performance computing landscape in which processor clock speeds have stagnated (with the end of Moore’s law) and exascale machine are just two or three years away.
@@ -564,7 +604,7 @@ Several key themes emerged across multiple talks in [Royal Society Discussion Me
 * Minimizing `data movement (communication)` is crucial, because of its increasing costs relative to the costs of floating-point arithmetic.
 * `Co-design` (the collaborative and concurrent development of hardware, software, and numerical algorithms, with knowledge of applications) is increasingly important for numerical computing.
 
-For more on high performance computation on GPU see [https://hgpu.org/](- https://hgpu.org/).
+For more on high performance computation on GPU see [https://hgpu.org/](https://hgpu.org/).
 
 
 
@@ -959,6 +999,19 @@ Input variety|Homogeneous objects (e.g. images all having the same height/width 
 + https://nvidia.github.io/MinkowskiEngine/
 
 
+
+
+##  Deep Model Compression
+
+- https://github.com/he-y/Awesome-Pruning
+- https://www.microsoft.com/en-us/research/search/?q=Deep+Compression
+- https://www.tinyml.org/summit/slides/tinyMLSummit2020-4-1-Choi.pdf
+- https://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
+- https://github.com/mightydeveloper/Deep-Compression-PyTorch
+- https://www.oki.com/en/rd/tt/dl/
+- [Deep Compression, DSD Training and EIE: Deep Neural Network Model Compression, Regularization and Hardware Acceleration](https://www.microsoft.com/en-us/research/video/deep-compression-dsd-training-and-eie-deep-neural-network-model-compression-regularization-and-hardware-acceleration/)
+
+
 -----------------------------
 
 CNN is the most wisely used deep learning models in computer vision.
@@ -980,19 +1033,6 @@ Knowledge distillation |Training a compact neural network with distilled knowled
 * [Efficient Deep Learning for Computer Vision CVPR 2019](https://sites.google.com/view/ecv2019/home)
 * [Model Compression and Acceleration for Deep Neural Networks: The Principles, Progress, and Challenges](https://ieeexplore.ieee.org/document/8253600)
 * https://www.ibm.com/blogs/research/2018/02/deep-learning-training/
-
-
-##  Deep Model Compression
-
-- https://github.com/he-y/Awesome-Pruning
-- https://www.microsoft.com/en-us/research/search/?q=Deep+Compression
-- https://www.tinyml.org/summit/slides/tinyMLSummit2020-4-1-Choi.pdf
-- https://openaccess.thecvf.com/content_cvpr_2017/papers/Yu_On_Compressing_Deep_CVPR_2017_paper.pdf
-- https://github.com/mightydeveloper/Deep-Compression-PyTorch
-- https://www.oki.com/en/rd/tt/dl/
-- [Deep Compression, DSD Training and EIE: Deep Neural Network Model Compression, Regularization and Hardware Acceleration](https://www.microsoft.com/en-us/research/video/deep-compression-dsd-training-and-eie-deep-neural-network-model-compression-regularization-and-hardware-acceleration/)
-
-
 
 
 ### Fixed-point Arithmetic and Approximate Computing
@@ -1529,13 +1569,45 @@ RNN is feedback network where there is rings in its computational graph.
 ### Compressing GANs
 
 * https://arxiv.org/abs/1902.00159
+* https://github.com/mit-han-lab/gan-compression
+* https://hanlab.mit.edu/projects/gancompression/
 * https://github.com/amitadate/gan-compression
 * [Adversarial Network Compression](http://openaccess.thecvf.com/content_ECCVW_2018/papers/11132/Belagiannis_Adversarial_Network_Compression_ECCVW_2018_paper.pdf)
 * [Model Compression with Generative Adversarial Networks](https://arxiv.org/pdf/1812.02271v2.pdf)
-* https://github.com/huawei-noah/GAN-pruning
+
 
 - [ ]  https://github.com/kedartatwawadi/NN_compression
 - [ ]  [Optimizing Data-Intensive Computations in Existing Libraries with Split Annotations](https://dawn.cs.stanford.edu/2019/10/22/split-annotations/)
+
+
+####  GAN-pruning
+
+* https://github.com/huawei-noah/GAN-pruning
+* https://daiwk.github.io/posts/cv-gan-pruning.html
+
+### Compressed Transformer
+
+-  https://github.com/khakhulin/compressed-transformer
+-  http://nla.skoltech.ru/projects/files/presentations/team_21.pdf
+-  https://shaojiejiang.github.io/post/en/compressive-transformers/
+-  https://github.com/khakhulin/compressed-transformer
+
+#### Compressed BERT
+
+- https://github.com/szhangtju/The-compression-of-Transformer
+- https://github.com/intersun/PKD-for-BERT-Model-Compression
+- https://huggingface.co/transformers/model_doc/mobilebert.html
+
+### Hashing-accelerated neural networks
+
+[Our approach is compellingly simple: we use a hash function to group network connections into hash buckets uniformly at random such that all connections grouped to the i th hash bucket share the same weight value w_i. Our parameter hashing is akin to prior work in feature hashing and requires no additional memory overhead. The backpropagation algorithm can naturally tune the hash bucket parameters and take into account the random weight sharing within the neural network architecture.](https://www.cse.wustl.edu/~ychen/HashedNets/)
+
+<img src="https://www.cse.wustl.edu/~ychen/HashedNets/hashednets.png">
+  
+- https://www.cse.wustl.edu/~ychen/HashedNets/
+- [Compressing Neural Networks with the Hashing Trick](http://proceedings.mlr.press/v37/chenc15.pdf)
+- https://spectrum.ieee.org/tech-talk/computing/hardware/algorithms-and-hardware-for-deep-learning
+- https://www2021.thewebconf.org/papers/hashing-accelerated-graph-neural-networks-for-link-prediction/
 
 
 ## Distributed Training
@@ -1555,20 +1627,13 @@ It is really important to reduce the cost of communication in distributed comput
 including the communication time, communication frequency, communication content and latency.
 
 
-- [BigDL is a distributed deep learning library for Apache Spark](https://bigdl-project.github.io/master/)
-- https://github.com/intel-analytics/BigDL/
-- https://github.com/amplab/drizzle-spark
-- https://github.com/NVIDIA/nccl
-- https://github.com/horovod/horovod
-- https://github.com/petuum/adaptdl
-- http://maxpumperla.com/elephas/
-- https://horovod.ai/
-- http://explorer.cs.fsu.edu/
 - https://www.cs.rice.edu/~as143/COMP640_Fall16/
 - https://www.cs.rice.edu/~as143/
 - https://www.deepspeed.ai/
+- https://shivaram.org/
 - https://www.comp.hkbu.edu.hk/~chxw/
-
+- [High Performance Distributed Deep Learning](http://prace.it4i.cz/en/HPDDL-01-2018)
+- [Tutorial: High Performance Distributed Deep Learning](https://ppopp20.sigplan.org/details/PPoPP-2020-Workshops-and-Tutorials/3/Tutorial-High-Performance-Distributed-Deep-Learning)
 
 ### Accelerating Deep Learning Workloads
 
@@ -1604,26 +1669,17 @@ including the communication time, communication frequency, communication content
 - [Multi-tenant GPU Clusters for Deep Learning Workloads: Analysis and Implications](https://www.microsoft.com/en-us/research/uploads/prod/2018/05/gpu_sched_tr.pdf)
 - [PipeDream: Generalized Pipeline Parallelism for DNN Training](https://www.microsoft.com/en-us/research/blog/pipedream-a-more-effective-way-to-train-deep-neural-networks-using-pipeline-parallelism/)
 
-### Count-Sketches
 
-Sketch is a class of algorithms using a probabilistic data structure to approximate the distribution of input data.
+#### AdaptDL
 
-[The count-sketches streaming algorithm instantiates the following framework](https://stackoverflow.com/questions/6811351/explaining-the-count-sketch-algorithm):
+AdaptDL is a resource-adaptive deep learning (DL) training and scheduling framework. The goal of AdaptDL is to make distributed DL easy and efficient in dynamic-resource environments such as shared clusters and the cloud.
 
-1. Find a randomized streaming algorithm whose output (as a random variable) has the desired expectation but usually high variance (i.e., noise).
-2. To reduce the variance/noise, run many independent copies in parallel and combine their outputs.
+- https://adaptdl.readthedocs.io/
+- https://github.com/petuum/adaptdl
 
-- [Compressing Gradient Optimizers via Count-Sketches](https://arxiv.org/abs/1902.00179)
-- [MISSION: Ultra Large-Scale Feature Selection using Count-Sketches](https://arxiv.org/abs/1806.04310)
-- https://arxiv.org/abs/1804.10673
-- https://github.com/rdspring1/Count-Sketch-Optimizers
-- http://net.pku.edu.cn/~yangtong/
-- https://papers.nips.cc/paper/9168-memory-efficient-adaptive-optimization.pdf
-- https://dblp.org/pers/hd/k/Kyrillidis:Anastasios
-- https://www.csauthors.net/vijai-mohan/
-- [SketchML: Accelerating Distributed Machine Learning with Data Sketches](http://net.pku.edu.cn/~yangtong/uploads/SketchML.pdf)
 
 ### Efficient Communication  for Distributed Training
+
 The communication cost of distributed training depends on the content whcih the distributed machiens share.
 
 - https://www.usenix.org/conference/hotedge18/presentation/tao
@@ -1634,8 +1690,7 @@ The communication cost of distributed training depends on the content whcih the 
 - https://www.usenix.org/system/files/conference/atc17/atc17-zhang.pdf
 - https://embedl.ai/
 - [Communication-Efficient Federated Deep Learning With Layerwise Asynchronous Model Update and Temporally Weighted Aggregation](https://ieeexplore.ieee.org/document/8945292)
-- [Optimus: An Efficient Dynamic Resource Scheduler for Deep
-Learning Clusters](https://web.kaust.edu.sa/Faculty/MarcoCanini/classes/CS345/S19/papers/optimus.pdf)
+- [Optimus: An Efficient Dynamic Resource Scheduler for Deep Learning Clusters](https://web.kaust.edu.sa/Faculty/MarcoCanini/classes/CS345/S19/papers/optimus.pdf)
 - [CS-345, Spring 2019: Advanced Distributed and Networked Systems](https://web.kaust.edu.sa/Faculty/MarcoCanini/classes/CS345/S19/)
 - http://www.cs.cmu.edu/~muli/file/parameter_server_nips14.pdf
 - http://www1.se.cuhk.edu.hk/~htwai/oneworld/pdf/ji_SP.pdf
@@ -1651,11 +1706,18 @@ Most importantly, you can leverage the distinctive efficiency and effectiveness 
 - [ZeRO-2 & DeepSpeed: Shattering barriers of deep learning speed & scale](https://www.microsoft.com/en-us/research/blog/zero-2-deepspeed-shattering-barriers-of-deep-learning-speed-scale/)
 - https://www.deepspeed.ai/
 
+#### NCCL
+
+NCCL (pronounced "Nickel") is a stand-alone library of standard communication routines for GPUs, implementing all-reduce, all-gather, reduce, broadcast, reduce-scatter, as well as any send/receive based communication pattern. It has been optimized to achieve high bandwidth on platforms using PCIe, NVLink, NVswitch, as well as networking using InfiniBand Verbs or TCP/IP sockets. NCCL supports an arbitrary number of GPUs installed in a single node or across multiple nodes, and can be used in either single- or multi-process (e.g., MPI) applications.
+
+- https://github.com/NVIDIA/nccl
+- https://docs.nvidia.com/deeplearning/sdk/nccl-developer-guide/index.html
 
 ### Gradient Code and Compression
 
 Gradient code and compression is to accelerate the distributed training of deep learning models by reducing the communication cost.
 
+- [Memory-Efficient Adaptive Optimization](https://papers.nips.cc/paper/9168-memory-efficient-adaptive-optimization.pdf)
 
 #### Gradient Code and Approximate Gradient Coding
 
@@ -1690,7 +1752,7 @@ Several techniques have been proposed to enhance scalability by `compressing gra
 e.g. by sending a sparse set of coordinates only, or by quantization. 
 We study the gradient compression literature from both sides: on the one hand, [we study properties of these algorithms in a distributed setting, and their effectiveness for speed and scalability. On the other hand, we explore properties of the minima found by these algorithms, such as robustness or generalisation.](https://memento.epfl.ch/event/gradient-compression-techniques-to-accelerate-dist/)
 
-##### Deep Gradient Compression @ MIT
+#### Deep Gradient Compression @ MIT
 
 - [Deep Gradient Compression: Reducing the Communication Bandwidth for Distributed Training](https://arxiv.org/abs/1712.01887)
 - https://blog.csdn.net/a609640147/article/details/90054754
@@ -1748,25 +1810,50 @@ We demonstrate reduced training times for convolutional networks as well as LSTM
 * [Better Communication Complexity for Local SGD](https://arxiv.org/abs/1909.04746)
 * [Gradient Descent with Compressed Iterates](https://arxiv.org/abs/1909.04716)
 
+
+#### Count-Sketches
+
+Sketch is a class of algorithms using a probabilistic data structure to approximate the distribution of input data.
+
+[The count-sketches streaming algorithm instantiates the following framework](https://stackoverflow.com/questions/6811351/explaining-the-count-sketch-algorithm):
+
+1. Find a randomized streaming algorithm whose output (as a random variable) has the desired expectation but usually high variance (i.e., noise).
+2. To reduce the variance/noise, run many independent copies in parallel and combine their outputs.
+
+- [Compressing Gradient Optimizers via Count-Sketches](https://arxiv.org/abs/1902.00179)
+- [MISSION: Ultra Large-Scale Feature Selection using Count-Sketches](https://arxiv.org/abs/1806.04310)
+- [Buffered Count-Min Sketch on SSD: Theory and Experiments](https://arxiv.org/abs/1804.10673)
+- https://github.com/rdspring1/Count-Sketch-Optimizers
+- http://net.pku.edu.cn/~yangtong/
+- https://dblp.org/pers/hd/k/Kyrillidis:Anastasios
+- https://www.csauthors.net/vijai-mohan/
+- [SketchML: Accelerating Distributed Machine Learning with Data Sketches](http://net.pku.edu.cn/~yangtong/uploads/SketchML.pdf)
+
 ### Synthetic gradient
 
 > It’s a simple idea: rather than compute gradients through backpropagation, we can train a model to predict what those gradients will be, and use our prediction to update our weights. It’s dynamic programming for neural networks.
 
 -  https://github.com/andrewliao11/dni.pytorch
--  https://arxiv.org/pdf/1703.00522.pdf
--  https://r2rt.com/synthetic-gradients-with-tensorflow.html
--  https://arxiv.org/abs/1703.00522
+-  [Understanding Synthetic Gradients and Decoupled Neural Interfaces](https://arxiv.org/pdf/1703.00522.pdf)
+-  [Synthetic Gradients with Tensorflow](https://r2rt.com/synthetic-gradients-with-tensorflow.html)
 -  http://deliprao.com/archives/187
 -  [Exploring the Use of Synthetic Gradients for Distributed Deep Learning across Cloud and Edge Resources](https://www.usenix.org/conference/hotedge19/presentation/chen)
+-  [Decoupled Neural Interfaces using Synthetic Gradients](https://arxiv.org/pdf/1608.05343.pdf)
 -  http://cnichkawde.github.io/SyntheticGradients.html
+-  [A Bird's Eye View of Synthetic Gradients](https://greydanus.github.io/2016/11/26/synthetic-gradients/)
+-  https://iamtrask.github.io/2017/03/21/synthetic-gradients/
 
 ### Gradient Centralization
 
-- http://www.breloff.com/
-- https://github.com/Yonghongwei/Gradient-Centralization
-- https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer
-- https://www4.comp.polyu.edu.hk/~cslzhang/paper/conf/ECCV20/ECCV_GC.pdf
+> Gradient Centralization (GC) is a simple and effective optimization technique for Deep Neural Networks (DNNs), which operates directly on gradients by centralizing the gradient vectors to have zero mean. It can both speedup training process and improve the final generalization performance of DNNs.
 
+- http://www.breloff.com/
+- https://github.com/Yonghongwei/Gradient-Centralization- [Gradient Centralization: A New Optimization Technique for Deep Neural Networks](https://www4.comp.polyu.edu.hk/~cslzhang/paper/conf/ECCV20/ECCV_GC.pdf)
+
+Ranger now uses Gradient Centralization by default, and applies it to all conv and fc layers by default. However, everything is customizable so you can test with and without on your own datasets. (Turn on off via "use_gc" flag at init).
+
+- [Ranger - a synergistic optimizer combining RAdam (Rectified Adam) and LookAhead, and now GC (gradient centralization) in one optimization](https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer)
+- https://github.com/lessw2020/Ranger-Mish-ImageWoof-5
 
 ### Privacy and Security
 
@@ -1787,14 +1874,135 @@ DICE essentially creates a two-level security model: on the (physical) cluster l
 
 - [Deep Leakage from Gradients](https://arxiv.org/abs/1906.08935)
 - http://www.cs.cornell.edu/~shmat/research.html
+
+
+### Distributed deep learning libraries
+
+- https://github.com/amplab/drizzle-spark
+- https://github.com/horovod/horovod
+- http://maxpumperla.com/elephas/
+- https://horovod.ai/
+- http://explorer.cs.fsu.edu/
+
+####  Deep learning + Spark
+
+BigDL is a distributed deep learning library for Apache Spark; with BigDL, users can write their deep learning applications as standard Spark programs, which can directly run on top of existing Spark or Hadoop clusters. To makes it easy to build Spark and BigDL applications, a high level Analytics Zoo is provided for end-to-end analytics + AI pipelines.
+
+- [BigDL is a distributed deep learning library for Apache Spark](https://bigdl-project.github.io/master/)
+- https://github.com/intel-analytics/BigDL/
+
+> Drizzle is a low latency execution engine for Apache Spark that is targeted at stream processing and iterative workloads. Currently, Spark uses a BSP computation model, and notifies the scheduler at the end of each task. Invoking the scheduler at the end of each task adds overheads and results in decreased throughput and increased latency.
+
+- https://github.com/amplab/drizzle-spark
+- https://shivaram.org/drafts/drizzle.pdf
+
+> Horovod can additionally run on top of Apache Spark, making it possible to unify data processing and model training into a single pipeline. Once Horovod has been configured, the same infrastructure can be used to train models with any framework, making it easy to switch between TensorFlow, PyTorch, MXNet, and future frameworks as machine learning tech stacks continue to evolve.
+
+
+- https://horovod.ai/
+- https://eng.uber.com/horovod/
+- https://github.com/horovod/horovod
+
+Elephas is an extension of Keras, which allows you to run distributed deep learning models at scale with Spark.
+
+- http://maxpumperla.com/elephas/
+- https://github.com/maxpumperla/elephas
+
 ## Products and Packages
 
-- [开源背后 | 面对端侧推理引擎的挑战，阿里工程师如何应对？ - 阿里技术的文章 - 知乎](https://zhuanlan.zhihu.com/p/71816894)
 - https://zhuanlan.zhihu.com/p/87392811
 - https://zhuanlan.zhihu.com/p/87458316
-- https://lutzroeder.github.io/netron/
-- https://github.com/daquexian/onnx-simplifier
 - https://www.dataiku.com/
+- https://www.fritz.ai/
+
+### TensorFlow
+
+TensorFlow is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries, and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML-powered applications.
+
+- https://www.tensorflow.org/resources/tools
+-  https://github.com/tensorflow/tensorflow
+-  https://www.tensorflow.org/lite?hl=zh-cn
+-  https://github.com/tensorflow/tflite-support
+
+### PyTorch
+
+PyTorch is a Python package that provides two high-level features:
+
+- Tensor computation (like NumPy) with strong GPU acceleration
+- Deep neural networks built on a tape-based autograd system
+
+PyTorch has minimal framework overhead. We integrate acceleration libraries such as Intel MKL and NVIDIA (cuDNN, NCCL) to maximize speed. At the core, its CPU and GPU Tensor and neural network backends (TH, THC, THNN, THCUNN) are mature and have been tested for years.
+
+Hence, PyTorch is quite fast – whether you run small or large neural networks.
+
+The memory usage in PyTorch is extremely efficient compared to Torch or some of the alternatives. We've written custom memory allocators for the GPU to make sure that your deep learning models are maximally memory efficient. This enables you to train bigger deep learning models than before.
+
+- https://pytorch.org/
+- https://github.com/pytorch/pytorch
+- https://pytorch-lightning.readthedocs.io/en/0.5.3.2/Trainer/Distributed%20training/
+- https://pytorch.org/mobile/home/
+- https://github.com/rusty1s/pytorch_geometric
+
+### MNN
+
+MNN is a highly efficient and lightweight deep learning framework. It supports inference and training of deep learning models, and has industry leading performance for inference and training on-device. At present, MNN has been integrated in more than 20 apps of Alibaba Inc, such as Taobao, Tmall, Youku, Dingtalk, Xianyu and etc., covering more than 70 usage scenarios such as live broadcast, short video capture, search recommendation, product searching by image, interactive marketing, equity distribution, security risk control. In addition, MNN is also used on embedded devices, such as IoT.
+
+- [开源背后 | 面对端侧推理引擎的挑战，阿里工程师如何应对？ - 阿里技术的文章 - 知乎](https://zhuanlan.zhihu.com/p/71816894)
+- https://github.com/alibaba/MNN
+- https://www.mnn.zone/
+
+### TNN
+
+TNN is a high-performance and lightweight inference framework for mobile devices. It provides lots of advanced features such as cross-platform, model-compression, and code-pruning. TNN, inspired by mainstream open-source industry frameworks, integrates and leverages Youtu Lab's Rapidnet, ncnn framework.
+
+
+- https://github.com/Tencent/TNN
+  
+> ncnn is a high-performance neural network inference computing framework optimized for mobile platforms. ncnn is deeply considerate about deployment and uses on mobile phones from the beginning of design. ncnn does not have third party dependencies. it is cross-platform, and runs faster than all known open source frameworks on mobile phone cpu. Developers can easily deploy deep learning algorithm models to the mobile platform by using efficient ncnn implementation, create intelligent APPs, and bring the artificial intelligence to your fingertips. ncnn is currently being used in many Tencent applications, such as QQ, Qzone, WeChat, Pitu and so on.
+
+- https://github.com/Tencent/ncnn
+
+
+###  PaddlePaddle
+
+PaddlePaddle, as the only independent R&D deep learning platform in China, has been officially open-sourced to professional communities since 2016. It is an industrial platform with advanced technologies and rich features that cover core deep learning frameworks, basic model libraries, end-to-end development kits, tools & components as well as service platforms. PaddlePaddle is originated from industrial practices with dedication and commitments to industrialization. It has been widely adopted by a wide range of sectors including manufacturing, agriculture, enterprise service, and so on while serving more than 2.3 million developers. With such advantages, PaddlePaddle has helped an increasing number of partners commercialize AI.
+
+- https://www.paddlepaddle.org.cn/
+- https://github.com/PaddlePaddle/Paddle
+
+#### DasyDL
+
+- https://ai.baidu.com/easydl/
+
+
+### MindSpore
+
+>  MindSpore is a new open source deep learning training/inference framework that could be used for mobile, edge and cloud scenarios. MindSpore is designed to provide development experience with friendly design and efficient execution for the data scientists and algorithmic engineers, native support for Ascend AI processor, and software hardware co-optimization. At the meantime MindSpore as a global AI open source community, aims to further advance the development and enrichment of the AI software/hardware application ecosystem.
+
+- https://github.com/mindspore-ai/mindspore
+- https://www.mindspore.cn/
+- https://gitee.com/mindspore/mindspore
+
+#### ModelArts
+
+- https://www.huaweicloud.com/product/modelarts.html
+
+
+### MegEngine
+MegEngine is a fast, scalable and easy-to-use deep learning framework, with auto-differentiation.
+
+
+- https://megengine.org.cn/
+- https://www.openi.org.cn/html/2020/Framework_0325/18.html
+- https://github.com/MegEngine/MegEngine
+
+### Oneflow
+
+Oneflow is an open source deep learning platform with whole new frame design and the world's leading technology for distributed system.
+
+- https://github.com/Oneflow-Inc/oneflow
+- http://www.oneflow.org/index.html
+- http://docs.oneflow.org/
 
 ## Edge Computation
 
@@ -1819,6 +2027,7 @@ Mobile deep learning is aimed to run deep learning models (training or inference
 
 It is necessary to compress the deep learning models in order to run it in mobile phones.
 
+- https://www.fritz.ai/resources/mobile-ml-github-repositories.html
 - https://www.sigmobile.org/mobisys/2019/workshops/deepmobile19/
 - https://github.com/amusi/mobile-deep-learning
 - https://github.com/pytorch/qnnpack
@@ -1828,18 +2037,23 @@ It is necessary to compress the deep learning models in order to run it in mobil
 - https://www.cs.ucr.edu/~jiasi/
 - https://ix.cs.uoregon.edu/~jiao/
 - https://arxiv.org/abs/1904.09274
+- https://www.zhqiang.org/deep-learning-mobile/
+- https://bdtechtalks.com/2019/12/30/computer-vision-applications-deep-learning/
+- [MuffNet: Multi-Layer Feature Federation for Mobile Deep Learning](http://openaccess.thecvf.com/content_ICCVW_2019/papers/CEFRL/Chen_MuffNet_Multi-Layer_Feature_Federation_for_Mobile_Deep_Learning_ICCVW_2019_paper.pdf)
+- [Deep Learning for Mobile Multimedia: A Survey](https://www.iti.gr/~bmezaris/publications/tomm17_survey_preprint.pdf)
+
+####  Toolkits
+
+
+- https://github.com/pytorch/qnnpack
 - https://github.com/PaddlePaddle/Paddle-Lite
 - https://paddlepaddle.github.io/Paddle-Lite/
 - https://github.com/alibaba/MNN
 - https://www.tensorflow.org/lite
 - https://project-sparthan.github.io/papers/acm19.pdf
-- https://www.zhqiang.org/deep-learning-mobile/
-- https://bdtechtalks.com/2019/12/30/computer-vision-applications-deep-learning/
-- http://openaccess.thecvf.com/content_ICCVW_2019/papers/CEFRL/Chen_MuffNet_Multi-Layer_Feature_Federation_for_Mobile_Deep_Learning_ICCVW_2019_paper.pdf
-- [Deep Learning for Mobile Multimedia: A Survey](https://www.iti.gr/~bmezaris/publications/tomm17_survey_preprint.pdf)
-
-
-
+- https://github.com/XiaoMi/mace
+- https://mace.readthedocs.io/en/latest/
+- https://github.com/OAID/Tengine
 ****
 
 |DNN Acceleratation Framewore|
@@ -1889,7 +2103,14 @@ It is necessary to compress the deep learning models in order to run it in mobil
 - https://github.com/fastnlp/fitlog
 - https://optuna.org/
 - https://preferred.jp/en/projects/optuna/
-- http://prace.it4i.cz/en/HPDDL-01-2018
+- https://lutzroeder.github.io/netron/
+- https://netron.app/
+- https://github.com/lutzroeder/netron
+- https://github.com/onnx/onnx
+- https://github.com/daquexian/onnx-simplifier
+
+-------
+
 - https://github.com/drcut/CPD
 - https://github.com/purine/purine2
 - https://dlonsc19.github.io/
