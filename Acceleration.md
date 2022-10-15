@@ -20,20 +20,22 @@ except numerical optimization methods including the following topics:
       - [TPU](#tpu)
       - [NPU](#npu)
   - [Compilers for Deep Learning](#compilers-for-deep-learning)
+    - [LLVM](#llvm)
+    - [MLIR](#mlir)
+    - [IREE](#iree)
     - [TVM and Versatile Tensor Accelerator (VTA)](#tvm-and-versatile-tensor-accelerator-vta)
-    - [XLA](#xla)
+    - [DLVM](#dlvm)
     - [JAX: Autograd and XLA](#jax-autograd-and-xla)
-    - [Multi-Level Intermediate Representation](#multi-level-intermediate-representation)
     - [Glow](#glow)
+    - [nGraph](#ngraph)
+    - [CHET](#chet)
+    - [NNFusion](#nnfusion)
+    - [DLR](#dlr)
+  - [Parallel Programming](#parallel-programming)
     - [Cilk](#cilk)
     - [Triton](#triton)
-    - [nGraph](#ngraph)
-    - [DLR](#dlr)
     - [TASO](#taso)
-    - [DLVM](#dlvm)
     - [Jittor](#jittor)
-    - [CHET](#chet)
-    - [Butterflies: A Universal Building Block for Structured Linear Maps](#butterflies-a-universal-building-block-for-structured-linear-maps)
     - [halide](#halide)
     - [taichi](#taichi)
   - [Numerical algorithms for high-performance computational science](#numerical-algorithms-for-high-performance-computational-science)
@@ -43,6 +45,7 @@ except numerical optimization methods including the following topics:
       - [Strassen Algorithms](#strassen-algorithms)
       - [Coppersmith–Winograd Algorithms](#coppersmithwinograd-algorithms)
       - [Linear Algebra Packages](#linear-algebra-packages)
+    - [Butterflies](#butterflies)
     - [Automatic Differentiation, Differentiable Programming and Program Transformations](#automatic-differentiation-differentiable-programming-and-program-transformations)
       - [Automatic Differentiation](#automatic-differentiation)
       - [Differentiable Programming](#differentiable-programming)
@@ -59,7 +62,7 @@ except numerical optimization methods including the following topics:
       - [Binarized Neural Network, Ternary Weight Networks, XOR-Net](#binarized-neural-network-ternary-weight-networks-xor-net)
         - [Binarized Neural Network](#binarized-neural-network)
         - [Ternary Weight Networks](#ternary-weight-networks)
-        - [XOR-Net](#xor-net)
+        - [XNOR-Net](#xnor-net)
       - [Mixed Precision Training](#mixed-precision-training)
       - [AdderNet](#addernet)
       - [Blended Coarse Gradient Descent](#blended-coarse-gradient-descent)
@@ -79,7 +82,7 @@ except numerical optimization methods including the following topics:
     - [Accelerating Deep Learning Workloads](#accelerating-deep-learning-workloads)
       - [PipeDream](#pipedream)
       - [AdaptDL](#adaptdl)
-    - [Efficient Communication  for Distributed Training](#efficient-communication--for-distributed-training)
+    - [Efficient Communication for Distributed Training](#efficient-communication-for-distributed-training)
       - [DeepSpeed](#deepspeed)
       - [NCCL](#nccl)
     - [Gradient Code and Compression](#gradient-code-and-compression)
@@ -98,17 +101,20 @@ except numerical optimization methods including the following topics:
   - [Products and Packages](#products-and-packages)
     - [TensorFlow](#tensorflow)
     - [PyTorch](#pytorch)
-    - [MNN](#mnn)
-    - [TNN](#tnn)
     - [PaddlePaddle](#paddlepaddle)
       - [DasyDL](#dasydl)
     - [MindSpore](#mindspore)
       - [ModelArts](#modelarts)
     - [MegEngine](#megengine)
     - [Oneflow](#oneflow)
+    - [Darknet](#darknet)
   - [Edge Computation](#edge-computation)
     - [Mobile Deep Learning](#mobile-deep-learning)
       - [Toolkits](#toolkits)
+  - [Inference](#inference)
+    - [MNN](#mnn)
+    - [TNN](#tnn)
+    - [OpenVINO™](#openvino)
   - [Tool kits](#tool-kits)
 
 |The World of Neural Network Acceleration|
@@ -197,6 +203,7 @@ can we deploy deep learning models? Definitely yes.
 + [How to Train for and Run Machine Learning Models on Edge Devices](https://www.simonwenkel.com/2018/12/08/How-to-run-Deep-Learning-Models-on-Edge-devices.html)
 + http://mvapich.cse.ohio-state.edu/
 + http://people.eecs.berkeley.edu/~reddy/
++ [Neural Network Calibration](https://tajanthan.github.io/nnc/index.html)
 
 
 ## Resource on ML Sys
@@ -386,9 +393,32 @@ NPU are required for the following purpose:
 * [Compilers by SOE-YCSCS1 STANFORD SCHOOL OF ENGINEERING](https://online.stanford.edu/courses/soe-ycscs1-compilers)
 * [EIE: Efficient Inference Engine on Compressed Deep Neural Network](https://arxiv.org/pdf/1602.01528.pdf)
 * [A modern compiler infrastructure for deep learning systems with adjoint code generation in a domain-specific IR](http://dowobeha.github.io/papers/autodiff17.pdf)
-* [TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems](https://arxiv.org/abs/1603.04467)
-* [PyTorch: An Imperative Style, High-Performance Deep Learning Library](https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf)
 * https://ai-techsystems.com/dnn-compiler/
+
+###  LLVM
+
+> The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. Despite its name, LLVM has little to do with traditional virtual machines. The name "LLVM" itself is not an acronym; it is the full name of the project.
+
+
+- https://llvm.org/
+- https://github.com/llvm/
+
+### MLIR
+
+The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. 
+It is thus well-suited to deep learning computations in particular. 
+Yet it is general enough to also represent arbitrary sequential computation. 
+The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
+
+- https://github.com/tensorflow/mlir
+- https://llvm.org/devmtg/2019-04/slides/Keynote-ShpeismanLattner-MLIR.pdf
+
+###  IREE
+
+> IREE (Intermediate Representation Execution Environment1) is an MLIR-based end-to-end compiler and runtime that lowers Machine Learning (ML) models to a unified IR that scales up to meet the needs of the datacenter and down to satisfy the constraints and special considerations of mobile and edge deployments.
+
+- https://github.com/iree-org/iree
+- https://iree-org.github.io/iree/
 
 ### TVM and Versatile Tensor Accelerator (VTA)
 
@@ -423,17 +453,18 @@ We designed VTA to expose the most salient and common characteristics of mainstr
 * [使用TVM支持TFLite（下)](https://zhuanlan.zhihu.com/p/57147430)
 
 
-### XLA
+### DLVM
 
-The XLA compilation framework is invoked on subgraphs of TensorFlow computations. 
-The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. 
-This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes.
+We present DLVM, a design and implementation of a compiler infrastructure with a linear algebra intermediate representation, algorithmic differentiation by adjoint code generation, domain-specific optimizations, and a code generator targeting GPU via LLVM.
 
-- https://www.tensorflow.org/versions/master/experimental/xla/
-- https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
-- https://www.tensorflow.org/xla/overview
-- https://autodiff-workshop.github.io/slides/JeffDean.pdf
-- [XLA: The TensorFlow compiler framework](https://haosdent.gitbooks.io/tensorflow-document/content/resources/xla_prerelease.html)
+- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
+- https://github.com/dlvm-team
+- https://github.com/Jittor/jittor
+- http://dlvm.org/
+- http://dowobeha.github.io/papers/autodiff17.pdf
+- http://dowobeha.github.io/
+- https://roshandathathri.github.io/
+- https://www.clsp.jhu.edu/workshops/19-workshop/
 
 ### JAX: Autograd and XLA
 
@@ -447,15 +478,16 @@ It supports reverse-mode differentiation (a.k.a. backpropagation) via grad as we
 - https://github.com/google/jax
 - https://github.com/hips/autograd
 
-### Multi-Level Intermediate Representation
 
-The `Multi-Level Intermediate Representation (MLIR)` is intended for easy expression and optimization of computations involving deep loop nests and dense matrices of high dimensionality. 
-It is thus well-suited to deep learning computations in particular. 
-Yet it is general enough to also represent arbitrary sequential computation. 
-The representation allows high-level optimization and parallelization for a wide range of parallel architectures including those with deep memory hierarchies --- general-purpose multicores, GPUs, and specialized neural network accelerators.
+The XLA compilation framework is invoked on subgraphs of TensorFlow computations. 
+The framework requires all tensor shapes to be fixed, so compiled code is specialized to concrete shapes. 
+This means, for example, that the compiler may be invoked multiple times for the same subgraph if it is executed on batches of different sizes.
 
-- https://github.com/tensorflow/mlir
-- https://llvm.org/devmtg/2019-04/slides/Keynote-ShpeismanLattner-MLIR.pdf
+- https://www.tensorflow.org/versions/master/experimental/xla/
+- https://developers.googleblog.com/2017/03/xla-tensorflow-compiled.html
+- https://www.tensorflow.org/xla/overview
+- https://autodiff-workshop.github.io/slides/JeffDean.pdf
+- [XLA: The TensorFlow compiler framework](https://haosdent.gitbooks.io/tensorflow-document/content/resources/xla_prerelease.html)
 
 ### Glow
 
@@ -467,29 +499,6 @@ This library is in active development.
 - https://arxiv.org/pdf/1805.00907.pdf
 - https://ai.facebook.com/tools/glow/
 - https://github.com/pytorch/glow
-
-
-### Cilk
-
-[Cilk aims to make parallel programming a simple extension of ordinary serial programming.](http://cilk.mit.edu/)
-Other concurrency platforms, such as Intel’s Threading Building Blocks (TBB) and OpenMP, share similar goals of making parallel programming easier. 
-But Cilk sets itself apart from other concurrency platforms through its simple design and implementation and its powerful suite of provably effective tools. 
-These properties make Cilk well suited as a platform for next-generation multicore research.
-[Tapir enables effective compiler optimization of parallel programs with only minor changes to existing compiler analyses and code transformations.](https://www.csail.mit.edu/event/tapir-embedding-recursive-fork-join-parallelism-llvms-intermediate-representation)
-Tapir uses the serial-projection property to order logically parallel fine-grained tasks in the program's control-flow graph. 
-This ordered representation of parallel tasks allows the compiler to optimize parallel codes effectively with only minor modifications.
-- http://cilk.mit.edu/tapir/
-- https://llvm.org/
-- https://zhuanlan.zhihu.com/p/64903359
-
-### Triton
-
-The aim of Triton is to provide an open-source environment to write fast code at higher productivity than CUDA, but also with higher flexibility than other existing DSLs.
-
-- [Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations](http://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf)
-- https://github.com/ptillet/triton
-- https://pldi19.sigplan.org/details/mapl-2019-papers/1/Triton-An-Intermediate-Language-and-Compiler-for-Tiled-Neural-Network-Computations
-- http://www.federated-ml.org/tutorials/globecom2020/part4.pdf
 
 
 ### nGraph
@@ -504,43 +513,6 @@ The aim of Triton is to provide an open-source environment to write fast code at
 - https://en.wikipedia.org/wiki/Zeroth_(software)
 
 
-### DLR
-
-DLR is a compact, common runtime for deep learning models and decision tree models compiled by AWS SageMaker Neo, TVM, or Treelite. DLR uses the TVM runtime, Treelite runtime, NVIDIA TensorRT™, and can include other hardware-specific runtimes. DLR provides unified Python/C++ APIs for loading and running compiled models on various devices. DLR currently supports platforms from Intel, NVIDIA, and ARM, with support for Xilinx, Cadence, and Qualcomm coming soon.
-
-- https://github.com/neo-ai/neo-ai-dlr
-- https://github.com/dmlc/treelite
-- http://treelite.io/
-- https://aws.amazon.com/cn/sagemaker/neo/
-
-### TASO
-
-TASO optimizes the computation graphs of DNN models using automatically generated and verified graph transformations. For an arbitrary DNN model, TASO uses the auto-generated graph transformations to build a large search space of potential computation graphs that are equivalent to the original DNN model. TASO employs a cost-based search algorithm to explore the space, and automatically discovers highly optimized computation graphs.
-
-* https://cs.stanford.edu/people/zhihao/
-* https://github.com/jiazhihao/TASO
-* http://theory.stanford.edu/~aiken/
-
-### DLVM
-
-We present DLVM, a design and implementation of a compiler infrastructure with a linear algebra intermediate representation, algorithmic differentiation by adjoint code generation, domain-specific optimizations, and a code generator targeting GPU via LLVM.
-
-- [DLVM: A MODERN COMPILER INFRASTRUCTURE FOR DEEP LEARNING SYSTEMS](https://arxiv.org/pdf/1711.03016.pdf)
-- https://github.com/dlvm-team
-- https://github.com/Jittor/jittor
-- http://dlvm.org/
-- http://dowobeha.github.io/papers/autodiff17.pdf
-- http://dowobeha.github.io/
-- https://roshandathathri.github.io/
-- https://www.clsp.jhu.edu/workshops/19-workshop/
-
-### Jittor
-
-Jittor is a high-performance deep learning framework based on JIT compiling and meta-operators. The whole framework and meta-operators are compiled just-in-time. A powerful op compiler and tuner are integrated into Jittor. It allowed us to generate high-performance code with specialized for your model. Jittor also contains a wealth of high-performance model libraries, including: image recognition, detection, segmentation, generation, differentiable rendering, geometric learning, reinforcement learning, etc.。
-
-- https://github.com/Jittor
-- https://cg.cs.tsinghua.edu.cn/jittor/about/
-
 ### CHET
 
 
@@ -553,35 +525,80 @@ Jittor is a high-performance deep learning framework based on JIT compiling and 
 - https://roshandathathri.github.io/
 - https://iss.oden.utexas.edu/
 
-------------
+
+### NNFusion
+
+> NNFusion is a flexible and efficient DNN compiler that can generate high-performance executables from a DNN model description (e.g., TensorFlow frozen models and ONNX format). 
 
 
-### Butterflies: A Universal Building Block for Structured Linear Maps
+- [Rammer: Enabling Holistic Deep Learning Compiler Optimizations with rTasks](https://www.usenix.org/conference/osdi20/presentation/ma)
+- https://github.com/microsoft/nnfusion
+- https://www.opensourceagenda.com/projects/nnfusion
 
-Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, 
-and other structured transformations such as convolutions. 
-All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. 
-We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, 
-and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. 
-Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, 
-we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. 
-This generic formulation can automatically learn an efficient algorithm for many important transforms; 
-for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. 
-Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines 
-to learn efficient and compressible transformations. 
-On a standard task of compressing a single hidden-layer network, 
-our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points
-[---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
+### DLR
 
-+ [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
-+ [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
-+ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
-- https://github.com/stanford-futuredata/Willump
-- [A Two Pronged Progress in Structured Dense Matrix Multiplication](https://arxiv.org/abs/1611.01569)
+DLR is a compact, common runtime for deep learning models and decision tree models compiled by AWS SageMaker Neo, TVM, or Treelite. DLR uses the TVM runtime, Treelite runtime, NVIDIA TensorRT™, and can include other hardware-specific runtimes. DLR provides unified Python/C++ APIs for loading and running compiled models on various devices. DLR currently supports platforms from Intel, NVIDIA, and ARM, with support for Xilinx, Cadence, and Qualcomm coming soon.
+
+- https://github.com/neo-ai/neo-ai-dlr
+- https://github.com/dmlc/treelite
+- http://treelite.io/
+- https://aws.amazon.com/cn/sagemaker/neo/
+
+## Parallel Programming
+
+- https://www.openmp.org/
+- https://www.open-mpi.org/
+- https://www.khronos.org/opencl/
+- https://developer.nvidia.com/opencl
+- https://opencl.org/
+
+
+### Cilk
+
+[Cilk aims to make parallel programming a simple extension of ordinary serial programming.](http://cilk.mit.edu/)
+Other concurrency platforms, such as Intel’s Threading Building Blocks (TBB) and OpenMP, share similar goals of making parallel programming easier. 
+But Cilk sets itself apart from other concurrency platforms through its simple design and implementation and its powerful suite of provably effective tools. 
+These properties make Cilk well suited as a platform for next-generation multicore research.
+[Tapir enables effective compiler optimization of parallel programs with only minor changes to existing compiler analyses and code transformations.](https://www.csail.mit.edu/event/tapir-embedding-recursive-fork-join-parallelism-llvms-intermediate-representation)
+Tapir uses the serial-projection property to order logically parallel fine-grained tasks in the program's control-flow graph. 
+This ordered representation of parallel tasks allows the compiler to optimize parallel codes effectively with only minor modifications.
+
+
+- http://cilk.mit.edu/tapir/
+- https://llvm.org/
+- https://zhuanlan.zhihu.com/p/64903359
+
+### Triton
+
+The aim of Triton is to provide an open-source environment to write fast code at higher productivity than CUDA, but also with higher flexibility than other existing DSLs.
+
+- [Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations](http://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf)
+- https://github.com/ptillet/triton
+- https://pldi19.sigplan.org/details/mapl-2019-papers/1/Triton-An-Intermediate-Language-and-Compiler-for-Tiled-Neural-Network-Computations
+- http://www.federated-ml.org/tutorials/globecom2020/part4.pdf
+
+
+
+### TASO
+
+TASO optimizes the computation graphs of DNN models using automatically generated and verified graph transformations. For an arbitrary DNN model, TASO uses the auto-generated graph transformations to build a large search space of potential computation graphs that are equivalent to the original DNN model. TASO employs a cost-based search algorithm to explore the space, and automatically discovers highly optimized computation graphs.
+
+* https://cs.stanford.edu/people/zhihao/
+* https://github.com/jiazhihao/TASO
+* http://theory.stanford.edu/~aiken/
+
+
+### Jittor
+
+Jittor is a high-performance deep learning framework based on JIT compiling and meta-operators. The whole framework and meta-operators are compiled just-in-time. A powerful op compiler and tuner are integrated into Jittor. It allowed us to generate high-performance code with specialized for your model. Jittor also contains a wealth of high-performance model libraries, including: image recognition, detection, segmentation, generation, differentiable rendering, geometric learning, reinforcement learning, etc.。
+
+- https://github.com/Jittor
+- https://cg.cs.tsinghua.edu.cn/jittor/about/
 
 ### halide
 
 Halide is a programming language designed to make it easier to write high-performance image and array processing code on modern machines. 
+> Halide is a language for fast, portable computation on images and tensors
 
 - https://halide-lang.org/
 - https://halide-lang.org/#publications
@@ -589,11 +606,13 @@ Halide is a programming language designed to make it easier to write high-perfor
 
 ### taichi
 
-Taichi (太极) is a programming language designed for high-performance computer graphics. It is deeply embedded in Python, and its just-in-time compiler offloads compute-intensive tasks to multi-core CPUs and massively parallel GPUs
+Taichi (太极) is a programming language designed for high-performance computer graphics. It is deeply embedded in Python, and its just-in-time compiler offloads compute-intensive tasks to multi-core CPUs and massively parallel GPUs.
+
+> Taichi Lang is an open-source, imperative, parallel programming language for high-performance numerical computation. It is embedded in Python and uses just-in-time (JIT) compiler frameworks, for example LLVM, to offload the compute-intensive Python code to the native GPU or CPU instructions.
 
 - http://taichi.graphics/
 - https://github.com/yuanming-hu/taichi
-- http://taichi.graphics/wp-content/uploads/2019/09/taichi_lang.pdf\
+- https://www.taichi-lang.org/
 
 ## Numerical algorithms for high-performance computational science
 
@@ -869,6 +888,35 @@ $$
 - [A generalized multidimensional matrix multiplication](http://tamivox.org/redbear/gen_matrix_mult/index.html)
 - https://dspace.mit.edu/handle/1721.1/85943
 - [BLIS Retreat 2017](http://www.cs.utexas.edu/users/flame/BLISRetreat2017/program.html)
+
+
+
+------------
+
+
+### Butterflies
+
+Fast linear transforms are ubiquitous in machine learning, including the discrete Fourier transform, discrete cosine transform, 
+and other structured transformations such as convolutions. 
+All of these transforms can be represented by dense matrix-vector multiplication, yet each has a specialized and highly efficient (subquadratic) algorithm. 
+We ask to what extent hand-crafting these algorithms and implementations is necessary, what structural priors they encode, 
+and how much knowledge is required to automatically learn a fast algorithm for a provided structured transform. 
+Motivated by a characterization of `fast matrix-vector multiplication` as products of sparse matrices, 
+we introduce a parameterization of divide-and-conquer methods that is capable of representing a large class of transforms. 
+This generic formulation can automatically learn an efficient algorithm for many important transforms; 
+for example, it recovers the $O(N\log N)$ Cooley-Tukey FFT algorithm to machine precision, for dimensions N up to 1024. 
+Furthermore, our method can be incorporated as a lightweight replacement of generic matrices in machine learning pipelines 
+to learn efficient and compressible transformations. 
+On a standard task of compressing a single hidden-layer network, 
+our method exceeds the classification accuracy of unconstrained matrices on CIFAR-10 by 3.9 points
+[---the first time a structured approach has done so---with 4X faster inference speed and 40X fewer parameters.](https://arxiv.org/abs/1903.05895)
+
++ [Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://arxiv.org/abs/1903.05895)
++ [ Learning Fast Algorithms for Linear Transforms Using Butterfly Factorizations](https://github.com/HazyResearch/learning-circuits/)
++ [Butterflies Are All You Need: A Universal Building Block for Structured Linear Maps](https://dawn.cs.stanford.edu/2019/06/13/butterfly/)
+- https://github.com/stanford-futuredata/Willump
+- [A Two Pronged Progress in Structured Dense Matrix Multiplication](https://arxiv.org/abs/1611.01569)
+
 
 ### Automatic Differentiation, Differentiable Programming and Program Transformations
 
@@ -1291,7 +1339,7 @@ This network can date up to the paper [Learning algorithms with neural network w
 - https://iceory.github.io/2018/04/04/ternary-weight-networks/
 - https://ieeexplore.ieee.org/document/8581485
 
-##### XOR-Net
+##### XNOR-Net
 
 In Binary-WeightNetworks, the filters are approximated with binary values resulting in 32× memory saving. 
 In XNOR-Networks, both the filters and the input to convolutional layers are binary. 
@@ -1678,9 +1726,9 @@ AdaptDL is a resource-adaptive deep learning (DL) training and scheduling framew
 - https://github.com/petuum/adaptdl
 
 
-### Efficient Communication  for Distributed Training
+### Efficient Communication for Distributed Training
 
-The communication cost of distributed training depends on the content whcih the distributed machiens share.
+The communication cost of distributed training depends on the content which the distributed machines share.
 
 - https://www.usenix.org/conference/hotedge18/presentation/tao
 - [eSGD: Communication Efficient Distributed Deep Learning on the Edge](https://www.usenix.org/conference/hotedge18/presentation/tao)
@@ -1914,6 +1962,9 @@ Elephas is an extension of Keras, which allows you to run distributed deep learn
 - https://zhuanlan.zhihu.com/p/87458316
 - https://www.dataiku.com/
 - https://www.fritz.ai/
+* [TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems](https://arxiv.org/abs/1603.04467)
+* [PyTorch: An Imperative Style, High-Performance Deep Learning Library](https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf)
+
 
 ### TensorFlow
 
@@ -1942,26 +1993,6 @@ The memory usage in PyTorch is extremely efficient compared to Torch or some of 
 - https://pytorch-lightning.readthedocs.io/en/0.5.3.2/Trainer/Distributed%20training/
 - https://pytorch.org/mobile/home/
 - https://github.com/rusty1s/pytorch_geometric
-
-### MNN
-
-MNN is a highly efficient and lightweight deep learning framework. It supports inference and training of deep learning models, and has industry leading performance for inference and training on-device. At present, MNN has been integrated in more than 20 apps of Alibaba Inc, such as Taobao, Tmall, Youku, Dingtalk, Xianyu and etc., covering more than 70 usage scenarios such as live broadcast, short video capture, search recommendation, product searching by image, interactive marketing, equity distribution, security risk control. In addition, MNN is also used on embedded devices, such as IoT.
-
-- [开源背后 | 面对端侧推理引擎的挑战，阿里工程师如何应对？ - 阿里技术的文章 - 知乎](https://zhuanlan.zhihu.com/p/71816894)
-- https://github.com/alibaba/MNN
-- https://www.mnn.zone/
-
-### TNN
-
-TNN is a high-performance and lightweight inference framework for mobile devices. It provides lots of advanced features such as cross-platform, model-compression, and code-pruning. TNN, inspired by mainstream open-source industry frameworks, integrates and leverages Youtu Lab's Rapidnet, ncnn framework.
-
-
-- https://github.com/Tencent/TNN
-  
-> ncnn is a high-performance neural network inference computing framework optimized for mobile platforms. ncnn is deeply considerate about deployment and uses on mobile phones from the beginning of design. ncnn does not have third party dependencies. it is cross-platform, and runs faster than all known open source frameworks on mobile phone cpu. Developers can easily deploy deep learning algorithm models to the mobile platform by using efficient ncnn implementation, create intelligent APPs, and bring the artificial intelligence to your fingertips. ncnn is currently being used in many Tencent applications, such as QQ, Qzone, WeChat, Pitu and so on.
-
-- https://github.com/Tencent/ncnn
-
 
 ###  PaddlePaddle
 
@@ -2003,6 +2034,14 @@ Oneflow is an open source deep learning platform with whole new frame design and
 - https://github.com/Oneflow-Inc/oneflow
 - http://www.oneflow.org/index.html
 - http://docs.oneflow.org/
+
+### Darknet
+
+> Darknet is an open source neural network framework written in C and CUDA. It is fast, easy to install, and supports CPU and GPU computation.
+
+- https://github.com/pjreddie/darknet
+- https://pjreddie.com/darknet/
+
 
 ## Edge Computation
 
@@ -2056,6 +2095,61 @@ It is necessary to compress the deep learning models in order to run it in mobil
 - https://github.com/OAID/Tengine
 ****
 
+
+##  Inference 
+
+- https://github.com/OAID/Tengine
+- https://github.com/onnx/onnx
+- https://developer.nvidia.com/tensorrt-getting-started
+- https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch
+- https://github.com/facebookincubator/AITemplate
+
+### MNN
+
+MNN is a highly efficient and lightweight deep learning framework. It supports inference and training of deep learning models, and has industry leading performance for inference and training on-device. At present, MNN has been integrated in more than 20 apps of Alibaba Inc, such as Taobao, Tmall, Youku, Dingtalk, Xianyu and etc., covering more than 70 usage scenarios such as live broadcast, short video capture, search recommendation, product searching by image, interactive marketing, equity distribution, security risk control. In addition, MNN is also used on embedded devices, such as IoT.
+
+- [开源背后 | 面对端侧推理引擎的挑战，阿里工程师如何应对？ - 阿里技术的文章 - 知乎](https://zhuanlan.zhihu.com/p/71816894)
+- https://github.com/alibaba/MNN
+- https://www.mnn.zone/
+
+### TNN
+
+TNN is a high-performance and lightweight inference framework for mobile devices. It provides lots of advanced features such as cross-platform, model-compression, and code-pruning. TNN, inspired by mainstream open-source industry frameworks, integrates and leverages Youtu Lab's Rapidnet, ncnn framework.
+
+
+- https://github.com/Tencent/TNN
+  
+> ncnn is a high-performance neural network inference computing framework optimized for mobile platforms. ncnn is deeply considerate about deployment and uses on mobile phones from the beginning of design. ncnn does not have third party dependencies. it is cross-platform, and runs faster than all known open source frameworks on mobile phone cpu. Developers can easily deploy deep learning algorithm models to the mobile platform by using efficient ncnn implementation, create intelligent APPs, and bring the artificial intelligence to your fingertips. ncnn is currently being used in many Tencent applications, such as QQ, Qzone, WeChat, Pitu and so on.
+
+- https://github.com/Tencent/ncnn
+
+
+###  OpenVINO™
+
+- https://docs.openvino.ai/latest/index.html
+
+
+## Tool kits
+
+- https://www.wandb.com/
+- https://github.com/fastnlp/fitlog
+- https://optuna.org/
+- https://preferred.jp/en/projects/optuna/
+- https://lutzroeder.github.io/netron/
+- https://netron.app/
+- https://github.com/lutzroeder/netron
+- https://github.com/onnx/onnx
+- https://github.com/daquexian/onnx-simplifier
+
+-------
+
+- https://github.com/drcut/CPD
+- https://github.com/purine/purine2
+- https://dlonsc19.github.io/
+- http://prace.it4i.cz/en/HPDDL-01-2018
+
+
+
 |DNN Acceleratation Framewore|
 |---|
 |https://hgpu.org/|
@@ -2096,22 +2190,3 @@ It is necessary to compress the deep learning models in order to run it in mobil
 |[TensorRT](https://github.com/NVIDIA/TensorRT)|
 |https://github.com/Tencent/ncnn|
 |[Introduction to Intel® Deep Learning Deployment Toolkit](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html)|
-
-## Tool kits
-
-- https://www.wandb.com/
-- https://github.com/fastnlp/fitlog
-- https://optuna.org/
-- https://preferred.jp/en/projects/optuna/
-- https://lutzroeder.github.io/netron/
-- https://netron.app/
-- https://github.com/lutzroeder/netron
-- https://github.com/onnx/onnx
-- https://github.com/daquexian/onnx-simplifier
-
--------
-
-- https://github.com/drcut/CPD
-- https://github.com/purine/purine2
-- https://dlonsc19.github.io/
-- http://prace.it4i.cz/en/HPDDL-01-2018
