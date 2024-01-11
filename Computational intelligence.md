@@ -1,6 +1,9 @@
 
 # Computational Intelligence
 
+http://jenetics.io/
+http://casser.io/medical-nlp/
+
 Computational intelligence is rooted in the artificial neural network and evolutionary algorithms.
 [No free lunch theorem](https://www.wikiwand.com/en/No_free_lunch_in_search_and_optimization) implies  that searching for the 'best' general purpose black box optimization algorithm is irresponsible as no such procedure is theoretically possible.
 
@@ -59,13 +62,13 @@ Another topic on computational intelligence is to search some object or goals in
 Optimization is to search the best or optimal configuration in some sense. Search is to explore the system with some fuzzy goals.
 
 Evolution or adaptation is in the level of population, which leads to this diverse earth. And this is an important criteria which differs from other entities. It is related with transfer learning.
-Like in ecosystem, what the computational learners can do if the system changes a lot in order to survive?  In numerical optimization, if the objective function changes, we may consider different optimization methods. 
+Like in ecosystem, what the computational learners can do if the system changes a lot in order to survive?  In numerical optimization, if the objective function changes, we may consider different optimization methods.
 
 
 ## Swarm Intelligence(SI)
 
 Swarm intelligence is the study of computational systems inspired by the 'collective intelligence'.
-Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment. Swarm intelligence believes that scale matters. And agents in different scale are different: more agents, more power. 
+Collective Intelligence emerges through the cooperation of large numbers of homogeneous agents in the environment. Swarm intelligence believes that scale matters. And agents in different scale are different: more agents, more power.
 
 
 - [ ] Particle Swarm Optimization(PSO)
@@ -84,7 +87,12 @@ In simple terms, the particles are "flown" through a multidimensional search spa
 of each particle is adjusted according to its own experience and that of its neighbors.
 The position of the particle is changed
 by adding a velocity, $v_i(t)$, to the current position, i.e.
-$$x_{i}(t+1) = x_{i}(t)+v_i(t+1)$$
+
+$$
+
+x_{i}(t+1) = x_{i}(t)+v_i(t+1)
+
+$$
 
 with $x_0\sim Unif[x_{min}, x_{max}]$ and $x_{i}(t)$ is the position of particle $i$ at time ${t}$.
 
@@ -327,6 +335,7 @@ Artificial immune systems (AISs) are inspired by biological immune systems and m
 |![https://zhuanlan.zhihu.com/p/20727283s](https://pic1.zhimg.com/8d02ad62036808353f181a4996aa52e6_1200x500.jpg)|
 
 - [Neuroscience-Inspired Artificial Intelligence](https://www.ncbi.nlm.nih.gov/pubmed/28728020)
+- [Computational Perception & Cognition](http://cvcl.mit.edu/aude.htm)
 - https://www.cbicr.tsinghua.edu.cn/
 - https://blog.csdn.net/u013088062/article/details/50489674
 - https://zhuanlan.zhihu.com/p/23965227
@@ -337,6 +346,7 @@ Artificial immune systems (AISs) are inspired by biological immune systems and m
 - https://zhuanlan.zhihu.com/p/23979871
 - https://www.zhihu.com/question/59408117/answer/164972455
 - http://www.psy.vanderbilt.edu/courses/hon1850/Brain_Structure_Function_Chapter.pdf
+
 
 ## Physics and Chemistry based algorithms
 
@@ -391,3 +401,16 @@ GSAs are among the most recently introduced techniques that are not yet heavily 
 9. http://emergentcomputation.com/Pseudo.html
 10. https://wiki.opencog.org/w/Special:WhatLinksHere/The_Open_Cognition_Project
 11. [人工智能(AI)资料大全 - 猿助猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/26183036)
+
+- [Zeroth-Order Method for Distributed Optimization With Approximate Projections](http://or.nsfc.gov.cn/bitstream/00001903-5/487435/1/1000014935638.pdf)
+- [Derivative-Free Optimization (DFO)](https://www.gerad.ca/Sebastien.Le.Digabel/MTH8418/)
+- [Derivative Free Optimization / Optimisation sans Gradient](http://dumas.perso.math.cnrs.fr/V04.html)
+- [Delaunay-based derivative-free optimization via global surrogates, part I: linear constraints](http://fccr.ucsd.edu/pubs/BCB16.pdf)
+- [Delaunay-based derivative-free optimization via global surrogates, part II: convex constraints](http://fccr.ucsd.edu/pubs/BB16a.pdf)
+- https://projects.coin-or.org/Dfo
+- https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/
+- http://adl.stanford.edu/aa222/Lecture_Notes_files/chapter6_gradfree.pdf
+- https://code.fb.com/ai-research/nevergrad/
+- https://github.com/facebookresearch/nevergrad
+- https://www.kthohr.com/optimlib.html
+- https://www.infoq.com/presentations/black-box-optimization

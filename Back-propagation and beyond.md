@@ -1,7 +1,15 @@
 #  Back-propagation and Beyond
 
+[Back-propagation (BP), the current de facto training paradigm for deep learning models, is only useful for parameter learning but offers no role in finding an optimal network structure. We need to go beyond BP in order to derive an optimal network, both in structure and in parameter.](https://ee.princeton.edu/people/sun-yuan-kung)
+
+
 The problem on back-propagation or generally gradient-based training methods of the deep neural networks including the following drawbacks:
-(1) 
+(1) gradient vanishing or exploring as the fundamental problem of back-propagation;
+(2) dense computation of gradient;
+(3) unfriendly for the quantification and  without biological plausibility.
+
+- https://www.robots.ox.ac.uk/~oval/publications.html
+- http://people.idsia.ch/~juergen/who-invented-backpropagation.html
 
 ## Beyond Back-propagation
 
@@ -26,24 +34,86 @@ Training deep learning models does not require gradients such as `ADMM, simulate
 - [DEEP LEARNING AS A MIXED CONVEXCOMBINATORIAL OPTIMIZATION PROBLEM](https://homes.cs.washington.edu/~pedrod/papers/iclr18.pdf)
 - [An Alternating Minimization Method to Train Neural Network Models for Brain Wave Classification](http://evoq-eval.siam.org/Portals/0/Publications/SIURO/Volume%2011/An_Alternating_Minimization_Method_to_Train_Neural_Network_Models.pdf?ver=2018-02-27-134920-257)
 
+## Polynomial Neural Networks
+
+[The Polynomial Neural Network (PNN) algorithm[1,2]  is also known as Iterational Algorithm of Group Methods of Data Handling (GMDH). GMDH were originally proposed by Prof. A.G. Ivakhnenko. PNN correlates input and target variables using (non) linear regression.](http://146.107.217.178/lab/pnn/)
+[The PNN models inherit the format of discrete Volterra series and possess universal approximation abilities.](http://homepages.gold.ac.uk/nikolaev/Nnets.htm) 
+Their approximation properties can be explained using the generalized Stone-Weierstrass theorem and the Kolmogorov-Lorentz superposition theorem.
+
+There have been developed several groups of PNN models:
+
+- high-order multivariate polynomials: including block polynomials and horizontally expanded polynomials;
+- orthogonal polynomials: including polynomials of orthogonal terms, Chebishev polynomials;
+- trigonometric polynomials: using harmonics with non-multiple frequencies;
+- rational polynomials: including polynomial fractions and sigmoidal power series;
+- local basis polynomials: including radial-basis polynomials and piecewise polynomials;
+- fuzzy polynomials: using various membership functions;
+- dynamic polynomials: including time-lagged, NARMA polynomials and recurrent PNN.
+
+[In the hope to capture the complexity of a process, the artificial neural networks attempt to decompose it into many simpler relationships each described by a processing function of a single neuron. The processing function of the neurons is quite simple; it is the configuration of the network itself that requires much work to design and adjust to the training data. In 1961, Frank Rosenblatt had identified the key weakness of neurocomputing as the lack of means for effectively selecting structure and weights of the hidden layer(s) of the perceptron. In 1968, when backpropagation technique was not known yet, a technique called Group Method of Data Handling (GMDH) was developed by an Ukranian scientist Aleksey Ivakhnenko who was working at that time on a better prediction of fish population in rivers.](https://ulcar.uml.edu/~iag/CS/Polynomial-NN.html)
+
+- https://ulcar.uml.edu/~iag/CS/Polynomial-NN.html
+- http://homepages.gold.ac.uk/nikolaev/Nnets.htm
+- http://homepages.gold.ac.uk/nikolaev/Dnns.htm
+- http://146.107.217.178/lab/pnn/
+- http://www.gmdh.net/
+- [GMDH Polynomial Neural Networks](https://www.dtreg.com/solution/view/24)
+
+
+
+## Alternating Projection Neural Networks
+
+- https://aaai.org/ocs/index.php/AAAI/AAAI17/paper/viewPDFInterstitial/14784/14363
+- http://www.math.hkbu.edu.hk/~liliao/
+- https://newtraell.cs.uchicago.edu/files/phd_paper/liwenz.pdf
+- https://github.com/jn2clark/nn-iterated-projections
+- http://www.calvinmurdock.com/content/uploads/publications/eccv2018deepca.pdf
+- http://mi.eng.cam.ac.uk/~wjb31/ppubs/TransNNAltMinBM.pdf
+- https://dl.acm.org/doi/10.1007/978-3-642-24553-4_4
+- https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.16.9585&rep=rep1&type=pdf
+- http://evoq-eval.siam.org/Portals/0/Publications/SIURO/Volume%2011/An_Alternating_Minimization_Method_to_Train_Neural_Network_Models.pdf?ver=2018-02-27-134920-257
+- [Beyond Backprop: Online Alternating Minimization with Auxiliary Variables](https://arxiv.org/pdf/1806.09077.pdf)
+
+## Random Projection Neural Networks
+
+- [RANDOM PROJECTION RBF NETS FOR MULTIDIMENSIONAL DENSITY ESTIMATION](http://matwbn.icm.edu.pl/ksiazki/amc/amc18/amc1843.pdf)
+- [RANDOM PROJECTION RBF NETS FOR MULTIDIMENSIONAL DENSITY ESTIMATION](http://matwbn.icm.edu.pl/ksiazki/amc/amc18/amc1843.pdf)
+- [Random Projection Neural Network Approximation](https://ieeexplore.ieee.org/abstract/document/8489215)
+- [Accelerating Stochastic Random Projection Neural Networks ](https://scholarworks.rit.edu/cgi/viewcontent.cgi?article=10824&context=theses)
+
+## Invertible Neural Networks
+
+- [ICML Workshop on Invertible Neural Networks, Normalizing Flows, and Explicit Likelihood Models](https://invertibleworkshop.github.io/)
+- [MintNet: Building Invertible Neural Networks with Masked Convolutions](https://papers.nips.cc/paper/2019/file/70a32110fff0f26d301e58ebbca9cb9f-Paper.pdf)
+- [Scaling RBMs to High Dimensional Data with Invertible Neural Networks](https://invertibleworkshop.github.io/accepted_papers/pdfs/26.pdf)
+- [Deep, complex, invertible networks for inversion of transmission effects in multimode optical fibres](https://papers.nips.cc/paper/2018/file/148510031349642de5ca0c544f31b2ef-Paper.pdf)
+- https://compvis.github.io/invariances/
+
+
+## Beyond Back-propagation
+
 ### Operator Splitting Methods For Training Deep Neural Networks
 
 #### ADMM
 
 ADMM is based on the constraints of  successive layers in neural networks.
 Recall the feedforward neural networks:
-$$O=\sigma(W^nx^{N}+b_{N})\\
+$$O=\sigma(W^N x^{N}+b_{N})\\
 x^{n}=\sigma(W^{n-1}x^{n-1}+b_{n-1})\quad\forall n=1,\cdots, N 
 $$
 [The parameters in each layer are updated backward and then forward so that the parameter information in each layer is exchanged efficiently. The time complexity is reduced from cubic to quadratic in (latent) feature dimensions via a dedicated algorithm design for subproblems that enhances them utilizing iterative quadratic approximations and backtracking. Finally, we provide the first proof of global convergence for an ADMM-based method (dlADMM) in a deep neural network problem under mild conditions. Experiments on benchmark datasets demonstrated that our proposed dlADMM algorithm outperforms most of the comparison methods.](https://arxiv.org/abs/1905.13611)
 
 - [Training Neural Networks Without Gradients: A Scalable ADMM Approach](https://arxiv.org/abs/1605.02026)
+- [deep-admm-net-for-compressive-sensing](https://papers.nips.cc/paper/6406-deep-admm-net-for-compressive-sensing-mri.pdf)
 - [ADMM for Efficient Deep Learning with Global Convergence](https://arxiv.org/abs/1905.13611)
 - [ADMM-CSNet: A Deep Learning Approach for Image Compressive Sensing](https://ieeexplore.ieee.org/document/8550778/)
+- https://arxiv.org/abs/1905.00424
 - https://github.com/KaiqiZhang/ADAM-ADMM
 - [ADMM-NN: An Algorithm-Hardware Co-Design Framework of DNNs Using Alternating Direction Method of Multipliers](https://ui.adsabs.harvard.edu/abs/2018arXiv181211677R/abstract)
 - [ALTERNATING DIRECTION METHOD OF MULTIPLIERS FOR SPARSE CONVOLUTIONAL NEURAL NETWORKS](https://arxiv.org/pdf/1611.01590.pdf)
-- https://patents.google.com/patent/US20170147920/fi
+- [Patient: Deep learning using alternating direction method of multipliers](https://patents.google.com/patent/US20170147920/fi)
+- https://github.com/yeshaokai/ADMM-NN
+- https://github.com/hanicho/admm-nn
 
 
 #### Lifted Proximal Operator Machine (LPOM) 
@@ -56,6 +126,49 @@ Most notably, we only use the mapping of the activation function itself, rather 
 So our method is applicable to various non-decreasing Lipschitz continuous activation functions, which can be saturating and non-differentiable. LPOM does not require more auxiliary variables than the layer-wise activations, thus using roughly the same amount of memory as stochastic gradient descent (SGD) does. 
 [We further prove the convergence of updating the layer-wise weights and activations. Experiments on MNIST and CIFAR-10 datasets testify to the advantages of LPOM.](https://arxiv.org/abs/1811.01501v1)
 
+`LPOM` is block multi-convex in all layer-wise weights and activations. 
+This allows us to use block coordinate descent to update the layer-wise weights and activations.
+[Most notably, we only use the mapping of the activation function itself, rather than its derivatives, thus avoiding the gradient vanishing or blowup issues in gradient based training methods.](https://arxiv.org/pdf/1811.01501.pdf)
+
+By introducing the layer-wise activations as a block of auxiliary variables, 
+the training of a neural network can be equivalently formulated as an equality constrained optimization problem:
+$$\min_{W^i, X^i}\ell(X^n, L)\\ X^i=\phi(W^{i-1}X^{i-1})$$
+
+where  $X^i$ is the activation of the i-th layer, $X^1 \in \mathbb{R}^{n_1\times m}$ is a batch of training samples, $L \in\mathbb{R}^{c\times m}$ denotes the corresponding labels, $n_1$ is the dimension of the training samples, $m$ is the batch size, $c$ is the number of classes, $\{W_i\}^{n−1}_{i=1}$ are the weights to be learned in which the
+biases have been omitted for simplicity, $\phi(·)$ is an elementwise activation function (e.g., sigmoid, tanh, and ReLU), and
+$\ell(\cdot, \cdot)$ is the loss function (e.g., the least-square error or the cross-entropy error).
+
+
+ANd there are many ways to approxmate this optimization probelm.
+
+Then the optimality condition of the following minimization problem:
+$$\arg\min_{\textbf{X}^{i}}\textbf{1}^Tf(\textbf{X}^{i})\textbf{1}+\frac{1}{2}\|\textbf{X}^{i}-\textbf{W}^{i-1}\textbf{X}^{i-1}\|_F^2$$
+is 
+$$\mathbb{0}\in \phi^{-1}(\textbf{X}^{i})-\textbf{W}^{i-1}\textbf{X}^{i-1}$$
+where where $\textbf{1}$ is an all-one column vector; and $\textbf{X}^{i}$ are matrix; $f(x)=\int_{0}^{x}(\phi^{-1}(y)-y)\mathrm{d} y$.
+
+So the optimal solution of this condition is 
+$$\textbf{X}^{i}=\phi(\textbf{W}^{i-1}\textbf{X}^{i-1}).$$
+
+And `LPOM` is to solve the following question:
+
+$$\min_{W^i, X^i}\ell(X^n, L)+\sum_{i=2}^n\mu_i \{\textbf{1}^Tf(\textbf{X}^{i})\textbf{1}+\textbf{1}^T g(\textbf{W}^{i-1}\textbf{X}^{i-1})\textbf{1}+\frac{1}{2}\|\textbf{X}^{i}-\textbf{W}^{i-1}\textbf{X}^{i-1}\|_F^2\}$$
+where $g(x)=\int_{0}^{x}(\phi(y)-y)\mathrm{d} y$.
+It is  [additively separable](https://calculus.subwiki.org/wiki/Additively_separable_function)
+
+It is shown that the above objective function is block multi-convex.
+
+And  we can update the  $X^i$ by iterating:
+$$X^{i, t+1}=\phi(W^{i-1}X^{i-1}-\frac{\mu_{i+1}}{\mu_i}W^{i}(\phi(W^iX^{i, t})-X^{i+1}))$$
+and update $X^n$ by iterating
+$$X^{n, t+1}=\phi(W^{n-1}X^{n-1}-\frac{1}{\mu_n}\frac{\partial \ell(X^{n, t}, L)}{\partial X^n}).$$
+We can update the  $W^i$ by iterating:
+$$W^{i, t}=\arg\min_{W}\textbf{1}^T g(\textbf{W}^{i-1}\textbf{X}^{i-1})\textbf{1}+\frac{1}{2}\|\textbf{X}^{i}-\textbf{W}^{i-1}\textbf{X}^{i-1}\|_F^2.$$
+
+- [Lifted Proximal Operator Machines](https://zhouchenlin.github.io/Publications/2019-AAAI-LPOM.pdf)
+- [aaai19_lifted_proximal_operator_machines/](https://zero-lab-pku.github.io/publication/gengzhengyang/aaai19_lifted_proximal_operator_machines/)
+- [Lifted Proximal Operator Machines](https://arxiv.org/abs/1811.01501v1)
+- [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
 - [Optimization and Deep Neural Networks by Zhouchen Lin](https://slides.games-cn.org/pdf/Games201991%E6%9E%97%E5%AE%99%E8%BE%B0.PDF)
 - https://zhouchenlin.github.io/
 - [Lifted Proximal Operator Machines](https://arxiv.org/abs/1811.01501v1)
@@ -83,6 +196,7 @@ So our method is applicable to various non-decreasing Lipschitz continuous activ
 - https://minoa-itn.fau.de/
 - http://www.me.titech.ac.jp/technicalreport/h26/2014-1.pdf
 - [Training Binarized Neural Networks using MIP and CP](http://www.cs.toronto.edu/~lillanes/papers/ToroIcarteICCMB-cp2019-training-preprint.pdf)
+- https://las.inf.ethz.ch/discml/discml11.html
 
 ### Lagrangian Propagator
 
@@ -151,15 +265,11 @@ We also give a general technique for weights initialization.
 
 - https://arxiv.org/abs/2003.10739
 - https://github.com/d-li14/DHM
+- http://home.cse.ust.hk/~dlibh/
+- https://cqf.io/
+- https://deepai.org/publication/dynamic-hierarchical-mimicking-towards-consistent-optimization-objectives
+- http://home.cse.ust.hk/~dlibh/
 
-### DLphi
-
-
-- http://www.pc-petersen.eu/
-- http://voigtlaender.xyz/
-- https://math.ethz.ch/sam/research/reports.html
-- [The Oracle of DLphi](https://arxiv.org/abs/1901.05744)
-- https://faculty.washington.edu/kutz/
 
 ### Capsule Networks and More
 
@@ -181,7 +291,7 @@ Stochastic Configuration Networks (SCNs) randomly assign the input weights and b
 while the output weights are analytically evaluated in a constructive or selective manner.
 
 Current experimental results indicate that SCNs outperform other randomized neural networks in terms of required human intervention, selection of the scope of random parameters, and fast learning and generalization. 
-`Deep sctochastic configuration networks (DeepSCNs)' have been mathematically proved as universal approximators for continous nonlinear functions defined over compact sets. 
+`Deep stochastic configuration networks (DeepSCNs)' have been mathematically proved as universal approximators for continous nonlinear functions defined over compact sets. 
 They can be constructed efficiently (much faster than other deep neural networks) 
 and share many great features, such as learning representation and consistency property between learning and generalization.
 
@@ -211,29 +321,4 @@ It will be used as a surrogate  of the popular metrics such as  0-1 loss or  pre
 - [METHODICAL DESIGN AND TRIMMING OF DEEP LEARNING NETWORKS: ENHANCING EXTERNAL BP LEARNING WITH INTERNAL OMNIPRESENT-SUPERVISION TRAINING PARADIGM](http://150.162.46.34:8080/icassp2019/ICASSP2019/pdfs/0008058.pdf)
 
 
-
-### Polynomial Neural Networks
-
-[The Polynomial Neural Network (PNN) algorithm[1,2]  is also known as Iterational Algorithm of Group Methods of Data Handling (GMDH). GMDH were originally proposed by Prof. A.G. Ivakhnenko. PNN correlates input and target variables using (non) linear regression.](http://146.107.217.178/lab/pnn/)
-[The PNN models inherit the format of discrete Volterra series and possess universal approximation abilities.](http://homepages.gold.ac.uk/nikolaev/Nnets.htm) 
-Their approximation properties can be explained using the generalized Stone-Weierstrass theorem and the Kolmogorov-Lorentz superposition theorem.
-
-There have been developed several groups of PNN models:
-
-- high-order multivariate polynomials: including block polynomials and horizontally expanded polynomials;
-- orthogonal polynomials: including polynomials of orthogonal terms, Chebishev polynomials;
-- trigonometric polynomials: using harmonics with non-multiple frequencies;
-- rational polynomials: including polynomial fractions and sigmoidal power series;
-- local basis polynomials: including radial-basis polynomials and piecewise polynomials;
-- fuzzy polynomials: using various membership functions;
-- dynamic polynomials: including time-lagged, NARMA polynomials and recurrent PNN.
-
-[In the hope to capture the complexity of a process, the artificial neural networks attempt to decompose it into many simpler relationships each described by a processing function of a single neuron. The processing function of the neurons is quite simple; it is the configuration of the network itself that requires much work to design and adjust to the training data. In 1961, Frank Rosenblatt had identified the key weakness of neurocomputing as the lack of means for effectively selecting structure and weights of the hidden layer(s) of the perceptron. In 1968, when backpropagation technique was not known yet, a technique called Group Method of Data Handling (GMDH) was developed by an Ukranian scientist Aleksey Ivakhnenko who was working at that time on a better prediction of fish population in rivers.](https://ulcar.uml.edu/~iag/CS/Polynomial-NN.html)
-
-- https://ulcar.uml.edu/~iag/CS/Polynomial-NN.html
-- http://homepages.gold.ac.uk/nikolaev/Nnets.htm
-- http://homepages.gold.ac.uk/nikolaev/Dnns.htm
-- http://146.107.217.178/lab/pnn/
-- http://www.gmdh.net/
-- [GMDH Polynomial Neural Networks](https://www.dtreg.com/solution/view/24)
 
