@@ -5,8 +5,6 @@
 [But those static profiles don’t (fully) reflect users’ personalized preferences. In addition, most existing preference learning methods are based on users’ matching behaviors. However, matching behaviors are sparse due to the nature of PJF and not fine-grained enough to reflect users’ dynamic preferences.](https://link.springer.com/chapter/10.1007/978-3-030-73197-7_24)
 
 
-
-
 * https://mdds.net.technion.ac.il/files/2019/03/CAMC-KT.pdf
 * [Second Uber Science Symposium: Exploring Advances in Behavioral Science](https://eng.uber.com/second-uber-science-symposium-behavioral-science)
 * [First Uber Science Symposium: Discussing the Next Generation of RL, NLP, ConvAI, and DL](https://www.uber.com/en-HK/blog/uber-science-symposium-2018/)
