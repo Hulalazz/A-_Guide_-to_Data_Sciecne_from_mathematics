@@ -21,6 +21,10 @@
 
 ## Matching
 
+
+### Relevance Matching
+
+[A core problem of information retrieval (IR) is relevance matching (RM), where the goal is to rank documents by relevance to a user’s query.](https://aclanthology.org/D19-1540.pdf)
 [Given a query and a set of candidate text documents, relevance ranking algorithms determine how **relevant** each text document is for the given query.](https://ieeexplore.ieee.org/document/9177802)
 
 Our aim is to exclude the irrelevant documents with the query from the candidate documents.
@@ -30,12 +34,6 @@ Our aim is to exclude the irrelevant documents with the query from the candidate
 - https://haystackconf.com/
 - [Ranking Relevance in Yahoo Search](http://www.yichang-cs.com/yahoo/KDD16_yahoosearch.pdf)
 
-DSSM stands for Deep Structured Semantic Model, or more general, Deep Semantic Similarity Model.
-DSSM can be used to develop latent semantic models that project entities of different types (e.g., queries and documents) into a common low-dimensional semantic space for a variety of machine learning tasks such as ranking and classification. 
-For example, in web search ranking, the relevance of a document given a query can be readily computed as the distance between them in that space. 
-
-- [Deep Semantic Similarity Model](https://www.microsoft.com/en-us/research/project/dssm/)
-
 From another perspective, it is to select $k$ from $n$ where $n$ is much larger than $k$.
 
 - [Probabilistic n-Choose-k Models for Classification and Ranking](http://www.cs.princeton.edu/~rpa/pubs/swersky2012choose.pdf)
@@ -44,18 +42,36 @@ From another perspective, it is to select $k$ from $n$ where $n$ is much larger 
 - [FA*IR: A Fair Top-k Ranking Algorithm](https://arxiv.org/abs/1706.06368)
 
 
+### Semantic Matching
+
 [The semantic matching problem in product search seeks to retrieve all semantically relevant products given a user query. Recent studies have shown that extreme multi-label classification (XMC) model enjoys both low inference latency and high recall in real-world scenarios. ](https://dl.acm.org/doi/10.1145/3583780.3614661)
+
+[There are fundamental differences between semantic matching and relevance matching](https://aclanthology.org/D19-1540/):
+> Semantic matching emphasizes “meaning” correspondences by exploiting `lexical` information (e.g., words, phrases, entities) and `compositional structures` (e.g., dependency trees), 
+> while relevance matching focuses on `keyword matching`. 
+
 [Extreme multi-label classification (XMC) is the problem of finding the relevant labels for an input, from a very large universe of possible labels.](https://arxiv.org/abs/2004.00198)
 
 - [Build Faster with Less: A Journey to Accelerate Sparse Model Building for Semantic Matching in Product Search](https://dl.acm.org/doi/10.1145/3583780.3614661)
 - [Relevance under the Iceberg: Reasonable Prediction for Extreme Multi-label Classification](https://dl.acm.org/doi/pdf/10.1145/3477495.3531767)
 - [Extreme Multi-label Classification from Aggregated Labels](https://arxiv.org/abs/2004.00198)
 
+
+### Two Tower Models
+
+`DSSM` stands for `Deep Structured Semantic Model`, or more general, `Deep Semantic Similarity Model`.
+DSSM can be used to develop latent semantic models that project entities of different types (e.g., queries and documents) into a common low-dimensional semantic space for a variety of machine learning tasks such as ranking and classification. 
+For example, in web search ranking, the relevance of a document given a query can be readily computed as the distance between them in that space. 
+
+- [Deep Semantic Similarity Model](https://www.microsoft.com/en-us/research/project/dssm/)
+
+
+
 ## Pre-Ranking
 
-[Existing pre-ranking systems primarily adopt the two-tower model since the "user-item decoupling architecture" paradigm is able to balance the efficiency and effectiveness. ](https://dl.acm.org/doi/abs/10.1145/3511808.3557072)
-Pre-ranking stage is in the middle of a cascade link, which is
-absorbed in preliminarily filtering items (thousands of scale) retrieved from the previous recall stage 
+[Existing pre-ranking systems primarily adopt the two-tower model since the "user-item decoupling architecture" paradigm is able to balance the efficiency and effectiveness.](https://dl.acm.org/doi/abs/10.1145/3511808.3557072)
+Pre-ranking stage is in the middle of a cascade link, 
+which is absorbed in preliminarily filtering items (thousands of scale) retrieved from the previous recall stage 
 and generating candidates (hundreds of scale) for the subsequent ranking stage.
 
 - [Towards a Better Trade-off between Effectiveness and Efficiency in Pre-Ranking: A Learnable Feature Selection based Approach](https://arxiv.org/abs/2105.07706)
@@ -69,6 +85,7 @@ and generating candidates (hundreds of scale) for the subsequent ranking stage.
 >the goal is to **order** elements of $D$ such that the resulting ranked list maximizes a user satisfaction metric $Q$ (criteria).
 
 In cascaded ranking architecture, the set $D$ is generated by matching(recall, retrieval).
+Here we focus on learning to rank.
 
 
 - http://ltr-tutorial-sigir19.isti.cnr.it/program-overview/
@@ -85,6 +102,15 @@ Beyond user satisfaction metric,
 - https://arxiv.org/pdf/2202.06602.pdf
 - [Personalized Re-ranking for Recommendation](https://www.yongfeng.me/attach/pei-recsys2019.pdf)
 
+### Rank Aggregation
+
+When there is just a single criterion (or "judge") for ranking, the task is relatively easy, 
+and is simply a reaction of the judge's opinions and biases. 
+(If simplicity were the only desideratum, dictatorship would prevail over democracy.) 
+In contrast, this paper addresses the problem of computing a "consensus" ranking of the alternatives, 
+given the individual ranking preferences of several judges. We call this the `rank aggregation problem`.
+
+- https://www.eecs.harvard.edu/~michaelm/CS222/rank.pdf
 
 ## Other
 
