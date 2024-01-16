@@ -1,5 +1,11 @@
 # Cascade Ranking Models
 
+>Given a query $q$ (context) and a set of documents $D$ (items), 
+>the goal is to **order** elements of $D$ such that the resulting ranked list maximizes a user satisfaction metric $Q$ (criteria).
+
+Except the subjective criteria, we can take advantage of NLP to unserstand the query and documnets and apply big data technology to process so many documents.
+
+
 [A cascaded ranking architecture turns ranking into a pipeline of multiple stages, and has been shown to be a powerful approach to balancing efficiency and effectiveness trade-offs in large-scale search systems.](https://culpepper.io/publications/gcbc19-wsdm.pd)
 
 [Our core idea is to consider the ranking problem as a "cascade", where ranking is broken into a finite number of distinct stages. Each stage considers successively richer and more complex features, but over successively smaller candidate document sets. The intuition is that although complex features are more time-consuming to compute, the additional overhead is offset by examining fewer documents. In other words, the cascade model views retrieval as a multi-stage progressive refinement problem, where each stage balances the cost of exploiting various features with the potential gain in terms of better results. We have explored this notion in the context of linear models and tree-based models.](http://lintool.github.io/NSF-projects/IIS-1144034/)
@@ -19,7 +25,9 @@
 
 - [Two-Stage Learning to Rank for Information Retrieval](https://bendersky.github.io/pubs/2013-1.pdf)
 
-<img src="https://images.ctfassets.net/7w2tf600vbko/ruXJGQ4DuSAFSaI4Rbjaf/f87ed87fc98de8ec6af6c5f43d4b4082/Embedding_Figure_1.png" width="60%">
+<img src="https://pic4.zhimg.com/80/v2-ad9ea6d84f344c7e0bec2b61c69d124b_720w.webp" width="80%">
+
+- https://blog.csdn.net/u013510838/article/details/123023259
 
 ## Matching and Retrieval
 
@@ -46,6 +54,7 @@ where $n$ is much larger than $k$.
 - [The Probabilistic Relevance Framework: BM25 and Beyond](https://dl.acm.org/doi/10.1561/1500000019)
 - https://www.sigir.org/sigir2007/tutorial2d.html
 - https://haystackconf.com/us2023/talk-2/
+- https://www.elastic.co/what-is/search-relevance
 
 ### Semantic Matching
 
@@ -82,7 +91,11 @@ For example, in web search ranking, the relevance of a document given a query ca
 
 - [Deep Semantic Similarity Model](https://www.microsoft.com/en-us/research/project/dssm/)
 
-DSSM is extended as the two tower model, where the query and document are represented via different neural networks.
+DSSM is extended as the two tower model, where the query and document are represented as vectors via different neural networks.
+
+<img src="https://pic1.zhimg.com/80/v2-82551bd8cd66c0c528cfcdf1732737d0_720w.webp" width="45%">
+<img src="https://images.ctfassets.net/7w2tf600vbko/ruXJGQ4DuSAFSaI4Rbjaf/f87ed87fc98de8ec6af6c5f43d4b4082/Embedding_Figure_1.png" width="45%">
+
 [Embedding based retrieval (EBR; a.k.a. vector search) provides an efficient implementation of semantic search and has seen wide adoption in e-commerce. ](https://haystackconf.com/eu2023/talk-13/)
 
 - https://eng.snap.com/embedding-based-retrieval
@@ -110,7 +123,13 @@ DSSM is extended as the two tower model, where the query and document are repres
 - https://www.pinecone.io/learn/hybrid-search-intro/
 - [An Analysis of Fusion Functions for Hybrid Retrieval](https://arxiv.org/pdf/2210.11934.pdf)
 
+<img src="https://learn.microsoft.com/zh-CN/azure/search/media/hybrid-search/search-scoring-flow.png" width="70%">
 
+- https://learn.microsoft.com/zh-CN/azure/search/hybrid-search-ranking
+- https://opensearch.org/blog/hybrid-search/
+- https://qdrant.tech/articles/hybrid-search/
+- https://www.pinecone.io/learn/hybrid-search-intro/
+- https://milvus.io/docs/hybridsearch.md
 
 ### Rank Aggregation
 
@@ -123,11 +142,17 @@ given the individual ranking preferences of several judges. We call this the `ra
 
 ## Pre-Ranking
 
-[Existing pre-ranking systems primarily adopt the two-tower model since the "user-item decoupling architecture" paradigm is able to balance the efficiency and effectiveness.](https://dl.acm.org/doi/abs/10.1145/3511808.3557072)
-[In the pre-ranking stage, vector-product based models with representation-focused architecture are commonly adopted to account for system efficiency. ](https://arxiv.org/abs/2105.07706)
+> [Existing pre-ranking systems primarily adopt the two-tower model since the "user-item decoupling architecture" paradigm is able to balance the efficiency and effectiveness.](https://dl.acm.org/doi/abs/10.1145/3511808.3557072)
+
+> [The pre-ranking is widely considered a mini-ranking module, as it needs to rank hundreds of times more items than the ranking under limited latency.](https://arxiv.org/abs/2305.13647)
+
+> [In the pre-ranking stage, vector-product based models with representation-focused architecture are commonly adopted to account for system efficiency. ](https://arxiv.org/abs/2105.07706)
+
+
 
 - [Towards a Better Trade-off between Effectiveness and Efficiency in Pre-Ranking: A Learnable Feature Selection based Approach](https://arxiv.org/abs/2105.07706)
 - [Rethinking Large-scale Pre-ranking System: Entire-chain Cross-domain Models](https://dl.acm.org/doi/abs/10.1145/3511808.3557683)
+- [Rethinking the Role of Pre-ranking in Large-scale E-Commerce Searching System](https://arxiv.org/abs/2305.13647)
 - [COLD: Towards the Next Generation of Pre-Ranking System](https://arxiv.org/abs/2007.16122)
 - [IntTower: The Next Generation of Two-Tower Model for Pre-Ranking System](https://dl.acm.org/doi/abs/10.1145/3511808.3557072)
 
@@ -142,6 +167,14 @@ Here we focus on learning to rank.
 
 - http://ltr-tutorial-sigir19.isti.cnr.it/program-overview/
 - [Efficient and Effective Tree-based and Neural Learning to Rank](https://arxiv.org/pdf/2305.08680.pdf)
+- https://aclanthology.org/2023.acl-long.771/
+
+
+### Feature Selection for Learning to Rank
+
+- [A Systematic Study of Feature Selection Methods for Learning to Rank Algorithms](https://dl.acm.org/doi/10.4018/IJIRR.2018070104)
+- [FSMRank: feature selection algorithm for learning to rank](https://pubmed.ncbi.nlm.nih.gov/24808475/)
+- [Neural Feature Selection for Learning to Rank](https://machinelearning.apple.com/research/neural-feature-selection)
 
 ## Re-Ranking
 
@@ -154,6 +187,21 @@ Beyond user satisfaction metric,
 - https://arxiv.org/pdf/2202.06602.pdf
 - [Personalized Re-ranking for Recommendation](https://www.yongfeng.me/attach/pei-recsys2019.pdf)
 
+### Diversity
+
+- [Diversity in Ranking using Negative Reinforcement](https://arxiv.org/abs/1207.6600)
+- [Matching Search Result Diversity with User Diversity Acceptance in Web Search Sessions](https://dl.acm.org/doi/10.1145/3477495.3531880)
+- https://ujwalgadiraju.com/Publications/Bias2020.pdf
+
+### Fainess
+
+- https://www.ashudeepsingh.com/
+- [Fairness in Ranking: A Survey](https://arxiv.org/abs/2103.14000)
+- [Fair ranking: a critical review, challenges, and future directions](https://arxiv.org/abs/2201.12662)
+- [Fairness in Ranking, Part I: Score-Based Ranking](https://dl.acm.org/doi/10.1145/3533379)
+- [Fairness in Ranking, Part II: Learning-to-Rank and Recommender Systems](https://dl.acm.org/doi/10.1145/3533380)
+- [Fairness of Exposure in Rankings](https://www.cs.cornell.edu/~tj/publications/singh_joachims_18a.pdf)
+- [Fairness in Recommendation Ranking through Pairwise Comparisons](https://dl.acm.org/doi/abs/10.1145/3292500.3330745)
 
 ## Other
 
@@ -167,6 +215,11 @@ Given a user query, the top matching layer is responsible for providing `semanti
 - [MOBIUS: Towards the Next Generation of Query-Ad Matching in Baidu’s Sponsored Search](http://research.baidu.com/uploads/5d12eca098d40.pdf)
 - [RankFlow: Joint Optimization of Multi-Stage Cascade Ranking Systems as Flows](https://dl.acm.org/doi/10.1145/3477495.3532050)
 - [Joint Optimization of Cascade Ranking Models](https://culpepper.io/publications/gcbc19-wsdm.pdf)
+
+### Calibrated Ranking 
+
+- https://arxiv.org/abs/2211.01494
+- https://marc.najork.org/
 
 ### Relevance Feedback
 
