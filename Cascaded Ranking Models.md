@@ -28,6 +28,7 @@ Except the subjective criteria, we can take advantage of NLP to unserstand the q
 <img src="https://pic4.zhimg.com/80/v2-ad9ea6d84f344c7e0bec2b61c69d124b_720w.webp" width="80%">
 
 - https://blog.csdn.net/u013510838/article/details/123023259
+- https://www.khoury.northeastern.edu/home/vip/teach/IRcourse/IR_surveys/
 
 ## Matching and Retrieval
 
@@ -45,16 +46,33 @@ where $n$ is much larger than $k$.
 ### Relevance Matching
 
 [A core problem of information retrieval (IR) is relevance matching (RM), where the goal is to rank documents by relevance to a user’s query.](https://aclanthology.org/D19-1540.pdf)
+
 [Given a query and a set of candidate text documents, relevance ranking algorithms determine how **relevant** each text document is for the given query.](https://ieeexplore.ieee.org/document/9177802)
 
-
-- [Search @ Nextdoor: What are our Neighbors Searching For?](https://haystackconf.com/files/slides/haystack2022/Search-at-Nextdoor-What-are-our-neighbors-searching-for-Bojan-Babic.pdf)
 - https://haystackconf.com/
+- https://www.mices.co/
+- [Search @ Nextdoor: What are our Neighbors Searching For?](https://haystackconf.com/files/slides/haystack2022/Search-at-Nextdoor-What-are-our-neighbors-searching-for-Bojan-Babic.pdf)
 - [Ranking Relevance in Yahoo Search](http://www.yichang-cs.com/yahoo/KDD16_yahoosearch.pdf)
-- [The Probabilistic Relevance Framework: BM25 and Beyond](https://dl.acm.org/doi/10.1561/1500000019)
+- [Search Relevance Methodology](https://www.mices.co/mices2017/slides/MICES2017_Doug_Turnbull_OSC_SearchRelevanceMethodology.pdf)
+- https://opensourceconnections.com/blog/2023/03/20/beyond-search-relevance-search-result-quality/
 - https://www.sigir.org/sigir2007/tutorial2d.html
 - https://haystackconf.com/us2023/talk-2/
 - https://www.elastic.co/what-is/search-relevance
+
+
+#### The Probabilistic Relevance
+
+
+The assumptions about relevance are as follows:
+1. Relevance is assumed to be a property of the document given
+information need only, assessable without reference to other
+documents; and
+2. The relevance property is assumed to be binary.
+
+[Either of these assumptions is at the least arguable.](https://www.khoury.northeastern.edu/home/vip/teach/IRcourse/IR_surveys/robertson_foundations.pdf) 
+
+- [The Probabilistic Relevance Framework: BM25 and Beyond](https://dl.acm.org/doi/10.1561/1500000019)
+- https://www.khoury.northeastern.edu/home/vip/teach/IRcourse/IR_surveys/robertson_foundations.pdf
 
 ### Semantic Matching
 
@@ -70,6 +88,7 @@ where $n$ is much larger than $k$.
 - [Relevance under the Iceberg: Reasonable Prediction for Extreme Multi-label Classification](https://dl.acm.org/doi/pdf/10.1145/3477495.3531767)
 - [Extreme Multi-label Classification from Aggregated Labels](https://arxiv.org/abs/2004.00198)
 - [Build Faster with Less: A Journey to Accelerate Sparse Model Building for Semantic Matching in Product Search](https://dl.acm.org/doi/10.1145/3583780.3614661)
+- https://www.khoury.northeastern.edu/home/vip/teach/IRcourse/IR_surveys/ml_for_match-step2.pdf
 - https://www.elastic.co/guide/en/elasticsearch/reference/current/semantic-search.html
 
 
@@ -148,12 +167,13 @@ given the individual ranking preferences of several judges. We call this the `ra
 
 > [In the pre-ranking stage, vector-product based models with representation-focused architecture are commonly adopted to account for system efficiency. ](https://arxiv.org/abs/2105.07706)
 
+The goal of pre-rank is to select some documents(items) efficiently.
 
 
+- [COLD: Towards the Next Generation of Pre-Ranking System](https://arxiv.org/abs/2007.16122)
 - [Towards a Better Trade-off between Effectiveness and Efficiency in Pre-Ranking: A Learnable Feature Selection based Approach](https://arxiv.org/abs/2105.07706)
 - [Rethinking Large-scale Pre-ranking System: Entire-chain Cross-domain Models](https://dl.acm.org/doi/abs/10.1145/3511808.3557683)
 - [Rethinking the Role of Pre-ranking in Large-scale E-Commerce Searching System](https://arxiv.org/abs/2305.13647)
-- [COLD: Towards the Next Generation of Pre-Ranking System](https://arxiv.org/abs/2007.16122)
 - [IntTower: The Next Generation of Two-Tower Model for Pre-Ranking System](https://dl.acm.org/doi/abs/10.1145/3511808.3557072)
 
 ## Ranking
@@ -169,12 +189,121 @@ Here we focus on learning to rank.
 - [Efficient and Effective Tree-based and Neural Learning to Rank](https://arxiv.org/pdf/2305.08680.pdf)
 - https://aclanthology.org/2023.acl-long.771/
 
+### Learning to Rank
 
-### Feature Selection for Learning to Rank
+Learning to rank is usually formalized as a supervised learning task, while unsupervised learning and semi-supervised learning formulations are also possible. 
+In learning, training data consisting of sets of objects as well as the total or partial orders of the objects in each set is given, and a ranking model is learned using the data. 
+In prediction, a new set of objects is given, and a ranking list of the objects is created using the ranking model.
+
+- https://link.springer.com/referenceworkentry/10.1007/978-1-4899-7687-1_893
+
+#### Feature Selection for Learning to Rank
 
 - [A Systematic Study of Feature Selection Methods for Learning to Rank Algorithms](https://dl.acm.org/doi/10.4018/IJIRR.2018070104)
 - [FSMRank: feature selection algorithm for learning to rank](https://pubmed.ncbi.nlm.nih.gov/24808475/)
 - [Neural Feature Selection for Learning to Rank](https://machinelearning.apple.com/research/neural-feature-selection)
+
+
+#### LambdaRank
+
+**LambdaRank**  introduced the $\lambda_i$ when update of parameters $w$ of the model $f:\mathbb{R}^P\to\mathbb{R}$.
+The key observation of LambdaRank is thus that in order to train a model, we do not need the costs themselves: we only need the gradients (of the costs with respect to
+the model scores).
+
+You can think of these gradients as little arrows attached to each document in the ranked list, indicating which direction we’d like those documents to move. LambdaRank simply took the RankNet gradients, which we knew worked well, and scaled them by the change in NDCG found by swapping each pair of documents. We found that this training generated models with significantly improved relevance (as measured by NDCG) and had an added bonus of uncovering a further trick that improved overall training speed (for both RankNet and LambdaRank). Furthermore, surprisingly, we found empirical evidence (see also this paper) that the training procedure does actually optimize NDCG, even though the method, although intuitive and sensible, has no such guarantee.
+
+We compute the  gradients of RankNet by:
+$$
+\frac{\partial L}{\partial w} = \sum_{(i, j)}\frac{\partial L_{i, j}}{\partial w}=\sum_{(i, j)}[\frac{\partial L_{i, j}}{\partial s_i}+\frac{\partial L_{i,j}}{\partial s_j}].
+$$
+
+Observe that
+$$\frac{\partial L_{i, j}}{\partial s_i} = -\frac{\partial L_{i,j}}{\partial s_j}$$
+and define
+
+$$
+{\lambda}_{i,j}=\frac{\partial L_{i, j}}{\partial s_i} = -\frac{\partial L_{i, j}}{\partial s_j} = -\frac{\sigma}{1 + \exp(\sigma(s_i - s_j))}.
+$$
+
+What is more, we can extend it to
+
+$$
+{\lambda}_{i,j}=  -\frac{\sigma}{1+\exp(\sigma( s_i -s_j))}|\Delta Z|,
+$$
+where $\Delta Z$ is the size of the change in some **Information Retrieval Measures** ${Z}$.
+
+And $\lambda_{i}$ with respect to ${i}$-th item is defined as
+$$\lambda_i = \sum_{i\in(i,j)}\lambda_{(i,j)}-\sum_{j\in(j,i)}\lambda_{(i,j)}$$
+
+<img src=https://p0.meituan.net/travelcube/d6142123b31212f4854fd4e53da5831e14664.png width=50% />
+
+***
+
+- http://blog.camlcity.org/blog/lambdarank.html
+- [LambdaFM: Learning Optimal Ranking with Factorization Machines Using Lambda Surrogates](http://wnzhang.net/papers/lambdafm.pdf)
+- [Practical Lessons from Predicting Clicks on Ads at Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf)
+
+#### LambdaMART
+
+* https://github.com/wepe/efficient-decision-tree-notes
+
+**LambdaMART** is the boosted tree version of LambdaRank, which is based on RankNet. It takes the ranking problem as classification problem.
+
+MART stands for [Multiple Additive Regression Tree](http://statweb.stanford.edu/~jhf/MART.html).
+In LambdaRank, we compute the gradient. And we can use this gradient to make up the GBRT.
+> LambdaMART had an added advantage: the training of tree ensemble models can be very significantly sped up over the neural net equivalent (this work, led by O. Dekel, is not yet published). This allows us to train with much larger data sets, which again gives improved ranking accuracy. From [RankNet: A ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/).
+
+***
+
+<img title="LambdaMART" src = "https://liam.page/uploads/images/LTR/LambdaMART.png" width = 80% />
+
+***
+
+To implement LambdaMART we just use MART, specifying appropriate gradients
+and the Newton step.
+The key point is the gradient of the ${\lambda}_i$:
+$$ w_i = \frac{\partial y_i}{\partial F_{k-1}(\vec{x}_i)} $$
+where $\lambda_i = y_i$ is defined in **LambdaRank**.
+LambdaRank updates all the weights after each query is examined. The
+decisions (splits at the nodes) in LambdaMART, on the other hand, are computed using all the data that falls to that node, and so LambdaMART updates only a few
+parameters at a time (namely, the split values for the current leaf nodes), but using all the data (since every $x_i$ lands in some leaf).
+This means in particular that LambdaMART is able to choose splits and leaf values that may decrease the utility for some queries, as long as the overall utility increases.
+
+- [x] [LambdaMART 不太简短之介绍](https://liam.page/2016/07/10/a-not-so-simple-introduction-to-lambdamart/)
+- [X] [Learning To Rank之LambdaMART的前世今生](https://blog.csdn.net/huagong_adu/article/details/40710305)s
+- [X] [LambdaMart Slides](https://liam.page/uploads/slides/lambdamart.pdf)
+- [ ] [From RankNet to LambdaRank to LambdaMART: An Overview](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
+- [ ] [Ranknet a ranking retrospective](https://www.microsoft.com/en-us/research/blog/ranknet-a-ranking-retrospective/)
+- [ ] [LambdaMart Demystified](https://staff.fnwi.uva.nl/e.kanoulas/wp-content/uploads/Lecture-8-1-LambdaMart-Demystified.pdf)
+- [ ] [Unbiased LambdaMART: An Unbiased Pairwise Learning-to-Rank Algorithm](https://arxiv.org/pdf/1809.05818.pdf)
+
+**GBRT+LR** can also used to predict the CTR ratio. On short but incomplete word, it is **GBRT + LR** - **gradient boosting regression tree and logistic regression**.
+GBRT is introduced at the *Boosting* section. *LR* is to measure the cost as the same in RankNet.
+
+- [ ] [Learning From Weights: A Cost-Sensitive Approach For Ad Retrieval](https://arxiv.org/abs/1811.12776)
+- [X] https://www.jianshu.com/p/96173f2c2fb4
+- [ ] [Boosted Ranking Models: A Unifying Framework for Ranking Predictions](http://www.cs.cmu.edu/~kdelaros/)
+- [ ] https://www.cnblogs.com/genyuan/p/9788294.html
+
+
+#### lambdaLoss
+
+- https://ml-compiled.readthedocs.io/en/latest/ranking.html
+- [The LambdaLoss Framework for Ranking Metric Optimization](https://dl.acm.org/doi/abs/10.1145/3269206.3271784)
+- [Revisiting Approximate Metric Optimization in the Age of Deep Neural Networks](https://dl.acm.org/doi/pdf/10.1145/3331184.3331347)
+- [On Optimizing Top-𝐾 Metrics for Neural Ranking Models](https://dl.acm.org/doi/pdf/10.1145/3477495.3531849)
+- [LambdaRank Gradients are Incoherent](https://dl.acm.org/doi/10.1145/3583780.3614948)
+
+### Click-Through Rate  Prediction
+
+[The purpose of click-through rate (CTR) prediction is to anticipate how likely a person is to click on an advertisement or item. ](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-023-00688-6)
+
+- https://arxiv.org/abs/1810.11921
+- https://arxiv.org/abs/2102.07619 
+- https://arxiv.org/abs/2105.05563
+- https://arxiv.org/abs/2304.13643
+
+
 
 ## Re-Ranking
 
@@ -193,7 +322,7 @@ Beyond user satisfaction metric,
 - [Matching Search Result Diversity with User Diversity Acceptance in Web Search Sessions](https://dl.acm.org/doi/10.1145/3477495.3531880)
 - https://ujwalgadiraju.com/Publications/Bias2020.pdf
 
-### Fainess
+### Fairness
 
 - https://www.ashudeepsingh.com/
 - [Fairness in Ranking: A Survey](https://arxiv.org/abs/2103.14000)
@@ -202,6 +331,12 @@ Beyond user satisfaction metric,
 - [Fairness in Ranking, Part II: Learning-to-Rank and Recommender Systems](https://dl.acm.org/doi/10.1145/3533380)
 - [Fairness of Exposure in Rankings](https://www.cs.cornell.edu/~tj/publications/singh_joachims_18a.pdf)
 - [Fairness in Recommendation Ranking through Pairwise Comparisons](https://dl.acm.org/doi/abs/10.1145/3292500.3330745)
+
+### Adversarial Ranking
+
+- https://arxiv.org/abs/2002.11293
+- https://www.microsoft.com/en-us/research/publication/adversarial-ranking-language-generation/
+
 
 ## Other
 
