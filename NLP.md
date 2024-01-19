@@ -71,7 +71,7 @@ Formally, the model is trained with inputs $(x_1,\cdots, x_{t-1})$ and outputs $
 - https://github.com/renepickhardt/generalized-language-modeling-toolkit
 - http://www.cs.cmu.edu/~nasmith/LSP/
 
-#### Neural  Language Model
+#### Neural Language Model
 
 The Neural Probabilistic Language Model can be summarized as follows:
 
@@ -83,7 +83,7 @@ function.
 
 When a word $w$ appears	in	a text,	its	context is	the	set	of	words	
 that appear	nearby	(within	a fixed-size	window).
-We can use	the	many contexts	of	$w$ to	build up a representation of	$w$.
+We can use	the	many contexts	of	$w$ to	build up a representation of $w$.
 
 
 
@@ -343,6 +343,12 @@ Transformer blocks are characterized by a `multi-head self-attention mechanism`,
 - https://arxiv.org/abs/2012.12556v3
 
 
+### Structured State Spaces
+
+- [Structured State Spaces: A Brief Survey of Related Models](https://hazyresearch.stanford.edu/blog/2022-01-14-s4-2)
+- https://github.com/state-spaces/mamba
+- https://paperswithcode.com/search?q=author%3AAlbert+Gu&order_by=stars
+
 ### Pre-trained Models
 
 - https://arxiv.org/pdf/2003.08271.pdf
@@ -350,10 +356,21 @@ Transformer blocks are characterized by a `multi-head self-attention mechanism`,
 - https://www.zhihu.com/question/449261221
 - https://openai.com/blog/
 
+#### Llama 
+
+- https://github.com/facebookresearch/llama
+- https://github.com/ggerganov/llama.cpp
+- https://awinml.github.io/llm-ggml-python/
+- https://llama-2.ai/
+- https://www.llamaindex.ai/
+
 ### Predictive coding
 
 - https://lorenlugosch.github.io/posts/2020/07/predictive-coding/
 - https://github.com/miyosuda/predictive_coding
+
+
+## Toolbox
 
 ### Open Library
 
@@ -382,6 +399,6 @@ DeepSpeed is a deep learning optimization library that makes distributed trainin
 - [ ] [CS 124: From Languages to Information Winter 2019 Dan Jurafsky](https://web.stanford.edu/class/cs124/)
 - [ ] [CS224U: Natural Language Understanding](https://web.stanford.edu/class/cs224u/)
 - [ ] [CS224n: Natural Language Processing with Deep Learning](https://web.stanford.edu/class/cs224n/)
-* [CS224d: Deep Learning for Natural Language Processing](http://cs224d.stanford.edu/)
-* [CS224n: Natural Language Processing with Deep Learning, Stanford / Winter 2019](https://web.stanford.edu/class/cs224n/)
-* [Deep Learning for NLP](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1810/)
+- [ ] [CS224d: Deep Learning for Natural Language Processing](http://cs224d.stanford.edu/)
+- [ ] [CS224n: Natural Language Processing with Deep Learning, Stanford / Winter 2019](https://web.stanford.edu/class/cs224n/)
+- [ ] [Deep Learning for NLP](https://www.comp.nus.edu.sg/~kanmy/courses/6101_1810/)
